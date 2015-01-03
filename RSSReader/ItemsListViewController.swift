@@ -11,6 +11,10 @@ import CoreData
 
 class ItemsListViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 	var streamID: NSString!
+	var continuation: NSString?
+	var loadInProgress = false
+	var loadCompleted = false
+	var loadError: NSError?
 	lazy var fetchedResultsController: NSFetchedResultsController = {
 		let fetchRequest: NSFetchRequest = {
 			let $ = NSFetchRequest(entityName: Item.entityName())
@@ -23,11 +27,51 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		$.delegate = self
 		return $
 	}()
+	func loadMore(completionHandler: () -> Void) {
+		assert(!loadInProgress, "")
+		assert(nil == loadError, "")
+		loadInProgress = true
+		rssSession.streamContents(self.streamID, continuation: self.continuation) { (continuation: NSString?, streamError: NSError?) -> Void in
+			dispatch_async(dispatch_get_main_queue()) {
+				if let streamError = streamError {
+					self.loadError = trace("streamError", streamError)
+				}
+				else {
+					self.continuation = continuation
+					if nil == continuation {
+						self.loadCompleted = true
+					}
+				}
+				self.loadInProgress = false
+				completionHandler()
+				self.loadMoreIfNecessary()
+			}
+		}
+	}
+	func loadMoreIfNecessary() {
+		if !loadInProgress {
+			if !loadCompleted {
+				if let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows() {
+					if let lastIndexPath = indexPathsForVisibleRows.last as NSIndexPath? {
+						if tableView.numberOfRowsInSection(0) - lastIndexPath.row < 10 {
+							self.loadMore {}
+						}
+					}
+				}
+			}
+		}
+	}
 	@IBAction func refresh(sender: AnyObject!) {
-		rssSession.streamContents(self.streamID) { (streamError: NSError?) -> Void in
-			trace("streamError", streamError)
-			let refreshControl = sender as UIRefreshControl
-			refreshControl.endRefreshing()
+		if loadInProgress && trace("nil == continuation", nil == continuation) {
+			self.refreshControl?.endRefreshing()
+		}
+		else {
+			self.loadCompleted = false
+			self.continuation = nil
+			self.loadInProgress = false
+			self.loadMore {
+				void(self.refreshControl?.endRefreshing())
+			}
 		}
 	}
 	func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
@@ -64,6 +108,10 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		let cell = tableView.dequeueReusableCellWithIdentifier("Item", forIndexPath: indexPath) as UITableViewCell
 		self.configureCell(cell, atIndexPath: indexPath)
 		return cell
+	}
+	override func scrollViewDidScroll(scrollView: UIScrollView) {
+		trace("tableView.contentOffset", tableView.contentOffset)
+		self.loadMoreIfNecessary()
 	}
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "show" {
