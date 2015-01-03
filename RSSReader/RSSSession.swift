@@ -20,7 +20,6 @@ class RSSSession : NSObject {
 	init(loginAndPassword: LoginAndPassword) {
 		self.loginAndPassword = loginAndPassword
 	}
-	
 	func authenticate() {
 		let url = NSURL(scheme: "https", host: "www.inoreader.com", path: "/accounts/ClientLogin")!
 		let request: NSURLRequest = {
@@ -204,8 +203,12 @@ class RSSSession : NSObject {
 		})
 		sessionTask.resume()
 	}
-	func streamContents(subscriptionID: NSString, completionHandler: (_: NSError?) -> Void) {
-		let url = NSURL(string:"https://www.inoreader.com/reader/api/0/stream/contents/\(subscriptionID)")!
+	func streamContents(subscriptionID: String, continuation: String?, completionHandler: (continuation: NSString?, error: NSError?) -> Void) {
+		var queryComponents = [String]()
+		if let continuation = continuation {
+			queryComponents += ["c=\(continuation)"]
+		}
+		let url = NSURL(string:"https://www.inoreader.com/reader/api/0/stream/contents/\(subscriptionID)\(URLQuerySuffixFromComponents(queryComponents))")!
 		let request: NSURLRequest = {
 			let $ = NSMutableURLRequest(URL: url)
 			$.addValue("GoogleLogin auth=\(self.authToken!)", forHTTPHeaderField: "Authorization")
@@ -222,17 +225,26 @@ class RSSSession : NSObject {
 				else {
 					var jsonParseError: NSError?
 					if let json = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(), error: &jsonParseError) as NSDictionary? {
+						let continuation = json["continuation"] as? String
 						if let itemsJsons = json["items"] as? Array<NSDictionary> {
 							let managedObjectContext = self.backgroundQueueManagedObjectContext
 							managedObjectContext.performBlock {
-								for json in itemsJsons {
-									importJson(Item.self, json, managedObjectContext: managedObjectContext)
+								let error: NSError? = {
+									for json in itemsJsons {
+										importJson(Item.self, json, managedObjectContext: managedObjectContext)
+									}
+									var saveError: NSError?
+									if !managedObjectContext.save(&saveError) {
+										return trace("saveError", saveError)
+									}
+									return nil
+								}()
+								if let error = error {
+									completionHandler(continuation: nil, error: error)
 								}
-								var saveError: NSError?
-								if !managedObjectContext.save(&saveError) {
-									trace("saveError", saveError)
+								else {
+									completionHandler(continuation: continuation, error: nil)
 								}
-								completionHandler(saveError)
 							}
 						}
 						return nil
@@ -243,7 +255,7 @@ class RSSSession : NSObject {
 				}
 			}()
 			if let error = error {
-				completionHandler(error)
+				completionHandler(continuation: nil, error: error)
 			}
 		})
 		sessionTask.resume()
