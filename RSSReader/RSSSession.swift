@@ -109,26 +109,23 @@ class RSSSession : NSObject {
 					return NSError(domain: RSSSessionErrorDomain, code: RSSSessionError.UnexpectedHTTPResponseStatus.rawValue, userInfo: ["httpResponse": httpResponse])
 				}
 				else {
-					var jsonParseError: NSError?
-					if let json = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(), error: &jsonParseError) as NSDictionary? {
-						if let subscriptionsJsons = json["unreadcounts"] as? Array<NSDictionary> {
-							let managedObjectContext = self.backgroundQueueManagedObjectContext
-							managedObjectContext.performBlock {
-								for json in subscriptionsJsons {
-									importJson(Folder.self, json, managedObjectContext: managedObjectContext)
-								}
-								var saveError: NSError?
-								if !managedObjectContext.save(&saveError) {
-									trace("saveError", saveError)
-								}
-								completionHandler(saveError)
+					let backgroundQueueManagedObjectContext = self.backgroundQueueManagedObjectContext
+					backgroundQueueManagedObjectContext.performBlock {
+						let importAndSaveError: NSError? = {
+							var importError: NSError?
+							let folders = importItemsFromJsonData(data!, type: Folder.self, elementName: "unreadcounts", managedObjectContext: backgroundQueueManagedObjectContext, error: &importError)
+							if nil == folders {
+								return trace("importError", importError!)
 							}
-						}
-						return nil
+							var saveError: NSError?
+							if !backgroundQueueManagedObjectContext.save(&saveError) {
+								return trace("saveError", saveError)
+							}
+							return nil
+						}()
+						completionHandler(importAndSaveError)
 					}
-					else {
-						return error
-					}
+					return nil
 				}
 			}()
 			if let error = error {
@@ -172,29 +169,27 @@ class RSSSession : NSObject {
 			let error: NSError? = error ?? {
 				let httpResponse = response as NSHTTPURLResponse
 				if httpResponse.statusCode != 200 {
-					return NSError(domain: RSSSessionErrorDomain, code: RSSSessionError.UnexpectedHTTPResponseStatus.rawValue, userInfo: ["httpResponse": httpResponse])
+					let httpResponseError = NSError(domain: RSSSessionErrorDomain, code: RSSSessionError.UnexpectedHTTPResponseStatus.rawValue, userInfo: ["httpResponse": httpResponse])
+					return trace("httpResponseError", httpResponseError)
 				}
 				else {
-					var jsonParseError: NSError?
-					if let json = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(), error: &jsonParseError) as NSDictionary? {
-						if let subscriptionsJsons = json["subscriptions"] as? Array<NSDictionary> {
-							let managedObjectContext = self.backgroundQueueManagedObjectContext
-							managedObjectContext.performBlock {
-								for json in subscriptionsJsons {
-									importJson(Subscription.self, json, managedObjectContext: managedObjectContext)
-								}
-								var saveError: NSError?
-								if !managedObjectContext.save(&saveError) {
-									trace("saveError", saveError)
-								}
-								completionHandler(saveError)
+					let backgroundQueueManagedObjectContext = self.backgroundQueueManagedObjectContext
+					backgroundQueueManagedObjectContext.performBlock {
+						let importAndSaveError: NSError? = {
+							var importError: NSError?
+							let subscriptions = importItemsFromJsonData(data!, type: Subscription.self, elementName: "subscriptions", managedObjectContext: backgroundQueueManagedObjectContext, error: &importError)
+							if nil == subscriptions {
+								return trace("importError", importError!)
 							}
-						}
-						return nil
+							var saveError: NSError?
+							if !backgroundQueueManagedObjectContext.save(&saveError) {
+								return trace("saveError", saveError)
+							}
+							return nil
+						}()
+						completionHandler(importAndSaveError)
 					}
-					else {
-						return error
-					}
+					return nil
 				}
 			}()
 			if let error = error {
@@ -203,7 +198,7 @@ class RSSSession : NSObject {
 		})
 		sessionTask.resume()
 	}
-	func streamContents(subscriptionID: String, continuation: String?, completionHandler: (continuation: NSString?, error: NSError?) -> Void) {
+	func streamContents(subscriptionID: String, continuation: String?, loadDate: NSDate, completionHandler: (continuation: NSString?, items: [Item]!, error: NSError?) -> Void) {
 		var queryComponents = [String]()
 		if let continuation = continuation {
 			queryComponents += ["c=\(continuation)"]
@@ -223,39 +218,44 @@ class RSSSession : NSObject {
 					return NSError(domain: RSSSessionErrorDomain, code: RSSSessionError.UnexpectedHTTPResponseStatus.rawValue, userInfo: ["httpResponse": httpResponse, "body": body ?? ""])
 				}
 				else {
-					var jsonParseError: NSError?
-					if let json = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(), error: &jsonParseError) as NSDictionary? {
-						let continuation = json["continuation"] as? String
-						if let itemsJsons = json["items"] as? Array<NSDictionary> {
-							let managedObjectContext = self.backgroundQueueManagedObjectContext
-							managedObjectContext.performBlock {
-								let error: NSError? = {
-									for json in itemsJsons {
-										importJson(Item.self, json, managedObjectContext: managedObjectContext)
-									}
-									var saveError: NSError?
-									if !managedObjectContext.save(&saveError) {
-										return trace("saveError", saveError)
-									}
-									return nil
-								}()
-								if let error = error {
-									completionHandler(continuation: nil, error: error)
-								}
-								else {
-									completionHandler(continuation: continuation, error: nil)
-								}
+					let backgroundQueueManagedObjectContext = self.backgroundQueueManagedObjectContext
+					backgroundQueueManagedObjectContext.performBlock {
+						let error: NSError? = {
+							var jsonParseError: NSError?
+							let jsonObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(), error: &jsonParseError)
+							if nil == jsonObject {
+								return trace("jsonParseError", jsonParseError!)
 							}
+							let json = jsonObject! as? [String : AnyObject]
+							if nil == json {
+								let jsonIsNotDictionaryError = NSError()
+								return trace("jsonIsNotDictionaryError", jsonIsNotDictionaryError)
+							}
+							let continuation = json!["continuation"] as? String
+							var importError: NSError?
+							let items = importItemsFromJson(json!, type: Item.self, elementName: "items", managedObjectContext: backgroundQueueManagedObjectContext, error: &importError)
+							if nil == items {
+								return trace("importError", importError!)
+							}
+							for item in items! {
+								// item.loadDate = loadDate
+							}
+							var saveError: NSError?
+							if !backgroundQueueManagedObjectContext.save(&saveError) {
+								return trace("saveError", saveError)
+							}
+							completionHandler(continuation: continuation, items: items, error: nil)
+							return nil
+						}()
+						if let error = error {
+							completionHandler(continuation: nil, items: nil, error: error)
 						}
-						return nil
 					}
-					else {
-						return error
-					}
+					return nil
 				}
 			}()
 			if let error = error {
-				completionHandler(continuation: nil, error: error)
+				completionHandler(continuation: nil, items: nil, error: error)
 			}
 		})
 		sessionTask.resume()
