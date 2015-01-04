@@ -10,6 +10,7 @@
 		C41707CB1A56076A00AED81C /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41707CA1A56076A00AED81C /* Globals.swift */; };
 		C41707CD1A56E85B00AED81C /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41707CC1A56E85B00AED81C /* Folder.swift */; };
 		C41707CF1A56F32500AED81C /* GenericCoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41707CE1A56F32500AED81C /* GenericCoreDataExtensions.swift */; };
+		C418B32F1A5956D7002C0578 /* ItemSummaryTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C418B32E1A5956D7002C0578 /* ItemSummaryTextViewController.swift */; };
 		C4728B341A55B83800D4251A /* RSSReader.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C4728B321A55B83800D4251A /* RSSReader.xcdatamodeld */; };
 		C4728B381A55BA6600D4251A /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4728B371A55BA6600D4251A /* Subscription.swift */; };
 		C4728B3A1A55BAC600D4251A /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4728B391A55BAC600D4251A /* CoreData.swift */; };
@@ -17,7 +18,7 @@
 		C495409D1A575D0C00F56168 /* GenericExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495409C1A575D0C00F56168 /* GenericExtensions.swift */; };
 		C495409F1A5780A700F56168 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495409E1A5780A700F56168 /* Item.swift */; };
 		C49540A11A57825100F56168 /* ItemsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49540A01A57825100F56168 /* ItemsListViewController.swift */; };
-		C49540A51A57906600F56168 /* ItemSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49540A41A57906600F56168 /* ItemSummaryViewController.swift */; };
+		C49540A51A57906600F56168 /* ItemSummaryWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */; };
 		C4C1A3F61A574517007384E8 /* RSSSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C1A3F51A574517007384E8 /* RSSSession.swift */; };
 		C4CDD3A31A5350B40087DD05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */; };
 		C4CDD3A51A5350B40087DD05 /* SubscriptionsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CDD3A41A5350B40087DD05 /* SubscriptionsListViewController.swift */; };
@@ -44,6 +45,7 @@
 		C41707CC1A56E85B00AED81C /* Folder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
 		C41707CE1A56F32500AED81C /* GenericCoreDataExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericCoreDataExtensions.swift; sourceTree = "<group>"; };
 		C418B32B1A5942FC002C0578 /* XCEmbedSourceVersionIntoBundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = XCEmbedSourceVersionIntoBundle; sourceTree = "<group>"; };
+		C418B32E1A5956D7002C0578 /* ItemSummaryTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSummaryTextViewController.swift; sourceTree = "<group>"; };
 		C4728B331A55B83800D4251A /* RSSReader.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RSSReader.xcdatamodel; sourceTree = "<group>"; };
 		C4728B371A55BA6600D4251A /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		C4728B391A55BAC600D4251A /* CoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
@@ -51,7 +53,7 @@
 		C495409C1A575D0C00F56168 /* GenericExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericExtensions.swift; sourceTree = "<group>"; };
 		C495409E1A5780A700F56168 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		C49540A01A57825100F56168 /* ItemsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsListViewController.swift; sourceTree = "<group>"; };
-		C49540A41A57906600F56168 /* ItemSummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSummaryViewController.swift; sourceTree = "<group>"; };
+		C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSummaryWebViewController.swift; sourceTree = "<group>"; };
 		C4C1A3F51A574517007384E8 /* RSSSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSSession.swift; sourceTree = "<group>"; };
 		C4CDD39D1A5350B40087DD05 /* RSSReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4CDD3A11A5350B40087DD05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -93,6 +95,15 @@
 			path = XcodeScripts;
 			sourceTree = "<group>";
 		};
+		C418B32D1A594705002C0578 /* Generic */ = {
+			isa = PBXGroup;
+			children = (
+				C495409C1A575D0C00F56168 /* GenericExtensions.swift */,
+				C41707CE1A56F32500AED81C /* GenericCoreDataExtensions.swift */,
+			);
+			name = Generic;
+			sourceTree = "<group>";
+		};
 		C49540A21A57827300F56168 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -102,7 +113,8 @@
 				C4CDD3A41A5350B40087DD05 /* SubscriptionsListViewController.swift */,
 				C49540A01A57825100F56168 /* ItemsListViewController.swift */,
 				C4CDD3A61A5350B40087DD05 /* SecondViewController.swift */,
-				C49540A41A57906600F56168 /* ItemSummaryViewController.swift */,
+				C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */,
+				C418B32E1A5956D7002C0578 /* ItemSummaryTextViewController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -144,10 +156,9 @@
 		C4CDD39F1A5350B40087DD05 /* RSSReader */ = {
 			isa = PBXGroup;
 			children = (
-				C495409C1A575D0C00F56168 /* GenericExtensions.swift */,
-				C41707CE1A56F32500AED81C /* GenericCoreDataExtensions.swift */,
-				C49540A31A5782B900F56168 /* Model */,
 				C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */,
+				C418B32D1A594705002C0578 /* Generic */,
+				C49540A31A5782B900F56168 /* Model */,
 				C49540A21A57827300F56168 /* UI */,
 				C4CDD3A01A5350B40087DD05 /* Supporting Files */,
 				C4CDD3C41A5357B20087DD05 /* Settings.bundle */,
@@ -300,13 +311,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C49540A51A57906600F56168 /* ItemSummaryViewController.swift in Sources */,
+				C49540A51A57906600F56168 /* ItemSummaryWebViewController.swift in Sources */,
 				C4C1A3F61A574517007384E8 /* RSSSession.swift in Sources */,
 				C4CDD3A71A5350B40087DD05 /* SecondViewController.swift in Sources */,
 				C41707CB1A56076A00AED81C /* Globals.swift in Sources */,
 				C495409B1A575C1900F56168 /* UserDefaults.swift in Sources */,
 				C4728B341A55B83800D4251A /* RSSReader.xcdatamodeld in Sources */,
 				C49540A11A57825100F56168 /* ItemsListViewController.swift in Sources */,
+				C418B32F1A5956D7002C0578 /* ItemSummaryTextViewController.swift in Sources */,
 				C41707CD1A56E85B00AED81C /* Folder.swift in Sources */,
 				C4CDD3A31A5350B40087DD05 /* AppDelegate.swift in Sources */,
 				C495409F1A5780A700F56168 /* Item.swift in Sources */,
