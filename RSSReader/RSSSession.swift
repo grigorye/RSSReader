@@ -203,7 +203,9 @@ class RSSSession : NSObject {
 		if let continuation = continuation {
 			queryComponents += ["c=\(continuation)"]
 		}
-		let url = NSURL(string:"https://www.inoreader.com/reader/api/0/stream/contents/\(subscriptionID)\(URLQuerySuffixFromComponents(queryComponents))")!
+		let subscriptionIDPercentEncoded = subscriptionID.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())!
+		let querySuffix = URLQuerySuffixFromComponents(queryComponents)
+		let url = NSURL(string:"https://www.inoreader.com/reader/api/0/stream/contents/\(subscriptionIDPercentEncoded)\(querySuffix)")!
 		let request: NSURLRequest = {
 			let $ = NSMutableURLRequest(URL: url)
 			$.addValue("GoogleLogin auth=\(self.authToken!)", forHTTPHeaderField: "Authorization")
