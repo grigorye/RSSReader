@@ -33,6 +33,13 @@ class AppDelegateInternals {
 		let error: NSError? = {
 			let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
 			let documentsDirectory = paths[0] as NSString
+			let fileManager = NSFileManager.defaultManager()
+			if !fileManager.fileExistsAtPath(documentsDirectory) {
+				var documentsDirectoryCreationError: NSError?
+				if !fileManager.createDirectoryAtPath(documentsDirectory, withIntermediateDirectories: true, attributes: nil, error: &documentsDirectoryCreationError) {
+					return trace("documentsDirectoryCreationError", documentsDirectoryCreationError)
+				}
+			}
 			let storeURL = NSURL(fileURLWithPath: documentsDirectory.stringByAppendingPathComponent("RSSReader.sqlite"))!
 			let addPersistentStoreMigratedError: NSError? = {
 				var addPersistentStoreError: NSError?
