@@ -30,16 +30,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		let fetchRequest: NSFetchRequest = {
 			let $ = NSFetchRequest(entityName: Item.entityName())
 			$.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
-			let streamIDInItems: NSString = {
-				let id = self.streamID as NSString
-				let url = NSURL(string: id)
-				if let query = url?.query as NSString? {
-					assert(id.hasSuffix(query), "")
-					return id.substringToIndex(id.length - query.length - 1)
-				}
-				return id
-			}()
-			$.predicate = NSPredicate(format: "streamID == %@", argumentArray: [streamIDInItems])
+			$.predicate = NSPredicate(format: "streamID == %@", argumentArray: [self.streamID])
 			return $
 		}()
 		let cacheName = "Cache-StreamID:\(self.streamID)"
