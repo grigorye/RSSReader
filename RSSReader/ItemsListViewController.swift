@@ -9,10 +9,19 @@
 import UIKit
 import CoreData
 
+var dateComponentsFormatter: NSDateComponentsFormatter = {
+	let $ = NSDateComponentsFormatter()
+	$.unitsStyle = .Abbreviated
+	$.allowsFractionalUnits = true
+	$.maximumUnitCount = 1
+	$.allowedUnits = .CalendarUnitMinute | .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitWeekOfMonth | .CalendarUnitDay | .CalendarUnitHour
+	return $;
+}()
+
 class ItemsListViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 	var streamID: NSString!
 	var continuation: NSString?
-	var loadDate: NSDate!
+	lazy var loadDate = NSDate()
 	var loadInProgress = false
 	var loadCompleted = false
 	var loadError: NSError?
@@ -28,12 +37,10 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		$.delegate = self
 		return $
 	}()
+	// MARK: -
 	func loadMore(completionHandler: () -> Void) {
 		assert(!loadInProgress, "")
 		assert(nil == loadError, "")
-		if nil == self.continuation {
-			self.loadDate = NSDate()
-		}
 		loadInProgress = true
 		rssSession.streamContents(self.streamID, continuation: self.continuation) { (continuation: NSString?, streamError: NSError?) -> Void in
 			dispatch_async(dispatch_get_main_queue()) {
@@ -73,17 +80,27 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			self.loadCompleted = false
 			self.continuation = nil
 			self.loadInProgress = false
+			self.loadError = nil
 			self.loadMore {
 				void(self.refreshControl?.endRefreshing())
 			}
 		}
 	}
+	// MARK: -
+	func selectedItem() -> Item {
+		let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow()!
+		let $ = self.fetchedResultsController.fetchedObjects![indexPathForSelectedRow.row] as Item
+		return $
+	}
+	
+	// MARK: -
 	func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
 		let item = fetchedResultsController.fetchedObjects![indexPath.row] as Item
 		cell.textLabel?.text = item.title ?? item.id.lastPathComponent
-		let timeInterval = loadDate.timeIntervalSinceDate(item.date)
-		cell.detailTextLabel?.text = "\(timeInterval)"
+		let timeIntervalFormatted = dateComponentsFormatter.stringFromDate(item.date, toDate: loadDate) ?? ""
+		cell.detailTextLabel?.text = "\(timeIntervalFormatted)"
 	}
+	// MARK: -
 	func controllerWillChangeContent(controller: NSFetchedResultsController) {
 		self.tableView.beginUpdates()
 	}
@@ -107,6 +124,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	func controllerDidChangeContent(controller: NSFetchedResultsController) {
 		self.tableView.endUpdates()
 	}
+	// MARK: -
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return fetchedResultsController.fetchedObjects!.count
 	}
@@ -115,19 +133,27 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		self.configureCell(cell, atIndexPath: indexPath)
 		return cell
 	}
+	// MARK: -
 	override func scrollViewDidScroll(scrollView: UIScrollView) {
 		trace("tableView.contentOffset", tableView.contentOffset)
 		self.loadMoreIfNecessary()
 	}
+	// MARK: -
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if segue.identifier == "show" {
-			let itemSummaryViewController = segue.destinationViewController as ItemSummaryViewController
-			itemSummaryViewController.item = {
-				let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow()!
-				let $ = self.fetchedResultsController.fetchedObjects![indexPathForSelectedRow.row] as Item
-				return $
-			}()
+		if segue.identifier == "showWeb" {
+			let itemSummaryWebViewController = segue.destinationViewController as ItemSummaryWebViewController
+			itemSummaryWebViewController.item = self.selectedItem()
 		}
+		else if segue.identifier == "showText" {
+			let itemSummaryTextViewController = segue.destinationViewController as ItemSummaryTextViewController
+			itemSummaryTextViewController.item = self.selectedItem()
+		}
+	}
+	// MARK: -
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		self.loadDate = NSDate()
+		self.tableView.reloadData()
 	}
 	override func viewDidLoad() {
 		super.viewDidLoad()
