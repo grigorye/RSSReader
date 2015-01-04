@@ -16,7 +16,7 @@ extension Item : ManagedIdentifiable {
 	func importFromJson(jsonObject: AnyObject) {
 		let json = jsonObject as [String: AnyObject]
 		self.id = json["id"] as NSString
-		let timeIntervalSince1970 = (json["timestampUsec"] as NSString).doubleValue * 1e-9
+		let timeIntervalSince1970 = (json["timestampUsec"] as NSString).doubleValue * 1e-6
 		self.date = NSDate(timeIntervalSince1970: timeIntervalSince1970)
 		self.title = json["title"] as NSString?
 		let summary = (json["summary"] as? NSDictionary)?["content"] as NSString?
