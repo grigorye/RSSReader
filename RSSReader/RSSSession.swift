@@ -103,7 +103,7 @@ class RSSSession : NSObject {
 		}()
 		let sessionTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
 			println("response: \(response)")
-			let error: NSError? = {
+			let error: NSError? = error ?? {
 				let httpResponse = response as NSHTTPURLResponse
 				if httpResponse.statusCode != 200 {
 					return NSError(domain: RSSSessionErrorDomain, code: RSSSessionError.UnexpectedHTTPResponseStatus.rawValue, userInfo: ["httpResponse": httpResponse])
@@ -169,7 +169,7 @@ class RSSSession : NSObject {
 		}()
 		let sessionTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
 			println("response: \(response)")
-			let error: NSError? = {
+			let error: NSError? = error ?? {
 				let httpResponse = response as NSHTTPURLResponse
 				if httpResponse.statusCode != 200 {
 					return NSError(domain: RSSSessionErrorDomain, code: RSSSessionError.UnexpectedHTTPResponseStatus.rawValue, userInfo: ["httpResponse": httpResponse])
@@ -216,7 +216,7 @@ class RSSSession : NSObject {
 		}()
 		let sessionTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
 			println("response: \(response)")
-			let error: NSError? = {
+			let error: NSError? = error ?? {
 				let httpResponse = response as NSHTTPURLResponse
 				if httpResponse.statusCode != 200 {
 					let body = NSString(data: data, encoding: NSUTF8StringEncoding)
