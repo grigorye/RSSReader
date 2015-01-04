@@ -1,5 +1,5 @@
 //
-//  ItemSummaryViewController.swift
+//  ItemSummaryWebViewController.swift
 //  RSSReader
 //
 //  Created by Grigory Entin on 03.01.15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ItemSummaryViewController: UIViewController {
+class ItemSummaryWebViewController: UIViewController {
 	@IBOutlet var textView: UITextView!
 	@IBOutlet var webView: UIWebView!
 	var item: Item!
