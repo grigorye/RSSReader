@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+#  XCEmbedSourceVersionIntoBundle.sh
+#  RSSReader
+#
+#  Created by Grigory Entin on 04.01.15.
+#  Copyright (c) 2015 Grigory Entin. All rights reserved.
+
+commitNumber=$(git rev-list --abbrev-commit HEAD | wc -l | awk '{print $1}')
+
+infoPlistWOExt=$(echo "${INFOPLIST_PATH:?}"|sed 's/.plist$//')
+infoPlistDefaultsDomain="${CONFIGURATION_BUILD_DIR:?}/${infoPlistWOExt:?}"
+defaults write "${infoPlistDefaultsDomain:?}" CFBundleVersion -string "${commitNumber}"

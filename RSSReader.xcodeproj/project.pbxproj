@@ -43,6 +43,7 @@
 		C41707CA1A56076A00AED81C /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		C41707CC1A56E85B00AED81C /* Folder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
 		C41707CE1A56F32500AED81C /* GenericCoreDataExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericCoreDataExtensions.swift; sourceTree = "<group>"; };
+		C418B32B1A5942FC002C0578 /* XCEmbedSourceVersionIntoBundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = XCEmbedSourceVersionIntoBundle; sourceTree = "<group>"; };
 		C4728B331A55B83800D4251A /* RSSReader.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RSSReader.xcdatamodel; sourceTree = "<group>"; };
 		C4728B371A55BA6600D4251A /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		C4728B391A55BAC600D4251A /* CoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
@@ -84,6 +85,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C418B32A1A5942FC002C0578 /* XcodeScripts */ = {
+			isa = PBXGroup;
+			children = (
+				C418B32B1A5942FC002C0578 /* XCEmbedSourceVersionIntoBundle */,
+			);
+			path = XcodeScripts;
+			sourceTree = "<group>";
+		};
 		C49540A21A57827300F56168 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +125,7 @@
 		C4CDD3941A5350B40087DD05 = {
 			isa = PBXGroup;
 			children = (
+				C418B32A1A5942FC002C0578 /* XcodeScripts */,
 				C4CDD39F1A5350B40087DD05 /* RSSReader */,
 				C4CDD3B71A5350B50087DD05 /* RSSReaderTests */,
 				C4CDD39E1A5350B40087DD05 /* Products */,
@@ -180,6 +190,7 @@
 				C4CDD3991A5350B40087DD05 /* Sources */,
 				C4CDD39A1A5350B40087DD05 /* Frameworks */,
 				C4CDD39B1A5350B40087DD05 /* Resources */,
+				C418B3281A593F4E002C0578 /* Embed Source Version into Bundle */,
 			);
 			buildRules = (
 			);
@@ -219,6 +230,7 @@
 				TargetAttributes = {
 					C4CDD39C1A5350B40087DD05 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 5BV57B67TB;
 					};
 					C4CDD3B31A5350B50087DD05 = {
 						CreatedOnToolsVersion = 6.2;
@@ -265,6 +277,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C418B3281A593F4E002C0578 /* Embed Source Version into Bundle */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Source Version into Bundle";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/bin/sh -xe";
+			shellScript = "\"${SRCROOT:?}\"/XcodeScripts/XCEmbedSourceVersionIntoBundle\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C4CDD3991A5350B40087DD05 /* Sources */ = {
