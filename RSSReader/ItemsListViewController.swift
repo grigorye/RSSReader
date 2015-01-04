@@ -21,11 +21,12 @@ var dateComponentsFormatter: NSDateComponentsFormatter = {
 class ItemsListViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 	var streamID: NSString!
 	var continuation: NSString?
-	lazy var loadDate = NSDate()
+	var loadDate: NSDate!
 	var loadInProgress = false
 	var lastLoadedItem: Item?
 	var loadCompleted = false
 	var loadError: NSError?
+	var tableFooterView: UIView?
 	lazy var fetchedResultsController: NSFetchedResultsController = {
 		let fetchRequest: NSFetchRequest = {
 			let $ = NSFetchRequest(entityName: Item.entityName())
@@ -33,18 +34,27 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			$.predicate = NSPredicate(format: "streamID == %@", argumentArray: [self.streamID])
 			return $
 		}()
-		let cacheName = "Cache-StreamID:\(self.streamID)"
-		let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.mainQueueManagedObjectContext, sectionNameKeyPath: nil, cacheName: cacheName)
+		let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.mainQueueManagedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
 		$.delegate = self
 		return $
 	}()
 	// MARK: -
-	func loadMore(completionHandler: () -> Void) {
+	func loadMore(completionHandler: (loadDateDidChange: Bool) -> Void) {
 		assert(!loadInProgress, "")
+		assert(!loadCompleted, "")
 		assert(nil == loadError, "")
+		if nil == self.continuation {
+			self.loadDate = NSDate()
+		}
+		let loadDate = self.loadDate
 		loadInProgress = true
 		rssSession.streamContents(self.streamID, continuation: self.continuation, loadDate: self.loadDate) { (continuation: NSString?, items: [Item]!, streamError: NSError?) -> Void in
 			dispatch_async(dispatch_get_main_queue()) {
+				if loadDate != self.loadDate {
+					// Ignore results from previous sessions.
+					completionHandler(loadDateDidChange: true)
+					return
+				}
 				if let streamError = streamError {
 					self.loadError = trace("streamError", streamError)
 				}
@@ -56,10 +66,13 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 					self.continuation = continuation
 					if nil == continuation {
 						self.loadCompleted = true
+						UIView.animateWithDuration(0.4) {
+							self.tableView.tableFooterView = nil
+						}
 					}
 				}
 				self.loadInProgress = false
-				completionHandler()
+				completionHandler(loadDateDidChange: false)
 				self.loadMoreIfNecessary()
 			}
 		}
@@ -68,13 +81,18 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		if !loadInProgress {
 			if !loadCompleted {
 				if let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows() {
-					if let lastVisibleIndexPath = indexPathsForVisibleRows.last as NSIndexPath? {
-						let numberOfRows = tableView.numberOfRowsInSection(0)
-						let numberOfItemsToPreload = 10
-						let barrierRow = lastVisibleIndexPath.row + numberOfItemsToPreload
-						let indexOfLastLoadedItem = (nil == self.lastLoadedItem) ? 0 : (self.fetchedResultsController.fetchedObjects! as NSArray).indexOfObjectIdenticalTo(self.lastLoadedItem!)
-						if indexOfLastLoadedItem < barrierRow {
-							self.loadMore {}
+					let shouldLoadMore: Bool = {
+						if let lastVisibleIndexPath = indexPathsForVisibleRows.last as NSIndexPath? {
+							let numberOfRows = self.tableView.numberOfRowsInSection(0)
+							let numberOfItemsToPreload = 10
+							let barrierRow = lastVisibleIndexPath.row + numberOfItemsToPreload
+							let indexOfLastLoadedItem = (nil == self.lastLoadedItem) ? 0 : (self.fetchedResultsController.fetchedObjects! as NSArray).indexOfObjectIdenticalTo(self.lastLoadedItem!)
+							return indexOfLastLoadedItem < barrierRow
+						}
+						return true
+					}()
+					if shouldLoadMore {
+						self.loadMore { loadDateDidChange in
 						}
 					}
 				}
@@ -90,8 +108,13 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			self.continuation = nil
 			self.loadInProgress = false
 			self.loadError = nil
-			self.loadMore {
-				void(self.refreshControl?.endRefreshing())
+			self.loadMore { loadDateDidChange in
+				if !loadDateDidChange {
+					void(self.refreshControl?.endRefreshing())
+				}
+			}
+			UIView.animateWithDuration(0.4) {
+				self.tableView.tableFooterView = self.tableFooterView
 			}
 		}
 	}
@@ -161,12 +184,13 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	// MARK: -
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-		self.loadDate = NSDate()
 		self.tableView.reloadData()
 	}
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		var fetchError: NSError?
 		fetchedResultsController.performFetch(&fetchError)
+		assert(nil == fetchError, "")
+		self.tableFooterView = tableView.tableFooterView
 	}
 }
