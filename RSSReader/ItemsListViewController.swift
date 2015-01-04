@@ -12,6 +12,7 @@ import CoreData
 class ItemsListViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 	var streamID: NSString!
 	var continuation: NSString?
+	var loadDate: NSDate!
 	var loadInProgress = false
 	var loadCompleted = false
 	var loadError: NSError?
@@ -30,6 +31,9 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	func loadMore(completionHandler: () -> Void) {
 		assert(!loadInProgress, "")
 		assert(nil == loadError, "")
+		if nil == self.continuation {
+			self.loadDate = NSDate()
+		}
 		loadInProgress = true
 		rssSession.streamContents(self.streamID, continuation: self.continuation) { (continuation: NSString?, streamError: NSError?) -> Void in
 			dispatch_async(dispatch_get_main_queue()) {
@@ -77,6 +81,8 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
 		let item = fetchedResultsController.fetchedObjects![indexPath.row] as Item
 		cell.textLabel?.text = item.title ?? item.id.lastPathComponent
+		let timeInterval = loadDate.timeIntervalSinceDate(item.date)
+		cell.detailTextLabel?.text = "\(timeInterval)"
 	}
 	func controllerWillChangeContent(controller: NSFetchedResultsController) {
 		self.tableView.beginUpdates()
