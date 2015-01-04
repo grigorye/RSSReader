@@ -23,13 +23,23 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	var continuation: NSString?
 	lazy var loadDate = NSDate()
 	var loadInProgress = false
+	var lastLoadedItem: Item?
 	var loadCompleted = false
 	var loadError: NSError?
 	lazy var fetchedResultsController: NSFetchedResultsController = {
 		let fetchRequest: NSFetchRequest = {
 			let $ = NSFetchRequest(entityName: Item.entityName())
 			$.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
-			$.predicate = NSPredicate(format: "streamID == %@", argumentArray: [self.streamID])
+			let streamIDInItems: NSString = {
+				let id = self.streamID as NSString
+				let url = NSURL(string: id)
+				if let query = url?.query as NSString? {
+					assert(id.hasSuffix(query), "")
+					return id.substringToIndex(id.length - query.length - 1)
+				}
+				return id
+			}()
+			$.predicate = NSPredicate(format: "streamID == %@", argumentArray: [streamIDInItems])
 			return $
 		}()
 		let cacheName = "Cache-StreamID:\(self.streamID)"
@@ -42,12 +52,16 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		assert(!loadInProgress, "")
 		assert(nil == loadError, "")
 		loadInProgress = true
-		rssSession.streamContents(self.streamID, continuation: self.continuation) { (continuation: NSString?, streamError: NSError?) -> Void in
+		rssSession.streamContents(self.streamID, continuation: self.continuation, loadDate: self.loadDate) { (continuation: NSString?, items: [Item]!, streamError: NSError?) -> Void in
 			dispatch_async(dispatch_get_main_queue()) {
 				if let streamError = streamError {
 					self.loadError = trace("streamError", streamError)
 				}
 				else {
+					if let lastItemInCompletion = items.last {
+						let managedObjectContext = self.fetchedResultsController.managedObjectContext
+						self.lastLoadedItem = (managedObjectContext.objectWithID(lastItemInCompletion.objectID) as Item)
+					}
 					self.continuation = continuation
 					if nil == continuation {
 						self.loadCompleted = true
@@ -63,8 +77,12 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		if !loadInProgress {
 			if !loadCompleted {
 				if let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows() {
-					if let lastIndexPath = indexPathsForVisibleRows.last as NSIndexPath? {
-						if tableView.numberOfRowsInSection(0) - lastIndexPath.row < 10 {
+					if let lastVisibleIndexPath = indexPathsForVisibleRows.last as NSIndexPath? {
+						let numberOfRows = tableView.numberOfRowsInSection(0)
+						let numberOfItemsToPreload = 10
+						let barrierRow = lastVisibleIndexPath.row + numberOfItemsToPreload
+						let indexOfLastLoadedItem = (nil == self.lastLoadedItem) ? 0 : (self.fetchedResultsController.fetchedObjects! as NSArray).indexOfObjectIdenticalTo(self.lastLoadedItem!)
+						if indexOfLastLoadedItem < barrierRow {
 							self.loadMore {}
 						}
 					}
