@@ -28,6 +28,8 @@
 		C4CDD3AF1A5350B50087DD05 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4CDD3AD1A5350B50087DD05 /* LaunchScreen.xib */; };
 		C4CDD3BB1A5350B50087DD05 /* RSSReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CDD3BA1A5350B50087DD05 /* RSSReaderTests.swift */; };
 		C4CDD3C51A5357B20087DD05 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C4CDD3C41A5357B20087DD05 /* Settings.bundle */; };
+		C4CDE1911A5A06A600F16A2E /* ItemSummaryTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */; };
+		C4CDE1931A5A0A8D00F16A2E /* ItemSummary.css in Resources */ = {isa = PBXBuildFile; fileRef = C4CDE1921A5A0A8D00F16A2E /* ItemSummary.css */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		C4CDD3B91A5350B50087DD05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4CDD3BA1A5350B50087DD05 /* RSSReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSReaderTests.swift; sourceTree = "<group>"; };
 		C4CDD3C41A5357B20087DD05 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ItemSummaryTemplate.html; sourceTree = "<group>"; };
+		C4CDE1921A5A0A8D00F16A2E /* ItemSummary.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = ItemSummary.css; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +118,8 @@
 				C49540A01A57825100F56168 /* ItemsListViewController.swift */,
 				C4CDD3A61A5350B40087DD05 /* SecondViewController.swift */,
 				C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */,
+				C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */,
+				C4CDE1921A5A0A8D00F16A2E /* ItemSummary.css */,
 				C418B32E1A5956D7002C0578 /* ItemSummaryTextViewController.swift */,
 			);
 			name = UI;
@@ -273,10 +279,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4CDE1911A5A06A600F16A2E /* ItemSummaryTemplate.html in Resources */,
 				C4CDD3C51A5357B20087DD05 /* Settings.bundle in Resources */,
 				C4CDD3AA1A5350B40087DD05 /* Main.storyboard in Resources */,
 				C4CDD3AF1A5350B50087DD05 /* LaunchScreen.xib in Resources */,
 				C4CDD3AC1A5350B50087DD05 /* Images.xcassets in Resources */,
+				C4CDE1931A5A0A8D00F16A2E /* ItemSummary.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
