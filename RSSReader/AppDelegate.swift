@@ -152,7 +152,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 					self.loginAndPassword = loginAndPassword
 				}
 				let authToken = defaults.authToken
-				self.rssSession.authToken = authToken
+				if let authToken = authToken {
+					self.rssSession.authToken = authToken
+				}
 				handlingNotification = false
 			}
 		}
