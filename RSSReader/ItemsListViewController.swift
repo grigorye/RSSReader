@@ -130,7 +130,11 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		let item = fetchedResultsController.fetchedObjects![indexPath.row] as Item
 		cell.textLabel?.text = item.title ?? item.id.lastPathComponent
 		let timeIntervalFormatted = dateComponentsFormatter.stringFromDate(item.date, toDate: loadDate) ?? ""
-		cell.detailTextLabel?.text = "\(timeIntervalFormatted)"
+		if let detailTextLabel = cell.detailTextLabel {
+			detailTextLabel.text = "\(timeIntervalFormatted)"
+			let isRead = filter(item.categories) { folder in folder.id.hasSuffix("state/com.google/read") }.count == 1
+			detailTextLabel.textColor = isRead ? nil : UIColor.redColor()
+		}
 	}
 	// MARK: -
 	func controllerWillChangeContent(controller: NSFetchedResultsController) {
