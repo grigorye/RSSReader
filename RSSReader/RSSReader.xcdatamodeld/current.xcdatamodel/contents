@@ -4,6 +4,7 @@
         <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="newestItemDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="unreadCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="categories" inverseEntity="Item" syncable="YES"/>
         <relationship name="subscriptions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Subscription" inverseName="categories" inverseEntity="Subscription" syncable="YES"/>
     </entity>
     <entity name="Item" representedClassName="RSSReader.Item" syncable="YES">
@@ -12,6 +13,7 @@
         <attribute name="streamID" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Folder" inverseName="items" inverseEntity="Folder" syncable="YES"/>
     </entity>
     <entity name="Subscription" representedClassName="RSSReader.Subscription" syncable="YES">
         <attribute name="firstItemDate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -24,8 +26,8 @@
         <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Folder" inverseName="subscriptions" inverseEntity="Folder" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Folder" positionX="-63" positionY="18" width="128" height="103"/>
-        <element name="Item" positionX="-63" positionY="36" width="128" height="118"/>
+        <element name="Folder" positionX="-63" positionY="18" width="128" height="118"/>
+        <element name="Item" positionX="-63" positionY="36" width="128" height="133"/>
         <element name="Subscription" positionX="-63" positionY="-18" width="128" height="163"/>
     </elements>
 </model>
