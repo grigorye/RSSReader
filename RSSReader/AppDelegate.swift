@@ -43,7 +43,11 @@ class AppDelegateInternals {
 			let storeURL = NSURL(fileURLWithPath: documentsDirectory.stringByAppendingPathComponent("RSSReader.sqlite"))!
 			let addPersistentStoreMigratedError: NSError? = {
 				var addPersistentStoreError: NSError?
-				let persistentStore: NSPersistentStore! = psc.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil, error: &addPersistentStoreError)
+				let options = [
+					NSMigratePersistentStoresAutomaticallyOption: true,
+					NSInferMappingModelAutomaticallyOption: true
+				]
+				let persistentStore: NSPersistentStore! = psc.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: options, error: &addPersistentStoreError)
 				if nil != persistentStore {
 					return nil
 				}
