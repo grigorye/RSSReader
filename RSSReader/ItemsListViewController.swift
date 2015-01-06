@@ -124,7 +124,6 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		let $ = self.fetchedResultsController.fetchedObjects![indexPathForSelectedRow.row] as Item
 		return $
 	}
-	
 	// MARK: -
 	func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
 		let item = fetchedResultsController.fetchedObjects![indexPath.row] as Item
@@ -132,8 +131,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		let timeIntervalFormatted = dateComponentsFormatter.stringFromDate(item.date, toDate: loadDate) ?? ""
 		if let detailTextLabel = cell.detailTextLabel {
 			detailTextLabel.text = "\(timeIntervalFormatted)"
-			let isRead = filter(item.categories) { folder in folder.id.hasSuffix("state/com.google/read") }.count == 1
-			detailTextLabel.textColor = isRead ? nil : UIColor.redColor()
+			detailTextLabel.textColor = item.markedAsRead ? nil : UIColor.redColor()
 		}
 	}
 	// MARK: -
@@ -171,7 +169,6 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	// MARK: -
 	override func scrollViewDidScroll(scrollView: UIScrollView) {
-		trace("tableView.contentOffset", tableView.contentOffset)
 		self.loadMoreIfNecessary()
 	}
 	// MARK: -
