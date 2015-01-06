@@ -9,8 +9,7 @@
 import Foundation
 import CoreData
 
-class Subscription: NSManagedObject {
-    @NSManaged var id: String
+class Subscription: Folder {
 	@NSManaged var title: String?
     @NSManaged var sortID: Int32
     @NSManaged var htmlURL: NSURL?
