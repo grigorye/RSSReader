@@ -34,7 +34,7 @@ extension Item : ManagedIdentifiable {
 	}
 }
 extension Subscription : ManagedIdentifiable {
-	class func entityName() -> String {
+	override class func entityName() -> String {
 		return "Subscription"
 	}
 	class func sortDescriptorsVariants() -> [[NSSortDescriptor]] {
@@ -65,7 +65,7 @@ extension Folder: ManagedIdentifiable {
 	class func sortDescriptors() -> [[NSSortDescriptor]] {
 		return [[NSSortDescriptor(key: "newestItemDate", ascending: false)]]
 	}
-	func importFromJson(jsonObject: AnyObject) {
+	func importFromUnreadCountJson(jsonObject: AnyObject) {
 		let json = jsonObject as [String: AnyObject]
 		self.id = json["id"] as NSString
 		self.unreadCount = (json["count"] as NSNumber).intValue
