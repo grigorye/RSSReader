@@ -32,6 +32,7 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 	func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
 		let folder = fetchedResultsController.fetchedObjects![indexPath.row] as Folder
 		cell.textLabel?.text = folder.id.lastPathComponent
+		cell.detailTextLabel?.text = "\(folder.unreadCount)"
 	}
 	// MARK: -
 	func controllerWillChangeContent(controller: NSFetchedResultsController) {

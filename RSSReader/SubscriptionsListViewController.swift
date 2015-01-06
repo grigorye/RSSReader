@@ -35,6 +35,7 @@ class SubscriptionsListViewController: UITableViewController, NSFetchedResultsCo
 	func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
 		let subscription = fetchedResultsController.fetchedObjects![indexPath.row] as Subscription
 		cell.textLabel?.text = subscription.title ?? subscription.url?.lastPathComponent
+		cell.detailTextLabel?.text = "\(subscription.unreadCount)"
 	}
 	// MARK: -
 	func controllerWillChangeContent(controller: NSFetchedResultsController) {
