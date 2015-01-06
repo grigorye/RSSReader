@@ -94,6 +94,31 @@ class RSSSession : NSObject {
 		})
 		sessionTask.resume()
 	}
+	func uploadMarkedAsReadTagForItem(item: Item, completionHandler: (NSError?) -> Void) {
+		let markedAsRead = item.markedAsRead
+		let command = markedAsRead ? "a" : "r"
+		let url = NSURL(scheme: "https", host: "www.inoreader.com", path: "/reader/api/0/edit-tag?\(command)=\(canonicalReadTag)&i=\(item.id)")!
+		let request: NSURLRequest = {
+			let $ = NSMutableURLRequest(URL: trace("url", url))
+			$.addValue("GoogleLogin auth=\(self.authToken!)", forHTTPHeaderField: "Authorization")
+			return $
+		}()
+		let sessionTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+			println("response: \(response)")
+			if let httpResponse = response as? NSHTTPURLResponse {
+				if httpResponse.statusCode == 200 {
+					var error: NSError?
+					let json = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(), error: &error) as NSDictionary?
+					println("json: \(json)")
+				}
+			}
+			else {
+				let body = NSString(data: data, encoding: NSUTF8StringEncoding)
+				println("body: \(body)")
+			}
+		})
+		sessionTask.resume()
+	}
 	func updateUnreadCounts(completionHandler: (NSError?) -> Void) {
 		let url = NSURL(scheme: "https", host: "www.inoreader.com", path: "/reader/api/0/unread-count?output=json")!
 		let request: NSURLRequest = {
