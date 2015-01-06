@@ -16,16 +16,14 @@ enum GenericCoreDataExtensionsError: Int {
 protocol ManagedIdentifiable {
 	var id: String { get }
 	class func entityName() -> String
-	func importFromJson(jsonObject: AnyObject)
 }
 
-func importJson<T: ManagedIdentifiable>(cls: T.Type, json: [String: AnyObject], #managedObjectContext: NSManagedObjectContext, error: NSErrorPointer) -> T? {
-	let id = json["id"] as NSString
+func insertedObjectUnlessFetchedWithPredicate<T: ManagedIdentifiable>(cls: T.Type, #predicate: NSPredicate, #managedObjectContext: NSManagedObjectContext, #error: NSErrorPointer) -> T? {
 	let entityName = cls.entityName()
 	let (existingObject: T?, errorForExistingObject: NSError?) = {
 		let request: NSFetchRequest = {
 			let $ = NSFetchRequest(entityName: entityName)
-			$.predicate = NSPredicate(format: "id == %@", argumentArray: [id])
+			$.predicate = predicate
 			$.fetchLimit = 1
 			return $
 		}()
@@ -45,10 +43,12 @@ func importJson<T: ManagedIdentifiable>(cls: T.Type, json: [String: AnyObject], 
 		let newObject = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: managedObjectContext) as T
 		return newObject
 	}()
-	object.importFromJson(json)
 	return object
 }
-func importItemsFromJson<T: ManagedIdentifiable>(json: [String : AnyObject], #type: T.Type, #elementName: NSString, #managedObjectContext: NSManagedObjectContext, #error: NSErrorPointer) -> [T]? {
+func insertedObjectUnlessFetchedWithID<T: ManagedIdentifiable>(cls: T.Type, #id: String, #managedObjectContext: NSManagedObjectContext, #error: NSErrorPointer) -> T? {
+	return insertedObjectUnlessFetchedWithPredicate(cls, predicate: NSPredicate(format: "id == %@", argumentArray: [id]), managedObjectContext: managedObjectContext, error: error)
+}
+func importItemsFromJson<T: ManagedIdentifiable>(json: [String : AnyObject], #type: T.Type, #elementName: NSString, #managedObjectContext: NSManagedObjectContext, #error: NSErrorPointer, #importFromJson: (T, [String: AnyObject]) -> Void) -> [T]? {
 	var items = [T]()
 	let completionError: NSError? = {
 		let itemJsons = json[elementName] as? [[String : AnyObject]]
@@ -58,11 +58,13 @@ func importItemsFromJson<T: ManagedIdentifiable>(json: [String : AnyObject], #ty
 		}
 		for itemJson in itemJsons! {
 			var importItemError: NSError?
-			let item = importJson(type, itemJson, managedObjectContext: managedObjectContext, &importItemError)
-			if nil == item {
+			if let item = insertedObjectUnlessFetchedWithPredicate(type, predicate: NSPredicate(format: "id == %@", argumentArray: [itemJson["id"] as String]), managedObjectContext: managedObjectContext, error: &importItemError) {
+				importFromJson(item, itemJson)
+				items += [item]
+			}
+			else {
 				return trace("importItemError", importItemError)
 			}
-			items += [item!]
 		}
 		return nil
 	}()
@@ -72,7 +74,7 @@ func importItemsFromJson<T: ManagedIdentifiable>(json: [String : AnyObject], #ty
 	}
 	return items
 }
-func importItemsFromJsonData<T: ManagedIdentifiable>(data: NSData, #type: T.Type, #elementName: NSString, #managedObjectContext: NSManagedObjectContext, #error: NSErrorPointer) -> [T]? {
+func importItemsFromJsonData<T: ManagedIdentifiable>(data: NSData, #type: T.Type, #elementName: NSString, #managedObjectContext: NSManagedObjectContext, #error: NSErrorPointer, #importFromJson: (T, [String: AnyObject]) -> Void) -> [T]? {
 	let (json: [String : AnyObject]?, jsonError: NSError?) = {
 		var jsonParseError: NSError?
 		let jsonObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(), error: &jsonParseError)
@@ -90,5 +92,5 @@ func importItemsFromJsonData<T: ManagedIdentifiable>(data: NSData, #type: T.Type
 		error.memory = trace("jsonError", jsonError)
 		return nil
 	}
-	return importItemsFromJson(json!, type: type, elementName: elementName, managedObjectContext: managedObjectContext, error: error)
+	return importItemsFromJson(json!, type: type, elementName: elementName, managedObjectContext: managedObjectContext, error: error, importFromJson: importFromJson)
 }
