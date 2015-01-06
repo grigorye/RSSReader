@@ -28,6 +28,9 @@ extension Subscription : ManagedIdentifiable {
 	class func entityName() -> String {
 		return "Subscription"
 	}
+	class func sortDescriptorsVariants() -> [[NSSortDescriptor]] {
+		return [[NSSortDescriptor(key: "sortID", ascending: true)]]
+	}
 	func importFromJson(jsonObject: AnyObject) {
 		let json = jsonObject as [String: AnyObject]
 		self.id = json["id"] as NSString
@@ -35,11 +38,23 @@ extension Subscription : ManagedIdentifiable {
 		self.url = NSURL(string: json["url"] as NSString)
 		self.iconURL = NSURL(string: json["iconUrl"] as NSString)
 		self.htmlURL = NSURL(string: json["htmlUrl"] as NSString)
+		if let categories = json["categories"] as? [[String: AnyObject]] {
+			for category in categories {
+				let id = category["id"] as String
+				var categoryImportError: NSError?
+				if let folder = insertedObjectUnlessFetchedWithID(Folder.self, id: id, managedObjectContext: self.managedObjectContext!, error: &categoryImportError) {
+					self.mutableSetValueForKey("categories").addObject(folder)
+				}
+			}
+		}
 	}
 }
 extension Folder: ManagedIdentifiable {
 	class func entityName() -> String {
 		return "Folder"
+	}
+	class func sortDescriptors() -> [[NSSortDescriptor]] {
+		return [[NSSortDescriptor(key: "newestItemDate", ascending: false)]]
 	}
 	func importFromJson(jsonObject: AnyObject) {
 		let json = jsonObject as [String: AnyObject]
