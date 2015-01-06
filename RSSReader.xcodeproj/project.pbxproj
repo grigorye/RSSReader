@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C401C65C1A5C971800CF6AA4 /* MarkingAsRead.swift in Sources */ = {isa = PBXBuildFile; fileRef = C401C65B1A5C971800CF6AA4 /* MarkingAsRead.swift */; };
 		C41707CB1A56076A00AED81C /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41707CA1A56076A00AED81C /* Globals.swift */; };
 		C41707CD1A56E85B00AED81C /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41707CC1A56E85B00AED81C /* Folder.swift */; };
 		C41707CF1A56F32500AED81C /* GenericCoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41707CE1A56F32500AED81C /* GenericCoreDataExtensions.swift */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		C401C65A1A5C73CF00CF6AA4 /* 47.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 47.xcdatamodel; sourceTree = "<group>"; };
+		C401C65B1A5C971800CF6AA4 /* MarkingAsRead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkingAsRead.swift; sourceTree = "<group>"; };
 		C41707CA1A56076A00AED81C /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		C41707CC1A56E85B00AED81C /* Folder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
 		C41707CE1A56F32500AED81C /* GenericCoreDataExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericCoreDataExtensions.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				C495409E1A5780A700F56168 /* Item.swift */,
 				C495409A1A575C1900F56168 /* UserDefaults.swift */,
 				C4728B391A55BAC600D4251A /* CoreData.swift */,
+				C401C65B1A5C971800CF6AA4 /* MarkingAsRead.swift */,
 				C42802741A5C2E0D002474E1 /* RSSReader.xcdatamodeld */,
 			);
 			name = Model;
@@ -340,6 +343,7 @@
 				C4CDD3A51A5350B40087DD05 /* SubscriptionsListViewController.swift in Sources */,
 				C4728B381A55BA6600D4251A /* Subscription.swift in Sources */,
 				C41707CF1A56F32500AED81C /* GenericCoreDataExtensions.swift in Sources */,
+				C401C65C1A5C971800CF6AA4 /* MarkingAsRead.swift in Sources */,
 				C4728B3A1A55BAC600D4251A /* CoreData.swift in Sources */,
 				C495409D1A575D0C00F56168 /* GenericExtensions.swift in Sources */,
 			);
