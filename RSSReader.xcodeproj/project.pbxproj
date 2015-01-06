@@ -44,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C401C65A1A5C73CF00CF6AA4 /* 47.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 47.xcdatamodel; sourceTree = "<group>"; };
 		C41707CA1A56076A00AED81C /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		C41707CC1A56E85B00AED81C /* Folder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
 		C41707CE1A56F32500AED81C /* GenericCoreDataExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericCoreDataExtensions.swift; sourceTree = "<group>"; };
@@ -554,6 +555,7 @@
 				C42802751A5C2E0D002474E1 /* 31.xcdatamodel */,
 				C42802761A5C2E0D002474E1 /* 43.xcdatamodel */,
 				C42802771A5C2E0D002474E1 /* current.xcdatamodel */,
+				C401C65A1A5C73CF00CF6AA4 /* 47.xcdatamodel */,
 			);
 			currentVersion = C42802771A5C2E0D002474E1 /* current.xcdatamodel */;
 			path = RSSReader.xcdatamodeld;
