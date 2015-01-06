@@ -8,9 +8,23 @@
 
 import UIKit
 
+let markAsReadTimeInterval = NSTimeInterval(2)
+
 class ItemSummaryWebViewController: UIViewController {
 	@IBOutlet var webView: UIWebView!
 	var item: Item!
+	var markAsReadTimer: NSTimer?
+	func markAsRead() {
+		if (!item.markedAsRead) {
+			item.markedAsRead = true
+			self.rssSession.uploadMarkedAsReadTagForItem(item, completionHandler: { uploadReadStateError in
+				if let uploadReadStateError = uploadReadStateError {
+					trace("uploadReadStateError", uploadReadStateError)
+				}
+			})
+		}
+	}
+	// MARK: -
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		let bundle = NSBundle.mainBundle()
@@ -22,5 +36,14 @@ class ItemSummaryWebViewController: UIViewController {
 				.stringByReplacingOccurrencesOfString("$$Summary$$", withString: item.summary!)
 				.stringByReplacingOccurrencesOfString("$$Title$$", withString: item.title!)
 		self.webView.loadHTMLString(htmlString, baseURL: bundle.resourceURL)
+	}
+	// MARK: -
+	override func viewDidAppear(animated: Bool) {
+		super.viewDidAppear(animated)
+		self.markAsReadTimer = NSTimer.scheduledTimerWithTimeInterval(markAsReadTimeInterval, target: self, selector: "markAsRead", userInfo: nil, repeats: false)
+	}
+	override func viewWillDisappear(animated: Bool) {
+		super.viewWillDisappear(animated)
+		self.markAsReadTimer?.invalidate()
 	}
 }
