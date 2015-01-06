@@ -22,6 +22,15 @@ extension Item : ManagedIdentifiable {
 		let summary = (json["summary"] as? NSDictionary)?["content"] as NSString?
 		self.summary = summary
 		self.streamID = (json["origin"] as? NSDictionary)?["streamId"] as NSString
+		if let categories = json["categories"] as? [String] {
+			for category in categories {
+				var categoryImportError: NSError?
+				if let folder = insertedObjectUnlessFetchedWithID(Folder.self, id: category, managedObjectContext: self.managedObjectContext!, error: &categoryImportError) {
+						folder.id = category
+						self.mutableSetValueForKey("categories").addObject(folder)
+				}
+			}
+		}
 	}
 }
 extension Subscription : ManagedIdentifiable {

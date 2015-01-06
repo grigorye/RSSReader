@@ -16,4 +16,5 @@ class Item: NSManagedObject {
     @NSManaged var title: String?
     @NSManaged var summary: NSString?
 	@NSManaged var streamID: String
+	@NSManaged var categories: NSSet
 }
