@@ -109,18 +109,48 @@ class RSSSession : NSObject {
 					return NSError(domain: RSSSessionErrorDomain, code: RSSSessionError.UnexpectedHTTPResponseStatus.rawValue, userInfo: ["httpResponse": httpResponse])
 				}
 				else {
-					let backgroundQueueManagedObjectContext = self.backgroundQueueManagedObjectContext
-					backgroundQueueManagedObjectContext.performBlock {
+					let managedObjectContext = self.backgroundQueueManagedObjectContext
+					managedObjectContext.performBlock {
+						var folders = [Folder]()
 						let importAndSaveError: NSError? = {
-							var importError: NSError?
-							let folders = importItemsFromJsonData(data!, type: Folder.self, elementName: "unreadcounts", managedObjectContext: backgroundQueueManagedObjectContext, error: &importError) { (folder, itemJson) in
-								folder.importFromJson(itemJson)
-							}
-							if nil == folders {
-								return trace("importError", importError!)
+							let importError: NSError? = {
+								var jsonParseError: NSError?
+								if let jsonObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(), error: &jsonParseError) {
+									if let json = jsonObject as? [String : AnyObject] {
+										if let itemJsons = json["unreadcounts"] as? [[String : AnyObject]] {
+											for itemJson in itemJsons {
+												let id = itemJson["id"] as String
+												let type = id.hasPrefix("feed/http") ? Subscription.self : Folder.self
+												var importItemError: NSError?
+												if let folder = insertedObjectUnlessFetchedWithPredicate(type, predicate: NSPredicate(format: "id == %@", argumentArray: [itemJson["id"] as String]), managedObjectContext: managedObjectContext, error: &importItemError) {
+													folder.importFromUnreadCountJson(itemJson)
+													folders += [folder]
+												}
+												else {
+													return trace("importItemError", importItemError)
+												}
+											}
+											return nil
+										}
+										else {
+											let jsonElementNotFoundOrInvalidError = NSError(domain: GenericCoreDataExtensionsErrorDomain, code: GenericCoreDataExtensionsError.JsonElementNotFoundOrInvalid.rawValue, userInfo: nil)
+											return trace("jsonElementNotFoundOrInvalidError", jsonElementNotFoundOrInvalidError)
+										}
+									}
+									else {
+										let jsonIsNotDictionaryError = NSError()
+										return trace("jsonIsNotDictionaryError", jsonIsNotDictionaryError)
+									}
+								}
+								else {
+									return trace("jsonParseError", jsonParseError)
+								}
+							}()
+							if let importError = importError {
+								return trace("importError", importError)
 							}
 							var saveError: NSError?
-							if !backgroundQueueManagedObjectContext.save(&saveError) {
+							if !managedObjectContext.save(&saveError) {
 								return trace("saveError", saveError)
 							}
 							return nil
