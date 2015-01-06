@@ -97,7 +97,7 @@ class RSSSession : NSObject {
 	func updateUnreadCounts(completionHandler: (NSError?) -> Void) {
 		let url = NSURL(scheme: "https", host: "www.inoreader.com", path: "/reader/api/0/unread-count?output=json")!
 		let request: NSURLRequest = {
-			let $ = NSMutableURLRequest(URL: url)
+			let $ = NSMutableURLRequest(URL: trace("url", url))
 			$.addValue("GoogleLogin auth=\(self.authToken!)", forHTTPHeaderField: "Authorization")
 			return $
 		}()
@@ -113,7 +113,9 @@ class RSSSession : NSObject {
 					backgroundQueueManagedObjectContext.performBlock {
 						let importAndSaveError: NSError? = {
 							var importError: NSError?
-							let folders = importItemsFromJsonData(data!, type: Folder.self, elementName: "unreadcounts", managedObjectContext: backgroundQueueManagedObjectContext, error: &importError)
+							let folders = importItemsFromJsonData(data!, type: Folder.self, elementName: "unreadcounts", managedObjectContext: backgroundQueueManagedObjectContext, error: &importError) { (folder, itemJson) in
+								folder.importFromJson(itemJson)
+							}
 							if nil == folders {
 								return trace("importError", importError!)
 							}
@@ -177,7 +179,9 @@ class RSSSession : NSObject {
 					backgroundQueueManagedObjectContext.performBlock {
 						let importAndSaveError: NSError? = {
 							var importError: NSError?
-							let subscriptions = importItemsFromJsonData(data!, type: Subscription.self, elementName: "subscriptions", managedObjectContext: backgroundQueueManagedObjectContext, error: &importError)
+							let subscriptions = importItemsFromJsonData(data!, type: Subscription.self, elementName: "subscriptions", managedObjectContext: backgroundQueueManagedObjectContext, error: &importError) { (subscription, json) in
+								subscription.importFromJson(json)
+							}
 							if nil == subscriptions {
 								return trace("importError", importError!)
 							}
@@ -235,7 +239,9 @@ class RSSSession : NSObject {
 							}
 							let continuation = json!["continuation"] as? String
 							var importError: NSError?
-							let items = importItemsFromJson(json!, type: Item.self, elementName: "items", managedObjectContext: backgroundQueueManagedObjectContext, error: &importError)
+							let items = importItemsFromJson(json!, type: Item.self, elementName: "items", managedObjectContext: backgroundQueueManagedObjectContext, error: &importError) { (item, itemJson) in
+								item.importFromJson(itemJson)
+							}
 							if nil == items {
 								return trace("importError", importError!)
 							}
