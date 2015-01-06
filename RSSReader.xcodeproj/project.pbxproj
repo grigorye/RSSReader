@@ -12,7 +12,7 @@
 		C41707CF1A56F32500AED81C /* GenericCoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41707CE1A56F32500AED81C /* GenericCoreDataExtensions.swift */; };
 		C418B32F1A5956D7002C0578 /* ItemSummaryTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C418B32E1A5956D7002C0578 /* ItemSummaryTextViewController.swift */; };
 		C42802691A5B47EA002474E1 /* FoldersListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42802681A5B47EA002474E1 /* FoldersListTableViewController.swift */; };
-		C4728B341A55B83800D4251A /* RSSReader.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C4728B321A55B83800D4251A /* RSSReader.xcdatamodeld */; };
+		C42802781A5C2E0D002474E1 /* RSSReader.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C42802741A5C2E0D002474E1 /* RSSReader.xcdatamodeld */; };
 		C4728B381A55BA6600D4251A /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4728B371A55BA6600D4251A /* Subscription.swift */; };
 		C4728B3A1A55BAC600D4251A /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4728B391A55BAC600D4251A /* CoreData.swift */; };
 		C495409B1A575C1900F56168 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495409A1A575C1900F56168 /* UserDefaults.swift */; };
@@ -50,7 +50,9 @@
 		C418B32B1A5942FC002C0578 /* XCEmbedSourceVersionIntoBundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = XCEmbedSourceVersionIntoBundle; sourceTree = "<group>"; };
 		C418B32E1A5956D7002C0578 /* ItemSummaryTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSummaryTextViewController.swift; sourceTree = "<group>"; };
 		C42802681A5B47EA002474E1 /* FoldersListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldersListTableViewController.swift; sourceTree = "<group>"; };
-		C4728B331A55B83800D4251A /* RSSReader.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RSSReader.xcdatamodel; sourceTree = "<group>"; };
+		C42802751A5C2E0D002474E1 /* 31.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 31.xcdatamodel; sourceTree = "<group>"; };
+		C42802761A5C2E0D002474E1 /* 43.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 43.xcdatamodel; sourceTree = "<group>"; };
+		C42802771A5C2E0D002474E1 /* current.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = current.xcdatamodel; sourceTree = "<group>"; };
 		C4728B371A55BA6600D4251A /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		C4728B391A55BAC600D4251A /* CoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 		C495409A1A575C1900F56168 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
@@ -138,7 +140,7 @@
 				C495409E1A5780A700F56168 /* Item.swift */,
 				C495409A1A575C1900F56168 /* UserDefaults.swift */,
 				C4728B391A55BAC600D4251A /* CoreData.swift */,
-				C4728B321A55B83800D4251A /* RSSReader.xcdatamodeld */,
+				C42802741A5C2E0D002474E1 /* RSSReader.xcdatamodeld */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -327,12 +329,12 @@
 				C4CDD3A71A5350B40087DD05 /* SecondViewController.swift in Sources */,
 				C41707CB1A56076A00AED81C /* Globals.swift in Sources */,
 				C495409B1A575C1900F56168 /* UserDefaults.swift in Sources */,
-				C4728B341A55B83800D4251A /* RSSReader.xcdatamodeld in Sources */,
 				C49540A11A57825100F56168 /* ItemsListViewController.swift in Sources */,
 				C42802691A5B47EA002474E1 /* FoldersListTableViewController.swift in Sources */,
 				C418B32F1A5956D7002C0578 /* ItemSummaryTextViewController.swift in Sources */,
 				C41707CD1A56E85B00AED81C /* Folder.swift in Sources */,
 				C4CDD3A31A5350B40087DD05 /* AppDelegate.swift in Sources */,
+				C42802781A5C2E0D002474E1 /* RSSReader.xcdatamodeld in Sources */,
 				C495409F1A5780A700F56168 /* Item.swift in Sources */,
 				C4CDD3A51A5350B40087DD05 /* SubscriptionsListViewController.swift in Sources */,
 				C4728B381A55BA6600D4251A /* Subscription.swift in Sources */,
@@ -546,12 +548,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		C4728B321A55B83800D4251A /* RSSReader.xcdatamodeld */ = {
+		C42802741A5C2E0D002474E1 /* RSSReader.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				C4728B331A55B83800D4251A /* RSSReader.xcdatamodel */,
+				C42802751A5C2E0D002474E1 /* 31.xcdatamodel */,
+				C42802761A5C2E0D002474E1 /* 43.xcdatamodel */,
+				C42802771A5C2E0D002474E1 /* current.xcdatamodel */,
 			);
-			currentVersion = C4728B331A55B83800D4251A /* RSSReader.xcdatamodel */;
+			currentVersion = C42802771A5C2E0D002474E1 /* current.xcdatamodel */;
 			path = RSSReader.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
