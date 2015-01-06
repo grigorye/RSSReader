@@ -16,4 +16,5 @@ class Subscription: NSManagedObject {
     @NSManaged var htmlURL: NSURL?
     @NSManaged var iconURL: NSURL?
     @NSManaged var url: NSURL?
+	@NSManaged var categories: NSSet
 }
