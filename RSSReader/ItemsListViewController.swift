@@ -19,7 +19,7 @@ var dateComponentsFormatter: NSDateComponentsFormatter = {
 }()
 
 class ItemsListViewController: UITableViewController, NSFetchedResultsControllerDelegate {
-	var streamID: NSString!
+	var folder: Folder!
 	var continuation: NSString?
 	var loadDate: NSDate!
 	var loadInProgress = false
@@ -31,7 +31,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		let fetchRequest: NSFetchRequest = {
 			let $ = NSFetchRequest(entityName: Item.entityName())
 			$.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
-			$.predicate = NSPredicate(format: "streamID == %@", argumentArray: [self.streamID])
+			$.predicate = NSPredicate(format: "streamID == %@", argumentArray: [self.folder.id])
 			return $
 		}()
 		let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.mainQueueManagedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
@@ -48,7 +48,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		}
 		let loadDate = self.loadDate
 		loadInProgress = true
-		rssSession.streamContents(self.streamID, continuation: self.continuation, loadDate: self.loadDate) { (continuation: NSString?, items: [Item]!, streamError: NSError?) -> Void in
+		rssSession.streamContents(self.folder.id, continuation: self.continuation, loadDate: self.loadDate) { (continuation: NSString?, items: [Item]!, streamError: NSError?) -> Void in
 			dispatch_async(dispatch_get_main_queue()) {
 				if loadDate != self.loadDate {
 					// Ignore results from previous sessions.
@@ -180,6 +180,17 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		else if segue.identifier == "showText" {
 			let itemSummaryTextViewController = segue.destinationViewController as ItemSummaryTextViewController
 			itemSummaryTextViewController.item = self.selectedItem()
+		}
+		else if segue.identifier == "showPages" {
+			let pageViewController = segue.destinationViewController as UIPageViewController
+			let itemsPageViewControllerDataSource: ItemsPageViewControllerDataSource = {
+				let $ = pageViewController.dataSource as ItemsPageViewControllerDataSource
+				$.folder = self.folder
+				$.items = self.fetchedResultsController.fetchedObjects as [Item]
+				return $
+			}()
+			let initialViewController = itemsPageViewControllerDataSource.viewControllerForItem(self.selectedItem(), storyboard: pageViewController.storyboard!)
+			pageViewController.setViewControllers([initialViewController], direction: .Forward, animated: false, completion: nil)
 		}
 	}
 	// MARK: -
