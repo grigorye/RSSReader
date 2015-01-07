@@ -68,7 +68,7 @@ class SubscriptionsListViewController: UITableViewController, NSFetchedResultsCo
 			let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow()!
 			let subscription = fetchedResultsController.fetchedObjects![indexPathForSelectedRow.row] as Subscription
 			itemsListViewController.title = subscription.title
-			itemsListViewController.streamID = subscription.id
+			itemsListViewController.folder = subscription
 		}
 	}
 	// MARK: -
