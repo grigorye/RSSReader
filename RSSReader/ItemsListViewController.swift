@@ -27,6 +27,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	var loadCompleted = false
 	var loadError: NSError?
 	var tableFooterView: UIView?
+	var indexPathForTappedAccessoryButton: NSIndexPath?
 	lazy var fetchedResultsController: NSFetchedResultsController = {
 		let fetchRequest: NSFetchRequest = {
 			let $ = NSFetchRequest(entityName: Item.entityName())
@@ -119,16 +120,17 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		}
 	}
 	// MARK: -
+	func itemForIndexPath(indexPath: NSIndexPath) -> Item {
+		return self.fetchedResultsController.fetchedObjects![indexPath.row] as Item
+	}
 	func selectedItem() -> Item {
-		let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow()!
-		let $ = self.fetchedResultsController.fetchedObjects![indexPathForSelectedRow.row] as Item
-		return $
+		return self.itemForIndexPath(self.tableView.indexPathForSelectedRow()!)
 	}
 	// MARK: -
 	func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
 		let item = fetchedResultsController.fetchedObjects![indexPath.row] as Item
 		cell.textLabel?.text = item.title ?? item.id.lastPathComponent
-		let timeIntervalFormatted = dateComponentsFormatter.stringFromDate(item.date, toDate: loadDate) ?? ""
+		let timeIntervalFormatted = (nil == NSClassFromString("NSDateComponentsFormatter")) ? "x" : dateComponentsFormatter.stringFromDate(item.date, toDate: loadDate) ?? ""
 		if let detailTextLabel = cell.detailTextLabel {
 			detailTextLabel.text = "\(timeIntervalFormatted)"
 			detailTextLabel.textColor = item.markedAsRead ? nil : UIColor.redColor()
@@ -167,6 +169,10 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		self.configureCell(cell, atIndexPath: indexPath)
 		return cell
 	}
+    override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+		self.indexPathForTappedAccessoryButton = indexPath
+		self.performSegueWithIdentifier("showWeb", sender: nil)
+	}
 	// MARK: -
 	override func scrollViewDidScroll(scrollView: UIScrollView) {
 		self.loadMoreIfNecessary()
@@ -175,7 +181,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "showWeb" {
 			let itemSummaryWebViewController = segue.destinationViewController as ItemSummaryWebViewController
-			itemSummaryWebViewController.item = self.selectedItem()
+			itemSummaryWebViewController.item = self.itemForIndexPath(self.indexPathForTappedAccessoryButton!)
 		}
 		else if segue.identifier == "showText" {
 			let itemSummaryTextViewController = segue.destinationViewController as ItemSummaryTextViewController
@@ -190,6 +196,9 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 				return $
 			}()
 			let initialViewController = itemsPageViewControllerDataSource.viewControllerForItem(self.selectedItem(), storyboard: pageViewController.storyboard!)
+			if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
+				pageViewController.edgesForExtendedLayout = .None
+			}
 			pageViewController.setViewControllers([initialViewController], direction: .Forward, animated: false, completion: nil)
 		}
 	}
