@@ -14,6 +14,7 @@
 		C418B32F1A5956D7002C0578 /* ItemSummaryTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C418B32E1A5956D7002C0578 /* ItemSummaryTextViewController.swift */; };
 		C42802691A5B47EA002474E1 /* FoldersListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42802681A5B47EA002474E1 /* FoldersListTableViewController.swift */; };
 		C42802781A5C2E0D002474E1 /* RSSReader.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C42802741A5C2E0D002474E1 /* RSSReader.xcdatamodeld */; };
+		C46934DF1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46934DE1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift */; };
 		C4728B381A55BA6600D4251A /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4728B371A55BA6600D4251A /* Subscription.swift */; };
 		C4728B3A1A55BAC600D4251A /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4728B391A55BAC600D4251A /* CoreData.swift */; };
 		C495409B1A575C1900F56168 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495409A1A575C1900F56168 /* UserDefaults.swift */; };
@@ -56,6 +57,7 @@
 		C42802751A5C2E0D002474E1 /* 31.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 31.xcdatamodel; sourceTree = "<group>"; };
 		C42802761A5C2E0D002474E1 /* 43.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 43.xcdatamodel; sourceTree = "<group>"; };
 		C42802771A5C2E0D002474E1 /* current.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = current.xcdatamodel; sourceTree = "<group>"; };
+		C46934DE1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsPageViewControllerDataSource.swift; sourceTree = "<group>"; };
 		C4728B371A55BA6600D4251A /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		C4728B391A55BAC600D4251A /* CoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 		C495409A1A575C1900F56168 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				C4CDD3AB1A5350B50087DD05 /* Images.xcassets */,
 				C4CDD3AD1A5350B50087DD05 /* LaunchScreen.xib */,
 				C4CDD3A81A5350B40087DD05 /* Main.storyboard */,
+				C46934DE1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift */,
 				C4CDD3A41A5350B40087DD05 /* SubscriptionsListViewController.swift */,
 				C42802681A5B47EA002474E1 /* FoldersListTableViewController.swift */,
 				C49540A01A57825100F56168 /* ItemsListViewController.swift */,
@@ -345,6 +348,7 @@
 				C41707CF1A56F32500AED81C /* GenericCoreDataExtensions.swift in Sources */,
 				C401C65C1A5C971800CF6AA4 /* MarkingAsRead.swift in Sources */,
 				C4728B3A1A55BAC600D4251A /* CoreData.swift in Sources */,
+				C46934DF1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift in Sources */,
 				C495409D1A575D0C00F56168 /* GenericExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
