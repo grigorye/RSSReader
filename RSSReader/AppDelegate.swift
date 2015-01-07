@@ -137,7 +137,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			}
 		}
 		else {
-			UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+			if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
+				UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+			}
 		}
 	}
 	override init() {
