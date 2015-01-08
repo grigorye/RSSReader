@@ -9,7 +9,7 @@
 import UIKit
 
 class ItemsPageViewControllerDataSource: NSObject, UIPageViewControllerDataSource {
-	var folder: Folder?
+	var folder: Container?
 	var items: [Item]!
 	func viewControllerForItem(item: Item, storyboard: UIStoryboard) -> UIViewController {
 		let $ = storyboard.instantiateViewControllerWithIdentifier("itemSummaryWeb") as ItemSummaryWebViewController
