@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class Subscription: Folder {
+class Subscription: Container {
 	@NSManaged var title: String?
     @NSManaged var sortID: Int32
     @NSManaged var htmlURL: NSURL?
