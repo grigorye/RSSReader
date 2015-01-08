@@ -21,11 +21,15 @@ extension Item : ManagedIdentifiable {
 		self.title = json["title"] as NSString?
 		let summary = (json["summary"] as? NSDictionary)?["content"] as NSString?
 		self.summary = summary
-		self.streamID = (json["origin"] as? NSDictionary)?["streamId"] as NSString
+		let managedObjectContext = self.managedObjectContext!
+		let streamID = (json["origin"] as? NSDictionary)?["streamId"] as NSString
+		var subscriptionImportError: NSError?
+		let subscription = insertedObjectUnlessFetchedWithID(Subscription.self, id: streamID, managedObjectContext: managedObjectContext, error: &subscriptionImportError)!
+		self.subscription = subscription
 		if let categories = json["categories"] as? [String] {
 			for category in categories {
 				var categoryImportError: NSError?
-				if let folder = insertedObjectUnlessFetchedWithID(Folder.self, id: category, managedObjectContext: self.managedObjectContext!, error: &categoryImportError) {
+				if let folder = insertedObjectUnlessFetchedWithID(Folder.self, id: category, managedObjectContext: managedObjectContext, error: &categoryImportError) {
 						folder.id = category
 						self.mutableSetValueForKey("categories").addObject(folder)
 				}
@@ -58,12 +62,9 @@ extension Subscription : ManagedIdentifiable {
 		}
 	}
 }
-extension Folder: ManagedIdentifiable {
+extension Container: ManagedIdentifiable {
 	class func entityName() -> String {
-		return "Folder"
-	}
-	class func sortDescriptors() -> [[NSSortDescriptor]] {
-		return [[NSSortDescriptor(key: "newestItemDate", ascending: false)]]
+		return "Container"
 	}
 	func importFromUnreadCountJson(jsonObject: AnyObject) {
 		let json = jsonObject as [String: AnyObject]
@@ -71,5 +72,13 @@ extension Folder: ManagedIdentifiable {
 		self.unreadCount = (json["count"] as NSNumber).intValue
 		let timeIntervalSince1970 = (json["newestItemTimestampUsec"] as NSString).doubleValue * 1e-9
 		self.newestItemDate = NSDate(timeIntervalSince1970: timeIntervalSince1970)
+	}
+}
+extension Folder: ManagedIdentifiable {
+	override class func entityName() -> String {
+		return "Folder"
+	}
+	class func sortDescriptors() -> [[NSSortDescriptor]] {
+		return [[NSSortDescriptor(key: "newestItemDate", ascending: false)]]
 	}
 }
