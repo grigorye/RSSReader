@@ -136,7 +136,7 @@ class RSSSession : NSObject {
 				else {
 					let managedObjectContext = self.backgroundQueueManagedObjectContext
 					managedObjectContext.performBlock {
-						var folders = [Folder]()
+						var folders = [Container]()
 						let importAndSaveError: NSError? = {
 							let importError: NSError? = {
 								var jsonParseError: NSError?
@@ -145,7 +145,7 @@ class RSSSession : NSObject {
 										if let itemJsons = json["unreadcounts"] as? [[String : AnyObject]] {
 											for itemJson in itemJsons {
 												let id = itemJson["id"] as String
-												let type = id.hasPrefix("feed/http") ? Subscription.self : Folder.self
+												let type: Container.Type = id.hasPrefix("feed/http") ? Subscription.self : Folder.self
 												var importItemError: NSError?
 												if let folder = insertedObjectUnlessFetchedWithPredicate(type, predicate: NSPredicate(format: "id == %@", argumentArray: [itemJson["id"] as String]), managedObjectContext: managedObjectContext, error: &importItemError) {
 													folder.importFromUnreadCountJson(itemJson)
