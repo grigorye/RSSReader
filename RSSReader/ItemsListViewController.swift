@@ -19,7 +19,7 @@ var dateComponentsFormatter: NSDateComponentsFormatter = {
 }()
 
 class ItemsListViewController: UITableViewController, NSFetchedResultsControllerDelegate {
-	var folder: Folder!
+	var folder: Container!
 	var continuation: NSString?
 	var loadDate: NSDate!
 	var loadInProgress = false
@@ -32,7 +32,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		let fetchRequest: NSFetchRequest = {
 			let $ = NSFetchRequest(entityName: Item.entityName())
 			$.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
-			$.predicate = NSPredicate(format: "streamID == %@", argumentArray: [self.folder.id])
+			$.predicate = NSPredicate(format: "subscription == %@", argumentArray: [self.folder])
 			return $
 		}()
 		let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.mainQueueManagedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
