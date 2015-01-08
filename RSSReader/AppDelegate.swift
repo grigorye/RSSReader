@@ -53,6 +53,8 @@ class AppDelegateInternals {
 				}
 				let error = trace("addPersistentStoreError", addPersistentStoreError!)
 				switch (error.domain, error.code) {
+					case (NSCocoaErrorDomain, NSMigrationMissingSourceModelError) where NSUserDefaults().boolForKey("allowMissingSourceModelError"):
+						fallthrough
 					case (NSCocoaErrorDomain, NSPersistentStoreIncompatibleVersionHashError), (NSCocoaErrorDomain, NSMigrationError):
 						let fileManager = NSFileManager.defaultManager()
 						var incompatibleStoreRemovalError: NSError?
