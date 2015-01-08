@@ -40,9 +40,15 @@ extension Item {
 			if (newValue && self.markedAsRead) || (!newValue && !self.markedAsRead) {
 			}
 			else {
+				let unreadCountDelta = newValue ? -1 : 1
+				self.subscription.unreadCount += unreadCountDelta
+				for category in self.categories.allObjects as [Folder] {
+					category.unreadCount += unreadCountDelta
+				}
 				let mutableCategories = self.mutableSetValueForKey("categories")
 				if newValue {
-					mutableCategories.addObject(Folder.markedAsReadFolderInContext(self.managedObjectContext!))
+					let markedAsReadFolder = Folder.markedAsReadFolderInContext(self.managedObjectContext!)
+					mutableCategories.addObject(markedAsReadFolder)
 				}
 				else {
 					mutableCategories.removeObject(self.categoryForReadTag!)
