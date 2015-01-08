@@ -34,6 +34,7 @@
 		C4CDD3C51A5357B20087DD05 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C4CDD3C41A5357B20087DD05 /* Settings.bundle */; };
 		C4CDE1911A5A06A600F16A2E /* ItemSummaryTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */; };
 		C4CDE1931A5A0A8D00F16A2E /* ItemSummary.css in Resources */ = {isa = PBXBuildFile; fileRef = C4CDE1921A5A0A8D00F16A2E /* ItemSummary.css */; };
+		C4FD88521A5F10BD0035E4D1 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FD88511A5F10BD0035E4D1 /* Container.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +58,7 @@
 		C42802681A5B47EA002474E1 /* FoldersListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldersListTableViewController.swift; sourceTree = "<group>"; };
 		C42802751A5C2E0D002474E1 /* 31.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 31.xcdatamodel; sourceTree = "<group>"; };
 		C42802761A5C2E0D002474E1 /* 43.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 43.xcdatamodel; sourceTree = "<group>"; };
-		C42802771A5C2E0D002474E1 /* current.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = current.xcdatamodel; sourceTree = "<group>"; };
+		C42802771A5C2E0D002474E1 /* 70.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 70.xcdatamodel; sourceTree = "<group>"; };
 		C46934DE1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsPageViewControllerDataSource.swift; sourceTree = "<group>"; };
 		C4728B371A55BA6600D4251A /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		C4728B391A55BAC600D4251A /* CoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
@@ -82,6 +83,8 @@
 		C4CDD3C41A5357B20087DD05 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ItemSummaryTemplate.html; sourceTree = "<group>"; };
 		C4CDE1921A5A0A8D00F16A2E /* ItemSummary.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = ItemSummary.css; sourceTree = "<group>"; };
+		C4FD88511A5F10BD0035E4D1 /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
+		C4FD88531A5F14EA0035E4D1 /* current.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = current.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +148,7 @@
 				C41707CA1A56076A00AED81C /* Globals.swift */,
 				C4C1A3F51A574517007384E8 /* RSSSession.swift */,
 				C41707CC1A56E85B00AED81C /* Folder.swift */,
+				C4FD88511A5F10BD0035E4D1 /* Container.swift */,
 				C4728B371A55BA6600D4251A /* Subscription.swift */,
 				C495409E1A5780A700F56168 /* Item.swift */,
 				C495409A1A575C1900F56168 /* UserDefaults.swift */,
@@ -338,6 +342,7 @@
 				C4AD2ADB1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift in Sources */,
 				C4C1A3F61A574517007384E8 /* RSSSession.swift in Sources */,
 				C4CDD3A71A5350B40087DD05 /* SecondViewController.swift in Sources */,
+				C4FD88521A5F10BD0035E4D1 /* Container.swift in Sources */,
 				C41707CB1A56076A00AED81C /* Globals.swift in Sources */,
 				C495409B1A575C1900F56168 /* UserDefaults.swift in Sources */,
 				C49540A11A57825100F56168 /* ItemsListViewController.swift in Sources */,
@@ -566,12 +571,13 @@
 		C42802741A5C2E0D002474E1 /* RSSReader.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				C4FD88531A5F14EA0035E4D1 /* current.xcdatamodel */,
 				C42802751A5C2E0D002474E1 /* 31.xcdatamodel */,
 				C42802761A5C2E0D002474E1 /* 43.xcdatamodel */,
-				C42802771A5C2E0D002474E1 /* current.xcdatamodel */,
+				C42802771A5C2E0D002474E1 /* 70.xcdatamodel */,
 				C401C65A1A5C73CF00CF6AA4 /* 47.xcdatamodel */,
 			);
-			currentVersion = C42802771A5C2E0D002474E1 /* current.xcdatamodel */;
+			currentVersion = C4FD88531A5F14EA0035E4D1 /* current.xcdatamodel */;
 			path = RSSReader.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
