@@ -15,6 +15,6 @@ class Item: NSManagedObject {
 	@NSManaged var loadDate: NSDate
     @NSManaged var title: String?
     @NSManaged var summary: NSString?
-	@NSManaged var streamID: String
 	@NSManaged var categories: NSSet
+	@NSManaged var subscription: Subscription
 }
