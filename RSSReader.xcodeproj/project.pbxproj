@@ -85,6 +85,7 @@
 		C4CDE1921A5A0A8D00F16A2E /* ItemSummary.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = ItemSummary.css; sourceTree = "<group>"; };
 		C4FD88511A5F10BD0035E4D1 /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		C4FD88531A5F14EA0035E4D1 /* current.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = current.xcdatamodel; sourceTree = "<group>"; };
+		C4FD88541A5F4A390035E4D1 /* 81.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 81.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -571,6 +572,7 @@
 		C42802741A5C2E0D002474E1 /* RSSReader.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				C4FD88541A5F4A390035E4D1 /* 81.xcdatamodel */,
 				C4FD88531A5F14EA0035E4D1 /* current.xcdatamodel */,
 				C42802751A5C2E0D002474E1 /* 31.xcdatamodel */,
 				C42802761A5C2E0D002474E1 /* 43.xcdatamodel */,
