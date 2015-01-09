@@ -9,6 +9,12 @@
 import UIKit
 
 class ItemsPageViewControllerDelegate: NSObject, UIPageViewControllerDelegate {
+	@IBOutlet weak var pageViewController: UIPageViewController?
+	@IBAction func openInBrowser(sender: AnyObject?, event: UIEvent?) {
+		let currentViewController = pageViewController!.viewControllers.first as ItemSummaryWebViewController
+		UIApplication.sharedApplication().sendAction("openInBrowser", to: currentViewController, from: sender, forEvent: event)
+	}
+	// MARK:-
     func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [AnyObject]) {
 		let pendingViewController = pendingViewControllers.first as ItemSummaryWebViewController
 		let currentViewController = pageViewController.viewControllers.first as ItemSummaryWebViewController
