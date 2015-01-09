@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
@@ -160,13 +159,24 @@
         <scene sceneID="eCl-5V-8Pg">
             <objects>
                 <pageViewController automaticallyAdjustsScrollViewInsets="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Wtn-2N-ccu" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="gvW-35-fFk">
+                        <barButtonItem key="rightBarButtonItem" title="Open in Browser" id="1hJ-Dd-L2L">
+                            <connections>
+                                <action selector="openInBrowser:event:" destination="k9u-3w-tiC" id="cLc-b0-D3h"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="dataSource" destination="Zh2-SY-7Jj" id="0qb-oU-E4A"/>
                         <outlet property="delegate" destination="k9u-3w-tiC" id="g7p-uj-YJN"/>
                     </connections>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ugl-3c-7ff" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="k9u-3w-tiC" customClass="ItemsPageViewControllerDelegate" customModule="RSSReader" customModuleProvider="target"/>
+                <customObject id="k9u-3w-tiC" customClass="ItemsPageViewControllerDelegate" customModule="RSSReader" customModuleProvider="target">
+                    <connections>
+                        <outlet property="pageViewController" destination="Wtn-2N-ccu" id="7ck-JA-4S9"/>
+                    </connections>
+                </customObject>
                 <customObject id="Zh2-SY-7Jj" customClass="ItemsPageViewControllerDataSource" customModule="RSSReader" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="3020" y="392"/>
