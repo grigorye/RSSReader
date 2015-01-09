@@ -17,4 +17,5 @@ class Item: NSManagedObject {
     @NSManaged var summary: NSString?
 	@NSManaged var categories: NSSet
 	@NSManaged var subscription: Subscription
+	@NSManaged var canonical: [[String: String]]?
 }

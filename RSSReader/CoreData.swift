@@ -26,6 +26,7 @@ extension Item : ManagedIdentifiable {
 		var subscriptionImportError: NSError?
 		let subscription = insertedObjectUnlessFetchedWithID(Subscription.self, id: streamID, managedObjectContext: managedObjectContext, error: &subscriptionImportError)!
 		self.subscription = subscription
+		self.canonical = json["canonical"] as [[String : String]]?
 		if let categories = json["categories"] as? [String] {
 			for category in categories {
 				var categoryImportError: NSError?
