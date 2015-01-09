@@ -24,6 +24,11 @@ class ItemSummaryWebViewController: UIViewController {
 			})
 		}
 	}
+	@IBAction func openInBrowser() {
+		let href = item.canonical!.first!["href"]!
+		let url = NSURL(string: href)!
+		UIApplication.sharedApplication().openURL(url)
+	}
 	// MARK: -
 	override func viewDidLoad() {
 		super.viewDidLoad()
