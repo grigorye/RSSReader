@@ -8,6 +8,6 @@
 
 commitNumber=$(git rev-list --abbrev-commit HEAD | wc -l | awk '{print $1}')
 
-infoPlistWOExt=$(echo "${INFOPLIST_PATH:?}"|sed 's/.plist$//')
+infoPlistWOExt=$(echo "${INFOPLIST_PATH:?}" | sed 's/.plist$//')
 infoPlistDefaultsDomain="${CONFIGURATION_BUILD_DIR:?}/${infoPlistWOExt:?}"
-defaults write "${infoPlistDefaultsDomain:?}" CFBundleVersion -string "${commitNumber}"
+defaults write "${infoPlistDefaultsDomain:?}" CFBundleVersion -string "${commitNumber:?}"
