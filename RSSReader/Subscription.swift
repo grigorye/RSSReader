@@ -11,7 +11,6 @@ import CoreData
 
 class Subscription: Container {
 	@NSManaged var title: String?
-    @NSManaged var sortID: Int32
     @NSManaged var htmlURL: NSURL?
     @NSManaged var iconURL: NSURL?
     @NSManaged var url: NSURL?
