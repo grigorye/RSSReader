@@ -45,9 +45,9 @@ extension Subscription : ManagedIdentifiable {
 	class func sortDescriptorsVariants() -> [[NSSortDescriptor]] {
 		return [[NSSortDescriptor(key: "sortID", ascending: true)]]
 	}
-	func importFromJson(jsonObject: AnyObject) {
+	override func importFromJson(jsonObject: AnyObject) {
+		super.importFromJson(jsonObject)
 		let json = jsonObject as [String: AnyObject]
-		self.id = json["id"] as NSString
 		self.title = json["title"] as NSString?
 		self.url = NSURL(string: json["url"] as NSString)
 		self.iconURL = NSURL(string: json["iconUrl"] as NSString)
@@ -67,12 +67,67 @@ extension Container: ManagedIdentifiable {
 	class func entityName() -> String {
 		return "Container"
 	}
+	func importFromJson(jsonObject: AnyObject) {
+		let json = jsonObject as [String: AnyObject]
+		let sortIDString = json["sortid"] as String
+		var sortIDUnsigned : UInt32 = 0
+		if !NSScanner(string: sortIDString).scanHexInt(&sortIDUnsigned) {
+			abort()
+		}
+		let sortID = Int32(bitPattern: sortIDUnsigned)
+		self.sortID = trace("sortID", sortID)
+	}
 	func importFromUnreadCountJson(jsonObject: AnyObject) {
 		let json = jsonObject as [String: AnyObject]
 		self.id = json["id"] as NSString
 		self.unreadCount = (json["count"] as NSNumber).intValue
 		let timeIntervalSince1970 = (json["newestItemTimestampUsec"] as NSString).doubleValue * 1e-9
 		self.newestItemDate = NSDate(timeIntervalSince1970: timeIntervalSince1970)
+	}
+	class func importStreamPreferencesJson(jsonObject: AnyObject, managedObjectContext: NSManagedObjectContext) {
+		if let json = jsonObject as? [String : [[String : AnyObject]]] {
+			for (folderID, prefs) in json {
+				println("folderID: \(folderID), prefs: \(prefs)")
+				for prefs in prefs {
+					let id = prefs["id"] as? String
+					if id == "subscription-ordering" {
+						if let value = prefs["value"] as? String {
+							println("value: \(value)")
+							var insertContainerError: NSError?
+							if let folder = insertedObjectUnlessFetchedWithID(Folder.self, id: folderID, managedObjectContext: managedObjectContext, error: &insertContainerError) {
+								assert(folder.id == folderID, "")
+								let characterCountInValue = countElements(value)
+								if characterCountInValue % 8 == 0 {
+									var sortIDs = [Int32]()
+									for var range = value.startIndex..<advance(value.startIndex, 8); range.endIndex != value.endIndex; range = advance(range.startIndex, 8)..<advance(range.endIndex, 8) {
+										let sortIDString = value[range]
+										var sortIDUnsigned : UInt32 = 0
+										if !NSScanner(string: sortIDString).scanHexInt(&sortIDUnsigned) {
+											abort()
+										}
+										let sortID = Int32(bitPattern: sortIDUnsigned)
+										sortIDs += [sortID]
+									}
+									let request: NSFetchRequest = {
+										let $ = NSFetchRequest(entityName: Container.entityName())
+										$.predicate = NSPredicate(format: "sortID IN %@", argumentArray: [map(sortIDs) { NSNumber(int: $0) }])
+										return $
+									}()
+									var fetchContainersForSortIDsError: NSError?
+									if let unorderedChildContainers = managedObjectContext.executeFetchRequest(request, error: &fetchContainersForSortIDsError) as [Container]? {
+										println("unorderedChildContainers: \(unorderedChildContainers)")
+										let childContainers = map(sortIDs) { (sortID: Int32) -> Container in
+											return filter(unorderedChildContainers) { $0.sortID == sortID }.first!
+										}
+										folder.childContainers = NSOrderedSet(array: childContainers)
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }
 extension Folder: ManagedIdentifiable {
