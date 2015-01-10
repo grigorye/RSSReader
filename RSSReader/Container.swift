@@ -12,4 +12,6 @@ class Container: NSManagedObject {
     @NSManaged var id: String
     @NSManaged var unreadCount: Int32
     @NSManaged var newestItemDate: NSDate
+    @NSManaged var sortID: Int32
+	@NSManaged var parentFolder: Folder?
 }
