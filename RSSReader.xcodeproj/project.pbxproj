@@ -62,6 +62,7 @@
 		C46934DE1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsPageViewControllerDataSource.swift; sourceTree = "<group>"; };
 		C4728B371A55BA6600D4251A /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		C4728B391A55BAC600D4251A /* CoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
+		C48F31951A609DBB002B2E36 /* 88.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 88.xcdatamodel; sourceTree = "<group>"; };
 		C495409A1A575C1900F56168 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		C495409C1A575D0C00F56168 /* GenericExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericExtensions.swift; sourceTree = "<group>"; };
 		C495409E1A5780A700F56168 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -574,6 +575,7 @@
 			children = (
 				C4FD88541A5F4A390035E4D1 /* 81.xcdatamodel */,
 				C4FD88531A5F14EA0035E4D1 /* current.xcdatamodel */,
+				C48F31951A609DBB002B2E36 /* 88.xcdatamodel */,
 				C42802751A5C2E0D002474E1 /* 31.xcdatamodel */,
 				C42802761A5C2E0D002474E1 /* 43.xcdatamodel */,
 				C42802771A5C2E0D002474E1 /* 70.xcdatamodel */,
