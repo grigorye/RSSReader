@@ -41,6 +41,13 @@ class AppDelegateInternals {
 				}
 			}
 			let storeURL = NSURL(fileURLWithPath: documentsDirectory.stringByAppendingPathComponent("RSSReader.sqlite"))!
+			if NSUserDefaults().boolForKey("forceStoreRemoval") {
+				let fileManager = NSFileManager.defaultManager()
+				var forcedStoreRemovalError: NSError?
+				if !fileManager.removeItemAtURL(storeURL, error: &forcedStoreRemovalError) {
+					return trace("forcedStoreRemovalError", forcedStoreRemovalError)
+				}
+			}
 			let addPersistentStoreMigratedError: NSError? = {
 				var addPersistentStoreError: NSError?
 				let options = [
@@ -122,20 +129,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if loginAndPassword != oldValue  {
 				if loginAndPassword.isValid() {
 					self.rssSession = RSSSession(loginAndPassword: loginAndPassword)
-					self.rssSession.authenticate()
+					self.rssSession.authenticate { error in
+						self.completeAuthentication(error)
+					}
 				}
             }
         }
+	}
+	func completeAuthentication(error: NSError?) {
+		dispatch_async(dispatch_get_main_queue()) {
+			let tabBarController = self.window!.rootViewController! as UITabBarController
+			let foldersViewController = (tabBarController.viewControllers![0] as UINavigationController).viewControllers.first as FoldersListTableViewController
+			foldersViewController.rootFolder = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: self.mainQueueManagedObjectContext)
+			foldersViewController.tableView.reloadData()
+		}
 	}
 	func proceedWithManagedObjectContext() {
 		if self.loginAndPassword.isValid() {
 			let rssSession = RSSSession(loginAndPassword: self.loginAndPassword)
 			self.rssSession = rssSession
 			if (rssSession.authToken == nil) {
-				rssSession.authenticate()
+				rssSession.authenticate { error in
+					self.completeAuthentication(error)
+				}
 			}
 			else {
-				rssSession.postprocessAuthentication()
+				rssSession.postprocessAuthentication { error in
+					self.completeAuthentication(error)
+				}
 			}
 		}
 		else {
