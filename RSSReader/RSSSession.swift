@@ -20,7 +20,7 @@ class RSSSession : NSObject {
 	init(loginAndPassword: LoginAndPassword) {
 		self.loginAndPassword = loginAndPassword
 	}
-	func authenticate() {
+	func authenticate(completionHandler: (NSError?) -> Void) {
 		let url = NSURL(scheme: "https", host: "www.inoreader.com", path: "/accounts/ClientLogin")!
 		let request: NSURLRequest = {
 			let $ = NSMutableURLRequest(URL: url)
@@ -50,7 +50,7 @@ class RSSSession : NSObject {
 						return $
 					}()
 					self.authToken = authToken
-					self.postprocessAuthentication()
+					self.postprocessAuthentication(completionHandler)
 				}
 			}
 			else {
@@ -60,13 +60,28 @@ class RSSSession : NSObject {
 		})
 		sessionTask.resume()
 	}
-	func reauthenticate() {
-		authenticate()
+	func reauthenticate(completionHandler: (NSError?) -> Void) {
+		authenticate(completionHandler)
 	}
-	func postprocessAuthentication() {
-//		self.userInfo()
-		self.updateUnreadCounts { (updateUnreadCountsError: NSError?) -> Void in
-			void(trace("updateUnreadCountsError", updateUnreadCountsError))
+	func postprocessAuthentication(completionHandler: (NSError?) -> Void) {
+		self.updateTags { updateTagsError in
+			void(trace("updateTagsError", updateTagsError))
+			dispatch_async(dispatch_get_main_queue()) {
+				self.updateSubscriptions { updateSubscriptionsError in
+					void(trace("updateSubscriptionsError", updateSubscriptionsError))
+					dispatch_async(dispatch_get_main_queue()) {
+						self.updateUnreadCounts { updateUnreadCountsError in
+							void(trace("updateUnreadCountsError", updateUnreadCountsError))
+							dispatch_async(dispatch_get_main_queue()) {
+								self.streamprefs { streamPrefsError in
+									void(trace("streamPrefsError", streamPrefsError))
+									completionHandler(streamPrefsError)
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 //		self.subscriptions()
 //		self.tags()
@@ -144,10 +159,10 @@ class RSSSession : NSObject {
 									if let json = jsonObject as? [String : AnyObject] {
 										if let itemJsons = json["unreadcounts"] as? [[String : AnyObject]] {
 											for itemJson in itemJsons {
-												let id = itemJson["id"] as String
-												let type: Container.Type = id.hasPrefix("feed/http") ? Subscription.self : Folder.self
+												let itemID = itemJson["id"] as String
+												let type: Container.Type = itemID.hasPrefix("feed/http") ? Subscription.self : Folder.self
 												var importItemError: NSError?
-												if let folder = insertedObjectUnlessFetchedWithPredicate(type, predicate: NSPredicate(format: "id == %@", argumentArray: [itemJson["id"] as String]), managedObjectContext: managedObjectContext, error: &importItemError) {
+												if let folder = insertedObjectUnlessFetchedWithID(type, id: itemID, managedObjectContext: managedObjectContext, error: &importItemError) {
 													folder.importFromUnreadCountJson(itemJson)
 													folders += [folder]
 												}
@@ -191,7 +206,7 @@ class RSSSession : NSObject {
 		})
 		sessionTask.resume()
 	}
-	func tags() {
+	func updateTags(completionHandler: (_: NSError?) -> Void) {
 		let url = NSURL(scheme: "https", host: "www.inoreader.com", path: "/reader/api/0/tag/list")!
 		let request: NSURLRequest = {
 			let $ = NSMutableURLRequest(URL: url)
@@ -200,11 +215,75 @@ class RSSSession : NSObject {
 		}()
 		let sessionTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
 			println("response: \(response)")
-			if let httpResponse = response as? NSHTTPURLResponse {
-				if httpResponse.statusCode == 200 {
-					var error: NSError?
-					let json = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(), error: &error) as NSDictionary?
-					println("json: \(json)")
+			let error: NSError? = error ?? {
+				let httpResponse = response as NSHTTPURLResponse
+				if httpResponse.statusCode != 200 {
+					let httpResponseError = NSError(domain: RSSSessionErrorDomain, code: RSSSessionError.UnexpectedHTTPResponseStatus.rawValue, userInfo: ["httpResponse": httpResponse])
+					return trace("httpResponseError", httpResponseError)
+				}
+				else {
+					let backgroundQueueManagedObjectContext = self.backgroundQueueManagedObjectContext
+					backgroundQueueManagedObjectContext.performBlock {
+						let importAndSaveError: NSError? = {
+							var importError: NSError?
+							let tags = importItemsFromJsonData(data!, type: Folder.self, elementName: "tags", managedObjectContext: backgroundQueueManagedObjectContext, error: &importError) { (tag, json) in
+								tag.importFromJson(json)
+							}
+							if nil == tags {
+								return trace("importError", importError!)
+							}
+							var saveError: NSError?
+							if !backgroundQueueManagedObjectContext.save(&saveError) {
+								return trace("saveError", saveError)
+							}
+							return nil
+						}()
+						completionHandler(importAndSaveError)
+					}
+					return nil
+				}
+			}()
+			if let error = error {
+				completionHandler(error)
+			}
+		})
+		sessionTask.resume()
+	}
+	func streamprefs(completionHandler: (NSError?) -> Void) {
+		let url = NSURL(scheme: "https", host: "www.inoreader.com", path: "/reader/api/0/preference/stream/list")!
+		let request: NSURLRequest = {
+			let $ = NSMutableURLRequest(URL: url)
+			$.addValue("GoogleLogin auth=\(self.authToken!)", forHTTPHeaderField: "Authorization")
+			return $
+		}()
+		let sessionTask = session.dataTaskWithRequest(request, completionHandler: { data, response, error in
+			println("response: \(response)")
+			let httpResponse = response as NSHTTPURLResponse
+			if httpResponse.statusCode == 200 {
+				let managedObjectContext = self.backgroundQueueManagedObjectContext
+				managedObjectContext.performBlock {
+					let error: NSError? = {
+						var jsonParseError: NSError?
+						if let jsonObject: AnyObject = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(), error: &jsonParseError) {
+							if let topLevelJson = jsonObject as? [String : AnyObject] {
+								if let streamprefsJson: AnyObject = topLevelJson["streamprefs"] {
+									Container.importStreamPreferencesJson(streamprefsJson, managedObjectContext: managedObjectContext)
+									var saveError: NSError?
+									if !managedObjectContext.save(&saveError) {
+										return trace("saveError", saveError)
+									}
+								}
+								return nil
+							}
+							else {
+								return NSError()
+							}
+						}
+						else {
+							return trace("jsonParseError", jsonParseError)
+						}
+					}()
+					completionHandler(error)
 				}
 			}
 			else {
