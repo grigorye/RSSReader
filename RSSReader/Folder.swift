@@ -9,4 +9,5 @@
 import CoreData
 
 class Folder: Container {
+	@NSManaged var childContainers: NSOrderedSet
 }
