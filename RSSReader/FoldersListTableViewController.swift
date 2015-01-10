@@ -77,6 +77,7 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 			return cell
 		default:
 			assert(false, "")
+			abort()
 		}
 	}
 	// MARK: -
