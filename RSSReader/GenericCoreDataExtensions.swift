@@ -14,11 +14,11 @@ enum GenericCoreDataExtensionsError: Int {
 }
 
 protocol ManagedIdentifiable {
-	var id: String { get }
+	var id: String { get set }
 	class func entityName() -> String
 }
 
-func insertedObjectUnlessFetchedWithPredicate<T: ManagedIdentifiable>(cls: T.Type, #predicate: NSPredicate, #managedObjectContext: NSManagedObjectContext, #error: NSErrorPointer) -> T? {
+func insertedObjectUnlessFetchedWithPredicate<T: ManagedIdentifiable>(cls: T.Type, #predicate: NSPredicate, #managedObjectContext: NSManagedObjectContext, #error: NSErrorPointer, newObjectInitializationHandler: (T) -> Void) -> T? {
 	let entityName = cls.entityName()
 	let (existingObject: T?, errorForExistingObject: NSError?) = {
 		let request: NSFetchRequest = {
@@ -41,14 +41,18 @@ func insertedObjectUnlessFetchedWithPredicate<T: ManagedIdentifiable>(cls: T.Typ
 	}
 	let object: T = existingObject ?? {
 		let newObject = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: managedObjectContext) as T
+		newObjectInitializationHandler(newObject)
 		return newObject
 	}()
 	return object
 }
-func insertedObjectUnlessFetchedWithID<T: ManagedIdentifiable>(cls: T.Type, #id: String, #managedObjectContext: NSManagedObjectContext, #error: NSErrorPointer) -> T? {
-	return insertedObjectUnlessFetchedWithPredicate(cls, predicate: NSPredicate(format: "id == %@", argumentArray: [id]), managedObjectContext: managedObjectContext, error: error)
+func insertedObjectUnlessFetchedWithID<T: ManagedIdentifiable where T : NSManagedObject>(cls: T.Type, #id: String, #managedObjectContext: NSManagedObjectContext, #error: NSErrorPointer) -> T? {
+	let predicate = NSPredicate(format: "id == %@", argumentArray: [id])
+	return insertedObjectUnlessFetchedWithPredicate(cls, predicate: predicate, managedObjectContext: managedObjectContext, error: error) { newObject -> Void in
+		newObject.setValue(id, forKey:"id")
+	}
 }
-func importItemsFromJson<T: ManagedIdentifiable>(json: [String : AnyObject], #type: T.Type, #elementName: NSString, #managedObjectContext: NSManagedObjectContext, #error: NSErrorPointer, #importFromJson: (T, [String: AnyObject]) -> Void) -> [T]? {
+func importItemsFromJson<T: ManagedIdentifiable where T : NSManagedObject>(json: [String : AnyObject], #type: T.Type, #elementName: NSString, #managedObjectContext: NSManagedObjectContext, #error: NSErrorPointer, #importFromJson: (T, [String: AnyObject]) -> Void) -> [T]? {
 	var items = [T]()
 	let completionError: NSError? = {
 		let itemJsons = json[elementName] as? [[String : AnyObject]]
@@ -58,7 +62,8 @@ func importItemsFromJson<T: ManagedIdentifiable>(json: [String : AnyObject], #ty
 		}
 		for itemJson in itemJsons! {
 			var importItemError: NSError?
-			if let item = insertedObjectUnlessFetchedWithPredicate(type, predicate: NSPredicate(format: "id == %@", argumentArray: [itemJson["id"] as String]), managedObjectContext: managedObjectContext, error: &importItemError) {
+			let itemID = itemJson["id"] as String
+			if let item = insertedObjectUnlessFetchedWithID(type, id: itemID, managedObjectContext: managedObjectContext, error: &importItemError) {
 				importFromJson(item, itemJson)
 				items += [item]
 			}
@@ -74,7 +79,7 @@ func importItemsFromJson<T: ManagedIdentifiable>(json: [String : AnyObject], #ty
 	}
 	return items
 }
-func importItemsFromJsonData<T: ManagedIdentifiable>(data: NSData, #type: T.Type, #elementName: NSString, #managedObjectContext: NSManagedObjectContext, #error: NSErrorPointer, #importFromJson: (T, [String: AnyObject]) -> Void) -> [T]? {
+func importItemsFromJsonData<T: ManagedIdentifiable where T : NSManagedObject>(data: NSData, #type: T.Type, #elementName: NSString, #managedObjectContext: NSManagedObjectContext, #error: NSErrorPointer, #importFromJson: (T, [String: AnyObject]) -> Void) -> [T]? {
 	let (json: [String : AnyObject]?, jsonError: NSError?) = {
 		var jsonParseError: NSError?
 		let jsonObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(), error: &jsonParseError)
