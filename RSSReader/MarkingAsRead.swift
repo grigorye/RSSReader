@@ -9,14 +9,15 @@
 import CoreData
 import Foundation
 
+let rootTagSuffix = "state/com.google/root"
 let readTagSuffix = "state/com.google/read"
 let canonicalReadTag = "user/-/state/com.google/read"
 
 extension Folder {
-	class func markedAsReadFolderInContext(managedObjectContext: NSManagedObjectContext) -> Folder {
+	class func folderWithTagSuffix(tagSuffix: String, managedObjectContext: NSManagedObjectContext) -> Folder {
 		let fetchRequest: NSFetchRequest = {
 			let $ = NSFetchRequest(entityName: Folder.entityName())
-			$.predicate = NSPredicate(format: "id ENDSWITH %@", argumentArray: [readTagSuffix])
+			$.predicate = NSPredicate(format: "id ENDSWITH %@", argumentArray: [tagSuffix])
 			$.fetchLimit = 1
 			return $
 		}()
@@ -47,7 +48,7 @@ extension Item {
 				}
 				let mutableCategories = self.mutableSetValueForKey("categories")
 				if newValue {
-					let markedAsReadFolder = Folder.markedAsReadFolderInContext(self.managedObjectContext!)
+					let markedAsReadFolder = Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: self.managedObjectContext!)
 					mutableCategories.addObject(markedAsReadFolder)
 				}
 				else {
