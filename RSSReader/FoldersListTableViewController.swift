@@ -45,19 +45,21 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 	}
 	// MARK: -
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if segue.identifier == "showFolder" {
+		switch SegueIdentifier(rawValue: segue.identifier!)!  {
+		case .showFolder:
 			let foldersListTableViewController = segue.destinationViewController as FoldersListTableViewController
 			let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow()!
 			let folder = childContainers[indexPathForSelectedRow.row] as Folder
 			foldersListTableViewController.title = folder.id.lastPathComponent
 			foldersListTableViewController.rootFolder = folder
-		}
-		else if segue.identifier == "showSubscription" {
+		case .showSubscription:
 			let itemsListViewController = segue.destinationViewController as ItemsListViewController
 			let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow()!
 			let subscription = childContainers[indexPathForSelectedRow.row] as Subscription
 			itemsListViewController.title = subscription.title
 			itemsListViewController.folder = subscription
+		default:
+			abort()
 		}
 	}
 	// MARK: -
@@ -68,15 +70,14 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 		let childContainer = childContainers[indexPath.row]
 		switch childContainer {
 		case let subscription as Subscription:
-			let cell = tableView.dequeueReusableCellWithIdentifier("Subscription", forIndexPath: indexPath) as UITableViewCell
+			let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellReuseIdentifier.Subscription.rawValue, forIndexPath: indexPath) as UITableViewCell
 			self.configureCell(cell, forSubscription: subscription)
 			return cell
 		case let folder as Folder:
-			let cell = tableView.dequeueReusableCellWithIdentifier("Folder", forIndexPath: indexPath) as UITableViewCell
+			let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellReuseIdentifier.Folder.rawValue, forIndexPath: indexPath) as UITableViewCell
 			self.configureCell(cell, forFolder: folder)
 			return cell
 		default:
-			assert(false, "")
 			abort()
 		}
 	}

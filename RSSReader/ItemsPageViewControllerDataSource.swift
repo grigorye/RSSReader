@@ -12,7 +12,7 @@ class ItemsPageViewControllerDataSource: NSObject, UIPageViewControllerDataSourc
 	var folder: Container?
 	var items: [Item]!
 	func viewControllerForItem(item: Item, storyboard: UIStoryboard) -> UIViewController {
-		let $ = storyboard.instantiateViewControllerWithIdentifier("itemSummaryWeb") as ItemSummaryWebViewController
+		let $ = storyboard.instantiateViewControllerWithIdentifier(ViewControllerStoryboardIdentifier.itemSummaryWeb.rawValue) as ItemSummaryWebViewController
 		$.item = item
 		return $
 	}

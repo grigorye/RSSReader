@@ -63,7 +63,7 @@ class SubscriptionsListViewController: UITableViewController, NSFetchedResultsCo
 	}
 	// MARK: -
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if segue.identifier == "show" {
+		if segue.identifier == SegueIdentifier.show.rawValue {
 			let itemsListViewController = segue.destinationViewController as ItemsListViewController
 			let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow()!
 			let subscription = fetchedResultsController.fetchedObjects![indexPathForSelectedRow.row] as Subscription
@@ -76,7 +76,7 @@ class SubscriptionsListViewController: UITableViewController, NSFetchedResultsCo
 		return fetchedResultsController.fetchedObjects!.count
 	}
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier("Subscription", forIndexPath: indexPath) as UITableViewCell
+		let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellReuseIdentifier.Subscription.rawValue, forIndexPath: indexPath) as UITableViewCell
 		self.configureCell(cell, atIndexPath: indexPath)
 		return cell
 	}

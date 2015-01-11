@@ -165,13 +165,13 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		return fetchedResultsController.fetchedObjects!.count
 	}
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier("Item", forIndexPath: indexPath) as UITableViewCell
+		let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellReuseIdentifier.Item.rawValue, forIndexPath: indexPath) as UITableViewCell
 		self.configureCell(cell, atIndexPath: indexPath)
 		return cell
 	}
     override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
 		self.indexPathForTappedAccessoryButton = indexPath
-		self.performSegueWithIdentifier("showWeb", sender: nil)
+		self.performSegueWithIdentifier(SegueIdentifier.showWeb.rawValue, sender: nil)
 	}
 	// MARK: -
 	override func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -179,15 +179,14 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	// MARK: -
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if segue.identifier == "showWeb" {
+		switch SegueIdentifier(rawValue: segue.identifier!)! {
+		case .showWeb:
 			let itemSummaryWebViewController = segue.destinationViewController as ItemSummaryWebViewController
 			itemSummaryWebViewController.item = self.itemForIndexPath(self.indexPathForTappedAccessoryButton!)
-		}
-		else if segue.identifier == "showText" {
+		case .showText:
 			let itemSummaryTextViewController = segue.destinationViewController as ItemSummaryTextViewController
 			itemSummaryTextViewController.item = self.selectedItem()
-		}
-		else if segue.identifier == "showPages" {
+		case .showPages:
 			let pageViewController = segue.destinationViewController as UIPageViewController
 			let itemsPageViewControllerDataSource: ItemsPageViewControllerDataSource = {
 				let $ = pageViewController.dataSource as ItemsPageViewControllerDataSource
@@ -200,6 +199,8 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 				pageViewController.edgesForExtendedLayout = .None
 			}
 			pageViewController.setViewControllers([initialViewController], direction: .Forward, animated: false, completion: nil)
+		default:
+			abort()
 		}
 	}
 	// MARK: -
