@@ -336,10 +336,13 @@ class RSSSession : NSObject {
 		})
 		sessionTask.resume()
 	}
-	func streamContents(subscriptionID: String, continuation: String?, loadDate: NSDate, completionHandler: (continuation: NSString?, items: [Item]!, error: NSError?) -> Void) {
+	func streamContents(subscriptionID: String, excludedCategory: Folder?, continuation: String?, loadDate: NSDate, completionHandler: (continuation: NSString?, items: [Item]!, error: NSError?) -> Void) {
 		var queryComponents = [String]()
 		if let continuation = continuation {
 			queryComponents += ["c=\(continuation)"]
+		}
+		if let excludedCategory = excludedCategory {
+			queryComponents += ["xt=\(excludedCategory.id)"]
 		}
 		let subscriptionIDPercentEncoded = subscriptionID.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())!
 		let querySuffix = URLQuerySuffixFromComponents(queryComponents)
