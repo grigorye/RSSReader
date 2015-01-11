@@ -32,4 +32,9 @@ extension NSUserDefaults {
 			return LoginAndPassword(login: login, password: password)
 		}
 	}
+	var showUnreadOnly: Bool {
+		get {
+			return self.boolForKey("showUnreadOnly")
+		}
+	}
 }
