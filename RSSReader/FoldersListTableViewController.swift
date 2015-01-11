@@ -14,7 +14,7 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 	var childContainers: [Container] {
 		get {
 			if let rootFolder = rootFolder {
-				return rootFolder.childContainers.array as [Container]
+				return (rootFolder.childContainers.array as [Container]).filter { NSUserDefaults().showUnreadOnly ? $0.unreadCount > 0 : true }
 			}
 			else {
 				return []
