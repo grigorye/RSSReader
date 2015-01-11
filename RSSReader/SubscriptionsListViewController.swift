@@ -63,12 +63,15 @@ class SubscriptionsListViewController: UITableViewController, NSFetchedResultsCo
 	}
 	// MARK: -
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if segue.identifier == SegueIdentifier.show.rawValue {
+		switch SegueIdentifier(rawValue: segue.identifier!)! {
+		case .show:
 			let itemsListViewController = segue.destinationViewController as ItemsListViewController
 			let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow()!
 			let subscription = fetchedResultsController.fetchedObjects![indexPathForSelectedRow.row] as Subscription
 			itemsListViewController.title = subscription.title
 			itemsListViewController.folder = subscription
+		default:
+			abort()
 		}
 	}
 	// MARK: -
