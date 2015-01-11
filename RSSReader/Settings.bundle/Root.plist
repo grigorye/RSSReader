@@ -50,9 +50,9 @@
 			<key>DefaultValue</key>
 			<true/>
 			<key>Key</key>
-			<string>enabled_preference</string>
+			<string>showUnreadOnly</string>
 			<key>Title</key>
-			<string>Enabled</string>
+			<string>Show Unread Only</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
