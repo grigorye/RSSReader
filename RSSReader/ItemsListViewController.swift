@@ -28,11 +28,22 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	var loadError: NSError?
 	var tableFooterView: UIView?
 	var indexPathForTappedAccessoryButton: NSIndexPath?
+	var unreadOnlyFilterPredicate: NSPredicate = {
+		if NSUserDefaults().showUnreadOnly {
+			return NSPredicate(format: "SUBQUERY(categories, $x, $x.id ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
+		}
+		else {
+			return NSPredicate(value: true)
+		}
+	}()
 	lazy var fetchedResultsController: NSFetchedResultsController = {
 		let fetchRequest: NSFetchRequest = {
 			let $ = NSFetchRequest(entityName: Item.entityName())
 			$.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
-			$.predicate = NSPredicate(format: "subscription == %@", argumentArray: [self.folder])
+			$.predicate = NSCompoundPredicate.andPredicateWithSubpredicates([
+				NSPredicate(format: "subscription == %@", argumentArray: [self.folder]),
+				self.unreadOnlyFilterPredicate
+			])
 			return $
 		}()
 		let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.mainQueueManagedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
@@ -49,7 +60,8 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		}
 		let loadDate = self.loadDate
 		loadInProgress = true
-		rssSession.streamContents(self.folder.id, continuation: self.continuation, loadDate: self.loadDate) { (continuation: NSString?, items: [Item]!, streamError: NSError?) -> Void in
+		let excludedCategory: Folder? = NSUserDefaults().showUnreadOnly ? Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: self.mainQueueManagedObjectContext) : nil
+		rssSession.streamContents(self.folder.id, excludedCategory: excludedCategory, continuation: self.continuation, loadDate: self.loadDate) { (continuation: NSString?, items: [Item]!, streamError: NSError?) -> Void in
 			dispatch_async(dispatch_get_main_queue()) {
 				if loadDate != self.loadDate {
 					// Ignore results from previous sessions.
