@@ -52,3 +52,16 @@ class ItemSummaryWebViewController: UIViewController {
 		self.markAsReadTimer?.invalidate()
 	}
 }
+
+class ItemSummaryWebViewDelegate: NSObject, UIWebViewDelegate {
+	func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+		if navigationType == .LinkClicked {
+			let url = request.URL
+			UIApplication.sharedApplication().openURL(url)
+			return false
+		}
+		else {
+			return true
+		}
+	}
+}
