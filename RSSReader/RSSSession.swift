@@ -39,7 +39,7 @@ class RSSSession : NSObject {
 			}()
 			return $
 		}()
-		let sessionTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+		let sessionTask = session.dataTaskWithRequest(request, completionHandler: { data, response, error in
 			if let httpResponse = response as? NSHTTPURLResponse {
 				if httpResponse.statusCode == 200 {
 					let authToken: NSString? = {
@@ -93,7 +93,7 @@ class RSSSession : NSObject {
 			$.addValue("GoogleLogin auth=\(self.authToken!)", forHTTPHeaderField: "Authorization")
 			return $
 		}()
-		let sessionTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+		let sessionTask = session.dataTaskWithRequest(request, completionHandler: { data, response, error in
 			println("response: \(response)")
 			if let httpResponse = response as? NSHTTPURLResponse {
 				if httpResponse.statusCode == 200 {
@@ -118,7 +118,7 @@ class RSSSession : NSObject {
 			$.addValue("GoogleLogin auth=\(self.authToken!)", forHTTPHeaderField: "Authorization")
 			return $
 		}()
-		let sessionTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+		let sessionTask = session.dataTaskWithRequest(request, completionHandler: { data, response, error in
 			println("response: \(response)")
 			if let httpResponse = response as? NSHTTPURLResponse {
 				if httpResponse.statusCode == 200 {
@@ -141,7 +141,7 @@ class RSSSession : NSObject {
 			$.addValue("GoogleLogin auth=\(self.authToken!)", forHTTPHeaderField: "Authorization")
 			return $
 		}()
-		let sessionTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+		let sessionTask = session.dataTaskWithRequest(request, completionHandler: { data, response, error in
 			println("response: \(response)")
 			let error: NSError? = error ?? {
 				let httpResponse = response as NSHTTPURLResponse
@@ -213,7 +213,7 @@ class RSSSession : NSObject {
 			$.addValue("GoogleLogin auth=\(self.authToken!)", forHTTPHeaderField: "Authorization")
 			return $
 		}()
-		let sessionTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+		let sessionTask = session.dataTaskWithRequest(request, completionHandler: { data, response, error in
 			println("response: \(response)")
 			let error: NSError? = error ?? {
 				let httpResponse = response as NSHTTPURLResponse
@@ -300,7 +300,7 @@ class RSSSession : NSObject {
 			$.addValue("GoogleLogin auth=\(self.authToken!)", forHTTPHeaderField: "Authorization")
 			return $
 		}()
-		let sessionTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+		let sessionTask = session.dataTaskWithRequest(request, completionHandler: { data, response, error in
 			println("response: \(response)")
 			let error: NSError? = error ?? {
 				let httpResponse = response as NSHTTPURLResponse
@@ -352,7 +352,7 @@ class RSSSession : NSObject {
 			$.addValue("GoogleLogin auth=\(self.authToken!)", forHTTPHeaderField: "Authorization")
 			return $
 		}()
-		let sessionTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+		let sessionTask = session.dataTaskWithRequest(request, completionHandler: { data, response, error in
 			println("response: \(response)")
 			let error: NSError? = error ?? {
 				let httpResponse = response as NSHTTPURLResponse

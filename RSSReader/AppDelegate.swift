@@ -98,7 +98,7 @@ class AppDelegateInternals {
 			return $
 		}()
 		let notificationCenter = NSNotificationCenter.defaultCenter()
-		notificationCenter.addObserverForName(NSManagedObjectContextObjectsDidChangeNotification, object: mainQueueManagedObjectContext, queue: nil, usingBlock: { (_) -> Void in
+		notificationCenter.addObserverForName(NSManagedObjectContextObjectsDidChangeNotification, object: mainQueueManagedObjectContext, queue: nil, usingBlock: { _ in
 			mainQueueManagedObjectContext.performBlock {
 				var mainQueueManagedObjectContextSaveError: NSError?
 				mainQueueManagedObjectContext.save(&mainQueueManagedObjectContextSaveError)
@@ -172,7 +172,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		let notificationCenter = NSNotificationCenter.defaultCenter()
 		var handlingNotification = false
-		notificationCenter.addObserverForName(NSUserDefaultsDidChangeNotification, object: nil, queue: nil) { (_: NSNotification!) -> Void in
+		notificationCenter.addObserverForName(NSUserDefaultsDidChangeNotification, object: nil, queue: nil) { _ in
 			if !handlingNotification {
 				handlingNotification = true
 				let defaults = NSUserDefaults()

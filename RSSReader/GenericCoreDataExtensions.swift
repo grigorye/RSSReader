@@ -48,7 +48,7 @@ func insertedObjectUnlessFetchedWithPredicate<T: ManagedIdentifiable>(cls: T.Typ
 }
 func insertedObjectUnlessFetchedWithID<T: ManagedIdentifiable where T : NSManagedObject>(cls: T.Type, #id: String, #managedObjectContext: NSManagedObjectContext, #error: NSErrorPointer) -> T? {
 	let predicate = NSPredicate(format: "id == %@", argumentArray: [id])
-	return insertedObjectUnlessFetchedWithPredicate(cls, predicate: predicate, managedObjectContext: managedObjectContext, error: error) { newObject -> Void in
+	return insertedObjectUnlessFetchedWithPredicate(cls, predicate: predicate, managedObjectContext: managedObjectContext, error: error) { newObject in
 		newObject.setValue(id, forKey:"id")
 	}
 }

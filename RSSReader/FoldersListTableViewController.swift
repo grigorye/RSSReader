@@ -23,7 +23,7 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 	}
 	// MARK: -
 	@IBAction func refresh(sender: AnyObject!) {
-		rssSession.updateUnreadCounts { (error: NSError?) -> Void in
+		rssSession.updateUnreadCounts { error in
 			dispatch_async(dispatch_get_main_queue()) {
 				if nil == self.rootFolder {
 					self.rootFolder = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: self.mainQueueManagedObjectContext)

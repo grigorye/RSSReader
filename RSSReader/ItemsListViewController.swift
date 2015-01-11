@@ -61,7 +61,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		let loadDate = self.loadDate
 		loadInProgress = true
 		let excludedCategory: Folder? = NSUserDefaults().showUnreadOnly ? Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: self.mainQueueManagedObjectContext) : nil
-		rssSession.streamContents(self.folder.id, excludedCategory: excludedCategory, continuation: self.continuation, loadDate: self.loadDate) { (continuation: NSString?, items: [Item]!, streamError: NSError?) -> Void in
+		rssSession.streamContents(self.folder.id, excludedCategory: excludedCategory, continuation: self.continuation, loadDate: self.loadDate) { continuation, items, streamError in
 			dispatch_async(dispatch_get_main_queue()) {
 				if loadDate != self.loadDate {
 					// Ignore results from previous sessions.

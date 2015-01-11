@@ -26,7 +26,7 @@ class SubscriptionsListViewController: UITableViewController, NSFetchedResultsCo
 	}()
 	// MARK: -
 	@IBAction func refresh(sender: AnyObject!) {
-		rssSession.updateSubscriptions { (error: NSError?) -> Void in
+		rssSession.updateSubscriptions { error in
 			let refreshControl = sender as UIRefreshControl
 			refreshControl.endRefreshing()
 		}
