@@ -64,18 +64,23 @@ class RSSSession : NSObject {
 		authenticate(completionHandler)
 	}
 	func postprocessAuthentication(completionHandler: (NSError?) -> Void) {
-		self.updateTags { updateTagsError in
-			void(trace("updateTagsError", updateTagsError))
+		self.userInfo { userInfoError in
+			void(trace("userInfoError", userInfoError))
 			dispatch_async(dispatch_get_main_queue()) {
-				self.updateSubscriptions { updateSubscriptionsError in
-					void(trace("updateSubscriptionsError", updateSubscriptionsError))
+				self.updateTags { updateTagsError in
+					void(trace("updateTagsError", updateTagsError))
 					dispatch_async(dispatch_get_main_queue()) {
-						self.updateUnreadCounts { updateUnreadCountsError in
-							void(trace("updateUnreadCountsError", updateUnreadCountsError))
+						self.updateSubscriptions { updateSubscriptionsError in
+							void(trace("updateSubscriptionsError", updateSubscriptionsError))
 							dispatch_async(dispatch_get_main_queue()) {
-								self.streamprefs { streamPrefsError in
-									void(trace("streamPrefsError", streamPrefsError))
-									completionHandler(streamPrefsError)
+								self.updateUnreadCounts { updateUnreadCountsError in
+									void(trace("updateUnreadCountsError", updateUnreadCountsError))
+									dispatch_async(dispatch_get_main_queue()) {
+										self.streamprefs { streamPrefsError in
+											void(trace("streamPrefsError", streamPrefsError))
+											completionHandler(streamPrefsError)
+										}
+									}
 								}
 							}
 						}
@@ -86,7 +91,7 @@ class RSSSession : NSObject {
 //		self.subscriptions()
 //		self.tags()
 	}
-	func userInfo() {
+	func userInfo(completionHandler: (NSError?) -> Void) {
 		let url = NSURL(scheme: "https", host: "www.inoreader.com", path: "/reader/api/0/user-info")!
 		let request: NSURLRequest = {
 			let $ = NSMutableURLRequest(URL: url)
@@ -94,17 +99,60 @@ class RSSSession : NSObject {
 			return $
 		}()
 		let sessionTask = session.dataTaskWithRequest(request, completionHandler: { data, response, error in
-			println("response: \(response)")
-			if let httpResponse = response as? NSHTTPURLResponse {
-				if httpResponse.statusCode == 200 {
-					var error: NSError?
-					let json = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(), error: &error) as NSDictionary?
-					println("json: \(json)")
+			let error: NSError? = error ?? {
+				let httpResponse = response as NSHTTPURLResponse
+				if httpResponse.statusCode != 200 {
+					return NSError(domain: RSSSessionErrorDomain, code: RSSSessionError.UnexpectedHTTPResponseStatus.rawValue, userInfo: ["httpResponse": httpResponse])
 				}
-			}
-			else {
-				let body = NSString(data: data, encoding: NSUTF8StringEncoding)
-				println("body: \(body)")
+				else {
+					let managedObjectContext = self.backgroundQueueManagedObjectContext
+					managedObjectContext.performBlock {
+						var folders = [Container]()
+						let importAndSaveError: NSError? = {
+							let importError: NSError? = {
+								var jsonParseError: NSError?
+								if let jsonObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(), error: &jsonParseError) {
+									if let json = jsonObject as? [String : AnyObject] {
+										if let userID = json["userId"] as? String {
+											let id = "user/\(userID)/\(readTagSuffix)"
+											var insertMarkedAsReadFolderError: NSError?
+											if let insertedMarkedAsReadFolder = insertedObjectUnlessFetchedWithID(Folder.self, id: id, managedObjectContext: managedObjectContext, error: &insertMarkedAsReadFolderError) {
+											}
+											else {
+												return trace("insertMarkedAsReadFolderError", insertMarkedAsReadFolderError)
+											}
+											return nil
+										}
+										else {
+											let jsonElementNotFoundOrInvalidError = NSError(domain: GenericCoreDataExtensionsErrorDomain, code: GenericCoreDataExtensionsError.JsonElementNotFoundOrInvalid.rawValue, userInfo: nil)
+											return trace("jsonElementNotFoundOrInvalidError", jsonElementNotFoundOrInvalidError)
+										}
+									}
+									else {
+										let jsonIsNotDictionaryError = NSError()
+										return trace("jsonIsNotDictionaryError", jsonIsNotDictionaryError)
+									}
+								}
+								else {
+									return trace("jsonParseError", jsonParseError)
+								}
+							}()
+							if let importError = importError {
+								return trace("importError", importError)
+							}
+							var saveError: NSError?
+							if !managedObjectContext.save(&saveError) {
+								return trace("saveError", saveError)
+							}
+							return nil
+						}()
+						completionHandler(importAndSaveError)
+					}
+					return nil
+				}
+			}()
+			if let error = error {
+				completionHandler(error)
 			}
 		})
 		sessionTask.resume()
