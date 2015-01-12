@@ -15,7 +15,6 @@ extension Item : ManagedIdentifiable {
 	}
 	func importFromJson(jsonObject: AnyObject) {
 		let json = jsonObject as [String: AnyObject]
-		self.id = json["id"] as NSString
 		let timeIntervalSince1970 = (json["timestampUsec"] as NSString).doubleValue * 1e-6
 		self.date = NSDate(timeIntervalSince1970: timeIntervalSince1970)
 		self.title = json["title"] as NSString?
@@ -31,8 +30,8 @@ extension Item : ManagedIdentifiable {
 			for category in categories {
 				var categoryImportError: NSError?
 				if let folder = insertedObjectUnlessFetchedWithID(Folder.self, id: category, managedObjectContext: managedObjectContext, error: &categoryImportError) {
-						folder.id = category
-						self.mutableSetValueForKey("categories").addObject(folder)
+					folder.id = category
+					self.mutableSetValueForKey("categories").addObject(folder)
 				}
 			}
 		}
