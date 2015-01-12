@@ -77,7 +77,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="Item" textLabel="J1N-qb-T6j" detailTextLabel="TQz-uK-Cpv" rowHeight="44" style="IBUITableViewCellStyleSubtitle" id="aAc-wh-gev">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Item" textLabel="J1N-qb-T6j" detailTextLabel="TQz-uK-Cpv" rowHeight="44" style="IBUITableViewCellStyleSubtitle" id="aAc-wh-gev">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aAc-wh-gev" id="Pfg-fp-95L">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -114,7 +114,6 @@
                     </refreshControl>
                     <connections>
                         <segue destination="CEh-Po-b2S" kind="show" identifier="showWeb" id="ejl-Z8-6Oa"/>
-                        <segue destination="AYA-Jg-G87" kind="show" identifier="showText" id="jJO-hQ-Vra"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nPg-NE-vWc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -184,44 +183,6 @@
                 <customObject id="Zh2-SY-7Jj" customClass="ItemsPageViewControllerDataSource" customModule="RSSReader" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="3020" y="392"/>
-        </scene>
-        <!--Item Summary Text View Controller-->
-        <scene sceneID="kbW-tv-Q8o">
-            <objects>
-                <viewController id="AYA-Jg-G87" customClass="ItemSummaryTextViewController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Bfw-GN-EVj"/>
-                        <viewControllerLayoutGuide type="bottom" id="2Z9-yt-4hN"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="zE5-kw-hvq">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JFv-vv-8a7">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="JFv-vv-8a7" secondAttribute="trailing" id="BqK-HY-d8f"/>
-                            <constraint firstItem="2Z9-yt-4hN" firstAttribute="top" secondItem="JFv-vv-8a7" secondAttribute="bottom" id="C7s-YO-WNr"/>
-                            <constraint firstItem="JFv-vv-8a7" firstAttribute="top" secondItem="Bfw-GN-EVj" secondAttribute="bottom" id="aJs-z5-SGo"/>
-                            <constraint firstItem="JFv-vv-8a7" firstAttribute="leading" secondItem="zE5-kw-hvq" secondAttribute="leading" id="dWc-Vm-fHr"/>
-                        </constraints>
-                    </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                    <connections>
-                        <outlet property="textView" destination="JFv-vv-8a7" id="Mz8-w6-y60"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="g9e-F7-zlg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3812" y="-358"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">

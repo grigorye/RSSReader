@@ -5,7 +5,6 @@ public enum SegueIdentifier : String {
     case showFolder = "showFolder"
     case showPages = "showPages"
     case showSubscription = "showSubscription"
-    case showText = "showText"
     case showWeb = "showWeb"
 }
 

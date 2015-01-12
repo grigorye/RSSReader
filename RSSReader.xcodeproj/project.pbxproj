@@ -11,7 +11,6 @@
 		C41707CB1A56076A00AED81C /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41707CA1A56076A00AED81C /* Globals.swift */; };
 		C41707CD1A56E85B00AED81C /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41707CC1A56E85B00AED81C /* Folder.swift */; };
 		C41707CF1A56F32500AED81C /* GenericCoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41707CE1A56F32500AED81C /* GenericCoreDataExtensions.swift */; };
-		C418B32F1A5956D7002C0578 /* ItemSummaryTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C418B32E1A5956D7002C0578 /* ItemSummaryTextViewController.swift */; };
 		C42802691A5B47EA002474E1 /* FoldersListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42802681A5B47EA002474E1 /* FoldersListTableViewController.swift */; };
 		C42802781A5C2E0D002474E1 /* RSSReader.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C42802741A5C2E0D002474E1 /* RSSReader.xcdatamodeld */; };
 		C45ECD061A62054C00ADC113 /* SBConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45ECD051A62054C00ADC113 /* SBConstants.swift */; };
@@ -55,7 +54,6 @@
 		C41707CC1A56E85B00AED81C /* Folder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
 		C41707CE1A56F32500AED81C /* GenericCoreDataExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericCoreDataExtensions.swift; sourceTree = "<group>"; };
 		C418B32B1A5942FC002C0578 /* XCEmbedSourceVersionIntoBundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = XCEmbedSourceVersionIntoBundle; sourceTree = "<group>"; };
-		C418B32E1A5956D7002C0578 /* ItemSummaryTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSummaryTextViewController.swift; sourceTree = "<group>"; };
 		C42802681A5B47EA002474E1 /* FoldersListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldersListTableViewController.swift; sourceTree = "<group>"; };
 		C42802751A5C2E0D002474E1 /* 31.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 31.xcdatamodel; sourceTree = "<group>"; };
 		C42802761A5C2E0D002474E1 /* 43.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 43.xcdatamodel; sourceTree = "<group>"; };
@@ -143,7 +141,6 @@
 				C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */,
 				C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */,
 				C4CDE1921A5A0A8D00F16A2E /* ItemSummary.css */,
-				C418B32E1A5956D7002C0578 /* ItemSummaryTextViewController.swift */,
 				C45ECD051A62054C00ADC113 /* SBConstants.swift */,
 			);
 			name = UI;
@@ -373,7 +370,6 @@
 				C49540A11A57825100F56168 /* ItemsListViewController.swift in Sources */,
 				C45ECD061A62054C00ADC113 /* SBConstants.swift in Sources */,
 				C42802691A5B47EA002474E1 /* FoldersListTableViewController.swift in Sources */,
-				C418B32F1A5956D7002C0578 /* ItemSummaryTextViewController.swift in Sources */,
 				C41707CD1A56E85B00AED81C /* Folder.swift in Sources */,
 				C4CDD3A31A5350B40087DD05 /* AppDelegate.swift in Sources */,
 				C42802781A5C2E0D002474E1 /* RSSReader.xcdatamodeld in Sources */,

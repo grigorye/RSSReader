@@ -195,9 +195,6 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		case .showWeb:
 			let itemSummaryWebViewController = segue.destinationViewController as ItemSummaryWebViewController
 			itemSummaryWebViewController.item = self.itemForIndexPath(self.indexPathForTappedAccessoryButton!)
-		case .showText:
-			let itemSummaryTextViewController = segue.destinationViewController as ItemSummaryTextViewController
-			itemSummaryTextViewController.item = self.selectedItem()
 		case .showPages:
 			let pageViewController = segue.destinationViewController as UIPageViewController
 			let itemsPageViewControllerDataSource: ItemsPageViewControllerDataSource = {
