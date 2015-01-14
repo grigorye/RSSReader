@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 
+let defaults = NSUserDefaults()
+
 extension NSObject {
 	var applicationDelegate: AppDelegate {
 		get {
