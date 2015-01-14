@@ -1,7 +1,6 @@
 // Auto generated file from SBConstants - any changes may be lost
 
 public enum SegueIdentifier : String {
-    case show = "show"
     case showFolder = "showFolder"
     case showPages = "showPages"
     case showSubscription = "showSubscription"

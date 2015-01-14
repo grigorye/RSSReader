@@ -132,6 +132,9 @@ extension RSSSession {
 class AppDelegate: UIResponder, UIApplicationDelegate {
 	var window: UIWindow?
 	let internals = AppDelegateInternals()
+	var foldersViewController: FoldersListTableViewController {
+		return (window!.rootViewController! as UINavigationController).viewControllers.first as FoldersListTableViewController
+	}
 	var loginAndPassword: LoginAndPassword = defaults.loginAndPassword {
         didSet {
             if loginAndPassword != oldValue  {
@@ -146,8 +149,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 	func completeAuthentication(error: NSError?) {
 		dispatch_async(dispatch_get_main_queue()) {
-			let tabBarController = self.window!.rootViewController! as UITabBarController
-			let foldersViewController = (tabBarController.viewControllers![0] as UINavigationController).viewControllers.first as FoldersListTableViewController
+			let foldersViewController = self.foldersViewController
 			foldersViewController.rootFolder = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: self.mainQueueManagedObjectContext)
 			foldersViewController.tableView.reloadData()
 		}
