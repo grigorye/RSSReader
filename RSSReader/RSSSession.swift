@@ -16,13 +16,17 @@ enum RSSSessionError: Int {
 
 class RSSSession : NSObject {
 	let loginAndPassword: LoginAndPassword
+	dynamic var progresses = [NSProgress]()
 	let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
 	init(loginAndPassword: LoginAndPassword) {
 		self.loginAndPassword = loginAndPassword
 	}
 	// MARK: -
 	func dataTaskForHTTPRequest(request: NSURLRequest, completionHandler: (NSData!, NSError!) -> Void) -> NSURLSessionDataTask {
-		let sessionTask = session.dataTaskWithRequest(request) { data, response, error in
+		let progress = NSProgress(totalUnitCount: 1)
+		progress.becomeCurrentWithPendingUnitCount(1)
+		let sessionTask = session.progressEnabledDataTaskWithRequest(request) { data, response, error in
+			self.mutableArrayValueForKey("progresses").removeObjectIdenticalTo(progress)
 			if let error = error {
 				completionHandler(nil, error)
 				return
@@ -41,6 +45,8 @@ class RSSSession : NSObject {
 				completionHandler(nil, error)
 			}
 		}
+		progress.resignCurrent()
+		self.progresses += [progress]
 		return sessionTask
 	}
 	// MARK: -
