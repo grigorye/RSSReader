@@ -23,10 +23,16 @@ func == (left: LoginAndPassword, right: LoginAndPassword) -> Bool {
 func != (left: LoginAndPassword, right: LoginAndPassword) -> Bool {
     return !(left == right)
 }
-let defaults = NSUserDefaults()
 
 class AppDelegateInternals {
-	var rssSession: RSSSession? = nil
+	var rssSession: RSSSession! = nil {
+		didSet {
+			self.rssSessionProgressKVOBinding = KVOBinding(object: rssSession, keyPath: "progresses", options: NSKeyValueObservingOptions(0)) { change in
+				UIApplication.sharedApplication().networkActivityIndicatorVisible = 0 < self.rssSession.progresses.count
+			}
+		}
+	}
+	var rssSessionProgressKVOBinding: KVOBinding!
 	let (managedObjectContextError, mainQueueManagedObjectContext, backgroundQueueManagedObjectContext): (NSError?, NSManagedObjectContext?, NSManagedObjectContext?) = {
 		let managedObjectModel = NSManagedObjectModel.mergedModelFromBundles(nil)!
 		let psc = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
@@ -107,6 +113,8 @@ class AppDelegateInternals {
 		})
 		return (nil, mainQueueManagedObjectContext, backgroundQueueManagedObjectContext)
 	}()
+	init () {
+	}
 }
 
 extension RSSSession {
@@ -124,7 +132,7 @@ extension RSSSession {
 class AppDelegate: UIResponder, UIApplicationDelegate {
 	var window: UIWindow?
 	let internals = AppDelegateInternals()
-	var loginAndPassword: LoginAndPassword {
+	var loginAndPassword: LoginAndPassword = defaults.loginAndPassword {
         didSet {
             if loginAndPassword != oldValue  {
 				if loginAndPassword.isValid() {
@@ -164,10 +172,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 				UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
 			}
 		}
-	}
-	override init() {
-		let defaults = NSUserDefaults()
-		self.loginAndPassword = defaults.loginAndPassword
 	}
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		let notificationCenter = NSNotificationCenter.defaultCenter()
