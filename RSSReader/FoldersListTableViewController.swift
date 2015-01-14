@@ -37,12 +37,12 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 	}
 	// MARK: -
 	func configureCell(cell: UITableViewCell, forFolder folder: Folder) {
+		(cell as TableViewContainerCell).setFromContainer(folder)
 		cell.textLabel?.text = folder.id.lastPathComponent
-		cell.detailTextLabel?.text = "\(folder.unreadCount)"
 	}
 	func configureCell(cell: UITableViewCell, forSubscription subscription: Subscription) {
+		(cell as TableViewContainerCell).setFromContainer(subscription)
 		cell.textLabel?.text = subscription.title ?? subscription.url?.lastPathComponent
-		cell.detailTextLabel?.text = "\(subscription.unreadCount)"
 	}
 	// MARK: -
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

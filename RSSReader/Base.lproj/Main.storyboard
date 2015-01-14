@@ -231,7 +231,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Folder" textLabel="Fgt-yI-K6M" detailTextLabel="AWh-VL-I4Q" style="IBUITableViewCellStyleSubtitle" id="WHP-Qn-lRn">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Folder" textLabel="Fgt-yI-K6M" detailTextLabel="AWh-VL-I4Q" style="IBUITableViewCellStyleSubtitle" id="WHP-Qn-lRn" customClass="TableViewContainerCell" customModule="RSSReader" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WHP-Qn-lRn" id="Av4-oV-meI">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -254,7 +254,7 @@
                                     <segue destination="daS-hT-cbp" kind="show" identifier="showFolder" id="a0M-eK-6Ah"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Subscription" textLabel="3T5-yD-fXA" detailTextLabel="8iu-NQ-WRU" style="IBUITableViewCellStyleSubtitle" id="xyv-Ly-14P">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Subscription" textLabel="3T5-yD-fXA" detailTextLabel="8iu-NQ-WRU" style="IBUITableViewCellStyleSubtitle" id="xyv-Ly-14P" customClass="TableViewContainerCell" customModule="RSSReader" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xyv-Ly-14P" id="2g3-tA-iQO">
                                     <autoresizingMask key="autoresizingMask"/>

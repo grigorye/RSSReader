@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C401C65C1A5C971800CF6AA4 /* MarkingAsRead.swift in Sources */ = {isa = PBXBuildFile; fileRef = C401C65B1A5C971800CF6AA4 /* MarkingAsRead.swift */; };
+		C40A24FF1A672B2100B5D959 /* TableViewContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A24FE1A672B2100B5D959 /* TableViewContainerCell.swift */; };
 		C41707CB1A56076A00AED81C /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41707CA1A56076A00AED81C /* Globals.swift */; };
 		C41707CD1A56E85B00AED81C /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41707CC1A56E85B00AED81C /* Folder.swift */; };
 		C41707CF1A56F32500AED81C /* GenericCoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41707CE1A56F32500AED81C /* GenericCoreDataExtensions.swift */; };
@@ -51,6 +52,7 @@
 /* Begin PBXFileReference section */
 		C401C65A1A5C73CF00CF6AA4 /* 47.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 47.xcdatamodel; sourceTree = "<group>"; };
 		C401C65B1A5C971800CF6AA4 /* MarkingAsRead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkingAsRead.swift; sourceTree = "<group>"; };
+		C40A24FE1A672B2100B5D959 /* TableViewContainerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewContainerCell.swift; sourceTree = "<group>"; };
 		C41707CA1A56076A00AED81C /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		C41707CC1A56E85B00AED81C /* Folder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
 		C41707CE1A56F32500AED81C /* GenericCoreDataExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericCoreDataExtensions.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				C4AD2ADA1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift */,
 				C4CDD3A41A5350B40087DD05 /* SubscriptionsListViewController.swift */,
 				C42802681A5B47EA002474E1 /* FoldersListTableViewController.swift */,
+				C40A24FE1A672B2100B5D959 /* TableViewContainerCell.swift */,
 				C49540A01A57825100F56168 /* ItemsListViewController.swift */,
 				C4CDD3A61A5350B40087DD05 /* SecondViewController.swift */,
 				C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */,
@@ -367,6 +370,7 @@
 				C4AD2ADB1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift in Sources */,
 				C4C1A3F61A574517007384E8 /* RSSSession.swift in Sources */,
 				C4CDD3A71A5350B40087DD05 /* SecondViewController.swift in Sources */,
+				C40A24FF1A672B2100B5D959 /* TableViewContainerCell.swift in Sources */,
 				C4FD88521A5F10BD0035E4D1 /* Container.swift in Sources */,
 				C41707CB1A56076A00AED81C /* Globals.swift in Sources */,
 				C495409B1A575C1900F56168 /* UserDefaults.swift in Sources */,
