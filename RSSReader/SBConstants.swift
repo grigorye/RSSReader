@@ -4,7 +4,6 @@ public enum SegueIdentifier : String {
     case showFolder = "showFolder"
     case showPages = "showPages"
     case showSubscription = "showSubscription"
-    case showWeb = "showWeb"
 }
 
 public enum TableViewCellReuseIdentifier : String {

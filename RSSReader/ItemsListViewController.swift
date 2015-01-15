@@ -181,10 +181,6 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		self.configureCell(cell, atIndexPath: indexPath)
 		return cell
 	}
-    override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
-		self.indexPathForTappedAccessoryButton = indexPath
-		self.performSegueWithIdentifier(SegueIdentifier.showWeb.rawValue, sender: nil)
-	}
 	// MARK: -
 	override func scrollViewDidScroll(scrollView: UIScrollView) {
 		self.loadMoreIfNecessary()
@@ -192,9 +188,6 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	// MARK: -
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		switch SegueIdentifier(rawValue: segue.identifier!)! {
-		case .showWeb:
-			let itemSummaryWebViewController = segue.destinationViewController as ItemSummaryWebViewController
-			itemSummaryWebViewController.item = self.itemForIndexPath(self.indexPathForTappedAccessoryButton!)
 		case .showPages:
 			let pageViewController = segue.destinationViewController as UIPageViewController
 			let itemsPageViewControllerDataSource: ItemsPageViewControllerDataSource = {

@@ -62,17 +62,16 @@
                             <action selector="refresh:" destination="3bj-4R-y2f" eventType="valueChanged" id="O4D-jz-jmg"/>
                         </connections>
                     </refreshControl>
-                    <connections>
-                        <segue destination="CEh-Po-b2S" kind="show" identifier="showWeb" id="ejl-Z8-6Oa"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nPg-NE-vWc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2328" y="-358"/>
+            <point key="canvasLocation" x="2340" y="602"/>
         </scene>
         <!--Item Summary Web View Controller-->
         <scene sceneID="gVa-UT-Hal">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IO5-uj-102" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="5Zp-Sc-Uhi" customClass="ItemSummaryWebViewDelegate" customModule="RSSReader" customModuleProvider="target"/>
                 <viewController storyboardIdentifier="itemSummaryWeb" automaticallyAdjustsScrollViewInsets="NO" id="CEh-Po-b2S" customClass="ItemSummaryWebViewController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lBI-YB-kM6"/>
@@ -103,10 +102,8 @@
                         <outlet property="webView" destination="xqK-gQ-Z6j" id="Cfj-K2-vB9"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IO5-uj-102" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="5Zp-Sc-Uhi" customClass="ItemSummaryWebViewDelegate" customModule="RSSReader" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="3020" y="-360"/>
+            <point key="canvasLocation" x="3824" y="602"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="eCl-5V-8Pg">
@@ -132,7 +129,7 @@
                 </customObject>
                 <customObject id="Zh2-SY-7Jj" customClass="ItemsPageViewControllerDataSource" customModule="RSSReader" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="3020" y="392"/>
+            <point key="canvasLocation" x="3080" y="602"/>
         </scene>
         <!--News-->
         <scene sceneID="oZL-j3-px6">
@@ -205,7 +202,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e1g-LJ-2H1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1616" y="602"/>
+            <point key="canvasLocation" x="1588" y="602"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XLc-em-sRT">
@@ -223,7 +220,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="noj-mK-ssN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="804" y="602"/>
+            <point key="canvasLocation" x="844" y="602"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
