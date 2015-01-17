@@ -139,13 +139,14 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		return self.itemForIndexPath(self.tableView.indexPathForSelectedRow()!)
 	}
 	// MARK: -
-	func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+	func configureCell(rawCell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+		let cell = rawCell as ItemTableViewCell
 		let item = fetchedResultsController.fetchedObjects![indexPath.row] as Item
-		cell.textLabel?.text = item.title ?? item.id.lastPathComponent
+		cell.titleLabel?.text = item.title ?? item.id.lastPathComponent
 		let timeIntervalFormatted = (nil == NSClassFromString("NSDateComponentsFormatter")) ? "x" : dateComponentsFormatter.stringFromDate(item.date, toDate: loadDate) ?? ""
-		if let detailTextLabel = cell.detailTextLabel {
-			detailTextLabel.text = "\(timeIntervalFormatted)"
-			detailTextLabel.textColor = item.markedAsRead ? nil : UIColor.redColor()
+		if let subtitleLabel = cell.subtitleLabel {
+			subtitleLabel.text = "\(timeIntervalFormatted)"
+			subtitleLabel.textColor = item.markedAsRead ? nil : UIColor.redColor()
 		}
 	}
 	// MARK: -
