@@ -17,6 +17,7 @@
 		C45158991A65E1FE00374A8C /* GenericURLSessionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45158981A65E1FE00374A8C /* GenericURLSessionExtensions.swift */; };
 		C45159101A65E83400374A8C /* KVOBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C451590F1A65E83400374A8C /* KVOBinding.swift */; };
 		C45ECD061A62054C00ADC113 /* SBConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45ECD051A62054C00ADC113 /* SBConstants.swift */; };
+		C4676E091A6A4D1F00AE8BC2 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4676E081A6A4D1F00AE8BC2 /* ItemTableViewCell.swift */; };
 		C46934DF1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46934DE1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift */; };
 		C4728B381A55BA6600D4251A /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4728B371A55BA6600D4251A /* Subscription.swift */; };
 		C4728B3A1A55BAC600D4251A /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4728B391A55BAC600D4251A /* CoreData.swift */; };
@@ -64,6 +65,7 @@
 		C451590F1A65E83400374A8C /* KVOBinding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOBinding.swift; sourceTree = "<group>"; };
 		C45ECD051A62054C00ADC113 /* SBConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBConstants.swift; sourceTree = "<group>"; };
 		C45ECD0A1A6215F700ADC113 /* XCRegenerateSBConstantsSwift */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = XCRegenerateSBConstantsSwift; sourceTree = "<group>"; };
+		C4676E081A6A4D1F00AE8BC2 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		C46934DE1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsPageViewControllerDataSource.swift; sourceTree = "<group>"; };
 		C4728B371A55BA6600D4251A /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		C4728B391A55BAC600D4251A /* CoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				C4CDD3AB1A5350B50087DD05 /* Images.xcassets */,
 				C4CDD3AD1A5350B50087DD05 /* LaunchScreen.xib */,
 				C4CDD3A81A5350B40087DD05 /* Main.storyboard */,
+				C4676E081A6A4D1F00AE8BC2 /* ItemTableViewCell.swift */,
 				C46934DE1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift */,
 				C4AD2ADA1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift */,
 				C42802681A5B47EA002474E1 /* FoldersListTableViewController.swift */,
@@ -366,6 +369,7 @@
 				C49540A51A57906600F56168 /* ItemSummaryWebViewController.swift in Sources */,
 				C4AD2ADB1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift in Sources */,
 				C4C1A3F61A574517007384E8 /* RSSSession.swift in Sources */,
+				C4676E091A6A4D1F00AE8BC2 /* ItemTableViewCell.swift in Sources */,
 				C4CDD3A71A5350B40087DD05 /* SecondViewController.swift in Sources */,
 				C40A24FF1A672B2100B5D959 /* TableViewContainerCell.swift in Sources */,
 				C4FD88521A5F10BD0035E4D1 /* Container.swift in Sources */,
