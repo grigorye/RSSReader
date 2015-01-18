@@ -142,9 +142,11 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	func configureCell(rawCell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
 		let cell = rawCell as ItemTableViewCell
 		let item = fetchedResultsController.fetchedObjects![indexPath.row] as Item
-		cell.titleLabel?.text = item.title ?? item.id.lastPathComponent
-		let timeIntervalFormatted = (nil == NSClassFromString("NSDateComponentsFormatter")) ? "x" : dateComponentsFormatter.stringFromDate(item.date, toDate: loadDate) ?? ""
+		if let titleLabel = cell.titleLabel {
+			titleLabel.text = item.title ?? item.id.lastPathComponent
+		}
 		if let subtitleLabel = cell.subtitleLabel {
+			let timeIntervalFormatted = (nil == NSClassFromString("NSDateComponentsFormatter")) ? "x" : dateComponentsFormatter.stringFromDate(item.date, toDate: loadDate) ?? ""
 			subtitleLabel.text = "\(timeIntervalFormatted)"
 			subtitleLabel.textColor = item.markedAsRead ? nil : UIColor.redColor()
 		}
@@ -181,6 +183,9 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellReuseIdentifier.Item.rawValue, forIndexPath: indexPath) as UITableViewCell
 		self.configureCell(cell, atIndexPath: indexPath)
 		return cell
+	}
+	override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+		return 44;
 	}
 	// MARK: -
 	override func scrollViewDidScroll(scrollView: UIScrollView) {
