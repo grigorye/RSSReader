@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import Fabric
+import Crashlytics
 
 struct LoginAndPassword {
 	let login: String?
@@ -176,6 +178,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		}
 	}
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        Fabric.with([Crashlytics()])
 		let notificationCenter = NSNotificationCenter.defaultCenter()
 		var handlingNotification = false
 		notificationCenter.addObserverForName(NSUserDefaultsDidChangeNotification, object: nil, queue: nil) { _ in
