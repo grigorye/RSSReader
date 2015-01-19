@@ -149,6 +149,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
 	}
+	@IBAction func crash(sender: AnyObject?) {
+		let x = "foo" as AnyObject as Int
+	}
+	// MARK :-
 	func completeAuthentication(error: NSError?) {
 		dispatch_async(dispatch_get_main_queue()) {
 			let foldersViewController = self.foldersViewController
