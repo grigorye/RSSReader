@@ -9,7 +9,31 @@
 import UIKit
 import CoreData
 
-var dateComponentsFormatter: NSDateComponentsFormatter = {
+extension Item {
+	class func keyPathsForValuesAffectingItemListSectionName() -> NSSet {
+		return NSSet(array: ["date", "loadDate"])
+	}
+	func itemsListSectionName() -> String {
+		let timeInterval = self.loadDate.timeIntervalSinceDate(self.date)
+		if timeInterval < 24 * 3600 {
+			return ""
+		}
+		else if timeInterval < 7 * 24 * 3600 {
+			return "Last Week"
+		}
+		else if timeInterval < 30 * 7 * 24 * 3600 {
+			return "Last Month"
+		}
+		else if timeInterval < 365 * 7 * 24 * 3600 {
+			return "Last Year"
+		}
+		else {
+			return "More than Year Ago"
+		}
+	}
+}
+
+let dateComponentsFormatter: NSDateComponentsFormatter = {
 	let $ = NSDateComponentsFormatter()
 	$.unitsStyle = .Abbreviated
 	$.allowsFractionalUnits = true
@@ -28,7 +52,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	var loadError: NSError?
 	var tableFooterView: UIView?
 	var indexPathForTappedAccessoryButton: NSIndexPath?
-	var unreadOnlyFilterPredicate: NSPredicate = {
+	let unreadOnlyFilterPredicate: NSPredicate = {
 		if NSUserDefaults().showUnreadOnly {
 			return NSPredicate(format: "SUBQUERY(categories, $x, $x.id ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
 		}
@@ -39,14 +63,17 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	lazy var fetchedResultsController: NSFetchedResultsController = {
 		let fetchRequest: NSFetchRequest = {
 			let $ = NSFetchRequest(entityName: Item.entityName())
-			$.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+			$.sortDescriptors = [
+				NSSortDescriptor(key: "loadDate", ascending: false),
+				NSSortDescriptor(key: "date", ascending: false),
+			]
 			$.predicate = NSCompoundPredicate.andPredicateWithSubpredicates([
 				NSPredicate(format: "subscription == %@", argumentArray: [self.folder]),
 				self.unreadOnlyFilterPredicate
 			])
 			return $
 		}()
-		let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.mainQueueManagedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+		let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.mainQueueManagedObjectContext, sectionNameKeyPath: true ? nil : "itemsListSectionName", cacheName: nil)
 		$.delegate = self
 		return $
 	}()
@@ -96,11 +123,17 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 				if let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows() {
 					let shouldLoadMore: Bool = {
 						if let lastVisibleIndexPath = indexPathsForVisibleRows.last as NSIndexPath? {
-							let numberOfRows = self.tableView.numberOfRowsInSection(0)
 							let numberOfItemsToPreload = 10
-							let barrierRow = lastVisibleIndexPath.row + numberOfItemsToPreload
-							let indexOfLastLoadedItem = (nil == self.lastLoadedItem) ? 0 : (self.fetchedResultsController.fetchedObjects! as NSArray).indexOfObjectIdenticalTo(self.lastLoadedItem!)
-							return indexOfLastLoadedItem < barrierRow
+							let barrierIndexPath = NSIndexPath(forRow: lastVisibleIndexPath.row + numberOfItemsToPreload, inSection: lastVisibleIndexPath.section)
+							let indexPathForLastLoadedItem : NSIndexPath = {
+								if let lastLoadedItem = self.lastLoadedItem {
+									return self.fetchedResultsController.indexPathForObject(lastLoadedItem)!
+								}
+								else {
+									return NSIndexPath(forRow: 0, inSection: 0)
+								}
+							}()
+							return indexPathForLastLoadedItem.compare(barrierIndexPath) == .OrderedAscending
 						}
 						return true
 					}()
@@ -141,7 +174,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	// MARK: -
 	func configureCell(rawCell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
 		let cell = rawCell as ItemTableViewCell
-		let item = fetchedResultsController.fetchedObjects![indexPath.row] as Item
+		let item = fetchedResultsController.objectAtIndexPath(indexPath) as Item
 		if let titleLabel = cell.titleLabel {
 			titleLabel.text = item.title ?? item.id.lastPathComponent
 		}
@@ -155,37 +188,52 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	func controllerWillChangeContent(controller: NSFetchedResultsController) {
 		self.tableView.beginUpdates()
 	}
-	func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-		let tableView = self.tableView!
- 
+	let rowAnimation = UITableViewRowAnimation.None
+    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
 		switch type {
 		case .Insert:
-			tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: UITableViewRowAnimation.Fade)
+			tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: rowAnimation)
 		case .Delete:
-			tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation:UITableViewRowAnimation.Fade)
+			tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: rowAnimation)
+		default:
+			abort()
+		}
+	}
+	func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+		let tableView = self.tableView!
+		switch type {
+		case .Insert:
+			tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: rowAnimation)
+		case .Delete:
+			tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: rowAnimation)
 		case .Update:
 			if let cell = tableView.cellForRowAtIndexPath(indexPath!) {
 				self.configureCell(cell, atIndexPath: indexPath!)
 			}
 		case .Move:
-			tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: UITableViewRowAnimation.Fade)
-			tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation:UITableViewRowAnimation.Fade)
+			tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: rowAnimation)
+			tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: rowAnimation)
 		}
 	}
 	func controllerDidChangeContent(controller: NSFetchedResultsController) {
+		UIView.setAnimationsEnabled(false)
 		self.tableView.endUpdates()
+		UIView.setAnimationsEnabled(true)
 	}
 	// MARK: -
+	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+		return fetchedResultsController.sections!.count
+	}
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return fetchedResultsController.fetchedObjects!.count
+		return (fetchedResultsController.sections![section] as NSFetchedResultsSectionInfo).numberOfObjects
+	}
+	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		return (fetchedResultsController.sections![section] as NSFetchedResultsSectionInfo).name
 	}
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellReuseIdentifier.Item.rawValue, forIndexPath: indexPath) as UITableViewCell
 		self.configureCell(cell, atIndexPath: indexPath)
 		return cell
-	}
-	override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-		return 44;
 	}
 	// MARK: -
 	override func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -214,7 +262,6 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	// MARK: -
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-		self.tableView.reloadData()
 	}
 	override func viewDidLoad() {
 		super.viewDidLoad()
