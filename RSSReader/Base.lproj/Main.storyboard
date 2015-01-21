@@ -34,7 +34,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" text="Title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gu4-m3-qoE">
-                                            <rect key="frame" x="14" y="12" width="553" height="19.5"/>
+                                            <rect key="frame" x="16" y="12" width="551" height="19.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="19" id="HHo-Le-A6Z"/>
                                             </constraints>
@@ -54,7 +54,7 @@
                                         <constraint firstItem="gu4-m3-qoE" firstAttribute="top" secondItem="Pfg-fp-95L" secondAttribute="topMargin" constant="4" id="FWt-SG-k4W"/>
                                         <constraint firstItem="4nm-BK-0Af" firstAttribute="leading" secondItem="gu4-m3-qoE" secondAttribute="trailing" constant="8" id="YYI-nf-dsU"/>
                                         <constraint firstAttribute="centerY" secondItem="4nm-BK-0Af" secondAttribute="centerY" id="ZOx-1A-MMS"/>
-                                        <constraint firstItem="gu4-m3-qoE" firstAttribute="leading" secondItem="Pfg-fp-95L" secondAttribute="leadingMargin" constant="6" id="dsn-uc-r78"/>
+                                        <constraint firstItem="gu4-m3-qoE" firstAttribute="leading" secondItem="Pfg-fp-95L" secondAttribute="leadingMargin" constant="8" id="dsn-uc-r78"/>
                                         <constraint firstItem="4nm-BK-0Af" firstAttribute="trailing" secondItem="Pfg-fp-95L" secondAttribute="trailingMargin" id="tFR-rQ-A8S"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -65,6 +65,11 @@
                                 </connections>
                             </tableViewCell>
                         </prototypes>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="estimatedRowHeight">
+                                <integer key="value" value="44"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <outlet property="dataSource" destination="3bj-4R-y2f" id="7tV-0j-7j6"/>
                             <outlet property="delegate" destination="3bj-4R-y2f" id="19f-tM-vXl"/>
