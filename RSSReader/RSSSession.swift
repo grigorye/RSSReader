@@ -266,8 +266,9 @@ class RSSSession : NSObject {
 			backgroundQueueManagedObjectContext.performBlock {
 				let importAndSaveError: NSError? = {
 					var importError: NSError?
-					let tags = importItemsFromJsonData(data!, type: Folder.self, elementName: "tags", managedObjectContext: backgroundQueueManagedObjectContext, error: &importError) { (tag, json) in
+					let tags = importItemsFromJsonData(data!, type: Folder.self, elementName: "tags", managedObjectContext: backgroundQueueManagedObjectContext, error: &importError) { (tag, json, error) in
 						tag.importFromJson(json)
+						return true
 					}
 					if nil == tags {
 						return trace("importError", importError!)
@@ -330,8 +331,9 @@ class RSSSession : NSObject {
 			backgroundQueueManagedObjectContext.performBlock {
 				let importAndSaveError: NSError? = {
 					var importError: NSError?
-					let subscriptions = importItemsFromJsonData(data!, type: Subscription.self, elementName: "subscriptions", managedObjectContext: backgroundQueueManagedObjectContext, error: &importError) { (subscription, json) in
+					let subscriptions = importItemsFromJsonData(data!, type: Subscription.self, elementName: "subscriptions", managedObjectContext: backgroundQueueManagedObjectContext, error: &importError) { (subscription, json, error) in
 						subscription.importFromJson(json)
+						return true
 					}
 					if nil == subscriptions {
 						return trace("importError", importError!)
@@ -359,8 +361,9 @@ class RSSSession : NSObject {
 			backgroundQueueManagedObjectContext.performBlock {
 				let importAndSaveError: NSError? = {
 					var importError: NSError?
-					let subscriptions = importItemsFromJsonData(data!, type: Subscription.self, elementName: "subscriptions", managedObjectContext: backgroundQueueManagedObjectContext, error: &importError) { (subscription, json) in
+					let subscriptions = importItemsFromJsonData(data!, type: Subscription.self, elementName: "subscriptions", managedObjectContext: backgroundQueueManagedObjectContext, error: &importError) { (subscription, json, error) in
 						subscription.importFromJson(json)
+						return true
 					}
 					if nil == subscriptions {
 						return trace("importError", importError!)
@@ -408,18 +411,18 @@ class RSSSession : NSObject {
 					}
 					let continuation = json!["continuation"] as? String
 					var importError: NSError?
-					let items = importItemsFromJson(json!, type: Item.self, elementName: "items", managedObjectContext: backgroundQueueManagedObjectContext, error: &importError) { (item, itemJson) in
+					let items = importItemsFromJson(json!, type: Item.self, elementName: "items", managedObjectContext: backgroundQueueManagedObjectContext, error: &importError) { (item, itemJson, error) in
 						item.importFromJson(itemJson)
+						item.loadDate = loadDate
+						var saveError: NSError?
+						if !backgroundQueueManagedObjectContext.save(&saveError) {
+							error.memory = trace("saveError", saveError)
+							return false
+						}
+						return true
 					}
 					if nil == items {
 						return trace("importError", importError!)
-					}
-					for item in items! {
-						// item.loadDate = loadDate
-					}
-					var saveError: NSError?
-					if !backgroundQueueManagedObjectContext.save(&saveError) {
-						return trace("saveError", saveError)
 					}
 					completionHandler(continuation: continuation, items: items, error: nil)
 					return nil
