@@ -73,7 +73,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			])
 			return $
 		}()
-		let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.mainQueueManagedObjectContext, sectionNameKeyPath: true ? nil : "itemsListSectionName", cacheName: nil)
+		let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.mainQueueManagedObjectContext, sectionNameKeyPath: _1 ? nil : "itemsListSectionName", cacheName: nil)
 		$.delegate = self
 		return $
 	}()
