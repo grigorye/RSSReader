@@ -16,6 +16,7 @@
         <attribute name="canonical" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="date" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="loadDate" attributeType="Date" syncable="YES"/>
         <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Folder" inverseName="items" inverseEntity="Folder" syncable="YES"/>
@@ -33,7 +34,7 @@
     <elements>
         <element name="Container" positionX="-63" positionY="18" width="128" height="118"/>
         <element name="Folder" positionX="-54" positionY="72" width="128" height="88"/>
-        <element name="Item" positionX="-63" positionY="36" width="128" height="150"/>
+        <element name="Item" positionX="-63" positionY="36" width="128" height="165"/>
         <element name="Subscription" positionX="-63" positionY="-18" width="128" height="148"/>
     </elements>
 </model>
