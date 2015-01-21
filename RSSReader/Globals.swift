@@ -11,6 +11,9 @@ import CoreData
 
 let defaults = NSUserDefaults()
 
+var _1 = true
+var _0 = false
+
 extension NSObject {
 	var applicationDelegate: AppDelegate {
 		get {
