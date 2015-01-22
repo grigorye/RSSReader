@@ -9,13 +9,21 @@
 import CoreData
 
 let GenericCoreDataExtensionsErrorDomain = "com.grigoryentin.GenericCoreDataExtensions"
+
 enum GenericCoreDataExtensionsError: Int {
 	case JsonElementNotFoundOrInvalid
 }
 
-protocol ManagedIdentifiable {
-	var id: String { get set }
+protocol Managed {
 	class func entityName() -> String
+}
+
+protocol DefaultSortable {
+	class func defaultSortDescriptor() -> NSSortDescriptor
+}
+
+protocol ManagedIdentifiable : Managed {
+	var id: String { get set }
 }
 
 func insertedObjectUnlessFetchedWithPredicate<T: ManagedIdentifiable>(cls: T.Type, #predicate: NSPredicate, #managedObjectContext: NSManagedObjectContext, #error: NSErrorPointer, newObjectInitializationHandler: (T) -> Void) -> T? {
