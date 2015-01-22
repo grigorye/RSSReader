@@ -29,6 +29,7 @@
 		C49540A11A57825100F56168 /* ItemsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49540A01A57825100F56168 /* ItemsListViewController.swift */; };
 		C49540A51A57906600F56168 /* ItemSummaryWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */; };
 		C4AD2ADB1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD2ADA1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift */; };
+		C4BE521C1A7192BB00606403 /* FetchedObjectBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BE521B1A7192BB00606403 /* FetchedObjectBinding.swift */; };
 		C4C1A3F61A574517007384E8 /* RSSSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C1A3F51A574517007384E8 /* RSSSession.swift */; };
 		C4CDD3A31A5350B40087DD05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */; };
 		C4CDD3A71A5350B40087DD05 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CDD3A61A5350B40087DD05 /* SecondViewController.swift */; };
@@ -81,6 +82,7 @@
 		C49540A01A57825100F56168 /* ItemsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsListViewController.swift; sourceTree = "<group>"; };
 		C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSummaryWebViewController.swift; sourceTree = "<group>"; };
 		C4AD2ADA1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsPageViewControllerDelegate.swift; sourceTree = "<group>"; };
+		C4BE521B1A7192BB00606403 /* FetchedObjectBinding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedObjectBinding.swift; sourceTree = "<group>"; };
 		C4C1A3F51A574517007384E8 /* RSSSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSSession.swift; sourceTree = "<group>"; };
 		C4CDD39D1A5350B40087DD05 /* RSSReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4CDD3A11A5350B40087DD05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				C495409C1A575D0C00F56168 /* GenericExtensions.swift */,
 				C451590F1A65E83400374A8C /* KVOBinding.swift */,
 				C41707CE1A56F32500AED81C /* GenericCoreDataExtensions.swift */,
+				C4BE521B1A7192BB00606403 /* FetchedObjectBinding.swift */,
 				C45158981A65E1FE00374A8C /* GenericURLSessionExtensions.swift */,
 			);
 			name = Generic;
@@ -411,6 +414,7 @@
 				C41707CF1A56F32500AED81C /* GenericCoreDataExtensions.swift in Sources */,
 				C401C65C1A5C971800CF6AA4 /* MarkingAsRead.swift in Sources */,
 				C4728B3A1A55BAC600D4251A /* CoreData.swift in Sources */,
+				C4BE521C1A7192BB00606403 /* FetchedObjectBinding.swift in Sources */,
 				C46934DF1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift in Sources */,
 				C495409D1A575D0C00F56168 /* GenericExtensions.swift in Sources */,
 			);
