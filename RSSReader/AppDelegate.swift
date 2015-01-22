@@ -155,9 +155,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	// MARK :-
 	func completeAuthentication(error: NSError?) {
 		dispatch_async(dispatch_get_main_queue()) {
-			let foldersViewController = self.foldersViewController
-			foldersViewController.rootFolder = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: self.mainQueueManagedObjectContext)
-			foldersViewController.tableView.reloadData()
 		}
 	}
 	func proceedWithManagedObjectContext() {
@@ -180,6 +177,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 				UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
 			}
 		}
+	}
+	lazy var fetchedRootFolderBinding: FetchedObjectBinding<Folder> = FetchedObjectBinding<Folder>(managedObjectContext: self.mainQueueManagedObjectContext, predicate: _0 ? nil : Folder.predicateForFetchingFolderWithTagSuffix(rootTagSuffix)) { folder in
+		let foldersViewController = self.foldersViewController
+		foldersViewController.rootFolder = folder
+		foldersViewController.tableView.reloadData()
 	}
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         Fabric.with([Crashlytics()])
@@ -206,6 +208,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			return false
 		}
 		else {
+			void(self.fetchedRootFolderBinding);
 			self.proceedWithManagedObjectContext()
 		}
 		return true
