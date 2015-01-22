@@ -14,15 +14,19 @@ let readTagSuffix = "state/com.google/read"
 let canonicalReadTag = "user/-/state/com.google/read"
 
 extension Folder {
-	class func folderWithTagSuffix(tagSuffix: String, managedObjectContext: NSManagedObjectContext) -> Folder {
-		let fetchRequest: NSFetchRequest = {
-			let $ = NSFetchRequest(entityName: Folder.entityName())
-			$.predicate = NSPredicate(format: "id ENDSWITH %@", argumentArray: [tagSuffix])
-			$.fetchLimit = 1
-			return $
-		}()
+	class func predicateForFetchingFolderWithTagSuffix(tagSuffix: String) -> NSPredicate {
+		return NSPredicate(format: "id ENDSWITH %@", argumentArray: [tagSuffix])
+	}
+	class func fetchRequestForFolderWithTagSuffix(tagSuffix: String) -> NSFetchRequest {
+		let $ = NSFetchRequest(entityName: Folder.entityName())
+		$.predicate = self.predicateForFetchingFolderWithTagSuffix(tagSuffix)
+		$.fetchLimit = 1
+		return $
+	}
+	class func folderWithTagSuffix(tagSuffix: String, managedObjectContext: NSManagedObjectContext) -> Folder? {
+		let fetchRequest = self.fetchRequestForFolderWithTagSuffix(tagSuffix)
 		var executeFetchRequestError: NSError?
-		let folder = managedObjectContext.executeFetchRequest(fetchRequest, error: &executeFetchRequestError)?.first as Folder
+		let folder = managedObjectContext.executeFetchRequest(fetchRequest, error: &executeFetchRequestError)?.first as Folder?
 		return folder
 	}
 }
@@ -48,7 +52,7 @@ extension Item {
 				}
 				let mutableCategories = self.mutableSetValueForKey("categories")
 				if newValue {
-					let markedAsReadFolder = Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: self.managedObjectContext!)
+					let markedAsReadFolder = Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: self.managedObjectContext!)!
 					mutableCategories.addObject(markedAsReadFolder)
 				}
 				else {
