@@ -62,6 +62,11 @@ extension Subscription : ManagedIdentifiable {
 		}
 	}
 }
+extension Container: DefaultSortable {
+	class func defaultSortDescriptor() -> NSSortDescriptor {
+		return NSSortDescriptor(key: "id", ascending: true)
+	}
+}
 extension Container: ManagedIdentifiable {
 	class func entityName() -> String {
 		return "Container"
@@ -129,6 +134,7 @@ extension Container: ManagedIdentifiable {
 		}
 	}
 }
+
 extension Folder: ManagedIdentifiable {
 	override class func entityName() -> String {
 		return "Folder"
