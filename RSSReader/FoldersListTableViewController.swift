@@ -10,16 +10,21 @@ import UIKit
 import CoreData
 
 class FoldersListTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
-	var rootFolder: Folder!
-	var childContainers: [Container] {
-		get {
-			if let rootFolder = rootFolder {
-				let showUnreadOnly = defaults.showUnreadOnly
-				return (rootFolder.childContainers.array as [Container]).filter { showUnreadOnly ? $0.unreadCount > 0 : true }
-			}
-			else {
-				return []
-			}
+	dynamic var rootFolder: Folder!
+	var childContainers: [Container]!
+	var defaults: NSUserDefaults {
+		return NSUserDefaults.standardUserDefaults()
+	}
+	class func keyPathsForValuesAffectingRegeneratedChildContainers() -> NSSet {
+		return NSSet(array: ["defaults.showUnreadOnly", "rootFolder.childContainers"])
+	}
+	var regeneratedChildContainers: [Container] {
+		if let rootFolder = rootFolder {
+			let showUnreadOnly = defaults.showUnreadOnly
+			return (rootFolder.childContainers.array as [Container]).filter { showUnreadOnly ? $0.unreadCount > 0 : true }
+		}
+		else {
+			return []
 		}
 	}
 	// MARK: -
@@ -83,7 +88,16 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 		}
 	}
 	// MARK: -
-	override func viewDidLoad() {
-		super.viewDidLoad()
+	var viewDidDisappearRetainedObjects = [AnyObject]()
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		viewDidDisappearRetainedObjects += [KVOBinding(object: self, keyPath: "regeneratedChildContainers", options: .Initial) { [unowned self] _ in
+			self.childContainers = self.regeneratedChildContainers
+			self.tableView.reloadData()
+		}]
+	}
+	override func viewDidDisappear(animated: Bool) {
+		super.viewDidDisappear(animated)
+		viewDidDisappearRetainedObjects = []
 	}
 }
