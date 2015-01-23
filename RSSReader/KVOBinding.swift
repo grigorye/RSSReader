@@ -8,13 +8,14 @@
 
 import Foundation
 
+private let KVOBindingContext = UnsafeMutablePointer<Void>.alloc(1)
+
 class KVOBinding : NSObject {
-	let context = UnsafeMutablePointer<Void>()
 	unowned let object: NSObject
 	let keyPath: NSString
 	let KVOHandler: (NSDictionary) -> Void
 	override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
-		if self.context == context {
+		if context == KVOBindingContext {
 			KVOHandler(change)
 		}
 		else {
@@ -26,9 +27,9 @@ class KVOBinding : NSObject {
 		self.keyPath = keyPath
 		self.KVOHandler = KVOHandler
 		super.init()
-		object.addObserver(self, forKeyPath: keyPath, options: options, context: context)
+		object.addObserver(self, forKeyPath: keyPath, options: options, context: KVOBindingContext)
 	}
 	deinit {
-		object.removeObserver(self, forKeyPath: keyPath, context: context)
+		object.removeObserver(self, forKeyPath: keyPath, context: KVOBindingContext)
 	}
 }
