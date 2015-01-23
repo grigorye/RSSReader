@@ -275,6 +275,7 @@
 				C4CDD39B1A5350B40087DD05 /* Resources */,
 				C418B3281A593F4E002C0578 /* Embed Source Version into Bundle */,
 				C4676E7F1A6DB0C900AE8BC2 /* Integrate Fabric */,
+				C40C6BF81A73017B00FAFA17 /* Upload Symbols to Appsee */,
 			);
 			buildRules = (
 			);
@@ -364,6 +365,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		C40C6BF81A73017B00FAFA17 /* Upload Symbols to Appsee */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Upload Symbols to Appsee";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Appsee-upload_symbols.sh \"e12fd3aac1364b68a6a20600933525f0\"";
+			showEnvVarsInLog = 0;
+		};
 		C418B3281A593F4E002C0578 /* Embed Source Version into Bundle */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
