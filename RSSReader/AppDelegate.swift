@@ -181,7 +181,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	lazy var fetchedRootFolderBinding: FetchedObjectBinding<Folder> = FetchedObjectBinding<Folder>(managedObjectContext: self.mainQueueManagedObjectContext, predicate: _0 ? nil : Folder.predicateForFetchingFolderWithTagSuffix(rootTagSuffix)) { folder in
 		let foldersViewController = self.foldersViewController
 		foldersViewController.rootFolder = folder
-		foldersViewController.tableView.reloadData()
 	}
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         Fabric.with([Crashlytics()])
