@@ -11,7 +11,8 @@ import Crashlytics
 
 func trace<T>(label: String, value: T, file: NSString = __FILE__, line: Int = __LINE__, function: String = __FUNCTION__) -> T {
 	let message = "\(file.lastPathComponent), \(function).\(line): \(label): \(value)"
-	CLSNSLogv("%@", getVaList([message]))
+	CLSLogv("%@", getVaList([message]))
+	println(message)
 	return value
 }
 
