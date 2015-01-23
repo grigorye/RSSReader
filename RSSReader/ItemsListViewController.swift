@@ -14,7 +14,7 @@ extension Item {
 		return NSSet(array: ["date", "loadDate"])
 	}
 	func itemsListSectionName() -> String {
-		let timeInterval = self.loadDate.timeIntervalSinceDate(self.date)
+		let timeInterval = self.date.timeIntervalSinceDate(self.date)
 		if timeInterval < 24 * 3600 {
 			return ""
 		}
@@ -64,7 +64,6 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		let fetchRequest: NSFetchRequest = {
 			let $ = NSFetchRequest(entityName: Item.entityName())
 			$.sortDescriptors = [
-				NSSortDescriptor(key: "loadDate", ascending: false),
 				NSSortDescriptor(key: "date", ascending: false),
 			]
 			$.predicate = NSCompoundPredicate.andPredicateWithSubpredicates([
@@ -118,30 +117,30 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		}
 	}
 	func loadMoreIfNecessary() {
-		if !loadInProgress {
-			if !loadCompleted {
-				if let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows() {
-					let shouldLoadMore: Bool = {
-						if let lastVisibleIndexPath = indexPathsForVisibleRows.last as NSIndexPath? {
-							let numberOfItemsToPreload = 10
-							let barrierIndexPath = NSIndexPath(forRow: lastVisibleIndexPath.row + numberOfItemsToPreload, inSection: lastVisibleIndexPath.section)
-							let indexPathForLastLoadedItem : NSIndexPath = {
-								if let lastLoadedItem = self.lastLoadedItem {
-									return self.fetchedResultsController.indexPathForObject(lastLoadedItem)!
-								}
-								else {
-									return NSIndexPath(forRow: 0, inSection: 0)
-								}
-							}()
-							return indexPathForLastLoadedItem.compare(barrierIndexPath) == .OrderedAscending
+		let shouldLoadMore: Bool = {
+			if (self.loadInProgress || self.loadCompleted || self.loadError != nil) {
+				return false
+			}
+			if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows() {
+				if let lastVisibleIndexPath = indexPathsForVisibleRows.last as NSIndexPath? {
+					let numberOfItemsToPreload = 10
+					let barrierIndexPath = NSIndexPath(forRow: lastVisibleIndexPath.row + numberOfItemsToPreload, inSection: lastVisibleIndexPath.section)
+					let indexPathForLastLoadedItem : NSIndexPath = {
+						if let lastLoadedItem = self.lastLoadedItem {
+							return self.fetchedResultsController.indexPathForObject(lastLoadedItem)!
 						}
-						return true
+						else {
+							return NSIndexPath(forRow: 0, inSection: 0)
+						}
 					}()
-					if shouldLoadMore {
-						self.loadMore { loadDateDidChange in
-						}
-					}
+					return indexPathForLastLoadedItem.compare(barrierIndexPath) == .OrderedAscending
 				}
+				return true
+			}
+			return false
+		}()
+		if shouldLoadMore {
+			self.loadMore { loadDateDidChange in
 			}
 		}
 	}
