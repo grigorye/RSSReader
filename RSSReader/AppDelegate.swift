@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Fabric
 import Crashlytics
+import Appsee
 
 struct LoginAndPassword {
 	let login: String?
@@ -110,7 +111,9 @@ class AppDelegateInternals {
 			mainQueueManagedObjectContext.performBlock {
 				var mainQueueManagedObjectContextSaveError: NSError?
 				mainQueueManagedObjectContext.save(&mainQueueManagedObjectContextSaveError)
-				trace("mainQueueManagedObjectContextSaveError", mainQueueManagedObjectContextSaveError)
+				if nil != mainQueueManagedObjectContextSaveError {
+					trace("mainQueueManagedObjectContextSaveError", mainQueueManagedObjectContextSaveError)
+				}
 			}
 		})
 		return (nil, mainQueueManagedObjectContext, backgroundQueueManagedObjectContext)
@@ -184,6 +187,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         Fabric.with([Crashlytics()])
+		Appsee.start("e12fd3aac1364b68a6a20600933525f0")
 		let notificationCenter = NSNotificationCenter.defaultCenter()
 		var handlingNotification = false
 		notificationCenter.addObserverForName(NSUserDefaultsDidChangeNotification, object: nil, queue: nil) { _ in
