@@ -413,7 +413,9 @@ class RSSSession : NSObject {
 					var importError: NSError?
 					let items = importItemsFromJson(json!, type: Item.self, elementName: "items", managedObjectContext: backgroundQueueManagedObjectContext, error: &importError) { (item, itemJson, error) in
 						item.importFromJson(itemJson)
+						if (_0) {
 						item.loadDate = loadDate
+						}
 						var saveError: NSError?
 						if !backgroundQueueManagedObjectContext.save(&saveError) {
 							error.memory = trace("saveError", saveError)
