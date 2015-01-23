@@ -8,8 +8,8 @@
 
 import Foundation
 
-func trace<T>(label: String, value: T) -> T {
-	println("\(label): \(value)")
+func trace<T>(label: String, value: T, file: NSString = __FILE__, line: Int = __LINE__, function: String = __FUNCTION__) -> T {
+	println("\(file.lastPathComponent), \(function).\(line): \(label): \(value)")
 	return value
 }
 
