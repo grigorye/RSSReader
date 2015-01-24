@@ -75,6 +75,13 @@
                             <outlet property="delegate" destination="3bj-4R-y2f" id="19f-tM-vXl"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="KN3-a6-4FZ">
+                        <barButtonItem key="rightBarButtonItem" title="Mark All as Read" id="fzX-vV-z8c">
+                            <connections>
+                                <action selector="markAllAsRead:" destination="3bj-4R-y2f" id="gem-PB-rb8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="h0A-Kc-KSk">
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
