@@ -13,6 +13,7 @@
 		C40C6BF31A72F0BC00FAFA17 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C40C6BF21A72F0BC00FAFA17 /* AVFoundation.framework */; };
 		C40C6BF51A72F17100FAFA17 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C40C6BF41A72F17100FAFA17 /* SystemConfiguration.framework */; };
 		C40C6BF71A72F23C00FAFA17 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C40C6BF61A72F23C00FAFA17 /* CoreMedia.framework */; };
+		C40C6C021A73C80C00FAFA17 /* IntegrateFabric in Resources */ = {isa = PBXBuildFile; fileRef = C40C6C011A73C80C00FAFA17 /* IntegrateFabric */; };
 		C41707CB1A56076A00AED81C /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41707CA1A56076A00AED81C /* Globals.swift */; };
 		C41707CD1A56E85B00AED81C /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41707CC1A56E85B00AED81C /* Folder.swift */; };
 		C41707CF1A56F32500AED81C /* GenericCoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41707CE1A56F32500AED81C /* GenericCoreDataExtensions.swift */; };
@@ -64,10 +65,14 @@
 		C40C6BF21A72F0BC00FAFA17 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C40C6BF41A72F17100FAFA17 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		C40C6BF61A72F23C00FAFA17 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		C40C6BFB1A73C6DF00FAFA17 /* RSSReader-app.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "RSSReader-app.xcconfig"; path = "XcodeConfiguration/RSSReader-app.xcconfig"; sourceTree = "<group>"; };
+		C40C6BFD1A73C78F00FAFA17 /* EmbedSourceVersionIntoBundle */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = EmbedSourceVersionIntoBundle; sourceTree = "<group>"; };
+		C40C6BFE1A73C78F00FAFA17 /* IntegrateAppsee */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = IntegrateAppsee; sourceTree = "<group>"; };
+		C40C6C001A73C78F00FAFA17 /* RegenerateSBConstantsSwift */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = RegenerateSBConstantsSwift; sourceTree = "<group>"; };
+		C40C6C011A73C80C00FAFA17 /* IntegrateFabric */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = IntegrateFabric; sourceTree = "<group>"; };
 		C41707CA1A56076A00AED81C /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		C41707CC1A56E85B00AED81C /* Folder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
 		C41707CE1A56F32500AED81C /* GenericCoreDataExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericCoreDataExtensions.swift; sourceTree = "<group>"; };
-		C418B32B1A5942FC002C0578 /* XCEmbedSourceVersionIntoBundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = XCEmbedSourceVersionIntoBundle; sourceTree = "<group>"; };
 		C42802681A5B47EA002474E1 /* FoldersListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldersListTableViewController.swift; sourceTree = "<group>"; };
 		C42802751A5C2E0D002474E1 /* 31.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 31.xcdatamodel; sourceTree = "<group>"; };
 		C42802761A5C2E0D002474E1 /* 43.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 43.xcdatamodel; sourceTree = "<group>"; };
@@ -75,7 +80,6 @@
 		C45158981A65E1FE00374A8C /* GenericURLSessionExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericURLSessionExtensions.swift; sourceTree = "<group>"; };
 		C451590F1A65E83400374A8C /* KVOBinding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOBinding.swift; sourceTree = "<group>"; };
 		C45ECD051A62054C00ADC113 /* SBConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBConstants.swift; sourceTree = "<group>"; };
-		C45ECD0A1A6215F700ADC113 /* XCRegenerateSBConstantsSwift */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = XCRegenerateSBConstantsSwift; sourceTree = "<group>"; };
 		C4676E081A6A4D1F00AE8BC2 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		C4676E801A6DB0F800AE8BC2 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		C4676E811A6DB0F800AE8BC2 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
@@ -133,13 +137,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C418B32A1A5942FC002C0578 /* XcodeScripts */ = {
+		C40C6BFC1A73C78F00FAFA17 /* XcodeBuildPhases */ = {
 			isa = PBXGroup;
 			children = (
-				C418B32B1A5942FC002C0578 /* XCEmbedSourceVersionIntoBundle */,
-				C45ECD0A1A6215F700ADC113 /* XCRegenerateSBConstantsSwift */,
+				C40C6BFD1A73C78F00FAFA17 /* EmbedSourceVersionIntoBundle */,
+				C40C6BFE1A73C78F00FAFA17 /* IntegrateAppsee */,
+				C40C6C011A73C80C00FAFA17 /* IntegrateFabric */,
+				C40C6C001A73C78F00FAFA17 /* RegenerateSBConstantsSwift */,
 			);
-			path = XcodeScripts;
+			path = XcodeBuildPhases;
 			sourceTree = "<group>";
 		};
 		C418B32D1A594705002C0578 /* Generic */ = {
@@ -207,9 +213,10 @@
 		C4CDD3941A5350B40087DD05 = {
 			isa = PBXGroup;
 			children = (
+				C40C6BFB1A73C6DF00FAFA17 /* RSSReader-app.xcconfig */,
 				C4CDD39F1A5350B40087DD05 /* RSSReader */,
 				C4CDD3B71A5350B50087DD05 /* RSSReaderTests */,
-				C418B32A1A5942FC002C0578 /* XcodeScripts */,
+				C40C6BFC1A73C78F00FAFA17 /* XcodeBuildPhases */,
 				C452ED851A72C680003C6537 /* Frameworks */,
 				C4CDD39E1A5350B40087DD05 /* Products */,
 			);
@@ -275,7 +282,7 @@
 				C4CDD39B1A5350B40087DD05 /* Resources */,
 				C418B3281A593F4E002C0578 /* Embed Source Version into Bundle */,
 				C4676E7F1A6DB0C900AE8BC2 /* Integrate Fabric */,
-				C40C6BF81A73017B00FAFA17 /* Upload Symbols to Appsee */,
+				C40C6BF81A73017B00FAFA17 /* Integrate Appsee */,
 			);
 			buildRules = (
 			);
@@ -352,6 +359,7 @@
 				C4CDD3AA1A5350B40087DD05 /* Main.storyboard in Resources */,
 				C4CDD3AF1A5350B50087DD05 /* LaunchScreen.xib in Resources */,
 				C4CDD3AC1A5350B50087DD05 /* Images.xcassets in Resources */,
+				C40C6C021A73C80C00FAFA17 /* IntegrateFabric in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,19 +373,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		C40C6BF81A73017B00FAFA17 /* Upload Symbols to Appsee */ = {
+		C40C6BF81A73017B00FAFA17 /* Integrate Appsee */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Upload Symbols to Appsee";
+			name = "Integrate Appsee";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./Appsee-upload_symbols.sh \"e12fd3aac1364b68a6a20600933525f0\"";
+			shellPath = "/bin/sh -e";
+			shellScript = "\"${SRCROOT:?}\"/XcodeBuildPhases/IntegrateAppsee";
 			showEnvVarsInLog = 0;
 		};
 		C418B3281A593F4E002C0578 /* Embed Source Version into Bundle */ = {
@@ -391,8 +399,9 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/sh -xe";
-			shellScript = "\"${SRCROOT:?}\"/XcodeScripts/XCEmbedSourceVersionIntoBundle\n";
+			shellPath = "/bin/sh -e";
+			shellScript = "\"${SRCROOT:?}\"/XcodeBuildPhases/EmbedSourceVersionIntoBundle\n";
+			showEnvVarsInLog = 0;
 		};
 		C45ECD071A62070900ADC113 /* Regenerate SBConstants.swift */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -407,8 +416,8 @@
 				"$(SRCROOT)/$(TARGET_NAME)/SBConstants.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/sh -xe";
-			shellScript = "\"${SRCROOT:?}\"/XcodeScripts/XCRegenerateSBConstantsSwift";
+			shellPath = "/bin/sh -e";
+			shellScript = "\"${SRCROOT:?}\"/XcodeBuildPhases/RegenerateSBConstantsSwift";
 			showEnvVarsInLog = 0;
 		};
 		C4676E7F1A6DB0C900AE8BC2 /* Integrate Fabric */ = {
@@ -422,8 +431,9 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run a041320bf4147ab842dc85b6f431b045c1c49276 27f2c7fbda9310a1956a713b282cc20ec139b0186d65e5199af00ed597f319a7";
+			shellPath = "/bin/sh -e";
+			shellScript = "\"${SRCROOT:?}\"/XcodeBuildPhases/IntegrateFabric\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -579,6 +589,7 @@
 		};
 		C4CDD3BF1A5350B50087DD05 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C40C6BFB1A73C6DF00FAFA17 /* RSSReader-app.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -594,6 +605,7 @@
 		};
 		C4CDD3C01A5350B50087DD05 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C40C6BFB1A73C6DF00FAFA17 /* RSSReader-app.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
