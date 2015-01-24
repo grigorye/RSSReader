@@ -163,6 +163,11 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			}
 		}
 	}
+	@IBAction func markAllAsRead(sender: AnyObject!) {
+		rssSession.markAllAsRead(self.folder) { error in
+			void(trace("error", error))
+		}
+	}
 	// MARK: -
 	func itemForIndexPath(indexPath: NSIndexPath) -> Item {
 		return self.fetchedResultsController.fetchedObjects![indexPath.row] as Item
@@ -214,10 +219,14 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: rowAnimation)
 		}
 	}
+	typealias Handler = () -> Void
+	func invoke(handler: Handler) {
+		handler()
+	}
 	func controllerDidChangeContent(controller: NSFetchedResultsController) {
-		UIView.setAnimationsEnabled(false)
-		self.tableView.endUpdates()
-		UIView.setAnimationsEnabled(true)
+		(_1 ? UIView.performWithoutAnimation : invoke) {
+			self.tableView.endUpdates()
+		}
 	}
 	// MARK: -
 	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
