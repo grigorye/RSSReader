@@ -350,31 +350,26 @@ class RSSSession : NSObject {
 		sessionTask.resume()
 	}
 	func markAllAsRead(container: Container, completionHandler: (_: NSError?) -> Void) {
-		let newestItemDateUsec = container.newestItemDate.timeIntervalSince1970 * 1e6
-		let path = "/reader/api/0/mark-all-as-read?s=\(container.id)&ts=\(newestItemDateUsec)"
-		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithPath(path) { data, error in
+		let newestItemDateUsec = Int64(container.newestItemDate.timeIntervalSince1970 * 1e6)
+		let containerIDPercentEncoded = container.id.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())!
+		let relativeString = "/reader/api/0/mark-all-as-read?s=\(_0 ? container.id : containerIDPercentEncoded)&ts=\(newestItemDateUsec)"
+		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithRelativeString(relativeString) { data, error in
 			if let error = error {
 				completionHandler(error)
 				return
 			}
+			let body = NSString(data: data, encoding: NSUTF8StringEncoding)!
+			assert(body.isEqualToString("OK"), "")
 			let backgroundQueueManagedObjectContext = self.backgroundQueueManagedObjectContext
 			backgroundQueueManagedObjectContext.performBlock {
-				let importAndSaveError: NSError? = {
-					var importError: NSError?
-					let subscriptions = importItemsFromJsonData(data!, type: Subscription.self, elementName: "subscriptions", managedObjectContext: backgroundQueueManagedObjectContext, error: &importError) { (subscription, json, error) in
-						subscription.importFromJson(json)
-						return true
-					}
-					if nil == subscriptions {
-						return trace("importError", importError!)
-					}
+				let markAsReadHereError: NSError? = {
 					var saveError: NSError?
 					if !backgroundQueueManagedObjectContext.save(&saveError) {
 						return trace("saveError", saveError)
 					}
 					return nil
 				}()
-				completionHandler(importAndSaveError)
+				completionHandler(markAsReadHereError)
 			}
 		}
 		sessionTask.resume()
