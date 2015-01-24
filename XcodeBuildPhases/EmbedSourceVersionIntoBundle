@@ -1,6 +1,6 @@
-#!/bin/sh -e
+#! /bin/sh -e
 
-#  XCEmbedSourceVersionIntoBundle.sh
+#  EmbedSourceVersionIntoBundle
 #  RSSReader
 #
 #  Created by Grigory Entin on 04.01.15.

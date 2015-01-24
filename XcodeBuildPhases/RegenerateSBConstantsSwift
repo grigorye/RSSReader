@@ -1,6 +1,6 @@
-#! /bin/sh -ex
+#! /bin/sh -e
 
-#  XCRegenerateSBConstantsSwift.sh
+#  RegenerateSBConstantsSwift
 #  RSSReader
 #
 #  Created by Grigory Entin on 11.01.15.
