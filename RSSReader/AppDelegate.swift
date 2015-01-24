@@ -152,10 +152,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
 	}
+	// MARK: -
+	@IBAction func openSettings(sender: AnyObject?) {
+		UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+	}
 	@IBAction func crash(sender: AnyObject?) {
 		let x = "foo" as AnyObject as Int
 	}
-	// MARK :-
+	// MARK: -
 	func completeAuthentication(error: NSError?) {
 		dispatch_async(dispatch_get_main_queue()) {
 		}
