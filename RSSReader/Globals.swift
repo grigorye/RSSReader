@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-let defaults = NSUserDefaults()
+let defaults = KVOCompliantUserDefaults()
 
 var _1 = true
 var _0 = false
