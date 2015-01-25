@@ -12,15 +12,14 @@ import CoreData
 class FoldersListTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 	dynamic var rootFolder: Folder!
 	var childContainers: [Container]!
-	var defaults: NSUserDefaults {
-		return NSUserDefaults.standardUserDefaults()
-	}
+	let defaults = KVOCompliantUserDefaults()
 	class func keyPathsForValuesAffectingRegeneratedChildContainers() -> NSSet {
 		return NSSet(array: ["defaults.showUnreadOnly", "rootFolder.childContainers"])
 	}
 	var regeneratedChildContainers: [Container] {
 		if let rootFolder = rootFolder {
 			let showUnreadOnly = defaults.showUnreadOnly
+			void(trace("showUnreadOnly", showUnreadOnly))
 			return (rootFolder.childContainers.array as [Container]).filter { showUnreadOnly ? $0.unreadCount > 0 : true }
 		}
 		else {

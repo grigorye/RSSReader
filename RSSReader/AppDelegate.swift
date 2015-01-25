@@ -140,17 +140,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	var foldersViewController: FoldersListTableViewController {
 		return (window!.rootViewController! as UINavigationController).viewControllers.first as FoldersListTableViewController
 	}
-	var loginAndPassword: LoginAndPassword = defaults.loginAndPassword {
-        didSet {
-            if loginAndPassword != oldValue  {
-				if loginAndPassword.isValid() {
-					self.rssSession = RSSSession(loginAndPassword: loginAndPassword)
-					self.rssSession.authenticate { error in
-						self.completeAuthentication(error)
-					}
-				}
-            }
-        }
+	var loginAndPassword: LoginAndPassword {
+		return defaults.loginAndPassword
 	}
 	// MARK: -
 	@IBAction func openSettings(sender: AnyObject?) {
@@ -193,23 +184,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         Fabric.with([Crashlytics()])
 		Appsee.start(NSBundle.mainBundle().infoDictionary!["appseeAPIKey"] as String)
-		let notificationCenter = NSNotificationCenter.defaultCenter()
-		var handlingNotification = false
-		notificationCenter.addObserverForName(NSUserDefaultsDidChangeNotification, object: nil, queue: nil) { _ in
-			if !handlingNotification {
-				handlingNotification = true
-				let defaults = NSUserDefaults()
-				let loginAndPassword = defaults.loginAndPassword
-				if self.loginAndPassword != loginAndPassword {
-					self.loginAndPassword = loginAndPassword
-				}
-				let authToken = defaults.authToken
-				if let authToken = authToken {
-					self.rssSession.authToken = authToken
-				}
-				handlingNotification = false
-			}
-		}
 		assert(nil == self.internals.managedObjectContextError, "")
 		if let managedObjectContextError = self.internals.managedObjectContextError {
 			trace("managedObjectContextError", managedObjectContextError)
