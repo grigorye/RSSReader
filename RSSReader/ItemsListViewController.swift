@@ -53,7 +53,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	var tableFooterView: UIView?
 	var indexPathForTappedAccessoryButton: NSIndexPath?
 	let unreadOnlyFilterPredicate: NSPredicate = {
-		if NSUserDefaults().showUnreadOnly {
+		if defaults.showUnreadOnly {
 			return NSPredicate(format: "SUBQUERY(categories, $x, $x.id ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
 		}
 		else {
@@ -86,7 +86,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		}
 		let loadDate = self.loadDate
 		loadInProgress = true
-		let excludedCategory: Folder? = NSUserDefaults().showUnreadOnly ? Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: self.mainQueueManagedObjectContext) : nil
+		let excludedCategory: Folder? = defaults.showUnreadOnly ? Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: self.mainQueueManagedObjectContext) : nil
 		rssSession.streamContents(self.folder.id, excludedCategory: excludedCategory, continuation: self.continuation, loadDate: self.loadDate) { continuation, items, streamError in
 			dispatch_async(dispatch_get_main_queue()) {
 				if loadDate != self.loadDate {
