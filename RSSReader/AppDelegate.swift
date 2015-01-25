@@ -189,9 +189,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let foldersViewController = self.foldersViewController
 		foldersViewController.rootFolder = folder
 	}
+	// MARK: -
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         Fabric.with([Crashlytics()])
-		Appsee.start("e12fd3aac1364b68a6a20600933525f0")
+		Appsee.start(NSBundle.mainBundle().infoDictionary!["appseeAPIKey"] as String)
 		let notificationCenter = NSNotificationCenter.defaultCenter()
 		var handlingNotification = false
 		notificationCenter.addObserverForName(NSUserDefaultsDidChangeNotification, object: nil, queue: nil) { _ in
