@@ -8,33 +8,12 @@
 
 import Foundation
 
-extension NSUserDefaults {
-	func authTokenDefault() -> NSString {
-		return "authToken"
-	}
-	var authToken: NSString? {
-		get {
-			return self.stringForKey(authTokenDefault())
-		}
-		set {
-			if let authToken = newValue {
-				defaults.setObject(authToken as NSString, forKey: authTokenDefault())
-			}
-			else {
-				defaults.removeObjectForKey(authTokenDefault())
-			}
-		}
-	}
+extension KVOCompliantUserDefaults {
 	var loginAndPassword: LoginAndPassword {
 		get {
-			let login = defaults.stringForKey("login")
-			let password = defaults.stringForKey("password")
+			let login = self.login
+			let password = self.password
 			return LoginAndPassword(login: login, password: password)
-		}
-	}
-	var showUnreadOnly: Bool {
-		get {
-			return self.boolForKey("showUnreadOnly")
 		}
 	}
 }
