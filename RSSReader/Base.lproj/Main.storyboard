@@ -220,11 +220,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="News" id="PfS-Px-hbx">
-                        <barButtonItem key="leftBarButtonItem" title="Settings" id="4cA-Vr-Vtb">
-                            <connections>
-                                <action selector="openSettings:" destination="e1g-LJ-2H1" id="7O3-sN-hGo"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Crash" id="E3O-BI-2hC">
                             <connections>
                                 <action selector="crash:" destination="e1g-LJ-2H1" id="noO-V9-Czb"/>
@@ -242,10 +237,10 @@
             </objects>
             <point key="canvasLocation" x="1588" y="602"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Main Navigation Controller-->
         <scene sceneID="XLc-em-sRT">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Brp-uh-Vy2" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Brp-uh-Vy2" customClass="MainNavigationController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bYg-rU-GZw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -253,10 +248,16 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
+                        <outlet property="extraLeftBarButtonItem" destination="Z7V-w6-ndy" id="rMr-4P-QEc"/>
                         <segue destination="daS-hT-cbp" kind="relationship" relationship="rootViewController" id="0Df-Yo-bIC"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="noj-mK-ssN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <barButtonItem title="Settings" id="Z7V-w6-ndy">
+                    <connections>
+                        <action selector="openSettings:" destination="noj-mK-ssN" id="Fi9-Sf-9sj"/>
+                    </connections>
+                </barButtonItem>
             </objects>
             <point key="canvasLocation" x="844" y="602"/>
         </scene>
