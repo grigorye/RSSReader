@@ -182,8 +182,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 	// MARK: -
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        Fabric.with([Crashlytics()])
-		Appsee.start(NSBundle.mainBundle().infoDictionary!["appseeAPIKey"] as String)
+		let version = NSBundle.mainBundle().infoDictionary!["CFBundleVersion"] as NSString
+		let versionIsClean = NSNotFound == version.rangeOfCharacterFromSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet).location
+		if trace("versionIsClean", versionIsClean) {
+			Fabric.with([Crashlytics()])
+			Appsee.start(NSBundle.mainBundle().infoDictionary!["appseeAPIKey"] as String)
+		}
 		assert(nil == self.internals.managedObjectContextError, "")
 		if let managedObjectContextError = self.internals.managedObjectContextError {
 			trace("managedObjectContextError", managedObjectContextError)
