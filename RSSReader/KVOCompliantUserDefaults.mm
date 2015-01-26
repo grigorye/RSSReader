@@ -21,6 +21,9 @@
 #define let auto const
 #define var auto
 
+var _1 = 1;
+var _0 = 0;
+
 id boxed(NSObject *value) {
 	return value;
 }
@@ -31,7 +34,9 @@ id boxed(BOOL value) {
 
 #define _(...) ^{ \
 	let $ = __VA_ARGS__; \
-	NSLog(@"%s: %@", #__VA_ARGS__, boxed(__VA_ARGS__)); \
+	if (_0) { \
+		NSLog(@"%s: %@", #__VA_ARGS__, boxed(__VA_ARGS__)); \
+	} \
 	return $; \
 }()
 
