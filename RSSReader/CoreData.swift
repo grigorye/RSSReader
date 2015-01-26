@@ -46,15 +46,18 @@ extension Item : ManagedIdentifiable {
 		let subscription = insertedObjectUnlessFetchedWithID(Subscription.self, id: streamID, managedObjectContext: managedObjectContext, error: &subscriptionImportError)!
 		self.subscription = subscription
 		self.canonical = json["canonical"] as [[String : String]]?
-		if let categories = json["categories"] as? [String] {
-			for category in categories {
+		var categories = [Folder]()
+		if let categoriesIDs = json["categories"] as? [String] {
+			for categoryID in categoriesIDs {
 				var categoryImportError: NSError?
-				if let folder = insertedObjectUnlessFetchedWithID(Folder.self, id: category, managedObjectContext: managedObjectContext, error: &categoryImportError) {
-					folder.id = category
-					self.mutableSetValueForKey("categories").addObject(folder)
+				if let folder = insertedObjectUnlessFetchedWithID(Folder.self, id: categoryID, managedObjectContext: managedObjectContext, error: &categoryImportError) {
+					categories += [folder]
 				}
 			}
 		}
+		let mutableCategories = self.mutableSetValueForKey("categories")
+		mutableCategories.removeAllObjects()
+		mutableCategories.addObjectsFromArray(categories)
 	}
 }
 extension Subscription : ManagedIdentifiable {
