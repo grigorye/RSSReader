@@ -9,14 +9,34 @@
 import CoreData
 import Foundation
 
+extension NSDate {
+	convenience init(timestampUsec: String) {
+		let timeIntervalSince1970 = (timestampUsec as NSString).doubleValue * 1e-6
+		self.init(timeIntervalSince1970: timeIntervalSince1970)
+	}
+	var timestampUsec: String {
+		get {
+			return "\(timeIntervalSince1970 * 1e6)"
+		}
+	}
+	var timestampMsec: String {
+		get {
+			return "\(timeIntervalSince1970 * 1e3)"
+		}
+	}
+	var timestamp: String {
+		get {
+			return "\(timeIntervalSince1970)"
+		}
+	}
+}
 extension Item : ManagedIdentifiable {
 	class func entityName() -> String {
 		return "Item"
 	}
 	func importFromJson(jsonObject: AnyObject) {
 		let json = jsonObject as [String: AnyObject]
-		let timeIntervalSince1970 = (json["timestampUsec"] as NSString).doubleValue * 1e-6
-		self.date = NSDate(timeIntervalSince1970: timeIntervalSince1970)
+		self.date = NSDate(timestampUsec: json["timestampUsec"] as String)
 		self.title = json["title"] as NSString?
 		let summary = (json["summary"] as? NSDictionary)?["content"] as NSString?
 		self.summary = summary
@@ -85,8 +105,7 @@ extension Container: ManagedIdentifiable {
 		let json = jsonObject as [String: AnyObject]
 		self.id = json["id"] as NSString
 		self.unreadCount = (json["count"] as NSNumber).intValue
-		let timeIntervalSince1970 = (json["newestItemTimestampUsec"] as NSString).doubleValue * 1e-9
-		self.newestItemDate = NSDate(timeIntervalSince1970: timeIntervalSince1970)
+		self.newestItemDate = NSDate(timestampUsec: json["newestItemTimestampUsec"] as String)
 	}
 	class func importStreamPreferencesJson(jsonObject: AnyObject, managedObjectContext: NSManagedObjectContext) {
 		if let json = jsonObject as? [String : [[String : AnyObject]]] {
