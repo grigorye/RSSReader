@@ -125,7 +125,8 @@ extension Container: ManagedIdentifiable {
 								let characterCountInValue = countElements(value)
 								if characterCountInValue % 8 == 0 {
 									var sortIDs = [Int32]()
-									for var range = value.startIndex..<advance(value.startIndex, 8); range.endIndex != value.endIndex; range = advance(range.startIndex, 8)..<advance(range.endIndex, 8) {
+									for var startIndex = value.startIndex; startIndex != value.endIndex; startIndex = advance(startIndex, 8) {
+										let range = startIndex..<advance(startIndex, 8)
 										let sortIDString = value[range]
 										var sortIDUnsigned : UInt32 = 0
 										if !NSScanner(string: sortIDString).scanHexInt(&sortIDUnsigned) {
