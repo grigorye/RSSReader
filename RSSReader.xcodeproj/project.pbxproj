@@ -38,6 +38,7 @@
 		C4AD2ADB1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD2ADA1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift */; };
 		C4BE521C1A7192BB00606403 /* FetchedObjectBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BE521B1A7192BB00606403 /* FetchedObjectBinding.swift */; };
 		C4C1A3F61A574517007384E8 /* RSSSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C1A3F51A574517007384E8 /* RSSSession.swift */; };
+		C4C422181A75E355008803A7 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C422171A75E355008803A7 /* MainNavigationController.swift */; };
 		C4CDD3A31A5350B40087DD05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */; };
 		C4CDD3A71A5350B40087DD05 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CDD3A61A5350B40087DD05 /* SecondViewController.swift */; };
 		C4CDD3AA1A5350B40087DD05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4CDD3A81A5350B40087DD05 /* Main.storyboard */; };
@@ -103,6 +104,7 @@
 		C4AD2ADA1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsPageViewControllerDelegate.swift; sourceTree = "<group>"; };
 		C4BE521B1A7192BB00606403 /* FetchedObjectBinding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedObjectBinding.swift; sourceTree = "<group>"; };
 		C4C1A3F51A574517007384E8 /* RSSSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSSession.swift; sourceTree = "<group>"; };
+		C4C422171A75E355008803A7 /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		C4CDD39D1A5350B40087DD05 /* RSSReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4CDD3A11A5350B40087DD05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */,
 				C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */,
 				C45ECD051A62054C00ADC113 /* SBConstants.swift */,
+				C4C422171A75E355008803A7 /* MainNavigationController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 				C42802781A5C2E0D002474E1 /* RSSReader.xcdatamodeld in Sources */,
 				C495409F1A5780A700F56168 /* Item.swift in Sources */,
 				C45159101A65E83400374A8C /* KVOBinding.swift in Sources */,
+				C4C422181A75E355008803A7 /* MainNavigationController.swift in Sources */,
 				C4728B381A55BA6600D4251A /* Subscription.swift in Sources */,
 				C40C6C081A74AB5E00FAFA17 /* KVOCompliantUserDefaults.mm in Sources */,
 				C41707CF1A56F32500AED81C /* GenericCoreDataExtensions.swift in Sources */,
