@@ -10,4 +10,11 @@ import CoreData
 
 class Folder: Container {
 	@NSManaged var childContainers: NSOrderedSet
+	@NSManaged var items: NSSet
+	var itemsArray: [Item] {
+		return items.allObjects as [Item]
+	}
+	var mutableItems: NSMutableSet {
+		return mutableSetValueForKey("items")
+	}
 }
