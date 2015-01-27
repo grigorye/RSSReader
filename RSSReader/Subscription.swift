@@ -15,4 +15,8 @@ class Subscription: Container {
     @NSManaged var iconURL: NSURL?
     @NSManaged var url: NSURL?
 	@NSManaged var categories: NSSet
+	var mutableCategories: NSMutableSet {
+		return mutableSetValueForKey("categories")
+	}
+	@NSManaged var items: NSSet
 }
