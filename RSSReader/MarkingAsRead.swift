@@ -50,7 +50,7 @@ extension Item {
 				for category in self.categories.allObjects as [Folder] {
 					category.unreadCount += unreadCountDelta
 				}
-				let mutableCategories = self.mutableSetValueForKey("categories")
+				let mutableCategories = self.mutableCategories
 				if newValue {
 					let markedAsReadFolder = Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: self.managedObjectContext!)!
 					mutableCategories.addObject(markedAsReadFolder)
