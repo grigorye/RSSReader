@@ -55,7 +55,7 @@ extension Item : ManagedIdentifiable {
 				}
 			}
 		}
-		let mutableCategories = self.mutableSetValueForKey("categories")
+		let mutableCategories = self.mutableCategories
 		mutableCategories.removeAllObjects()
 		mutableCategories.addObjectsFromArray(categories)
 	}
@@ -79,7 +79,7 @@ extension Subscription : ManagedIdentifiable {
 				let id = category["id"] as String
 				var categoryImportError: NSError?
 				if let folder = insertedObjectUnlessFetchedWithID(Folder.self, id: id, managedObjectContext: self.managedObjectContext!, error: &categoryImportError) {
-					self.mutableSetValueForKey("categories").addObject(folder)
+					self.mutableCategories.addObject(folder)
 				}
 			}
 		}
