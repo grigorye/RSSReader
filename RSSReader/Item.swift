@@ -16,6 +16,9 @@ class Item: NSManagedObject {
     @NSManaged var title: String?
     @NSManaged var summary: NSString?
 	@NSManaged var categories: NSSet
+	var mutableCategories: NSMutableSet {
+		return mutableSetValueForKey("categories")
+	}
 	@NSManaged var subscription: Subscription
 	@NSManaged var canonical: [[String: String]]?
 }
