@@ -164,6 +164,10 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		}
 	}
 	@IBAction func markAllAsRead(sender: AnyObject!) {
+		let items = (self.folder.valueForKey("items") as NSSet).allObjects as [Item]
+		for i in items {
+			i.markedAsRead = true
+		}
 		rssSession.markAllAsRead(self.folder) { error in
 			void(trace("error", error))
 		}
