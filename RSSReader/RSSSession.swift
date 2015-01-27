@@ -17,6 +17,9 @@ enum RSSSessionError: Int {
 class RSSSession : NSObject {
 	let loginAndPassword: LoginAndPassword
 	dynamic var progresses = [NSProgress]()
+	var mutableProgresses: NSMutableArray {
+		return mutableArrayValueForKey("progresses")
+	}
 	let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
 	init(loginAndPassword: LoginAndPassword) {
 		self.loginAndPassword = loginAndPassword
@@ -26,7 +29,7 @@ class RSSSession : NSObject {
 		let progress = NSProgress(totalUnitCount: 1)
 		progress.becomeCurrentWithPendingUnitCount(1)
 		let sessionTask = session.progressEnabledDataTaskWithRequest(request) { data, response, error in
-			self.mutableArrayValueForKey("progresses").removeObjectIdenticalTo(progress)
+			self.mutableProgresses.removeObjectIdenticalTo(progress)
 			if let error = error {
 				completionHandler(nil, error)
 				return
@@ -349,7 +352,7 @@ class RSSSession : NSObject {
 		}
 		sessionTask.resume()
 	}
-	func markAllAsRead(container: Container, completionHandler: (_: NSError?) -> Void) {
+	func markAllAsRead(container: Container, completionHandler: (NSError?) -> Void) {
 		let containerIDPercentEncoded = container.id.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())!
 		let newestItemTimestampUsec = container.newestItemDate.timestampUsec
 		let relativeString = "/reader/api/0/mark-all-as-read?s=\(containerIDPercentEncoded)&ts=\(newestItemTimestampUsec)"
