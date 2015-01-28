@@ -191,10 +191,9 @@ class RSSSession : NSObject {
 		}
 		sessionTask.resume()
 	}
-	func uploadMarkedAsReadTagForItem(item: Item, completionHandler: (NSError?) -> Void) {
-		let markedAsRead = item.markedAsRead
-		let command = markedAsRead ? "a" : "r"
-		let path = "/reader/api/0/edit-tag?\(command)=\(canonicalReadTag)&i=\(item.id)"
+	func uploadTag(tag: String, mark: Bool, forItem item: Item, completionHandler: (NSError?) -> Void) {
+		let command = mark ? "a" : "r"
+		let path = "/reader/api/0/edit-tag?\(command)=\(tag)&i=\(item.id)"
 		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithPath(path) { data, error in
 			completionHandler(error)
 		}
