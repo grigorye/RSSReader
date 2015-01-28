@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Brp-uh-Vy2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Brp-uh-Vy2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -76,7 +76,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="KN3-a6-4FZ">
-                        <barButtonItem key="rightBarButtonItem" title="Mark All as Read" id="fzX-vV-z8c">
+                        <barButtonItem key="rightBarButtonItem" title="R" id="fzX-vV-z8c">
                             <connections>
                                 <action selector="markAllAsRead:" destination="3bj-4R-y2f" id="gem-PB-rb8"/>
                             </connections>
@@ -132,17 +132,23 @@
             </objects>
             <point key="canvasLocation" x="3824" y="602"/>
         </scene>
-        <!--Page View Controller-->
+        <!--Add to Favorites-->
         <scene sceneID="eCl-5V-8Pg">
             <objects>
-                <pageViewController automaticallyAdjustsScrollViewInsets="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Wtn-2N-ccu" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="gvW-35-fFk">
-                        <barButtonItem key="rightBarButtonItem" title="Open in Browser" id="1hJ-Dd-L2L">
+                <pageViewController automaticallyAdjustsScrollViewInsets="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Wtn-2N-ccu" userLabel="Add to Favorites" sceneMemberID="viewController">
+                    <toolbarItems>
+                        <barButtonItem systemItem="action" id="1hJ-Dd-L2L">
                             <connections>
-                                <action selector="openInBrowser:event:" destination="k9u-3w-tiC" id="cLc-b0-D3h"/>
+                                <action selector="action:event:" destination="k9u-3w-tiC" id="Ykz-Lj-U97"/>
                             </connections>
                         </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" id="gvW-35-fFk">
+                        <connections>
+                            <outletCollection property="rightBarButtonItemsCollection" destination="1hJ-Dd-L2L" id="T6U-f5-uPY"/>
+                        </connections>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="dataSource" destination="Zh2-SY-7Jj" id="0qb-oU-E4A"/>
                         <outlet property="delegate" destination="k9u-3w-tiC" id="g7p-uj-YJN"/>
@@ -219,13 +225,7 @@
                             <outlet property="delegate" destination="daS-hT-cbp" id="eoa-m7-kfr"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="News" id="PfS-Px-hbx">
-                        <barButtonItem key="rightBarButtonItem" title="Crash" id="E3O-BI-2hC">
-                            <connections>
-                                <action selector="crash:" destination="e1g-LJ-2H1" id="noO-V9-Czb"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="News" id="PfS-Px-hbx"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="ubd-h3-rLY">
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
@@ -253,7 +253,7 @@
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="noj-mK-ssN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <barButtonItem title="Settings" id="Z7V-w6-ndy">
+                <barButtonItem title="S" id="Z7V-w6-ndy" userLabel="Settings">
                     <connections>
                         <action selector="openSettings:" destination="noj-mK-ssN" id="Fi9-Sf-9sj"/>
                     </connections>
