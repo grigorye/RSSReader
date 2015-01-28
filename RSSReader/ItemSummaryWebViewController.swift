@@ -17,17 +17,12 @@ class ItemSummaryWebViewController: UIViewController {
 	func markAsRead() {
 		if (!item.markedAsRead) {
 			item.markedAsRead = true
-			self.rssSession.uploadMarkedAsReadTagForItem(item, completionHandler: { uploadReadStateError in
+			self.rssSession.uploadTag(canonicalReadTag, mark: true, forItem: item, completionHandler: { uploadReadStateError in
 				if let uploadReadStateError = uploadReadStateError {
 					trace("uploadReadStateError", uploadReadStateError)
 				}
 			})
 		}
-	}
-	@IBAction func openInBrowser() {
-		let href = item.canonical!.first!["href"]!
-		let url = NSURL(string: href)!
-		UIApplication.sharedApplication().openURL(url)
 	}
 	// MARK: -
 	override func viewDidLoad() {
