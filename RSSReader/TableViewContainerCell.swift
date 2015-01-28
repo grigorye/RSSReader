@@ -12,7 +12,7 @@ class TableViewContainerCell : UITableViewCell {
 	var unreadCountKVOBinding: KVOBinding!
 	func setFromContainer(container: Container) {
 		self.unreadCountKVOBinding = KVOBinding(object: container, keyPath: "unreadCount", options: NSKeyValueObservingOptions.Initial) {[unowned self] change in
-			self.detailTextLabel?.text = "\(container.unreadCount)"
+			self.detailTextLabel?.text = (0 < container.unreadCount) ? "\(container.unreadCount)" : ""
 			return
 		}
 	}
