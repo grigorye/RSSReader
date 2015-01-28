@@ -223,10 +223,6 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: rowAnimation)
 		}
 	}
-	typealias Handler = () -> Void
-	func invoke(handler: Handler) {
-		handler()
-	}
 	func controllerDidChangeContent(controller: NSFetchedResultsController) {
 		(_1 ? UIView.performWithoutAnimation : invoke) {
 			self.tableView.endUpdates()
