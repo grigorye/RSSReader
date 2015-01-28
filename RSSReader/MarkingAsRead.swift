@@ -11,7 +11,9 @@ import Foundation
 
 let rootTagSuffix = "state/com.google/root"
 let readTagSuffix = "state/com.google/read"
+let favoriteTagSuffix = "state/com.google/starred"
 let canonicalReadTag = "user/-/state/com.google/read"
+let canonicalFavoriteTag = "user/-/state/com.google/starred"
 
 extension Folder {
 	class func predicateForFetchingFolderWithTagSuffix(tagSuffix: String) -> NSPredicate {
@@ -32,17 +34,45 @@ extension Folder {
 }
 
 extension Item {
-	var categoryForReadTag: Folder? {
-		let matchingCategories = filter(self.categories.allObjects as [Folder]) { folder in folder.id.hasSuffix(readTagSuffix) }
+	func categoryForTagSuffix(tagSuffix: String) -> Folder? {
+		let matchingCategories = filter(self.categories.allObjects as [Folder]) { folder in folder.id.hasSuffix(tagSuffix) }
 		return matchingCategories.first?
+	}
+	func includedInCategoryWithTagSuffix(tagSuffix: String) -> Bool {
+		let $ = nil != self.categoryForTagSuffix(tagSuffix)
+		return $
+	}
+	func setIncludedInCategoryWithTagSuffix(tagSuffix: String, newValue: Bool) {
+		let oldValue = includedInCategoryWithTagSuffix(tagSuffix)
+		if (newValue && oldValue) || (!newValue && !oldValue) {
+		}
+		else {
+			let mutableCategories = self.mutableCategories
+			if newValue {
+				let folder = Folder.folderWithTagSuffix(tagSuffix, managedObjectContext: self.managedObjectContext!)!
+				mutableCategories.addObject(folder)
+			}
+			else {
+				mutableCategories.removeObject(self.categoryForTagSuffix(tagSuffix)!)
+			}
+		}
+	}
+	// MARK: -
+	var markedAsFavorite: Bool {
+		get {
+			return includedInCategoryWithTagSuffix(favoriteTagSuffix)
+		}
+		set {
+			setIncludedInCategoryWithTagSuffix(favoriteTagSuffix, newValue: newValue)
+		}
 	}
 	var markedAsRead: Bool {
 		get {
-			let markedAsRead = nil != self.categoryForReadTag
-			return markedAsRead
+			return includedInCategoryWithTagSuffix(readTagSuffix)
 		}
 		set {
-			if (newValue && self.markedAsRead) || (!newValue && !self.markedAsRead) {
+			let oldValue = self.markedAsRead
+			if ((newValue && oldValue) || (!newValue && !oldValue)) {
 			}
 			else {
 				let unreadCountDelta = newValue ? -1 : 1
@@ -50,14 +80,7 @@ extension Item {
 				for category in self.categories.allObjects as [Folder] {
 					category.unreadCount += unreadCountDelta
 				}
-				let mutableCategories = self.mutableCategories
-				if newValue {
-					let markedAsReadFolder = Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: self.managedObjectContext!)!
-					mutableCategories.addObject(markedAsReadFolder)
-				}
-				else {
-					mutableCategories.removeObject(self.categoryForReadTag!)
-				}
+				setIncludedInCategoryWithTagSuffix(readTagSuffix, newValue: newValue)
 			}
 		}
 	}
