@@ -19,6 +19,11 @@ func trace<T>(label: String, value: T, file: NSString = __FILE__, line: Int = __
 func void<T>(value: T) {
 }
 
+typealias Handler = () -> Void
+func invoke(handler: Handler) {
+	handler()
+}
+
 func URLQuerySuffixFromComponents(components: [String]) -> String {
 	return components.reduce((prefix: "", suffix: "?")) {
 		switch ($0) {
