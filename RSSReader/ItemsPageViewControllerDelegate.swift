@@ -10,9 +10,16 @@ import UIKit
 
 class ItemsPageViewControllerDelegate: NSObject, UIPageViewControllerDelegate {
 	@IBOutlet weak var pageViewController: UIPageViewController?
-	@IBAction func openInBrowser(sender: AnyObject?, event: UIEvent?) {
-		let currentViewController = pageViewController!.viewControllers.first as ItemSummaryWebViewController
-		UIApplication.sharedApplication().sendAction("openInBrowser", to: currentViewController, from: sender, forEvent: event)
+	@IBAction func action(sender: AnyObject?, event: UIEvent?) {
+		let activityViewController: UIViewController = {
+			let currentViewController = (self.pageViewController!.viewControllers.first as ItemSummaryWebViewController)
+			let item = currentViewController.item
+			let href = item.canonical!.first!["href"]!
+			let url = NSURL(string: href)!
+			let activityItems = [url, item]
+			return UIActivityViewController(activityItems: activityItems, applicationActivities: [AddToFavoritesActivity(), OpenWebPageActivity()])
+		}()
+		self.pageViewController!.navigationController?.presentViewController(activityViewController, animated: true, completion: nil)
 	}
 	// MARK:-
     func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [AnyObject]) {
