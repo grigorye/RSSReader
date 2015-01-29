@@ -103,7 +103,7 @@ extension Container: ManagedIdentifiable {
 			abort()
 		}
 		let sortID = Int32(bitPattern: sortIDUnsigned)
-		self.sortID = trace("sortID", sortID)
+		self.sortID = sortID
 	}
 	func importFromUnreadCountJson(jsonObject: AnyObject) {
 		let json = jsonObject as [String: AnyObject]
