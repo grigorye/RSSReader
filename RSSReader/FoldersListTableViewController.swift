@@ -19,7 +19,6 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 	var regeneratedChildContainers: [Container] {
 		if let rootFolder = rootFolder {
 			let showUnreadOnly = defaults.showUnreadOnly
-			void(trace("showUnreadOnly", showUnreadOnly))
 			return (rootFolder.childContainers.array as [Container]).filter { showUnreadOnly ? $0.unreadCount > 0 : true }
 		}
 		else {
@@ -69,7 +68,7 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 	}
 	// MARK: -
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return trace("childContainers.count", childContainers.count)
+		return childContainers.count
 	}
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let childContainer = childContainers[indexPath.row]
