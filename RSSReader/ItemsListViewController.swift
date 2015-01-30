@@ -52,14 +52,17 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	var loadError: NSError?
 	var tableFooterView: UIView?
 	var indexPathForTappedAccessoryButton: NSIndexPath?
-	let unreadOnlyFilterPredicate: NSPredicate = {
-		if defaults.showUnreadOnly {
+	var showUnreadOnly: Bool {
+		return _1 ? false : defaults.showUnreadOnly
+	}
+	var unreadOnlyFilterPredicate: NSPredicate {
+		if showUnreadOnly {
 			return NSPredicate(format: "SUBQUERY(categories, $x, $x.id ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
 		}
 		else {
 			return NSPredicate(value: true)
 		}
-	}()
+	}
 	lazy var fetchedResultsController: NSFetchedResultsController = {
 		let fetchRequest: NSFetchRequest = {
 			let $ = NSFetchRequest(entityName: Item.entityName())
@@ -86,7 +89,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		}
 		let loadDate = self.loadDate
 		loadInProgress = true
-		let excludedCategory: Folder? = defaults.showUnreadOnly ? Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: self.mainQueueManagedObjectContext) : nil
+		let excludedCategory: Folder? = showUnreadOnly ? Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: self.mainQueueManagedObjectContext) : nil
 		rssSession.streamContents(self.folder, excludedCategory: excludedCategory, continuation: self.continuation, loadDate: self.loadDate) { continuation, items, streamError in
 			dispatch_async(dispatch_get_main_queue()) {
 				if loadDate != self.loadDate {
