@@ -76,7 +76,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="KN3-a6-4FZ">
-                        <barButtonItem key="rightBarButtonItem" title="R" id="fzX-vV-z8c">
+                        <barButtonItem key="rightBarButtonItem" title="Mark as Read" id="fzX-vV-z8c">
                             <connections>
                                 <action selector="markAllAsRead:" destination="3bj-4R-y2f" id="gem-PB-rb8"/>
                             </connections>
@@ -253,7 +253,7 @@
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="noj-mK-ssN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <barButtonItem title="S" id="Z7V-w6-ndy" userLabel="Settings">
+                <barButtonItem title="Settings" id="Z7V-w6-ndy" userLabel="Settings">
                     <connections>
                         <action selector="openSettings:" destination="noj-mK-ssN" id="Fi9-Sf-9sj"/>
                     </connections>
