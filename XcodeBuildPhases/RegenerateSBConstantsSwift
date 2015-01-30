@@ -6,12 +6,9 @@
 #  Created by Grigory Entin on 11.01.15.
 #  Copyright (c) 2015 Grigory Entin. All rights reserved.
 
-if [ -x ~/.gem/bin/sbconstants ]
+gemUserDir="$(ruby -rubygems -e 'puts Gem.user_dir')"
+sbconstants="${gemUserDir:?}"/bin/sbconstants
+if [ -x "${sbconstants:?}" ]
 then
-
-export GEM_HOME="${HOME:?}"/.gem
-export GEM_PATH="${HOME:?}"/.gem
-
-~/.gem/bin/sbconstants --swift "${SRCROOT:?}/${TARGET_NAME:?}"/SBConstants.swift "${SRCROOT:?}/${TARGET_NAME:?}"/Base.lproj/Main.storyboard
-
+	"${sbconstants:?}" --swift "${SRCROOT:?}/${TARGET_NAME:?}"/SBConstants.swift "${SRCROOT:?}/${TARGET_NAME:?}"/Base.lproj/Main.storyboard
 fi
