@@ -53,7 +53,7 @@ class AppDelegateInternals {
 			if NSUserDefaults().boolForKey("forceStoreRemoval") {
 				let fileManager = NSFileManager.defaultManager()
 				var forcedStoreRemovalError: NSError?
-				if !fileManager.removeItemAtURL(storeURL, error: &forcedStoreRemovalError) {
+				if !fileManager.removeItemAtURL(storeURL, error: &forcedStoreRemovalError) && !((NSCocoaErrorDomain == forcedStoreRemovalError!.domain) && (NSFileNoSuchFileError == forcedStoreRemovalError!.code)) {
 					return trace("forcedStoreRemovalError", forcedStoreRemovalError)
 				}
 			}
