@@ -97,10 +97,10 @@ propertyInfoFromProperty(objc_property_t property) {
 	for (var i = 0; i < propertyCount; ++i) {
 		let property = propertyList[i];
 		let propertyInfo = propertyInfoFromProperty(property);
-		let attributesDictionary = as<NSDictionary>(propertyInfo[@"attributesDictionary"]);
-		let propertyName = as<NSString>(propertyInfo[@"name"]);
-		let customSetterName = as<NSString>(attributesDictionary[@"S"]);
-		let customGetterName = as<NSString>(attributesDictionary[@"G"]);
+		let attributesDictionary = as<NSDictionary>(nnil(propertyInfo[@"attributesDictionary"]));
+		let propertyName = as<NSString>(nnil(propertyInfo[@"name"]));
+		let customSetterName = as<NSString>(nnil(attributesDictionary[@"S"]));
+		let customGetterName = as<NSString>(nnil(attributesDictionary[@"G"]));
 		let defaultGetterName = propertyName;
 		let defaultSetterName = [@"set" stringByAppendingString:propertyName];
 		getterAndSetterMap[customGetterName ?: defaultGetterName] = propertyInfo;
