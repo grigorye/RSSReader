@@ -206,6 +206,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		else {
 			void(self.fetchedRootFolderBinding)
 			void(self.fetchedFavoritesFolderBinding)
+			self.foldersViewController.hidesBottomBarWhenPushed = false
 			self.proceedWithManagedObjectContext()
 		}
 		return true
