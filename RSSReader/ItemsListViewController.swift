@@ -65,12 +65,13 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	lazy var fetchedResultsController: NSFetchedResultsController = {
 		let fetchRequest: NSFetchRequest = {
+			let folder = self.folder
 			let $ = NSFetchRequest(entityName: Item.entityName())
 			$.sortDescriptors = [
 				NSSortDescriptor(key: "date", ascending: false),
 			]
 			$.predicate = NSCompoundPredicate.andPredicateWithSubpredicates([
-				NSPredicate(format: "subscription == %@", argumentArray: [self.folder]),
+				NSPredicate(format: "(subscription == %@) or (categories contains %@)", argumentArray: [folder, folder]),
 				self.unreadOnlyFilterPredicate
 			])
 			return $
