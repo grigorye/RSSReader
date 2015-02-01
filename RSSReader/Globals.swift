@@ -14,6 +14,8 @@ let defaults = KVOCompliantUserDefaults()
 var _1 = true
 var _0 = false
 
+let applicationDomain = "com.grigoryentin.RSSReader"
+
 extension NSObject {
 	var applicationDelegate: AppDelegate {
 		get {
