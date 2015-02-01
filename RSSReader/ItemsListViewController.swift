@@ -175,6 +175,13 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			void(trace("error", error))
 		}
 	}
+	@IBAction func action(sender: AnyObject?) {
+		let activityViewController: UIViewController = {
+			let activityItems = [self.folder]
+			return UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
+		}()
+		self.navigationController?.presentViewController(activityViewController, animated: true, completion: nil)
+	}
 	// MARK: -
 	func itemForIndexPath(indexPath: NSIndexPath) -> Item {
 		return self.fetchedResultsController.fetchedObjects![indexPath.row] as Item
