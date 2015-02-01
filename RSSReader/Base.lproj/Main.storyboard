@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Brp-uh-Vy2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1NT-iG-642">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="7hu-2U-kj0">
+            <objects>
+                <navigationController id="V53-ky-s6a" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="msc-RW-Ked"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HLY-RW-pCU">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="3bj-4R-y2f" kind="relationship" relationship="rootViewController" id="n8Q-sv-Bn2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zFv-LP-vEt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2340" y="-146"/>
+        </scene>
         <!--Items List View Controller-->
         <scene sceneID="koH-zh-gho">
             <objects>
-                <tableViewController hidesBottomBarWhenPushed="YES" id="3bj-4R-y2f" customClass="ItemsListViewController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="3bj-4R-y2f" customClass="ItemsListViewController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="miw-d9-dd2">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -142,10 +159,10 @@
             </objects>
             <point key="canvasLocation" x="3824" y="602"/>
         </scene>
-        <!--Page View Controller-->
+        <!--Items Page View Controller-->
         <scene sceneID="eCl-5V-8Pg">
             <objects>
-                <pageViewController automaticallyAdjustsScrollViewInsets="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Wtn-2N-ccu" sceneMemberID="viewController">
+                <pageViewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Wtn-2N-ccu" userLabel="Items Page View Controller" sceneMemberID="viewController">
                     <toolbarItems>
                         <barButtonItem systemItem="action" id="1hJ-Dd-L2L">
                             <connections>
@@ -177,7 +194,7 @@
         <!--News-->
         <scene sceneID="oZL-j3-px6">
             <objects>
-                <tableViewController id="daS-hT-cbp" customClass="FoldersListTableViewController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="daS-hT-cbp" customClass="FoldersListTableViewController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Vqj-W7-YGa">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -247,10 +264,30 @@
             </objects>
             <point key="canvasLocation" x="1588" y="602"/>
         </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Mo6-GE-ndI">
+            <objects>
+                <tabBarController id="1NT-iG-642" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="hCx-6M-azp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Brp-uh-Vy2" kind="relationship" relationship="viewControllers" id="q4S-mW-vrj"/>
+                        <segue destination="V53-ky-s6a" kind="relationship" relationship="viewControllers" id="Tkz-4Q-ECi"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z2e-rT-u1a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1588" y="-146"/>
+        </scene>
         <!--Main Navigation Controller-->
         <scene sceneID="XLc-em-sRT">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Brp-uh-Vy2" customClass="MainNavigationController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="recents" id="RhV-dz-5gA"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bYg-rU-GZw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -274,5 +311,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="0Df-Yo-bIC"/>
+        <segue reference="CAU-xE-lLZ"/>
     </inferredMetricsTieBreakers>
 </document>
