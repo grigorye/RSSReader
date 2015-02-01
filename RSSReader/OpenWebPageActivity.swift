@@ -7,39 +7,31 @@
 //
 
 import UIKit
-import Foundation
 
-class OpenWebPageActivity : UIActivity {
+class OpenWebPageActivity : TypeFilteringActivity {
+	override func performActivity() {
+		let url = acceptedItems.last!
+		UIApplication.sharedApplication().openURL(url)
+	}
 	override func activityType() -> String {
-		return "com.grigoryentin.RSSReader.openWebPage"
+		return "\(applicationDomain).openWebPage"
 	}
 	override func activityTitle() -> String {
-		return NSLocalizedString("Open in Web", comment: "")
+		return NSLocalizedString("Open in Safari", comment: "")
 	}
 	override func activityImage() -> UIImage? {
 		return UIImage(named: "AppIcon")
 	}
-	override func canPerformWithActivityItems(activityItems: [AnyObject]) -> Bool {
-		let acceptableItems = filter(activityItems) { nil != ($0 as? NSURL) }
-		return acceptableItems.count != 0
-	}
-	var acceptableItems: [NSURL]!
-	override func prepareWithActivityItems(activityItems: [AnyObject]) {
-		let acceptableItems = activityItems.reduce([NSURL]()) {
-			if let x = $1 as? NSURL {
-				return $0 + [x]
-			}
-			else {
-				return $0
-			}
-		}
-		self.acceptableItems = acceptableItems
-	}
-	override func performActivity() {
-		let url = acceptableItems.last!
-		UIApplication.sharedApplication().openURL(url)
-	}
 	override class func activityCategory() -> UIActivityCategory {
 		return .Action
+	}
+	// MARK: -
+	typealias FilteredItem = NSURL
+	var itemsFilter = TypeBasedActivityItemsFilter<FilteredItem>()
+	var acceptedItems: [FilteredItem] {
+		return itemsFilter.acceptedItems
+	}
+	init() {
+		super.init(untypedItemsFilter: self.itemsFilter)
 	}
 }

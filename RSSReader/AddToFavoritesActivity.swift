@@ -1,5 +1,5 @@
 //
-//  OpenWebPageActivitiy.swift
+//  AddToFavoritesActivity.swift
 //  RSSReader
 //
 //  Created by Grigory Entin on 28.01.15.
@@ -7,36 +7,10 @@
 //
 
 import UIKit
-import Foundation
 
-class AddToFavoritesActivity : UIActivity {
-	override func activityType() -> String {
-		return "com.grigoryentin.RSSReader.addToFavorites"
-	}
-	override func activityTitle() -> String {
-		return NSLocalizedString("Add to Favorites", comment: "")
-	}
-	override func activityImage() -> UIImage? {
-		return UIImage(named: "AppIcon")
-	}
-	override func canPerformWithActivityItems(activityItems: [AnyObject]) -> Bool {
-		let acceptableItems = filter(activityItems) { nil != ($0 as? Item) }
-		return acceptableItems.count != 0
-	}
-	var acceptableItems: [Item]!
-	override func prepareWithActivityItems(activityItems: [AnyObject]) {
-		let acceptableItems = activityItems.reduce([Item]()) {
-			if let x = $1 as? Item {
-				return $0 + [x]
-			}
-			else {
-				return $0
-			}
-		}
-		self.acceptableItems = acceptableItems
-	}
+class AddToFavoritesActivity : TypeFilteringActivity  {
 	override func performActivity() {
-		let item = acceptableItems.last!
+		let item = acceptedItems.last!
 		item.markedAsFavorite = true
 		self.rssSession.uploadTag(canonicalFavoriteTag, mark: true, forItem: item, completionHandler: { uploadFavoritesStateError in
 			if let uploadFavoritesStateError = uploadFavoritesStateError {
@@ -44,7 +18,25 @@ class AddToFavoritesActivity : UIActivity {
 			}
 		})
 	}
+	override func activityType() -> String {
+		return "\(applicationDomain).addToFavorites"
+	}
+	override func activityTitle() -> String {
+		return NSLocalizedString("Add to Favorites", comment: "")
+	}
+	override func activityImage() -> UIImage? {
+		return UIImage(named: "AppIcon")
+	}
 	override class func activityCategory() -> UIActivityCategory {
 		return .Action
+	}
+	// MARK: -
+	typealias ItemType = Item
+	var itemsFilter = TypeBasedActivityItemsFilter<ItemType>()
+	var acceptedItems: [ItemType] {
+		return itemsFilter.acceptedItems
+	}
+	init() {
+		super.init(untypedItemsFilter: self.itemsFilter)
 	}
 }
