@@ -137,8 +137,14 @@ extension RSSSession {
 class AppDelegate: UIResponder, UIApplicationDelegate {
 	var window: UIWindow?
 	let internals = AppDelegateInternals()
+	var tabBarController: UITabBarController {
+		return window!.rootViewController! as UITabBarController
+	}
 	var foldersViewController: FoldersListTableViewController {
-		return (window!.rootViewController! as UINavigationController).viewControllers.first as FoldersListTableViewController
+		return (tabBarController.viewControllers![0] as UINavigationController).viewControllers.first as FoldersListTableViewController
+	}
+	var favoritesViewController: ItemsListViewController {
+		return (tabBarController.viewControllers![1] as UINavigationController).viewControllers.first as ItemsListViewController
 	}
 	var loginAndPassword: LoginAndPassword {
 		return defaults.loginAndPassword
@@ -176,9 +182,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			}
 		}
 	}
-	lazy var fetchedRootFolderBinding: FetchedObjectBinding<Folder> = FetchedObjectBinding<Folder>(managedObjectContext: self.mainQueueManagedObjectContext, predicate: _0 ? nil : Folder.predicateForFetchingFolderWithTagSuffix(rootTagSuffix)) { folder in
+	lazy var fetchedRootFolderBinding: FetchedObjectBinding<Folder> = FetchedObjectBinding<Folder>(managedObjectContext: self.mainQueueManagedObjectContext, predicate: Folder.predicateForFetchingFolderWithTagSuffix(rootTagSuffix)) { folder in
 		let foldersViewController = self.foldersViewController
 		foldersViewController.rootFolder = folder
+	}
+	lazy var fetchedFavoritesFolderBinding: FetchedObjectBinding<Folder> = FetchedObjectBinding<Folder>(managedObjectContext: self.mainQueueManagedObjectContext, predicate: Folder.predicateForFetchingFolderWithTagSuffix(favoriteTagSuffix)) { folder in
+		let foldersViewController = self.favoritesViewController
+		foldersViewController.folder = folder
 	}
 	// MARK: -
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -194,7 +204,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			return false
 		}
 		else {
-			void(self.fetchedRootFolderBinding);
+			void(self.fetchedRootFolderBinding)
+			void(self.fetchedFavoritesFolderBinding)
 			self.proceedWithManagedObjectContext()
 		}
 		return true
