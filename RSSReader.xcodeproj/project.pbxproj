@@ -40,6 +40,9 @@
 		C4BE521C1A7192BB00606403 /* FetchedObjectBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BE521B1A7192BB00606403 /* FetchedObjectBinding.swift */; };
 		C4C1A3F61A574517007384E8 /* RSSSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C1A3F51A574517007384E8 /* RSSSession.swift */; };
 		C4C422181A75E355008803A7 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C422171A75E355008803A7 /* MainNavigationController.swift */; };
+		C4C780141A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C780131A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift */; };
+		C4C780161A7DF1EC009CB5FC /* ApplicationActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C780151A7DF1EC009CB5FC /* ApplicationActivities.swift */; };
+		C4C780181A7DF2B0009CB5FC /* TypeFilteringActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C780171A7DF2B0009CB5FC /* TypeFilteringActivity.swift */; };
 		C4CDD3A31A5350B40087DD05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */; };
 		C4CDD3A71A5350B40087DD05 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CDD3A61A5350B40087DD05 /* SecondViewController.swift */; };
 		C4CDD3AA1A5350B40087DD05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4CDD3A81A5350B40087DD05 /* Main.storyboard */; };
@@ -110,6 +113,9 @@
 		C4BE521B1A7192BB00606403 /* FetchedObjectBinding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedObjectBinding.swift; sourceTree = "<group>"; };
 		C4C1A3F51A574517007384E8 /* RSSSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSSession.swift; sourceTree = "<group>"; };
 		C4C422171A75E355008803A7 /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		C4C780131A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkAllAsReadActivity.swift; sourceTree = "<group>"; };
+		C4C780151A7DF1EC009CB5FC /* ApplicationActivities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationActivities.swift; sourceTree = "<group>"; };
+		C4C780171A7DF2B0009CB5FC /* TypeFilteringActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeFilteringActivity.swift; sourceTree = "<group>"; };
 		C4CDD39D1A5350B40087DD05 /* RSSReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4CDD3A11A5350B40087DD05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +128,7 @@
 		C4CDD3BA1A5350B50087DD05 /* RSSReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSReaderTests.swift; sourceTree = "<group>"; };
 		C4CDD3C41A5357B20087DD05 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ItemSummaryTemplate.html; sourceTree = "<group>"; };
+		C4D56A2A1A7C33C0007BE398 /* PackageApplication */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = PackageApplication; sourceTree = "<group>"; };
 		C4F575CF1A797C7B00F12F20 /* AddToFavoritesActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddToFavoritesActivity.swift; sourceTree = "<group>"; };
 		C4F575D51A7988DB00F12F20 /* OpenWebPageActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenWebPageActivity.swift; sourceTree = "<group>"; };
 		C4FD88511A5F10BD0035E4D1 /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
@@ -160,6 +167,7 @@
 				C40C6BFE1A73C78F00FAFA17 /* IntegrateAppsee */,
 				C40C6C011A73C80C00FAFA17 /* IntegrateFabric */,
 				C40C6C001A73C78F00FAFA17 /* RegenerateSBConstantsSwift */,
+				C4D56A2A1A7C33C0007BE398 /* PackageApplication */,
 			);
 			path = XcodeBuildPhases;
 			sourceTree = "<group>";
@@ -213,8 +221,7 @@
 				C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */,
 				C45ECD051A62054C00ADC113 /* SBConstants.swift */,
 				C4C422171A75E355008803A7 /* MainNavigationController.swift */,
-				C4F575CF1A797C7B00F12F20 /* AddToFavoritesActivity.swift */,
-				C4F575D51A7988DB00F12F20 /* OpenWebPageActivity.swift */,
+				C4C780121A7DEAAA009CB5FC /* UI Activities */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -234,6 +241,18 @@
 				C42802741A5C2E0D002474E1 /* RSSReader.xcdatamodeld */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		C4C780121A7DEAAA009CB5FC /* UI Activities */ = {
+			isa = PBXGroup;
+			children = (
+				C4C780151A7DF1EC009CB5FC /* ApplicationActivities.swift */,
+				C4C780171A7DF2B0009CB5FC /* TypeFilteringActivity.swift */,
+				C4F575CF1A797C7B00F12F20 /* AddToFavoritesActivity.swift */,
+				C4F575D51A7988DB00F12F20 /* OpenWebPageActivity.swift */,
+				C4C780131A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift */,
+			);
+			name = "UI Activities";
 			sourceTree = "<group>";
 		};
 		C4CDD3941A5350B40087DD05 = {
@@ -470,6 +489,7 @@
 			files = (
 				C46550491A7870E60046FFBD /* UINavigationItem+MultipleBarButtonItemsCollections.m in Sources */,
 				C45158991A65E1FE00374A8C /* GenericURLSessionExtensions.swift in Sources */,
+				C4C780161A7DF1EC009CB5FC /* ApplicationActivities.swift in Sources */,
 				C49540A51A57906600F56168 /* ItemSummaryWebViewController.swift in Sources */,
 				C4AD2ADB1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift in Sources */,
 				C4C1A3F61A574517007384E8 /* RSSSession.swift in Sources */,
@@ -480,6 +500,7 @@
 				C41707CB1A56076A00AED81C /* Globals.swift in Sources */,
 				C495409B1A575C1900F56168 /* UserDefaults.swift in Sources */,
 				C49540A11A57825100F56168 /* ItemsListViewController.swift in Sources */,
+				C4C780181A7DF2B0009CB5FC /* TypeFilteringActivity.swift in Sources */,
 				C45ECD061A62054C00ADC113 /* SBConstants.swift in Sources */,
 				C42802691A5B47EA002474E1 /* FoldersListTableViewController.swift in Sources */,
 				C41707CD1A56E85B00AED81C /* Folder.swift in Sources */,
@@ -491,6 +512,7 @@
 				C4728B381A55BA6600D4251A /* Subscription.swift in Sources */,
 				C40C6C081A74AB5E00FAFA17 /* KVOCompliantUserDefaults.mm in Sources */,
 				C41707CF1A56F32500AED81C /* GenericCoreDataExtensions.swift in Sources */,
+				C4C780141A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift in Sources */,
 				C401C65C1A5C971800CF6AA4 /* MarkingAsRead.swift in Sources */,
 				C4728B3A1A55BAC600D4251A /* CoreData.swift in Sources */,
 				C4F575D01A797C7B00F12F20 /* AddToFavoritesActivity.swift in Sources */,
