@@ -76,9 +76,19 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="KN3-a6-4FZ">
-                        <barButtonItem key="rightBarButtonItem" title="Mark as Read" id="fzX-vV-z8c">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="lq0-0F-Nzf">
+                            <rect key="frame" x="180" y="7" width="240" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="All"/>
+                                <segment title="Unread"/>
+                                <segment title="Favorites"/>
+                            </segments>
+                        </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="fzX-vV-z8c">
                             <connections>
-                                <action selector="markAllAsRead:" destination="3bj-4R-y2f" id="gem-PB-rb8"/>
+                                <action selector="action:" destination="3bj-4R-y2f" id="FDs-Wa-Wca"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -132,10 +142,10 @@
             </objects>
             <point key="canvasLocation" x="3824" y="602"/>
         </scene>
-        <!--Add to Favorites-->
+        <!--Page View Controller-->
         <scene sceneID="eCl-5V-8Pg">
             <objects>
-                <pageViewController automaticallyAdjustsScrollViewInsets="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Wtn-2N-ccu" userLabel="Add to Favorites" sceneMemberID="viewController">
+                <pageViewController automaticallyAdjustsScrollViewInsets="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Wtn-2N-ccu" sceneMemberID="viewController">
                     <toolbarItems>
                         <barButtonItem systemItem="action" id="1hJ-Dd-L2L">
                             <connections>
