@@ -32,3 +32,15 @@ func URLQuerySuffixFromComponents(components: [String]) -> String {
 		}
 	}.prefix
 }
+
+func filterObjectsByType<T>(objects: [AnyObject]) -> [T] {
+	let filteredObjects = objects.reduce([T]()) {
+		if let x = trace("$1", $1) as? T {
+			return $0 + [x]
+		}
+		else {
+			return $0
+		}
+	}
+	return filteredObjects
+}
