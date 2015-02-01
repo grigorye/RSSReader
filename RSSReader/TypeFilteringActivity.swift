@@ -13,7 +13,7 @@ protocol ActivityItemsFilter {
 	func prepareWithActivityItems(activityItems: [AnyObject])
 }
 
-class TypeBasedActivityItemsFilter<T: AnyObject> : ActivityItemsFilter {
+class TypeBasedActivityItemsFilter<T> : ActivityItemsFilter {
 	var acceptedItems: [T]! = nil
 	func canPerformWithActivityItems(activityItems: [AnyObject]) -> Bool {
 		let acceptableItems = filterObjectsByType(activityItems) as [T]
@@ -26,7 +26,7 @@ class TypeBasedActivityItemsFilter<T: AnyObject> : ActivityItemsFilter {
 }
 
 class TypeFilteringActivity : UIActivity {
-	var untypedItemsFilter : ActivityItemsFilter!
+	let untypedItemsFilter: ActivityItemsFilter
 	override func canPerformWithActivityItems(activityItems: [AnyObject]) -> Bool {
 		return untypedItemsFilter.canPerformWithActivityItems(activityItems)
 	}
