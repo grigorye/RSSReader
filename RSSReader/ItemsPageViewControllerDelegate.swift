@@ -17,7 +17,7 @@ class ItemsPageViewControllerDelegate: NSObject, UIPageViewControllerDelegate {
 			let href = item.canonical!.first!["href"]!
 			let url = NSURL(string: href)!
 			let activityItems = [url, item]
-			return UIActivityViewController(activityItems: activityItems, applicationActivities: [AddToFavoritesActivity(), OpenWebPageActivity()])
+			return UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
 		}()
 		self.pageViewController!.navigationController?.presentViewController(activityViewController, animated: true, completion: nil)
 	}
