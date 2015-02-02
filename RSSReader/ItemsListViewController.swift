@@ -265,7 +265,6 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			let pageViewController = segue.destinationViewController as UIPageViewController
 			let itemsPageViewControllerDataSource: ItemsPageViewControllerDataSource = {
 				let $ = pageViewController.dataSource as ItemsPageViewControllerDataSource
-				$.folder = self.folder
 				$.items = self.fetchedResultsController.fetchedObjects as [Item]
 				return $
 			}()
