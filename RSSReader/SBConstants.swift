@@ -8,6 +8,7 @@ public enum SegueIdentifier : String {
 
 public enum TableViewCellReuseIdentifier : String {
     case Folder = "Folder"
+    case HistoryItem = "HistoryItem"
     case Item = "Item"
     case Subscription = "Subscription"
 }
