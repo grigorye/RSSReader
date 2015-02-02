@@ -5,10 +5,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Favorites Navigation Controller-->
         <scene sceneID="7hu-2U-kj0">
             <objects>
-                <navigationController id="V53-ky-s6a" sceneMemberID="viewController">
+                <navigationController id="V53-ky-s6a" userLabel="Favorites Navigation Controller" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="msc-RW-Ked"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HLY-RW-pCU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -252,7 +252,9 @@
                             <outlet property="delegate" destination="daS-hT-cbp" id="eoa-m7-kfr"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="News" id="PfS-Px-hbx"/>
+                    <navigationItem key="navigationItem" title="News" id="PfS-Px-hbx">
+                        <barButtonItem key="backBarButtonItem" title=" " id="pG2-fU-3i2"/>
+                    </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="ubd-h3-rLY">
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
