@@ -40,6 +40,7 @@ class ItemSummaryWebViewController: UIViewController {
 	// MARK: -
 	override func viewDidAppear(animated: Bool) {
 		super.viewDidAppear(animated)
+		item.lastOpenedDate = NSDate()
 		self.markAsReadTimer = NSTimer.scheduledTimerWithTimeInterval(markAsReadTimeInterval, target: self, selector: "markAsRead", userInfo: nil, repeats: false)
 	}
 	override func viewWillDisappear(animated: Bool) {
