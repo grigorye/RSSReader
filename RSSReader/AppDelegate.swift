@@ -206,8 +206,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		else {
 			void(self.fetchedRootFolderBinding)
 			void(self.fetchedFavoritesFolderBinding)
-			self.foldersViewController.hidesBottomBarWhenPushed = false
-			self.proceedWithManagedObjectContext()
+			foldersViewController.hidesBottomBarWhenPushed = false
+			favoritesViewController.navigationItem.backBarButtonItem = {
+				let title = NSLocalizedString("Favorites", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: "");
+				return UIBarButtonItem(title: title, style: .Plain, target: nil, action: nil)
+			}()
+			proceedWithManagedObjectContext()
 		}
 		return true
 	}
