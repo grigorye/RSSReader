@@ -23,6 +23,7 @@
 		C42802781A5C2E0D002474E1 /* RSSReader.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C42802741A5C2E0D002474E1 /* RSSReader.xcdatamodeld */; };
 		C45158991A65E1FE00374A8C /* GenericURLSessionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45158981A65E1FE00374A8C /* GenericURLSessionExtensions.swift */; };
 		C45159101A65E83400374A8C /* KVOBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C451590F1A65E83400374A8C /* KVOBinding.swift */; };
+		C45BC3EA1A8003F40008A5D1 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45BC3E91A8003F40008A5D1 /* HistoryViewController.swift */; };
 		C45ECD061A62054C00ADC113 /* SBConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45ECD051A62054C00ADC113 /* SBConstants.swift */; };
 		C46550491A7870E60046FFBD /* UINavigationItem+MultipleBarButtonItemsCollections.m in Sources */ = {isa = PBXBuildFile; fileRef = C46550481A7870E60046FFBD /* UINavigationItem+MultipleBarButtonItemsCollections.m */; };
 		C4676E091A6A4D1F00AE8BC2 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4676E081A6A4D1F00AE8BC2 /* ItemTableViewCell.swift */; };
@@ -93,6 +94,8 @@
 		C42802771A5C2E0D002474E1 /* 70.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 70.xcdatamodel; sourceTree = "<group>"; };
 		C45158981A65E1FE00374A8C /* GenericURLSessionExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericURLSessionExtensions.swift; sourceTree = "<group>"; };
 		C451590F1A65E83400374A8C /* KVOBinding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOBinding.swift; sourceTree = "<group>"; };
+		C45BC3E91A8003F40008A5D1 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		C45BC3EB1A8005D70008A5D1 /* 248.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 248.xcdatamodel; sourceTree = "<group>"; };
 		C45ECD051A62054C00ADC113 /* SBConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBConstants.swift; sourceTree = "<group>"; };
 		C46550471A7870E60046FFBD /* UINavigationItem+MultipleBarButtonItemsCollections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+MultipleBarButtonItemsCollections.h"; sourceTree = "<group>"; };
 		C46550481A7870E60046FFBD /* UINavigationItem+MultipleBarButtonItemsCollections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+MultipleBarButtonItemsCollections.m"; sourceTree = "<group>"; };
@@ -216,6 +219,7 @@
 				C42802681A5B47EA002474E1 /* FoldersListTableViewController.swift */,
 				C40A24FE1A672B2100B5D959 /* TableViewContainerCell.swift */,
 				C49540A01A57825100F56168 /* ItemsListViewController.swift */,
+				C45BC3E91A8003F40008A5D1 /* HistoryViewController.swift */,
 				C4CDD3A61A5350B40087DD05 /* SecondViewController.swift */,
 				C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */,
 				C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */,
@@ -520,6 +524,7 @@
 				C4BE521C1A7192BB00606403 /* FetchedObjectBinding.swift in Sources */,
 				C40C6C0B1A74BE3900FAFA17 /* KVOCompliantUserDefaults+RSSReader.m in Sources */,
 				C46934DF1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift in Sources */,
+				C45BC3EA1A8003F40008A5D1 /* HistoryViewController.swift in Sources */,
 				C495409D1A575D0C00F56168 /* GenericExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -751,6 +756,7 @@
 				C4FD88541A5F4A390035E4D1 /* 81.xcdatamodel */,
 				C4FD88531A5F14EA0035E4D1 /* 140.xcdatamodel */,
 				C4676E841A6EE98400AE8BC2 /* current.xcdatamodel */,
+				C45BC3EB1A8005D70008A5D1 /* 248.xcdatamodel */,
 				C48F31951A609DBB002B2E36 /* 88.xcdatamodel */,
 				C42802751A5C2E0D002474E1 /* 31.xcdatamodel */,
 				C42802761A5C2E0D002474E1 /* 43.xcdatamodel */,
