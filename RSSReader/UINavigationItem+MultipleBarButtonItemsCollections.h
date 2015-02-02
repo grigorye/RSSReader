@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <UIKit/UINavigationBar.h>
 
 @interface UINavigationItem (MultipleBarButtonItemsCollections)
 
-@property (nonatomic, strong) IBOutletCollection(UIBarButtonItem) NSArray * rightBarButtonItemsCollection;
-@property (nonatomic, strong) IBOutletCollection(UIBarButtonItem) NSArray * leftBarButtonItemsCollection;
+@property (nonatomic, strong) IBOutletCollection(UIBarButtonItem) NSArray *rightBarButtonItemsCollection;
+@property (nonatomic, strong) IBOutletCollection(UIBarButtonItem) NSArray *leftBarButtonItemsCollection;
 
 @end
