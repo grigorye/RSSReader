@@ -66,13 +66,13 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="●" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4WT-oZ-53x">
-                                            <rect key="frame" x="3" y="12" width="12" height="17"/>
+                                            <rect key="frame" x="4" y="12" width="9" height="17"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMP-QW-31I">
-                                            <rect key="frame" x="3" y="12" width="12" height="17"/>
+                                            <rect key="frame" x="2" y="12" width="14" height="17"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -88,7 +88,7 @@
                                         <constraint firstItem="gu4-m3-qoE" firstAttribute="top" secondItem="4WT-oZ-53x" secondAttribute="top" id="kzG-jV-Rci"/>
                                         <constraint firstItem="gu4-m3-qoE" firstAttribute="leading" secondItem="dMP-QW-31I" secondAttribute="trailing" id="lEM-Qe-hz3"/>
                                         <constraint firstItem="4nm-BK-0Af" firstAttribute="trailing" secondItem="Pfg-fp-95L" secondAttribute="trailingMargin" id="tFR-rQ-A8S"/>
-                                        <constraint firstItem="gu4-m3-qoE" firstAttribute="leading" secondItem="4WT-oZ-53x" secondAttribute="trailing" constant="1" id="yGY-9M-jgn"/>
+                                        <constraint firstItem="gu4-m3-qoE" firstAttribute="leading" secondItem="4WT-oZ-53x" secondAttribute="trailing" constant="3" id="yGY-9M-jgn"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
