@@ -200,7 +200,12 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		if let subtitleLabel = cell.subtitleLabel {
 			let timeIntervalFormatted = (nil == NSClassFromString("NSDateComponentsFormatter")) ? "x" : dateComponentsFormatter.stringFromDate(item.date, toDate: loadDate) ?? ""
 			subtitleLabel.text = "\(timeIntervalFormatted)"
+			if _0 {
 			subtitleLabel.textColor = item.markedAsRead ? nil : UIColor.redColor()
+			}
+		}
+		if let readMarkLabel = cell.readMarkLabel {
+			readMarkLabel.hidden = item.markedAsRead
 		}
 	}
 	// MARK: -
@@ -250,7 +255,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		return (fetchedResultsController.sections![section] as NSFetchedResultsSectionInfo).name
 	}
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellReuseIdentifier.Item.rawValue, forIndexPath: indexPath) as UITableViewCell
+		let cell = tableView.dequeueReusableCellWithIdentifier(MainStoryboard.ReuseIdentifiers.Item, forIndexPath: indexPath) as UITableViewCell
 		self.configureCell(cell, atIndexPath: indexPath)
 		return cell
 	}
@@ -260,8 +265,8 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	// MARK: -
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		switch SegueIdentifier(rawValue: segue.identifier!)! {
-		case .showPages:
+		switch segue.identifier! {
+		case MainStoryboard.SegueIdentifiers.ShowPages:
 			let pageViewController = segue.destinationViewController as UIPageViewController
 			let itemsPageViewControllerDataSource: ItemsPageViewControllerDataSource = {
 				let $ = pageViewController.dataSource as ItemsPageViewControllerDataSource
