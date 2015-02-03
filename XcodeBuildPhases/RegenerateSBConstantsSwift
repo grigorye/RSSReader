@@ -6,9 +6,18 @@
 #  Created by Grigory Entin on 11.01.15.
 #  Copyright (c) 2015 Grigory Entin. All rights reserved.
 
-gemUserDir="$(ruby -rubygems -e 'puts Gem.user_dir')"
-sbconstants="${gemUserDir:?}"/bin/sbconstants
-if [ -x "${sbconstants:?}" ]
+scriptName=$(basename "$0")
+swiftrsrc=~/.toast/armed/bin/swiftrsrc
+input="${SRCROOT:?}/${TARGET_NAME:?}"/Base.lproj/Main.storyboard
+output="${SRCROOT:?}/${TARGET_NAME:?}"/SBConstants.swift
+
+if [ -x "${swiftrsrc:?}" ]
 then
-	"${sbconstants:?}" --swift "${SRCROOT:?}/${TARGET_NAME:?}"/SBConstants.swift "${SRCROOT:?}/${TARGET_NAME:?}"/Base.lproj/Main.storyboard
+	tempOutput=$(mktemp /tmp/"${scriptName:?}".XXXXX)
+	"${swiftrsrc:?}" generate "${input:?}" "${tempOutput:?}"
+	if [ ! -f "${output:?}" ] || diff -q "${tempOutput:?}" "${output:?}"
+	then
+		cp -p "${tempOutput:?}" "${output:?}"
+	fi
+	rm "${tempOutput:?}"
 fi
