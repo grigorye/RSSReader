@@ -11,4 +11,6 @@ import UIKit
 class ItemTableViewCell : UITableViewCell {
 	@IBOutlet var titleLabel: UILabel!
 	@IBOutlet var subtitleLabel: UILabel!
+	@IBOutlet var readMarkLabel: UILabel!
+	@IBOutlet var favoriteMarkLabel: UILabel!
 }
