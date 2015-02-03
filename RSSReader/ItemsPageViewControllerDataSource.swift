@@ -11,7 +11,7 @@ import UIKit
 class ItemsPageViewControllerDataSource: NSObject, UIPageViewControllerDataSource {
 	var items: [Item]!
 	func viewControllerForItem(item: Item, storyboard: UIStoryboard) -> UIViewController {
-		let $ = storyboard.instantiateViewControllerWithIdentifier(ViewControllerStoryboardIdentifier.itemSummaryWeb.rawValue) as ItemSummaryWebViewController
+		let $ = storyboard.instantiateViewControllerWithIdentifier(MainStoryboard.StoryboardIdentifiers.ItemSummaryWeb) as ItemSummaryWebViewController
 		$.item = item
 		return $
 	}

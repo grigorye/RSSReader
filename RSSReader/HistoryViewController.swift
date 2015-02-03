@@ -83,14 +83,14 @@ class HistoryViewController: UITableViewController, NSFetchedResultsControllerDe
 		return (fetchedResultsController.sections![section] as NSFetchedResultsSectionInfo).name
 	}
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellReuseIdentifier.HistoryItem.rawValue, forIndexPath: indexPath) as UITableViewCell
+		let cell = tableView.dequeueReusableCellWithIdentifier(MainStoryboard.ReuseIdentifiers.HistoryItem, forIndexPath: indexPath) as UITableViewCell
 		self.configureCell(cell, atIndexPath: indexPath)
 		return cell
 	}
 	// MARK: -
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		switch SegueIdentifier(rawValue: segue.identifier!)! {
-		case .showPages:
+		switch segue.identifier! {
+		case MainStoryboard.SegueIdentifiers.ShowPages:
 			let pageViewController = segue.destinationViewController as UIPageViewController
 			let itemsPageViewControllerDataSource: ItemsPageViewControllerDataSource = {
 				let $ = pageViewController.dataSource as ItemsPageViewControllerDataSource
