@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1NT-iG-642">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6750" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1NT-iG-642">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6735"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -56,26 +56,44 @@
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="19" id="HHo-Le-A6Z"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" text="1 y" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nm-BK-0Af">
                                             <rect key="frame" x="575" y="14" width="17" height="14.5"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="●" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4WT-oZ-53x">
+                                            <rect key="frame" x="3" y="12" width="12" height="17"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMP-QW-31I">
+                                            <rect key="frame" x="3" y="12" width="12" height="17"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottomMargin" secondItem="gu4-m3-qoE" secondAttribute="bottom" constant="4" id="669-Jc-8rW"/>
                                         <constraint firstItem="gu4-m3-qoE" firstAttribute="top" secondItem="Pfg-fp-95L" secondAttribute="topMargin" constant="4" id="FWt-SG-k4W"/>
+                                        <constraint firstItem="4WT-oZ-53x" firstAttribute="baseline" secondItem="4nm-BK-0Af" secondAttribute="baseline" id="V3t-af-lfy"/>
                                         <constraint firstItem="4nm-BK-0Af" firstAttribute="leading" secondItem="gu4-m3-qoE" secondAttribute="trailing" constant="8" id="YYI-nf-dsU"/>
-                                        <constraint firstAttribute="centerY" secondItem="4nm-BK-0Af" secondAttribute="centerY" id="ZOx-1A-MMS"/>
                                         <constraint firstItem="gu4-m3-qoE" firstAttribute="leading" secondItem="Pfg-fp-95L" secondAttribute="leadingMargin" constant="8" id="dsn-uc-r78"/>
+                                        <constraint firstItem="dMP-QW-31I" firstAttribute="top" secondItem="4WT-oZ-53x" secondAttribute="top" id="grV-bj-MM1"/>
+                                        <constraint firstItem="gu4-m3-qoE" firstAttribute="top" secondItem="4WT-oZ-53x" secondAttribute="top" id="kzG-jV-Rci"/>
+                                        <constraint firstItem="gu4-m3-qoE" firstAttribute="leading" secondItem="dMP-QW-31I" secondAttribute="trailing" id="lEM-Qe-hz3"/>
                                         <constraint firstItem="4nm-BK-0Af" firstAttribute="trailing" secondItem="Pfg-fp-95L" secondAttribute="trailingMargin" id="tFR-rQ-A8S"/>
+                                        <constraint firstItem="gu4-m3-qoE" firstAttribute="leading" secondItem="4WT-oZ-53x" secondAttribute="trailing" constant="1" id="yGY-9M-jgn"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="favoriteMarkLabel" destination="dMP-QW-31I" id="3jc-Jx-uzy"/>
+                                    <outlet property="readMarkLabel" destination="4WT-oZ-53x" id="sVl-aT-yoN"/>
                                     <outlet property="subtitleLabel" destination="4nm-BK-0Af" id="Q6p-qV-lqQ"/>
                                     <outlet property="titleLabel" destination="gu4-m3-qoE" id="iHE-Ms-fVp"/>
                                     <segue destination="Wtn-2N-ccu" kind="show" identifier="showPages" id="6RF-OE-Gnl"/>
@@ -118,7 +136,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nPg-NE-vWc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2340" y="602"/>
+            <point key="canvasLocation" x="2321" y="591"/>
         </scene>
         <!--Item Summary Web View Controller-->
         <scene sceneID="gVa-UT-Hal">
@@ -179,13 +197,13 @@
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="19" id="VLJ-Fj-83h"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" text="1 y" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cgO-Ff-1FZ">
                                             <rect key="frame" x="575" y="14" width="17" height="14.5"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -269,7 +287,7 @@
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Fgt-yI-K6M">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AWh-VL-I4Q">
@@ -292,7 +310,7 @@
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3T5-yD-fXA">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8iu-NQ-WRU">
