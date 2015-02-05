@@ -9,13 +9,11 @@
 #import "KVOCompliantUserDefaults.h"
 #import <Foundation/NSUserDefaults.h>
 #import <Foundation/NSString.h>
-#import <Foundation/NSData.h>
 #import <Foundation/NSDictionary.h>
 #import <Foundation/NSNotification.h>
 #import <Foundation/NSKeyValueObserving.h>
 #import <objc/runtime.h>
 #import <stdlib.h>
-#import <sys/types.h>
 #import <assert.h>
 
 #define let auto const
