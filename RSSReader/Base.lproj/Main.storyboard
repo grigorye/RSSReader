@@ -5,10 +5,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Favorites Navigation Controller-->
+        <!--Favorites Navigation-->
         <scene sceneID="7hu-2U-kj0">
             <objects>
-                <navigationController id="V53-ky-s6a" userLabel="Favorites Navigation Controller" sceneMemberID="viewController">
+                <navigationController restorationIdentifier="FavoritesNavigation" id="V53-ky-s6a" userLabel="Favorites Navigation" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="msc-RW-Ked"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HLY-RW-pCU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -22,10 +22,10 @@
             </objects>
             <point key="canvasLocation" x="2340" y="-146"/>
         </scene>
-        <!--Items List View Controller-->
+        <!--Item List-->
         <scene sceneID="koH-zh-gho">
             <objects>
-                <tableViewController id="3bj-4R-y2f" customClass="ItemsListViewController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController restorationIdentifier="ItemList" id="3bj-4R-y2f" userLabel="Item List" customClass="ItemsListViewController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="miw-d9-dd2">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -138,10 +138,10 @@
             </objects>
             <point key="canvasLocation" x="2340" y="602"/>
         </scene>
-        <!--Item Summary Web View Controller-->
+        <!--Item Summary Web-->
         <scene sceneID="gVa-UT-Hal">
             <objects>
-                <viewController storyboardIdentifier="itemSummaryWeb" automaticallyAdjustsScrollViewInsets="NO" id="CEh-Po-b2S" customClass="ItemSummaryWebViewController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="ItemSummaryWeb" storyboardIdentifier="itemSummaryWeb" automaticallyAdjustsScrollViewInsets="NO" id="CEh-Po-b2S" userLabel="Item Summary Web" customClass="ItemSummaryWebViewController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lBI-YB-kM6"/>
                         <viewControllerLayoutGuide type="bottom" id="2Jc-92-T3I"/>
@@ -177,10 +177,10 @@
             </objects>
             <point key="canvasLocation" x="3824" y="602"/>
         </scene>
-        <!--History-->
+        <!--History List-->
         <scene sceneID="rdd-u3-Zc4">
             <objects>
-                <tableViewController id="uqs-fG-LUI" customClass="HistoryViewController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController restorationIdentifier="HistoryList" id="uqs-fG-LUI" userLabel="History List" customClass="HistoryViewController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="qfj-2U-o4N">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -239,10 +239,10 @@
             </objects>
             <point key="canvasLocation" x="3080" y="-868"/>
         </scene>
-        <!--Items Page View Controller-->
+        <!--Item Pages-->
         <scene sceneID="eCl-5V-8Pg">
             <objects>
-                <pageViewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Wtn-2N-ccu" userLabel="Items Page View Controller" sceneMemberID="viewController">
+                <pageViewController restorationIdentifier="ItemPages" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Wtn-2N-ccu" userLabel="Item Pages" sceneMemberID="viewController">
                     <toolbarItems>
                         <barButtonItem systemItem="action" id="1hJ-Dd-L2L">
                             <connections>
@@ -271,10 +271,10 @@
             </objects>
             <point key="canvasLocation" x="3080" y="602"/>
         </scene>
-        <!--News-->
+        <!--Folders-->
         <scene sceneID="oZL-j3-px6">
             <objects>
-                <tableViewController hidesBottomBarWhenPushed="YES" id="daS-hT-cbp" customClass="FoldersListTableViewController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController restorationIdentifier="Folders" hidesBottomBarWhenPushed="YES" id="daS-hT-cbp" userLabel="Folders" customClass="FoldersListTableViewController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Vqj-W7-YGa">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -346,10 +346,10 @@
             </objects>
             <point key="canvasLocation" x="1588" y="602"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar-->
         <scene sceneID="Mo6-GE-ndI">
             <objects>
-                <tabBarController id="1NT-iG-642" sceneMemberID="viewController">
+                <tabBarController restorationIdentifier="MainTabBar" id="1NT-iG-642" userLabel="Main Tab Bar" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="hCx-6M-azp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -366,10 +366,10 @@
             </objects>
             <point key="canvasLocation" x="1588" y="-146"/>
         </scene>
-        <!--News-->
+        <!--News Navigation-->
         <scene sceneID="XLc-em-sRT">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Brp-uh-Vy2" customClass="MainNavigationController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController restorationIdentifier="NewsNavigation" automaticallyAdjustsScrollViewInsets="NO" id="Brp-uh-Vy2" userLabel="News Navigation" customClass="MainNavigationController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="News" image="Box" id="RhV-dz-5gA"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bYg-rU-GZw">
@@ -391,10 +391,10 @@
             </objects>
             <point key="canvasLocation" x="844" y="602"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--History Navigation-->
         <scene sceneID="MEV-hI-Xoq">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ICk-eY-zUP" sceneMemberID="viewController">
+                <navigationController restorationIdentifier="HistoryNavigation" automaticallyAdjustsScrollViewInsets="NO" id="ICk-eY-zUP" userLabel="History Navigation" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="history" id="mYf-ND-mvJ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aOS-a7-OtQ">
@@ -418,6 +418,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="0Df-Yo-bIC"/>
         <segue reference="n8Q-sv-Bn2"/>
-        <segue reference="dmO-sB-PiI"/>
+        <segue reference="6RF-OE-Gnl"/>
     </inferredMetricsTieBreakers>
 </document>
