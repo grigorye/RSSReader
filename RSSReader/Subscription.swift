@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class Subscription: Container {
+class Subscription: Container, Titled {
 	@NSManaged var title: String?
     @NSManaged var htmlURL: NSURL?
     @NSManaged var iconURL: NSURL?
@@ -19,4 +19,7 @@ class Subscription: Container {
 		return mutableSetValueForKey("categories")
 	}
 	@NSManaged var items: NSSet
+	var visibleTitle: String? {
+		return title
+	}
 }

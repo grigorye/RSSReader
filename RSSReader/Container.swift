@@ -15,3 +15,7 @@ class Container: NSManagedObject {
     @NSManaged var sortID: Int32
 	@NSManaged var parentFolder: Folder?
 }
+
+@objc protocol Titled {
+	 var visibleTitle: String? { get }
+}

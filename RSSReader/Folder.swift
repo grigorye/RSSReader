@@ -8,7 +8,7 @@
 
 import CoreData
 
-class Folder: Container {
+class Folder: Container, Titled {
 	@NSManaged var childContainers: NSOrderedSet
 	@NSManaged var items: NSSet
 	var itemsArray: [Item] {
@@ -16,5 +16,8 @@ class Folder: Container {
 	}
 	var mutableItems: NSMutableSet {
 		return mutableSetValueForKey("items")
+	}
+	var visibleTitle: String? {
+		return id.lastPathComponent
 	}
 }
