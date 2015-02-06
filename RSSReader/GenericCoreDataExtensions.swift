@@ -110,3 +110,16 @@ func importItemsFromJsonData<T: ManagedIdentifiable where T : NSManagedObject>(d
 	}
 	return importItemsFromJson(json!, type: type, elementName: elementName, managedObjectContext: managedObjectContext, error: error, importFromJson: importFromJson)
 }
+
+extension NSManagedObject {
+	func encodeObjectIDWithCoder(coder: NSCoder, key: String) {
+		coder.encodeObject(objectID.URIRepresentation(), forKey: key)
+	}
+}
+extension NSManagedObjectContext {
+	class func objectWithIDDecodedWithCoder(coder: NSCoder, key: String, managedObjectContext: NSManagedObjectContext) -> NSManagedObject {
+		let objectIDURL = coder.decodeObjectForKey(key) as NSURL
+		let objectID = managedObjectContext.persistentStoreCoordinator!.managedObjectIDForURIRepresentation(objectIDURL)!
+		return managedObjectContext.objectWithID(objectID)
+	}
+}
