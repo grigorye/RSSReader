@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData.NSManagedObjectContext
 
 let markAsReadTimeInterval = NSTimeInterval(2)
 
@@ -46,6 +47,19 @@ class ItemSummaryWebViewController: UIViewController {
 	override func viewWillDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)
 		self.markAsReadTimer?.invalidate()
+	}
+	// MARK: - State Preservation and Restoration
+	enum Restorable: String {
+		case itemObjectID = "itemObjectID"
+	}
+	override func encodeRestorableStateWithCoder(coder: NSCoder) {
+		super.encodeRestorableStateWithCoder(coder)
+		item.encodeObjectIDWithCoder(coder, key: Restorable.itemObjectID.rawValue)
+	}
+	override func decodeRestorableStateWithCoder(coder: NSCoder) {
+		super.decodeRestorableStateWithCoder(coder)
+		let item = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.itemObjectID.rawValue, managedObjectContext: self.mainQueueManagedObjectContext) as Item
+		self.item = item
 	}
 }
 

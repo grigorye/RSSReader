@@ -44,18 +44,18 @@ let dateComponentsFormatter: NSDateComponentsFormatter = {
 
 class ItemsListViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 	var folder: Container!
-	var continuation: NSString?
-	var loadDate: NSDate!
-	var loadInProgress = false
-	var lastLoadedItem: Item?
-	var loadCompleted = false
-	var loadError: NSError?
-	var tableFooterView: UIView?
-	var indexPathForTappedAccessoryButton: NSIndexPath?
-	var showUnreadOnly: Bool {
+	private var continuation: NSString?
+	private var loadDate: NSDate!
+	private var loadInProgress = false
+	private var lastLoadedItem: Item?
+	private var loadCompleted = false
+	private var loadError: NSError?
+	private var tableFooterView: UIView?
+	private var indexPathForTappedAccessoryButton: NSIndexPath?
+	private var showUnreadOnly: Bool {
 		return _1 ? false : defaults.showUnreadOnly
 	}
-	var unreadOnlyFilterPredicate: NSPredicate {
+	private var unreadOnlyFilterPredicate: NSPredicate {
 		if showUnreadOnly {
 			return NSPredicate(format: "SUBQUERY(categories, $x, $x.id ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
 		}
@@ -63,7 +63,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			return NSPredicate(value: true)
 		}
 	}
-	lazy var fetchedResultsController: NSFetchedResultsController = {
+	private lazy var fetchedResultsController: NSFetchedResultsController = {
 		let fetchRequest: NSFetchRequest = {
 			let folder = self.folder
 			let $ = NSFetchRequest(entityName: Item.entityName())
@@ -81,7 +81,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		return $
 	}()
 	// MARK: -
-	func loadMore(completionHandler: (loadDateDidChange: Bool) -> Void) {
+	private func loadMore(completionHandler: (loadDateDidChange: Bool) -> Void) {
 		assert(!loadInProgress, "")
 		assert(!loadCompleted, "")
 		assert(nil == loadError, "")
@@ -120,7 +120,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			}
 		}
 	}
-	func loadMoreIfNecessary() {
+	private func loadMoreIfNecessary() {
 		let shouldLoadMore: Bool = {
 			if (self.loadInProgress || self.loadCompleted || self.loadError != nil) {
 				return false
@@ -148,7 +148,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			}
 		}
 	}
-	@IBAction func refresh(sender: AnyObject!) {
+	@IBAction private func refresh(sender: AnyObject!) {
 		if loadInProgress && trace("nil == continuation", nil == continuation) {
 			self.refreshControl?.endRefreshing()
 		}
@@ -167,7 +167,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			}
 		}
 	}
-	@IBAction func markAllAsRead(sender: AnyObject!) {
+	@IBAction private func markAllAsRead(sender: AnyObject!) {
 		let items = (self.folder.valueForKey("items") as NSSet).allObjects as [Item]
 		for i in items {
 			i.markedAsRead = true
@@ -176,7 +176,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			void(trace("error", error))
 		}
 	}
-	@IBAction func action(sender: AnyObject?) {
+	@IBAction private func action(sender: AnyObject?) {
 		let activityViewController: UIViewController = {
 			let activityItems = [self.folder]
 			return UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
@@ -184,14 +184,14 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		self.navigationController?.presentViewController(activityViewController, animated: true, completion: nil)
 	}
 	// MARK: -
-	func itemForIndexPath(indexPath: NSIndexPath) -> Item {
+	private func itemForIndexPath(indexPath: NSIndexPath) -> Item {
 		return self.fetchedResultsController.fetchedObjects![indexPath.row] as Item
 	}
-	func selectedItem() -> Item {
+	private func selectedItem() -> Item {
 		return self.itemForIndexPath(self.tableView.indexPathForSelectedRow()!)
 	}
 	// MARK: -
-	func configureCell(rawCell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+	private func configureCell(rawCell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
 		let cell = rawCell as ItemTableViewCell
 		let item = fetchedResultsController.objectAtIndexPath(indexPath) as Item
 		if let titleLabel = cell.titleLabel {
@@ -212,7 +212,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	func controllerWillChangeContent(controller: NSFetchedResultsController) {
 		self.tableView.beginUpdates()
 	}
-	let rowAnimation = UITableViewRowAnimation.None
+	private let rowAnimation = UITableViewRowAnimation.None
     func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
 		switch type {
 		case .Insert:
@@ -282,15 +282,37 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			abort()
 		}
 	}
+	// MARK: - State Preservation and Restoration
+	private enum Restorable: String {
+		case folderObjectID = "folderObjectID"
+	}
+	override func encodeRestorableStateWithCoder(coder: NSCoder) {
+		super.encodeRestorableStateWithCoder(coder)
+		folder.encodeObjectIDWithCoder(coder, key: Restorable.folderObjectID.rawValue)
+	}
+	override func decodeRestorableStateWithCoder(coder: NSCoder) {
+		super.decodeRestorableStateWithCoder(coder)
+		let folder = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.folderObjectID.rawValue, managedObjectContext: self.mainQueueManagedObjectContext) as Container
+		self.folder = folder
+	}
 	// MARK: -
+	var blocksDelayedTillViewWillAppear = [Handler]()
 	override func viewWillAppear(animated: Bool) {
+		for i in blocksDelayedTillViewWillAppear {
+			i()
+		}
+		blocksDelayedTillViewWillAppear = []
 		super.viewWillAppear(animated)
 	}
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		var fetchError: NSError?
-		fetchedResultsController.performFetch(&fetchError)
-		assert(nil == fetchError, "")
+		blocksDelayedTillViewWillAppear += [{
+			var fetchError: NSError?
+			self.fetchedResultsController.performFetch(&fetchError)
+			assert(nil == fetchError, "")
+			self.title = (self.folder as Titled).visibleTitle
+			return
+		}]
 		self.tableFooterView = tableView.tableFooterView
 	}
 }

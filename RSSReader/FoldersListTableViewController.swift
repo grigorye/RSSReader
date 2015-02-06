@@ -11,12 +11,12 @@ import CoreData
 
 class FoldersListTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 	dynamic var rootFolder: Folder!
-	var childContainers: [Container]!
+	private var childContainers: [Container]!
 	let defaults = KVOCompliantUserDefaults()
 	class func keyPathsForValuesAffectingRegeneratedChildContainers() -> NSSet {
 		return NSSet(array: ["defaults.showUnreadOnly", "rootFolder.childContainers"])
 	}
-	var regeneratedChildContainers: [Container] {
+	private var regeneratedChildContainers: [Container] {
 		if let rootFolder = rootFolder {
 			let showUnreadOnly = defaults.showUnreadOnly
 			return (rootFolder.childContainers.array as [Container]).filter { showUnreadOnly ? $0.unreadCount > 0 : true }
@@ -39,11 +39,11 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 		}
 	}
 	// MARK: -
-	func configureCell(cell: UITableViewCell, forFolder folder: Folder) {
+	private func configureCell(cell: UITableViewCell, forFolder folder: Folder) {
 		(cell as TableViewContainerCell).setFromContainer(folder)
 		cell.textLabel?.text = folder.id.lastPathComponent
 	}
-	func configureCell(cell: UITableViewCell, forSubscription subscription: Subscription) {
+	private func configureCell(cell: UITableViewCell, forSubscription subscription: Subscription) {
 		(cell as TableViewContainerCell).setFromContainer(subscription)
 		cell.textLabel?.text = subscription.title ?? subscription.url?.lastPathComponent
 	}
@@ -54,13 +54,11 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 			let foldersListTableViewController = segue.destinationViewController as FoldersListTableViewController
 			let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow()!
 			let folder = childContainers[indexPathForSelectedRow.row] as Folder
-			foldersListTableViewController.title = folder.id.lastPathComponent
 			foldersListTableViewController.rootFolder = folder
 		case MainStoryboard.SegueIdentifiers.ShowSubscription:
 			let itemsListViewController = segue.destinationViewController as ItemsListViewController
 			let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow()!
 			let subscription = childContainers[indexPathForSelectedRow.row] as Subscription
-			itemsListViewController.title = subscription.title
 			itemsListViewController.folder = subscription
 		default:
 			abort()
@@ -84,6 +82,20 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 		default:
 			abort()
 		}
+	}
+	// MARK: - State Preservation and Restoration
+	private enum Restorable: String {
+		case rootFolderObjectID = "rootFolderObjectID"
+	}
+	override func encodeRestorableStateWithCoder(coder: NSCoder) {
+		super.encodeRestorableStateWithCoder(coder)
+		rootFolder.encodeObjectIDWithCoder(coder, key: Restorable.rootFolderObjectID.rawValue)
+	}
+	override func decodeRestorableStateWithCoder(coder: NSCoder) {
+		super.decodeRestorableStateWithCoder(coder)
+		let rootFolder = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.rootFolderObjectID.rawValue, managedObjectContext: self.mainQueueManagedObjectContext) as Folder
+		self.rootFolder = rootFolder
+		self.title = rootFolder.id.lastPathComponent
 	}
 	// MARK: -
 	var viewDidDisappearRetainedObjects = [AnyObject]()
