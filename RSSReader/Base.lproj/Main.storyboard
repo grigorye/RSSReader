@@ -219,6 +219,7 @@
                                 <connections>
                                     <outlet property="subtitleLabel" destination="cgO-Ff-1FZ" id="iKn-6E-bDj"/>
                                     <outlet property="titleLabel" destination="Pf4-gb-OAR" id="VAt-MP-e5L"/>
+                                    <segue destination="Wtn-2N-ccu" kind="show" identifier="showPages" id="dmO-sB-PiI"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -236,7 +237,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cMx-U7-ZHF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3152" y="-868"/>
+            <point key="canvasLocation" x="3080" y="-868"/>
         </scene>
         <!--Items Page View Controller-->
         <scene sceneID="eCl-5V-8Pg">
@@ -417,5 +418,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="0Df-Yo-bIC"/>
         <segue reference="n8Q-sv-Bn2"/>
+        <segue reference="dmO-sB-PiI"/>
     </inferredMetricsTieBreakers>
 </document>
