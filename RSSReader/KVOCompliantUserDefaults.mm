@@ -15,6 +15,7 @@
 #import <objc/runtime.h>
 #import <stdlib.h>
 #import <assert.h>
+#import <ctype.h>
 
 #define let auto const
 #define var auto
@@ -100,7 +101,7 @@ propertyInfoFromProperty(objc_property_t property) {
 		let customSetterName = as<NSString>(attributesDictionary[@"S"]);
 		let customGetterName = as<NSString>(attributesDictionary[@"G"]);
 		let defaultGetterName = propertyName;
-		let defaultSetterName = [@"set" stringByAppendingString:propertyName];
+		let defaultSetterName = [NSString stringWithFormat:@"set%c%@:", toupper([propertyName characterAtIndex:0]), [propertyName substringFromIndex:1]];
 		getterAndSetterMap[customGetterName ?: defaultGetterName] = propertyInfo;
 		getterAndSetterMap[customSetterName ?: defaultSetterName] = propertyInfo;
 		$[propertyName] = propertyInfo;
