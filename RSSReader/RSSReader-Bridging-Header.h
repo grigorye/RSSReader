@@ -4,3 +4,4 @@
 
 #import "KVOCompliantUserDefaults.h"
 #import "KVOCompliantUserDefaults+RSSReader.h"
+#import <UXCam/UXCam.h>

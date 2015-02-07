@@ -204,6 +204,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let versionIsClean = NSNotFound == version.rangeOfCharacterFromSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet).location
 		if trace("versionIsClean", versionIsClean) {
 			Fabric.with([Crashlytics()])
+			UXCam.startApplicationWithKey("0fc8e6e128fa538")
 #if APPSEE_ENABLED
 			Appsee.start(NSBundle.mainBundle().infoDictionary!["appseeAPIKey"] as String)
 #endif
