@@ -33,6 +33,7 @@
 		C4728B3A1A55BAC600D4251A /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4728B391A55BAC600D4251A /* CoreData.swift */; };
 		C48C5F861A85EB6400A1EA12 /* UXCam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48C5F851A85EB6400A1EA12 /* UXCam.framework */; };
 		C48C5F8B1A867D3D00A1EA12 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48C5F8A1A867D3D00A1EA12 /* MobileCoreServices.framework */; };
+		C48C5F951A8695BF00A1EA12 /* libFlurry_6.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C48C5F941A8695BF00A1EA12 /* libFlurry_6.0.0.a */; };
 		C495409B1A575C1900F56168 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495409A1A575C1900F56168 /* UserDefaults.swift */; };
 		C495409D1A575D0C00F56168 /* GenericExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495409C1A575D0C00F56168 /* GenericExtensions.swift */; };
 		C495409F1A5780A700F56168 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495409E1A5780A700F56168 /* Item.swift */; };
@@ -108,6 +109,7 @@
 		C4728B391A55BAC600D4251A /* CoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 		C48C5F851A85EB6400A1EA12 /* UXCam.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UXCam.framework; sourceTree = "<group>"; };
 		C48C5F8A1A867D3D00A1EA12 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		C48C5F941A8695BF00A1EA12 /* libFlurry_6.0.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_6.0.0.a; path = Flurry/libFlurry_6.0.0.a; sourceTree = "<group>"; };
 		C48F31951A609DBB002B2E36 /* 88.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 88.xcdatamodel; sourceTree = "<group>"; };
 		C495409A1A575C1900F56168 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		C495409C1A575D0C00F56168 /* GenericExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericExtensions.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C48C5F951A8695BF00A1EA12 /* libFlurry_6.0.0.a in Frameworks */,
 				C48C5F8B1A867D3D00A1EA12 /* MobileCoreServices.framework in Frameworks */,
 				C40C6BF71A72F23C00FAFA17 /* CoreMedia.framework in Frameworks */,
 				C40C6BF51A72F17100FAFA17 /* SystemConfiguration.framework in Frameworks */,
@@ -187,7 +190,6 @@
 				C45158981A65E1FE00374A8C /* GenericURLSessionExtensions.swift */,
 				C40C6C061A74AB5E00FAFA17 /* KVOCompliantUserDefaults.h */,
 				C40C6C071A74AB5E00FAFA17 /* KVOCompliantUserDefaults.mm */,
-				C40C6C051A74AB5E00FAFA17 /* RSSReader-Bridging-Header.h */,
 				C46550471A7870E60046FFBD /* UINavigationItem+MultipleBarButtonItemsCollections.h */,
 				C46550481A7870E60046FFBD /* UINavigationItem+MultipleBarButtonItemsCollections.m */,
 			);
@@ -197,6 +199,7 @@
 		C452ED851A72C680003C6537 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C48C5F941A8695BF00A1EA12 /* libFlurry_6.0.0.a */,
 				C48C5F8A1A867D3D00A1EA12 /* MobileCoreServices.framework */,
 				C48C5F851A85EB6400A1EA12 /* UXCam.framework */,
 				C40C6BF61A72F23C00FAFA17 /* CoreMedia.framework */,
@@ -287,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */,
+				C40C6C051A74AB5E00FAFA17 /* RSSReader-Bridging-Header.h */,
 				C418B32D1A594705002C0578 /* Generic */,
 				C49540A31A5782B900F56168 /* Model */,
 				C49540A21A57827300F56168 /* UI */,
@@ -658,9 +662,17 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = RSSReader/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Flurry",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RSSReader/RSSReader-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -677,9 +689,17 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = RSSReader/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Flurry",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RSSReader/RSSReader-Bridging-Header.h";
 			};
