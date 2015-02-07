@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C401C65C1A5C971800CF6AA4 /* MarkingAsRead.swift in Sources */ = {isa = PBXBuildFile; fileRef = C401C65B1A5C971800CF6AA4 /* MarkingAsRead.swift */; };
 		C40A24FF1A672B2100B5D959 /* TableViewContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A24FE1A672B2100B5D959 /* TableViewContainerCell.swift */; };
-		C40C6BF11A72EFEE00FAFA17 /* Appsee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C40C6BF01A72EFEE00FAFA17 /* Appsee.framework */; };
 		C40C6BF31A72F0BC00FAFA17 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C40C6BF21A72F0BC00FAFA17 /* AVFoundation.framework */; };
 		C40C6BF51A72F17100FAFA17 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C40C6BF41A72F17100FAFA17 /* SystemConfiguration.framework */; };
 		C40C6BF71A72F23C00FAFA17 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C40C6BF61A72F23C00FAFA17 /* CoreMedia.framework */; };
@@ -145,7 +144,6 @@
 				C40C6BF71A72F23C00FAFA17 /* CoreMedia.framework in Frameworks */,
 				C40C6BF51A72F17100FAFA17 /* SystemConfiguration.framework in Frameworks */,
 				C40C6BF31A72F0BC00FAFA17 /* AVFoundation.framework in Frameworks */,
-				C40C6BF11A72EFEE00FAFA17 /* Appsee.framework in Frameworks */,
 				C4676E821A6DB0F800AE8BC2 /* Crashlytics.framework in Frameworks */,
 				C4676E831A6DB0F800AE8BC2 /* Fabric.framework in Frameworks */,
 			);
@@ -431,7 +429,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -e";
-			shellScript = "\"${SRCROOT:?}\"/XcodeBuildPhases/IntegrateAppsee";
+			shellScript = "if false\nthen\n    \"${SRCROOT:?}\"/XcodeBuildPhases/IntegrateAppsee\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		C418B3281A593F4E002C0578 /* Embed Source Version into Bundle */ = {
