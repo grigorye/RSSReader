@@ -370,7 +370,11 @@
         <scene sceneID="XLc-em-sRT">
             <objects>
                 <navigationController restorationIdentifier="NewsNavigation" automaticallyAdjustsScrollViewInsets="NO" id="Brp-uh-Vy2" userLabel="News Navigation" customClass="MainNavigationController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="News" image="Box" id="RhV-dz-5gA"/>
+                    <tabBarItem key="tabBarItem" title="News" image="Box" id="RhV-dz-5gA">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="Box-Selected"/>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bYg-rU-GZw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -413,11 +417,12 @@
     </scenes>
     <resources>
         <image name="Box" width="25" height="25"/>
+        <image name="Box-Selected" width="25" height="25"/>
         <image name="Settings" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="0Df-Yo-bIC"/>
-        <segue reference="n8Q-sv-Bn2"/>
+        <segue reference="CAU-xE-lLZ"/>
         <segue reference="6RF-OE-Gnl"/>
     </inferredMetricsTieBreakers>
 </document>
