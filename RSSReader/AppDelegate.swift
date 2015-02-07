@@ -10,7 +10,9 @@ import UIKit
 import CoreData
 import Fabric
 import Crashlytics
+#if APPSEE_ENABLED
 import Appsee
+#endif
 
 struct LoginAndPassword {
 	let login: String?
@@ -195,14 +197,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		return true
 	}
 	func application(application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
-		return true
+		return !defaults.disableStateRestoration
 	}
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		let version = NSBundle.mainBundle().infoDictionary!["CFBundleVersion"] as NSString
 		let versionIsClean = NSNotFound == version.rangeOfCharacterFromSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet).location
 		if trace("versionIsClean", versionIsClean) {
 			Fabric.with([Crashlytics()])
+#if APPSEE_ENABLED
 			Appsee.start(NSBundle.mainBundle().infoDictionary!["appseeAPIKey"] as String)
+#endif
 		}
 		assert(nil == self.internals.managedObjectContextError, "")
 		if let managedObjectContextError = self.internals.managedObjectContextError {
