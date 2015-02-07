@@ -11,6 +11,7 @@
 @interface KVOCompliantUserDefaults (RSSReader)
 
 @property (nonatomic) BOOL showUnreadOnly;
+@property (nonatomic) BOOL disableStateRestoration;
 @property (copy, nonatomic) NSString *authToken;
 @property (copy, nonatomic) NSString *login;
 @property (copy, nonatomic) NSString *password;

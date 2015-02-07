@@ -14,5 +14,6 @@
 @dynamic authToken;
 @dynamic login;
 @dynamic password;
+@dynamic disableStateRestoration;
 
 @end
