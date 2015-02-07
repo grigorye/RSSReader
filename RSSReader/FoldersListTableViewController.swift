@@ -89,17 +89,20 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 	}
 	override func encodeRestorableStateWithCoder(coder: NSCoder) {
 		super.encodeRestorableStateWithCoder(coder)
-		rootFolder.encodeObjectIDWithCoder(coder, key: Restorable.rootFolderObjectID.rawValue)
+		rootFolder?.encodeObjectIDWithCoder(coder, key: Restorable.rootFolderObjectID.rawValue)
 	}
 	override func decodeRestorableStateWithCoder(coder: NSCoder) {
 		super.decodeRestorableStateWithCoder(coder)
-		let rootFolder = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.rootFolderObjectID.rawValue, managedObjectContext: self.mainQueueManagedObjectContext) as Folder
-		self.rootFolder = rootFolder
-		self.title = rootFolder.id.lastPathComponent
+		if let rootFolder = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.rootFolderObjectID.rawValue, managedObjectContext: self.mainQueueManagedObjectContext) as Folder? {
+			self.rootFolder = rootFolder
+		}
 	}
 	// MARK: -
 	var viewDidDisappearRetainedObjects = [AnyObject]()
+	var blocksScheduledForViewWillAppear = [Handler]()
 	override func viewWillAppear(animated: Bool) {
+		for i in blocksScheduledForViewWillAppear { i() }
+		blocksScheduledForViewWillAppear = []
 		super.viewWillAppear(animated)
 		viewDidDisappearRetainedObjects += [KVOBinding(object: self, keyPath: "regeneratedChildContainers", options: .Initial) { [unowned self] _ in
 			self.childContainers = self.regeneratedChildContainers
@@ -109,5 +112,13 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 	override func viewDidDisappear(animated: Bool) {
 		super.viewDidDisappear(animated)
 		viewDidDisappearRetainedObjects = []
+	}
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		blocksScheduledForViewWillAppear += [{
+			if nil != self.rootFolder?.parentFolder {
+				self.title = self.rootFolder.visibleTitle
+			}
+		}]
 	}
 }
