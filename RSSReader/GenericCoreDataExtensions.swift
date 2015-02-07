@@ -117,9 +117,11 @@ extension NSManagedObject {
 	}
 }
 extension NSManagedObjectContext {
-	class func objectWithIDDecodedWithCoder(coder: NSCoder, key: String, managedObjectContext: NSManagedObjectContext) -> NSManagedObject {
-		let objectIDURL = coder.decodeObjectForKey(key) as NSURL
-		let objectID = managedObjectContext.persistentStoreCoordinator!.managedObjectIDForURIRepresentation(objectIDURL)!
-		return managedObjectContext.objectWithID(objectID)
+	class func objectWithIDDecodedWithCoder(coder: NSCoder, key: String, managedObjectContext: NSManagedObjectContext) -> NSManagedObject? {
+		if let objectIDURL = coder.decodeObjectForKey(key) as NSURL? {
+			let objectID = managedObjectContext.persistentStoreCoordinator!.managedObjectIDForURIRepresentation(objectIDURL)!
+			return managedObjectContext.objectWithID(objectID)
+		}
+		return nil
 	}
 }

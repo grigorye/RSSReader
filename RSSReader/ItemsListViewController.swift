@@ -288,12 +288,13 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	override func encodeRestorableStateWithCoder(coder: NSCoder) {
 		super.encodeRestorableStateWithCoder(coder)
-		folder.encodeObjectIDWithCoder(coder, key: Restorable.folderObjectID.rawValue)
+		folder?.encodeObjectIDWithCoder(coder, key: Restorable.folderObjectID.rawValue)
 	}
 	override func decodeRestorableStateWithCoder(coder: NSCoder) {
 		super.decodeRestorableStateWithCoder(coder)
-		let folder = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.folderObjectID.rawValue, managedObjectContext: self.mainQueueManagedObjectContext) as Container
-		self.folder = folder
+		if let folder = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.folderObjectID.rawValue, managedObjectContext: self.mainQueueManagedObjectContext) as Container? {
+			self.folder = folder
+		}
 	}
 	// MARK: -
 	var blocksDelayedTillViewWillAppear = [Handler]()
