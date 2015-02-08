@@ -242,7 +242,7 @@
         <!--Item Pages-->
         <scene sceneID="eCl-5V-8Pg">
             <objects>
-                <pageViewController restorationIdentifier="ItemPages" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Wtn-2N-ccu" userLabel="Item Pages" sceneMemberID="viewController">
+                <pageViewController restorationIdentifier="ItemPages" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Wtn-2N-ccu" userLabel="Item Pages" customClass="ItemsPageViewController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems>
                         <barButtonItem systemItem="action" id="1hJ-Dd-L2L">
                             <connections>
