@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class FoldersListTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class FoldersListTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, UIDataSourceModelAssociation {
 	dynamic var rootFolder: Folder!
 	private var childContainers: [Container]!
 	let defaults = KVOCompliantUserDefaults()
@@ -17,13 +17,16 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 		return NSSet(array: ["defaults.showUnreadOnly", "rootFolder.childContainers"])
 	}
 	private var regeneratedChildContainers: [Container] {
-		if let rootFolder = rootFolder {
-			let showUnreadOnly = defaults.showUnreadOnly
-			return (rootFolder.childContainers.array as [Container]).filter { showUnreadOnly ? $0.unreadCount > 0 : true }
-		}
-		else {
-			return []
-		}
+		let regeneratedChildContainers: [Container] = {
+			if let rootFolder = self.rootFolder {
+				let showUnreadOnly = self.defaults.showUnreadOnly
+				return (rootFolder.childContainers.array as [Container]).filter { showUnreadOnly ? $0.unreadCount > 0 : true }
+			}
+			else {
+				return []
+			}
+		}()
+		return trace("regeneratedChildContainers", regeneratedChildContainers)
 	}
 	// MARK: -
 	@IBAction func refresh(sender: AnyObject!) {
@@ -65,6 +68,19 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 		}
 	}
 	// MARK: -
+    func modelIdentifierForElementAtIndexPath(indexPath: NSIndexPath, inView view: UIView) -> String {
+		let childContainer = childContainers[indexPath.row]
+		return childContainer.objectID.URIRepresentation().absoluteString!
+	}
+    func indexPathForElementWithModelIdentifier(identifier: String, inView view: UIView) -> NSIndexPath? {
+		let objectIDURL = NSURL(string: identifier)!
+		let managedObjectContext = self.rootFolder.managedObjectContext!
+		let objectID = managedObjectContext.persistentStoreCoordinator!.managedObjectIDForURIRepresentation(objectIDURL)!
+		let object = managedObjectContext.objectWithID(objectID)
+		let indexPath = NSIndexPath(forRow: (childContainers as NSArray).indexOfObjectIdenticalTo(object), inSection: 0)
+		return trace("indexPath", indexPath)
+	}
+	// MARK: -
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return childContainers.count
 	}
@@ -95,6 +111,7 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 		super.decodeRestorableStateWithCoder(coder)
 		if let rootFolder = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.rootFolderObjectID.rawValue, managedObjectContext: self.mainQueueManagedObjectContext) as Folder? {
 			self.rootFolder = rootFolder
+			self.childContainers = self.regeneratedChildContainers
 		}
 	}
 	// MARK: -
@@ -104,7 +121,8 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 		for i in blocksScheduledForViewWillAppear { i() }
 		blocksScheduledForViewWillAppear = []
 		super.viewWillAppear(animated)
-		viewDidDisappearRetainedObjects += [KVOBinding(object: self, keyPath: "regeneratedChildContainers", options: .Initial) { [unowned self] _ in
+		viewDidDisappearRetainedObjects += [KVOBinding(object: self, keyPath: "regeneratedChildContainers", options: .Initial) { [unowned self] change in
+			trace("change", change)
 			self.childContainers = self.regeneratedChildContainers
 			self.tableView.reloadData()
 		}]
