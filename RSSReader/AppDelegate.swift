@@ -227,5 +227,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		}
 		return true
 	}
+	// MARK: -
+	override init() {
+		super.init()
+		let fileManager = NSFileManager()
+		let libraryDirectoryURL = fileManager.URLsForDirectory(.LibraryDirectory, inDomains: .UserDomainMask).last as NSURL
+		let libraryDirectory = libraryDirectoryURL.path!
+		trace("libraryDirectory", libraryDirectory)
+	}
 }
 
