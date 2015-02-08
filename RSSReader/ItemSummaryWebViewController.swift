@@ -25,20 +25,29 @@ class ItemSummaryWebViewController: UIViewController {
 			})
 		}
 	}
+	var blocksScheduledForViewWillAppear = [Handler]()
 	// MARK: -
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		let bundle = NSBundle.mainBundle()
-		let htmlTemplateURL = bundle.URLForResource("ItemSummaryTemplate", withExtension: "html")!
-		var htmlTemplateLoadError: NSError?
-		let htmlTemplate = NSString(contentsOfURL: htmlTemplateURL, encoding: NSUTF8StringEncoding, error: &htmlTemplateLoadError)!
-		let htmlString =
-			htmlTemplate
-				.stringByReplacingOccurrencesOfString("$$Summary$$", withString: item.summary!)
-				.stringByReplacingOccurrencesOfString("$$Title$$", withString: item.title!)
-		self.webView.loadHTMLString(htmlString, baseURL: bundle.resourceURL)
+		blocksScheduledForViewWillAppear += [{
+			let item = self.item
+			let htmlTemplateURL = bundle.URLForResource("ItemSummaryTemplate", withExtension: "html")!
+			var htmlTemplateLoadError: NSError?
+			let htmlTemplate = NSString(contentsOfURL: htmlTemplateURL, encoding: NSUTF8StringEncoding, error: &htmlTemplateLoadError)!
+			let htmlString =
+				htmlTemplate
+					.stringByReplacingOccurrencesOfString("$$Summary$$", withString: item.summary!)
+					.stringByReplacingOccurrencesOfString("$$Title$$", withString: item.title!)
+			self.webView.loadHTMLString(htmlString, baseURL: bundle.resourceURL)
+		}]
 	}
 	// MARK: -
+	override func viewWillAppear(animated: Bool) {
+		for i in blocksScheduledForViewWillAppear { i() }
+		blocksScheduledForViewWillAppear = []
+		super.viewWillAppear(animated)
+	}
 	override func viewDidAppear(animated: Bool) {
 		super.viewDidAppear(animated)
 		item.lastOpenedDate = NSDate()
