@@ -12,7 +12,6 @@
 		C40C6BF31A72F0BC00FAFA17 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C40C6BF21A72F0BC00FAFA17 /* AVFoundation.framework */; };
 		C40C6BF51A72F17100FAFA17 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C40C6BF41A72F17100FAFA17 /* SystemConfiguration.framework */; };
 		C40C6BF71A72F23C00FAFA17 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C40C6BF61A72F23C00FAFA17 /* CoreMedia.framework */; };
-		C40C6C021A73C80C00FAFA17 /* IntegrateFabric in Resources */ = {isa = PBXBuildFile; fileRef = C40C6C011A73C80C00FAFA17 /* IntegrateFabric */; };
 		C40C6C081A74AB5E00FAFA17 /* KVOCompliantUserDefaults.mm in Sources */ = {isa = PBXBuildFile; fileRef = C40C6C071A74AB5E00FAFA17 /* KVOCompliantUserDefaults.mm */; };
 		C40C6C0B1A74BE3900FAFA17 /* KVOCompliantUserDefaults+RSSReader.m in Sources */ = {isa = PBXBuildFile; fileRef = C40C6C0A1A74BE3900FAFA17 /* KVOCompliantUserDefaults+RSSReader.m */; };
 		C41707CB1A56076A00AED81C /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41707CA1A56076A00AED81C /* Globals.swift */; };
@@ -34,6 +33,7 @@
 		C48C5F861A85EB6400A1EA12 /* UXCam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48C5F851A85EB6400A1EA12 /* UXCam.framework */; };
 		C48C5F8B1A867D3D00A1EA12 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48C5F8A1A867D3D00A1EA12 /* MobileCoreServices.framework */; };
 		C48C5F951A8695BF00A1EA12 /* libFlurry_6.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C48C5F941A8695BF00A1EA12 /* libFlurry_6.0.0.a */; };
+		C48C5F971A87344000A1EA12 /* ItemsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */; };
 		C495409B1A575C1900F56168 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495409A1A575C1900F56168 /* UserDefaults.swift */; };
 		C495409D1A575D0C00F56168 /* GenericExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495409C1A575D0C00F56168 /* GenericExtensions.swift */; };
 		C495409F1A5780A700F56168 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495409E1A5780A700F56168 /* Item.swift */; };
@@ -110,6 +110,7 @@
 		C48C5F851A85EB6400A1EA12 /* UXCam.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UXCam.framework; sourceTree = "<group>"; };
 		C48C5F8A1A867D3D00A1EA12 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		C48C5F941A8695BF00A1EA12 /* libFlurry_6.0.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_6.0.0.a; path = Flurry/libFlurry_6.0.0.a; sourceTree = "<group>"; };
+		C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsPageViewController.swift; sourceTree = "<group>"; };
 		C48F31951A609DBB002B2E36 /* 88.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 88.xcdatamodel; sourceTree = "<group>"; };
 		C495409A1A575C1900F56168 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		C495409C1A575D0C00F56168 /* GenericExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericExtensions.swift; sourceTree = "<group>"; };
@@ -223,6 +224,7 @@
 				C4676E081A6A4D1F00AE8BC2 /* ItemTableViewCell.swift */,
 				C46934DE1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift */,
 				C4AD2ADA1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift */,
+				C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */,
 				C42802681A5B47EA002474E1 /* FoldersListTableViewController.swift */,
 				C40A24FE1A672B2100B5D959 /* TableViewContainerCell.swift */,
 				C49540A01A57825100F56168 /* ItemsListViewController.swift */,
@@ -415,7 +417,6 @@
 				C4CDD3AA1A5350B40087DD05 /* Main.storyboard in Resources */,
 				C4CDD3AF1A5350B50087DD05 /* LaunchScreen.xib in Resources */,
 				C4CDD3AC1A5350B50087DD05 /* Images.xcassets in Resources */,
-				C40C6C021A73C80C00FAFA17 /* IntegrateFabric in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,6 +514,7 @@
 				C4C780181A7DF2B0009CB5FC /* TypeFilteringActivity.swift in Sources */,
 				C45ECD061A62054C00ADC113 /* SBConstants.swift in Sources */,
 				C42802691A5B47EA002474E1 /* FoldersListTableViewController.swift in Sources */,
+				C48C5F971A87344000A1EA12 /* ItemsPageViewController.swift in Sources */,
 				C41707CD1A56E85B00AED81C /* Folder.swift in Sources */,
 				C4CDD3A31A5350B40087DD05 /* AppDelegate.swift in Sources */,
 				C42802781A5C2E0D002474E1 /* RSSReader.xcdatamodeld in Sources */,
