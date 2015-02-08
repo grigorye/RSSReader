@@ -56,6 +56,21 @@ class ItemsPageViewControllerDataSource: NSObject, UIPageViewControllerDataSourc
 			return nil
 		}
 	}
+	// MARK: - State Preservation and Restoration
+	private enum Restorable: String {
+		case itemObjectIDURLs = "itemObjectIDURLs"
+	}
+	func encodeRestorableStateWithCoder(coder: NSCoder) {
+		let itemObjectIDURLs = self.items.map { $0.objectID.URIRepresentation() }
+		coder.encodeObject(itemObjectIDURLs, forKey: Restorable.itemObjectIDURLs.rawValue)
+	}
+	func decodeRestorableStateWithCoder(coder: NSCoder) {
+		let managedObjectContext = mainQueueManagedObjectContext
+		let persistentStoreCoordinator = managedObjectContext.persistentStoreCoordinator!
+		let itemObjectIDURLs = coder.decodeObjectForKey(Restorable.itemObjectIDURLs.rawValue) as [NSURL]
+		let items = itemObjectIDURLs.map { managedObjectContext.objectWithID(persistentStoreCoordinator.managedObjectIDForURIRepresentation($0)!) as Item }
+		self.items = items
+	}
 	// MARK: -
 	deinit {
 	}
