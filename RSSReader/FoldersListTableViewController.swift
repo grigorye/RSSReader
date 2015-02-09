@@ -13,14 +13,14 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 	dynamic var rootFolder: Folder!
 	private var childContainers: [Container]!
 	let defaults = KVOCompliantUserDefaults()
-	class func keyPathsForValuesAffectingRegeneratedChildContainers() -> NSSet {
-		return NSSet(array: ["defaults.showUnreadOnly", "rootFolder.childContainers"])
+	class func keyPathsForValuesAffectingRegeneratedChildContainers() -> Set<String> {
+		return ["defaults.showUnreadOnly", "rootFolder.childContainers"]
 	}
 	private var regeneratedChildContainers: [Container] {
 		let regeneratedChildContainers: [Container] = {
 			if let rootFolder = self.rootFolder {
 				let showUnreadOnly = self.defaults.showUnreadOnly
-				return (rootFolder.childContainers.array as [Container]).filter { showUnreadOnly ? $0.unreadCount > 0 : true }
+				return (rootFolder.childContainers.array as! [Container]).filter { showUnreadOnly ? $0.unreadCount > 0 : true }
 			}
 			else {
 				return []
@@ -36,32 +36,32 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 					self.rootFolder = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: self.mainQueueManagedObjectContext)
 				}
 				self.tableView.reloadData()
-				let refreshControl = sender as UIRefreshControl
+				let refreshControl = sender as! UIRefreshControl
 				refreshControl.endRefreshing()
 			}
 		}
 	}
 	// MARK: -
 	private func configureCell(cell: UITableViewCell, forFolder folder: Folder) {
-		(cell as TableViewContainerCell).setFromContainer(folder)
+		(cell as! TableViewContainerCell).setFromContainer(folder)
 		cell.textLabel?.text = folder.id.lastPathComponent
 	}
 	private func configureCell(cell: UITableViewCell, forSubscription subscription: Subscription) {
-		(cell as TableViewContainerCell).setFromContainer(subscription)
+		(cell as! TableViewContainerCell).setFromContainer(subscription)
 		cell.textLabel?.text = subscription.title ?? subscription.url?.lastPathComponent
 	}
 	// MARK: -
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		switch segue.identifier! {
 		case MainStoryboard.SegueIdentifiers.ShowFolder:
-			let foldersListTableViewController = segue.destinationViewController as FoldersListTableViewController
+			let foldersListTableViewController = segue.destinationViewController as! FoldersListTableViewController
 			let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow()!
-			let folder = childContainers[indexPathForSelectedRow.row] as Folder
+			let folder = childContainers[indexPathForSelectedRow.row] as! Folder
 			foldersListTableViewController.rootFolder = folder
 		case MainStoryboard.SegueIdentifiers.ShowSubscription:
-			let itemsListViewController = segue.destinationViewController as ItemsListViewController
+			let itemsListViewController = segue.destinationViewController as! ItemsListViewController
 			let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow()!
-			let subscription = childContainers[indexPathForSelectedRow.row] as Subscription
+			let subscription = childContainers[indexPathForSelectedRow.row] as! Subscription
 			itemsListViewController.folder = subscription
 		default:
 			abort()
@@ -88,11 +88,11 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 		let childContainer = childContainers[indexPath.row]
 		switch childContainer {
 		case let subscription as Subscription:
-			let cell = tableView.dequeueReusableCellWithIdentifier(MainStoryboard.ReuseIdentifiers.Subscription, forIndexPath: indexPath) as UITableViewCell
+			let cell = tableView.dequeueReusableCellWithIdentifier(MainStoryboard.ReuseIdentifiers.Subscription, forIndexPath: indexPath) as! UITableViewCell
 			self.configureCell(cell, forSubscription: subscription)
 			return cell
 		case let folder as Folder:
-			let cell = tableView.dequeueReusableCellWithIdentifier(MainStoryboard.ReuseIdentifiers.Folder, forIndexPath: indexPath) as UITableViewCell
+			let cell = tableView.dequeueReusableCellWithIdentifier(MainStoryboard.ReuseIdentifiers.Folder, forIndexPath: indexPath) as! UITableViewCell
 			self.configureCell(cell, forFolder: folder)
 			return cell
 		default:
@@ -109,7 +109,7 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 	}
 	override func decodeRestorableStateWithCoder(coder: NSCoder) {
 		super.decodeRestorableStateWithCoder(coder)
-		if let rootFolder = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.rootFolderObjectID.rawValue, managedObjectContext: self.mainQueueManagedObjectContext) as Folder? {
+		if let rootFolder = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.rootFolderObjectID.rawValue, managedObjectContext: self.mainQueueManagedObjectContext) as! Folder? {
 			self.rootFolder = rootFolder
 			self.childContainers = self.regeneratedChildContainers
 		}
