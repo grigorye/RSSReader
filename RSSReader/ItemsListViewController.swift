@@ -42,7 +42,7 @@ let dateComponentsFormatter: NSDateComponentsFormatter = {
 	return $;
 }()
 
-class ItemsListViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class ItemsListViewController: UITableViewController, NSFetchedResultsControllerDelegate, UIDataSourceModelAssociation {
 	var folder: Container!
 	private var continuation: NSString?
 	private var loadDate: NSDate!
@@ -261,7 +261,9 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	// MARK: -
 	override func scrollViewDidScroll(scrollView: UIScrollView) {
-		self.loadMoreIfNecessary()
+		if nil != rssSession {
+			self.loadMoreIfNecessary()
+		}
 	}
 	// MARK: -
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -285,16 +287,39 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	// MARK: - State Preservation and Restoration
 	private enum Restorable: String {
 		case folderObjectID = "folderObjectID"
+		case loadDate = "loadDate"
 	}
 	override func encodeRestorableStateWithCoder(coder: NSCoder) {
 		super.encodeRestorableStateWithCoder(coder)
 		folder?.encodeObjectIDWithCoder(coder, key: Restorable.folderObjectID.rawValue)
+		if let loadDate = loadDate {
+			coder.encodeObject(loadDate, forKey: Restorable.loadDate.rawValue)
+		}
 	}
 	override func decodeRestorableStateWithCoder(coder: NSCoder) {
 		super.decodeRestorableStateWithCoder(coder)
 		if let folder = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.folderObjectID.rawValue, managedObjectContext: self.mainQueueManagedObjectContext) as Container? {
 			self.folder = folder
+			var fetchError: NSError?
+			fetchedResultsController.performFetch(&fetchError)
+			assert(nil == fetchError)
 		}
+		if let loadDate = coder.decodeObjectForKey(Restorable.loadDate.rawValue) as NSDate? {
+			self.loadDate = loadDate
+		}
+	}
+	// MARK: -
+    func modelIdentifierForElementAtIndexPath(indexPath: NSIndexPath, inView view: UIView) -> String {
+		let item = self.itemForIndexPath(indexPath)
+		return item.objectID.URIRepresentation().absoluteString!
+	}
+    func indexPathForElementWithModelIdentifier(identifier: String, inView view: UIView) -> NSIndexPath? {
+		let objectIDURL = NSURL(string: identifier)!
+		let managedObjectContext = fetchedResultsController.managedObjectContext
+		let objectID = managedObjectContext.persistentStoreCoordinator!.managedObjectIDForURIRepresentation(objectIDURL)!
+		let object = managedObjectContext.objectWithID(objectID)
+		let indexPath = fetchedResultsController.indexPathForObject(object)!
+		return trace("indexPath", indexPath)
 	}
 	// MARK: -
 	var blocksDelayedTillViewWillAppear = [Handler]()
@@ -308,11 +333,12 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		blocksDelayedTillViewWillAppear += [{
-			var fetchError: NSError?
-			self.fetchedResultsController.performFetch(&fetchError)
-			assert(nil == fetchError, "")
+			if nil == self.fetchedResultsController.fetchedObjects {
+				var fetchError: NSError?
+				self.fetchedResultsController.performFetch(&fetchError)
+				assert(nil == fetchError, "")
+			}
 			self.title = (self.folder as Titled).visibleTitle
-			return
 		}]
 		self.tableFooterView = tableView.tableFooterView
 	}
