@@ -408,20 +408,32 @@ class RSSSession : NSObject {
 					}
 					let continuation = json!["continuation"] as? String
 					var importError: NSError?
+					let saveEveryItemAfterImport = _0
 					let items = importItemsFromJson(json!, type: Item.self, elementName: "items", managedObjectContext: backgroundQueueManagedObjectContext, error: &importError) { (item, itemJson, error) in
 						item.importFromJson(itemJson)
 						if (_0) {
 						item.loadDate = loadDate
 						}
-						var saveError: NSError?
-						if !backgroundQueueManagedObjectContext.save(&saveError) {
-							error.memory = trace("saveError", saveError)
-							return false
+						if saveEveryItemAfterImport {
+							var saveError: NSError?
+							if !backgroundQueueManagedObjectContext.save(&saveError) {
+								error.memory = trace("saveError", saveError)
+								return false
+							}
 						}
 						return true
 					}
 					if nil == items {
 						return trace("importError", importError!)
+					}
+					if !saveEveryItemAfterImport {
+						var saveError: NSError?
+						if !backgroundQueueManagedObjectContext.save(&saveError) {
+							return trace("saveError", saveError)
+						}
+					}
+					else {
+						assert(!backgroundQueueManagedObjectContext.hasChanges)
 					}
 					completionHandler(continuation: continuation, items: items, error: nil)
 					return nil
