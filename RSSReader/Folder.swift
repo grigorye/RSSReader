@@ -10,14 +10,17 @@ import CoreData
 
 class Folder: Container, Titled {
 	@NSManaged var childContainers: NSOrderedSet
-	@NSManaged var items: NSSet
-	var itemsArray: [Item] {
-		return items.allObjects as [Item]
-	}
+	@NSManaged var items: Set<Item>
 	var mutableItems: NSMutableSet {
 		return mutableSetValueForKey("items")
 	}
 	var visibleTitle: String? {
 		return id.lastPathComponent
+	}
+}
+
+extension Folder : ItemsOwner {
+	var ownItems: Set<Item> {
+		return self.items
 	}
 }
