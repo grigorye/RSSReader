@@ -16,10 +16,10 @@ class ItemsPageViewController : UIPageViewController {
 	}
 	override func decodeRestorableStateWithCoder(coder: NSCoder) {
 		super.decodeRestorableStateWithCoder(coder)
-		let dataSource = self.dataSource as ItemsPageViewControllerDataSource
+		let dataSource = self.dataSource as! ItemsPageViewControllerDataSource
 		dataSource.decodeRestorableStateWithCoder(coder)
 		if _1 {
-			let viewControllers = coder.decodeObjectForKey(Restorable.pageViewControllers.rawValue) as [UIViewController]
+			let viewControllers = coder.decodeObjectForKey(Restorable.pageViewControllers.rawValue) as! [UIViewController]
 			blocksDelayedTillViewWillAppear += [{
 				self.setViewControllers(viewControllers, direction: .Forward, animated: false) { completed in
 					trace("completed", completed)
@@ -30,7 +30,7 @@ class ItemsPageViewController : UIPageViewController {
 	}
 	override func encodeRestorableStateWithCoder(coder: NSCoder) {
 		super.encodeRestorableStateWithCoder(coder)
-		let dataSource = self.dataSource as ItemsPageViewControllerDataSource
+		let dataSource = self.dataSource as! ItemsPageViewControllerDataSource
 		dataSource.encodeRestorableStateWithCoder(coder)
 		if _1 {
 			coder.encodeObject(self.viewControllers, forKey: Restorable.pageViewControllers.rawValue)

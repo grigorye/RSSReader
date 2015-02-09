@@ -11,13 +11,13 @@ import UIKit
 class ItemsPageViewControllerDataSource: NSObject, UIPageViewControllerDataSource {
 	var items: [Item]!
 	func viewControllerForItem(item: Item, storyboard: UIStoryboard) -> UIViewController {
-		let $ = storyboard.instantiateViewControllerWithIdentifier(MainStoryboard.StoryboardIdentifiers.ItemSummaryWeb) as ItemSummaryWebViewController
+		let $ = storyboard.instantiateViewControllerWithIdentifier(MainStoryboard.StoryboardIdentifiers.ItemSummaryWeb) as! ItemSummaryWebViewController
 		$.item = item
 		return $
 	}
 	// MARK: -
 	func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-		let itemViewController = viewController as ItemSummaryWebViewController
+		let itemViewController = viewController as! ItemSummaryWebViewController
 		let item = itemViewController.item
 		let itemBefore: Item? = {
 			let items = self.items
@@ -37,7 +37,7 @@ class ItemsPageViewControllerDataSource: NSObject, UIPageViewControllerDataSourc
 		}
 	}
 	func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-		let itemViewController = viewController as ItemSummaryWebViewController
+		let itemViewController = viewController as! ItemSummaryWebViewController
 		let item = itemViewController.item
 		let itemAfter: Item? = {
 			let items = self.items
@@ -67,8 +67,8 @@ class ItemsPageViewControllerDataSource: NSObject, UIPageViewControllerDataSourc
 	func decodeRestorableStateWithCoder(coder: NSCoder) {
 		let managedObjectContext = mainQueueManagedObjectContext
 		let persistentStoreCoordinator = managedObjectContext.persistentStoreCoordinator!
-		let itemObjectIDURLs = coder.decodeObjectForKey(Restorable.itemObjectIDURLs.rawValue) as [NSURL]
-		let items = itemObjectIDURLs.map { managedObjectContext.objectWithID(persistentStoreCoordinator.managedObjectIDForURIRepresentation($0)!) as Item }
+		let itemObjectIDURLs = coder.decodeObjectForKey(Restorable.itemObjectIDURLs.rawValue) as! [NSURL]
+		let items = itemObjectIDURLs.map { managedObjectContext.objectWithID(persistentStoreCoordinator.managedObjectIDForURIRepresentation($0)!) as! Item }
 		self.items = items
 	}
 	// MARK: -

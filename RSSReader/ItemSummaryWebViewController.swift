@@ -92,7 +92,7 @@ class ItemSummaryWebViewController: UIViewController {
 	}
 	override func decodeRestorableStateWithCoder(coder: NSCoder) {
 		super.decodeRestorableStateWithCoder(coder)
-		let item = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.itemObjectID.rawValue, managedObjectContext: self.mainQueueManagedObjectContext) as Item
+		let item = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.itemObjectID.rawValue, managedObjectContext: self.mainQueueManagedObjectContext) as! Item
 		self.item = item
 	}
 }
@@ -101,7 +101,7 @@ class ItemSummaryWebViewDelegate: NSObject, UIWebViewDelegate {
 	var blocksScheduledOnWebViewDidFinishLoad = [Handler]()
 	func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
 		if navigationType == .LinkClicked {
-			let url = request.URL
+			let url = request.URL!
 			UIApplication.sharedApplication().openURL(url)
 			return false
 		}
