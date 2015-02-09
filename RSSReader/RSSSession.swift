@@ -35,7 +35,7 @@ class RSSSession : NSObject {
 				return
 			}
 			let error: NSError? = error ?? {
-				let httpResponse = response as NSHTTPURLResponse
+				let httpResponse = response as! NSHTTPURLResponse
 				if httpResponse.statusCode != 200 {
 					return NSError(domain: RSSSessionErrorDomain, code: RSSSessionError.UnexpectedHTTPResponseStatus.rawValue, userInfo: ["httpResponse": httpResponse])
 				}
@@ -95,7 +95,7 @@ class RSSSession : NSObject {
 				completionHandler(error)
 				return
 			}
-			let authToken: NSString? = {
+			let authToken: String? = {
 				let body = NSString(data: data, encoding: NSUTF8StringEncoding)!
 				let authLocation = NSMaxRange(body.rangeOfString("Auth="))
 				let authRangeMax = body.rangeOfString("\n", options: NSStringCompareOptions(0), range: NSMakeRange(authLocation, body.length - authLocation)).location
@@ -216,7 +216,7 @@ class RSSSession : NSObject {
 							if let json = jsonObject as? [String : AnyObject] {
 								if let itemJsons = json["unreadcounts"] as? [[String : AnyObject]] {
 									for itemJson in itemJsons {
-										let itemID = itemJson["id"] as String
+										let itemID = itemJson["id"] as! String
 										let type: Container.Type = itemID.hasPrefix("feed/http") ? Subscription.self : Folder.self
 										var importItemError: NSError?
 										if let folder = insertedObjectUnlessFetchedWithID(type, id: itemID, managedObjectContext: managedObjectContext, error: &importItemError) {
@@ -377,7 +377,7 @@ class RSSSession : NSObject {
 		sessionTask.resume()
 	}
 	// MARK: -
-	func streamContents(container: Container, excludedCategory: Folder?, continuation: String?, loadDate: NSDate, completionHandler: (continuation: NSString?, items: [Item]!, error: NSError?) -> Void) {
+	func streamContents(container: Container, excludedCategory: Folder?, continuation: String?, loadDate: NSDate, completionHandler: (continuation: String?, items: [Item]!, error: NSError?) -> Void) {
 		var queryComponents = [String]()
 		if let continuation = continuation {
 			queryComponents += ["c=\(continuation)"]
