@@ -10,8 +10,8 @@ import UIKit
 import CoreData
 
 extension Item {
-	class func keyPathsForValuesAffectingItemListSectionName() -> NSSet {
-		return NSSet(array: ["date", "loadDate"])
+	class func keyPathsForValuesAffectingItemListSectionName() -> Set<String> {
+		return ["date", "loadDate"]
 	}
 	func itemsListSectionName() -> String {
 		let timeInterval = self.date.timeIntervalSinceDate(self.date)
@@ -44,7 +44,7 @@ let dateComponentsFormatter: NSDateComponentsFormatter = {
 
 class ItemsListViewController: UITableViewController, NSFetchedResultsControllerDelegate, UIDataSourceModelAssociation {
 	var folder: Container!
-	private var continuation: NSString?
+	private var continuation: String?
 	private var loadDate: NSDate!
 	private var loadInProgress = false
 	private var lastLoadedItem: Item?
@@ -105,7 +105,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 				else {
 					if let lastItemInCompletion = items.last {
 						let managedObjectContext = self.fetchedResultsController.managedObjectContext
-						self.lastLoadedItem = (managedObjectContext.objectWithID(lastItemInCompletion.objectID) as Item)
+						self.lastLoadedItem = (managedObjectContext.objectWithID(lastItemInCompletion.objectID) as! Item)
 					}
 					self.continuation = continuation
 					if nil == continuation {
@@ -127,7 +127,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 				return false
 			}
 			if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows() {
-				if let lastVisibleIndexPath = indexPathsForVisibleRows.last as NSIndexPath? {
+				if let lastVisibleIndexPath = indexPathsForVisibleRows.last as! NSIndexPath? {
 					let numberOfItemsToPreload = 10
 					let barrierIndexPath = NSIndexPath(forRow: lastVisibleIndexPath.row + numberOfItemsToPreload, inSection: lastVisibleIndexPath.section)
 					let indexPathForLastLoadedItem : NSIndexPath = {
@@ -169,7 +169,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		}
 	}
 	@IBAction private func markAllAsRead(sender: AnyObject!) {
-		let items = (self.folder.valueForKey("items") as NSSet).allObjects as [Item]
+		let items = (self.folder as! ItemsOwner).ownItems
 		for i in items {
 			i.markedAsRead = true
 		}
@@ -186,15 +186,15 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	// MARK: -
 	private func itemForIndexPath(indexPath: NSIndexPath) -> Item {
-		return self.fetchedResultsController.fetchedObjects![indexPath.row] as Item
+		return self.fetchedResultsController.fetchedObjects![indexPath.row] as! Item
 	}
 	private func selectedItem() -> Item {
 		return self.itemForIndexPath(self.tableView.indexPathForSelectedRow()!)
 	}
 	// MARK: -
 	private func configureCell(rawCell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-		let cell = rawCell as ItemTableViewCell
-		let item = fetchedResultsController.objectAtIndexPath(indexPath) as Item
+		let cell = rawCell as! ItemTableViewCell
+		let item = fetchedResultsController.objectAtIndexPath(indexPath) as! Item
 		if let titleLabel = cell.titleLabel {
 			titleLabel.text = item.title ?? item.id.lastPathComponent
 		}
@@ -250,13 +250,13 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		return fetchedResultsController.sections!.count
 	}
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return (fetchedResultsController.sections![section] as NSFetchedResultsSectionInfo).numberOfObjects
+		return (fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo).numberOfObjects
 	}
 	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		return (fetchedResultsController.sections![section] as NSFetchedResultsSectionInfo).name
+		return (fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo).name
 	}
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier(MainStoryboard.ReuseIdentifiers.Item, forIndexPath: indexPath) as UITableViewCell
+		let cell = tableView.dequeueReusableCellWithIdentifier(MainStoryboard.ReuseIdentifiers.Item, forIndexPath: indexPath) as! UITableViewCell
 		self.configureCell(cell, atIndexPath: indexPath)
 		return cell
 	}
@@ -270,10 +270,10 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		switch segue.identifier! {
 		case MainStoryboard.SegueIdentifiers.ShowPages:
-			let pageViewController = segue.destinationViewController as UIPageViewController
+			let pageViewController = segue.destinationViewController as! UIPageViewController
 			let itemsPageViewControllerDataSource: ItemsPageViewControllerDataSource = {
-				let $ = pageViewController.dataSource as ItemsPageViewControllerDataSource
-				$.items = self.fetchedResultsController.fetchedObjects as [Item]
+				let $ = pageViewController.dataSource as! ItemsPageViewControllerDataSource
+				$.items = self.fetchedResultsController.fetchedObjects as! [Item]
 				return $
 			}()
 			let initialViewController = itemsPageViewControllerDataSource.viewControllerForItem(self.selectedItem(), storyboard: pageViewController.storyboard!)
@@ -299,13 +299,13 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	override func decodeRestorableStateWithCoder(coder: NSCoder) {
 		super.decodeRestorableStateWithCoder(coder)
-		if let folder = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.folderObjectID.rawValue, managedObjectContext: self.mainQueueManagedObjectContext) as Container? {
+		if let folder = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.folderObjectID.rawValue, managedObjectContext: self.mainQueueManagedObjectContext) as! Container? {
 			self.folder = folder
 			var fetchError: NSError?
 			fetchedResultsController.performFetch(&fetchError)
 			assert(nil == fetchError)
 		}
-		if let loadDate = coder.decodeObjectForKey(Restorable.loadDate.rawValue) as NSDate? {
+		if let loadDate = coder.decodeObjectForKey(Restorable.loadDate.rawValue) as! NSDate? {
 			self.loadDate = loadDate
 		}
 	}
@@ -339,7 +339,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 				self.fetchedResultsController.performFetch(&fetchError)
 				assert(nil == fetchError, "")
 			}
-			self.title = (self.folder as Titled).visibleTitle
+			self.title = (self.folder as! Titled).visibleTitle
 		}]
 		self.tableFooterView = tableView.tableFooterView
 	}
