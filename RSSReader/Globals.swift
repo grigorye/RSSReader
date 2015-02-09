@@ -19,7 +19,7 @@ let applicationDomain = "com.grigoryentin.RSSReader"
 extension NSObject {
 	var applicationDelegate: AppDelegate {
 		get {
-			return (UIApplication.sharedApplication().delegate as AppDelegate)
+			return (UIApplication.sharedApplication().delegate as! AppDelegate)
 		}
 	}
 	var mainQueueManagedObjectContext: NSManagedObjectContext {
