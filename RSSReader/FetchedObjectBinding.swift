@@ -41,7 +41,7 @@ class FetchedAnyObjectBinding : NSObject, NSFetchedResultsControllerDelegate {
 class FetchedObjectBinding<T where T: Managed, T: DefaultSortable> : FetchedAnyObjectBinding  {
 	init(managedObjectContext: NSManagedObjectContext, predicate: NSPredicate?, handler: (T?) -> Void) {
 		super.init(entityName: T.entityName(), managedObjectContext: managedObjectContext, predicate: predicate, sortDescriptor: T.defaultSortDescriptor(), handler: { object in
-			handler(object as T?)
+			handler(object as! T?)
 		})
 	}
 	deinit {
