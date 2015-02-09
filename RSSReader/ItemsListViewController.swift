@@ -74,6 +74,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 				NSPredicate(format: "(subscription == %@) or (categories contains %@)", argumentArray: [folder, folder]),
 				self.unreadOnlyFilterPredicate
 			])
+			$.fetchBatchSize = 20
 			return $
 		}()
 		let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.mainQueueManagedObjectContext, sectionNameKeyPath: _1 ? nil : "itemsListSectionName", cacheName: nil)
