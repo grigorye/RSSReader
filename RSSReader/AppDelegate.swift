@@ -15,8 +15,8 @@ import Appsee
 #endif
 
 struct LoginAndPassword {
-	let login: String?
-	let password: String?
+	let login: String? = nil
+	let password: String? = nil
 	func isValid() -> Bool {
 		return (login != nil) && (password != nil)
 	}
@@ -43,7 +43,7 @@ class AppDelegateInternals {
 		let psc = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
 		let error: NSError? = {
 			let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-			let documentsDirectory = paths[0] as NSString
+			let documentsDirectory = paths[0] as! String
 			let fileManager = NSFileManager.defaultManager()
 			if !fileManager.fileExistsAtPath(documentsDirectory) {
 				var documentsDirectoryCreationError: NSError?
@@ -125,7 +125,7 @@ class AppDelegateInternals {
 }
 
 extension RSSSession {
-	var authToken: NSString! {
+	var authToken: String! {
 		get {
 			return defaults.authToken
 		}
@@ -140,13 +140,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	var window: UIWindow?
 	let internals = AppDelegateInternals()
 	var tabBarController: UITabBarController {
-		return window!.rootViewController! as UITabBarController
+		return window!.rootViewController! as! UITabBarController
 	}
 	var foldersViewController: FoldersListTableViewController {
-		return (tabBarController.viewControllers![0] as UINavigationController).viewControllers.first as FoldersListTableViewController
+		return (tabBarController.viewControllers![0] as! UINavigationController).viewControllers.first as! FoldersListTableViewController
 	}
 	var favoritesViewController: ItemsListViewController {
-		return (tabBarController.viewControllers![1] as UINavigationController).viewControllers.first as ItemsListViewController
+		return (tabBarController.viewControllers![1] as! UINavigationController).viewControllers.first as! ItemsListViewController
 	}
 	var loginAndPassword: LoginAndPassword {
 		return defaults.loginAndPassword
@@ -156,7 +156,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
 	}
 	@IBAction func crash(sender: AnyObject?) {
-		let x = "foo" as AnyObject as Int
+		let x = "foo" as AnyObject as! Int
 	}
 	// MARK: -
 	func completeAuthentication(error: NSError?) {
@@ -200,7 +200,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		return !defaults.stateRestorationDisabled
 	}
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-		let version = NSBundle.mainBundle().infoDictionary!["CFBundleVersion"] as NSString
+		let version = NSBundle.mainBundle().infoDictionary!["CFBundleVersion"] as! NSString
 		let versionIsClean = NSNotFound == version.rangeOfCharacterFromSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet).location
 		if trace("versionIsClean", versionIsClean) && trace("analyticsEnabled", defaults.analyticsEnabled) {
 			Fabric.with([Crashlytics()])
@@ -231,7 +231,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	override init() {
 		super.init()
 		let fileManager = NSFileManager()
-		let libraryDirectoryURL = fileManager.URLsForDirectory(.LibraryDirectory, inDomains: .UserDomainMask).last as NSURL
+		let libraryDirectoryURL = fileManager.URLsForDirectory(.LibraryDirectory, inDomains: .UserDomainMask).last as! NSURL
 		let libraryDirectory = libraryDirectoryURL.path!
 		trace("libraryDirectory", libraryDirectory)
 	}
