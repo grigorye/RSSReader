@@ -15,11 +15,11 @@ enum GenericCoreDataExtensionsError: Int {
 }
 
 protocol Managed {
-	class func entityName() -> String
+	static func entityName() -> String
 }
 
 protocol DefaultSortable {
-	class func defaultSortDescriptor() -> NSSortDescriptor
+	static func defaultSortDescriptor() -> NSSortDescriptor
 }
 
 protocol ManagedIdentifiable : Managed {
@@ -40,7 +40,7 @@ func insertedObjectUnlessFetchedWithPredicate<T: ManagedIdentifiable>(cls: T.Typ
 		if nil == objects {
 			return (nil, trace("fetchError", fetchError))
 		}
-		let existingObject = objects?.last as T?
+		let existingObject = objects?.last as! T?
 		return (existingObject, nil)
 	}()
 	if let errorForExistingObject = errorForExistingObject {
@@ -48,7 +48,7 @@ func insertedObjectUnlessFetchedWithPredicate<T: ManagedIdentifiable>(cls: T.Typ
 		return nil
 	}
 	let object: T = existingObject ?? {
-		let newObject = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: managedObjectContext) as T
+		let newObject = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: managedObjectContext) as! T
 		newObjectInitializationHandler(newObject)
 		return newObject
 	}()
@@ -63,14 +63,14 @@ func insertedObjectUnlessFetchedWithID<T: ManagedIdentifiable where T : NSManage
 func importItemsFromJson<T: ManagedIdentifiable where T : NSManagedObject>(json: [String : AnyObject], #type: T.Type, #elementName: NSString, #managedObjectContext: NSManagedObjectContext, #error: NSErrorPointer, #importFromJson: (T, [String: AnyObject], NSErrorPointer) -> Bool) -> [T]? {
 	var items = [T]()
 	let completionError: NSError? = {
-		let itemJsons = json[elementName] as? [[String : AnyObject]]
+		let itemJsons = json[elementName as! String] as? [[String : AnyObject]]
 		if nil == itemJsons {
 			let jsonElementNotFoundOrInvalidError = NSError(domain: GenericCoreDataExtensionsErrorDomain, code: GenericCoreDataExtensionsError.JsonElementNotFoundOrInvalid.rawValue, userInfo: nil)
 			return trace("jsonElementNotFoundOrInvalidError", jsonElementNotFoundOrInvalidError)
 		}
 		for itemJson in itemJsons! {
 			var insertOrFetchItemError: NSError?
-			let itemID = itemJson["id"] as String
+			let itemID = itemJson["id"] as! String
 			if let item = insertedObjectUnlessFetchedWithID(type, id: itemID, managedObjectContext: managedObjectContext, error: &insertOrFetchItemError) {
 				var itemImportError: NSError?
 				if !importFromJson(item, itemJson, &itemImportError) {
@@ -118,7 +118,7 @@ extension NSManagedObject {
 }
 extension NSManagedObjectContext {
 	class func objectWithIDDecodedWithCoder(coder: NSCoder, key: String, managedObjectContext: NSManagedObjectContext) -> NSManagedObject? {
-		if let objectIDURL = coder.decodeObjectForKey(key) as NSURL? {
+		if let objectIDURL = coder.decodeObjectForKey(key) as! NSURL? {
 			let objectID = managedObjectContext.persistentStoreCoordinator!.managedObjectIDForURIRepresentation(objectIDURL)!
 			return managedObjectContext.objectWithID(objectID)
 		}
