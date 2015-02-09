@@ -11,7 +11,7 @@ import UIKit
 class MarkAllAsReadActivity : TypeFilteringActivity {
 	override func performActivity() {
 		let folder = acceptedItems.last!
-		let items = (folder.valueForKey("items") as NSSet).allObjects as [Item]
+		let items = (folder as! ItemsOwner).ownItems
 		for i in items {
 			i.markedAsRead = true
 		}
@@ -37,7 +37,7 @@ class MarkAllAsReadActivity : TypeFilteringActivity {
 	var acceptedItems: [FilteredItem] {
 		return itemsFilter.acceptedItems
 	}
-	init() {
+	init(_: Void) {
 		super.init(untypedItemsFilter: self.itemsFilter)
 	}
 }

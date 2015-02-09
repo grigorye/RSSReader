@@ -36,7 +36,7 @@ class AddToFavoritesActivity : TypeFilteringActivity  {
 	var acceptedItems: [ItemType] {
 		return itemsFilter.acceptedItems
 	}
-	init() {
+	init(_: Void) {
 		super.init(untypedItemsFilter: self.itemsFilter)
 	}
 }

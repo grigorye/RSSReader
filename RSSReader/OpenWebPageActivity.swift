@@ -31,7 +31,7 @@ class OpenWebPageActivity : TypeFilteringActivity {
 	var acceptedItems: [FilteredItem] {
 		return itemsFilter.acceptedItems
 	}
-	init() {
+	init(_: Void) {
 		super.init(untypedItemsFilter: self.itemsFilter)
 	}
 }
