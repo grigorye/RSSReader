@@ -16,7 +16,7 @@ class Item: NSManagedObject {
 	@NSManaged var lastOpenedDate: NSDate
     @NSManaged var title: String?
     @NSManaged var summary: String?
-	@NSManaged var categories: NSSet
+	@NSManaged var categories: Set<Folder>
 	var mutableCategories: NSMutableSet {
 		return mutableSetValueForKey("categories")
 	}
