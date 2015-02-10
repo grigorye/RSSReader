@@ -16,8 +16,9 @@ enum RSSSessionError: Int {
 
 class RSSSession : NSObject {
 	let loginAndPassword: LoginAndPassword
+	let dispatchQueue = dispatch_get_main_queue()
 	dynamic var progresses = [NSProgress]()
-	var mutableProgresses: NSMutableArray {
+	private var mutableProgresses: NSMutableArray {
 		return mutableArrayValueForKey("progresses")
 	}
 	let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
@@ -29,7 +30,9 @@ class RSSSession : NSObject {
 		let progress = NSProgress(totalUnitCount: 1)
 		progress.becomeCurrentWithPendingUnitCount(1)
 		let sessionTask = session.progressEnabledDataTaskWithRequest(request) { data, response, error in
-			self.mutableProgresses.removeObjectIdenticalTo(progress)
+			dispatch_async(self.dispatchQueue) {
+				self.mutableProgresses.removeObjectIdenticalTo(progress)
+			}
 			if let error = error {
 				completionHandler(nil, error)
 				return
@@ -49,7 +52,9 @@ class RSSSession : NSObject {
 			}
 		}
 		progress.resignCurrent()
-		self.progresses += [progress]
+		dispatch_async(self.dispatchQueue) {
+			self.mutableProgresses.addObject(progress)
+		}
 		return sessionTask
 	}
 	// MARK: -
