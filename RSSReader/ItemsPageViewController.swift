@@ -22,8 +22,7 @@ class ItemsPageViewController : UIPageViewController {
 			let viewControllers = coder.decodeObjectForKey(Restorable.pageViewControllers.rawValue) as! [UIViewController]
 			blocksDelayedTillViewWillAppear += [{
 				self.setViewControllers(viewControllers, direction: .Forward, animated: false) { completed in
-					trace("completed", completed)
-					return
+					void(trace("completed", completed))
 				}
 			}]
 		}
