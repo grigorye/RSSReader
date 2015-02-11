@@ -9,8 +9,10 @@
 import UIKit
 import CoreData
 #if ANALYTICS_ENABLED
+#if CRASHLYTICS_ENABLED
 import Fabric
 import Crashlytics
+#endif
 #if APPSEE_ENABLED
 import Appsee
 #endif
@@ -206,11 +208,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let version = NSBundle.mainBundle().infoDictionary!["CFBundleVersion"] as! NSString
 		let versionIsClean = NSNotFound == version.rangeOfCharacterFromSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet).location
 		if trace("versionIsClean", versionIsClean) && trace("analyticsEnabled", defaults.analyticsEnabled) {
+#if CRASHLYTICS_ENABLED
 			Fabric.with([Crashlytics()])
+#endif
+#if UXCAM_ENABLED
 			UXCam.startApplicationWithKey("0fc8e6e128fa538")
+#endif
+#if FLURRY_ENABLED
 			Flurry.startSession("TSPCHYJBMBGZZFM3SFDZ")
+#endif
 #if APPSEE_ENABLED
-			Appsee.start(NSBundle.mainBundle().infoDictionary!["appseeAPIKey"] as String)
+			Appsee.start(NSBundle.mainBundle().infoDictionary!["appseeAPIKey"] as! String)
 #endif
 		}
 #endif
