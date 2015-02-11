@@ -14,4 +14,5 @@ crashlyticsFramework="${XCS_SOURCE_DIR:?}"/RSSReader/Crashlytics.framework
 "${crashlyticsFramework:?}"/submit \
 	"${XC_FABRIC_API_KEY:?}" \
 	"${XC_FABRIC_BUILD_SECRET:?}" \
-	-ipaPath "${ipa:?}"
+	-ipaPath "${ipa:?}" \
+	-groupAliases developers
