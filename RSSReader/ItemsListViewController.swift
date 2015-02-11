@@ -273,7 +273,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			let pageViewController = segue.destinationViewController as! UIPageViewController
 			let itemsPageViewControllerDataSource: ItemsPageViewControllerDataSource = {
 				let $ = pageViewController.dataSource as! ItemsPageViewControllerDataSource
-				$.items = self.fetchedResultsController.fetchedObjects as! [Item]
+				$.items = asArray(self.fetchedResultsController.fetchedObjects!)
 				return $
 			}()
 			let initialViewController = itemsPageViewControllerDataSource.viewControllerForItem(self.selectedItem(), storyboard: pageViewController.storyboard!)
