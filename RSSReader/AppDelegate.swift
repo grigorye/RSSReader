@@ -8,10 +8,12 @@
 
 import UIKit
 import CoreData
+#if ANALYTICS_ENABLED
 import Fabric
 import Crashlytics
 #if APPSEE_ENABLED
 import Appsee
+#endif
 #endif
 
 struct LoginAndPassword {
@@ -200,6 +202,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		return !defaults.stateRestorationDisabled
 	}
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+#if ANALYTICS_ENABLED
 		let version = NSBundle.mainBundle().infoDictionary!["CFBundleVersion"] as! NSString
 		let versionIsClean = NSNotFound == version.rangeOfCharacterFromSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet).location
 		if trace("versionIsClean", versionIsClean) && trace("analyticsEnabled", defaults.analyticsEnabled) {
@@ -210,6 +213,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			Appsee.start(NSBundle.mainBundle().infoDictionary!["appseeAPIKey"] as String)
 #endif
 		}
+#endif
 		assert(nil == self.internals.managedObjectContextError, "")
 		if let managedObjectContextError = self.internals.managedObjectContextError {
 			trace("managedObjectContextError", managedObjectContextError)
