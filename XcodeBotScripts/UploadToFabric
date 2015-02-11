@@ -1,4 +1,4 @@
-#! /bin/sh -ex
+#!/bin/sh -ex
 
 #  UploadToFabric
 #  RSSReader
@@ -8,7 +8,7 @@
 
 XC_FABRIC_API_KEY="a041320bf4147ab842dc85b6f431b045c1c49276"
 XC_FABRIC_BUILD_SECRET="27f2c7fbda9310a1956a713b282cc20ec139b0186d65e5199af00ed597f319a7"
-ipa="${XCS_ARCHIVE:?}/RSSReader.ipa"
+ipa="${XCS_OUTPUT_DIR:?}/RSSReader.ipa"
 crashlyticsFramework="${XCS_SOURCE_DIR:?}"/RSSReader/Crashlytics.framework
 
 "${crashlyticsFramework:?}"/submit \
