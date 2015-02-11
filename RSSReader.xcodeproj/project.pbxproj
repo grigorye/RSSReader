@@ -90,6 +90,7 @@
 		C42802751A5C2E0D002474E1 /* 31.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 31.xcdatamodel; sourceTree = "<group>"; };
 		C42802761A5C2E0D002474E1 /* 43.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 43.xcdatamodel; sourceTree = "<group>"; };
 		C42802771A5C2E0D002474E1 /* 70.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 70.xcdatamodel; sourceTree = "<group>"; };
+		C44FCA5C1A8AEECA00C91544 /* UploadToFabric */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = UploadToFabric; sourceTree = "<group>"; };
 		C45158981A65E1FE00374A8C /* GenericURLSessionExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericURLSessionExtensions.swift; sourceTree = "<group>"; };
 		C451590F1A65E83400374A8C /* KVOBinding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOBinding.swift; sourceTree = "<group>"; };
 		C45BC3E91A8003F40008A5D1 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
@@ -169,6 +170,7 @@
 				C40C6BFD1A73C78F00FAFA17 /* EmbedSourceVersionIntoBundle */,
 				C40C6BFE1A73C78F00FAFA17 /* IntegrateAppsee */,
 				C40C6C011A73C80C00FAFA17 /* IntegrateFabric */,
+				C44FCA5C1A8AEECA00C91544 /* UploadToFabric */,
 				C40C6C001A73C78F00FAFA17 /* RegenerateSBConstantsSwift */,
 				C4D56A2A1A7C33C0007BE398 /* PackageApplication */,
 			);
