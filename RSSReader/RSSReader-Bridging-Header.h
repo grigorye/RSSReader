@@ -4,5 +4,9 @@
 
 #import "KVOCompliantUserDefaults.h"
 #import "KVOCompliantUserDefaults+RSSReader.h"
+#if UXCAM_ENABLED
 #import <UXCam/UXCam.h>
+#endif
+#if FLURRY_ENABLED
 #import <Flurry/Flurry.h>
+#endif
