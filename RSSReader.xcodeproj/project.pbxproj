@@ -25,14 +25,11 @@
 		C45ECD061A62054C00ADC113 /* SBConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45ECD051A62054C00ADC113 /* SBConstants.swift */; };
 		C46550491A7870E60046FFBD /* UINavigationItem+MultipleBarButtonItemsCollections.m in Sources */ = {isa = PBXBuildFile; fileRef = C46550481A7870E60046FFBD /* UINavigationItem+MultipleBarButtonItemsCollections.m */; };
 		C4676E091A6A4D1F00AE8BC2 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4676E081A6A4D1F00AE8BC2 /* ItemTableViewCell.swift */; };
-		C4676E821A6DB0F800AE8BC2 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4676E801A6DB0F800AE8BC2 /* Crashlytics.framework */; };
-		C4676E831A6DB0F800AE8BC2 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4676E811A6DB0F800AE8BC2 /* Fabric.framework */; };
 		C46934DF1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46934DE1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift */; };
 		C4728B381A55BA6600D4251A /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4728B371A55BA6600D4251A /* Subscription.swift */; };
 		C4728B3A1A55BAC600D4251A /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4728B391A55BAC600D4251A /* CoreData.swift */; };
 		C48C5F861A85EB6400A1EA12 /* UXCam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48C5F851A85EB6400A1EA12 /* UXCam.framework */; };
 		C48C5F8B1A867D3D00A1EA12 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48C5F8A1A867D3D00A1EA12 /* MobileCoreServices.framework */; };
-		C48C5F951A8695BF00A1EA12 /* libFlurry_6.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C48C5F941A8695BF00A1EA12 /* libFlurry_6.0.0.a */; };
 		C48C5F971A87344000A1EA12 /* ItemsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */; };
 		C495409B1A575C1900F56168 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495409A1A575C1900F56168 /* UserDefaults.swift */; };
 		C495409D1A575D0C00F56168 /* GenericExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495409C1A575D0C00F56168 /* GenericExtensions.swift */; };
@@ -148,13 +145,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C48C5F951A8695BF00A1EA12 /* libFlurry_6.0.0.a in Frameworks */,
 				C48C5F8B1A867D3D00A1EA12 /* MobileCoreServices.framework in Frameworks */,
 				C40C6BF71A72F23C00FAFA17 /* CoreMedia.framework in Frameworks */,
 				C40C6BF51A72F17100FAFA17 /* SystemConfiguration.framework in Frameworks */,
 				C40C6BF31A72F0BC00FAFA17 /* AVFoundation.framework in Frameworks */,
-				C4676E821A6DB0F800AE8BC2 /* Crashlytics.framework in Frameworks */,
-				C4676E831A6DB0F800AE8BC2 /* Fabric.framework in Frameworks */,
 				C48C5F861A85EB6400A1EA12 /* UXCam.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
