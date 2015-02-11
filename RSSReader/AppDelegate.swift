@@ -204,24 +204,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		return !defaults.stateRestorationDisabled
 	}
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-#if ANALYTICS_ENABLED
-		let version = NSBundle.mainBundle().infoDictionary!["CFBundleVersion"] as! NSString
-		let versionIsClean = NSNotFound == version.rangeOfCharacterFromSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet).location
-		if trace("versionIsClean", versionIsClean) && trace("analyticsEnabled", defaults.analyticsEnabled) {
-#if CRASHLYTICS_ENABLED
-			Fabric.with([Crashlytics()])
-#endif
-#if UXCAM_ENABLED
-			UXCam.startApplicationWithKey("0fc8e6e128fa538")
-#endif
-#if FLURRY_ENABLED
-			Flurry.startSession("TSPCHYJBMBGZZFM3SFDZ")
-#endif
-#if APPSEE_ENABLED
-			Appsee.start(NSBundle.mainBundle().infoDictionary!["appseeAPIKey"] as! String)
-#endif
-		}
-#endif
 		assert(nil == self.internals.managedObjectContextError, "")
 		if let managedObjectContextError = self.internals.managedObjectContextError {
 			trace("managedObjectContextError", managedObjectContextError)
@@ -242,6 +224,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	// MARK: -
 	override init() {
 		super.init()
+#if ANALYTICS_ENABLED
+		let version = NSBundle.mainBundle().infoDictionary!["CFBundleVersion"] as! NSString
+		let versionIsClean = NSNotFound == version.rangeOfCharacterFromSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet).location
+		if trace("versionIsClean", versionIsClean) && trace("analyticsEnabled", defaults.analyticsEnabled) {
+#if CRASHLYTICS_ENABLED
+			Fabric.with([Crashlytics()])
+#endif
+#if UXCAM_ENABLED
+			UXCam.startApplicationWithKey("0fc8e6e128fa538")
+#endif
+#if FLURRY_ENABLED
+			Flurry.startSession("TSPCHYJBMBGZZFM3SFDZ")
+#endif
+#if APPSEE_ENABLED
+			Appsee.start(NSBundle.mainBundle().infoDictionary!["appseeAPIKey"] as! String)
+#endif
+		}
+#endif
 		let fileManager = NSFileManager()
 		let libraryDirectoryURL = fileManager.URLsForDirectory(.LibraryDirectory, inDomains: .UserDomainMask).last as! NSURL
 		let libraryDirectory = libraryDirectoryURL.path!
