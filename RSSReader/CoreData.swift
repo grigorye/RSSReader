@@ -142,9 +142,9 @@ extension Container: ManagedIdentifiable {
 										return $
 									}()
 									var fetchContainersForSortIDsError: NSError?
-									if let unorderedChildContainers = managedObjectContext.executeFetchRequest(request, error: &fetchContainersForSortIDsError) as! [Container]? {
+									if let unorderedChildContainers = asArray(managedObjectContext.executeFetchRequest(request, error: &fetchContainersForSortIDsError)) as [Container]! {
 										println("unorderedChildContainers: \(unorderedChildContainers)")
-										let childContainers = map(sortIDs) { (sortID: Int32) -> Container in
+										let childContainers = map(sortIDs) { sortID in
 											return filter(unorderedChildContainers) { $0.sortID == sortID }.first!
 										}
 										folder.childContainers = NSOrderedSet(array: childContainers)
