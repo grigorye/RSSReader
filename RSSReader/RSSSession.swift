@@ -97,7 +97,7 @@ class RSSSession : NSObject {
 		}()
 		let sessionTask = self.dataTaskForHTTPRequest(request) { data, error in
 			if let error = error {
-				completionHandler(error)
+				completionHandler(trace("error", error))
 				return
 			}
 			let authToken: String? = {
