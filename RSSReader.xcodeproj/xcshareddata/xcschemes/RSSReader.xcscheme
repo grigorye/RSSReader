@@ -67,7 +67,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
@@ -88,7 +88,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-forceStoreRemoval YES"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-stateRestorationDisabled YES"
