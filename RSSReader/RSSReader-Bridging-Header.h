@@ -10,3 +10,4 @@
 #if FLURRY_ENABLED
 #import <Flurry/Flurry.h>
 #endif
+#import <AFMInfoBanner/AFMInfoBanner.h>
