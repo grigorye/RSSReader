@@ -62,7 +62,7 @@
 		</dict>
 		<dict>
 			<key>Title</key>
-			<string></string>
+			<string>Debugging</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
@@ -73,6 +73,16 @@
 			<string>forceStoreRemoval</string>
 			<key>Title</key>
 			<string>Erase All</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>Key</key>
+			<string>stateRestorationDisabled</string>
+			<key>Title</key>
+			<string>Disable State Restoration</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
