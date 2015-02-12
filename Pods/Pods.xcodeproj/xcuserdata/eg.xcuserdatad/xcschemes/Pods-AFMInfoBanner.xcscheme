@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B2D52C1FC5B00EA693A32078"
+               BlueprintIdentifier = "BC56479EE45EB430420AD8F2"
                BuildableName = "libPods-AFMInfoBanner.a"
                BlueprintName = "Pods-AFMInfoBanner"
                ReferencedContainer = "container:Pods.xcodeproj">

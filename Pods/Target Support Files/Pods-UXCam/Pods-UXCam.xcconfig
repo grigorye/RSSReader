@@ -1,0 +1,2 @@
+PODS_UXCAM_FRAMEWORK_SEARCH_PATHS = "$(PODS_ROOT)/UXCam"
+PODS_UXCAM_OTHER_LDFLAGS = -framework "AVFoundation" -framework "CoreGraphics" -framework "CoreMedia" -framework "CoreVideo" -framework "MobileCoreServices" -framework "QuartzCore" -framework "SystemConfiguration" -framework "UXCam"
