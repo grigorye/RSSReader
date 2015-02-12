@@ -46,8 +46,8 @@ class AppDelegateInternals {
 		let managedObjectModel = NSManagedObjectModel.mergedModelFromBundles(nil)!
 		let psc = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
 		let error: NSError? = {
-			let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-			let documentsDirectory = paths[0] as! String
+			let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)  as! [String]
+			let documentsDirectory = paths[0]
 			let fileManager = NSFileManager.defaultManager()
 			if !fileManager.fileExistsAtPath(documentsDirectory) {
 				var documentsDirectoryCreationError: NSError?
@@ -163,23 +163,66 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let x = "foo" as AnyObject as! Int
 	}
 	// MARK: -
-	func completeAuthentication(error: NSError?) {
-		dispatch_async(dispatch_get_main_queue()) {
+	func postprocessAuthentication(completionHandler: (NSError?) -> Void) {
+		rssSession.updateUserInfo { updateUserInfoError in
+			dispatch_async(dispatch_get_main_queue()) {
+				if let updateUserInfoError = trace("updateUserInfoError", updateUserInfoError) {
+					presentErrorMessage(NSLocalizedString("Update failed.", comment: ""))
+				}
+				else {
+					self.rssSession.updateTags { updateTagsError in
+						void(trace("updateTagsError", updateTagsError))
+						dispatch_async(dispatch_get_main_queue()) {
+							self.rssSession.updateSubscriptions { updateSubscriptionsError in
+								void(trace("updateSubscriptionsError", updateSubscriptionsError))
+								dispatch_async(dispatch_get_main_queue()) {
+									self.rssSession.updateUnreadCounts { updateUnreadCountsError in
+										void(trace("updateUnreadCountsError", updateUnreadCountsError))
+										dispatch_async(dispatch_get_main_queue()) {
+											self.rssSession.updateStreamPreferences { updateStreamPreferencesError in
+												void(trace("updateStreamPreferencesError", updateStreamPreferencesError))
+												completionHandler(updateStreamPreferencesError)
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 	func proceedWithManagedObjectContext() {
 		if self.loginAndPassword.isValid() {
 			let rssSession = RSSSession(loginAndPassword: self.loginAndPassword)
 			self.rssSession = rssSession
+			let postAuthenticate = { () -> Void in
+				self.postprocessAuthentication { error in
+					dispatch_async(dispatch_get_main_queue()) {
+						if let error = error {
+							presentErrorMessage(NSLocalizedString("Got a problem with feeds retrieval.", comment: ""))
+						}
+						else {
+							presentInfoMessage(NSLocalizedString("Feeds have been retrieved.", comment: ""))
+						}
+					}
+				}
+			}
 			if (rssSession.authToken == nil) {
 				rssSession.authenticate { error in
-					self.completeAuthentication(error)
+					dispatch_async(dispatch_get_main_queue()) {
+						if let error = error {
+							presentErrorMessage(NSLocalizedString("Authentication failed.", comment: ""))
+						}
+						else {
+							postAuthenticate()
+						}
+					}
 				}
 			}
 			else {
-				rssSession.postprocessAuthentication { error in
-					self.completeAuthentication(error)
-				}
+				postAuthenticate()
 			}
 		}
 		else {
@@ -206,7 +249,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		assert(nil == self.internals.managedObjectContextError, "")
 		if let managedObjectContextError = self.internals.managedObjectContextError {
-			trace("managedObjectContextError", managedObjectContextError)
+			void(trace("managedObjectContextError", managedObjectContextError))
+            presentErrorMessage(NSLocalizedString("Something went wrong.", comment: ""))
 			return false
 		}
 		else {
@@ -214,7 +258,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			void(self.fetchedFavoritesFolderBinding)
 			foldersViewController.hidesBottomBarWhenPushed = false
 			favoritesViewController.navigationItem.backBarButtonItem = {
-				let title = NSLocalizedString("Favorites", tableName: nil, bundle: NSBundle.mainBundle(), value: "", comment: "");
+				let title = NSLocalizedString("Favorites", comment: "");
 				return UIBarButtonItem(title: title, style: .Plain, target: nil, action: nil)
 			}()
 			proceedWithManagedObjectContext()
