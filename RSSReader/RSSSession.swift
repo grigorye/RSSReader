@@ -108,39 +108,12 @@ class RSSSession : NSObject {
 				return $
 			}()
 			self.authToken = authToken
-			self.postprocessAuthentication(completionHandler)
 		}
 		sessionTask.resume()
 	}
 	// MARK: -
 	func reauthenticate(completionHandler: (NSError?) -> Void) {
 		authenticate(completionHandler)
-	}
-	func postprocessAuthentication(completionHandler: (NSError?) -> Void) {
-		self.updateUserInfo { updateUserInfoError in
-			void(trace("updateUserInfoError", updateUserInfoError))
-			dispatch_async(dispatch_get_main_queue()) {
-				self.updateTags { updateTagsError in
-					void(trace("updateTagsError", updateTagsError))
-					dispatch_async(dispatch_get_main_queue()) {
-						self.updateSubscriptions { updateSubscriptionsError in
-							void(trace("updateSubscriptionsError", updateSubscriptionsError))
-							dispatch_async(dispatch_get_main_queue()) {
-								self.updateUnreadCounts { updateUnreadCountsError in
-									void(trace("updateUnreadCountsError", updateUnreadCountsError))
-									dispatch_async(dispatch_get_main_queue()) {
-										self.updateStreamPreferences { updateStreamPreferencesError in
-											void(trace("updateStreamPreferencesError", updateStreamPreferencesError))
-											completionHandler(updateStreamPreferencesError)
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
 	}
 	// MARK: -
 	func updateUserInfo(completionHandler: (NSError?) -> Void) {
