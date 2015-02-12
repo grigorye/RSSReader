@@ -204,6 +204,10 @@
 		2E512001F26095B4FD13F13E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				18B271D7F3757D52EE1A6C8B /* libPods.a */,
+				C44FCA631A8C0DDF00C91544 /* Pods.debug.xcconfig */,
+				C44FCA641A8C0DDF00C91544 /* Pods.release.xcconfig */,
+				C465807E1A8D479C000DF359 /* Pods.xcodeproj */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -240,7 +244,6 @@
 		C452ED851A72C680003C6537 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C465807E1A8D479C000DF359 /* Pods.xcodeproj */,
 				C48C5F941A8695BF00A1EA12 /* libFlurry_6.0.0.a */,
 				C48C5F8A1A867D3D00A1EA12 /* MobileCoreServices.framework */,
 				C40C6BF61A72F23C00FAFA17 /* CoreMedia.framework */,
@@ -249,7 +252,6 @@
 				C40C6BF01A72EFEE00FAFA17 /* Appsee.framework */,
 				C4676E801A6DB0F800AE8BC2 /* Crashlytics.framework */,
 				C4676E811A6DB0F800AE8BC2 /* Fabric.framework */,
-				18B271D7F3757D52EE1A6C8B /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -329,11 +331,9 @@
 				C4CDD3B71A5350B50087DD05 /* RSSReaderTests */,
 				C44FCA5F1A8AF9CF00C91544 /* XcodeBotScripts */,
 				C40C6BFC1A73C78F00FAFA17 /* XcodeBuildPhases */,
+				2E512001F26095B4FD13F13E /* Pods */,
 				C452ED851A72C680003C6537 /* Frameworks */,
 				C4CDD39E1A5350B40087DD05 /* Products */,
-				C44FCA631A8C0DDF00C91544 /* Pods.debug.xcconfig */,
-				C44FCA641A8C0DDF00C91544 /* Pods.release.xcconfig */,
-				2E512001F26095B4FD13F13E /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
