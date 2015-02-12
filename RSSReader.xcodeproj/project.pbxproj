@@ -79,6 +79,13 @@
 			remoteGlobalIDString = 88A386B22583935C34CC5B48;
 			remoteInfo = "Pods-CVKHierarchySearcher";
 		};
+		C46580901A8D4B4E000DF359 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C465807E1A8D479C000DF359 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BD28650810982BFD0744A0E0;
+			remoteInfo = "Pods-UXCam";
+		};
 		C4CDD3B51A5350B50087DD05 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C4CDD3951A5350B40087DD05 /* Project object */;
@@ -126,6 +133,7 @@
 		C46550471A7870E60046FFBD /* UINavigationItem+MultipleBarButtonItemsCollections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+MultipleBarButtonItemsCollections.h"; sourceTree = "<group>"; };
 		C46550481A7870E60046FFBD /* UINavigationItem+MultipleBarButtonItemsCollections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+MultipleBarButtonItemsCollections.m"; sourceTree = "<group>"; };
 		C465807E1A8D479C000DF359 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
+		C465808A1A8D4AE3000DF359 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		C4676E081A6A4D1F00AE8BC2 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		C4676E801A6DB0F800AE8BC2 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		C4676E811A6DB0F800AE8BC2 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
@@ -133,7 +141,6 @@
 		C46934DE1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsPageViewControllerDataSource.swift; sourceTree = "<group>"; };
 		C4728B371A55BA6600D4251A /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		C4728B391A55BAC600D4251A /* CoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
-		C48C5F851A85EB6400A1EA12 /* UXCam.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UXCam.framework; sourceTree = "<group>"; };
 		C48C5F8A1A867D3D00A1EA12 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		C48C5F941A8695BF00A1EA12 /* libFlurry_6.0.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_6.0.0.a; path = Flurry/libFlurry_6.0.0.a; sourceTree = "<group>"; };
 		C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsPageViewController.swift; sourceTree = "<group>"; };
@@ -233,9 +240,9 @@
 		C452ED851A72C680003C6537 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C465807E1A8D479C000DF359 /* Pods.xcodeproj */,
 				C48C5F941A8695BF00A1EA12 /* libFlurry_6.0.0.a */,
 				C48C5F8A1A867D3D00A1EA12 /* MobileCoreServices.framework */,
-				C48C5F851A85EB6400A1EA12 /* UXCam.framework */,
 				C40C6BF61A72F23C00FAFA17 /* CoreMedia.framework */,
 				C40C6BF41A72F17100FAFA17 /* SystemConfiguration.framework */,
 				C40C6BF21A72F0BC00FAFA17 /* AVFoundation.framework */,
@@ -253,6 +260,7 @@
 				C46580851A8D479D000DF359 /* libPods.a */,
 				C46580871A8D479D000DF359 /* libPods-AFMInfoBanner.a */,
 				C46580891A8D479D000DF359 /* libPods-CVKHierarchySearcher.a */,
+				C46580911A8D4B4E000DF359 /* libPods-UXCam.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -315,7 +323,7 @@
 		C4CDD3941A5350B40087DD05 = {
 			isa = PBXGroup;
 			children = (
-				C465807E1A8D479C000DF359 /* Pods.xcodeproj */,
+				C465808A1A8D4AE3000DF359 /* Podfile */,
 				C40C6BFB1A73C6DF00FAFA17 /* RSSReader-app.xcconfig */,
 				C4CDD39F1A5350B40087DD05 /* RSSReader */,
 				C4CDD3B71A5350B50087DD05 /* RSSReaderTests */,
@@ -486,6 +494,13 @@
 			fileType = archive.ar;
 			path = "libPods-CVKHierarchySearcher.a";
 			remoteRef = C46580881A8D479D000DF359 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C46580911A8D4B4E000DF359 /* libPods-UXCam.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libPods-UXCam.a";
+			remoteRef = C46580901A8D4B4E000DF359 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
