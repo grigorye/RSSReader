@@ -27,10 +27,10 @@ struct LoginAndPassword {
 }
 
 func == (left: LoginAndPassword, right: LoginAndPassword) -> Bool {
-    return (left.login == right.login) && (left.password == right.password)
+	return (left.login == right.login) && (left.password == right.password)
 }
 func != (left: LoginAndPassword, right: LoginAndPassword) -> Bool {
-    return !(left == right)
+	return !(left == right)
 }
 
 class AppDelegateInternals {
@@ -56,6 +56,7 @@ class AppDelegateInternals {
 				}
 			}
 			let storeURL = NSURL(fileURLWithPath: documentsDirectory.stringByAppendingPathComponent("RSSReader.sqlite"))!
+			void(trace("fileManager.fileExistsAtPath(storeURL.path!)", fileManager.fileExistsAtPath(storeURL.path!)))
 			if NSUserDefaults().boolForKey("forceStoreRemoval") {
 				let fileManager = NSFileManager.defaultManager()
 				var forcedStoreRemovalError: NSError?
@@ -250,7 +251,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		assert(nil == self.internals.managedObjectContextError, "")
 		if let managedObjectContextError = self.internals.managedObjectContextError {
 			void(trace("managedObjectContextError", managedObjectContextError))
-            presentErrorMessage(NSLocalizedString("Something went wrong.", comment: ""))
+			presentErrorMessage(NSLocalizedString("Something went wrong.", comment: ""))
 			return false
 		}
 		else {
