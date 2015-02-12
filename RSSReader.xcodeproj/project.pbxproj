@@ -58,6 +58,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		C46580841A8D479D000DF359 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C465807E1A8D479C000DF359 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5CB30545894166C4853FC640;
+			remoteInfo = Pods;
+		};
+		C46580861A8D479D000DF359 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C465807E1A8D479C000DF359 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3B2FCB682EDB5F2525C75BBB;
+			remoteInfo = "Pods-AFMInfoBanner";
+		};
+		C46580881A8D479D000DF359 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C465807E1A8D479C000DF359 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 88A386B22583935C34CC5B48;
+			remoteInfo = "Pods-CVKHierarchySearcher";
+		};
 		C4CDD3B51A5350B50087DD05 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C4CDD3951A5350B40087DD05 /* Project object */;
@@ -104,6 +125,7 @@
 		C45ECD051A62054C00ADC113 /* SBConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBConstants.swift; sourceTree = "<group>"; };
 		C46550471A7870E60046FFBD /* UINavigationItem+MultipleBarButtonItemsCollections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+MultipleBarButtonItemsCollections.h"; sourceTree = "<group>"; };
 		C46550481A7870E60046FFBD /* UINavigationItem+MultipleBarButtonItemsCollections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+MultipleBarButtonItemsCollections.m"; sourceTree = "<group>"; };
+		C465807E1A8D479C000DF359 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
 		C4676E081A6A4D1F00AE8BC2 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		C4676E801A6DB0F800AE8BC2 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		C4676E811A6DB0F800AE8BC2 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
@@ -225,6 +247,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C465807F1A8D479C000DF359 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C46580851A8D479D000DF359 /* libPods.a */,
+				C46580871A8D479D000DF359 /* libPods-AFMInfoBanner.a */,
+				C46580891A8D479D000DF359 /* libPods-CVKHierarchySearcher.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		C49540A21A57827300F56168 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,6 +315,7 @@
 		C4CDD3941A5350B40087DD05 = {
 			isa = PBXGroup;
 			children = (
+				C465807E1A8D479C000DF359 /* Pods.xcodeproj */,
 				C40C6BFB1A73C6DF00FAFA17 /* RSSReader-app.xcconfig */,
 				C4CDD39F1A5350B40087DD05 /* RSSReader */,
 				C4CDD3B71A5350B50087DD05 /* RSSReaderTests */,
@@ -419,6 +452,12 @@
 			mainGroup = C4CDD3941A5350B40087DD05;
 			productRefGroup = C4CDD39E1A5350B40087DD05 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = C465807F1A8D479C000DF359 /* Products */;
+					ProjectRef = C465807E1A8D479C000DF359 /* Pods.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				C4CDD39C1A5350B40087DD05 /* RSSReader */,
@@ -426,6 +465,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		C46580851A8D479D000DF359 /* libPods.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libPods.a;
+			remoteRef = C46580841A8D479D000DF359 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C46580871A8D479D000DF359 /* libPods-AFMInfoBanner.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libPods-AFMInfoBanner.a";
+			remoteRef = C46580861A8D479D000DF359 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C46580891A8D479D000DF359 /* libPods-CVKHierarchySearcher.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libPods-CVKHierarchySearcher.a";
+			remoteRef = C46580881A8D479D000DF359 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		C4CDD39B1A5350B40087DD05 /* Resources */ = {
