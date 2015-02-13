@@ -101,6 +101,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 				}
 				if let streamError = streamError {
 					self.loadError = trace("streamError", streamError)
+					presentErrorMessage(NSLocalizedString("Failed to load more.", comment: ""))
 				}
 				else {
 					if let lastItemInCompletion = items.last {
@@ -175,6 +176,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		}
 		rssSession.markAllAsRead(self.folder) { error in
 			void(trace("error", error))
+			presentErrorMessage(NSLocalizedString("Failed to mark all as read.", comment: ""))
 		}
 	}
 	@IBAction private func action(sender: AnyObject?) {

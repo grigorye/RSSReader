@@ -165,34 +165,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 	// MARK: -
 	func postprocessAuthentication(completionHandler: (NSError?) -> Void) {
-		rssSession.updateUserInfo { updateUserInfoError in
-			dispatch_async(dispatch_get_main_queue()) {
-				if let updateUserInfoError = trace("updateUserInfoError", updateUserInfoError) {
-					presentErrorMessage(NSLocalizedString("Update failed.", comment: ""))
-				}
-				else {
-					self.rssSession.updateTags { updateTagsError in
-						void(trace("updateTagsError", updateTagsError))
-						dispatch_async(dispatch_get_main_queue()) {
-							self.rssSession.updateSubscriptions { updateSubscriptionsError in
-								void(trace("updateSubscriptionsError", updateSubscriptionsError))
-								dispatch_async(dispatch_get_main_queue()) {
-									self.rssSession.updateUnreadCounts { updateUnreadCountsError in
-										void(trace("updateUnreadCountsError", updateUnreadCountsError))
-										dispatch_async(dispatch_get_main_queue()) {
-											self.rssSession.updateStreamPreferences { updateStreamPreferencesError in
-												void(trace("updateStreamPreferencesError", updateStreamPreferencesError))
-												completionHandler(updateStreamPreferencesError)
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
+		rssSession.updateUserInfo { updateUserInfoError in dispatch_async(dispatch_get_main_queue()) {
+			if let updateUserInfoError = trace("updateUserInfoError", updateUserInfoError) {
+				presentErrorMessage(NSLocalizedString("Failed to retrieve user info.", comment: ""))
+				completionHandler(updateUserInfoError)
+				return
 			}
-		}
+			self.rssSession.updateTags { updateTagsError in dispatch_async(dispatch_get_main_queue()) {
+				if let updateTagsError = trace("updateTagsError", updateTagsError) {
+					presentErrorMessage(NSLocalizedString("Failed to update tags.", comment: ""))
+					completionHandler(updateTagsError)
+					return
+				}
+				self.rssSession.updateSubscriptions { updateSubscriptionsError in dispatch_async(dispatch_get_main_queue()) {
+					if let updateTagsError = trace("updateSubscriptionsError", updateSubscriptionsError) {
+						presentErrorMessage(NSLocalizedString("Failed to update subscriptions.", comment: ""))
+						completionHandler(updateSubscriptionsError)
+						return
+					}
+					self.rssSession.updateUnreadCounts { updateUnreadCountsError in dispatch_async(dispatch_get_main_queue()) {
+						if let updateUnreadCountsError = trace("updateUnreadCountsError", updateUnreadCountsError) {
+							presentErrorMessage(NSLocalizedString("Failed to update unread counts.", comment: ""))
+							completionHandler(updateUnreadCountsError)
+							return
+						}
+						self.rssSession.updateStreamPreferences { updateStreamPreferencesError in dispatch_async(dispatch_get_main_queue()) {
+							if let updateStreamPreferencesError = trace("updateUnreadCountsError", trace("updateStreamPreferencesError", updateStreamPreferencesError)) {
+								completionHandler(updateStreamPreferencesError)
+								return
+							}
+							completionHandler(nil)
+						}}
+					}}
+				}}
+			}}
+		}}
 	}
 	func proceedWithManagedObjectContext() {
 		if self.loginAndPassword.isValid() {
