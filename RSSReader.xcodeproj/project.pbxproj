@@ -58,6 +58,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		C4100F5C1A8E96CB00D669C6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C465807E1A8D479C000DF359 /* Pods.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A7F830BD3400095BF8A3FAB5;
+			remoteInfo = Pods;
+		};
+		C4100F601A8E96CB00D669C6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C465807E1A8D479C000DF359 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 93E167416796CFEC2AAE7813;
+			remoteInfo = "Pods-TUSafariActivity";
+		};
+		C4100F621A8E96CB00D669C6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C465807E1A8D479C000DF359 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8D0CA0FC1B52F67EF6D42A18;
+			remoteInfo = TUSafariActivity;
+		};
 		C46580841A8D479D000DF359 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C465807E1A8D479C000DF359 /* Pods.xcodeproj */;
@@ -262,7 +283,9 @@
 				C46580851A8D479D000DF359 /* libPods.a */,
 				C46580871A8D479D000DF359 /* libPods-AFMInfoBanner.a */,
 				C46580891A8D479D000DF359 /* libPods-CVKHierarchySearcher.a */,
+				C4100F611A8E96CB00D669C6 /* libPods-TUSafariActivity.a */,
 				C46580911A8D4B4E000DF359 /* libPods-UXCam.a */,
+				C4100F631A8E96CB00D669C6 /* TUSafariActivity.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -406,6 +429,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				C4100F5D1A8E96CB00D669C6 /* PBXTargetDependency */,
 			);
 			name = RSSReader;
 			productName = RSSReader;
@@ -475,6 +499,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		C4100F611A8E96CB00D669C6 /* libPods-TUSafariActivity.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libPods-TUSafariActivity.a";
+			remoteRef = C4100F601A8E96CB00D669C6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C4100F631A8E96CB00D669C6 /* TUSafariActivity.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = TUSafariActivity.bundle;
+			remoteRef = C4100F621A8E96CB00D669C6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		C46580851A8D479D000DF359 /* libPods.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -678,6 +716,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		C4100F5D1A8E96CB00D669C6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Pods;
+			targetProxy = C4100F5C1A8E96CB00D669C6 /* PBXContainerItemProxy */;
+		};
 		C4CDD3B61A5350B50087DD05 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C4CDD39C1A5350B40087DD05 /* RSSReader */;

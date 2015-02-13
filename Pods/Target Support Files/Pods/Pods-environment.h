@@ -18,6 +18,12 @@
 #define COCOAPODS_VERSION_MINOR_CVKHierarchySearcher 1
 #define COCOAPODS_VERSION_PATCH_CVKHierarchySearcher 0
 
+// TUSafariActivity
+#define COCOAPODS_POD_AVAILABLE_TUSafariActivity
+#define COCOAPODS_VERSION_MAJOR_TUSafariActivity 1
+#define COCOAPODS_VERSION_MINOR_TUSafariActivity 0
+#define COCOAPODS_VERSION_PATCH_TUSafariActivity 2
+
 // UXCam
 #define COCOAPODS_POD_AVAILABLE_UXCam
 #define COCOAPODS_VERSION_MAJOR_UXCam 1

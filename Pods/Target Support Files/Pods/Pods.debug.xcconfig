@@ -1,7 +1,7 @@
 FRAMEWORK_SEARCH_PATHS = "$(PODS_ROOT)/UXCam"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFMInfoBanner" "${PODS_ROOT}/Headers/Public/CVKHierarchySearcher" "${PODS_ROOT}/Headers/Public/UXCam"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/AFMInfoBanner" -isystem "${PODS_ROOT}/Headers/Public/CVKHierarchySearcher" -isystem "${PODS_ROOT}/Headers/Public/UXCam"
-OTHER_LDFLAGS = -ObjC -l"Pods-AFMInfoBanner" -l"Pods-CVKHierarchySearcher" -l"Pods-UXCam" -framework "AVFoundation" -framework "CoreGraphics" -framework "CoreMedia" -framework "CoreVideo" -framework "MobileCoreServices" -framework "QuartzCore" -framework "SystemConfiguration" -framework "UIKit" -framework "UXCam"
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFMInfoBanner" "${PODS_ROOT}/Headers/Public/CVKHierarchySearcher" "${PODS_ROOT}/Headers/Public/TUSafariActivity" "${PODS_ROOT}/Headers/Public/UXCam"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/AFMInfoBanner" -isystem "${PODS_ROOT}/Headers/Public/CVKHierarchySearcher" -isystem "${PODS_ROOT}/Headers/Public/TUSafariActivity" -isystem "${PODS_ROOT}/Headers/Public/UXCam"
+OTHER_LDFLAGS = -ObjC -l"Pods-AFMInfoBanner" -l"Pods-CVKHierarchySearcher" -l"Pods-TUSafariActivity" -l"Pods-UXCam" -framework "AVFoundation" -framework "CoreGraphics" -framework "CoreMedia" -framework "CoreVideo" -framework "MobileCoreServices" -framework "QuartzCore" -framework "SystemConfiguration" -framework "UIKit" -framework "UXCam"
 OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
 PODS_ROOT = ${SRCROOT}/Pods

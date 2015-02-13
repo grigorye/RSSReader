@@ -11,3 +11,4 @@
 #import <Flurry/Flurry.h>
 #endif
 #import <AFMInfoBanner/AFMInfoBanner.h>
+#import <TUSafariActivity/TUSafariActivity.h>
