@@ -8,7 +8,9 @@
 
 import Foundation
 #if ANALYTICS_ENABLED
+#if CRASHLYTICS_ENABLED
 import Crashlytics
+#endif
 #endif
 
 func asArray<T>(array: [AnyObject]!) -> [T]! {
@@ -27,7 +29,9 @@ func asArray<T>(array: [AnyObject]!) -> [T]! {
 func trace<T>(label: String, value: T, file: NSString = __FILE__, line: Int = __LINE__, function: String = __FUNCTION__) -> T {
 	let message = "\(file.lastPathComponent), \(function).\(line): \(label): \(value)"
 #if ANALYTICS_ENABLED
+#if CRASHLYTICS_ENABLED
 	CLSLogv("%@", getVaList([message]))
+#endif
 #endif
 	println(message)
 	return value
