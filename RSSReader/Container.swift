@@ -9,7 +9,7 @@
 import CoreData
 
 class Container: NSManagedObject {
-    @NSManaged var id: String
+    @NSManaged var streamID: String
     @NSManaged var unreadCount: Int32
     @NSManaged var newestItemDate: NSDate
     @NSManaged var sortID: Int32
