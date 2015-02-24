@@ -44,7 +44,7 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 	// MARK: -
 	private func configureCell(cell: UITableViewCell, forFolder folder: Folder) {
 		(cell as! TableViewContainerCell).setFromContainer(folder)
-		cell.textLabel?.text = folder.id.lastPathComponent
+		cell.textLabel?.text = folder.streamID.lastPathComponent
 	}
 	private func configureCell(cell: UITableViewCell, forSubscription subscription: Subscription) {
 		(cell as! TableViewContainerCell).setFromContainer(subscription)
