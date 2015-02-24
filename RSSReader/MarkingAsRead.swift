@@ -17,7 +17,7 @@ let canonicalFavoriteTag = "user/-/state/com.google/starred"
 
 extension Folder {
 	class func predicateForFetchingFolderWithTagSuffix(tagSuffix: String) -> NSPredicate {
-		return NSPredicate(format: "id ENDSWITH %@", argumentArray: [tagSuffix])
+		return NSPredicate(format: "streamID ENDSWITH %@", argumentArray: [tagSuffix])
 	}
 	class func fetchRequestForFolderWithTagSuffix(tagSuffix: String) -> NSFetchRequest {
 		let $ = NSFetchRequest(entityName: Folder.entityName())
@@ -35,7 +35,7 @@ extension Folder {
 
 extension Item {
 	func categoryForTagSuffix(tagSuffix: String) -> Folder? {
-		let matchingCategories = filter(self.categories) { folder in folder.id.hasSuffix(tagSuffix) }
+		let matchingCategories = filter(self.categories) { folder in folder.streamID.hasSuffix(tagSuffix) }
 		return matchingCategories.first
 	}
 	func includedInCategoryWithTagSuffix(tagSuffix: String) -> Bool {
