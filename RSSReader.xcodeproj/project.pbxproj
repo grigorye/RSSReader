@@ -120,6 +120,7 @@
 		18B271D7F3757D52EE1A6C8B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C401C65A1A5C73CF00CF6AA4 /* 47.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 47.xcdatamodel; sourceTree = "<group>"; };
 		C401C65B1A5C971800CF6AA4 /* MarkingAsRead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkingAsRead.swift; sourceTree = "<group>"; };
+		C404A6421A9D13F100F9C142 /* 218.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 218.xcdatamodel; sourceTree = "<group>"; };
 		C40A24FE1A672B2100B5D959 /* TableViewContainerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewContainerCell.swift; sourceTree = "<group>"; };
 		C40C6BF01A72EFEE00FAFA17 /* Appsee.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Appsee.framework; sourceTree = "<group>"; };
 		C40C6BF21A72F0BC00FAFA17 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -952,6 +953,7 @@
 		C42802741A5C2E0D002474E1 /* RSSReader.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				C404A6421A9D13F100F9C142 /* 218.xcdatamodel */,
 				C4FD88541A5F4A390035E4D1 /* 81.xcdatamodel */,
 				C4FD88531A5F14EA0035E4D1 /* 140.xcdatamodel */,
 				C4676E841A6EE98400AE8BC2 /* current.xcdatamodel */,
