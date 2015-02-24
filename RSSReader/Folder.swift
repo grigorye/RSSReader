@@ -15,7 +15,7 @@ class Folder: Container, Titled {
 		return mutableSetValueForKey("items")
 	}
 	var visibleTitle: String? {
-		return id.lastPathComponent
+		return streamID.lastPathComponent
 	}
 }
 
