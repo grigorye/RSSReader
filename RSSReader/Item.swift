@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 class Item: NSManagedObject {
-    @NSManaged var id: String
+    @NSManaged var itemID: String
 	@NSManaged var date: NSDate
 	@NSManaged var loadDate: NSDate
 	@NSManaged var lastOpenedDate: NSDate
