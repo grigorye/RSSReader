@@ -37,7 +37,7 @@ class RSSSession : NSObject {
 				completionHandler(nil, error)
 				return
 			}
-			let error: NSError? = error ?? {
+			let completionError = nil != error ? error : {
 				let httpResponse = response as! NSHTTPURLResponse
 				if httpResponse.statusCode != 200 {
 					return NSError(domain: RSSSessionErrorDomain, code: RSSSessionError.UnexpectedHTTPResponseStatus.rawValue, userInfo: ["httpResponse": httpResponse])
@@ -171,7 +171,7 @@ class RSSSession : NSObject {
 	}
 	func uploadTag(tag: String, mark: Bool, forItem item: Item, completionHandler: (NSError?) -> Void) {
 		let command = mark ? "a" : "r"
-		let path = "/reader/api/0/edit-tag?\(command)=\(tag)&i=\(item.id)"
+		let path = "/reader/api/0/edit-tag?\(command)=\(tag)&i=\(item.itemID)"
 		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithPath(path) { data, error in
 			completionHandler(error)
 		}
@@ -330,7 +330,7 @@ class RSSSession : NSObject {
 		sessionTask.resume()
 	}
 	func markAllAsRead(container: Container, completionHandler: (NSError?) -> Void) {
-		let containerIDPercentEncoded = container.id.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())!
+		let containerIDPercentEncoded = container.streamID.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())!
 		let newestItemTimestampUsec = container.newestItemDate.timestampUsec
 		let relativeString = "/reader/api/0/mark-all-as-read?s=\(containerIDPercentEncoded)&ts=\(newestItemTimestampUsec)"
 		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithRelativeString(relativeString) { data, error in
@@ -361,9 +361,9 @@ class RSSSession : NSObject {
 			queryComponents += ["c=\(continuation)"]
 		}
 		if let excludedCategory = excludedCategory {
-			queryComponents += ["xt=\(excludedCategory.id)"]
+			queryComponents += ["xt=\(excludedCategory.streamID)"]
 		}
-		let subscriptionIDPercentEncoded = container.id.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())!
+		let subscriptionIDPercentEncoded = container.streamID.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())!
 		let querySuffix = URLQuerySuffixFromComponents(queryComponents)
 		let relativeString = "/reader/api/0/stream/contents/\(subscriptionIDPercentEncoded)\(querySuffix)"
 		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithRelativeString(relativeString) { data, error in
