@@ -33,7 +33,7 @@ class HistoryViewController: UITableViewController, NSFetchedResultsControllerDe
 		let cell = rawCell as! ItemTableViewCell
 		let item = fetchedResultsController.objectAtIndexPath(indexPath) as! Item
 		if let titleLabel = cell.titleLabel {
-			titleLabel.text = item.title ?? item.id.lastPathComponent
+			titleLabel.text = item.title ?? item.itemID.lastPathComponent
 		}
 	}
 	// MARK: -
