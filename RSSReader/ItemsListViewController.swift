@@ -57,7 +57,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	private var unreadOnlyFilterPredicate: NSPredicate {
 		if showUnreadOnly {
-			return NSPredicate(format: "SUBQUERY(categories, $x, $x.id ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
+			return NSPredicate(format: "SUBQUERY(categories, $x, $x.streamID ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
 		}
 		else {
 			return NSPredicate(value: true)
@@ -198,7 +198,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		let cell = rawCell as! ItemTableViewCell
 		let item = fetchedResultsController.objectAtIndexPath(indexPath) as! Item
 		if let titleLabel = cell.titleLabel {
-			titleLabel.text = item.title ?? item.id.lastPathComponent
+			titleLabel.text = item.title ?? item.itemID.lastPathComponent
 		}
 		if let subtitleLabel = cell.subtitleLabel {
 			let timeIntervalFormatted = (nil == NSClassFromString("NSDateComponentsFormatter")) ? "x" : dateComponentsFormatter.stringFromDate(item.date, toDate: loadDate) ?? ""
