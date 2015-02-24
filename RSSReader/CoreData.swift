@@ -31,6 +31,9 @@ extension NSDate {
 	}
 }
 extension Item : ManagedIdentifiable {
+	class func identifierKey() -> String {
+		return "itemID"
+	}
 	class func entityName() -> String {
 		return "Item"
 	}
@@ -88,10 +91,13 @@ extension Subscription : ManagedIdentifiable {
 }
 extension Container: DefaultSortable {
 	class func defaultSortDescriptor() -> NSSortDescriptor {
-		return NSSortDescriptor(key: "id", ascending: true)
+		return NSSortDescriptor(key: "streamID", ascending: true)
 	}
 }
 extension Container: ManagedIdentifiable {
+	class func identifierKey() -> String {
+		return "streamID"
+	}
 	class func entityName() -> String {
 		return "Container"
 	}
@@ -107,7 +113,7 @@ extension Container: ManagedIdentifiable {
 	}
 	func importFromUnreadCountJson(jsonObject: AnyObject) {
 		let json = jsonObject as! [String: AnyObject]
-		self.id = json["id"] as! String
+		self.streamID = json["id"] as! String
 		self.unreadCount = (json["count"] as! NSNumber).intValue
 		self.newestItemDate = NSDate(timestampUsec: json["newestItemTimestampUsec"] as! String)
 	}
@@ -122,7 +128,7 @@ extension Container: ManagedIdentifiable {
 							println("value: \(value)")
 							var insertContainerError: NSError?
 							if let folder = insertedObjectUnlessFetchedWithID(Folder.self, id: folderID, managedObjectContext: managedObjectContext, error: &insertContainerError) {
-								assert(folder.id == folderID, "")
+								assert(folder.streamID == folderID, "")
 								let characterCountInValue = count(value)
 								if characterCountInValue % 8 == 0 {
 									var sortIDs = [Int32]()
