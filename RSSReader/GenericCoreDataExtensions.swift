@@ -23,7 +23,7 @@ protocol DefaultSortable {
 }
 
 protocol ManagedIdentifiable : Managed {
-	var id: String { get set }
+	static func identifierKey() -> String
 }
 
 func insertedObjectUnlessFetchedWithPredicate<T: ManagedIdentifiable>(cls: T.Type, #predicate: NSPredicate, #managedObjectContext: NSManagedObjectContext, #error: NSErrorPointer, newObjectInitializationHandler: (T) -> Void) -> T? {
@@ -47,7 +47,7 @@ func insertedObjectUnlessFetchedWithPredicate<T: ManagedIdentifiable>(cls: T.Typ
 		error.memory = errorForExistingObject
 		return nil
 	}
-	let object: T = existingObject ?? {
+	let object: T = nil != existingObject ? existingObject! : {
 		let newObject = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: managedObjectContext) as! T
 		newObjectInitializationHandler(newObject)
 		return newObject
@@ -55,9 +55,10 @@ func insertedObjectUnlessFetchedWithPredicate<T: ManagedIdentifiable>(cls: T.Typ
 	return object
 }
 func insertedObjectUnlessFetchedWithID<T: ManagedIdentifiable where T : NSManagedObject>(cls: T.Type, #id: String, #managedObjectContext: NSManagedObjectContext, #error: NSErrorPointer) -> T? {
-	let predicate = NSPredicate(format: "id == %@", argumentArray: [id])
+	let identifierKey = cls.identifierKey()
+	let predicate = NSPredicate(format: "%K == %@", argumentArray: [identifierKey, id])
 	return insertedObjectUnlessFetchedWithPredicate(cls, predicate: predicate, managedObjectContext: managedObjectContext, error: error) { newObject in
-		newObject.setValue(id, forKey:"id")
+		newObject.setValue(id, forKey:identifierKey)
 	}
 }
 func importItemsFromJson<T: ManagedIdentifiable where T : NSManagedObject>(json: [String : AnyObject], #type: T.Type, #elementName: NSString, #managedObjectContext: NSManagedObjectContext, #error: NSErrorPointer, #importFromJson: (T, [String: AnyObject], NSErrorPointer) -> Bool) -> [T]? {
