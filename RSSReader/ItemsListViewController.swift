@@ -102,7 +102,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 				}
 				if let streamError = streamError {
 					self.loadError = trace("streamError", streamError)
-					self.presentErrorMessage(NSLocalizedString("Failed to load more.", comment: ""))
+					presentErrorMessage(NSLocalizedString("Failed to load more.", comment: ""))
 				}
 				else {
 					if let lastItemInCompletion = items.last {
@@ -178,7 +178,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		rssSession.markAllAsRead(self.folder) { error in
 			void(trace("error", error))
 			dispatch_async(dispatch_get_main_queue()) {
-				self.presentErrorMessage(NSLocalizedString("Failed to mark all as read.", comment: ""))
+				presentErrorMessage(NSLocalizedString("Failed to mark all as read.", comment: ""))
 			}
 		}
 	}
