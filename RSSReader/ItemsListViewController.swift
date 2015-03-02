@@ -45,11 +45,12 @@ let dateComponentsFormatter: NSDateComponentsFormatter = {
 class ItemsListViewController: UITableViewController, NSFetchedResultsControllerDelegate, UIDataSourceModelAssociation {
 	var folder: Container!
 	private var continuation: String?
-	private var loadDate: NSDate!
+	private var loadDate: NSDate? = nil
 	private var loadInProgress = false
 	private var lastLoadedItem: Item?
 	private var loadCompleted = false
 	private var loadError: NSError?
+	private var nowDate: NSDate!
 	private var tableFooterView: UIView?
 	private var indexPathForTappedAccessoryButton: NSIndexPath?
 	private var showUnreadOnly: Bool {
@@ -92,7 +93,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		let loadDate = self.loadDate
 		loadInProgress = true
 		let excludedCategory: Folder? = showUnreadOnly ? Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: self.mainQueueManagedObjectContext) : nil
-		rssSession.streamContents(self.folder, excludedCategory: excludedCategory, continuation: self.continuation, loadDate: self.loadDate) { continuation, items, streamError in
+		rssSession.streamContents(self.folder, excludedCategory: excludedCategory, continuation: self.continuation, loadDate: self.loadDate!) { continuation, items, streamError in
 			dispatch_async(dispatch_get_main_queue()) {
 				if loadDate != self.loadDate {
 					// Ignore results from previous sessions.
@@ -101,7 +102,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 				}
 				if let streamError = streamError {
 					self.loadError = trace("streamError", streamError)
-					presentErrorMessage(NSLocalizedString("Failed to load more.", comment: ""))
+					self.presentErrorMessage(NSLocalizedString("Failed to load more.", comment: ""))
 				}
 				else {
 					if let lastItemInCompletion = items.last {
@@ -176,7 +177,9 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		}
 		rssSession.markAllAsRead(self.folder) { error in
 			void(trace("error", error))
-			presentErrorMessage(NSLocalizedString("Failed to mark all as read.", comment: ""))
+			dispatch_async(dispatch_get_main_queue()) {
+				self.presentErrorMessage(NSLocalizedString("Failed to mark all as read.", comment: ""))
+			}
 		}
 	}
 	@IBAction private func action(sender: AnyObject?) {
@@ -201,7 +204,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			titleLabel.text = item.title ?? item.itemID.lastPathComponent
 		}
 		if let subtitleLabel = cell.subtitleLabel {
-			let timeIntervalFormatted = (nil == NSClassFromString("NSDateComponentsFormatter")) ? "x" : dateComponentsFormatter.stringFromDate(item.date, toDate: loadDate) ?? ""
+			let timeIntervalFormatted = (nil == NSClassFromString("NSDateComponentsFormatter")) ? "x" : dateComponentsFormatter.stringFromDate(item.date, toDate: nowDate) ?? ""
 			subtitleLabel.text = "\(timeIntervalFormatted)"
 			if _0 {
 			subtitleLabel.textColor = item.markedAsRead ? nil : UIColor.redColor()
@@ -306,6 +309,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			var fetchError: NSError?
 			fetchedResultsController.performFetch(&fetchError)
 			assert(nil == fetchError)
+			nowDate = NSDate()
 		}
 		if let loadDate = coder.decodeObjectForKey(Restorable.loadDate.rawValue) as! NSDate? {
 			self.loadDate = loadDate
@@ -327,6 +331,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	// MARK: -
 	var blocksDelayedTillViewWillAppear = [Handler]()
 	override func viewWillAppear(animated: Bool) {
+		nowDate = NSDate()
 		for i in blocksDelayedTillViewWillAppear {
 			i()
 		}
