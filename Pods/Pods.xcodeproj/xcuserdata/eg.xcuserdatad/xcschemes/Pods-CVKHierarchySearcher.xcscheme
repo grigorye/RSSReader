@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AD7D6DE7BF8331C17538264D"
+               BlueprintIdentifier = "F6107DEDA9755751EC356CE6"
                BuildableName = "libPods-CVKHierarchySearcher.a"
                BlueprintName = "Pods-CVKHierarchySearcher"
                ReferencedContainer = "container:Pods.xcodeproj">

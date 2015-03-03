@@ -14,6 +14,21 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-DZReadability.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-HTMLReader.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-TUSafariActivity-TUSafariActivity.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-TUSafariActivity.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -29,40 +44,45 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>TUSafariActivity.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>5DE1EE1F0C2A75778F0C0D92</key>
+		<key>608EE55A583F4F38468C6314</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A7F830BD3400095BF8A3FAB5</key>
+		<key>64D4543570A114C6F593E945</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AD7D6DE7BF8331C17538264D</key>
+		<key>817F6F406728F48CD0D37A77</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C112B3716F98F3ECE90F22A7</key>
+		<key>9E9543A9E53F7CD7146BC383</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D351455E556405DE0602DDA4</key>
+		<key>B0FA11741D21803D6685A52A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E7E671F71EF4521EEEF37523</key>
+		<key>DC0AF5AF4EFCD1F956F26E7C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F6107DEDA9755751EC356CE6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F94983B9C6AA04028BB55A3A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

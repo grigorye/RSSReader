@@ -18,6 +18,18 @@
 #define COCOAPODS_VERSION_MINOR_CVKHierarchySearcher 1
 #define COCOAPODS_VERSION_PATCH_CVKHierarchySearcher 0
 
+// DZReadability
+#define COCOAPODS_POD_AVAILABLE_DZReadability
+#define COCOAPODS_VERSION_MAJOR_DZReadability 0
+#define COCOAPODS_VERSION_MINOR_DZReadability 2
+#define COCOAPODS_VERSION_PATCH_DZReadability 1
+
+// HTMLReader
+#define COCOAPODS_POD_AVAILABLE_HTMLReader
+#define COCOAPODS_VERSION_MAJOR_HTMLReader 0
+#define COCOAPODS_VERSION_MINOR_HTMLReader 6
+#define COCOAPODS_VERSION_PATCH_HTMLReader 1
+
 // TUSafariActivity
 #define COCOAPODS_POD_AVAILABLE_TUSafariActivity
 #define COCOAPODS_VERSION_MAJOR_TUSafariActivity 1
