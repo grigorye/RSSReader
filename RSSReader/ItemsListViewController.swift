@@ -266,6 +266,9 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		return cell
 	}
 	// MARK: -
+	override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+		tableView.snapHeaderToTop(animated: true)
+	}
 	override func scrollViewDidScroll(scrollView: UIScrollView) {
 		if nil != rssSession {
 			self.loadMoreIfNecessary()
@@ -330,6 +333,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	// MARK: -
 	var blocksDelayedTillViewWillAppear = [Handler]()
+	// MARK: -
 	override func viewWillAppear(animated: Bool) {
 		nowDate = NSDate()
 		for i in blocksDelayedTillViewWillAppear {
