@@ -12,3 +12,4 @@
 #endif
 #import <AFMInfoBanner/AFMInfoBanner.h>
 #import <TUSafariActivity/TUSafariActivity.h>
+#import <DZReadability/DZReadability.h>
