@@ -21,6 +21,17 @@ class ItemsPageViewControllerDelegate: NSObject, UIPageViewControllerDelegate {
 		}()
 		self.pageViewController!.navigationController?.presentViewController(activityViewController, animated: true, completion: nil)
 	}
+	@IBAction func expand(sender: AnyObject?, event: UIEvent?) {
+		let currentViewController = (self.pageViewController!.viewControllers.first as! ItemSummaryWebViewController)
+		let item = currentViewController.item
+		let href = item.canonical!.first!["href"]!
+		let url = NSURL(string: href)!
+		let readability = DZReadability(URLToDownload: url, options: nil) { sender, content, error in
+			void(trace("error", error))
+			currentViewController.loadHTMLString(content, ignoringExisting: true)
+		}
+        readability.start()
+	}
 	// MARK:-
     func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [AnyObject]) {
 		let pendingViewController = pendingViewControllers.first as! ItemSummaryWebViewController

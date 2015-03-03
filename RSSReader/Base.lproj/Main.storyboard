@@ -255,13 +255,19 @@
                     <toolbarItems>
                         <barButtonItem systemItem="action" id="1hJ-Dd-L2L">
                             <connections>
-                                <action selector="action:event:" destination="k9u-3w-tiC" id="Ykz-Lj-U97"/>
+                                <action selector="action:event:" destination="k9u-3w-tiC" id="pMa-k7-FHa"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="Expand" id="frR-cQ-Jf5">
+                            <connections>
+                                <action selector="expand:event:" destination="k9u-3w-tiC" id="Fgk-nc-7PG"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="gvW-35-fFk">
                         <connections>
                             <outletCollection property="rightBarButtonItemsCollection" destination="1hJ-Dd-L2L" id="T6U-f5-uPY"/>
+                            <outletCollection property="rightBarButtonItemsCollection" destination="frR-cQ-Jf5" id="bFD-WE-hx6"/>
                         </connections>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
