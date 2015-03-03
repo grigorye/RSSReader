@@ -25,46 +25,50 @@ class ItemSummaryWebViewController: UIViewController {
 			})
 		}
 	}
+	func loadHTMLString(HTMLString: String, ignoringExisting: Bool) {
+		let webView = self.webView
+		let bundle = NSBundle.mainBundle()
+		let htmlTemplateURL = bundle.URLForResource("ItemSummaryTemplate", withExtension: "html")!
+		var htmlTemplateLoadError: NSError?
+		let htmlTemplate = NSString(contentsOfURL: htmlTemplateURL, encoding: NSUTF8StringEncoding, error: &htmlTemplateLoadError)!
+		let htmlString =
+			htmlTemplate
+				.stringByReplacingOccurrencesOfString("$$Summary$$", withString: HTMLString)
+				.stringByReplacingOccurrencesOfString("$$Title$$", withString: item.title!)
+		if let webViewRequest = webView.request where !ignoringExisting {
+			webView.reload()
+		}
+		else {
+			if _1 {
+				let fileManager = NSFileManager.defaultManager()
+				var cachesDirectoryCreationError: NSError?
+				let cachesDirectoryURL = fileManager.URLForDirectory(.CachesDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: true, error: &cachesDirectoryCreationError)!
+				assert(nil == cachesDirectoryCreationError)
+				let directoryInCaches = (item.objectID.URIRepresentation().path! as NSString).substringFromIndex(1)
+				let pathInCaches = directoryInCaches.stringByAppendingPathComponent("summary.html")
+				let storedHTMLURL = NSURL(string: pathInCaches, relativeToURL: cachesDirectoryURL)!
+				var storedHTMLDirectoryCreationError: NSError?
+				fileManager.createDirectoryAtURL(cachesDirectoryURL.URLByAppendingPathComponent(directoryInCaches), withIntermediateDirectories: true, attributes: nil, error: &storedHTMLDirectoryCreationError)
+				assert(nil == storedHTMLDirectoryCreationError)
+				var htmlWriteError: NSError?
+				htmlString.writeToURL(storedHTMLURL, atomically: true, encoding: NSUTF8StringEncoding, error: &htmlWriteError)
+				assert(nil == htmlWriteError)
+				let request = NSURLRequest(URL: storedHTMLURL.fileReferenceURL()!)
+				webView.loadRequest(request)
+			}
+			else {
+				self.webView.loadHTMLString(htmlString, baseURL: bundle.resourceURL)
+			}
+		}
+	}
+	// MARK: -
 	var blocksScheduledForViewWillAppear = [Handler]()
 	// MARK: -
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		let bundle = NSBundle.mainBundle()
 		blocksScheduledForViewWillAppear += [{
 			let item = self.item
-			let webView = self.webView
-			let htmlTemplateURL = bundle.URLForResource("ItemSummaryTemplate", withExtension: "html")!
-			var htmlTemplateLoadError: NSError?
-			let htmlTemplate = NSString(contentsOfURL: htmlTemplateURL, encoding: NSUTF8StringEncoding, error: &htmlTemplateLoadError)!
-			let htmlString =
-				htmlTemplate
-					.stringByReplacingOccurrencesOfString("$$Summary$$", withString: item.summary!)
-					.stringByReplacingOccurrencesOfString("$$Title$$", withString: item.title!)
-			if let webViewRequest = webView.request {
-				webView.reload()
-			}
-			else {
-				if _1 {
-					let fileManager = NSFileManager.defaultManager()
-					var cachesDirectoryCreationError: NSError?
-					let cachesDirectoryURL = fileManager.URLForDirectory(.CachesDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: true, error: &cachesDirectoryCreationError)!
-					assert(nil == cachesDirectoryCreationError)
-					let directoryInCaches = (item.objectID.URIRepresentation().path! as NSString).substringFromIndex(1)
-					let pathInCaches = directoryInCaches.stringByAppendingPathComponent("summary.html")
-					let storedHTMLURL = NSURL(string: pathInCaches, relativeToURL: cachesDirectoryURL)!
-					var storedHTMLDirectoryCreationError: NSError?
-					fileManager.createDirectoryAtURL(cachesDirectoryURL.URLByAppendingPathComponent(directoryInCaches), withIntermediateDirectories: true, attributes: nil, error: &storedHTMLDirectoryCreationError)
-					assert(nil == storedHTMLDirectoryCreationError)
-					var htmlWriteError: NSError?
-					htmlString.writeToURL(storedHTMLURL, atomically: true, encoding: NSUTF8StringEncoding, error: &htmlWriteError)
-					assert(nil == htmlWriteError)
-					let request = NSURLRequest(URL: storedHTMLURL.fileReferenceURL()!)
-					webView.loadRequest(request)
-				}
-				else {
-					self.webView.loadHTMLString(htmlString, baseURL: bundle.resourceURL)
-				}
-			}
+			self.loadHTMLString(item.summary!, ignoringExisting: false)
 		}]
 	}
 	// MARK: -
