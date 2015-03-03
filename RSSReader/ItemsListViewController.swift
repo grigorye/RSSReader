@@ -340,13 +340,17 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		blocksDelayedTillViewWillAppear += [{
+		blocksDelayedTillViewWillAppear += [{ [unowned self] in
 			if nil == self.fetchedResultsController.fetchedObjects {
 				var fetchError: NSError?
 				self.fetchedResultsController.performFetch(&fetchError)
 				assert(nil == fetchError, "")
 			}
 			self.title = (self.folder as! Titled).visibleTitle
+			let tableView = self.tableView
+			if tableView.contentOffset.y == 0 {
+				tableView.contentOffset = CGPoint(x: 0, y: CGRectGetHeight(tableView.tableHeaderView!.frame))
+			}
 		}]
 		self.tableFooterView = tableView.tableFooterView
 	}
