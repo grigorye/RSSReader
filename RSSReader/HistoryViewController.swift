@@ -10,6 +10,7 @@ import UIKit.UITableViewController
 import CoreData.NSFetchedResultsController
 
 class HistoryViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+	private var nowDate: NSDate!
 	lazy var fetchedResultsController: NSFetchedResultsController = {
 		let fetchRequest: NSFetchRequest = {
 			let $ = NSFetchRequest(entityName: Item.entityName())
@@ -34,6 +35,10 @@ class HistoryViewController: UITableViewController, NSFetchedResultsControllerDe
 		let item = fetchedResultsController.objectAtIndexPath(indexPath) as! Item
 		if let titleLabel = cell.titleLabel {
 			titleLabel.text = item.title ?? item.itemID.lastPathComponent
+		}
+		if let subtitleLabel = cell.subtitleLabel {
+			let timeIntervalFormatted = (nil == NSClassFromString("NSDateComponentsFormatter")) ? "x" : dateComponentsFormatter.stringFromDate(item.date, toDate: nowDate) ?? ""
+			subtitleLabel.text = "\(timeIntervalFormatted)"
 		}
 	}
 	// MARK: -
@@ -105,6 +110,11 @@ class HistoryViewController: UITableViewController, NSFetchedResultsControllerDe
 		default:
 			abort()
 		}
+	}
+	// MARK: -
+	override func viewWillAppear(animated: Bool) {
+		nowDate = NSDate()
+		super.viewWillAppear(animated)
 	}
     override func viewDidLoad() {
         super.viewDidLoad()
