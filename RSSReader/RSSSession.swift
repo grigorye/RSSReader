@@ -1,5 +1,5 @@
 //
-//  Session.swift
+//  RSSSession.swift
 //  RSSReader
 //
 //  Created by Grigory Entin on 03.01.15.
@@ -8,54 +8,10 @@
 
 import Foundation
 
-let RSSSessionErrorDomain = "com.grigoryentin.RSSReader.RSSSession"
-
-enum RSSSessionError: Int {
-	case UnexpectedHTTPResponseStatus
-}
-
-class RSSSession : NSObject {
+class RSSSession: NSObject {
 	let loginAndPassword: LoginAndPassword
-	let dispatchQueue = dispatch_get_main_queue()
-	dynamic var progresses = [NSProgress]()
-	private var mutableProgresses: NSMutableArray {
-		return mutableArrayValueForKey("progresses")
-	}
-	let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
 	init(loginAndPassword: LoginAndPassword) {
 		self.loginAndPassword = loginAndPassword
-	}
-	// MARK: -
-	func dataTaskForHTTPRequest(request: NSURLRequest, completionHandler: (NSData!, NSError!) -> Void) -> NSURLSessionDataTask {
-		let progress = NSProgress(totalUnitCount: 1)
-		progress.becomeCurrentWithPendingUnitCount(1)
-		let sessionTask = session.progressEnabledDataTaskWithRequest(request) { data, response, error in
-			dispatch_async(self.dispatchQueue) {
-				self.mutableProgresses.removeObjectIdenticalTo(progress)
-			}
-			if let error = error {
-				completionHandler(nil, error)
-				return
-			}
-			let completionError = nil != error ? error : {
-				let httpResponse = response as! NSHTTPURLResponse
-				if httpResponse.statusCode != 200 {
-					return NSError(domain: RSSSessionErrorDomain, code: RSSSessionError.UnexpectedHTTPResponseStatus.rawValue, userInfo: ["httpResponse": httpResponse])
-				}
-				else {
-					completionHandler(data, nil)
-					return nil
-				}
-			}()
-			if let error = error {
-				completionHandler(nil, error)
-			}
-		}
-		progress.resignCurrent()
-		dispatch_async(self.dispatchQueue) {
-			self.mutableProgresses.addObject(progress)
-		}
-		return sessionTask
 	}
 	// MARK: -
 	func dataTaskForAuthenticatedHTTPRequestWithURL(url: NSURL, completionHandler: (NSData!, NSError!) -> Void) -> NSURLSessionDataTask {
@@ -64,7 +20,7 @@ class RSSSession : NSObject {
 			$.addValue("GoogleLogin auth=\(self.authToken!)", forHTTPHeaderField: "Authorization")
 			return $
 		}()
-		return self.dataTaskForHTTPRequest(request, completionHandler: completionHandler)
+		return progressEnabledURLSessionTaskGenerator.dataTaskForHTTPRequest(request, completionHandler: completionHandler)
 	}
 	// MARK: -
 	func dataTaskForAuthenticatedHTTPRequestWithPath(path: String, completionHandler: (NSData!, NSError!) -> Void) -> NSURLSessionDataTask {
@@ -95,7 +51,7 @@ class RSSSession : NSObject {
 			}()
 			return $
 		}()
-		let sessionTask = self.dataTaskForHTTPRequest(request) { data, error in
+		let sessionTask = progressEnabledURLSessionTaskGenerator.dataTaskForHTTPRequest(request) { data, error in
 			if let error = error {
 				completionHandler(trace("error", error))
 				return
