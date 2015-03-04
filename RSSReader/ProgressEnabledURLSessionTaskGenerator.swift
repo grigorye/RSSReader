@@ -22,29 +22,31 @@ class ProgressEnabledURLSessionTaskGenerator: NSObject {
 	}
 	let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
 	// MARK: -
-	func dataTaskForHTTPRequest(request: NSURLRequest, completionHandler: (NSData!, NSError!) -> Void) -> NSURLSessionDataTask {
+	typealias HTTPDataTaskCompletionHandler = (NSData!, NSHTTPURLResponse!, NSError!) -> Void
+	func dataTaskForHTTPRequest(request: NSURLRequest, completionHandler: HTTPDataTaskCompletionHandler) -> NSURLSessionDataTask {
 		let progress = NSProgress(totalUnitCount: 1)
 		progress.becomeCurrentWithPendingUnitCount(1)
 		let sessionTask = session.progressEnabledDataTaskWithRequest(request) { data, response, error in
 			dispatch_async(self.dispatchQueue) {
 				self.mutableProgresses.removeObjectIdenticalTo(progress)
 			}
+			let httpResponse = response as! NSHTTPURLResponse!
 			if let error = error {
-				completionHandler(nil, error)
+				completionHandler(nil, httpResponse, error)
 				return
 			}
+			void(trace("response", response))
 			let completionError = nil != error ? error : {
-				let httpResponse = response as! NSHTTPURLResponse
 				if httpResponse.statusCode != 200 {
 					return NSError(domain: URLSessionTaskGeneratorErrorDomain, code: URLSessionTaskGeneratorError.UnexpectedHTTPResponseStatus.rawValue, userInfo: ["httpResponse": httpResponse])
 				}
 				else {
-					completionHandler(data, nil)
+					completionHandler(data, httpResponse, nil)
 					return nil
 				}
 			}()
 			if let error = error {
-				completionHandler(nil, error)
+				completionHandler(nil, httpResponse, error)
 			}
 		}
 		progress.resignCurrent()
@@ -52,5 +54,24 @@ class ProgressEnabledURLSessionTaskGenerator: NSObject {
 			self.mutableProgresses.addObject(progress)
 		}
 		return sessionTask
+	}
+	typealias TextTaskCompletionHandler = (String!, NSError!) -> Void
+	func textTaskForHTTPRequest(request: NSURLRequest, completionHandler: TextTaskCompletionHandler) -> NSURLSessionDataTask {
+		return dataTaskForHTTPRequest(request) { data, httpResponse, error in
+			if let error = error {
+				completionHandler(nil, error)
+				return
+			}
+			let encoding: NSStringEncoding = {
+				if let textEncodingName = httpResponse.textEncodingName {
+					return CFStringConvertEncodingToNSStringEncoding(CFStringConvertIANACharSetNameToEncoding(textEncodingName))
+				}
+				else {
+					return NSUTF8StringEncoding
+				}
+			}()
+			let text = NSString(data: data, encoding: encoding)! as String
+			completionHandler(text, nil)
+		}
 	}
 }
