@@ -26,11 +26,27 @@ class ItemsPageViewControllerDelegate: NSObject, UIPageViewControllerDelegate {
 		let item = currentViewController.item
 		let href = item.canonical!.first!["href"]!
 		let url = NSURL(string: href)!
-		let readability = DZReadability(URLToDownload: url, options: nil) { sender, content, error in
-			void(trace("error", error))
-			currentViewController.loadHTMLString(content, ignoringExisting: true)
+		let dataTask = progressEnabledURLSessionTaskGenerator.textTaskForHTTPRequest(NSURLRequest(URL: url)) { text, error in
+			dispatch_async(dispatch_get_main_queue()) {
+				if let error = error {
+					void(trace("error", error))
+					presentErrorMessage(NSLocalizedString("Failed to expand.", comment: ""))
+				}
+				else {
+					let readability = DZReadability(URL: url, rawDocumentContent: text, options: nil) { sender, content, error in
+						if let error = error {
+							void(trace("error", error))
+							presentErrorMessage(NSLocalizedString("Unable to expand", comment: ""))
+						}
+						else {
+							currentViewController.loadHTMLString(content, ignoringExisting: true)
+						}
+					}
+					readability.start()
+				}
+			}
 		}
-        readability.start()
+		dataTask.resume()
 	}
 	// MARK:-
     func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [AnyObject]) {
