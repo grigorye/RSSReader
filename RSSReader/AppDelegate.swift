@@ -34,14 +34,16 @@ func != (left: LoginAndPassword, right: LoginAndPassword) -> Bool {
 }
 
 class AppDelegateInternals {
-	var rssSession: RSSSession! = nil {
+	var rssSession: RSSSession! = nil
+	private var urlTaskGeneratorProgressKVOBinding: KVOBinding!
+	var progressEnabledURLSessionTaskGenerator = ProgressEnabledURLSessionTaskGenerator() {
 		didSet {
-			self.rssSessionProgressKVOBinding = KVOBinding(object: rssSession, keyPath: "progresses", options: NSKeyValueObservingOptions(0)) { change in
-				UIApplication.sharedApplication().networkActivityIndicatorVisible = 0 < self.rssSession.progresses.count
+			let taskGenerator = oldValue
+			self.urlTaskGeneratorProgressKVOBinding = KVOBinding(object: taskGenerator, keyPath: "progresses", options: NSKeyValueObservingOptions(0)) { change in
+				UIApplication.sharedApplication().networkActivityIndicatorVisible = 0 < taskGenerator.progresses.count
 			}
 		}
 	}
-	var rssSessionProgressKVOBinding: KVOBinding!
 	let (managedObjectContextError, mainQueueManagedObjectContext, backgroundQueueManagedObjectContext): (NSError?, NSManagedObjectContext?, NSManagedObjectContext?) = {
 		let managedObjectModel = NSManagedObjectModel.mergedModelFromBundles(nil)!
 		let psc = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)

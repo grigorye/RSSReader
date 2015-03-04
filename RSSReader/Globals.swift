@@ -40,5 +40,10 @@ extension NSObject {
 			self.applicationDelegate.internals.rssSession = newValue
 		}
 	}
+	var progressEnabledURLSessionTaskGenerator: ProgressEnabledURLSessionTaskGenerator! {
+		get {
+			return self.applicationDelegate.internals.progressEnabledURLSessionTaskGenerator
+		}
+	}
 }
 
