@@ -63,7 +63,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = C465807E1A8D479C000DF359 /* Pods.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = A7F830BD3400095BF8A3FAB5;
+			remoteGlobalIDString = 99BDFD0A0B70527141602A35;
 			remoteInfo = Pods;
 		};
 		C4100F601A8E96CB00D669C6 /* PBXContainerItemProxy */ = {
@@ -73,12 +73,26 @@
 			remoteGlobalIDString = 93E167416796CFEC2AAE7813;
 			remoteInfo = "Pods-TUSafariActivity";
 		};
-		C4100F621A8E96CB00D669C6 /* PBXContainerItemProxy */ = {
+		C4110C5C1AA797F300DAC7E5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C465807E1A8D479C000DF359 /* Pods.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 8D0CA0FC1B52F67EF6D42A18;
-			remoteInfo = TUSafariActivity;
+			remoteGlobalIDString = B77329A583B7A050CE876571;
+			remoteInfo = "Pods-DZReadability";
+		};
+		C4110C5E1AA797F300DAC7E5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C465807E1A8D479C000DF359 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CFA065B1C6DC63F54ECE7C1D;
+			remoteInfo = "Pods-HTMLReader";
+		};
+		C4110C601AA797F300DAC7E5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C465807E1A8D479C000DF359 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 95999749135A89C27CC4A189;
+			remoteInfo = "Pods-TUSafariActivity-TUSafariActivity";
 		};
 		C46580841A8D479D000DF359 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -287,9 +301,11 @@
 				C46580851A8D479D000DF359 /* libPods.a */,
 				C46580871A8D479D000DF359 /* libPods-AFMInfoBanner.a */,
 				C46580891A8D479D000DF359 /* libPods-CVKHierarchySearcher.a */,
+				C4110C5D1AA797F300DAC7E5 /* libPods-DZReadability.a */,
+				C4110C5F1AA797F300DAC7E5 /* libPods-HTMLReader.a */,
 				C4100F611A8E96CB00D669C6 /* libPods-TUSafariActivity.a */,
+				C4110C611AA797F300DAC7E5 /* TUSafariActivity.bundle */,
 				C46580911A8D4B4E000DF359 /* libPods-UXCam.a */,
-				C4100F631A8E96CB00D669C6 /* TUSafariActivity.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -510,11 +526,25 @@
 			remoteRef = C4100F601A8E96CB00D669C6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C4100F631A8E96CB00D669C6 /* TUSafariActivity.bundle */ = {
+		C4110C5D1AA797F300DAC7E5 /* libPods-DZReadability.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libPods-DZReadability.a";
+			remoteRef = C4110C5C1AA797F300DAC7E5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C4110C5F1AA797F300DAC7E5 /* libPods-HTMLReader.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libPods-HTMLReader.a";
+			remoteRef = C4110C5E1AA797F300DAC7E5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C4110C611AA797F300DAC7E5 /* TUSafariActivity.bundle */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = TUSafariActivity.bundle;
-			remoteRef = C4100F621A8E96CB00D669C6 /* PBXContainerItemProxy */;
+			remoteRef = C4110C601AA797F300DAC7E5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		C46580851A8D479D000DF359 /* libPods.a */ = {
