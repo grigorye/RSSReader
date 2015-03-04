@@ -52,6 +52,7 @@
 		C4CDD3C51A5357B20087DD05 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C4CDD3C41A5357B20087DD05 /* Settings.bundle */; };
 		C4CDE1911A5A06A600F16A2E /* ItemSummaryTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */; };
 		C4EF270E1A8D353C000EBE63 /* UserMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EF270D1A8D353C000EBE63 /* UserMessages.swift */; };
+		C4EF76B61AA7A40200E94E80 /* ProgressEnabledURLSessionTaskGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EF76B51AA7A40200E94E80 /* ProgressEnabledURLSessionTaskGenerator.swift */; };
 		C4F575D01A797C7B00F12F20 /* AddToFavoritesActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F575CF1A797C7B00F12F20 /* AddToFavoritesActivity.swift */; };
 		C4F575D61A7988DB00F12F20 /* OpenWebPageActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F575D51A7988DB00F12F20 /* OpenWebPageActivity.swift */; };
 		C4FD88521A5F10BD0035E4D1 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FD88511A5F10BD0035E4D1 /* Container.swift */; };
@@ -208,6 +209,7 @@
 		C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ItemSummaryTemplate.html; sourceTree = "<group>"; };
 		C4D56A2A1A7C33C0007BE398 /* PackageApplication */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = PackageApplication; sourceTree = "<group>"; };
 		C4EF270D1A8D353C000EBE63 /* UserMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMessages.swift; sourceTree = "<group>"; };
+		C4EF76B51AA7A40200E94E80 /* ProgressEnabledURLSessionTaskGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressEnabledURLSessionTaskGenerator.swift; sourceTree = "<group>"; };
 		C4F575CF1A797C7B00F12F20 /* AddToFavoritesActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddToFavoritesActivity.swift; sourceTree = "<group>"; };
 		C4F575D51A7988DB00F12F20 /* OpenWebPageActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenWebPageActivity.swift; sourceTree = "<group>"; };
 		C4FD88511A5F10BD0035E4D1 /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 		C418B32D1A594705002C0578 /* Generic */ = {
 			isa = PBXGroup;
 			children = (
+				C4EF76B51AA7A40200E94E80 /* ProgressEnabledURLSessionTaskGenerator.swift */,
 				C495409C1A575D0C00F56168 /* GenericExtensions.swift */,
 				C451590F1A65E83400374A8C /* KVOBinding.swift */,
 				C41707CE1A56F32500AED81C /* GenericCoreDataExtensions.swift */,
@@ -727,6 +730,7 @@
 				C46FA8691AA56018004B5C45 /* UITableView+SnappingHeaderToTop.swift in Sources */,
 				C41707CF1A56F32500AED81C /* GenericCoreDataExtensions.swift in Sources */,
 				C4C780141A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift in Sources */,
+				C4EF76B61AA7A40200E94E80 /* ProgressEnabledURLSessionTaskGenerator.swift in Sources */,
 				C401C65C1A5C971800CF6AA4 /* MarkingAsRead.swift in Sources */,
 				C4728B3A1A55BAC600D4251A /* CoreData.swift in Sources */,
 				C4F575D01A797C7B00F12F20 /* AddToFavoritesActivity.swift in Sources */,
