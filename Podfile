@@ -5,3 +5,4 @@ pod 'AFMInfoBanner'
 pod 'UXCam'
 pod 'TUSafariActivity'
 pod 'DZReadability'
+pod 'HTMLReader', :inhibit_warnings => true
