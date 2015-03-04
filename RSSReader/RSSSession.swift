@@ -13,8 +13,9 @@ class RSSSession: NSObject {
 	init(loginAndPassword: LoginAndPassword) {
 		self.loginAndPassword = loginAndPassword
 	}
+	typealias TaskCompletionHandler = ProgressEnabledURLSessionTaskGenerator.HTTPDataTaskCompletionHandler
 	// MARK: -
-	func dataTaskForAuthenticatedHTTPRequestWithURL(url: NSURL, completionHandler: (NSData!, NSError!) -> Void) -> NSURLSessionDataTask {
+	func dataTaskForAuthenticatedHTTPRequestWithURL(url: NSURL, completionHandler: TaskCompletionHandler) -> NSURLSessionDataTask {
 		let request: NSURLRequest = {
 			let $ = NSMutableURLRequest(URL: url)
 			$.addValue("GoogleLogin auth=\(self.authToken!)", forHTTPHeaderField: "Authorization")
@@ -23,11 +24,11 @@ class RSSSession: NSObject {
 		return progressEnabledURLSessionTaskGenerator.dataTaskForHTTPRequest(request, completionHandler: completionHandler)
 	}
 	// MARK: -
-	func dataTaskForAuthenticatedHTTPRequestWithPath(path: String, completionHandler: (NSData!, NSError!) -> Void) -> NSURLSessionDataTask {
+	func dataTaskForAuthenticatedHTTPRequestWithPath(path: String, completionHandler: TaskCompletionHandler) -> NSURLSessionDataTask {
 		let url = NSURL(scheme: "https", host: "www.inoreader.com", path: path)!
 		return self.dataTaskForAuthenticatedHTTPRequestWithURL(url, completionHandler: completionHandler)
 	}
-	func dataTaskForAuthenticatedHTTPRequestWithRelativeString(relativeString: String, completionHandler: (NSData!, NSError!) -> Void) -> NSURLSessionDataTask {
+	func dataTaskForAuthenticatedHTTPRequestWithRelativeString(relativeString: String, completionHandler: TaskCompletionHandler) -> NSURLSessionDataTask {
 		let url = NSURL(string: relativeString, relativeToURL: NSURL(scheme: "https", host: "www.inoreader.com", path: "/"))!
 		return self.dataTaskForAuthenticatedHTTPRequestWithURL(url, completionHandler: completionHandler)
 	}
@@ -51,7 +52,7 @@ class RSSSession: NSObject {
 			}()
 			return $
 		}()
-		let sessionTask = progressEnabledURLSessionTaskGenerator.dataTaskForHTTPRequest(request) { data, error in
+		let sessionTask = progressEnabledURLSessionTaskGenerator.dataTaskForHTTPRequest(request) { data, httpResponse, error in
 			if let error = error {
 				completionHandler(trace("error", error))
 				return
@@ -74,7 +75,7 @@ class RSSSession: NSObject {
 	// MARK: -
 	func updateUserInfo(completionHandler: (NSError?) -> Void) {
 		let path = "/reader/api/0/user-info"
-		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithPath(path) { data, error in
+		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithPath(path) { data, httpResponse, error in
 			if let error = error {
 				completionHandler(error)
 				return
@@ -128,14 +129,14 @@ class RSSSession: NSObject {
 	func uploadTag(tag: String, mark: Bool, forItem item: Item, completionHandler: (NSError?) -> Void) {
 		let command = mark ? "a" : "r"
 		let path = "/reader/api/0/edit-tag?\(command)=\(tag)&i=\(item.itemID)"
-		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithPath(path) { data, error in
+		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithPath(path) { data, httpResponse, error in
 			completionHandler(error)
 		}
 		sessionTask.resume()
 	}
 	func updateUnreadCounts(completionHandler: (NSError?) -> Void) {
 		let path = "/reader/api/0/unread-count?output=json"
-		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithPath(path) { data, error in
+		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithPath(path) { data, httpResponse, error in
 			if let error = error {
 				completionHandler(error)
 				return
@@ -193,7 +194,7 @@ class RSSSession: NSObject {
 	}
 	func updateTags(completionHandler: (NSError?) -> Void) {
 		let path = "/reader/api/0/tag/list"
-		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithPath(path) { data, error in
+		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithPath(path) { data, httpResponse, error in
 			if let error = error {
 				completionHandler(error)
 				return
@@ -222,7 +223,7 @@ class RSSSession: NSObject {
 	}
 	func updateStreamPreferences(completionHandler: (NSError?) -> Void) {
 		let path = "/reader/api/0/preference/stream/list"
-		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithPath(path) { data, error in
+		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithPath(path) { data, httpResponse, error in
 			if let error = error {
 				completionHandler(error)
 				return
@@ -258,7 +259,7 @@ class RSSSession: NSObject {
 	}
 	func updateSubscriptions(completionHandler: (_: NSError?) -> Void) {
 		let path = "/reader/api/0/subscription/list"
-		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithPath(path) { data, error in
+		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithPath(path) { data, httpResponse, error in
 			if let error = error {
 				completionHandler(error)
 				return
@@ -267,7 +268,7 @@ class RSSSession: NSObject {
 			backgroundQueueManagedObjectContext.performBlock {
 				let importAndSaveError: NSError? = {
 					var importError: NSError?
-					let subscriptions = importItemsFromJsonData(data!, type: Subscription.self, elementName: "subscriptions", managedObjectContext: backgroundQueueManagedObjectContext, error: &importError) { (subscription, json, error) in
+					let subscriptions = importItemsFromJsonData(data, type: Subscription.self, elementName: "subscriptions", managedObjectContext: backgroundQueueManagedObjectContext, error: &importError) { (subscription, json, error) in
 						subscription.importFromJson(json)
 						return true
 					}
@@ -289,13 +290,13 @@ class RSSSession: NSObject {
 		let containerIDPercentEncoded = container.streamID.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())!
 		let newestItemTimestampUsec = container.newestItemDate.timestampUsec
 		let relativeString = "/reader/api/0/mark-all-as-read?s=\(containerIDPercentEncoded)&ts=\(newestItemTimestampUsec)"
-		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithRelativeString(relativeString) { data, error in
+		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithRelativeString(relativeString) { data, httpResponse, error in
 			if let error = error {
 				completionHandler(error)
 				return
 			}
-			let body = NSString(data: data, encoding: NSUTF8StringEncoding)!
-			assert(body.isEqualToString("OK"), "")
+			let body = NSString(data: data, encoding: NSUTF8StringEncoding)! as String
+			assert(body == "OK", "")
 			let backgroundQueueManagedObjectContext = self.backgroundQueueManagedObjectContext
 			backgroundQueueManagedObjectContext.performBlock {
 				let markAsReadHereError: NSError? = {
@@ -322,7 +323,7 @@ class RSSSession: NSObject {
 		let subscriptionIDPercentEncoded = container.streamID.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())!
 		let querySuffix = URLQuerySuffixFromComponents(queryComponents)
 		let relativeString = "/reader/api/0/stream/contents/\(subscriptionIDPercentEncoded)\(querySuffix)"
-		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithRelativeString(relativeString) { data, error in
+		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithRelativeString(relativeString) { data, httpResponse, error in
 			if let error = error {
 				completionHandler(continuation: nil, items: nil, error: error)
 				return
