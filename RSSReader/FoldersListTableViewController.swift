@@ -74,10 +74,8 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 	}
     func indexPathForElementWithModelIdentifier(identifier: String, inView view: UIView) -> NSIndexPath? {
 		let objectIDURL = NSURL(string: identifier)!
-		let managedObjectContext = self.rootFolder.managedObjectContext!
-		let objectID = managedObjectContext.persistentStoreCoordinator!.managedObjectIDForURIRepresentation(objectIDURL)!
-		let object = managedObjectContext.objectWithID(objectID)
-		let indexPath = NSIndexPath(forRow: (childContainers as NSArray).indexOfObjectIdenticalTo(object), inSection: 0)
+		let row = find(childContainers.map { return $0.objectID.URIRepresentation().absoluteString! }, identifier)!
+		let indexPath = NSIndexPath(forRow: row, inSection: 0)
 		return trace("indexPath", indexPath)
 	}
 	// MARK: -
