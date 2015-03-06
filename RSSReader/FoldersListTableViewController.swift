@@ -20,7 +20,7 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 		let regeneratedChildContainers: [Container] = {
 			if let rootFolder = self.rootFolder {
 				let showUnreadOnly = self.defaults.showUnreadOnly
-				return (asArray(rootFolder.childContainers.array) as [Container]).filter { showUnreadOnly ? $0.unreadCount > 0 : true }
+				return (rootFolder.childContainers.array as! [Container]).filter { showUnreadOnly ? $0.unreadCount > 0 : true }
 			}
 			else {
 				return []
