@@ -19,7 +19,7 @@ class ItemsPageViewController : UIPageViewController {
 		let dataSource = self.dataSource as! ItemsPageViewControllerDataSource
 		dataSource.decodeRestorableStateWithCoder(coder)
 		if _1 {
-			let viewControllers = asArray(coder.decodeObjectForKey(Restorable.pageViewControllers.rawValue) as! [AnyObject]) as [UIViewController]
+			let viewControllers = coder.decodeObjectForKey(Restorable.pageViewControllers.rawValue) as! [UIViewController]
 			blocksDelayedTillViewWillAppear += [{
 				self.setViewControllers(viewControllers, direction: .Forward, animated: false) { completed in
 					void(trace("completed", completed))
