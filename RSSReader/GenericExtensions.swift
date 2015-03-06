@@ -13,19 +13,6 @@ import Crashlytics
 #endif
 #endif
 
-func asArray<T>(array: [AnyObject]!) -> [T]! {
-	if let array = array {
-		var result = [T]()
-		for i in array {
-			result += [i as! T]
-		}
-		return result
-	}
-	else {
-		return nil
-	}
-}
-
 func trace<T>(label: String, value: T, file: NSString = __FILE__, line: Int = __LINE__, function: String = __FUNCTION__) -> T {
 	let message = "\(file.lastPathComponent), \(function).\(line): \(label): \(value)"
 #if ANALYTICS_ENABLED
