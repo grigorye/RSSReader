@@ -72,7 +72,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 				NSSortDescriptor(key: "date", ascending: false),
 			]
 			$.predicate = NSCompoundPredicate.andPredicateWithSubpredicates([
-				NSPredicate(format: "(subscription == %@) or (categories contains %@)", argumentArray: [folder, folder]),
+				folder is Subscription ? NSPredicate(format: "(subscription == %@)", argumentArray: [folder]) : NSPredicate(format: "(categories contains %@)", argumentArray: [folder]),
 				self.unreadOnlyFilterPredicate
 			])
 			$.fetchBatchSize = 20
@@ -281,7 +281,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			let pageViewController = segue.destinationViewController as! UIPageViewController
 			let itemsPageViewControllerDataSource: ItemsPageViewControllerDataSource = {
 				let $ = pageViewController.dataSource as! ItemsPageViewControllerDataSource
-				$.items = asArray(self.fetchedResultsController.fetchedObjects!)
+				$.items = self.fetchedResultsController.fetchedObjects! as! [Item]
 				return $
 			}()
 			let initialViewController = itemsPageViewControllerDataSource.viewControllerForItem(self.selectedItem(), storyboard: pageViewController.storyboard!)
