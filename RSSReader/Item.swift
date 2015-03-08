@@ -13,7 +13,7 @@ class Item: NSManagedObject {
     @NSManaged var itemID: String
 	@NSManaged var date: NSDate
 	@NSManaged var loadDate: NSDate
-	@NSManaged var lastOpenedDate: NSDate
+	@NSManaged var lastOpenedDate: NSDate?
     @NSManaged var title: String?
     @NSManaged var summary: String?
 	@NSManaged var categories: Set<Folder>
