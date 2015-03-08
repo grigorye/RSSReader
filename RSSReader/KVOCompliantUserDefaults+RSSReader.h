@@ -10,6 +10,7 @@
 
 @interface KVOCompliantUserDefaults (RSSReader)
 
+@property (nonatomic) BOOL traceEnabled;
 @property (nonatomic) BOOL showUnreadOnly;
 @property (copy, nonatomic) NSString *authToken;
 @property (copy, nonatomic) NSString *login;

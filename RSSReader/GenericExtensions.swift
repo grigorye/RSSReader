@@ -13,14 +13,20 @@ import Crashlytics
 #endif
 #endif
 
+var traceEnabled: Bool = {
+	return _1 ? false : defaults.traceEnabled
+}()
+
 func trace<T>(label: String, value: T, file: NSString = __FILE__, line: Int = __LINE__, function: String = __FUNCTION__) -> T {
-	let message = "\(file.lastPathComponent), \(function).\(line): \(label): \(value)"
+	if traceEnabled {
+		let message = "\(file.lastPathComponent), \(function).\(line): \(label): \(value)"
 #if ANALYTICS_ENABLED
 #if CRASHLYTICS_ENABLED
-	CLSLogv("%@", getVaList([message]))
+		CLSLogv("%@", getVaList([message]))
 #endif
 #endif
-	println(message)
+		println(message)
+	}
 	return value
 }
 
