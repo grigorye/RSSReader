@@ -211,7 +211,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			}
 		}
 		if let readMarkLabel = cell.readMarkLabel {
-			readMarkLabel.hidden = nil != item.lastOpenedDate
+			readMarkLabel.hidden = item.markedAsRead
 		}
 	}
 	// MARK: -
