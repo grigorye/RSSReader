@@ -207,6 +207,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		if self.loginAndPassword.isValid() {
 			let rssSession = RSSSession(loginAndPassword: self.loginAndPassword)
 			self.rssSession = rssSession
+			if _1 {
 			let postAuthenticate = { () -> Void in
 				self.postprocessAuthentication { error in
 					dispatch_async(dispatch_get_main_queue()) {
@@ -234,6 +235,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			else {
 				postAuthenticate()
 			}
+			}
 		}
 		else {
 			if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
@@ -251,10 +253,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 	// MARK: -
 	func application(application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
+		void(trace("self", self))
 		return true
 	}
 	func application(application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
+		void(trace("self", self))
 		return !defaults.stateRestorationDisabled
+	}
+	func application(application: UIApplication, willFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+		void(trace("self", self))
+		return true
 	}
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		assert(nil == self.internals.managedObjectContextError, "")
