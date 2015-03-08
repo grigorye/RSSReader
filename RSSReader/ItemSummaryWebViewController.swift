@@ -24,6 +24,7 @@ class ItemSummaryWebViewController: UIViewController {
 				}
 			})
 		}
+		item.lastOpenedDate = NSDate()
 	}
 	func loadHTMLString(HTMLString: String, ignoringExisting: Bool) {
 		let webView = self.webView
@@ -79,8 +80,9 @@ class ItemSummaryWebViewController: UIViewController {
 	}
 	override func viewDidAppear(animated: Bool) {
 		super.viewDidAppear(animated)
-		item.lastOpenedDate = NSDate()
-		self.markAsReadTimer = NSTimer.scheduledTimerWithTimeInterval(markAsReadTimeInterval, target: self, selector: "markAsRead", userInfo: nil, repeats: false)
+		if !self.item.markedAsRead {
+			self.markAsReadTimer = NSTimer.scheduledTimerWithTimeInterval(markAsReadTimeInterval, target: self, selector: "markAsRead", userInfo: nil, repeats: false)
+		}
 	}
 	override func viewWillDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)
