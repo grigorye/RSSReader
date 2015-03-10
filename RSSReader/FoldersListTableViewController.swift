@@ -74,9 +74,15 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 	}
     func indexPathForElementWithModelIdentifier(identifier: String, inView view: UIView) -> NSIndexPath? {
 		let objectIDURL = NSURL(string: identifier)!
-		let row = find(childContainers.map { return $0.objectID.URIRepresentation().absoluteString! }, identifier)!
-		let indexPath = NSIndexPath(forRow: row, inSection: 0)
-		return trace("indexPath", indexPath)
+		if let row = find(childContainers.map { return $0.objectID.URIRepresentation().absoluteString! }, identifier) {
+			let indexPath = NSIndexPath(forRow: row, inSection: 0)
+			return trace("indexPath", indexPath)
+		}
+		else {
+			let missingObjectIDURL = objectIDURL
+			void(trace("missingObjectIDURL", missingObjectIDURL))
+			return nil
+		}
 	}
 	// MARK: -
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
