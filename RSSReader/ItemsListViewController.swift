@@ -261,7 +261,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		return (fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo).name
 	}
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier(MainStoryboard.ReuseIdentifiers.Item, forIndexPath: indexPath) as! UITableViewCell
+		let cell = tableView.dequeueReusableCellWithIdentifier("Item", forIndexPath: indexPath) as! UITableViewCell
 		self.configureCell(cell, atIndexPath: indexPath)
 		return cell
 	}
@@ -344,6 +344,8 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		let cellNib = UINib(nibName: "ItemSimpleTableViewCell", bundle: nil)
+		tableView.registerNib(cellNib, forCellReuseIdentifier: "Item")
 		blocksDelayedTillViewWillAppear += [{ [unowned self] in
 			if nil == self.fetchedResultsController.fetchedObjects {
 				var fetchError: NSError?
