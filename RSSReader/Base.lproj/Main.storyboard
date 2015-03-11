@@ -86,6 +86,9 @@
                             <action selector="refresh:" destination="3bj-4R-y2f" eventType="valueChanged" id="O4D-jz-jmg"/>
                         </connections>
                     </refreshControl>
+                    <connections>
+                        <segue destination="Wtn-2N-ccu" kind="show" identifier="showPages" id="w0U-iJ-oAk"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nPg-NE-vWc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -382,5 +385,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="CAU-xE-lLZ"/>
         <segue reference="0Df-Yo-bIC"/>
+        <segue reference="w0U-iJ-oAk"/>
     </inferredMetricsTieBreakers>
 </document>
