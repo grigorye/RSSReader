@@ -266,6 +266,10 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		return cell
 	}
 	// MARK: -
+	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		self.performSegueWithIdentifier(MainStoryboard.SegueIdentifiers.ShowPages, sender: self)
+	}
+	// MARK: -
 	override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
 		tableView.snapHeaderToTop(animated: true)
 	}
