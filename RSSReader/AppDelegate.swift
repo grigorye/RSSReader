@@ -19,10 +19,14 @@ import Appsee
 #endif
 
 struct LoginAndPassword {
-	let login: String? = nil
-	let password: String? = nil
+	let login: String?
+	let password: String?
 	func isValid() -> Bool {
 		return (login != nil) && (password != nil)
+	}
+	init(login: String?, password: String?) {
+		self.login = login
+		self.password = password
 	}
 }
 
