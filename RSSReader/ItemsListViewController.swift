@@ -84,9 +84,9 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}()
 	// MARK: -
 	private func loadMore(completionHandler: (loadDateDidChange: Bool) -> Void) {
-		assert(!loadInProgress, "")
-		assert(!loadCompleted, "")
-		assert(nil == loadError, "")
+		assert(!loadInProgress)
+		assert(!loadCompleted)
+		assert(nil == loadError)
 		if nil == self.continuation {
 			self.loadDate = NSDate()
 		}
@@ -354,7 +354,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			if nil == self.fetchedResultsController.fetchedObjects {
 				var fetchError: NSError?
 				self.fetchedResultsController.performFetch(&fetchError)
-				assert(nil == fetchError, "")
+				assert(nil == fetchError)
 			}
 			self.title = (self.folder as! Titled).visibleTitle
 			let tableView = self.tableView

@@ -128,7 +128,7 @@ extension Container: ManagedIdentifiable {
 							println("value: \(value)")
 							var insertContainerError: NSError?
 							if let folder = insertedObjectUnlessFetchedWithID(Folder.self, id: folderID, managedObjectContext: managedObjectContext, error: &insertContainerError) {
-								assert(folder.streamID == folderID, "")
+								assert(folder.streamID == folderID)
 								let characterCountInValue = count(value)
 								if characterCountInValue % 8 == 0 {
 									var sortIDs = [Int32]()

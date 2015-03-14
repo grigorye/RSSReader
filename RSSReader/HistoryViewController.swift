@@ -120,6 +120,6 @@ class HistoryViewController: UITableViewController, NSFetchedResultsControllerDe
         super.viewDidLoad()
 		var fetchError: NSError?
 		fetchedResultsController.performFetch(&fetchError)
-		assert(nil == fetchError, "")
+		assert(nil == fetchError)
     }
 }

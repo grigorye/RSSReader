@@ -296,7 +296,7 @@ class RSSSession: NSObject {
 				return
 			}
 			let body = NSString(data: data, encoding: NSUTF8StringEncoding)! as String
-			assert(body == "OK", "")
+			assert(body == "OK")
 			let backgroundQueueManagedObjectContext = self.backgroundQueueManagedObjectContext
 			backgroundQueueManagedObjectContext.performBlock {
 				let markAsReadHereError: NSError? = {

@@ -269,7 +269,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		return true
 	}
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-		assert(nil == self.internals.managedObjectContextError, "")
+		assert(nil == self.internals.managedObjectContextError)
 		if let managedObjectContextError = self.internals.managedObjectContextError {
 			void(trace("managedObjectContextError", managedObjectContextError))
 			presentErrorMessage(NSLocalizedString("Something went wrong.", comment: ""))
