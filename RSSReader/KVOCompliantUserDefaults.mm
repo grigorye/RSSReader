@@ -27,7 +27,7 @@ id boxed(NSObject *value) {
 	return value;
 }
 
-id boxed(BOOL value) {
+__nonnull id boxed(BOOL value) {
 	return @(value);
 }
 
@@ -66,7 +66,7 @@ nnil(T *object) {
 
 @implementation KVOCompliantUserDefaults
 
-static NSDictionary *
+static __nonnull NSDictionary *
 propertyInfoFromProperty(objc_property_t property) {
 	let name = property_getName(property);
 	let attributes = property_getAttributes(property);
@@ -88,7 +88,7 @@ propertyInfoFromProperty(objc_property_t property) {
 	return $;
 }
 
-+ (NSDictionary *)propertyInfosWithGetterAndSetterMap:(NSMutableDictionary * __autoreleasing *)getterAndSetterMapP {
++ (nonnull NSDictionary *)propertyInfosWithGetterAndSetterMap:(NSMutableDictionary * __autoreleasing *)getterAndSetterMapP {
 	let $ = [NSMutableDictionary new];
 	let getterAndSetterMap = [NSMutableDictionary new];
 	var propertyCount = unsigned(0);
@@ -111,20 +111,20 @@ propertyInfoFromProperty(objc_property_t property) {
 	return $;
 }
 
-- (BOOL)isDefaultName:(NSString *)name;
+- (BOOL)isDefaultName:(nonnull NSString *)name;
 {
 	return ![@[@"values", @"defaults"] containsObject:name];
 }
 
 #pragma mark -
 
-+ (NSDictionary *)propertyInfos;
++ (nonnull NSDictionary *)propertyInfos;
 {
 	NSMutableDictionary *propertyInfoGetterAndSetterMap;
 	return [self propertyInfosWithGetterAndSetterMap:&propertyInfoGetterAndSetterMap];
 }
 
-+ (NSDictionary *)propertyInfoGetterAndSetterMap;
++ (nonnull NSDictionary *)propertyInfoGetterAndSetterMap;
 {
 	NSMutableDictionary *_;
 	(void)[self propertyInfosWithGetterAndSetterMap:&_];
@@ -194,7 +194,7 @@ setBoolValueIMP(KVOCompliantUserDefaults *self, SEL _cmd, BOOL value) {
 
 #pragma mark -
 
-+ (NSString *)defaultNameForSelector:(SEL)sel;
++ (nonnull NSString *)defaultNameForSelector:(SEL)sel;
 {
 	let selName = NSStringFromSelector(sel);
 	let propertyInfo = as<NSDictionary>(self.propertyInfoGetterAndSetterMap[selName]);
