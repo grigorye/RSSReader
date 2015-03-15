@@ -30,7 +30,7 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 	}
 	// MARK: -
 	@IBAction func refresh(sender: AnyObject!) {
-		rssSession.updateUnreadCounts { error in
+		rssSession!.updateUnreadCounts { error in
 			dispatch_async(dispatch_get_main_queue()) {
 				if nil == self.rootFolder {
 					self.rootFolder = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: self.mainQueueManagedObjectContext)
@@ -62,7 +62,7 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 			let itemsListViewController = segue.destinationViewController as! ItemsListViewController
 			let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow()!
 			let subscription = childContainers[indexPathForSelectedRow.row] as! Subscription
-			itemsListViewController.folder = subscription
+			itemsListViewController.container = subscription
 		default:
 			abort()
 		}
