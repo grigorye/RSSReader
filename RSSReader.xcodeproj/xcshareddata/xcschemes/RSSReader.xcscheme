@@ -41,7 +41,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9E9543A9E53F7CD7146BC383"
+               BlueprintIdentifier = "99BDFD0A0B70527141602A35"
                BuildableName = "libPods.a"
                BlueprintName = "Pods"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -99,6 +99,10 @@
          <CommandLineArgument
             argument = "-allowMissingSourceModelError YES"
             isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-traceEnabled YES"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-forceStoreRemoval YES"
