@@ -14,7 +14,7 @@ import Crashlytics
 #endif
 
 var traceEnabled: Bool = {
-	return _1 ? false : defaults.traceEnabled
+	return _0 ? false : defaults.traceEnabled
 }()
 
 func trace<T>(label: String, value: T, file: NSString = __FILE__, line: Int = __LINE__, function: String = __FUNCTION__) -> T {
