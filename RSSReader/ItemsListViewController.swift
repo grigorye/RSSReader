@@ -43,13 +43,41 @@ let dateComponentsFormatter: NSDateComponentsFormatter = {
 }()
 
 class ItemsListViewController: UITableViewController, NSFetchedResultsControllerDelegate, UIDataSourceModelAssociation {
-	var folder: Container!
-	private var continuation: String?
-	private var loadDate: NSDate? = nil
+	var container: Container?
+	lazy var containerViewState: ContainerViewState? = {
+		let container = self.container!
+		if let existingViewState = container.viewStates.first {
+			return existingViewState
+		}
+		else {
+			let managedObjectContext = container.managedObjectContext!
+			let newViewState = NSEntityDescription.insertNewObjectForEntityForName("ContainerViewState", inManagedObjectContext: managedObjectContext) as! ContainerViewState
+			newViewState.container = container
+			return newViewState
+		}
+	}()
+	private var continuation: String? {
+		set { containerViewState!.continuation = newValue }
+		get { return containerViewState!.continuation }
+	}
+	private var loadDate: NSDate? {
+		set { containerViewState!.loadDate = newValue }
+		get { return containerViewState!.loadDate }
+	}
+	private var lastLoadedItem: Item? {
+		set { containerViewState!.lastLoadedItem = newValue }
+		get { return containerViewState!.lastLoadedItem }
+	}
+	private var loadCompleted: Bool {
+		set { containerViewState!.loadCompleted = newValue }
+		get { return containerViewState!.loadCompleted }
+	}
+	private var loadError: NSError? {
+		set { containerViewState!.loadError = newValue }
+		get { return containerViewState!.loadError }
+	}
+	//
 	private var loadInProgress = false
-	private var lastLoadedItem: Item?
-	private var loadCompleted = false
-	private var loadError: NSError?
 	private var nowDate: NSDate!
 	private var tableFooterView: UIView?
 	private var indexPathForTappedAccessoryButton: NSIndexPath?
@@ -66,13 +94,13 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	private lazy var fetchedResultsController: NSFetchedResultsController = {
 		let fetchRequest: NSFetchRequest = {
-			let folder = self.folder
+			let container = self.container
 			let $ = NSFetchRequest(entityName: Item.entityName())
 			$.sortDescriptors = [
 				NSSortDescriptor(key: "date", ascending: false),
 			]
 			$.predicate = NSCompoundPredicate.andPredicateWithSubpredicates([
-				folder is Subscription ? NSPredicate(format: "(subscription == %@)", argumentArray: [folder]) : NSPredicate(format: "(categories contains %@)", argumentArray: [folder]),
+				container! is Subscription ? NSPredicate(format: "(subscription == %@)", argumentArray: [container!]) : NSPredicate(format: "(categories contains %@)", argumentArray: [container!]),
 				self.unreadOnlyFilterPredicate
 			])
 			$.fetchBatchSize = 20
@@ -93,7 +121,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		let loadDate = self.loadDate
 		loadInProgress = true
 		let excludedCategory: Folder? = showUnreadOnly ? Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: self.mainQueueManagedObjectContext) : nil
-		rssSession.streamContents(self.folder, excludedCategory: excludedCategory, continuation: self.continuation, loadDate: self.loadDate!) { continuation, items, streamError in
+		rssSession!.streamContents(container!, excludedCategory: excludedCategory, continuation: self.continuation, loadDate: loadDate!) { continuation, items, streamError in
 			dispatch_async(dispatch_get_main_queue()) {
 				if loadDate != self.loadDate {
 					// Ignore results from previous sessions.
@@ -129,20 +157,16 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 				return false
 			}
 			if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows() {
-				if let lastVisibleIndexPath = indexPathsForVisibleRows.last as! NSIndexPath? {
+				if let lastLoadedItem = self.lastLoadedItem {
+					let lastVisibleIndexPath = indexPathsForVisibleRows.last as! NSIndexPath
 					let numberOfItemsToPreload = 10
-					let barrierIndexPath = NSIndexPath(forRow: lastVisibleIndexPath.row + numberOfItemsToPreload, inSection: lastVisibleIndexPath.section)
-					let indexPathForLastLoadedItem : NSIndexPath = {
-						if let lastLoadedItem = self.lastLoadedItem {
-							return self.fetchedResultsController.indexPathForObject(lastLoadedItem)!
-						}
-						else {
-							return NSIndexPath(forRow: 0, inSection: 0)
-						}
-					}()
-					return indexPathForLastLoadedItem.compare(barrierIndexPath) == .OrderedAscending
+					let barrierIndexPath = NSIndexPath(forRow: trace("lastVisibleIndexPath", lastVisibleIndexPath).row + numberOfItemsToPreload, inSection: lastVisibleIndexPath.section)
+					let indexPathForLastLoadedItem = self.fetchedResultsController.indexPathForObject(lastLoadedItem)!
+					return trace("indexPathForLastLoadedItem.compare(barrierIndexPath) == .OrderedAscending", trace("indexPathForLastLoadedItem", indexPathForLastLoadedItem).compare(trace("barrierIndexPath", barrierIndexPath)) == .OrderedAscending)
 				}
-				return true
+				else {
+					return true
+				}
 			}
 			return false
 		}()
@@ -171,11 +195,11 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		}
 	}
 	@IBAction private func markAllAsRead(sender: AnyObject!) {
-		let items = (self.folder as! ItemsOwner).ownItems
+		let items = (self.container as! ItemsOwner).ownItems
 		for i in items {
 			i.markedAsRead = true
 		}
-		rssSession.markAllAsRead(self.folder) { error in
+		rssSession!.markAllAsRead(container!) { error in
 			void(trace("error", error))
 			dispatch_async(dispatch_get_main_queue()) {
 				presentErrorMessage(NSLocalizedString("Failed to mark all as read.", comment: ""))
@@ -183,10 +207,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		}
 	}
 	@IBAction private func action(sender: AnyObject?) {
-		let activityViewController: UIViewController = {
-			let activityItems = [self.folder]
-			return UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
-		}()
+		let activityViewController = UIActivityViewController(activityItems: [container!], applicationActivities: applicationActivities)
 		self.navigationController?.presentViewController(activityViewController, animated: true, completion: nil)
 	}
 	// MARK: -
@@ -299,27 +320,20 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	// MARK: - State Preservation and Restoration
 	private enum Restorable: String {
-		case folderObjectID = "folderObjectID"
-		case loadDate = "loadDate"
+		case containerObjectID = "containerObjectID"
 	}
 	override func encodeRestorableStateWithCoder(coder: NSCoder) {
 		super.encodeRestorableStateWithCoder(coder)
-		folder?.encodeObjectIDWithCoder(coder, key: Restorable.folderObjectID.rawValue)
-		if let loadDate = loadDate {
-			coder.encodeObject(loadDate, forKey: Restorable.loadDate.rawValue)
-		}
+		container?.encodeObjectIDWithCoder(coder, key: Restorable.containerObjectID.rawValue)
 	}
 	override func decodeRestorableStateWithCoder(coder: NSCoder) {
 		super.decodeRestorableStateWithCoder(coder)
-		if let folder = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.folderObjectID.rawValue, managedObjectContext: self.mainQueueManagedObjectContext) as! Container? {
-			self.folder = folder
+		self.container = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.containerObjectID.rawValue, managedObjectContext: self.mainQueueManagedObjectContext) as! Container?
+		if nil != self.container {
 			var fetchError: NSError?
 			fetchedResultsController.performFetch(&fetchError)
 			assert(nil == fetchError)
 			nowDate = NSDate()
-		}
-		if let loadDate = coder.decodeObjectForKey(Restorable.loadDate.rawValue) as! NSDate? {
-			self.loadDate = loadDate
 		}
 	}
 	// MARK: -
@@ -348,7 +362,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		let cellNib = UINib(nibName: "ItemSimpleTableViewCell", bundle: nil)
+		let cellNib = UINib(nibName: "ItemTableViewCell", bundle: nil)
 		tableView.registerNib(cellNib, forCellReuseIdentifier: "Item")
 		blocksDelayedTillViewWillAppear += [{ [unowned self] in
 			if nil == self.fetchedResultsController.fetchedObjects {
@@ -356,7 +370,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 				self.fetchedResultsController.performFetch(&fetchError)
 				assert(nil == fetchError)
 			}
-			self.title = (self.folder as! Titled).visibleTitle
+			self.title = (self.container as! Titled).visibleTitle
 			let tableView = self.tableView
 			if tableView.contentOffset.y == 0 {
 				tableView.contentOffset = CGPoint(x: 0, y: CGRectGetHeight(tableView.tableHeaderView!.frame))
