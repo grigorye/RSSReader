@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class FoldersListTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, UIDataSourceModelAssociation {
-	dynamic var rootFolder: Folder!
+	dynamic var rootFolder: Folder?
 	private var childContainers: [Container]!
 	let defaults = KVOCompliantUserDefaults()
 	class func keyPathsForValuesAffectingRegeneratedChildContainers() -> Set<String> {
@@ -30,16 +30,23 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 	}
 	// MARK: -
 	@IBAction func refresh(sender: AnyObject!) {
-		rssSession!.updateUnreadCounts { error in
-			dispatch_async(dispatch_get_main_queue()) {
+		rssSession!.updateAll { error in dispatch_async(dispatch_get_main_queue()) {
+			if let error = error {
+				presentErrorMessage(NSLocalizedString("Got a problem with feeds retrieval. \(error.localizedDescription)", comment: ""))
+			}
+			else {
+				presentInfoMessage(NSLocalizedString("Feeds have been retrieved.", comment: ""))
+			}
+			if nil == error {
 				if nil == self.rootFolder {
 					self.rootFolder = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: self.mainQueueManagedObjectContext)
+					assert(nil != self.rootFolder)
 				}
-				self.tableView.reloadData()
-				let refreshControl = sender as! UIRefreshControl
-				refreshControl.endRefreshing()
 			}
-		}
+			self.tableView.reloadData()
+			let refreshControl = sender as! UIRefreshControl
+			refreshControl.endRefreshing()
+		}}
 	}
 	// MARK: -
 	private func configureCell(cell: UITableViewCell, forFolder folder: Folder) {
@@ -139,7 +146,7 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 		super.viewDidLoad()
 		blocksScheduledForViewWillAppear += [{
 			if nil != self.rootFolder?.parentFolder {
-				self.title = self.rootFolder.visibleTitle
+				self.title = self.rootFolder!.visibleTitle
 			}
 		}]
 	}
