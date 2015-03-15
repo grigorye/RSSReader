@@ -14,6 +14,7 @@ class Container: NSManagedObject {
     @NSManaged var newestItemDate: NSDate
     @NSManaged var sortID: Int32
 	@NSManaged var parentFolder: Folder?
+	@NSManaged var viewStates: Set<ContainerViewState>
 }
 
 @objc protocol Titled {
