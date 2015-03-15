@@ -12,7 +12,7 @@ class AddToFavoritesActivity : TypeFilteringActivity  {
 	override func performActivity() {
 		let item = acceptedItems.last!
 		item.markedAsFavorite = true
-		self.rssSession.uploadTag(canonicalFavoriteTag, mark: true, forItem: item, completionHandler: { uploadFavoritesStateError in
+		rssSession!.uploadTag(canonicalFavoriteTag, mark: true, forItem: item, completionHandler: { uploadFavoritesStateError in
 			if let uploadFavoritesStateError = uploadFavoritesStateError {
 				trace("uploadFavoritesStateError", uploadFavoritesStateError)
 				presentErrorMessage(NSLocalizedString("Failed to mark as favorite.", comment: ""))

@@ -15,7 +15,7 @@ class MarkAllAsReadActivity : TypeFilteringActivity {
 		for i in items {
 			i.markedAsRead = true
 		}
-		rssSession.markAllAsRead(folder) { error in
+		rssSession!.markAllAsRead(folder) { error in
 			void(trace("error", error))
 		}
 	}

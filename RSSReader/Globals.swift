@@ -32,7 +32,7 @@ extension NSObject {
 			return self.applicationDelegate.internals.backgroundQueueManagedObjectContext!
 		}
 	}
-	var rssSession: RSSSession! {
+	var rssSession: RSSSession? {
 		get {
 			return self.applicationDelegate.internals.rssSession
 		}

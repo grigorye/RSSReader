@@ -18,7 +18,7 @@ class ItemSummaryWebViewController: UIViewController {
 	func markAsRead() {
 		if (!item.markedAsRead) {
 			item.markedAsRead = true
-			self.rssSession.uploadTag(canonicalReadTag, mark: true, forItem: item, completionHandler: { uploadReadStateError in
+			rssSession!.uploadTag(canonicalReadTag, mark: true, forItem: item, completionHandler: { uploadReadStateError in
 				if let uploadReadStateError = uploadReadStateError {
 					trace("uploadReadStateError", uploadReadStateError)
 				}
