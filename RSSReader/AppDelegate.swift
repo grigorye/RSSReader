@@ -38,7 +38,7 @@ func != (left: LoginAndPassword, right: LoginAndPassword) -> Bool {
 }
 
 class AppDelegateInternals {
-	var rssSession: RSSSession! = nil
+	var rssSession: RSSSession?
 	private var urlTaskGeneratorProgressKVOBinding: KVOBinding!
 	var progressEnabledURLSessionTaskGenerator = ProgressEnabledURLSessionTaskGenerator() {
 		didSet {
@@ -171,31 +171,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 	// MARK: -
 	func postprocessAuthentication(completionHandler: (NSError?) -> Void) {
-		rssSession.updateUserInfo { updateUserInfoError in dispatch_async(dispatch_get_main_queue()) {
+		let rssSession = self.rssSession
+		rssSession!.updateUserInfo { updateUserInfoError in dispatch_async(dispatch_get_main_queue()) {
 			if let updateUserInfoError = trace("updateUserInfoError", updateUserInfoError) {
 				presentErrorMessage(NSLocalizedString("Failed to retrieve user info.", comment: ""))
 				completionHandler(updateUserInfoError)
 				return
 			}
-			self.rssSession.updateTags { updateTagsError in dispatch_async(dispatch_get_main_queue()) {
+			rssSession!.updateTags { updateTagsError in dispatch_async(dispatch_get_main_queue()) {
 				if let updateTagsError = trace("updateTagsError", updateTagsError) {
 					presentErrorMessage(NSLocalizedString("Failed to update tags.", comment: ""))
 					completionHandler(updateTagsError)
 					return
 				}
-				self.rssSession.updateSubscriptions { updateSubscriptionsError in dispatch_async(dispatch_get_main_queue()) {
+				rssSession!.updateSubscriptions { updateSubscriptionsError in dispatch_async(dispatch_get_main_queue()) {
 					if let updateTagsError = trace("updateSubscriptionsError", updateSubscriptionsError) {
 						presentErrorMessage(NSLocalizedString("Failed to update subscriptions.", comment: ""))
 						completionHandler(updateSubscriptionsError)
 						return
 					}
-					self.rssSession.updateUnreadCounts { updateUnreadCountsError in dispatch_async(dispatch_get_main_queue()) {
+					rssSession!.updateUnreadCounts { updateUnreadCountsError in dispatch_async(dispatch_get_main_queue()) {
 						if let updateUnreadCountsError = trace("updateUnreadCountsError", updateUnreadCountsError) {
 							presentErrorMessage(NSLocalizedString("Failed to update unread counts.", comment: ""))
 							completionHandler(updateUnreadCountsError)
 							return
 						}
-						self.rssSession.updateStreamPreferences { updateStreamPreferencesError in dispatch_async(dispatch_get_main_queue()) {
+						rssSession!.updateStreamPreferences { updateStreamPreferencesError in dispatch_async(dispatch_get_main_queue()) {
 							if let updateStreamPreferencesError = trace("updateUnreadCountsError", trace("updateStreamPreferencesError", updateStreamPreferencesError)) {
 								completionHandler(updateStreamPreferencesError)
 								return
@@ -207,44 +208,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			}}
 		}}
 	}
-	func proceedWithManagedObjectContext() {
-		if self.loginAndPassword.isValid() {
-			let rssSession = RSSSession(loginAndPassword: self.loginAndPassword)
-			self.rssSession = rssSession
-			if _1 {
-			let postAuthenticate = { () -> Void in
-				self.postprocessAuthentication { error in
-					dispatch_async(dispatch_get_main_queue()) {
-						if let error = error {
-							presentErrorMessage(NSLocalizedString("Got a problem with feeds retrieval.", comment: ""))
-						}
-						else {
-							presentInfoMessage(NSLocalizedString("Feeds have been retrieved.", comment: ""))
-						}
+	func refreshSubscriptions() {
+		let postAuthenticate = { () -> Void in
+			self.postprocessAuthentication { error in
+				dispatch_async(dispatch_get_main_queue()) {
+					if let error = error {
+						presentErrorMessage(NSLocalizedString("Got a problem with feeds retrieval.", comment: ""))
+					}
+					else {
+						presentInfoMessage(NSLocalizedString("Feeds have been retrieved.", comment: ""))
 					}
 				}
-			}
-			if (rssSession.authToken == nil) {
-				rssSession.authenticate { error in
-					dispatch_async(dispatch_get_main_queue()) {
-						if let error = error {
-							presentErrorMessage(NSLocalizedString("Authentication failed.", comment: ""))
-						}
-						else {
-							postAuthenticate()
-						}
-					}
-				}
-			}
-			else {
-				postAuthenticate()
-			}
 			}
 		}
+		if (rssSession!.authToken == nil) {
+			rssSession!.authenticate { error in dispatch_async(dispatch_get_main_queue()) {
+				if let error = error {
+					presentErrorMessage(NSLocalizedString("Authentication failed.", comment: ""))
+				}
+				else {
+					postAuthenticate()
+				}
+			}}
+		}
 		else {
-			if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
-				UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
-			}
+			postAuthenticate()
 		}
 	}
 	lazy var fetchedRootFolderBinding: FetchedObjectBinding<Folder> = FetchedObjectBinding<Folder>(managedObjectContext: self.mainQueueManagedObjectContext, predicate: Folder.predicateForFetchingFolderWithTagSuffix(rootTagSuffix)) { folder in
@@ -253,17 +241,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 	lazy var fetchedFavoritesFolderBinding: FetchedObjectBinding<Folder> = FetchedObjectBinding<Folder>(managedObjectContext: self.mainQueueManagedObjectContext, predicate: Folder.predicateForFetchingFolderWithTagSuffix(favoriteTagSuffix)) { folder in
 		let foldersViewController = self.favoritesViewController
-		foldersViewController.folder = folder
+		foldersViewController.container = folder
 	}
 	// MARK: -
+	private let currentRestorationFormatVersion = 1
+	private enum Restorable: String {
+		case restorationFormatVersion = "restorationFormatVersion"
+	}
 	func application(application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
 		void(trace("self", self))
+		coder.encodeObject(currentRestorationFormatVersion, forKey: Restorable.restorationFormatVersion.rawValue)
 		return true
 	}
 	func application(application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
 		void(trace("self", self))
+		let restorationFormatVersion = (coder.decodeObjectForKey(Restorable.restorationFormatVersion.rawValue) as! Int?) ?? 0
+		if restorationFormatVersion < currentRestorationFormatVersion {
+			return false
+		}
 		return !defaults.stateRestorationDisabled
 	}
+	//
 	func application(application: UIApplication, willFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
 		void(trace("self", self))
 		return true
@@ -283,7 +281,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 				let title = NSLocalizedString("Favorites", comment: "");
 				return UIBarButtonItem(title: title, style: .Plain, target: nil, action: nil)
 			}()
-			proceedWithManagedObjectContext()
+			if !loginAndPassword.isValid() {
+				self.openSettings(nil)
+			}
+			else {
+				self.rssSession = RSSSession(loginAndPassword: self.loginAndPassword)
+			}
 		}
 		return true
 	}
