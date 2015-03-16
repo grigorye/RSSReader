@@ -39,15 +39,8 @@ func != (left: LoginAndPassword, right: LoginAndPassword) -> Bool {
 
 class AppDelegateInternals {
 	var rssSession: RSSSession?
-	private var urlTaskGeneratorProgressKVOBinding: KVOBinding!
-	var progressEnabledURLSessionTaskGenerator = ProgressEnabledURLSessionTaskGenerator() {
-		didSet {
-			let taskGenerator = oldValue
-			self.urlTaskGeneratorProgressKVOBinding = KVOBinding(object: taskGenerator, keyPath: "progresses", options: NSKeyValueObservingOptions(0)) { change in
-				UIApplication.sharedApplication().networkActivityIndicatorVisible = 0 < taskGenerator.progresses.count
-			}
-		}
-	}
+	private let urlTaskGeneratorProgressKVOBinding: KVOBinding
+	let progressEnabledURLSessionTaskGenerator = ProgressEnabledURLSessionTaskGenerator()
 	let (managedObjectContextError, mainQueueManagedObjectContext, backgroundQueueManagedObjectContext): (NSError?, NSManagedObjectContext?, NSManagedObjectContext?) = {
 		let managedObjectModel = NSManagedObjectModel.mergedModelFromBundles(nil)!
 		let psc = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
@@ -131,7 +124,12 @@ class AppDelegateInternals {
 		})
 		return (nil, mainQueueManagedObjectContext, backgroundQueueManagedObjectContext)
 	}()
-	init () {
+	init() {
+		let taskGenerator = progressEnabledURLSessionTaskGenerator
+		urlTaskGeneratorProgressKVOBinding = KVOBinding(object: taskGenerator, keyPath: "progresses", options: NSKeyValueObservingOptions(0)) { change in
+			let networkActivityIndicatorShouldBeVisible = 0 < taskGenerator.progresses.count
+			UIApplication.sharedApplication().networkActivityIndicatorVisible = trace("networkActivityIndicatorShouldBeVisible", networkActivityIndicatorShouldBeVisible)
+		}
 	}
 }
 
