@@ -18,7 +18,7 @@ class Container: NSManagedObject {
 }
 
 @objc protocol Titled {
-	 var visibleTitle: String? { get }
+	var visibleTitle: String? { get }
 }
 
 @objc protocol ItemsOwner {
