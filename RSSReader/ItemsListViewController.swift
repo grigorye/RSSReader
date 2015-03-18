@@ -41,6 +41,14 @@ let dateComponentsFormatter: NSDateComponentsFormatter = {
 	$.allowedUnits = .CalendarUnitMinute | .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitWeekOfMonth | .CalendarUnitDay | .CalendarUnitHour
 	return $;
 }()
+let loadAgoDateComponentsFormatter: NSDateComponentsFormatter = {
+	let $ = NSDateComponentsFormatter()
+	$.unitsStyle = .Full
+	$.allowsFractionalUnits = true
+	$.maximumUnitCount = 1
+	$.allowedUnits = .CalendarUnitMinute | .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitWeekOfMonth | .CalendarUnitDay | .CalendarUnitHour
+	return $;
+}()
 
 class ItemsListViewController: UITableViewController, NSFetchedResultsControllerDelegate, UIDataSourceModelAssociation {
 	var container: Container?
@@ -279,7 +287,16 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		return (fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo).numberOfObjects
 	}
 	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		return (fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo).name
+		let title: String = {
+			if let loadDate = self.loadDate {
+				let loadAgo = loadAgoDateComponentsFormatter.stringFromDate(loadDate, toDate: NSDate())
+				return NSLocalizedString("\(loadAgo!) ago", comment: "")
+			}
+			else {
+				return NSLocalizedString("Just now", comment: "")
+			}
+		}()
+		return _1 ? title : (fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo).name
 	}
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("Item", forIndexPath: indexPath) as! UITableViewCell
