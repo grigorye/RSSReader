@@ -69,7 +69,13 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		get { return containerViewState!.continuation }
 	}
 	private var loadDate: NSDate? {
-		set { containerViewState!.loadDate = newValue }
+		set {
+			containerViewState!.loadDate = newValue
+			
+			if let tableView = self.tableView {
+				tableView.headerViewForSection(0)!.textLabel.text = self.tableView(tableView, titleForHeaderInSection: 0)?.uppercaseString
+			}
+		}
 		get { return containerViewState!.loadDate }
 	}
 	private var lastLoadedItem: Item? {
@@ -168,9 +174,9 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 				if let lastLoadedItem = self.lastLoadedItem {
 					let lastVisibleIndexPath = indexPathsForVisibleRows.last as! NSIndexPath
 					let numberOfItemsToPreload = 10
-					let barrierIndexPath = NSIndexPath(forRow: trace("lastVisibleIndexPath", lastVisibleIndexPath).row + numberOfItemsToPreload, inSection: lastVisibleIndexPath.section)
+					let barrierIndexPath = NSIndexPath(forRow: notrace("lastVisibleIndexPath", lastVisibleIndexPath).row + numberOfItemsToPreload, inSection: lastVisibleIndexPath.section)
 					let indexPathForLastLoadedItem = self.fetchedResultsController.indexPathForObject(lastLoadedItem)!
-					return trace("indexPathForLastLoadedItem.compare(barrierIndexPath) == .OrderedAscending", trace("indexPathForLastLoadedItem", indexPathForLastLoadedItem).compare(trace("barrierIndexPath", barrierIndexPath)) == .OrderedAscending)
+					return notrace("indexPathForLastLoadedItem.compare(barrierIndexPath) == .OrderedAscending", notrace("indexPathForLastLoadedItem", indexPathForLastLoadedItem).compare(notrace("barrierIndexPath", barrierIndexPath)) == .OrderedAscending)
 				}
 				else {
 					return true
@@ -178,14 +184,15 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			}
 			return false
 		}()
-		if shouldLoadMore {
+		if notrace("shouldLoadMore", shouldLoadMore) {
 			self.loadMore { loadDateDidChange in
 			}
 		}
 	}
 	@IBAction private func refresh(sender: AnyObject!) {
+		let refreshControl = self.refreshControl!
 		if loadInProgress && trace("nil == continuation", nil == continuation) {
-			self.refreshControl?.endRefreshing()
+			refreshControl.endRefreshing()
 		}
 		else {
 			self.loadCompleted = false
@@ -194,7 +201,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			self.loadError = nil
 			self.loadMore { loadDateDidChange in
 				if !loadDateDidChange {
-					void(self.refreshControl?.endRefreshing())
+					refreshControl.endRefreshing()
 				}
 			}
 			UIView.animateWithDuration(0.4) {
@@ -228,7 +235,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	// MARK: -
 	private func configureCell(rawCell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
 		let cell = rawCell as! ItemTableViewCell
-		let item = fetchedResultsController.objectAtIndexPath(indexPath) as! Item
+		let item = fetchedResultsController.objectAtIndexPath(trace("indexPath", indexPath)) as! Item
 		if let titleLabel = cell.titleLabel {
 			titleLabel.text = item.title ?? item.itemID.lastPathComponent
 		}
@@ -260,7 +267,8 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
 		let tableView = self.tableView!
-		switch type {
+		trace("type", stringFromFetchedResultsChangeType(type))
+		switch trace("type", type) {
 		case .Insert:
 			tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: rowAnimation)
 		case .Delete:
