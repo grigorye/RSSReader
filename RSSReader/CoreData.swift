@@ -120,12 +120,13 @@ extension Container: ManagedIdentifiable {
 	class func importStreamPreferencesJson(jsonObject: AnyObject, managedObjectContext: NSManagedObjectContext) {
 		if let json = jsonObject as? [String : [[String : AnyObject]]] {
 			for (folderID, prefs) in json {
-				println("folderID: \(folderID), prefs: \(prefs)")
+				trace("folderID", folderID)
+				trace("prefs", prefs)
 				for prefs in prefs {
 					let id = prefs["id"] as? String
 					if id == "subscription-ordering" {
 						if let value = prefs["value"] as? String {
-							println("value: \(value)")
+							trace("value", value)
 							var insertContainerError: NSError?
 							if let folder = insertedObjectUnlessFetchedWithID(Folder.self, id: folderID, managedObjectContext: managedObjectContext, error: &insertContainerError) {
 								assert(folder.streamID == folderID)
@@ -149,7 +150,7 @@ extension Container: ManagedIdentifiable {
 									}()
 									var fetchContainersForSortIDsError: NSError?
 									if let unorderedChildContainers = managedObjectContext.executeFetchRequest(request, error: &fetchContainersForSortIDsError) as! [Container]? {
-										println("unorderedChildContainers: \(unorderedChildContainers)")
+										trace("unorderedChildContainers", unorderedChildContainers)
 										let childContainers = map(sortIDs) { sortID in
 											return filter(unorderedChildContainers) { $0.sortID == sortID }.first!
 										}
