@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 #if ANALYTICS_ENABLED
 #if CRASHLYTICS_ENABLED
 import Crashlytics
@@ -25,8 +26,12 @@ func trace<T>(label: String, value: T, file: NSString = __FILE__, line: Int = __
 		CLSLogv("%@", getVaList([message]))
 #endif
 #endif
-		println(message)
+		NSLog("%@", message)
 	}
+	return value
+}
+
+func notrace<T>(label: String, value: T, file: NSString = __FILE__, line: Int = __LINE__, function: String = __FUNCTION__) -> T {
 	return value
 }
 
@@ -57,4 +62,17 @@ func filterObjectsByType<T>(objects: [AnyObject]) -> [T] {
 		}
 	}
 	return filteredObjects
+}
+
+func stringFromFetchedResultsChangeType(type: NSFetchedResultsChangeType) -> String {
+	switch (type) {
+	case .Insert:
+		return "Insert"
+	case .Delete:
+		return "Delete"
+	case .Update:
+		return "Update"
+	case .Move:
+		return "Move"
+	}
 }
