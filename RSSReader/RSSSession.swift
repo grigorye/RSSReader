@@ -404,7 +404,7 @@ class RSSSession: NSObject {
 					let saveEveryItemAfterImport = _0
 					let items = importItemsFromJson(json!, type: Item.self, elementName: "items", managedObjectContext: backgroundQueueManagedObjectContext, error: &importError) { (item, itemJson, error) in
 						item.importFromJson(itemJson)
-						if (_0) {
+						if (_1) {
 						item.loadDate = loadDate
 						}
 						if saveEveryItemAfterImport {
