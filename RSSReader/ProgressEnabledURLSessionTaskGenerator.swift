@@ -70,8 +70,12 @@ class ProgressEnabledURLSessionTaskGenerator: NSObject {
 					return NSUTF8StringEncoding
 				}
 			}()
-			let text = NSString(data: data, encoding: encoding)! as String
-			completionHandler(text, nil)
+			if let text = NSString(data: data, encoding: encoding) as String? {
+				completionHandler(text, nil)
+			}
+			else {
+				completionHandler(nil, NSError(domain: applicationErrorDomain, code: ApplicationError.DataDoesNotMatchTextEncoding.rawValue, userInfo: nil))
+			}
 		}
 	}
 }
