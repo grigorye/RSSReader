@@ -15,7 +15,12 @@ var _1 = true
 var _0 = false
 
 let applicationDomain = "com.grigoryentin.RSSReader"
+let applicationErrorDomain = "com.grigoryentin.RSSReader"
 
+enum ApplicationError: Int {
+	case Unused
+	case DataDoesNotMatchTextEncoding
+}
 extension NSObject {
 	var applicationDelegate: AppDelegate {
 		get {
