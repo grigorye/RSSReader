@@ -72,8 +72,8 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		set {
 			containerViewState!.loadDate = newValue
 			
-			if let tableView = self.tableView {
-				tableView.headerViewForSection(0)!.textLabel.text = self.tableView(tableView, titleForHeaderInSection: 0)?.uppercaseString
+			if let sectionHeaderView = self.tableView?.headerViewForSection(0) {
+				sectionHeaderView.textLabel.text = self.tableView(tableView, titleForHeaderInSection: 0)?.uppercaseString
 			}
 		}
 		get { return containerViewState!.loadDate }
