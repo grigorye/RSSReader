@@ -115,7 +115,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			$.fetchBatchSize = 20
 			return $
 		}()
-		let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.mainQueueManagedObjectContext, sectionNameKeyPath: _0 ? nil : "loadDate", cacheName: nil)
+		let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.mainQueueManagedObjectContext, sectionNameKeyPath: _0 ? nil : "loadDate.timeIntervalSinceReferenceDate", cacheName: nil)
 		$.delegate = self
 		return $
 	}()
@@ -290,8 +290,17 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		return (fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo).numberOfObjects
 	}
 	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		let loadDate: NSDate? = {
+			if _1 {
+				let sectionName = (self.fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo).name!
+				return Optional(NSDate(timeIntervalSinceReferenceDate: (sectionName as NSString).doubleValue))
+			}
+			else {
+				return self.loadDate
+			}
+		}()
 		let title: String = {
-			if let loadDate = self.loadDate {
+			if let loadDate = loadDate {
 				let loadAgo = loadAgoDateComponentsFormatter.stringFromDate(loadDate, toDate: NSDate())
 				return NSLocalizedString("\(loadAgo!) ago", comment: "")
 			}
@@ -299,7 +308,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 				return NSLocalizedString("Just now", comment: "")
 			}
 		}()
-		return _0 ? title : (fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo).name
+		return title
 	}
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("Item", forIndexPath: indexPath) as! UITableViewCell
