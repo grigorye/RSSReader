@@ -69,13 +69,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		get { return containerViewState!.continuation }
 	}
 	private var loadDate: NSDate? {
-		set {
-			containerViewState!.loadDate = newValue
-			
-			if let sectionHeaderView = self.tableView?.headerViewForSection(0) {
-				sectionHeaderView.textLabel.text = self.tableView(tableView, titleForHeaderInSection: 0)?.uppercaseString
-			}
-		}
+		set { containerViewState!.loadDate = newValue }
 		get { return containerViewState!.loadDate }
 	}
 	private var lastLoadedItem: Item? {
@@ -111,7 +105,8 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			let container = self.container
 			let $ = NSFetchRequest(entityName: Item.entityName())
 			$.sortDescriptors = [
-				NSSortDescriptor(key: "date", ascending: false),
+				NSSortDescriptor(key: "loadDate", ascending: false),
+				NSSortDescriptor(key: "date", ascending: false)
 			]
 			$.predicate = NSCompoundPredicate.andPredicateWithSubpredicates([
 				container! is Subscription ? NSPredicate(format: "(subscription == %@)", argumentArray: [container!]) : NSPredicate(format: "(categories contains %@)", argumentArray: [container!]),
@@ -120,7 +115,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			$.fetchBatchSize = 20
 			return $
 		}()
-		let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.mainQueueManagedObjectContext, sectionNameKeyPath: _1 ? nil : "itemsListSectionName", cacheName: nil)
+		let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.mainQueueManagedObjectContext, sectionNameKeyPath: _0 ? nil : "loadDate", cacheName: nil)
 		$.delegate = self
 		return $
 	}()
@@ -304,7 +299,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 				return NSLocalizedString("Just now", comment: "")
 			}
 		}()
-		return _1 ? title : (fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo).name
+		return _0 ? title : (fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo).name
 	}
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("Item", forIndexPath: indexPath) as! UITableViewCell
