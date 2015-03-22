@@ -9,52 +9,21 @@
 import UIKit
 
 class ItemsPageViewControllerDelegate: NSObject, UIPageViewControllerDelegate {
-	@IBOutlet weak var pageViewController: UIPageViewController?
-	@IBAction func action(sender: AnyObject?, event: UIEvent?) {
-		let activityViewController: UIViewController = {
-			let currentViewController = (self.pageViewController!.viewControllers.first as! ItemSummaryWebViewController)
-			let item = currentViewController.item
-			let href = item.canonical!.first!["href"]!
-			let url = NSURL(string: href)!
-			let activityItems = [url, item]
-			return UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
-		}()
-		self.pageViewController!.navigationController?.presentViewController(activityViewController, animated: true, completion: nil)
-	}
-	@IBAction func expand(sender: AnyObject?, event: UIEvent?) {
-		let currentViewController = (self.pageViewController!.viewControllers.first as! ItemSummaryWebViewController)
-		let item = currentViewController.item
-		let href = item.canonical!.first!["href"]!
-		let url = NSURL(string: href)!
-		let dataTask = progressEnabledURLSessionTaskGenerator.textTaskForHTTPRequest(NSURLRequest(URL: url)) { text, error in
-			dispatch_async(dispatch_get_main_queue()) {
-				if let error = error {
-					void(trace("error", error))
-					presentErrorMessage(NSLocalizedString("Failed to expand.", comment: ""))
-				}
-				else {
-					let readability = DZReadability(URL: url, rawDocumentContent: text, options: nil) { sender, content, error in
-						if let error = error {
-							void(trace("error", error))
-							presentErrorMessage(NSLocalizedString("Unable to expand", comment: ""))
-						}
-						else {
-							currentViewController.loadHTMLString(content, ignoringExisting: true)
-						}
-					}
-					readability.start()
-				}
-			}
-		}
-		dataTask.resume()
-	}
+	@IBOutlet weak var pageViewController: ItemsPageViewController!
+	private var pendingViewController: UIViewController!
 	// MARK:-
     func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [AnyObject]) {
 		let pendingViewController = pendingViewControllers.first as! ItemSummaryWebViewController
 		let currentViewController = pageViewController.viewControllers.first as! ItemSummaryWebViewController
+		self.pendingViewController = pendingViewController
 		dispatch_async(dispatch_get_main_queue()) {
 			pendingViewController.view.frame = currentViewController.view.frame
 			pendingViewController.webView.frame = currentViewController.webView.frame
 		}
+	}
+	func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [AnyObject], transitionCompleted completed: Bool) {
+		trace("completed", completed)
+		self.pageViewController.currentViewController = self.pendingViewController
+		self.pendingViewController = nil
 	}
 }
