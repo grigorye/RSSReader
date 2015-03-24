@@ -222,9 +222,9 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	// MARK: -
 	private func itemForIndexPath(indexPath: NSIndexPath) -> Item {
-		return self.fetchedResultsController.fetchedObjects![indexPath.row] as! Item
+		return self.fetchedResultsController.objectAtIndexPath(indexPath) as! Item
 	}
-	private func selectedItem() -> Item {
+	var selectedItem: Item {
 		return self.itemForIndexPath(self.tableView.indexPathForSelectedRow()!)
 	}
 	// MARK: -
@@ -317,7 +317,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	// MARK: -
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		self.performSegueWithIdentifier(MainStoryboard.SegueIdentifiers.ShowPages, sender: self)
+		self.performSegueWithIdentifier(MainStoryboard.SegueIdentifiers.ShowListPages, sender: self)
 	}
 	// MARK: -
 	override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -331,14 +331,14 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	// MARK: -
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		switch segue.identifier! {
-		case MainStoryboard.SegueIdentifiers.ShowPages:
+		case MainStoryboard.SegueIdentifiers.ShowListPages:
 			let pageViewController = segue.destinationViewController as! UIPageViewController
 			let itemsPageViewControllerDataSource: ItemsPageViewControllerDataSource = {
 				let $ = pageViewController.dataSource as! ItemsPageViewControllerDataSource
 				$.items = self.fetchedResultsController.fetchedObjects! as! [Item]
 				return $
 			}()
-			let initialViewController = itemsPageViewControllerDataSource.viewControllerForItem(self.selectedItem(), storyboard: pageViewController.storyboard!)
+			let initialViewController = itemsPageViewControllerDataSource.viewControllerForItem(self.selectedItem, storyboard: pageViewController.storyboard!)
 			if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
 				pageViewController.edgesForExtendedLayout = .None
 			}
