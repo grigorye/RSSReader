@@ -5,14 +5,18 @@ struct MainStoryboard {
 		static let ItemSummaryWeb = "itemSummaryWeb"
 	}
 	struct ReuseIdentifiers {
-		static let Item = "Item"
 		static let HistoryItem = "HistoryItem"
 		static let Folder = "Folder"
 		static let Subscription = "Subscription"
 	}
 	struct SegueIdentifiers {
-		static let ShowPages = "showPages"
+		static let ShowListPages = "showListPages"
+		static let ShowListArticle = "showListArticle"
+		static let ShowHistoryArticle = "showHistoryArticle"
+		static let ShowHistoryPages = "showHistoryPages"
 		static let ShowFolder = "showFolder"
 		static let ShowSubscription = "showSubscription"
+		static let ShowFavorites = "showFavorites"
+		static let ShowHistory = "showHistory"
 	}
 }
