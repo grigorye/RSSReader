@@ -24,7 +24,7 @@ class ItemsPageViewController : UIPageViewController {
 			let viewControllers = coder.decodeObjectForKey(Restorable.viewControllers.rawValue) as! [UIViewController]
 			let currentViewControllerIndex = coder.decodeObjectForKey(Restorable.currentViewControllerIndex.rawValue) as! Int
 			let delegate = self.delegate as! ItemsPageViewControllerDelegate
-			self.currentViewController = viewControllers[0]
+			self.currentViewController = viewControllers.first
 			blocksDelayedTillViewWillAppear += [{
 				self.setViewControllers(viewControllers, direction: .Forward, animated: false) { completed in
 					void(trace("completed", completed))
@@ -42,6 +42,7 @@ class ItemsPageViewController : UIPageViewController {
 			coder.encodeObject(currentViewControllerIndex, forKey: Restorable.currentViewControllerIndex.rawValue)
 		}
 	}
+	// MARK: -
 	override func setViewControllers(viewControllers: [AnyObject]!, direction: UIPageViewControllerNavigationDirection, animated: Bool, completion: ((Bool) -> Void)!) {
 		self.currentViewController = Optional(viewControllers[0] as! UIViewController)
 		super.setViewControllers(viewControllers, direction: direction, animated: animated, completion: completion)
@@ -55,6 +56,12 @@ class ItemsPageViewController : UIPageViewController {
 		viewDidDisappearRetainedObjects += [KVOBinding(object: self, keyPath: "currentViewController.navigationItem.rightBarButtonItems", options: .Initial) { change in
 			self.navigationItem.rightBarButtonItems = self.currentViewController!.navigationItem.rightBarButtonItems
 		}]
+	}
+	override func viewDidAppear(animated: Bool) {
+		super.viewDidAppear(animated)
+		if let webView = self.currentViewController?.view.subviews.first as? UIWebView {
+			webView.scrollView.flashScrollIndicators()
+		}
 	}
 	override func viewDidDisappear(animated: Bool) {
 		viewDidDisappearRetainedObjects = []
