@@ -10,20 +10,27 @@ import UIKit
 
 class ItemsPageViewControllerDelegate: NSObject, UIPageViewControllerDelegate {
 	@IBOutlet weak var pageViewController: ItemsPageViewController!
-	private var pendingViewController: UIViewController!
 	// MARK:-
     func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [AnyObject]) {
 		let pendingViewController = pendingViewControllers.first as! ItemSummaryWebViewController
 		let currentViewController = pageViewController.viewControllers.first as! ItemSummaryWebViewController
-		self.pendingViewController = pendingViewController
 		dispatch_async(dispatch_get_main_queue()) {
+			if hideBarsOnSwipe {
+				let contentInset = UIEdgeInsetsMake(pageViewController.topLayoutGuide.length, 0, pageViewController.bottomLayoutGuide.length, 0)
+				let scrollView = (pendingViewController.view as! UIWebView).scrollView
+				scrollView.contentInset = trace("contentInset", contentInset)
+				scrollView.scrollIndicatorInsets = contentInset
+			}
 			pendingViewController.view.frame = currentViewController.view.frame
 			pendingViewController.webView.frame = currentViewController.webView.frame
 		}
 	}
 	func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [AnyObject], transitionCompleted completed: Bool) {
 		trace("completed", completed)
-		self.pageViewController.currentViewController = self.pendingViewController
-		self.pendingViewController = nil
+		let currentViewController = pageViewController.viewControllers.first as! ItemSummaryWebViewController
+		if let webView = currentViewController.view.subviews.first as? UIWebView {
+			webView.scrollView.flashScrollIndicators()
+		}
+		self.pageViewController.currentViewController = currentViewController
 	}
 }
