@@ -7,7 +7,9 @@
 //
 
 import UIKit
-import CoreData.NSManagedObjectContext
+import CoreData
+
+let hideBarsOnSwipe = false
 
 let markAsReadTimeInterval = NSTimeInterval(2)
 
@@ -125,7 +127,7 @@ class ItemSummaryWebViewController: UIViewController {
 	// MARK: -
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.savedRightBarButtonItems = self.navigationItem.rightBarButtonItems! as! [UIBarButtonItem]
+		self.savedRightBarButtonItems = hideBarsOnSwipe ? [] : self.navigationItem.rightBarButtonItems! as! [UIBarButtonItem]
 		blocksScheduledForViewWillAppear += [{
 			let item = self.item
 			self.loadHTMLString(item.summary!, ignoringExisting: false)
@@ -157,6 +159,13 @@ class ItemSummaryWebViewController: UIViewController {
 	override func viewDidDisappear(animated: Bool) {
 		viewDidDisappearRetainedObjects = []
 		super.viewDidDisappear(animated)
+		if hideBarsOnSwipe {
+			self.navigationController?.hidesBarsOnSwipe = false
+		}
+	}
+	//
+	override func prefersStatusBarHidden() -> Bool {
+		return navigationController!.navigationBarHidden;
 	}
 	// MARK: - State Preservation and Restoration
 	enum Restorable: String {
