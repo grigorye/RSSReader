@@ -221,8 +221,13 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		self.navigationController?.presentViewController(activityViewController, animated: true, completion: nil)
 	}
 	// MARK: -
-	private func itemForIndexPath(indexPath: NSIndexPath) -> Item {
-		return self.fetchedResultsController.objectAtIndexPath(indexPath) as! Item
+	private func itemForIndexPath(indexPath: NSIndexPath!) -> Item! {
+		if nil != indexPath {
+			return self.fetchedResultsController.objectAtIndexPath(indexPath) as! Item
+		}
+		else {
+			return nil
+		}
 	}
 	var selectedItem: Item {
 		return self.itemForIndexPath(self.tableView.indexPathForSelectedRow()!)
@@ -367,8 +372,13 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	// MARK: -
     func modelIdentifierForElementAtIndexPath(indexPath: NSIndexPath, inView view: UIView) -> String {
-		let item = self.itemForIndexPath(indexPath)
-		return item.objectID.URIRepresentation().absoluteString!
+		if let item = self.itemForIndexPath(indexPath) {
+			return item.objectID.URIRepresentation().absoluteString!
+		}
+		else {
+			let invalidModelIdentifier = ""
+			return trace("invalidModelIdentifier", invalidModelIdentifier)
+		}
 	}
     func indexPathForElementWithModelIdentifier(identifier: String, inView view: UIView) -> NSIndexPath? {
 		let objectIDURL = NSURL(string: identifier)!
