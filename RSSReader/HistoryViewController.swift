@@ -26,7 +26,7 @@ class HistoryViewController: UITableViewController, NSFetchedResultsControllerDe
 	func itemForIndexPath(indexPath: NSIndexPath) -> Item {
 		return self.fetchedResultsController.fetchedObjects![indexPath.row] as! Item
 	}
-	func selectedItem() -> Item {
+	var selectedItem: Item {
 		return self.itemForIndexPath(self.tableView.indexPathForSelectedRow()!)
 	}
 	// MARK: -
@@ -78,6 +78,15 @@ class HistoryViewController: UITableViewController, NSFetchedResultsControllerDe
 		}
 	}
 	// MARK: -
+	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		if _1 {
+			self.performSegueWithIdentifier(MainStoryboard.SegueIdentifiers.ShowHistoryPages, sender: self)
+		}
+		else {
+			self.performSegueWithIdentifier(MainStoryboard.SegueIdentifiers.ShowHistoryArticle, sender: self)
+		}
+	}
+	// MARK: -
 	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		return fetchedResultsController.sections!.count
 	}
@@ -95,18 +104,22 @@ class HistoryViewController: UITableViewController, NSFetchedResultsControllerDe
 	// MARK: -
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		switch segue.identifier! {
-		case MainStoryboard.SegueIdentifiers.ShowPages:
+		case MainStoryboard.SegueIdentifiers.ShowHistoryPages:
 			let pageViewController = segue.destinationViewController as! UIPageViewController
 			let itemsPageViewControllerDataSource: ItemsPageViewControllerDataSource = {
 				let $ = pageViewController.dataSource as! ItemsPageViewControllerDataSource
 				$.items = self.fetchedResultsController.fetchedObjects as! [Item]
 				return $
 			}()
-			let initialViewController = itemsPageViewControllerDataSource.viewControllerForItem(self.selectedItem(), storyboard: pageViewController.storyboard!)
+			let initialViewController = itemsPageViewControllerDataSource.viewControllerForItem(self.selectedItem, storyboard: pageViewController.storyboard!)
 			if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
 				pageViewController.edgesForExtendedLayout = .None
 			}
 			pageViewController.setViewControllers([initialViewController], direction: .Forward, animated: false, completion: nil)
+		case MainStoryboard.SegueIdentifiers.ShowHistoryArticle:
+			let itemViewController = segue.destinationViewController as! ItemSummaryWebViewController
+			itemViewController.item = selectedItem
+			trace("segue", segue)
 		default:
 			abort()
 		}
