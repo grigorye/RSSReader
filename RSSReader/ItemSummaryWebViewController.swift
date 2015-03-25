@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-let hideBarsOnSwipe = false
+var hideBarsOnSwipe = false
 
 let markAsReadTimeInterval = NSTimeInterval(2)
 
@@ -127,7 +127,7 @@ class ItemSummaryWebViewController: UIViewController {
 	// MARK: -
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.savedRightBarButtonItems = hideBarsOnSwipe ? [] : self.navigationItem.rightBarButtonItems! as! [UIBarButtonItem]
+		self.savedRightBarButtonItems = self.navigationItem.rightBarButtonItems! as! [UIBarButtonItem]
 		blocksScheduledForViewWillAppear += [{
 			let item = self.item
 			self.loadHTMLString(item.summary!, ignoringExisting: false)
@@ -136,6 +136,9 @@ class ItemSummaryWebViewController: UIViewController {
 	// MARK: -
 	var viewDidDisappearRetainedObjects = [AnyObject]()
 	override func viewWillAppear(animated: Bool) {
+		if hideBarsOnSwipe {
+			self.navigationController!.hidesBarsOnSwipe = true
+		}
 		for i in blocksScheduledForViewWillAppear { i() }
 		blocksScheduledForViewWillAppear = []
 		viewDidDisappearRetainedObjects += [KVOBinding(object: self, keyPath: "item.markedAsFavorite", options: .Initial) { [unowned self] change in
