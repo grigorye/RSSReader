@@ -148,11 +148,28 @@ extension RSSSession {
 class AppDelegate: UIResponder, UIApplicationDelegate {
 	var window: UIWindow?
 	let internals = AppDelegateInternals()
-	var tabBarController: UITabBarController {
-		return window!.rootViewController! as! UITabBarController
+	var tabBarController: UITabBarController! {
+		if let tabBarController = window!.rootViewController! as? UITabBarController {
+			return tabBarController
+		}
+		return nil
+	}
+	var navigationController: UINavigationController! {
+		if let navigationController = window!.rootViewController! as? UINavigationController {
+			return navigationController
+		}
+		return nil
+	}
+	var foldersNavigationController: UINavigationController {
+		if let tabBarController = self.tabBarController {
+			return tabBarController.viewControllers![0] as! UINavigationController
+		}
+		else {
+			return navigationController
+		}
 	}
 	var foldersViewController: FoldersListTableViewController {
-		return (tabBarController.viewControllers![0] as! UINavigationController).viewControllers.first as! FoldersListTableViewController
+		return foldersNavigationController.viewControllers.first as! FoldersListTableViewController
 	}
 	var favoritesViewController: ItemsListViewController {
 		return (tabBarController.viewControllers![1] as! UINavigationController).viewControllers.first as! ItemsListViewController
@@ -200,6 +217,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		return true
 	}
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+		hideBarsOnSwipe = nil == self.tabBarController
 		assert(nil == self.internals.managedObjectContextError)
 		if let managedObjectContextError = self.internals.managedObjectContextError {
 			void(trace("managedObjectContextError", managedObjectContextError))
@@ -207,13 +225,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			return false
 		}
 		else {
-			void(self.fetchedRootFolderBinding)
-			void(self.fetchedFavoritesFolderBinding)
-			foldersViewController.hidesBottomBarWhenPushed = false
-			favoritesViewController.navigationItem.backBarButtonItem = {
-				let title = NSLocalizedString("Favorites", comment: "");
-				return UIBarButtonItem(title: title, style: .Plain, target: nil, action: nil)
-			}()
+			if !hideBarsOnSwipe {
+				void(self.fetchedRootFolderBinding)
+				void(self.fetchedFavoritesFolderBinding)
+				foldersViewController.hidesBottomBarWhenPushed = false
+				favoritesViewController.navigationItem.backBarButtonItem = {
+					let title = NSLocalizedString("Favorites", comment: "");
+					return UIBarButtonItem(title: title, style: .Plain, target: nil, action: nil)
+				}()
+			}
 			if !loginAndPassword.isValid() {
 				self.openSettings(nil)
 			}
