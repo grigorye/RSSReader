@@ -15,12 +15,6 @@ class ItemsPageViewControllerDelegate: NSObject, UIPageViewControllerDelegate {
 		let pendingViewController = pendingViewControllers.first as! ItemSummaryWebViewController
 		let currentViewController = pageViewController.viewControllers.first as! ItemSummaryWebViewController
 		dispatch_async(dispatch_get_main_queue()) {
-			if hideBarsOnSwipe {
-				let contentInset = UIEdgeInsetsMake(pageViewController.topLayoutGuide.length, 0, pageViewController.bottomLayoutGuide.length, 0)
-				let scrollView = (pendingViewController.view as! UIWebView).scrollView
-				scrollView.contentInset = trace("contentInset", contentInset)
-				scrollView.scrollIndicatorInsets = contentInset
-			}
 			pendingViewController.view.frame = currentViewController.view.frame
 			pendingViewController.webView.frame = currentViewController.webView.frame
 		}
