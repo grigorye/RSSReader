@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
-import UIKit.UIPageViewController
+import UIKit
 
 class ItemsPageViewController : UIPageViewController {
 	var blocksDelayedTillViewWillAppear = [Handler]()
@@ -44,8 +44,21 @@ class ItemsPageViewController : UIPageViewController {
 	}
 	// MARK: -
 	override func setViewControllers(viewControllers: [AnyObject]!, direction: UIPageViewControllerNavigationDirection, animated: Bool, completion: ((Bool) -> Void)!) {
-		self.currentViewController = Optional(viewControllers[0] as! UIViewController)
+		let currentViewController = viewControllers.first as! UIViewController
 		super.setViewControllers(viewControllers, direction: direction, animated: animated, completion: completion)
+		self.currentViewController = currentViewController
+	}
+	// MARK: -
+	@IBAction func swipe(sender: UIPanGestureRecognizer!) {
+		trace("self", self);
+		let webView = self.currentViewController?.view.subviews.first as? UIWebView
+		if sender.velocityInView(webView).y > 0 {
+			self.navigationController!.setNavigationBarHidden(false, animated: true)
+			self.navigationController!.setToolbarHidden(false, animated: true)
+		}
+		else {
+			self.navigationController!.setToolbarHidden(true, animated: true)
+		}
 	}
 	// MARK: -
 	var viewDidDisappearRetainedObjects = [AnyObject]()
@@ -56,6 +69,19 @@ class ItemsPageViewController : UIPageViewController {
 		viewDidDisappearRetainedObjects += [KVOBinding(object: self, keyPath: "currentViewController.navigationItem.rightBarButtonItems", options: .Initial) { change in
 			self.navigationItem.rightBarButtonItems = self.currentViewController!.navigationItem.rightBarButtonItems
 		}]
+		if hideBarsOnSwipe {
+			viewDidDisappearRetainedObjects += [KVOBinding(object: self, keyPath: "currentViewController", options: .Initial) { change in
+				if let webView = self.currentViewController?.view.subviews.first as? UIWebView {
+					let barHideOnSwipeGestureRecognizer = self.navigationController!.barHideOnSwipeGestureRecognizer
+					if (nil == webView.gestureRecognizers) || (nil == find(webView.gestureRecognizers as! [UIGestureRecognizer], barHideOnSwipeGestureRecognizer)) {
+						webView.addGestureRecognizer(barHideOnSwipeGestureRecognizer)
+						let scrollView = webView.scrollView
+						let gestureRecognizer = (filter(scrollView.gestureRecognizers as! [UIGestureRecognizer]) { $0 is UIPanGestureRecognizer }).first!
+						gestureRecognizer.addTarget(self, action: "swipe:")
+					}
+				}
+			}]
+		}
 	}
 	override func viewDidAppear(animated: Bool) {
 		super.viewDidAppear(animated)
