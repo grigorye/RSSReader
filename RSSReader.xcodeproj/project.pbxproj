@@ -20,6 +20,7 @@
 		C41707CF1A56F32500AED81C /* GenericCoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41707CE1A56F32500AED81C /* GenericCoreDataExtensions.swift */; };
 		C42802691A5B47EA002474E1 /* FoldersListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42802681A5B47EA002474E1 /* FoldersListTableViewController.swift */; };
 		C42802781A5C2E0D002474E1 /* RSSReader.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C42802741A5C2E0D002474E1 /* RSSReader.xcdatamodeld */; };
+		C44B2F011AC0C881006A67F1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44B2F001AC0C881006A67F1 /* HomeViewController.swift */; };
 		C44D91641AAE73830053B9E6 /* ItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C44D91631AAE73830053B9E6 /* ItemTableViewCell.xib */; };
 		C44D916D1AAE773B0053B9E6 /* ItemSimpleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C44D916C1AAE773B0053B9E6 /* ItemSimpleTableViewCell.xib */; };
 		C45158991A65E1FE00374A8C /* GenericURLSessionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45158981A65E1FE00374A8C /* GenericURLSessionExtensions.swift */; };
@@ -162,6 +163,7 @@
 		C42802751A5C2E0D002474E1 /* 31.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 31.xcdatamodel; sourceTree = "<group>"; };
 		C42802761A5C2E0D002474E1 /* 43.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 43.xcdatamodel; sourceTree = "<group>"; };
 		C42802771A5C2E0D002474E1 /* 70.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 70.xcdatamodel; sourceTree = "<group>"; };
+		C44B2F001AC0C881006A67F1 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C44D91631AAE73830053B9E6 /* ItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemTableViewCell.xib; sourceTree = "<group>"; };
 		C44D916C1AAE773B0053B9E6 /* ItemSimpleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemSimpleTableViewCell.xib; sourceTree = "<group>"; };
 		C44FCA5C1A8AEECA00C91544 /* UploadToFabric */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = UploadToFabric; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 				C4CDD3AB1A5350B50087DD05 /* Images.xcassets */,
 				C4CDD3AD1A5350B50087DD05 /* LaunchScreen.xib */,
 				C4CDD3A81A5350B40087DD05 /* Main.storyboard */,
+				C44B2F001AC0C881006A67F1 /* HomeViewController.swift */,
 				C4676E081A6A4D1F00AE8BC2 /* ItemTableViewCell.swift */,
 				C44D91631AAE73830053B9E6 /* ItemTableViewCell.xib */,
 				C49540A01A57825100F56168 /* ItemsListViewController.swift */,
@@ -729,6 +732,7 @@
 				C495409B1A575C1900F56168 /* UserDefaults.swift in Sources */,
 				C49540A11A57825100F56168 /* ItemsListViewController.swift in Sources */,
 				C4C780181A7DF2B0009CB5FC /* TypeFilteringActivity.swift in Sources */,
+				C44B2F011AC0C881006A67F1 /* HomeViewController.swift in Sources */,
 				C45ECD061A62054C00ADC113 /* SBConstants.swift in Sources */,
 				C42802691A5B47EA002474E1 /* FoldersListTableViewController.swift in Sources */,
 				C48C5F971A87344000A1EA12 /* ItemsPageViewController.swift in Sources */,
