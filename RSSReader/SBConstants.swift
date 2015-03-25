@@ -16,6 +16,7 @@ struct MainStoryboard {
 		static let ShowHistoryPages = "showHistoryPages"
 		static let ShowFolder = "showFolder"
 		static let ShowSubscription = "showSubscription"
+		static let ShowSubscriptions = "showSubscriptions"
 		static let ShowFavorites = "showFavorites"
 		static let ShowHistory = "showHistory"
 	}
