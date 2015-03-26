@@ -183,6 +183,9 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			self.loadMore { loadDateDidChange in
 			}
 		}
+		else if (loadCompleted) {
+			tableView.tableFooterView = nil
+		}
 	}
 	@IBAction private func refresh(sender: AnyObject!) {
 		let refreshControl = self.refreshControl!
@@ -289,7 +292,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	// MARK: -
 	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-		return fetchedResultsController.sections!.count
+		return fetchedResultsController.sections?.count ?? 0
 	}
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return (fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo).numberOfObjects
