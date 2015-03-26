@@ -338,7 +338,7 @@
         <!--Home View Controller-->
         <scene sceneID="cT3-wl-vap">
             <objects>
-                <tableViewController id="7OC-Am-sLl" customClass="HomeViewController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController restorationIdentifier="Home" id="7OC-Am-sLl" customClass="HomeViewController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="03L-n6-ApN">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -543,7 +543,7 @@
         <!--Navigation Controller-->
         <scene sceneID="JQu-I0-c0C">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="kPx-QE-mCE" sceneMemberID="viewController">
+                <navigationController restorationIdentifier="HomeNavigation" automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="kPx-QE-mCE" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hIz-db-h55">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -590,10 +590,10 @@
         <image name="Unstar" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8Da-vm-piJ"/>
+        <segue reference="DM4-V3-Our"/>
+        <segue reference="cJW-gk-KPb"/>
+        <segue reference="asX-LX-8NF"/>
         <segue reference="51W-HV-eUd"/>
-        <segue reference="IQP-ep-vtz"/>
         <segue reference="FhY-D2-pL1"/>
-        <segue reference="w0U-iJ-oAk"/>
     </inferredMetricsTieBreakers>
 </document>
