@@ -66,7 +66,7 @@ nnil(T *object) {
 
 @implementation KVOCompliantUserDefaults
 
-static __nonnull NSDictionary *
+static NSDictionary * __nonnull 
 propertyInfoFromProperty(objc_property_t property) {
 	let name = property_getName(property);
 	let attributes = property_getAttributes(property);
