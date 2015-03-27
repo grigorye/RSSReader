@@ -89,8 +89,20 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	private var nowDate: NSDate!
 	private var tableFooterView: UIView?
 	private var indexPathForTappedAccessoryButton: NSIndexPath?
-	private var showUnreadOnly: Bool {
-		return _1 ? false : defaults.showUnreadOnly
+	// MARK: -
+	private var loadedToolbarItems: [UIBarButtonItem]!
+	@IBOutlet var filterUnreadBarButtonItem: UIBarButtonItem!
+	@IBOutlet var unfilterUnreadBarButtonItem: UIBarButtonItem!
+	private var showUnreadOnly = false {
+		didSet {
+			fetchedResultsController_ = nil
+			tableView.reloadData()
+		}
+	}
+	func regeneratedToolbarItems() -> [UIBarButtonItem] {
+		let excludedItems = [(showUnreadOnly ? self.unfilterUnreadBarButtonItem : self.filterUnreadBarButtonItem)!]
+		let $ = loadedToolbarItems.filter { nil != find(excludedItems, $0) }
+		return $
 	}
 	private var unreadOnlyFilterPredicate: NSPredicate {
 		if showUnreadOnly {
@@ -100,7 +112,8 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			return NSPredicate(value: true)
 		}
 	}
-	private lazy var fetchedResultsController: NSFetchedResultsController = {
+	// MARK: -
+	func regeneratedFetchedResultsController() -> NSFetchedResultsController {
 		let fetchRequest: NSFetchRequest = {
 			let container = self.container
 			let $ = NSFetchRequest(entityName: Item.entityName())
@@ -118,7 +131,20 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.mainQueueManagedObjectContext, sectionNameKeyPath: _0 ? nil : "loadDate.timeIntervalSinceReferenceDate", cacheName: nil)
 		$.delegate = self
 		return $
-	}()
+	}
+	var fetchedResultsController_ : NSFetchedResultsController?
+	var fetchedResultsController: NSFetchedResultsController {
+		get {
+			if let $ = fetchedResultsController_ {
+				return $
+			}
+			fetchedResultsController_ = regeneratedFetchedResultsController()
+			var fetchError: NSError?
+			self.fetchedResultsController.performFetch(&fetchError)
+			assert(nil == fetchError)
+			return fetchedResultsController_!
+		}
+	}
 	// MARK: -
 	private func loadMore(completionHandler: (loadDateDidChange: Bool) -> Void) {
 		assert(!loadInProgress)
@@ -186,6 +212,14 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		else if (loadCompleted) {
 			tableView.tableFooterView = nil
 		}
+	}
+	@IBAction private func selectUnread(sender: AnyObject!) {
+		self.showUnreadOnly = true
+		self.toolbarItems = regeneratedToolbarItems()
+	}
+	@IBAction private func unselectUnread(sender: AnyObject!) {
+		self.showUnreadOnly = false
+		self.toolbarItems = regeneratedToolbarItems()
 	}
 	@IBAction private func refresh(sender: AnyObject!) {
 		let refreshControl = self.refreshControl!
@@ -367,9 +401,6 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		super.decodeRestorableStateWithCoder(coder)
 		self.container = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.containerObjectID.rawValue, managedObjectContext: self.mainQueueManagedObjectContext) as! Container?
 		if nil != self.container {
-			var fetchError: NSError?
-			fetchedResultsController.performFetch(&fetchError)
-			assert(nil == fetchError)
 			nowDate = NSDate()
 		}
 	}
@@ -407,17 +438,30 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		let cellNib = UINib(nibName: "ItemTableViewCell", bundle: nil)
 		tableView.registerNib(cellNib, forCellReuseIdentifier: "Item")
 		blocksDelayedTillViewWillAppear += [{ [unowned self] in
-			if nil == self.fetchedResultsController.fetchedObjects {
-				var fetchError: NSError?
-				self.fetchedResultsController.performFetch(&fetchError)
-				assert(nil == fetchError)
-			}
 			self.title = (self.container as! Titled).visibleTitle
 			let tableView = self.tableView
-			if tableView.contentOffset.y == 0 {
-				tableView.contentOffset = CGPoint(x: 0, y: CGRectGetHeight(tableView.tableHeaderView!.frame))
+			if let tableHeaderView = tableView.tableHeaderView {
+				if tableView.contentOffset.y == 0 {
+					tableView.contentOffset = CGPoint(x: 0, y: CGRectGetHeight(tableHeaderView.frame))
+				}
 			}
 		}]
 		self.tableFooterView = tableView.tableFooterView
+		for item in [unfilterUnreadBarButtonItem, filterUnreadBarButtonItem] {
+			if let customView = item.customView {
+				customView.layoutIfNeeded()
+				customView.sizeToFit()
+				let button = customView.subviews.first as! UIButton
+				customView.bounds = {
+					var $ = customView.bounds
+					$.size.width = button.bounds.size.width
+					return $
+				}()
+				button.frame.origin.x = 0
+				item.width = customView.bounds.size.width
+			}
+		}
+		self.loadedToolbarItems = self.toolbarItems as! [UIBarButtonItem]
+		self.toolbarItems = regeneratedToolbarItems()
 	}
 }
