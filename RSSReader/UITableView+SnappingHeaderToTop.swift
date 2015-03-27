@@ -10,10 +10,12 @@ import UIKit.UITableView
 
 extension UITableView {
 	func snapHeaderToTop(#animated: Bool) {
-		let insetAwareTableHeaderViewFrame = CGRectOffset(tableHeaderView!.frame, 0, -contentInset.top)
-		if contentOffset.y < CGRectGetMaxY(insetAwareTableHeaderViewFrame) {
-			let adjustedContentOffsetY = (contentOffset.y < CGRectGetMidY(insetAwareTableHeaderViewFrame) ? CGRectGetMinY : CGRectGetMaxY)(insetAwareTableHeaderViewFrame);
-			setContentOffset(CGPoint(x: contentOffset.x, y: adjustedContentOffsetY), animated: animated)
+		if let tableHeaderView = tableHeaderView {
+			let insetAwareTableHeaderViewFrame = CGRectOffset(tableHeaderView.frame, 0, -contentInset.top)
+			if contentOffset.y < CGRectGetMaxY(insetAwareTableHeaderViewFrame) {
+				let adjustedContentOffsetY = (contentOffset.y < CGRectGetMidY(insetAwareTableHeaderViewFrame) ? CGRectGetMinY : CGRectGetMaxY)(insetAwareTableHeaderViewFrame);
+				setContentOffset(CGPoint(x: contentOffset.x, y: adjustedContentOffsetY), animated: animated)
+			}
 		}
 	}
 }
