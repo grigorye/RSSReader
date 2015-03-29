@@ -18,16 +18,29 @@ var traceEnabled: Bool = {
 	return _0 ? false : defaults.traceEnabled
 }()
 
-func trace<T>(label: String, value: T, file: NSString = __FILE__, line: Int = __LINE__, function: String = __FUNCTION__) -> T {
+func description<T>(value: T) -> String {
+	return "\(value)"
+}
+
+func traceString(label: String, string: String, file: NSString = __FILE__, line: Int = __LINE__, function: String = __FUNCTION__) {
 	if traceEnabled {
-		let message = "\(file.lastPathComponent), \(function).\(line): \(label): \(value)"
+		let message = "\(file.lastPathComponent), \(function).\(line): \(label): \(string)"
 #if ANALYTICS_ENABLED
 #if CRASHLYTICS_ENABLED
 		CLSLogv("%@", getVaList([message]))
 #endif
 #endif
-		NSLog("%@", message)
+		if _1 {
+			NSLog("%@", message)
+		}
+		else {
+			println(message)
+		}
 	}
+}
+
+func trace<T>(label: String, value: T, file: NSString = __FILE__, line: Int = __LINE__, function: String = __FUNCTION__) -> T {
+	traceString(label, description(value), file: file, line: line, function: function)
 	return value
 }
 
