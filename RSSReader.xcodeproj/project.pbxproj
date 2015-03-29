@@ -48,6 +48,7 @@
 		C4C780141A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C780131A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift */; };
 		C4C780161A7DF1EC009CB5FC /* ApplicationActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C780151A7DF1EC009CB5FC /* ApplicationActivities.swift */; };
 		C4C780181A7DF2B0009CB5FC /* TypeFilteringActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C780171A7DF2B0009CB5FC /* TypeFilteringActivity.swift */; };
+		C4CD0B381AC7B8DD000E93F2 /* Descriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CD0B371AC7B8DD000E93F2 /* Descriptions.swift */; };
 		C4CDD3A31A5350B40087DD05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */; };
 		C4CDD3AA1A5350B40087DD05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4CDD3A81A5350B40087DD05 /* Main.storyboard */; };
 		C4CDD3AC1A5350B50087DD05 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4CDD3AB1A5350B50087DD05 /* Images.xcassets */; };
@@ -204,6 +205,7 @@
 		C4C780131A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkAllAsReadActivity.swift; sourceTree = "<group>"; };
 		C4C780151A7DF1EC009CB5FC /* ApplicationActivities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationActivities.swift; sourceTree = "<group>"; };
 		C4C780171A7DF2B0009CB5FC /* TypeFilteringActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeFilteringActivity.swift; sourceTree = "<group>"; };
+		C4CD0B371AC7B8DD000E93F2 /* Descriptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Descriptions.swift; sourceTree = "<group>"; };
 		C4CDD39D1A5350B40087DD05 /* RSSReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4CDD3A11A5350B40087DD05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 				C40C6C071A74AB5E00FAFA17 /* KVOCompliantUserDefaults.mm */,
 				C46550471A7870E60046FFBD /* UINavigationItem+MultipleBarButtonItemsCollections.h */,
 				C46550481A7870E60046FFBD /* UINavigationItem+MultipleBarButtonItemsCollections.m */,
+				C4CD0B371AC7B8DD000E93F2 /* Descriptions.swift */,
 			);
 			name = Generic;
 			sourceTree = "<group>";
@@ -729,6 +732,7 @@
 				C4FD88521A5F10BD0035E4D1 /* Container.swift in Sources */,
 				C4BA3F941AB62C6A0067538F /* ContainerViewState.swift in Sources */,
 				C41707CB1A56076A00AED81C /* Globals.swift in Sources */,
+				C4CD0B381AC7B8DD000E93F2 /* Descriptions.swift in Sources */,
 				C495409B1A575C1900F56168 /* UserDefaults.swift in Sources */,
 				C49540A11A57825100F56168 /* ItemsListViewController.swift in Sources */,
 				C4C780181A7DF2B0009CB5FC /* TypeFilteringActivity.swift in Sources */,
