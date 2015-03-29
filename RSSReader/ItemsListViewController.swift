@@ -289,7 +289,9 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	// MARK: -
 	func controllerWillChangeContent(controller: NSFetchedResultsController) {
-		self.tableView.beginUpdates()
+		(_1 ? UIView.performWithoutAnimation : invoke) {
+			self.tableView.beginUpdates()
+		}
 	}
 	private let rowAnimation = UITableViewRowAnimation.None
     func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
@@ -305,12 +307,16 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
 		let tableView = self.tableView!
 		trace("type", stringFromFetchedResultsChangeType(type))
-		switch trace("type", type) {
+		switch type {
 		case .Insert:
+			trace("numberOfRowsInSection(\(newIndexPath!.section))", tableView.numberOfRowsInSection(newIndexPath!.section))
+			trace("newIndexPath", newIndexPath!)
 			tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: rowAnimation)
 		case .Delete:
 			tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: rowAnimation)
 		case .Update:
+			trace("numberOfRowsInSection(\(indexPath!.section))", tableView.numberOfRowsInSection(indexPath!.section))
+			trace("indexPath", indexPath!)
 			if let cell = tableView.cellForRowAtIndexPath(indexPath!) {
 				self.configureCell(cell, atIndexPath: indexPath!)
 			}
