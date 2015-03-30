@@ -14,9 +14,9 @@ import Crashlytics
 #endif
 #endif
 
-var traceEnabled: Bool = {
-	return _0 ? false : defaults.traceEnabled
-}()
+var traceEnabled: Bool {
+	return defaults.traceEnabled
+}
 
 func description<T>(value: T) -> String {
 	return "\(value)"
