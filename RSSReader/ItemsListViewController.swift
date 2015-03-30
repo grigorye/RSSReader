@@ -50,7 +50,9 @@ let loadAgoDateComponentsFormatter: NSDateComponentsFormatter = {
 	return $;
 }()
 
-let fetchResultsAreAnimated = defaults.fetchResultsAreAnimated
+var fetchResultsAreAnimated: Bool {
+	return defaults.fetchResultsAreAnimated
+}
 
 class ItemsListViewController: UITableViewController, NSFetchedResultsControllerDelegate, UIDataSourceModelAssociation {
 	var container: Container?
