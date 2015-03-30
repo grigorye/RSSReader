@@ -127,10 +127,6 @@
 			<string>Fetch Results Are Animated</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
-			<key>TrueValue</key>
-			<false/>
-			<key>FalseValue</key>
-			<true/>
 		</dict>
 	</array>
 	<key>StringsTable</key>
