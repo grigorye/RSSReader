@@ -17,5 +17,6 @@
 @property (copy, nonatomic) NSString *password;
 @property (nonatomic) BOOL analyticsEnabled;
 @property (nonatomic) BOOL stateRestorationDisabled;
+@property (nonatomic) BOOL fetchResultsAreAnimated;
 
 @end

@@ -17,5 +17,6 @@
 @dynamic password;
 @dynamic stateRestorationDisabled;
 @dynamic analyticsEnabled;
+@dynamic fetchResultsAreAnimated;
 
 @end

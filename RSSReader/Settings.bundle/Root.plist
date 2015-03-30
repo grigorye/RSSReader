@@ -5,6 +5,22 @@
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Version</string>
+			<key>Key</key>
+			<string>bundleShortVersion</string>
+			<key>DefaultValue</key>
+			<string>?</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string></string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
 			<key>AutocapitalizationType</key>
 			<string>None</string>
 			<key>AutocorrectionType</key>
@@ -39,6 +55,12 @@
 			<string>Password</string>
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string></string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
@@ -97,20 +119,18 @@
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
 		<dict>
-			<key>Title</key>
-			<string></string>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSTitleValueSpecifier</string>
-			<key>Title</key>
-			<string>Version</string>
-			<key>Key</key>
-			<string>bundleShortVersion</string>
 			<key>DefaultValue</key>
-			<string>?</string>
+			<false/>
+			<key>Key</key>
+			<string>fetchResultsAreAnimated</string>
+			<key>Title</key>
+			<string>Fetch Results Are Animated</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>TrueValue</key>
+			<false/>
+			<key>FalseValue</key>
+			<true/>
 		</dict>
 	</array>
 	<key>StringsTable</key>

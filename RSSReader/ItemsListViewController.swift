@@ -50,6 +50,8 @@ let loadAgoDateComponentsFormatter: NSDateComponentsFormatter = {
 	return $;
 }()
 
+let fetchResultsAreAnimated = defaults.fetchResultsAreAnimated
+
 class ItemsListViewController: UITableViewController, NSFetchedResultsControllerDelegate, UIDataSourceModelAssociation {
 	var container: Container?
 	lazy var containerViewState: ContainerViewState? = {
@@ -289,7 +291,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	// MARK: -
 	func controllerWillChangeContent(controller: NSFetchedResultsController) {
-		(_1 ? UIView.performWithoutAnimation : invoke) {
+		(fetchResultsAreAnimated ? invoke : UIView.performWithoutAnimation) {
 			self.tableView.beginUpdates()
 		}
 	}
@@ -326,7 +328,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		}
 	}
 	func controllerDidChangeContent(controller: NSFetchedResultsController) {
-		(_1 ? UIView.performWithoutAnimation : invoke) {
+		(fetchResultsAreAnimated ? invoke : UIView.performWithoutAnimation) {
 			self.tableView.endUpdates()
 		}
 	}
