@@ -18,5 +18,6 @@
 @property (nonatomic) BOOL analyticsEnabled;
 @property (nonatomic) BOOL stateRestorationDisabled;
 @property (nonatomic) BOOL fetchResultsAreAnimated;
+@property (nonatomic) BOOL batchSavingDisabled;
 
 @end

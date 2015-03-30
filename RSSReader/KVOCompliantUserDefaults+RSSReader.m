@@ -18,5 +18,6 @@
 @dynamic stateRestorationDisabled;
 @dynamic analyticsEnabled;
 @dynamic fetchResultsAreAnimated;
+@dynamic batchSavingDisabled;
 
 @end
