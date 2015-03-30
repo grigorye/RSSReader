@@ -8,6 +8,10 @@
 
 import Foundation
 
+var batchSavingDisabled: Bool {
+	return defaults.batchSavingDisabled
+}
+
 class RSSSession: NSObject {
 	let loginAndPassword: LoginAndPassword
 	init(loginAndPassword: LoginAndPassword) {
@@ -401,13 +405,12 @@ class RSSSession: NSObject {
 					}
 					let continuation = json!["continuation"] as? String
 					var importError: NSError?
-					let saveEveryItemAfterImport = _0
 					let items = importItemsFromJson(json!, type: Item.self, elementName: "items", managedObjectContext: backgroundQueueManagedObjectContext, error: &importError) { (item, itemJson, error) in
 						item.importFromJson(itemJson)
 						if (_1) {
 						item.loadDate = loadDate
 						}
-						if saveEveryItemAfterImport {
+						if batchSavingDisabled {
 							var saveError: NSError?
 							if !backgroundQueueManagedObjectContext.save(&saveError) {
 								error.memory = trace("saveError", saveError)
@@ -419,7 +422,7 @@ class RSSSession: NSObject {
 					if nil == items {
 						return trace("importError", importError!)
 					}
-					if !saveEveryItemAfterImport {
+					if !batchSavingDisabled {
 						var saveError: NSError?
 						if !backgroundQueueManagedObjectContext.save(&saveError) {
 							return trace("saveError", saveError)
