@@ -39,28 +39,34 @@ extension Item : ManagedIdentifiable {
 	}
 	func importFromJson(jsonObject: AnyObject) {
 		let json = jsonObject as! [String: AnyObject]
-		self.date = NSDate(timestampUsec: json["timestampUsec"] as! String)
-		self.title = json["title"] as! String?
-		let summary = (json["summary"] as! [String: AnyObject])["content"] as! String?
-		self.summary = summary
-		let managedObjectContext = self.managedObjectContext!
-		let streamID = (json["origin"] as? NSDictionary)?["streamId"] as! NSString
-		var subscriptionImportError: NSError?
-		let subscription = insertedObjectUnlessFetchedWithID(Subscription.self, id: streamID as! String, managedObjectContext: managedObjectContext, error: &subscriptionImportError)!
-		self.subscription = subscription
-		self.canonical = json["canonical"] as! [[String : String]]?
-		var categories = [Folder]()
-		if let categoriesIDs = json["categories"] as? [String] {
-			for categoryID in categoriesIDs {
-				var categoryImportError: NSError?
-				if let folder = insertedObjectUnlessFetchedWithID(Folder.self, id: categoryID, managedObjectContext: managedObjectContext, error: &categoryImportError) {
-					categories += [folder]
+		let date = NSDate(timestampUsec: json["timestampUsec"] as! String)
+		if date == self.date {
+			trace("nonModifiedItem", self)
+		}
+		else {
+			self.date = date
+			self.title = json["title"] as! String?
+			let summary = (json["summary"] as! [String: AnyObject])["content"] as! String?
+			self.summary = summary
+			let managedObjectContext = self.managedObjectContext!
+			let streamID = (json["origin"] as? NSDictionary)?["streamId"] as! NSString
+			var subscriptionImportError: NSError?
+			let subscription = insertedObjectUnlessFetchedWithID(Subscription.self, id: streamID as! String, managedObjectContext: managedObjectContext, error: &subscriptionImportError)!
+			self.subscription = subscription
+			self.canonical = json["canonical"] as! [[String : String]]?
+			var categories = [Folder]()
+			if let categoriesIDs = json["categories"] as? [String] {
+				for categoryID in categoriesIDs {
+					var categoryImportError: NSError?
+					if let folder = insertedObjectUnlessFetchedWithID(Folder.self, id: categoryID, managedObjectContext: managedObjectContext, error: &categoryImportError) {
+						categories += [folder]
+					}
 				}
 			}
+			let mutableCategories = self.mutableCategories
+			mutableCategories.removeAllObjects()
+			mutableCategories.addObjectsFromArray(categories)
 		}
-		let mutableCategories = self.mutableCategories
-		mutableCategories.removeAllObjects()
-		mutableCategories.addObjectsFromArray(categories)
 	}
 }
 extension Subscription : ManagedIdentifiable {
