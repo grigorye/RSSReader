@@ -12,6 +12,10 @@ var batchSavingDisabled: Bool {
 	return defaults.batchSavingDisabled
 }
 
+var itemsAreSortedByLoadDate: Bool {
+	return defaults.itemsAreSortedByLoadDate
+}
+
 class RSSSession: NSObject {
 	let loginAndPassword: LoginAndPassword
 	init(loginAndPassword: LoginAndPassword) {
@@ -407,8 +411,8 @@ class RSSSession: NSObject {
 					var importError: NSError?
 					let items = importItemsFromJson(json!, type: Item.self, elementName: "items", managedObjectContext: backgroundQueueManagedObjectContext, error: &importError) { (item, itemJson, error) in
 						item.importFromJson(itemJson)
-						if (_1) {
-						item.loadDate = loadDate
+						if itemsAreSortedByLoadDate {
+							item.loadDate = loadDate
 						}
 						if batchSavingDisabled {
 							var saveError: NSError?

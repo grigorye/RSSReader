@@ -121,8 +121,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		let fetchRequest: NSFetchRequest = {
 			let container = self.container
 			let $ = NSFetchRequest(entityName: Item.entityName())
-			$.sortDescriptors = [
-				NSSortDescriptor(key: "loadDate", ascending: false),
+			$.sortDescriptors =	itemsAreSortedByLoadDate ? [NSSortDescriptor(key: "loadDate", ascending: false)] : [AnyObject]() + [
 				NSSortDescriptor(key: "date", ascending: false)
 			]
 			$.predicate = NSCompoundPredicate.andPredicateWithSubpredicates([
@@ -132,7 +131,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			$.fetchBatchSize = 20
 			return $
 		}()
-		let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.mainQueueManagedObjectContext, sectionNameKeyPath: _0 ? nil : "loadDate.timeIntervalSinceReferenceDate", cacheName: nil)
+		let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.mainQueueManagedObjectContext, sectionNameKeyPath: !itemsAreSortedByLoadDate ? nil : "loadDate.timeIntervalSinceReferenceDate", cacheName: nil)
 		$.delegate = self
 		return $
 	}
@@ -336,14 +335,16 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	// MARK: -
 	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-		return fetchedResultsController.sections?.count ?? 0
+		let numberOfSections = fetchedResultsController.sections?.count ?? 0
+		return trace("numberOfSections", numberOfSections)
 	}
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return (fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo).numberOfObjects
+		let numberOfRows = (fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo).numberOfObjects
+		return trace("numberOfRows", numberOfRows)
 	}
 	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		let loadDate: NSDate? = {
-			if _1 {
+			if itemsAreSortedByLoadDate {
 				let sectionName = (self.fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo).name!
 				return Optional(NSDate(timeIntervalSinceReferenceDate: (sectionName as NSString).doubleValue))
 			}

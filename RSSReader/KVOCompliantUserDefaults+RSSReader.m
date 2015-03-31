@@ -19,5 +19,6 @@
 @dynamic analyticsEnabled;
 @dynamic fetchResultsAreAnimated;
 @dynamic batchSavingDisabled;
+@dynamic itemsAreSortedByLoadDate;
 
 @end

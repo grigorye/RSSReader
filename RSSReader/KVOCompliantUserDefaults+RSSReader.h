@@ -19,5 +19,6 @@
 @property (nonatomic) BOOL stateRestorationDisabled;
 @property (nonatomic) BOOL fetchResultsAreAnimated;
 @property (nonatomic) BOOL batchSavingDisabled;
+@property (nonatomic) BOOL itemsAreSortedByLoadDate;
 
 @end
