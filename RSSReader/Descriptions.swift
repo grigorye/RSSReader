@@ -16,7 +16,7 @@ func description<T: NSIndexPath>(value: NSIndexPath) -> String {
 	return join(", ", components)
 }
 
-func trace<T: NSIndexPath>(label: String, value: NSIndexPath, file: NSString = __FILE__, line: Int = __LINE__, function: String = __FUNCTION__) -> NSIndexPath {
-	traceString(label, description(value), file: file, line: line, function: function)
+func trace<T: NSIndexPath>(value: NSIndexPath, startLocation: SourceLocation, endLocation: SourceLocation) -> NSIndexPath {
+	traceString(description(value), startLocation, endLocation)
 	return value
 }
