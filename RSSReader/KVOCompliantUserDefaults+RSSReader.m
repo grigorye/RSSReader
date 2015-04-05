@@ -11,6 +11,7 @@
 @implementation KVOCompliantUserDefaults (RSSReader)
 
 @dynamic traceEnabled;
+@dynamic traceLabelsEnabled;
 @dynamic showUnreadOnly;
 @dynamic authToken;
 @dynamic login;
