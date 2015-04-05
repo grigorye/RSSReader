@@ -10,7 +10,7 @@ import Foundation
 
 class HomeViewController: UITableViewController {
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		switch trace("segue.identifier", segue.identifier!) {
+		switch $(segue.identifier!).$() {
 		case MainStoryboard.SegueIdentifiers.ShowHistory:
 			()
 		case MainStoryboard.SegueIdentifiers.ShowSubscriptions:

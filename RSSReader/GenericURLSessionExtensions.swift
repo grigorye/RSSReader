@@ -11,7 +11,7 @@ import Foundation
 extension NSURLSession {
 	func progressEnabledDataTaskWithRequest(request: NSURLRequest, completionHandler: ((NSData!, NSURLResponse!, NSError!) -> Void)?) -> NSURLSessionDataTask {
 		let progress = NSProgress(totalUnitCount: 1)
-		void(trace("request.URL", request.URL!))
+		$(request.URL!).$()
 		return self.dataTaskWithRequest(request) { data, response, error in
 			progress.becomeCurrentWithPendingUnitCount(1)
 			progress.resignCurrent()

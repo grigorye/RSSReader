@@ -51,16 +51,16 @@ class AppDelegateInternals {
 			if !fileManager.fileExistsAtPath(documentsDirectory) {
 				var documentsDirectoryCreationError: NSError?
 				if !fileManager.createDirectoryAtPath(documentsDirectory, withIntermediateDirectories: true, attributes: nil, error: &documentsDirectoryCreationError) {
-					return trace("documentsDirectoryCreationError", documentsDirectoryCreationError)
+					return $(documentsDirectoryCreationError).$()
 				}
 			}
 			let storeURL = NSURL(fileURLWithPath: documentsDirectory.stringByAppendingPathComponent("RSSReader.sqlite"))!
-			void(trace("fileManager.fileExistsAtPath(storeURL.path!)", fileManager.fileExistsAtPath(storeURL.path!)))
+			$(fileManager.fileExistsAtPath(storeURL.path!)).$()
 			if NSUserDefaults().boolForKey("forceStoreRemoval") {
 				let fileManager = NSFileManager.defaultManager()
 				var forcedStoreRemovalError: NSError?
 				if !fileManager.removeItemAtURL(storeURL, error: &forcedStoreRemovalError) && !((NSCocoaErrorDomain == forcedStoreRemovalError!.domain) && (NSFileNoSuchFileError == forcedStoreRemovalError!.code)) {
-					return trace("forcedStoreRemovalError", forcedStoreRemovalError)
+					return $(forcedStoreRemovalError).$()
 				}
 			}
 			let addPersistentStoreMigratedError: NSError? = {
@@ -73,7 +73,7 @@ class AppDelegateInternals {
 				if nil != persistentStore {
 					return nil
 				}
-				let error = trace("addPersistentStoreError", addPersistentStoreError!)
+				let error = $(addPersistentStoreError!).$()
 				switch (error.domain, error.code) {
 					case (NSCocoaErrorDomain, NSMigrationMissingSourceModelError) where NSUserDefaults().boolForKey("allowMissingSourceModelError"):
 						fallthrough
@@ -81,21 +81,21 @@ class AppDelegateInternals {
 						let fileManager = NSFileManager.defaultManager()
 						var incompatibleStoreRemovalError: NSError?
 						if !fileManager.removeItemAtURL(storeURL, error: &incompatibleStoreRemovalError) {
-							return trace("incompatibleStoreRemovalError", incompatibleStoreRemovalError)
+							return $(incompatibleStoreRemovalError).$()
 						}
 						var addReplacementPersistentStoreError: NSError?
 						let persistentStore: NSPersistentStore! = psc.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil, error: &addReplacementPersistentStoreError)
 						if nil == persistentStore {
-							return trace("addReplacementPersistentStoreError", addReplacementPersistentStoreError)
+							return $(addReplacementPersistentStoreError).$()
 						}
 						return nil
 					default:
 						let nonRecoverableAddPersistentStoreError = addPersistentStoreError!
-						return trace("nonRecoverableAddPersistentStoreError", nonRecoverableAddPersistentStoreError)
+						return $(nonRecoverableAddPersistentStoreError).$()
 				}
 			}()
 			if let addPersistentStoreMigratedError = addPersistentStoreMigratedError {
-				return trace("addPersistentStoreMigratedError", addPersistentStoreMigratedError)
+				return $(addPersistentStoreMigratedError).$()
 			}
 			return nil
 		}()
@@ -118,7 +118,7 @@ class AppDelegateInternals {
 				var mainQueueManagedObjectContextSaveError: NSError?
 				mainQueueManagedObjectContext.save(&mainQueueManagedObjectContextSaveError)
 				if nil != mainQueueManagedObjectContextSaveError {
-					trace("mainQueueManagedObjectContextSaveError", mainQueueManagedObjectContextSaveError)
+					$(mainQueueManagedObjectContextSaveError).$()
 				}
 			}
 		})
@@ -128,7 +128,7 @@ class AppDelegateInternals {
 		let taskGenerator = progressEnabledURLSessionTaskGenerator
 		urlTaskGeneratorProgressKVOBinding = KVOBinding(object: taskGenerator, keyPath: "progresses", options: NSKeyValueObservingOptions(0)) { change in
 			let networkActivityIndicatorShouldBeVisible = 0 < taskGenerator.progresses.count
-			UIApplication.sharedApplication().networkActivityIndicatorVisible = trace("networkActivityIndicatorShouldBeVisible", networkActivityIndicatorShouldBeVisible)
+			UIApplication.sharedApplication().networkActivityIndicatorVisible = $( networkActivityIndicatorShouldBeVisible).$()
 		}
 	}
 }
@@ -199,12 +199,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		case restorationFormatVersion = "restorationFormatVersion"
 	}
 	func application(application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
-		void(trace("self", self))
+		$(self).$()
 		coder.encodeObject(currentRestorationFormatVersion, forKey: Restorable.restorationFormatVersion.rawValue)
 		return true
 	}
 	func application(application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
-		void(trace("self", self))
+		$(self).$()
 		let restorationFormatVersion = (coder.decodeObjectForKey(Restorable.restorationFormatVersion.rawValue) as! Int?) ?? 0
 		if restorationFormatVersion < currentRestorationFormatVersion {
 			return false
@@ -213,14 +213,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 	//
 	func application(application: UIApplication, willFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
-		void(trace("self", self))
+		$(self).$()
 		return true
 	}
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		hideBarsOnSwipe = nil == self.tabBarController
 		assert(nil == self.internals.managedObjectContextError)
 		if let managedObjectContextError = self.internals.managedObjectContextError {
-			void(trace("managedObjectContextError", managedObjectContextError))
+			$(managedObjectContextError).$()
 			presentErrorMessage(NSLocalizedString("Something went wrong.", comment: ""))
 			return false
 		}
@@ -249,7 +249,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 #if ANALYTICS_ENABLED
 		let version = NSBundle.mainBundle().infoDictionary!["CFBundleVersion"] as! NSString
 		let versionIsClean = NSNotFound == version.rangeOfCharacterFromSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet).location
-		if trace("versionIsClean", versionIsClean) && trace("analyticsEnabled", defaults.analyticsEnabled) {
+		if $(versionIsClean).$() && $(defaults.analyticsEnabled).$() {
 #if CRASHLYTICS_ENABLED
 			Fabric.with([Crashlytics()])
 #endif
@@ -267,7 +267,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let fileManager = NSFileManager()
 		let libraryDirectoryURL = fileManager.URLsForDirectory(.LibraryDirectory, inDomains: .UserDomainMask).last as! NSURL
 		let libraryDirectory = libraryDirectoryURL.path!
-		trace("libraryDirectory", libraryDirectory)
+        $(libraryDirectory).$()
 	}
 }
 

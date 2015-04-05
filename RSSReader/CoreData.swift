@@ -41,7 +41,7 @@ extension Item : ManagedIdentifiable {
 		let json = jsonObject as! [String: AnyObject]
 		let date = NSDate(timestampUsec: json["timestampUsec"] as! String)
 		if date == self.date {
-			trace("nonModifiedItem", self)
+			$(self).$(0)
 		}
 		else {
 			self.date = date
@@ -126,13 +126,13 @@ extension Container: ManagedIdentifiable {
 	class func importStreamPreferencesJson(jsonObject: AnyObject, managedObjectContext: NSManagedObjectContext) {
 		if let json = jsonObject as? [String : [[String : AnyObject]]] {
 			for (folderID, prefs) in json {
-				trace("folderID", folderID)
-				trace("prefs", prefs)
+				$(folderID).$()
+				$(prefs).$()
 				for prefs in prefs {
 					let id = prefs["id"] as? String
 					if id == "subscription-ordering" {
 						if let value = prefs["value"] as? String {
-							trace("value", value)
+							$(value).$()
 							var insertContainerError: NSError?
 							if let folder = insertedObjectUnlessFetchedWithID(Folder.self, id: folderID, managedObjectContext: managedObjectContext, error: &insertContainerError) {
 								assert(folder.streamID == folderID)
@@ -156,7 +156,7 @@ extension Container: ManagedIdentifiable {
 									}()
 									var fetchContainersForSortIDsError: NSError?
 									if let unorderedChildContainers = managedObjectContext.executeFetchRequest(request, error: &fetchContainersForSortIDsError) as! [Container]? {
-										trace("unorderedChildContainers", unorderedChildContainers)
+										$(unorderedChildContainers).$()
 										let childContainers = map(sortIDs) { sortID in
 											return filter(unorderedChildContainers) { $0.sortID == sortID }.first!
 										}

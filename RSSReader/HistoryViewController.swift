@@ -119,7 +119,7 @@ class HistoryViewController: UITableViewController, NSFetchedResultsControllerDe
 		case MainStoryboard.SegueIdentifiers.ShowHistoryArticle:
 			let itemViewController = segue.destinationViewController as! ItemSummaryWebViewController
 			itemViewController.item = selectedItem
-			trace("segue", segue)
+			$(segue).$()
 		default:
 			abort()
 		}

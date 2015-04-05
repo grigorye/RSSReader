@@ -38,7 +38,7 @@ func insertedObjectUnlessFetchedWithPredicate<T: ManagedIdentifiable>(cls: T.Typ
 		var fetchError: NSError?
 		let objects = managedObjectContext.executeFetchRequest(request, error: &fetchError)
 		if nil == objects {
-			return (nil, trace("fetchError", fetchError))
+			return (nil, $(fetchError).$())
 		}
 		let existingObject = objects?.last as! T?
 		return (existingObject, nil)
@@ -67,7 +67,7 @@ func importItemsFromJson<T: ManagedIdentifiable where T : NSManagedObject>(json:
 		let itemJsons = json[elementName as! String] as? [[String : AnyObject]]
 		if nil == itemJsons {
 			let jsonElementNotFoundOrInvalidError = NSError(domain: GenericCoreDataExtensionsErrorDomain, code: GenericCoreDataExtensionsError.JsonElementNotFoundOrInvalid.rawValue, userInfo: nil)
-			return trace("jsonElementNotFoundOrInvalidError", jsonElementNotFoundOrInvalidError)
+			return $(jsonElementNotFoundOrInvalidError).$()
 		}
 		for itemJson in itemJsons! {
 			var insertOrFetchItemError: NSError?
@@ -75,18 +75,18 @@ func importItemsFromJson<T: ManagedIdentifiable where T : NSManagedObject>(json:
 			if let item = insertedObjectUnlessFetchedWithID(type, id: itemID, managedObjectContext: managedObjectContext, error: &insertOrFetchItemError) {
 				var itemImportError: NSError?
 				if !importFromJson(item, itemJson, &itemImportError) {
-					return trace("itemImportError", itemImportError)
+					return $(itemImportError).$()
 				}
 				items += [item]
 			}
 			else {
-				return trace("insertOrFetchItemError", insertOrFetchItemError)
+				return $(insertOrFetchItemError).$()
 			}
 		}
 		return nil
 	}()
 	if let completionError = completionError {
-		error.memory = trace("completionError", completionError)
+		error.memory = $(completionError).$()
 		return nil
 	}
 	return items
@@ -96,17 +96,17 @@ func importItemsFromJsonData<T: ManagedIdentifiable where T : NSManagedObject>(d
 		var jsonParseError: NSError?
 		let jsonObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(), error: &jsonParseError)
 		if nil == jsonObject {
-			return (nil, trace("jsonParseError", jsonParseError))
+			return (nil, $(jsonParseError).$())
 		}
 		let json = jsonObject as? [String : AnyObject]
 		if nil == json {
 			let jsonIsNotDictionaryError = NSError()
-			return (json, trace("jsonIsNotDictionaryError", jsonIsNotDictionaryError))
+			return (json, $(jsonIsNotDictionaryError).$())
 		}
 		return (json, nil)
 	}()
 	if let jsonError = jsonError {
-		error.memory = trace("jsonError", jsonError)
+		error.memory = $(jsonError).$()
 		return nil
 	}
 	return importItemsFromJson(json!, type: type, elementName: elementName, managedObjectContext: managedObjectContext, error: error, importFromJson: importFromJson)
@@ -124,11 +124,11 @@ extension NSManagedObjectContext {
                 return managedObjectContext.objectWithID(objectID)
             }
 			else {
-				void(trace("objectIDURLMissingObject", objectIDURL));
+				$(objectIDURL).$()
 			}
         }
         else {
-			void(trace("keyMissingObjectIDURL", key));
+			$(key).$()
 		}
 		return nil
 	}

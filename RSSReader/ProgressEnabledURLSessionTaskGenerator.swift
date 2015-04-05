@@ -35,7 +35,7 @@ class ProgressEnabledURLSessionTaskGenerator: NSObject {
 				completionHandler(nil, httpResponse, error)
 				return
 			}
-			void(trace("response", response))
+			$(response).$()
 			let completionError = nil != error ? error : {
 				if httpResponse.statusCode != 200 {
 					return NSError(domain: URLSessionTaskGeneratorErrorDomain, code: URLSessionTaskGeneratorError.UnexpectedHTTPResponseStatus.rawValue, userInfo: ["httpResponse": httpResponse])

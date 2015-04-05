@@ -27,7 +27,7 @@ class ItemsPageViewController : UIPageViewController {
 			self.currentViewController = viewControllers.first
 			blocksDelayedTillViewWillAppear += [{
 				self.setViewControllers(viewControllers, direction: .Forward, animated: false) { completed in
-					void(trace("completed", completed))
+					$(completed).$()
 				}
 			}]
 		}
@@ -50,7 +50,7 @@ class ItemsPageViewController : UIPageViewController {
 	}
 	// MARK: -
 	@IBAction func swipe(sender: UIPanGestureRecognizer!) {
-		trace("self", self);
+		$(self).$()
 		let webView = self.currentViewController?.view.subviews.first as? UIWebView
 		if sender.velocityInView(webView).y > 0 {
 			self.navigationController!.setNavigationBarHidden(false, animated: true)

@@ -25,7 +25,7 @@ class ItemSummaryWebViewController: UIViewController {
 			item.markedAsRead = true
 			rssSession!.uploadTag(canonicalReadTag, mark: true, forItem: item, completionHandler: { uploadReadStateError in
 				if let uploadReadStateError = uploadReadStateError {
-					trace("uploadReadStateError", uploadReadStateError)
+					$(uploadReadStateError).$()
 				}
 			})
 		}
@@ -71,8 +71,8 @@ class ItemSummaryWebViewController: UIViewController {
 		item.markedAsFavorite = true
 		rssSession!.uploadTag(canonicalFavoriteTag, mark: true, forItem: item, completionHandler: { uploadFavoritesStateError in
 			if let uploadFavoritesStateError = uploadFavoritesStateError {
-				trace("uploadFavoritesStateError", uploadFavoritesStateError)
-				presentErrorMessage(NSLocalizedString("Failed to mark as favorite.", comment: ""))
+				$(uploadFavoritesStateError).$()
+				self.presentErrorMessage(NSLocalizedString("Failed to mark as favorite.", comment: ""))
 			}
 		})
 	}
@@ -80,8 +80,8 @@ class ItemSummaryWebViewController: UIViewController {
 		item.markedAsFavorite = false
 		rssSession!.uploadTag(canonicalFavoriteTag, mark: false, forItem: item, completionHandler: { uploadFavoritesStateError in
 			if let uploadFavoritesStateError = uploadFavoritesStateError {
-				trace("uploadFavoritesStateError", uploadFavoritesStateError)
-				presentErrorMessage(NSLocalizedString("Failed to unmark as favorite.", comment: ""))
+				$(uploadFavoritesStateError).$()
+				self.presentErrorMessage(NSLocalizedString("Failed to unmark as favorite.", comment: ""))
 			}
 		})
 	}
@@ -102,14 +102,14 @@ class ItemSummaryWebViewController: UIViewController {
 		let dataTask = progressEnabledURLSessionTaskGenerator.textTaskForHTTPRequest(NSURLRequest(URL: url)) { text, error in
 			dispatch_async(dispatch_get_main_queue()) {
 				if let error = error {
-					void(trace("error", error))
-					presentErrorMessage(NSLocalizedString("Failed to expand.", comment: ""))
+					$(error).$()
+					self.presentErrorMessage(NSLocalizedString("Failed to expand.", comment: ""))
 				}
 				else {
 					let readability = DZReadability(URL: url, rawDocumentContent: text, options: nil) { sender, content, error in
 						if let error = error {
-							void(trace("error", error))
-							presentErrorMessage(NSLocalizedString("Unable to expand", comment: ""))
+							$(error).$()
+							self.presentErrorMessage(NSLocalizedString("Unable to expand", comment: ""))
 						}
 						else {
 							self.loadHTMLString(content, ignoringExisting: true)
@@ -146,7 +146,7 @@ class ItemSummaryWebViewController: UIViewController {
 			let rightBarButtonItems = filter(self.savedRightBarButtonItems) {
 				return $0 != excludedBarButtonItem
 			}
-			self.navigationItem.rightBarButtonItems = trace("rightBarButtonItems", rightBarButtonItems)
+			self.navigationItem.rightBarButtonItems = $(rightBarButtonItems).$()
 		}]
 		super.viewWillAppear(animated)
 	}
@@ -198,9 +198,9 @@ class ItemSummaryWebViewDelegate: NSObject, UIWebViewDelegate {
 		}
 	}
 	func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
-		trace("error", error)
+		$(error).$()
 	}
 	func webViewDidFinishLoad(webView: UIWebView) {
-		trace("webView", webView)
+		$(webView).$()
 	}
 }
