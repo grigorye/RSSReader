@@ -62,7 +62,7 @@ class RSSSession: NSObject {
 		}()
 		let sessionTask = progressEnabledURLSessionTaskGenerator.dataTaskForHTTPRequest(request) { data, httpResponse, error in
 			if let error = error {
-				completionHandler(trace("error", error))
+				completionHandler($(error).$())
 				return
 			}
 			let authToken: String? = {
@@ -103,29 +103,29 @@ class RSSSession: NSObject {
 										return nil
 									}
 									else {
-										return trace("insertMarkedAsReadFolderError", insertMarkedAsReadFolderError)
+										return $(insertMarkedAsReadFolderError).$()
 									}
 								}
 								else {
 									let jsonElementNotFoundOrInvalidError = NSError(domain: GenericCoreDataExtensionsErrorDomain, code: GenericCoreDataExtensionsError.JsonElementNotFoundOrInvalid.rawValue, userInfo: nil)
-									return trace("jsonElementNotFoundOrInvalidError", jsonElementNotFoundOrInvalidError)
+									return $(jsonElementNotFoundOrInvalidError).$()
 								}
 							}
 							else {
 								let jsonIsNotDictionaryError = NSError()
-								return trace("jsonIsNotDictionaryError", jsonIsNotDictionaryError)
+								return $(jsonIsNotDictionaryError).$()
 							}
 						}
 						else {
-							return trace("jsonParseError", jsonParseError)
+							return $(jsonParseError).$()
 						}
 					}()
 					if let importError = importError {
-						return trace("importError", importError)
+						return $(importError).$()
 					}
 					var saveError: NSError?
 					if !managedObjectContext.save(&saveError) {
-						return trace("saveError", saveError)
+						return $(saveError).$()
 					}
 					return nil
 				}()
@@ -167,31 +167,31 @@ class RSSSession: NSObject {
 											folders += [folder]
 										}
 										else {
-											return trace("importItemError", importItemError)
+											return $(importItemError).$()
 										}
 									}
 									return nil
 								}
 								else {
 									let jsonElementNotFoundOrInvalidError = NSError(domain: GenericCoreDataExtensionsErrorDomain, code: GenericCoreDataExtensionsError.JsonElementNotFoundOrInvalid.rawValue, userInfo: nil)
-									return trace("jsonElementNotFoundOrInvalidError", jsonElementNotFoundOrInvalidError)
+									return $(jsonElementNotFoundOrInvalidError).$()
 								}
 							}
 							else {
 								let jsonIsNotDictionaryError = NSError()
-								return trace("jsonIsNotDictionaryError", jsonIsNotDictionaryError)
+								return $(jsonIsNotDictionaryError).$()
 							}
 						}
 						else {
-							return trace("jsonParseError", jsonParseError)
+							return $(jsonParseError).$()
 						}
 					}()
 					if let importError = importError {
-						return trace("importError", importError)
+						return $(importError).$()
 					}
 					var saveError: NSError?
 					if !managedObjectContext.save(&saveError) {
-						return trace("saveError", saveError)
+						return $(saveError).$()
 					}
 					return nil
 				}()
@@ -216,11 +216,11 @@ class RSSSession: NSObject {
 						return true
 					}
 					if nil == tags {
-						return trace("importError", importError!)
+						return $(importError!).$()
 					}
 					var saveError: NSError?
 					if !backgroundQueueManagedObjectContext.save(&saveError) {
-						return trace("saveError", saveError)
+						return $(saveError).$()
 					}
 					return nil
 				}()
@@ -246,18 +246,18 @@ class RSSSession: NSObject {
 								Container.importStreamPreferencesJson(streamprefsJson, managedObjectContext: managedObjectContext)
 								var saveError: NSError?
 								if !managedObjectContext.save(&saveError) {
-									return trace("saveError", saveError)
+									return $(saveError).$()
 								}
 							}
 							return nil
 						}
 						else {
 							let jsonIsNotDictionaryError = NSError()
-							return trace("jsonIsNotDictionaryError", jsonIsNotDictionaryError)
+							return $(jsonIsNotDictionaryError).$()
 						}
 					}
 					else {
-						return trace("jsonParseError", jsonParseError)
+						return $(jsonParseError).$()
 					}
 				}()
 				completionHandler(error)
@@ -281,11 +281,11 @@ class RSSSession: NSObject {
 						return true
 					}
 					if nil == subscriptions {
-						return trace("importError", importError!)
+						return $(importError!).$()
 					}
 					var saveError: NSError?
 					if !backgroundQueueManagedObjectContext.save(&saveError) {
-						return trace("saveError", saveError)
+						return $(saveError).$()
 					}
 					return nil
 				}()
@@ -310,7 +310,7 @@ class RSSSession: NSObject {
 				let markAsReadHereError: NSError? = {
 					var saveError: NSError?
 					if !backgroundQueueManagedObjectContext.save(&saveError) {
-						return trace("saveError", saveError)
+						return $(saveError).$()
 					}
 					return nil
 				}()
@@ -323,31 +323,31 @@ class RSSSession: NSObject {
 	//
 	func updateAllAuthenticated(completionHandler: (NSError?) -> Void) {
 		self.updateUserInfo { updateUserInfoError in dispatch_async(dispatch_get_main_queue()) {
-			if let updateUserInfoError = trace("updateUserInfoError", updateUserInfoError) {
+			if let updateUserInfoError = $(updateUserInfoError).$() {
 				presentErrorMessage(NSLocalizedString("Failed to retrieve user info.", comment: ""))
 				completionHandler(updateUserInfoError)
 				return
 			}
 			self.updateTags { updateTagsError in dispatch_async(dispatch_get_main_queue()) {
-				if let updateTagsError = trace("updateTagsError", updateTagsError) {
+				if let updateTagsError = $(updateTagsError).$() {
 					presentErrorMessage(NSLocalizedString("Failed to update tags.", comment: ""))
 					completionHandler(updateTagsError)
 					return
 				}
 				self.updateSubscriptions { updateSubscriptionsError in dispatch_async(dispatch_get_main_queue()) {
-					if let updateTagsError = trace("updateSubscriptionsError", updateSubscriptionsError) {
+					if let updateTagsError = $(updateSubscriptionsError).$() {
 						presentErrorMessage(NSLocalizedString("Failed to update subscriptions.", comment: ""))
 						completionHandler(updateSubscriptionsError)
 						return
 					}
 					self.updateUnreadCounts { updateUnreadCountsError in dispatch_async(dispatch_get_main_queue()) {
-						if let updateUnreadCountsError = trace("updateUnreadCountsError", updateUnreadCountsError) {
+						if let updateUnreadCountsError = $(updateUnreadCountsError).$() {
 							presentErrorMessage(NSLocalizedString("Failed to update unread counts.", comment: ""))
 							completionHandler(updateUnreadCountsError)
 							return
 						}
 						self.updateStreamPreferences { updateStreamPreferencesError in dispatch_async(dispatch_get_main_queue()) {
-							if let updateStreamPreferencesError = trace("updateUnreadCountsError", trace("updateStreamPreferencesError", updateStreamPreferencesError)) {
+							if let updateStreamPreferencesError = $(updateStreamPreferencesError).$() {
 								completionHandler(updateStreamPreferencesError)
 								return
 							}
@@ -400,12 +400,12 @@ class RSSSession: NSObject {
 					var jsonParseError: NSError?
 					let jsonObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(), error: &jsonParseError)
 					if nil == jsonObject {
-						return trace("jsonParseError", jsonParseError!)
+						return $(jsonParseError!).$()
 					}
 					let json = jsonObject! as? [String : AnyObject]
 					if nil == json {
 						let jsonIsNotDictionaryError = NSError()
-						return trace("jsonIsNotDictionaryError", jsonIsNotDictionaryError)
+						return $(jsonIsNotDictionaryError).$()
 					}
 					let continuation = json!["continuation"] as? String
 					var importError: NSError?
@@ -417,19 +417,19 @@ class RSSSession: NSObject {
 						if batchSavingDisabled {
 							var saveError: NSError?
 							if !backgroundQueueManagedObjectContext.save(&saveError) {
-								error.memory = trace("saveError", saveError)
+								error.memory = $(saveError).$()
 								return false
 							}
 						}
 						return true
 					}
 					if nil == items {
-						return trace("importError", importError!)
+						return $(importError!).$()
 					}
 					if !batchSavingDisabled {
 						var saveError: NSError?
 						if !backgroundQueueManagedObjectContext.save(&saveError) {
-							return trace("saveError", saveError)
+							return $(saveError).$()
 						}
 					}
 					else {
