@@ -26,16 +26,16 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 				return []
 			}
 		}()
-		return trace("regeneratedChildContainers", regeneratedChildContainers)
+		return $(regeneratedChildContainers).$(0)
 	}
 	// MARK: -
 	@IBAction func refresh(sender: AnyObject!) {
 		rssSession!.updateAll { error in dispatch_async(dispatch_get_main_queue()) {
 			if let error = error {
-				presentErrorMessage(NSLocalizedString("Got a problem with feeds retrieval. \(error.localizedDescription)", comment: ""))
+				self.presentErrorMessage(NSLocalizedString("Got a problem with feeds retrieval. \(error.localizedDescription)", comment: ""))
 			}
 			else {
-				presentInfoMessage(NSLocalizedString("Feeds have been retrieved.", comment: ""))
+				self.presentInfoMessage(NSLocalizedString("Feeds have been retrieved.", comment: ""))
 			}
 			if nil == error {
 				if nil == self.rootFolder {
@@ -83,11 +83,11 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 		let objectIDURL = NSURL(string: identifier)!
 		if let row = find(childContainers.map { return $0.objectID.URIRepresentation().absoluteString! }, identifier) {
 			let indexPath = NSIndexPath(forRow: row, inSection: 0)
-			return trace("indexPath", indexPath)
+			return $(indexPath).$()
 		}
 		else {
 			let missingObjectIDURL = objectIDURL
-			void(trace("missingObjectIDURL", missingObjectIDURL))
+			$(missingObjectIDURL).$()
 			return nil
 		}
 	}
@@ -133,7 +133,7 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 		blocksScheduledForViewWillAppear = []
 		super.viewWillAppear(animated)
 		viewDidDisappearRetainedObjects += [KVOBinding(object: self, keyPath: "regeneratedChildContainers", options: .Initial) { [unowned self] change in
-			trace("change", change)
+			$(change).$(0)
 			self.childContainers = self.regeneratedChildContainers
 			self.tableView.reloadData()
 		}]
