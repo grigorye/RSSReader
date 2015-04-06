@@ -49,6 +49,15 @@ let loadAgoDateComponentsFormatter: NSDateComponentsFormatter = {
 	$.allowedUnits = .CalendarUnitMinute | .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitWeekOfMonth | .CalendarUnitDay | .CalendarUnitHour
 	return $;
 }()
+let loadAgoLongDateComponentsFormatter: NSDateComponentsFormatter = {
+	let $ = NSDateComponentsFormatter()
+	$.unitsStyle = .Full
+	$.allowsFractionalUnits = true
+	$.maximumUnitCount = 1
+	$.includesApproximationPhrase = true
+	$.allowedUnits = .CalendarUnitMinute | .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitWeekOfMonth | .CalendarUnitDay | .CalendarUnitHour
+	return $;
+}()
 
 var fetchResultsAreAnimated: Bool {
 	return defaults.fetchResultsAreAnimated
@@ -72,7 +81,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		set { containerViewState!.continuation = newValue }
 		get { return containerViewState!.continuation }
 	}
-	private var loadDate: NSDate? {
+	private dynamic var loadDate: NSDate? {
 		set { containerViewState!.loadDate = newValue }
 		get { return containerViewState!.loadDate }
 	}
@@ -95,6 +104,8 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	private var indexPathForTappedAccessoryButton: NSIndexPath?
 	// MARK: -
 	private var loadedToolbarItems: [UIBarButtonItem]!
+	@IBOutlet var statusLabel: UILabel!
+	@IBOutlet var statusBarButtonItem: UIBarButtonItem!
 	@IBOutlet var filterUnreadBarButtonItem: UIBarButtonItem!
 	@IBOutlet var unfilterUnreadBarButtonItem: UIBarButtonItem!
 	private var showUnreadOnly = false {
@@ -104,8 +115,8 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		}
 	}
 	func regeneratedToolbarItems() -> [UIBarButtonItem] {
-		let excludedItems = [(showUnreadOnly ? self.unfilterUnreadBarButtonItem : self.filterUnreadBarButtonItem)!]
-		let $ = loadedToolbarItems.filter { nil != find(excludedItems, $0) }
+		let excludedItems = [(showUnreadOnly ?  self.filterUnreadBarButtonItem : self.unfilterUnreadBarButtonItem)!]
+		let $ = loadedToolbarItems.filter { nil == find(excludedItems, $0) }
 		return $
 	}
 	private var unreadOnlyFilterPredicate: NSPredicate {
@@ -167,8 +178,8 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 					return
 				}
 				if let streamError = streamError {
-					self.loadError = trace("streamError", streamError)
-					presentErrorMessage(NSLocalizedString("Failed to load more.", comment: ""))
+					self.loadError = $(streamError).$()
+					self.presentErrorMessage(NSLocalizedString("Failed to load more.", comment: ""))
 				}
 				else {
 					if let lastItemInCompletion = items.last {
@@ -198,9 +209,9 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 				if let lastLoadedItem = self.lastLoadedItem {
 					let lastVisibleIndexPath = indexPathsForVisibleRows.last as! NSIndexPath
 					let numberOfItemsToPreload = 10
-					let barrierIndexPath = NSIndexPath(forRow: notrace("lastVisibleIndexPath", lastVisibleIndexPath).row + numberOfItemsToPreload, inSection: lastVisibleIndexPath.section)
+					let barrierIndexPath = NSIndexPath(forRow: $(lastVisibleIndexPath).$(0).row + numberOfItemsToPreload, inSection: lastVisibleIndexPath.section)
 					let indexPathForLastLoadedItem = self.fetchedResultsController.indexPathForObject(lastLoadedItem)!
-					return notrace("indexPathForLastLoadedItem.compare(barrierIndexPath) == .OrderedAscending", notrace("indexPathForLastLoadedItem", indexPathForLastLoadedItem).compare(notrace("barrierIndexPath", barrierIndexPath)) == .OrderedAscending)
+					return $($(indexPathForLastLoadedItem).$(0).compare($(barrierIndexPath).$(0)) == .OrderedAscending).$(0)
 				}
 				else {
 					return true
@@ -208,7 +219,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			}
 			return false
 		}()
-		if notrace("shouldLoadMore", shouldLoadMore) {
+		if $(shouldLoadMore).$(0) {
 			self.loadMore { loadDateDidChange in
 			}
 		}
@@ -226,7 +237,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	@IBAction private func refresh(sender: AnyObject!) {
 		let refreshControl = self.refreshControl!
-		if loadInProgress && trace("nil == continuation", nil == continuation) {
+		if loadInProgress && $(nil == continuation).$() {
 			refreshControl.endRefreshing()
 		}
 		else {
@@ -250,9 +261,9 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			i.markedAsRead = true
 		}
 		rssSession!.markAllAsRead(container!) { error in
-			void(trace("error", error))
+			$(error).$()
 			dispatch_async(dispatch_get_main_queue()) {
-				presentErrorMessage(NSLocalizedString("Failed to mark all as read.", comment: ""))
+				self.presentErrorMessage(NSLocalizedString("Failed to mark all as read.", comment: ""))
 			}
 		}
 	}
@@ -275,7 +286,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	// MARK: -
 	private func configureCell(rawCell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
 		let cell = rawCell as! ItemTableViewCell
-		let item = fetchedResultsController.objectAtIndexPath(trace("indexPath", indexPath)) as! Item
+		let item = fetchedResultsController.objectAtIndexPath($(indexPath).$(0)) as! Item
 		if let titleLabel = cell.titleLabel {
 			titleLabel.text = item.title ?? item.itemID.lastPathComponent
 		}
@@ -309,17 +320,15 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
 		let tableView = self.tableView!
-		trace("type", stringFromFetchedResultsChangeType(type))
+		$(stringFromFetchedResultsChangeType(type)).$()
 		switch type {
 		case .Insert:
-			trace("numberOfRowsInSection(\(newIndexPath!.section))", tableView.numberOfRowsInSection(newIndexPath!.section))
-			trace("newIndexPath", newIndexPath!)
+			$(tableView.numberOfRowsInSection($(newIndexPath!).$().section)).$()
 			tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: rowAnimation)
 		case .Delete:
 			tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: rowAnimation)
 		case .Update:
-			trace("numberOfRowsInSection(\(indexPath!.section))", tableView.numberOfRowsInSection(indexPath!.section))
-			trace("indexPath", indexPath!)
+			$(tableView.numberOfRowsInSection($(indexPath!).$().section)).$()
 			if let cell = tableView.cellForRowAtIndexPath(indexPath!) {
 				self.configureCell(cell, atIndexPath: indexPath!)
 			}
@@ -336,11 +345,11 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	// MARK: -
 	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		let numberOfSections = fetchedResultsController.sections?.count ?? 0
-		return trace("numberOfSections", numberOfSections)
+		return $(numberOfSections).$(0)
 	}
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		let numberOfRows = (fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo).numberOfObjects
-		return trace("numberOfRows", numberOfRows)
+		return $(numberOfRows).$(0)
 	}
 	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		let loadDate: NSDate? = {
@@ -352,16 +361,19 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 				return self.loadDate
 			}
 		}()
+		if loadDate == self.loadDate {
+			return nil
+		}
 		let title: String = {
 			if let loadDate = loadDate {
-				let loadAgo = loadAgoDateComponentsFormatter.stringFromDate(loadDate, toDate: NSDate())
+				let loadAgo = loadAgoLongDateComponentsFormatter.stringFromDate(loadDate, toDate: self.nowDate)
 				return NSLocalizedString("\(loadAgo!) ago", comment: "")
 			}
 			else {
 				return NSLocalizedString("Just now", comment: "")
 			}
 		}()
-		return title
+		return _0 ? nil : title
 	}
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("Item", forIndexPath: indexPath) as! UITableViewCell
@@ -422,7 +434,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		}
 		else {
 			let invalidModelIdentifier = ""
-			return trace("invalidModelIdentifier", invalidModelIdentifier)
+			return $(invalidModelIdentifier).$()
 		}
 	}
     func indexPathForElementWithModelIdentifier(identifier: String, inView view: UIView) -> NSIndexPath? {
@@ -431,7 +443,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		let objectID = managedObjectContext.persistentStoreCoordinator!.managedObjectIDForURIRepresentation(objectIDURL)!
 		let object = managedObjectContext.objectWithID(objectID)
 		let indexPath = fetchedResultsController.indexPathForObject(object)!
-		return trace("indexPath", indexPath)
+		return $(indexPath).$()
 	}
 	// MARK: -
 	var blocksDelayedTillViewWillAppear = [Handler]()
@@ -443,6 +455,27 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		}
 		blocksDelayedTillViewWillAppear = []
 		super.viewWillAppear(animated)
+	}
+	override func viewDidAppear(animated: Bool) {
+		let loadDateLabel = self.statusLabel
+		let binding = KVOBinding(object: self, keyPath: "loadDate", options: .New | .Initial) { change in
+			let loadDate = change[NSKeyValueChangeNewKey] as! NSDate
+			$(self.toolbarItems).$()
+			let loadAgo = loadAgoDateComponentsFormatter.stringFromDate(loadDate, toDate: NSDate())
+			self.presentInfoMessage(NSLocalizedString("Updated \(loadAgo!) ago", comment: ""))
+ 		}
+		blocksDelayedTillViewDidDisappear += [{
+			void(binding)
+		}]
+		super.viewDidAppear(animated)
+	}
+	var blocksDelayedTillViewDidDisappear = [Handler]()
+	override func viewDidDisappear(animated: Bool) {
+		for i in blocksDelayedTillViewDidDisappear {
+			i()
+		}
+		blocksDelayedTillViewDidDisappear = []
+		super.viewDidDisappear(animated)
 	}
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -465,14 +498,30 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 				let button = customView.subviews.first as! UIButton
 				customView.bounds = {
 					var $ = customView.bounds
-					$.size.width = button.bounds.size.width
+					$.size.width = button.bounds.width
 					return $
 				}()
 				button.frame.origin.x = 0
-				item.width = customView.bounds.size.width
+				item.width = customView.bounds.width
 			}
 		}
 		self.loadedToolbarItems = self.toolbarItems as! [UIBarButtonItem]
 		self.toolbarItems = regeneratedToolbarItems()
 	}
 }
+
+extension ItemsListViewController {
+	func presentMessage(text: String) {
+		statusLabel.text = text
+		statusLabel.sizeToFit()
+		statusLabel.superview!.frame.size.width = statusLabel.bounds.width
+		statusBarButtonItem.width = $(statusLabel.superview!.bounds.width).$()
+	}
+	override func presentErrorMessage(text: String) {
+		presentMessage(text)
+	}
+	override func presentInfoMessage(text: String) {
+		presentMessage(text)
+	}
+}
+
