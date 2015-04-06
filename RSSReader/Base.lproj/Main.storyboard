@@ -26,10 +26,10 @@
         <scene sceneID="koH-zh-gho">
             <objects>
                 <tableViewController restorationIdentifier="ItemList" id="3bj-4R-y2f" userLabel="Item List" customClass="ItemsListViewController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ItemTable" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="miw-d9-dd2">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ItemTable" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="miw-d9-dd2">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="EWs-Zr-aQI">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -55,16 +55,37 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem style="plain" systemItem="fixedSpace" id="ypP-8z-l8V"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="lch-OH-fYf"/>
+                        <barButtonItem style="plain" id="oV4-UX-7T3" userLabel="Status">
+                            <view key="customView" contentMode="scaleToFill" id="xe1-cP-Lvh">
+                                <rect key="frame" x="0.0" y="0.0" width="133" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bC2-zF-sCe">
+                                        <rect key="frame" x="0.0" y="0.0" width="133" height="33"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="bC2-zF-sCe" secondAttribute="trailing" id="DBt-rQ-4fq"/>
+                                    <constraint firstItem="bC2-zF-sCe" firstAttribute="leading" secondItem="xe1-cP-Lvh" secondAttribute="leading" id="K8B-70-r0H"/>
+                                    <constraint firstItem="bC2-zF-sCe" firstAttribute="top" secondItem="xe1-cP-Lvh" secondAttribute="top" id="qKa-vB-YsZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="bC2-zF-sCe" secondAttribute="bottom" id="rAa-3l-Kob"/>
+                                </constraints>
+                            </view>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="o3j-gn-J9l"/>
                         <barButtonItem style="plain" id="pWh-vF-c3Z" userLabel="Unfilter Unread">
                             <view key="customView" contentMode="scaleToFill" horizontalHuggingPriority="1000" id="TEN-hJ-7sJ">
                                 <rect key="frame" x="0.0" y="0.0" width="133" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Fg-wk-by1">
-                                        <rect key="frame" x="20" y="8" width="94" height="18"/>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" misplaced="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Fg-wk-by1">
+                                        <rect key="frame" x="19" y="8" width="94" height="18"/>
                                         <inset key="contentEdgeInsets" minX="4" minY="0.0" maxX="4" maxY="0.0"/>
-                                        <state key="normal" title="Unread Only">
+                                        <state key="normal" title="U">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <state key="selected">
@@ -91,10 +112,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="133" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y2K-Hr-675">
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y2K-Hr-675">
                                         <rect key="frame" x="38" y="8" width="58" height="18"/>
                                         <inset key="contentEdgeInsets" minX="4" minY="0.0" maxX="4" maxY="0.0"/>
-                                        <state key="normal" title="Unread"/>
+                                        <state key="normal" title="U"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="2"/>
@@ -126,6 +147,8 @@
                     </refreshControl>
                     <connections>
                         <outlet property="filterUnreadBarButtonItem" destination="oay-ah-Cmq" id="vZE-Ry-RVV"/>
+                        <outlet property="statusBarButtonItem" destination="oV4-UX-7T3" id="qSB-1W-aPY"/>
+                        <outlet property="statusLabel" destination="bC2-zF-sCe" id="XFM-sU-qk8"/>
                         <outlet property="unfilterUnreadBarButtonItem" destination="pWh-vF-c3Z" id="ffJ-zv-ht1"/>
                         <segue destination="Wtn-2N-ccu" kind="show" identifier="showListPages" id="w0U-iJ-oAk"/>
                         <segue destination="CEh-Po-b2S" kind="show" identifier="showListArticle" id="8Da-vm-piJ"/>
