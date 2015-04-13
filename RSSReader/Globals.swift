@@ -52,3 +52,11 @@ extension NSObject {
 	}
 }
 
+let dateComponentsFormatter: NSDateComponentsFormatter = {
+	let $ = NSDateComponentsFormatter()
+	$.unitsStyle = .Abbreviated
+	$.allowsFractionalUnits = true
+	$.maximumUnitCount = 1
+	$.allowedUnits = .CalendarUnitMinute | .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitWeekOfMonth | .CalendarUnitDay | .CalendarUnitHour
+	return $;
+}()
