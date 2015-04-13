@@ -33,15 +33,7 @@ extension Item {
 	}
 }
 
-let dateComponentsFormatter: NSDateComponentsFormatter = {
-	let $ = NSDateComponentsFormatter()
-	$.unitsStyle = .Abbreviated
-	$.allowsFractionalUnits = true
-	$.maximumUnitCount = 1
-	$.allowedUnits = .CalendarUnitMinute | .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitWeekOfMonth | .CalendarUnitDay | .CalendarUnitHour
-	return $;
-}()
-let loadAgoDateComponentsFormatter: NSDateComponentsFormatter = {
+private let loadAgoDateComponentsFormatter: NSDateComponentsFormatter = {
 	let $ = NSDateComponentsFormatter()
 	$.unitsStyle = .Full
 	$.allowsFractionalUnits = true
@@ -49,7 +41,7 @@ let loadAgoDateComponentsFormatter: NSDateComponentsFormatter = {
 	$.allowedUnits = .CalendarUnitMinute | .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitWeekOfMonth | .CalendarUnitDay | .CalendarUnitHour
 	return $;
 }()
-let loadAgoLongDateComponentsFormatter: NSDateComponentsFormatter = {
+private let loadAgoLongDateComponentsFormatter: NSDateComponentsFormatter = {
 	let $ = NSDateComponentsFormatter()
 	$.unitsStyle = .Full
 	$.allowsFractionalUnits = true
@@ -59,13 +51,13 @@ let loadAgoLongDateComponentsFormatter: NSDateComponentsFormatter = {
 	return $;
 }()
 
-var fetchResultsAreAnimated: Bool {
+private var fetchResultsAreAnimated: Bool {
 	return defaults.fetchResultsAreAnimated
 }
 
 class ItemsListViewController: UITableViewController, NSFetchedResultsControllerDelegate, UIDataSourceModelAssociation {
-	var container: Container?
-	lazy var containerViewState: ContainerViewState? = {
+	final var container: Container?
+	private lazy var containerViewState: ContainerViewState? = {
 		let container = self.container!
 		if let existingViewState = container.viewStates.first {
 			return existingViewState
@@ -104,17 +96,17 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	private var indexPathForTappedAccessoryButton: NSIndexPath?
 	// MARK: -
 	private var loadedToolbarItems: [UIBarButtonItem]!
-	@IBOutlet var statusLabel: UILabel!
-	@IBOutlet var statusBarButtonItem: UIBarButtonItem!
-	@IBOutlet var filterUnreadBarButtonItem: UIBarButtonItem!
-	@IBOutlet var unfilterUnreadBarButtonItem: UIBarButtonItem!
+	@IBOutlet private var statusLabel: UILabel!
+	@IBOutlet private var statusBarButtonItem: UIBarButtonItem!
+	@IBOutlet private var filterUnreadBarButtonItem: UIBarButtonItem!
+	@IBOutlet private var unfilterUnreadBarButtonItem: UIBarButtonItem!
 	private var showUnreadOnly = false {
 		didSet {
 			fetchedResultsController_ = nil
 			tableView.reloadData()
 		}
 	}
-	func regeneratedToolbarItems() -> [UIBarButtonItem] {
+	private func regeneratedToolbarItems() -> [UIBarButtonItem] {
 		let excludedItems = [(showUnreadOnly ?  self.filterUnreadBarButtonItem : self.unfilterUnreadBarButtonItem)!]
 		let $ = loadedToolbarItems.filter { nil == find(excludedItems, $0) }
 		return $
@@ -128,7 +120,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		}
 	}
 	// MARK: -
-	func regeneratedFetchedResultsController() -> NSFetchedResultsController {
+	private func regeneratedFetchedResultsController() -> NSFetchedResultsController {
 		let fetchRequest: NSFetchRequest = {
 			let container = self.container
 			let $ = NSFetchRequest(entityName: Item.entityName())
@@ -146,8 +138,8 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		$.delegate = self
 		return $
 	}
-	var fetchedResultsController_ : NSFetchedResultsController?
-	var fetchedResultsController: NSFetchedResultsController {
+	private var fetchedResultsController_ : NSFetchedResultsController?
+	private var fetchedResultsController: NSFetchedResultsController {
 		get {
 			if let $ = fetchedResultsController_ {
 				return $
@@ -280,7 +272,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			return nil
 		}
 	}
-	var selectedItem: Item {
+	private var selectedItem: Item {
 		return self.itemForIndexPath(self.tableView.indexPathForSelectedRow()!)
 	}
 	// MARK: -
@@ -446,7 +438,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		return $(indexPath).$()
 	}
 	// MARK: -
-	var blocksDelayedTillViewWillAppear = [Handler]()
+	private var blocksDelayedTillViewWillAppear = [Handler]()
 	// MARK: -
 	override func viewWillAppear(animated: Bool) {
 		nowDate = NSDate()
@@ -469,7 +461,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		}]
 		super.viewDidAppear(animated)
 	}
-	var blocksDelayedTillViewDidDisappear = [Handler]()
+	private var blocksDelayedTillViewDidDisappear = [Handler]()
 	override func viewDidDisappear(animated: Bool) {
 		for i in blocksDelayedTillViewDidDisappear {
 			i()
