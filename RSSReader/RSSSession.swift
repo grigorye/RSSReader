@@ -320,64 +320,6 @@ class RSSSession: NSObject {
 		sessionTask.resume()
 	}
 	// MARK: -
-	//
-	func updateAllAuthenticated(completionHandler: (NSError?) -> Void) {
-		self.updateUserInfo { updateUserInfoError in dispatch_async(dispatch_get_main_queue()) {
-			if let updateUserInfoError = $(updateUserInfoError).$() {
-				presentErrorMessage(NSLocalizedString("Failed to retrieve user info.", comment: ""))
-				completionHandler(updateUserInfoError)
-				return
-			}
-			self.updateTags { updateTagsError in dispatch_async(dispatch_get_main_queue()) {
-				if let updateTagsError = $(updateTagsError).$() {
-					presentErrorMessage(NSLocalizedString("Failed to update tags.", comment: ""))
-					completionHandler(updateTagsError)
-					return
-				}
-				self.updateSubscriptions { updateSubscriptionsError in dispatch_async(dispatch_get_main_queue()) {
-					if let updateTagsError = $(updateSubscriptionsError).$() {
-						presentErrorMessage(NSLocalizedString("Failed to update subscriptions.", comment: ""))
-						completionHandler(updateSubscriptionsError)
-						return
-					}
-					self.updateUnreadCounts { updateUnreadCountsError in dispatch_async(dispatch_get_main_queue()) {
-						if let updateUnreadCountsError = $(updateUnreadCountsError).$() {
-							presentErrorMessage(NSLocalizedString("Failed to update unread counts.", comment: ""))
-							completionHandler(updateUnreadCountsError)
-							return
-						}
-						self.updateStreamPreferences { updateStreamPreferencesError in dispatch_async(dispatch_get_main_queue()) {
-							if let updateStreamPreferencesError = $(updateStreamPreferencesError).$() {
-								completionHandler(updateStreamPreferencesError)
-								return
-							}
-							completionHandler(nil)
-						}}
-					}}
-				}}
-			}}
-		}}
-	}
-	func updateAll(completionHandler: (NSError?) -> Void) {
-		let rssSession = Optional(self)
-		let postAuthenticate = { () -> Void in
-			self.updateAllAuthenticated(completionHandler)
-		}
-		if (rssSession!.authToken == nil) {
-			rssSession!.authenticate { error in dispatch_async(dispatch_get_main_queue()) {
-				if let authenticationError = error {
-					completionHandler(authenticationError)
-				}
-				else {
-					postAuthenticate()
-				}
-			}}
-		}
-		else {
-			postAuthenticate()
-		}
-	}
-	// MARK: -
 	func streamContents(container: Container, excludedCategory: Folder?, continuation: String?, loadDate: NSDate, completionHandler: (continuation: String?, items: [Item]!, error: NSError?) -> Void) {
 		var queryComponents = [String]()
 		if let continuation = continuation {
