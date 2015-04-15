@@ -74,7 +74,7 @@ class ProgressEnabledURLSessionTaskGenerator: NSObject {
 				completionHandler(text, nil)
 			}
 			else {
-				completionHandler(nil, NSError(domain: applicationErrorDomain, code: ApplicationError.DataDoesNotMatchTextEncoding.rawValue, userInfo: nil))
+				completionHandler(nil, NSError(domain: ApplicationErrorDomain, code: ApplicationError.DataDoesNotMatchTextEncoding.rawValue, userInfo: nil))
 			}
 		}
 	}
