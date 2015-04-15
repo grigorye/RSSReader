@@ -18,6 +18,44 @@
 		C41707CB1A56076A00AED81C /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41707CA1A56076A00AED81C /* Globals.swift */; };
 		C41707CD1A56E85B00AED81C /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41707CC1A56E85B00AED81C /* Folder.swift */; };
 		C41707CF1A56F32500AED81C /* GenericCoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41707CE1A56F32500AED81C /* GenericCoreDataExtensions.swift */; };
+		C41F05621AD0E2A100A659EC /* AppDelegate.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */; };
+		C41F05631AD0E3AB00A659EC /* UserMessages.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C4EF270D1A8D353C000EBE63 /* UserMessages.swift */; };
+		C41F05641AD0E3AB00A659EC /* ProgressEnabledURLSessionTaskGenerator.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C4EF76B51AA7A40200E94E80 /* ProgressEnabledURLSessionTaskGenerator.swift */; };
+		C41F05651AD0E3AB00A659EC /* GenericExtensions.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C495409C1A575D0C00F56168 /* GenericExtensions.swift */; };
+		C41F05661AD0E3AB00A659EC /* KVOBinding.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C451590F1A65E83400374A8C /* KVOBinding.swift */; };
+		C41F05671AD0E3AB00A659EC /* GenericCoreDataExtensions.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C41707CE1A56F32500AED81C /* GenericCoreDataExtensions.swift */; };
+		C41F05681AD0E3AB00A659EC /* FetchedObjectBinding.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C4BE521B1A7192BB00606403 /* FetchedObjectBinding.swift */; };
+		C41F05691AD0E3AB00A659EC /* GenericURLSessionExtensions.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C45158981A65E1FE00374A8C /* GenericURLSessionExtensions.swift */; };
+		C41F056A1AD0E3AB00A659EC /* UITableView+SnappingHeaderToTop.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C46FA8681AA56018004B5C45 /* UITableView+SnappingHeaderToTop.swift */; };
+		C41F056B1AD0E3AB00A659EC /* Descriptions.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C4CD0B371AC7B8DD000E93F2 /* Descriptions.swift */; };
+		C41F056C1AD0E3AB00A659EC /* Globals.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C41707CA1A56076A00AED81C /* Globals.swift */; };
+		C41F056D1AD0E3AB00A659EC /* RSSSession.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C4C1A3F51A574517007384E8 /* RSSSession.swift */; };
+		C41F056E1AD0E3AB00A659EC /* Folder.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C41707CC1A56E85B00AED81C /* Folder.swift */; };
+		C41F056F1AD0E3AB00A659EC /* Container.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C4FD88511A5F10BD0035E4D1 /* Container.swift */; };
+		C41F05701AD0E3AB00A659EC /* Subscription.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C4728B371A55BA6600D4251A /* Subscription.swift */; };
+		C41F05711AD0E3AB00A659EC /* Item.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C495409E1A5780A700F56168 /* Item.swift */; };
+		C41F05721AD0E3AB00A659EC /* UserDefaults.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C495409A1A575C1900F56168 /* UserDefaults.swift */; };
+		C41F05731AD0E3AB00A659EC /* CoreData.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C4728B391A55BAC600D4251A /* CoreData.swift */; };
+		C41F05741AD0E3AB00A659EC /* MarkingAsRead.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C401C65B1A5C971800CF6AA4 /* MarkingAsRead.swift */; };
+		C41F05751AD0E3AB00A659EC /* ContainerViewState.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C4BA3F931AB62C6A0067538F /* ContainerViewState.swift */; };
+		C41F05761AD0E3AB00A659EC /* HomeViewController.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C44B2F001AC0C881006A67F1 /* HomeViewController.swift */; };
+		C41F05771AD0E3AB00A659EC /* ItemTableViewCell.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C4676E081A6A4D1F00AE8BC2 /* ItemTableViewCell.swift */; };
+		C41F05781AD0E3AB00A659EC /* ItemsListViewController.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C49540A01A57825100F56168 /* ItemsListViewController.swift */; };
+		C41F05791AD0E3AB00A659EC /* ItemsPageViewControllerDataSource.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C46934DE1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift */; };
+		C41F057A1AD0E3AB00A659EC /* ItemsPageViewControllerDelegate.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C4AD2ADA1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift */; };
+		C41F057B1AD0E3AB00A659EC /* ItemsPageViewController.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */; };
+		C41F057C1AD0E3AB00A659EC /* FoldersListTableViewController.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C42802681A5B47EA002474E1 /* FoldersListTableViewController.swift */; };
+		C41F057D1AD0E3AB00A659EC /* TableViewContainerCell.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C40A24FE1A672B2100B5D959 /* TableViewContainerCell.swift */; };
+		C41F057E1AD0E3AB00A659EC /* HistoryViewController.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C45BC3E91A8003F40008A5D1 /* HistoryViewController.swift */; };
+		C41F057F1AD0E3AB00A659EC /* ItemSummaryWebViewController.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */; };
+		C41F05801AD0E3AB00A659EC /* SBConstants.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C45ECD051A62054C00ADC113 /* SBConstants.swift */; };
+		C41F05811AD0E3AB00A659EC /* MainNavigationController.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C4C422171A75E355008803A7 /* MainNavigationController.swift */; };
+		C41F05821AD0E3AB00A659EC /* ApplicationActivities.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C4C780151A7DF1EC009CB5FC /* ApplicationActivities.swift */; };
+		C41F05831AD0E3AB00A659EC /* TypeFilteringActivity.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C4C780171A7DF2B0009CB5FC /* TypeFilteringActivity.swift */; };
+		C41F05841AD0E3AB00A659EC /* AddToFavoritesActivity.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C4F575CF1A797C7B00F12F20 /* AddToFavoritesActivity.swift */; };
+		C41F05851AD0E3AB00A659EC /* OpenWebPageActivity.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C4F575D51A7988DB00F12F20 /* OpenWebPageActivity.swift */; };
+		C41F05861AD0E3AB00A659EC /* MarkAllAsReadActivity.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C4C780131A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift */; };
+		C41F05871AD0E3AB00A659EC /* UITabBarController+CVKHiearachySearcher.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = CA2E0441FFA564885EE4A6C9 /* UITabBarController+CVKHiearachySearcher.swift */; };
 		C42802691A5B47EA002474E1 /* FoldersListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42802681A5B47EA002474E1 /* FoldersListTableViewController.swift */; };
 		C42802781A5C2E0D002474E1 /* RSSReader.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C42802741A5C2E0D002474E1 /* RSSReader.xcdatamodeld */; };
 		C44B2F011AC0C881006A67F1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44B2F001AC0C881006A67F1 /* HomeViewController.swift */; };
@@ -56,6 +94,7 @@
 		C4CDD3BB1A5350B50087DD05 /* RSSReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CDD3BA1A5350B50087DD05 /* RSSReaderTests.swift */; };
 		C4CDD3C51A5357B20087DD05 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C4CDD3C41A5357B20087DD05 /* Settings.bundle */; };
 		C4CDE1911A5A06A600F16A2E /* ItemSummaryTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */; };
+		C4E2B8C81ADE394B00F54FD4 /* ApplicationErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E2B8C71ADE394B00F54FD4 /* ApplicationErrors.swift */; };
 		C4EF270E1A8D353C000EBE63 /* UserMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EF270D1A8D353C000EBE63 /* UserMessages.swift */; };
 		C4EF76B61AA7A40200E94E80 /* ProgressEnabledURLSessionTaskGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EF76B51AA7A40200E94E80 /* ProgressEnabledURLSessionTaskGenerator.swift */; };
 		C4F575D01A797C7B00F12F20 /* AddToFavoritesActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F575CF1A797C7B00F12F20 /* AddToFavoritesActivity.swift */; };
@@ -136,6 +175,56 @@
 			remoteInfo = RSSReader;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C41F05611AD0E28A00A659EC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				C41F05631AD0E3AB00A659EC /* UserMessages.swift in CopyFiles */,
+				C41F05641AD0E3AB00A659EC /* ProgressEnabledURLSessionTaskGenerator.swift in CopyFiles */,
+				C41F05651AD0E3AB00A659EC /* GenericExtensions.swift in CopyFiles */,
+				C41F05661AD0E3AB00A659EC /* KVOBinding.swift in CopyFiles */,
+				C41F05671AD0E3AB00A659EC /* GenericCoreDataExtensions.swift in CopyFiles */,
+				C41F05681AD0E3AB00A659EC /* FetchedObjectBinding.swift in CopyFiles */,
+				C41F05691AD0E3AB00A659EC /* GenericURLSessionExtensions.swift in CopyFiles */,
+				C41F056A1AD0E3AB00A659EC /* UITableView+SnappingHeaderToTop.swift in CopyFiles */,
+				C41F056B1AD0E3AB00A659EC /* Descriptions.swift in CopyFiles */,
+				C41F056C1AD0E3AB00A659EC /* Globals.swift in CopyFiles */,
+				C41F056D1AD0E3AB00A659EC /* RSSSession.swift in CopyFiles */,
+				C41F056E1AD0E3AB00A659EC /* Folder.swift in CopyFiles */,
+				C41F056F1AD0E3AB00A659EC /* Container.swift in CopyFiles */,
+				C41F05701AD0E3AB00A659EC /* Subscription.swift in CopyFiles */,
+				C41F05711AD0E3AB00A659EC /* Item.swift in CopyFiles */,
+				C41F05721AD0E3AB00A659EC /* UserDefaults.swift in CopyFiles */,
+				C41F05731AD0E3AB00A659EC /* CoreData.swift in CopyFiles */,
+				C41F05741AD0E3AB00A659EC /* MarkingAsRead.swift in CopyFiles */,
+				C41F05751AD0E3AB00A659EC /* ContainerViewState.swift in CopyFiles */,
+				C41F05761AD0E3AB00A659EC /* HomeViewController.swift in CopyFiles */,
+				C41F05771AD0E3AB00A659EC /* ItemTableViewCell.swift in CopyFiles */,
+				C41F05781AD0E3AB00A659EC /* ItemsListViewController.swift in CopyFiles */,
+				C41F05791AD0E3AB00A659EC /* ItemsPageViewControllerDataSource.swift in CopyFiles */,
+				C41F057A1AD0E3AB00A659EC /* ItemsPageViewControllerDelegate.swift in CopyFiles */,
+				C41F057B1AD0E3AB00A659EC /* ItemsPageViewController.swift in CopyFiles */,
+				C41F057C1AD0E3AB00A659EC /* FoldersListTableViewController.swift in CopyFiles */,
+				C41F057D1AD0E3AB00A659EC /* TableViewContainerCell.swift in CopyFiles */,
+				C41F057E1AD0E3AB00A659EC /* HistoryViewController.swift in CopyFiles */,
+				C41F057F1AD0E3AB00A659EC /* ItemSummaryWebViewController.swift in CopyFiles */,
+				C41F05801AD0E3AB00A659EC /* SBConstants.swift in CopyFiles */,
+				C41F05811AD0E3AB00A659EC /* MainNavigationController.swift in CopyFiles */,
+				C41F05821AD0E3AB00A659EC /* ApplicationActivities.swift in CopyFiles */,
+				C41F05831AD0E3AB00A659EC /* TypeFilteringActivity.swift in CopyFiles */,
+				C41F05841AD0E3AB00A659EC /* AddToFavoritesActivity.swift in CopyFiles */,
+				C41F05851AD0E3AB00A659EC /* OpenWebPageActivity.swift in CopyFiles */,
+				C41F05861AD0E3AB00A659EC /* MarkAllAsReadActivity.swift in CopyFiles */,
+				C41F05871AD0E3AB00A659EC /* UITabBarController+CVKHiearachySearcher.swift in CopyFiles */,
+				C41F05621AD0E2A100A659EC /* AppDelegate.swift in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		18B271D7F3757D52EE1A6C8B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,6 +307,7 @@
 		C4CDD3C41A5357B20087DD05 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ItemSummaryTemplate.html; sourceTree = "<group>"; };
 		C4D56A2A1A7C33C0007BE398 /* PackageApplication */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = PackageApplication; sourceTree = "<group>"; };
+		C4E2B8C71ADE394B00F54FD4 /* ApplicationErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationErrors.swift; sourceTree = "<group>"; };
 		C4E8737D1AB6287400E3DA76 /* 442.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 442.xcdatamodel; sourceTree = "<group>"; };
 		C4EF270D1A8D353C000EBE63 /* UserMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMessages.swift; sourceTree = "<group>"; };
 		C4EF76B51AA7A40200E94E80 /* ProgressEnabledURLSessionTaskGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressEnabledURLSessionTaskGenerator.swift; sourceTree = "<group>"; };
@@ -358,6 +448,7 @@
 			isa = PBXGroup;
 			children = (
 				C41707CA1A56076A00AED81C /* Globals.swift */,
+				C4E2B8C71ADE394B00F54FD4 /* ApplicationErrors.swift */,
 				C4C1A3F51A574517007384E8 /* RSSSession.swift */,
 				C41707CC1A56E85B00AED81C /* Folder.swift */,
 				C4FD88511A5F10BD0035E4D1 /* Container.swift */,
@@ -463,6 +554,7 @@
 				C418B3281A593F4E002C0578 /* Embed Source Version into Bundle */,
 				C4676E7F1A6DB0C900AE8BC2 /* Integrate Fabric */,
 				C40C6BF81A73017B00FAFA17 /* Integrate Appsee */,
+				C41F05611AD0E28A00A659EC /* CopyFiles */,
 				B84A677FEC7B99E1165830AC /* Copy Pods Resources */,
 			);
 			buildRules = (
@@ -741,6 +833,7 @@
 				C42802691A5B47EA002474E1 /* FoldersListTableViewController.swift in Sources */,
 				C48C5F971A87344000A1EA12 /* ItemsPageViewController.swift in Sources */,
 				C41707CD1A56E85B00AED81C /* Folder.swift in Sources */,
+				C4E2B8C81ADE394B00F54FD4 /* ApplicationErrors.swift in Sources */,
 				C4CDD3A31A5350B40087DD05 /* AppDelegate.swift in Sources */,
 				C42802781A5C2E0D002474E1 /* RSSReader.xcdatamodeld in Sources */,
 				C495409F1A5780A700F56168 /* Item.swift in Sources */,
