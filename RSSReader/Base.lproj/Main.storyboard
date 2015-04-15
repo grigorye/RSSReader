@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7528.3" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kPx-QE-mCE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6724" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kPx-QE-mCE">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7518.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -64,7 +64,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bC2-zF-sCe">
                                         <rect key="frame" x="0.0" y="0.0" width="133" height="33"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -82,8 +82,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="133" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" misplaced="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Fg-wk-by1">
-                                        <rect key="frame" x="19" y="8" width="94" height="18"/>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Fg-wk-by1">
+                                        <rect key="frame" x="57" y="8" width="19" height="18"/>
                                         <inset key="contentEdgeInsets" minX="4" minY="0.0" maxX="4" maxY="0.0"/>
                                         <state key="normal" title="U">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -112,8 +112,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="133" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y2K-Hr-675">
-                                        <rect key="frame" x="38" y="8" width="58" height="18"/>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y2K-Hr-675">
+                                        <rect key="frame" x="57" y="8" width="19" height="18"/>
                                         <inset key="contentEdgeInsets" minX="4" minY="0.0" maxX="4" maxY="0.0"/>
                                         <state key="normal" title="U"/>
                                         <userDefinedRuntimeAttributes>
@@ -384,6 +384,30 @@
                             <outlet property="delegate" destination="daS-hT-cbp" id="eoa-m7-kfr"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="K4p-y4-0fs"/>
+                        <barButtonItem style="plain" id="lrQ-OK-B2T" userLabel="Status">
+                            <view key="customView" contentMode="scaleToFill" id="Ouj-jh-zog">
+                                <rect key="frame" x="0.0" y="0.0" width="133" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wVV-rV-Zb5">
+                                        <rect key="frame" x="0.0" y="0.0" width="133" height="33"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="wVV-rV-Zb5" firstAttribute="top" secondItem="Ouj-jh-zog" secondAttribute="top" id="7VW-WM-4cT"/>
+                                    <constraint firstItem="wVV-rV-Zb5" firstAttribute="leading" secondItem="Ouj-jh-zog" secondAttribute="leading" id="PQi-fT-7fG"/>
+                                    <constraint firstAttribute="bottom" secondItem="wVV-rV-Zb5" secondAttribute="bottom" id="sn4-Q3-QeK"/>
+                                    <constraint firstAttribute="trailing" secondItem="wVV-rV-Zb5" secondAttribute="trailing" id="xow-iD-rz4"/>
+                                </constraints>
+                            </view>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="il3-qa-apI"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="News" id="PfS-Px-hbx">
                         <barButtonItem key="backBarButtonItem" title=" " id="pG2-fU-3i2"/>
                     </navigationItem>
@@ -393,6 +417,10 @@
                             <action selector="refresh:" destination="daS-hT-cbp" eventType="valueChanged" id="jhG-vo-rpD"/>
                         </connections>
                     </refreshControl>
+                    <connections>
+                        <outlet property="statusBarButtonItem" destination="lrQ-OK-B2T" id="bLl-r4-J1L"/>
+                        <outlet property="statusLabel" destination="wVV-rV-Zb5" id="p9X-wC-xzQ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e1g-LJ-2H1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
