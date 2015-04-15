@@ -29,8 +29,10 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 		return $(regeneratedChildContainers).$(0)
 	}
 	// MARK: -
+	@IBOutlet private var statusLabel: UILabel!
+	@IBOutlet private var statusBarButtonItem: UIBarButtonItem!
 	@IBAction func refresh(sender: AnyObject!) {
-		rssSession!.updateAll { error in dispatch_async(dispatch_get_main_queue()) {
+		foldersController.updateAll { error in dispatch_async(dispatch_get_main_queue()) {
 			if let error = error {
 				self.presentErrorMessage(NSLocalizedString("Got a problem with feeds retrieval. \(error.localizedDescription)", comment: ""))
 			}
@@ -149,5 +151,20 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 				self.title = self.rootFolder!.visibleTitle
 			}
 		}]
+	}
+}
+
+extension FoldersListTableViewController {
+	func presentMessage(text: String) {
+		statusLabel.text = text
+		statusLabel.sizeToFit()
+		statusLabel.superview!.frame.size.width = statusLabel.bounds.width
+		statusBarButtonItem.width = $(statusLabel.superview!.bounds.width).$()
+	}
+	override func presentErrorMessage(text: String) {
+		presentMessage(text)
+	}
+	override func presentInfoMessage(text: String) {
+		presentMessage(text)
 	}
 }
