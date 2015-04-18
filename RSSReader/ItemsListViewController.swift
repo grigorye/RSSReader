@@ -255,7 +255,12 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		rssSession!.markAllAsRead(container!) { error in
 			$(error).$()
 			dispatch_async(dispatch_get_main_queue()) {
-				self.presentErrorMessage(NSLocalizedString("Failed to mark all as read.", comment: ""))
+				if nil != error {
+					self.presentErrorMessage(NSLocalizedString("Failed to mark all as read.", comment: ""))
+				}
+				else {
+					self.presentInfoMessage(NSLocalizedString("Marked all as read.", comment: ""))
+				}
 			}
 		}
 	}
@@ -450,7 +455,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	override func viewDidAppear(animated: Bool) {
 		let loadDateLabel = self.statusLabel
-		let binding = KVOBinding(object: self, keyPath: "loadDate", options: .New | .Initial) { change in
+		let binding = KVOBinding((•self){$0.loadDate}, options: .New | .Initial) { change in
 			let loadDate = change[NSKeyValueChangeNewKey] as! NSDate
 			$(self.toolbarItems).$()
 			let loadAgo = loadAgoDateComponentsFormatter.stringFromDate(loadDate, toDate: NSDate())
