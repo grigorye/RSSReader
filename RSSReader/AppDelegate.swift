@@ -126,7 +126,7 @@ class AppDelegateInternals {
 	}()
 	init() {
 		let taskGenerator = progressEnabledURLSessionTaskGenerator
-		urlTaskGeneratorProgressKVOBinding = KVOBinding(object: taskGenerator, keyPath: "progresses", options: NSKeyValueObservingOptions(0)) { change in
+		urlTaskGeneratorProgressKVOBinding = KVOBinding((•taskGenerator){$0.progresses}, options: NSKeyValueObservingOptions(0)) { change in
 			let networkActivityIndicatorShouldBeVisible = 0 < taskGenerator.progresses.count
 			UIApplication.sharedApplication().networkActivityIndicatorVisible = $( networkActivityIndicatorShouldBeVisible).$()
 		}

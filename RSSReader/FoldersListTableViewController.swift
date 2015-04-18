@@ -16,7 +16,7 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 	class func keyPathsForValuesAffectingRegeneratedChildContainers() -> Set<String> {
 		return ["defaults.showUnreadOnly", "rootFolder.childContainers"]
 	}
-	private var regeneratedChildContainers: [Container] {
+	private dynamic var regeneratedChildContainers: [Container] {
 		let regeneratedChildContainers: [Container] = {
 			if let rootFolder = self.rootFolder {
 				let showUnreadOnly = self.defaults.showUnreadOnly
@@ -134,7 +134,7 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 		for i in blocksScheduledForViewWillAppear { i() }
 		blocksScheduledForViewWillAppear = []
 		super.viewWillAppear(animated)
-		viewDidDisappearRetainedObjects += [KVOBinding(object: self, keyPath: "regeneratedChildContainers", options: .Initial) { [unowned self] change in
+		viewDidDisappearRetainedObjects += [KVOBinding((•self){$0.regeneratedChildContainers}, options: .Initial) { [unowned self] change in
 			$(change).$(0)
 			self.childContainers = self.regeneratedChildContainers
 			self.tableView.reloadData()
