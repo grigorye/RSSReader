@@ -22,9 +22,9 @@ class KVOBinding : NSObject {
 			super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
 		}
 	}
-	init(object: NSObject, keyPath: String, options: NSKeyValueObservingOptions, KVOHandler: (NSDictionary) -> Void) {
-		self.object = object
-		self.keyPath = keyPath
+	init(_ objectAndKeyPath: ObjectAndKeyPath, options: NSKeyValueObservingOptions, KVOHandler: (NSDictionary) -> Void) {
+		self.object = objectAndKeyPath.object
+		self.keyPath = objectAndKeyPath.keyPath
 		self.KVOHandler = KVOHandler
 		super.init()
 		object.addObserver(self, forKeyPath: keyPath, options: options, context: KVOBindingContext)
