@@ -7,59 +7,33 @@
 //
 
 import RSSReader
+import Foundation
 import XCTest
 
-func void<T>(x: T) {
-}
-
-private class ObjectWithString: NSObject {
-	dynamic var string: String!
+class ObjectWithString: NSObject {
+	dynamic var optionalString: String! = "baz"
+	dynamic var string = "baz"
+	dynamic var optionalAnotherObject: ObjectWithString! {
+		return nil
+	}
+	dynamic var computedLength: Int {
+		return (string as NSString).length
+	}
 }
 
 class KeyPathsTests : XCTestCase {
-	dynamic var string: String! = "bar"
-	dynamic var array: [String]!
-	private dynamic var objectWithString: ObjectWithString!
-	private dynamic var computedObjectWithString: ObjectWithString! {
+	dynamic var string: String = "bar"
+	dynamic var optionalString: String!
+	dynamic var array = ["foo"]
+	dynamic var optionalArray: [String]!
+	dynamic var optionalObject: ObjectWithString!
+	dynamic var optionalComputedObject: ObjectWithString! {
 		return ObjectWithString()
 	}
-	private dynamic var computedArray: [ObjectWithString] {
+	dynamic var computedArray: [ObjectWithString] {
 		return [ObjectWithString]()
 	}
-	func testString() {
-		let x = instanceKeyPath(self) {
-			$0.string
-		}
-		XCTAssertEqual(x, "string", "")
-	}
-	func testArray() {
-		let x = instanceKeyPath(self) {
-			$0.array
-		}
-		XCTAssertEqual(x, "array", "")
-	}
-	func testComputedArray() {
-		let x = instanceKeyPath(self) {
-			$0.computedArray
-		}
-		XCTAssertEqual(x, "computedArray", "")
-	}
-	func testObjectWithString() {
-		let x = instanceKeyPath(self) {
-			$0.objectWithString.string
-		}
-		XCTAssertEqual(x, "objectWithString.string", "")
-	}
-	func testObjectWithStringOperator() {
-		let x = (•self){
-			$0.objectWithString.string
-		}
-		XCTAssertEqual(x.keyPath, "objectWithString.string", "")
-	}
-	func testComputedObjectWithStringOperator() {
-		let x = (•self){
-			$0.computedObjectWithString.string
-		}
-		XCTAssertEqual(x.keyPath, "computedObjectWithString.string", "")
+	dynamic var computedOptionalArray: [ObjectWithString]! {
+		return [ObjectWithString]()
 	}
 }
