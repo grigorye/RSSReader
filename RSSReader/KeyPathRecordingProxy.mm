@@ -12,6 +12,7 @@
 #define let auto const
 #define var auto
 
+NSUInteger keyPathRecordingProxyLiveCount;
 void const *keyPathRecorderProxyAssociation = &keyPathRecorderProxyAssociation;
 
 @implementation KeyPathRecordingProxy
@@ -29,21 +30,32 @@ void const *keyPathRecorderProxyAssociation = &keyPathRecorderProxyAssociation;
 - (void)forwardInvocation:(NSInvocation *)invocation;
 {
 	SEL selector = invocation.selector;
+	let proxy = (KeyPathRecordingProxy *)objc_getAssociatedObject(self, keyPathRecorderProxyAssociation);
 	if (sel_isEqual(selector, @selector(copy))) {
-		id returnValue = nil;
-		[invocation setReturnValue:&returnValue];
-		return;
-	}
-	KeyPathRecordingProxy *proxy = objc_getAssociatedObject(self, keyPathRecorderProxyAssociation);
-	{
-		proxy.keyPathComponents = [[NSArray arrayWithArray:proxy.keyPathComponents] arrayByAddingObjectsFromArray:@[NSStringFromSelector(invocation.selector)]];
-		let property = class_getProperty(proxy.realObjectClass, sel_getName(selector));
-		let propertyType = property_copyAttributeValue(property, "T");
-		if (0 == strcmp(propertyType, @encode(id))) {
-			var returnValue = proxy.fakeReturnValue;
+		if (let valueClass = proxy.valueClass) {
+			id returnValue = [valueClass new];
 			[invocation setReturnValue:&returnValue];
 		}
-		else {
+		return;
+	}
+	if (sel_isEqual(selector, @selector(copyWithZone:))) {
+		if (let valueClass = proxy.valueClass) {
+			id returnValue = [valueClass new];
+			[invocation setReturnValue:&returnValue];
+		}
+		return;
+	}
+	{
+		proxy.keyPathComponents = ^{
+			let lastKeyPathComponents = @[NSStringFromSelector(invocation.selector)];
+			if (let oldKeyPathComponents = proxy.keyPathComponents) {
+				return [oldKeyPathComponents arrayByAddingObjectsFromArray:lastKeyPathComponents];
+			}
+			else {
+				return lastKeyPathComponents;
+			}
+		}();
+		if (0 == strcmp(invocation.methodSignature.methodReturnType, @encode(id))) {
 			id returnValue = self;
 			[invocation setReturnValue:&returnValue];
 		}
@@ -52,8 +64,18 @@ void const *keyPathRecorderProxyAssociation = &keyPathRecorderProxyAssociation;
 
 #pragma mark -
 
+#if 1
 - (void)dealloc;
 {
+	--keyPathRecordingProxyLiveCount;
 }
+
++ (id)alloc;
+{
+	let proxy = [super alloc];
+	++keyPathRecordingProxyLiveCount;
+	return proxy;
+}
+#endif
 
 @end
