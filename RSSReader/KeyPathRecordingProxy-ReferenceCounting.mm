@@ -7,28 +7,13 @@
 //
 
 #import "KeyPathRecordingProxy-ReferenceCounting.h"
+#import <objc/runtime.h>
 
-@implementation KeyPathRecordingProxy (ReferenceCounting)
+#define let auto const
+#define var auto
 
-+ (instancetype)alloc;
-{
-	KeyPathRecordingProxy *instance = super.alloc;
-	instance.proxyRetainCount = 1;
-	return instance;
+Class object_setClassAndRetain(id object, Class cls) {
+	let oldClass = object_setClass(object, cls);
+	[object retain];
+	return oldClass;
 }
-
-- (oneway void)release;
-{
-	self.proxyRetainCount--;
-	if (!self.proxyRetainCount) {
-		[self dealloc];
-	}
-}
-
-- (instancetype)retain;
-{
-	self.proxyRetainCount++;
-	return self;
-}
-
-@end
