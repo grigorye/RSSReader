@@ -18,7 +18,7 @@ class ItemSummaryWebViewController: UIViewController {
 	var savedRightBarButtonItems: [UIBarButtonItem]!
 	@IBOutlet var markAsFavoriteBarButtonItem: UIBarButtonItem!
 	@IBOutlet var unmarkAsFavoriteBarButtonItem: UIBarButtonItem!
-	var item: Item!
+	dynamic var item: Item!
 	var markAsReadTimer: NSTimer?
 	func markAsRead() {
 		if (!item.markedAsRead) {
@@ -136,12 +136,9 @@ class ItemSummaryWebViewController: UIViewController {
 	// MARK: -
 	var viewDidDisappearRetainedObjects = [AnyObject]()
 	override func viewWillAppear(animated: Bool) {
-		if hideBarsOnSwipe {
-			self.navigationController!.hidesBarsOnSwipe = true
-		}
 		for i in blocksScheduledForViewWillAppear { i() }
 		blocksScheduledForViewWillAppear = []
-		viewDidDisappearRetainedObjects += [KVOBinding(object: self, keyPath: "item.markedAsFavorite", options: .Initial) { [unowned self] change in
+		viewDidDisappearRetainedObjects += [KVOBinding(self•{$0.item.markedAsFavorite}, options: .Initial) { [unowned self] change in
 			let excludedBarButtonItem = self.item.markedAsFavorite ? self.markAsFavoriteBarButtonItem : self.unmarkAsFavoriteBarButtonItem
 			let rightBarButtonItems = filter(self.savedRightBarButtonItems) {
 				return $0 != excludedBarButtonItem
@@ -162,11 +159,15 @@ class ItemSummaryWebViewController: UIViewController {
 	override func viewDidDisappear(animated: Bool) {
 		viewDidDisappearRetainedObjects = []
 		super.viewDidDisappear(animated)
+	}
+	override func willMoveToParentViewController(parent: UIViewController?) {
+		$(parent).$()
+		super.willMoveToParentViewController(parent)
 		if hideBarsOnSwipe {
-			self.navigationController?.hidesBarsOnSwipe = false
+			self.navigationController?.hidesBarsOnSwipe = nil != parent
 		}
 	}
-	//
+	// MARK: -
 	override func prefersStatusBarHidden() -> Bool {
 		return navigationController!.navigationBarHidden;
 	}
