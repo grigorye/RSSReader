@@ -5,6 +5,7 @@
 #import "KVOCompliantUserDefaults.h"
 #import "KVOCompliantUserDefaults+RSSReader.h"
 #import "KeyPathRecordingProxy.h"
+#import "KeyPathRecordingProxy-ReferenceCounting.h"
 #import "NSBundleExtensions.h"
 #if UXCAM_ENABLED
 #import <UXCam/UXCam.h>
