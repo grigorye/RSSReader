@@ -15,6 +15,13 @@ let favoriteTagSuffix = "state/com.google/starred"
 let canonicalReadTag = "user/-/state/com.google/read"
 let canonicalFavoriteTag = "user/-/state/com.google/starred"
 
+var markedAsReadCategory: Folder! = {
+	return Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: "".mainQueueManagedObjectContext)
+}()
+var markedAsFavoriteCategory: Folder! = {
+	return Folder.folderWithTagSuffix(favoriteTagSuffix, managedObjectContext: "".mainQueueManagedObjectContext)
+}()
+
 extension Folder {
 	class func predicateForFetchingFolderWithTagSuffix(tagSuffix: String) -> NSPredicate {
 		return NSPredicate(format: "streamID ENDSWITH %@", argumentArray: [tagSuffix])
@@ -58,17 +65,22 @@ extension Item {
 		}
 	}
 	// MARK: -
-	var markedAsFavorite: Bool {
+	dynamic var markedAsFavorite: Bool {
 		get {
-			return includedInCategoryWithTagSuffix(favoriteTagSuffix)
+			return categories.contains(markedAsFavoriteCategory)
 		}
 		set {
-			setIncludedInCategoryWithTagSuffix(favoriteTagSuffix, newValue: newValue)
+			if newValue {
+				mutableCategories.addObject(markedAsFavoriteCategory)
+			}
+			else {
+				mutableCategories.removeObject(markedAsFavoriteCategory)
+			}
 		}
 	}
 	var markedAsRead: Bool {
 		get {
-			return includedInCategoryWithTagSuffix(readTagSuffix)
+			return categories.contains(markedAsReadCategory)
 		}
 		set {
 			let oldValue = self.markedAsRead
@@ -80,7 +92,12 @@ extension Item {
 				for category in self.categories {
 					category.unreadCount += unreadCountDelta
 				}
-				setIncludedInCategoryWithTagSuffix(readTagSuffix, newValue: newValue)
+				if newValue {
+					mutableCategories.addObject(markedAsReadCategory)
+				}
+				else {
+					mutableCategories.removeObject(markedAsReadCategory)
+				}
 			}
 		}
 	}
