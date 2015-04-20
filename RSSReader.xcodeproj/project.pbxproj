@@ -61,6 +61,14 @@
 		C422D0F51AE061D30062BC98 /* KeyPathRecordingProxy.mm in Sources */ = {isa = PBXBuildFile; fileRef = C422D0F21AE060B10062BC98 /* KeyPathRecordingProxy.mm */; };
 		C42802691A5B47EA002474E1 /* FoldersListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42802681A5B47EA002474E1 /* FoldersListTableViewController.swift */; };
 		C42802781A5C2E0D002474E1 /* RSSReader.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C42802741A5C2E0D002474E1 /* RSSReader.xcdatamodeld */; };
+		C42CFDB71AE4A41B006970F6 /* KeyPathsTests-PrefixOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42CFDB61AE4A41B006970F6 /* KeyPathsTests-PrefixOperator.swift */; };
+		C42CFDC11AE4A4A4006970F6 /* ObjectAndKeyPath-PrefixOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42CFDC01AE4A4A4006970F6 /* ObjectAndKeyPath-PrefixOperator.swift */; };
+		C42CFDC31AE4A6EC006970F6 /* ObjectAndKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42CFDC21AE4A6EC006970F6 /* ObjectAndKeyPath.swift */; };
+		C42CFDC61AE4A7B1006970F6 /* KeyPathsTests-GeneratorFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42CFDC41AE4A7A3006970F6 /* KeyPathsTests-GeneratorFunction.swift */; };
+		C42CFDC81AE4A801006970F6 /* KeyPathsTests-InstanceKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42CFDC71AE4A801006970F6 /* KeyPathsTests-InstanceKeyPath.swift */; };
+		C42CFDCA1AE4AA2E006970F6 /* ObjectAndKeyPath-GeneratorFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42CFDC91AE4AA2E006970F6 /* ObjectAndKeyPath-GeneratorFunction.swift */; };
+		C42CFDCC1AE4AABD006970F6 /* ObjectAndKeyPath-InfixOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42CFDCB1AE4AABD006970F6 /* ObjectAndKeyPath-InfixOperator.swift */; };
+		C42CFDCF1AE4AB7B006970F6 /* KeyPathsTests-InfixOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42CFDCD1AE4AB3C006970F6 /* KeyPathsTests-InfixOperator.swift */; };
 		C44B2F011AC0C881006A67F1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44B2F001AC0C881006A67F1 /* HomeViewController.swift */; };
 		C44D91641AAE73830053B9E6 /* ItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C44D91631AAE73830053B9E6 /* ItemTableViewCell.xib */; };
 		C44D916D1AAE773B0053B9E6 /* ItemSimpleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C44D916C1AAE773B0053B9E6 /* ItemSimpleTableViewCell.xib */; };
@@ -275,6 +283,14 @@
 		C42802751A5C2E0D002474E1 /* 31.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 31.xcdatamodel; sourceTree = "<group>"; };
 		C42802761A5C2E0D002474E1 /* 43.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 43.xcdatamodel; sourceTree = "<group>"; };
 		C42802771A5C2E0D002474E1 /* 70.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 70.xcdatamodel; sourceTree = "<group>"; };
+		C42CFDB61AE4A41B006970F6 /* KeyPathsTests-PrefixOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KeyPathsTests-PrefixOperator.swift"; sourceTree = "<group>"; };
+		C42CFDC01AE4A4A4006970F6 /* ObjectAndKeyPath-PrefixOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObjectAndKeyPath-PrefixOperator.swift"; sourceTree = "<group>"; };
+		C42CFDC21AE4A6EC006970F6 /* ObjectAndKeyPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectAndKeyPath.swift; sourceTree = "<group>"; };
+		C42CFDC41AE4A7A3006970F6 /* KeyPathsTests-GeneratorFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KeyPathsTests-GeneratorFunction.swift"; sourceTree = "<group>"; };
+		C42CFDC71AE4A801006970F6 /* KeyPathsTests-InstanceKeyPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KeyPathsTests-InstanceKeyPath.swift"; sourceTree = "<group>"; };
+		C42CFDC91AE4AA2E006970F6 /* ObjectAndKeyPath-GeneratorFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObjectAndKeyPath-GeneratorFunction.swift"; sourceTree = "<group>"; };
+		C42CFDCB1AE4AABD006970F6 /* ObjectAndKeyPath-InfixOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObjectAndKeyPath-InfixOperator.swift"; sourceTree = "<group>"; };
+		C42CFDCD1AE4AB3C006970F6 /* KeyPathsTests-InfixOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KeyPathsTests-InfixOperator.swift"; sourceTree = "<group>"; };
 		C44B2F001AC0C881006A67F1 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C44D91631AAE73830053B9E6 /* ItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemTableViewCell.xib; sourceTree = "<group>"; };
 		C44D916C1AAE773B0053B9E6 /* ItemSimpleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemSimpleTableViewCell.xib; sourceTree = "<group>"; };
@@ -396,7 +412,15 @@
 			isa = PBXGroup;
 			children = (
 				C422D0EC1AE05F5C0062BC98 /* KeyPaths.swift */,
+				C42CFDC21AE4A6EC006970F6 /* ObjectAndKeyPath.swift */,
+				C42CFDC91AE4AA2E006970F6 /* ObjectAndKeyPath-GeneratorFunction.swift */,
+				C42CFDC01AE4A4A4006970F6 /* ObjectAndKeyPath-PrefixOperator.swift */,
+				C42CFDCB1AE4AABD006970F6 /* ObjectAndKeyPath-InfixOperator.swift */,
 				C422D0ED1AE05F5C0062BC98 /* KeyPathsTests.swift */,
+				C42CFDC71AE4A801006970F6 /* KeyPathsTests-InstanceKeyPath.swift */,
+				C42CFDC41AE4A7A3006970F6 /* KeyPathsTests-GeneratorFunction.swift */,
+				C42CFDB61AE4A41B006970F6 /* KeyPathsTests-PrefixOperator.swift */,
+				C42CFDCD1AE4AB3C006970F6 /* KeyPathsTests-InfixOperator.swift */,
 				C422D0F11AE060B10062BC98 /* KeyPathRecordingProxy.h */,
 				C422D0F21AE060B10062BC98 /* KeyPathRecordingProxy.mm */,
 				C4818C961AE2EC6C006929BB /* KeyPathRecordingProxy-ReferenceCounting.h */,
@@ -851,6 +875,7 @@
 				C45158991A65E1FE00374A8C /* GenericURLSessionExtensions.swift in Sources */,
 				C4818C951AE2EAD8006929BB /* KeyPathRecordingProxy-ReferenceCounting.mm in Sources */,
 				C4C780161A7DF1EC009CB5FC /* ApplicationActivities.swift in Sources */,
+				C42CFDC11AE4A4A4006970F6 /* ObjectAndKeyPath-PrefixOperator.swift in Sources */,
 				C49540A51A57906600F56168 /* ItemSummaryWebViewController.swift in Sources */,
 				C4AD2ADB1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift in Sources */,
 				C4C1A3F61A574517007384E8 /* RSSSession.swift in Sources */,
@@ -881,6 +906,7 @@
 				C4728B381A55BA6600D4251A /* Subscription.swift in Sources */,
 				C40C6C081A74AB5E00FAFA17 /* KVOCompliantUserDefaults.mm in Sources */,
 				C46FA8691AA56018004B5C45 /* UITableView+SnappingHeaderToTop.swift in Sources */,
+				C42CFDCA1AE4AA2E006970F6 /* ObjectAndKeyPath-GeneratorFunction.swift in Sources */,
 				C41707CF1A56F32500AED81C /* GenericCoreDataExtensions.swift in Sources */,
 				C4C780141A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift in Sources */,
 				C4EF76B61AA7A40200E94E80 /* ProgressEnabledURLSessionTaskGenerator.swift in Sources */,
@@ -889,9 +915,11 @@
 				C4F575D01A797C7B00F12F20 /* AddToFavoritesActivity.swift in Sources */,
 				C4F575D61A7988DB00F12F20 /* OpenWebPageActivity.swift in Sources */,
 				C4BE521C1A7192BB00606403 /* FetchedObjectBinding.swift in Sources */,
+				C42CFDC31AE4A6EC006970F6 /* ObjectAndKeyPath.swift in Sources */,
 				C40C6C0B1A74BE3900FAFA17 /* KVOCompliantUserDefaults+RSSReader.m in Sources */,
 				C46934DF1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift in Sources */,
 				C45BC3EA1A8003F40008A5D1 /* HistoryViewController.swift in Sources */,
+				C42CFDCC1AE4AABD006970F6 /* ObjectAndKeyPath-InfixOperator.swift in Sources */,
 				C495409D1A575D0C00F56168 /* GenericExtensions.swift in Sources */,
 				CA2F924C7954C9EC08D55206 /* UITabBarController+CVKHiearachySearcher.swift in Sources */,
 			);
@@ -901,7 +929,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C42CFDB71AE4A41B006970F6 /* KeyPathsTests-PrefixOperator.swift in Sources */,
+				C42CFDCF1AE4AB7B006970F6 /* KeyPathsTests-InfixOperator.swift in Sources */,
 				C422D0F01AE05F600062BC98 /* KeyPathsTests.swift in Sources */,
+				C42CFDC81AE4A801006970F6 /* KeyPathsTests-InstanceKeyPath.swift in Sources */,
+				C42CFDC61AE4A7B1006970F6 /* KeyPathsTests-GeneratorFunction.swift in Sources */,
 				C4CDD3BB1A5350B50087DD05 /* RSSReaderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
