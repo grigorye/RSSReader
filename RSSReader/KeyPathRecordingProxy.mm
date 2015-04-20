@@ -13,9 +13,13 @@
 #define var auto
 
 NSUInteger keyPathRecordingProxyLiveCount;
-void const *keyPathRecorderProxyAssociation = &keyPathRecorderProxyAssociation;
 
 @implementation KeyPathRecordingProxy
+
+- (BOOL)isKindOfClass:(Class)aClass;
+{
+	return YES;
+}
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)sel;
 {
@@ -30,7 +34,7 @@ void const *keyPathRecorderProxyAssociation = &keyPathRecorderProxyAssociation;
 - (void)forwardInvocation:(NSInvocation *)invocation;
 {
 	SEL selector = invocation.selector;
-	let proxy = (KeyPathRecordingProxy *)objc_getAssociatedObject(self, keyPathRecorderProxyAssociation);
+	let proxy = self;
 	if (sel_isEqual(selector, @selector(copy))) {
 		if (let valueClass = proxy.valueClass) {
 			id returnValue = [valueClass new];

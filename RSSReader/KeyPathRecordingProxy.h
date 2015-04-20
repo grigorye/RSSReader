@@ -15,13 +15,4 @@
 
 @end
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-Class object_setClassAndRetain(id object, Class cls);
-#ifdef __cplusplus
-}
-#endif
-
-extern void const *keyPathRecorderProxyAssociation;
 extern NSUInteger keyPathRecordingProxyLiveCount;
