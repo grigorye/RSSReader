@@ -8,11 +8,4 @@
 
 import Foundation
 
-public struct ObjectAndKeyPath {
-	public let object: NSObject
-	public let keyPath: String
-	init(_ object: NSObject, _ keyPath: String) {
-		self.object = object
-		self.keyPath = keyPath
-	}
-}
+public typealias ObjectAndKeyPath = (object: NSObject, keyPath: String)
