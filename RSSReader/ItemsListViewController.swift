@@ -455,7 +455,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	override func viewDidAppear(animated: Bool) {
 		let loadDateLabel = self.statusLabel
-		let binding = KVOBinding((•self){$0.loadDate}, options: .New | .Initial) { change in
+		let binding = KVOBinding(self•{$0.loadDate}, options: .New | .Initial) { change in
 			let loadDate = change[NSKeyValueChangeNewKey] as! NSDate
 			$(self.toolbarItems).$()
 			let loadAgo = loadAgoDateComponentsFormatter.stringFromDate(loadDate, toDate: NSDate())

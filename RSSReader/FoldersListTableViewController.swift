@@ -134,7 +134,7 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 		for i in blocksScheduledForViewWillAppear { i() }
 		blocksScheduledForViewWillAppear = []
 		super.viewWillAppear(animated)
-		viewDidDisappearRetainedObjects += [KVOBinding((•self){$0.regeneratedChildContainers}, options: .Initial) { [unowned self] change in
+		viewDidDisappearRetainedObjects += [KVOBinding(self•{$0.regeneratedChildContainers}, options: .Initial) { [unowned self] change in
 			$(change).$(0)
 			self.childContainers = self.regeneratedChildContainers
 			self.tableView.reloadData()
