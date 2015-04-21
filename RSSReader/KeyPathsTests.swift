@@ -26,6 +26,10 @@ class KeyPathsTests : XCTestCase {
 	dynamic var optionalString: String!
 	dynamic var array = ["foo"]
 	dynamic var optionalArray: [String]!
+	dynamic var set: Set<String> = ["foo"]
+	dynamic var optionalSet: Set<String>!
+	dynamic var dictionary: [String: String] = ["foo": "bar"]
+	dynamic var optionalDictionary: [String: String]!
 	dynamic var optionalObject: ObjectWithString!
 	dynamic var optionalComputedObject: ObjectWithString! {
 		return ObjectWithString()
