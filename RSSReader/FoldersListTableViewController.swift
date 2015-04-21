@@ -11,10 +11,10 @@ import CoreData
 
 class FoldersListTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, UIDataSourceModelAssociation {
 	dynamic var rootFolder: Folder?
-	private var childContainers: [Container]!
-	let defaults = KVOCompliantUserDefaults()
+	var childContainers: [Container]!
+	dynamic let defaults = KVOCompliantUserDefaults()
 	class func keyPathsForValuesAffectingRegeneratedChildContainers() -> Set<String> {
-		return ["defaults.showUnreadOnly", "rootFolder.childContainers"]
+		return [self••{$0.rootFolder!.childContainers}, self••{$0.defaults.showUnreadOnly}]
 	}
 	private dynamic var regeneratedChildContainers: [Container] {
 		let regeneratedChildContainers: [Container] = {
@@ -151,6 +151,10 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 				self.title = self.rootFolder!.visibleTitle
 			}
 		}]
+	}
+	// MARK: -
+	deinit {
+		$(self).$()
 	}
 }
 

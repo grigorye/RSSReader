@@ -11,7 +11,7 @@ import CoreData
 
 extension Item {
 	class func keyPathsForValuesAffectingItemListSectionName() -> Set<String> {
-		return ["date", "loadDate"]
+		return [self••{$0.date}, self••{$0.loadDate}]
 	}
 	func itemsListSectionName() -> String {
 		let timeInterval = self.date.timeIntervalSinceDate(self.date)
