@@ -8,4 +8,4 @@
 
 import Foundation
 
-public typealias ObjectAndKeyPath = (object: NSObject, keyPath: String)
+public typealias ObjectAndKeyPath = (object: NSObject!, keyPath: String)
