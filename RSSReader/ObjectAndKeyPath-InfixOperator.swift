@@ -10,15 +10,24 @@ import Foundation
 
 infix operator • {}
 
-public func •<T: NSObject, V: AnyObject>(x: T, @noescape recorder: (T) -> [V]) -> ObjectAndKeyPath {
+public func •<T: NSObject, V: AnyObject>(x: T!, @noescape recorder: (T) -> [V]) -> ObjectAndKeyPath {
 	return ObjectAndKeyPath(x, instanceKeyPath(x, recorder))
 }
-public func •<T: NSObject>(x: T, @noescape recorder: (T) -> String) -> ObjectAndKeyPath {
+public func •<T: NSObject>(x: T!, @noescape recorder: (T) -> String) -> ObjectAndKeyPath {
 	return ObjectAndKeyPath(x, instanceKeyPath(x, recorder))
 }
-public func •<T: NSObject>(x: T, @noescape recorder: (T) -> Optional<String>) -> ObjectAndKeyPath {
+public func •<T: NSObject>(x: T!, @noescape recorder: (T) -> Optional<String>) -> ObjectAndKeyPath {
 	return ObjectAndKeyPath(x, instanceKeyPath(x, recorder))
 }
-public func •<T: NSObject, V>(x: T, @noescape recorder: (T) -> V) -> ObjectAndKeyPath {
+public func •<T: NSObject, V>(x: T!, @noescape recorder: (T) -> V) -> ObjectAndKeyPath {
 	return ObjectAndKeyPath(x, instanceKeyPath(x, recorder))
+}
+
+infix operator •• {}
+public func ••<T: NSObject, V>(x: T, @noescape recorder: (T) -> V) -> String {
+	return instanceKeyPath(x, recorder)
+}
+public func ••<T: NSObject, V>(cls: T.Type, @noescape recorder: (T) -> V) -> String {
+	let x = Optional<T>()
+	return instanceKeyPath(x, recorder)
 }
