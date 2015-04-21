@@ -83,7 +83,6 @@
 		C4728B381A55BA6600D4251A /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4728B371A55BA6600D4251A /* Subscription.swift */; };
 		C4728B3A1A55BAC600D4251A /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4728B391A55BAC600D4251A /* CoreData.swift */; };
 		C47C5FD51AE2081B004D6BC0 /* KeyPaths.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C422D0EC1AE05F5C0062BC98 /* KeyPaths.swift */; };
-		C4818C951AE2EAD8006929BB /* KeyPathRecordingProxy-ReferenceCounting.mm in Sources */ = {isa = PBXBuildFile; fileRef = C4818C941AE2EAD8006929BB /* KeyPathRecordingProxy-ReferenceCounting.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C48C5F8B1A867D3D00A1EA12 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48C5F8A1A867D3D00A1EA12 /* MobileCoreServices.framework */; };
 		C48C5F971A87344000A1EA12 /* ItemsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */; };
 		C495409B1A575C1900F56168 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495409A1A575C1900F56168 /* UserDefaults.swift */; };
@@ -315,8 +314,6 @@
 		C46FA8681AA56018004B5C45 /* UITableView+SnappingHeaderToTop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+SnappingHeaderToTop.swift"; sourceTree = "<group>"; };
 		C4728B371A55BA6600D4251A /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		C4728B391A55BAC600D4251A /* CoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
-		C4818C941AE2EAD8006929BB /* KeyPathRecordingProxy-ReferenceCounting.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "KeyPathRecordingProxy-ReferenceCounting.mm"; sourceTree = "<group>"; };
-		C4818C961AE2EC6C006929BB /* KeyPathRecordingProxy-ReferenceCounting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KeyPathRecordingProxy-ReferenceCounting.h"; sourceTree = "<group>"; };
 		C48C5F8A1A867D3D00A1EA12 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		C48C5F941A8695BF00A1EA12 /* libFlurry_6.0.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_6.0.0.a; path = Flurry/libFlurry_6.0.0.a; sourceTree = "<group>"; };
 		C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsPageViewController.swift; sourceTree = "<group>"; };
@@ -423,8 +420,6 @@
 				C42CFDCD1AE4AB3C006970F6 /* KeyPathsTests-InfixOperator.swift */,
 				C422D0F11AE060B10062BC98 /* KeyPathRecordingProxy.h */,
 				C422D0F21AE060B10062BC98 /* KeyPathRecordingProxy.mm */,
-				C4818C961AE2EC6C006929BB /* KeyPathRecordingProxy-ReferenceCounting.h */,
-				C4818C941AE2EAD8006929BB /* KeyPathRecordingProxy-ReferenceCounting.mm */,
 				C4EF76B51AA7A40200E94E80 /* ProgressEnabledURLSessionTaskGenerator.swift */,
 				C495409C1A575D0C00F56168 /* GenericExtensions.swift */,
 				C451590F1A65E83400374A8C /* KVOBinding.swift */,
@@ -873,7 +868,6 @@
 			files = (
 				C46550491A7870E60046FFBD /* UINavigationItem+MultipleBarButtonItemsCollections.m in Sources */,
 				C45158991A65E1FE00374A8C /* GenericURLSessionExtensions.swift in Sources */,
-				C4818C951AE2EAD8006929BB /* KeyPathRecordingProxy-ReferenceCounting.mm in Sources */,
 				C4C780161A7DF1EC009CB5FC /* ApplicationActivities.swift in Sources */,
 				C42CFDC11AE4A4A4006970F6 /* ObjectAndKeyPath-PrefixOperator.swift in Sources */,
 				C49540A51A57906600F56168 /* ItemSummaryWebViewController.swift in Sources */,
