@@ -88,7 +88,7 @@ extension Subscription : ManagedIdentifiable {
 				let id = category["id"] as! String
 				var categoryImportError: NSError?
 				if let folder = insertedObjectUnlessFetchedWithID(Folder.self, id: id, managedObjectContext: self.managedObjectContext!, error: &categoryImportError) {
-					let mutableCategories = self.mutableSetValueForKey("categories")
+					let mutableCategories = self.mutableSetValueForKey(self••{$0.categories})
 					mutableCategories.addObject(folder)
 				}
 			}
