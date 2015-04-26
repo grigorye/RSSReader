@@ -8,15 +8,6 @@
 
 import Foundation
 
-public func xxx<T: NSObject, V: AnyObject>(x: T!, @noescape recorder: (T!) -> [V]) -> ObjectAndKeyPath {
-	return ObjectAndKeyPath(x, instanceKeyPath(x, recorder))
-}
-public func xxx<T: NSObject>(x: T!, @noescape recorder: (T!) -> String) -> ObjectAndKeyPath {
-	return ObjectAndKeyPath(x, instanceKeyPath(x, recorder))
-}
-public func xxx<T: NSObject>(x: T!, @noescape recorder: (T!) -> Optional<String>) -> ObjectAndKeyPath {
-	return ObjectAndKeyPath(x, instanceKeyPath(x, recorder))
-}
-public func xxx<T: NSObject, V>(x: T!, @noescape recorder: (T!) -> V) -> ObjectAndKeyPath {
+public func xxx<T: NSObject>(x: T!, recorder: (T!) -> ()) -> ObjectAndKeyPath {
 	return ObjectAndKeyPath(x, instanceKeyPath(x, recorder))
 }
