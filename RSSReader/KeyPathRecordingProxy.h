@@ -10,7 +10,6 @@
 
 @interface KeyPathRecordingProxy : NSProxy
 
-@property (strong, nonatomic) Class valueClass;
 @property (copy, nonatomic) NSArray *keyPathComponents;
 
 @end
