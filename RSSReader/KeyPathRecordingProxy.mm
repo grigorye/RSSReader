@@ -23,7 +23,22 @@ NSUInteger keyPathRecordingProxyLiveCount;
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)sel;
 {
-    return [NSObject instanceMethodSignatureForSelector:@selector(description)];
+	if (sel_isEqual(sel, @selector(count))) {
+		return [NSSet instanceMethodSignatureForSelector:sel];
+	}
+	else if (sel_isEqual(sel, @selector(copyWithZone:))) {
+		return [NSArray instanceMethodSignatureForSelector:sel];
+	}
+	else if (sel_isEqual(sel, @selector(enumerateObjectsUsingBlock:))) {
+		return [NSSet instanceMethodSignatureForSelector:sel];
+	}
+	else if (sel_isEqual(sel, @selector(enumerateKeysAndObjectsUsingBlock:))) {
+		return [NSDictionary instanceMethodSignatureForSelector:sel];
+	}
+	else {
+		assert(![NSStringFromSelector(sel) hasSuffix:@":"]);
+		return [NSObject instanceMethodSignatureForSelector:@selector(description)];
+	}
 }
 
 - (void)forwardInvocation:(NSInvocation *)invocation;
@@ -33,20 +48,16 @@ NSUInteger keyPathRecordingProxyLiveCount;
 	// String bridging
 	{
 		if (sel_isEqual(selector, @selector(copy))) {
-			if (let valueClass = proxy.valueClass) {
-				id returnValue = [valueClass new];
-				[invocation setReturnValue:&returnValue];
-			}
+			id returnValue = @"";
+			[invocation setReturnValue:&returnValue];
 			return;
 		}
 	}
 	// Array bridging
 	{
 		if (sel_isEqual(selector, @selector(copyWithZone:))) {
-			if (let valueClass = proxy.valueClass) {
-				id returnValue = [valueClass new];
-				[invocation setReturnValue:&returnValue];
-			}
+			id returnValue = @[];
+			[invocation setReturnValue:&returnValue];
 			return;
 		}
 	}
@@ -60,9 +71,6 @@ NSUInteger keyPathRecordingProxyLiveCount;
 	}
 	// Set bridging
 	{
-		if (sel_isEqual(selector, @selector(getObjects:))) {
-			return;
-		}
 		if (sel_isEqual(selector, @selector(enumerateObjectsUsingBlock:))) {
 			return;
 		}
