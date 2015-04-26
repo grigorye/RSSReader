@@ -32,17 +32,20 @@ struct SourceLocation {
 	let line: Int
 	let column: Int
 	let function: String
-	init(file: String = __FILE__, line: Int = __LINE__, column: Int = __COLUMN__, function: String = __FUNCTION__) {
+	let bundle: NSBundle
+	init(file: String = __FILE__, line: Int = __LINE__, column: Int = __COLUMN__, function: String = __FUNCTION__, bundle: NSBundle = NSBundle.bundleOnStack()) {
 		self.file = file
 		self.line = line
 		self.column = column
 		self.function = function
+		self.bundle = bundle
 	}
 }
 
 func labelFromLocations(firstLocation: SourceLocation, lastLocation: SourceLocation) -> String {
 	let fileName = firstLocation.file.lastPathComponent
-	let file = NSBundle.mainBundle().pathForResource(fileName.stringByDeletingPathExtension, ofType: fileName.pathExtension)!
+	let bundle = firstLocation.bundle
+	let file = bundle.pathForResource(fileName.stringByDeletingPathExtension, ofType: fileName.pathExtension)!
 	let text = NSString(contentsOfFile: file, encoding: NSUTF8StringEncoding, error: nil)
 	let lines = text?.componentsSeparatedByString("\n") as! [NSString]
 	let range = NSRange(location: firstLocation.column - 1, length: lastLocation.column - firstLocation.column-3)
@@ -84,8 +87,8 @@ struct Traceable<T> {
 	}
 }
 
-func $<T>(v: T, file: String = __FILE__, line: Int = __LINE__, column: Int = __COLUMN__, function: String = __FUNCTION__) -> Traceable<T> {
-	return Traceable(value: v, location: SourceLocation(file: file, line: line, column: column, function: function))
+func $<T>(v: T, file: String = __FILE__, line: Int = __LINE__, column: Int = __COLUMN__, function: String = __FUNCTION__, bundle: NSBundle = NSBundle.bundleOnStack()) -> Traceable<T> {
+	return Traceable(value: v, location: SourceLocation(file: file, line: line, column: column, function: function, bundle: bundle))
 }
 
 func trace<T>(value: T, startLocation: SourceLocation, endLocation: SourceLocation) -> T {
