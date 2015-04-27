@@ -17,6 +17,7 @@ extension KeyPathsTests {
 		XCTAssertEqual(instanceKeyPath(self){$0.optionalString}, "optionalString")
 		XCTAssertEqual(instanceKeyPath(self){$0.array}, "array")
 		XCTAssertEqual(instanceKeyPath(self){$0.optionalArray}, "optionalArray")
+		XCTAssertEqual(instanceKeyPath(self){$0.setOfStrings}, "setOfStrings")
 		XCTAssertEqual(instanceKeyPath(self){$0.set}, "set")
 		XCTAssertEqual(instanceKeyPath(self){$0.optionalSet}, "optionalSet")
 		XCTAssertEqual(instanceKeyPath(self){$0.dictionary}, "dictionary")
