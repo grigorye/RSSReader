@@ -19,6 +19,7 @@ extension KeyPathsTests {
 		XCTAssertEqual((self•{$0.array}).keyPath, "array")
 		XCTAssertEqual((self•{$0.optionalArray}).keyPath, "optionalArray")
 		XCTAssertEqual((self•{$0.computedArray}).keyPath, "computedArray")
+		XCTAssertEqual((self•{$0.setOfStrings}).keyPath, "setOfStrings")
 		XCTAssertEqual((self•{$0.set}).keyPath, "set")
 		XCTAssertEqual((self•{$0.optionalSet}).keyPath, "optionalSet")
 		XCTAssertEqual((self•{$0.dictionary}).keyPath, "dictionary")
