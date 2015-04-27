@@ -35,6 +35,9 @@ NSUInteger keyPathRecordingProxyLiveCount;
 	else if (sel_isEqual(sel, @selector(enumerateKeysAndObjectsUsingBlock:))) {
 		return [NSDictionary instanceMethodSignatureForSelector:sel];
 	}
+	else if (sel_isEqual(sel, @selector(getObjects:))) {
+		return [NSArray instanceMethodSignatureForSelector:sel];
+	}
 	else {
 		assert(![NSStringFromSelector(sel) hasSuffix:@":"]);
 		return [NSObject instanceMethodSignatureForSelector:@selector(description)];
@@ -71,6 +74,9 @@ NSUInteger keyPathRecordingProxyLiveCount;
 	// Set bridging
 	{
 		if (sel_isEqual(selector, @selector(enumerateObjectsUsingBlock:))) {
+			return;
+		}
+		if (sel_isEqual(selector, @selector(getObjects:))) {
 			return;
 		}
 	}
