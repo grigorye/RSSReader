@@ -8,6 +8,6 @@
 
 import Foundation
 
-public func xxx<T: NSObject>(x: T!, recorder: (T!) -> ()) -> ObjectAndKeyPath {
+public func objectAndKeyPath<T: NSObject>(x: T!, recorder: (T!) -> ()) -> ObjectAndKeyPath {
 	return ObjectAndKeyPath(x, instanceKeyPath(x, recorder))
 }
