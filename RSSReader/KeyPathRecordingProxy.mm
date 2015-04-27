@@ -44,7 +44,6 @@ NSUInteger keyPathRecordingProxyLiveCount;
 - (void)forwardInvocation:(NSInvocation *)invocation;
 {
 	SEL selector = invocation.selector;
-	let proxy = self;
 	// String bridging
 	{
 		if (sel_isEqual(selector, @selector(copy))) {
@@ -82,15 +81,7 @@ NSUInteger keyPathRecordingProxyLiveCount;
 		}
 	}
 	{
-		proxy.keyPathComponents = ^{
-			let lastKeyPathComponents = @[NSStringFromSelector(invocation.selector)];
-			if (let oldKeyPathComponents = proxy.keyPathComponents) {
-				return [oldKeyPathComponents arrayByAddingObjectsFromArray:lastKeyPathComponents];
-			}
-			else {
-				return lastKeyPathComponents;
-			}
-		}();
+		self.keyPathComponents = [[NSArray arrayWithArray:self.keyPathComponents] arrayByAddingObjectsFromArray:@[NSStringFromSelector(invocation.selector)]];
 		if (0 == strcmp(invocation.methodSignature.methodReturnType, @encode(id))) {
 			id returnValue = self;
 			[invocation setReturnValue:&returnValue];
