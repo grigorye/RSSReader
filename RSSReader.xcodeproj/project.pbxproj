@@ -61,8 +61,6 @@
 		C422D0F51AE061D30062BC98 /* KeyPathRecordingProxy.mm in Sources */ = {isa = PBXBuildFile; fileRef = C422D0F21AE060B10062BC98 /* KeyPathRecordingProxy.mm */; };
 		C42802691A5B47EA002474E1 /* FoldersListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42802681A5B47EA002474E1 /* FoldersListTableViewController.swift */; };
 		C42802781A5C2E0D002474E1 /* RSSReader.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C42802741A5C2E0D002474E1 /* RSSReader.xcdatamodeld */; };
-		C42CFDB71AE4A41B006970F6 /* KeyPathsTests-PrefixOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42CFDB61AE4A41B006970F6 /* KeyPathsTests-PrefixOperator.swift */; };
-		C42CFDC11AE4A4A4006970F6 /* ObjectAndKeyPath-PrefixOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42CFDC01AE4A4A4006970F6 /* ObjectAndKeyPath-PrefixOperator.swift */; };
 		C42CFDC31AE4A6EC006970F6 /* ObjectAndKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42CFDC21AE4A6EC006970F6 /* ObjectAndKeyPath.swift */; };
 		C42CFDC61AE4A7B1006970F6 /* KeyPathsTests-GeneratorFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42CFDC41AE4A7A3006970F6 /* KeyPathsTests-GeneratorFunction.swift */; };
 		C42CFDC81AE4A801006970F6 /* KeyPathsTests-InstanceKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42CFDC71AE4A801006970F6 /* KeyPathsTests-InstanceKeyPath.swift */; };
@@ -103,7 +101,6 @@
 		C4CDD3AA1A5350B40087DD05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4CDD3A81A5350B40087DD05 /* Main.storyboard */; };
 		C4CDD3AC1A5350B50087DD05 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4CDD3AB1A5350B50087DD05 /* Images.xcassets */; };
 		C4CDD3AF1A5350B50087DD05 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4CDD3AD1A5350B50087DD05 /* LaunchScreen.xib */; };
-		C4CDD3BB1A5350B50087DD05 /* RSSReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CDD3BA1A5350B50087DD05 /* RSSReaderTests.swift */; };
 		C4CDD3C51A5357B20087DD05 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C4CDD3C41A5357B20087DD05 /* Settings.bundle */; };
 		C4CDE1911A5A06A600F16A2E /* ItemSummaryTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */; };
 		C4E2B8C81ADE394B00F54FD4 /* ApplicationErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E2B8C71ADE394B00F54FD4 /* ApplicationErrors.swift */; };
@@ -283,8 +280,6 @@
 		C42802751A5C2E0D002474E1 /* 31.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 31.xcdatamodel; sourceTree = "<group>"; };
 		C42802761A5C2E0D002474E1 /* 43.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 43.xcdatamodel; sourceTree = "<group>"; };
 		C42802771A5C2E0D002474E1 /* 70.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 70.xcdatamodel; sourceTree = "<group>"; };
-		C42CFDB61AE4A41B006970F6 /* KeyPathsTests-PrefixOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KeyPathsTests-PrefixOperator.swift"; sourceTree = "<group>"; };
-		C42CFDC01AE4A4A4006970F6 /* ObjectAndKeyPath-PrefixOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObjectAndKeyPath-PrefixOperator.swift"; sourceTree = "<group>"; };
 		C42CFDC21AE4A6EC006970F6 /* ObjectAndKeyPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectAndKeyPath.swift; sourceTree = "<group>"; };
 		C42CFDC41AE4A7A3006970F6 /* KeyPathsTests-GeneratorFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KeyPathsTests-GeneratorFunction.swift"; sourceTree = "<group>"; };
 		C42CFDC71AE4A801006970F6 /* KeyPathsTests-InstanceKeyPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KeyPathsTests-InstanceKeyPath.swift"; sourceTree = "<group>"; };
@@ -341,7 +336,6 @@
 		C4CDD3AE1A5350B50087DD05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		C4CDD3B41A5350B50087DD05 /* RSSReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RSSReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4CDD3B91A5350B50087DD05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C4CDD3BA1A5350B50087DD05 /* RSSReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSReaderTests.swift; sourceTree = "<group>"; };
 		C4CDD3C41A5357B20087DD05 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ItemSummaryTemplate.html; sourceTree = "<group>"; };
 		C4D56A2A1A7C33C0007BE398 /* PackageApplication */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = PackageApplication; sourceTree = "<group>"; };
@@ -414,12 +408,10 @@
 				C422D0EC1AE05F5C0062BC98 /* KeyPaths.swift */,
 				C42CFDC21AE4A6EC006970F6 /* ObjectAndKeyPath.swift */,
 				C42CFDC91AE4AA2E006970F6 /* ObjectAndKeyPath-GeneratorFunction.swift */,
-				C42CFDC01AE4A4A4006970F6 /* ObjectAndKeyPath-PrefixOperator.swift */,
 				C42CFDCB1AE4AABD006970F6 /* ObjectAndKeyPath-InfixOperator.swift */,
 				C422D0ED1AE05F5C0062BC98 /* KeyPathsTests.swift */,
 				C42CFDC71AE4A801006970F6 /* KeyPathsTests-InstanceKeyPath.swift */,
 				C42CFDC41AE4A7A3006970F6 /* KeyPathsTests-GeneratorFunction.swift */,
-				C42CFDB61AE4A41B006970F6 /* KeyPathsTests-PrefixOperator.swift */,
 				C42CFDCD1AE4AB3C006970F6 /* KeyPathsTests-InfixOperator.swift */,
 				C4FC0F051AEAD9DA0077D272 /* KeyPathRecording.h */,
 				C4FC0F061AEAD9DA0077D272 /* KeyPathRecording.mm */,
@@ -583,7 +575,6 @@
 		C4CDD3B71A5350B50087DD05 /* RSSReaderTests */ = {
 			isa = PBXGroup;
 			children = (
-				C4CDD3BA1A5350B50087DD05 /* RSSReaderTests.swift */,
 				C4CDD3B81A5350B50087DD05 /* Supporting Files */,
 			);
 			path = RSSReaderTests;
@@ -874,7 +865,6 @@
 				C46550491A7870E60046FFBD /* UINavigationItem+MultipleBarButtonItemsCollections.m in Sources */,
 				C45158991A65E1FE00374A8C /* GenericURLSessionExtensions.swift in Sources */,
 				C4C780161A7DF1EC009CB5FC /* ApplicationActivities.swift in Sources */,
-				C42CFDC11AE4A4A4006970F6 /* ObjectAndKeyPath-PrefixOperator.swift in Sources */,
 				C49540A51A57906600F56168 /* ItemSummaryWebViewController.swift in Sources */,
 				C4AD2ADB1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift in Sources */,
 				C4C1A3F61A574517007384E8 /* RSSSession.swift in Sources */,
@@ -929,12 +919,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C42CFDB71AE4A41B006970F6 /* KeyPathsTests-PrefixOperator.swift in Sources */,
 				C42CFDCF1AE4AB7B006970F6 /* KeyPathsTests-InfixOperator.swift in Sources */,
 				C422D0F01AE05F600062BC98 /* KeyPathsTests.swift in Sources */,
 				C42CFDC81AE4A801006970F6 /* KeyPathsTests-InstanceKeyPath.swift in Sources */,
 				C42CFDC61AE4A7B1006970F6 /* KeyPathsTests-GeneratorFunction.swift in Sources */,
-				C4CDD3BB1A5350B50087DD05 /* RSSReaderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
