@@ -9,14 +9,17 @@
 import Foundation
 
 infix operator • {}
+/// Returns object and key path given an object and key path recorder.
 public func •<T: NSObject>(x: T!, recorder: (T!) -> ()) -> ObjectAndKeyPath {
 	return ObjectAndKeyPath(x, instanceKeyPath(x, recorder))
 }
 
 infix operator •• {}
-public func ••<T: NSObject>(x: T, recorder: (T!) -> ()) -> String {
+/// Returns key path recorded given a sample object (the object value does not matter).
+public func ••<T: NSObject>(x: T!, recorder: (T!) -> ()) -> String {
 	return instanceKeyPath(x, recorder)
 }
+/// Returns key path recorded given a class.
 public func ••<T: NSObject>(cls: T.Type, recorder: (T!) -> ()) -> String {
 	let x = Optional<T>()
 	return instanceKeyPath(x, recorder)
