@@ -2,7 +2,8 @@
 
 struct MainStoryboard {
 	struct StoryboardIdentifiers {
-		static let ItemSummaryWeb = "itemSummaryWeb"
+		static let ItemSummaryWeb = "ItemSummaryWeb"
+		static let MainTabBar = "MainTabBar"
 	}
 	struct ReuseIdentifiers {
 		static let HistoryItem = "HistoryItem"
