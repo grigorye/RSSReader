@@ -1,12 +1,12 @@
 PODS:
-  - AFMInfoBanner (1.0.0):
-    - CVKHierarchySearcher (~> 0.1)
-  - CVKHierarchySearcher (0.1.0)
+  - AFMInfoBanner (1.0.2):
+    - CVKHierarchySearcher (~> 0.2)
+  - CVKHierarchySearcher (0.2.0)
   - DZReadability (0.2.1):
     - HTMLReader
-  - HTMLReader (0.6.1)
-  - TUSafariActivity (1.0.3)
-  - UXCam (1.0.8)
+  - HTMLReader (0.7.1)
+  - TUSafariActivity (1.0.4)
+  - UXCam (2.0.0)
 
 DEPENDENCIES:
   - AFMInfoBanner
@@ -16,11 +16,11 @@ DEPENDENCIES:
   - UXCam
 
 SPEC CHECKSUMS:
-  AFMInfoBanner: ae2c9897617150981a5ada5569cb4b57adc435f0
-  CVKHierarchySearcher: 72dd17faec58964749f36a47bb03253ee7048da9
-  DZReadability: bc1fff8ff0f4c7c1d325da4f418d80b6a3713c93
-  HTMLReader: dbcd34d10785e73b3763ab4a534ffa65b669acbd
-  TUSafariActivity: b018d765166c238e96cc9586bf393b1b7c2fc7a7
-  UXCam: a779d64f971d8e95f27209f457fb02e3db3f88ef
+  AFMInfoBanner: e2f2b479cc589986a0ab7fb31fb4c6d5c81f732f
+  CVKHierarchySearcher: 7be8d3bcbcc6f86ff07f785e6c632b5e40da2553
+  DZReadability: d8b1857996c9a114d0df703747af02f7e08add7b
+  HTMLReader: e6ba09514d125f45e810b6c6c1cebf3542f04d89
+  TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
+  UXCam: 4c42c3c0c7b234a3517cfa0a7967cd537235525c
 
-COCOAPODS: 0.36.0.rc.1
+COCOAPODS: 0.36.0
