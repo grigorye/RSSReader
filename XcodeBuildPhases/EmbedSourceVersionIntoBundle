@@ -15,5 +15,5 @@ infoPlistDefaultsDomain="${CONFIGURATION_BUILD_DIR:?}/${infoPlistWOExt:?}"
 defaults write "${infoPlistDefaultsDomain:?}" CFBundleVersion -string "${version:?}"
 
 settingsPlist="${TARGET_BUILD_DIR:?}/${FULL_PRODUCT_NAME:?}/Settings.bundle/Root.plist"
-versionIndex=$(expr $(/usr/libexec/PlistBuddy -c "Print PreferenceSpecifiers:" "${settingsPlist:?}" | grep "Dict" | wc -l) - 1)
+versionIndex=0
 /usr/libexec/PlistBuddy "${settingsPlist:?}" -c "set PreferenceSpecifiers:${versionIndex:?}:DefaultValue ${version:?}"
