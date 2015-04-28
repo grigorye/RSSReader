@@ -254,7 +254,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			Fabric.with([Crashlytics()])
 #endif
 #if UXCAM_ENABLED
-			UXCam.startApplicationWithKey("0fc8e6e128fa538")
+			UXCam.startWithKey("0fc8e6e128fa538")
 #endif
 #if FLURRY_ENABLED
 			Flurry.startSession("TSPCHYJBMBGZZFM3SFDZ")
