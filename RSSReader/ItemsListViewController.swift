@@ -124,9 +124,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		let fetchRequest: NSFetchRequest = {
 			let container = self.container
 			let $ = NSFetchRequest(entityName: Item.entityName())
-			$.sortDescriptors =	itemsAreSortedByLoadDate ? [NSSortDescriptor(key: "loadDate", ascending: false)] : [AnyObject]() + [
-				NSSortDescriptor(key: "date", ascending: false)
-			]
+			$.sortDescriptors =	itemsAreSortedByLoadDate ? [NSSortDescriptor(key: Item.self••{$0.loadDate}, ascending: false)] : [NSSortDescriptor(key: Item.self••{$0.date}, ascending: false)]
 			$.predicate = NSCompoundPredicate.andPredicateWithSubpredicates([
 				container! is Subscription ? NSPredicate(format: "(subscription == %@)", argumentArray: [container!]) : NSPredicate(format: "(categories contains %@)", argumentArray: [container!]),
 				self.unreadOnlyFilterPredicate
@@ -134,7 +132,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			$.fetchBatchSize = 20
 			return $
 		}()
-		let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.mainQueueManagedObjectContext, sectionNameKeyPath: !itemsAreSortedByLoadDate ? nil : "loadDate.timeIntervalSinceReferenceDate", cacheName: nil)
+		let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.mainQueueManagedObjectContext, sectionNameKeyPath: !itemsAreSortedByLoadDate ? nil : (Item.self••{$0.loadDate.timeIntervalSinceReferenceDate}), cacheName: nil)
 		$.delegate = self
 		return $
 	}

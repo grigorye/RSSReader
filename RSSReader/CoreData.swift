@@ -74,7 +74,7 @@ extension Subscription : ManagedIdentifiable {
 		return "Subscription"
 	}
 	class func sortDescriptorsVariants() -> [[NSSortDescriptor]] {
-		return [[NSSortDescriptor(key: "sortID", ascending: true)]]
+		return [[NSSortDescriptor(key: self••{$0.sortID}, ascending: true)]]
 	}
 	override func importFromJson(jsonObject: AnyObject) {
 		super.importFromJson(jsonObject)
@@ -97,7 +97,7 @@ extension Subscription : ManagedIdentifiable {
 }
 extension Container: DefaultSortable {
 	class func defaultSortDescriptor() -> NSSortDescriptor {
-		return NSSortDescriptor(key: "streamID", ascending: true)
+		return NSSortDescriptor(key: self••{$0.streamID}, ascending: true)
 	}
 }
 extension Container: ManagedIdentifiable {
@@ -177,6 +177,6 @@ extension Folder: ManagedIdentifiable {
 		return "Folder"
 	}
 	class func sortDescriptors() -> [[NSSortDescriptor]] {
-		return [[NSSortDescriptor(key: "newestItemDate", ascending: false)]]
+		return [[NSSortDescriptor(key: self••{$0.newestItemDate}, ascending: false)]]
 	}
 }
