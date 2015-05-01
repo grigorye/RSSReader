@@ -150,8 +150,9 @@ extension Container: ManagedIdentifiable {
 										sortIDs += [sortID]
 									}
 									let request: NSFetchRequest = {
-										let $ = NSFetchRequest(entityName: Container.entityName())
-										$.predicate = NSPredicate(format: "sortID IN %@", argumentArray: [map(sortIDs) { NSNumber(int: $0) }])
+										let E = Container.self
+										let $ = NSFetchRequest(entityName: E.entityName())
+										$.predicate = NSPredicate(format: "\(E••{$0.sortID}) IN %@", argumentArray: [map(sortIDs) { NSNumber(int: $0) }])
 										return $
 									}()
 									var fetchContainersForSortIDsError: NSError?
