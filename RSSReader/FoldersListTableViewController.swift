@@ -32,7 +32,7 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 	@IBOutlet private var statusLabel: UILabel!
 	@IBOutlet private var statusBarButtonItem: UIBarButtonItem!
 	@IBAction func refresh(sender: AnyObject!) {
-		foldersController.updateAll { error in dispatch_async(dispatch_get_main_queue()) {
+		foldersController.updateFolders { error in dispatch_async(dispatch_get_main_queue()) {
 			if let error = error {
 				self.presentErrorMessage(NSLocalizedString("Got a problem with feeds retrieval. \(error.localizedDescription)", comment: ""))
 			}
@@ -138,6 +138,10 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 			$(change).$(0)
 			self.childContainers = self.regeneratedChildContainers
 			self.tableView.reloadData()
+		}]
+		viewDidDisappearRetainedObjects += [KVOBinding(self•{$0.foldersController.foldersUpdateStateRaw}, options: .Initial) { [unowned self] change in
+			$(change).$(1)
+			self.presentMessage(self.foldersController.foldersUpdateStateRaw)
 		}]
 	}
 	override func viewDidDisappear(animated: Bool) {
