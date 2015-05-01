@@ -13,9 +13,10 @@ class HistoryViewController: UITableViewController, NSFetchedResultsControllerDe
 	private var nowDate: NSDate!
 	lazy var fetchedResultsController: NSFetchedResultsController = {
 		let fetchRequest: NSFetchRequest = {
-			let $ = NSFetchRequest(entityName: Item.entityName())
-			$.sortDescriptors = [NSSortDescriptor(key: Item.self••{$0.lastOpenedDate}, ascending: false)]
-			$.predicate = NSPredicate(format: "lastOpenedDate != nil", argumentArray: [])
+			let E = Item.self
+			let $ = NSFetchRequest(entityName: E.entityName())
+			$.sortDescriptors = [NSSortDescriptor(key: E••{$0.lastOpenedDate}, ascending: false)]
+			$.predicate = NSPredicate(format: "\(E••{$0.lastOpenedDate}) != nil", argumentArray: [])
 			return $
 		}()
 		let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.mainQueueManagedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
