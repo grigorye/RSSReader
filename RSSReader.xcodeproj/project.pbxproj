@@ -92,6 +92,7 @@
 		C4BA3F941AB62C6A0067538F /* ContainerViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BA3F931AB62C6A0067538F /* ContainerViewState.swift */; };
 		C4BE521C1A7192BB00606403 /* FetchedObjectBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BE521B1A7192BB00606403 /* FetchedObjectBinding.swift */; };
 		C4C1A3F61A574517007384E8 /* RSSSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C1A3F51A574517007384E8 /* RSSSession.swift */; };
+		C4C327F21AF30CB400119573 /* FoldersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C327F11AF30CB400119573 /* FoldersController.swift */; };
 		C4C422181A75E355008803A7 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C422171A75E355008803A7 /* MainNavigationController.swift */; };
 		C4C780141A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C780131A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift */; };
 		C4C780161A7DF1EC009CB5FC /* ApplicationActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C780151A7DF1EC009CB5FC /* ApplicationActivities.swift */; };
@@ -120,7 +121,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = C465807E1A8D479C000DF359 /* Pods.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 99BDFD0A0B70527141602A35;
+			remoteGlobalIDString = FC7340ECCE5BD70938D7401E;
 			remoteInfo = Pods;
 		};
 		C4100F601A8E96CB00D669C6 /* PBXContainerItemProxy */ = {
@@ -323,6 +324,7 @@
 		C4BA3F931AB62C6A0067538F /* ContainerViewState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewState.swift; sourceTree = "<group>"; };
 		C4BE521B1A7192BB00606403 /* FetchedObjectBinding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedObjectBinding.swift; sourceTree = "<group>"; };
 		C4C1A3F51A574517007384E8 /* RSSSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSSession.swift; sourceTree = "<group>"; };
+		C4C327F11AF30CB400119573 /* FoldersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldersController.swift; sourceTree = "<group>"; };
 		C4C422171A75E355008803A7 /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		C4C780131A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkAllAsReadActivity.swift; sourceTree = "<group>"; };
 		C4C780151A7DF1EC009CB5FC /* ApplicationActivities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationActivities.swift; sourceTree = "<group>"; };
@@ -554,6 +556,7 @@
 			children = (
 				C40C6C051A74AB5E00FAFA17 /* RSSReader-Bridging-Header.h */,
 				C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */,
+				C4C327F11AF30CB400119573 /* FoldersController.swift */,
 				C4EF270D1A8D353C000EBE63 /* UserMessages.swift */,
 				C418B32D1A594705002C0578 /* Generic */,
 				C49540A31A5782B900F56168 /* Model */,
@@ -866,6 +869,7 @@
 				C45158991A65E1FE00374A8C /* GenericURLSessionExtensions.swift in Sources */,
 				C4C780161A7DF1EC009CB5FC /* ApplicationActivities.swift in Sources */,
 				C49540A51A57906600F56168 /* ItemSummaryWebViewController.swift in Sources */,
+				C4C327F21AF30CB400119573 /* FoldersController.swift in Sources */,
 				C4AD2ADB1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift in Sources */,
 				C4C1A3F61A574517007384E8 /* RSSSession.swift in Sources */,
 				C4676E091A6A4D1F00AE8BC2 /* ItemTableViewCell.swift in Sources */,
