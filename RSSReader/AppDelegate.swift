@@ -148,6 +148,12 @@ extension RSSSession {
 class AppDelegate: UIResponder, UIApplicationDelegate {
 	var window: UIWindow?
 	let internals = AppDelegateInternals()
+	dynamic var foldersUpdateStateRaw: String = FoldersUpdateState.Completed.rawValue
+	var foldersUpdateState = FoldersUpdateState.Completed {
+		didSet {
+			foldersUpdateStateRaw = foldersUpdateState.rawValue
+		}
+	}
 	var tabBarController: UITabBarController! {
 		if let tabBarController = window!.rootViewController! as? UITabBarController {
 			return tabBarController
