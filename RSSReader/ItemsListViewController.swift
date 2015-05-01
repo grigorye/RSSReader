@@ -113,7 +113,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	private var unreadOnlyFilterPredicate: NSPredicate {
 		if showUnreadOnly {
-			return NSPredicate(format: "SUBQUERY(categories, $x, $x.\(Folder.self••{$0.streamID}) ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
+			return NSPredicate(format: "SUBQUERY(\(Item.self••{$0.categories}), $x, $x.\(Folder.self••{$0.streamID}) ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
 		}
 		else {
 			return NSPredicate(value: true)
