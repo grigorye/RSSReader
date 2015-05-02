@@ -9,23 +9,33 @@
 import Foundation
 
 enum FoldersUpdateState: String {
+	case Unknown = "Unknown"
 	case Completed = "Completed"
-	case Authenticating = "Authenticating"
-	case UpdatingUserInfo = "Updating User Info"
-	case UpdatingTags = "Updating Tags"
-	case UpdatingSubscriptions = "Updating Subscriptions"
-	case UpdatingUnreadCounts = "Updating Unread Counts"
-	case UpdatingStreamPreferences = "Updating Stream Preferences"
+	case Authenticating = "Authenticating..."
+	case UpdatingUserInfo = "Updating user info..."
+	case UpdatingTags = "Updating tags..."
+	case UpdatingSubscriptions = "Updating subscriptions..."
+	case UpdatingUnreadCounts = "Updating unread counts..."
+	case UpdatingStreamPreferences = "Updating stream preferences..."
 }
 
 protocol FoldersController {
 	func updateFoldersAuthenticated(completionHandler: (NSError?) -> Void)
 	func updateFolders(completionHandler: (NSError?) -> Void)
+	var foldersLastUpdateDate: NSDate? { get }
 	var foldersUpdateState: FoldersUpdateState { get }
 	var foldersUpdateStateRaw: String { get }
 }
 
 extension AppDelegate: FoldersController {
+	final var foldersLastUpdateDate: NSDate? {
+		get {
+			return defaults.foldersLastUpdateDate
+		}
+		set {
+			defaults.foldersLastUpdateDate = newValue
+		}
+	}
 	final func updateFoldersAuthenticated(completionHandler: (NSError?) -> Void) {
 		let rssSession = self.rssSession!
 		foldersUpdateState = .UpdatingUserInfo
@@ -59,6 +69,7 @@ extension AppDelegate: FoldersController {
 								completionHandler(applicationError(.StreamPreferencesUpdateError, $(updateStreamPreferencesError).$()))
 								return
 							}
+							self.foldersLastUpdateDate = NSDate()
 							completionHandler(nil)
 						}}
 					}}

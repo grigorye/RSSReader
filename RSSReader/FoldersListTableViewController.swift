@@ -36,9 +36,6 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 			if let error = error {
 				self.presentErrorMessage(NSLocalizedString("Got a problem with feeds retrieval. \(error.localizedDescription)", comment: ""))
 			}
-			else {
-				self.presentInfoMessage(NSLocalizedString("Feeds have been retrieved.", comment: ""))
-			}
 			if nil == error {
 				if nil == self.rootFolder {
 					self.rootFolder = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: self.mainQueueManagedObjectContext)
@@ -141,7 +138,17 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 		}]
 		viewDidDisappearRetainedObjects += [KVOBinding(self•{$0.foldersController.foldersUpdateStateRaw}, options: .Initial) { [unowned self] change in
 			$(change).$(1)
-			self.presentMessage(self.foldersController.foldersUpdateStateRaw)
+			let foldersUpdateState = self.foldersController.foldersUpdateState
+			let message: String = {
+				switch foldersUpdateState {
+				case .Completed:
+					let loadAgo = loadAgoDateComponentsFormatter.stringFromDate(self.foldersController.foldersLastUpdateDate!, toDate: NSDate())!
+					return NSLocalizedString("Updated \(loadAgo) ago", comment: "")
+				default:
+					return foldersUpdateState.rawValue
+				}
+			}()
+			self.presentInfoMessage(message)
 		}]
 	}
 	override func viewDidDisappear(animated: Bool) {
