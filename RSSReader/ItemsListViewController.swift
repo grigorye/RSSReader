@@ -446,23 +446,22 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	// MARK: -
 	override func viewWillAppear(animated: Bool) {
 		nowDate = NSDate()
-		for i in blocksDelayedTillViewWillAppear {
-			i()
-		}
-		blocksDelayedTillViewWillAppear = []
-		super.viewWillAppear(animated)
-	}
-	override func viewDidAppear(animated: Bool) {
-		let loadDateLabel = self.statusLabel
 		let binding = KVOBinding(self•{$0.loadDate}, options: .New | .Initial) { change in
 			let loadDate = change[NSKeyValueChangeNewKey] as! NSDate
 			$(self.toolbarItems).$()
 			let loadAgo = loadAgoDateComponentsFormatter.stringFromDate(loadDate, toDate: NSDate())
 			self.presentInfoMessage(NSLocalizedString("Updated \(loadAgo!) ago", comment: ""))
  		}
+		for i in blocksDelayedTillViewWillAppear {
+			i()
+		}
+		blocksDelayedTillViewWillAppear = []
 		blocksDelayedTillViewDidDisappear += [{
 			void(binding)
 		}]
+		super.viewWillAppear(animated)
+	}
+	override func viewDidAppear(animated: Bool) {
 		super.viewDidAppear(animated)
 	}
 	private var blocksDelayedTillViewDidDisappear = [Handler]()
