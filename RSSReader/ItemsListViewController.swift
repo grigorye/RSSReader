@@ -33,7 +33,7 @@ extension Item {
 	}
 }
 
-private let loadAgoDateComponentsFormatter: NSDateComponentsFormatter = {
+let loadAgoDateComponentsFormatter: NSDateComponentsFormatter = {
 	let $ = NSDateComponentsFormatter()
 	$.unitsStyle = .Full
 	$.allowsFractionalUnits = true
