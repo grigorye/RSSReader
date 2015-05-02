@@ -21,5 +21,6 @@
 @property (nonatomic) BOOL fetchResultsAreAnimated;
 @property (nonatomic) BOOL batchSavingDisabled;
 @property (nonatomic) BOOL itemsAreSortedByLoadDate;
+@property (nonatomic) NSDate *foldersLastUpdateDate;
 
 @end

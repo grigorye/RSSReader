@@ -21,5 +21,6 @@
 @dynamic fetchResultsAreAnimated;
 @dynamic batchSavingDisabled;
 @dynamic itemsAreSortedByLoadDate;
+@dynamic foldersLastUpdateDate;
 
 @end
