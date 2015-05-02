@@ -54,6 +54,7 @@ extension AppDelegate: FoldersController {
 						}
 						self.foldersUpdateState = .UpdatingStreamPreferences
 						rssSession.updateStreamPreferences { updateStreamPreferencesError in dispatch_async(dispatch_get_main_queue()) {
+							self.foldersUpdateState = .Completed
 							if let updateStreamPreferencesError = updateStreamPreferencesError {
 								completionHandler(applicationError(.StreamPreferencesUpdateError, $(updateStreamPreferencesError).$()))
 								return
