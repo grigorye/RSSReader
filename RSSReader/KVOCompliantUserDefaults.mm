@@ -148,7 +148,12 @@ propertyInfoFromProperty(objc_property_t property) {
 			}
 			else {
 				[self willChangeValueForKey:propertyName];
-				values[propertyName] = newValue;
+				if (newValue) {
+					values[propertyName] = newValue;
+				}
+				else {
+					[values removeObjectForKey:propertyName];
+				}
 				[self didChangeValueForKey:propertyName];
 			}
 		}
@@ -171,7 +176,12 @@ void
 setObjectValueIMP(KVOCompliantUserDefaults *self, SEL _cmd, id value) {
 	let defaultName = [self.class defaultNameForSelector:_cmd];
 	[self.defaults setObject:value forKey:_(defaultName)];
-	self.values[defaultName] = value;
+	if (value) {
+		self.values[defaultName] = value;
+	}
+	else {
+		[self.values removeObjectForKey:defaultName];
+	}
 }
 
 static
