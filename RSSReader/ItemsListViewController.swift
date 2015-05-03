@@ -57,18 +57,20 @@ private var fetchResultsAreAnimated: Bool {
 
 class ItemsListViewController: UITableViewController, NSFetchedResultsControllerDelegate, UIDataSourceModelAssociation {
 	final var container: Container?
-	private lazy var containerViewState: ContainerViewState? = {
+	private var containerViewState: ContainerViewState? {
 		let container = self.container!
-		if let existingViewState = container.viewStates.first {
+		let containerViewPredicate = self.containerViewPredicate
+		if let existingViewState = (filter(container.viewStates) { $0.containerViewPredicate.isEqual(containerViewPredicate) }).first {
 			return existingViewState
 		}
 		else {
 			let managedObjectContext = container.managedObjectContext!
 			let newViewState = NSEntityDescription.insertNewObjectForEntityForName("ContainerViewState", inManagedObjectContext: managedObjectContext) as! ContainerViewState
 			newViewState.container = container
+			newViewState.containerViewPredicate = containerViewPredicate
 			return newViewState
 		}
-	}()
+	}
 	private var continuation: String? {
 		set { containerViewState!.continuation = newValue }
 		get { return containerViewState!.continuation }
@@ -104,6 +106,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		didSet {
 			fetchedResultsController_ = nil
 			tableView.reloadData()
+			loadMoreIfNecessary()
 		}
 	}
 	private func regeneratedToolbarItems() -> [UIBarButtonItem] {
@@ -111,7 +114,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		let $ = loadedToolbarItems.filter { nil == find(excludedItems, $0) }
 		return $
 	}
-	private var unreadOnlyFilterPredicate: NSPredicate {
+	private var containerViewPredicate: NSPredicate {
 		if showUnreadOnly {
 			return NSPredicate(format: "SUBQUERY(\(Item.self••{$0.categories}), $x, $x.\(Folder.self••{$0.streamID}) ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
 		}
@@ -128,7 +131,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			$.sortDescriptors =	itemsAreSortedByLoadDate ? [NSSortDescriptor(key: E••{$0.loadDate}, ascending: false)] : [NSSortDescriptor(key: E••{$0.date}, ascending: false)]
 			$.predicate = NSCompoundPredicate.andPredicateWithSubpredicates([
 				container! is Subscription ? NSPredicate(format: "(\(E••{$0.subscription}) == %@)", argumentArray: [container!]) : NSPredicate(format: "(\(E••{$0.categories}) CONTAINS %@)", argumentArray: [container!]),
-				self.unreadOnlyFilterPredicate
+				self.containerViewPredicate
 			])
 			$.fetchBatchSize = 20
 			return $
@@ -447,10 +450,11 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	override func viewWillAppear(animated: Bool) {
 		nowDate = NSDate()
 		let binding = KVOBinding(self•{$0.loadDate}, options: .New | .Initial) { change in
-			let loadDate = change[NSKeyValueChangeNewKey] as! NSDate
 			$(self.toolbarItems).$()
-			let loadAgo = loadAgoDateComponentsFormatter.stringFromDate(loadDate, toDate: NSDate())
-			self.presentInfoMessage(NSLocalizedString("Updated \(loadAgo!) ago", comment: ""))
+			if let loadDate = nilForNull(change[NSKeyValueChangeNewKey]!) as! NSDate? {
+				let loadAgo = loadAgoDateComponentsFormatter.stringFromDate(loadDate, toDate: NSDate())
+				self.presentInfoMessage(NSLocalizedString("Updated \(loadAgo!) ago", comment: ""))
+			}
  		}
 		for i in blocksDelayedTillViewWillAppear {
 			i()
