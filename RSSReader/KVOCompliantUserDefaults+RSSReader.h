@@ -22,5 +22,6 @@
 @property (nonatomic) BOOL batchSavingDisabled;
 @property (nonatomic) BOOL itemsAreSortedByLoadDate;
 @property (nonatomic) NSDate *foldersLastUpdateDate;
+@property (nonatomic) NSData *foldersLastUpdateErrorEncoded;
 
 @end

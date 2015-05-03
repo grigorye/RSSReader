@@ -22,5 +22,6 @@
 @dynamic batchSavingDisabled;
 @dynamic itemsAreSortedByLoadDate;
 @dynamic foldersLastUpdateDate;
+@dynamic foldersLastUpdateErrorEncoded;
 
 @end
