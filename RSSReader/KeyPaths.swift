@@ -12,5 +12,5 @@ public func instanceKeyPath<T: NSObject>(x: T?, recorder: ((T!) -> Void)!) -> St
 	let keyPath = recordKeyPath { x in
 		recorder(x as! T!)
 	}
-	return $(keyPath).$()
+	return $(keyPath).$(0)
 }
