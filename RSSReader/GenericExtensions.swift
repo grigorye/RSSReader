@@ -135,3 +135,12 @@ func stringFromFetchedResultsChangeType(type: NSFetchedResultsChangeType) -> Str
 		return "Move"
 	}
 }
+
+func nilForNull(object: AnyObject) -> AnyObject? {
+	if (object as! NSObject) == NSNull() {
+		return nil
+	}
+	else {
+		return object
+	}
+}
