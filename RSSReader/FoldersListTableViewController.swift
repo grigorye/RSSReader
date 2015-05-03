@@ -33,9 +33,6 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 	@IBOutlet private var statusBarButtonItem: UIBarButtonItem!
 	@IBAction func refresh(sender: AnyObject!) {
 		foldersController.updateFolders { error in dispatch_async(dispatch_get_main_queue()) {
-			if let error = error {
-				self.presentErrorMessage(NSLocalizedString("Got a problem with feeds retrieval. \(error.localizedDescription)", comment: ""))
-			}
 			if nil == error {
 				if nil == self.rootFolder {
 					self.rootFolder = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: self.mainQueueManagedObjectContext)
@@ -142,8 +139,17 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 			let message: String = {
 				switch foldersUpdateState {
 				case .Completed:
-					let loadAgo = loadAgoDateComponentsFormatter.stringFromDate(self.foldersController.foldersLastUpdateDate!, toDate: NSDate())!
-					return NSLocalizedString("Updated \(loadAgo) ago", comment: "")
+					let foldersController = self.foldersController
+					if let foldersUpdateError = foldersController.foldersLastUpdateError {
+						return foldersUpdateError.localizedDescription
+					}
+					else if let foldersLastUpdateDate = foldersController.foldersLastUpdateDate {
+						let loadAgo = loadAgoDateComponentsFormatter.stringFromDate(foldersLastUpdateDate, toDate: NSDate())!
+						return NSLocalizedString("Updated \(loadAgo) ago", comment: "")
+					}
+					else {
+						return NSLocalizedString("", comment: "")
+					}
 				default:
 					return foldersUpdateState.rawValue
 				}
