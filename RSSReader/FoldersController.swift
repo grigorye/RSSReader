@@ -22,6 +22,7 @@ enum FoldersUpdateState: String {
 protocol FoldersController {
 	func updateFoldersAuthenticated(completionHandler: (NSError?) -> Void)
 	func updateFolders(completionHandler: (NSError?) -> Void)
+	var foldersLastUpdateError: NSError? { get }
 	var foldersLastUpdateDate: NSDate? { get }
 	var foldersUpdateState: FoldersUpdateState { get }
 	var foldersUpdateStateRaw: String { get }
@@ -36,41 +37,71 @@ extension AppDelegate: FoldersController {
 			defaults.foldersLastUpdateDate = newValue
 		}
 	}
+	final var foldersLastUpdateError: NSError? {
+		get {
+			if let data = defaults.foldersLastUpdateErrorEncoded {
+				return NSKeyedUnarchiver.unarchiveObjectWithData(data) as! NSError?
+			}
+			else {
+				return nil
+			}
+		}
+		set {
+			defaults.foldersLastUpdateErrorEncoded = {
+				if let newValue = newValue {
+					return NSKeyedArchiver.archivedDataWithRootObject(newValue)
+				}
+				else {
+					return nil
+				}
+			}()
+		}
+	}
 	final func updateFoldersAuthenticated(completionHandler: (NSError?) -> Void) {
 		let rssSession = self.rssSession!
 		foldersUpdateState = .UpdatingUserInfo
+		let errorCompletionHandler = { (error: NSError) -> Void in
+			self.foldersLastUpdateError = error
+			self.foldersLastUpdateDate = NSDate()
+			self.foldersUpdateState = .Completed
+			completionHandler(error)
+		}
+		let successCompletionHandler: () -> Void = {
+			self.foldersLastUpdateDate = NSDate()
+			self.foldersUpdateState = .Completed
+			completionHandler(nil)
+		}
+		self.foldersLastUpdateError = nil
 		rssSession.updateUserInfo { updateUserInfoError in dispatch_async(dispatch_get_main_queue()) {
 			if let updateUserInfoError = updateUserInfoError {
-				completionHandler(applicationError(.UserInfoRetrievalError, $(updateUserInfoError).$()))
+				errorCompletionHandler(applicationError(.UserInfoRetrievalError, $(updateUserInfoError).$()))
 				return
 			}
 			self.foldersUpdateState = .UpdatingTags
 			rssSession.updateTags { updateTagsError in dispatch_async(dispatch_get_main_queue()) {
 				if let updateTagsError = updateTagsError {
-					completionHandler(applicationError(.TagsUpdateError, $(updateTagsError).$()))
+					errorCompletionHandler(applicationError(.TagsUpdateError, $(updateTagsError).$()))
 					return
 				}
 				self.foldersUpdateState = .UpdatingSubscriptions
 				rssSession.updateSubscriptions { updateSubscriptionsError in dispatch_async(dispatch_get_main_queue()) {
 					if let updateSubscriptionsError = updateSubscriptionsError {
-						completionHandler(applicationError(.TagsUpdateError, $(updateSubscriptionsError).$()))
+						errorCompletionHandler(applicationError(.TagsUpdateError, $(updateSubscriptionsError).$()))
 						return
 					}
 					self.foldersUpdateState = .UpdatingUnreadCounts
 					rssSession.updateUnreadCounts { updateUnreadCountsError in dispatch_async(dispatch_get_main_queue()) {
 						if let updateUnreadCountsError = updateUnreadCountsError {
-							completionHandler(applicationError(.TagsUpdateError, $(updateUnreadCountsError).$()))
+							errorCompletionHandler(applicationError(.TagsUpdateError, $(updateUnreadCountsError).$()))
 							return
 						}
 						self.foldersUpdateState = .UpdatingStreamPreferences
 						rssSession.updateStreamPreferences { updateStreamPreferencesError in dispatch_async(dispatch_get_main_queue()) {
-							self.foldersLastUpdateDate = NSDate()
-							self.foldersUpdateState = .Completed
 							if let updateStreamPreferencesError = updateStreamPreferencesError {
-								completionHandler(applicationError(.StreamPreferencesUpdateError, $(updateStreamPreferencesError).$()))
+								errorCompletionHandler(applicationError(.StreamPreferencesUpdateError, $(updateStreamPreferencesError).$()))
 								return
 							}
-							completionHandler(nil)
+							successCompletionHandler()
 						}}
 					}}
 				}}
