@@ -88,6 +88,8 @@
 		C495409F1A5780A700F56168 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495409E1A5780A700F56168 /* Item.swift */; };
 		C49540A11A57825100F56168 /* ItemsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49540A01A57825100F56168 /* ItemsListViewController.swift */; };
 		C49540A51A57906600F56168 /* ItemSummaryWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */; };
+		C49D01921AF6C647008D8DB3 /* FoldersController.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C4C327F11AF30CB400119573 /* FoldersController.swift */; };
+		C49D01931AF6C671008D8DB3 /* ApplicationErrors.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C4E2B8C71ADE394B00F54FD4 /* ApplicationErrors.swift */; };
 		C4AD2ADB1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD2ADA1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift */; };
 		C4BA3F941AB62C6A0067538F /* ContainerViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BA3F931AB62C6A0067538F /* ContainerViewState.swift */; };
 		C4BE521C1A7192BB00606403 /* FetchedObjectBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BE521B1A7192BB00606403 /* FetchedObjectBinding.swift */; };
@@ -235,6 +237,8 @@
 				C41F05871AD0E3AB00A659EC /* UITabBarController+CVKHiearachySearcher.swift in CopyFiles */,
 				C41F05621AD0E2A100A659EC /* AppDelegate.swift in CopyFiles */,
 				C47C5FD51AE2081B004D6BC0 /* KeyPaths.swift in CopyFiles */,
+				C49D01921AF6C647008D8DB3 /* FoldersController.swift in CopyFiles */,
+				C49D01931AF6C671008D8DB3 /* ApplicationErrors.swift in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
