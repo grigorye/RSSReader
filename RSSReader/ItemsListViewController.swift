@@ -38,7 +38,7 @@ let loadAgoDateComponentsFormatter: NSDateComponentsFormatter = {
 	$.unitsStyle = .Full
 	$.allowsFractionalUnits = true
 	$.maximumUnitCount = 1
-	$.allowedUnits = .CalendarUnitMinute | .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitWeekOfMonth | .CalendarUnitDay | .CalendarUnitHour
+	$.allowedUnits = [.Minute, .Year, .Month, .WeekOfMonth, .Day, .Hour]
 	return $;
 }()
 private let loadAgoLongDateComponentsFormatter: NSDateComponentsFormatter = {
@@ -47,7 +47,7 @@ private let loadAgoLongDateComponentsFormatter: NSDateComponentsFormatter = {
 	$.allowsFractionalUnits = true
 	$.maximumUnitCount = 1
 	$.includesApproximationPhrase = true
-	$.allowedUnits = .CalendarUnitMinute | .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitWeekOfMonth | .CalendarUnitDay | .CalendarUnitHour
+	$.allowedUnits = [.Minute, .Year, .Month, .WeekOfMonth, .Day, .Hour]
 	return $;
 }()
 
@@ -60,7 +60,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	private var containerViewState: ContainerViewState? {
 		let container = self.container!
 		let containerViewPredicate = self.containerViewPredicate
-		if let existingViewState = (filter(container.viewStates) { $0.containerViewPredicate.isEqual(containerViewPredicate) }).first {
+		if let existingViewState = (container.viewStates.filter { $0.containerViewPredicate.isEqual(containerViewPredicate) }).first {
 			return existingViewState
 		}
 		else {
@@ -87,7 +87,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		set { containerViewState!.loadCompleted = newValue }
 		get { return containerViewState!.loadCompleted }
 	}
-	private var loadError: NSError? {
+	private var loadError: ErrorType? {
 		set { containerViewState!.loadError = newValue }
 		get { return containerViewState!.loadError }
 	}
@@ -111,7 +111,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	private func regeneratedToolbarItems() -> [UIBarButtonItem] {
 		let excludedItems = [(showUnreadOnly ?  self.filterUnreadBarButtonItem : self.unfilterUnreadBarButtonItem)!]
-		let $ = loadedToolbarItems.filter { nil == find(excludedItems, $0) }
+		let $ = loadedToolbarItems.filter { nil == excludedItems.indexOf($0) }
 		return $
 	}
 	private var containerViewPredicate: NSPredicate {
@@ -147,9 +147,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 				return $
 			}
 			fetchedResultsController_ = regeneratedFetchedResultsController()
-			var fetchError: NSError?
-			self.fetchedResultsController.performFetch(&fetchError)
-			assert(nil == fetchError)
+			try! self.fetchedResultsController.performFetch()
 			return fetchedResultsController_!
 		}
 	}
@@ -199,9 +197,9 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			if (self.loadInProgress || self.loadCompleted || self.loadError != nil) {
 				return false
 			}
-			if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows() {
+			if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows {
 				if let lastLoadedItem = self.lastLoadedItem {
-					let lastVisibleIndexPath = indexPathsForVisibleRows.last as! NSIndexPath
+					let lastVisibleIndexPath = indexPathsForVisibleRows.last!
 					let numberOfItemsToPreload = 10
 					let barrierIndexPath = NSIndexPath(forRow: $(lastVisibleIndexPath).$(0).row + numberOfItemsToPreload, inSection: lastVisibleIndexPath.section)
 					let indexPathForLastLoadedItem = self.fetchedResultsController.indexPathForObject(lastLoadedItem)!
@@ -280,7 +278,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		}
 	}
 	private var selectedItem: Item {
-		return self.itemForIndexPath(self.tableView.indexPathForSelectedRow()!)
+		return self.itemForIndexPath(self.tableView.indexPathForSelectedRow!)
 	}
 	// MARK: -
 	private func configureCell(rawCell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
@@ -317,7 +315,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 			abort()
 		}
 	}
-	func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+	func controller(controller: NSFetchedResultsController, didChangeObject anObject: NSManagedObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
 		let tableView = self.tableView!
 		$(stringFromFetchedResultsChangeType(type)).$()
 		switch type {
@@ -347,13 +345,13 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		return $(numberOfSections).$(0)
 	}
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		let numberOfRows = (fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo).numberOfObjects
+		let numberOfRows = fetchedResultsController.sections![section].numberOfObjects
 		return $(numberOfRows).$(0)
 	}
 	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		let loadDate: NSDate? = {
 			if itemsAreSortedByLoadDate {
-				let sectionName = (self.fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo).name!
+				let sectionName = self.fetchedResultsController.sections![section].name
 				return Optional(NSDate(timeIntervalSinceReferenceDate: (sectionName as NSString).doubleValue))
 			}
 			else {
@@ -375,7 +373,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		return _0 ? nil : title
 	}
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier("Item", forIndexPath: indexPath) as! UITableViewCell
+		let cell = tableView.dequeueReusableCellWithIdentifier("Item", forIndexPath: indexPath)
 		self.configureCell(cell, atIndexPath: indexPath)
 		return cell
 	}
@@ -427,9 +425,9 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		}
 	}
 	// MARK: -
-    func modelIdentifierForElementAtIndexPath(indexPath: NSIndexPath, inView view: UIView) -> String {
+    func modelIdentifierForElementAtIndexPath(indexPath: NSIndexPath, inView view: UIView) -> String? {
 		if let item = self.itemForIndexPath(indexPath) {
-			return item.objectID.URIRepresentation().absoluteString!
+			return item.objectID.URIRepresentation().absoluteString
 		}
 		else {
 			let invalidModelIdentifier = ""
@@ -449,9 +447,10 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	// MARK: -
 	override func viewWillAppear(animated: Bool) {
 		nowDate = NSDate()
-		let binding = KVOBinding(self•{$0.loadDate}, options: .New | .Initial) { change in
+		let binding = KVOBinding(self•{$0.loadDate}, options: [.New, .Initial]) { change in
 			$(self.toolbarItems).$()
-			if let loadDate = nilForNull(change[NSKeyValueChangeNewKey]!) as! NSDate? {
+			let newValue = change![NSKeyValueChangeNewKey]
+			if let loadDate = nilForNull(newValue!) as! NSDate? {
 				let loadAgo = loadAgoDateComponentsFormatter.stringFromDate(loadDate, toDate: NSDate())
 				self.presentInfoMessage(NSLocalizedString("Updated \(loadAgo!) ago", comment: ""))
 			}
@@ -504,7 +503,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 				item.width = customView.bounds.width
 			}
 		}
-		self.loadedToolbarItems = self.toolbarItems as! [UIBarButtonItem]
+		self.loadedToolbarItems = self.toolbarItems
 		self.toolbarItems = regeneratedToolbarItems()
 	}
 }

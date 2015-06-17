@@ -25,7 +25,7 @@ class ItemsPageViewControllerDataSource: NSObject, UIPageViewControllerDataSourc
 				return nil
 			}
 			else {
-				let index = find(items, item)!
+				let index = items.indexOf(item)!
 				return items[index - 1]
 			}
 		}()
@@ -45,7 +45,7 @@ class ItemsPageViewControllerDataSource: NSObject, UIPageViewControllerDataSourc
 				return nil
 			}
 			else {
-				let index = find(items, item)!
+				let index = items.indexOf(item)!
 				return items[index + 1]
 			}
 		}()

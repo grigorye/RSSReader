@@ -29,13 +29,8 @@ class FetchedAnyObjectBinding : NSObject, NSFetchedResultsControllerDelegate {
 		}()
 		super.init()
 		fetchedResultsController.delegate = self
-		var fetchError: NSError?
-		if fetchedResultsController.performFetch(&fetchError) {
-			handler(fetchedResultsController.fetchedObjects!.last)
-		}
-		else {
-			abort()
-		}
+		try! fetchedResultsController.performFetch()
+		handler(fetchedResultsController.fetchedObjects!.last)
 	}
 }
 class FetchedObjectBinding<T where T: Managed, T: DefaultSortable> : FetchedAnyObjectBinding  {

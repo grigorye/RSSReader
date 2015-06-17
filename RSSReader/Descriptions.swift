@@ -8,15 +8,15 @@
 
 import Foundation
 
-func description<T: NSIndexPath>(value: NSIndexPath) -> String {
+func description(value: NSIndexPath) -> String {
 	var components = [String]()
 	for var i = 0; i < value.length; ++i {
 		components += ["\(value.indexAtPosition(i))"]
 	}
-	return join(", ", components)
+	return ", ".join(components)
 }
 
-func trace<T: NSIndexPath>(value: NSIndexPath, startLocation: SourceLocation, endLocation: SourceLocation) -> NSIndexPath {
-	traceString(description(value), startLocation, endLocation)
+func trace(value: NSIndexPath, startLocation: SourceLocation, endLocation: SourceLocation) -> NSIndexPath {
+	traceString(description(value), location: startLocation, lastLocation: endLocation)
 	return value
 }

@@ -8,10 +8,8 @@
 
 import Foundation
 
-let URLSessionTaskGeneratorErrorDomain = "com.grigoryentin.URLSessionTaskGenerator"
-
-enum URLSessionTaskGeneratorError: Int {
-	case UnexpectedHTTPResponseStatus
+enum URLSessionTaskGeneratorError: ErrorType {
+	case UnexpectedHTTPResponseStatus(httpResponse: NSHTTPURLResponse)
 }
 
 class ProgressEnabledURLSessionTaskGenerator: NSObject {
@@ -22,8 +20,8 @@ class ProgressEnabledURLSessionTaskGenerator: NSObject {
 	}
 	let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
 	// MARK: -
-	typealias HTTPDataTaskCompletionHandler = (NSData!, NSHTTPURLResponse!, NSError!) -> Void
-	func dataTaskForHTTPRequest(request: NSURLRequest, completionHandler: HTTPDataTaskCompletionHandler) -> NSURLSessionDataTask {
+	typealias HTTPDataTaskCompletionHandler = (NSData!, NSHTTPURLResponse!, ErrorType?) -> Void
+	func dataTaskForHTTPRequest(request: NSURLRequest, completionHandler: HTTPDataTaskCompletionHandler) -> NSURLSessionDataTask? {
 		let progress = NSProgress(totalUnitCount: 1)
 		progress.becomeCurrentWithPendingUnitCount(1)
 		let sessionTask = session.progressEnabledDataTaskWithRequest(request) { data, response, error in
@@ -31,21 +29,16 @@ class ProgressEnabledURLSessionTaskGenerator: NSObject {
 				self.mutableProgresses.removeObjectIdenticalTo(progress)
 			}
 			let httpResponse = response as! NSHTTPURLResponse!
-			if let error = error {
-				completionHandler(nil, httpResponse, error)
-				return
-			}
-			$(response).$()
-			let completionError = nil != error ? error : {
-				if httpResponse.statusCode != 200 {
-					return NSError(domain: URLSessionTaskGeneratorErrorDomain, code: URLSessionTaskGeneratorError.UnexpectedHTTPResponseStatus.rawValue, userInfo: ["httpResponse": httpResponse])
+			do {
+				guard nil == error else {
+					throw error
 				}
-				else {
-					completionHandler(data, httpResponse, nil)
-					return nil
+				$(response).$()
+				guard httpResponse.statusCode == 200 else {
+					throw URLSessionTaskGeneratorError.UnexpectedHTTPResponseStatus(httpResponse: httpResponse)
 				}
-			}()
-			if let error = error {
+				completionHandler(data, httpResponse, nil)
+			} catch {
 				completionHandler(nil, httpResponse, error)
 			}
 		}
@@ -55,26 +48,30 @@ class ProgressEnabledURLSessionTaskGenerator: NSObject {
 		}
 		return sessionTask
 	}
-	typealias TextTaskCompletionHandler = (String!, NSError!) -> Void
-	func textTaskForHTTPRequest(request: NSURLRequest, completionHandler: TextTaskCompletionHandler) -> NSURLSessionDataTask {
+	typealias TextTaskCompletionHandler = (String!, ErrorType!) -> Void
+	func textTaskForHTTPRequest(request: NSURLRequest, completionHandler: TextTaskCompletionHandler) -> NSURLSessionDataTask? {
+		enum Error: ErrorType {
+			case DataDoesNotMatchTextEncoding(data: NSData, encoding: NSStringEncoding)
+		}
 		return dataTaskForHTTPRequest(request) { data, httpResponse, error in
-			if let error = error {
-				completionHandler(nil, error)
-				return
-			}
-			let encoding: NSStringEncoding = {
-				if let textEncodingName = httpResponse.textEncodingName {
-					return CFStringConvertEncodingToNSStringEncoding(CFStringConvertIANACharSetNameToEncoding(textEncodingName))
+			do {
+				if let error = error {
+					throw error
 				}
-				else {
-					return NSUTF8StringEncoding
+				let encoding: NSStringEncoding = {
+					if let textEncodingName = httpResponse.textEncodingName {
+						return CFStringConvertEncodingToNSStringEncoding(CFStringConvertIANACharSetNameToEncoding(textEncodingName))
+					}
+					else {
+						return NSUTF8StringEncoding
+					}
+				}()
+				guard let text = NSString(data: data, encoding: encoding) as String? else {
+					throw Error.DataDoesNotMatchTextEncoding(data: data, encoding: encoding)
 				}
-			}()
-			if let text = NSString(data: data, encoding: encoding) as String? {
 				completionHandler(text, nil)
-			}
-			else {
-				completionHandler(nil, NSError(domain: ApplicationErrorDomain, code: ApplicationError.DataDoesNotMatchTextEncoding.rawValue, userInfo: nil))
+			} catch {
+				completionHandler(nil, $(error).$())
 			}
 		}
 	}

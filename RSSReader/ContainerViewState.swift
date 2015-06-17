@@ -11,7 +11,7 @@ import CoreData.NSManagedObject
 class ContainerViewState: NSManagedObject {
 	@NSManaged var containerViewPredicate: NSPredicate
     @NSManaged var continuation: String?
-    @NSManaged var loadError: NSError?
+    var loadError: ErrorType?
     @NSManaged var loadDate: NSDate?
     @NSManaged var loadCompleted: Bool
     @NSManaged var lastLoadedItem: Item?

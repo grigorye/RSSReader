@@ -20,15 +20,23 @@ enum FoldersUpdateState: String {
 }
 
 protocol FoldersController {
-	func updateFoldersAuthenticated(completionHandler: (NSError?) -> Void)
-	func updateFolders(completionHandler: (NSError?) -> Void)
-	var foldersLastUpdateError: NSError? { get }
+	func updateFoldersAuthenticated(completionHandler: (ErrorType?) -> Void)
+	func updateFolders(completionHandler: (ErrorType?) -> Void)
+	var foldersLastUpdateError: ErrorType? { get }
 	var foldersLastUpdateDate: NSDate? { get }
 	var foldersUpdateState: FoldersUpdateState { get }
 	var foldersUpdateStateRaw: String { get }
 }
 
 extension AppDelegate: FoldersController {
+	enum Error: ErrorType {
+		case UserInfoRetrieval(underlyingError: ErrorType)
+		case TagsUpdate(underlyingError: ErrorType)
+		case SubscriptionsUpdate(underlyingError: ErrorType)
+		case DataDoesNotMatchTextEncoding
+		case UnreadCountsUpdate(underlyingError: ErrorType)
+		case StreamPreferencesUpdate(underlyingError: ErrorType)
+	}
 	final var foldersLastUpdateDate: NSDate? {
 		get {
 			return defaults.foldersLastUpdateDate
@@ -37,7 +45,7 @@ extension AppDelegate: FoldersController {
 			defaults.foldersLastUpdateDate = newValue
 		}
 	}
-	final var foldersLastUpdateError: NSError? {
+	final var foldersLastUpdateError: ErrorType? {
 		get {
 			if let data = defaults.foldersLastUpdateErrorEncoded {
 				return NSKeyedUnarchiver.unarchiveObjectWithData(data) as! NSError?
@@ -48,8 +56,8 @@ extension AppDelegate: FoldersController {
 		}
 		set {
 			defaults.foldersLastUpdateErrorEncoded = {
-				if let newValue = newValue {
-					return NSKeyedArchiver.archivedDataWithRootObject(newValue)
+				if let _ = newValue {
+					return nil // NSKeyedArchiver.archivedDataWithRootObject(newValue)
 				}
 				else {
 					return nil
@@ -57,10 +65,10 @@ extension AppDelegate: FoldersController {
 			}()
 		}
 	}
-	final func updateFoldersAuthenticated(completionHandler: (NSError?) -> Void) {
+	final func updateFoldersAuthenticated(completionHandler: (ErrorType?) -> Void) {
 		let rssSession = self.rssSession!
 		foldersUpdateState = .UpdatingUserInfo
-		let errorCompletionHandler = { (error: NSError) -> Void in
+		let errorCompletionHandler = { (error: ErrorType) -> Void in
 			self.foldersLastUpdateError = error
 			self.foldersLastUpdateDate = NSDate()
 			self.foldersUpdateState = .Completed
@@ -74,31 +82,31 @@ extension AppDelegate: FoldersController {
 		self.foldersLastUpdateError = nil
 		rssSession.updateUserInfo { updateUserInfoError in dispatch_async(dispatch_get_main_queue()) {
 			if let updateUserInfoError = updateUserInfoError {
-				errorCompletionHandler(applicationError(.UserInfoRetrievalError, $(updateUserInfoError).$()))
+				errorCompletionHandler(Error.UserInfoRetrieval(underlyingError: $(updateUserInfoError).$()))
 				return
 			}
 			self.foldersUpdateState = .UpdatingTags
 			rssSession.updateTags { updateTagsError in dispatch_async(dispatch_get_main_queue()) {
 				if let updateTagsError = updateTagsError {
-					errorCompletionHandler(applicationError(.TagsUpdateError, $(updateTagsError).$()))
+					errorCompletionHandler(Error.TagsUpdate(underlyingError: $(updateTagsError).$()))
 					return
 				}
 				self.foldersUpdateState = .UpdatingSubscriptions
 				rssSession.updateSubscriptions { updateSubscriptionsError in dispatch_async(dispatch_get_main_queue()) {
 					if let updateSubscriptionsError = updateSubscriptionsError {
-						errorCompletionHandler(applicationError(.TagsUpdateError, $(updateSubscriptionsError).$()))
+						errorCompletionHandler(Error.SubscriptionsUpdate(underlyingError: $(updateSubscriptionsError).$()))
 						return
 					}
 					self.foldersUpdateState = .UpdatingUnreadCounts
 					rssSession.updateUnreadCounts { updateUnreadCountsError in dispatch_async(dispatch_get_main_queue()) {
 						if let updateUnreadCountsError = updateUnreadCountsError {
-							errorCompletionHandler(applicationError(.TagsUpdateError, $(updateUnreadCountsError).$()))
+							errorCompletionHandler(Error.TagsUpdate(underlyingError: $(updateUnreadCountsError).$()))
 							return
 						}
 						self.foldersUpdateState = .UpdatingStreamPreferences
 						rssSession.updateStreamPreferences { updateStreamPreferencesError in dispatch_async(dispatch_get_main_queue()) {
 							if let updateStreamPreferencesError = updateStreamPreferencesError {
-								errorCompletionHandler(applicationError(.StreamPreferencesUpdateError, $(updateStreamPreferencesError).$()))
+								errorCompletionHandler(Error.StreamPreferencesUpdate(underlyingError: $(updateStreamPreferencesError).$()))
 								return
 							}
 							successCompletionHandler()
@@ -108,7 +116,7 @@ extension AppDelegate: FoldersController {
 			}}
 		}}
 	}
-	final func updateFolders(completionHandler: (NSError?) -> Void) {
+	final func updateFolders(completionHandler: (ErrorType?) -> Void) {
 		let rssSession = self.rssSession!
 		let postAuthenticate = { () -> Void in
 			self.updateFoldersAuthenticated(completionHandler)

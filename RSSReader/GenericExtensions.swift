@@ -46,16 +46,21 @@ func labelFromLocations(firstLocation: SourceLocation, lastLocation: SourceLocat
 	let fileName = firstLocation.file.lastPathComponent
 	let bundle = firstLocation.bundle
 	let file = bundle.pathForResource(fileName.stringByDeletingPathExtension, ofType: fileName.pathExtension)!
-	let text = NSString(contentsOfFile: file, encoding: NSUTF8StringEncoding, error: nil)
-	let lines = text?.componentsSeparatedByString("\n") as! [NSString]
+	let text: NSString?
+	do {
+		text = try NSString(contentsOfFile: file, encoding: NSUTF8StringEncoding)
+	} catch {
+		text = nil
+	}
+	let lines = (text?.componentsSeparatedByString("\n"))!
 	let range = NSRange(location: firstLocation.column - 1, length: lastLocation.column - firstLocation.column-3)
-	return lines[firstLocation.line - 1].substringWithRange(range)
+	return (lines[firstLocation.line - 1] as NSString).substringWithRange(range)
 }
 
 func traceString(string: String, location: SourceLocation, lastLocation: SourceLocation) {
 	if traceEnabled {
 		let labelSuffix = !traceLabelsEnabled ? "[\(location.column)-\(lastLocation.column)]" : {
-			return ": \(labelFromLocations(location, lastLocation))"
+			return ": \(labelFromLocations(location, lastLocation: lastLocation))"
 		}()
 		let message = "\(location.file.lastPathComponent), \(location.function).\(location.line)\(labelSuffix): \(string)"
 #if ANALYTICS_ENABLED
@@ -67,7 +72,7 @@ func traceString(string: String, location: SourceLocation, lastLocation: SourceL
 			NSLog("%@", message)
 		}
 		else {
-			println(message)
+			print(message)
 		}
 	}
 }
@@ -79,9 +84,9 @@ struct Traceable<T> {
 		self.value = value
 		self.location = location
 	}
-	func $(_ level: Int = 1, file: String = __FILE__, line: Int = __LINE__, column: Int = __COLUMN__, function: String = __FUNCTION__) -> T {
+	func $(level: Int = 1, file: String = __FILE__, line: Int = __LINE__, column: Int = __COLUMN__, function: String = __FUNCTION__) -> T {
 		if 0 != level {
-			trace(value, self.location, SourceLocation(file: file, line: line, column: column, function: function))
+			trace(value, startLocation: self.location, endLocation: SourceLocation(file: file, line: line, column: column, function: function))
 		}
 		return value
 	}
@@ -92,7 +97,7 @@ func $<T>(v: T, file: String = __FILE__, line: Int = __LINE__, column: Int = __C
 }
 
 func trace<T>(value: T, startLocation: SourceLocation, endLocation: SourceLocation) -> T {
-	traceString(description(value), startLocation, endLocation)
+	traceString(description(value), location: startLocation, lastLocation: endLocation)
 	return value
 }
 

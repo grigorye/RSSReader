@@ -28,7 +28,7 @@ class HistoryViewController: UITableViewController, NSFetchedResultsControllerDe
 		return self.fetchedResultsController.fetchedObjects![indexPath.row] as! Item
 	}
 	var selectedItem: Item {
-		return self.itemForIndexPath(self.tableView.indexPathForSelectedRow()!)
+		return self.itemForIndexPath(self.tableView.indexPathForSelectedRow!)
 	}
 	// MARK: -
 	func configureCell(rawCell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
@@ -57,7 +57,7 @@ class HistoryViewController: UITableViewController, NSFetchedResultsControllerDe
 			abort()
 		}
 	}
-	func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+	func controller(controller: NSFetchedResultsController, didChangeObject anObject: NSManagedObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
 		let tableView = self.tableView!
 		switch type {
 		case .Insert:
@@ -92,13 +92,13 @@ class HistoryViewController: UITableViewController, NSFetchedResultsControllerDe
 		return fetchedResultsController.sections!.count
 	}
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return (fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo).numberOfObjects
+		return fetchedResultsController.sections![section].numberOfObjects
 	}
 	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		return (fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo).name
+		return fetchedResultsController.sections![section].name
 	}
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier(MainStoryboard.ReuseIdentifiers.HistoryItem, forIndexPath: indexPath) as! UITableViewCell
+		let cell = tableView.dequeueReusableCellWithIdentifier(MainStoryboard.ReuseIdentifiers.HistoryItem, forIndexPath: indexPath)
 		self.configureCell(cell, atIndexPath: indexPath)
 		return cell
 	}
@@ -132,8 +132,6 @@ class HistoryViewController: UITableViewController, NSFetchedResultsControllerDe
 	}
     override func viewDidLoad() {
         super.viewDidLoad()
-		var fetchError: NSError?
-		fetchedResultsController.performFetch(&fetchError)
-		assert(nil == fetchError)
+		try! fetchedResultsController.performFetch()
     }
 }

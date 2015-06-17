@@ -31,6 +31,11 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 	// MARK: -
 	@IBOutlet private var statusLabel: UILabel!
 	@IBOutlet private var statusBarButtonItem: UIBarButtonItem!
+	@IBAction func refreshFromBarButtonItem(sender: AnyObject!) {
+		let refreshControl = self.refreshControl
+		refreshControl?.beginRefreshing()
+		self.refresh(refreshControl)
+	}
 	@IBAction func refresh(sender: AnyObject!) {
 		foldersController.updateFolders { error in dispatch_async(dispatch_get_main_queue()) {
 			if nil == error {
@@ -40,8 +45,7 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 				}
 			}
 			self.tableView.reloadData()
-			let refreshControl = sender as! UIRefreshControl
-			refreshControl.endRefreshing()
+			self.refreshControl?.endRefreshing()
 		}}
 	}
 	// MARK: -
@@ -58,12 +62,12 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 		switch segue.identifier! {
 		case MainStoryboard.SegueIdentifiers.ShowFolder:
 			let foldersListTableViewController = segue.destinationViewController as! FoldersListTableViewController
-			let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow()!
+			let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow!
 			let folder = childContainers[indexPathForSelectedRow.row] as! Folder
 			foldersListTableViewController.rootFolder = folder
 		case MainStoryboard.SegueIdentifiers.ShowSubscription:
 			let itemsListViewController = segue.destinationViewController as! ItemsListViewController
-			let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow()!
+			let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow!
 			let subscription = childContainers[indexPathForSelectedRow.row] as! Subscription
 			itemsListViewController.container = subscription
 		default:
@@ -71,13 +75,13 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 		}
 	}
 	// MARK: -
-    func modelIdentifierForElementAtIndexPath(indexPath: NSIndexPath, inView view: UIView) -> String {
+    func modelIdentifierForElementAtIndexPath(indexPath: NSIndexPath, inView view: UIView) -> String? {
 		let childContainer = childContainers[indexPath.row]
-		return childContainer.objectID.URIRepresentation().absoluteString!
+		return childContainer.objectID.URIRepresentation().absoluteString
 	}
     func indexPathForElementWithModelIdentifier(identifier: String, inView view: UIView) -> NSIndexPath? {
 		let objectIDURL = NSURL(string: identifier)!
-		if let row = find(childContainers.map { return $0.objectID.URIRepresentation().absoluteString! }, identifier) {
+		if let row = (childContainers.map { return $0.objectID.URIRepresentation().absoluteString }).indexOf(identifier) {
 			let indexPath = NSIndexPath(forRow: row, inSection: 0)
 			return $(indexPath).$()
 		}
@@ -95,11 +99,11 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 		let childContainer = childContainers[indexPath.row]
 		switch childContainer {
 		case let subscription as Subscription:
-			let cell = tableView.dequeueReusableCellWithIdentifier(MainStoryboard.ReuseIdentifiers.Subscription, forIndexPath: indexPath) as! UITableViewCell
+			let cell = tableView.dequeueReusableCellWithIdentifier(MainStoryboard.ReuseIdentifiers.Subscription, forIndexPath: indexPath)
 			self.configureCell(cell, forSubscription: subscription)
 			return cell
 		case let folder as Folder:
-			let cell = tableView.dequeueReusableCellWithIdentifier(MainStoryboard.ReuseIdentifiers.Folder, forIndexPath: indexPath) as! UITableViewCell
+			let cell = tableView.dequeueReusableCellWithIdentifier(MainStoryboard.ReuseIdentifiers.Folder, forIndexPath: indexPath)
 			self.configureCell(cell, forFolder: folder)
 			return cell
 		default:
@@ -141,7 +145,7 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 				case .Completed:
 					let foldersController = self.foldersController
 					if let foldersUpdateError = foldersController.foldersLastUpdateError {
-						return foldersUpdateError.localizedDescription
+						return "\(foldersUpdateError)"
 					}
 					else if let foldersLastUpdateDate = foldersController.foldersLastUpdateDate {
 						let loadAgo = loadAgoDateComponentsFormatter.stringFromDate(foldersLastUpdateDate, toDate: NSDate())!

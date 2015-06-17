@@ -23,8 +23,7 @@ class ItemsPageViewController : UIPageViewController {
 		if _1 {
 			let viewControllers = coder.decodeObjectForKey(Restorable.viewControllers.rawValue) as! [UIViewController]
 			let currentViewControllerIndex = coder.decodeObjectForKey(Restorable.currentViewControllerIndex.rawValue) as! Int
-			let delegate = self.delegate as! ItemsPageViewControllerDelegate
-			self.currentViewController = viewControllers.first
+			self.currentViewController = viewControllers[currentViewControllerIndex]
 			blocksDelayedTillViewWillAppear += [{
 				self.setViewControllers(viewControllers, direction: .Forward, animated: false) { completed in
 					$(completed).$()
@@ -38,13 +37,13 @@ class ItemsPageViewController : UIPageViewController {
 		dataSource.encodeRestorableStateWithCoder(coder)
 		if _1 {
 			coder.encodeObject(viewControllers, forKey: Restorable.viewControllers.rawValue)
-			let currentViewControllerIndex = find(viewControllers as! [UIViewController], self.currentViewController!)
+			let currentViewControllerIndex = viewControllers!.indexOf(self.currentViewController!)
 			coder.encodeObject(currentViewControllerIndex, forKey: Restorable.currentViewControllerIndex.rawValue)
 		}
 	}
 	// MARK: -
-	override func setViewControllers(viewControllers: [AnyObject]!, direction: UIPageViewControllerNavigationDirection, animated: Bool, completion: ((Bool) -> Void)!) {
-		let currentViewController = viewControllers.first as! UIViewController
+	override func setViewControllers(viewControllers: [UIViewController]?, direction: UIPageViewControllerNavigationDirection, animated: Bool, completion: ((Bool) -> Void)?) {
+		let currentViewController = viewControllers!.first
 		super.setViewControllers(viewControllers, direction: direction, animated: animated, completion: completion)
 		self.currentViewController = currentViewController
 	}
@@ -73,10 +72,10 @@ class ItemsPageViewController : UIPageViewController {
 			viewDidDisappearRetainedObjects += [KVOBinding(self•{$0.currentViewController}, options: .Initial) { change in
 				if let webView = self.currentViewController?.view.subviews.first as? UIWebView {
 					let barHideOnSwipeGestureRecognizer = self.navigationController!.barHideOnSwipeGestureRecognizer
-					if (nil == webView.gestureRecognizers) || (nil == find(webView.gestureRecognizers as! [UIGestureRecognizer], barHideOnSwipeGestureRecognizer)) {
+					if (nil == webView.gestureRecognizers) || (nil == webView.gestureRecognizers!.indexOf(barHideOnSwipeGestureRecognizer)) {
 						webView.addGestureRecognizer(barHideOnSwipeGestureRecognizer)
 						let scrollView = webView.scrollView
-						let gestureRecognizer = (filter(scrollView.gestureRecognizers as! [UIGestureRecognizer]) { $0 is UIPanGestureRecognizer }).first!
+						let gestureRecognizer = scrollView.gestureRecognizers!.filter { $0 is UIPanGestureRecognizer }.first!
 						gestureRecognizer.addTarget(self, action: "swipe:")
 					}
 				}

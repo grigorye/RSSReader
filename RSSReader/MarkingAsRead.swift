@@ -35,15 +35,14 @@ extension Folder {
 	}
 	class func folderWithTagSuffix(tagSuffix: String, managedObjectContext: NSManagedObjectContext) -> Folder? {
 		let fetchRequest = self.fetchRequestForFolderWithTagSuffix(tagSuffix)
-		var executeFetchRequestError: NSError?
-		let folder = managedObjectContext.executeFetchRequest(fetchRequest, error: &executeFetchRequestError)?.first as! Folder?
+		let folder = (try! managedObjectContext.executeFetchRequest(fetchRequest)).first as! Folder?
 		return folder
 	}
 }
 
 extension Item {
 	func categoryForTagSuffix(tagSuffix: String) -> Folder? {
-		let matchingCategories = filter(self.categories) { folder in folder.streamID.hasSuffix(tagSuffix) }
+		let matchingCategories = self.categories.filter { folder in folder.streamID.hasSuffix(tagSuffix) }
 		return matchingCategories.first
 	}
 	func includedInCategoryWithTagSuffix(tagSuffix: String) -> Bool {

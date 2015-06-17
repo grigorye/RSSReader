@@ -55,6 +55,6 @@ let dateComponentsFormatter: NSDateComponentsFormatter = {
 	$.unitsStyle = .Abbreviated
 	$.allowsFractionalUnits = true
 	$.maximumUnitCount = 1
-	$.allowedUnits = .CalendarUnitMinute | .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitWeekOfMonth | .CalendarUnitDay | .CalendarUnitHour
+	$.allowedUnits = [.Minute, .Year, .Month, .WeekOfMonth, .Day, .Hour]
 	return $;
 }()

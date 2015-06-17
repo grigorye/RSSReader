@@ -41,92 +41,69 @@ class AppDelegateInternals {
 	var rssSession: RSSSession?
 	private let urlTaskGeneratorProgressKVOBinding: KVOBinding
 	let progressEnabledURLSessionTaskGenerator = ProgressEnabledURLSessionTaskGenerator()
-	let (managedObjectContextError, mainQueueManagedObjectContext, backgroundQueueManagedObjectContext): (NSError?, NSManagedObjectContext?, NSManagedObjectContext?) = {
-		let managedObjectModel = NSManagedObjectModel.mergedModelFromBundles(nil)!
-		let psc = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
-		let error: NSError? = {
-			let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)  as! [String]
+	let (managedObjectContextError, mainQueueManagedObjectContext, backgroundQueueManagedObjectContext): (ErrorType?, NSManagedObjectContext?, NSManagedObjectContext?) = {
+		do {
+			let managedObjectModel = NSManagedObjectModel.mergedModelFromBundles(nil)!
+			let psc = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
+			let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
 			let documentsDirectory = paths[0]
 			let fileManager = NSFileManager.defaultManager()
 			if !fileManager.fileExistsAtPath(documentsDirectory) {
-				var documentsDirectoryCreationError: NSError?
-				if !fileManager.createDirectoryAtPath(documentsDirectory, withIntermediateDirectories: true, attributes: nil, error: &documentsDirectoryCreationError) {
-					return $(documentsDirectoryCreationError).$()
-				}
+				try fileManager.createDirectoryAtPath(documentsDirectory, withIntermediateDirectories: true, attributes: nil)
 			}
-			let storeURL = NSURL(fileURLWithPath: documentsDirectory.stringByAppendingPathComponent("RSSReader.sqlite"))!
+			let storeURL = NSURL.fileURLWithPath(documentsDirectory.stringByAppendingPathComponent("RSSReader.sqlite"))
 			$(fileManager.fileExistsAtPath(storeURL.path!)).$()
 			if NSUserDefaults().boolForKey("forceStoreRemoval") {
 				let fileManager = NSFileManager.defaultManager()
-				var forcedStoreRemovalError: NSError?
-				if !fileManager.removeItemAtURL(storeURL, error: &forcedStoreRemovalError) && !((NSCocoaErrorDomain == forcedStoreRemovalError!.domain) && (NSFileNoSuchFileError == forcedStoreRemovalError!.code)) {
-					return $(forcedStoreRemovalError).$()
+				do {
+					try fileManager.removeItemAtURL(storeURL)
+				}
+				catch NSCocoaError.FileNoSuchFileError {
 				}
 			}
-			let addPersistentStoreMigratedError: NSError? = {
-				var addPersistentStoreError: NSError?
+			do {
 				let options = [
 					NSMigratePersistentStoresAutomaticallyOption: true,
 					NSInferMappingModelAutomaticallyOption: true
 				]
-				let persistentStore: NSPersistentStore! = psc.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: options, error: &addPersistentStoreError)
-				if nil != persistentStore {
-					return nil
+				let persistentStore = try psc.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: options)
+			} catch let error as NSCocoaError {
+				switch error.rawValue {
+				case NSMigrationMissingSourceModelError where NSUserDefaults().boolForKey("allowMissingSourceModelError"):
+				fallthrough
+				case NSPersistentStoreIncompatibleVersionHashError, NSMigrationError:
+					let fileManager = NSFileManager.defaultManager()
+					try fileManager.removeItemAtURL(storeURL)
+					try psc.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil)
+				default:
+					throw error
 				}
-				let error = $(addPersistentStoreError!).$()
-				switch (error.domain, error.code) {
-					case (NSCocoaErrorDomain, NSMigrationMissingSourceModelError) where NSUserDefaults().boolForKey("allowMissingSourceModelError"):
-						fallthrough
-					case (NSCocoaErrorDomain, NSPersistentStoreIncompatibleVersionHashError), (NSCocoaErrorDomain, NSMigrationError):
-						let fileManager = NSFileManager.defaultManager()
-						var incompatibleStoreRemovalError: NSError?
-						if !fileManager.removeItemAtURL(storeURL, error: &incompatibleStoreRemovalError) {
-							return $(incompatibleStoreRemovalError).$()
-						}
-						var addReplacementPersistentStoreError: NSError?
-						let persistentStore: NSPersistentStore! = psc.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil, error: &addReplacementPersistentStoreError)
-						if nil == persistentStore {
-							return $(addReplacementPersistentStoreError).$()
-						}
-						return nil
-					default:
-						let nonRecoverableAddPersistentStoreError = addPersistentStoreError!
-						return $(nonRecoverableAddPersistentStoreError).$()
-				}
-			}()
-			if let addPersistentStoreMigratedError = addPersistentStoreMigratedError {
-				return $(addPersistentStoreMigratedError).$()
 			}
-			return nil
-		}()
-		if let error = error {
+			let mainQueueManagedObjectContext: NSManagedObjectContext = {
+				let $ = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+				$.persistentStoreCoordinator = psc
+				return $
+			}()
+			let backgroundQueueManagedObjectContext: NSManagedObjectContext = {
+				let $ = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+				$.parentContext = mainQueueManagedObjectContext
+				return $
+			}()
+			let notificationCenter = NSNotificationCenter.defaultCenter()
+			notificationCenter.addObserverForName(NSManagedObjectContextObjectsDidChangeNotification, object: mainQueueManagedObjectContext, queue: nil, usingBlock: { _ in
+				mainQueueManagedObjectContext.performBlock {
+					try! mainQueueManagedObjectContext.save()
+				}
+			})
+			return (nil, mainQueueManagedObjectContext, backgroundQueueManagedObjectContext)
+		}
+		catch {
 			return (error, nil, nil)
 		}
-		let mainQueueManagedObjectContext: NSManagedObjectContext = {
-			let $ = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
-			$.persistentStoreCoordinator = psc
-			return $
-		}()
-		let backgroundQueueManagedObjectContext: NSManagedObjectContext = {
-			let $ = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
-			$.parentContext = mainQueueManagedObjectContext
-			return $
-		}()
-		let notificationCenter = NSNotificationCenter.defaultCenter()
-		notificationCenter.addObserverForName(NSManagedObjectContextObjectsDidChangeNotification, object: mainQueueManagedObjectContext, queue: nil, usingBlock: { _ in
-			mainQueueManagedObjectContext.performBlock {
-				var mainQueueManagedObjectContextSaveError: NSError?
-				mainQueueManagedObjectContext.save(&mainQueueManagedObjectContextSaveError)
-				if nil != mainQueueManagedObjectContextSaveError {
-					$(mainQueueManagedObjectContextSaveError).$()
-				}
-			}
-		})
-		return (nil, mainQueueManagedObjectContext, backgroundQueueManagedObjectContext)
 	}()
 	init() {
 		let taskGenerator = progressEnabledURLSessionTaskGenerator
-		urlTaskGeneratorProgressKVOBinding = KVOBinding(taskGenerator•{$0.progresses}, options: NSKeyValueObservingOptions(0)) { change in
+		urlTaskGeneratorProgressKVOBinding = KVOBinding(taskGenerator•{$0.progresses}, options: []) { change in
 			let networkActivityIndicatorShouldBeVisible = 0 < taskGenerator.progresses.count
 			UIApplication.sharedApplication().networkActivityIndicatorVisible = $( networkActivityIndicatorShouldBeVisible).$()
 		}
@@ -188,7 +165,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
 	}
 	@IBAction func crash(sender: AnyObject?) {
-		let x = "foo" as AnyObject as! Int
+		let _ = "foo" as AnyObject as! Int
 	}
 	// MARK: -
 	lazy var fetchedRootFolderBinding: FetchedObjectBinding<Folder> = FetchedObjectBinding<Folder>(managedObjectContext: self.mainQueueManagedObjectContext, predicate: Folder.predicateForFetchingFolderWithTagSuffix(rootTagSuffix)) { folder in
@@ -271,7 +248,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		}
 #endif
 		let fileManager = NSFileManager()
-		let libraryDirectoryURL = fileManager.URLsForDirectory(.LibraryDirectory, inDomains: .UserDomainMask).last as! NSURL
+		let libraryDirectoryURL = fileManager.URLsForDirectory(.LibraryDirectory, inDomains: .UserDomainMask).last!
 		let libraryDirectory = libraryDirectoryURL.path!
         $(libraryDirectory).$()
 	}

@@ -21,7 +21,7 @@ class ItemSummaryWebViewController: UIViewController {
 	dynamic var item: Item!
 	var markAsReadTimer: NSTimer?
 	func markAsRead() {
-		if (!item.markedAsRead) {
+		if !item.markedAsRead {
 			item.markedAsRead = true
 			rssSession!.uploadTag(canonicalReadTag, mark: true, forItem: item, completionHandler: { uploadReadStateError in
 				if let uploadReadStateError = uploadReadStateError {
@@ -30,34 +30,27 @@ class ItemSummaryWebViewController: UIViewController {
 			})
 		}
 	}
-	func loadHTMLString(HTMLString: String, ignoringExisting: Bool) {
+	func loadHTMLString(HTMLString: String, ignoringExisting: Bool) throws {
 		let webView = self.webView
 		let bundle = NSBundle.mainBundle()
 		let htmlTemplateURL = bundle.URLForResource("ItemSummaryTemplate", withExtension: "html")!
-		var htmlTemplateLoadError: NSError?
-		let htmlTemplate = NSString(contentsOfURL: htmlTemplateURL, encoding: NSUTF8StringEncoding, error: &htmlTemplateLoadError)!
+		let htmlTemplate = try! NSString(contentsOfURL: htmlTemplateURL, encoding: NSUTF8StringEncoding)
 		let htmlString =
 			htmlTemplate
 				.stringByReplacingOccurrencesOfString("$$Summary$$", withString: HTMLString)
 				.stringByReplacingOccurrencesOfString("$$Title$$", withString: item.title!)
-		if let webViewRequest = webView.request where !ignoringExisting {
+		if let _ = webView.request where !ignoringExisting {
 			webView.reload()
 		}
 		else {
 			if _1 {
 				let fileManager = NSFileManager.defaultManager()
-				var cachesDirectoryCreationError: NSError?
-				let cachesDirectoryURL = fileManager.URLForDirectory(.CachesDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: true, error: &cachesDirectoryCreationError)!
-				assert(nil == cachesDirectoryCreationError)
+				let cachesDirectoryURL = try! fileManager.URLForDirectory(.CachesDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: true)
 				let directoryInCaches = (item.objectID.URIRepresentation().path! as NSString).substringFromIndex(1)
 				let pathInCaches = directoryInCaches.stringByAppendingPathComponent("summary.html")
 				let storedHTMLURL = NSURL(string: pathInCaches, relativeToURL: cachesDirectoryURL)!
-				var storedHTMLDirectoryCreationError: NSError?
-				fileManager.createDirectoryAtURL(cachesDirectoryURL.URLByAppendingPathComponent(directoryInCaches), withIntermediateDirectories: true, attributes: nil, error: &storedHTMLDirectoryCreationError)
-				assert(nil == storedHTMLDirectoryCreationError)
-				var htmlWriteError: NSError?
-				htmlString.writeToURL(storedHTMLURL, atomically: true, encoding: NSUTF8StringEncoding, error: &htmlWriteError)
-				assert(nil == htmlWriteError)
+				try fileManager.createDirectoryAtURL(cachesDirectoryURL.URLByAppendingPathComponent(directoryInCaches), withIntermediateDirectories: true, attributes: nil)
+				try htmlString.writeToURL(storedHTMLURL, atomically: true, encoding: NSUTF8StringEncoding)
 				let request = NSURLRequest(URL: storedHTMLURL.fileReferenceURL()!)
 				webView.loadRequest(request)
 			}
@@ -106,19 +99,27 @@ class ItemSummaryWebViewController: UIViewController {
 					self.presentErrorMessage(NSLocalizedString("Failed to expand.", comment: ""))
 				}
 				else {
+#if false
 					let readability = DZReadability(URL: url, rawDocumentContent: text, options: nil) { sender, content, error in
 						if let error = error {
 							$(error).$()
 							self.presentErrorMessage(NSLocalizedString("Unable to expand", comment: ""))
 						}
 						else {
-							self.loadHTMLString(content, ignoringExisting: true)
+							do {
+								try self.loadHTMLString(content, ignoringExisting: true)
+							}
+							catch {
+								$(error).$()
+								self.presentErrorMessage(NSLocalizedString("Unable to load", comment: ""))
+							}
 						}
 					}
 					readability.start()
+#endif
 				}
 			}
-		}
+		}!
 		dataTask.resume()
 	}
 	// MARK: -
@@ -127,10 +128,15 @@ class ItemSummaryWebViewController: UIViewController {
 	// MARK: -
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.savedRightBarButtonItems = self.navigationItem.rightBarButtonItems! as! [UIBarButtonItem]
+		self.savedRightBarButtonItems = self.navigationItem.rightBarButtonItems!
 		blocksScheduledForViewWillAppear += [{
 			let item = self.item
-			self.loadHTMLString(item.summary!, ignoringExisting: false)
+			do {
+				try self.loadHTMLString(item.summary!, ignoringExisting: false)
+			}
+			catch {
+				self.presentErrorMessage(NSLocalizedString("Unable to load summary", comment: ""))
+			}
 		}]
 	}
 	// MARK: -
@@ -140,7 +146,7 @@ class ItemSummaryWebViewController: UIViewController {
 		blocksScheduledForViewWillAppear = []
 		viewDidDisappearRetainedObjects += [KVOBinding(self•{$0.item.markedAsFavorite}, options: .Initial) { [unowned self] change in
 			let excludedBarButtonItem = self.item.markedAsFavorite ? self.markAsFavoriteBarButtonItem : self.unmarkAsFavoriteBarButtonItem
-			let rightBarButtonItems = filter(self.savedRightBarButtonItems) {
+			let rightBarButtonItems = self.savedRightBarButtonItems.filter {
 				return $0 != excludedBarButtonItem
 			}
 			self.navigationItem.rightBarButtonItems = $(rightBarButtonItems).$()
@@ -198,7 +204,7 @@ class ItemSummaryWebViewDelegate: NSObject, UIWebViewDelegate {
 			return true
 		}
 	}
-	func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
+	func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
 		$(error).$()
 	}
 	func webViewDidFinishLoad(webView: UIWebView) {

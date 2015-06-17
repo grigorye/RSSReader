@@ -9,7 +9,7 @@
 import Foundation
 
 extension NSURLSession {
-	func progressEnabledDataTaskWithRequest(request: NSURLRequest, completionHandler: ((NSData!, NSURLResponse!, NSError!) -> Void)?) -> NSURLSessionDataTask {
+	func progressEnabledDataTaskWithRequest(request: NSURLRequest, completionHandler: ((NSData!, NSURLResponse!, NSError!) -> Void)?) -> NSURLSessionDataTask? {
 		let progress = NSProgress(totalUnitCount: 1)
 		$(request.URL!).$()
 		return self.dataTaskWithRequest(request) { data, response, error in

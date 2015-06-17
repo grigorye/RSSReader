@@ -9,5 +9,5 @@
 import Foundation
 
 public func objectAndKeyPath<T: NSObject>(x: T!, recorder: (T!) -> ()) -> ObjectAndKeyPath {
-	return ObjectAndKeyPath(x, instanceKeyPath(x, recorder))
+	return ObjectAndKeyPath(x, instanceKeyPath(x, recorder: recorder))
 }

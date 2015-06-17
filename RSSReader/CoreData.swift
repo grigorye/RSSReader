@@ -31,13 +31,16 @@ extension NSDate {
 	}
 }
 extension Item : ManagedIdentifiable {
+	enum Error: ErrorType {
+		case CategoriesMissingOrInvalidInJson(json: [String: AnyObject])
+	}
 	class func identifierKey() -> String {
 		return "itemID"
 	}
 	class func entityName() -> String {
 		return "Item"
 	}
-	func importFromJson(jsonObject: AnyObject) {
+	func importFromJson(jsonObject: AnyObject) throws {
 		let json = jsonObject as! [String: AnyObject]
 		let date = NSDate(timestampUsec: json["timestampUsec"] as! String)
 		if date == self.date {
@@ -49,19 +52,17 @@ extension Item : ManagedIdentifiable {
 			let summary = (json["summary"] as! [String: AnyObject])["content"] as! String?
 			self.summary = summary
 			let managedObjectContext = self.managedObjectContext!
-			let streamID = (json["origin"] as? NSDictionary)?["streamId"] as! NSString
-			var subscriptionImportError: NSError?
-			let subscription = insertedObjectUnlessFetchedWithID(Subscription.self, id: streamID as! String, managedObjectContext: managedObjectContext, error: &subscriptionImportError)!
+			let streamID = (json["origin"] as? NSDictionary)?["streamId"] as! String
+			let subscription = try insertedObjectUnlessFetchedWithID(Subscription.self, id: streamID, managedObjectContext: managedObjectContext)
 			self.subscription = subscription
 			self.canonical = json["canonical"] as! [[String : String]]?
 			var categories = [Folder]()
-			if let categoriesIDs = json["categories"] as? [String] {
-				for categoryID in categoriesIDs {
-					var categoryImportError: NSError?
-					if let folder = insertedObjectUnlessFetchedWithID(Folder.self, id: categoryID, managedObjectContext: managedObjectContext, error: &categoryImportError) {
-						categories += [folder]
-					}
-				}
+			guard let categoriesIDs = json["categories"] as? [String] else {
+				throw Error.CategoriesMissingOrInvalidInJson(json: json)
+			}
+			for categoryID in categoriesIDs {
+				let folder = try insertedObjectUnlessFetchedWithID(Folder.self, id: categoryID, managedObjectContext: managedObjectContext)
+				categories += [folder]
 			}
 			let mutableCategories = self.mutableCategories
 			mutableCategories.removeAllObjects()
@@ -69,15 +70,16 @@ extension Item : ManagedIdentifiable {
 		}
 	}
 }
-extension Subscription : ManagedIdentifiable {
+
+extension Subscription {
 	override class func entityName() -> String {
 		return "Subscription"
 	}
 	class func sortDescriptorsVariants() -> [[NSSortDescriptor]] {
 		return [[NSSortDescriptor(key: self••{$0.sortID}, ascending: true)]]
 	}
-	override func importFromJson(jsonObject: AnyObject) {
-		super.importFromJson(jsonObject)
+	override func importFromJson(jsonObject: AnyObject) throws {
+		try super.importFromJson(jsonObject)
 		let json = jsonObject as! [String: AnyObject]
 		self.title = json["title"] as! String?
 		self.url = NSURL(string: json["url"] as! String)
@@ -86,94 +88,25 @@ extension Subscription : ManagedIdentifiable {
 		if let categories = json["categories"] as? [[String: AnyObject]] {
 			for category in categories {
 				let id = category["id"] as! String
-				var categoryImportError: NSError?
-				if let folder = insertedObjectUnlessFetchedWithID(Folder.self, id: id, managedObjectContext: self.managedObjectContext!, error: &categoryImportError) {
-					let mutableCategories = self.mutableSetValueForKey(self••{$0.categories})
-					mutableCategories.addObject(folder)
-				}
+				let folder = try insertedObjectUnlessFetchedWithID(Folder.self, id: id, managedObjectContext: self.managedObjectContext!)
+				let mutableCategories = self.mutableSetValueForKey(self••{$0.categories})
+				mutableCategories.addObject(folder)
 			}
 		}
 	}
 }
-extension Container: DefaultSortable {
-	class func defaultSortDescriptor() -> NSSortDescriptor {
-		return NSSortDescriptor(key: self••{$0.streamID}, ascending: true)
-	}
-}
-extension Container: ManagedIdentifiable {
-	class func identifierKey() -> String {
-		return "streamID"
-	}
-	class func entityName() -> String {
-		return "Container"
-	}
-	func importFromJson(jsonObject: AnyObject) {
-		let json = jsonObject as! [String: AnyObject]
-		let sortIDString = json["sortid"] as! String
-		var sortIDUnsigned : UInt32 = 0
-		if !NSScanner(string: sortIDString).scanHexInt(&sortIDUnsigned) {
-			abort()
-		}
-		let sortID = Int32(bitPattern: sortIDUnsigned)
-		self.sortID = sortID
-	}
-	func importFromUnreadCountJson(jsonObject: AnyObject) {
-		let json = jsonObject as! [String: AnyObject]
-		self.streamID = json["id"] as! String
-		self.unreadCount = (json["count"] as! NSNumber).intValue
-		self.newestItemDate = NSDate(timestampUsec: json["newestItemTimestampUsec"] as! String)
-	}
-	class func importStreamPreferencesJson(jsonObject: AnyObject, managedObjectContext: NSManagedObjectContext) {
-		if let json = jsonObject as? [String : [[String : AnyObject]]] {
-			for (folderID, prefs) in json {
-				$(folderID).$()
-				$(prefs).$()
-				for prefs in prefs {
-					let id = prefs["id"] as? String
-					if id == "subscription-ordering" {
-						if let value = prefs["value"] as? String {
-							$(value).$()
-							var insertContainerError: NSError?
-							if let folder = insertedObjectUnlessFetchedWithID(Folder.self, id: folderID, managedObjectContext: managedObjectContext, error: &insertContainerError) {
-								assert(folder.streamID == folderID)
-								let characterCountInValue = count(value)
-								if characterCountInValue % 8 == 0 {
-									var sortIDs = [Int32]()
-									for var startIndex = value.startIndex; startIndex != value.endIndex; startIndex = advance(startIndex, 8) {
-										let range = startIndex..<advance(startIndex, 8)
-										let sortIDString = value[range]
-										var sortIDUnsigned : UInt32 = 0
-										if !NSScanner(string: sortIDString).scanHexInt(&sortIDUnsigned) {
-											abort()
-										}
-										let sortID = Int32(bitPattern: sortIDUnsigned)
-										sortIDs += [sortID]
-									}
-									let request: NSFetchRequest = {
-										let E = Container.self
-										let $ = NSFetchRequest(entityName: E.entityName())
-										$.predicate = NSPredicate(format: "\(E••{$0.sortID}) IN %@", argumentArray: [map(sortIDs) { NSNumber(int: $0) }])
-										return $
-									}()
-									var fetchContainersForSortIDsError: NSError?
-									if let unorderedChildContainers = managedObjectContext.executeFetchRequest(request, error: &fetchContainersForSortIDsError) as! [Container]? {
-										$(unorderedChildContainers).$()
-										let childContainers = map(sortIDs) { sortID in
-											return filter(unorderedChildContainers) { $0.sortID == sortID }.first!
-										}
-										folder.childContainers = NSOrderedSet(array: childContainers)
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+enum JsonImportError: ErrorType {
+	case JsonObjectIsNotDictionary(jsonObject: AnyObject)
+	case MissingSortID(json: [String: AnyObject])
+	case SortIDIsNotHex(json: [String: AnyObject])
+	case SubscriptionOrderingMissingValue(json: [String: AnyObject])
+	case MissingPrefsID(json: [String: AnyObject])
+	case PrefsMissingValue(prefs: [String: AnyObject])
+	case PrefsValueLengthIsNotFactorOf8(prefs: [String: AnyObject])
+	case SortIDInPrefsValueIsNotHex(prefs: [String: AnyObject], range: Range<String.Index>)
 }
 
-extension Folder: ManagedIdentifiable {
+extension Folder {
 	override class func entityName() -> String {
 		return "Folder"
 	}
