@@ -41,7 +41,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "99BDFD0A0B70527141602A35"
+               BlueprintIdentifier = "FC7340ECCE5BD70938D7401E"
                BuildableName = "libPods.a"
                BlueprintName = "Pods"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -65,6 +65,16 @@
                ReferencedContainer = "container:RSSReader.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C444F53B1B2E53F200A6E378"
+               BuildableName = "RSSReaderUITests.xctest"
+               BlueprintName = "RSSReaderUITests"
+               ReferencedContainer = "container:RSSReader.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
@@ -75,6 +85,8 @@
             ReferencedContainer = "container:RSSReader.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -84,6 +96,7 @@
       buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
@@ -122,6 +135,11 @@
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
+         <AdditionalOption
+            key = "MallocStackLogging"
+            value = ""
+            isEnabled = "YES">
+         </AdditionalOption>
          <AdditionalOption
             key = "NSZombieEnabled"
             value = "YES"
