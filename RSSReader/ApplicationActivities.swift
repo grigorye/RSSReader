@@ -8,4 +8,4 @@
 
 import UIKit.UIActivity
 
-let applicationActivities: [UIActivity] = [AddToFavoritesActivity(), MarkAllAsReadActivity(), TUSafariActivity()]
+let applicationActivities: [UIActivity] = [AddToFavoritesActivity(), MarkAllAsReadActivity()/*, TUSafariActivity()*/]
