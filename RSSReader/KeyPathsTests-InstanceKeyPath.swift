@@ -12,7 +12,9 @@ import Foundation
 
 extension KeyPathsTests {
 	func testInstanceKeyPath() {
+#if false
 		let oldKeyPathRecordingProxyLiveCount = keyPathRecordingProxyLiveCount
+#endif
 		XCTAssertEqual(instanceKeyPath(self){$0.string}, "string")
 		XCTAssertEqual(instanceKeyPath(self){$0.optionalString}, "optionalString")
 		XCTAssertEqual(instanceKeyPath(self){$0.array}, "array")
@@ -27,6 +29,8 @@ extension KeyPathsTests {
 		XCTAssertEqual(instanceKeyPath(self){$0.optionalComputedObject.string}, "optionalComputedObject.string")
 		XCTAssertEqual(instanceKeyPath(self){$0.optionalComputedObject.optionalAnotherObject.computedLength}, "optionalComputedObject.optionalAnotherObject.computedLength")
 		XCTAssertEqual(instanceKeyPath(self.optionalObject){$0.string}, "string")
+#if false
 		XCTAssertEqual(keyPathRecordingProxyLiveCount, oldKeyPathRecordingProxyLiveCount)
+#endif
 	}
 }

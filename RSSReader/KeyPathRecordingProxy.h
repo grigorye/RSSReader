@@ -14,4 +14,6 @@
 
 @end
 
+#if 0
 extern NSUInteger keyPathRecordingProxyLiveCount;
+#endif

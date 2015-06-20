@@ -12,8 +12,10 @@ import Foundation
 
 extension KeyPathsTests {
 	func testInfixOperator() {
+#if false
 		let oldKeyPathRecordingProxyLiveCount = keyPathRecordingProxyLiveCount
 		XCTAssertEqual(keyPathRecordingProxyLiveCount, 0)
+#endif
 		XCTAssertEqual((self•{$0.string}).keyPath, "string")
 		XCTAssertEqual((self•{$0.optionalString}).keyPath, "optionalString")
 		XCTAssertEqual((self•{$0.array}).keyPath, "array")
@@ -27,6 +29,8 @@ extension KeyPathsTests {
 		XCTAssertEqual((self•{$0.optionalObject.string}).keyPath, "optionalObject.string")
 		XCTAssertEqual((self•{$0.optionalComputedObject.string}).keyPath, "optionalComputedObject.string")
 		XCTAssertEqual((self•{$0.optionalComputedObject.optionalAnotherObject.computedLength}).keyPath, "optionalComputedObject.optionalAnotherObject.computedLength")
+#if false
 		XCTAssertEqual(keyPathRecordingProxyLiveCount, oldKeyPathRecordingProxyLiveCount)
+#endif
 	}
 }
