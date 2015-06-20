@@ -29,8 +29,9 @@ class RSSReaderUITests: XCTestCase {
     
     func testExample() {
 		XCUIApplication().tables.staticTexts["Subscriptions"].tap()
+#if false
 		XCUIApplication().navigationBars["News"].buttons["Refresh"].tap()
-		
+#endif
     }
     
 }
