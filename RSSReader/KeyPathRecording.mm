@@ -8,13 +8,14 @@
 
 #import "KeyPathRecording.h"
 #import "KeyPathRecordingProxy.h"
+#import <objc/runtime.h>
 
 #define let auto const
 #define var auto
 
 NSString *recordKeyPath(void (^recorder)(NSObject *))
 {
-	let proxy = [KeyPathRecordingProxy alloc];
+	let proxy = (KeyPathRecordingProxy *)[objc_getClass("KeyPathRecordingProxySwift") alloc];
 	recorder((id)proxy);
 	let keyPath = [proxy.keyPathComponents componentsJoinedByString:@"."];
 	return keyPath;
