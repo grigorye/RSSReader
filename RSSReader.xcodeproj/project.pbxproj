@@ -55,6 +55,7 @@
 		C41F05851AD0E3AB00A659EC /* OpenWebPageActivity.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C4F575D51A7988DB00F12F20 /* OpenWebPageActivity.swift */; };
 		C41F05861AD0E3AB00A659EC /* MarkAllAsReadActivity.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = C4C780131A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift */; };
 		C41F05871AD0E3AB00A659EC /* UITabBarController+CVKHiearachySearcher.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = CA2E0441FFA564885EE4A6C9 /* UITabBarController+CVKHiearachySearcher.swift */; };
+		C4206D201B359ED600F00E0D /* KeyPathRecordingProxySwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4206D1F1B359ED600F00E0D /* KeyPathRecordingProxySwift.swift */; };
 		C422D0EE1AE05F5C0062BC98 /* KeyPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = C422D0EC1AE05F5C0062BC98 /* KeyPaths.swift */; };
 		C422D0F01AE05F600062BC98 /* KeyPathsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C422D0ED1AE05F5C0062BC98 /* KeyPathsTests.swift */; };
 		C422D0F51AE061D30062BC98 /* KeyPathRecordingProxy.mm in Sources */ = {isa = PBXBuildFile; fileRef = C422D0F21AE060B10062BC98 /* KeyPathRecordingProxy.mm */; };
@@ -227,6 +228,7 @@
 		C41707CA1A56076A00AED81C /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		C41707CC1A56E85B00AED81C /* Folder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
 		C41707CE1A56F32500AED81C /* GenericCoreDataExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericCoreDataExtensions.swift; sourceTree = "<group>"; };
+		C4206D1F1B359ED600F00E0D /* KeyPathRecordingProxySwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyPathRecordingProxySwift.swift; sourceTree = "<group>"; };
 		C422D0EC1AE05F5C0062BC98 /* KeyPaths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyPaths.swift; sourceTree = "<group>"; };
 		C422D0ED1AE05F5C0062BC98 /* KeyPathsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyPathsTests.swift; sourceTree = "<group>"; };
 		C422D0F11AE060B10062BC98 /* KeyPathRecordingProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyPathRecordingProxy.h; sourceTree = "<group>"; };
@@ -368,6 +370,7 @@
 				C4FC0F061AEAD9DA0077D272 /* KeyPathRecording.mm */,
 				C422D0F11AE060B10062BC98 /* KeyPathRecordingProxy.h */,
 				C422D0F21AE060B10062BC98 /* KeyPathRecordingProxy.mm */,
+				C4206D1F1B359ED600F00E0D /* KeyPathRecordingProxySwift.swift */,
 				C4EF76B51AA7A40200E94E80 /* ProgressEnabledURLSessionTaskGenerator.swift */,
 				C495409C1A575D0C00F56168 /* GenericExtensions.swift */,
 				C451590F1A65E83400374A8C /* KVOBinding.swift */,
@@ -770,6 +773,7 @@
 				C4E2E64B1AE0937A00F2A94E /* NSBundleExtensions.mm in Sources */,
 				C49540A11A57825100F56168 /* ItemsListViewController.swift in Sources */,
 				C4C780181A7DF2B0009CB5FC /* TypeFilteringActivity.swift in Sources */,
+				C4206D201B359ED600F00E0D /* KeyPathRecordingProxySwift.swift in Sources */,
 				C44B2F011AC0C881006A67F1 /* HomeViewController.swift in Sources */,
 				C45ECD061A62054C00ADC113 /* SBConstants.swift in Sources */,
 				C42802691A5B47EA002474E1 /* FoldersListTableViewController.swift in Sources */,
