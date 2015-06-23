@@ -21,6 +21,7 @@ class RSSSession: NSObject {
 		case JsonObjectIsNotDictionary(jsonObject: AnyObject)
 		case JsonMissingUserID(json: [String: AnyObject])
 		case JsonMissingUnreadCounts(json: [String: AnyObject])
+		case ItemJsonMissingID(itemJson: [String: AnyObject])
 		case JsonMissingStreamPrefs(json: [String: AnyObject])
 		case UnexpectedResponseTextForMarkAsRead(body: String)
 		case BadResponseDataForMarkAsRead(data: NSData)
@@ -145,7 +146,9 @@ class RSSSession: NSObject {
 						throw Error.JsonMissingUnreadCounts(json: json)
 					}
 					for itemJson in itemJsons {
-						let itemID = itemJson["id"] as! String
+						guard let itemID = itemJson["id"] as? String else {
+							throw Error.ItemJsonMissingID(itemJson: itemJson)
+						}
 						let container: Container = try {
 							if itemID.hasPrefix("feed/http") {
 								let type = Subscription.self
@@ -228,9 +231,7 @@ class RSSSession: NSObject {
 			backgroundQueueManagedObjectContext.performBlock {
 				do {
 					try importItemsFromJsonData(data, type: Subscription.self, elementName: "subscriptions", managedObjectContext: backgroundQueueManagedObjectContext) { (subscription, json) in
-						if _0 {
-							try subscription.importFromJson(json)
-						}
+						try subscription.importFromJson(json)
 					}
 					try backgroundQueueManagedObjectContext.save()
 					completionHandler(nil)
