@@ -39,22 +39,27 @@ extension Container: ManagedIdentifiable {
 		return "Container"
 	}
 	func importFromJson(jsonObject: AnyObject) throws {
-		guard let json = jsonObject as? [String: AnyObject] else {
-			throw JsonImportError.JsonObjectIsNotDictionary(jsonObject: jsonObject)
-		}
-		guard let sortIDString = json["sortid"] as? String else {
-			throw JsonImportError.MissingSortID(json: json)
-		}
-		var sortIDUnsigned : UInt32 = 0
-		guard NSScanner(string: sortIDString).scanHexInt(&sortIDUnsigned) else {
-			throw JsonImportError.SortIDIsNotHex(json: json)
-		}
-		let sortID = Int32(bitPattern: sortIDUnsigned)
-		self.sortID = sortID
+		self.sortID = try {
+			guard let json = jsonObject as? [String: AnyObject] else {
+				throw JsonImportError.JsonObjectIsNotDictionary(jsonObject: jsonObject)
+			}
+			guard let sortIDString = $(json).$()["sortid"] as? String else {
+				throw JsonImportError.MissingSortID(json: json)
+			}
+			var sortIDUnsigned : UInt32 = 0
+			guard NSScanner(string: sortIDString).scanHexInt(&sortIDUnsigned) else {
+				throw JsonImportError.SortIDIsNotHex(json: json)
+			}
+			let sortID = Int32(bitPattern: sortIDUnsigned)
+			return $(sortID).$()
+		}()
 	}
 	func importFromUnreadCountJson(jsonObject: AnyObject) {
 		let json = jsonObject as! [String: AnyObject]
-		self.streamID = json["id"] as! String
+		self.streamID = {
+			let streamID = json["id"] as! String
+			return $(streamID).$()
+		}()
 		self.unreadCount = (json["count"] as! NSNumber).intValue
 		self.newestItemDate = NSDate(timestampUsec: json["newestItemTimestampUsec"] as! String)
 	}
