@@ -52,7 +52,7 @@ func insertedObjectUnlessFetchedWithID<T: ManagedIdentifiable where T: NSManaged
 	let identifierKey = cls.identifierKey()
 	let predicate = NSPredicate(format: "%K == %@", argumentArray: [identifierKey, id])
 	return try insertedObjectUnlessFetchedWithPredicate(cls, predicate: predicate, managedObjectContext: managedObjectContext) { newObject in
-		newObject.setValue(id, forKey:identifierKey)
+		(newObject as NSManagedObject).setValue(id, forKey:identifierKey)
 	}
 }
 func importItemsFromJson<T: ManagedIdentifiable where T : NSManagedObject>(json: [String : AnyObject], type: T.Type, elementName: String, managedObjectContext: NSManagedObjectContext, importFromJson: (T, [String: AnyObject]) throws -> Void) throws -> [T] {
