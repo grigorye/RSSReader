@@ -55,7 +55,7 @@ func insertedObjectUnlessFetchedWithID<T: ManagedIdentifiable where T: NSManaged
 		(newObject as NSManagedObject).setValue(id, forKey:identifierKey)
 	}
 }
-func importItemsFromJson<T: ManagedIdentifiable where T : NSManagedObject>(json: [String : AnyObject], type: T.Type, elementName: String, managedObjectContext: NSManagedObjectContext, importFromJson: (T, [String: AnyObject]) throws -> Void) throws -> [T] {
+func importItemsFromJson<T: ManagedIdentifiable where T: NSManagedObject>(json: [String : AnyObject], type: T.Type, elementName: String, managedObjectContext: NSManagedObjectContext, importFromJson: (T, [String: AnyObject]) throws -> Void) throws -> [T] {
 	var items = [T]()
 	guard let itemJsons = json[elementName] as? [[String : AnyObject]] else {
 		throw GenericCoreDataExtensionsError.ElementNotFoundOrInvalidInJson(json: json, elementName: elementName)
@@ -70,12 +70,13 @@ func importItemsFromJson<T: ManagedIdentifiable where T : NSManagedObject>(json:
 	}
 	return items
 }
-func importItemsFromJsonData<T: ManagedIdentifiable where T : NSManagedObject>(data: NSData, type: T.Type, elementName: String, managedObjectContext: NSManagedObjectContext, importFromJson: (T, [String: AnyObject]) throws -> Void) throws -> [T] {
+func importItemsFromJsonData<T: ManagedIdentifiable where T: NSManagedObject>(data: NSData, type: T.Type, elementName: String, managedObjectContext: NSManagedObjectContext, importFromJson: (T, [String: AnyObject]) throws -> Void) throws -> [T] {
 	let jsonObject = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions())
 	guard let json = jsonObject as? [String : AnyObject] else {
 		throw GenericCoreDataExtensionsError.JsonObjectIsNotDictionary(jsonObject: jsonObject)
 	}
-	return try importItemsFromJson(json, type: type, elementName: elementName, managedObjectContext: managedObjectContext, importFromJson: importFromJson)
+	let items = try importItemsFromJson(json, type: type, elementName: elementName, managedObjectContext: managedObjectContext, importFromJson: importFromJson)
+	return items
 }
 
 extension NSManagedObject {
