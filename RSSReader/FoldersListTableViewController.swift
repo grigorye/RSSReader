@@ -181,7 +181,7 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 
 extension FoldersListTableViewController {
 	func presentMessage(text: String) {
-		statusLabel.text = text
+		statusLabel.text = $(text).$()
 		statusLabel.sizeToFit()
 		statusLabel.superview!.frame.size.width = statusLabel.bounds.width
 		statusBarButtonItem.width = $(statusLabel.superview!.bounds.width).$()
