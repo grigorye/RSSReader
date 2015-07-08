@@ -26,7 +26,8 @@ class RSSSession: NSObject {
 		case UnexpectedResponseTextForMarkAsRead(body: String)
 		case BadResponseDataForMarkAsRead(data: NSData)
 	}
-	
+	let inoreaderAppID = "1000001375"
+	let inoreaderAppKey = "r3O8gX6FPdFaOXE3x4HypYHO2LTCNuDS"
 	let loginAndPassword: LoginAndPassword
 	init(loginAndPassword: LoginAndPassword) {
 		self.loginAndPassword = loginAndPassword
@@ -37,6 +38,8 @@ class RSSSession: NSObject {
 		let request: NSURLRequest = {
 			let $ = NSMutableURLRequest(URL: url)
 			$.addValue("GoogleLogin auth=\(self.authToken!)", forHTTPHeaderField: "Authorization")
+			$.addValue(self.inoreaderAppID, forHTTPHeaderField: "AppId")
+			$.addValue(self.inoreaderAppKey, forHTTPHeaderField: "AppKey")
 			return $
 		}()
 		return progressEnabledURLSessionTaskGenerator.dataTaskForHTTPRequest(request, completionHandler: completionHandler)
@@ -98,8 +101,8 @@ class RSSSession: NSObject {
 				completionHandler(error)
 				return
 			}
-			let managedObjectContext = self.backgroundQueueManagedObjectContext
-			managedObjectContext.performBlock {
+			let backgroundQueueManagedObjectContext = self.backgroundQueueManagedObjectContext
+			backgroundQueueManagedObjectContext.performBlock {
 				do {
 					let jsonObject = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions())
 					guard let json = jsonObject as? [String : AnyObject] else {
@@ -109,8 +112,8 @@ class RSSSession: NSObject {
 						throw Error.JsonMissingUserID(json: json)
 					}
 					let id = "user/\(userID)/\(readTagSuffix)"
-					try insertedObjectUnlessFetchedWithID(Folder.self, id: id, managedObjectContext: managedObjectContext)
-					try managedObjectContext.save()
+					try insertedObjectUnlessFetchedWithID(Folder.self, id: id, managedObjectContext: backgroundQueueManagedObjectContext)
+					try backgroundQueueManagedObjectContext.save()
 					completionHandler(nil)
 				} catch {
 					completionHandler($(error).$())
@@ -134,8 +137,8 @@ class RSSSession: NSObject {
 				completionHandler(error)
 				return
 			}
-			let managedObjectContext = self.backgroundQueueManagedObjectContext
-			managedObjectContext.performBlock {
+			let backgroundQueueManagedObjectContext = self.backgroundQueueManagedObjectContext
+			backgroundQueueManagedObjectContext.performBlock {
 				var containers = [Container]()
 				do {
 					let jsonObject = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions())
@@ -152,17 +155,17 @@ class RSSSession: NSObject {
 						let container: Container = try {
 							if itemID.hasPrefix("feed/http") {
 								let type = Subscription.self
-								return try insertedObjectUnlessFetchedWithID(type, id: itemID, managedObjectContext: managedObjectContext)
+								return try insertedObjectUnlessFetchedWithID(type, id: itemID, managedObjectContext: backgroundQueueManagedObjectContext)
 							}
 							else {
 								let type = Folder.self
-								return try insertedObjectUnlessFetchedWithID(type, id: itemID, managedObjectContext: managedObjectContext)
+								return try insertedObjectUnlessFetchedWithID(type, id: itemID, managedObjectContext: backgroundQueueManagedObjectContext)
 							}
 						}()
 						container.importFromUnreadCountJson(itemJson)
 						containers += [container]
 					}
-					try managedObjectContext.save()
+					try backgroundQueueManagedObjectContext.save()
 					completionHandler(nil)
 				} catch {
 					completionHandler($(error).$())
@@ -200,8 +203,8 @@ class RSSSession: NSObject {
 				completionHandler(error)
 				return
 			}
-			let managedObjectContext = self.backgroundQueueManagedObjectContext
-			managedObjectContext.performBlock {
+			let backgroundQueueManagedObjectContext = self.backgroundQueueManagedObjectContext
+			backgroundQueueManagedObjectContext.performBlock {
 				do {
 					let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions())
 					guard let json = jsonObject as? [String : AnyObject] else {
@@ -210,8 +213,8 @@ class RSSSession: NSObject {
 					guard let streamprefsJson: AnyObject = json["streamprefs"] else {
 						throw Error.JsonMissingStreamPrefs(json: json)
 					}
-					try Container.importStreamPreferencesJson(streamprefsJson, managedObjectContext: managedObjectContext)
-					try managedObjectContext.save()
+					try Container.importStreamPreferencesJson(streamprefsJson, managedObjectContext: backgroundQueueManagedObjectContext)
+					try backgroundQueueManagedObjectContext.save()
 					completionHandler(nil)
 				} catch {
 					completionHandler($(error).$())
