@@ -32,7 +32,7 @@ extension NSObject {
 			return self.applicationDelegate.internals.backgroundQueueManagedObjectContext!
 		}
 	}
-	var foldersController: FoldersController {
+	@objc var foldersController: AppDelegate {
 		return self.applicationDelegate
 	}
 	var rssSession: RSSSession? {
