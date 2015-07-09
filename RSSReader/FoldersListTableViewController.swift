@@ -14,7 +14,7 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 	var childContainers: [Container]!
 	dynamic let defaults = KVOCompliantUserDefaults()
 	class func keyPathsForValuesAffectingRegeneratedChildContainers() -> Set<String> {
-		return [self••{$0.rootFolder!.childContainers}, self••{$0.defaults.showUnreadOnly}]
+		return [self••{"rootFolder!.childContainers"}, self••{"defaults.showUnreadOnly"}]
 	}
 	private dynamic var regeneratedChildContainers: [Container] {
 		let regeneratedChildContainers: [Container] = {
@@ -132,12 +132,12 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 		for i in blocksScheduledForViewWillAppear { i() }
 		blocksScheduledForViewWillAppear = []
 		super.viewWillAppear(animated)
-		viewDidDisappearRetainedObjects += [KVOBinding(self•{$0.regeneratedChildContainers}, options: .Initial) { [unowned self] change in
+		viewDidDisappearRetainedObjects += [KVOBinding(self•{"regeneratedChildContainers"}, options: .Initial) { [unowned self] change in
 			$(change).$(0)
 			self.childContainers = self.regeneratedChildContainers
 			self.tableView.reloadData()
 		}]
-		viewDidDisappearRetainedObjects += [KVOBinding(self•{$0.foldersController.foldersUpdateStateRaw}, options: .Initial) { [unowned self] change in
+		viewDidDisappearRetainedObjects += [KVOBinding(self•{"foldersController.foldersUpdateStateRaw"}, options: .Initial) { [unowned self] change in
 			$(change).$(1)
 			let foldersUpdateState = self.foldersController.foldersUpdateState
 			let message: String = {

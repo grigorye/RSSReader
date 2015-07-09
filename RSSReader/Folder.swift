@@ -12,7 +12,7 @@ class Folder: Container, Titled {
 	@NSManaged var childContainers: NSOrderedSet
 	@NSManaged var items: Set<Item>
 	var mutableItems: NSMutableSet {
-		return mutableSetValueForKey(self••{$0.items})
+		return mutableSetValueForKey(self••{"items"})
 	}
 	var visibleTitle: String? {
 		return streamID.lastPathComponent

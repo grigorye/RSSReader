@@ -65,11 +65,11 @@ class ItemsPageViewController : UIPageViewController {
 		for i in blocksDelayedTillViewWillAppear { i() }
 		blocksDelayedTillViewWillAppear = []
 		super.viewWillAppear(animated)
-		viewDidDisappearRetainedObjects += [KVOBinding(self•{$0.currentViewController!.navigationItem.rightBarButtonItems}, options: .Initial) { change in
+		viewDidDisappearRetainedObjects += [KVOBinding(self•{"currentViewController!.navigationItem.rightBarButtonItems"}, options: .Initial) { change in
 			self.navigationItem.rightBarButtonItems = self.currentViewController!.navigationItem.rightBarButtonItems
 		}]
 		if hideBarsOnSwipe {
-			viewDidDisappearRetainedObjects += [KVOBinding(self•{$0.currentViewController}, options: .Initial) { change in
+			viewDidDisappearRetainedObjects += [KVOBinding(self•{"currentViewController"}, options: .Initial) { change in
 				if let webView = self.currentViewController?.view.subviews.first as? UIWebView {
 					let barHideOnSwipeGestureRecognizer = self.navigationController!.barHideOnSwipeGestureRecognizer
 					if (nil == webView.gestureRecognizers) || (nil == webView.gestureRecognizers!.indexOf(barHideOnSwipeGestureRecognizer)) {

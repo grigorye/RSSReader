@@ -27,7 +27,7 @@ class Container: NSManagedObject {
 
 extension Container: DefaultSortable {
 	class func defaultSortDescriptor() -> NSSortDescriptor {
-		return NSSortDescriptor(key: self••{$0.streamID}, ascending: true)
+		return NSSortDescriptor(key: self••{"streamID"}, ascending: true)
 	}
 }
 
@@ -101,7 +101,8 @@ extension Container: ManagedIdentifiable {
 				let request: NSFetchRequest = {
 					let E = Container.self
 					let $ = NSFetchRequest(entityName: E.entityName())
-					$.predicate = NSPredicate(format: "\(E••{$0.sortID}) IN %@", argumentArray: [sortIDs.map { NSNumber(int: $0) }])
+					let keyPath = E••{"sortID"}
+					$.predicate = NSPredicate(format: "\(keyPath) IN %@", argumentArray: [sortIDs.map { NSNumber(int: $0) }])
 					return $
 				}()
 				let unorderedChildContainers = try managedObjectContext.executeFetchRequest(request) as! [Container]

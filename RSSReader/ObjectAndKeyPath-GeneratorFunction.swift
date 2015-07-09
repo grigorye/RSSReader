@@ -8,6 +8,12 @@
 
 import Foundation
 
+#if false
 public func objectAndKeyPath<T: NSObject>(x: T!, recorder: (T!) -> ()) -> ObjectAndKeyPath {
 	return ObjectAndKeyPath(x, instanceKeyPath(x, recorder: recorder))
 }
+#else
+public func objectAndKeyPath<T: NSObject>(x: T!, recorder: () -> String) -> ObjectAndKeyPath {
+	return ObjectAndKeyPath(x, instanceKeyPath(x, recorder: recorder))
+}
+#endif
