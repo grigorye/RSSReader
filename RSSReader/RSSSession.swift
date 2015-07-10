@@ -46,16 +46,35 @@ class RSSSession: NSObject {
 	}
 	// MARK: -
 	func dataTaskForAuthenticatedHTTPRequestWithPath(path: String, completionHandler: TaskCompletionHandler) -> NSURLSessionDataTask? {
-		let url = NSURL(scheme: "https", host: "www.inoreader.com", path: path)!
+		let url: NSURL = {
+			let $ = NSURLComponents()
+			$.scheme = "https"
+			$.host = "www.inoreader.com"
+			$.path = path
+			return $.URL!
+		}()
 		return self.dataTaskForAuthenticatedHTTPRequestWithURL(url, completionHandler: completionHandler)
 	}
 	func dataTaskForAuthenticatedHTTPRequestWithRelativeString(relativeString: String, completionHandler: TaskCompletionHandler) -> NSURLSessionDataTask? {
-		let url = NSURL(string: relativeString, relativeToURL: NSURL(scheme: "https", host: "www.inoreader.com", path: "/"))!
+		let baseURL: NSURL = {
+			let $ = NSURLComponents()
+			$.scheme = "https"
+			$.host = "www.inoreader.com"
+			$.path = "/"
+			return $.URL!
+		}()
+		let url = NSURL(string: relativeString, relativeToURL: baseURL)!
 		return self.dataTaskForAuthenticatedHTTPRequestWithURL(url, completionHandler: completionHandler)
 	}
 	// MARK: -
 	func authenticate(completionHandler: (ErrorType?) -> Void) {
-		let url = NSURL(scheme: "https", host: "www.inoreader.com", path: "/accounts/ClientLogin")!
+		let url: NSURL = {
+			let $ = NSURLComponents()
+			$.scheme = "https"
+			$.host = "www.inoreader.com"
+			$.path = "/accounts/ClientLogin"
+			return $.URL!
+		}()
 		let request: NSURLRequest = {
 			let $ = NSMutableURLRequest(URL: url)
 			$.HTTPMethod = "POST"
