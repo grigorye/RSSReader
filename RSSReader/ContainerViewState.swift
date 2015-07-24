@@ -8,12 +8,12 @@
 
 import CoreData.NSManagedObject
 
-class ContainerViewState: NSManagedObject {
-	@NSManaged var containerViewPredicate: NSPredicate
-    @NSManaged var continuation: String?
-    var loadError: ErrorType?
-    @NSManaged var loadDate: NSDate?
-    @NSManaged var loadCompleted: Bool
-    @NSManaged var lastLoadedItem: Item?
-    @NSManaged var container: Container?
+public class ContainerViewState: NSManagedObject {
+	@NSManaged public var containerViewPredicate: NSPredicate
+    @NSManaged public var continuation: String?
+    public var loadError: ErrorType?
+    @NSManaged public var loadDate: NSDate?
+    @NSManaged public var loadCompleted: Bool
+    @NSManaged public var lastLoadedItem: Item?
+    @NSManaged public var container: Container?
 }

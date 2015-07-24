@@ -9,23 +9,23 @@
 import Foundation
 import CoreData
 
-class Subscription: Container, Titled {
-	@NSManaged var title: String?
-    @NSManaged var htmlURL: NSURL?
-    @NSManaged var iconURL: NSURL?
-    @NSManaged var url: NSURL?
+public class Subscription: Container, Titled {
+	@NSManaged public var title: String?
+    @NSManaged public var htmlURL: NSURL?
+    @NSManaged public var iconURL: NSURL?
+    @NSManaged public var url: NSURL?
 	@NSManaged var categories: Set<Folder>
 	var mutableCategories: NSMutableSet {
 		return mutableSetValueForKey(self••{"categories"})
 	}
 	@NSManaged var items: Set<Item>
-	var visibleTitle: String? {
+	public var visibleTitle: String? {
 		return title
 	}
 }
 
 extension Subscription: ItemsOwner {
-	var ownItems: Set<Item> {
+	public var ownItems: Set<Item> {
 		return items
 	}
 }

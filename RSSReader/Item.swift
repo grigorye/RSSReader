@@ -9,17 +9,17 @@
 import Foundation
 import CoreData
 
-class Item: NSManagedObject {
-    @NSManaged var itemID: String
-	@NSManaged var date: NSDate
-	@NSManaged var loadDate: NSDate
-	@NSManaged var lastOpenedDate: NSDate?
-    @NSManaged var title: String?
-    @NSManaged var summary: String?
+public class Item: NSManagedObject {
+    @NSManaged public var itemID: String
+	@NSManaged public var date: NSDate
+	@NSManaged public var loadDate: NSDate
+	@NSManaged public var lastOpenedDate: NSDate?
+    @NSManaged public var title: String?
+    @NSManaged public var summary: String?
 	@NSManaged var categories: Set<Folder>
 	var mutableCategories: NSMutableSet {
 		return mutableSetValueForKey(self••{"categories"})
 	}
 	@NSManaged var subscription: Subscription
-	@NSManaged var canonical: [[String: String]]?
+	@NSManaged public var canonical: [[String: String]]?
 }

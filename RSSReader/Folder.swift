@@ -8,19 +8,19 @@
 
 import CoreData
 
-class Folder: Container, Titled {
-	@NSManaged var childContainers: NSOrderedSet
+public class Folder : Container, Titled {
+	@NSManaged public var childContainers: NSOrderedSet
 	@NSManaged var items: Set<Item>
 	var mutableItems: NSMutableSet {
 		return mutableSetValueForKey(self••{"items"})
 	}
-	var visibleTitle: String? {
+	public var visibleTitle: String? {
 		return streamID.lastPathComponent
 	}
 }
 
 extension Folder : ItemsOwner {
-	var ownItems: Set<Item> {
+	public var ownItems: Set<Item> {
 		return self.items
 	}
 }

@@ -34,10 +34,10 @@ extension Item : ManagedIdentifiable {
 	enum Error: ErrorType {
 		case CategoriesMissingOrInvalidInJson(json: [String: AnyObject])
 	}
-	class func identifierKey() -> String {
+	public class func identifierKey() -> String {
 		return "itemID"
 	}
-	class func entityName() -> String {
+	public class func entityName() -> String {
 		return "Item"
 	}
 	func importFromJson(jsonObject: AnyObject) throws {
@@ -72,7 +72,7 @@ extension Item : ManagedIdentifiable {
 }
 
 extension Subscription {
-	override class func entityName() -> String {
+	override public class func entityName() -> String {
 		return "Subscription"
 	}
 	class func sortDescriptorsVariants() -> [[NSSortDescriptor]] {
@@ -107,7 +107,7 @@ enum JsonImportError: ErrorType {
 }
 
 extension Folder {
-	override class func entityName() -> String {
+	override public static func entityName() -> String {
 		return "Folder"
 	}
 	class func sortDescriptors() -> [[NSSortDescriptor]] {

@@ -8,38 +8,41 @@
 
 import CoreData
 
-class Container: NSManagedObject {
-    @NSManaged var streamID: String
-    @NSManaged var unreadCount: Int32
+public class Container: NSManagedObject {
+    @NSManaged public var streamID: String
+    @NSManaged public var unreadCount: Int32
     @NSManaged var newestItemDate: NSDate
     @NSManaged var sortID: Int32
-	@NSManaged var parentFolder: Folder?
-	@NSManaged var viewStates: Set<ContainerViewState>
+	@NSManaged public var parentFolder: Folder?
+	@NSManaged public var viewStates: Set<ContainerViewState>
 }
 
-@objc protocol Titled {
+@objc public protocol Titled {
 	var visibleTitle: String? { get }
 }
 
-@objc protocol ItemsOwner {
+@objc public protocol ItemsOwner {
 	var ownItems: Set<Item> { get }
 }
 
 extension Container: DefaultSortable {
-	class func defaultSortDescriptor() -> NSSortDescriptor {
+	public class func defaultSortDescriptor() -> NSSortDescriptor {
 		return NSSortDescriptor(key: self••{"streamID"}, ascending: true)
 	}
 }
 
 extension Container: ManagedIdentifiable {
-	class func identifierKey() -> String {
+	public class func identifierKey() -> String {
 		return "streamID"
 	}
-	class func entityName() -> String {
+	public class func entityName() -> String {
 		return "Container"
 	}
+}
+
+extension Container {
 	func importFromJson(jsonObject: AnyObject) throws {
-		self.sortID = try {
+		let sortID: Int32 = try {
 			guard let json = jsonObject as? [String: AnyObject] else {
 				throw JsonImportError.JsonObjectIsNotDictionary(jsonObject: jsonObject)
 			}
@@ -53,6 +56,9 @@ extension Container: ManagedIdentifiable {
 			let sortID = Int32(bitPattern: sortIDUnsigned)
 			return $(sortID).$()
 		}()
+		if self.sortID != sortID {
+			self.sortID = sortID
+		}
 	}
 	func importFromUnreadCountJson(jsonObject: AnyObject) {
 		let json = jsonObject as! [String: AnyObject]

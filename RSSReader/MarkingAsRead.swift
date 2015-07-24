@@ -9,39 +9,39 @@
 import CoreData
 import Foundation
 
-let rootTagSuffix = "state/com.google/root"
-let readTagSuffix = "state/com.google/read"
-let favoriteTagSuffix = "state/com.google/starred"
-let canonicalReadTag = "user/-/state/com.google/read"
-let canonicalFavoriteTag = "user/-/state/com.google/starred"
+public let rootTagSuffix = "state/com.google/root"
+public let readTagSuffix = "state/com.google/read"
+public let favoriteTagSuffix = "state/com.google/starred"
+public let canonicalReadTag = "user/-/state/com.google/read"
+public let canonicalFavoriteTag = "user/-/state/com.google/starred"
 
 var markedAsReadCategory: Folder! = {
-	return Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: "".mainQueueManagedObjectContext)
+	return Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: mainQueueManagedObjectContext)
 }()
 var markedAsFavoriteCategory: Folder! = {
-	return Folder.folderWithTagSuffix(favoriteTagSuffix, managedObjectContext: "".mainQueueManagedObjectContext)
+	return Folder.folderWithTagSuffix(favoriteTagSuffix, managedObjectContext: mainQueueManagedObjectContext)
 }()
 
 extension Folder {
-	class func predicateForFetchingFolderWithTagSuffix(tagSuffix: String) -> NSPredicate {
+	public static func predicateForFetchingFolderWithTagSuffix(tagSuffix: String) -> NSPredicate {
 		let E = Folder.self
 		let streamIDKeyPath = E••{"streamID"}
 		return NSPredicate(format: "\(streamIDKeyPath) ENDSWITH %@", argumentArray: [tagSuffix])
 	}
-	class func fetchRequestForFolderWithTagSuffix(tagSuffix: String) -> NSFetchRequest {
+	public static func fetchRequestForFolderWithTagSuffix(tagSuffix: String) -> NSFetchRequest {
 		let $ = NSFetchRequest(entityName: Folder.entityName())
 		$.predicate = self.predicateForFetchingFolderWithTagSuffix(tagSuffix)
 		$.fetchLimit = 1
 		return $
 	}
-	class func folderWithTagSuffix(tagSuffix: String, managedObjectContext: NSManagedObjectContext) -> Folder? {
+	public static func folderWithTagSuffix(tagSuffix: String, managedObjectContext: NSManagedObjectContext) -> Folder? {
 		let fetchRequest = self.fetchRequestForFolderWithTagSuffix(tagSuffix)
 		let folder = (try! managedObjectContext.executeFetchRequest(fetchRequest)).first as! Folder?
 		return folder
 	}
 }
 
-extension Item {
+public extension Item {
 	func categoryForTagSuffix(tagSuffix: String) -> Folder? {
 		let matchingCategories = self.categories.filter { folder in folder.streamID.hasSuffix(tagSuffix) }
 		return matchingCategories.first
@@ -79,7 +79,7 @@ extension Item {
 			}
 		}
 	}
-	var markedAsRead: Bool {
+	public var markedAsRead: Bool {
 		get {
 			return categories.contains(markedAsReadCategory)
 		}
