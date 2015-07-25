@@ -27,13 +27,13 @@ func description<T>(value: T) -> String {
 	return "\(value)"
 }
 
-struct SourceLocation {
+public struct SourceLocation {
 	let file: String
 	let line: Int
 	let column: Int
 	let function: String
 	let bundle: NSBundle
-	init(file: String = __FILE__, line: Int = __LINE__, column: Int = __COLUMN__, function: String = __FUNCTION__, bundle: NSBundle = NSBundle.bundleOnStack()) {
+	public init(file: String = __FILE__, line: Int = __LINE__, column: Int = __COLUMN__, function: String = __FUNCTION__, bundle: NSBundle = NSBundle.bundleOnStack()) {
 		self.file = file
 		self.line = line
 		self.column = column
@@ -45,7 +45,11 @@ struct SourceLocation {
 func labelFromLocations(firstLocation: SourceLocation, lastLocation: SourceLocation) -> String {
 	let fileName = firstLocation.file.lastPathComponent
 	let bundle = firstLocation.bundle
-	let file = bundle.pathForResource(fileName.stringByDeletingPathExtension, ofType: fileName.pathExtension)!
+	let resourceName = fileName.stringByDeletingPathExtension
+	let resourceType = fileName.pathExtension
+	guard let file = bundle.pathForResource(resourceName, ofType: resourceType) else {
+		return "?"
+	}
 	let text: NSString?
 	do {
 		text = try NSString(contentsOfFile: file, encoding: NSUTF8StringEncoding)
@@ -57,34 +61,32 @@ func labelFromLocations(firstLocation: SourceLocation, lastLocation: SourceLocat
 	return (lines[firstLocation.line - 1] as NSString).substringWithRange(range)
 }
 
-func traceString(string: String, location: SourceLocation, lastLocation: SourceLocation) {
-	if traceEnabled {
-		let labelSuffix = !traceLabelsEnabled ? "[\(location.column)-\(lastLocation.column)]" : {
-			return ": \(labelFromLocations(location, lastLocation: lastLocation))"
-		}()
-		let message = "\(location.file.lastPathComponent), \(location.function).\(location.line)\(labelSuffix): \(string)"
+public func traceString(string: String, location: SourceLocation, lastLocation: SourceLocation) {
+	let labelSuffix = !traceLabelsEnabled ? "[\(location.column)-\(lastLocation.column)]" : {
+		return ": \(labelFromLocations(location, lastLocation: lastLocation))"
+	}()
+	let message = "\(location.file.lastPathComponent), \(location.function).\(location.line)\(labelSuffix): \(string)"
 #if ANALYTICS_ENABLED
 #if CRASHLYTICS_ENABLED
-		CLSLogv("%@", getVaList([message]))
+	CLSLogv("%@", getVaList([message]))
 #endif
 #endif
-		if traceToNSLogEnabled {
-			NSLog("%@", message)
-		}
-		else {
-			print(message)
-		}
+	if traceToNSLogEnabled {
+		NSLog("%@", message)
+	}
+	else {
+		print(message)
 	}
 }
 
-struct Traceable<T> {
+public struct Traceable<T> {
 	let value: T
 	let location: SourceLocation
 	init(value: T, location: SourceLocation = SourceLocation(file: __FILE__, line: __LINE__, column: __COLUMN__, function: __FUNCTION__)) {
 		self.value = value
 		self.location = location
 	}
-	func $(level: Int = 1, file: String = __FILE__, line: Int = __LINE__, column: Int = __COLUMN__, function: String = __FUNCTION__) -> T {
+	public func $(level: Int = 1, file: String = __FILE__, line: Int = __LINE__, column: Int = __COLUMN__, function: String = __FUNCTION__) -> T {
 		if 0 != level {
 			trace(value, startLocation: self.location, endLocation: SourceLocation(file: file, line: line, column: column, function: function))
 		}
@@ -92,20 +94,22 @@ struct Traceable<T> {
 	}
 }
 
-func $<T>(v: T, file: String = __FILE__, line: Int = __LINE__, column: Int = __COLUMN__, function: String = __FUNCTION__, bundle: NSBundle = NSBundle.bundleOnStack()) -> Traceable<T> {
+public func $<T>(v: T, file: String = __FILE__, line: Int = __LINE__, column: Int = __COLUMN__, function: String = __FUNCTION__, bundle: NSBundle = NSBundle.bundleOnStack()) -> Traceable<T> {
 	return Traceable(value: v, location: SourceLocation(file: file, line: line, column: column, function: function, bundle: bundle))
 }
 
 func trace<T>(value: T, startLocation: SourceLocation, endLocation: SourceLocation) -> T {
-	traceString(description(value), location: startLocation, lastLocation: endLocation)
+	if traceEnabled {
+		traceString(description(value), location: startLocation, lastLocation: endLocation)
+	}
 	return value
 }
 
-func void<T>(value: T) {
+public func void<T>(value: T) {
 }
 
-typealias Handler = () -> Void
-func invoke(handler: Handler) {
+public typealias Handler = () -> Void
+public func invoke(handler: Handler) {
 	handler()
 }
 
@@ -116,7 +120,7 @@ func URLQuerySuffixFromComponents(components: [String]) -> String {
 	}.prefix
 }
 
-func filterObjectsByType<T>(objects: [AnyObject]) -> [T] {
+public func filterObjectsByType<T>(objects: [AnyObject]) -> [T] {
 	let filteredObjects = objects.reduce([T]()) {
 		if let x = $($1).$() as? T {
 			return $0 + [x]
@@ -128,7 +132,7 @@ func filterObjectsByType<T>(objects: [AnyObject]) -> [T] {
 	return filteredObjects
 }
 
-func stringFromFetchedResultsChangeType(type: NSFetchedResultsChangeType) -> String {
+public func stringFromFetchedResultsChangeType(type: NSFetchedResultsChangeType) -> String {
 	switch (type) {
 	case .Insert:
 		return "Insert"
@@ -141,7 +145,7 @@ func stringFromFetchedResultsChangeType(type: NSFetchedResultsChangeType) -> Str
 	}
 }
 
-func nilForNull(object: AnyObject) -> AnyObject? {
+public func nilForNull(object: AnyObject) -> AnyObject? {
 	if (object as! NSObject) == NSNull() {
 		return nil
 	}
