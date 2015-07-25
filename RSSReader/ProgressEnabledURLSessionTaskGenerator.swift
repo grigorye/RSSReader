@@ -12,9 +12,9 @@ enum URLSessionTaskGeneratorError: ErrorType {
 	case UnexpectedHTTPResponseStatus(httpResponse: NSHTTPURLResponse)
 }
 
-class ProgressEnabledURLSessionTaskGenerator: NSObject {
+public class ProgressEnabledURLSessionTaskGenerator: NSObject {
 	let dispatchQueue = dispatch_get_main_queue()
-	dynamic var progresses = [NSProgress]()
+	public dynamic var progresses = [NSProgress]()
 	private var mutableProgresses: NSMutableArray {
 		return mutableArrayValueForKey("progresses")
 	}
@@ -48,8 +48,8 @@ class ProgressEnabledURLSessionTaskGenerator: NSObject {
 		}
 		return sessionTask
 	}
-	typealias TextTaskCompletionHandler = (String!, ErrorType!) -> Void
-	func textTaskForHTTPRequest(request: NSURLRequest, completionHandler: TextTaskCompletionHandler) -> NSURLSessionDataTask? {
+	public typealias TextTaskCompletionHandler = (String!, ErrorType!) -> Void
+	public func textTaskForHTTPRequest(request: NSURLRequest, completionHandler: TextTaskCompletionHandler) -> NSURLSessionDataTask? {
 		enum Error: ErrorType {
 			case DataDoesNotMatchTextEncoding(data: NSData, encoding: NSStringEncoding)
 		}
