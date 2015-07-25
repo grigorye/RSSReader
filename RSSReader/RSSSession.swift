@@ -7,6 +7,9 @@
 //
 
 import Foundation
+import CoreData
+
+let lastTagsDataPath = "\(NSTemporaryDirectory())/lastTags"
 
 var batchSavingDisabled: Bool {
 	return defaults.batchSavingDisabled
@@ -16,7 +19,7 @@ var itemsAreSortedByLoadDate: Bool {
 	return defaults.itemsAreSortedByLoadDate
 }
 
-class RSSSession: NSObject {
+public class RSSSession: NSObject {
 	enum Error: ErrorType {
 		case JsonObjectIsNotDictionary(jsonObject: AnyObject)
 		case JsonMissingUserID(json: [String: AnyObject])
@@ -29,12 +32,27 @@ class RSSSession: NSObject {
 	let inoreaderAppID = "1000001375"
 	let inoreaderAppKey = "r3O8gX6FPdFaOXE3x4HypYHO2LTCNuDS"
 	let loginAndPassword: LoginAndPassword
-	init(loginAndPassword: LoginAndPassword) {
+	public init(loginAndPassword: LoginAndPassword) {
 		self.loginAndPassword = loginAndPassword
 	}
+}
+
+public extension RSSSession {
+	public var authToken: String! {
+		get {
+			return defaults.authToken
+		}
+		set {
+			defaults.authToken = newValue
+		}
+	}
+}
+
+extension RSSSession {
 	typealias TaskCompletionHandler = ProgressEnabledURLSessionTaskGenerator.HTTPDataTaskCompletionHandler
 	// MARK: -
 	func dataTaskForAuthenticatedHTTPRequestWithURL(url: NSURL, completionHandler: TaskCompletionHandler) -> NSURLSessionDataTask? {
+		precondition(nil != self.authToken)
 		let request: NSURLRequest = {
 			let $ = NSMutableURLRequest(URL: url)
 			$.addValue("GoogleLogin auth=\(self.authToken!)", forHTTPHeaderField: "Authorization")
@@ -67,7 +85,7 @@ class RSSSession: NSObject {
 		return self.dataTaskForAuthenticatedHTTPRequestWithURL(url, completionHandler: completionHandler)
 	}
 	// MARK: -
-	func authenticate(completionHandler: (ErrorType?) -> Void) {
+	public func authenticate(completionHandler: (ErrorType?) -> Void) {
 		let url: NSURL = {
 			let $ = NSURLComponents()
 			$.scheme = "https"
@@ -92,6 +110,7 @@ class RSSSession: NSObject {
 			}()
 			return $
 		}()
+		$(request).$()
 		let sessionTask = progressEnabledURLSessionTaskGenerator.dataTaskForHTTPRequest(request) { data, httpResponse, error in
 			if let error = error {
 				completionHandler($(error).$())
@@ -105,6 +124,7 @@ class RSSSession: NSObject {
 				return $
 			}()
 			self.authToken = authToken
+			completionHandler(nil)
 		}!
 		sessionTask.resume()
 	}
@@ -113,14 +133,13 @@ class RSSSession: NSObject {
 		authenticate(completionHandler)
 	}
 	// MARK: -
-	func updateUserInfo(completionHandler: (ErrorType?) -> Void) {
+	public func updateUserInfo(completionHandler: (ErrorType?) -> Void) {
 		let path = "/reader/api/0/user-info"
 		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithPath(path) { data, httpResponse, error in
 			if let error = error {
 				completionHandler(error)
 				return
 			}
-			let backgroundQueueManagedObjectContext = self.backgroundQueueManagedObjectContext
 			backgroundQueueManagedObjectContext.performBlock {
 				do {
 					let jsonObject = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions())
@@ -141,7 +160,7 @@ class RSSSession: NSObject {
 		}!
 		sessionTask.resume()
 	}
-	func uploadTag(tag: String, mark: Bool, forItem item: Item, completionHandler: (ErrorType?) -> Void) {
+	public func uploadTag(tag: String, mark: Bool, forItem item: Item, completionHandler: (ErrorType?) -> Void) {
 		let command = mark ? "a" : "r"
 		let path = "/reader/api/0/edit-tag?\(command)=\(tag)&i=\(item.itemID)"
 		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithPath(path) { data, httpResponse, error in
@@ -149,14 +168,13 @@ class RSSSession: NSObject {
 		}!
 		sessionTask.resume()
 	}
-	func updateUnreadCounts(completionHandler: (ErrorType?) -> Void) {
+	public func updateUnreadCounts(completionHandler: (ErrorType?) -> Void) {
 		let path = "/reader/api/0/unread-count?output=json"
 		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithPath(path) { data, httpResponse, error in
 			if let error = error {
 				completionHandler(error)
 				return
 			}
-			let backgroundQueueManagedObjectContext = self.backgroundQueueManagedObjectContext
 			backgroundQueueManagedObjectContext.performBlock {
 				var containers = [Container]()
 				do {
@@ -193,36 +211,41 @@ class RSSSession: NSObject {
 		}!
 		sessionTask.resume()
 	}
-	func updateTags(completionHandler: (ErrorType?) -> Void) {
+	func updateTagsFromData(data: NSData, completionHandler: (ErrorType?) -> Void) {
+		backgroundQueueManagedObjectContext.performBlock {
+			do {
+				try importItemsFromJsonData(data, type: Folder.self, elementName: "tags", managedObjectContext: $(backgroundQueueManagedObjectContext).$()) { (tag, json) in
+					assert(tag.managedObjectContext == backgroundQueueManagedObjectContext)
+					if _1 {
+						try tag.importFromJson(json)
+					}
+				}
+				try backgroundQueueManagedObjectContext.save()
+				completionHandler(nil)
+			} catch {
+				completionHandler($(error).$())
+			}
+		}
+	}
+	public func updateTags(completionHandler: (ErrorType?) -> Void) {
 		let path = "/reader/api/0/tag/list"
 		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithPath(path) { data, httpResponse, error in
 			if let error = error {
 				completionHandler(error)
 				return
 			}
-			let backgroundQueueManagedObjectContext = self.backgroundQueueManagedObjectContext
-			backgroundQueueManagedObjectContext.performBlock {
-				do {
-					try importItemsFromJsonData(data!, type: Folder.self, elementName: "tags", managedObjectContext: backgroundQueueManagedObjectContext) { (tag, json) in
-						try tag.importFromJson(json)
-					}
-					try backgroundQueueManagedObjectContext.save()
-					completionHandler(nil)
-				} catch {
-					completionHandler($(error).$())
-				}
-			}
+			try! data.writeToFile(lastTagsDataPath, options: .DataWritingAtomic)
+			self.updateTagsFromData(data!, completionHandler: completionHandler)
 		}!
 		sessionTask.resume()
 	}
-	func updateStreamPreferences(completionHandler: (ErrorType?) -> Void) {
+	public func updateStreamPreferences(completionHandler: (ErrorType?) -> Void) {
 		let path = "/reader/api/0/preference/stream/list"
 		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithPath(path) { data, httpResponse, error in
 			if let error = error {
 				completionHandler(error)
 				return
 			}
-			let backgroundQueueManagedObjectContext = self.backgroundQueueManagedObjectContext
 			backgroundQueueManagedObjectContext.performBlock {
 				do {
 					let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions())
@@ -242,14 +265,13 @@ class RSSSession: NSObject {
 		}!
 		sessionTask.resume()
 	}
-	func updateSubscriptions(completionHandler: (ErrorType?) -> Void) {
+	public func updateSubscriptions(completionHandler: (ErrorType?) -> Void) {
 		let path = "/reader/api/0/subscription/list"
 		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithPath(path) { data, httpResponse, error in
 			if let error = error {
 				completionHandler(error)
 				return
 			}
-			let backgroundQueueManagedObjectContext = self.backgroundQueueManagedObjectContext
 			backgroundQueueManagedObjectContext.performBlock {
 				do {
 					try importItemsFromJsonData(data, type: Subscription.self, elementName: "subscriptions", managedObjectContext: backgroundQueueManagedObjectContext) { (subscription, json) in
@@ -264,7 +286,7 @@ class RSSSession: NSObject {
 		}!
 		sessionTask.resume()
 	}
-	func markAllAsRead(container: Container, completionHandler: (ErrorType?) -> Void) {
+	public func markAllAsRead(container: Container, completionHandler: (ErrorType?) -> Void) {
 		let containerIDPercentEncoded = container.streamID.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())!
 		let newestItemTimestampUsec = container.newestItemDate.timestampUsec
 		let relativeString = "/reader/api/0/mark-all-as-read?s=\(containerIDPercentEncoded)&ts=\(newestItemTimestampUsec)"
@@ -279,7 +301,6 @@ class RSSSession: NSObject {
 				guard body == "OK" else {
 					throw Error.UnexpectedResponseTextForMarkAsRead(body: body as String)
 				}
-				let backgroundQueueManagedObjectContext = self.backgroundQueueManagedObjectContext
 				backgroundQueueManagedObjectContext.performBlock {
 					do {
 						try backgroundQueueManagedObjectContext.save()
@@ -295,7 +316,7 @@ class RSSSession: NSObject {
 		sessionTask.resume()
 	}
 	// MARK: -
-	func streamContents(container: Container, excludedCategory: Folder?, continuation: String?, loadDate: NSDate, completionHandler: (continuation: String?, items: [Item]!, error: ErrorType?) -> Void) {
+	public func streamContents(container: Container, excludedCategory: Folder?, continuation: String?, loadDate: NSDate, completionHandler: (continuation: String?, items: [Item]!, error: ErrorType?) -> Void) {
 		var queryComponents = [String]()
 		if let continuation = continuation {
 			queryComponents += ["c=\(continuation)"]
@@ -311,7 +332,6 @@ class RSSSession: NSObject {
 				completionHandler(continuation: nil, items: nil, error: error)
 				return
 			}
-			let backgroundQueueManagedObjectContext = self.backgroundQueueManagedObjectContext
 			backgroundQueueManagedObjectContext.performBlock {
 				do {
 					let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions())
