@@ -6,10 +6,11 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
+import RSSReaderData
 import UIKit
 import CoreData
 
-class FoldersListTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, UIDataSourceModelAssociation {
+class FoldersListTableViewController: UITableViewController, UIDataSourceModelAssociation {
 	dynamic var rootFolder: Folder?
 	var childContainers: [Container]!
 	dynamic let defaults = KVOCompliantUserDefaults()
@@ -36,15 +37,58 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 		refreshControl?.beginRefreshing()
 		self.refresh(refreshControl)
 	}
+	static func viewControllerForErrorOnRefresh(error: NSError, retryAction: () -> Void) -> UIViewController {
+		let alertController: UIAlertController = {
+			let message: String = {
+				let localizedDescription = error.localizedDescription
+				if let localizedRecoverySuggestion = error.localizedRecoverySuggestion {
+					return NSLocalizedString("\(localizedDescription) \(localizedRecoverySuggestion)", comment: "Error message on failed refresh")
+				}
+				else {
+					return localizedDescription
+				}
+			}()
+			let $ = UIAlertController(title: NSLocalizedString("REFRESH_FAILED", comment: "Title for alert on failed refresh"), message: message, preferredStyle: .Alert)
+			$.addAction(UIAlertAction(title: NSLocalizedString("PROCEED", comment: "Proceed action title for alert on failed refresh"), style: .Default) { action in
+				retryAction()
+				return
+			})
+			return $
+		}()
+		return alertController
+	}
 	@IBAction func refresh(sender: AnyObject!) {
-		foldersController.updateFolders { error in dispatch_async(dispatch_get_main_queue()) {
-			if nil == error {
+		RSSReader.foldersController.updateFolders { updateError in dispatch_async(dispatch_get_main_queue()) {
+			if let foldersControllerError = updateError as? FoldersControllerError {
+				let error: ErrorType = {
+					switch foldersControllerError {
+					case .UserInfoRetrieval(let underlyingError):
+						return underlyingError
+					default:
+						return foldersControllerError
+					}
+				}()
+				let errorViewController = self.dynamicType.viewControllerForErrorOnRefresh(error as NSError) {
+					self.refresh(self)
+				}
+				self.presentViewController(errorViewController, animated: true, completion: nil)
+			}
+			if let error = updateError as NSError? {
+				let errorViewController = self.dynamicType.viewControllerForErrorOnRefresh(error) {
+					self.refresh(self)
+				}
+				self.presentViewController(errorViewController, animated: true, completion: nil)
+			}
+			else if nil != updateError {
+				$(updateError).$()
+			}
+			else {
 				if nil == self.rootFolder {
-					self.rootFolder = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: self.mainQueueManagedObjectContext)
+					self.rootFolder = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: mainQueueManagedObjectContext)
 					assert(nil != self.rootFolder)
 				}
+				self.tableView.reloadData()
 			}
-			self.tableView.reloadData()
 			self.refreshControl?.endRefreshing()
 		}}
 	}
@@ -120,7 +164,7 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 	}
 	override func decodeRestorableStateWithCoder(coder: NSCoder) {
 		super.decodeRestorableStateWithCoder(coder)
-		if let rootFolder = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.rootFolderObjectID.rawValue, managedObjectContext: self.mainQueueManagedObjectContext) as! Folder? {
+		if let rootFolder = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.rootFolderObjectID.rawValue, managedObjectContext: mainQueueManagedObjectContext) as! Folder? {
 			self.rootFolder = rootFolder
 			self.childContainers = self.regeneratedChildContainers
 		}
@@ -138,6 +182,7 @@ class FoldersListTableViewController: UITableViewController, NSFetchedResultsCon
 			self.tableView.reloadData()
 		}]
 		viewDidDisappearRetainedObjects += [KVOBinding(self•{"foldersController.foldersUpdateStateRaw"}, options: .Initial) { [unowned self] change in
+			assert(NSThread.isMainThread())
 			$(change).$(1)
 			let foldersUpdateState = self.foldersController.foldersUpdateState
 			let message: String = {
