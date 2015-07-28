@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
+import RSSReaderData
 import Foundation
 
 enum FoldersUpdateState: String {
@@ -19,50 +20,50 @@ enum FoldersUpdateState: String {
 	case UpdatingStreamPreferences = "Updating stream preferences..."
 }
 
-protocol FoldersController {
-	func updateFoldersAuthenticated(completionHandler: (ErrorType?) -> Void)
-	func updateFolders(completionHandler: (ErrorType?) -> Void)
-	var foldersLastUpdateError: ErrorType? { get }
-	var foldersLastUpdateDate: NSDate? { get }
-	var foldersUpdateState: FoldersUpdateState { get }
-	var foldersUpdateStateRaw: String { get }
+enum FoldersControllerError: ErrorType {
+	case UserInfoRetrieval(underlyingError: ErrorType)
+	case TagsUpdate(underlyingError: ErrorType)
+	case SubscriptionsUpdate(underlyingError: ErrorType)
+	case DataDoesNotMatchTextEncoding
+	case UnreadCountsUpdate(underlyingError: ErrorType)
+	case StreamPreferencesUpdate(underlyingError: ErrorType)
 }
 
-extension AppDelegate: FoldersController {
-	enum Error: ErrorType {
-		case UserInfoRetrieval(underlyingError: ErrorType)
-		case TagsUpdate(underlyingError: ErrorType)
-		case SubscriptionsUpdate(underlyingError: ErrorType)
-		case DataDoesNotMatchTextEncoding
-		case UnreadCountsUpdate(underlyingError: ErrorType)
-		case StreamPreferencesUpdate(underlyingError: ErrorType)
+@objc protocol FoldersController {
+#if false
+	func updateFoldersAuthenticated(completionHandler: (ErrorType?) -> Void)
+	func updateFolders(completionHandler: (ErrorType?) -> Void)
+#endif
+	var rssSession: RSSSession? { get }
+	var foldersLastUpdateDate: NSDate? { get set }
+	var foldersLastUpdateErrorRaw: NSError? { get set }
+	var foldersUpdateStateRaw: String { get set }
+}
+
+extension FoldersController {
+	final var foldersUpdateState: FoldersUpdateState {
+		set {
+			foldersUpdateStateRaw = newValue.rawValue
+		}
+		get {
+			return FoldersUpdateState(rawValue: foldersUpdateStateRaw)!
+		}
 	}
+	final var foldersLastUpdateError: ErrorType? {
+		set {
+			foldersLastUpdateErrorRaw = NSError(domain: "", code: 1, userInfo: ["swiftError": "\(newValue)"])
+		}
+		get {
+			return nil
+		}
+	}
+	typealias Error = FoldersControllerError
 	final var foldersLastUpdateDate: NSDate? {
 		get {
 			return defaults.foldersLastUpdateDate
 		}
 		set {
 			defaults.foldersLastUpdateDate = newValue
-		}
-	}
-	final var foldersLastUpdateError: ErrorType? {
-		get {
-			if let data = defaults.foldersLastUpdateErrorEncoded {
-				return NSKeyedUnarchiver.unarchiveObjectWithData(data) as! NSError?
-			}
-			else {
-				return nil
-			}
-		}
-		set {
-			defaults.foldersLastUpdateErrorEncoded = {
-				if let _ = newValue {
-					return nil // NSKeyedArchiver.archivedDataWithRootObject(newValue)
-				}
-				else {
-					return nil
-				}
-			}()
 		}
 	}
 	final func updateFoldersAuthenticated(completionHandler: (ErrorType?) -> Void) {
@@ -126,6 +127,7 @@ extension AppDelegate: FoldersController {
 			rssSession.authenticate { error in dispatch_async(dispatch_get_main_queue()) {
 				if let authenticationError = error {
 					completionHandler(authenticationError)
+					self.foldersUpdateState = .Completed
 				}
 				else {
 					postAuthenticate()
