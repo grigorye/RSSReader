@@ -12,9 +12,6 @@ import CoreData
 
 let defaults = KVOCompliantUserDefaults()
 
-var _1 = true
-var _0 = false
-
 let applicationDomain = "com.grigoryentin.RSSReader"
 
 var foldersController: FoldersController!
