@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
+import RSSReaderData
 import UIKit
 import CoreData
 
@@ -16,36 +17,28 @@ var _0 = false
 
 let applicationDomain = "com.grigoryentin.RSSReader"
 
+var foldersController: FoldersController!
+
+var applicationDelegate: AppDelegate {
+	get {
+		return (UIApplication.sharedApplication().delegate as! AppDelegate)
+	}
+}
 extension NSObject {
-	var applicationDelegate: AppDelegate {
-		get {
-			return (UIApplication.sharedApplication().delegate as! AppDelegate)
-		}
-	}
-	var mainQueueManagedObjectContext: NSManagedObjectContext {
-		get {
-			return self.applicationDelegate.internals.mainQueueManagedObjectContext!
-		}
-	}
-	var backgroundQueueManagedObjectContext: NSManagedObjectContext {
-		get {
-			return self.applicationDelegate.internals.backgroundQueueManagedObjectContext!
-		}
-	}
-	@objc var foldersController: AppDelegate {
-		return self.applicationDelegate
+	var foldersController: FoldersController {
+		return applicationDelegate
 	}
 	var rssSession: RSSSession? {
 		get {
-			return self.applicationDelegate.internals.rssSession
+			return applicationDelegate.internals.rssSession
 		}
 		set {
-			self.applicationDelegate.internals.rssSession = newValue
+			applicationDelegate.internals.rssSession = newValue
 		}
 	}
 	var progressEnabledURLSessionTaskGenerator: ProgressEnabledURLSessionTaskGenerator! {
 		get {
-			return self.applicationDelegate.internals.progressEnabledURLSessionTaskGenerator
+			return applicationDelegate.internals.progressEnabledURLSessionTaskGenerator
 		}
 	}
 }
