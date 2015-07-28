@@ -169,7 +169,7 @@ extension RSSSession {
 		sessionTask.resume()
 	}
 	public func updateUnreadCounts(completionHandler: (ErrorType?) -> Void) {
-		let path = "/reader/api/0/unread-count?output=json"
+		let path = "/reader/api/0/unread-count"
 		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithPath(path) { data, httpResponse, error in
 			if let error = error {
 				completionHandler(error)
