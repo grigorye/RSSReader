@@ -6,10 +6,11 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
+import RSSReaderData
 import UIKit.UITableViewController
 import CoreData.NSFetchedResultsController
 
-class HistoryViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class HistoryViewController: UITableViewController, NSFetchedResultsControllerDelegate, TableViewFetchedResultsControllerDelegate {
 	private var nowDate: NSDate!
 	lazy var fetchedResultsController: NSFetchedResultsController = {
 		let fetchRequest: NSFetchRequest = {
@@ -20,7 +21,7 @@ class HistoryViewController: UITableViewController, NSFetchedResultsControllerDe
 			$.predicate = NSPredicate(format: "\(lastOpenedDateKeyPath) != nil", argumentArray: [])
 			return $
 		}()
-		let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.mainQueueManagedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+		let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainQueueManagedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
 		$.delegate = self
 		return $
 	}()
@@ -41,42 +42,6 @@ class HistoryViewController: UITableViewController, NSFetchedResultsControllerDe
 		if let subtitleLabel = cell.subtitleLabel {
 			let timeIntervalFormatted = (nil == NSClassFromString("NSDateComponentsFormatter")) ? "x" : dateComponentsFormatter.stringFromDate(item.date, toDate: nowDate) ?? ""
 			subtitleLabel.text = "\(timeIntervalFormatted)"
-		}
-	}
-	// MARK: -
-	func controllerWillChangeContent(controller: NSFetchedResultsController) {
-		self.tableView.beginUpdates()
-	}
-	let rowAnimation = UITableViewRowAnimation.None
-    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
-		switch type {
-		case .Insert:
-			tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: rowAnimation)
-		case .Delete:
-			tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: rowAnimation)
-		default:
-			abort()
-		}
-	}
-	func controller(controller: NSFetchedResultsController, didChangeObject anObject: NSManagedObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-		let tableView = self.tableView!
-		switch type {
-		case .Insert:
-			tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: rowAnimation)
-		case .Delete:
-			tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: rowAnimation)
-		case .Update:
-			if let cell = tableView.cellForRowAtIndexPath(indexPath!) {
-				self.configureCell(cell, atIndexPath: indexPath!)
-			}
-		case .Move:
-			tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: rowAnimation)
-			tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: rowAnimation)
-		}
-	}
-	func controllerDidChangeContent(controller: NSFetchedResultsController) {
-		(_1 ? UIView.performWithoutAnimation : invoke) {
-			self.tableView.endUpdates()
 		}
 	}
 	// MARK: -
