@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
-import RSSReader
+import RSSReaderData
 import Foundation
 import XCTest
 

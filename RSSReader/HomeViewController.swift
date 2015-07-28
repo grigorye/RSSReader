@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
+import RSSReaderData
 import UIKit
 
 class HomeViewController: UITableViewController {
@@ -15,12 +16,12 @@ class HomeViewController: UITableViewController {
 			()
 		case MainStoryboard.SegueIdentifiers.ShowSubscriptions:
 			let foldersViewController = segue.destinationViewController as! FoldersListTableViewController
-			if let rootFolder = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: self.mainQueueManagedObjectContext) {
+			if let rootFolder = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: mainQueueManagedObjectContext) {
 				foldersViewController.rootFolder = rootFolder
 			}
 		case MainStoryboard.SegueIdentifiers.ShowFavorites:
 			let itemsListViewController = segue.destinationViewController as! ItemsListViewController
-			if let favoritesFolder = Folder.folderWithTagSuffix(favoriteTagSuffix, managedObjectContext: self.mainQueueManagedObjectContext) {
+			if let favoritesFolder = Folder.folderWithTagSuffix(favoriteTagSuffix, managedObjectContext: mainQueueManagedObjectContext) {
 				itemsListViewController.container = favoritesFolder
 			}
 		default:
