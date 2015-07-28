@@ -352,7 +352,6 @@
 		C4EA13AE1B5ACA2900A127AF /* RSSReaderDataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RSSReaderDataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4EA13B51B5ACA2900A127AF /* RSSReaderDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSReaderDataTests.swift; sourceTree = "<group>"; };
 		C4EA13B71B5ACA2900A127AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C4EA13DD1B5ACB6100A127AF /* RSSReaderData-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RSSReaderData-Bridging-Header.h"; sourceTree = "<group>"; };
 		C4EA13DE1B5ACC1700A127AF /* Primitives.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Primitives.swift; sourceTree = "<group>"; };
 		C4EA13E71B5ACC6D00A127AF /* CoreDataGlobals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataGlobals.swift; sourceTree = "<group>"; };
 		C4EA13E91B5ACCE200A127AF /* RSSReaderDataGlobals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSReaderDataGlobals.swift; sourceTree = "<group>"; };
@@ -630,7 +629,6 @@
 			isa = PBXGroup;
 			children = (
 				C4EA13A71B5ACA2900A127AF /* RSSReaderData.h */,
-				C4EA13DD1B5ACB6100A127AF /* RSSReaderData-Bridging-Header.h */,
 				C4EA13A91B5ACA2900A127AF /* Info.plist */,
 				C4EA13DE1B5ACC1700A127AF /* Primitives.swift */,
 				C4EA13E71B5ACC6D00A127AF /* CoreDataGlobals.swift */,
