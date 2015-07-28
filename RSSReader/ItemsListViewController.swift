@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
+import RSSReaderData
 import UIKit
 import CoreData
 
@@ -55,9 +56,9 @@ private var fetchResultsAreAnimated: Bool {
 	return defaults.fetchResultsAreAnimated
 }
 
-class ItemsListViewController: UITableViewController, NSFetchedResultsControllerDelegate, UIDataSourceModelAssociation {
+class ItemsListViewController: UITableViewController {
 	final var container: Container?
-	private var containerViewState: ContainerViewState? {
+	var containerViewState: RSSReaderData.ContainerViewState? {
 		let container = self.container!
 		let containerViewPredicate = self.containerViewPredicate
 		if let existingViewState = (container.viewStates.filter { $0.containerViewPredicate.isEqual(containerViewPredicate) }).first {
@@ -65,7 +66,8 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		}
 		else {
 			let managedObjectContext = container.managedObjectContext!
-			let newViewState = NSEntityDescription.insertNewObjectForEntityForName("ContainerViewState", inManagedObjectContext: managedObjectContext) as! ContainerViewState
+			assert(managedObjectContext == mainQueueManagedObjectContext)
+			let newViewState = NSEntityDescription.insertNewObjectForEntityForName("ContainerViewState", inManagedObjectContext: managedObjectContext) as! RSSReaderData.ContainerViewState
 			newViewState.container = container
 			newViewState.containerViewPredicate = containerViewPredicate
 			return newViewState
@@ -125,38 +127,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		}
 	}
 	// MARK: -
-	private func regeneratedFetchedResultsController() -> NSFetchedResultsController {
-		let fetchRequest: NSFetchRequest = {
-			let container = self.container
-			let E = Item.self
-			let $ = NSFetchRequest(entityName: E.entityName())
-			let loadDateKeyPath = E••{"loadDate"}
-			$.sortDescriptors =	itemsAreSortedByLoadDate ? [NSSortDescriptor(key: loadDateKeyPath, ascending: false)] : [NSSortDescriptor(key: E••{"date"}, ascending: false)]
-			let subscriptionKeyPath = E••{"subscription"}
-			let categoriesKeyPath = E••{"categories"}
-			$.predicate = NSCompoundPredicate.andPredicateWithSubpredicates([
-				container! is Subscription ? NSPredicate(format: "(\(subscriptionKeyPath) == %@)", argumentArray: [container!]) : NSPredicate(format: "(\(categoriesKeyPath) CONTAINS %@)", argumentArray: [container!]),
-				self.containerViewPredicate
-			])
-			$.fetchBatchSize = 20
-			return $
-		}()
-		let itemLoadDateTimeIntervalSinceReferenceDateKeyPath = Item.self••{"loadDate.timeIntervalSinceReferenceDate"}
-		let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.mainQueueManagedObjectContext, sectionNameKeyPath: !itemsAreSortedByLoadDate ? nil : itemLoadDateTimeIntervalSinceReferenceDateKeyPath, cacheName: nil)
-		$.delegate = self
-		return $
-	}
-	private var fetchedResultsController_ : NSFetchedResultsController?
-	private var fetchedResultsController: NSFetchedResultsController {
-		get {
-			if let $ = fetchedResultsController_ {
-				return $
-			}
-			fetchedResultsController_ = regeneratedFetchedResultsController()
-			try! self.fetchedResultsController.performFetch()
-			return fetchedResultsController_!
-		}
-	}
+	internal var fetchedResultsController_ : NSFetchedResultsController?
 	// MARK: -
 	private func loadMore(completionHandler: (loadDateDidChange: Bool) -> Void) {
 		assert(!loadInProgress)
@@ -167,7 +138,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		}
 		let loadDate = self.loadDate
 		loadInProgress = true
-		let excludedCategory: Folder? = showUnreadOnly ? Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: self.mainQueueManagedObjectContext) : nil
+		let excludedCategory: Folder? = showUnreadOnly ? Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: mainQueueManagedObjectContext) : nil
 		rssSession!.streamContents(container!, excludedCategory: excludedCategory, continuation: self.continuation, loadDate: loadDate!) { continuation, items, streamError in
 			dispatch_async(dispatch_get_main_queue()) {
 				if loadDate != self.loadDate {
@@ -180,9 +151,11 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 					self.presentErrorMessage(NSLocalizedString("Failed to load more.", comment: ""))
 				}
 				else {
-					if let lastItemInCompletion = items.last {
+					if let lastItemInCompletion = $(items).$().last {
 						let managedObjectContext = self.fetchedResultsController.managedObjectContext
-						self.lastLoadedItem = (managedObjectContext.objectWithID(lastItemInCompletion.objectID) as! Item)
+						let lastLoadedItem = managedObjectContext.sameObject(lastItemInCompletion)
+						self.lastLoadedItem = lastLoadedItem
+						assert(nil != self.fetchedResultsController.indexPathForObject(lastLoadedItem))
 					}
 					self.continuation = continuation
 					if nil == continuation {
@@ -287,7 +260,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		return self.itemForIndexPath(self.tableView.indexPathForSelectedRow!)
 	}
 	// MARK: -
-	private func configureCell(rawCell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+	internal func configureCell(rawCell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
 		let cell = rawCell as! ItemTableViewCell
 		let item = fetchedResultsController.objectAtIndexPath($(indexPath).$(0)) as! Item
 		if let titleLabel = cell.titleLabel {
@@ -305,47 +278,6 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		}
 	}
 	// MARK: -
-	func controllerWillChangeContent(controller: NSFetchedResultsController) {
-		(fetchResultsAreAnimated ? invoke : UIView.performWithoutAnimation) {
-			self.tableView.beginUpdates()
-		}
-	}
-	private let rowAnimation = UITableViewRowAnimation.None
-    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
-		switch type {
-		case .Insert:
-			tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: rowAnimation)
-		case .Delete:
-			tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: rowAnimation)
-		default:
-			abort()
-		}
-	}
-	func controller(controller: NSFetchedResultsController, didChangeObject anObject: NSManagedObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-		let tableView = self.tableView!
-		$(stringFromFetchedResultsChangeType(type)).$()
-		switch type {
-		case .Insert:
-			$(tableView.numberOfRowsInSection($(newIndexPath!).$().section)).$()
-			tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: rowAnimation)
-		case .Delete:
-			tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: rowAnimation)
-		case .Update:
-			$(tableView.numberOfRowsInSection($(indexPath!).$().section)).$()
-			if let cell = tableView.cellForRowAtIndexPath(indexPath!) {
-				self.configureCell(cell, atIndexPath: indexPath!)
-			}
-		case .Move:
-			tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: rowAnimation)
-			tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: rowAnimation)
-		}
-	}
-	func controllerDidChangeContent(controller: NSFetchedResultsController) {
-		(fetchResultsAreAnimated ? invoke : UIView.performWithoutAnimation) {
-			self.tableView.endUpdates()
-		}
-	}
-	// MARK: -
 	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		let numberOfSections = fetchedResultsController.sections?.count ?? 0
 		return $(numberOfSections).$(0)
@@ -356,7 +288,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		let loadDate: NSDate? = {
-			if itemsAreSortedByLoadDate {
+			if defaults.itemsAreSortedByLoadDate {
 				let sectionName = self.fetchedResultsController.sections![section].name
 				return Optional(NSDate(timeIntervalSinceReferenceDate: (sectionName as NSString).doubleValue))
 			}
@@ -392,7 +324,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		tableView.snapHeaderToTop(animated: true)
 	}
 	override func scrollViewDidScroll(scrollView: UIScrollView) {
-		if nil != rssSession {
+		if nil != rssSession && nil != self.view.superview {
 			self.loadMoreIfNecessary()
 		}
 	}
@@ -425,33 +357,16 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 	}
 	override func decodeRestorableStateWithCoder(coder: NSCoder) {
 		super.decodeRestorableStateWithCoder(coder)
-		self.container = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.containerObjectID.rawValue, managedObjectContext: self.mainQueueManagedObjectContext) as! Container?
+		self.container = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.containerObjectID.rawValue, managedObjectContext: mainQueueManagedObjectContext) as! Container?
 		if nil != self.container {
 			nowDate = NSDate()
 		}
 	}
 	// MARK: -
-    func modelIdentifierForElementAtIndexPath(indexPath: NSIndexPath, inView view: UIView) -> String? {
-		if let item = self.itemForIndexPath(indexPath) {
-			return item.objectID.URIRepresentation().absoluteString
-		}
-		else {
-			let invalidModelIdentifier = ""
-			return $(invalidModelIdentifier).$()
-		}
-	}
-    func indexPathForElementWithModelIdentifier(identifier: String, inView view: UIView) -> NSIndexPath? {
-		let objectIDURL = NSURL(string: identifier)!
-		let managedObjectContext = fetchedResultsController.managedObjectContext
-		let objectID = managedObjectContext.persistentStoreCoordinator!.managedObjectIDForURIRepresentation(objectIDURL)!
-		let object = managedObjectContext.objectWithID(objectID)
-		let indexPath = fetchedResultsController.indexPathForObject(object)!
-		return $(indexPath).$()
-	}
-	// MARK: -
 	private var blocksDelayedTillViewWillAppear = [Handler]()
 	// MARK: -
 	override func viewWillAppear(animated: Bool) {
+		$(self).$()
 		nowDate = NSDate()
 		let binding = KVOBinding(self•{"loadDate"}, options: [.New, .Initial]) { change in
 			$(self.toolbarItems).$()
@@ -471,6 +386,7 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		super.viewWillAppear(animated)
 	}
 	override func viewDidAppear(animated: Bool) {
+		$(self).$()
 		super.viewDidAppear(animated)
 	}
 	private var blocksDelayedTillViewDidDisappear = [Handler]()
@@ -494,6 +410,9 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 				}
 			}
 		}]
+		blocksDelayedTillViewWillAppear += [{ [unowned self] in
+			try! $(self.fetchedResultsController).$().performFetch()
+		}]
 		self.tableFooterView = tableView.tableFooterView
 		for item in [unfilterUnreadBarButtonItem, filterUnreadBarButtonItem] {
 			if let customView = item.customView {
@@ -511,6 +430,59 @@ class ItemsListViewController: UITableViewController, NSFetchedResultsController
 		}
 		self.loadedToolbarItems = self.toolbarItems
 		self.toolbarItems = regeneratedToolbarItems()
+	}
+}
+
+extension ItemsListViewController: TableViewFetchedResultsControllerDelegate {
+	var regeneratedFetchedResultsController: NSFetchedResultsController {
+		let fetchRequest: NSFetchRequest = {
+			let container = self.container
+			let E = Item.self
+			let $ = NSFetchRequest(entityName: E.entityName())
+			$.sortDescriptors =	defaults.itemsAreSortedByLoadDate ? [NSSortDescriptor(key: E••{"loadDate"}, ascending: false)] : [NSSortDescriptor(key: E••{"date"}, ascending: false)]
+			let subscriptionKeyPath = E••{"subscription"}
+			let categoriesKeyPath = E••{"categories"}
+			$.predicate = NSCompoundPredicate(andPredicateWithSubpredicates:[
+				container! is Subscription ? NSPredicate(format: "(\(subscriptionKeyPath) == %@)", argumentArray: [container!]) : NSPredicate(format: "(\(categoriesKeyPath) CONTAINS %@)", argumentArray: [container!]),
+				self.containerViewPredicate
+			])
+			$.fetchBatchSize = 20
+			return $
+		}()
+		let itemLoadDateTimeIntervalSinceReferenceDateKeyPath = Item.self••{"loadDate.timeIntervalSinceReferenceDate"}
+		let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainQueueManagedObjectContext, sectionNameKeyPath: !defaults.itemsAreSortedByLoadDate ? nil : itemLoadDateTimeIntervalSinceReferenceDateKeyPath, cacheName: nil)
+		$.delegate = self
+		return $
+	}
+	var fetchedResultsController: NSFetchedResultsController {
+		if let $ = fetchedResultsController_ {
+			return $
+		}
+		let $ = self.regeneratedFetchedResultsController
+		fetchedResultsController_ = $
+		return $
+	}
+}
+
+// MARK: - UIDataSourceModelAssociation
+extension ItemsListViewController: UIDataSourceModelAssociation {
+    func modelIdentifierForElementAtIndexPath(indexPath: NSIndexPath, inView view: UIView) -> String? {
+		if let item = self.itemForIndexPath(indexPath) {
+			return item.objectID.URIRepresentation().absoluteString
+		}
+		else {
+			let invalidModelIdentifier = ""
+			return $(invalidModelIdentifier).$()
+		}
+	}
+    func indexPathForElementWithModelIdentifier(identifier: String, inView view: UIView) -> NSIndexPath? {
+		let objectIDURL = NSURL(string: identifier)!
+		let managedObjectContext = fetchedResultsController.managedObjectContext
+		assert(managedObjectContext == mainQueueManagedObjectContext)
+		let objectID = managedObjectContext.persistentStoreCoordinator!.managedObjectIDForURIRepresentation(objectIDURL)!
+		let object = managedObjectContext.objectWithID(objectID)
+		let indexPath = fetchedResultsController.indexPathForObject(object)!
+		return $(indexPath).$()
 	}
 }
 
