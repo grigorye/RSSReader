@@ -711,10 +711,10 @@
         <image name="Unstar" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0Df-Yo-bIC"/>
         <segue reference="CAU-xE-lLZ"/>
+        <segue reference="0Df-Yo-bIC"/>
+        <segue reference="w0U-iJ-oAk"/>
+        <segue reference="8Da-vm-piJ"/>
         <segue reference="IQP-ep-vtz"/>
-        <segue reference="asX-LX-8NF"/>
-        <segue reference="cJW-gk-KPb"/>
     </inferredMetricsTieBreakers>
 </document>
