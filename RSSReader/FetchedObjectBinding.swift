@@ -8,14 +8,14 @@
 
 import CoreData
 
-class FetchedAnyObjectBinding : NSObject, NSFetchedResultsControllerDelegate {
+public class FetchedAnyObjectBinding : NSObject, NSFetchedResultsControllerDelegate {
 	var handler: ((AnyObject?) -> Void)!
 	let fetchedResultsController: NSFetchedResultsController
-	func controllerDidChangeContent(controller: NSFetchedResultsController) {
+	public func controllerDidChangeContent(controller: NSFetchedResultsController) {
 		let object: AnyObject? = controller.fetchedObjects!.last
 		handler(object)
 	}
-	init(entityName: String, managedObjectContext: NSManagedObjectContext, predicate: NSPredicate?, sortDescriptor: NSSortDescriptor, handler: (AnyObject?) -> Void) {
+	public init(entityName: String, managedObjectContext: NSManagedObjectContext, predicate: NSPredicate?, sortDescriptor: NSSortDescriptor, handler: (AnyObject?) -> Void) {
 		self.handler = handler
 		self.fetchedResultsController = {
 			let fetchRequest: NSFetchRequest = {
@@ -33,8 +33,8 @@ class FetchedAnyObjectBinding : NSObject, NSFetchedResultsControllerDelegate {
 		handler(fetchedResultsController.fetchedObjects!.last)
 	}
 }
-class FetchedObjectBinding<T where T: Managed, T: DefaultSortable> : FetchedAnyObjectBinding  {
-	init(managedObjectContext: NSManagedObjectContext, predicate: NSPredicate?, handler: (T?) -> Void) {
+public class FetchedObjectBinding<T where T: DefaultSortable, T: Managed> : FetchedAnyObjectBinding  {
+	public init(managedObjectContext: NSManagedObjectContext, predicate: NSPredicate?, handler: (T?) -> Void) {
 		super.init(entityName: T.entityName(), managedObjectContext: managedObjectContext, predicate: predicate, sortDescriptor: T.defaultSortDescriptor(), handler: { object in
 			handler(object as! T?)
 		})
