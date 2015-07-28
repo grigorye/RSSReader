@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
+import RSSReaderData
 import UIKit
 import CoreData
 
@@ -155,7 +156,14 @@ class ItemSummaryWebViewController: UIViewController {
 	}
 	override func viewDidAppear(animated: Bool) {
 		super.viewDidAppear(animated)
+#if false
 		item.lastOpenedDate = NSDate()
+#else
+		let item = self.item
+		dispatch_async(dispatch_get_main_queue()) {
+			item.lastOpenedDate = NSDate()
+		}
+#endif
 		self.markAsReadTimer = NSTimer.scheduledTimerWithTimeInterval(markAsReadTimeInterval, target: self, selector: "markAsRead", userInfo: nil, repeats: false)
 	}
 	override func viewWillDisappear(animated: Bool) {
@@ -187,7 +195,7 @@ class ItemSummaryWebViewController: UIViewController {
 	}
 	override func decodeRestorableStateWithCoder(coder: NSCoder) {
 		super.decodeRestorableStateWithCoder(coder)
-		let item = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.itemObjectID.rawValue, managedObjectContext: self.mainQueueManagedObjectContext) as! Item
+		let item = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.itemObjectID.rawValue, managedObjectContext: mainQueueManagedObjectContext) as! Item
 		self.item = item
 	}
 }
