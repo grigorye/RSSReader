@@ -6,5 +6,5 @@
 //  Copyright © 2015 Grigory Entin. All rights reserved.
 //
 
-var _1 = true
-var _0 = false
+public var _1 = true
+public var _0 = false
