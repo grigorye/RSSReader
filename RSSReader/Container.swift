@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import GEBase
 
 public class Container: NSManagedObject {
     @NSManaged public var streamID: String

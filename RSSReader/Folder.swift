@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
+import GEBase
 import CoreData
 
 public class Folder : Container, Titled {

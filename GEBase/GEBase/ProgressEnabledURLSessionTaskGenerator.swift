@@ -20,8 +20,8 @@ public class ProgressEnabledURLSessionTaskGenerator: NSObject {
 	}
 	let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
 	// MARK: -
-	typealias HTTPDataTaskCompletionHandler = (NSData!, NSHTTPURLResponse!, ErrorType?) -> Void
-	func dataTaskForHTTPRequest(request: NSURLRequest, completionHandler: HTTPDataTaskCompletionHandler) -> NSURLSessionDataTask? {
+	public typealias HTTPDataTaskCompletionHandler = (NSData!, NSHTTPURLResponse!, ErrorType?) -> Void
+	public func dataTaskForHTTPRequest(request: NSURLRequest, completionHandler: HTTPDataTaskCompletionHandler) -> NSURLSessionDataTask? {
 		let progress = NSProgress(totalUnitCount: 1)
 		progress.becomeCurrentWithPendingUnitCount(1)
 		$(request).$()

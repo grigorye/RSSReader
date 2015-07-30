@@ -22,15 +22,6 @@ extension NSUserDefaults {
 			return LoginAndPassword(login: login, password: password)
 		}
 	}
-	var batchSavingDisabled: Bool {
-		return self.boolForKey("batchSavingDisabled")
-	}
-	var traceEnabled: Bool {
-		return self.boolForKey("traceEnabled")
-	}
-	var traceLabelsEnabled: Bool {
-		return self.boolForKey("traceLabelsEnabled")
-	}
 	var itemsAreSortedByLoadDate: Bool {
 		return self.boolForKey("itemsAreSortedByLoadDate")
 	}
@@ -48,7 +39,3 @@ extension NSUserDefaults {
 		}
 	}
 }
-
-let defaults = NSUserDefaults()
-
-let progressEnabledURLSessionTaskGenerator = ProgressEnabledURLSessionTaskGenerator()

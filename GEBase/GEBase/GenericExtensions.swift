@@ -113,7 +113,7 @@ public func invoke(handler: Handler) {
 	handler()
 }
 
-func URLQuerySuffixFromComponents(components: [String]) -> String {
+public func URLQuerySuffixFromComponents(components: [String]) -> String {
 	return components.reduce((prefix: "", suffix: "?")) {
 		let (prefix, suffix) = $0
 		return ("\(prefix)\(suffix)\($1)", "&")

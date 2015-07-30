@@ -7,6 +7,7 @@
 //
 
 import RSSReaderData
+import GEBase
 import UIKit
 import CoreData
 #if ANALYTICS_ENABLED
