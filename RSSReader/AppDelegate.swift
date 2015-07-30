@@ -111,7 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 	// MARK: -
 	private let currentRestorationFormatVersion = 1
 	private enum Restorable: String {
-		case restorationFormatVersion = "restorationFormatVersion"
+		case restorationFormatVersion
 	}
 	func application(application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
 		$(self).$()

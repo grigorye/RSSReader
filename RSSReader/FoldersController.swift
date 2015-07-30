@@ -10,14 +10,14 @@ import RSSReaderData
 import Foundation
 
 enum FoldersUpdateState: String {
-	case Unknown = "Unknown"
-	case Completed = "Completed"
-	case Authenticating = "Authenticating..."
-	case UpdatingUserInfo = "Updating user info..."
-	case UpdatingTags = "Updating tags..."
-	case UpdatingSubscriptions = "Updating subscriptions..."
-	case UpdatingUnreadCounts = "Updating unread counts..."
-	case UpdatingStreamPreferences = "Updating stream preferences..."
+	case Unknown
+	case Completed
+	case Authenticating
+	case UpdatingUserInfo
+	case UpdatingTags
+	case UpdatingSubscriptions
+	case UpdatingUnreadCounts
+	case UpdatingStreamPreferences
 }
 
 enum FoldersControllerError: ErrorType {
