@@ -48,8 +48,8 @@ class FoldersListTableViewController: UITableViewController, UIDataSourceModelAs
 					return localizedDescription
 				}
 			}()
-			let $ = UIAlertController(title: NSLocalizedString("REFRESH_FAILED", comment: "Title for alert on failed refresh"), message: message, preferredStyle: .Alert)
-			$.addAction(UIAlertAction(title: NSLocalizedString("PROCEED", comment: "Proceed action title for alert on failed refresh"), style: .Default) { action in
+			let $ = UIAlertController(title: NSLocalizedString("RefreshFailed", comment: "Title for alert on failed refresh"), message: message, preferredStyle: .Alert)
+			$.addAction(UIAlertAction(title: NSLocalizedString("Proceed", comment: "Proceed action title for alert on failed refresh"), style: .Default) { action in
 				retryAction()
 				return
 			})
