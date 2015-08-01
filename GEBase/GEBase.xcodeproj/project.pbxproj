@@ -48,18 +48,11 @@
 			remoteGlobalIDString = C418185F1B6A65B100872EB3;
 			remoteInfo = GEBase;
 		};
-		C41818CA1B6A713700872EB3 /* PBXContainerItemProxy */ = {
+		C499E3C91B6CDD6A00F67BEE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C41818C61B6A713600872EB3 /* TestHostApp.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = C4F507161B5B9AC8002D9B02;
-			remoteInfo = TestHostApp;
-		};
-		C41818CC1B6A714400872EB3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C41818C61B6A713600872EB3 /* TestHostApp.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = C4F507151B5B9AC8002D9B02;
 			remoteInfo = TestHostApp;
 		};
 /* End PBXContainerItemProxy section */
@@ -99,7 +92,7 @@
 		C41818BF1B6A710F00872EB3 /* KeyPathsTests-InfixOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "KeyPathsTests-InfixOperator.swift"; path = "GEBase/KeyPathsTests-InfixOperator.swift"; sourceTree = SOURCE_ROOT; };
 		C41818C01B6A710F00872EB3 /* KeyPathsTests-InstanceKeyPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "KeyPathsTests-InstanceKeyPath.swift"; path = "GEBase/KeyPathsTests-InstanceKeyPath.swift"; sourceTree = SOURCE_ROOT; };
 		C41818C11B6A710F00872EB3 /* KeyPathsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeyPathsTests.swift; path = GEBase/KeyPathsTests.swift; sourceTree = SOURCE_ROOT; };
-		C41818C61B6A713600872EB3 /* TestHostApp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TestHostApp.xcodeproj; path = /Volumes/Ginger/Users/eg/Workbench/RSSReader/../TestHostApp/TestHostApp.xcodeproj; sourceTree = "<absolute>"; };
+		C41818C61B6A713600872EB3 /* TestHostApp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TestHostApp.xcodeproj; path = ../TestHostApp/TestHostApp.xcodeproj; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,10 +179,10 @@
 			path = GEBaseTests;
 			sourceTree = "<group>";
 		};
-		C41818C71B6A713600872EB3 /* Products */ = {
+		C499E3C41B6CDD6A00F67BEE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C41818CB1B6A713700872EB3 /* TestHostApp.app */,
+				C499E3CA1B6CDD6A00F67BEE /* TestHostApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -241,7 +234,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				C41818CD1B6A714400872EB3 /* PBXTargetDependency */,
 				C418186D1B6A65B100872EB3 /* PBXTargetDependency */,
 			);
 			name = GEBaseTests;
@@ -279,7 +271,7 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = C41818C71B6A713600872EB3 /* Products */;
+					ProductGroup = C499E3C41B6CDD6A00F67BEE /* Products */;
 					ProjectRef = C41818C61B6A713600872EB3 /* TestHostApp.xcodeproj */;
 				},
 			);
@@ -292,11 +284,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		C41818CB1B6A713700872EB3 /* TestHostApp.app */ = {
+		C499E3CA1B6CDD6A00F67BEE /* TestHostApp.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
 			path = TestHostApp.app;
-			remoteRef = C41818CA1B6A713700872EB3 /* PBXContainerItemProxy */;
+			remoteRef = C499E3C91B6CDD6A00F67BEE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -365,11 +357,6 @@
 			isa = PBXTargetDependency;
 			target = C418185F1B6A65B100872EB3 /* GEBase */;
 			targetProxy = C418186C1B6A65B100872EB3 /* PBXContainerItemProxy */;
-		};
-		C41818CD1B6A714400872EB3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = TestHostApp;
-			targetProxy = C41818CC1B6A714400872EB3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
