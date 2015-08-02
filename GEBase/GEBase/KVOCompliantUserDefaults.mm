@@ -7,6 +7,7 @@
 //
 
 #import "KVOCompliantUserDefaults.h"
+#import <GEBase/ObjCPrimitives.h>
 #import <Foundation/NSUserDefaults.h>
 #import <Foundation/NSString.h>
 #import <Foundation/NSDictionary.h>
@@ -17,56 +18,27 @@
 #import <assert.h>
 #import <ctype.h>
 
-#define let auto const
-#define var auto
-
-var _1 = 1;
-var _0 = 0;
-
-id boxed(NSObject *value) {
-	return value;
-}
-
-__nonnull id boxed(BOOL value) {
-	return @(value);
-}
-
-#define _(...) ^{ \
-	let $ = __VA_ARGS__; \
-	if (_0) { \
-		NSLog(@"%s: %@", #__VA_ARGS__, boxed(__VA_ARGS__)); \
-	} \
-	return $; \
-}()
-
-template <typename T>
-T *
-as(id object) {
-	if (!object || [object isKindOfClass:[T class]]) {
-		return object;
-	}
-	else {
-		abort();
-	}
-}
-
-template <typename T>
-T *
-nnil(T *object) {
-	assert(object);
-	return object;
-}
 
 @interface KVOCompliantUserDefaults ()
 
-@property (strong, nonatomic) NSMutableDictionary *values;
+@property (strong, nonatomic) NSMutableDictionary<NSString *, NSObject *> *values;
 @property (strong, nonatomic) NSUserDefaults *defaults;
 
 @end
 
+@interface PropertyInfo : NSObject {}
+
+@property (copy, nonatomic, nonnull) NSString *name;
+@property (copy, nonatomic) NSString *attributes;
+@property (copy, nonatomic, nonnull) NSDictionary<NSString *, NSString *> *attributesDictionary;
+
+@end
+@implementation PropertyInfo
+@end
+
 @implementation KVOCompliantUserDefaults
 
-static NSDictionary * __nonnull 
+static PropertyInfo * __nonnull
 propertyInfoFromProperty(objc_property_t property) {
 	let name = property_getName(property);
 	let attributes = property_getAttributes(property);
@@ -81,14 +53,14 @@ propertyInfoFromProperty(objc_property_t property) {
 		free(attributesList);
 		return $;
 	}();
-	let $ = [NSMutableDictionary new];
-	$[@"name"] = @(name);
-	$[@"attributes"] = @(attributes);
-	$[@"attributesDictionary"] = attributesDictionary;
+	let $ = [PropertyInfo new];
+	$.name = @(name);
+	$.attributes = @(attributes);
+	$.attributesDictionary = attributesDictionary;
 	return $;
 }
 
-+ (nonnull NSDictionary *)propertyInfosWithGetterAndSetterMap:(NSMutableDictionary * __autoreleasing *)getterAndSetterMapP {
++ (nonnull NSDictionary<NSString *, PropertyInfo *> *)propertyInfosWithGetterAndSetterMap:(NSMutableDictionary * __autoreleasing *)getterAndSetterMapP {
 	let $ = [NSMutableDictionary new];
 	let getterAndSetterMap = [NSMutableDictionary new];
 	var propertyCount = unsigned(0);
@@ -96,10 +68,10 @@ propertyInfoFromProperty(objc_property_t property) {
 	for (var i = 0; i < propertyCount; ++i) {
 		let property = propertyList[i];
 		let propertyInfo = propertyInfoFromProperty(property);
-		let attributesDictionary = as<NSDictionary>(nnil(propertyInfo[@"attributesDictionary"]));
-		let propertyName = as<NSString>(nnil(propertyInfo[@"name"]));
-		let customSetterName = as<NSString>(attributesDictionary[@"S"]);
-		let customGetterName = as<NSString>(attributesDictionary[@"G"]);
+		let attributesDictionary = propertyInfo.attributesDictionary;
+		let propertyName = propertyInfo.name;
+		let customSetterName = attributesDictionary[@"S"];
+		let customGetterName = attributesDictionary[@"G"];
 		let defaultGetterName = propertyName;
 		let defaultSetterName = [NSString stringWithFormat:@"set%c%@:", toupper([propertyName characterAtIndex:0]), [propertyName substringFromIndex:1]];
 		getterAndSetterMap[customGetterName ?: defaultGetterName] = propertyInfo;
@@ -118,13 +90,13 @@ propertyInfoFromProperty(objc_property_t property) {
 
 #pragma mark -
 
-+ (nonnull NSDictionary *)propertyInfos;
++ (nonnull NSDictionary<NSString *, PropertyInfo *> *)propertyInfos;
 {
 	NSMutableDictionary *propertyInfoGetterAndSetterMap;
 	return [self propertyInfosWithGetterAndSetterMap:&propertyInfoGetterAndSetterMap];
 }
 
-+ (nonnull NSDictionary *)propertyInfoGetterAndSetterMap;
++ (nonnull NSDictionary<NSString *, PropertyInfo *> *)propertyInfoGetterAndSetterMap;
 {
 	NSMutableDictionary *_;
 	(void)[self propertyInfosWithGetterAndSetterMap:&_];
@@ -138,9 +110,9 @@ propertyInfoFromProperty(objc_property_t property) {
 	for (NSString *propertyName in propertyInfos.allKeys) {
 		let values = self.values;
 		let defaults = self.defaults;
-		let propertyInfo = as<NSDictionary>(propertyInfos[propertyName]);
-		if ([self isDefaultName:propertyInfo[@"name"]]) {
-			let oldValue = as<NSObject>(values[propertyName]);
+		let propertyInfo = propertyInfos[propertyName];
+		if ([self isDefaultName:propertyInfo.name]) {
+			let oldValue = values[propertyName];
 			let newValue = as<NSObject>([defaults objectForKey:propertyName]);
 			if (oldValue == newValue) {
 			}
@@ -166,7 +138,7 @@ static
 id
 objectValueIMP(KVOCompliantUserDefaults *self, SEL _cmd) {
 	let propertyName = NSStringFromSelector(_cmd);
-	let value = as<NSObject>(self.values[propertyName]);
+	let value = self.values[propertyName];
 	(void)_(propertyName);
 	return _(value);
 }
@@ -188,7 +160,7 @@ static
 BOOL
 boolValueIMP(KVOCompliantUserDefaults *self, SEL _cmd) {
 	let propertyName = NSStringFromSelector(_cmd);
-	let value = [self.values[propertyName] boolValue];
+	let value = [(id)self.values[propertyName] boolValue];
 	(void)_(propertyName);
 	return _(value);
 }
@@ -207,19 +179,19 @@ setBoolValueIMP(KVOCompliantUserDefaults *self, SEL _cmd, BOOL value) {
 + (nonnull NSString *)defaultNameForSelector:(SEL)sel;
 {
 	let selName = NSStringFromSelector(sel);
-	let propertyInfo = as<NSDictionary>(self.propertyInfoGetterAndSetterMap[selName]);
+	let propertyInfo = self.propertyInfoGetterAndSetterMap[selName];
 	(void)_(propertyInfo);
-	let defaultName = as<NSString>(propertyInfo[@"name"]);
+	let defaultName = propertyInfo.name;
 	return defaultName;
 }
 
 + (BOOL)resolveInstanceMethod:(SEL)sel {
 	let propertyInfoGetterAndSetterMap = self.class.propertyInfoGetterAndSetterMap;
 	let selName = NSStringFromSelector(sel);
-	if (let propertyInfo = as<NSDictionary>(propertyInfoGetterAndSetterMap[selName])) {
+	if (let propertyInfo = propertyInfoGetterAndSetterMap[selName]) {
 		(void)_(propertyInfo);
-		let attributesDictionary = as<NSDictionary>(propertyInfo[@"attributesDictionary"]);
-		let type = as<NSString>(attributesDictionary[@"T"]);
+		let attributesDictionary = propertyInfo.attributesDictionary;
+		let type = attributesDictionary[@"T"];
 		let isSetter = [selName hasSuffix:@":"];
 		let methodsByType = isSetter ? @{
 			@(@encode(BOOL)): [NSValue valueWithPointer:(void const *)setBoolValueIMP],
