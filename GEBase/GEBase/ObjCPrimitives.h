@@ -18,6 +18,8 @@
 extern int _1;
 extern int _0;
 
+#ifdef __cplusplus
+
 inline
 id boxed(NSObject * value) {
 	return value;
@@ -49,3 +51,5 @@ as(id object) {
 		abort();
 	}
 }
+
+#endif
