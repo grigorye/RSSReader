@@ -16,7 +16,7 @@ public class Folder : Container, Titled {
 		return mutableSetValueForKey(self••{"items"})
 	}
 	public var visibleTitle: String? {
-		return streamID.lastPathComponent
+		return (streamID as NSString).lastPathComponent
 	}
 }
 

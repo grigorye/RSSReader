@@ -43,10 +43,10 @@ public struct SourceLocation {
 }
 
 func labelFromLocations(firstLocation: SourceLocation, lastLocation: SourceLocation) -> String {
-	let fileName = firstLocation.file.lastPathComponent
+	let fileName = (firstLocation.file as NSString).lastPathComponent
 	let bundle = firstLocation.bundle
-	let resourceName = fileName.stringByDeletingPathExtension
-	let resourceType = fileName.pathExtension
+	let resourceName = (fileName as NSString).stringByDeletingPathExtension
+	let resourceType = (fileName as NSString).pathExtension
 	guard let file = bundle.pathForResource(resourceName, ofType: resourceType) else {
 		return "?"
 	}
@@ -65,7 +65,7 @@ public func traceString(string: String, location: SourceLocation, lastLocation: 
 	let labelSuffix = !traceLabelsEnabled ? "[\(location.column)-\(lastLocation.column)]" : {
 		return ": \(labelFromLocations(location, lastLocation: lastLocation))"
 	}()
-	let message = "\(location.file.lastPathComponent), \(location.function).\(location.line)\(labelSuffix): \(string)"
+	let message = "\((location.file as NSString).lastPathComponent), \(location.function).\(location.line)\(labelSuffix): \(string)"
 #if ANALYTICS_ENABLED
 #if CRASHLYTICS_ENABLED
 	CLSLogv("%@", getVaList([message]))

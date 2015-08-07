@@ -49,7 +49,7 @@ class ItemSummaryWebViewController: UIViewController {
 				let fileManager = NSFileManager.defaultManager()
 				let cachesDirectoryURL = try! fileManager.URLForDirectory(.CachesDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: true)
 				let directoryInCaches = (item.objectID.URIRepresentation().path! as NSString).substringFromIndex(1)
-				let pathInCaches = directoryInCaches.stringByAppendingPathComponent("summary.html")
+				let pathInCaches = (directoryInCaches as NSString).stringByAppendingPathComponent("summary.html")
 				let storedHTMLURL = NSURL(string: pathInCaches, relativeToURL: cachesDirectoryURL)!
 				try fileManager.createDirectoryAtURL(cachesDirectoryURL.URLByAppendingPathComponent(directoryInCaches), withIntermediateDirectories: true, attributes: nil)
 				try htmlString.writeToURL(storedHTMLURL, atomically: true, encoding: NSUTF8StringEncoding)
