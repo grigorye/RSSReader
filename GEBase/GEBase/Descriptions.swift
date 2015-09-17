@@ -13,7 +13,7 @@ func description(value: NSIndexPath) -> String {
 	for var i = 0; i < value.length; ++i {
 		components += ["\(value.indexAtPosition(i))"]
 	}
-	return ", ".join(components)
+	return components.joinWithSeparator(", ")
 }
 
 func trace(value: NSIndexPath, startLocation: SourceLocation, endLocation: SourceLocation) -> NSIndexPath {

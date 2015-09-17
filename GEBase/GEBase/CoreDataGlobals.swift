@@ -13,13 +13,13 @@ public let (managedObjectContextError, mainQueueManagedObjectContext, background
 	do {
 		let managedObjectModel = NSManagedObjectModel.mergedModelFromBundles([NSBundle(forClass: NSClassFromString("RSSReaderData.Folder")!)])!
 		let psc = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
-		let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-		let documentsDirectory = paths[0]
 		let fileManager = NSFileManager.defaultManager()
-		if !fileManager.fileExistsAtPath(documentsDirectory) {
-			try fileManager.createDirectoryAtPath(documentsDirectory, withIntermediateDirectories: true, attributes: nil)
+		let urls = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+		let documentsDirectoryURL = urls[0]
+		if !fileManager.fileExistsAtPath(documentsDirectoryURL.path!) {
+			try fileManager.createDirectoryAtURL(documentsDirectoryURL, withIntermediateDirectories: true, attributes: nil)
 		}
-		let storeURL = NSURL.fileURLWithPath(documentsDirectory.stringByAppendingPathComponent("RSSReader.sqlite"))
+		let storeURL = documentsDirectoryURL.URLByAppendingPathComponent("RSSReader.sqlite")
 		$(fileManager.fileExistsAtPath(storeURL.path!)).$()
 		if NSUserDefaults().boolForKey("forceStoreRemoval") {
 			let fileManager = NSFileManager.defaultManager()

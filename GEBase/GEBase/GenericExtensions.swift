@@ -28,13 +28,13 @@ func description<T>(value: T) -> String {
 }
 
 public struct SourceLocation {
-	let file: String
+	let fileURL: NSURL
 	let line: Int
 	let column: Int
 	let function: String
 	let bundle: NSBundle
 	public init(file: String = __FILE__, line: Int = __LINE__, column: Int = __COLUMN__, function: String = __FUNCTION__, bundle: NSBundle = NSBundle.bundleOnStack()) {
-		self.file = file
+		self.fileURL = NSURL(fileURLWithPath: file)
 		self.line = line
 		self.column = column
 		self.function = function
@@ -43,10 +43,10 @@ public struct SourceLocation {
 }
 
 func labelFromLocations(firstLocation: SourceLocation, lastLocation: SourceLocation) -> String {
-	let fileName = firstLocation.file.lastPathComponent
+	let fileURL = firstLocation.fileURL
 	let bundle = firstLocation.bundle
-	let resourceName = fileName.stringByDeletingPathExtension
-	let resourceType = fileName.pathExtension
+	let resourceName = fileURL.URLByDeletingPathExtension!.lastPathComponent!
+	let resourceType = fileURL.pathExtension
 	guard let file = bundle.pathForResource(resourceName, ofType: resourceType) else {
 		return "?"
 	}
@@ -65,7 +65,7 @@ public func traceString(string: String, location: SourceLocation, lastLocation: 
 	let labelSuffix = !traceLabelsEnabled ? "[\(location.column)-\(lastLocation.column)]" : {
 		return ": \(labelFromLocations(location, lastLocation: lastLocation))"
 	}()
-	let message = "\(location.file.lastPathComponent), \(location.function).\(location.line)\(labelSuffix): \(string)"
+	let message = "\(location.fileURL.lastPathComponent!), \(location.function).\(location.line)\(labelSuffix): \(string)"
 #if ANALYTICS_ENABLED
 #if CRASHLYTICS_ENABLED
 	CLSLogv("%@", getVaList([message]))

@@ -95,8 +95,8 @@ extension Container {
 					throw JsonImportError.PrefsValueLengthIsNotFactorOf8(prefs: prefs)
 				}
 				var sortIDs = [Int32]()
-				for var startIndex = value.startIndex; startIndex != value.endIndex; startIndex = advance(startIndex, 8) {
-					let range = startIndex..<advance(startIndex, 8)
+				for var startIndex = value.startIndex; startIndex != value.endIndex; startIndex = startIndex.advancedBy(8) {
+					let range = startIndex..<startIndex.advancedBy(8)
 					let sortIDString = value[range]
 					var sortIDUnsigned : UInt32 = 0
 					guard NSScanner(string: sortIDString).scanHexInt(&sortIDUnsigned) else {

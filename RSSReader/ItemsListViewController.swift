@@ -265,7 +265,7 @@ class ItemsListViewController: UITableViewController {
 		let cell = rawCell as! ItemTableViewCell
 		let item = fetchedResultsController.objectAtIndexPath($(indexPath).$(0)) as! Item
 		if let titleLabel = cell.titleLabel {
-			titleLabel.text = item.title ?? item.itemID.lastPathComponent
+			titleLabel.text = item.title ?? item.itemID.componentsSeparatedByString(".").last!
 		}
 		if let subtitleLabel = cell.subtitleLabel {
 			let timeIntervalFormatted = (nil == NSClassFromString("NSDateComponentsFormatter")) ? "x" : dateComponentsFormatter.stringFromDate(item.date, toDate: nowDate) ?? ""
