@@ -96,7 +96,7 @@ class FoldersListTableViewController: UITableViewController, UIDataSourceModelAs
 	// MARK: -
 	private func configureCell(cell: UITableViewCell, forFolder folder: Folder) {
 		(cell as! TableViewContainerCell).setFromContainer(folder)
-		cell.textLabel?.text = folder.streamID.componentsSeparatedByString(".").last!
+		cell.textLabel?.text = (folder.streamID as NSString).lastPathComponent
 	}
 	private func configureCell(cell: UITableViewCell, forSubscription subscription: Subscription) {
 		(cell as! TableViewContainerCell).setFromContainer(subscription)
