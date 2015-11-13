@@ -434,7 +434,8 @@ class ItemsListViewController: UITableViewController {
 	}
 }
 
-extension ItemsListViewController: TableViewFetchedResultsControllerDelegate {
+var delegateAOKey = UnsafePointer<Void>()
+extension ItemsListViewController {
 	var regeneratedFetchedResultsController: NSFetchedResultsController {
 		let fetchRequest: NSFetchRequest = {
 			let container = self.container
@@ -452,7 +453,7 @@ extension ItemsListViewController: TableViewFetchedResultsControllerDelegate {
 		}()
 		let itemLoadDateTimeIntervalSinceReferenceDateKeyPath = Item.self••{"loadDate.timeIntervalSinceReferenceDate"}
 		let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainQueueManagedObjectContext, sectionNameKeyPath: !defaults.itemsAreSortedByLoadDate ? nil : itemLoadDateTimeIntervalSinceReferenceDateKeyPath, cacheName: nil)
-		$.delegate = self
+		$.retainedDelegate = TableViewFetchedResultsControllerDelegate(tableView: tableView, fetchedResultsController: $, configureCell: self.configureCell)
 		return $
 	}
 	var fetchedResultsController: NSFetchedResultsController {

@@ -11,7 +11,7 @@ import GEBase
 import UIKit.UITableViewController
 import CoreData.NSFetchedResultsController
 
-class HistoryViewController: UITableViewController, NSFetchedResultsControllerDelegate, TableViewFetchedResultsControllerDelegate {
+class HistoryViewController: UITableViewController {
 	private var nowDate: NSDate!
 	lazy var fetchedResultsController: NSFetchedResultsController = {
 		let fetchRequest: NSFetchRequest = {
@@ -23,7 +23,7 @@ class HistoryViewController: UITableViewController, NSFetchedResultsControllerDe
 			return $
 		}()
 		let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainQueueManagedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-		$.delegate = self
+		$.retainedDelegate = TableViewFetchedResultsControllerDelegate(tableView: self.tableView, fetchedResultsController: $, configureCell: self.configureCell)
 		return $
 	}()
 	// MARK: -
