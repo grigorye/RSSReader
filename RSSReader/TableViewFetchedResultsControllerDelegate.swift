@@ -14,13 +14,11 @@ private var fetchResultsAreAnimated: Bool {
 	return defaults.fetchResultsAreAnimated
 }
 
-protocol TableViewFetchedResultsControllerDelegate: NSFetchedResultsControllerDelegate {
-	var tableView: UITableView! { get }
-	var fetchedResultsController: NSFetchedResultsController { get }
-	func configureCell(cell: UITableViewCell, atIndexPath: NSIndexPath)
-}
+class TableViewFetchedResultsControllerDelegate: NSObject, NSFetchedResultsControllerDelegate {
+	var tableView: UITableView
+	var fetchedResultsController: NSFetchedResultsController
+	var configureCell: (cell: UITableViewCell, atIndexPath: NSIndexPath) -> Void
 
-extension TableViewFetchedResultsControllerDelegate {
 	var rowAnimation: UITableViewRowAnimation { return UITableViewRowAnimation.None }
 	// MARK: -
 	func controllerWillChangeContent(controller: NSFetchedResultsController) {
@@ -36,7 +34,7 @@ extension TableViewFetchedResultsControllerDelegate {
 			self.tableView.beginUpdates()
 		}
 	}
-    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+	func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
 		precondition(controller == fetchedResultsController)
 		$(controller).$()
 		$(stringFromFetchedResultsChangeType(type)).$()
@@ -49,9 +47,9 @@ extension TableViewFetchedResultsControllerDelegate {
 			abort()
 		}
 	}
-	func controller(controller: NSFetchedResultsController, didChangeObject anObject: NSManagedObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+	func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
 		precondition(controller == fetchedResultsController)
-		let tableView = self.tableView!
+		let tableView = self.tableView
 		$(controller).$()
 		$(stringFromFetchedResultsChangeType(type)).$()
 		switch type {
@@ -63,7 +61,7 @@ extension TableViewFetchedResultsControllerDelegate {
 		case .Update:
 			$(tableView.numberOfRowsInSection($(indexPath!).$().section)).$()
 			if let cell = tableView.cellForRowAtIndexPath(indexPath!) {
-				self.configureCell(cell, atIndexPath: indexPath!)
+				self.configureCell(cell: cell, atIndexPath: indexPath!)
 			}
 		case .Move:
 			tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: rowAnimation)
@@ -76,5 +74,11 @@ extension TableViewFetchedResultsControllerDelegate {
 		($(fetchResultsAreAnimated).$() ? invoke : UIView.performWithoutAnimation) {
 			self.tableView.endUpdates()
 		}
+	}
+	// MARK: -
+	init(tableView: UITableView, fetchedResultsController: NSFetchedResultsController, configureCell: (cell: UITableViewCell, atIndexPath: NSIndexPath) -> Void ) {
+		self.tableView = tableView
+		self.fetchedResultsController = fetchedResultsController
+		self.configureCell = configureCell
 	}
 }
