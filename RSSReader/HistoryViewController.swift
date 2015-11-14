@@ -47,7 +47,7 @@ class HistoryViewController: UITableViewController {
 	}
 	// MARK: -
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		if _1 {
+		if defaults.pageViewsEnabled {
 			self.performSegueWithIdentifier(MainStoryboard.SegueIdentifiers.ShowHistoryPages, sender: self)
 		}
 		else {
