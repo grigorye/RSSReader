@@ -520,7 +520,9 @@
                             <outlet property="delegate" destination="7OC-Am-sLl" id="dCt-Gf-PPA"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Iwl-KG-aDg"/>
+                    <navigationItem key="navigationItem" id="Iwl-KG-aDg">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="aGK-dD-eHC"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oN9-Qd-U6o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
