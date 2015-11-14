@@ -512,6 +512,26 @@
                                             <segue destination="uqs-fG-LUI" kind="show" identifier="showHistory" id="IQP-ep-vtz"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="qOu-K3-OJ2" style="IBUITableViewCellStyleDefault" id="4Ed-Aw-H23">
+                                        <rect key="frame" x="0.0" y="196" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Ed-Aw-H23" id="aqH-mg-7cY">
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Debug" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qOu-K3-OJ2">
+                                                    <rect key="frame" x="15" y="0.0" width="550" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="er4-UP-tGi" kind="show" id="EUy-Yi-gV8"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -521,6 +541,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Iwl-KG-aDg">
+                        <barButtonItem key="backBarButtonItem" title="Home" id="3oX-aI-Bjh"/>
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="aGK-dD-eHC">
                             <connections>
                                 <action selector="openSettings:" destination="oN9-Qd-U6o" id="Ci5-ys-Yok"/>
@@ -637,7 +658,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ic7-cw-w2w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2340" y="-2256"/>
+            <point key="canvasLocation" x="2788" y="-1384"/>
         </scene>
     </scenes>
     <resources>
@@ -649,10 +670,11 @@
         <image name="Unstar" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="asX-LX-8NF"/>
         <segue reference="IQP-ep-vtz"/>
         <segue reference="FhY-D2-pL1"/>
+        <segue reference="EUy-Yi-gV8"/>
         <segue reference="51W-HV-eUd"/>
-        <segue reference="w0U-iJ-oAk"/>
-        <segue reference="8Da-vm-piJ"/>
+        <segue reference="cJW-gk-KPb"/>
     </inferredMetricsTieBreakers>
 </document>
