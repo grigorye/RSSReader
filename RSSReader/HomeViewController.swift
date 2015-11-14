@@ -25,7 +25,7 @@ class HomeViewController: UITableViewController {
 				itemsListViewController.container = favoritesFolder
 			}
 		default:
-			abort()
+			()
 		}
 	}
 }
