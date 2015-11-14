@@ -105,13 +105,7 @@ class ItemsListViewController: UITableViewController {
 	@IBOutlet private var statusBarButtonItem: UIBarButtonItem!
 	@IBOutlet private var filterUnreadBarButtonItem: UIBarButtonItem!
 	@IBOutlet private var unfilterUnreadBarButtonItem: UIBarButtonItem!
-	private var showUnreadOnly = false {
-		didSet {
-			fetchedResultsController_ = nil
-			tableView.reloadData()
-			loadMoreIfNecessary()
-		}
-	}
+	private var showUnreadOnly = false
 	private func regeneratedToolbarItems() -> [UIBarButtonItem] {
 		let excludedItems = [(showUnreadOnly ?  self.filterUnreadBarButtonItem : self.unfilterUnreadBarButtonItem)!]
 		let $ = loadedToolbarItems.filter { nil == excludedItems.indexOf($0) }
@@ -128,7 +122,7 @@ class ItemsListViewController: UITableViewController {
 		}
 	}
 	// MARK: -
-	internal var fetchedResultsController_ : NSFetchedResultsController?
+	internal var fetchedResultsController : NSFetchedResultsController!
 	// MARK: -
 	private func loadMore(completionHandler: (loadDateDidChange: Bool) -> Void) {
 		assert(!loadInProgress)
@@ -199,13 +193,20 @@ class ItemsListViewController: UITableViewController {
 			tableView.tableFooterView = nil
 		}
 	}
+	func reloadViewForNewFetchPredicate() {
+		self.toolbarItems = regeneratedToolbarItems()
+		self.fetchedResultsController = self.regeneratedFetchedResultsController()
+		try! self.fetchedResultsController.performFetch()
+		self.tableView.reloadData()
+		self.loadMoreIfNecessary()
+	}
 	@IBAction private func selectUnread(sender: AnyObject!) {
 		self.showUnreadOnly = true
-		self.toolbarItems = regeneratedToolbarItems()
+		self.reloadViewForNewFetchPredicate()
 	}
 	@IBAction private func unselectUnread(sender: AnyObject!) {
 		self.showUnreadOnly = false
-		self.toolbarItems = regeneratedToolbarItems()
+		self.reloadViewForNewFetchPredicate()
 	}
 	@IBAction private func refresh(sender: AnyObject!) {
 		let refreshControl = self.refreshControl!
@@ -412,6 +413,7 @@ class ItemsListViewController: UITableViewController {
 				}
 			}
 		}]
+		self.fetchedResultsController = self.regeneratedFetchedResultsController()
 		blocksDelayedTillViewWillAppear += [{ [unowned self] in
 			try! $(self.fetchedResultsController).$().performFetch()
 		}]
@@ -437,7 +439,7 @@ class ItemsListViewController: UITableViewController {
 
 var delegateAOKey = UnsafePointer<Void>()
 extension ItemsListViewController {
-	var regeneratedFetchedResultsController: NSFetchedResultsController {
+	func regeneratedFetchedResultsController() -> NSFetchedResultsController {
 		let fetchRequest: NSFetchRequest = {
 			let container = self.container
 			let E = Item.self
@@ -455,14 +457,6 @@ extension ItemsListViewController {
 		let itemLoadDateTimeIntervalSinceReferenceDateKeyPath = Item.self••{"loadDate.timeIntervalSinceReferenceDate"}
 		let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainQueueManagedObjectContext, sectionNameKeyPath: !defaults.itemsAreSortedByLoadDate ? nil : itemLoadDateTimeIntervalSinceReferenceDateKeyPath, cacheName: nil)
 		$.retainedDelegate = TableViewFetchedResultsControllerDelegate(tableView: tableView, fetchedResultsController: $, configureCell: self.configureCell)
-		return $
-	}
-	var fetchedResultsController: NSFetchedResultsController {
-		if let $ = fetchedResultsController_ {
-			return $
-		}
-		let $ = self.regeneratedFetchedResultsController
-		fetchedResultsController_ = $
 		return $
 	}
 }
