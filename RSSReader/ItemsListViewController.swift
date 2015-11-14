@@ -389,6 +389,7 @@ class ItemsListViewController: UITableViewController {
 	override func viewDidAppear(animated: Bool) {
 		$(self).$()
 		super.viewDidAppear(animated)
+		self.loadMoreIfNecessary()
 	}
 	private var blocksDelayedTillViewDidDisappear = [Handler]()
 	override func viewDidDisappear(animated: Bool) {
