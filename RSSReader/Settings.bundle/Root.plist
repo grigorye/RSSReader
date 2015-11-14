@@ -76,6 +76,16 @@
 			<key>DefaultValue</key>
 			<false/>
 			<key>Key</key>
+			<string>pageViewsEnabled</string>
+			<key>Title</key>
+			<string>Page Views</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>Key</key>
 			<string>analyticsEnabled</string>
 			<key>Title</key>
 			<string>Analytics</string>

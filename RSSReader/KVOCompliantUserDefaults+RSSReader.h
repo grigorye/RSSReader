@@ -23,5 +23,6 @@
 @property (nonatomic) BOOL itemsAreSortedByLoadDate;
 @property (nonatomic) NSDate *foldersLastUpdateDate;
 @property (nonatomic) NSData *foldersLastUpdateErrorEncoded;
+@property (nonatomic) BOOL pageViewsEnabled;
 
 @end

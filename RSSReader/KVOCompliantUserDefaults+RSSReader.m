@@ -23,5 +23,6 @@
 @dynamic itemsAreSortedByLoadDate;
 @dynamic foldersLastUpdateDate;
 @dynamic foldersLastUpdateErrorEncoded;
+@dynamic pageViewsEnabled;
 
 @end
