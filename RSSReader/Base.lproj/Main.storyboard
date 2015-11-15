@@ -15,10 +15,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
+                        <outlet property="delegate" destination="lhp-L4-Vf7" id="NUV-zf-aFK"/>
                         <segue destination="3bj-4R-y2f" kind="relationship" relationship="rootViewController" id="n8Q-sv-Bn2"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zFv-LP-vEt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="lhp-L4-Vf7" customClass="ContainedViewControllersAwareNavigationControllerDelegate" customModule="RSSReader" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="1588" y="-310"/>
         </scene>
@@ -621,10 +623,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
+                        <outlet property="delegate" destination="X8F-nX-8zv" id="MHO-KX-FsN"/>
                         <segue destination="uqs-fG-LUI" kind="relationship" relationship="rootViewController" id="DM4-V3-Our"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t3D-R1-auU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="X8F-nX-8zv" customClass="ContainedViewControllersAwareNavigationControllerDelegate" customModule="RSSReader" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="3424" y="-1460"/>
         </scene>
@@ -643,10 +647,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
+                        <outlet property="delegate" destination="8w6-v6-DNF" id="pKP-cA-bed"/>
                         <segue destination="7OC-Am-sLl" kind="relationship" relationship="rootViewController" id="M6d-p6-G56"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Mq-2k-B3X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="8w6-v6-DNF" customClass="ContainedViewControllersAwareNavigationControllerDelegate" customModule="RSSReader" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="2340" y="-1044"/>
         </scene>
@@ -692,10 +698,10 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="GuL-K5-Dyj"/>
-        <segue reference="asX-LX-8NF"/>
-        <segue reference="IQP-ep-vtz"/>
+        <segue reference="n8Q-sv-Bn2"/>
+        <segue reference="8Da-vm-piJ"/>
+        <segue reference="w0U-iJ-oAk"/>
+        <segue reference="DM4-V3-Our"/>
         <segue reference="FhY-D2-pL1"/>
-        <segue reference="51W-HV-eUd"/>
-        <segue reference="cJW-gk-KPb"/>
     </inferredMetricsTieBreakers>
 </document>
