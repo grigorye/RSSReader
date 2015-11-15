@@ -50,10 +50,16 @@ class FoldersListTableViewController: UITableViewController, UIDataSourceModelAs
 				}
 			}()
 			let $ = UIAlertController(title: NSLocalizedString("RefreshFailed", comment: "Title for alert on failed refresh"), message: message, preferredStyle: .Alert)
-			$.addAction(UIAlertAction(title: NSLocalizedString("Proceed", comment: "Proceed action title for alert on failed refresh"), style: .Default) { action in
+			let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Proceed action title for alert on failed refresh"), style: .Default) { action in
+				return
+			}
+			let retryAlertAction = UIAlertAction(title: NSLocalizedString("Retry", comment: "Proceed action title for alert on failed refresh"), style: .Default) { action in
 				retryAction()
 				return
-			})
+			}
+			$.addAction(cancelAction)
+			$.addAction(retryAlertAction)
+			$.preferredAction = retryAlertAction
 			return $
 		}()
 		return alertController
@@ -74,7 +80,7 @@ class FoldersListTableViewController: UITableViewController, UIDataSourceModelAs
 				}
 				self.presentViewController(errorViewController, animated: true, completion: nil)
 			}
-			if let error = updateError as NSError? {
+			else if let error = updateError as NSError? {
 				let errorViewController = self.dynamicType.viewControllerForErrorOnRefresh(error) {
 					self.refresh(self)
 				}
