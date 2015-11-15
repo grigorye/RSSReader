@@ -9,9 +9,9 @@
 import UIKit
 
 class MainNavigationController : UINavigationController {
-	@IBOutlet var extraLeftBarButtonItem: UIBarButtonItem!
+	@IBOutlet var extraRightBarButtonItem: UIBarButtonItem!
 	override func viewDidLoad() {
 		let firstViewController = self.viewControllers.first!
-		firstViewController.navigationItem.leftBarButtonItems = [extraLeftBarButtonItem] + (firstViewController.navigationItem.leftBarButtonItems ?? [])
+		firstViewController.navigationItem.rightBarButtonItems = [extraRightBarButtonItem] + (firstViewController.navigationItem.rightBarButtonItems ?? [])
 	}
 }
