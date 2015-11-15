@@ -595,12 +595,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <outlet property="extraLeftBarButtonItem" destination="Z7V-w6-ndy" id="rMr-4P-QEc"/>
+                        <outlet property="extraRightBarButtonItem" destination="Z7V-w6-ndy" id="Rav-IX-3lY"/>
                         <segue destination="daS-hT-cbp" kind="relationship" relationship="rootViewController" id="0Df-Yo-bIC"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="noj-mK-ssN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <barButtonItem image="Settings" id="Z7V-w6-ndy" userLabel="Settings">
+                <barButtonItem title="Settings" id="Z7V-w6-ndy" userLabel="Settings">
                     <connections>
                         <action selector="openSettings:" destination="noj-mK-ssN" id="Fi9-Sf-9sj"/>
                     </connections>
@@ -692,16 +692,15 @@
         <image name="Box" width="25" height="25"/>
         <image name="Box-Selected" width="25" height="25"/>
         <image name="Download" width="19" height="26"/>
-        <image name="Settings" width="22" height="22"/>
         <image name="Star" width="22" height="22"/>
         <image name="Unstar" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GuL-K5-Dyj"/>
-        <segue reference="n8Q-sv-Bn2"/>
-        <segue reference="8Da-vm-piJ"/>
         <segue reference="w0U-iJ-oAk"/>
-        <segue reference="DM4-V3-Our"/>
+        <segue reference="51W-HV-eUd"/>
         <segue reference="FhY-D2-pL1"/>
+        <segue reference="EUy-Yi-gV8"/>
+        <segue reference="IQP-ep-vtz"/>
+        <segue reference="8Da-vm-piJ"/>
     </inferredMetricsTieBreakers>
 </document>
