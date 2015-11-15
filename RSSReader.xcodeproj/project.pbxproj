@@ -91,6 +91,7 @@
 		C4EF270E1A8D353C000EBE63 /* UserMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EF270D1A8D353C000EBE63 /* UserMessages.swift */; };
 		C4F575D01A797C7B00F12F20 /* AddToFavoritesActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F575CF1A797C7B00F12F20 /* AddToFavoritesActivity.swift */; };
 		C4F575D61A7988DB00F12F20 /* OpenWebPageActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F575D51A7988DB00F12F20 /* OpenWebPageActivity.swift */; };
+		C4FEBAF71BF807A600A5709B /* ContainedViewControllersAwareNavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FEBAF61BF807A600A5709B /* ContainedViewControllersAwareNavigationControllerDelegate.swift */; };
 		CA2F924C7954C9EC08D55206 /* UITabBarController+CVKHiearachySearcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2E0441FFA564885EE4A6C9 /* UITabBarController+CVKHiearachySearcher.swift */; };
 /* End PBXBuildFile section */
 
@@ -325,6 +326,7 @@
 		C4FD88511A5F10BD0035E4D1 /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Container.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C4FD88531A5F14EA0035E4D1 /* 140.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 140.xcdatamodel; sourceTree = "<group>"; };
 		C4FD88541A5F4A390035E4D1 /* 81.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 81.xcdatamodel; sourceTree = "<group>"; };
+		C4FEBAF61BF807A600A5709B /* ContainedViewControllersAwareNavigationControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainedViewControllersAwareNavigationControllerDelegate.swift; sourceTree = "<group>"; };
 		CA2E0441FFA564885EE4A6C9 /* UITabBarController+CVKHiearachySearcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITabBarController+CVKHiearachySearcher.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -403,6 +405,7 @@
 				C46550471A7870E60046FFBD /* UINavigationItem+MultipleBarButtonItemsCollections.h */,
 				C46550481A7870E60046FFBD /* UINavigationItem+MultipleBarButtonItemsCollections.m */,
 				C4C0261E1B5281B7005452D1 /* TableViewFetchedResultsControllerDelegate.swift */,
+				C4FEBAF61BF807A600A5709B /* ContainedViewControllersAwareNavigationControllerDelegate.swift */,
 			);
 			name = Generic;
 			sourceTree = "<group>";
@@ -930,6 +933,7 @@
 				C495409B1A575C1900F56168 /* UserDefaults.swift in Sources */,
 				C49540A11A57825100F56168 /* ItemsListViewController.swift in Sources */,
 				C4C780181A7DF2B0009CB5FC /* TypeFilteringActivity.swift in Sources */,
+				C4FEBAF71BF807A600A5709B /* ContainedViewControllersAwareNavigationControllerDelegate.swift in Sources */,
 				C44B2F011AC0C881006A67F1 /* HomeViewController.swift in Sources */,
 				C45ECD061A62054C00ADC113 /* SBConstants.swift in Sources */,
 				C42802691A5B47EA002474E1 /* FoldersListTableViewController.swift in Sources */,
