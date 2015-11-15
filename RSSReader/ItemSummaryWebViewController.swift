@@ -155,15 +155,13 @@ class ItemSummaryWebViewController: UIViewController {
 		}]
 		super.viewWillAppear(animated)
 	}
-	override func viewDidAppear(animated: Bool) {
-		super.viewDidAppear(animated)
+	override func viewDidAppearInNavigationController(navigationController: UINavigationController, animated: Bool) {
+		super.viewDidAppearInNavigationController(navigationController, animated: animated)
 #if false
 		item.lastOpenedDate = NSDate()
 #else
 		let item = self.item
-		dispatch_async(dispatch_get_main_queue()) {
 			item.lastOpenedDate = NSDate()
-		}
 #endif
 		self.markAsReadTimer = NSTimer.scheduledTimerWithTimeInterval(markAsReadTimeInterval, target: self, selector: "markAsRead", userInfo: nil, repeats: false)
 	}
