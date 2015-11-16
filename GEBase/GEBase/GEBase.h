@@ -18,5 +18,6 @@ FOUNDATION_EXPORT const unsigned char GEBaseVersionString[];
 
 #import "KeyPathRecordingProxy.h"
 #import "KeyPathRecording.h"
-#import "NSBundleExtensions.h"
 #import "ObjCPrimitives.h"
+
+int backtrace(void** array, int size);

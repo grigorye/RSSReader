@@ -29,8 +29,6 @@
 		C41818A91B6A673F00872EB3 /* CoreDataGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818A61B6A673F00872EB3 /* CoreDataGlobals.swift */; };
 		C41818AA1B6A673F00872EB3 /* Primitives.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818A71B6A673F00872EB3 /* Primitives.swift */; };
 		C41818AB1B6A673F00872EB3 /* RSSReaderDataGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818A81B6A673F00872EB3 /* RSSReaderDataGlobals.swift */; };
-		C41818AE1B6A6C1C00872EB3 /* NSBundleExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = C41818AC1B6A6C1C00872EB3 /* NSBundleExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C41818AF1B6A6C1C00872EB3 /* NSBundleExtensions.mm in Sources */ = {isa = PBXBuildFile; fileRef = C41818AD1B6A6C1C00872EB3 /* NSBundleExtensions.mm */; };
 		C41818B11B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818B01B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift */; };
 		C41818C21B6A710F00872EB3 /* KeyPathsTests-GeneratorFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818BE1B6A710F00872EB3 /* KeyPathsTests-GeneratorFunction.swift */; };
 		C41818C31B6A710F00872EB3 /* KeyPathsTests-InfixOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818BF1B6A710F00872EB3 /* KeyPathsTests-InfixOperator.swift */; };
@@ -56,6 +54,8 @@
 		C4FEBB0B1BF9196E00A5709B /* ProgressEnabledURLSessionTaskGenerator.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C418188F1B6A66AE00872EB3 /* ProgressEnabledURLSessionTaskGenerator.swift */; };
 		C4FEBB1A1BF91E6600A5709B /* KVOCompliantUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FEBB191BF91E6600A5709B /* KVOCompliantUserDefaults.swift */; };
 		C4FEBB1B1BF94CF800A5709B /* KVOCompliantUserDefaults.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4FEBB191BF91E6600A5709B /* KVOCompliantUserDefaults.swift */; };
+		C4FEBB1D1BF960A300A5709B /* NSBundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FEBB1C1BF960A300A5709B /* NSBundleExtensions.swift */; };
+		C4FEBB1E1BF96B7800A5709B /* NSBundleExtensions.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4FEBB1C1BF960A300A5709B /* NSBundleExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +82,7 @@
 			dstPath = Sources;
 			dstSubfolderSpec = 7;
 			files = (
+				C4FEBB1E1BF96B7800A5709B /* NSBundleExtensions.swift in Embed Sources */,
 				C4FEBB1B1BF94CF800A5709B /* KVOCompliantUserDefaults.swift in Embed Sources */,
 				C4FEBAFC1BF9196E00A5709B /* CoreDataGlobals.swift in Embed Sources */,
 				C4FEBAFD1BF9196E00A5709B /* Primitives.swift in Embed Sources */,
@@ -131,8 +132,6 @@
 		C41818A61B6A673F00872EB3 /* CoreDataGlobals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataGlobals.swift; sourceTree = "<group>"; };
 		C41818A71B6A673F00872EB3 /* Primitives.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Primitives.swift; sourceTree = "<group>"; };
 		C41818A81B6A673F00872EB3 /* RSSReaderDataGlobals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSReaderDataGlobals.swift; sourceTree = "<group>"; };
-		C41818AC1B6A6C1C00872EB3 /* NSBundleExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSBundleExtensions.h; sourceTree = "<group>"; };
-		C41818AD1B6A6C1C00872EB3 /* NSBundleExtensions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSBundleExtensions.mm; sourceTree = "<group>"; };
 		C41818B01B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectContextAutosaver.swift; sourceTree = "<group>"; };
 		C41818BE1B6A710F00872EB3 /* KeyPathsTests-GeneratorFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "KeyPathsTests-GeneratorFunction.swift"; path = "GEBase/KeyPathsTests-GeneratorFunction.swift"; sourceTree = SOURCE_ROOT; };
 		C41818BF1B6A710F00872EB3 /* KeyPathsTests-InfixOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "KeyPathsTests-InfixOperator.swift"; path = "GEBase/KeyPathsTests-InfixOperator.swift"; sourceTree = SOURCE_ROOT; };
@@ -142,6 +141,7 @@
 		C42952261B6DCA3C00C30E58 /* ObjCPrimitives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjCPrimitives.h; sourceTree = "<group>"; };
 		C42952271B6DCA3C00C30E58 /* ObjCPrimitives.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ObjCPrimitives.mm; sourceTree = "<group>"; };
 		C4FEBB191BF91E6600A5709B /* KVOCompliantUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOCompliantUserDefaults.swift; sourceTree = "<group>"; };
+		C4FEBB1C1BF960A300A5709B /* NSBundleExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSBundleExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,8 +199,7 @@
 				C418187F1B6A66AE00872EB3 /* KeyPathRecording.h */,
 				C41818801B6A66AE00872EB3 /* KeyPathRecording.mm */,
 				C41818B01B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift */,
-				C41818AC1B6A6C1C00872EB3 /* NSBundleExtensions.h */,
-				C41818AD1B6A6C1C00872EB3 /* NSBundleExtensions.mm */,
+				C4FEBB1C1BF960A300A5709B /* NSBundleExtensions.swift */,
 				C41818811B6A66AE00872EB3 /* KeyPathRecordingProxy.h */,
 				C41818821B6A66AE00872EB3 /* KeyPathRecordingProxy.mm */,
 				C41818831B6A66AE00872EB3 /* KeyPathRecordingProxySwift.swift */,
@@ -244,7 +243,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C41818AE1B6A6C1C00872EB3 /* NSBundleExtensions.h in Headers */,
 				C41818971B6A66AE00872EB3 /* KeyPathRecordingProxy.h in Headers */,
 				C41818641B6A65B100872EB3 /* GEBase.h in Headers */,
 				C42952281B6DCA3C00C30E58 /* ObjCPrimitives.h in Headers */,
@@ -374,6 +372,7 @@
 				C418189A1B6A66AE00872EB3 /* KeyPaths.swift in Sources */,
 				C41818941B6A66AE00872EB3 /* GenericURLSessionExtensions.swift in Sources */,
 				C41818991B6A66AE00872EB3 /* KeyPathRecordingProxySwift.swift in Sources */,
+				C4FEBB1D1BF960A300A5709B /* NSBundleExtensions.swift in Sources */,
 				C41818A91B6A673F00872EB3 /* CoreDataGlobals.swift in Sources */,
 				C41818961B6A66AE00872EB3 /* KeyPathRecording.mm in Sources */,
 				C41818A51B6A66AE00872EB3 /* ProgressEnabledURLSessionTaskGenerator.swift in Sources */,
@@ -381,7 +380,6 @@
 				C42952291B6DCA3C00C30E58 /* ObjCPrimitives.mm in Sources */,
 				C41818B11B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift in Sources */,
 				C41818901B6A66AE00872EB3 /* Descriptions.swift in Sources */,
-				C41818AF1B6A6C1C00872EB3 /* NSBundleExtensions.mm in Sources */,
 				C41818981B6A66AE00872EB3 /* KeyPathRecordingProxy.mm in Sources */,
 				C41818A21B6A66AE00872EB3 /* ObjectAndKeyPath-GeneratorFunction.swift in Sources */,
 				C41818A31B6A66AE00872EB3 /* ObjectAndKeyPath-InfixOperator.swift in Sources */,
