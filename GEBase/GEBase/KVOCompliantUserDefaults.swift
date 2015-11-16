@@ -9,6 +9,7 @@
 import Foundation
 
 private let objcEncode_Bool = String.fromCString(NSNumber(bool: true).objCType)!
+private let objcEncode_C99Bool = "B"
 private let objcEncode_AnyObject = "@"
 
 private struct PropertyInfo {
@@ -92,7 +93,7 @@ private let (propertyInfoMap, getterAndSetterMap): ([String : PropertyInfo], [St
 		let customSetterName = attributesDictionary["S"]
 		let customGetterName = attributesDictionary["G"]
 		let defaultGetterName = propertyName
-		let defaultSetterName = "set\(propertyName.uppercaseString.characters.first!)\(propertyName.substringFromIndex(propertyName.startIndex.advancedBy(1)))"
+		let defaultSetterName = "set\(propertyName.uppercaseString.characters.first!)\(propertyName.substringFromIndex(propertyName.startIndex.advancedBy(1))):"
 		getterAndSetterMap[customGetterName ?? defaultGetterName] = propertyInfo
 		getterAndSetterMap[customSetterName ?? defaultSetterName] = propertyInfo
 		propertyInfoMap[propertyName] = propertyInfo
@@ -143,12 +144,17 @@ public class KVOCompliantUserDefaults : NSObject {
 			let attributesDictionary = propertyInfo.attributesDictionary;
 			let type = attributesDictionary["T"]!
 			let isSetter = selName.hasSuffix(":")
-			let methodsByType = [
-				objcEncode_Bool: isSetter ? unsafeBitCast(setBoolValueIMP, IMP.self) : unsafeBitCast(boolValueIMP, IMP.self),
-				objcEncode_AnyObject: isSetter ? unsafeBitCast(setObjectValueIMP, IMP.self) : unsafeBitCast(objectValueIMP, IMP.self)
-			]
 			let valueTypeEncoded = type.substringToIndex(type.startIndex.advancedBy(1))
-			let methodIMP = methodsByType[valueTypeEncoded]!
+			let methodIMP: IMP = {
+				switch (valueTypeEncoded) {
+				case objcEncode_Bool, objcEncode_C99Bool:
+					return isSetter ? unsafeBitCast(setBoolValueIMP, IMP.self) : unsafeBitCast(boolValueIMP, IMP.self)
+				case objcEncode_AnyObject:
+					return isSetter ? unsafeBitCast(setObjectValueIMP, IMP.self) : unsafeBitCast(objectValueIMP, IMP.self)
+				default:
+					fatalError("\(L(valueTypeEncoded).$())")
+				}
+			}()
 			let types = isSetter ? "v@:\(valueTypeEncoded)" : "\(valueTypeEncoded)@:"
 			types.withCString { typesCString in
 				class_addMethod(self, sel, methodIMP, typesCString)
