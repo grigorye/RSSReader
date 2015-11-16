@@ -16,8 +16,6 @@ FOUNDATION_EXPORT const unsigned char GEBaseVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <GEBase/PublicHeader.h>
 
-
-#import "KVOCompliantUserDefaults.h"
 #import "KeyPathRecordingProxy.h"
 #import "KeyPathRecording.h"
 #import "NSBundleExtensions.h"
