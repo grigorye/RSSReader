@@ -64,7 +64,7 @@
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
-			<true/>
+			<false/>
 			<key>Key</key>
 			<string>showUnreadOnly</string>
 			<key>Title</key>
