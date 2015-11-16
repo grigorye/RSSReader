@@ -21,6 +21,7 @@ class HomeViewController: UITableViewController {
 			}
 		case MainStoryboard.SegueIdentifiers.ShowFavorites:
 			let itemsListViewController = segue.destinationViewController as! ItemsListViewController
+			itemsListViewController.title = NSLocalizedString("Favorites", comment: "")
 			if let favoritesFolder = Folder.folderWithTagSuffix(favoriteTagSuffix, managedObjectContext: mainQueueManagedObjectContext) {
 				itemsListViewController.container = favoritesFolder
 			}
