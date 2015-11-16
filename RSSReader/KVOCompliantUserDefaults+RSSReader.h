@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
-#import <GEBase/KVOCompliantUserDefaults.h>
+#import <GEBase/GEBase.h>
 
 @interface KVOCompliantUserDefaults (RSSReader)
 
