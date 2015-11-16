@@ -127,3 +127,16 @@ public extension NSFetchedResultsController {
 		}
 	}
 }
+
+public func stringFromFetchedResultsChangeType(type: NSFetchedResultsChangeType) -> String {
+	switch (type) {
+	case .Insert:
+		return "Insert"
+	case .Delete:
+		return "Delete"
+	case .Update:
+		return "Update"
+	case .Move:
+		return "Move"
+	}
+}
