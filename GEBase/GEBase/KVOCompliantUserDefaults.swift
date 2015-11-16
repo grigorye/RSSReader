@@ -158,11 +158,16 @@ public class KVOCompliantUserDefaults : NSObject {
 		return super.resolveInstanceMethod(sel)
 	}
 
+	var blocksDelayedTillDealloc = [Handler]()
+	deinit {
+		for i in blocksDelayedTillDealloc { i() }
+	}
+	
 	public override init () {
 		super.init()
 		let notificationCenter = NSNotificationCenter.defaultCenter()
 		var handlingNotification = false
-		notificationCenter.addObserverForName(NSUserDefaultsDidChangeNotification, object:nil, queue:nil) { [unowned self] notification in
+		let observer = notificationCenter.addObserverForName(NSUserDefaultsDidChangeNotification, object:nil, queue:nil) { [unowned self] notification in
 			if (!handlingNotification) {
 				handlingNotification = true
 				self.defaults.synchronize()
@@ -170,6 +175,9 @@ public class KVOCompliantUserDefaults : NSObject {
 				handlingNotification = false
 			}
 		}
+		self.blocksDelayedTillDealloc += [{
+			notificationCenter.removeObserver(observer)
+		}]
 		self.synchronizeValues()
 	}
 }
