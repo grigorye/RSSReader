@@ -7,6 +7,7 @@
 //
 
 import RSSReaderData
+import GEBase
 import Foundation
 
 enum FoldersUpdateState: String {

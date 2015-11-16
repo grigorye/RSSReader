@@ -7,6 +7,7 @@
 //
 
 import RSSReaderData
+import GEBase
 import UIKit
 
 class ItemsPageViewControllerDelegate: NSObject, UIPageViewControllerDelegate {
