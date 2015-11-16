@@ -46,8 +46,9 @@ func labelFromLocations(firstLocation: SourceLocation, lastLocation: SourceLocat
 	let fileURL = firstLocation.fileURL
 	let bundle = firstLocation.bundle
 	let resourceName = fileURL.URLByDeletingPathExtension!.lastPathComponent!
-	let resourceType = fileURL.pathExtension
-	guard let file = bundle.pathForResource(resourceName, ofType: resourceType) else {
+	let resourceType = fileURL.pathExtension!
+	guard let file = bundle.pathForResource(resourceName, ofType: resourceType, inDirectory: "Sources") else {
+		NSLog("Could not locate \(resourceName).\(resourceType) in \(bundle)")
 		return "?"
 	}
 	let text: NSString?
