@@ -405,7 +405,7 @@ class ItemsListViewController: UITableViewController {
 		let cellNib = UINib(nibName: "ItemTableViewCell", bundle: nil)
 		tableView.registerNib(cellNib, forCellReuseIdentifier: "Item")
 		blocksDelayedTillViewWillAppear += [{ [unowned self] in
-			self.title = (self.container as! Titled).visibleTitle
+			self.title = self.title ?? (self.container as! Titled).visibleTitle
 			let tableView = self.tableView
 			if let tableHeaderView = tableView.tableHeaderView {
 				if tableView.contentOffset.y == 0 {
