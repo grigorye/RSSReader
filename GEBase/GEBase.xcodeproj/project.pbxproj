@@ -15,11 +15,6 @@
 		C41818921B6A66AE00872EB3 /* GenericCoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C418187C1B6A66AE00872EB3 /* GenericCoreDataExtensions.swift */; };
 		C41818931B6A66AE00872EB3 /* GenericExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C418187D1B6A66AE00872EB3 /* GenericExtensions.swift */; };
 		C41818941B6A66AE00872EB3 /* GenericURLSessionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C418187E1B6A66AE00872EB3 /* GenericURLSessionExtensions.swift */; };
-		C41818951B6A66AE00872EB3 /* KeyPathRecording.h in Headers */ = {isa = PBXBuildFile; fileRef = C418187F1B6A66AE00872EB3 /* KeyPathRecording.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C41818961B6A66AE00872EB3 /* KeyPathRecording.mm in Sources */ = {isa = PBXBuildFile; fileRef = C41818801B6A66AE00872EB3 /* KeyPathRecording.mm */; };
-		C41818971B6A66AE00872EB3 /* KeyPathRecordingProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = C41818811B6A66AE00872EB3 /* KeyPathRecordingProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C41818981B6A66AE00872EB3 /* KeyPathRecordingProxy.mm in Sources */ = {isa = PBXBuildFile; fileRef = C41818821B6A66AE00872EB3 /* KeyPathRecordingProxy.mm */; };
-		C41818991B6A66AE00872EB3 /* KeyPathRecordingProxySwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818831B6A66AE00872EB3 /* KeyPathRecordingProxySwift.swift */; };
 		C418189A1B6A66AE00872EB3 /* KeyPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818841B6A66AE00872EB3 /* KeyPaths.swift */; };
 		C418189F1B6A66AE00872EB3 /* KVOBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818891B6A66AE00872EB3 /* KVOBinding.swift */; };
 		C41818A21B6A66AE00872EB3 /* ObjectAndKeyPath-GeneratorFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C418188C1B6A66AE00872EB3 /* ObjectAndKeyPath-GeneratorFunction.swift */; };
@@ -34,8 +29,6 @@
 		C41818C31B6A710F00872EB3 /* KeyPathsTests-InfixOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818BF1B6A710F00872EB3 /* KeyPathsTests-InfixOperator.swift */; };
 		C41818C41B6A710F00872EB3 /* KeyPathsTests-InstanceKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818C01B6A710F00872EB3 /* KeyPathsTests-InstanceKeyPath.swift */; };
 		C41818C51B6A710F00872EB3 /* KeyPathsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818C11B6A710F00872EB3 /* KeyPathsTests.swift */; };
-		C42952281B6DCA3C00C30E58 /* ObjCPrimitives.h in Headers */ = {isa = PBXBuildFile; fileRef = C42952261B6DCA3C00C30E58 /* ObjCPrimitives.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C42952291B6DCA3C00C30E58 /* ObjCPrimitives.mm in Sources */ = {isa = PBXBuildFile; fileRef = C42952271B6DCA3C00C30E58 /* ObjCPrimitives.mm */; };
 		C4FEBAFC1BF9196E00A5709B /* CoreDataGlobals.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41818A61B6A673F00872EB3 /* CoreDataGlobals.swift */; };
 		C4FEBAFD1BF9196E00A5709B /* Primitives.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41818A71B6A673F00872EB3 /* Primitives.swift */; };
 		C4FEBAFE1BF9196E00A5709B /* RSSReaderDataGlobals.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41818A81B6A673F00872EB3 /* RSSReaderDataGlobals.swift */; };
@@ -45,7 +38,6 @@
 		C4FEBB021BF9196E00A5709B /* GenericExtensions.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C418187D1B6A66AE00872EB3 /* GenericExtensions.swift */; };
 		C4FEBB031BF9196E00A5709B /* GenericURLSessionExtensions.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C418187E1B6A66AE00872EB3 /* GenericURLSessionExtensions.swift */; };
 		C4FEBB041BF9196E00A5709B /* ManagedObjectContextAutosaver.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41818B01B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift */; };
-		C4FEBB051BF9196E00A5709B /* KeyPathRecordingProxySwift.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41818831B6A66AE00872EB3 /* KeyPathRecordingProxySwift.swift */; };
 		C4FEBB061BF9196E00A5709B /* KeyPaths.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41818841B6A66AE00872EB3 /* KeyPaths.swift */; };
 		C4FEBB071BF9196E00A5709B /* KVOBinding.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41818891B6A66AE00872EB3 /* KVOBinding.swift */; };
 		C4FEBB081BF9196E00A5709B /* ObjectAndKeyPath-GeneratorFunction.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C418188C1B6A66AE00872EB3 /* ObjectAndKeyPath-GeneratorFunction.swift */; };
@@ -93,7 +85,6 @@
 				C4FEBB021BF9196E00A5709B /* GenericExtensions.swift in Embed Sources */,
 				C4FEBB031BF9196E00A5709B /* GenericURLSessionExtensions.swift in Embed Sources */,
 				C4FEBB041BF9196E00A5709B /* ManagedObjectContextAutosaver.swift in Embed Sources */,
-				C4FEBB051BF9196E00A5709B /* KeyPathRecordingProxySwift.swift in Embed Sources */,
 				C4FEBB061BF9196E00A5709B /* KeyPaths.swift in Embed Sources */,
 				C4FEBB071BF9196E00A5709B /* KVOBinding.swift in Embed Sources */,
 				C4FEBB081BF9196E00A5709B /* ObjectAndKeyPath-GeneratorFunction.swift in Embed Sources */,
@@ -118,11 +109,6 @@
 		C418187C1B6A66AE00872EB3 /* GenericCoreDataExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericCoreDataExtensions.swift; sourceTree = "<group>"; };
 		C418187D1B6A66AE00872EB3 /* GenericExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericExtensions.swift; sourceTree = "<group>"; };
 		C418187E1B6A66AE00872EB3 /* GenericURLSessionExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericURLSessionExtensions.swift; sourceTree = "<group>"; };
-		C418187F1B6A66AE00872EB3 /* KeyPathRecording.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyPathRecording.h; sourceTree = "<group>"; };
-		C41818801B6A66AE00872EB3 /* KeyPathRecording.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = KeyPathRecording.mm; sourceTree = "<group>"; };
-		C41818811B6A66AE00872EB3 /* KeyPathRecordingProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyPathRecordingProxy.h; sourceTree = "<group>"; };
-		C41818821B6A66AE00872EB3 /* KeyPathRecordingProxy.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = KeyPathRecordingProxy.mm; sourceTree = "<group>"; };
-		C41818831B6A66AE00872EB3 /* KeyPathRecordingProxySwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyPathRecordingProxySwift.swift; sourceTree = "<group>"; };
 		C41818841B6A66AE00872EB3 /* KeyPaths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyPaths.swift; sourceTree = "<group>"; };
 		C41818891B6A66AE00872EB3 /* KVOBinding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOBinding.swift; sourceTree = "<group>"; };
 		C418188C1B6A66AE00872EB3 /* ObjectAndKeyPath-GeneratorFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObjectAndKeyPath-GeneratorFunction.swift"; sourceTree = "<group>"; };
@@ -138,8 +124,6 @@
 		C41818C01B6A710F00872EB3 /* KeyPathsTests-InstanceKeyPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "KeyPathsTests-InstanceKeyPath.swift"; path = "GEBase/KeyPathsTests-InstanceKeyPath.swift"; sourceTree = SOURCE_ROOT; };
 		C41818C11B6A710F00872EB3 /* KeyPathsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeyPathsTests.swift; path = GEBase/KeyPathsTests.swift; sourceTree = SOURCE_ROOT; };
 		C41818C61B6A713600872EB3 /* TestHostApp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TestHostApp.xcodeproj; path = ../TestHostApp/TestHostApp.xcodeproj; sourceTree = SOURCE_ROOT; };
-		C42952261B6DCA3C00C30E58 /* ObjCPrimitives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjCPrimitives.h; sourceTree = "<group>"; };
-		C42952271B6DCA3C00C30E58 /* ObjCPrimitives.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ObjCPrimitives.mm; sourceTree = "<group>"; };
 		C4FEBB191BF91E6600A5709B /* KVOCompliantUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOCompliantUserDefaults.swift; sourceTree = "<group>"; };
 		C4FEBB1C1BF960A300A5709B /* NSBundleExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSBundleExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -186,8 +170,6 @@
 			isa = PBXGroup;
 			children = (
 				C41818631B6A65B100872EB3 /* GEBase.h */,
-				C42952261B6DCA3C00C30E58 /* ObjCPrimitives.h */,
-				C42952271B6DCA3C00C30E58 /* ObjCPrimitives.mm */,
 				C41818A61B6A673F00872EB3 /* CoreDataGlobals.swift */,
 				C41818A71B6A673F00872EB3 /* Primitives.swift */,
 				C41818A81B6A673F00872EB3 /* RSSReaderDataGlobals.swift */,
@@ -196,13 +178,8 @@
 				C418187C1B6A66AE00872EB3 /* GenericCoreDataExtensions.swift */,
 				C418187D1B6A66AE00872EB3 /* GenericExtensions.swift */,
 				C418187E1B6A66AE00872EB3 /* GenericURLSessionExtensions.swift */,
-				C418187F1B6A66AE00872EB3 /* KeyPathRecording.h */,
-				C41818801B6A66AE00872EB3 /* KeyPathRecording.mm */,
 				C41818B01B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift */,
 				C4FEBB1C1BF960A300A5709B /* NSBundleExtensions.swift */,
-				C41818811B6A66AE00872EB3 /* KeyPathRecordingProxy.h */,
-				C41818821B6A66AE00872EB3 /* KeyPathRecordingProxy.mm */,
-				C41818831B6A66AE00872EB3 /* KeyPathRecordingProxySwift.swift */,
 				C41818841B6A66AE00872EB3 /* KeyPaths.swift */,
 				C41818891B6A66AE00872EB3 /* KVOBinding.swift */,
 				C4FEBB191BF91E6600A5709B /* KVOCompliantUserDefaults.swift */,
@@ -243,10 +220,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C41818971B6A66AE00872EB3 /* KeyPathRecordingProxy.h in Headers */,
 				C41818641B6A65B100872EB3 /* GEBase.h in Headers */,
-				C42952281B6DCA3C00C30E58 /* ObjCPrimitives.h in Headers */,
-				C41818951B6A66AE00872EB3 /* KeyPathRecording.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,16 +345,12 @@
 				C41818AB1B6A673F00872EB3 /* RSSReaderDataGlobals.swift in Sources */,
 				C418189A1B6A66AE00872EB3 /* KeyPaths.swift in Sources */,
 				C41818941B6A66AE00872EB3 /* GenericURLSessionExtensions.swift in Sources */,
-				C41818991B6A66AE00872EB3 /* KeyPathRecordingProxySwift.swift in Sources */,
 				C4FEBB1D1BF960A300A5709B /* NSBundleExtensions.swift in Sources */,
 				C41818A91B6A673F00872EB3 /* CoreDataGlobals.swift in Sources */,
-				C41818961B6A66AE00872EB3 /* KeyPathRecording.mm in Sources */,
 				C41818A51B6A66AE00872EB3 /* ProgressEnabledURLSessionTaskGenerator.swift in Sources */,
 				C41818921B6A66AE00872EB3 /* GenericCoreDataExtensions.swift in Sources */,
-				C42952291B6DCA3C00C30E58 /* ObjCPrimitives.mm in Sources */,
 				C41818B11B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift in Sources */,
 				C41818901B6A66AE00872EB3 /* Descriptions.swift in Sources */,
-				C41818981B6A66AE00872EB3 /* KeyPathRecordingProxy.mm in Sources */,
 				C41818A21B6A66AE00872EB3 /* ObjectAndKeyPath-GeneratorFunction.swift in Sources */,
 				C41818A31B6A66AE00872EB3 /* ObjectAndKeyPath-InfixOperator.swift in Sources */,
 				C41818931B6A66AE00872EB3 /* GenericExtensions.swift in Sources */,
