@@ -15,14 +15,21 @@ class FoldersListTableViewController: UITableViewController, UIDataSourceModelAs
 	dynamic var rootFolder: Folder?
 	var childContainers: [Container]!
 	dynamic let defaults = KVOCompliantUserDefaults()
-	class func keyPathsForValuesAffectingRegeneratedChildContainers() -> Set<String> {
-		return [self••{"rootFolder!.childContainers"}, self••{"defaults.showUnreadOnly"}]
+	//
+	class var keyPathsForValuesAffectingShowUnreadOnly: Set<String> {
+		return [self••{"defaults.showUnreadOnly"}]
+	}
+	private dynamic var showUnreadOnly: Bool {
+		return defaults.showUnreadOnly
+	}
+	//
+	class var keyPathsForValuesAffectingRegeneratedChildContainers: Set<String> {
+		return [self••{"rootFolder!.childContainers"}, self••{"showUnreadOnly"}]
 	}
 	private dynamic var regeneratedChildContainers: [Container] {
 		let regeneratedChildContainers: [Container] = {
 			if let rootFolder = self.rootFolder {
-				let showUnreadOnly = self.defaults.showUnreadOnly
-				return (rootFolder.childContainers.array as! [Container]).filter { showUnreadOnly ? $0.unreadCount > 0 : true }
+				return (rootFolder.childContainers.array as! [Container]).filter { self.showUnreadOnly ? $0.unreadCount > 0 : true }
 			}
 			else {
 				return []
