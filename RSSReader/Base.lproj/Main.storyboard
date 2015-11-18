@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9527.1" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kPx-QE-mCE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kPx-QE-mCE">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9525.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Favorites Navigation-->
@@ -60,7 +61,7 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="lch-OH-fYf"/>
                         <barButtonItem style="plain" id="oV4-UX-7T3" userLabel="Status">
                             <view key="customView" contentMode="scaleToFill" id="xe1-cP-Lvh">
-                                <rect key="frame" x="91" y="6" width="133" height="33"/>
+                                <rect key="frame" x="233" y="6" width="133" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bC2-zF-sCe">
@@ -79,67 +80,74 @@
                             </view>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="o3j-gn-J9l"/>
-                        <barButtonItem style="plain" id="pWh-vF-c3Z" userLabel="Unfilter Unread">
-                            <view key="customView" contentMode="scaleToFill" horizontalHuggingPriority="1000" id="TEN-hJ-7sJ">
-                                <rect key="frame" x="304" y="6" width="133" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Fg-wk-by1">
-                                        <rect key="frame" x="57" y="8" width="19" height="18"/>
-                                        <inset key="contentEdgeInsets" minX="4" minY="0.0" maxX="4" maxY="0.0"/>
-                                        <state key="normal" title="U">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="selected">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="2"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="unselectUnread:" destination="3bj-4R-y2f" eventType="touchUpInside" id="uuI-sM-2KY"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="centerY" secondItem="1Fg-wk-by1" secondAttribute="centerY" id="HMh-xp-ANY"/>
-                                    <constraint firstAttribute="centerX" secondItem="1Fg-wk-by1" secondAttribute="centerX" id="xby-2c-YaK"/>
-                                </constraints>
-                            </view>
-                        </barButtonItem>
-                        <barButtonItem style="plain" id="oay-ah-Cmq" userLabel="Filter Unread">
-                            <view key="customView" contentMode="scaleToFill" horizontalHuggingPriority="1000" id="Scz-fI-oxT">
-                                <rect key="frame" x="447" y="6" width="133" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y2K-Hr-675">
-                                        <rect key="frame" x="57" y="8" width="19" height="18"/>
-                                        <inset key="contentEdgeInsets" minX="4" minY="0.0" maxX="4" maxY="0.0"/>
-                                        <state key="normal" title="U"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="2"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="selectUnread:" destination="3bj-4R-y2f" eventType="touchUpInside" id="cM3-jI-X2k"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="centerY" secondItem="Y2K-Hr-675" secondAttribute="centerY" id="DwH-tk-ERV"/>
-                                    <constraint firstAttribute="centerX" secondItem="Y2K-Hr-675" secondAttribute="centerX" id="Mnk-Xs-qg6"/>
-                                </constraints>
-                            </view>
+                        <barButtonItem title="MAR" id="FEa-k8-cQP">
                             <connections>
-                                <action selector="unselectUnread:" destination="3bj-4R-y2f" id="TMb-g2-VsD"/>
+                                <action selector="markAllAsRead:" destination="3bj-4R-y2f" id="feY-0f-7uH"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="KN3-a6-4FZ">
                         <nil key="title"/>
+                        <rightBarButtonItems>
+                            <barButtonItem style="plain" id="oay-ah-Cmq" userLabel="Filter Unread">
+                                <view key="customView" contentMode="scaleToFill" horizontalHuggingPriority="1000" id="Scz-fI-oxT">
+                                    <rect key="frame" x="447" y="5" width="133" height="33"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y2K-Hr-675">
+                                            <rect key="frame" x="57" y="8" width="19" height="18"/>
+                                            <inset key="contentEdgeInsets" minX="4" minY="0.0" maxX="4" maxY="0.0"/>
+                                            <state key="normal" title="U"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="selectUnread:" destination="3bj-4R-y2f" eventType="touchUpInside" id="cM3-jI-X2k"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="centerY" secondItem="Y2K-Hr-675" secondAttribute="centerY" id="DwH-tk-ERV"/>
+                                        <constraint firstAttribute="centerX" secondItem="Y2K-Hr-675" secondAttribute="centerX" id="Mnk-Xs-qg6"/>
+                                    </constraints>
+                                </view>
+                                <connections>
+                                    <action selector="unselectUnread:" destination="3bj-4R-y2f" id="TMb-g2-VsD"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem style="plain" id="pWh-vF-c3Z" userLabel="Unfilter Unread">
+                                <view key="customView" contentMode="scaleToFill" horizontalHuggingPriority="1000" id="TEN-hJ-7sJ">
+                                    <rect key="frame" x="306" y="5" width="133" height="33"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Fg-wk-by1">
+                                            <rect key="frame" x="57" y="8" width="19" height="18"/>
+                                            <inset key="contentEdgeInsets" minX="4" minY="0.0" maxX="4" maxY="0.0"/>
+                                            <state key="normal" title="U">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="selected">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="unselectUnread:" destination="3bj-4R-y2f" eventType="touchUpInside" id="uuI-sM-2KY"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="centerY" secondItem="1Fg-wk-by1" secondAttribute="centerY" id="HMh-xp-ANY"/>
+                                        <constraint firstAttribute="centerX" secondItem="1Fg-wk-by1" secondAttribute="centerX" id="xby-2c-YaK"/>
+                                    </constraints>
+                                </view>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="h0A-Kc-KSk">
                         <autoresizingMask key="autoresizingMask"/>
@@ -213,10 +221,10 @@
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="Wzr-U2-09y">
                         <connections>
-                            <outletCollection property="rightBarButtonItemsCollection" destination="1hJ-Dd-L2L" id="9hd-IP-BIE"/>
-                            <outletCollection property="rightBarButtonItemsCollection" destination="frR-cQ-Jf5" id="koj-nA-Fv8"/>
-                            <outletCollection property="rightBarButtonItemsCollection" destination="DA5-Dr-fr8" id="Qyf-1I-eQc"/>
-                            <outletCollection property="rightBarButtonItemsCollection" destination="ozz-uK-Or8" id="huq-Hi-TsP"/>
+                            <outletCollection property="rightBarButtonItemsCollection" destination="1hJ-Dd-L2L" collectionClass="NSMutableArray" id="9hd-IP-BIE"/>
+                            <outletCollection property="rightBarButtonItemsCollection" destination="frR-cQ-Jf5" collectionClass="NSMutableArray" id="koj-nA-Fv8"/>
+                            <outletCollection property="rightBarButtonItemsCollection" destination="DA5-Dr-fr8" collectionClass="NSMutableArray" id="Qyf-1I-eQc"/>
+                            <outletCollection property="rightBarButtonItemsCollection" destination="ozz-uK-Or8" collectionClass="NSMutableArray" id="huq-Hi-TsP"/>
                         </connections>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
@@ -306,9 +314,9 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="gvW-35-fFk">
                         <connections>
-                            <outletCollection property="rightBarButtonItemsCollection" destination="DA5-Dr-fr8" id="baE-5R-cJB"/>
-                            <outletCollection property="rightBarButtonItemsCollection" destination="ozz-uK-Or8" id="0i1-pt-Kg4"/>
-                            <outletCollection property="rightBarButtonItemsCollection" destination="frR-cQ-Jf5" id="bFD-WE-hx6"/>
+                            <outletCollection property="rightBarButtonItemsCollection" destination="DA5-Dr-fr8" collectionClass="NSMutableArray" id="baE-5R-cJB"/>
+                            <outletCollection property="rightBarButtonItemsCollection" destination="ozz-uK-Or8" collectionClass="NSMutableArray" id="0i1-pt-Kg4"/>
+                            <outletCollection property="rightBarButtonItemsCollection" destination="frR-cQ-Jf5" collectionClass="NSMutableArray" id="bFD-WE-hx6"/>
                         </connections>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
