@@ -100,15 +100,15 @@ class ItemsListViewController: UITableViewController {
 	private var tableFooterView: UIView?
 	private var indexPathForTappedAccessoryButton: NSIndexPath?
 	// MARK: -
-	private var loadedToolbarItems: [UIBarButtonItem]!
+	private var loadedRightBarButtonItems: [UIBarButtonItem]!
 	@IBOutlet private var statusLabel: UILabel!
 	@IBOutlet private var statusBarButtonItem: UIBarButtonItem!
 	@IBOutlet private var filterUnreadBarButtonItem: UIBarButtonItem!
 	@IBOutlet private var unfilterUnreadBarButtonItem: UIBarButtonItem!
 	private var showUnreadOnly = false
-	private func regeneratedToolbarItems() -> [UIBarButtonItem] {
+	private func regeneratedRightBarButtonItems() -> [UIBarButtonItem] {
 		let excludedItems = [(showUnreadOnly ?  self.filterUnreadBarButtonItem : self.unfilterUnreadBarButtonItem)!]
-		let $ = loadedToolbarItems.filter { nil == excludedItems.indexOf($0) }
+		let $ = loadedRightBarButtonItems.filter { nil == excludedItems.indexOf($0) }
 		return $
 	}
 	private var containerViewPredicate: NSPredicate {
@@ -196,8 +196,8 @@ class ItemsListViewController: UITableViewController {
 			tableView.tableFooterView = nil
 		}
 	}
-	func reloadViewForNewFetchPredicate() {
-		self.toolbarItems = regeneratedToolbarItems()
+	func reloadViewForNewConfiguration() {
+		self.navigationItem.rightBarButtonItems = regeneratedRightBarButtonItems()
 		self.fetchedResultsControllerDelegate = self.regeneratedFetchedResultsControllerDelegate()
 		try! self.fetchedResultsController.performFetch()
 		self.tableView.reloadData()
@@ -205,11 +205,11 @@ class ItemsListViewController: UITableViewController {
 	}
 	@IBAction private func selectUnread(sender: AnyObject!) {
 		self.showUnreadOnly = true
-		self.reloadViewForNewFetchPredicate()
+		self.reloadViewForNewConfiguration()
 	}
 	@IBAction private func unselectUnread(sender: AnyObject!) {
 		self.showUnreadOnly = false
-		self.reloadViewForNewFetchPredicate()
+		self.reloadViewForNewConfiguration()
 	}
 	@IBAction private func refresh(sender: AnyObject!) {
 		let refreshControl = self.refreshControl!
@@ -435,8 +435,8 @@ class ItemsListViewController: UITableViewController {
 				item.width = customView.bounds.width
 			}
 		}
-		self.loadedToolbarItems = self.toolbarItems
-		self.toolbarItems = regeneratedToolbarItems()
+		self.loadedRightBarButtonItems = self.navigationItem.rightBarButtonItems
+		self.navigationItem.rightBarButtonItems = regeneratedRightBarButtonItems()
 	}
 }
 
