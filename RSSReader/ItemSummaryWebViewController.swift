@@ -13,7 +13,7 @@ import CoreData
 
 var hideBarsOnSwipe = false
 
-let markAsReadTimeInterval = NSTimeInterval(2)
+let markAsReadTimeInterval = NSTimeInterval(1)
 
 class ItemSummaryWebViewController: UIViewController {
 	@IBOutlet var webView: UIWebView!
@@ -21,8 +21,9 @@ class ItemSummaryWebViewController: UIViewController {
 	@IBOutlet var markAsFavoriteBarButtonItem: UIBarButtonItem!
 	@IBOutlet var unmarkAsFavoriteBarButtonItem: UIBarButtonItem!
 	dynamic var item: Item!
-	var markAsReadTimer: NSTimer?
-	func markAsRead() {
+	var markAsOpenAndReadTimer: NSTimer?
+	func markAsOpenAndRead() {
+		item.lastOpenedDate = NSDate()
 		if !item.markedAsRead {
 			item.markedAsRead = true
 			rssSession!.uploadTag(canonicalReadTag, mark: true, forItem: item, completionHandler: { uploadReadStateError in
@@ -155,19 +156,13 @@ class ItemSummaryWebViewController: UIViewController {
 		}]
 		super.viewWillAppear(animated)
 	}
-	override func viewDidAppearInNavigationController(navigationController: UINavigationController, animated: Bool) {
-		super.viewDidAppearInNavigationController(navigationController, animated: animated)
-#if false
-		item.lastOpenedDate = NSDate()
-#else
-		let item = self.item
-			item.lastOpenedDate = NSDate()
-#endif
-		self.markAsReadTimer = NSTimer.scheduledTimerWithTimeInterval(markAsReadTimeInterval, target: self, selector: "markAsRead", userInfo: nil, repeats: false)
+	override func viewDidAppear(animated: Bool) {
+		super.viewDidAppear(animated)
+		self.markAsOpenAndReadTimer = NSTimer.scheduledTimerWithTimeInterval(markAsReadTimeInterval, target: self, selector: "markAsOpenAndRead", userInfo: nil, repeats: false)
 	}
 	override func viewWillDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)
-		self.markAsReadTimer?.invalidate()
+		self.markAsOpenAndReadTimer?.invalidate()
 	}
 	override func viewDidDisappear(animated: Bool) {
 		viewDidDisappearRetainedObjects = []
