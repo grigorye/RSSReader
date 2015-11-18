@@ -13,7 +13,7 @@ import CoreData.NSFetchedResultsController
 
 class HistoryViewController: UITableViewController {
 	private var nowDate: NSDate!
-	lazy var fetchedResultsController: NSFetchedResultsController = {
+	lazy var fetchedResultsControllerDelegate: TableViewFetchedResultsControllerDelegate = {
 		let fetchRequest: NSFetchRequest = {
 			let E = Item.self
 			let $ = NSFetchRequest(entityName: E.entityName())
@@ -22,10 +22,14 @@ class HistoryViewController: UITableViewController {
 			$.predicate = NSPredicate(format: "\(lastOpenedDateKeyPath) != nil", argumentArray: [])
 			return $
 		}()
-		let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainQueueManagedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-		$.retainedDelegate = TableViewFetchedResultsControllerDelegate(tableView: self.tableView, fetchedResultsController: $, configureCell: self.configureCell)
+		let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainQueueManagedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+		let $ = TableViewFetchedResultsControllerDelegate(tableView: self.tableView, fetchedResultsController: fetchedResultsController, configureCell: self.configureCell)
+		fetchedResultsController.delegate = $
 		return $
 	}()
+	var fetchedResultsController: NSFetchedResultsController {
+		return fetchedResultsControllerDelegate.fetchedResultsController
+	}
 	// MARK: -
 	func itemForIndexPath(indexPath: NSIndexPath) -> Item {
 		return self.fetchedResultsController.fetchedObjects![indexPath.row] as! Item

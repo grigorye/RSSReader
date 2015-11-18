@@ -122,7 +122,10 @@ class ItemsListViewController: UITableViewController {
 		}
 	}
 	// MARK: -
-	internal var fetchedResultsController : NSFetchedResultsController!
+	internal var fetchedResultsControllerDelegate : TableViewFetchedResultsControllerDelegate!
+	var fetchedResultsController: NSFetchedResultsController {
+		return fetchedResultsControllerDelegate.fetchedResultsController
+	}
 	// MARK: -
 	private func loadMore(completionHandler: (loadDateDidChange: Bool) -> Void) {
 		assert(!loadInProgress)
@@ -195,7 +198,7 @@ class ItemsListViewController: UITableViewController {
 	}
 	func reloadViewForNewFetchPredicate() {
 		self.toolbarItems = regeneratedToolbarItems()
-		self.fetchedResultsController = self.regeneratedFetchedResultsController()
+		self.fetchedResultsControllerDelegate = self.regeneratedFetchedResultsControllerDelegate()
 		try! self.fetchedResultsController.performFetch()
 		self.tableView.reloadData()
 		self.loadMoreIfNecessary()
@@ -292,7 +295,7 @@ class ItemsListViewController: UITableViewController {
 		let loadDate: NSDate? = {
 			if defaults.itemsAreSortedByLoadDate {
 				let sectionName = self.fetchedResultsController.sections![section].name
-				return Optional(NSDate(timeIntervalSinceReferenceDate: (sectionName as NSString).doubleValue))
+				return NSDate(timeIntervalSinceReferenceDate: (sectionName as NSString).doubleValue)
 			}
 			else {
 				return self.loadDate
@@ -413,7 +416,7 @@ class ItemsListViewController: UITableViewController {
 				}
 			}
 		}]
-		self.fetchedResultsController = self.regeneratedFetchedResultsController()
+		self.fetchedResultsControllerDelegate = self.regeneratedFetchedResultsControllerDelegate()
 		blocksDelayedTillViewWillAppear += [{ [unowned self] in
 			try! $(self.fetchedResultsController).$().performFetch()
 		}]
@@ -439,7 +442,7 @@ class ItemsListViewController: UITableViewController {
 
 var delegateAOKey = UnsafePointer<Void>()
 extension ItemsListViewController {
-	func regeneratedFetchedResultsController() -> NSFetchedResultsController {
+	func regeneratedFetchedResultsControllerDelegate() -> TableViewFetchedResultsControllerDelegate {
 		let fetchRequest: NSFetchRequest = {
 			let container = self.container
 			let E = Item.self
@@ -455,8 +458,9 @@ extension ItemsListViewController {
 			return $
 		}()
 		let itemLoadDateTimeIntervalSinceReferenceDateKeyPath = Item.self••{"loadDate.timeIntervalSinceReferenceDate"}
-		let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainQueueManagedObjectContext, sectionNameKeyPath: !defaults.itemsAreSortedByLoadDate ? nil : itemLoadDateTimeIntervalSinceReferenceDateKeyPath, cacheName: nil)
-		$.retainedDelegate = TableViewFetchedResultsControllerDelegate(tableView: tableView, fetchedResultsController: $, configureCell: self.configureCell)
+		let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainQueueManagedObjectContext, sectionNameKeyPath: !defaults.itemsAreSortedByLoadDate ? nil : itemLoadDateTimeIntervalSinceReferenceDateKeyPath, cacheName: nil)
+		let $ = TableViewFetchedResultsControllerDelegate(tableView: tableView, fetchedResultsController: fetchedResultsController, configureCell: self.configureCell)
+		fetchedResultsController.delegate = $
 		return $
 	}
 }
