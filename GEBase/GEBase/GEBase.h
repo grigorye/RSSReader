@@ -16,4 +16,12 @@ FOUNDATION_EXPORT const unsigned char GEBaseVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <GEBase/PublicHeader.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 int backtrace(void** array, int size);
+
+#ifdef __cplusplus
+}
+#endif
