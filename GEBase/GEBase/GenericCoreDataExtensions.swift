@@ -114,20 +114,6 @@ extension NSManagedObjectContext {
 	}
 }
 
-private var retainedDelegateAOKey: Void
-
-public extension NSFetchedResultsController {
-	var retainedDelegate: NSFetchedResultsControllerDelegate? {
-		get {
-			return self.delegate
-		}
-		set {
-			objc_setAssociatedObject(self, &retainedDelegateAOKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-			self.delegate = newValue
-		}
-	}
-}
-
 public func stringFromFetchedResultsChangeType(type: NSFetchedResultsChangeType) -> String {
 	switch (type) {
 	case .Insert:
