@@ -11,10 +11,25 @@ import XCTest
 import Foundation
 
 extension KeyPathsTests {
-	func testInstanceKeyPath() {
-#if false
+	func testRecordedInstanceKeyPath() {
 		let oldKeyPathRecordingProxyLiveCount = keyPathRecordingProxyLiveCount
-#endif
+		XCTAssertEqual(recordedInstanceKeyPath(self){$0.string}, "string")
+		XCTAssertEqual(recordedInstanceKeyPath(self){$0.optionalString}, "optionalString")
+		XCTAssertEqual(recordedInstanceKeyPath(self){$0.array}, "array")
+		XCTAssertEqual(recordedInstanceKeyPath(self){$0.optionalArray}, "optionalArray")
+		XCTAssertEqual(recordedInstanceKeyPath(self){$0.setOfStrings}, "setOfStrings")
+		XCTAssertEqual(recordedInstanceKeyPath(self){$0.set}, "set")
+		XCTAssertEqual(recordedInstanceKeyPath(self){$0.optionalSet}, "optionalSet")
+		XCTAssertEqual(recordedInstanceKeyPath(self){$0.dictionary}, "dictionary")
+		XCTAssertEqual(recordedInstanceKeyPath(self){$0.optionalDictionary}, "optionalDictionary")
+		XCTAssertEqual(recordedInstanceKeyPath(self){$0.computedArray}, "computedArray")
+		XCTAssertEqual(recordedInstanceKeyPath(self){$0.optionalObject.string}, "optionalObject.string")
+		XCTAssertEqual(recordedInstanceKeyPath(self){$0.optionalComputedObject.string}, "optionalComputedObject.string")
+		XCTAssertEqual(recordedInstanceKeyPath(self){$0.optionalComputedObject.optionalAnotherObject.computedLength}, "optionalComputedObject.optionalAnotherObject.computedLength")
+		XCTAssertEqual(recordedInstanceKeyPath(self.optionalObject){$0.string}, "string")
+		XCTAssertEqual(keyPathRecordingProxyLiveCount, oldKeyPathRecordingProxyLiveCount)
+	}
+	func testInstanceKeyPath() {
 		XCTAssertEqual(instanceKeyPath(self){"string"}, "string")
 		XCTAssertEqual(instanceKeyPath(self){"optionalString"}, "optionalString")
 		XCTAssertEqual(instanceKeyPath(self){"array"}, "array")
@@ -29,8 +44,5 @@ extension KeyPathsTests {
 		XCTAssertEqual(instanceKeyPath(self){"optionalComputedObject.string"}, "optionalComputedObject.string")
 		XCTAssertEqual(instanceKeyPath(self){"optionalComputedObject.optionalAnotherObject.computedLength"}, "optionalComputedObject.optionalAnotherObject.computedLength")
 		XCTAssertEqual(instanceKeyPath(self.optionalObject){"string"}, "string")
-#if false
-		XCTAssertEqual(keyPathRecordingProxyLiveCount, oldKeyPathRecordingProxyLiveCount)
-#endif
 	}
 }
