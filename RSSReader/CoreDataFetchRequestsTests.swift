@@ -9,6 +9,7 @@
 import XCTest
 import CoreData
 @testable import RSSReaderData
+@testable import GEBase
 
 class CoreDataFetchRequestsTests: XCTestCase {
 	let rssSession = RSSSession(loginAndPassword: defaults.loginAndPassword)
