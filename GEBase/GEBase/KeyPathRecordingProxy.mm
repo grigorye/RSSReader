@@ -97,6 +97,9 @@ NSUInteger keyPathRecordingProxyLiveCount;
 			id returnValue = self;
 			[invocation setReturnValue:&returnValue];
 		}
+		else {
+			abort();
+		}
 	}
 }
 
