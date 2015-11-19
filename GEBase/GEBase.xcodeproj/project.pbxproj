@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C41818641B6A65B100872EB3 /* GEBase.h in Headers */ = {isa = PBXBuildFile; fileRef = C41818631B6A65B100872EB3 /* GEBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C418186B1B6A65B100872EB3 /* GEBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C41818601B6A65B100872EB3 /* GEBase.framework */; };
-		C41818701B6A65B100872EB3 /* GEBaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C418186F1B6A65B100872EB3 /* GEBaseTests.swift */; };
 		C41818901B6A66AE00872EB3 /* Descriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C418187A1B6A66AE00872EB3 /* Descriptions.swift */; };
 		C41818911B6A66AE00872EB3 /* FetchedObjectBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C418187B1B6A66AE00872EB3 /* FetchedObjectBinding.swift */; };
 		C41818921B6A66AE00872EB3 /* GenericCoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C418187C1B6A66AE00872EB3 /* GenericCoreDataExtensions.swift */; };
@@ -29,6 +28,8 @@
 		C41818C31B6A710F00872EB3 /* KeyPathsTests-InfixOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818BF1B6A710F00872EB3 /* KeyPathsTests-InfixOperator.swift */; };
 		C41818C41B6A710F00872EB3 /* KeyPathsTests-InstanceKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818C01B6A710F00872EB3 /* KeyPathsTests-InstanceKeyPath.swift */; };
 		C41818C51B6A710F00872EB3 /* KeyPathsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818C11B6A710F00872EB3 /* KeyPathsTests.swift */; };
+		C4FA2EDB1BFE661A00F92789 /* KeyPathRecordingProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = C4FA2ED91BFE661A00F92789 /* KeyPathRecordingProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C4FA2EDC1BFE661A00F92789 /* KeyPathRecordingProxy.mm in Sources */ = {isa = PBXBuildFile; fileRef = C4FA2EDA1BFE661A00F92789 /* KeyPathRecordingProxy.mm */; };
 		C4FEBAFC1BF9196E00A5709B /* CoreDataGlobals.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41818A61B6A673F00872EB3 /* CoreDataGlobals.swift */; };
 		C4FEBAFD1BF9196E00A5709B /* Primitives.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41818A71B6A673F00872EB3 /* Primitives.swift */; };
 		C4FEBAFE1BF9196E00A5709B /* RSSReaderDataGlobals.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41818A81B6A673F00872EB3 /* RSSReaderDataGlobals.swift */; };
@@ -102,7 +103,6 @@
 		C41818631B6A65B100872EB3 /* GEBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GEBase.h; sourceTree = "<group>"; };
 		C41818651B6A65B100872EB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C418186A1B6A65B100872EB3 /* GEBaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GEBaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C418186F1B6A65B100872EB3 /* GEBaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GEBaseTests.swift; sourceTree = "<group>"; };
 		C41818711B6A65B100872EB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C418187A1B6A66AE00872EB3 /* Descriptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Descriptions.swift; sourceTree = "<group>"; };
 		C418187B1B6A66AE00872EB3 /* FetchedObjectBinding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedObjectBinding.swift; sourceTree = "<group>"; };
@@ -124,6 +124,8 @@
 		C41818C01B6A710F00872EB3 /* KeyPathsTests-InstanceKeyPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "KeyPathsTests-InstanceKeyPath.swift"; path = "GEBase/KeyPathsTests-InstanceKeyPath.swift"; sourceTree = SOURCE_ROOT; };
 		C41818C11B6A710F00872EB3 /* KeyPathsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeyPathsTests.swift; path = GEBase/KeyPathsTests.swift; sourceTree = SOURCE_ROOT; };
 		C41818C61B6A713600872EB3 /* TestHostApp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TestHostApp.xcodeproj; path = ../TestHostApp/TestHostApp.xcodeproj; sourceTree = SOURCE_ROOT; };
+		C4FA2ED91BFE661A00F92789 /* KeyPathRecordingProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyPathRecordingProxy.h; sourceTree = "<group>"; };
+		C4FA2EDA1BFE661A00F92789 /* KeyPathRecordingProxy.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = KeyPathRecordingProxy.mm; sourceTree = "<group>"; };
 		C4FEBB191BF91E6600A5709B /* KVOCompliantUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOCompliantUserDefaults.swift; sourceTree = "<group>"; };
 		C4FEBB1C1BF960A300A5709B /* NSBundleExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSBundleExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -180,6 +182,8 @@
 				C418187E1B6A66AE00872EB3 /* GenericURLSessionExtensions.swift */,
 				C41818B01B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift */,
 				C4FEBB1C1BF960A300A5709B /* NSBundleExtensions.swift */,
+				C4FA2ED91BFE661A00F92789 /* KeyPathRecordingProxy.h */,
+				C4FA2EDA1BFE661A00F92789 /* KeyPathRecordingProxy.mm */,
 				C41818841B6A66AE00872EB3 /* KeyPaths.swift */,
 				C41818891B6A66AE00872EB3 /* KVOBinding.swift */,
 				C4FEBB191BF91E6600A5709B /* KVOCompliantUserDefaults.swift */,
@@ -199,7 +203,6 @@
 				C41818BF1B6A710F00872EB3 /* KeyPathsTests-InfixOperator.swift */,
 				C41818C01B6A710F00872EB3 /* KeyPathsTests-InstanceKeyPath.swift */,
 				C41818C11B6A710F00872EB3 /* KeyPathsTests.swift */,
-				C418186F1B6A65B100872EB3 /* GEBaseTests.swift */,
 				C41818711B6A65B100872EB3 /* Info.plist */,
 			);
 			path = GEBaseTests;
@@ -220,6 +223,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4FA2EDB1BFE661A00F92789 /* KeyPathRecordingProxy.h in Headers */,
 				C41818641B6A65B100872EB3 /* GEBase.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,7 +274,7 @@
 		C41818571B6A65B100872EB3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Grigory Entin";
 				TargetAttributes = {
@@ -339,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C41818A41B6A66AE00872EB3 /* ObjectAndKeyPath.swift in Sources */,
+				C4FA2EDC1BFE661A00F92789 /* KeyPathRecordingProxy.mm in Sources */,
 				C41818911B6A66AE00872EB3 /* FetchedObjectBinding.swift in Sources */,
 				C418189F1B6A66AE00872EB3 /* KVOBinding.swift in Sources */,
 				C41818AA1B6A673F00872EB3 /* Primitives.swift in Sources */,
@@ -366,7 +371,6 @@
 				C41818C31B6A710F00872EB3 /* KeyPathsTests-InfixOperator.swift in Sources */,
 				C41818C41B6A710F00872EB3 /* KeyPathsTests-InstanceKeyPath.swift in Sources */,
 				C41818C51B6A710F00872EB3 /* KeyPathsTests.swift in Sources */,
-				C41818701B6A65B100872EB3 /* GEBaseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
