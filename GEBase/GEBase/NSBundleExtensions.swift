@@ -20,6 +20,7 @@ extension NSBundle {
 		}
 		let sharedObjectName = String.fromCString(info.dli_fname)! as NSString
 		let bundle = NSBundle(path: sharedObjectName.stringByDeletingLastPathComponent)!
+		addr.dealloc(length)
 		return bundle
 	}
 }
