@@ -113,7 +113,7 @@ class ItemsListViewController: UITableViewController {
 	}
 	private var containerViewPredicate: NSPredicate {
 		if showUnreadOnly {
-			return NSPredicate(format: "SUBQUERY(\(Item.self••{"categories"}), $x, $x.\(Folder.self••{$0.streamID}) ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
+			return NSPredicate(format: "SUBQUERY(\(Item.self••{$0.categories}), $x, $x.\(Folder.self••{$0.streamID}) ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
 		}
 		else {
 			return NSPredicate(value: true)
@@ -446,10 +446,8 @@ extension ItemsListViewController {
 			let E = Item.self
 			let $ = NSFetchRequest(entityName: E.entityName())
 			$.sortDescriptors =	defaults.itemsAreSortedByLoadDate ? [NSSortDescriptor(key: E••{$0.loadDate}, ascending: false)] : [NSSortDescriptor(key: E••{$0.date}, ascending: false)]
-			let subscriptionKeyPath = E••{"subscription"}
-			let categoriesKeyPath = E••{"categories"}
 			$.predicate = NSCompoundPredicate(andPredicateWithSubpredicates:[
-				container! is Subscription ? NSPredicate(format: "(\(subscriptionKeyPath) == %@)", argumentArray: [container!]) : NSPredicate(format: "(\(categoriesKeyPath) CONTAINS %@)", argumentArray: [container!]),
+				container! is Subscription ? NSPredicate(format: "(\(E••{$0.subscription}) == %@)", argumentArray: [container!]) : NSPredicate(format: "(\(E••{$0.categories}) CONTAINS %@)", argumentArray: [container!]),
 				self.containerViewPredicate
 			])
 			$.fetchBatchSize = 20
