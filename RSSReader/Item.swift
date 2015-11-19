@@ -17,10 +17,10 @@ public class Item: NSManagedObject {
 	@NSManaged public var lastOpenedDate: NSDate?
     @NSManaged public var title: String?
     @NSManaged public var summary: String?
-	@NSManaged var categories: Set<Folder>
+	@NSManaged public var categories: Set<Folder>
 	var mutableCategories: NSMutableSet {
 		return mutableSetValueForKey(self••{$0.categories})
 	}
-	@NSManaged var subscription: Subscription
+	@NSManaged public var subscription: Subscription
 	@NSManaged public var canonical: [[String: String]]?
 }
