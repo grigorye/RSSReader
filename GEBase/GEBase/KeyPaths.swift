@@ -8,15 +8,18 @@
 
 import Foundation
 
-public func recordedInstanceKeyPath<T: NSObject>(x: T?, recorder: ((T!) -> ())!) -> String {
+#if GETypedKeyPaths
+public func instanceKeyPath<T: NSObject>(x: T?, recorder: ((T!) -> ())!) -> String {
 	let proxy = KeyPathRecordingProxy.newProxy()
 	recorder(unsafeBitCast(proxy, T.self))
 	let keyPath = proxy.keyPathComponents.joinWithSeparator(".")
 	return $(keyPath).$(0)
 }
-
+#endif
+#if GEStringKeyPaths
 public func instanceKeyPath<T: NSObject>(x: T?, recorder: (() -> String)!) -> String {
 	let swiftQuery = recorder()
 	let keyPath = String(swiftQuery.characters.filter { $0 != "!" && $0 != "?" })
 	return $(keyPath).$(0)
 }
+#endif

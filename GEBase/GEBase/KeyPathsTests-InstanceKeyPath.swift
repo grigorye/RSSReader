@@ -11,25 +11,28 @@ import XCTest
 import Foundation
 
 extension KeyPathsTests {
-	func testRecordedInstanceKeyPath() {
+#if GETypedKeyPaths
+	func testTypedInstanceKeyPath() {
 		let oldKeyPathRecordingProxyLiveCount = keyPathRecordingProxyLiveCount
-		XCTAssertEqual(recordedInstanceKeyPath(self){$0.string}, "string")
-		XCTAssertEqual(recordedInstanceKeyPath(self){$0.optionalString}, "optionalString")
-		XCTAssertEqual(recordedInstanceKeyPath(self){$0.array}, "array")
-		XCTAssertEqual(recordedInstanceKeyPath(self){$0.optionalArray}, "optionalArray")
-		XCTAssertEqual(recordedInstanceKeyPath(self){$0.setOfStrings}, "setOfStrings")
-		XCTAssertEqual(recordedInstanceKeyPath(self){$0.set}, "set")
-		XCTAssertEqual(recordedInstanceKeyPath(self){$0.optionalSet}, "optionalSet")
-		XCTAssertEqual(recordedInstanceKeyPath(self){$0.dictionary}, "dictionary")
-		XCTAssertEqual(recordedInstanceKeyPath(self){$0.optionalDictionary}, "optionalDictionary")
-		XCTAssertEqual(recordedInstanceKeyPath(self){$0.computedArray}, "computedArray")
-		XCTAssertEqual(recordedInstanceKeyPath(self){$0.optionalObject.string}, "optionalObject.string")
-		XCTAssertEqual(recordedInstanceKeyPath(self){$0.optionalComputedObject.string}, "optionalComputedObject.string")
-		XCTAssertEqual(recordedInstanceKeyPath(self){$0.optionalComputedObject.optionalAnotherObject.computedLength}, "optionalComputedObject.optionalAnotherObject.computedLength")
-		XCTAssertEqual(recordedInstanceKeyPath(self.optionalObject){$0.string}, "string")
+		XCTAssertEqual(instanceKeyPath(self){$0.string}, "string")
+		XCTAssertEqual(instanceKeyPath(self){$0.optionalString}, "optionalString")
+		XCTAssertEqual(instanceKeyPath(self){$0.array}, "array")
+		XCTAssertEqual(instanceKeyPath(self){$0.optionalArray}, "optionalArray")
+		XCTAssertEqual(instanceKeyPath(self){$0.setOfStrings}, "setOfStrings")
+		XCTAssertEqual(instanceKeyPath(self){$0.set}, "set")
+		XCTAssertEqual(instanceKeyPath(self){$0.optionalSet}, "optionalSet")
+		XCTAssertEqual(instanceKeyPath(self){$0.dictionary}, "dictionary")
+		XCTAssertEqual(instanceKeyPath(self){$0.optionalDictionary}, "optionalDictionary")
+		XCTAssertEqual(instanceKeyPath(self){$0.computedArray}, "computedArray")
+		XCTAssertEqual(instanceKeyPath(self){$0.optionalObject.string}, "optionalObject.string")
+		XCTAssertEqual(instanceKeyPath(self){$0.optionalComputedObject.string}, "optionalComputedObject.string")
+		XCTAssertEqual(instanceKeyPath(self){$0.optionalComputedObject.optionalAnotherObject.computedLength}, "optionalComputedObject.optionalAnotherObject.computedLength")
+		XCTAssertEqual(instanceKeyPath(self.optionalObject){$0.string}, "string")
 		XCTAssertEqual(keyPathRecordingProxyLiveCount, oldKeyPathRecordingProxyLiveCount)
 	}
-	func testInstanceKeyPath() {
+#endif
+#if GEStringKeyPaths
+	func testStringInstanceKeyPath() {
 		XCTAssertEqual(instanceKeyPath(self){"string"}, "string")
 		XCTAssertEqual(instanceKeyPath(self){"optionalString"}, "optionalString")
 		XCTAssertEqual(instanceKeyPath(self){"array"}, "array")
@@ -45,4 +48,5 @@ extension KeyPathsTests {
 		XCTAssertEqual(instanceKeyPath(self){"optionalComputedObject.optionalAnotherObject.computedLength"}, "optionalComputedObject.optionalAnotherObject.computedLength")
 		XCTAssertEqual(instanceKeyPath(self.optionalObject){"string"}, "string")
 	}
+#endif
 }
