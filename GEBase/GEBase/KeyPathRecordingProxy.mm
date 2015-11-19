@@ -16,6 +16,11 @@ NSUInteger keyPathRecordingProxyLiveCount;
 
 @implementation KeyPathRecordingProxy
 
++ (instancetype)newProxy;
+{
+	return [KeyPathRecordingProxy alloc];
+}
+
 - (BOOL)isKindOfClass:(Class)aClass;
 {
 	return YES;
