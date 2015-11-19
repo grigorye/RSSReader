@@ -10,10 +10,10 @@
 
 @interface KeyPathRecordingProxy : NSProxy
 
-@property (copy, nonatomic) NSArray *keyPathComponents;
+@property (copy, nonatomic) NSArray<NSString *> * _Nonnull keyPathComponents;
+
++ (instancetype _Nonnull)newProxy;
 
 @end
 
-#if 0
 extern NSUInteger keyPathRecordingProxyLiveCount;
-#endif
