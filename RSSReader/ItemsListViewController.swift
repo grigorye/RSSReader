@@ -13,7 +13,7 @@ import CoreData
 
 extension Item {
 	class func keyPathsForValuesAffectingItemListSectionName() -> Set<String> {
-		return [self••{"date"}, self••{"loadDate"}]
+		return [self••{$0.date}, self••{$0.loadDate}]
 	}
 	func itemsListSectionName() -> String {
 		let timeInterval = self.date.timeIntervalSinceDate(self.date)
@@ -113,9 +113,7 @@ class ItemsListViewController: UITableViewController {
 	}
 	private var containerViewPredicate: NSPredicate {
 		if showUnreadOnly {
-			let itemCategoriesKeyPath = Item.self••{"categories"}
-			let folderStreamIDKeyPath = Folder.self••{"streamID"}
-			return NSPredicate(format: "SUBQUERY(\(itemCategoriesKeyPath), $x, $x.\(folderStreamIDKeyPath) ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
+			return NSPredicate(format: "SUBQUERY(\(Item.self••{"categories"}), $x, $x.\(Folder.self••{$0.streamID}) ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
 		}
 		else {
 			return NSPredicate(value: true)
@@ -373,7 +371,7 @@ class ItemsListViewController: UITableViewController {
 	override func viewWillAppear(animated: Bool) {
 		$(self).$()
 		nowDate = NSDate()
-		let binding = KVOBinding(self•{"loadDate"}, options: [.New, .Initial]) { change in
+		let binding = KVOBinding(self•{$0.loadDate}, options: [.New, .Initial]) { change in
 			$(self.toolbarItems).$()
 			let newValue = change![NSKeyValueChangeNewKey]
 			if let loadDate = nilForNull(newValue!) as! NSDate? {
@@ -447,7 +445,7 @@ extension ItemsListViewController {
 			let container = self.container
 			let E = Item.self
 			let $ = NSFetchRequest(entityName: E.entityName())
-			$.sortDescriptors =	defaults.itemsAreSortedByLoadDate ? [NSSortDescriptor(key: E••{"loadDate"}, ascending: false)] : [NSSortDescriptor(key: E••{"date"}, ascending: false)]
+			$.sortDescriptors =	defaults.itemsAreSortedByLoadDate ? [NSSortDescriptor(key: E••{$0.loadDate}, ascending: false)] : [NSSortDescriptor(key: E••{$0.date}, ascending: false)]
 			let subscriptionKeyPath = E••{"subscription"}
 			let categoriesKeyPath = E••{"categories"}
 			$.predicate = NSCompoundPredicate(andPredicateWithSubpredicates:[
@@ -457,7 +455,7 @@ extension ItemsListViewController {
 			$.fetchBatchSize = 20
 			return $
 		}()
-		let itemLoadDateTimeIntervalSinceReferenceDateKeyPath = Item.self••{"loadDate.timeIntervalSinceReferenceDate"}
+		let itemLoadDateTimeIntervalSinceReferenceDateKeyPath = Item.self••{$0.loadDate.timeIntervalSinceReferenceDate}
 		let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainQueueManagedObjectContext, sectionNameKeyPath: !defaults.itemsAreSortedByLoadDate ? nil : itemLoadDateTimeIntervalSinceReferenceDateKeyPath, cacheName: nil)
 		let $ = TableViewFetchedResultsControllerDelegate(tableView: tableView, fetchedResultsController: fetchedResultsController, configureCell: self.configureCell)
 		fetchedResultsController.delegate = $

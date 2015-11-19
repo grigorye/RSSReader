@@ -77,7 +77,7 @@ extension Subscription {
 		return "Subscription"
 	}
 	class func sortDescriptorsVariants() -> [[NSSortDescriptor]] {
-		return [[NSSortDescriptor(key: self••{"sortID"}, ascending: true)]]
+		return [[NSSortDescriptor(key: self••{$0.sortID}, ascending: true)]]
 	}
 	override func importFromJson(jsonObject: AnyObject) throws {
 		try super.importFromJson(jsonObject)
@@ -90,7 +90,7 @@ extension Subscription {
 			for category in categories {
 				let id = category["id"] as! String
 				let folder = try insertedObjectUnlessFetchedWithID(Folder.self, id: id, managedObjectContext: self.managedObjectContext!)
-				let mutableCategories = self.mutableSetValueForKey(self••{"categories"})
+				let mutableCategories = self.mutableSetValueForKey(self••{$0.categories})
 				mutableCategories.addObject(folder)
 			}
 		}
@@ -112,6 +112,6 @@ extension Folder {
 		return "Folder"
 	}
 	class func sortDescriptors() -> [[NSSortDescriptor]] {
-		return [[NSSortDescriptor(key: self••{"newestItemDate"}, ascending: false)]]
+		return [[NSSortDescriptor(key: self••{$0.newestItemDate}, ascending: false)]]
 	}
 }

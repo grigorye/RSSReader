@@ -26,8 +26,7 @@ var markedAsFavoriteCategory: Folder! = {
 extension Folder {
 	public static func predicateForFetchingFolderWithTagSuffix(tagSuffix: String) -> NSPredicate {
 		let E = Folder.self
-		let streamIDKeyPath = E••{"streamID"}
-		return NSPredicate(format: "\(streamIDKeyPath) ENDSWITH %@", argumentArray: [tagSuffix])
+		return NSPredicate(format: "\(E••{$0.streamID}) ENDSWITH %@", argumentArray: [tagSuffix])
 	}
 	public static func fetchRequestForFolderWithTagSuffix(tagSuffix: String) -> NSFetchRequest {
 		let $ = NSFetchRequest(entityName: Folder.entityName())

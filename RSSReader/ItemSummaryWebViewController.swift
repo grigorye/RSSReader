@@ -147,7 +147,7 @@ class ItemSummaryWebViewController: UIViewController {
 	override func viewWillAppear(animated: Bool) {
 		for i in blocksScheduledForViewWillAppear { i() }
 		blocksScheduledForViewWillAppear = []
-		viewDidDisappearRetainedObjects += [KVOBinding(self•{"item.markedAsFavorite"}, options: .Initial) { [unowned self] change in
+		viewDidDisappearRetainedObjects += [KVOBinding(self•{$0.item.markedAsFavorite}, options: .Initial) { [unowned self] change in
 			let excludedBarButtonItem = self.item.markedAsFavorite ? self.markAsFavoriteBarButtonItem : self.unmarkAsFavoriteBarButtonItem
 			let rightBarButtonItems = self.savedRightBarButtonItems.filter {
 				return $0 != excludedBarButtonItem

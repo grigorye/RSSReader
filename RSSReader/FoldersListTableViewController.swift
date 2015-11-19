@@ -17,14 +17,14 @@ class FoldersListTableViewController: UITableViewController, UIDataSourceModelAs
 	dynamic let defaults = KVOCompliantUserDefaults()
 	//
 	class var keyPathsForValuesAffectingShowUnreadOnly: Set<String> {
-		return [self••{"defaults.showUnreadOnly"}]
+		return [self••{$0.defaults.showUnreadOnly}]
 	}
 	private dynamic var showUnreadOnly: Bool {
 		return defaults.showUnreadOnly
 	}
 	//
 	class var keyPathsForValuesAffectingRegeneratedChildContainers: Set<String> {
-		return [self••{"rootFolder!.childContainers"}, self••{"showUnreadOnly"}]
+		return [self••{$0.rootFolder!.childContainers}, self••{$0.showUnreadOnly}]
 	}
 	private dynamic var regeneratedChildContainers: [Container] {
 		let regeneratedChildContainers: [Container] = {
@@ -190,12 +190,12 @@ class FoldersListTableViewController: UITableViewController, UIDataSourceModelAs
 		for i in blocksScheduledForViewWillAppear { i() }
 		blocksScheduledForViewWillAppear = []
 		super.viewWillAppear(animated)
-		viewDidDisappearRetainedObjects += [KVOBinding(self•{"regeneratedChildContainers"}, options: .Initial) { [unowned self] change in
+		viewDidDisappearRetainedObjects += [KVOBinding(self•{$0.regeneratedChildContainers}, options: .Initial) { [unowned self] change in
 			$(change).$(0)
 			self.childContainers = self.regeneratedChildContainers
 			self.tableView.reloadData()
 		}]
-		viewDidDisappearRetainedObjects += [KVOBinding(self•{"foldersController.foldersUpdateStateRaw"}, options: .Initial) { [unowned self] change in
+		viewDidDisappearRetainedObjects += [KVOBinding(self•{$0.foldersController.foldersUpdateStateRaw}, options: .Initial) { [unowned self] change in
 			assert(NSThread.isMainThread())
 			$(change).$(1)
 			let foldersUpdateState = self.foldersController.foldersUpdateState
