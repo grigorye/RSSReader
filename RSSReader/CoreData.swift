@@ -7,6 +7,7 @@
 //
 
 import GEBase
+import GEKeyPaths
 import CoreData
 import Foundation
 

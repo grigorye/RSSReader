@@ -8,6 +8,7 @@
 
 import RSSReaderData
 import GEBase
+import GEKeyPaths
 import UIKit
 
 class ItemsPageViewController : UIPageViewController {

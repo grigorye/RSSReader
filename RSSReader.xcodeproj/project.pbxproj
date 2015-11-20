@@ -139,6 +139,20 @@
 			remoteGlobalIDString = C4CDD39C1A5350B40087DD05;
 			remoteInfo = RSSReader;
 		};
+		C475E2B21BFFDA5000145406 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C475E2AD1BFFDA5000145406 /* GEKeyPaths.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C475E25F1BFFD0EC00145406;
+			remoteInfo = GEKeyPaths;
+		};
+		C475E2B41BFFDA5000145406 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C475E2AD1BFFDA5000145406 /* GEKeyPaths.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C475E2691BFFD0EC00145406;
+			remoteInfo = GEKeyPathsTests;
+		};
 		C499E3CD1B6CDD6A00F67BEE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C469C1131B5BA24300D238F6 /* TestHostApp.xcodeproj */;
@@ -308,6 +322,7 @@
 		C46FA8681AA56018004B5C45 /* UITableView+SnappingHeaderToTop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+SnappingHeaderToTop.swift"; sourceTree = "<group>"; };
 		C4728B371A55BA6600D4251A /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Subscription.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C4728B391A55BAC600D4251A /* CoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CoreData.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		C475E2AD1BFFDA5000145406 /* GEKeyPaths.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GEKeyPaths.xcodeproj; path = GEKeyPaths/GEKeyPaths.xcodeproj; sourceTree = "<group>"; };
 		C48C5F8A1A867D3D00A1EA12 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		C48C5F941A8695BF00A1EA12 /* libFlurry_6.0.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_6.0.0.a; path = Flurry/libFlurry_6.0.0.a; sourceTree = "<group>"; };
 		C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ItemsPageViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -462,6 +477,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C475E2AE1BFFDA5000145406 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C475E2B31BFFDA5000145406 /* GEKeyPaths.framework */,
+				C475E2B51BFFDA5000145406 /* GEKeyPathsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		C49540A21A57827300F56168 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -534,6 +558,7 @@
 			isa = PBXGroup;
 			children = (
 				C465808A1A8D4AE3000DF359 /* Podfile */,
+				C475E2AD1BFFDA5000145406 /* GEKeyPaths.xcodeproj */,
 				C41818B21B6A6C9500872EB3 /* GEBase.xcodeproj */,
 				C40C6BFB1A73C6DF00FAFA17 /* RSSReader-app.xcconfig */,
 				C469C1131B5BA24300D238F6 /* TestHostApp.xcodeproj */,
@@ -784,6 +809,10 @@
 					ProjectRef = C41818B21B6A6C9500872EB3 /* GEBase.xcodeproj */;
 				},
 				{
+					ProductGroup = C475E2AE1BFFDA5000145406 /* Products */;
+					ProjectRef = C475E2AD1BFFDA5000145406 /* GEKeyPaths.xcodeproj */;
+				},
+				{
 					ProductGroup = C499E3C61B6CDD6A00F67BEE /* Products */;
 					ProjectRef = C469C1131B5BA24300D238F6 /* TestHostApp.xcodeproj */;
 				},
@@ -812,6 +841,20 @@
 			fileType = wrapper.cfbundle;
 			path = GEBaseTests.xctest;
 			remoteRef = C41818B91B6A6C9500872EB3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C475E2B31BFFDA5000145406 /* GEKeyPaths.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GEKeyPaths.framework;
+			remoteRef = C475E2B21BFFDA5000145406 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C475E2B51BFFDA5000145406 /* GEKeyPathsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = GEKeyPathsTests.xctest;
+			remoteRef = C475E2B41BFFDA5000145406 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		C499E3CE1B6CDD6A00F67BEE /* TestHostApp.app */ = {

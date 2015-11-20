@@ -6,8 +6,9 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
-import CoreData
 import GEBase
+import GEKeyPaths
+import CoreData
 
 public class Container: NSManagedObject {
     @NSManaged public var streamID: String
