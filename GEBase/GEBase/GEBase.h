@@ -25,5 +25,3 @@ int backtrace(void** array, int size);
 #ifdef __cplusplus
 }
 #endif
-
-#import "KeyPathRecordingProxy.h"

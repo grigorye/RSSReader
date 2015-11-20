@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
+import GEKeyPaths
 import Foundation
 
 private let KVOBindingContext = UnsafeMutablePointer<Void>.alloc(1)

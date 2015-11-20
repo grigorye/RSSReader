@@ -14,22 +14,13 @@
 		C41818921B6A66AE00872EB3 /* GenericCoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C418187C1B6A66AE00872EB3 /* GenericCoreDataExtensions.swift */; };
 		C41818931B6A66AE00872EB3 /* GenericExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C418187D1B6A66AE00872EB3 /* GenericExtensions.swift */; };
 		C41818941B6A66AE00872EB3 /* GenericURLSessionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C418187E1B6A66AE00872EB3 /* GenericURLSessionExtensions.swift */; };
-		C418189A1B6A66AE00872EB3 /* KeyPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818841B6A66AE00872EB3 /* KeyPaths.swift */; };
 		C418189F1B6A66AE00872EB3 /* KVOBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818891B6A66AE00872EB3 /* KVOBinding.swift */; };
-		C41818A21B6A66AE00872EB3 /* ObjectAndKeyPath-GeneratorFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C418188C1B6A66AE00872EB3 /* ObjectAndKeyPath-GeneratorFunction.swift */; };
-		C41818A31B6A66AE00872EB3 /* ObjectAndKeyPath-InfixOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C418188D1B6A66AE00872EB3 /* ObjectAndKeyPath-InfixOperator.swift */; };
-		C41818A41B6A66AE00872EB3 /* ObjectAndKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = C418188E1B6A66AE00872EB3 /* ObjectAndKeyPath.swift */; };
 		C41818A51B6A66AE00872EB3 /* ProgressEnabledURLSessionTaskGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C418188F1B6A66AE00872EB3 /* ProgressEnabledURLSessionTaskGenerator.swift */; };
 		C41818A91B6A673F00872EB3 /* CoreDataGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818A61B6A673F00872EB3 /* CoreDataGlobals.swift */; };
 		C41818AA1B6A673F00872EB3 /* Primitives.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818A71B6A673F00872EB3 /* Primitives.swift */; };
 		C41818AB1B6A673F00872EB3 /* RSSReaderDataGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818A81B6A673F00872EB3 /* RSSReaderDataGlobals.swift */; };
 		C41818B11B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818B01B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift */; };
-		C41818C21B6A710F00872EB3 /* KeyPathsTests-GeneratorFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818BE1B6A710F00872EB3 /* KeyPathsTests-GeneratorFunction.swift */; };
-		C41818C31B6A710F00872EB3 /* KeyPathsTests-InfixOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818BF1B6A710F00872EB3 /* KeyPathsTests-InfixOperator.swift */; };
-		C41818C41B6A710F00872EB3 /* KeyPathsTests-InstanceKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818C01B6A710F00872EB3 /* KeyPathsTests-InstanceKeyPath.swift */; };
-		C41818C51B6A710F00872EB3 /* KeyPathsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818C11B6A710F00872EB3 /* KeyPathsTests.swift */; };
-		C4FA2EDB1BFE661A00F92789 /* KeyPathRecordingProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = C4FA2ED91BFE661A00F92789 /* KeyPathRecordingProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C4FA2EDC1BFE661A00F92789 /* KeyPathRecordingProxy.mm in Sources */ = {isa = PBXBuildFile; fileRef = C4FA2EDA1BFE661A00F92789 /* KeyPathRecordingProxy.mm */; };
+		C475E2BA1BFFDB0D00145406 /* GEKeyPaths.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C475E2B91BFFDB0D00145406 /* GEKeyPaths.framework */; };
 		C4FEBAFC1BF9196E00A5709B /* CoreDataGlobals.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41818A61B6A673F00872EB3 /* CoreDataGlobals.swift */; };
 		C4FEBAFD1BF9196E00A5709B /* Primitives.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41818A71B6A673F00872EB3 /* Primitives.swift */; };
 		C4FEBAFE1BF9196E00A5709B /* RSSReaderDataGlobals.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41818A81B6A673F00872EB3 /* RSSReaderDataGlobals.swift */; };
@@ -39,11 +30,7 @@
 		C4FEBB021BF9196E00A5709B /* GenericExtensions.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C418187D1B6A66AE00872EB3 /* GenericExtensions.swift */; };
 		C4FEBB031BF9196E00A5709B /* GenericURLSessionExtensions.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C418187E1B6A66AE00872EB3 /* GenericURLSessionExtensions.swift */; };
 		C4FEBB041BF9196E00A5709B /* ManagedObjectContextAutosaver.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41818B01B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift */; };
-		C4FEBB061BF9196E00A5709B /* KeyPaths.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41818841B6A66AE00872EB3 /* KeyPaths.swift */; };
 		C4FEBB071BF9196E00A5709B /* KVOBinding.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41818891B6A66AE00872EB3 /* KVOBinding.swift */; };
-		C4FEBB081BF9196E00A5709B /* ObjectAndKeyPath-GeneratorFunction.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C418188C1B6A66AE00872EB3 /* ObjectAndKeyPath-GeneratorFunction.swift */; };
-		C4FEBB091BF9196E00A5709B /* ObjectAndKeyPath-InfixOperator.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C418188D1B6A66AE00872EB3 /* ObjectAndKeyPath-InfixOperator.swift */; };
-		C4FEBB0A1BF9196E00A5709B /* ObjectAndKeyPath.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C418188E1B6A66AE00872EB3 /* ObjectAndKeyPath.swift */; };
 		C4FEBB0B1BF9196E00A5709B /* ProgressEnabledURLSessionTaskGenerator.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C418188F1B6A66AE00872EB3 /* ProgressEnabledURLSessionTaskGenerator.swift */; };
 		C4FEBB1A1BF91E6600A5709B /* KVOCompliantUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FEBB191BF91E6600A5709B /* KVOCompliantUserDefaults.swift */; };
 		C4FEBB1B1BF94CF800A5709B /* KVOCompliantUserDefaults.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4FEBB191BF91E6600A5709B /* KVOCompliantUserDefaults.swift */; };
@@ -86,11 +73,7 @@
 				C4FEBB021BF9196E00A5709B /* GenericExtensions.swift in Embed Sources */,
 				C4FEBB031BF9196E00A5709B /* GenericURLSessionExtensions.swift in Embed Sources */,
 				C4FEBB041BF9196E00A5709B /* ManagedObjectContextAutosaver.swift in Embed Sources */,
-				C4FEBB061BF9196E00A5709B /* KeyPaths.swift in Embed Sources */,
 				C4FEBB071BF9196E00A5709B /* KVOBinding.swift in Embed Sources */,
-				C4FEBB081BF9196E00A5709B /* ObjectAndKeyPath-GeneratorFunction.swift in Embed Sources */,
-				C4FEBB091BF9196E00A5709B /* ObjectAndKeyPath-InfixOperator.swift in Embed Sources */,
-				C4FEBB0A1BF9196E00A5709B /* ObjectAndKeyPath.swift in Embed Sources */,
 				C4FEBB0B1BF9196E00A5709B /* ProgressEnabledURLSessionTaskGenerator.swift in Embed Sources */,
 			);
 			name = "Embed Sources";
@@ -109,23 +92,14 @@
 		C418187C1B6A66AE00872EB3 /* GenericCoreDataExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericCoreDataExtensions.swift; sourceTree = "<group>"; };
 		C418187D1B6A66AE00872EB3 /* GenericExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericExtensions.swift; sourceTree = "<group>"; };
 		C418187E1B6A66AE00872EB3 /* GenericURLSessionExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericURLSessionExtensions.swift; sourceTree = "<group>"; };
-		C41818841B6A66AE00872EB3 /* KeyPaths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyPaths.swift; sourceTree = "<group>"; };
 		C41818891B6A66AE00872EB3 /* KVOBinding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOBinding.swift; sourceTree = "<group>"; };
-		C418188C1B6A66AE00872EB3 /* ObjectAndKeyPath-GeneratorFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObjectAndKeyPath-GeneratorFunction.swift"; sourceTree = "<group>"; };
-		C418188D1B6A66AE00872EB3 /* ObjectAndKeyPath-InfixOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObjectAndKeyPath-InfixOperator.swift"; sourceTree = "<group>"; };
-		C418188E1B6A66AE00872EB3 /* ObjectAndKeyPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectAndKeyPath.swift; sourceTree = "<group>"; };
 		C418188F1B6A66AE00872EB3 /* ProgressEnabledURLSessionTaskGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressEnabledURLSessionTaskGenerator.swift; sourceTree = "<group>"; };
 		C41818A61B6A673F00872EB3 /* CoreDataGlobals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataGlobals.swift; sourceTree = "<group>"; };
 		C41818A71B6A673F00872EB3 /* Primitives.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Primitives.swift; sourceTree = "<group>"; };
 		C41818A81B6A673F00872EB3 /* RSSReaderDataGlobals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSReaderDataGlobals.swift; sourceTree = "<group>"; };
 		C41818B01B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectContextAutosaver.swift; sourceTree = "<group>"; };
-		C41818BE1B6A710F00872EB3 /* KeyPathsTests-GeneratorFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "KeyPathsTests-GeneratorFunction.swift"; path = "GEBase/KeyPathsTests-GeneratorFunction.swift"; sourceTree = SOURCE_ROOT; };
-		C41818BF1B6A710F00872EB3 /* KeyPathsTests-InfixOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "KeyPathsTests-InfixOperator.swift"; path = "GEBase/KeyPathsTests-InfixOperator.swift"; sourceTree = SOURCE_ROOT; };
-		C41818C01B6A710F00872EB3 /* KeyPathsTests-InstanceKeyPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "KeyPathsTests-InstanceKeyPath.swift"; path = "GEBase/KeyPathsTests-InstanceKeyPath.swift"; sourceTree = SOURCE_ROOT; };
-		C41818C11B6A710F00872EB3 /* KeyPathsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeyPathsTests.swift; path = GEBase/KeyPathsTests.swift; sourceTree = SOURCE_ROOT; };
 		C41818C61B6A713600872EB3 /* TestHostApp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TestHostApp.xcodeproj; path = ../TestHostApp/TestHostApp.xcodeproj; sourceTree = SOURCE_ROOT; };
-		C4FA2ED91BFE661A00F92789 /* KeyPathRecordingProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyPathRecordingProxy.h; sourceTree = "<group>"; };
-		C4FA2EDA1BFE661A00F92789 /* KeyPathRecordingProxy.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = KeyPathRecordingProxy.mm; sourceTree = "<group>"; };
+		C475E2B91BFFDB0D00145406 /* GEKeyPaths.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GEKeyPaths.framework; path = "../GEKeyPaths/build/Debug-iphoneos/GEKeyPaths.framework"; sourceTree = "<group>"; };
 		C4FEBB191BF91E6600A5709B /* KVOCompliantUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOCompliantUserDefaults.swift; sourceTree = "<group>"; };
 		C4FEBB1C1BF960A300A5709B /* NSBundleExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSBundleExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -135,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C475E2BA1BFFDB0D00145406 /* GEKeyPaths.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +127,7 @@
 		C41818561B6A65B100872EB3 = {
 			isa = PBXGroup;
 			children = (
+				C475E2B91BFFDB0D00145406 /* GEKeyPaths.framework */,
 				C41818C61B6A713600872EB3 /* TestHostApp.xcodeproj */,
 				C41818621B6A65B100872EB3 /* GEBase */,
 				C418186E1B6A65B100872EB3 /* GEBaseTests */,
@@ -182,14 +158,8 @@
 				C418187E1B6A66AE00872EB3 /* GenericURLSessionExtensions.swift */,
 				C41818B01B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift */,
 				C4FEBB1C1BF960A300A5709B /* NSBundleExtensions.swift */,
-				C4FA2ED91BFE661A00F92789 /* KeyPathRecordingProxy.h */,
-				C4FA2EDA1BFE661A00F92789 /* KeyPathRecordingProxy.mm */,
-				C41818841B6A66AE00872EB3 /* KeyPaths.swift */,
 				C41818891B6A66AE00872EB3 /* KVOBinding.swift */,
 				C4FEBB191BF91E6600A5709B /* KVOCompliantUserDefaults.swift */,
-				C418188C1B6A66AE00872EB3 /* ObjectAndKeyPath-GeneratorFunction.swift */,
-				C418188D1B6A66AE00872EB3 /* ObjectAndKeyPath-InfixOperator.swift */,
-				C418188E1B6A66AE00872EB3 /* ObjectAndKeyPath.swift */,
 				C418188F1B6A66AE00872EB3 /* ProgressEnabledURLSessionTaskGenerator.swift */,
 				C41818651B6A65B100872EB3 /* Info.plist */,
 			);
@@ -199,10 +169,6 @@
 		C418186E1B6A65B100872EB3 /* GEBaseTests */ = {
 			isa = PBXGroup;
 			children = (
-				C41818BE1B6A710F00872EB3 /* KeyPathsTests-GeneratorFunction.swift */,
-				C41818BF1B6A710F00872EB3 /* KeyPathsTests-InfixOperator.swift */,
-				C41818C01B6A710F00872EB3 /* KeyPathsTests-InstanceKeyPath.swift */,
-				C41818C11B6A710F00872EB3 /* KeyPathsTests.swift */,
 				C41818711B6A65B100872EB3 /* Info.plist */,
 			);
 			path = GEBaseTests;
@@ -223,7 +189,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C4FA2EDB1BFE661A00F92789 /* KeyPathRecordingProxy.h in Headers */,
 				C41818641B6A65B100872EB3 /* GEBase.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,13 +307,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C41818A41B6A66AE00872EB3 /* ObjectAndKeyPath.swift in Sources */,
-				C4FA2EDC1BFE661A00F92789 /* KeyPathRecordingProxy.mm in Sources */,
 				C41818911B6A66AE00872EB3 /* FetchedObjectBinding.swift in Sources */,
 				C418189F1B6A66AE00872EB3 /* KVOBinding.swift in Sources */,
 				C41818AA1B6A673F00872EB3 /* Primitives.swift in Sources */,
 				C41818AB1B6A673F00872EB3 /* RSSReaderDataGlobals.swift in Sources */,
-				C418189A1B6A66AE00872EB3 /* KeyPaths.swift in Sources */,
 				C41818941B6A66AE00872EB3 /* GenericURLSessionExtensions.swift in Sources */,
 				C4FEBB1D1BF960A300A5709B /* NSBundleExtensions.swift in Sources */,
 				C41818A91B6A673F00872EB3 /* CoreDataGlobals.swift in Sources */,
@@ -356,8 +318,6 @@
 				C41818921B6A66AE00872EB3 /* GenericCoreDataExtensions.swift in Sources */,
 				C41818B11B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift in Sources */,
 				C41818901B6A66AE00872EB3 /* Descriptions.swift in Sources */,
-				C41818A21B6A66AE00872EB3 /* ObjectAndKeyPath-GeneratorFunction.swift in Sources */,
-				C41818A31B6A66AE00872EB3 /* ObjectAndKeyPath-InfixOperator.swift in Sources */,
 				C41818931B6A66AE00872EB3 /* GenericExtensions.swift in Sources */,
 				C4FEBB1A1BF91E6600A5709B /* KVOCompliantUserDefaults.swift in Sources */,
 			);
@@ -367,10 +327,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C41818C21B6A710F00872EB3 /* KeyPathsTests-GeneratorFunction.swift in Sources */,
-				C41818C31B6A710F00872EB3 /* KeyPathsTests-InfixOperator.swift in Sources */,
-				C41818C41B6A710F00872EB3 /* KeyPathsTests-InstanceKeyPath.swift in Sources */,
-				C41818C51B6A710F00872EB3 /* KeyPathsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,7 +378,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "-DGETypedKeyPaths";
@@ -465,7 +421,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_SWIFT_FLAGS = "-DGETypedKeyPaths";
 				SDKROOT = iphoneos;
@@ -486,7 +442,6 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = GEBase/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.grigoryentin.GEBase;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -505,7 +460,6 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = GEBase/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.grigoryentin.GEBase;
 				PRODUCT_NAME = "$(TARGET_NAME)";
