@@ -7,7 +7,14 @@
 //
 
 #import "KeyPathRecordingProxy.h"
+#import <Foundation/NSSet.h>
+#import <Foundation/NSDictionary.h>
+#import <Foundation/NSString.h>
+#import <Foundation/NSInvocation.h>
+#import <Foundation/NSMethodSignature.h>
 #import <objc/runtime.h>
+#import <assert.h>
+#import <string.h>
 
 #define let auto const
 #define var auto
@@ -51,7 +58,7 @@ NSUInteger keyPathRecordingProxyLiveCount;
 
 - (void)forwardInvocation:(NSInvocation *)invocation;
 {
-	SEL selector = invocation.selector;
+	let selector = invocation.selector;
 	// String bridging
 	{
 		if (sel_isEqual(selector, @selector(copy))) {

@@ -6,7 +6,8 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <Foundation/NSProxy.h>
+#import <Foundation/NSArray.h>
 
 @interface KeyPathRecordingProxy : NSProxy
 
