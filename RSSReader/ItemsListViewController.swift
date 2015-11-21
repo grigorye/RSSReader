@@ -59,11 +59,18 @@ private var fetchResultsAreAnimated: Bool {
 }
 
 class ItemsListViewController: UITableViewController {
+	static let Self_ = ItemsListViewController.self
 	final var container: Container?
-	var containerViewState: RSSReaderData.ContainerViewState? {
+	class var keyPathsForValuesAffectingContainerViewState: Set<String> {
+		return [Self_••{$0.containerViewPredicate}]
+	}
+	lazy var containerViewStates: [RSSReaderData.ContainerViewState] = {
+		return Array(self.container!.viewStates)
+	}()
+	dynamic var containerViewState: RSSReaderData.ContainerViewState? {
 		let container = self.container!
 		let containerViewPredicate = self.containerViewPredicate
-		if let existingViewState = (container.viewStates.filter { $0.containerViewPredicate.isEqual(containerViewPredicate) }).first {
+		if let existingViewState = (self.containerViewStates.filter { $0.containerViewPredicate.isEqual(containerViewPredicate) }).first {
 			return existingViewState
 		}
 		else {
@@ -72,12 +79,17 @@ class ItemsListViewController: UITableViewController {
 			let newViewState = NSEntityDescription.insertNewObjectForEntityForName("ContainerViewState", inManagedObjectContext: managedObjectContext) as! RSSReaderData.ContainerViewState
 			newViewState.container = container
 			newViewState.containerViewPredicate = containerViewPredicate
+			containerViewStates += [newViewState]
 			return newViewState
 		}
 	}
+	private var ongoingLoadDate: NSDate?
 	private var continuation: String? {
 		set { containerViewState!.continuation = newValue }
 		get { return containerViewState!.continuation }
+	}
+	class var keyPathsForValuesAffectingLoadDate: Set<String> {
+		return [Self_••{$0.containerViewState!.loadDate}]
 	}
 	private dynamic var loadDate: NSDate? {
 		set { containerViewState!.loadDate = newValue }
@@ -106,11 +118,14 @@ class ItemsListViewController: UITableViewController {
 	@IBOutlet private var statusBarButtonItem: UIBarButtonItem!
 	@IBOutlet private var filterUnreadBarButtonItem: UIBarButtonItem!
 	@IBOutlet private var unfilterUnreadBarButtonItem: UIBarButtonItem!
-	private var showUnreadOnly = false
+	private dynamic var showUnreadOnly = false
 	private func regeneratedRightBarButtonItems() -> [UIBarButtonItem] {
 		let excludedItems = [(showUnreadOnly ?  self.filterUnreadBarButtonItem : self.unfilterUnreadBarButtonItem)!]
 		let $ = loadedRightBarButtonItems.filter { nil == excludedItems.indexOf($0) }
 		return $
+	}
+	class var keyPathsForValuesAffectingContainerViewPredicate: Set<String> {
+		return [Self_.self••{$0.showUnreadOnly}]
 	}
 	private var containerViewPredicate: NSPredicate {
 		if showUnreadOnly {
@@ -130,15 +145,19 @@ class ItemsListViewController: UITableViewController {
 		assert(!loadInProgress)
 		assert(!loadCompleted)
 		assert(nil == loadError)
-		if nil == self.continuation {
-			self.loadDate = NSDate()
+		let originalContinuation = self.continuation
+		if nil == originalContinuation {
+			self.ongoingLoadDate = NSDate()
 		}
-		let loadDate = self.loadDate
+		else if nil == self.ongoingLoadDate {
+			self.ongoingLoadDate = self.loadDate!
+		}
+		let ongoingLoadDate = self.ongoingLoadDate!
 		loadInProgress = true
 		let excludedCategory: Folder? = showUnreadOnly ? Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: mainQueueManagedObjectContext) : nil
-		rssSession!.streamContents(container!, excludedCategory: excludedCategory, continuation: self.continuation, loadDate: loadDate!) { continuation, items, streamError in
+		rssSession!.streamContents(container!, excludedCategory: excludedCategory, continuation: self.continuation, loadDate: ongoingLoadDate) { continuation, items, streamError in
 			dispatch_async(dispatch_get_main_queue()) {
-				if loadDate != self.loadDate {
+				if ongoingLoadDate != $(self.ongoingLoadDate).$() {
 					// Ignore results from previous sessions.
 					completionHandler(loadDateDidChange: true)
 					return
@@ -148,6 +167,12 @@ class ItemsListViewController: UITableViewController {
 					self.presentErrorMessage(NSLocalizedString("Failed to load more.", comment: ""))
 				}
 				else {
+					if nil == originalContinuation {
+						self.loadDate = ongoingLoadDate
+					}
+					else {
+						assert(self.loadDate == ongoingLoadDate)
+					}
 					if let lastItemInCompletion = $(items).$().last {
 						let managedObjectContext = self.fetchedResultsController.managedObjectContext
 						let lastLoadedItem = managedObjectContext.sameObject(lastItemInCompletion)
@@ -198,6 +223,7 @@ class ItemsListViewController: UITableViewController {
 	func reloadViewForNewConfiguration() {
 		self.navigationItem.rightBarButtonItems = regeneratedRightBarButtonItems()
 		self.fetchedResultsControllerDelegate = self.regeneratedFetchedResultsControllerDelegate()
+		self.ongoingLoadDate = nil
 		try! self.fetchedResultsController.performFetch()
 		self.tableView.reloadData()
 		self.loadMoreIfNecessary()
@@ -378,6 +404,9 @@ class ItemsListViewController: UITableViewController {
 			if let loadDate = nilForNull(newValue!) as! NSDate? {
 				let loadAgo = loadAgoDateComponentsFormatter.stringFromDate(loadDate, toDate: NSDate())
 				self.presentInfoMessage(NSLocalizedString("Updated \(loadAgo!) ago", comment: ""))
+			}
+			else {
+				self.presentInfoMessage(NSLocalizedString("Not updated before", comment: ""))
 			}
  		}
 		for i in blocksDelayedTillViewWillAppear {
