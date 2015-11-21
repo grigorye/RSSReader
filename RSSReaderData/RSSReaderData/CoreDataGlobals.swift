@@ -1,6 +1,6 @@
 //
 //  CoreDataGlobals.swift
-//  RSSReader
+//  RSSReaderData
 //
 //  Created by Grigory Entin on 18.07.15.
 //  Copyright © 2015 Grigory Entin. All rights reserved.
@@ -20,7 +20,7 @@ public let (managedObjectContextError, mainQueueManagedObjectContext, background
 		if !fileManager.fileExistsAtPath(documentsDirectoryURL.path!) {
 			try fileManager.createDirectoryAtURL(documentsDirectoryURL, withIntermediateDirectories: true, attributes: nil)
 		}
-		let storeURL = documentsDirectoryURL.URLByAppendingPathComponent("RSSReader.sqlite")
+		let storeURL = documentsDirectoryURL.URLByAppendingPathComponent("RSSReaderData.sqlite")
 		$(fileManager.fileExistsAtPath(storeURL.path!)).$()
 		if NSUserDefaults().boolForKey("forceStoreRemoval") {
 			let fileManager = NSFileManager.defaultManager()

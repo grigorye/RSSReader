@@ -1,6 +1,6 @@
 //
 //  CoreData.swift
-//  RSSReader
+//  RSSReaderData
 //
 //  Created by Grigory Entin on 01.01.15.
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.

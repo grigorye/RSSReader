@@ -1,6 +1,6 @@
 //
 //  RSSSessionTests.swift
-//  RSSReader
+//  RSSReaderData
 //
 //  Created by Grigory Entin on 08.07.15.
 //  Copyright © 2015 Grigory Entin. All rights reserved.
