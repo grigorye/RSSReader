@@ -1,6 +1,6 @@
 //
 //  KeyPathsTests-InfixOperator.swift
-//  RSSReader
+//  GEKeyPaths
 //
 //  Created by Grigory Entin on 20.04.15.
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
