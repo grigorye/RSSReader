@@ -16,12 +16,10 @@
 		C41818941B6A66AE00872EB3 /* GenericURLSessionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C418187E1B6A66AE00872EB3 /* GenericURLSessionExtensions.swift */; };
 		C418189F1B6A66AE00872EB3 /* KVOBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818891B6A66AE00872EB3 /* KVOBinding.swift */; };
 		C41818A51B6A66AE00872EB3 /* ProgressEnabledURLSessionTaskGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C418188F1B6A66AE00872EB3 /* ProgressEnabledURLSessionTaskGenerator.swift */; };
-		C41818A91B6A673F00872EB3 /* CoreDataGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818A61B6A673F00872EB3 /* CoreDataGlobals.swift */; };
 		C41818AA1B6A673F00872EB3 /* Primitives.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818A71B6A673F00872EB3 /* Primitives.swift */; };
 		C41818AB1B6A673F00872EB3 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818A81B6A673F00872EB3 /* Globals.swift */; };
 		C41818B11B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818B01B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift */; };
 		C475E2BA1BFFDB0D00145406 /* GEKeyPaths.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C475E2B91BFFDB0D00145406 /* GEKeyPaths.framework */; };
-		C4FEBAFC1BF9196E00A5709B /* CoreDataGlobals.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41818A61B6A673F00872EB3 /* CoreDataGlobals.swift */; };
 		C4FEBAFD1BF9196E00A5709B /* Primitives.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41818A71B6A673F00872EB3 /* Primitives.swift */; };
 		C4FEBAFE1BF9196E00A5709B /* Globals.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41818A81B6A673F00872EB3 /* Globals.swift */; };
 		C4FEBAFF1BF9196E00A5709B /* Descriptions.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C418187A1B6A66AE00872EB3 /* Descriptions.swift */; };
@@ -64,7 +62,6 @@
 			files = (
 				C4FEBB1E1BF96B7800A5709B /* NSBundleExtensions.swift in Embed Sources */,
 				C4FEBB1B1BF94CF800A5709B /* KVOCompliantUserDefaults.swift in Embed Sources */,
-				C4FEBAFC1BF9196E00A5709B /* CoreDataGlobals.swift in Embed Sources */,
 				C4FEBAFD1BF9196E00A5709B /* Primitives.swift in Embed Sources */,
 				C4FEBAFE1BF9196E00A5709B /* Globals.swift in Embed Sources */,
 				C4FEBAFF1BF9196E00A5709B /* Descriptions.swift in Embed Sources */,
@@ -94,7 +91,6 @@
 		C418187E1B6A66AE00872EB3 /* GenericURLSessionExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericURLSessionExtensions.swift; sourceTree = "<group>"; };
 		C41818891B6A66AE00872EB3 /* KVOBinding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOBinding.swift; sourceTree = "<group>"; };
 		C418188F1B6A66AE00872EB3 /* ProgressEnabledURLSessionTaskGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressEnabledURLSessionTaskGenerator.swift; sourceTree = "<group>"; };
-		C41818A61B6A673F00872EB3 /* CoreDataGlobals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataGlobals.swift; sourceTree = "<group>"; };
 		C41818A71B6A673F00872EB3 /* Primitives.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Primitives.swift; sourceTree = "<group>"; };
 		C41818A81B6A673F00872EB3 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		C41818B01B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectContextAutosaver.swift; sourceTree = "<group>"; };
@@ -148,7 +144,6 @@
 			isa = PBXGroup;
 			children = (
 				C41818631B6A65B100872EB3 /* GEBase.h */,
-				C41818A61B6A673F00872EB3 /* CoreDataGlobals.swift */,
 				C41818A71B6A673F00872EB3 /* Primitives.swift */,
 				C41818A81B6A673F00872EB3 /* Globals.swift */,
 				C418187A1B6A66AE00872EB3 /* Descriptions.swift */,
@@ -313,7 +308,6 @@
 				C41818AB1B6A673F00872EB3 /* Globals.swift in Sources */,
 				C41818941B6A66AE00872EB3 /* GenericURLSessionExtensions.swift in Sources */,
 				C4FEBB1D1BF960A300A5709B /* NSBundleExtensions.swift in Sources */,
-				C41818A91B6A673F00872EB3 /* CoreDataGlobals.swift in Sources */,
 				C41818A51B6A66AE00872EB3 /* ProgressEnabledURLSessionTaskGenerator.swift in Sources */,
 				C41818921B6A66AE00872EB3 /* GenericCoreDataExtensions.swift in Sources */,
 				C41818B11B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift in Sources */,
