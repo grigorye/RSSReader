@@ -50,6 +50,8 @@
 		C46FA8691AA56018004B5C45 /* UITableView+SnappingHeaderToTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46FA8681AA56018004B5C45 /* UITableView+SnappingHeaderToTop.swift */; };
 		C48C5F8B1A867D3D00A1EA12 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48C5F8A1A867D3D00A1EA12 /* MobileCoreServices.framework */; };
 		C48C5F971A87344000A1EA12 /* ItemsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */; };
+		C48F798E1C0079A700CC6F74 /* GEKeyPaths.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C475E2B31BFFDA5000145406 /* GEKeyPaths.framework */; };
+		C48F798F1C0079A700CC6F74 /* GEKeyPaths.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C475E2B31BFFDA5000145406 /* GEKeyPaths.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C495409B1A575C1900F56168 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495409A1A575C1900F56168 /* UserDefaults.swift */; };
 		C49540A11A57825100F56168 /* ItemsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49540A01A57825100F56168 /* ItemsListViewController.swift */; };
 		C49540A51A57906600F56168 /* ItemSummaryWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */; };
@@ -153,6 +155,13 @@
 			remoteGlobalIDString = C475E2691BFFD0EC00145406;
 			remoteInfo = GEKeyPathsTests;
 		};
+		C48F79901C0079A700CC6F74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C475E2AD1BFFDA5000145406 /* GEKeyPaths.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = C475E25E1BFFD0EC00145406;
+			remoteInfo = GEKeyPaths;
+		};
 		C499E3CD1B6CDD6A00F67BEE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C469C1131B5BA24300D238F6 /* TestHostApp.xcodeproj */;
@@ -250,6 +259,7 @@
 			files = (
 				C41818BD1B6A709800872EB3 /* GEBase.framework in Embed Frameworks */,
 				C4EA13BB1B5ACA2900A127AF /* RSSReaderData.framework in Embed Frameworks */,
+				C48F798F1C0079A700CC6F74 /* GEKeyPaths.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -391,6 +401,7 @@
 				C40C6BF51A72F17100FAFA17 /* SystemConfiguration.framework in Frameworks */,
 				C4EA13BA1B5ACA2900A127AF /* RSSReaderData.framework in Frameworks */,
 				C40C6BF31A72F0BC00FAFA17 /* AVFoundation.framework in Frameworks */,
+				C48F798E1C0079A700CC6F74 /* GEKeyPaths.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -696,6 +707,7 @@
 			);
 			dependencies = (
 				C4EA13B91B5ACA2900A127AF /* PBXTargetDependency */,
+				C48F79911C0079A700CC6F74 /* PBXTargetDependency */,
 			);
 			name = RSSReader;
 			productName = RSSReader;
@@ -1068,6 +1080,11 @@
 			isa = PBXTargetDependency;
 			target = C4CDD39C1A5350B40087DD05 /* RSSReader */;
 			targetProxy = C444F5411B2E53F200A6E378 /* PBXContainerItemProxy */;
+		};
+		C48F79911C0079A700CC6F74 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GEKeyPaths;
+			targetProxy = C48F79901C0079A700CC6F74 /* PBXContainerItemProxy */;
 		};
 		C4CDD3B61A5350B50087DD05 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
