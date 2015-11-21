@@ -6,7 +6,6 @@
 //  Copyright © 2015 Grigory Entin. All rights reserved.
 //
 
-import RSSReaderData
 import GEBase
 import CoreData.NSFetchedResultsController
 import UIKit.UITableView
@@ -26,7 +25,7 @@ class TableViewFetchedResultsControllerDelegate: NSObject, NSFetchedResultsContr
 		precondition(controller == fetchedResultsController)
 		$(controller).$()
 		let managedObjectContext = controller.managedObjectContext
-		assert(managedObjectContext == mainQueueManagedObjectContext)
+		assert(managedObjectContext.concurrencyType == .MainQueueConcurrencyType)
 		for updatedObject in managedObjectContext.updatedObjects {
 			$($(updatedObject).$().changedValues()).$()
 		}
