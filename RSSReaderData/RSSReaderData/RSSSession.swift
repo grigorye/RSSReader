@@ -165,6 +165,10 @@ extension RSSSession {
 		let command = mark ? "a" : "r"
 		let path = "/reader/api/0/edit-tag?\(command)=\(tag)&i=\(item.itemID)"
 		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithPath(path) { data, httpResponse, error in
+			if let data = data {
+				let body = NSString(data: data, encoding: NSUTF8StringEncoding)
+				$(body).$()
+			}
 			completionHandler(error)
 		}!
 		sessionTask.resume()

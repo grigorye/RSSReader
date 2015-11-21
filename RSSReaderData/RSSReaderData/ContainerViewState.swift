@@ -16,4 +16,7 @@ public class ContainerViewState: NSManagedObject {
     @NSManaged public var loadCompleted: Bool
     @NSManaged public var lastLoadedItem: Item?
     @NSManaged public var container: Container?
+	
+	deinit {
+	}
 }
