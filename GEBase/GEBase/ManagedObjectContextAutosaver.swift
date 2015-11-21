@@ -9,13 +9,13 @@
 import Foundation
 import CoreData
 
-class ManagedObjectContextAutosaver: NSObject {
+public class ManagedObjectContextAutosaver: NSObject {
 	let notificationCenter = NSNotificationCenter.defaultCenter()
 	let observer: AnyObject
 	deinit {
 		notificationCenter.removeObserver(observer)
 	}
-	init(managedObjectContext: NSManagedObjectContext, queue: NSOperationQueue?) {
+	public init(managedObjectContext: NSManagedObjectContext, queue: NSOperationQueue?) {
 		observer = notificationCenter.addObserverForName(NSManagedObjectContextObjectsDidChangeNotification, object: managedObjectContext, queue: queue, usingBlock: { notification in
 			$(notification).$()
 			managedObjectContext.performBlock {
