@@ -48,8 +48,8 @@
 		C46FA8691AA56018004B5C45 /* UITableView+SnappingHeaderToTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46FA8681AA56018004B5C45 /* UITableView+SnappingHeaderToTop.swift */; };
 		C48C5F8B1A867D3D00A1EA12 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48C5F8A1A867D3D00A1EA12 /* MobileCoreServices.framework */; };
 		C48C5F971A87344000A1EA12 /* ItemsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */; };
-		C48F798E1C0079A700CC6F74 /* GEKeyPaths.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C475E2B31BFFDA5000145406 /* GEKeyPaths.framework */; };
 		C48F798F1C0079A700CC6F74 /* GEKeyPaths.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C475E2B31BFFDA5000145406 /* GEKeyPaths.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C48F7A141C0095E400CC6F74 /* RSSReaderData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C48F79BE1C008D7300CC6F74 /* RSSReaderData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C495409B1A575C1900F56168 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495409A1A575C1900F56168 /* UserDefaults.swift */; };
 		C49540A11A57825100F56168 /* ItemsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49540A01A57825100F56168 /* ItemsListViewController.swift */; };
 		C49540A51A57906600F56168 /* ItemSummaryWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */; };
@@ -146,6 +146,13 @@
 			remoteGlobalIDString = C48F799D1C008D0D00CC6F74;
 			remoteInfo = RSSReaderData;
 		};
+		C48F7A151C0095EE00CC6F74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C41818B21B6A6C9500872EB3 /* GEBase.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = C418185F1B6A65B100872EB3;
+			remoteInfo = GEBase;
+		};
 		C499E3CD1B6CDD6A00F67BEE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C469C1131B5BA24300D238F6 /* TestHostApp.xcodeproj */;
@@ -208,6 +215,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				C48F7A141C0095E400CC6F74 /* RSSReaderData.framework in Embed Frameworks */,
 				C41818BD1B6A709800872EB3 /* GEBase.framework in Embed Frameworks */,
 				C48F798F1C0079A700CC6F74 /* GEKeyPaths.framework in Embed Frameworks */,
 			);
@@ -310,7 +318,6 @@
 				C40C6BF71A72F23C00FAFA17 /* CoreMedia.framework in Frameworks */,
 				C40C6BF51A72F17100FAFA17 /* SystemConfiguration.framework in Frameworks */,
 				C40C6BF31A72F0BC00FAFA17 /* AVFoundation.framework in Frameworks */,
-				C48F798E1C0079A700CC6F74 /* GEKeyPaths.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,6 +573,7 @@
 			);
 			dependencies = (
 				C48F7A121C00919B00CC6F74 /* PBXTargetDependency */,
+				C48F7A161C0095EE00CC6F74 /* PBXTargetDependency */,
 				C48F79911C0079A700CC6F74 /* PBXTargetDependency */,
 			);
 			name = RSSReader;
@@ -871,6 +879,11 @@
 			isa = PBXTargetDependency;
 			name = RSSReaderData;
 			targetProxy = C48F7A111C00919B00CC6F74 /* PBXContainerItemProxy */;
+		};
+		C48F7A161C0095EE00CC6F74 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GEBase;
+			targetProxy = C48F7A151C0095EE00CC6F74 /* PBXContainerItemProxy */;
 		};
 		C4CDD3B61A5350B50087DD05 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
