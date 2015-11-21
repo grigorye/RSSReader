@@ -22,6 +22,16 @@
 		C48F79E31C008E6A00CC6F74 /* RSSReader.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C48F79D51C008E6A00CC6F74 /* RSSReader.xcdatamodeld */; };
 		C48F79E51C008F1900CC6F74 /* KVOCompliantUserDefaults+RSSReaderData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48F79E41C008F1900CC6F74 /* KVOCompliantUserDefaults+RSSReaderData.swift */; };
 		C48F79FD1C008FEE00CC6F74 /* LoginAndPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48F79FC1C008FEE00CC6F74 /* LoginAndPassword.swift */; };
+		C48F7A181C00971500CC6F74 /* LoginAndPassword.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79FC1C008FEE00CC6F74 /* LoginAndPassword.swift */; };
+		C48F7A191C00971500CC6F74 /* RSSSession.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79C51C008DDF00CC6F74 /* RSSSession.swift */; };
+		C48F7A1A1C00971500CC6F74 /* Folder.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79C71C008DF100CC6F74 /* Folder.swift */; };
+		C48F7A1B1C00971500CC6F74 /* Container.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79C81C008DF100CC6F74 /* Container.swift */; };
+		C48F7A1C1C00971500CC6F74 /* Subscription.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79C91C008DF100CC6F74 /* Subscription.swift */; };
+		C48F7A1D1C00971500CC6F74 /* Item.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79CA1C008DF100CC6F74 /* Item.swift */; };
+		C48F7A1E1C00971500CC6F74 /* CoreData.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79CF1C008E0B00CC6F74 /* CoreData.swift */; };
+		C48F7A1F1C00971500CC6F74 /* ContainerViewState.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79D11C008E1D00CC6F74 /* ContainerViewState.swift */; };
+		C48F7A201C00971500CC6F74 /* MarkingAsRead.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79D31C008E3900CC6F74 /* MarkingAsRead.swift */; };
+		C48F7A211C00971500CC6F74 /* KVOCompliantUserDefaults+RSSReaderData.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79E41C008F1900CC6F74 /* KVOCompliantUserDefaults+RSSReaderData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +85,29 @@
 			remoteInfo = GEKeyPaths;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C48F7A171C00970200CC6F74 /* Embed Sources */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Sources;
+			dstSubfolderSpec = 7;
+			files = (
+				C48F7A181C00971500CC6F74 /* LoginAndPassword.swift in Embed Sources */,
+				C48F7A191C00971500CC6F74 /* RSSSession.swift in Embed Sources */,
+				C48F7A1A1C00971500CC6F74 /* Folder.swift in Embed Sources */,
+				C48F7A1B1C00971500CC6F74 /* Container.swift in Embed Sources */,
+				C48F7A1C1C00971500CC6F74 /* Subscription.swift in Embed Sources */,
+				C48F7A1D1C00971500CC6F74 /* Item.swift in Embed Sources */,
+				C48F7A1E1C00971500CC6F74 /* CoreData.swift in Embed Sources */,
+				C48F7A1F1C00971500CC6F74 /* ContainerViewState.swift in Embed Sources */,
+				C48F7A201C00971500CC6F74 /* MarkingAsRead.swift in Embed Sources */,
+				C48F7A211C00971500CC6F74 /* KVOCompliantUserDefaults+RSSReaderData.swift in Embed Sources */,
+			);
+			name = "Embed Sources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C48F799E1C008D0D00CC6F74 /* RSSReaderData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RSSReaderData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -220,6 +253,7 @@
 				C48F799A1C008D0D00CC6F74 /* Frameworks */,
 				C48F799B1C008D0D00CC6F74 /* Headers */,
 				C48F799C1C008D0D00CC6F74 /* Resources */,
+				C48F7A171C00970200CC6F74 /* Embed Sources */,
 			);
 			buildRules = (
 			);
