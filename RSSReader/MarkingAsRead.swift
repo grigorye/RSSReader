@@ -56,13 +56,12 @@ public extension Item {
 		if (newValue && oldValue) || (!newValue && !oldValue) {
 		}
 		else {
-			let mutableCategories = self.mutableCategories
 			if newValue {
 				let folder = Folder.folderWithTagSuffix(tagSuffix, managedObjectContext: self.managedObjectContext!)!
-				mutableCategories.addObject(folder)
+				self.categories.insert(folder)
 			}
 			else {
-				mutableCategories.removeObject(self.categoryForTagSuffix(tagSuffix)!)
+				self.categories.remove(self.categoryForTagSuffix(tagSuffix)!)
 			}
 		}
 	}
@@ -73,10 +72,10 @@ public extension Item {
 		}
 		set {
 			if newValue {
-				mutableCategories.addObject(markedAsFavoriteCategory)
+				self.categories.insert(markedAsFavoriteCategory)
 			}
 			else {
-				mutableCategories.removeObject(markedAsFavoriteCategory)
+				self.categories.remove(markedAsFavoriteCategory)
 			}
 		}
 	}
@@ -95,10 +94,10 @@ public extension Item {
 					category.unreadCount += unreadCountDelta
 				}
 				if newValue {
-					mutableCategories.addObject(markedAsReadCategory)
+					self.categories.insert(markedAsReadCategory)
 				}
 				else {
-					mutableCategories.removeObject(markedAsReadCategory)
+					self.categories.remove(markedAsReadCategory)
 				}
 			}
 		}

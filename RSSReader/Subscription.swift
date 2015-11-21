@@ -16,9 +16,6 @@ public class Subscription: Container, Titled {
     @NSManaged public var iconURL: NSURL?
     @NSManaged public var url: NSURL?
 	@NSManaged var categories: Set<Folder>
-	var mutableCategories: NSMutableSet {
-		return mutableSetValueForKey(self••{$0.categories})
-	}
 	@NSManaged var items: Set<Item>
 	public var visibleTitle: String? {
 		return title

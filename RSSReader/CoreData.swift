@@ -66,9 +66,8 @@ extension Item : ManagedIdentifiable {
 				let folder = try insertedObjectUnlessFetchedWithID(Folder.self, id: categoryID, managedObjectContext: managedObjectContext)
 				categories += [folder]
 			}
-			let mutableCategories = self.mutableCategories
-			mutableCategories.removeAllObjects()
-			mutableCategories.addObjectsFromArray(categories)
+			self.categories.removeAll()
+			self.categories.unionInPlace(categories)
 		}
 	}
 }
@@ -91,8 +90,7 @@ extension Subscription {
 			for category in categories {
 				let id = category["id"] as! String
 				let folder = try insertedObjectUnlessFetchedWithID(Folder.self, id: id, managedObjectContext: self.managedObjectContext!)
-				let mutableCategories = self.mutableSetValueForKey(self••{$0.categories})
-				mutableCategories.addObject(folder)
+				self.categories.insert(folder)
 			}
 		}
 	}

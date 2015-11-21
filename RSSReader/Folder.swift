@@ -12,9 +12,6 @@ import CoreData
 public class Folder : Container, Titled {
 	@NSManaged public var childContainers: NSOrderedSet
 	@NSManaged var items: Set<Item>
-	var mutableItems: NSMutableSet {
-		return mutableSetValueForKey(self••{$0.items})
-	}
 	public var visibleTitle: String? {
 		return (streamID as NSString).lastPathComponent
 	}
