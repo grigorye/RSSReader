@@ -13,5 +13,6 @@ extension KVOCompliantUserDefaults {
 
 	@NSManaged var itemsAreSortedByLoadDate: Bool
 	@NSManaged var authToken: String?
+	@NSManaged var batchSavingDisabled: Bool
 
 }
