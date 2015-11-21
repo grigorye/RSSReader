@@ -8,18 +8,15 @@
 
 import Foundation
 
-public extension NSUserDefaults {
-	public var batchSavingDisabled: Bool {
-		return self.boolForKey("batchSavingDisabled")
-	}
+extension KVOCompliantUserDefaults {
 	var traceEnabled: Bool {
-		return self.boolForKey("traceEnabled")
+		return NSUserDefaults.standardUserDefaults().boolForKey("traceEnabled")
 	}
 	var traceLabelsEnabled: Bool {
-		return self.boolForKey("traceLabelsEnabled")
+		return NSUserDefaults.standardUserDefaults().boolForKey("traceLabelsEnabled")
 	}
 }
 
-public let defaults = NSUserDefaults()
+public let defaults = KVOCompliantUserDefaults()
 
 public let progressEnabledURLSessionTaskGenerator = ProgressEnabledURLSessionTaskGenerator()
