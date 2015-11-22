@@ -8,12 +8,15 @@
 
 import Foundation
 
+var traceLabelsEnabledEnforced: Bool?
+var traceEnabledEnforced: Bool?
+
 extension KVOCompliantUserDefaults {
 	var traceEnabled: Bool {
-		return NSUserDefaults.standardUserDefaults().boolForKey("traceEnabled")
+		return traceEnabledEnforced ?? NSUserDefaults.standardUserDefaults().boolForKey("traceEnabled")
 	}
 	var traceLabelsEnabled: Bool {
-		return NSUserDefaults.standardUserDefaults().boolForKey("traceLabelsEnabled")
+		return traceLabelsEnabledEnforced ?? NSUserDefaults.standardUserDefaults().boolForKey("traceLabelsEnabled")
 	}
 }
 
