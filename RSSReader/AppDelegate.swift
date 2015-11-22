@@ -88,9 +88,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 	var foldersViewController: FoldersListTableViewController {
 		return foldersNavigationController.viewControllers.first as! FoldersListTableViewController
 	}
-	var favoritesViewController: ItemsListViewController {
-		return (tabBarController.viewControllers![1] as! UINavigationController).viewControllers.first as! ItemsListViewController
-	}
+	lazy var favoritesViewController: ItemsListViewController = {
+		let self_ = UIApplication.sharedApplication().delegate! as! AppDelegate
+		let $ = (self_.tabBarController.viewControllers![1] as! UINavigationController).viewControllers.first as! ItemsListViewController
+		configureFavoritesItemsListViewController($)
+		return $
+	}()
 	var loginAndPassword: LoginAndPassword {
 		return defaults.loginAndPassword
 	}
