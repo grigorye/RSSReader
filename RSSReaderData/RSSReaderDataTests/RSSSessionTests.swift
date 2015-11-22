@@ -6,8 +6,9 @@
 //  Copyright © 2015 Grigory Entin. All rights reserved.
 //
 
-import XCTest
 @testable import RSSReaderData
+import GEBase
+import XCTest
 
 class RSSSessionTests: XCTestCase {
     
@@ -22,8 +23,7 @@ class RSSSessionTests: XCTestCase {
     }
     
     func testExample() {
-		let defaults = KVOCompliantUserDefaults()
-		let loginAndPassword = defaults.loginAndPassword
+		let loginAndPassword = LoginAndPassword(login: "x", password: "y")
 		let session = RSSSession(loginAndPassword: loginAndPassword)
 		$(session).$()
     }
