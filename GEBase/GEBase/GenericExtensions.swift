@@ -41,8 +41,8 @@ public struct SourceLocation {
 	}
 }
 
-func columnsDescriptionFromLocation(firstLocation: SourceLocation, lastLocation: SourceLocation) -> String {
-	return "[\(firstLocation.column)-\(lastLocation.column)]"
+func descriptionForInLineLocation(firstLocation: SourceLocation, lastLocation: SourceLocation) -> String {
+	return "[\(firstLocation.column)-\(lastLocation.column - 3)]"
 }
 
 func labelFromLocation(firstLocation: SourceLocation, lastLocation: SourceLocation) -> String {
@@ -56,10 +56,10 @@ func labelFromLocation(firstLocation: SourceLocation, lastLocation: SourceLocati
 	let bundleName = (bundle.bundlePath as NSString).lastPathComponent
 	guard let file = bundle.pathForResource(resourceName, ofType: resourceType, inDirectory: "Sources") else {
 		// File missing in the bundle
-		return "\(bundleName)/\(resourceName).\(resourceType)[!exist]:\(columnsDescriptionFromLocation(firstLocation, lastLocation: lastLocation)):?"
+		return "\(bundleName)/\(resourceName).\(resourceType)[!exist]:\(descriptionForInLineLocation(firstLocation, lastLocation: lastLocation)):?"
 	}
 	guard let text = try? NSString(contentsOfFile: file, encoding: NSUTF8StringEncoding) else {
-		return "\(bundleName)/\(resourceName).\(resourceType)[!read]:\(columnsDescriptionFromLocation(firstLocation, lastLocation: lastLocation)):?"
+		return "\(bundleName)/\(resourceName).\(resourceType)[!read]:\(descriptionForInLineLocation(firstLocation, lastLocation: lastLocation)):?"
 	}
 	let lines = text.componentsSeparatedByString("\n")
 	let range = NSRange(location: (firstLocation.column - 1), length: (lastLocation.column - firstLocation.column - 3))
@@ -75,11 +75,15 @@ public func labeledString(string: String, location: SourceLocation, lastLocation
 	return labeledString
 }
 
-public func traceString(string: String, location: SourceLocation, lastLocation: SourceLocation) {
-	let labelSuffix = !traceLabelsEnabled ? columnsDescriptionFromLocation(location, lastLocation: lastLocation) : {
+func messageForTracedString(string: String, location: SourceLocation, lastLocation: SourceLocation) -> String {
+	let labelSuffix = !traceLabelsEnabled ? descriptionForInLineLocation(location, lastLocation: lastLocation) : {
 		return ": \(labelFromLocation(location, lastLocation: lastLocation))"
 	}()
 	let message = "\(location.fileURL.lastPathComponent!), \(location.function).\(location.line)\(labelSuffix): \(string)"
+	return message
+}
+
+var traceMessage: String -> () = { message in
 #if ANALYTICS_ENABLED
 #if CRASHLYTICS_ENABLED
 	CLSLogv("%@", getVaList([message]))
@@ -91,6 +95,11 @@ public func traceString(string: String, location: SourceLocation, lastLocation: 
 	else {
 		print(message)
 	}
+}
+
+public func traceString(string: String, location: SourceLocation, lastLocation: SourceLocation) {
+	let message = messageForTracedString(string, location: location, lastLocation: lastLocation)
+	traceMessage(message)
 }
 
 public struct Traceable<T> {
