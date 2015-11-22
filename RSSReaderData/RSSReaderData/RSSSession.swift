@@ -83,7 +83,7 @@ extension RSSSession {
 			return $.URL!
 		}()
 		let url = NSURL(string: relativeString, relativeToURL: baseURL)!
-		return self.dataTaskForAuthenticatedHTTPRequestWithURL(url, completionHandler: completionHandler)
+		return self.dataTaskForAuthenticatedHTTPRequestWithURL($(url).$(), completionHandler: completionHandler)
 	}
 	// MARK: -
 	public func authenticate(completionHandler: (ErrorType?) -> Void) {
@@ -324,10 +324,10 @@ extension RSSSession {
 	public func streamContents(container: Container, excludedCategory: Folder?, continuation: String?, loadDate: NSDate, completionHandler: (continuation: String?, items: [Item]!, error: ErrorType?) -> Void) {
 		var queryComponents = [String]()
 		if let continuation = continuation {
-			queryComponents += ["c=\(continuation)"]
+			queryComponents += ["c=\($(continuation).$())"]
 		}
 		if let excludedCategory = excludedCategory {
-			queryComponents += ["xt=\(excludedCategory.streamID)"]
+			queryComponents += ["xt=\($(excludedCategory.streamID).$())"]
 		}
 		let subscriptionIDPercentEncoded = container.streamID.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())!
 		let querySuffix = URLQuerySuffixFromComponents(queryComponents)
