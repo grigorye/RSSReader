@@ -73,7 +73,6 @@
 		C4F575D61A7988DB00F12F20 /* OpenWebPageActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F575D51A7988DB00F12F20 /* OpenWebPageActivity.swift */; };
 		C4FEBAF71BF807A600A5709B /* ContainedViewControllersAwareNavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FEBAF61BF807A600A5709B /* ContainedViewControllersAwareNavigationControllerDelegate.swift */; };
 		C4FEBB0C1BF919D500A5709B /* ContainedViewControllersAwareNavigationControllerDelegate.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4FEBAF61BF807A600A5709B /* ContainedViewControllersAwareNavigationControllerDelegate.swift */; };
-		C4FEBB0E1BF919EF00A5709B /* CoreDataFetchRequestsTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4362B2C1B567C06003AEEE5 /* CoreDataFetchRequestsTests.swift */; };
 		C4FEBB0F1BF919EF00A5709B /* TableViewFetchedResultsControllerDelegate.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4C0261E1B5281B7005452D1 /* TableViewFetchedResultsControllerDelegate.swift */; };
 		C4FEBB221BF96E4200A5709B /* KVOCompliantUserDefaults+RSSReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FEBB211BF96E4200A5709B /* KVOCompliantUserDefaults+RSSReader.swift */; };
 		C4FEBB231BF9712200A5709B /* KVOCompliantUserDefaults+RSSReader.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4FEBB211BF96E4200A5709B /* KVOCompliantUserDefaults+RSSReader.swift */; };
@@ -178,7 +177,6 @@
 			files = (
 				C4FEBB261BF9742300A5709B /* UINavigationItem+MultipleButtonItemsCollections.swift in Embed Sources */,
 				C4FEBB231BF9712200A5709B /* KVOCompliantUserDefaults+RSSReader.swift in Embed Sources */,
-				C4FEBB0E1BF919EF00A5709B /* CoreDataFetchRequestsTests.swift in Embed Sources */,
 				C4FEBB0F1BF919EF00A5709B /* TableViewFetchedResultsControllerDelegate.swift in Embed Sources */,
 				C4FEBB0C1BF919D500A5709B /* ContainedViewControllersAwareNavigationControllerDelegate.swift in Embed Sources */,
 				C41F05631AD0E3AB00A659EC /* UserMessages.swift in Embed Sources */,
@@ -248,7 +246,6 @@
 		C41707CA1A56076A00AED81C /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		C41818B21B6A6C9500872EB3 /* GEBase.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GEBase.xcodeproj; path = GEBase/GEBase.xcodeproj; sourceTree = "<group>"; };
 		C42802681A5B47EA002474E1 /* FoldersListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FoldersListTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		C4362B2C1B567C06003AEEE5 /* CoreDataFetchRequestsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataFetchRequestsTests.swift; sourceTree = "<group>"; };
 		C444F53C1B2E53F200A6E378 /* RSSReaderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RSSReaderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C444F53E1B2E53F200A6E378 /* RSSReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSReaderUITests.swift; sourceTree = "<group>"; };
 		C444F5401B2E53F200A6E378 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -356,7 +353,6 @@
 		C418B32D1A594705002C0578 /* Generic */ = {
 			isa = PBXGroup;
 			children = (
-				C4362B2C1B567C06003AEEE5 /* CoreDataFetchRequestsTests.swift */,
 				C46FA8681AA56018004B5C45 /* UITableView+SnappingHeaderToTop.swift */,
 				C4FEBB241BF9721500A5709B /* UINavigationItem+MultipleButtonItemsCollections.swift */,
 				C4C0261E1B5281B7005452D1 /* TableViewFetchedResultsControllerDelegate.swift */,
@@ -436,21 +432,23 @@
 			name = UI;
 			sourceTree = "<group>";
 		};
-		C49540A31A5782B900F56168 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				C41707CA1A56076A00AED81C /* Globals.swift */,
-				C495409A1A575C1900F56168 /* UserDefaults.swift */,
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
 		C499E3C61B6CDD6A00F67BEE /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				C499E3CE1B6CDD6A00F67BEE /* TestHostApp.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C4B4374C1C00EC2100A2F3BE /* Projects */ = {
+			isa = PBXGroup;
+			children = (
+				C48F79B81C008D7300CC6F74 /* RSSReaderData.xcodeproj */,
+				C475E2AD1BFFDA5000145406 /* GEKeyPaths.xcodeproj */,
+				C41818B21B6A6C9500872EB3 /* GEBase.xcodeproj */,
+				C469C1131B5BA24300D238F6 /* TestHostApp.xcodeproj */,
+			);
+			name = Projects;
 			sourceTree = "<group>";
 		};
 		C4C780121A7DEAAA009CB5FC /* UI Activities */ = {
@@ -469,11 +467,8 @@
 			isa = PBXGroup;
 			children = (
 				C465808A1A8D4AE3000DF359 /* Podfile */,
-				C48F79B81C008D7300CC6F74 /* RSSReaderData.xcodeproj */,
-				C475E2AD1BFFDA5000145406 /* GEKeyPaths.xcodeproj */,
-				C41818B21B6A6C9500872EB3 /* GEBase.xcodeproj */,
+				C4B4374C1C00EC2100A2F3BE /* Projects */,
 				C40C6BFB1A73C6DF00FAFA17 /* RSSReader-app.xcconfig */,
-				C469C1131B5BA24300D238F6 /* TestHostApp.xcodeproj */,
 				C4CDD39F1A5350B40087DD05 /* RSSReader */,
 				C4CDD3B71A5350B50087DD05 /* RSSReaderTests */,
 				C44FCA5F1A8AF9CF00C91544 /* XcodeBotScripts */,
@@ -498,11 +493,12 @@
 			isa = PBXGroup;
 			children = (
 				C40C6C051A74AB5E00FAFA17 /* RSSReader-Bridging-Header.h */,
+				C41707CA1A56076A00AED81C /* Globals.swift */,
+				C495409A1A575C1900F56168 /* UserDefaults.swift */,
 				C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */,
 				C4C327F11AF30CB400119573 /* FoldersController.swift */,
 				C4EF270D1A8D353C000EBE63 /* UserMessages.swift */,
 				C418B32D1A594705002C0578 /* Generic */,
-				C49540A31A5782B900F56168 /* Model */,
 				C49540A21A57827300F56168 /* UI */,
 				C4CDD3A01A5350B40087DD05 /* Supporting Files */,
 				C4CDD3C41A5357B20087DD05 /* Settings.bundle */,
