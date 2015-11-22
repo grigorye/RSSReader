@@ -142,8 +142,7 @@
 		C41818561B6A65B100872EB3 = {
 			isa = PBXGroup;
 			children = (
-				C4B4373B1C00A95100A2F3BE /* GEKeyPaths.xcodeproj */,
-				C41818C61B6A713600872EB3 /* TestHostApp.xcodeproj */,
+				C4B4374D1C00EC3F00A2F3BE /* Projects */,
 				C41818621B6A65B100872EB3 /* GEBase */,
 				C418186E1B6A65B100872EB3 /* GEBaseTests */,
 				C41818611B6A65B100872EB3 /* Products */,
@@ -203,6 +202,15 @@
 				C4B437431C00A95200A2F3BE /* GEKeyPathsTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C4B4374D1C00EC3F00A2F3BE /* Projects */ = {
+			isa = PBXGroup;
+			children = (
+				C4B4373B1C00A95100A2F3BE /* GEKeyPaths.xcodeproj */,
+				C41818C61B6A713600872EB3 /* TestHostApp.xcodeproj */,
+			);
+			name = Projects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
