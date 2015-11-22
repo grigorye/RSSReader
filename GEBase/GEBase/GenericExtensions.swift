@@ -41,38 +41,43 @@ public struct SourceLocation {
 	}
 }
 
-func labelFromLocations(firstLocation: SourceLocation, lastLocation: SourceLocation) -> String {
+func columnsDescriptionFromLocation(firstLocation: SourceLocation, lastLocation: SourceLocation) -> String {
+	return "[\(firstLocation.column)-\(lastLocation.column)]"
+}
+
+func labelFromLocation(firstLocation: SourceLocation, lastLocation: SourceLocation) -> String {
 	let fileURL = firstLocation.fileURL
 	let resourceName = fileURL.URLByDeletingPathExtension!.lastPathComponent!
 	let resourceType = fileURL.pathExtension!
 	guard let bundle = firstLocation.bundle else {
+		// Console
 		return "\(resourceName).\(resourceType):?"
 	}
+	let bundleName = (bundle.bundlePath as NSString).lastPathComponent
 	guard let file = bundle.pathForResource(resourceName, ofType: resourceType, inDirectory: "Sources") else {
-		return "\(bundle)/\(resourceName).\(resourceType):?"
+		// File missing in the bundle
+		return "\(bundleName)/\(resourceName).\(resourceType)[!exist]:\(columnsDescriptionFromLocation(firstLocation, lastLocation: lastLocation)):?"
 	}
-	let text: NSString?
-	do {
-		text = try NSString(contentsOfFile: file, encoding: NSUTF8StringEncoding)
-	} catch {
-		text = nil
+	guard let text = try? NSString(contentsOfFile: file, encoding: NSUTF8StringEncoding) else {
+		return "\(bundleName)/\(resourceName).\(resourceType)[!read]:\(columnsDescriptionFromLocation(firstLocation, lastLocation: lastLocation)):?"
 	}
-	let lines = (text?.componentsSeparatedByString("\n"))!
-	let range = NSRange(location: firstLocation.column - 1, length: lastLocation.column - firstLocation.column-3)
+	let lines = text.componentsSeparatedByString("\n")
+	let range = NSRange(location: (firstLocation.column - 1), length: (lastLocation.column - firstLocation.column - 3))
 	return (lines[firstLocation.line - 1] as NSString).substringWithRange(range)
 }
 
 public func labeledString(string: String, location: SourceLocation, lastLocation: SourceLocation) -> String {
-	let labelSuffix = !traceLabelsEnabled ? "[\(location.column)-\(lastLocation.column)]" : {
-		return "\(labelFromLocations(location, lastLocation: lastLocation))"
-	}()
-	let labeledString = "\(labelSuffix): \(string)"
+	guard traceLabelsEnabled else {
+		return string
+	}
+	let label = labelFromLocation(location, lastLocation: lastLocation)
+	let labeledString = "\(label): \(string)"
 	return labeledString
 }
 
 public func traceString(string: String, location: SourceLocation, lastLocation: SourceLocation) {
-	let labelSuffix = !traceLabelsEnabled ? "[\(location.column)-\(lastLocation.column)]" : {
-		return ": \(labelFromLocations(location, lastLocation: lastLocation))"
+	let labelSuffix = !traceLabelsEnabled ? columnsDescriptionFromLocation(location, lastLocation: lastLocation) : {
+		return ": \(labelFromLocation(location, lastLocation: lastLocation))"
 	}()
 	let message = "\(location.fileURL.lastPathComponent!), \(location.function).\(location.line)\(labelSuffix): \(string)"
 #if ANALYTICS_ENABLED
