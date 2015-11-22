@@ -28,11 +28,6 @@ NSUInteger keyPathRecordingProxyLiveCount;
 	return [KeyPathRecordingProxy alloc];
 }
 
-- (BOOL)isKindOfClass:(Class)aClass;
-{
-	return YES;
-}
-
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)sel;
 {
 	if (sel_isEqual(sel, @selector(count))) {
@@ -46,9 +41,6 @@ NSUInteger keyPathRecordingProxyLiveCount;
 	}
 	else if (sel_isEqual(sel, @selector(enumerateKeysAndObjectsUsingBlock:))) {
 		return [NSDictionary instanceMethodSignatureForSelector:sel];
-	}
-	else if (sel_isEqual(sel, @selector(getObjects:))) {
-		return [NSArray instanceMethodSignatureForSelector:sel];
 	}
 	else {
 		assert(![NSStringFromSelector(sel) hasSuffix:@":"]);
@@ -88,9 +80,6 @@ NSUInteger keyPathRecordingProxyLiveCount;
 		if (sel_isEqual(selector, @selector(enumerateObjectsUsingBlock:))) {
 			return;
 		}
-		if (sel_isEqual(selector, @selector(getObjects:))) {
-			return;
-		}
 	}
 	// Dictionary bridging
 	{
@@ -103,10 +92,13 @@ NSUInteger keyPathRecordingProxyLiveCount;
 		if (0 == strcmp(invocation.methodSignature.methodReturnType, @encode(id))) {
 			id returnValue = self;
 			[invocation setReturnValue:&returnValue];
+			return;
 		}
+#if DEBUG
 		else {
 			abort();
 		}
+#endif
 	}
 }
 
