@@ -21,6 +21,7 @@ class ObjectWithString: NSObject {
 }
 
 class KeyPathsTests : XCTestCase {
+	let Self_ = KeyPathsTests.self
 	dynamic var string: String = "bar"
 	dynamic var optionalString: String!
 	dynamic var array = ["foo"]
