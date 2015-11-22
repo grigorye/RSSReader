@@ -61,12 +61,19 @@ private var fetchResultsAreAnimated: Bool {
 class ItemsListViewController: UITableViewController {
 	static let Self_ = ItemsListViewController.self
 	final var container: Container?
+	var showUnreadEnabled = true
 	class var keyPathsForValuesAffectingContainerViewState: Set<String> {
 		return [Self_••{$0.containerViewPredicate}]
 	}
+#if true
 	lazy var containerViewStates: [RSSReaderData.ContainerViewState] = {
 		return Array(self.container!.viewStates)
 	}()
+#else
+	var containerViewStates: Set<RSSReaderData.ContainerViewState> {
+		return self.container!.viewStates
+	}
+#endif
 	dynamic var containerViewState: RSSReaderData.ContainerViewState? {
 		let container = self.container!
 		let containerViewPredicate = self.containerViewPredicate
@@ -79,7 +86,10 @@ class ItemsListViewController: UITableViewController {
 			let newViewState = NSEntityDescription.insertNewObjectForEntityForName("ContainerViewState", inManagedObjectContext: managedObjectContext) as! RSSReaderData.ContainerViewState
 			newViewState.container = container
 			newViewState.containerViewPredicate = containerViewPredicate
+#if true
 			containerViewStates += [newViewState]
+#endif
+			assert(self.containerViewStates.contains(newViewState))
 			return newViewState
 		}
 	}
@@ -120,7 +130,7 @@ class ItemsListViewController: UITableViewController {
 	@IBOutlet private var unfilterUnreadBarButtonItem: UIBarButtonItem!
 	private dynamic var showUnreadOnly = false
 	private func regeneratedRightBarButtonItems() -> [UIBarButtonItem] {
-		let excludedItems = [(showUnreadOnly ?  self.filterUnreadBarButtonItem : self.unfilterUnreadBarButtonItem)!]
+		let excludedItems = showUnreadEnabled ? [(showUnreadOnly ?  filterUnreadBarButtonItem : unfilterUnreadBarButtonItem)!] : [filterUnreadBarButtonItem!, unfilterUnreadBarButtonItem!]
 		let $ = loadedRightBarButtonItems.filter { nil == excludedItems.indexOf($0) }
 		return $
 	}
@@ -155,7 +165,7 @@ class ItemsListViewController: UITableViewController {
 		let ongoingLoadDate = self.ongoingLoadDate!
 		loadInProgress = true
 		let excludedCategory: Folder? = showUnreadOnly ? Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: mainQueueManagedObjectContext) : nil
-		rssSession!.streamContents(container!, excludedCategory: excludedCategory, continuation: self.continuation, loadDate: ongoingLoadDate) { continuation, items, streamError in
+		rssSession!.streamContents(container!, excludedCategory: excludedCategory, continuation: self.continuation, loadDate: $(ongoingLoadDate).$()) { continuation, items, streamError in
 			dispatch_async(dispatch_get_main_queue()) {
 				if ongoingLoadDate != $(self.ongoingLoadDate).$() {
 					// Ignore results from previous sessions.
@@ -171,11 +181,12 @@ class ItemsListViewController: UITableViewController {
 						self.loadDate = ongoingLoadDate
 					}
 					else {
-						assert(self.loadDate == ongoingLoadDate)
+ 						assert(self.loadDate == ongoingLoadDate)
 					}
 					if let lastItemInCompletion = $(items).$().last {
 						let managedObjectContext = self.fetchedResultsController.managedObjectContext
 						let lastLoadedItem = managedObjectContext.sameObject(lastItemInCompletion)
+						assert(self.containerViewPredicate.evaluateWithObject(lastLoadedItem))
 						self.lastLoadedItem = lastLoadedItem
 						assert(nil != self.fetchedResultsController.indexPathForObject(lastLoadedItem))
 					}
@@ -224,7 +235,7 @@ class ItemsListViewController: UITableViewController {
 		self.navigationItem.rightBarButtonItems = regeneratedRightBarButtonItems()
 		self.fetchedResultsControllerDelegate = self.regeneratedFetchedResultsControllerDelegate()
 		self.ongoingLoadDate = nil
-		try! self.fetchedResultsController.performFetch()
+		try! $(self).$().fetchedResultsController.performFetch()
 		self.tableView.reloadData()
 		self.loadMoreIfNecessary()
 	}
