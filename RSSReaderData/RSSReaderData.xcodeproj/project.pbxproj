@@ -34,6 +34,7 @@
 		C48F7A211C00971500CC6F74 /* KVOCompliantUserDefaults+RSSReaderData.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79E41C008F1900CC6F74 /* KVOCompliantUserDefaults+RSSReaderData.swift */; };
 		C4B437371C00A75200A2F3BE /* CoreDataGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B437361C00A75200A2F3BE /* CoreDataGlobals.swift */; };
 		C4B437391C00A86000A2F3BE /* CoreDataGlobals.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4B437361C00A75200A2F3BE /* CoreDataGlobals.swift */; };
+		C4B4374F1C00F00700A2F3BE /* CoreDataFetchRequestsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B4374E1C00F00700A2F3BE /* CoreDataFetchRequestsTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +147,7 @@
 		C48F79F31C008FC400CC6F74 /* GEKeyPaths.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GEKeyPaths.xcodeproj; path = ../GEKeyPaths/GEKeyPaths.xcodeproj; sourceTree = "<group>"; };
 		C48F79FC1C008FEE00CC6F74 /* LoginAndPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAndPassword.swift; sourceTree = "<group>"; };
 		C4B437361C00A75200A2F3BE /* CoreDataGlobals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataGlobals.swift; sourceTree = "<group>"; };
+		C4B4374E1C00F00700A2F3BE /* CoreDataFetchRequestsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataFetchRequestsTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,10 +172,9 @@
 		C48F79941C008D0D00CC6F74 = {
 			isa = PBXGroup;
 			children = (
+				C4B437471C00EBFD00A2F3BE /* Projects */,
 				C48F79A01C008D0D00CC6F74 /* RSSReaderData */,
 				C48F79AC1C008D0E00CC6F74 /* RSSReaderDataTests */,
-				C48F79E61C008F7B00CC6F74 /* GEBase.xcodeproj */,
-				C48F79F31C008FC400CC6F74 /* GEKeyPaths.xcodeproj */,
 				C48F799F1C008D0D00CC6F74 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -211,6 +212,7 @@
 		C48F79AC1C008D0E00CC6F74 /* RSSReaderDataTests */ = {
 			isa = PBXGroup;
 			children = (
+				C4B4374E1C00F00700A2F3BE /* CoreDataFetchRequestsTests.swift */,
 				C48F79C31C008DD300CC6F74 /* RSSSessionTests.swift */,
 				C48F79AD1C008D0E00CC6F74 /* RSSReaderDataTests.swift */,
 				C48F79AF1C008D0E00CC6F74 /* Info.plist */,
@@ -234,6 +236,15 @@
 				C48F79FB1C008FC400CC6F74 /* GEKeyPathsTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C4B437471C00EBFD00A2F3BE /* Projects */ = {
+			isa = PBXGroup;
+			children = (
+				C48F79E61C008F7B00CC6F74 /* GEBase.xcodeproj */,
+				C48F79F31C008FC400CC6F74 /* GEKeyPaths.xcodeproj */,
+			);
+			name = Projects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -409,6 +420,7 @@
 			files = (
 				C48F79AE1C008D0E00CC6F74 /* RSSReaderDataTests.swift in Sources */,
 				C48F79C41C008DD300CC6F74 /* RSSSessionTests.swift in Sources */,
+				C4B4374F1C00F00700A2F3BE /* CoreDataFetchRequestsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

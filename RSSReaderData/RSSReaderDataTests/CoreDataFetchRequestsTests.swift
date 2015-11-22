@@ -12,9 +12,17 @@ import CoreData
 @testable import GEBase
 
 class CoreDataFetchRequestsTests: XCTestCase {
-	let rssSession = RSSSession(loginAndPassword: defaults.loginAndPassword)
+	let rssSession = RSSSession(loginAndPassword: LoginAndPassword(login: "cake218@icloud.com", password: "7L3-Skb-nJ2-Dh2"))
 
     override func setUp() {
+    	let authenticateDidComplete = self.expectationWithDescription("authenticateDidComplete")
+		rssSession.authenticate { error in
+			XCTAssert(nil == error, "error: \(error)")
+			authenticateDidComplete.fulfill()
+		}
+		self.waitForExpectationsWithTimeout(5) { error in
+			$(error).$()
+		}
         super.setUp()
     }
     override func tearDown() {
@@ -26,7 +34,7 @@ class CoreDataFetchRequestsTests: XCTestCase {
 			XCTAssert(nil == error, "error: \(error)")
 			authenticateDidComplete.fulfill()
 		}
-		self.waitForExpectationsWithTimeout(30) { error in
+		self.waitForExpectationsWithTimeout(5) { error in
 			$(error).$()
 		}
 	}
@@ -37,7 +45,7 @@ class CoreDataFetchRequestsTests: XCTestCase {
 			XCTAssert(nil == error, "error: \(error)")
 			updateTagsComplete.fulfill()
 		}
-		self.waitForExpectationsWithTimeout(10) { error in
+		self.waitForExpectationsWithTimeout(5) { error in
 			$(error).$()
 		}
 	}
@@ -48,7 +56,7 @@ class CoreDataFetchRequestsTests: XCTestCase {
 			updateTagsComplete.fulfill()
 			XCTAssert(nil == error, "error: \(error)")
 		}
-		self.waitForExpectationsWithTimeout(30) { error in
+		self.waitForExpectationsWithTimeout(5) { error in
 			$(error).$()
 		}
 		NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: 5))
@@ -57,17 +65,12 @@ class CoreDataFetchRequestsTests: XCTestCase {
 		backgroundQueueManagedObjectContext.performBlock {
 			let fetchRequest = NSFetchRequest(entityName: "Folder")
 			let objects = try! backgroundQueueManagedObjectContext.executeFetchRequest(fetchRequest)
-			let folder = objects.last! as! Folder
-			void(folder.sortID)
-		}
-		NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: 5))
-	}
-	func testFetchRequestInPerformBlockInBackgroundQueueContextWithDirectAccessViewState() {
-		backgroundQueueManagedObjectContext.performBlock {
-			let fetchRequest = NSFetchRequest(entityName: "ContainerViewState")
-			let objects = try! backgroundQueueManagedObjectContext.executeFetchRequest(fetchRequest)
-			let object = objects.last! as! ContainerViewState
-			void(object.loadDate)
+			if let folder = objects.last as! Folder? {
+				void(folder.sortID)
+			}
+			else {
+				XCTAssertTrue(false)
+			}
 		}
 		NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: 5))
 	}
@@ -76,9 +79,13 @@ class CoreDataFetchRequestsTests: XCTestCase {
 			let fetchRequest = NSFetchRequest(entityName: "Folder")
 			fetchRequest.resultType = .ManagedObjectIDResultType
 			let objectIDs = try! backgroundQueueManagedObjectContext.executeFetchRequest(fetchRequest)
-			let folderObjectID = objectIDs.last! as! NSManagedObjectID
-			let folder = backgroundQueueManagedObjectContext.objectWithID(folderObjectID) as! Folder
-			void(folder.sortID)
+			if let folderObjectID = objectIDs.last as! NSManagedObjectID? {
+				let folder = backgroundQueueManagedObjectContext.objectWithID(folderObjectID) as! Folder
+				void(folder.sortID)
+			}
+			else {
+				XCTAssertTrue(false)
+			}
 		}
 		NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: 5))
 	}
@@ -87,14 +94,18 @@ class CoreDataFetchRequestsTests: XCTestCase {
 		backgroundQueueManagedObjectContext.performBlock {
 			let fetchRequest = NSFetchRequest(entityName: "Folder")
 			let objects = try! backgroundQueueManagedObjectContext.executeFetchRequest(fetchRequest)
-			let folder = objects.last! as! Folder
-			backgroundQueueManagedObjectContext.performBlock {
-				void(folder.sortID)
-				didPerformBlock.fulfill()
+			if let folder = objects.last as! Folder? {
+				backgroundQueueManagedObjectContext.performBlock {
+					void(folder.sortID)
+					didPerformBlock.fulfill()
+				}
+			}
+			else {
+				XCTAssertTrue(false)
 			}
 		}
 		NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: 5))
-		self.waitForExpectationsWithTimeout(30) { error in
+		self.waitForExpectationsWithTimeout(5) { error in
 			$(error).$()
 		}
 	}
@@ -103,14 +114,18 @@ class CoreDataFetchRequestsTests: XCTestCase {
 		backgroundQueueManagedObjectContext.performBlock {
 			let fetchRequest = NSFetchRequest(entityName: "Folder")
 			let objects = try! backgroundQueueManagedObjectContext.executeFetchRequest(fetchRequest)
-			let folder = objects.last! as! Folder
-			backgroundQueueManagedObjectContext.performBlockAndWait {
-				void(folder.sortID)
-				didPerformBlockAndWait.fulfill()
+			if let folder = objects.last as! Folder? {
+				backgroundQueueManagedObjectContext.performBlockAndWait {
+					void(folder.sortID)
+					didPerformBlockAndWait.fulfill()
+				}
+			}
+			else {
+				XCTAssertTrue(false)
 			}
 		}
 		NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: 5))
-		self.waitForExpectationsWithTimeout(30) { error in
+		self.waitForExpectationsWithTimeout(5) { error in
 			$(error).$()
 		}
 	}
@@ -118,8 +133,9 @@ class CoreDataFetchRequestsTests: XCTestCase {
 		mainQueueManagedObjectContext.performBlock {
 			let fetchRequest = NSFetchRequest(entityName: "Folder")
 			let objects = try! mainQueueManagedObjectContext.executeFetchRequest(fetchRequest)
-			let folder = objects.last! as! Folder
-			void(folder.sortID)
+			if let folder = objects.last as! Folder? {
+				void(folder.sortID)
+			}
 		}
 		NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: 5))
 	}
