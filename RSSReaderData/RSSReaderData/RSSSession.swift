@@ -346,9 +346,7 @@ extension RSSSession {
 					let continuation = json["continuation"] as? String
 					let items = try importItemsFromJson(json, type: Item.self, elementName: "items", managedObjectContext: backgroundQueueManagedObjectContext) { (item, itemJson) in
 						try item.importFromJson(itemJson)
-						if itemsAreSortedByLoadDate {
-							item.loadDate = loadDate
-						}
+						item.loadDate = loadDate
 						if batchSavingDisabled {
 							try backgroundQueueManagedObjectContext.save()
 						}
