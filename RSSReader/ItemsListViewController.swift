@@ -75,47 +75,44 @@ class ItemsListViewController: UITableViewController {
 	}
 #endif
 	dynamic var containerViewState: RSSReaderData.ContainerViewState? {
-		let container = self.container!
-		let containerViewPredicate = self.containerViewPredicate
-		if let existingViewState = (self.containerViewStates.filter { $0.containerViewPredicate.isEqual(containerViewPredicate) }).first {
-			return existingViewState
+		get {
+			let containerViewPredicate = self.containerViewPredicate
+			let containerViewState = (self.containerViewStates.filter { $0.containerViewPredicate.isEqual(containerViewPredicate) }).first
+			return containerViewState
 		}
-		else {
-			let managedObjectContext = container.managedObjectContext!
-			assert(managedObjectContext == mainQueueManagedObjectContext)
-			let newViewState = NSEntityDescription.insertNewObjectForEntityForName("ContainerViewState", inManagedObjectContext: managedObjectContext) as! RSSReaderData.ContainerViewState
+		set {
+			assert(self.containerViewState == nil)
+			let newViewState = newValue!
 			newViewState.container = container
 			newViewState.containerViewPredicate = containerViewPredicate
-#if true
+	#if true
 			containerViewStates += [newViewState]
-#endif
+	#endif
 			assert(self.containerViewStates.contains(newViewState))
-			return newViewState
 		}
 	}
 	private var ongoingLoadDate: NSDate?
 	private var continuation: String? {
 		set { containerViewState!.continuation = newValue }
-		get { return containerViewState!.continuation }
+		get { return containerViewState?.continuation }
 	}
 	class var keyPathsForValuesAffectingLoadDate: Set<String> {
 		return [Self_••{$0.containerViewState!.loadDate}]
 	}
 	private dynamic var loadDate: NSDate? {
-		set { containerViewState!.loadDate = newValue }
-		get { return containerViewState!.loadDate }
+		set { containerViewState!.loadDate = newValue! }
+		get { return containerViewState?.loadDate }
 	}
 	private var lastLoadedItem: Item? {
-		set { containerViewState!.lastLoadedItem = newValue }
-		get { return containerViewState!.lastLoadedItem }
+		return containerViewState?.lastLoadedItem
 	}
 	private var loadCompleted: Bool {
 		set { containerViewState!.loadCompleted = newValue }
-		get { return containerViewState!.loadCompleted }
+		get { return containerViewState?.loadCompleted ?? false }
 	}
 	private var loadError: ErrorType? {
 		set { containerViewState!.loadError = newValue }
-		get { return containerViewState!.loadError }
+		get { return containerViewState?.loadError }
 	}
 	//
 	private var loadInProgress = false
@@ -160,7 +157,7 @@ class ItemsListViewController: UITableViewController {
 			self.ongoingLoadDate = NSDate()
 		}
 		else if nil == self.ongoingLoadDate {
-			self.ongoingLoadDate = self.loadDate!
+			self.ongoingLoadDate = self.loadDate
 		}
 		let ongoingLoadDate = self.ongoingLoadDate!
 		loadInProgress = true
@@ -171,6 +168,15 @@ class ItemsListViewController: UITableViewController {
 					// Ignore results from previous sessions.
 					completionHandler(loadDateDidChange: true)
 					return
+				}
+				if nil == self.containerViewState {
+					let containerViewState: ContainerViewState = {
+						let managedObjectContext = self.container!.managedObjectContext!
+						assert(managedObjectContext == mainQueueManagedObjectContext)
+						let newViewState = NSEntityDescription.insertNewObjectForEntityForName("ContainerViewState", inManagedObjectContext: managedObjectContext) as! RSSReaderData.ContainerViewState
+						return newViewState
+					}()
+					self.containerViewState = containerViewState
 				}
 				if let streamError = streamError {
 					self.loadError = $(streamError).$()
@@ -187,7 +193,7 @@ class ItemsListViewController: UITableViewController {
 						let managedObjectContext = self.fetchedResultsController.managedObjectContext
 						let lastLoadedItem = managedObjectContext.sameObject(lastItemInCompletion)
 						assert(self.containerViewPredicate.evaluateWithObject(lastLoadedItem))
-						self.lastLoadedItem = lastLoadedItem
+						assert(self.lastLoadedItem == lastLoadedItem)
 						assert(nil != self.fetchedResultsController.indexPathForObject(lastLoadedItem))
 					}
 					self.continuation = continuation
@@ -486,7 +492,7 @@ extension ItemsListViewController {
 			let container = self.container
 			let E = Item.self
 			let $ = NSFetchRequest(entityName: E.entityName())
-			$.sortDescriptors =	defaults.itemsAreSortedByLoadDate ? [NSSortDescriptor(key: E••{$0.loadDate}, ascending: false)] : [NSSortDescriptor(key: E••{$0.date}, ascending: false)]
+			$.sortDescriptors =	sortDescriptorsForContainers
 			$.predicate = NSCompoundPredicate(andPredicateWithSubpredicates:[
 				container! is Subscription ? NSPredicate(format: "(\(E••{$0.subscription}) == %@)", argumentArray: [container!]) : NSPredicate(format: "(\(E••{$0.categories}) CONTAINS %@)", argumentArray: [container!]),
 				self.containerViewPredicate
