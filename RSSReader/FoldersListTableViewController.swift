@@ -192,13 +192,13 @@ class FoldersListTableViewController: UITableViewController, UIDataSourceModelAs
 		blocksScheduledForViewWillAppear = []
 		super.viewWillAppear(animated)
 		viewDidDisappearRetainedObjects += [KVOBinding(self•{$0.regeneratedChildContainers}, options: .Initial) { [unowned self] change in
-			$(change).$(0)
+			$(change).$()
 			self.childContainers = self.regeneratedChildContainers
 			self.tableView.reloadData()
 		}]
 		viewDidDisappearRetainedObjects += [KVOBinding(self•{$0.foldersController.foldersUpdateStateRaw}, options: .Initial) { [unowned self] change in
 			assert(NSThread.isMainThread())
-			$(change).$(1)
+			$(change).$()
 			let foldersUpdateState = self.foldersController.foldersUpdateState
 			let message: String = {
 				switch foldersUpdateState {
