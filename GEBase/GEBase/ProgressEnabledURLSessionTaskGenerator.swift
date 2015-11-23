@@ -24,8 +24,8 @@ public class ProgressEnabledURLSessionTaskGenerator: NSObject {
 	public func dataTaskForHTTPRequest(request: NSURLRequest, completionHandler: HTTPDataTaskCompletionHandler) -> NSURLSessionDataTask? {
 		let progress = NSProgress(totalUnitCount: 1)
 		progress.becomeCurrentWithPendingUnitCount(1)
-		$(request).$()
-		$(request.allHTTPHeaderFields).$()
+		$(request).$(1)
+		$(request.allHTTPHeaderFields).$(1)
 		let sessionTask = session.progressEnabledDataTaskWithRequest(request) { data, response, error in
 			dispatch_async(self.dispatchQueue) {
 				self.mutableProgresses.removeObjectIdenticalTo(progress)
