@@ -44,30 +44,40 @@ extension Item : ManagedIdentifiable {
 	}
 	func importFromJson(jsonObject: AnyObject) throws {
 		let json = jsonObject as! [String: AnyObject]
-		let date = NSDate(timestampUsec: json["timestampUsec"] as! String)
-		if date == self.date {
+		let updatedDate: NSDate? = {
+			if let updatedTimeIntervalSince1970 = json["updated"] as! NSTimeInterval? {
+				return NSDate(timeIntervalSince1970: updatedTimeIntervalSince1970)
+			}
+			return nil
+		}()
+		let managedObjectContext = self.managedObjectContext!
+		if nil != updatedDate && (updatedDate == self.updatedDate) {
 			$(self).$(0)
 		}
 		else {
+			let date = NSDate(timestampUsec: json["timestampUsec"] as! String)
+			self.updatedDate = updatedDate
 			self.date = date
 			self.title = json["title"] as! String?
 			let summary = (json["summary"] as! [String: AnyObject])["content"] as! String?
 			self.summary = summary
-			let managedObjectContext = self.managedObjectContext!
 			let streamID = (json["origin"] as? NSDictionary)?["streamId"] as! String
 			let subscription = try insertedObjectUnlessFetchedWithID(Subscription.self, id: streamID, managedObjectContext: managedObjectContext)
 			self.subscription = subscription
 			self.canonical = json["canonical"] as! [[String : String]]?
-			var categories = [Folder]()
+		}
+		do {
 			guard let categoriesIDs = json["categories"] as? [String] else {
 				throw Error.CategoriesMissingOrInvalidInJson(json: json)
 			}
-			for categoryID in categoriesIDs {
+			let insertedOrFetchedCategories = try categoriesIDs.map { (categoryID: String) -> Folder in
 				let folder = try insertedObjectUnlessFetchedWithID(Folder.self, id: categoryID, managedObjectContext: managedObjectContext)
-				categories += [folder]
+				return folder
 			}
-			self.categories.removeAll()
-			self.categories.unionInPlace(categories)
+			let categories = Set(insertedOrFetchedCategories)
+			if self.categories != categories {
+				self.categories = categories
+			}
 		}
 	}
 }
