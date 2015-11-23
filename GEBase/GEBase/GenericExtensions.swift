@@ -109,7 +109,7 @@ public struct Traceable<T> {
 		self.value = value
 		self.location = location
 	}
-	public func $(level: Int = 1, file: String = __FILE__, line: Int = __LINE__, column: Int = __COLUMN__, function: String = __FUNCTION__) -> T {
+	public func $(level: Int = 0, file: String = __FILE__, line: Int = __LINE__, column: Int = __COLUMN__, function: String = __FUNCTION__) -> T {
 		if 0 != level {
 			trace(value, startLocation: self.location, endLocation: SourceLocation(file: file, line: line, column: column, function: function))
 		}
