@@ -394,6 +394,7 @@ class ItemsListViewController: UITableViewController {
 			abort()
 		}
 	}
+	private var blocksDelayedTillViewWillAppearOrStateRestoration = [Handler]()
 	// MARK: - State Preservation and Restoration
 	private enum Restorable: String {
 		case containerObjectID = "containerObjectID"
@@ -408,6 +409,10 @@ class ItemsListViewController: UITableViewController {
 		if nil != self.container {
 			nowDate = NSDate()
 		}
+		for i in blocksDelayedTillViewWillAppearOrStateRestoration {
+			i()
+		}
+		blocksDelayedTillViewWillAppearOrStateRestoration = []
 	}
 	// MARK: -
 	private var blocksDelayedTillViewWillAppear = [Handler]()
@@ -426,6 +431,10 @@ class ItemsListViewController: UITableViewController {
 				self.presentInfoMessage(NSLocalizedString("Not updated before", comment: ""))
 			}
  		}
+		for i in blocksDelayedTillViewWillAppearOrStateRestoration {
+			i()
+		}
+		blocksDelayedTillViewWillAppearOrStateRestoration = []
 		for i in blocksDelayedTillViewWillAppear {
 			i()
 		}
@@ -450,6 +459,10 @@ class ItemsListViewController: UITableViewController {
 	}
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		blocksDelayedTillViewWillAppearOrStateRestoration += [{ [unowned self] in
+			self.fetchedResultsControllerDelegate = self.regeneratedFetchedResultsControllerDelegate()
+			try! $(self.fetchedResultsController).$().performFetch()
+		}]
 		let cellNib = UINib(nibName: "ItemTableViewCell", bundle: nil)
 		tableView.registerNib(cellNib, forCellReuseIdentifier: "Item")
 		blocksDelayedTillViewWillAppear += [{ [unowned self] in
@@ -460,10 +473,6 @@ class ItemsListViewController: UITableViewController {
 					tableView.contentOffset = CGPoint(x: 0, y: CGRectGetHeight(tableHeaderView.frame))
 				}
 			}
-		}]
-		self.fetchedResultsControllerDelegate = self.regeneratedFetchedResultsControllerDelegate()
-		blocksDelayedTillViewWillAppear += [{ [unowned self] in
-			try! $(self.fetchedResultsController).$().performFetch()
 		}]
 		self.tableFooterView = tableView.tableFooterView
 		for item in [unfilterUnreadBarButtonItem, filterUnreadBarButtonItem] {
