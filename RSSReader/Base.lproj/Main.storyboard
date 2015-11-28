@@ -198,17 +198,19 @@
                         </constraints>
                     </view>
                     <toolbarItems>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="f9d-13-svH"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="QSZ-h6-KGn"/>
                         <barButtonItem systemItem="action" id="1hJ-Dd-L2L">
                             <connections>
                                 <action selector="action:event:" destination="CEh-Po-b2S" id="SfC-wW-6tW"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="Lai-Eo-NaB"/>
                         <barButtonItem title="E" id="frR-cQ-Jf5" userLabel="Expand">
                             <connections>
                                 <action selector="expand:event:" destination="CEh-Po-b2S" id="dTk-Ka-Gmo"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="fd0-LF-bq9"/>
                         <barButtonItem image="Star" id="DA5-Dr-fr8" userLabel="Star">
                             <connections>
                                 <action selector="markAsFavorite:event:" destination="CEh-Po-b2S" id="LkQ-jc-Hge"/>
@@ -219,11 +221,13 @@
                                 <action selector="unmarkAsFavorite:event:" destination="CEh-Po-b2S" id="8o8-0V-FW1"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="Qof-sq-1ca"/>
                         <barButtonItem title="R" id="gnU-AB-lLM" userLabel="Open in Reader">
                             <connections>
                                 <action selector="openInReader:event:" destination="CEh-Po-b2S" id="kdw-ca-W8w"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="jGj-P4-Jpl"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="Wzr-U2-09y"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
