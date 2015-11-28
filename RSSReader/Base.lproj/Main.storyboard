@@ -224,15 +224,7 @@
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" id="Wzr-U2-09y">
-                        <connections>
-                            <outletCollection property="rightBarButtonItemsCollection" destination="1hJ-Dd-L2L" collectionClass="NSMutableArray" id="9hd-IP-BIE"/>
-                            <outletCollection property="rightBarButtonItemsCollection" destination="frR-cQ-Jf5" collectionClass="NSMutableArray" id="koj-nA-Fv8"/>
-                            <outletCollection property="rightBarButtonItemsCollection" destination="DA5-Dr-fr8" collectionClass="NSMutableArray" id="Qyf-1I-eQc"/>
-                            <outletCollection property="rightBarButtonItemsCollection" destination="ozz-uK-Or8" collectionClass="NSMutableArray" id="huq-Hi-TsP"/>
-                            <outletCollection property="rightBarButtonItemsCollection" destination="gnU-AB-lLM" collectionClass="NSMutableArray" id="ciF-SO-2pA"/>
-                        </connections>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="Wzr-U2-09y"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
