@@ -51,18 +51,6 @@ class ItemsPageViewController : UIPageViewController {
 		self.currentViewController = currentViewController
 	}
 	// MARK: -
-	@IBAction func swipe(sender: UIPanGestureRecognizer!) {
-		$(self).$()
-		let webView = self.currentViewController?.view.subviews.first as? UIWebView
-		if sender.velocityInView(webView).y > 0 {
-			self.navigationController!.setNavigationBarHidden(false, animated: true)
-			self.navigationController!.setToolbarHidden(false, animated: true)
-		}
-		else {
-			self.navigationController!.setToolbarHidden(true, animated: true)
-		}
-	}
-	// MARK: -
 	var viewDidDisappearRetainedObjects = [AnyObject]()
 	override func viewWillAppear(animated: Bool) {
 		for i in blocksDelayedTillViewWillAppear { i() }
@@ -75,15 +63,14 @@ class ItemsPageViewController : UIPageViewController {
 			viewDidDisappearRetainedObjects += [KVOBinding(self•{$0.currentViewController}, options: .Initial) { change in
 				if let webView = self.currentViewController?.view.subviews.first as? UIWebView {
 					let barHideOnSwipeGestureRecognizer = self.navigationController!.barHideOnSwipeGestureRecognizer
-					if (nil == webView.gestureRecognizers) || (nil == webView.gestureRecognizers!.indexOf(barHideOnSwipeGestureRecognizer)) {
-						webView.addGestureRecognizer(barHideOnSwipeGestureRecognizer)
-						let scrollView = webView.scrollView
-						let gestureRecognizer = scrollView.gestureRecognizers!.filter { $0 is UIPanGestureRecognizer }.first!
-						gestureRecognizer.addTarget(self, action: "swipe:")
-					}
+					let scrollView = webView.scrollView
+					scrollView.addGestureRecognizer(barHideOnSwipeGestureRecognizer)
 				}
 			}]
 		}
+	}
+	override func childViewControllerForStatusBarHidden() -> UIViewController? {
+		return self.currentViewController
 	}
 	override func viewDidAppear(animated: Bool) {
 		super.viewDidAppear(animated)
