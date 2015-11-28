@@ -45,6 +45,7 @@
 		C45ECD061A62054C00ADC113 /* SBConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45ECD051A62054C00ADC113 /* SBConstants.swift */; };
 		C4676E091A6A4D1F00AE8BC2 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4676E081A6A4D1F00AE8BC2 /* ItemTableViewCell.swift */; };
 		C46934DF1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46934DE1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift */; };
+		C46F04141C0A142000A970D7 /* Readability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46F04131C0A142000A970D7 /* Readability.swift */; };
 		C46FA8691AA56018004B5C45 /* UITableView+SnappingHeaderToTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46FA8681AA56018004B5C45 /* UITableView+SnappingHeaderToTop.swift */; };
 		C48C5F8B1A867D3D00A1EA12 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48C5F8A1A867D3D00A1EA12 /* MobileCoreServices.framework */; };
 		C48C5F971A87344000A1EA12 /* ItemsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */; };
@@ -262,6 +263,7 @@
 		C4676E811A6DB0F800AE8BC2 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		C46934DE1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsPageViewControllerDataSource.swift; sourceTree = "<group>"; };
 		C469C1131B5BA24300D238F6 /* TestHostApp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TestHostApp.xcodeproj; path = TestHostApp/TestHostApp.xcodeproj; sourceTree = "<group>"; };
+		C46F04131C0A142000A970D7 /* Readability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Readability.swift; sourceTree = "<group>"; };
 		C46FA8681AA56018004B5C45 /* UITableView+SnappingHeaderToTop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+SnappingHeaderToTop.swift"; sourceTree = "<group>"; };
 		C475E2AD1BFFDA5000145406 /* GEKeyPaths.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GEKeyPaths.xcodeproj; path = GEKeyPaths/GEKeyPaths.xcodeproj; sourceTree = "<group>"; };
 		C48C5F8A1A867D3D00A1EA12 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -444,8 +446,8 @@
 			isa = PBXGroup;
 			children = (
 				C48F79B81C008D7300CC6F74 /* RSSReaderData.xcodeproj */,
-				C475E2AD1BFFDA5000145406 /* GEKeyPaths.xcodeproj */,
 				C41818B21B6A6C9500872EB3 /* GEBase.xcodeproj */,
+				C475E2AD1BFFDA5000145406 /* GEKeyPaths.xcodeproj */,
 				C469C1131B5BA24300D238F6 /* TestHostApp.xcodeproj */,
 			);
 			name = Projects;
@@ -498,6 +500,7 @@
 				C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */,
 				C4C327F11AF30CB400119573 /* FoldersController.swift */,
 				C4EF270D1A8D353C000EBE63 /* UserMessages.swift */,
+				C46F04131C0A142000A970D7 /* Readability.swift */,
 				C418B32D1A594705002C0578 /* Generic */,
 				C49540A21A57827300F56168 /* UI */,
 				C4CDD3A01A5350B40087DD05 /* Supporting Files */,
@@ -820,6 +823,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C46F04141C0A142000A970D7 /* Readability.swift in Sources */,
 				C4C780161A7DF1EC009CB5FC /* ApplicationActivities.swift in Sources */,
 				C49540A51A57906600F56168 /* ItemSummaryWebViewController.swift in Sources */,
 				C4C327F21AF30CB400119573 /* FoldersController.swift in Sources */,
