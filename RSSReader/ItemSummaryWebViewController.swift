@@ -196,7 +196,7 @@ class ItemSummaryWebViewController: UIViewController {
 	}
 	// MARK: -
 	override func prefersStatusBarHidden() -> Bool {
-		return navigationController!.navigationBarHidden;
+		return navigationController?.navigationBarHidden ?? false
 	}
 	// MARK: - State Preservation and Restoration
 	enum Restorable: String {
