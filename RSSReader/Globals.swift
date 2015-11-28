@@ -17,11 +17,16 @@ let applicationDomain = "com.grigoryentin.RSSReader"
 
 var foldersController: FoldersController!
 
-var applicationDelegate: AppDelegate {
-	get {
-		return (UIApplication.sharedApplication().delegate as! AppDelegate)
-	}
-}
+let applicationDelegate: AppDelegate = {
+	return (UIApplication.sharedApplication().delegate as! AppDelegate)
+}()
+
+let userCachesDirectoryURL: NSURL = {
+	let fileManager = NSFileManager.defaultManager()
+	let $ = try! fileManager.URLForDirectory(.CachesDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: false)
+	return $
+}()
+
 extension NSObject {
 	var foldersController: FoldersController {
 		return applicationDelegate
@@ -32,11 +37,6 @@ extension NSObject {
 		}
 		set {
 			applicationDelegate.internals.rssSession = newValue
-		}
-	}
-	var progressEnabledURLSessionTaskGenerator: ProgressEnabledURLSessionTaskGenerator! {
-		get {
-			return applicationDelegate.internals.progressEnabledURLSessionTaskGenerator
 		}
 	}
 }
