@@ -24,7 +24,6 @@ import Appsee
 class AppDelegateInternals {
 	var rssSession: RSSSession?
 	private let urlTaskGeneratorProgressKVOBinding: KVOBinding
-	let progressEnabledURLSessionTaskGenerator = ProgressEnabledURLSessionTaskGenerator()
 	init() {
 		let taskGenerator = progressEnabledURLSessionTaskGenerator
 		urlTaskGeneratorProgressKVOBinding = KVOBinding(taskGenerator•{$0.progresses}, options: []) { change in
