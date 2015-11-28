@@ -67,6 +67,9 @@ class ItemsPageViewController : UIPageViewController {
 					scrollView.addGestureRecognizer(barHideOnSwipeGestureRecognizer)
 				}
 			}]
+			viewDidDisappearRetainedObjects += [KVOBinding(self•{$0.currentViewController!.toolbarItems}, options: .Initial) { change in
+				self.toolbarItems = self.currentViewController?.toolbarItems
+			}]
 		}
 	}
 	override func childViewControllerForStatusBarHidden() -> UIViewController? {
