@@ -198,6 +198,7 @@
                         </constraints>
                     </view>
                     <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="f9d-13-svH"/>
                         <barButtonItem systemItem="action" id="1hJ-Dd-L2L">
                             <connections>
                                 <action selector="action:event:" destination="CEh-Po-b2S" id="SfC-wW-6tW"/>
