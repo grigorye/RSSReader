@@ -9,6 +9,7 @@
 import RSSReaderData
 import GEBase
 import GEKeyPaths
+import SafariServices
 import UIKit
 import CoreData
 
@@ -34,32 +35,48 @@ class ItemSummaryWebViewController: UIViewController {
 			})
 		}
 	}
-	func loadHTMLString(HTMLString: String, ignoringExisting: Bool) throws {
-		let webView = self.webView
+	// MARK:-
+	var summaryHTMLString: String {
 		let bundle = NSBundle.mainBundle()
 		let htmlTemplateURL = bundle.URLForResource("ItemSummaryTemplate", withExtension: "html")!
 		let htmlTemplate = try! NSString(contentsOfURL: htmlTemplateURL, encoding: NSUTF8StringEncoding)
 		let htmlString =
 			htmlTemplate
-				.stringByReplacingOccurrencesOfString("$$Summary$$", withString: HTMLString)
+				.stringByReplacingOccurrencesOfString("$$Summary$$", withString: item.summary!)
 				.stringByReplacingOccurrencesOfString("$$Title$$", withString: item.title!)
+		return htmlString
+	}
+	// MARK:-
+	var directoryInCaches: String {
+		let directoryInCaches = (item.objectID.URIRepresentation().path! as NSString).substringFromIndex(1)
+		return directoryInCaches
+	}
+	// MARK:-
+	var storedHTMLURL: NSURL {
+		let pathInCaches = (directoryInCaches as NSString).stringByAppendingPathComponent("text.html")
+		let storedHTMLURL = NSURL(string: pathInCaches, relativeToURL: userCachesDirectoryURL)!
+		return storedHTMLURL
+	}
+	// MARK:-
+	func regenerateStoredHTMLFromString(HTMLString: String) throws {
+		let fileManager = NSFileManager.defaultManager()
+		try fileManager.createDirectoryAtURL(storedHTMLURL.URLByDeletingLastPathComponent!, withIntermediateDirectories: true, attributes: nil)
+		try HTMLString.writeToURL(storedHTMLURL, atomically: true, encoding: NSUTF8StringEncoding)
+	}
+	func loadHTMLString(HTMLString: String, ignoringExisting: Bool) throws {
+		let webView = self.webView
 		if let _ = webView.request where !ignoringExisting {
 			webView.reload()
 		}
 		else {
 			if _1 {
-				let fileManager = NSFileManager.defaultManager()
-				let cachesDirectoryURL = try! fileManager.URLForDirectory(.CachesDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: true)
-				let directoryInCaches = (item.objectID.URIRepresentation().path! as NSString).substringFromIndex(1)
-				let pathInCaches = (directoryInCaches as NSString).stringByAppendingPathComponent("summary.html")
-				let storedHTMLURL = NSURL(string: pathInCaches, relativeToURL: cachesDirectoryURL)!
-				try fileManager.createDirectoryAtURL(cachesDirectoryURL.URLByAppendingPathComponent(directoryInCaches), withIntermediateDirectories: true, attributes: nil)
-				try htmlString.writeToURL(storedHTMLURL, atomically: true, encoding: NSUTF8StringEncoding)
+				try self.regenerateStoredHTMLFromString(HTMLString)
 				let request = NSURLRequest(URL: storedHTMLURL.fileReferenceURL()!)
 				webView.loadRequest(request)
 			}
 			else {
-				self.webView.loadHTMLString(htmlString, baseURL: bundle.resourceURL)
+				let bundle = NSBundle.mainBundle()
+				self.webView.loadHTMLString(HTMLString, baseURL: bundle.resourceURL)
 			}
 		}
 	}
@@ -92,39 +109,41 @@ class ItemSummaryWebViewController: UIViewController {
 		}()
 		self.presentViewController(activityViewController, animated: true, completion: nil)
 	}
+	@IBAction func openInReader(sender: AnyObject?, event: UIEvent?) {
+		let url: NSURL = {
+			if _1 {
+				let item = self.item
+				let href = item.canonical!.first!["href"]!
+				return NSURL(string: href)!
+			}
+			else {
+				try! self.regenerateStoredHTMLFromString(self.summaryHTMLString)
+				return self.storedHTMLURL
+			}
+		}()
+		let safariViewController = SFSafariViewController(URL: url, entersReaderIfAvailable: true)
+		self.presentViewController(safariViewController, animated: true, completion: nil)
+	}
 	@IBAction func expand(sender: AnyObject?, event: UIEvent?) {
 		let item = self.item
 		let href = item.canonical!.first!["href"]!
 		let url = NSURL(string: href)!
-		let dataTask = progressEnabledURLSessionTaskGenerator.textTaskForHTTPRequest(NSURLRequest(URL: url)) { text, error in
+		retrieveReadableHTMLFromURL(url) { HTMLString, error in
 			dispatch_async(dispatch_get_main_queue()) {
-				if let error = error {
+				guard let HTMLString = HTMLString where nil == error else {
 					$(error).$()
-					self.presentErrorMessage(NSLocalizedString("Failed to expand.", comment: ""))
+					self.presentErrorMessage(NSLocalizedString("Unable to expand", comment: ""))
+					return
 				}
-				else {
-#if false
-					let readability = DZReadability(URL: url, rawDocumentContent: text, options: nil) { sender, content, error in
-						if let error = error {
-							$(error).$()
-							self.presentErrorMessage(NSLocalizedString("Unable to expand", comment: ""))
-						}
-						else {
-							do {
-								try self.loadHTMLString(content, ignoringExisting: true)
-							}
-							catch {
-								$(error).$()
-								self.presentErrorMessage(NSLocalizedString("Unable to load", comment: ""))
-							}
-						}
-					}
-					readability.start()
-#endif
+				do {
+					try self.loadHTMLString(HTMLString, ignoringExisting: true)
+				}
+				catch {
+					$(error).$()
+					self.presentErrorMessage(NSLocalizedString("Unable to expand", comment: ""))
 				}
 			}
-		}!
-		dataTask.resume()
+		}
 	}
 	// MARK: -
 	var blocksScheduledForViewWillAppear = [Handler]()
@@ -134,9 +153,8 @@ class ItemSummaryWebViewController: UIViewController {
 		super.viewDidLoad()
 		self.savedRightBarButtonItems = self.navigationItem.rightBarButtonItems!
 		blocksScheduledForViewWillAppear += [{
-			let item = self.item
 			do {
-				try self.loadHTMLString(item.summary!, ignoringExisting: false)
+				try self.loadHTMLString(self.summaryHTMLString, ignoringExisting: false)
 			}
 			catch {
 				self.presentErrorMessage(NSLocalizedString("Unable to load summary", comment: ""))
