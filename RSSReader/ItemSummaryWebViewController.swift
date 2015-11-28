@@ -19,7 +19,7 @@ let markAsReadTimeInterval = NSTimeInterval(1)
 
 class ItemSummaryWebViewController: UIViewController {
 	@IBOutlet var webView: UIWebView!
-	var savedRightBarButtonItems: [UIBarButtonItem]!
+	var savedToolbarItems: [UIBarButtonItem]!
 	@IBOutlet var markAsFavoriteBarButtonItem: UIBarButtonItem!
 	@IBOutlet var unmarkAsFavoriteBarButtonItem: UIBarButtonItem!
 	dynamic var item: Item!
@@ -151,7 +151,7 @@ class ItemSummaryWebViewController: UIViewController {
 	// MARK: -
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.savedRightBarButtonItems = self.navigationItem.rightBarButtonItems!
+		self.savedToolbarItems = self.toolbarItems!
 		blocksScheduledForViewWillAppear += [{
 			do {
 				try self.loadHTMLString(self.summaryHTMLString, ignoringExisting: false)
@@ -168,10 +168,10 @@ class ItemSummaryWebViewController: UIViewController {
 		blocksScheduledForViewWillAppear = []
 		viewDidDisappearRetainedObjects += [KVOBinding(self•{$0.item.markedAsFavorite}, options: .Initial) { [unowned self] change in
 			let excludedBarButtonItem = self.item.markedAsFavorite ? self.markAsFavoriteBarButtonItem : self.unmarkAsFavoriteBarButtonItem
-			let rightBarButtonItems = self.savedRightBarButtonItems.filter {
+			let toolbarItems = self.savedToolbarItems.filter {
 				return $0 != excludedBarButtonItem
 			}
-			self.navigationItem.rightBarButtonItems = $(rightBarButtonItems).$()
+			self.toolbarItems = $(toolbarItems).$()
 		}]
 		super.viewWillAppear(animated)
 	}
