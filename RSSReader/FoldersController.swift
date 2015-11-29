@@ -59,14 +59,6 @@ extension FoldersController {
 		}
 	}
 	typealias Error = FoldersControllerError
-	final var foldersLastUpdateDate: NSDate? {
-		get {
-			return defaults.foldersLastUpdateDate
-		}
-		set {
-			defaults.foldersLastUpdateDate = newValue
-		}
-	}
 	final func updateFoldersAuthenticated(completionHandler: (ErrorType?) -> Void) {
 		let rssSession = self.rssSession!
 		foldersUpdateState = .UpdatingUserInfo

@@ -36,7 +36,18 @@ class AppDelegateInternals {
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 	var window: UIWindow?
+#if false
 	var foldersLastUpdateDate: NSDate?
+#else
+	final var foldersLastUpdateDate: NSDate? {
+		get {
+			return defaults.foldersLastUpdateDate
+		}
+		set {
+			defaults.foldersLastUpdateDate = newValue
+		}
+	}
+#endif
 	final var foldersLastUpdateErrorRaw: NSError? {
 		get {
 			if let data = defaults.foldersLastUpdateErrorEncoded {
