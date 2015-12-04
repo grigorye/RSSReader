@@ -129,6 +129,9 @@ class FoldersListTableViewController: UITableViewController, UIDataSourceModelAs
 			let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow!
 			let subscription = childContainers[indexPathForSelectedRow.row] as! Subscription
 			itemsListViewController.container = subscription
+		case MainStoryboard.SegueIdentifiers.ShowCombined:
+			let itemsListViewController = segue.destinationViewController as! ItemsListViewController
+			itemsListViewController.container = self.rootFolder
 		default:
 			abort()
 		}
