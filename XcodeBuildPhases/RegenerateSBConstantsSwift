@@ -15,7 +15,7 @@ if [ -x "${swiftrsrc:?}" ]
 then
 	tempOutput=$(mktemp /tmp/"${scriptName:?}".XXXXX)
 	"${swiftrsrc:?}" generate "${input:?}" "${tempOutput:?}"
-	if [ ! -f "${output:?}" ] || diff -q "${tempOutput:?}" "${output:?}"
+	if [ ! -f "${output:?}" ] || ! diff -q "${tempOutput:?}" "${output:?}"
 	then
 		cp -p "${tempOutput:?}" "${output:?}"
 	fi
