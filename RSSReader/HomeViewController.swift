@@ -16,6 +16,7 @@ func configureFavoritesItemsListViewController(itemsListViewController: ItemsLis
 		itemsListViewController.container = favoritesFolder
 	}
 	itemsListViewController.showUnreadEnabled = false
+	itemsListViewController.multipleSourcesEnabled = true
 }
 
 class HomeViewController: UITableViewController {

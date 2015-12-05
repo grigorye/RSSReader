@@ -132,6 +132,7 @@ class FoldersListTableViewController: UITableViewController, UIDataSourceModelAs
 		case MainStoryboard.SegueIdentifiers.ShowCombined:
 			let itemsListViewController = segue.destinationViewController as! ItemsListViewController
 			itemsListViewController.container = self.rootFolder
+			itemsListViewController.multipleSourcesEnabled = true
 		default:
 			abort()
 		}
