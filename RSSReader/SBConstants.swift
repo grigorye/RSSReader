@@ -6,7 +6,6 @@ struct MainStoryboard {
 		static let MainTabBar = "MainTabBar"
 	}
 	struct ReuseIdentifiers {
-		static let HistoryItem = "HistoryItem"
 		static let Folder = "Folder"
 		static let Subscription = "Subscription"
 	}
