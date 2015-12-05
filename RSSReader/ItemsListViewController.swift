@@ -61,6 +61,7 @@ private var fetchResultsAreAnimated: Bool {
 class ItemsListViewController: UITableViewController {
 	static let Self_ = ItemsListViewController.self
 	final var container: Container?
+	final var multipleSourcesEnabled = false
 	var showUnreadEnabled = true
 	class var keyPathsForValuesAffectingContainerViewState: Set<String> {
 		return [Self_••{$0.containerViewPredicate}]
@@ -313,6 +314,9 @@ class ItemsListViewController: UITableViewController {
 		if let titleLabel = cell.titleLabel {
 			titleLabel.text = item.title ?? (item.itemID as NSString).lastPathComponent
 		}
+		if let sourceLabel = cell.sourceLabel {
+			sourceLabel.text = item.subscription.title
+		}
 		if let subtitleLabel = cell.subtitleLabel {
 			let timeIntervalFormatted = (nil == NSClassFromString("NSDateComponentsFormatter")) ? "x" : dateComponentsFormatter.stringFromDate(item.date, toDate: nowDate) ?? ""
 			subtitleLabel.text = "\(timeIntervalFormatted)"
@@ -463,7 +467,7 @@ class ItemsListViewController: UITableViewController {
 			self.fetchedResultsControllerDelegate = self.regeneratedFetchedResultsControllerDelegate()
 			try! $(self.fetchedResultsController).$().performFetch()
 		}]
-		let cellNib = UINib(nibName: "ItemTableViewCell", bundle: nil)
+		let cellNib = UINib(nibName: self.multipleSourcesEnabled ? "MultisourceItemTableViewCell" : "ItemTableViewCell", bundle: nil)
 		tableView.registerNib(cellNib, forCellReuseIdentifier: "Item")
 		blocksDelayedTillViewWillAppear += [{ [unowned self] in
 			self.title = self.title ?? (self.container as! Titled).visibleTitle
