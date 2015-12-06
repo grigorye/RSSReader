@@ -1,31 +1,37 @@
 PODS:
   - AFMInfoBanner (1.1):
     - CVKHierarchySearcher (~> 0.2)
+  - Appsee (2.1.5)
   - Crashlytics (3.4.1):
     - Fabric (~> 1.6.0)
   - CVKHierarchySearcher (0.2.0)
   - DZReadability (0.2.3):
     - HTMLReader
   - Fabric (1.6.1)
+  - Flurry-iOS-SDK/FlurrySDK (7.3.0)
   - HTMLReader (0.9.3)
   - TUSafariActivity (1.0.4)
   - UXCam (2.4.2)
 
 DEPENDENCIES:
   - AFMInfoBanner
+  - Appsee
   - Crashlytics
   - DZReadability
   - Fabric
+  - Flurry-iOS-SDK/FlurrySDK
   - HTMLReader
   - TUSafariActivity
   - UXCam
 
 SPEC CHECKSUMS:
   AFMInfoBanner: 207a0622fdfc6bff3e8d04ac557932f3d6849425
+  Appsee: 77f144701aa1a53d854d319a46667561849e8cf5
   Crashlytics: 41574a245bc6ae10c55d57f385ebd2004e5bee05
   CVKHierarchySearcher: 7be8d3bcbcc6f86ff07f785e6c632b5e40da2553
   DZReadability: 451e9134abd6861bc855467e01c7b05680734d4f
   Fabric: bf0ceb04e7c924090efc5f8c55e4fbcca189e0a0
+  Flurry-iOS-SDK: 054befae0fa0244fb000985bfe757d70f87a9f60
   HTMLReader: 01de6ebb3b5f0f9dc4f6f165fdac0a15b3648167
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   UXCam: bb8b26b017b1149a4d92cf0b0bc1e568e5e752af
