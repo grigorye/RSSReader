@@ -70,6 +70,7 @@
 		C4CDD3C51A5357B20087DD05 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C4CDD3C41A5357B20087DD05 /* Settings.bundle */; };
 		C4CDE1911A5A06A600F16A2E /* ItemSummaryTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */; };
 		C4D2C9DD1C136E5E00235392 /* MultisourceItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4D2C9DC1C136E5E00235392 /* MultisourceItemTableViewCell.xib */; };
+		C4D2CA181C14E7BE00235392 /* libDZReadability.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4D2C9FF1C14DE4500235392 /* libDZReadability.a */; };
 		C4EF270E1A8D353C000EBE63 /* UserMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EF270D1A8D353C000EBE63 /* UserMessages.swift */; };
 		C4F575D01A797C7B00F12F20 /* AddToFavoritesActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F575CF1A797C7B00F12F20 /* AddToFavoritesActivity.swift */; };
 		C4F575D61A7988DB00F12F20 /* OpenWebPageActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F575D51A7988DB00F12F20 /* OpenWebPageActivity.swift */; };
@@ -168,6 +169,62 @@
 			remoteGlobalIDString = C4CDD39C1A5350B40087DD05;
 			remoteInfo = RSSReader;
 		};
+		C4D2C9FA1C14DE4500235392 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C4D2C9EE1C14DE4500235392 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 05A9D585AB4CA3A92026F660C63541F9;
+			remoteInfo = AFMInfoBanner;
+		};
+		C4D2C9FC1C14DE4500235392 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C4D2C9EE1C14DE4500235392 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 73546E53CDD0E202B67D507394EAAF0F;
+			remoteInfo = CVKHierarchySearcher;
+		};
+		C4D2C9FE1C14DE4500235392 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C4D2C9EE1C14DE4500235392 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 77AF96CBB2FBE3770F7B4254617BA939;
+			remoteInfo = DZReadability;
+		};
+		C4D2CA001C14DE4500235392 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C4D2C9EE1C14DE4500235392 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8B6AFB862EABD75BEDF5F76133BF1476;
+			remoteInfo = HTMLReader;
+		};
+		C4D2CA021C14DE4500235392 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C4D2C9EE1C14DE4500235392 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DB4C2E398865D1A39C8C8EF7071E2448;
+			remoteInfo = Pods;
+		};
+		C4D2CA041C14DE4500235392 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C4D2C9EE1C14DE4500235392 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D5B0E954AC75797ABBA87C01E8AE839A;
+			remoteInfo = TUSafariActivity;
+		};
+		C4D2CA061C14DE4500235392 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C4D2C9EE1C14DE4500235392 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C8B9572A572363103F8004C577CEB6A7;
+			remoteInfo = "TUSafariActivity-TUSafariActivity";
+		};
+		C4D2CA0A1C14DE7700235392 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C4D2C9EE1C14DE4500235392 /* Pods.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 36190515044965C416F7D927AFAB27D1;
+			remoteInfo = Pods;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -260,8 +317,6 @@
 		C45ECD051A62054C00ADC113 /* SBConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBConstants.swift; sourceTree = "<group>"; };
 		C465808A1A8D4AE3000DF359 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		C4676E081A6A4D1F00AE8BC2 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
-		C4676E801A6DB0F800AE8BC2 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		C4676E811A6DB0F800AE8BC2 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		C46934DE1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsPageViewControllerDataSource.swift; sourceTree = "<group>"; };
 		C469C1131B5BA24300D238F6 /* TestHostApp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TestHostApp.xcodeproj; path = TestHostApp/TestHostApp.xcodeproj; sourceTree = "<group>"; };
 		C46F04131C0A142000A970D7 /* Readability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Readability.swift; sourceTree = "<group>"; };
@@ -293,6 +348,7 @@
 		C4CDD3C41A5357B20087DD05 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ItemSummaryTemplate.html; sourceTree = "<group>"; };
 		C4D2C9DC1C136E5E00235392 /* MultisourceItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultisourceItemTableViewCell.xib; sourceTree = "<group>"; };
+		C4D2C9EE1C14DE4500235392 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
 		C4D56A2A1A7C33C0007BE398 /* PackageApplication */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = PackageApplication; sourceTree = "<group>"; };
 		C4EF270D1A8D353C000EBE63 /* UserMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMessages.swift; sourceTree = "<group>"; };
 		C4F575CF1A797C7B00F12F20 /* AddToFavoritesActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddToFavoritesActivity.swift; sourceTree = "<group>"; };
@@ -383,8 +439,6 @@
 				C40C6BF41A72F17100FAFA17 /* SystemConfiguration.framework */,
 				C40C6BF21A72F0BC00FAFA17 /* AVFoundation.framework */,
 				C40C6BF01A72EFEE00FAFA17 /* Appsee.framework */,
-				C4676E801A6DB0F800AE8BC2 /* Crashlytics.framework */,
-				C4676E811A6DB0F800AE8BC2 /* Fabric.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -471,6 +525,7 @@
 		C4CDD3941A5350B40087DD05 = {
 			isa = PBXGroup;
 			children = (
+				C4D2C9EE1C14DE4500235392 /* Pods.xcodeproj */,
 				C465808A1A8D4AE3000DF359 /* Podfile */,
 				C4B4374C1C00EC2100A2F3BE /* Projects */,
 				C40C6BFB1A73C6DF00FAFA17 /* RSSReader-app.xcconfig */,
@@ -536,6 +591,20 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		C4D2C9EF1C14DE4500235392 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C4D2C9FB1C14DE4500235392 /* libAFMInfoBanner.a */,
+				C4D2C9FD1C14DE4500235392 /* libCVKHierarchySearcher.a */,
+				C4D2C9FF1C14DE4500235392 /* libDZReadability.a */,
+				C4D2CA011C14DE4500235392 /* libHTMLReader.a */,
+				C4D2CA031C14DE4500235392 /* libPods.a */,
+				C4D2CA051C14DE4500235392 /* libTUSafariActivity.a */,
+				C4D2CA071C14DE4500235392 /* TUSafariActivity.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -574,6 +643,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				C4D2CA0B1C14DE7700235392 /* PBXTargetDependency */,
 				C48F7A121C00919B00CC6F74 /* PBXTargetDependency */,
 				C48F7A161C0095EE00CC6F74 /* PBXTargetDependency */,
 				C48F79911C0079A700CC6F74 /* PBXTargetDependency */,
@@ -647,6 +717,10 @@
 					ProjectRef = C475E2AD1BFFDA5000145406 /* GEKeyPaths.xcodeproj */;
 				},
 				{
+					ProductGroup = C4D2C9EF1C14DE4500235392 /* Products */;
+					ProjectRef = C4D2C9EE1C14DE4500235392 /* Pods.xcodeproj */;
+				},
+				{
 					ProductGroup = C48F79B91C008D7300CC6F74 /* Products */;
 					ProjectRef = C48F79B81C008D7300CC6F74 /* RSSReaderData.xcodeproj */;
 				},
@@ -712,6 +786,55 @@
 			fileType = wrapper.application;
 			path = TestHostApp.app;
 			remoteRef = C499E3CD1B6CDD6A00F67BEE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C4D2C9FB1C14DE4500235392 /* libAFMInfoBanner.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libAFMInfoBanner.a;
+			remoteRef = C4D2C9FA1C14DE4500235392 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C4D2C9FD1C14DE4500235392 /* libCVKHierarchySearcher.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCVKHierarchySearcher.a;
+			remoteRef = C4D2C9FC1C14DE4500235392 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C4D2C9FF1C14DE4500235392 /* libDZReadability.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDZReadability.a;
+			remoteRef = C4D2C9FE1C14DE4500235392 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C4D2CA011C14DE4500235392 /* libHTMLReader.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libHTMLReader.a;
+			remoteRef = C4D2CA001C14DE4500235392 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C4D2CA031C14DE4500235392 /* libPods.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libPods.a;
+			remoteRef = C4D2CA021C14DE4500235392 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C4D2CA051C14DE4500235392 /* libTUSafariActivity.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libTUSafariActivity.a;
+			remoteRef = C4D2CA041C14DE4500235392 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C4D2CA071C14DE4500235392 /* TUSafariActivity.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = TUSafariActivity.bundle;
+			remoteRef = C4D2CA061C14DE4500235392 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -893,6 +1016,11 @@
 			isa = PBXTargetDependency;
 			target = C4CDD39C1A5350B40087DD05 /* RSSReader */;
 			targetProxy = C4CDD3B51A5350B50087DD05 /* PBXContainerItemProxy */;
+		};
+		C4D2CA0B1C14DE7700235392 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Pods;
+			targetProxy = C4D2CA0A1C14DE7700235392 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
