@@ -102,6 +102,9 @@ public func traceString(string: String, location: SourceLocation, lastLocation: 
 	traceMessage(message)
 }
 
+private let defaultTraceLevel = 0x0badf00d
+private let defaultTracingEnabled = true
+
 public struct Traceable<T> {
 	let value: T
 	let location: SourceLocation
@@ -109,8 +112,9 @@ public struct Traceable<T> {
 		self.value = value
 		self.location = location
 	}
-	public func $(level: Int = 0, file: String = __FILE__, line: Int = __LINE__, column: Int = __COLUMN__, function: String = __FUNCTION__) -> T {
-		if 0 != level {
+	public func $(level: Int = defaultTraceLevel, file: String = __FILE__, line: Int = __LINE__, column: Int = __COLUMN__, function: String = __FUNCTION__) -> T {
+		if 1 == level || ((level == defaultTraceLevel) && defaultTracingEnabled) {
+			let column = column + ((level == defaultTraceLevel) ? 0 : -1)
 			trace(value, startLocation: self.location, endLocation: SourceLocation(file: file, line: line, column: column, function: function))
 		}
 		return value
