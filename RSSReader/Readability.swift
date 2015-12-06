@@ -7,7 +7,7 @@
 //
 
 import GEBase
-#if false
+#if DZ_READABILITY_ENABLED
 import DZReadability
 #endif
 import Foundation
@@ -21,7 +21,7 @@ func retrieveReadableHTMLFromURL(url: NSURL, completionHandler: (HTMLString: Str
 			completeWithError($(error!).$())
 			return
 		}
-#if true
+#if !DZ_READABILITY_ENABLED
 		completionHandler(HTMLString: HTMLString, error: nil)
 #else
 		dispatch_async(dispatch_get_main_queue()) {
@@ -30,12 +30,7 @@ func retrieveReadableHTMLFromURL(url: NSURL, completionHandler: (HTMLString: Str
 					completeWithError($(error).$())
 					return
 				}
-				do {
-					try self.loadHTMLString(content, ignoringExisting: true)
-				}
-				catch {
-					completeWithError($(error).$())
-				}
+				completionHandler(HTMLString: content, error: nil)
 			}
 			readability.start()
 		}
