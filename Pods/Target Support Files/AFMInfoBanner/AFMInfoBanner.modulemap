@@ -1,0 +1,6 @@
+framework module AFMInfoBanner {
+  umbrella header "AFMInfoBanner-umbrella.h"
+
+  export *
+  module * { export * }
+}

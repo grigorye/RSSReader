@@ -1,1 +1,0 @@
-../../../UXCam/UXCam.framework/Versions/2.0.0/Headers/UXCam.h

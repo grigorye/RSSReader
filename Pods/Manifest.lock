@@ -1,26 +1,33 @@
 PODS:
-  - AFMInfoBanner (1.0.2):
+  - AFMInfoBanner (1.1):
     - CVKHierarchySearcher (~> 0.2)
+  - Crashlytics (3.4.1):
+    - Fabric (~> 1.6.0)
   - CVKHierarchySearcher (0.2.0)
-  - DZReadability (0.2.1):
+  - DZReadability (0.2.3):
     - HTMLReader
-  - HTMLReader (0.7.1)
+  - Fabric (1.6.1)
+  - HTMLReader (0.9.3)
   - TUSafariActivity (1.0.4)
-  - UXCam (2.0.0)
+  - UXCam (2.4.2)
 
 DEPENDENCIES:
   - AFMInfoBanner
+  - Crashlytics
   - DZReadability
+  - Fabric
   - HTMLReader
   - TUSafariActivity
   - UXCam
 
 SPEC CHECKSUMS:
-  AFMInfoBanner: e2f2b479cc589986a0ab7fb31fb4c6d5c81f732f
+  AFMInfoBanner: 207a0622fdfc6bff3e8d04ac557932f3d6849425
+  Crashlytics: 41574a245bc6ae10c55d57f385ebd2004e5bee05
   CVKHierarchySearcher: 7be8d3bcbcc6f86ff07f785e6c632b5e40da2553
-  DZReadability: d8b1857996c9a114d0df703747af02f7e08add7b
-  HTMLReader: e6ba09514d125f45e810b6c6c1cebf3542f04d89
+  DZReadability: 451e9134abd6861bc855467e01c7b05680734d4f
+  Fabric: bf0ceb04e7c924090efc5f8c55e4fbcca189e0a0
+  HTMLReader: 01de6ebb3b5f0f9dc4f6f165fdac0a15b3648167
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
-  UXCam: 4c42c3c0c7b234a3517cfa0a7967cd537235525c
+  UXCam: bb8b26b017b1149a4d92cf0b0bc1e568e5e752af
 
-COCOAPODS: 0.36.0
+COCOAPODS: 0.39.0
