@@ -70,7 +70,10 @@
 		C4CDD3C51A5357B20087DD05 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C4CDD3C41A5357B20087DD05 /* Settings.bundle */; };
 		C4CDE1911A5A06A600F16A2E /* ItemSummaryTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */; };
 		C4D2C9DD1C136E5E00235392 /* MultisourceItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4D2C9DC1C136E5E00235392 /* MultisourceItemTableViewCell.xib */; };
-		C4D2CA181C14E7BE00235392 /* libDZReadability.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4D2C9FF1C14DE4500235392 /* libDZReadability.a */; };
+		C4DE0A851C14EDD700E99558 /* DZReadability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4D2C9FF1C14DE4500235392 /* DZReadability.framework */; };
+		C4DE0A861C14EDD700E99558 /* DZReadability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4D2C9FF1C14DE4500235392 /* DZReadability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C4DE0A891C14EDF600E99558 /* HTMLReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4D2CA011C14DE4500235392 /* HTMLReader.framework */; };
+		C4DE0A8A1C14EDF600E99558 /* HTMLReader.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4D2CA011C14DE4500235392 /* HTMLReader.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4EF270E1A8D353C000EBE63 /* UserMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EF270D1A8D353C000EBE63 /* UserMessages.swift */; };
 		C4F575D01A797C7B00F12F20 /* AddToFavoritesActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F575CF1A797C7B00F12F20 /* AddToFavoritesActivity.swift */; };
 		C4F575D61A7988DB00F12F20 /* OpenWebPageActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F575D51A7988DB00F12F20 /* OpenWebPageActivity.swift */; };
@@ -222,8 +225,29 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = C4D2C9EE1C14DE4500235392 /* Pods.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 36190515044965C416F7D927AFAB27D1;
+			remoteGlobalIDString = 243EDD0537372DE6B1651886D53D0F71;
 			remoteInfo = Pods;
+		};
+		C4DE0A7A1C14ED6300E99558 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C4D2C9EE1C14DE4500235392 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8E4B5A4B500CC52A6CC9D57565E52192;
+			remoteInfo = "Flurry-iOS-SDK";
+		};
+		C4DE0A871C14EDD700E99558 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C4D2C9EE1C14DE4500235392 /* Pods.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EAB79AE699C117F7F2D39A4F21BD3F11;
+			remoteInfo = DZReadability;
+		};
+		C4DE0A8B1C14EDF600E99558 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C4D2C9EE1C14DE4500235392 /* Pods.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D89A6E17A5501D54C81DFFDB5E10E4B3;
+			remoteInfo = HTMLReader;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -272,9 +296,11 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				C4DE0A8A1C14EDF600E99558 /* HTMLReader.framework in Embed Frameworks */,
 				C48F7A141C0095E400CC6F74 /* RSSReaderData.framework in Embed Frameworks */,
 				C41818BD1B6A709800872EB3 /* GEBase.framework in Embed Frameworks */,
 				C48F798F1C0079A700CC6F74 /* GEKeyPaths.framework in Embed Frameworks */,
+				C4DE0A861C14EDD700E99558 /* DZReadability.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -371,9 +397,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4DE0A851C14EDD700E99558 /* DZReadability.framework in Frameworks */,
 				C48C5F8B1A867D3D00A1EA12 /* MobileCoreServices.framework in Frameworks */,
 				C40C6BF71A72F23C00FAFA17 /* CoreMedia.framework in Frameworks */,
 				C40C6BF51A72F17100FAFA17 /* SystemConfiguration.framework in Frameworks */,
+				C4DE0A891C14EDF600E99558 /* HTMLReader.framework in Frameworks */,
 				C40C6BF31A72F0BC00FAFA17 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -594,12 +622,13 @@
 		C4D2C9EF1C14DE4500235392 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C4D2C9FB1C14DE4500235392 /* libAFMInfoBanner.a */,
-				C4D2C9FD1C14DE4500235392 /* libCVKHierarchySearcher.a */,
-				C4D2C9FF1C14DE4500235392 /* libDZReadability.a */,
-				C4D2CA011C14DE4500235392 /* libHTMLReader.a */,
-				C4D2CA031C14DE4500235392 /* libPods.a */,
-				C4D2CA051C14DE4500235392 /* libTUSafariActivity.a */,
+				C4D2C9FB1C14DE4500235392 /* AFMInfoBanner.framework */,
+				C4D2C9FD1C14DE4500235392 /* CVKHierarchySearcher.framework */,
+				C4D2C9FF1C14DE4500235392 /* DZReadability.framework */,
+				C4DE0A7B1C14ED6300E99558 /* Flurry_iOS_SDK.framework */,
+				C4D2CA011C14DE4500235392 /* HTMLReader.framework */,
+				C4D2CA031C14DE4500235392 /* Pods.framework */,
+				C4D2CA051C14DE4500235392 /* TUSafariActivity.framework */,
 				C4D2CA071C14DE4500235392 /* TUSafariActivity.bundle */,
 			);
 			name = Products;
@@ -647,6 +676,8 @@
 				C48F7A121C00919B00CC6F74 /* PBXTargetDependency */,
 				C48F7A161C0095EE00CC6F74 /* PBXTargetDependency */,
 				C48F79911C0079A700CC6F74 /* PBXTargetDependency */,
+				C4DE0A881C14EDD700E99558 /* PBXTargetDependency */,
+				C4DE0A8C1C14EDF600E99558 /* PBXTargetDependency */,
 			);
 			name = RSSReader;
 			productName = RSSReader;
@@ -788,45 +819,45 @@
 			remoteRef = C499E3CD1B6CDD6A00F67BEE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C4D2C9FB1C14DE4500235392 /* libAFMInfoBanner.a */ = {
+		C4D2C9FB1C14DE4500235392 /* AFMInfoBanner.framework */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libAFMInfoBanner.a;
+			fileType = wrapper.framework;
+			path = AFMInfoBanner.framework;
 			remoteRef = C4D2C9FA1C14DE4500235392 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C4D2C9FD1C14DE4500235392 /* libCVKHierarchySearcher.a */ = {
+		C4D2C9FD1C14DE4500235392 /* CVKHierarchySearcher.framework */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libCVKHierarchySearcher.a;
+			fileType = wrapper.framework;
+			path = CVKHierarchySearcher.framework;
 			remoteRef = C4D2C9FC1C14DE4500235392 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C4D2C9FF1C14DE4500235392 /* libDZReadability.a */ = {
+		C4D2C9FF1C14DE4500235392 /* DZReadability.framework */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libDZReadability.a;
+			fileType = wrapper.framework;
+			path = DZReadability.framework;
 			remoteRef = C4D2C9FE1C14DE4500235392 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C4D2CA011C14DE4500235392 /* libHTMLReader.a */ = {
+		C4D2CA011C14DE4500235392 /* HTMLReader.framework */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libHTMLReader.a;
+			fileType = wrapper.framework;
+			path = HTMLReader.framework;
 			remoteRef = C4D2CA001C14DE4500235392 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C4D2CA031C14DE4500235392 /* libPods.a */ = {
+		C4D2CA031C14DE4500235392 /* Pods.framework */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libPods.a;
+			fileType = wrapper.framework;
+			path = Pods.framework;
 			remoteRef = C4D2CA021C14DE4500235392 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C4D2CA051C14DE4500235392 /* libTUSafariActivity.a */ = {
+		C4D2CA051C14DE4500235392 /* TUSafariActivity.framework */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libTUSafariActivity.a;
+			fileType = wrapper.framework;
+			path = TUSafariActivity.framework;
 			remoteRef = C4D2CA041C14DE4500235392 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -835,6 +866,13 @@
 			fileType = wrapper.cfbundle;
 			path = TUSafariActivity.bundle;
 			remoteRef = C4D2CA061C14DE4500235392 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C4DE0A7B1C14ED6300E99558 /* Flurry_iOS_SDK.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Flurry_iOS_SDK.framework;
+			remoteRef = C4DE0A7A1C14ED6300E99558 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1021,6 +1059,16 @@
 			isa = PBXTargetDependency;
 			name = Pods;
 			targetProxy = C4D2CA0A1C14DE7700235392 /* PBXContainerItemProxy */;
+		};
+		C4DE0A881C14EDD700E99558 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = DZReadability;
+			targetProxy = C4DE0A871C14EDD700E99558 /* PBXContainerItemProxy */;
+		};
+		C4DE0A8C1C14EDF600E99558 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = HTMLReader;
+			targetProxy = C4DE0A8B1C14EDF600E99558 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
