@@ -87,6 +87,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/AFMInfoBanner.framework"
   install_framework "Pods/CVKHierarchySearcher.framework"
   install_framework "Pods/DZReadability.framework"
+  install_framework "Pods/Flurry_iOS_SDK.framework"
   install_framework "Pods/HTMLReader.framework"
   install_framework "Pods/TUSafariActivity.framework"
 fi
@@ -94,6 +95,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/AFMInfoBanner.framework"
   install_framework "Pods/CVKHierarchySearcher.framework"
   install_framework "Pods/DZReadability.framework"
+  install_framework "Pods/Flurry_iOS_SDK.framework"
   install_framework "Pods/HTMLReader.framework"
   install_framework "Pods/TUSafariActivity.framework"
 fi
