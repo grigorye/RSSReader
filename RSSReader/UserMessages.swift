@@ -6,18 +6,19 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
+import AFMInfoBanner
 import UIKit
 import Foundation
 
 func presentErrorMessage(text: String) {
-#if false
+#if true
 	AFMInfoBanner.showAndHideWithText(text, style: .Error)
 #else
 	print("Error: \(text)")
 #endif
 }
 func presentInfoMessage(text: String) {
-#if false
+#if true
 	AFMInfoBanner.showAndHideWithText(text, style: .Info)
 #else
 	print("Info: \(text)")
