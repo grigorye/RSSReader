@@ -31,6 +31,9 @@ class ItemSummaryWebViewController: UIViewController {
 			rssSession!.uploadTag(canonicalReadTag, mark: true, forItem: item, completionHandler: { uploadReadStateError in
 				if let uploadReadStateError = uploadReadStateError {
 					$(uploadReadStateError).$()
+					dispatch_sync(dispatch_get_main_queue()) {
+						self.presentErrorMessage(NSLocalizedString("Failed to mark as read. \((uploadReadStateError as NSError).localizedDescription)", comment: ""))
+					}
 				}
 			})
 		}
