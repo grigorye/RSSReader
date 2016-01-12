@@ -40,7 +40,7 @@ public class ContainerViewState: NSManagedObject {
 			$.sortDescriptors = inversedSortDescriptorsForContainers
 			return $
 		}()
-		let item = try! self.managedObjectContext!.executeFetchRequest(fetchRequest).first as! Item?
+		let item = try! self.managedObjectContext!.executeFetchRequest(fetchRequest).onlyElement as! Item?
 		return item
 	}
 	func validateForUpdateOrInsert() throws {
