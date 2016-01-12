@@ -78,7 +78,7 @@ class ItemsListViewController: UITableViewController {
 	dynamic var containerViewState: RSSReaderData.ContainerViewState? {
 		get {
 			let containerViewPredicate = self.containerViewPredicate
-			let containerViewState = (self.containerViewStates.filter { $0.containerViewPredicate.isEqual(containerViewPredicate) }).first
+			let containerViewState = (self.containerViewStates.filter { $0.containerViewPredicate.isEqual(containerViewPredicate) }).onlyElement
 			return containerViewState
 		}
 		set {
