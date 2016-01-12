@@ -187,3 +187,10 @@ public func nilForNull(object: AnyObject) -> AnyObject? {
 		return object
 	}
 }
+
+extension CollectionType {
+	public var onlyElement: Self.Generator.Element? {
+		precondition(self.count <= 1)
+		return self.first
+	}
+}
