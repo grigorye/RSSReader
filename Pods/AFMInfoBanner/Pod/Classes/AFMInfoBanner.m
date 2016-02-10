@@ -117,6 +117,7 @@ static const CGFloat kDefaultHideInterval = 2.0;
     UILabel *label = [[UILabel alloc] init];
     [self setTextLabel:label];
     [self configureLabel];
+    [self configureTaps];
     [self addSubview:label];
 }
 
@@ -126,6 +127,18 @@ static const CGFloat kDefaultHideInterval = 2.0;
     [self.textLabel setBackgroundColor:[UIColor clearColor]];
     [self.textLabel setTextAlignment:NSTextAlignmentCenter];
     [self.textLabel setNumberOfLines:0];
+}
+
+- (void)configureTaps
+{
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap)];
+    [self addGestureRecognizer:tap];
+}
+
+- (void)handleTap
+{
+    if (self.tappedBlock)
+        self.tappedBlock();
 }
 
 - (void)updateConstraints
@@ -165,6 +178,18 @@ static const CGFloat kDefaultHideInterval = 2.0;
     [super layoutSubviews];
 }
 
+- (void)show:(BOOL)animated withCompletion:(void (^)())completionBlock
+{
+    self.showCompletionBlock = completionBlock;
+    [self show:animated];
+}
+
+- (void)hide:(BOOL)animated withCompletion:(void (^)())completionBlock
+{
+    self.hideCompletionBlock = completionBlock;
+    [self hide:animated];
+}
+
 - (void)show
 {
     [self show:YES];
@@ -201,9 +226,14 @@ static const CGFloat kDefaultHideInterval = 2.0;
         self.topSpacingConstraint.constant += self.frame.size.height;
         [UIView animateWithDuration:kAnimationDuration animations:^{
             [self.superview layoutIfNeeded];
+        } completion:^(BOOL finished) {
+            if (self.showCompletionBlock)
+                self.showCompletionBlock();
         }];
     } else {
         self.topSpacingConstraint.constant += self.frame.size.height;
+        if (self.showCompletionBlock)
+            self.showCompletionBlock();
     }
 }
 
@@ -255,9 +285,13 @@ static const CGFloat kDefaultHideInterval = 2.0;
             weakSelf.frame = CGRectOffset(weakSelf.frame, 0, -weakSelf.frame.size.height);
         } completion:^(BOOL finished) {
             [weakSelf removeFromSuperview];
+            if (weakSelf.hideCompletionBlock)
+                weakSelf.hideCompletionBlock();
         }];
     } else {
         [self removeFromSuperview];
+        if (self.hideCompletionBlock)
+            self.hideCompletionBlock();
     }
 }
 
@@ -271,19 +305,20 @@ static const CGFloat kDefaultHideInterval = 2.0;
                        style:(AFMInfoBannerStyle)style
                 andHideAfter:(NSTimeInterval)timeout
 {
-    AFMInfoBanner *banner = [self showWithText:text style:style];
+    AFMInfoBanner *banner = [self showWithText:text style:style animated:YES];
     [banner performSelector:@selector(hide) withObject:nil afterDelay:timeout];
     return banner;
 }
 
 + (instancetype)showWithText:(NSString *)text
                        style:(AFMInfoBannerStyle)style
+                    animated:(BOOL)animated
 {
     AFMInfoBanner *banner = [[[self class] alloc] init];
     [banner setText:text];
     [banner setStyle:style];
 
-    [banner show];
+    [banner show:animated];
     return banner;
 }
 

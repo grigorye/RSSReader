@@ -68,7 +68,7 @@ extension Container {
 			let streamID = json["id"] as! String
 			return $(streamID).$()
 		}()
-		self.unreadCount = (json["count"] as! NSNumber).intValue
+		self.unreadCount = (json["count"] as? NSString)?.intValue ?? (json["count"] as! NSNumber).intValue
 		self.newestItemDate = NSDate(timestampUsec: json["newestItemTimestampUsec"] as! String)
 	}
 	class func importStreamPreferencesJson(jsonObject: AnyObject, managedObjectContext: NSManagedObjectContext) throws {
@@ -115,7 +115,7 @@ extension Container {
 				let unorderedChildContainers = try managedObjectContext.executeFetchRequest(request) as! [Container]
 				$(unorderedChildContainers).$()
 				let childContainers = sortIDs.map { sortID in
-					return unorderedChildContainers.filter { $0.sortID == sortID }.first!
+					return unorderedChildContainers.filter { $0.sortID == sortID }.onlyElement!
 				}
 				folder.childContainers = NSOrderedSet(array: childContainers)
 			}

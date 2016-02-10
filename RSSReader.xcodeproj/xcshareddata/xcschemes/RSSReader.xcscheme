@@ -111,6 +111,10 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "-analyticsEnabled YES"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "-traceLabelsEnabled YES"
             isEnabled = "YES">
          </CommandLineArgument>

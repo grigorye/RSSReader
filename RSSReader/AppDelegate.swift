@@ -179,7 +179,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 		RSSReader.foldersController = self
 #if ANALYTICS_ENABLED
 		let version = NSBundle.mainBundle().infoDictionary!["CFBundleVersion"] as! NSString
-		let versionIsClean = NSNotFound == version.rangeOfCharacterFromSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet).location
+		let versionIsClean = NSNotFound == $(version).$(1).rangeOfCharacterFromSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet).location
 		if $(versionIsClean).$() && $(defaults.analyticsEnabled).$() {
 #if CRASHLYTICS_ENABLED
 			Fabric.with([Crashlytics()])

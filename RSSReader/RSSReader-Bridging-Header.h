@@ -11,5 +11,7 @@
 #if 0
 #import <AFMInfoBanner/AFMInfoBanner.h>
 #import <TUSafariActivity/TUSafariActivity.h>
+#endif
+#if DZ_READABILITY_ENABLED
 #import <DZReadability/DZReadability.h>
 #endif

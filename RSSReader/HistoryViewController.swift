@@ -48,6 +48,9 @@ class HistoryViewController: UITableViewController {
 			let timeIntervalFormatted = (nil == NSClassFromString("NSDateComponentsFormatter")) ? "x" : dateComponentsFormatter.stringFromDate(item.date, toDate: nowDate) ?? ""
 			subtitleLabel.text = "\(timeIntervalFormatted)"
 		}
+		if let sourceLabel = cell.sourceLabel {
+			sourceLabel.text = item.subscription.title
+		}
 	}
 	// MARK: -
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -69,7 +72,7 @@ class HistoryViewController: UITableViewController {
 		return fetchedResultsController.sections![section].name
 	}
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier(MainStoryboard.ReuseIdentifiers.HistoryItem, forIndexPath: indexPath)
+		let cell = tableView.dequeueReusableCellWithIdentifier("Item", forIndexPath: indexPath)
 		self.configureCell(cell, atIndexPath: indexPath)
 		return cell
 	}
@@ -103,6 +106,8 @@ class HistoryViewController: UITableViewController {
 	}
     override func viewDidLoad() {
         super.viewDidLoad()
+		let cellNib = UINib(nibName: "MultisourceItemTableViewCell", bundle: nil)
+		tableView.registerNib(cellNib, forCellReuseIdentifier: "Item")
 		try! fetchedResultsController.performFetch()
     }
 }

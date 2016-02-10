@@ -31,6 +31,9 @@ class ItemSummaryWebViewController: UIViewController {
 			rssSession!.uploadTag(canonicalReadTag, mark: true, forItem: item, completionHandler: { uploadReadStateError in
 				if let uploadReadStateError = uploadReadStateError {
 					$(uploadReadStateError).$()
+					dispatch_sync(dispatch_get_main_queue()) {
+						self.presentErrorMessage(NSLocalizedString("Failed to mark as read. \((uploadReadStateError as NSError).localizedDescription)", comment: ""))
+					}
 				}
 			})
 		}
@@ -86,7 +89,9 @@ class ItemSummaryWebViewController: UIViewController {
 		rssSession!.uploadTag(canonicalFavoriteTag, mark: true, forItem: item, completionHandler: { uploadFavoritesStateError in
 			if let uploadFavoritesStateError = uploadFavoritesStateError {
 				$(uploadFavoritesStateError).$()
-				self.presentErrorMessage(NSLocalizedString("Failed to mark as favorite.", comment: ""))
+				dispatch_async(dispatch_get_main_queue()) {
+					self.presentErrorMessage(NSLocalizedString("Failed to mark as favorite.", comment: ""))
+				}
 			}
 		})
 	}
@@ -95,7 +100,9 @@ class ItemSummaryWebViewController: UIViewController {
 		rssSession!.uploadTag(canonicalFavoriteTag, mark: false, forItem: item, completionHandler: { uploadFavoritesStateError in
 			if let uploadFavoritesStateError = uploadFavoritesStateError {
 				$(uploadFavoritesStateError).$()
-				self.presentErrorMessage(NSLocalizedString("Failed to unmark as favorite.", comment: ""))
+				dispatch_async(dispatch_get_main_queue()) {
+					self.presentErrorMessage(NSLocalizedString("Failed to unmark as favorite.", comment: ""))
+				}
 			}
 		})
 	}
