@@ -45,6 +45,17 @@ func descriptionForInLineLocation(firstLocation: SourceLocation, lastLocation: S
 	return "[\(firstLocation.column)-\(lastLocation.column - 3)]"
 }
 
+func indexOfClosingBracket(string: NSString, openingBracket: NSString, closingBracket: NSString) -> Int {
+	let openingBracketIndex = string.rangeOfString(openingBracket as String).location
+	let closingBracketIndex = string.rangeOfString(closingBracket as String).location
+	guard (openingBracketIndex != NSNotFound) && (openingBracketIndex < closingBracketIndex) else {
+		return closingBracketIndex
+	}
+	let ignoredClosingBracketIndex = indexOfClosingBracket(string.substringFromIndex(openingBracketIndex + openingBracket.length), openingBracket: openingBracket, closingBracket: closingBracket)
+	let remainingStringIndex = ignoredClosingBracketIndex + closingBracket.length
+	return remainingStringIndex + indexOfClosingBracket(string.substringFromIndex(remainingStringIndex), openingBracket: openingBracket, closingBracket: closingBracket)
+}
+
 func labelFromLocation(firstLocation: SourceLocation, lastLocation: SourceLocation) -> String {
 	let fileURL = firstLocation.fileURL
 	let resourceName = fileURL.URLByDeletingPathExtension!.lastPathComponent!
@@ -62,8 +73,16 @@ func labelFromLocation(firstLocation: SourceLocation, lastLocation: SourceLocati
 		return "\(bundleName)/\(resourceName).\(resourceType)[!read]:\(descriptionForInLineLocation(firstLocation, lastLocation: lastLocation)):?"
 	}
 	let lines = text.componentsSeparatedByString("\n")
-	let range = NSRange(location: (firstLocation.column - 1), length: (lastLocation.column - firstLocation.column - 3))
-	return (lines[firstLocation.line - 1] as NSString).substringWithRange(range)
+	let line = lines[firstLocation.line - 1] as NSString
+	let firstIndex = firstLocation.column - 1
+	let tail = line.substringFromIndex(firstIndex) as NSString
+	let length: Int = {
+		guard firstLocation.column != lastLocation.column else {
+			return indexOfClosingBracket(tail, openingBracket: "(", closingBracket: ")")
+		}
+		return lastLocation.column - firstLocation.column - 3
+	}()
+	return tail.substringToIndex(length)
 }
 
 public func labeledString(string: String, location: SourceLocation, lastLocation: SourceLocation) -> String {
@@ -105,6 +124,15 @@ public func traceString(string: String, location: SourceLocation, lastLocation: 
 private let defaultTraceLevel = 0x0badf00d
 private let defaultTracingEnabled = true
 
+public var filesWithTracingDisabled = [String]()
+
+public func tracingShouldBeEnabledForFile(file: String = __FILE__, line: Int = __LINE__, column: Int = __COLUMN__, function: String = __FUNCTION__) -> Bool {
+	let fileURL = NSURL(fileURLWithPath: file)
+	guard !filesWithTracingDisabled.contains(fileURL.lastPathComponent!) else {
+		return false
+	}
+	return true
+}
 public struct Traceable<T> {
 	let value: T
 	let location: SourceLocation
@@ -113,7 +141,7 @@ public struct Traceable<T> {
 		self.location = location
 	}
 	public func $(level: Int = defaultTraceLevel, file: String = __FILE__, line: Int = __LINE__, column: Int = __COLUMN__, function: String = __FUNCTION__) -> T {
-		if 1 == level || ((level == defaultTraceLevel) && defaultTracingEnabled) {
+		if 1 == level || ((level == defaultTraceLevel) && defaultTracingEnabled && tracingShouldBeEnabledForFile(file, line: line, function: function)) {
 			let column = column + ((level == defaultTraceLevel) ? 0 : -1)
 			trace(value, startLocation: self.location, endLocation: SourceLocation(file: file, line: line, column: column, function: function))
 		}
@@ -133,12 +161,24 @@ public struct Labelable<T> {
 	}
 }
 
-public func $<T>(v: T, file: String = __FILE__, line: Int = __LINE__, column: Int = __COLUMN__, function: String = __FUNCTION__, bundle: NSBundle? = NSBundle.bundleOnStack()) -> Traceable<T> {
+public func x$<T>(v: T, file: String = __FILE__, line: Int = __LINE__, column: Int = __COLUMN__, function: String = __FUNCTION__, bundle: NSBundle? = NSBundle.bundleOnStack()) -> Traceable<T> {
 	return Traceable(value: v, location: SourceLocation(file: file, line: line, column: column, function: function, bundle: bundle))
 }
 
-public func L<T>(v: T, file: String = __FILE__, line: Int = __LINE__, column: Int = __COLUMN__, function: String = __FUNCTION__, bundle: NSBundle? = NSBundle.bundleOnStack()) -> Labelable<T> {
+public func xL<T>(v: T, file: String = __FILE__, line: Int = __LINE__, column: Int = __COLUMN__, function: String = __FUNCTION__, bundle: NSBundle? = NSBundle.bundleOnStack()) -> Labelable<T> {
 	return Labelable(value: v, location: SourceLocation(file: file, line: line, column: column, function: function, bundle: bundle))
+}
+
+public func $<T>(v: T, file: String = __FILE__, line: Int = __LINE__, column: Int = __COLUMN__, function: String = __FUNCTION__, bundle: NSBundle? = NSBundle.bundleOnStack()) -> T {
+	let location = SourceLocation(file: file, line: line, column: column, function: function, bundle: bundle)
+	trace(v, startLocation: location, endLocation: location)
+	return v
+}
+
+public func L<T>(v: T, file: String = __FILE__, line: Int = __LINE__, column: Int = __COLUMN__, function: String = __FUNCTION__, bundle: NSBundle? = NSBundle.bundleOnStack()) -> T {
+	let location = SourceLocation(file: file, line: line, column: column, function: function, bundle: bundle)
+	labelValue(v, startLocation: location, endLocation: location)
+	return v
 }
 
 func trace<T>(value: T, startLocation: SourceLocation, endLocation: SourceLocation) -> T {
@@ -169,7 +209,7 @@ public func URLQuerySuffixFromComponents(components: [String]) -> String {
 
 public func filterObjectsByType<T>(objects: [AnyObject]) -> [T] {
 	let filteredObjects = objects.reduce([T]()) {
-		if let x = $($1).$() as? T {
+		if let x = $($1) as? T {
 			return $0 + [x]
 		}
 		else {
