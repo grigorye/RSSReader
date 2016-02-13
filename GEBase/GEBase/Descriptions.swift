@@ -10,7 +10,7 @@ import Foundation
 
 func description(value: NSIndexPath) -> String {
 	var components = [String]()
-	for var i = 0; i < value.length; ++i {
+	for i in 0 ..< value.length {
 		components += ["\(value.indexAtPosition(i))"]
 	}
 	return components.joinWithSeparator(", ")
