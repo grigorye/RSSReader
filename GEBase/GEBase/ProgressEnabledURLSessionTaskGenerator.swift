@@ -24,8 +24,8 @@ public class ProgressEnabledURLSessionTaskGenerator: NSObject {
 	public func dataTaskForHTTPRequest(request: NSURLRequest, completionHandler: HTTPDataTaskCompletionHandler) -> NSURLSessionDataTask? {
 		let progress = NSProgress(totalUnitCount: 1)
 		progress.becomeCurrentWithPendingUnitCount(1)
-		$(request).$(1)
-		$(request.allHTTPHeaderFields).$(0)
+		$(request)
+		(request.allHTTPHeaderFields)
 		let sessionTask = session.progressEnabledDataTaskWithRequest(request) { data, response, error in
 			dispatch_async(self.dispatchQueue) {
 				self.mutableProgresses.removeObjectIdenticalTo(progress)
@@ -35,7 +35,7 @@ public class ProgressEnabledURLSessionTaskGenerator: NSObject {
 				guard nil == error else {
 					throw error
 				}
-				$(response).$()
+				$(response)
 				guard httpResponse.statusCode == 200 else {
 					throw URLSessionTaskGeneratorError.UnexpectedHTTPResponseStatus(httpResponse: httpResponse)
 				}
@@ -73,7 +73,7 @@ public class ProgressEnabledURLSessionTaskGenerator: NSObject {
 				}
 				completionHandler(text, nil)
 			} catch {
-				completionHandler(nil, $(error).$())
+				completionHandler(nil, $(error))
 			}
 		}
 	}

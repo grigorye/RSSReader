@@ -31,9 +31,9 @@ class TraceAndLabelTestsBase: XCTestCase {
     func testLabeledString() {
 		let foo = "bar"
 		traceLabelsEnabledEnforced = true
-		XCTAssertEqual(L(foo).$(), "foo: bar")
+		XCTAssertEqual(L(foo), "foo: bar")
 		traceLabelsEnabledEnforced = false
-		XCTAssertEqual(L(foo).$(), "bar")
+		XCTAssertEqual(L(foo), "bar")
     }
 }
 
@@ -50,19 +50,19 @@ class TraceTests: TraceAndLabelTestsBase {
 		}]
 	}
     func testTraceWithAllThingsDisabled() {
-		$(foo).$()
+		$(foo)
 		XCTAssertEqual(tracedMessages, [])
 	}
 	func testTraceWithTraceEanbled() {
 		traceEnabledEnforced = true
-		$(foo).$(); let line = __LINE__
+		$(foo); let line = __LINE__
 		let fileName = NSURL.fileURLWithPath(__FILE__).lastPathComponent!
 		XCTAssertEqual(tracedMessages, ["\(fileName), \(__FUNCTION__).\(line)[5-8]: bar"])
 	}
 	func testWithTraceAndLabelsEnabled() {
 		traceEnabledEnforced = true
 		traceLabelsEnabledEnforced = true
-		$(foo).$(); let line = __LINE__
+		$(foo); let line = __LINE__
 		let fileName = NSURL.fileURLWithPath(__FILE__).lastPathComponent!
 		XCTAssertEqual(tracedMessages, ["\(fileName), \(__FUNCTION__).\(line): foo: bar"])
 	}

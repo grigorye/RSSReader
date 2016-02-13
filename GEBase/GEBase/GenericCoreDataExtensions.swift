@@ -36,7 +36,7 @@ func objectFetchedWithPredicate<T: Managed where T: NSManagedObject>(cls: T.Type
 		$.fetchLimit = 1
 		return $
 	}()
-	let objects = try! $(managedObjectContext).$().executeFetchRequest($(request).$())
+	let objects = try! (managedObjectContext).executeFetchRequest((request))
 	let object = objects.last as! T?
 	if let object = object {
 		void(managedObjectContext.objectWithID(object.objectID))
@@ -99,11 +99,11 @@ extension NSManagedObjectContext {
                 return managedObjectContext.objectWithID(objectID)
             }
 			else {
-				$(objectIDURL).$()
+				$(objectIDURL)
 			}
         }
         else {
-			$(key).$()
+			$(key)
 		}
 		return nil
 	}
