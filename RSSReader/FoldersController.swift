@@ -76,31 +76,31 @@ extension FoldersController {
 		self.foldersLastUpdateError = nil
 		rssSession.updateUserInfo { updateUserInfoError in dispatch_async(dispatch_get_main_queue()) {
 			if let updateUserInfoError = updateUserInfoError {
-				errorCompletionHandler(Error.UserInfoRetrieval(underlyingError: $(updateUserInfoError).$()))
+				errorCompletionHandler(Error.UserInfoRetrieval(underlyingError: $(updateUserInfoError)))
 				return
 			}
 			self.foldersUpdateState = .UpdatingTags
 			rssSession.updateTags { updateTagsError in dispatch_async(dispatch_get_main_queue()) {
 				if let updateTagsError = updateTagsError {
-					errorCompletionHandler(Error.TagsUpdate(underlyingError: $(updateTagsError).$()))
+					errorCompletionHandler(Error.TagsUpdate(underlyingError: $(updateTagsError)))
 					return
 				}
 				self.foldersUpdateState = .UpdatingSubscriptions
 				rssSession.updateSubscriptions { updateSubscriptionsError in dispatch_async(dispatch_get_main_queue()) {
 					if let updateSubscriptionsError = updateSubscriptionsError {
-						errorCompletionHandler(Error.SubscriptionsUpdate(underlyingError: $(updateSubscriptionsError).$()))
+						errorCompletionHandler(Error.SubscriptionsUpdate(underlyingError: $(updateSubscriptionsError)))
 						return
 					}
 					self.foldersUpdateState = .UpdatingUnreadCounts
 					rssSession.updateUnreadCounts { updateUnreadCountsError in dispatch_async(dispatch_get_main_queue()) {
 						if let updateUnreadCountsError = updateUnreadCountsError {
-							errorCompletionHandler(Error.TagsUpdate(underlyingError: $(updateUnreadCountsError).$()))
+							errorCompletionHandler(Error.TagsUpdate(underlyingError: $(updateUnreadCountsError)))
 							return
 						}
 						self.foldersUpdateState = .UpdatingStreamPreferences
 						rssSession.updateStreamPreferences { updateStreamPreferencesError in dispatch_async(dispatch_get_main_queue()) {
 							if let updateStreamPreferencesError = updateStreamPreferencesError {
-								errorCompletionHandler(Error.StreamPreferencesUpdate(underlyingError: $(updateStreamPreferencesError).$()))
+								errorCompletionHandler(Error.StreamPreferencesUpdate(underlyingError: $(updateStreamPreferencesError)))
 								return
 							}
 							successCompletionHandler()

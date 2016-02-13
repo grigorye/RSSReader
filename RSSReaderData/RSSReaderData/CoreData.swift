@@ -52,7 +52,7 @@ extension Item : ManagedIdentifiable {
 		}()
 		let managedObjectContext = self.managedObjectContext!
 		if nil != updatedDate && (updatedDate == self.updatedDate) {
-			$(self).$(0)
+			(self)
 		}
 		else {
 			let date = NSDate(timestampUsec: json["timestampUsec"] as! String)

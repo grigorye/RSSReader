@@ -21,7 +21,7 @@ class CoreDataFetchRequestsTests: XCTestCase {
 			authenticateDidComplete.fulfill()
 		}
 		self.waitForExpectationsWithTimeout(5) { error in
-			$(error).$()
+			$(error)
 		}
         super.setUp()
     }
@@ -35,18 +35,18 @@ class CoreDataFetchRequestsTests: XCTestCase {
 			authenticateDidComplete.fulfill()
 		}
 		self.waitForExpectationsWithTimeout(5) { error in
-			$(error).$()
+			$(error)
 		}
 	}
     func testUpdateTags() {
-		$(mainQueueManagedObjectContext.persistentStoreCoordinator).$()
+		$(mainQueueManagedObjectContext.persistentStoreCoordinator)
     	let updateTagsComplete = self.expectationWithDescription("updateTagsComplete")
 		rssSession.updateTags { error in
 			XCTAssert(nil == error, "error: \(error)")
 			updateTagsComplete.fulfill()
 		}
 		self.waitForExpectationsWithTimeout(5) { error in
-			$(error).$()
+			$(error)
 		}
 	}
     func testUpdateTagsFromLastData() {
@@ -57,7 +57,7 @@ class CoreDataFetchRequestsTests: XCTestCase {
 			XCTAssert(nil == error, "error: \(error)")
 		}
 		self.waitForExpectationsWithTimeout(5) { error in
-			$(error).$()
+			$(error)
 		}
 		NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: 5))
 	}
@@ -106,7 +106,7 @@ class CoreDataFetchRequestsTests: XCTestCase {
 		}
 		NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: 5))
 		self.waitForExpectationsWithTimeout(5) { error in
-			$(error).$()
+			$(error)
 		}
 	}
 	func testFetchRequestInPerformBlockInBackgroundQueueContextWithAccessFetchedResultInPerformBlockAndWait() {
@@ -126,7 +126,7 @@ class CoreDataFetchRequestsTests: XCTestCase {
 		}
 		NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: 5))
 		self.waitForExpectationsWithTimeout(5) { error in
-			$(error).$()
+			$(error)
 		}
 	}
 	func testFetchRequestInPerformBlockInMainQueueContext() {

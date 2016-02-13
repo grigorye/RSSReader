@@ -29,7 +29,7 @@ class ItemsPageViewController : UIPageViewController {
 			self.currentViewController = viewControllers[currentViewControllerIndex]
 			blocksDelayedTillViewWillAppear += [{
 				self.setViewControllers(viewControllers, direction: .Forward, animated: false) { completed in
-					$(completed).$()
+					$(completed)
 				}
 			}]
 		}

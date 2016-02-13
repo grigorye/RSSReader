@@ -83,7 +83,7 @@ extension RSSSession {
 			return $.URL!
 		}()
 		let url = NSURL(string: relativeString, relativeToURL: baseURL)!
-		return self.dataTaskForAuthenticatedHTTPRequestWithURL($(url).$(), completionHandler: completionHandler)
+		return self.dataTaskForAuthenticatedHTTPRequestWithURL($(url), completionHandler: completionHandler)
 	}
 	// MARK: -
 	public func authenticate(completionHandler: (ErrorType?) -> Void) {
@@ -111,10 +111,10 @@ extension RSSSession {
 			}()
 			return $
 		}()
-		$(request).$()
+		$(request)
 		let sessionTask = progressEnabledURLSessionTaskGenerator.dataTaskForHTTPRequest(request) { data, httpResponse, error in
 			if let error = error {
-				completionHandler($(error).$())
+				completionHandler($(error))
 				return
 			}
 			let authToken: String? = {
@@ -155,7 +155,7 @@ extension RSSSession {
 					try backgroundQueueManagedObjectContext.save()
 					completionHandler(nil)
 				} catch {
-					completionHandler($(error).$())
+					completionHandler($(error))
 				}
 			}
 		}!
@@ -167,7 +167,7 @@ extension RSSSession {
 		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithPath(path) { data, httpResponse, error in
 			if let data = data {
 				let body = NSString(data: data, encoding: NSUTF8StringEncoding)
-				$(body).$()
+				$(body)
 			}
 			completionHandler(error)
 		}!
@@ -210,7 +210,7 @@ extension RSSSession {
 					try backgroundQueueManagedObjectContext.save()
 					completionHandler(nil)
 				} catch {
-					completionHandler($(error).$())
+					completionHandler($(error))
 				}
 			}
 		}!
@@ -219,7 +219,7 @@ extension RSSSession {
 	func updateTagsFromData(data: NSData, completionHandler: (ErrorType?) -> Void) {
 		backgroundQueueManagedObjectContext.performBlock {
 			do {
-				try importItemsFromJsonData(data, type: Folder.self, elementName: "tags", managedObjectContext: $(backgroundQueueManagedObjectContext).$()) { (tag, json) in
+				try importItemsFromJsonData(data, type: Folder.self, elementName: "tags", managedObjectContext: $(backgroundQueueManagedObjectContext)) { (tag, json) in
 					assert(tag.managedObjectContext == backgroundQueueManagedObjectContext)
 					if _1 {
 						try tag.importFromJson(json)
@@ -228,7 +228,7 @@ extension RSSSession {
 				try backgroundQueueManagedObjectContext.save()
 				completionHandler(nil)
 			} catch {
-				completionHandler($(error).$())
+				completionHandler($(error))
 			}
 		}
 	}
@@ -264,7 +264,7 @@ extension RSSSession {
 					try backgroundQueueManagedObjectContext.save()
 					completionHandler(nil)
 				} catch {
-					completionHandler($(error).$())
+					completionHandler($(error))
 				}
 			}
 		}!
@@ -285,7 +285,7 @@ extension RSSSession {
 					try backgroundQueueManagedObjectContext.save()
 					completionHandler(nil)
 				} catch {
-					completionHandler($(error).$())
+					completionHandler($(error))
 				}
 			}
 		}!
@@ -311,11 +311,11 @@ extension RSSSession {
 						try backgroundQueueManagedObjectContext.save()
 						completionHandler(nil)
 					} catch {
-						completionHandler($(error).$())
+						completionHandler($(error))
 					}
 				}
 			} catch {
-				completionHandler($(error).$())
+				completionHandler($(error))
 			}
 		}!
 		sessionTask.resume()
@@ -324,10 +324,10 @@ extension RSSSession {
 	public func streamContents(container: Container, excludedCategory: Folder?, continuation: String?, loadDate: NSDate, completionHandler: (continuation: String?, items: [Item]!, error: ErrorType?) -> Void) {
 		var queryComponents = [String]()
 		if let continuation = continuation {
-			queryComponents += ["c=\($(continuation).$())"]
+			queryComponents += ["c=\($(continuation))"]
 		}
 		if let excludedCategory = excludedCategory {
-			queryComponents += ["xt=\($(excludedCategory.streamID).$())"]
+			queryComponents += ["xt=\($(excludedCategory.streamID))"]
 		}
 		let subscriptionIDPercentEncoded = container.streamID.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())!
 		let querySuffix = URLQuerySuffixFromComponents(queryComponents)
@@ -359,7 +359,7 @@ extension RSSSession {
 					}
 					completionHandler(continuation: continuation, items: items, error: nil)
 				} catch {
-					completionHandler(continuation: nil, items: nil, error: $(error).$())
+					completionHandler(continuation: nil, items: nil, error: $(error))
 				}
 			}
 		}!

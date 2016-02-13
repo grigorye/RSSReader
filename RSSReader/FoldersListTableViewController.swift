@@ -36,7 +36,7 @@ class FoldersListTableViewController: UITableViewController, UIDataSourceModelAs
 				return []
 			}
 		}()
-		return $(regeneratedChildContainers).$(0)
+		return (regeneratedChildContainers)
 	}
 	// MARK: -
 	@IBOutlet private var statusLabel: UILabel!
@@ -95,7 +95,7 @@ class FoldersListTableViewController: UITableViewController, UIDataSourceModelAs
 				self.presentViewController(errorViewController, animated: true, completion: nil)
 			}
 			else if nil != updateError {
-				$(updateError).$()
+				$(updateError)
 			}
 			else {
 				if nil == self.rootFolder {
@@ -146,11 +146,11 @@ class FoldersListTableViewController: UITableViewController, UIDataSourceModelAs
 		let objectIDURL = NSURL(string: identifier)!
 		if let row = (childContainers.map { return $0.objectID.URIRepresentation().absoluteString }).indexOf(identifier) {
 			let indexPath = NSIndexPath(forRow: row, inSection: 0)
-			return $(indexPath).$()
+			return $(indexPath)
 		}
 		else {
 			let missingObjectIDURL = objectIDURL
-			$(missingObjectIDURL).$()
+			$(missingObjectIDURL)
 			return nil
 		}
 	}
@@ -196,13 +196,13 @@ class FoldersListTableViewController: UITableViewController, UIDataSourceModelAs
 		blocksScheduledForViewWillAppear = []
 		super.viewWillAppear(animated)
 		viewDidDisappearRetainedObjects += [KVOBinding(self•{$0.regeneratedChildContainers}, options: .Initial) { [unowned self] change in
-			$(change).$()
+			$(change)
 			self.childContainers = self.regeneratedChildContainers
 			self.tableView.reloadData()
 		}]
 		viewDidDisappearRetainedObjects += [KVOBinding(self•{$0.foldersController.foldersUpdateStateRaw}, options: .Initial) { [unowned self] change in
 			assert(NSThread.isMainThread())
-			$(change).$()
+			$(change)
 			let foldersUpdateState = self.foldersController.foldersUpdateState
 			let message: String = {
 				switch foldersUpdateState {
@@ -239,16 +239,16 @@ class FoldersListTableViewController: UITableViewController, UIDataSourceModelAs
 	}
 	// MARK: -
 	deinit {
-		$(self).$()
+		$(self)
 	}
 }
 
 extension FoldersListTableViewController {
 	func presentMessage(text: String) {
-		statusLabel.text = $(text).$()
+		statusLabel.text = $(text)
 		statusLabel.sizeToFit()
 		statusLabel.superview!.frame.size.width = statusLabel.bounds.width
-		statusBarButtonItem.width = $(statusLabel.superview!.bounds.width).$()
+		statusBarButtonItem.width = $(statusLabel.superview!.bounds.width)
 	}
 	override func presentErrorMessage(text: String) {
 		presentMessage(text)

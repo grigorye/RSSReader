@@ -21,7 +21,7 @@ public let (managedObjectContextError, mainQueueManagedObjectContext, background
 			try fileManager.createDirectoryAtURL(documentsDirectoryURL, withIntermediateDirectories: true, attributes: nil)
 		}
 		let storeURL = documentsDirectoryURL.URLByAppendingPathComponent("RSSReaderData.sqlite")
-		$(fileManager.fileExistsAtPath(storeURL.path!)).$()
+		$(fileManager.fileExistsAtPath(storeURL.path!))
 		if NSUserDefaults().boolForKey("forceStoreRemoval") {
 			let fileManager = NSFileManager.defaultManager()
 			do {

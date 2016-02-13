@@ -94,7 +94,7 @@ class HistoryViewController: UITableViewController {
 		case MainStoryboard.SegueIdentifiers.ShowHistoryArticle:
 			let itemViewController = segue.destinationViewController as! ItemSummaryWebViewController
 			itemViewController.item = selectedItem
-			$(segue).$()
+			$(segue)
 		default:
 			abort()
 		}

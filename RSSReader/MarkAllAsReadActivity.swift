@@ -18,7 +18,7 @@ class MarkAllAsReadActivity : TypeFilteringActivity {
 			i.markedAsRead = true
 		}
 		rssSession!.markAllAsRead(folder) { error in
-			$(error).$()
+			$(error)
 		}
 	}
 	override func activityType() -> String {

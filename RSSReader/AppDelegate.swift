@@ -28,7 +28,7 @@ class AppDelegateInternals {
 		let taskGenerator = progressEnabledURLSessionTaskGenerator
 		urlTaskGeneratorProgressKVOBinding = KVOBinding(taskGenerator•{$0.progresses}, options: []) { change in
 			let networkActivityIndicatorShouldBeVisible = 0 < taskGenerator.progresses.count
-			UIApplication.sharedApplication().networkActivityIndicatorVisible = $( networkActivityIndicatorShouldBeVisible).$()
+			UIApplication.sharedApplication().networkActivityIndicatorVisible = (networkActivityIndicatorShouldBeVisible)
 		}
 	}
 }
@@ -129,12 +129,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 		case restorationFormatVersion
 	}
 	func application(application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
-		$(self).$()
+		$(self)
 		coder.encodeObject(currentRestorationFormatVersion, forKey: Restorable.restorationFormatVersion.rawValue)
 		return true
 	}
 	func application(application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
-		$(self).$()
+		$(self)
 		let restorationFormatVersion = (coder.decodeObjectForKey(Restorable.restorationFormatVersion.rawValue) as! Int?) ?? 0
 		if restorationFormatVersion < currentRestorationFormatVersion {
 			return false
@@ -143,14 +143,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 	}
 	//
 	func application(application: UIApplication, willFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
-		$(self).$()
+		$(self)
 		return true
 	}
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+		filesWithTracingDisabled += [
+			"TableViewFetchedResultsControllerDelegate.swift",
+			"KVOCompliantUserDefaults.swift"
+		]
 		hideBarsOnSwipe = nil == self.tabBarController
 		assert(nil == managedObjectContextError)
 		if let managedObjectContextError = managedObjectContextError {
-			$(managedObjectContextError).$()
+			$(managedObjectContextError)
 			presentErrorMessage(NSLocalizedString("Something went wrong.", comment: ""))
 			return false
 		}
@@ -179,8 +183,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 		RSSReader.foldersController = self
 #if ANALYTICS_ENABLED
 		let version = NSBundle.mainBundle().infoDictionary!["CFBundleVersion"] as! NSString
-		let versionIsClean = NSNotFound == $(version).$(1).rangeOfCharacterFromSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet).location
-		if $(versionIsClean).$() && $(defaults.analyticsEnabled).$() {
+		let versionIsClean = NSNotFound == $(version).rangeOfCharacterFromSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet).location
+		if $(versionIsClean) && $(defaults.analyticsEnabled) {
 #if CRASHLYTICS_ENABLED
 			Fabric.with([Crashlytics()])
 #endif
@@ -198,6 +202,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 		let fileManager = NSFileManager()
 		let libraryDirectoryURL = fileManager.URLsForDirectory(.LibraryDirectory, inDomains: .UserDomainMask).last!
 		let libraryDirectory = libraryDirectoryURL.path!
-        $(libraryDirectory).$()
+        $(libraryDirectory)
 	}
 }

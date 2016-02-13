@@ -30,7 +30,7 @@ class ItemSummaryWebViewController: UIViewController {
 			item.markedAsRead = true
 			rssSession!.uploadTag(canonicalReadTag, mark: true, forItem: item, completionHandler: { uploadReadStateError in
 				if let uploadReadStateError = uploadReadStateError {
-					$(uploadReadStateError).$()
+					$(uploadReadStateError)
 					dispatch_sync(dispatch_get_main_queue()) {
 						self.presentErrorMessage(NSLocalizedString("Failed to mark as read. \((uploadReadStateError as NSError).localizedDescription)", comment: ""))
 					}
@@ -88,7 +88,7 @@ class ItemSummaryWebViewController: UIViewController {
 		item.markedAsFavorite = true
 		rssSession!.uploadTag(canonicalFavoriteTag, mark: true, forItem: item, completionHandler: { uploadFavoritesStateError in
 			if let uploadFavoritesStateError = uploadFavoritesStateError {
-				$(uploadFavoritesStateError).$()
+				$(uploadFavoritesStateError)
 				dispatch_async(dispatch_get_main_queue()) {
 					self.presentErrorMessage(NSLocalizedString("Failed to mark as favorite.", comment: ""))
 				}
@@ -99,7 +99,7 @@ class ItemSummaryWebViewController: UIViewController {
 		item.markedAsFavorite = false
 		rssSession!.uploadTag(canonicalFavoriteTag, mark: false, forItem: item, completionHandler: { uploadFavoritesStateError in
 			if let uploadFavoritesStateError = uploadFavoritesStateError {
-				$(uploadFavoritesStateError).$()
+				$(uploadFavoritesStateError)
 				dispatch_async(dispatch_get_main_queue()) {
 					self.presentErrorMessage(NSLocalizedString("Failed to unmark as favorite.", comment: ""))
 				}
@@ -138,7 +138,7 @@ class ItemSummaryWebViewController: UIViewController {
 		retrieveReadableHTMLFromURL(url) { HTMLString, error in
 			dispatch_async(dispatch_get_main_queue()) {
 				guard let HTMLString = HTMLString where nil == error else {
-					$(error).$()
+					$(error)
 					self.presentErrorMessage(NSLocalizedString("Unable to expand", comment: ""))
 					return
 				}
@@ -146,7 +146,7 @@ class ItemSummaryWebViewController: UIViewController {
 					try self.loadHTMLString(HTMLString, ignoringExisting: true)
 				}
 				catch {
-					$(error).$()
+					$(error)
 					self.presentErrorMessage(NSLocalizedString("Unable to expand", comment: ""))
 				}
 			}
@@ -178,7 +178,7 @@ class ItemSummaryWebViewController: UIViewController {
 			let toolbarItems = self.savedToolbarItems.filter {
 				return $0 != excludedBarButtonItem
 			}
-			self.toolbarItems = $(toolbarItems).$()
+			self.toolbarItems = $(toolbarItems)
 		}]
 		super.viewWillAppear(animated)
 	}
@@ -195,7 +195,7 @@ class ItemSummaryWebViewController: UIViewController {
 		super.viewDidDisappear(animated)
 	}
 	override func willMoveToParentViewController(parent: UIViewController?) {
-		$(parent).$()
+		$(parent)
 		super.willMoveToParentViewController(parent)
 		if hideBarsOnSwipe {
 			self.navigationController?.hidesBarsOnSwipe = nil != parent
@@ -233,9 +233,9 @@ class ItemSummaryWebViewDelegate: NSObject, UIWebViewDelegate {
 		}
 	}
 	func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
-		$(error).$()
+		$(error)
 	}
 	func webViewDidFinishLoad(webView: UIWebView) {
-		$(webView).$()
+		$(webView)
 	}
 }

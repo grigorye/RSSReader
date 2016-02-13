@@ -21,7 +21,7 @@ func configureFavoritesItemsListViewController(itemsListViewController: ItemsLis
 
 class HomeViewController: UITableViewController {
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		switch $(segue.identifier!).$() {
+		switch $(segue.identifier!) {
 		case MainStoryboard.SegueIdentifiers.ShowHistory:
 			()
 		case MainStoryboard.SegueIdentifiers.ShowSubscriptions:
