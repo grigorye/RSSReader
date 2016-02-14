@@ -22,7 +22,7 @@ public class ManagedObjectContextAutosaver: NSObject {
 				(managedObjectContext)
 				if let updatedObjects = notification.userInfo?[NSUpdatedObjectsKey] as! Set<NSManagedObject>? {
 					for updatedObject in updatedObjects {
-						$((updatedObject).changedValues())
+						((updatedObject).changedValues())
 					}
 				}
 				let insertedObjects = notification.userInfo?[NSInsertedObjectsKey] as! Set<NSManagedObject>?

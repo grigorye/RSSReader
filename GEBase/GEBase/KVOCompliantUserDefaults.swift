@@ -45,12 +45,12 @@ typealias _Self = KVOCompliantUserDefaults
 private let objectValueIMP: @convention(c) (_Self, Selector) -> AnyObject? = { _self, _cmd in
 	let propertyName = NSStringFromSelector(_cmd)
 	let value = _self.values[propertyName]
-	$(propertyName)
-	return $(value)
+	(propertyName)
+	return (value)
 }
 private let setObjectValueIMP: @convention(c) (_Self, Selector, NSObject?) -> Void = { _self, _cmd, value in
 	let defaultName = defaultNameForSelector(_cmd)
-	_self.defaults.setObject(value, forKey:$(defaultName))
+	_self.defaults.setObject(value, forKey:(defaultName))
 	_self.values[defaultName] = value
 }
 private let boolValueIMP: @convention(c) (_Self, Selector) -> Bool = { _self, _cmd in
@@ -110,7 +110,7 @@ private func isDefaultName(name: String) -> Bool {
 private func defaultNameForSelector(sel: Selector) -> String {
 	let selName = NSStringFromSelector(sel)
 	let propertyInfo = getterAndSetterMap[selName]!
-	$(propertyInfo)
+	(propertyInfo)
 	let defaultName = propertyInfo.name
 	return defaultName
 }
@@ -141,7 +141,7 @@ public class KVOCompliantUserDefaults : NSObject {
 	public override static func resolveInstanceMethod(sel: Selector) -> Bool {
 		let selName = NSStringFromSelector(sel)
 		if let propertyInfo = getterAndSetterMap[selName] {
-			$(propertyInfo)
+			(propertyInfo)
 			let attributesDictionary = propertyInfo.attributesDictionary;
 			let type = attributesDictionary["T"]!
 			let isSetter = selName.hasSuffix(":")
