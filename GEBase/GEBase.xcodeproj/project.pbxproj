@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C41818641B6A65B100872EB3 /* GEBase.h in Headers */ = {isa = PBXBuildFile; fileRef = C41818631B6A65B100872EB3 /* GEBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C418186B1B6A65B100872EB3 /* GEBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C41818601B6A65B100872EB3 /* GEBase.framework */; };
 		C41818901B6A66AE00872EB3 /* Descriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C418187A1B6A66AE00872EB3 /* Descriptions.swift */; };
 		C41818911B6A66AE00872EB3 /* FetchedObjectBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C418187B1B6A66AE00872EB3 /* FetchedObjectBinding.swift */; };
@@ -19,6 +18,8 @@
 		C41818AA1B6A673F00872EB3 /* Primitives.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818A71B6A673F00872EB3 /* Primitives.swift */; };
 		C41818AB1B6A673F00872EB3 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818A81B6A673F00872EB3 /* Globals.swift */; };
 		C41818B11B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818B01B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift */; };
+		C424B8DE1C6FC322008AD647 /* GEKeyPaths.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C424B8DD1C6FC322008AD647 /* GEKeyPaths.framework */; };
+		C46C93F61C6FF77E007E4302 /* DefaultLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46C93F51C6FF77E007E4302 /* DefaultLogger.swift */; };
 		C495D8991C02592100A7F7D5 /* GenericExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495D8981C02592100A7F7D5 /* GenericExtensionsTests.swift */; };
 		C495D89B1C025A0800A7F7D5 /* GenericExtensionsTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C495D8981C02592100A7F7D5 /* GenericExtensionsTests.swift */; };
 		C4FEBAFD1BF9196E00A5709B /* Primitives.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41818A71B6A673F00872EB3 /* Primitives.swift */; };
@@ -44,34 +45,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = C418185F1B6A65B100872EB3;
 			remoteInfo = GEBase;
-		};
-		C499E3C91B6CDD6A00F67BEE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C41818C61B6A713600872EB3 /* TestHostApp.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C4F507161B5B9AC8002D9B02;
-			remoteInfo = TestHostApp;
-		};
-		C4B437401C00A95200A2F3BE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C4B4373B1C00A95100A2F3BE /* GEKeyPaths.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C475E25F1BFFD0EC00145406;
-			remoteInfo = GEKeyPaths;
-		};
-		C4B437421C00A95200A2F3BE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C4B4373B1C00A95100A2F3BE /* GEKeyPaths.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C475E2691BFFD0EC00145406;
-			remoteInfo = GEKeyPathsTests;
-		};
-		C4B437451C00A96600A2F3BE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C4B4373B1C00A95100A2F3BE /* GEKeyPaths.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = C475E25E1BFFD0EC00145406;
-			remoteInfo = GEKeyPaths;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -112,8 +85,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C40EA7281C6FCA2B002C6D9E /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		C41818601B6A65B100872EB3 /* GEBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GEBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C41818631B6A65B100872EB3 /* GEBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GEBase.h; sourceTree = "<group>"; };
 		C41818651B6A65B100872EB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C418186A1B6A65B100872EB3 /* GEBaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GEBaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C41818711B6A65B100872EB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -127,9 +100,9 @@
 		C41818A71B6A673F00872EB3 /* Primitives.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Primitives.swift; sourceTree = "<group>"; };
 		C41818A81B6A673F00872EB3 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		C41818B01B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectContextAutosaver.swift; sourceTree = "<group>"; };
-		C41818C61B6A713600872EB3 /* TestHostApp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TestHostApp.xcodeproj; path = ../TestHostApp/TestHostApp.xcodeproj; sourceTree = SOURCE_ROOT; };
+		C424B8DD1C6FC322008AD647 /* GEKeyPaths.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GEKeyPaths.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C46C93F51C6FF77E007E4302 /* DefaultLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultLogger.swift; sourceTree = "<group>"; };
 		C495D8981C02592100A7F7D5 /* GenericExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericExtensionsTests.swift; sourceTree = "<group>"; };
-		C4B4373B1C00A95100A2F3BE /* GEKeyPaths.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GEKeyPaths.xcodeproj; path = ../GEKeyPaths/GEKeyPaths.xcodeproj; sourceTree = "<group>"; };
 		C4FEBB191BF91E6600A5709B /* KVOCompliantUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOCompliantUserDefaults.swift; sourceTree = "<group>"; };
 		C4FEBB1C1BF960A300A5709B /* NSBundleExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSBundleExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -139,6 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C424B8DE1C6FC322008AD647 /* GEKeyPaths.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,9 +130,9 @@
 		C41818561B6A65B100872EB3 = {
 			isa = PBXGroup;
 			children = (
-				C4B4374D1C00EC3F00A2F3BE /* Projects */,
 				C41818621B6A65B100872EB3 /* GEBase */,
 				C418186E1B6A65B100872EB3 /* GEBaseTests */,
+				C424B8DF1C6FC332008AD647 /* Frameworks */,
 				C41818611B6A65B100872EB3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -175,19 +149,20 @@
 		C41818621B6A65B100872EB3 /* GEBase */ = {
 			isa = PBXGroup;
 			children = (
-				C41818631B6A65B100872EB3 /* GEBase.h */,
 				C41818A71B6A673F00872EB3 /* Primitives.swift */,
 				C41818A81B6A673F00872EB3 /* Globals.swift */,
 				C418187A1B6A66AE00872EB3 /* Descriptions.swift */,
 				C418187B1B6A66AE00872EB3 /* FetchedObjectBinding.swift */,
 				C418187C1B6A66AE00872EB3 /* GenericCoreDataExtensions.swift */,
 				C418187D1B6A66AE00872EB3 /* GenericExtensions.swift */,
+				C46C93F51C6FF77E007E4302 /* DefaultLogger.swift */,
 				C418187E1B6A66AE00872EB3 /* GenericURLSessionExtensions.swift */,
 				C41818B01B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift */,
 				C4FEBB1C1BF960A300A5709B /* NSBundleExtensions.swift */,
 				C41818891B6A66AE00872EB3 /* KVOBinding.swift */,
 				C4FEBB191BF91E6600A5709B /* KVOCompliantUserDefaults.swift */,
 				C418188F1B6A66AE00872EB3 /* ProgressEnabledURLSessionTaskGenerator.swift */,
+				C40EA7281C6FCA2B002C6D9E /* Bridging-Header.h */,
 				C41818651B6A65B100872EB3 /* Info.plist */,
 			);
 			path = GEBase;
@@ -202,30 +177,12 @@
 			path = GEBaseTests;
 			sourceTree = "<group>";
 		};
-		C499E3C41B6CDD6A00F67BEE /* Products */ = {
+		C424B8DF1C6FC332008AD647 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C499E3CA1B6CDD6A00F67BEE /* TestHostApp.app */,
+				C424B8DD1C6FC322008AD647 /* GEKeyPaths.framework */,
 			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		C4B4373C1C00A95100A2F3BE /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				C4B437411C00A95200A2F3BE /* GEKeyPaths.framework */,
-				C4B437431C00A95200A2F3BE /* GEKeyPathsTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		C4B4374D1C00EC3F00A2F3BE /* Projects */ = {
-			isa = PBXGroup;
-			children = (
-				C4B4373B1C00A95100A2F3BE /* GEKeyPaths.xcodeproj */,
-				C41818C61B6A713600872EB3 /* TestHostApp.xcodeproj */,
-			);
-			name = Projects;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,7 +192,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C41818641B6A65B100872EB3 /* GEBase.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,7 +211,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				C4B437461C00A96600A2F3BE /* PBXTargetDependency */,
 			);
 			name = GEBase;
 			productName = GEBase;
@@ -309,16 +264,6 @@
 			mainGroup = C41818561B6A65B100872EB3;
 			productRefGroup = C41818611B6A65B100872EB3 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = C4B4373C1C00A95100A2F3BE /* Products */;
-					ProjectRef = C4B4373B1C00A95100A2F3BE /* GEKeyPaths.xcodeproj */;
-				},
-				{
-					ProductGroup = C499E3C41B6CDD6A00F67BEE /* Products */;
-					ProjectRef = C41818C61B6A713600872EB3 /* TestHostApp.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				C418185F1B6A65B100872EB3 /* GEBase */,
@@ -326,30 +271,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		C499E3CA1B6CDD6A00F67BEE /* TestHostApp.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = TestHostApp.app;
-			remoteRef = C499E3C91B6CDD6A00F67BEE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C4B437411C00A95200A2F3BE /* GEKeyPaths.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = GEKeyPaths.framework;
-			remoteRef = C4B437401C00A95200A2F3BE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C4B437431C00A95200A2F3BE /* GEKeyPathsTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = GEKeyPathsTests.xctest;
-			remoteRef = C4B437421C00A95200A2F3BE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		C418185E1B6A65B100872EB3 /* Resources */ = {
@@ -385,6 +306,7 @@
 				C41818901B6A66AE00872EB3 /* Descriptions.swift in Sources */,
 				C41818931B6A66AE00872EB3 /* GenericExtensions.swift in Sources */,
 				C4FEBB1A1BF91E6600A5709B /* KVOCompliantUserDefaults.swift in Sources */,
+				C46C93F61C6FF77E007E4302 /* DefaultLogger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,11 +325,6 @@
 			isa = PBXTargetDependency;
 			target = C418185F1B6A65B100872EB3 /* GEBase */;
 			targetProxy = C418186C1B6A65B100872EB3 /* PBXContainerItemProxy */;
-		};
-		C4B437461C00A96600A2F3BE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = GEKeyPaths;
-			targetProxy = C4B437451C00A96600A2F3BE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -453,7 +370,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "-DGETypedKeyPaths";
-				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -495,7 +412,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_SWIFT_FLAGS = "-DGETypedKeyPaths";
-				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -517,6 +434,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.grigoryentin.GEBase;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(TARGET_NAME)/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -535,6 +453,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.grigoryentin.GEBase;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(TARGET_NAME)/Bridging-Header.h";
 			};
 			name = Release;
 		};
