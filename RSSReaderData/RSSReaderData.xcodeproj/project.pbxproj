@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C48F79A21C008D0D00CC6F74 /* RSSReaderData.h in Headers */ = {isa = PBXBuildFile; fileRef = C48F79A11C008D0D00CC6F74 /* RSSReaderData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C424B8E31C6FC52D008AD647 /* GEBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C424B8E21C6FC52D008AD647 /* GEBase.framework */; };
 		C48F79A91C008D0E00CC6F74 /* RSSReaderData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48F799E1C008D0D00CC6F74 /* RSSReaderData.framework */; };
 		C48F79AE1C008D0E00CC6F74 /* RSSReaderDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48F79AD1C008D0E00CC6F74 /* RSSReaderDataTests.swift */; };
 		C48F79C41C008DD300CC6F74 /* RSSSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48F79C31C008DD300CC6F74 /* RSSSessionTests.swift */; };
@@ -45,48 +45,6 @@
 			remoteGlobalIDString = C48F799D1C008D0D00CC6F74;
 			remoteInfo = RSSReaderData;
 		};
-		C48F79EC1C008F7B00CC6F74 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C48F79E61C008F7B00CC6F74 /* GEBase.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C41818601B6A65B100872EB3;
-			remoteInfo = GEBase;
-		};
-		C48F79EE1C008F7B00CC6F74 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C48F79E61C008F7B00CC6F74 /* GEBase.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C418186A1B6A65B100872EB3;
-			remoteInfo = GEBaseTests;
-		};
-		C48F79F81C008FC400CC6F74 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C48F79F31C008FC400CC6F74 /* GEKeyPaths.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C475E25F1BFFD0EC00145406;
-			remoteInfo = GEKeyPaths;
-		};
-		C48F79FA1C008FC400CC6F74 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C48F79F31C008FC400CC6F74 /* GEKeyPaths.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C475E2691BFFD0EC00145406;
-			remoteInfo = GEKeyPathsTests;
-		};
-		C48F79FE1C00910800CC6F74 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C48F79E61C008F7B00CC6F74 /* GEBase.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = C418185F1B6A65B100872EB3;
-			remoteInfo = GEBase;
-		};
-		C48F7A001C00910800CC6F74 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C48F79F31C008FC400CC6F74 /* GEKeyPaths.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = C475E25E1BFFD0EC00145406;
-			remoteInfo = GEKeyPaths;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -114,8 +72,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C424B8E21C6FC52D008AD647 /* GEBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GEBase.framework; path = "../../../Library/Developer/Xcode/DerivedData/RSSReader-eehjnhhfirrojtathkxfsicskrbn/Build/Products/Debug/GEBase.framework"; sourceTree = "<group>"; };
 		C48F799E1C008D0D00CC6F74 /* RSSReaderData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RSSReaderData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C48F79A11C008D0D00CC6F74 /* RSSReaderData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSSReaderData.h; sourceTree = "<group>"; };
 		C48F79A31C008D0D00CC6F74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C48F79A81C008D0E00CC6F74 /* RSSReaderDataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RSSReaderDataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C48F79AD1C008D0E00CC6F74 /* RSSReaderDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSReaderDataTests.swift; sourceTree = "<group>"; };
@@ -143,8 +101,6 @@
 		C48F79E11C008E6A00CC6F74 /* 88.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 88.xcdatamodel; sourceTree = "<group>"; };
 		C48F79E21C008E6A00CC6F74 /* current.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = current.xcdatamodel; sourceTree = "<group>"; };
 		C48F79E41C008F1900CC6F74 /* KVOCompliantUserDefaults+RSSReaderData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KVOCompliantUserDefaults+RSSReaderData.swift"; sourceTree = "<group>"; };
-		C48F79E61C008F7B00CC6F74 /* GEBase.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GEBase.xcodeproj; path = ../GEBase/GEBase.xcodeproj; sourceTree = "<group>"; };
-		C48F79F31C008FC400CC6F74 /* GEKeyPaths.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GEKeyPaths.xcodeproj; path = ../GEKeyPaths/GEKeyPaths.xcodeproj; sourceTree = "<group>"; };
 		C48F79FC1C008FEE00CC6F74 /* LoginAndPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAndPassword.swift; sourceTree = "<group>"; };
 		C4B437361C00A75200A2F3BE /* CoreDataGlobals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataGlobals.swift; sourceTree = "<group>"; };
 		C4B4374E1C00F00700A2F3BE /* CoreDataFetchRequestsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataFetchRequestsTests.swift; sourceTree = "<group>"; };
@@ -155,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C424B8E31C6FC52D008AD647 /* GEBase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,12 +126,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C424B8E41C6FC531008AD647 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C424B8E21C6FC52D008AD647 /* GEBase.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C48F79941C008D0D00CC6F74 = {
 			isa = PBXGroup;
 			children = (
-				C4B437471C00EBFD00A2F3BE /* Projects */,
 				C48F79A01C008D0D00CC6F74 /* RSSReaderData */,
 				C48F79AC1C008D0E00CC6F74 /* RSSReaderDataTests */,
+				C424B8E41C6FC531008AD647 /* Frameworks */,
 				C48F799F1C008D0D00CC6F74 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -203,7 +168,6 @@
 				C48F79D31C008E3900CC6F74 /* MarkingAsRead.swift */,
 				C48F79E41C008F1900CC6F74 /* KVOCompliantUserDefaults+RSSReaderData.swift */,
 				C48F79D51C008E6A00CC6F74 /* RSSReader.xcdatamodeld */,
-				C48F79A11C008D0D00CC6F74 /* RSSReaderData.h */,
 				C48F79A31C008D0D00CC6F74 /* Info.plist */,
 			);
 			path = RSSReaderData;
@@ -220,33 +184,6 @@
 			path = RSSReaderDataTests;
 			sourceTree = "<group>";
 		};
-		C48F79E71C008F7B00CC6F74 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				C48F79ED1C008F7B00CC6F74 /* GEBase.framework */,
-				C48F79EF1C008F7B00CC6F74 /* GEBaseTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		C48F79F41C008FC400CC6F74 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				C48F79F91C008FC400CC6F74 /* GEKeyPaths.framework */,
-				C48F79FB1C008FC400CC6F74 /* GEKeyPathsTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		C4B437471C00EBFD00A2F3BE /* Projects */ = {
-			isa = PBXGroup;
-			children = (
-				C48F79E61C008F7B00CC6F74 /* GEBase.xcodeproj */,
-				C48F79F31C008FC400CC6F74 /* GEKeyPaths.xcodeproj */,
-			);
-			name = Projects;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -254,7 +191,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C48F79A21C008D0D00CC6F74 /* RSSReaderData.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,8 +210,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				C48F79FF1C00910800CC6F74 /* PBXTargetDependency */,
-				C48F7A011C00910800CC6F74 /* PBXTargetDependency */,
 			);
 			name = RSSReaderData;
 			productName = RSSReaderData;
@@ -328,16 +262,6 @@
 			mainGroup = C48F79941C008D0D00CC6F74;
 			productRefGroup = C48F799F1C008D0D00CC6F74 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = C48F79E71C008F7B00CC6F74 /* Products */;
-					ProjectRef = C48F79E61C008F7B00CC6F74 /* GEBase.xcodeproj */;
-				},
-				{
-					ProductGroup = C48F79F41C008FC400CC6F74 /* Products */;
-					ProjectRef = C48F79F31C008FC400CC6F74 /* GEKeyPaths.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				C48F799D1C008D0D00CC6F74 /* RSSReaderData */,
@@ -345,37 +269,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		C48F79ED1C008F7B00CC6F74 /* GEBase.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = GEBase.framework;
-			remoteRef = C48F79EC1C008F7B00CC6F74 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C48F79EF1C008F7B00CC6F74 /* GEBaseTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = GEBaseTests.xctest;
-			remoteRef = C48F79EE1C008F7B00CC6F74 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C48F79F91C008FC400CC6F74 /* GEKeyPaths.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = GEKeyPaths.framework;
-			remoteRef = C48F79F81C008FC400CC6F74 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C48F79FB1C008FC400CC6F74 /* GEKeyPathsTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = GEKeyPathsTests.xctest;
-			remoteRef = C48F79FA1C008FC400CC6F74 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		C48F799C1C008D0D00CC6F74 /* Resources */ = {
@@ -432,16 +325,6 @@
 			target = C48F799D1C008D0D00CC6F74 /* RSSReaderData */;
 			targetProxy = C48F79AA1C008D0E00CC6F74 /* PBXContainerItemProxy */;
 		};
-		C48F79FF1C00910800CC6F74 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = GEBase;
-			targetProxy = C48F79FE1C00910800CC6F74 /* PBXContainerItemProxy */;
-		};
-		C48F7A011C00910800CC6F74 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = GEKeyPaths;
-			targetProxy = C48F7A001C00910800CC6F74 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -485,7 +368,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -526,7 +409,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
