@@ -8,6 +8,8 @@
 
 import CoreData
 
+#if os(iOS)
+
 public class FetchedAnyObjectBinding : NSObject, NSFetchedResultsControllerDelegate {
 	var handler: ((AnyObject?) -> Void)!
 	let fetchedResultsController: NSFetchedResultsController
@@ -42,3 +44,5 @@ public class FetchedObjectBinding<T where T: DefaultSortable, T: Managed> : Fetc
 	deinit {
 	}
 }
+
+#endif
