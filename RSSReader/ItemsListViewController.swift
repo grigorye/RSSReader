@@ -310,7 +310,7 @@ class ItemsListViewController: UITableViewController {
 	// MARK: -
 	internal func configureCell(rawCell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
 		let cell = rawCell as! ItemTableViewCell
-		let item = fetchedResultsController.objectAtIndexPath($(indexPath)) as! Item
+		let item = fetchedResultsController.objectAtIndexPath((indexPath)) as! Item
 		if let titleLabel = cell.titleLabel {
 			titleLabel.text = item.title ?? (item.itemID as NSString).lastPathComponent
 		}
@@ -331,7 +331,7 @@ class ItemsListViewController: UITableViewController {
 	// MARK: -
 	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		let numberOfSections = fetchedResultsController.sections?.count ?? 0
-		return $(numberOfSections)
+		return (numberOfSections)
 	}
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		let numberOfRows = fetchedResultsController.sections![section].numberOfObjects
@@ -422,10 +422,10 @@ class ItemsListViewController: UITableViewController {
 	private var blocksDelayedTillViewWillAppear = [Handler]()
 	// MARK: -
 	override func viewWillAppear(animated: Bool) {
-		$(self)
+		(self)
 		nowDate = NSDate()
 		let binding = KVOBinding(self•{$0.loadDate}, options: [.New, .Initial]) { change in
-			$(self.toolbarItems)
+			(•self.toolbarItems!)
 			let newValue = change![NSKeyValueChangeNewKey]
 			if let loadDate = nilForNull(newValue!) as! NSDate? {
 				let loadAgo = loadAgoDateComponentsFormatter.stringFromDate(loadDate, toDate: NSDate())
@@ -547,7 +547,7 @@ extension ItemsListViewController {
 		statusLabel.text = text
 		statusLabel.sizeToFit()
 		statusLabel.superview!.frame.size.width = statusLabel.bounds.width
-		statusBarButtonItem.width = $(statusLabel.superview!.bounds.width)
+		statusBarButtonItem.width = (statusLabel.superview!.bounds.width)
 	}
 	override func presentErrorMessage(text: String) {
 		presentMessage(text)

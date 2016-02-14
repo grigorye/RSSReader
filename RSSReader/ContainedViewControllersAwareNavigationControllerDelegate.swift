@@ -11,7 +11,7 @@ import UIKit.UINavigationController
 
 class ContainedViewControllersAwareNavigationControllerDelegate: NSObject, UINavigationControllerDelegate {
 	func navigationController(navigationController: UINavigationController, didShowViewController viewController: UIViewController, animated: Bool) {
-		$(self)
+		(self)
 		viewController.makeContainedViewControllersPerformBlock { containedViewController in
 			containedViewController.viewDidAppearInNavigationController(navigationController, animated: animated)
 		}

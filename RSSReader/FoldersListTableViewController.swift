@@ -196,13 +196,13 @@ class FoldersListTableViewController: UITableViewController, UIDataSourceModelAs
 		blocksScheduledForViewWillAppear = []
 		super.viewWillAppear(animated)
 		viewDidDisappearRetainedObjects += [KVOBinding(self•{$0.regeneratedChildContainers}, options: .Initial) { [unowned self] change in
-			$(change)
+			$(•change!)
 			self.childContainers = self.regeneratedChildContainers
 			self.tableView.reloadData()
 		}]
 		viewDidDisappearRetainedObjects += [KVOBinding(self•{$0.foldersController.foldersUpdateStateRaw}, options: .Initial) { [unowned self] change in
 			assert(NSThread.isMainThread())
-			$(change)
+			(change)
 			let foldersUpdateState = self.foldersController.foldersUpdateState
 			let message: String = {
 				switch foldersUpdateState {
@@ -245,10 +245,10 @@ class FoldersListTableViewController: UITableViewController, UIDataSourceModelAs
 
 extension FoldersListTableViewController {
 	func presentMessage(text: String) {
-		statusLabel.text = $(text)
+		statusLabel.text = (text)
 		statusLabel.sizeToFit()
 		statusLabel.superview!.frame.size.width = statusLabel.bounds.width
-		statusBarButtonItem.width = $(statusLabel.superview!.bounds.width)
+		statusBarButtonItem.width = (statusLabel.superview!.bounds.width)
 	}
 	override func presentErrorMessage(text: String) {
 		presentMessage(text)

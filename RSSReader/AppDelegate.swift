@@ -136,10 +136,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 	func application(application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
 		$(self)
 		let restorationFormatVersion = (coder.decodeObjectForKey(Restorable.restorationFormatVersion.rawValue) as! Int?) ?? 0
-		if restorationFormatVersion < currentRestorationFormatVersion {
+		if $(restorationFormatVersion) < currentRestorationFormatVersion {
 			return false
 		}
-		return !defaults.stateRestorationDisabled
+		return !$(defaults.stateRestorationDisabled)
 	}
 	//
 	func application(application: UIApplication, willFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
@@ -184,7 +184,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 #if ANALYTICS_ENABLED
 		let version = NSBundle.mainBundle().infoDictionary!["CFBundleVersion"] as! NSString
 		let versionIsClean = NSNotFound == $(version).rangeOfCharacterFromSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet).location
-		if $(versionIsClean) && $(defaults.analyticsEnabled) {
+		if (versionIsClean) && $(defaults.analyticsEnabled) {
 #if CRASHLYTICS_ENABLED
 			Fabric.with([Crashlytics()])
 #endif
