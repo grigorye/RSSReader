@@ -48,7 +48,7 @@ extension Container {
 			guard let json = jsonObject as? [String: AnyObject] else {
 				throw JsonImportError.JsonObjectIsNotDictionary(jsonObject: jsonObject)
 			}
-			guard let sortIDString = $(json)["sortid"] as? String else {
+			guard let sortIDString = (json)["sortid"] as? String else {
 				throw JsonImportError.MissingSortID(json: json)
 			}
 			var sortIDUnsigned : UInt32 = 0
@@ -56,7 +56,7 @@ extension Container {
 				throw JsonImportError.SortIDIsNotHex(json: json)
 			}
 			let sortID = Int32(bitPattern: sortIDUnsigned)
-			return $(sortID)
+			return (sortID)
 		}()
 		if self.sortID != sortID {
 			self.sortID = sortID
@@ -66,7 +66,7 @@ extension Container {
 		let json = jsonObject as! [String: AnyObject]
 		self.streamID = {
 			let streamID = json["id"] as! String
-			return $(streamID)
+			return (streamID)
 		}()
 		self.unreadCount = (json["count"] as? NSString)?.intValue ?? (json["count"] as! NSNumber).intValue
 		self.newestItemDate = NSDate(timestampUsec: json["newestItemTimestampUsec"] as! String)
@@ -76,8 +76,8 @@ extension Container {
 			throw JsonImportError.JsonObjectIsNotDictionary(jsonObject: jsonObject)
 		}
 		for (folderID, prefs) in json {
-			$(folderID)
-			$(prefs)
+			(folderID)
+			(prefs)
 			for prefs in prefs {
 				guard let id = prefs["id"] as? String else {
 					throw JsonImportError.MissingPrefsID(json: prefs)
@@ -88,7 +88,7 @@ extension Container {
 				guard let value = prefs["value"] as? String else {
 					throw JsonImportError.PrefsMissingValue(prefs: prefs)
 				}
-				$(value)
+				(value)
 				let folder = try insertedObjectUnlessFetchedWithID(Folder.self, id: folderID, managedObjectContext: managedObjectContext)
 				assert(folder.streamID == folderID)
 				let characterCountInValue = value.characters.count
@@ -116,7 +116,7 @@ extension Container {
 					return $
 				}()
 				let unorderedChildContainers = try managedObjectContext.executeFetchRequest(request) as! [Container]
-				$(unorderedChildContainers)
+				(unorderedChildContainers)
 				let childContainers = sortIDs.map { sortID in
 					return unorderedChildContainers.filter { $0.sortID == sortID }.onlyElement!
 				}

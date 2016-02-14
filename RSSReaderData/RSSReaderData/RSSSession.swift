@@ -83,7 +83,7 @@ extension RSSSession {
 			return $.URL!
 		}()
 		let url = NSURL(string: relativeString, relativeToURL: baseURL)!
-		return self.dataTaskForAuthenticatedHTTPRequestWithURL($(url), completionHandler: completionHandler)
+		return self.dataTaskForAuthenticatedHTTPRequestWithURL((url), completionHandler: completionHandler)
 	}
 	// MARK: -
 	public func authenticate(completionHandler: (ErrorType?) -> Void) {
@@ -219,7 +219,7 @@ extension RSSSession {
 	func updateTagsFromData(data: NSData, completionHandler: (ErrorType?) -> Void) {
 		backgroundQueueManagedObjectContext.performBlock {
 			do {
-				try importItemsFromJsonData(data, type: Folder.self, elementName: "tags", managedObjectContext: $(backgroundQueueManagedObjectContext)) { (tag, json) in
+				try importItemsFromJsonData(data, type: Folder.self, elementName: "tags", managedObjectContext: (backgroundQueueManagedObjectContext)) { (tag, json) in
 					assert(tag.managedObjectContext == backgroundQueueManagedObjectContext)
 					if _1 {
 						try tag.importFromJson(json)
