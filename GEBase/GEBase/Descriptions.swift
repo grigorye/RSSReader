@@ -15,8 +15,3 @@ func description(value: NSIndexPath) -> String {
 	}
 	return components.joinWithSeparator(", ")
 }
-
-func trace(value: NSIndexPath, startLocation: SourceLocation, endLocation: SourceLocation) -> NSIndexPath {
-	traceString(description(value), location: startLocation, lastLocation: endLocation)
-	return value
-}
