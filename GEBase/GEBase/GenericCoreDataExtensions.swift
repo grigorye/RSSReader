@@ -114,6 +114,7 @@ extension NSManagedObjectContext {
 	}
 }
 
+#if os(iOS)
 public func stringFromFetchedResultsChangeType(type: NSFetchedResultsChangeType) -> String {
 	switch (type) {
 	case .Insert:
@@ -126,3 +127,4 @@ public func stringFromFetchedResultsChangeType(type: NSFetchedResultsChangeType)
 		return "Move"
 	}
 }
+#endif
