@@ -5,6 +5,21 @@
       location = "group:RSSReader.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:RSSReaderData/RSSReaderData.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:GEBase/GEBase.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:GEKeyPaths/GEKeyPaths.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:TestHostApp/TestHostApp.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Podfile">
+   </FileRef>
+   <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>
