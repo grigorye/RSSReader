@@ -7,13 +7,6 @@
 //
 
 import Foundation
-#if ANALYTICS_ENABLED
-#if CRASHLYTICS_ENABLED
-import Crashlytics
-#endif
-#endif
-
-private let traceToNSLogEnabled = true
 
 var traceEnabled: Bool {
 	return defaults.traceEnabled
@@ -51,9 +44,11 @@ func indexOfClosingBracket(string: NSString, openingBracket: NSString, closingBr
 	guard (openingBracketIndex != NSNotFound) && (openingBracketIndex < closingBracketIndex) else {
 		return closingBracketIndex
 	}
-	let ignoredClosingBracketIndex = indexOfClosingBracket(string.substringFromIndex(openingBracketIndex + openingBracket.length), openingBracket: openingBracket, closingBracket: closingBracket)
+	let tailIndex = openingBracketIndex + openingBracket.length
+	let tail = string.substringFromIndex(tailIndex) as NSString
+	let ignoredClosingBracketIndex = indexOfClosingBracket(tail, openingBracket: openingBracket, closingBracket: closingBracket)
 	let remainingStringIndex = ignoredClosingBracketIndex + closingBracket.length
-	return remainingStringIndex + indexOfClosingBracket(string.substringFromIndex(remainingStringIndex), openingBracket: openingBracket, closingBracket: closingBracket)
+	return tailIndex + remainingStringIndex + indexOfClosingBracket(tail.substringFromIndex(remainingStringIndex), openingBracket: openingBracket, closingBracket: closingBracket)
 }
 
 func labelFromLocation(firstLocation: SourceLocation, lastLocation: SourceLocation) -> String {
@@ -69,10 +64,10 @@ func labelFromLocation(firstLocation: SourceLocation, lastLocation: SourceLocati
 		// File missing in the bundle
 		return "\(bundleName)/\(resourceName).\(resourceType)[!exist]:\(descriptionForInLineLocation(firstLocation, lastLocation: lastLocation)):?"
 	}
-	guard let text = try? NSString(contentsOfFile: file, encoding: NSUTF8StringEncoding) else {
+	guard let fileContents = try? NSString(contentsOfFile: file, encoding: NSUTF8StringEncoding) else {
 		return "\(bundleName)/\(resourceName).\(resourceType)[!read]:\(descriptionForInLineLocation(firstLocation, lastLocation: lastLocation)):?"
 	}
-	let lines = text.componentsSeparatedByString("\n")
+	let lines = fileContents.componentsSeparatedByString("\n")
 	let line = lines[firstLocation.line - 1] as NSString
 	let firstIndex = firstLocation.column - 1
 	let tail = line.substringFromIndex(firstIndex) as NSString
@@ -82,7 +77,8 @@ func labelFromLocation(firstLocation: SourceLocation, lastLocation: SourceLocati
 		}
 		return lastLocation.column - firstLocation.column - 3
 	}()
-	return tail.substringToIndex(length)
+	let text = tail.substringToIndex(length)
+	return "\(text)"
 }
 
 public func labeledString(string: String, location: SourceLocation, lastLocation: SourceLocation) -> String {
@@ -94,31 +90,28 @@ public func labeledString(string: String, location: SourceLocation, lastLocation
 	return labeledString
 }
 
-func messageForTracedString(string: String, location: SourceLocation, lastLocation: SourceLocation) -> String {
-	let labelSuffix = !traceLabelsEnabled ? descriptionForInLineLocation(location, lastLocation: lastLocation) : {
-		return ": \(labelFromLocation(location, lastLocation: lastLocation))"
+func labelForTracedLocation(location: SourceLocation, lastLocation: SourceLocation) -> String {
+	let label = !traceLabelsEnabled ? descriptionForInLineLocation(location, lastLocation: lastLocation) : {
+		return "\(labelFromLocation(location, lastLocation: lastLocation))"
 	}()
-	let message = "\(location.fileURL.lastPathComponent!), \(location.function).\(location.line)\(labelSuffix): \(string)"
-	return message
+	return label
 }
 
-var traceMessage: String -> () = { message in
-#if ANALYTICS_ENABLED
-#if CRASHLYTICS_ENABLED
-	CLSLogv("%@", getVaList([message]))
-#endif
-#endif
-	if traceToNSLogEnabled {
-		NSLog("%@", message)
-	}
-	else {
-		print(message)
+public typealias Logger = (date: NSDate, label: String, location: SourceLocation, message: String) -> ()
+
+public var loggers: [Logger] = [
+	defaultLogger
+]
+
+func logString(date: NSDate, label: String, location: SourceLocation, message: String) {
+	for logger in loggers {
+		logger(date: date, label: label, location: location, message: message)
 	}
 }
 
-public func traceString(string: String, location: SourceLocation, lastLocation: SourceLocation) {
-	let message = messageForTracedString(string, location: location, lastLocation: lastLocation)
-	traceMessage(message)
+public func traceString(string: String, date: NSDate, location: SourceLocation, lastLocation: SourceLocation) {
+	let label = labelForTracedLocation(location, lastLocation: lastLocation)
+	logString(date, label: label, location: location, message: string)
 }
 
 private let defaultTraceLevel = 0x0badf00d
@@ -133,6 +126,7 @@ public func tracingShouldBeEnabledForFile(file: String = __FILE__, line: Int = _
 	}
 	return true
 }
+
 public struct Traceable<T> {
 	let value: T
 	let location: SourceLocation
@@ -140,10 +134,10 @@ public struct Traceable<T> {
 		self.value = value
 		self.location = location
 	}
-	public func $(level: Int = defaultTraceLevel, file: String = __FILE__, line: Int = __LINE__, column: Int = __COLUMN__, function: String = __FUNCTION__) -> T {
+	public func $(level: Int = defaultTraceLevel, date: NSDate = NSDate(), file: String = __FILE__, line: Int = __LINE__, column: Int = __COLUMN__, function: String = __FUNCTION__) -> T {
 		if 1 == level || ((level == defaultTraceLevel) && defaultTracingEnabled && tracingShouldBeEnabledForFile(file, line: line, function: function)) {
 			let column = column + ((level == defaultTraceLevel) ? 0 : -1)
-			trace(value, startLocation: self.location, endLocation: SourceLocation(file: file, line: line, column: column, function: function))
+			trace(value, date: date, startLocation: self.location, endLocation: SourceLocation(file: file, line: line, column: column, function: function))
 		}
 		return value
 	}
@@ -169,9 +163,24 @@ public func xL<T>(v: T, file: String = __FILE__, line: Int = __LINE__, column: I
 	return Labelable(value: v, location: SourceLocation(file: file, line: line, column: column, function: function, bundle: bundle))
 }
 
-public func $<T>(v: T, file: String = __FILE__, line: Int = __LINE__, column: Int = __COLUMN__, function: String = __FUNCTION__, bundle: NSBundle? = NSBundle.bundleOnStack()) -> T {
+public func $<T>(v: T, date: NSDate = NSDate(), file: String = __FILE__, line: Int = __LINE__, column: Int = __COLUMN__, function: String = __FUNCTION__, bundle: NSBundle? = NSBundle.bundleOnStack()) -> T {
 	let location = SourceLocation(file: file, line: line, column: column, function: function, bundle: bundle)
-	trace(v, startLocation: location, endLocation: location)
+	trace(v, date: date, startLocation: location, endLocation: location)
+	return v
+}
+
+prefix operator • {}
+public prefix func •<T>(v: T) -> T {
+	return v
+}
+
+prefix operator « {}
+public prefix func «<T>(v: T) -> T {
+	return v
+}
+
+postfix operator » {}
+public postfix func »<T>(v: T) -> T {
 	return v
 }
 
@@ -181,9 +190,9 @@ public func L<T>(v: T, file: String = __FILE__, line: Int = __LINE__, column: In
 	return v
 }
 
-func trace<T>(value: T, startLocation: SourceLocation, endLocation: SourceLocation) -> T {
+func trace<T>(value: T, date: NSDate, startLocation: SourceLocation, endLocation: SourceLocation) -> T {
 	if traceEnabled {
-		traceString(description(value), location: startLocation, lastLocation: endLocation)
+		traceString(description(value), date: date, location: startLocation, lastLocation: endLocation)
 	}
 	return value
 }
@@ -196,6 +205,7 @@ public func void<T>(value: T) {
 }
 
 public typealias Handler = () -> Void
+
 public func invoke(handler: Handler) {
 	handler()
 }
