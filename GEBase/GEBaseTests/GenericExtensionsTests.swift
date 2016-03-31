@@ -55,15 +55,15 @@ class TraceTests: TraceAndLabelTestsBase {
 	}
 	func testTraceWithTraceEanbled() {
 		traceEnabledEnforced = true
-		$(foo); let line = __LINE__
-		let fileName = NSURL.fileURLWithPath(__FILE__).lastPathComponent!
-		XCTAssertEqual(tracedMessages, ["\(fileName), \(__FUNCTION__).\(line)[5-8]: bar"])
+		$(foo); let line = #line
+		let fileName = NSURL.fileURLWithPath(#file).lastPathComponent!
+		XCTAssertEqual(tracedMessages, ["\(fileName), \(#function).\(line)[5-8]: bar"])
 	}
 	func testWithTraceAndLabelsEnabled() {
 		traceEnabledEnforced = true
 		traceLabelsEnabledEnforced = true
-		$(foo); let line = __LINE__
-		let fileName = NSURL.fileURLWithPath(__FILE__).lastPathComponent!
-		XCTAssertEqual(tracedMessages, ["\(fileName), \(__FUNCTION__).\(line): foo: bar"])
+		$(foo); let line = #line
+		let fileName = NSURL.fileURLWithPath(#file).lastPathComponent!
+		XCTAssertEqual(tracedMessages, ["\(fileName), \(#function).\(line): foo: bar"])
 	}
 }
