@@ -7,6 +7,7 @@
 //
 
 import GEKeyPaths
+import GEBase
 import CoreData.NSManagedObject
 
 public let sortDescriptorsForContainers = [NSSortDescriptor(key: Item.self••{$0.date}, ascending: false)]
@@ -19,6 +20,7 @@ func inversedSortDescriptors(sortDescriptors: [NSSortDescriptor]) -> [NSSortDesc
 }
 
 public class ContainerViewState: NSManagedObject {
+	typealias _Self = ContainerViewState
 	enum ValidationError: ErrorType {
 		case NeitherLoadDateNorErrorIsSet
 	}
@@ -29,7 +31,7 @@ public class ContainerViewState: NSManagedObject {
     @NSManaged public var loadCompleted: Bool
     @NSManaged public var container: Container?
 
-	public var lastLoadedItem: Item? {
+	@objc dynamic public var lastLoadedItem: Item? {
 		guard let loadDate = self.loadDate else {
 			return nil
 		}
@@ -41,7 +43,7 @@ public class ContainerViewState: NSManagedObject {
 			return $
 		}()
 		let item = try! self.managedObjectContext!.executeFetchRequest(fetchRequest).onlyElement as! Item?
-		return item
+		return $(item)
 	}
 	func validateForUpdateOrInsert() throws {
 		if nil == self.loadDate && nil == self.loadError {
@@ -57,5 +59,15 @@ public class ContainerViewState: NSManagedObject {
 		try self.validateForUpdateOrInsert()
 	}
 	deinit {
+	}
+	private static var registerCachedPropertiesOnce = dispatch_once_t()
+	@objc dynamic class func registerCachedProperties() {
+		cachePropertyWithName(self, name: "lastLoadedItem")
+	}
+	override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
+		super.init(entity: entity, insertIntoManagedObjectContext: context)
+		dispatch_once(&self.dynamicType.registerCachedPropertiesOnce) {
+			self.dynamicType.registerCachedProperties()
+		}
 	}
 }
