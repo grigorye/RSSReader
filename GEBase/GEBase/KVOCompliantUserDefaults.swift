@@ -40,79 +40,80 @@ extension PropertyInfo {
 
 // MARK: -
 
-typealias _Self = KVOCompliantUserDefaults
+extension KVOCompliantUserDefaults {
+	typealias _Self = KVOCompliantUserDefaults
 
-private let objectValueIMP: @convention(c) (_Self, Selector) -> AnyObject? = { _self, _cmd in
-	let propertyName = NSStringFromSelector(_cmd)
-	let value = _self.values[propertyName]
-	(propertyName)
-	return (value)
-}
-private let setObjectValueIMP: @convention(c) (_Self, Selector, NSObject?) -> Void = { _self, _cmd, value in
-	let defaultName = defaultNameForSelector(_cmd)
-	_self.defaults.setObject(value, forKey:(defaultName))
-	_self.values[defaultName] = value
-}
-private let boolValueIMP: @convention(c) (_Self, Selector) -> Bool = { _self, _cmd in
-	let propertyName = NSStringFromSelector(_cmd)
-	let valueObject = _self.values[propertyName]
-	let value: Bool = {
-		switch valueObject {
-		case let numberValue as NSNumber:
-			return numberValue.boolValue
-		case let stringValue as NSString:
-			return stringValue.boolValue
-		case nil:
-			return false
-		default:
-			abort()
-		}
-	}()
-	(propertyName)
-	return (value)
-}
-
-private let setBoolValueIMP: @convention(c) (_Self, Selector, Bool) -> Void = { _self, _cmd, value in
-	let propertyName = NSStringFromSelector(_cmd)
-	$(propertyName)
-	_self.defaults.setBool(value, forKey: propertyName)
-	_self.values[propertyName] = NSNumber(bool: value)
-}
-
-// MARK: -
-
-private let (propertyInfoMap, getterAndSetterMap): ([String : PropertyInfo], [String : PropertyInfo]) = {
-	var propertyInfoMap = [String : PropertyInfo]()
-	var getterAndSetterMap = [String : PropertyInfo]()
-	var propertyCount = UInt32(0)
-	let propertyList = class_copyPropertyList(KVOCompliantUserDefaults.self, &propertyCount)
-	for i in 0..<Int(propertyCount) {
-		let property = propertyList[i]
-		let propertyInfo = PropertyInfo(property: property)
-		let attributesDictionary = propertyInfo.attributesDictionary
-		let propertyName = propertyInfo.name
-		let customSetterName = attributesDictionary["S"]
-		let customGetterName = attributesDictionary["G"]
-		let defaultGetterName = propertyName
-		let defaultSetterName = "set\(propertyName.uppercaseString.characters.first!)\(propertyName.substringFromIndex(propertyName.startIndex.advancedBy(1))):"
-		getterAndSetterMap[customGetterName ?? defaultGetterName] = propertyInfo
-		getterAndSetterMap[customSetterName ?? defaultSetterName] = propertyInfo
-		propertyInfoMap[propertyName] = propertyInfo
+	static private func defaultNameForSelector(sel: Selector) -> String {
+		let selName = NSStringFromSelector(sel)
+		let propertyInfo = getterAndSetterMap[selName]!
+		(propertyInfo)
+		let defaultName = propertyInfo.name
+		return defaultName
 	}
-	free(propertyList)
-	return (propertyInfoMap, getterAndSetterMap)
-}()
+	static private let objectValueIMP: @convention(c) (_Self, Selector) -> AnyObject? = { _self, _cmd in
+		let propertyName = NSStringFromSelector(_cmd)
+		let value = _self.values[propertyName]
+		(propertyName)
+		return (value)
+	}
+	static private let setObjectValueIMP: @convention(c) (_Self, Selector, NSObject?) -> Void = { _self, _cmd, value in
+		let defaultName = _Self.defaultNameForSelector(_cmd)
+		_self.defaults.setObject(value, forKey:(defaultName))
+		_self.values[defaultName] = value
+	}
+	static private let boolValueIMP: @convention(c) (_Self, Selector) -> Bool = { _self, _cmd in
+		let propertyName = NSStringFromSelector(_cmd)
+		let valueObject = _self.values[propertyName]
+		let value: Bool = {
+			switch valueObject {
+			case let numberValue as NSNumber:
+				return numberValue.boolValue
+			case let stringValue as NSString:
+				return stringValue.boolValue
+			case nil:
+				return false
+			default:
+				abort()
+			}
+		}()
+		(propertyName)
+		return (value)
+	}
 
-private func isDefaultName(name: String) -> Bool {
-	return !["values", "defaults"].containsObject(name)
-}
+	static private let setBoolValueIMP: @convention(c) (_Self, Selector, Bool) -> Void = { _self, _cmd, value in
+		let propertyName = NSStringFromSelector(_cmd)
+		$(propertyName)
+		_self.defaults.setBool(value, forKey: propertyName)
+		_self.values[propertyName] = NSNumber(bool: value)
+	}
 
-private func defaultNameForSelector(sel: Selector) -> String {
-	let selName = NSStringFromSelector(sel)
-	let propertyInfo = getterAndSetterMap[selName]!
-	(propertyInfo)
-	let defaultName = propertyInfo.name
-	return defaultName
+	// MARK: -
+
+	static private let (propertyInfoMap, getterAndSetterMap): ([String : PropertyInfo], [String : PropertyInfo]) = {
+		var propertyInfoMap = [String : PropertyInfo]()
+		var getterAndSetterMap = [String : PropertyInfo]()
+		var propertyCount = UInt32(0)
+		let propertyList = class_copyPropertyList(KVOCompliantUserDefaults.self, &propertyCount)
+		for i in 0..<Int(propertyCount) {
+			let property = propertyList[i]
+			let propertyInfo = PropertyInfo(property: property)
+			let attributesDictionary = propertyInfo.attributesDictionary
+			let propertyName = propertyInfo.name
+			let customSetterName = attributesDictionary["S"]
+			let customGetterName = attributesDictionary["G"]
+			let defaultGetterName = propertyName
+			let defaultSetterName = "set\(propertyName.uppercaseString.characters.first!)\(propertyName.substringFromIndex(propertyName.startIndex.advancedBy(1))):"
+			getterAndSetterMap[customGetterName ?? defaultGetterName] = propertyInfo
+			getterAndSetterMap[customSetterName ?? defaultSetterName] = propertyInfo
+			propertyInfoMap[propertyName] = propertyInfo
+		}
+		free(propertyList)
+		return (propertyInfoMap, getterAndSetterMap)
+	}()
+
+	static private func isDefaultName(name: String) -> Bool {
+		return !["values", "defaults"].containsObject(name)
+	}
 }
 
 public class KVOCompliantUserDefaults : NSObject {
@@ -120,9 +121,9 @@ public class KVOCompliantUserDefaults : NSObject {
 	let defaults = NSUserDefaults.standardUserDefaults()
 
 	func synchronizeValues() {
-		for (propertyName, propertyInfo) in propertyInfoMap {
+		for (propertyName, propertyInfo) in _Self.propertyInfoMap {
 			let defaults = self.defaults
-			if (isDefaultName(propertyInfo.name)) {
+			if (_Self.isDefaultName(propertyInfo.name)) {
 				let oldValue = values[propertyName]
 				let newValue = defaults.objectForKey(propertyName) as! NSObject?
 				if (oldValue == newValue) {
@@ -158,7 +159,7 @@ public class KVOCompliantUserDefaults : NSObject {
 			}()
 			let types = isSetter ? "v@:\(valueTypeEncoded)" : "\(valueTypeEncoded)@:"
 			types.withCString { typesCString in
-				class_addMethod(self, sel, methodIMP, typesCString)
+				class_addMethod(self, sel, unsafeBitCast(methodIMP, COpaquePointer.self), typesCString)
 			}
 			return true
 		}
