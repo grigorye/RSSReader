@@ -22,6 +22,9 @@
 		C46C93F61C6FF77E007E4302 /* DefaultLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46C93F51C6FF77E007E4302 /* DefaultLogger.swift */; };
 		C495D8991C02592100A7F7D5 /* GenericExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495D8981C02592100A7F7D5 /* GenericExtensionsTests.swift */; };
 		C495D89B1C025A0800A7F7D5 /* GenericExtensionsTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C495D8981C02592100A7F7D5 /* GenericExtensionsTests.swift */; };
+		C4D6F41A1C73CCC000A7E2ED /* Tracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D6F4191C73CCC000A7E2ED /* Tracing.swift */; };
+		C4D6F41C1C73CD3500A7E2ED /* CoreDataCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D6F41B1C73CD3500A7E2ED /* CoreDataCaching.swift */; };
+		C4EC2F8A1C7534030028C729 /* CoreDataCaching.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4D6F41B1C73CD3500A7E2ED /* CoreDataCaching.swift */; };
 		C4FEBAFD1BF9196E00A5709B /* Primitives.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41818A71B6A673F00872EB3 /* Primitives.swift */; };
 		C4FEBAFE1BF9196E00A5709B /* Globals.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41818A81B6A673F00872EB3 /* Globals.swift */; };
 		C4FEBAFF1BF9196E00A5709B /* Descriptions.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C418187A1B6A66AE00872EB3 /* Descriptions.swift */; };
@@ -77,6 +80,7 @@
 				C4FEBB031BF9196E00A5709B /* GenericURLSessionExtensions.swift in Embed Sources */,
 				C4FEBB041BF9196E00A5709B /* ManagedObjectContextAutosaver.swift in Embed Sources */,
 				C4FEBB071BF9196E00A5709B /* KVOBinding.swift in Embed Sources */,
+				C4EC2F8A1C7534030028C729 /* CoreDataCaching.swift in Embed Sources */,
 				C4FEBB0B1BF9196E00A5709B /* ProgressEnabledURLSessionTaskGenerator.swift in Embed Sources */,
 			);
 			name = "Embed Sources";
@@ -103,6 +107,8 @@
 		C424B8DD1C6FC322008AD647 /* GEKeyPaths.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GEKeyPaths.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C46C93F51C6FF77E007E4302 /* DefaultLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultLogger.swift; sourceTree = "<group>"; };
 		C495D8981C02592100A7F7D5 /* GenericExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericExtensionsTests.swift; sourceTree = "<group>"; };
+		C4D6F4191C73CCC000A7E2ED /* Tracing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tracing.swift; sourceTree = "<group>"; };
+		C4D6F41B1C73CD3500A7E2ED /* CoreDataCaching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataCaching.swift; sourceTree = "<group>"; };
 		C4FEBB191BF91E6600A5709B /* KVOCompliantUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOCompliantUserDefaults.swift; sourceTree = "<group>"; };
 		C4FEBB1C1BF960A300A5709B /* NSBundleExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSBundleExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -154,7 +160,9 @@
 				C418187A1B6A66AE00872EB3 /* Descriptions.swift */,
 				C418187B1B6A66AE00872EB3 /* FetchedObjectBinding.swift */,
 				C418187C1B6A66AE00872EB3 /* GenericCoreDataExtensions.swift */,
+				C4D6F41B1C73CD3500A7E2ED /* CoreDataCaching.swift */,
 				C418187D1B6A66AE00872EB3 /* GenericExtensions.swift */,
+				C4D6F4191C73CCC000A7E2ED /* Tracing.swift */,
 				C46C93F51C6FF77E007E4302 /* DefaultLogger.swift */,
 				C418187E1B6A66AE00872EB3 /* GenericURLSessionExtensions.swift */,
 				C41818B01B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift */,
@@ -302,6 +310,8 @@
 				C4FEBB1D1BF960A300A5709B /* NSBundleExtensions.swift in Sources */,
 				C41818A51B6A66AE00872EB3 /* ProgressEnabledURLSessionTaskGenerator.swift in Sources */,
 				C41818921B6A66AE00872EB3 /* GenericCoreDataExtensions.swift in Sources */,
+				C4D6F41C1C73CD3500A7E2ED /* CoreDataCaching.swift in Sources */,
+				C4D6F41A1C73CCC000A7E2ED /* Tracing.swift in Sources */,
 				C41818B11B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift in Sources */,
 				C41818901B6A66AE00872EB3 /* Descriptions.swift in Sources */,
 				C41818931B6A66AE00872EB3 /* GenericExtensions.swift in Sources */,
