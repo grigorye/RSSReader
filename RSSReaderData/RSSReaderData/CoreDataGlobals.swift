@@ -52,6 +52,7 @@ public let (managedObjectContextError, mainQueueManagedObjectContext, background
 			let $ = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
 			$.persistentStoreCoordinator = psc
 			$.name = "main"
+			$.cachingEnabled = true
 			return $
 		}()
 		let backgroundQueueManagedObjectContext: NSManagedObjectContext = {
