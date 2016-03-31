@@ -17,7 +17,7 @@ let dateFormatter: NSDateFormatter = {
 private let traceToNSLogEnabled = false
 
 func defaultLogger(date: NSDate, label: String, location: SourceLocation, message: String) {
-	let locationDescription = "\(location.fileURL.lastPathComponent!):\(location.line): \(location.function)"
+	let locationDescription = "\(location.function), \(location.fileURL.lastPathComponent!):\(location.line)"
 	let text = "\(locationDescription) ◾︎ \(label): \(message)"
 	if traceToNSLogEnabled {
 		NSLog("%@", text)
