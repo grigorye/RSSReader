@@ -184,7 +184,7 @@ class ItemSummaryWebViewController: UIViewController {
 	}
 	override func viewDidAppear(animated: Bool) {
 		super.viewDidAppear(animated)
-		self.markAsOpenAndReadTimer = NSTimer.scheduledTimerWithTimeInterval(markAsReadTimeInterval, target: self, selector: "markAsOpenAndRead", userInfo: nil, repeats: false)
+		self.markAsOpenAndReadTimer = NSTimer.scheduledTimerWithTimeInterval(markAsReadTimeInterval, target: self, selector: #selector(ItemSummaryWebViewController.markAsOpenAndRead), userInfo: nil, repeats: false)
 	}
 	override func viewWillDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)
