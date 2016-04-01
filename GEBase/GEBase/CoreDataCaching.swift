@@ -131,7 +131,7 @@ func dispatchBool(p: UnsafePointer<Void>, _self: NSObject, _cmd: Selector) -> Bo
 	return unsafeBitCast(p, BoolPropertyGetter.self)(_self, _cmd)
 }
 func dispatchAnyObject(p: UnsafePointer<Void>, _self: NSObject, _cmd: Selector) -> AnyObject? {
-	return (unsafeBitCast(p, AnyObjectPropertyGetter.self)(_self, _cmd)) as! AnyObject?
+	return unsafeBitCast(p, AnyObjectPropertyGetter.self)(_self, _cmd)
 }
 
 func cachedValueIMP<T>(_self: NSManagedObject, _ _cmd: Selector, _ _dispatch: (p: UnsafePointer<Void>, _self: NSManagedObject, _cmd: Selector) -> T) -> T {
