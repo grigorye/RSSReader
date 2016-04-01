@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
+import GEBase
 import GEKeyPaths
 import Foundation
 import CoreData
@@ -21,4 +22,15 @@ public class Item: NSManagedObject {
 	@NSManaged public var categories: Set<Folder>
 	@NSManaged public var subscription: Subscription
 	@NSManaged public var canonical: [[String: String]]?
+	
+	private static var registerCachedPropertiesOnce = dispatch_once_t()
+	@objc dynamic class func registerCachedProperties() {
+		cachePropertyWithName(self, name: "markedAsRead")
+	}
+	override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
+		super.init(entity: entity, insertIntoManagedObjectContext: context)
+		dispatch_once(&self.dynamicType.registerCachedPropertiesOnce) {
+			self.dynamicType.registerCachedProperties()
+		}
+	}
 }
