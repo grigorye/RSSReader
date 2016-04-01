@@ -73,6 +73,10 @@ class FoldersListTableViewController: UITableViewController, UIDataSourceModelAs
 		return alertController
 	}
 	@IBAction func refresh(sender: AnyObject!) {
+		guard nil != self.rssSession else {
+			presentErrorMessage(NSLocalizedString("To sync you should be logged in.", comment: ""))
+			return
+		}
 		RSSReader.foldersController.updateFolders { updateError in dispatch_async(dispatch_get_main_queue()) {
 			if let foldersControllerError = updateError as? FoldersControllerError {
 				let error: ErrorType = {
