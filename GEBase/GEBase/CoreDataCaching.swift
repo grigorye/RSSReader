@@ -110,79 +110,60 @@ extension NSManagedObject {
 	}
 }
 
-func valueIMPsForClass(cls: AnyClass!) -> NSMutableDictionary! {
-	return (associatedObjectRegeneratedAsNecessary(cls: (cls), key: valueIMPsAssoc, type: NSMutableDictionary.self))
-}
-
-extension NSManagedObject {
-	@objc dynamic class func valueIMPs() -> NSMutableDictionary {
-		return valueIMPsForClass(self)
-	}
-}
-
 typealias IntPropertyGetter = @convention(c) (NSObject!, Selector) -> Int
 typealias BoolPropertyGetter = @convention(c) (NSObject!, Selector) -> Bool
 typealias AnyObjectPropertyGetter = @convention(c) (NSObject!, Selector) -> AnyObject?
 
-func dispatchInt(p: UnsafePointer<Void>, _self: NSObject, _cmd: Selector) -> Int {
+func dispatchInt(p: IMP, _self: NSObject, _cmd: Selector) -> Int {
 	return unsafeBitCast(p, IntPropertyGetter.self)(_self, _cmd)
 }
-func dispatchBool(p: UnsafePointer<Void>, _self: NSObject, _cmd: Selector) -> Bool {
+func dispatchBool(p: IMP, _self: NSObject, _cmd: Selector) -> Bool {
 	return unsafeBitCast(p, BoolPropertyGetter.self)(_self, _cmd)
 }
-func dispatchAnyObject(p: UnsafePointer<Void>, _self: NSObject, _cmd: Selector) -> AnyObject? {
+func dispatchAnyObject(p: IMP, _self: NSObject, _cmd: Selector) -> AnyObject? {
 	return unsafeBitCast(p, AnyObjectPropertyGetter.self)(_self, _cmd)
 }
 
-func cachedValueIMP<T>(_self: NSManagedObject, _ _cmd: Selector, _ _dispatch: (p: UnsafePointer<Void>, _self: NSManagedObject, _cmd: Selector) -> T) -> T {
+func cachedValueIMP<T>(_self: NSManagedObject, _ _cmd: Selector, _ _dispatch: (p: IMP, _self: NSManagedObject, _cmd: Selector) -> T, _ oldIMP: IMP) -> T {
 	let selectorName = NSStringFromSelector(_cmd)
 	_self.managedObjectContext!.processPendingChanges()
 	let valuesCache = _self.valuesCache
 	if let cacheRecord = valuesCache?[selectorName] as! CacheRecord<T>? {
 		return cacheRecord.value
 	}
-	let cls = _self.dynamicType
-	let valueIMPs = cls.valueIMPs()
-	let valueIMP = (valueIMPs[selectorName] as! NSValue).pointerValue
-	let value: T = _dispatch(p: valueIMP, _self: _self, _cmd: _cmd)
+	let value: T = _dispatch(p: oldIMP, _self: _self, _cmd: _cmd)
 	if _self.managedObjectContext!.cachingEnabled {
 		valuesCache?[selectorName] = CacheRecord(value: value)
 	}
 	return value
 }
 
-let cachedObjectValueIMP: @convention(c) (NSManagedObject!, Selector) -> AnyObject? = { _self, _cmd in
-	cachedValueIMP(_self, _cmd, dispatchAnyObject)
-}
-let cachedIntValueIMP: @convention(c) (NSManagedObject!, Selector) -> Int = { _self, _cmd in
-	cachedValueIMP(_self, _cmd, dispatchInt)
-}
-let cachedBoolValueIMP: @convention(c) (NSManagedObject!, Selector) -> Bool = { _self, _cmd in
-	cachedValueIMP(_self, _cmd, dispatchBool)
-}
-
 public func cachePropertyWithName(cls: AnyClass!, name: String) {
 	let sel = NSSelectorFromString(name)
-	let getterMethod = class_getInstanceMethod($(cls), sel)
-	let getterTypeEncoding = String.fromCString(method_getTypeEncoding(getterMethod))!
+	let method = class_getInstanceMethod($(cls), sel)
+	let methodTypeEncoding = String.fromCString(method_getTypeEncoding(method))!
+	let oldImp = method_getImplementation(method)
 	let imp: IMP = {
-		switch getterTypeEncoding {
+		switch methodTypeEncoding {
 		case String.fromCString(method_getTypeEncoding(class_getInstanceMethod(cls, NSSelectorFromString(NSManagedObject.self••{$0.cachedIntValueStub}))))!:
-			return unsafeBitCast(cachedIntValueIMP, IMP.self)
+			let block: @convention(block) (AnyObject!) -> Int = { _self in
+				return cachedValueIMP(_self as! NSManagedObject, sel, dispatchInt, oldImp)
+			}
+			return imp_implementationWithBlock(unsafeBitCast(block, AnyObject.self))
 		case String.fromCString(method_getTypeEncoding(class_getInstanceMethod(cls, NSSelectorFromString(NSManagedObject.self••{$0.cachedBoolValueStub}))))!:
-			return unsafeBitCast(cachedBoolValueIMP, IMP.self)
+			let block: @convention(block) (AnyObject!) -> Bool = { _self in
+				return cachedValueIMP(_self as! NSManagedObject, sel, dispatchBool, oldImp)
+			}
+			return imp_implementationWithBlock(unsafeBitCast(block, AnyObject.self))
 		case String.fromCString(method_getTypeEncoding(class_getInstanceMethod(cls, NSSelectorFromString(NSManagedObject.self••{$0.cachedObjectValueStub}))))!:
-			return unsafeBitCast(cachedObjectValueIMP, IMP.self)
+			let block: @convention(block) (AnyObject!) -> AnyObject! = { _self in
+				return cachedValueIMP(_self as! NSManagedObject, sel, dispatchAnyObject, oldImp)
+			}
+			return imp_implementationWithBlock(unsafeBitCast(block, AnyObject.self))
 		default:
 			abort()
 		}
 	}()
-	let method = class_getInstanceMethod(cls, sel)
-	let typeEncoding = method_getTypeEncoding(method)
-	let oldIMP = method_getImplementation(method)
-	class_replaceMethod(cls, $(sel), $(imp), typeEncoding)
-	let valueIMPs = cls.valueIMPs()
-	assert(nil != oldIMP)
-	valueIMPs[$(name)] = NSValue(pointer: unsafeBitCast($(oldIMP), UnsafePointer<Void>.self))
-	assert(nil != cls.valueIMPs()[name])
+	let oldImpAfterReplaceMethod = class_replaceMethod(cls, $(sel), $(imp), methodTypeEncoding)
+	assert(oldImp == oldImpAfterReplaceMethod)
 }
