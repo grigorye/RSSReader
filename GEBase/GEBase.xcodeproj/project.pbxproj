@@ -22,6 +22,9 @@
 		C46C93F61C6FF77E007E4302 /* DefaultLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46C93F51C6FF77E007E4302 /* DefaultLogger.swift */; };
 		C495D8991C02592100A7F7D5 /* GenericExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495D8981C02592100A7F7D5 /* GenericExtensionsTests.swift */; };
 		C495D89B1C025A0800A7F7D5 /* GenericExtensionsTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C495D8981C02592100A7F7D5 /* GenericExtensionsTests.swift */; };
+		C4A6B8C61CB03B8A0053D44E /* PropertyCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A6B8C51CB03B8A0053D44E /* PropertyCaching.swift */; };
+		C4A6B8C81CB082F70053D44E /* AssociatedObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A6B8C71CB082F70053D44E /* AssociatedObjects.swift */; };
+		C4BB26B91CB0256500C7277A /* ObjectiveCBridging.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BB26B81CB0256500C7277A /* ObjectiveCBridging.swift */; };
 		C4D6F41A1C73CCC000A7E2ED /* Tracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D6F4191C73CCC000A7E2ED /* Tracing.swift */; };
 		C4D6F41C1C73CD3500A7E2ED /* CoreDataCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D6F41B1C73CD3500A7E2ED /* CoreDataCaching.swift */; };
 		C4EC2F8A1C7534030028C729 /* CoreDataCaching.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4D6F41B1C73CD3500A7E2ED /* CoreDataCaching.swift */; };
@@ -107,6 +110,9 @@
 		C424B8DD1C6FC322008AD647 /* GEKeyPaths.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GEKeyPaths.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C46C93F51C6FF77E007E4302 /* DefaultLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultLogger.swift; sourceTree = "<group>"; };
 		C495D8981C02592100A7F7D5 /* GenericExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericExtensionsTests.swift; sourceTree = "<group>"; };
+		C4A6B8C51CB03B8A0053D44E /* PropertyCaching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyCaching.swift; sourceTree = "<group>"; };
+		C4A6B8C71CB082F70053D44E /* AssociatedObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssociatedObjects.swift; sourceTree = "<group>"; };
+		C4BB26B81CB0256500C7277A /* ObjectiveCBridging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectiveCBridging.swift; sourceTree = "<group>"; };
 		C4D6F4191C73CCC000A7E2ED /* Tracing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tracing.swift; sourceTree = "<group>"; };
 		C4D6F41B1C73CD3500A7E2ED /* CoreDataCaching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataCaching.swift; sourceTree = "<group>"; };
 		C4FEBB191BF91E6600A5709B /* KVOCompliantUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOCompliantUserDefaults.swift; sourceTree = "<group>"; };
@@ -156,11 +162,14 @@
 			isa = PBXGroup;
 			children = (
 				C41818A71B6A673F00872EB3 /* Primitives.swift */,
+				C4BB26B81CB0256500C7277A /* ObjectiveCBridging.swift */,
+				C4A6B8C71CB082F70053D44E /* AssociatedObjects.swift */,
 				C41818A81B6A673F00872EB3 /* Globals.swift */,
 				C418187A1B6A66AE00872EB3 /* Descriptions.swift */,
 				C418187B1B6A66AE00872EB3 /* FetchedObjectBinding.swift */,
 				C418187C1B6A66AE00872EB3 /* GenericCoreDataExtensions.swift */,
 				C4D6F41B1C73CD3500A7E2ED /* CoreDataCaching.swift */,
+				C4A6B8C51CB03B8A0053D44E /* PropertyCaching.swift */,
 				C418187D1B6A66AE00872EB3 /* GenericExtensions.swift */,
 				C4D6F4191C73CCC000A7E2ED /* Tracing.swift */,
 				C46C93F51C6FF77E007E4302 /* DefaultLogger.swift */,
@@ -309,13 +318,16 @@
 				C41818941B6A66AE00872EB3 /* GenericURLSessionExtensions.swift in Sources */,
 				C4FEBB1D1BF960A300A5709B /* NSBundleExtensions.swift in Sources */,
 				C41818A51B6A66AE00872EB3 /* ProgressEnabledURLSessionTaskGenerator.swift in Sources */,
+				C4BB26B91CB0256500C7277A /* ObjectiveCBridging.swift in Sources */,
 				C41818921B6A66AE00872EB3 /* GenericCoreDataExtensions.swift in Sources */,
 				C4D6F41C1C73CD3500A7E2ED /* CoreDataCaching.swift in Sources */,
 				C4D6F41A1C73CCC000A7E2ED /* Tracing.swift in Sources */,
 				C41818B11B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift in Sources */,
+				C4A6B8C81CB082F70053D44E /* AssociatedObjects.swift in Sources */,
 				C41818901B6A66AE00872EB3 /* Descriptions.swift in Sources */,
 				C41818931B6A66AE00872EB3 /* GenericExtensions.swift in Sources */,
 				C4FEBB1A1BF91E6600A5709B /* KVOCompliantUserDefaults.swift in Sources */,
+				C4A6B8C61CB03B8A0053D44E /* PropertyCaching.swift in Sources */,
 				C46C93F61C6FF77E007E4302 /* DefaultLogger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
