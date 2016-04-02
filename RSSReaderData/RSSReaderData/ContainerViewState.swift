@@ -61,13 +61,10 @@ public class ContainerViewState: NSManagedObject {
 	deinit {
 	}
 	private static var registerCachedPropertiesOnce = dispatch_once_t()
-	@objc dynamic class func registerCachedProperties() {
-		cachePropertyWithName(self, name: "lastLoadedItem")
-	}
-	override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
-		super.init(entity: entity, insertIntoManagedObjectContext: context)
-		dispatch_once(&self.dynamicType.registerCachedPropertiesOnce) {
-			self.dynamicType.registerCachedProperties()
+	override public class func initialize() {
+		super.initialize()
+		dispatch_once(&registerCachedPropertiesOnce) {
+			cachePropertyWithName(self, name: "lastLoadedItem")
 		}
 	}
 }
