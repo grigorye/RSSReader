@@ -24,6 +24,9 @@
 		C495D89B1C025A0800A7F7D5 /* GenericExtensionsTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C495D8981C02592100A7F7D5 /* GenericExtensionsTests.swift */; };
 		C4A6B8C61CB03B8A0053D44E /* PropertyCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A6B8C51CB03B8A0053D44E /* PropertyCaching.swift */; };
 		C4A6B8C81CB082F70053D44E /* AssociatedObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A6B8C71CB082F70053D44E /* AssociatedObjects.swift */; };
+		C4A6B8C91CB089C80053D44E /* ObjectiveCBridging.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BB26B81CB0256500C7277A /* ObjectiveCBridging.swift */; };
+		C4A6B8CA1CB089C80053D44E /* AssociatedObjects.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4A6B8C71CB082F70053D44E /* AssociatedObjects.swift */; };
+		C4A6B8CB1CB089C80053D44E /* PropertyCaching.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4A6B8C51CB03B8A0053D44E /* PropertyCaching.swift */; };
 		C4BB26B91CB0256500C7277A /* ObjectiveCBridging.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BB26B81CB0256500C7277A /* ObjectiveCBridging.swift */; };
 		C4D6F41A1C73CCC000A7E2ED /* Tracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D6F4191C73CCC000A7E2ED /* Tracing.swift */; };
 		C4D6F41C1C73CD3500A7E2ED /* CoreDataCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D6F41B1C73CD3500A7E2ED /* CoreDataCaching.swift */; };
@@ -72,6 +75,9 @@
 			dstPath = Sources;
 			dstSubfolderSpec = 7;
 			files = (
+				C4A6B8C91CB089C80053D44E /* ObjectiveCBridging.swift in Embed Sources */,
+				C4A6B8CA1CB089C80053D44E /* AssociatedObjects.swift in Embed Sources */,
+				C4A6B8CB1CB089C80053D44E /* PropertyCaching.swift in Embed Sources */,
 				C4FEBB1E1BF96B7800A5709B /* NSBundleExtensions.swift in Embed Sources */,
 				C4FEBB1B1BF94CF800A5709B /* KVOCompliantUserDefaults.swift in Embed Sources */,
 				C4FEBAFD1BF9196E00A5709B /* Primitives.swift in Embed Sources */,
