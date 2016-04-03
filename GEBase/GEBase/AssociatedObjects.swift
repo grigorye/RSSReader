@@ -27,10 +27,3 @@ func associatedObjectRegeneratedAsNecessary<T>(cls obj: AnyClass!, key: UnsafePo
 	}
 	return existingObject
 }
-
-func ObjCEncode<T>(type: T.Type) -> String {
-	if type is Int.Type {
-		return String.fromCString((1 as NSNumber).objCType)!
-	}
-	return ""
-}
