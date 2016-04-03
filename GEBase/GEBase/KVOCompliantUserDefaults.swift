@@ -12,32 +12,6 @@ private let objcEncode_Bool = String.fromCString(NSNumber(bool: true).objCType)!
 private let objcEncode_C99Bool = "B"
 private let objcEncode_AnyObject = "@"
 
-private struct PropertyInfo {
-	let name: String
-	let attributes: String
-	let attributesDictionary: [String : String]
-}
-
-extension PropertyInfo {
-	init (property: objc_property_t) {
-		self.name = String.fromCString(property_getName(property))!
-		self.attributes = String.fromCString(property_getAttributes(property))!
-		self.attributesDictionary = {
-			var attributesCount = UInt32(0)
-			let attributesList = property_copyAttributeList(property, &attributesCount)
-			var $ = [String : String]()
-			for i in 0..<Int(attributesCount) {
-				let attribute = attributesList[i]
-				let attributeName = String.fromCString(attribute.name)!
-				let attributeValue = String.fromCString(attribute.value)!
-				$[attributeName] = attributeValue
-			}
-			free(attributesList)
-			return $
-		}()
-	}
-}
-
 // MARK: -
 
 extension KVOCompliantUserDefaults {
@@ -102,7 +76,7 @@ extension KVOCompliantUserDefaults {
 			let customSetterName = attributesDictionary["S"]
 			let customGetterName = attributesDictionary["G"]
 			let defaultGetterName = propertyName
-			let defaultSetterName = "set\(propertyName.uppercaseString.characters.first!)\(propertyName.substringFromIndex(propertyName.startIndex.advancedBy(1))):"
+			let defaultSetterName = objCDefaultSetterNameForPropertyName(propertyName)
 			getterAndSetterMap[customGetterName ?? defaultGetterName] = propertyInfo
 			getterAndSetterMap[customSetterName ?? defaultSetterName] = propertyInfo
 			propertyInfoMap[propertyName] = propertyInfo
