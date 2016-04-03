@@ -20,47 +20,72 @@ private class CacheRecord<T> : NSObject {
 	}
 }
 
+// MARK:-
+
 private func dispatchGetter(p: IMP, _self: NSObject, _cmd: Selector) -> Int {
 	typealias GetterType = @convention(c) (NSObject!, Selector) -> Int
 	return unsafeBitCast(p, GetterType.self)(_self, _cmd)
+}
+private func dispatchSetter(p: IMP, _self: NSObject, _cmd: Selector, value: Int) {
+	typealias SetterType = @convention(c) (NSObject!, Selector, Int) -> Void
+	return unsafeBitCast(p, SetterType.self)(_self, _cmd, value)
 }
 private func dispatchGetter(p: IMP, _self: NSObject, _cmd: Selector) -> Bool {
 	typealias GetterType = @convention(c) (NSObject!, Selector) -> Bool
 	return unsafeBitCast(p, GetterType.self)(_self, _cmd)
 }
+private func dispatchSetter(p: IMP, _self: NSObject, _cmd: Selector, value: Bool) {
+	typealias SetterType = @convention(c) (NSObject!, Selector, Bool) -> Void
+	return unsafeBitCast(p, SetterType.self)(_self, _cmd, value)
+}
 private func dispatchGetter(p: IMP, _self: NSObject, _cmd: Selector) -> AnyObject? {
 	typealias GetterType = @convention(c) (NSObject!, Selector) -> Bool
 	return unsafeBitCast(p, GetterType.self)(_self, _cmd)
 }
+private func dispatchSetter(p: IMP, _self: NSObject, _cmd: Selector, value: AnyObject?) {
+	typealias SetterType = @convention(c) (NSObject!, Selector, AnyObject?) -> Void
+	return unsafeBitCast(p, SetterType.self)(_self, _cmd, value)
+}
 
-private func cachedValueImp<T>(_self: PropertyCacheable, _ _cmd: Selector, _ _dispatch: (p: IMP, _self: NSObject, _cmd: Selector) -> T, _ oldIMP: IMP) -> T {
-	let selectorName = NSStringFromSelector(_cmd)
+// MARK:-
+
+private func cachedGetterImp<T>(_self: PropertyCacheable, _cmd: Selector, propertyName: String, dispatch: (p: IMP, _self: NSObject, _cmd: Selector) -> T, oldImp: IMP) -> T {
 	let valuesCache = _self.actualizedValuesCache
-	if let cacheRecord = valuesCache?[selectorName] as! CacheRecord<T>? {
+	if let cacheRecord = valuesCache?[propertyName] as! CacheRecord<T>? {
 		return cacheRecord.value
 	}
-	let value: T = _dispatch(p: oldIMP, _self: _self as! NSObject, _cmd: _cmd)
+	let value: T = dispatch(p: oldImp, _self: _self as! NSObject, _cmd: _cmd)
 	if let valuesCache = valuesCache {
-		valuesCache[selectorName] = CacheRecord(value: value)
+		valuesCache[propertyName] = CacheRecord(value: value)
 	}
 	return value
 }
 
-private func cachedValueImpForMethodTypeEncoding(methodTypeEncoding: String, sel: Selector, oldImp: IMP) -> IMP {
-	switch methodTypeEncoding {
-	case objCGetterMethodEncoding(Int.self):
+private func cachedSetterImp<T>(_self: PropertyCacheable, _cmd: Selector, propertyName: String, value: T, dispatch: (p: IMP, _self: NSObject, _cmd: Selector, value: T) -> Void, oldImp: IMP) {
+	let valuesCache = _self.actualizedValuesCache
+	dispatch(p: oldImp, _self: _self as! NSObject, _cmd: _cmd, value: value)
+	if let valuesCache = valuesCache {
+		valuesCache[propertyName] = nil
+	}
+}
+
+// MARK:-
+
+private func cachedGetterImpForPropertyTypeEncoding(propertyTypeEncoding: String, sel: Selector, propertyName: String, oldImp: IMP) -> IMP {
+	switch propertyTypeEncoding {
+	case objCEncode(Int.self):
 		let block: @convention(block) (AnyObject!) -> Int = { _self in
-			return cachedValueImp(_self as! PropertyCacheable, sel, dispatchGetter, oldImp)
+			return cachedGetterImp(_self as! PropertyCacheable, _cmd: sel, propertyName: propertyName, dispatch: dispatchGetter, oldImp: oldImp)
 		}
 		return imp_implementationWithBlock(unsafeBitCast(block, AnyObject.self))
-	case objCGetterMethodEncoding(Bool.self):
+	case objCEncode(Bool.self):
 		let block: @convention(block) (AnyObject!) -> Bool = { _self in
-			return cachedValueImp(_self as! PropertyCacheable, sel, dispatchGetter, oldImp)
+			return cachedGetterImp(_self as! PropertyCacheable, _cmd: sel, propertyName: propertyName, dispatch: dispatchGetter, oldImp: oldImp)
 		}
 		return imp_implementationWithBlock(unsafeBitCast(block, AnyObject.self))
-	case objCGetterMethodEncoding(NSObject.self):
+	case objCEncode(NSObject.self), _ where propertyTypeEncoding.hasPrefix("@"):
 		let block: @convention(block) (AnyObject!) -> AnyObject! = { _self in
-			return cachedValueImp(_self as! PropertyCacheable, sel, dispatchGetter, oldImp)
+			return cachedGetterImp(_self as! PropertyCacheable, _cmd: sel, propertyName: propertyName, dispatch: dispatchGetter, oldImp: oldImp)
 		}
 		return imp_implementationWithBlock(unsafeBitCast(block, AnyObject.self))
 	default:
@@ -68,12 +93,51 @@ private func cachedValueImpForMethodTypeEncoding(methodTypeEncoding: String, sel
 	}
 }
 
-public func cachePropertyWithName(cls: AnyClass!, name: String) {
-	let sel = NSSelectorFromString(name)
-	let method = class_getInstanceMethod($(cls), sel)
-	let methodTypeEncoding = String.fromCString(method_getTypeEncoding(method))!
-	let oldImp = method_getImplementation(method)
-	let cachedValueImp = cachedValueImpForMethodTypeEncoding(methodTypeEncoding, sel: sel, oldImp: oldImp)
-	let oldImpAfterReplaceMethod = class_replaceMethod(cls, $(sel), $(cachedValueImp), methodTypeEncoding)
-	assert(oldImp == oldImpAfterReplaceMethod)
+private func cachedSetterImpForPropertyTypeEncoding(propertyTypeEncoding: String, sel: Selector, propertyName: String, oldImp: IMP) -> IMP {
+	switch propertyTypeEncoding {
+	case objCEncode(Int.self):
+		let block: @convention(block) (AnyObject!, Int) -> Void = { _self, value in
+			cachedSetterImp(_self as! PropertyCacheable, _cmd: sel, propertyName: propertyName, value: value, dispatch: dispatchSetter, oldImp: oldImp)
+		}
+		return imp_implementationWithBlock(unsafeBitCast(block, AnyObject.self))
+	case objCEncode(Bool.self):
+		let block: @convention(block) (AnyObject!, Bool) -> Void = { _self, value in
+			cachedSetterImp(_self as! PropertyCacheable, _cmd: sel, propertyName: propertyName, value: value, dispatch: dispatchSetter, oldImp: oldImp)
+		}
+		return imp_implementationWithBlock(unsafeBitCast(block, AnyObject.self))
+	case objCEncode(NSObject.self):
+		let block: @convention(block) (AnyObject!, AnyObject!) -> Void = { _self, value in
+			cachedSetterImp(_self as! PropertyCacheable, _cmd: sel, propertyName: propertyName, value: value, dispatch: dispatchSetter, oldImp: oldImp)
+		}
+		return imp_implementationWithBlock(unsafeBitCast(block, AnyObject.self))
+	default:
+		abort()
+	}
+}
+
+// MARK:-
+
+public func cachePropertyWithName(cls: AnyClass!, name propertyName: String) {
+	let property = class_getProperty(cls, propertyName)
+	let propertyTypeEncoding = objCPropertyAttributeValue(property, attributeName: "T")!
+	do {
+		let getterName = objCPropertyAttributeValue(property, attributeName: "G") ?? propertyName
+		let getterSel = NSSelectorFromString(getterName)
+		let getterMethod = class_getInstanceMethod($(cls), getterSel)
+		let getterTypeEncoding = String.fromCString(method_getTypeEncoding(getterMethod))!
+		let oldGetterImp = method_getImplementation(getterMethod)
+		let cachedGetterImp = cachedGetterImpForPropertyTypeEncoding(propertyTypeEncoding, sel: getterSel, propertyName: propertyName, oldImp: oldGetterImp)
+		let oldGetterImpAfterReplacingMethod = class_replaceMethod(cls, $(getterSel), $(cachedGetterImp), getterTypeEncoding)
+		assert(oldGetterImp == oldGetterImpAfterReplacingMethod)
+	}
+	if nil == objCPropertyAttributeValue(property, attributeName: "R") {
+		let setterName = objCPropertyAttributeValue(property, attributeName: "S") ?? objCDefaultSetterNameForPropertyName(propertyName)
+		let setterSel = NSSelectorFromString(setterName)
+		let setterMethod = class_getInstanceMethod($(cls), setterSel)
+		let setterTypeEncoding = String.fromCString(method_getTypeEncoding(setterMethod))!
+		let oldSetterImp = method_getImplementation(setterMethod)
+		let cachedSetterImp = cachedSetterImpForPropertyTypeEncoding(propertyTypeEncoding, sel: setterSel, propertyName: propertyName, oldImp: oldSetterImp)
+		let oldSetterImpAfterReplacingMethod = class_replaceMethod(cls, $(setterSel), $(cachedSetterImp), setterTypeEncoding)
+		assert(oldSetterImp == oldSetterImpAfterReplacingMethod)
+	}
 }
