@@ -9,35 +9,53 @@
 import GEKeyPaths
 import Foundation
 
-class ObjCSampleObject : NSObject {
-	@objc dynamic var intProperty: Int {
-		return 0
-	}
-	@objc dynamic var boolProperty: Bool {
-		return true
-	}
-	@objc dynamic var objectProperty: NSObject! {
-		return 0
-	}
-	@objc dynamic var anyObjectProperty: AnyObject! {
-		return 0
+
+func objCEncode<T>(type: T.Type) -> String {
+	switch type {
+	case is Int.Type:
+		return String.fromCString((1 as NSNumber).objCType)!
+	case is Bool.Type:
+		return String.fromCString((true as NSNumber).objCType)!
+	case is AnyObject.Type:
+		return "@"
+	default:
+		abort()
 	}
 }
 
-public func objCGetterMethodEncoding<T>(type: T.Type) -> String {
-	let samplePropertyName: String = {
-		switch (type) {
-		case is Bool.Type:
-			return ObjCSampleObject.self••{$0.boolProperty}
-		case is Int.Type:
-			return ObjCSampleObject.self••{$0.intProperty}
-		case is AnyObject.Type:
-			return ObjCSampleObject.self••{$0.anyObjectProperty}
-		case is NSObject.Type:
-			return ObjCSampleObject.self••{$0.objectProperty}
-		default:
-			abort()
-		}
-	}()
-	return String.fromCString(method_getTypeEncoding(class_getInstanceMethod(ObjCSampleObject.self, NSSelectorFromString(samplePropertyName))))!
+func objCDefaultSetterNameForPropertyName(propertyName: String) -> String {
+	return "set\(propertyName.uppercaseString.characters.first!)\(propertyName.substringFromIndex(propertyName.startIndex.advancedBy(1))):"
+}
+
+func objCPropertyAttributeValue(property: objc_property_t, attributeName: String) -> String? {
+	let valueCString = property_copyAttributeValue(property, attributeName)
+	let $ = String.fromCString(valueCString)
+	valueCString.destroy()
+	return $;
+}
+
+struct PropertyInfo {
+	let name: String
+	let attributes: String
+	let attributesDictionary: [String : String]
+}
+
+extension PropertyInfo {
+	init (property: objc_property_t) {
+		self.name = String.fromCString(property_getName(property))!
+		self.attributes = String.fromCString(property_getAttributes(property))!
+		self.attributesDictionary = {
+			var attributesCount = UInt32(0)
+			let attributesList = property_copyAttributeList(property, &attributesCount)
+			var $ = [String : String]()
+			for i in 0..<Int(attributesCount) {
+				let attribute = attributesList[i]
+				let attributeName = String.fromCString(attribute.name)!
+				let attributeValue = String.fromCString(attribute.value)!
+				$[attributeName] = attributeValue
+			}
+			free(attributesList)
+			return $
+		}()
+	}
 }
