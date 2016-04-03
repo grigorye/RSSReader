@@ -78,7 +78,7 @@ private func cachedGetterImpForPropertyTypeEncoding(propertyTypeEncoding: String
 			return cachedGetterImp(_self as! PropertyCacheable, _cmd: sel, propertyName: propertyName, dispatch: dispatchGetter, oldImp: oldImp)
 		}
 		return imp_implementationWithBlock(unsafeBitCast(block, AnyObject.self))
-	case objCEncode(Bool.self):
+	case objCEncode(Bool.self), "B":
 		let block: @convention(block) (AnyObject!) -> Bool = { _self in
 			return cachedGetterImp(_self as! PropertyCacheable, _cmd: sel, propertyName: propertyName, dispatch: dispatchGetter, oldImp: oldImp)
 		}
@@ -100,7 +100,7 @@ private func cachedSetterImpForPropertyTypeEncoding(propertyTypeEncoding: String
 			cachedSetterImp(_self as! PropertyCacheable, _cmd: sel, propertyName: propertyName, value: value, dispatch: dispatchSetter, oldImp: oldImp)
 		}
 		return imp_implementationWithBlock(unsafeBitCast(block, AnyObject.self))
-	case objCEncode(Bool.self):
+	case objCEncode(Bool.self), "B":
 		let block: @convention(block) (AnyObject!, Bool) -> Void = { _self, value in
 			cachedSetterImp(_self as! PropertyCacheable, _cmd: sel, propertyName: propertyName, value: value, dispatch: dispatchSetter, oldImp: oldImp)
 		}
