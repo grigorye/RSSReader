@@ -39,7 +39,7 @@ private func dispatchSetter(p: IMP, _self: NSObject, _cmd: Selector, value: Bool
 	return unsafeBitCast(p, SetterType.self)(_self, _cmd, value)
 }
 private func dispatchGetter(p: IMP, _self: NSObject, _cmd: Selector) -> AnyObject? {
-	typealias GetterType = @convention(c) (NSObject!, Selector) -> Bool
+	typealias GetterType = @convention(c) (NSObject!, Selector) -> AnyObject?
 	return unsafeBitCast(p, GetterType.self)(_self, _cmd)
 }
 private func dispatchSetter(p: IMP, _self: NSObject, _cmd: Selector, value: AnyObject?) {
