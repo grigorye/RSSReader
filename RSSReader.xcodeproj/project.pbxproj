@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C40A24FF1A672B2100B5D959 /* TableViewContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A24FE1A672B2100B5D959 /* TableViewContainerCell.swift */; };
+		C40AA86A1CB894FA00EEF7B1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C40AA8691CB894FA00EEF7B1 /* InfoPlist.strings */; };
 		C40EA7251C6FC8A9002C6D9E /* AFMInfoBanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C40EA71F1C6FC86F002C6D9E /* AFMInfoBanner.framework */; };
 		C40EA7261C6FC8A9002C6D9E /* AFMInfoBanner.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C40EA71F1C6FC86F002C6D9E /* AFMInfoBanner.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C40EA7301C6FCC07002C6D9E /* CVKHierarchySearcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C40EA72E1C6FCBED002C6D9E /* CVKHierarchySearcher.framework */; };
@@ -59,6 +60,7 @@
 		C49540A51A57906600F56168 /* ItemSummaryWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */; };
 		C49B127D1BF686D500EA5DE5 /* Debug.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C49B127C1BF686D500EA5DE5 /* Debug.storyboard */; };
 		C49D01921AF6C647008D8DB3 /* FoldersController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4C327F11AF30CB400119573 /* FoldersController.swift */; };
+		C4A1646A1CB8938C009D8B86 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4A1646C1CB8938C009D8B86 /* InfoPlist.strings */; };
 		C4AD2ADB1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD2ADA1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift */; };
 		C4C0261F1B5281B7005452D1 /* TableViewFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0261E1B5281B7005452D1 /* TableViewFetchedResultsControllerDelegate.swift */; };
 		C4C327F21AF30CB400119573 /* FoldersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C327F11AF30CB400119573 /* FoldersController.swift */; };
@@ -67,13 +69,16 @@
 		C4C780161A7DF1EC009CB5FC /* ApplicationActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C780151A7DF1EC009CB5FC /* ApplicationActivities.swift */; };
 		C4C780181A7DF2B0009CB5FC /* TypeFilteringActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C780171A7DF2B0009CB5FC /* TypeFilteringActivity.swift */; };
 		C4CDD3A31A5350B40087DD05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */; };
-		C4CDD3AA1A5350B40087DD05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4CDD3A81A5350B40087DD05 /* Main.storyboard */; };
 		C4CDD3AC1A5350B50087DD05 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4CDD3AB1A5350B50087DD05 /* Images.xcassets */; };
-		C4CDD3AF1A5350B50087DD05 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4CDD3AD1A5350B50087DD05 /* LaunchScreen.xib */; };
 		C4CDD3C51A5357B20087DD05 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C4CDD3C41A5357B20087DD05 /* Settings.bundle */; };
 		C4CDE1911A5A06A600F16A2E /* ItemSummaryTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */; };
+		C4CE35441CB8988F001712C8 /* RSSReaderTests-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4CE35461CB8988F001712C8 /* RSSReaderTests-InfoPlist.strings */; };
+		C4CE35491CB89890001712C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4CE354B1CB89890001712C8 /* InfoPlist.strings */; };
 		C4D2C9DD1C136E5E00235392 /* MultisourceItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4D2C9DC1C136E5E00235392 /* MultisourceItemTableViewCell.xib */; };
+		C4EA6B301CB895EF00FCDAA5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4EA6B2E1CB895EF00FCDAA5 /* Localizable.strings */; };
 		C4EF270E1A8D353C000EBE63 /* UserMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EF270D1A8D353C000EBE63 /* UserMessages.swift */; };
+		C4F1118B1CB84F66005C5A0F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4F1118D1CB84F66005C5A0F /* LaunchScreen.xib */; };
+		C4F1118E1CB84F6D005C5A0F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4F111901CB84F6D005C5A0F /* Main.storyboard */; };
 		C4F575D01A797C7B00F12F20 /* AddToFavoritesActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F575CF1A797C7B00F12F20 /* AddToFavoritesActivity.swift */; };
 		C4F575D61A7988DB00F12F20 /* OpenWebPageActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F575D51A7988DB00F12F20 /* OpenWebPageActivity.swift */; };
 		C4FEBAF71BF807A600A5709B /* ContainedViewControllersAwareNavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FEBAF61BF807A600A5709B /* ContainedViewControllersAwareNavigationControllerDelegate.swift */; };
@@ -169,7 +174,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C40A24FE1A672B2100B5D959 /* TableViewContainerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TableViewContainerCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		C40A24FE1A672B2100B5D959 /* TableViewContainerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = TableViewContainerCell.swift; path = Swift/TableViewContainerCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		C40AA8691CB894FA00EEF7B1 /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		C40C6BFB1A73C6DF00FAFA17 /* RSSReader-app.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "RSSReader-app.xcconfig"; path = "XcodeConfiguration/RSSReader-app.xcconfig"; sourceTree = "<group>"; };
 		C40C6BFD1A73C78F00FAFA17 /* EmbedSourceVersionIntoBundle */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = EmbedSourceVersionIntoBundle; sourceTree = "<group>"; };
 		C40C6BFE1A73C78F00FAFA17 /* IntegrateAppsee */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = IntegrateAppsee; sourceTree = "<group>"; };
@@ -178,56 +184,64 @@
 		C40C6C051A74AB5E00FAFA17 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		C40EA71F1C6FC86F002C6D9E /* AFMInfoBanner.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFMInfoBanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C40EA72E1C6FCBED002C6D9E /* CVKHierarchySearcher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CVKHierarchySearcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C41707CA1A56076A00AED81C /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		C41707CA1A56076A00AED81C /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Globals.swift; path = Swift/Globals.swift; sourceTree = "<group>"; };
 		C424B8F01C6FC5C8008AD647 /* RSSReaderData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RSSReaderData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C424B8F31C6FC5CD008AD647 /* GEBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GEBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C424B8F61C6FC5D2008AD647 /* GEKeyPaths.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GEKeyPaths.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C42802681A5B47EA002474E1 /* FoldersListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FoldersListTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		C42802681A5B47EA002474E1 /* FoldersListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = FoldersListTableViewController.swift; path = Swift/FoldersListTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C444F53C1B2E53F200A6E378 /* RSSReaderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RSSReaderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C444F53E1B2E53F200A6E378 /* RSSReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSReaderUITests.swift; sourceTree = "<group>"; };
 		C444F5401B2E53F200A6E378 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C44B2F001AC0C881006A67F1 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		C44D91631AAE73830053B9E6 /* ItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemTableViewCell.xib; sourceTree = "<group>"; };
-		C44D916C1AAE773B0053B9E6 /* ItemSimpleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemSimpleTableViewCell.xib; sourceTree = "<group>"; };
+		C44B2F001AC0C881006A67F1 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Swift/HomeViewController.swift; sourceTree = "<group>"; };
+		C44D91631AAE73830053B9E6 /* ItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ItemTableViewCell.xib; path = Resources/ItemTableViewCell.xib; sourceTree = "<group>"; };
+		C44D916C1AAE773B0053B9E6 /* ItemSimpleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ItemSimpleTableViewCell.xib; path = Resources/ItemSimpleTableViewCell.xib; sourceTree = "<group>"; };
 		C44FCA5C1A8AEECA00C91544 /* UploadToFabric */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = UploadToFabric; sourceTree = "<group>"; };
 		C44FCA5F1A8AF9CF00C91544 /* XcodeBotScripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XcodeBotScripts; sourceTree = "<group>"; };
-		C45BC3E91A8003F40008A5D1 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = HistoryViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		C45ECD051A62054C00ADC113 /* SBConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBConstants.swift; sourceTree = "<group>"; };
-		C4676E081A6A4D1F00AE8BC2 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
-		C46934DE1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsPageViewControllerDataSource.swift; sourceTree = "<group>"; };
-		C46F04131C0A142000A970D7 /* Readability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Readability.swift; sourceTree = "<group>"; };
-		C46FA8681AA56018004B5C45 /* UITableView+SnappingHeaderToTop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+SnappingHeaderToTop.swift"; sourceTree = "<group>"; };
-		C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ItemsPageViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		C495409A1A575C1900F56168 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
-		C49540A01A57825100F56168 /* ItemsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ItemsListViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ItemSummaryWebViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		C49B127C1BF686D500EA5DE5 /* Debug.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Debug.storyboard; sourceTree = "<group>"; };
-		C4AD2ADA1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsPageViewControllerDelegate.swift; sourceTree = "<group>"; };
-		C4C0261E1B5281B7005452D1 /* TableViewFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewFetchedResultsControllerDelegate.swift; sourceTree = "<group>"; };
-		C4C327F11AF30CB400119573 /* FoldersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldersController.swift; sourceTree = "<group>"; };
-		C4C422171A75E355008803A7 /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
-		C4C780131A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkAllAsReadActivity.swift; sourceTree = "<group>"; };
-		C4C780151A7DF1EC009CB5FC /* ApplicationActivities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationActivities.swift; sourceTree = "<group>"; };
-		C4C780171A7DF2B0009CB5FC /* TypeFilteringActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeFilteringActivity.swift; sourceTree = "<group>"; };
+		C45BC3E91A8003F40008A5D1 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = HistoryViewController.swift; path = Swift/HistoryViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		C45ECD051A62054C00ADC113 /* SBConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SBConstants.swift; path = Swift/SBConstants.swift; sourceTree = "<group>"; };
+		C4676E081A6A4D1F00AE8BC2 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemTableViewCell.swift; path = Swift/ItemTableViewCell.swift; sourceTree = "<group>"; };
+		C46934DE1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemsPageViewControllerDataSource.swift; path = Swift/ItemsPageViewControllerDataSource.swift; sourceTree = "<group>"; };
+		C46F04131C0A142000A970D7 /* Readability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Readability.swift; path = Swift/Readability.swift; sourceTree = "<group>"; };
+		C46FA8681AA56018004B5C45 /* UITableView+SnappingHeaderToTop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+SnappingHeaderToTop.swift"; path = "Swift/UITableView+SnappingHeaderToTop.swift"; sourceTree = "<group>"; };
+		C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ItemsPageViewController.swift; path = Swift/ItemsPageViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		C495409A1A575C1900F56168 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDefaults.swift; path = Swift/UserDefaults.swift; sourceTree = "<group>"; };
+		C49540A01A57825100F56168 /* ItemsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ItemsListViewController.swift; path = Swift/ItemsListViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ItemSummaryWebViewController.swift; path = Swift/ItemSummaryWebViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		C49B127C1BF686D500EA5DE5 /* Debug.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Debug.storyboard; path = Resources/Debug.storyboard; sourceTree = "<group>"; };
+		C4A164671CB89076009D8B86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
+		C4AD2ADA1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemsPageViewControllerDelegate.swift; path = Swift/ItemsPageViewControllerDelegate.swift; sourceTree = "<group>"; };
+		C4C0261E1B5281B7005452D1 /* TableViewFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewFetchedResultsControllerDelegate.swift; path = Swift/TableViewFetchedResultsControllerDelegate.swift; sourceTree = "<group>"; };
+		C4C327F11AF30CB400119573 /* FoldersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FoldersController.swift; path = Swift/FoldersController.swift; sourceTree = "<group>"; };
+		C4C422171A75E355008803A7 /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainNavigationController.swift; path = Swift/MainNavigationController.swift; sourceTree = "<group>"; };
+		C4C780131A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MarkAllAsReadActivity.swift; path = Swift/MarkAllAsReadActivity.swift; sourceTree = "<group>"; };
+		C4C780151A7DF1EC009CB5FC /* ApplicationActivities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationActivities.swift; path = Swift/ApplicationActivities.swift; sourceTree = "<group>"; };
+		C4C780171A7DF2B0009CB5FC /* TypeFilteringActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TypeFilteringActivity.swift; path = Swift/TypeFilteringActivity.swift; sourceTree = "<group>"; };
 		C4CDD39D1A5350B40087DD05 /* RSSReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C4CDD3A11A5350B40087DD05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		C4CDD3A91A5350B40087DD05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = AppDelegate.swift; path = Swift/AppDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C4CDD3AB1A5350B50087DD05 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		C4CDD3AE1A5350B50087DD05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		C4CDD3B41A5350B50087DD05 /* RSSReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RSSReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C4CDD3B91A5350B50087DD05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C4CDD3C41A5357B20087DD05 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ItemSummaryTemplate.html; sourceTree = "<group>"; };
-		C4D2C9DC1C136E5E00235392 /* MultisourceItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultisourceItemTableViewCell.xib; sourceTree = "<group>"; };
+		C4CDD3B91A5350B50087DD05 /* RSSReaderTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RSSReaderTests-Info.plist"; sourceTree = "<group>"; };
+		C4CDD3C41A5357B20087DD05 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = Resources/Settings.bundle; sourceTree = "<group>"; };
+		C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = ItemSummaryTemplate.html; path = Resources/ItemSummaryTemplate.html; sourceTree = "<group>"; };
+		C4CE35451CB8988F001712C8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = "ru.lproj/RSSReaderTests-InfoPlist.strings"; sourceTree = "<group>"; };
+		C4CE354A1CB89890001712C8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C4CE354C1CB89C0E001712C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C4CE354D1CB89C28001712C8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C4D2C9DC1C136E5E00235392 /* MultisourceItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MultisourceItemTableViewCell.xib; path = Resources/MultisourceItemTableViewCell.xib; sourceTree = "<group>"; };
 		C4D56A2A1A7C33C0007BE398 /* PackageApplication */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = PackageApplication; sourceTree = "<group>"; };
-		C4EF270D1A8D353C000EBE63 /* UserMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMessages.swift; sourceTree = "<group>"; };
-		C4F575CF1A797C7B00F12F20 /* AddToFavoritesActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddToFavoritesActivity.swift; sourceTree = "<group>"; };
-		C4F575D51A7988DB00F12F20 /* OpenWebPageActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenWebPageActivity.swift; sourceTree = "<group>"; };
-		C4FEBAF61BF807A600A5709B /* ContainedViewControllersAwareNavigationControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainedViewControllersAwareNavigationControllerDelegate.swift; sourceTree = "<group>"; };
-		C4FEBB211BF96E4200A5709B /* KVOCompliantUserDefaults+RSSReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KVOCompliantUserDefaults+RSSReader.swift"; sourceTree = "<group>"; };
-		C4FEBB241BF9721500A5709B /* UINavigationItem+MultipleButtonItemsCollections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+MultipleButtonItemsCollections.swift"; sourceTree = "<group>"; };
-		CA2E0441FFA564885EE4A6C9 /* UITabBarController+CVKHiearachySearcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITabBarController+CVKHiearachySearcher.swift"; sourceTree = "<group>"; };
+		C4EA6B2F1CB895EF00FCDAA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Localizable/Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C4EA6B311CB895F500FCDAA5 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = Localizable/ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C4EF270D1A8D353C000EBE63 /* UserMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserMessages.swift; path = Swift/UserMessages.swift; sourceTree = "<group>"; };
+		C4F1118C1CB84F66005C5A0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		C4F1118F1CB84F6D005C5A0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C4F111911CB84FE1005C5A0F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		C4F111921CB84FE1005C5A0F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		C4F575CF1A797C7B00F12F20 /* AddToFavoritesActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddToFavoritesActivity.swift; path = Swift/AddToFavoritesActivity.swift; sourceTree = "<group>"; };
+		C4F575D51A7988DB00F12F20 /* OpenWebPageActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OpenWebPageActivity.swift; path = Swift/OpenWebPageActivity.swift; sourceTree = "<group>"; };
+		C4FEBAF61BF807A600A5709B /* ContainedViewControllersAwareNavigationControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainedViewControllersAwareNavigationControllerDelegate.swift; path = Swift/ContainedViewControllersAwareNavigationControllerDelegate.swift; sourceTree = "<group>"; };
+		C4FEBB211BF96E4200A5709B /* KVOCompliantUserDefaults+RSSReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "KVOCompliantUserDefaults+RSSReader.swift"; path = "Swift/KVOCompliantUserDefaults+RSSReader.swift"; sourceTree = "<group>"; };
+		C4FEBB241BF9721500A5709B /* UINavigationItem+MultipleButtonItemsCollections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UINavigationItem+MultipleButtonItemsCollections.swift"; path = "Swift/UINavigationItem+MultipleButtonItemsCollections.swift"; sourceTree = "<group>"; };
+		CA2E0441FFA564885EE4A6C9 /* UITabBarController+CVKHiearachySearcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITabBarController+CVKHiearachySearcher.swift"; path = "Swift/UITabBarController+CVKHiearachySearcher.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -299,6 +313,8 @@
 		C444F53D1B2E53F200A6E378 /* RSSReaderUITests */ = {
 			isa = PBXGroup;
 			children = (
+				C4CE354B1CB89890001712C8 /* InfoPlist.strings */,
+				C40AA8691CB894FA00EEF7B1 /* InfoPlist.strings */,
 				C444F53E1B2E53F200A6E378 /* RSSReaderUITests.swift */,
 				C444F5401B2E53F200A6E378 /* Info.plist */,
 			);
@@ -309,9 +325,9 @@
 			isa = PBXGroup;
 			children = (
 				C4FEBB211BF96E4200A5709B /* KVOCompliantUserDefaults+RSSReader.swift */,
+				C4F1118D1CB84F66005C5A0F /* LaunchScreen.xib */,
+				C4F111901CB84F6D005C5A0F /* Main.storyboard */,
 				C4CDD3AB1A5350B50087DD05 /* Images.xcassets */,
-				C4CDD3AD1A5350B50087DD05 /* LaunchScreen.xib */,
-				C4CDD3A81A5350B40087DD05 /* Main.storyboard */,
 				C49B127C1BF686D500EA5DE5 /* Debug.storyboard */,
 				C44B2F001AC0C881006A67F1 /* HomeViewController.swift */,
 				C4676E081A6A4D1F00AE8BC2 /* ItemTableViewCell.swift */,
@@ -374,6 +390,7 @@
 		C4CDD39F1A5350B40087DD05 /* RSSReader */ = {
 			isa = PBXGroup;
 			children = (
+				C4EA6B2E1CB895EF00FCDAA5 /* Localizable.strings */,
 				C41707CA1A56076A00AED81C /* Globals.swift */,
 				C495409A1A575C1900F56168 /* UserDefaults.swift */,
 				C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */,
@@ -384,7 +401,8 @@
 				C49540A21A57827300F56168 /* UI */,
 				C4CDD3C41A5357B20087DD05 /* Settings.bundle */,
 				C40C6C051A74AB5E00FAFA17 /* Bridging-Header.h */,
-				C4CDD3A11A5350B40087DD05 /* Info.plist */,
+				C4A164671CB89076009D8B86 /* Info.plist */,
+				C4A1646C1CB8938C009D8B86 /* InfoPlist.strings */,
 			);
 			path = RSSReader;
 			sourceTree = "<group>";
@@ -400,7 +418,8 @@
 		C4CDD3B81A5350B50087DD05 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C4CDD3B91A5350B50087DD05 /* Info.plist */,
+				C4CE35461CB8988F001712C8 /* RSSReaderTests-InfoPlist.strings */,
+				C4CDD3B91A5350B50087DD05 /* RSSReaderTests-Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -499,6 +518,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = C4CDD3941A5350B40087DD05;
 			productRefGroup = C4CDD39E1A5350B40087DD05 /* Products */;
@@ -517,6 +537,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C40AA86A1CB894FA00EEF7B1 /* InfoPlist.strings in Resources */,
+				C4CE35491CB89890001712C8 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,13 +548,15 @@
 			files = (
 				C4CDE1911A5A06A600F16A2E /* ItemSummaryTemplate.html in Resources */,
 				C4CDD3C51A5357B20087DD05 /* Settings.bundle in Resources */,
+				C4EA6B301CB895EF00FCDAA5 /* Localizable.strings in Resources */,
 				C4D2C9DD1C136E5E00235392 /* MultisourceItemTableViewCell.xib in Resources */,
-				C4CDD3AA1A5350B40087DD05 /* Main.storyboard in Resources */,
-				C4CDD3AF1A5350B50087DD05 /* LaunchScreen.xib in Resources */,
 				C44D91641AAE73830053B9E6 /* ItemTableViewCell.xib in Resources */,
+				C4F1118B1CB84F66005C5A0F /* LaunchScreen.xib in Resources */,
 				C4CDD3AC1A5350B50087DD05 /* Images.xcassets in Resources */,
+				C4F1118E1CB84F6D005C5A0F /* Main.storyboard in Resources */,
 				C49B127D1BF686D500EA5DE5 /* Debug.storyboard in Resources */,
 				C44D916D1AAE773B0053B9E6 /* ItemSimpleTableViewCell.xib in Resources */,
+				C4A1646A1CB8938C009D8B86 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,6 +564,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4CE35441CB8988F001712C8 /* RSSReaderTests-InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -678,20 +703,59 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		C4CDD3A81A5350B40087DD05 /* Main.storyboard */ = {
+		C4A1646C1CB8938C009D8B86 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C4CDD3A91A5350B40087DD05 /* Base */,
+				C4CE354C1CB89C0E001712C8 /* Base */,
+				C4CE354D1CB89C28001712C8 /* ru */,
 			);
-			name = Main.storyboard;
+			name = InfoPlist.strings;
+			path = Localizable;
 			sourceTree = "<group>";
 		};
-		C4CDD3AD1A5350B50087DD05 /* LaunchScreen.xib */ = {
+		C4CE35461CB8988F001712C8 /* RSSReaderTests-InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C4CDD3AE1A5350B50087DD05 /* Base */,
+				C4CE35451CB8988F001712C8 /* ru */,
+			);
+			name = "RSSReaderTests-InfoPlist.strings";
+			sourceTree = "<group>";
+		};
+		C4CE354B1CB89890001712C8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C4CE354A1CB89890001712C8 /* ru */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C4EA6B2E1CB895EF00FCDAA5 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C4EA6B2F1CB895EF00FCDAA5 /* Base */,
+				C4EA6B311CB895F500FCDAA5 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		C4F1118D1CB84F66005C5A0F /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C4F1118C1CB84F66005C5A0F /* Base */,
+				C4F111911CB84FE1005C5A0F /* ru */,
 			);
 			name = LaunchScreen.xib;
+			path = Localizable;
+			sourceTree = "<group>";
+		};
+		C4F111901CB84F6D005C5A0F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C4F1118F1CB84F6D005C5A0F /* Base */,
+				C4F111921CB84FE1005C5A0F /* ru */,
+			);
+			name = Main.storyboard;
+			path = Localizable;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -826,7 +890,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = RSSReader/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/RSSReader/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.grigoryentin.$(PRODUCT_NAME:rfc1034identifier)";
@@ -849,7 +913,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = RSSReader/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/RSSReader/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.grigoryentin.$(PRODUCT_NAME:rfc1034identifier)";
@@ -871,7 +935,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = RSSReaderTests/Info.plist;
+				INFOPLIST_FILE = "RSSReaderTests/RSSReaderTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.grigoryentin.$(PRODUCT_NAME:rfc1034identifier)";
@@ -889,7 +953,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = RSSReaderTests/Info.plist;
+				INFOPLIST_FILE = "RSSReaderTests/RSSReaderTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.grigoryentin.$(PRODUCT_NAME:rfc1034identifier)";
