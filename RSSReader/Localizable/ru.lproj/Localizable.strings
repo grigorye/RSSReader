@@ -1,0 +1,18 @@
+/* No comment provided by engineer. */
+"Favorites" = "Избранное";
+
+/* No comment provided by engineer. */
+"Not updated before" = "Никогда не обновлялось";
+
+/* Title for alert on failed refresh */
+"RefreshFailed" = "Не удалось обновить";
+
+/* Proceed action title for alert on failed refresh */
+"Retry" = "Повторить";
+
+/* No comment provided by engineer. */
+"Something went wrong." = "Что-то пошло не так";
+
+/* No comment provided by engineer. */
+"Updated %@ ago" = "Обновлено %@ назад";
+

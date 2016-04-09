@@ -1,0 +1,75 @@
+/* Class = "UIButton"; normalTitle = "U"; ObjectID = "1Fg-wk-by1"; */
+"1Fg-wk-by1.normalTitle" = "U";
+
+/* Class = "UILabel"; text = "History"; ObjectID = "1II-N6-C0V"; */
+"1II-N6-C0V.text" = "История";
+
+/* Class = "UILabel"; text = "Title•"; ObjectID = "3T5-yD-fXA"; */
+"3T5-yD-fXA.text" = "Title•";
+
+/* Class = "UIBarButtonItem"; title = "Home"; ObjectID = "3oX-aI-Bjh"; */
+"3oX-aI-Bjh.title" = "Главное";
+
+/* Class = "UILabel"; text = "Detail•"; ObjectID = "8iu-NQ-WRU"; */
+"8iu-NQ-WRU.text" = "";
+
+/* Class = "UILabel"; text = "Subscriptions"; ObjectID = "814-LB-d0O"; */
+"814-LB-d0O.text" = "Подписки";
+
+/* Class = "UITabBarItem"; title = "Debug"; ObjectID = "AAA-Mh-8Vk"; */
+"AAA-Mh-8Vk.title" = "Разработчик";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "AWh-VL-I4Q"; */
+"AWh-VL-I4Q.text" = "Detail•";
+
+/* Class = "UIBarButtonItem"; title = "MAR"; ObjectID = "FEa-k8-cQP"; */
+"FEa-k8-cQP.title" = "MAR";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "Fgt-yI-K6M"; */
+"Fgt-yI-K6M.text" = "Title";
+
+/* Class = "UINavigationItem"; title = "Subscsriptions"; ObjectID = "PfS-Px-hbx"; */
+"PfS-Px-hbx.title" = "Подписки";
+
+/* Class = "UINavigationItem"; title = "History"; ObjectID = "Qyl-H4-2jl"; */
+"Qyl-H4-2jl.title" = "История";
+
+/* Class = "UITabBarItem"; title = "Subscriptions"; ObjectID = "RhV-dz-5gA"; */
+"RhV-dz-5gA.title" = "Подписки";
+
+/* Class = "UILabel"; text = "Favorites"; ObjectID = "W01-H4-Bt3"; */
+"W01-H4-Bt3.text" = "Избранное";
+
+/* Class = "UIButton"; normalTitle = "U"; ObjectID = "Y2K-Hr-675"; */
+"Y2K-Hr-675.normalTitle" = "U";
+
+/* Class = "UIBarButtonItem"; title = "Settings"; ObjectID = "Z7V-w6-ndy"; */
+"Z7V-w6-ndy.title" = "Настройки";
+
+/* Class = "UIBarButtonItem"; title = "Combined"; ObjectID = "ZU6-a2-UhT"; */
+"ZU6-a2-UhT.title" = "Всё вместе";
+
+/* Class = "UIBarButtonItem"; title = "Settings"; ObjectID = "aGK-dD-eHC"; */
+"aGK-dD-eHC.title" = "Настройки";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "bC2-zF-sCe"; */
+"bC2-zF-sCe.text" = "Label";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "eDc-3U-E5b"; */
+"eDc-3U-E5b.title" = "Item";
+
+/* Class = "UIBarButtonItem"; title = "E"; ObjectID = "frR-cQ-Jf5"; */
+"frR-cQ-Jf5.title" = "E";
+
+/* Class = "UIBarButtonItem"; title = "R"; ObjectID = "gnU-AB-lLM"; */
+"gnU-AB-lLM.title" = "R";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "pG2-fU-3i2"; */
+"pG2-fU-3i2.title" = " ";
+
+/* Class = "UILabel"; text = "Debug"; ObjectID = "qOu-K3-OJ2"; */
+"qOu-K3-OJ2.text" = "Разработчик";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "wVV-rV-Zb5"; */
+"wVV-rV-Zb5.text" = "Label";
+
