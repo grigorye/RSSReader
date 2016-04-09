@@ -1,18 +1,87 @@
+/* Error message on failed refresh */
+"%@ %@" = "%1$@ %2$@";
+
+/* No comment provided by engineer. */
+"%@ ago" = "Обновлено %@ назад";
+
+/* No comment provided by engineer. */
+"Add to Favorites" = "Добавить в избранное";
+
+/* Folders Update State */
+"Authenticating" = "Подключение";
+
+/* Proceed action title for alert on failed refresh */
+"Cancel" = "Отменить";
+
+/* Folders Update State */
+"Completed" = "Завершено";
+
+/* No comment provided by engineer. */
+"Failed to load more." = "Не удалось загрузить еще.";
+
+/* No comment provided by engineer. */
+"Failed to mark all as read." = "Не удалось отметить все как прочитанное.";
+
+/* No comment provided by engineer. */
+"Failed to mark as favorite." = "Не удалось добавить в избранное.";
+
+/* No comment provided by engineer. */
+"Failed to mark as read. %@" = "Не удалось отметить как прочитанное. %@";
+
+/* No comment provided by engineer. */
+"Failed to unmark as favorite." = "Не удалось убрать из избранного.";
+
 /* No comment provided by engineer. */
 "Favorites" = "Избранное";
 
 /* No comment provided by engineer. */
+"Just now" = "Только что";
+
+/* No comment provided by engineer. */
+"Mark All as Read" = "Отметить все как прочитанное";
+
+/* No comment provided by engineer. */
+"Marked all as read." = "Все отмечено как прочитанное.";
+
+/* No comment provided by engineer. */
 "Not updated before" = "Никогда не обновлялось";
 
+/* No comment provided by engineer. */
+"Open in Safari" = "Открыть в Safari";
+
 /* Title for alert on failed refresh */
-"RefreshFailed" = "Не удалось обновить";
+"Refresh Failed" = "Ошибка обновления";
 
 /* Proceed action title for alert on failed refresh */
 "Retry" = "Повторить";
 
 /* No comment provided by engineer. */
-"Something went wrong." = "Что-то пошло не так";
+"Something went wrong." = "Что-то пошло не так.";
+
+/* No comment provided by engineer. */
+"To sync you should be logged in." = "Для синхронизации нужно зарегистрироваться.";
+
+/* No comment provided by engineer. */
+"Unable to expand" = "Не удалось получить весь текст";
+
+/* No comment provided by engineer. */
+"Unable to load summary" = "Не удалось получить короткую версию";
+
+/* Folders Update State */
+"Unknown" = "Неизвестно";
 
 /* No comment provided by engineer. */
 "Updated %@ ago" = "Обновлено %@ назад";
+
+/* Folders Update State */
+"Updating Subscriptions" = "Обновление подписок";
+
+/* Folders Update State */
+"Updating Tags" = "Обновление тэгов";
+
+/* Folders Update State */
+"Updating Unread Counts" = "Обновление счетчиков непрочитанного";
+
+/* Folders Update State */
+"Updating User Info" = "Обновление персональных настроек";
 

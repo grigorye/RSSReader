@@ -11,7 +11,7 @@
 "3oX-aI-Bjh.title" = "Главное";
 
 /* Class = "UILabel"; text = "Detail•"; ObjectID = "8iu-NQ-WRU"; */
-"8iu-NQ-WRU.text" = "";
+"8iu-NQ-WRU.text" = "Detail•";
 
 /* Class = "UILabel"; text = "Subscriptions"; ObjectID = "814-LB-d0O"; */
 "814-LB-d0O.text" = "Подписки";
