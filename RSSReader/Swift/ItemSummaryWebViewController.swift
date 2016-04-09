@@ -32,7 +32,8 @@ class ItemSummaryWebViewController: UIViewController {
 				if let uploadReadStateError = uploadReadStateError {
 					$(uploadReadStateError)
 					dispatch_sync(dispatch_get_main_queue()) {
-						self.presentErrorMessage(NSLocalizedString("Failed to mark as read. \((uploadReadStateError as NSError).localizedDescription)", comment: ""))
+						let message = String.localizedStringWithFormat(NSLocalizedString("Failed to mark as read. %@", comment: ""), (uploadReadStateError as NSError).localizedDescription)
+						self.presentErrorMessage(message)
 					}
 				}
 			})
@@ -139,7 +140,8 @@ class ItemSummaryWebViewController: UIViewController {
 			dispatch_async(dispatch_get_main_queue()) {
 				guard let HTMLString = HTMLString where nil == error else {
 					$(error)
-					self.presentErrorMessage(NSLocalizedString("Unable to expand", comment: ""))
+					let message = NSLocalizedString("Unable to expand", comment: "")
+					self.presentErrorMessage(message)
 					return
 				}
 				do {
@@ -147,7 +149,8 @@ class ItemSummaryWebViewController: UIViewController {
 				}
 				catch {
 					$(error)
-					self.presentErrorMessage(NSLocalizedString("Unable to expand", comment: ""))
+					let message = NSLocalizedString("Unable to expand", comment: "")
+					self.presentErrorMessage(message)
 				}
 			}
 		}

@@ -353,7 +353,7 @@ class ItemsListViewController: UITableViewController {
 		let title: String = {
 			if let loadDate = loadDate {
 				let loadAgo = loadAgoLongDateComponentsFormatter.stringFromDate(loadDate, toDate: self.nowDate)
-				return NSLocalizedString("\(loadAgo!) ago", comment: "")
+				return String.localizedStringWithFormat(NSLocalizedString("%@ ago", comment: ""), loadAgo!)
 			}
 			else {
 				return NSLocalizedString("Just now", comment: "")
