@@ -69,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 		}
 	}
 	let internals = AppDelegateInternals()
-	dynamic var foldersUpdateStateRaw: String = FoldersUpdateState.Completed.rawValue
+	dynamic var foldersUpdateStateRaw = FoldersUpdateState.Completed.rawValue
 	var foldersUpdateState = FoldersUpdateState.Completed {
 		didSet {
 			foldersUpdateStateRaw = foldersUpdateState.rawValue

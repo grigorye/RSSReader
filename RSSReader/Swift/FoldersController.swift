@@ -10,7 +10,7 @@ import RSSReaderData
 import GEBase
 import Foundation
 
-enum FoldersUpdateState: String {
+enum FoldersUpdateState: Int {
 	case Unknown
 	case Completed
 	case Authenticating
@@ -19,6 +19,29 @@ enum FoldersUpdateState: String {
 	case UpdatingSubscriptions
 	case UpdatingUnreadCounts
 	case UpdatingStreamPreferences
+}
+
+extension FoldersUpdateState: CustomStringConvertible {
+	var description: String {
+		switch self {
+		case .Unknown:
+			return NSLocalizedString("Unknown", comment: "Folders Update State")
+		case .Authenticating:
+			return NSLocalizedString("Authenticating", comment: "Folders Update State")
+		case .UpdatingUserInfo:
+			return NSLocalizedString("Updating User Info", comment: "Folders Update State")
+		case .UpdatingTags:
+			return NSLocalizedString("Updating Tags", comment: "Folders Update State")
+		case .UpdatingSubscriptions:
+			return NSLocalizedString("Updating Subscriptions", comment: "Folders Update State")
+		case .UpdatingUnreadCounts:
+			return NSLocalizedString("Updating Unread Counts", comment: "Folders Update State")
+		case .UpdatingStreamPreferences:
+			return NSLocalizedString("Updating Unread Counts", comment: "Folders Update State")
+		case .Completed:
+			return NSLocalizedString("Completed", comment: "Folders Update State")
+		}
+	}
 }
 
 enum FoldersControllerError: ErrorType {
@@ -38,7 +61,7 @@ enum FoldersControllerError: ErrorType {
 	var rssSession: RSSSession? { get }
 	var foldersLastUpdateDate: NSDate? { get set }
 	var foldersLastUpdateErrorRaw: NSError? { get set }
-	var foldersUpdateStateRaw: String { get set }
+	var foldersUpdateStateRaw: Int { get set }
 }
 
 extension FoldersController {
