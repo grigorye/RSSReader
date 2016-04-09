@@ -57,7 +57,8 @@ class FoldersListTableViewController: UITableViewController, UIDataSourceModelAs
 					return localizedDescription
 				}
 			}()
-			let $ = UIAlertController(title: NSLocalizedString("RefreshFailed", comment: "Title for alert on failed refresh"), message: message, preferredStyle: .Alert)
+			let title = NSLocalizedString("RefreshFailed", comment: "Title for alert on failed refresh")
+			let $ = UIAlertController(title: title, message: message, preferredStyle: .Alert)
 			let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Proceed action title for alert on failed refresh"), style: .Default) { action in
 				return
 			}
@@ -217,7 +218,7 @@ class FoldersListTableViewController: UITableViewController, UIDataSourceModelAs
 					}
 					else if let foldersLastUpdateDate = foldersController.foldersLastUpdateDate {
 						let loadAgo = loadAgoDateComponentsFormatter.stringFromDate(foldersLastUpdateDate, toDate: NSDate())!
-						return NSLocalizedString("Updated \(loadAgo) ago", comment: "")
+						return String.localizedStringWithFormat(NSLocalizedString("Updated %@ ago", comment: ""), loadAgo)
 					}
 					else {
 						return NSLocalizedString("", comment: "")

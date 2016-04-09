@@ -429,7 +429,7 @@ class ItemsListViewController: UITableViewController {
 			let newValue = change![NSKeyValueChangeNewKey]
 			if let loadDate = nilForNull(newValue!) as! NSDate? {
 				let loadAgo = loadAgoDateComponentsFormatter.stringFromDate(loadDate, toDate: NSDate())
-				self.presentInfoMessage(NSLocalizedString("Updated \(loadAgo!) ago", comment: ""))
+				self.presentInfoMessage(String.localizedStringWithFormat(NSLocalizedString("Updated %@ ago", comment: ""), loadAgo!))
 			}
 			else {
 				self.presentInfoMessage(NSLocalizedString("Not updated before", comment: ""))
