@@ -51,13 +51,13 @@ class FoldersListTableViewController: UITableViewController, UIDataSourceModelAs
 			let message: String = {
 				let localizedDescription = error.localizedDescription
 				if let localizedRecoverySuggestion = error.localizedRecoverySuggestion {
-					return NSLocalizedString("\(localizedDescription) \(localizedRecoverySuggestion)", comment: "Error message on failed refresh")
+					return String.localizedStringWithFormat(NSLocalizedString("%@ %@", comment: "Error message on failed refresh"), localizedDescription, localizedRecoverySuggestion)
 				}
 				else {
 					return localizedDescription
 				}
 			}()
-			let title = NSLocalizedString("RefreshFailed", comment: "Title for alert on failed refresh")
+			let title = NSLocalizedString("Refresh Failed", comment: "Title for alert on failed refresh")
 			let $ = UIAlertController(title: title, message: message, preferredStyle: .Alert)
 			let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Proceed action title for alert on failed refresh"), style: .Default) { action in
 				return
@@ -75,7 +75,8 @@ class FoldersListTableViewController: UITableViewController, UIDataSourceModelAs
 	}
 	@IBAction func refresh(sender: AnyObject!) {
 		guard nil != self.rssSession else {
-			presentErrorMessage(NSLocalizedString("To sync you should be logged in.", comment: ""))
+			let message = NSLocalizedString("To sync you should be logged in.", comment: "")
+			presentErrorMessage(message)
 			return
 		}
 		RSSReader.foldersController.updateFolders { updateError in dispatch_async(dispatch_get_main_queue()) {
@@ -221,10 +222,10 @@ class FoldersListTableViewController: UITableViewController, UIDataSourceModelAs
 						return String.localizedStringWithFormat(NSLocalizedString("Updated %@ ago", comment: ""), loadAgo)
 					}
 					else {
-						return NSLocalizedString("", comment: "")
+						return ""
 					}
 				default:
-					return foldersUpdateState.rawValue
+					return "\(foldersUpdateState)"
 				}
 			}()
 			self.presentInfoMessage(message)
