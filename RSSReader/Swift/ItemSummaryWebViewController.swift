@@ -157,6 +157,7 @@ class ItemSummaryWebViewController: UIViewController {
 	}
 	// MARK: -
 	var blocksScheduledForViewWillAppear = [Handler]()
+	var blocksScheduledForViewWillDisappear = [Handler]()
 	var itemMarkedAsReadKVOBinding: KVOBinding?
 	// MARK: -
 	override func viewDidLoad() {
@@ -172,37 +173,45 @@ class ItemSummaryWebViewController: UIViewController {
 		}]
 	}
 	// MARK: -
+	var managesBarVisiblity = false {
+		willSet {
+			precondition(newValue != managesBarVisiblity)
+			if hideBarsOnSwipe {
+				$(self).navigationController?.hidesBarsOnSwipe = $(newValue)
+			}
+		}
+	}
+	// MARK: -
 	var viewDidDisappearRetainedObjects = [AnyObject]()
 	override func viewWillAppear(animated: Bool) {
-		for i in blocksScheduledForViewWillAppear { i() }
+		blocksScheduledForViewWillAppear.forEach { $0() }
 		blocksScheduledForViewWillAppear = []
 		viewDidDisappearRetainedObjects += [KVOBinding(self•{$0.item.markedAsFavorite}, options: .Initial) { [unowned self] change in
 			let excludedBarButtonItem = self.item.markedAsFavorite ? self.markAsFavoriteBarButtonItem : self.unmarkAsFavoriteBarButtonItem
 			let toolbarItems = self.savedToolbarItems.filter {
 				return $0 != excludedBarButtonItem
 			}
-			self.toolbarItems = $(toolbarItems)
+			self.toolbarItems = (toolbarItems)
 		}]
 		super.viewWillAppear(animated)
 	}
 	override func viewDidAppear(animated: Bool) {
 		super.viewDidAppear(animated)
+		self.managesBarVisiblity = true
+		blocksScheduledForViewWillDisappear += [{
+			self.managesBarVisiblity = false
+		}]
 		self.markAsOpenAndReadTimer = NSTimer.scheduledTimerWithTimeInterval(markAsReadTimeInterval, target: self, selector: #selector(ItemSummaryWebViewController.markAsOpenAndRead), userInfo: nil, repeats: false)
 	}
 	override func viewWillDisappear(animated: Bool) {
+		blocksScheduledForViewWillDisappear.forEach { $0() }
+		blocksScheduledForViewWillDisappear = []
 		super.viewWillDisappear(animated)
 		self.markAsOpenAndReadTimer?.invalidate()
 	}
 	override func viewDidDisappear(animated: Bool) {
 		viewDidDisappearRetainedObjects = []
 		super.viewDidDisappear(animated)
-	}
-	override func willMoveToParentViewController(parent: UIViewController?) {
-		$(parent)
-		super.willMoveToParentViewController(parent)
-		if hideBarsOnSwipe {
-			self.navigationController?.hidesBarsOnSwipe = nil != parent
-		}
 	}
 	// MARK: -
 	override func prefersStatusBarHidden() -> Bool {
