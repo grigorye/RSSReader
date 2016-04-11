@@ -39,31 +39,37 @@ class TraceAndLabelTestsBase: XCTestCase {
 
 class TraceTests: TraceAndLabelTestsBase {
 	let foo = "bar"
-	var tracedMessages = [String]()
+	var tracedMessages = [(label: String, location: SourceLocation, message: String)]()
 	override func setUp() {
-		let oldTraceMessage = traceMessage
-		traceMessage = { message in
-			self.tracedMessages += [message]
-		}
+		let oldLoggers = loggers
+		loggers += [{ date, label, location, message in
+			self.tracedMessages += [(label, location, message)]
+		}]
 		blocksForTearDown += [{
-			traceMessage = oldTraceMessage
+			loggers = oldLoggers
 		}]
 	}
     func testTraceWithAllThingsDisabled() {
 		$(foo)
-		XCTAssertEqual(tracedMessages, [])
+		XCTAssertTrue(tracedMessages.isEmpty)
 	}
 	func testTraceWithTraceEanbled() {
 		traceEnabledEnforced = true
 		$(foo); let line = #line
-		let fileName = NSURL.fileURLWithPath(#file).lastPathComponent!
-		XCTAssertEqual(tracedMessages, ["\(fileName), \(#function).\(line)[5-8]: bar"])
+		let fileURL = NSURL.fileURLWithPath(#file)
+		XCTAssertEqual(tracedMessages.map {$0.location.line}, [line])
+		XCTAssertEqual(tracedMessages.map {$0.location.fileURL}, [fileURL])
+		XCTAssertEqual(tracedMessages.map {$0.message}, ["bar"])
+		XCTAssertEqual(tracedMessages.map {$0.label}, ["[5-2]"])
 	}
 	func testWithTraceAndLabelsEnabled() {
 		traceEnabledEnforced = true
 		traceLabelsEnabledEnforced = true
 		$(foo); let line = #line
-		let fileName = NSURL.fileURLWithPath(#file).lastPathComponent!
-		XCTAssertEqual(tracedMessages, ["\(fileName), \(#function).\(line): foo: bar"])
+		let fileURL = NSURL.fileURLWithPath(#file)
+		XCTAssertEqual(tracedMessages.map {$0.location.line}, [line])
+		XCTAssertEqual(tracedMessages.map {$0.location.fileURL}, [fileURL])
+		XCTAssertEqual(tracedMessages.map {$0.message}, ["bar"])
+		XCTAssertEqual(tracedMessages.map {$0.label}, ["foo"])
 	}
 }
