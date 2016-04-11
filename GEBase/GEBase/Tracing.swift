@@ -8,6 +8,8 @@
 
 import Foundation
 
+var swiftHashColumnMatchesLastComponentInCompoundExpressions = true
+
 var traceEnabled: Bool {
 	return defaults.traceEnabled
 }
@@ -70,15 +72,27 @@ func labelFromLocation(firstLocation: SourceLocation, lastLocation: SourceLocati
 	let lines = fileContents.componentsSeparatedByString("\n")
 	let line = lines[firstLocation.line - 1] as NSString
 	let firstIndex = firstLocation.column - 1
-	let tail = line.substringFromIndex(firstIndex) as NSString
-	let length: Int = {
+	let lineSuffix = line.substringFromIndex(firstIndex) as NSString
+	let lengthInLineSuffix: Int = {
 		guard firstLocation.column != lastLocation.column else {
-			return indexOfClosingBracket(tail, openingBracket: "(", closingBracket: ")")
+			return indexOfClosingBracket(lineSuffix, openingBracket: "(", closingBracket: ")")
 		}
 		return lastLocation.column - firstLocation.column - 3
 	}()
-	let text = tail.substringToIndex(length)
-	return "\(text)"
+	let suffix = lineSuffix.substringToIndex(lengthInLineSuffix)
+	guard swiftHashColumnMatchesLastComponentInCompoundExpressions else {
+		return suffix
+	}
+	let linePrefixReversed = String(line.substringToIndex(firstIndex).characters.reverse()) as NSString
+	let lengthInLinePrefixReversed: Int = {
+		guard firstLocation.column != lastLocation.column else {
+			return indexOfClosingBracket(linePrefixReversed, openingBracket: ")", closingBracket: "(")
+		}
+		return 0
+	}()
+	let prefix = String(linePrefixReversed.substringToIndex(lengthInLinePrefixReversed).characters.reverse())
+	let text = prefix + suffix
+	return text
 }
 
 public func labeledString(string: String, location: SourceLocation, lastLocation: SourceLocation) -> String {
@@ -184,10 +198,9 @@ public postfix func »<T>(v: T) -> T {
 	return v
 }
 
-public func L<T>(v: T, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, bundle: NSBundle? = NSBundle.bundleOnStack()) -> T {
+public func L<T>(v: T, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, bundle: NSBundle? = NSBundle.bundleOnStack()) -> String {
 	let location = SourceLocation(file: file, line: line, column: column, function: function, bundle: bundle)
-	labelValue(v, startLocation: location, endLocation: location)
-	return v
+	return labelValue(v, startLocation: location, endLocation: location)
 }
 
 func trace<T>(value: T, date: NSDate, startLocation: SourceLocation, endLocation: SourceLocation) -> T {
