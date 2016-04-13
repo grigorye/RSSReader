@@ -149,6 +149,15 @@ class ItemsListViewController: UITableViewController {
 		return fetchedResultsControllerDelegate.fetchedResultsController
 	}
 	// MARK: -
+	var numberOfItemsToLoadPastVisible: Int {
+		return 10
+	}
+	var numberOfItemsToLoadInitially: Int {
+		return numberOfItemsToLoadPastVisible * 2
+	}
+	var numberOfItemsToLoadLater: Int {
+		return numberOfItemsToLoadPastVisible * 5
+	}
 	private func loadMore(completionHandler: (loadDateDidChange: Bool) -> Void) {
 		assert(!loadInProgress)
 		assert(!loadCompleted)
@@ -163,7 +172,8 @@ class ItemsListViewController: UITableViewController {
 		let ongoingLoadDate = self.ongoingLoadDate!
 		loadInProgress = true
 		let excludedCategory: Folder? = showUnreadOnly ? Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: mainQueueManagedObjectContext) : nil
-		rssSession!.streamContents(container!, excludedCategory: excludedCategory, continuation: self.continuation, loadDate: $(ongoingLoadDate)) { continuation, items, streamError in
+		let numberOfItemsToLoad = (self.continuation != nil) ? self.numberOfItemsToLoadLater : self.numberOfItemsToLoadInitially
+		rssSession!.streamContents(container!, excludedCategory: excludedCategory, continuation: self.continuation, count: numberOfItemsToLoad, loadDate: $(ongoingLoadDate)) { continuation, items, streamError in
 			dispatch_async(dispatch_get_main_queue()) {
 				if ongoingLoadDate != $(self.ongoingLoadDate) {
 					// Ignore results from previous sessions.
@@ -217,12 +227,14 @@ class ItemsListViewController: UITableViewController {
 				return false
 			}
 			if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows {
-				if let lastLoadedItem = self.lastLoadedItem {
+				if let lastLoadedItem = self.lastLoadedItem where 0 < indexPathsForVisibleRows.count {
 					let lastVisibleIndexPath = indexPathsForVisibleRows.last!
-					let numberOfItemsToPreload = 10
-					let barrierIndexPath = NSIndexPath(forRow: (lastVisibleIndexPath).row + numberOfItemsToPreload, inSection: lastVisibleIndexPath.section)
-					let indexPathForLastLoadedItem = self.fetchedResultsController.indexPathForObject(lastLoadedItem)!
-					return ((indexPathForLastLoadedItem).compare((barrierIndexPath)) == .OrderedAscending)
+					let numberOfRows = fetchedResultsController.fetchedObjects!.count
+					assert(0 < numberOfRows)
+					let barrierRow = min(lastVisibleIndexPath.row + self.numberOfItemsToLoadPastVisible, numberOfRows - 1)
+					let barrierIndexPath = NSIndexPath(forRow: (barrierRow) , inSection: lastVisibleIndexPath.section)
+					let barrierItem = self.fetchedResultsController.objectAtIndexPath(barrierIndexPath) as! Item
+					return !(((lastLoadedItem.date).compare((barrierItem.date))) == .OrderedAscending)
 				}
 				else {
 					return true
@@ -506,7 +518,14 @@ extension ItemsListViewController {
 			let $ = NSFetchRequest(entityName: E.entityName())
 			$.sortDescriptors =	sortDescriptorsForContainers
 			$.predicate = NSCompoundPredicate(andPredicateWithSubpredicates:[
-				container! is Subscription ? NSPredicate(format: "(\(E••{$0.subscription}) == %@)", argumentArray: [container!]) : NSPredicate(format: "(\(E••{$0.categories}) CONTAINS %@)", argumentArray: [container!]),
+				{
+					if container! is Subscription {
+						return NSPredicate(format: "(\(E••{$0.subscription}) == %@)", argumentArray: [container!])
+					}
+					else {
+						return NSPredicate(format: "(\(E••{$0.categories}) CONTAINS %@)", argumentArray: [container!])
+					}
+				}(),
 				self.containerViewPredicate
 			])
 			$.fetchBatchSize = 20
