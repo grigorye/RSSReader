@@ -321,7 +321,7 @@ extension RSSSession {
 		sessionTask.resume()
 	}
 	// MARK: -
-	public func streamContents(container: Container, excludedCategory: Folder?, continuation: String?, loadDate: NSDate, completionHandler: (continuation: String?, items: [Item]!, error: ErrorType?) -> Void) {
+	public func streamContents(container: Container, excludedCategory: Folder?, continuation: String?, count: Int = 20, loadDate: NSDate, completionHandler: (continuation: String?, items: [Item]!, error: ErrorType?) -> Void) {
 		var queryComponents = [String]()
 		if let continuation = continuation {
 			queryComponents += ["c=\($(continuation))"]
@@ -329,6 +329,7 @@ extension RSSSession {
 		if let excludedCategory = excludedCategory {
 			queryComponents += ["xt=\($(excludedCategory.streamID))"]
 		}
+		queryComponents += ["n=\(count)"]
 		let subscriptionIDPercentEncoded = container.streamID.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())!
 		let querySuffix = URLQuerySuffixFromComponents(queryComponents)
 		let relativeString = "/reader/api/0/stream/contents/\(subscriptionIDPercentEncoded)\(querySuffix)"
