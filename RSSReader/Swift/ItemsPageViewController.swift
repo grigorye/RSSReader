@@ -53,7 +53,7 @@ class ItemsPageViewController : UIPageViewController {
 	// MARK: -
 	var viewDidDisappearRetainedObjects = [AnyObject]()
 	override func viewWillAppear(animated: Bool) {
-		for i in blocksDelayedTillViewWillAppear { i() }
+		blocksDelayedTillViewWillAppear.forEach {$0()}
 		blocksDelayedTillViewWillAppear = []
 		super.viewWillAppear(animated)
 		viewDidDisappearRetainedObjects += [KVOBinding(self•{$0.currentViewController!.navigationItem.rightBarButtonItems}, options: .Initial) { change in

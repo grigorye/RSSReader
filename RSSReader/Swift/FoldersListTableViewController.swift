@@ -198,7 +198,7 @@ class FoldersListTableViewController: UITableViewController, UIDataSourceModelAs
 	var viewDidDisappearRetainedObjects = [AnyObject]()
 	var blocksScheduledForViewWillAppear = [Handler]()
 	override func viewWillAppear(animated: Bool) {
-		for i in blocksScheduledForViewWillAppear { i() }
+		blocksScheduledForViewWillAppear.forEach {$0()}
 		blocksScheduledForViewWillAppear = []
 		super.viewWillAppear(animated)
 		viewDidDisappearRetainedObjects += [KVOBinding(self•{$0.regeneratedChildContainers}, options: .Initial) { [unowned self] change in

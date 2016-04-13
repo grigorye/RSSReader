@@ -425,9 +425,7 @@ class ItemsListViewController: UITableViewController {
 		if nil != self.container {
 			nowDate = NSDate()
 		}
-		for i in blocksDelayedTillViewWillAppearOrStateRestoration {
-			i()
-		}
+		blocksDelayedTillViewWillAppearOrStateRestoration.forEach {$0()}
 		blocksDelayedTillViewWillAppearOrStateRestoration = []
 	}
 	// MARK: -
@@ -447,13 +445,9 @@ class ItemsListViewController: UITableViewController {
 				self.presentInfoMessage(NSLocalizedString("Not updated before", comment: ""))
 			}
  		}
-		for i in blocksDelayedTillViewWillAppearOrStateRestoration {
-			i()
-		}
+		blocksDelayedTillViewWillAppearOrStateRestoration.forEach {$0()}
 		blocksDelayedTillViewWillAppearOrStateRestoration = []
-		for i in blocksDelayedTillViewWillAppear {
-			i()
-		}
+		blocksDelayedTillViewWillAppear.forEach {$0()}
 		blocksDelayedTillViewWillAppear = []
 		blocksDelayedTillViewDidDisappear += [{
 			void(binding)
@@ -467,9 +461,7 @@ class ItemsListViewController: UITableViewController {
 	}
 	private var blocksDelayedTillViewDidDisappear = [Handler]()
 	override func viewDidDisappear(animated: Bool) {
-		for i in blocksDelayedTillViewDidDisappear {
-			i()
-		}
+		blocksDelayedTillViewDidDisappear.forEach {$0()}
 		blocksDelayedTillViewDidDisappear = []
 		super.viewDidDisappear(animated)
 	}
