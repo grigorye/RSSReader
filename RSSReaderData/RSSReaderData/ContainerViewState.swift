@@ -43,7 +43,7 @@ public class ContainerViewState: NSManagedObject {
 			return $
 		}()
 		let item = try! self.managedObjectContext!.executeFetchRequest(fetchRequest).onlyElement as! Item?
-		return $(item)
+		return (item)
 	}
 	func validateForUpdateOrInsert() throws {
 		if nil == self.loadDate && nil == self.loadError {
