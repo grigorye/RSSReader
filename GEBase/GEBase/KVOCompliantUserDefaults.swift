@@ -142,7 +142,7 @@ public class KVOCompliantUserDefaults : NSObject {
 
 	var blocksDelayedTillDealloc = [Handler]()
 	deinit {
-		for i in blocksDelayedTillDealloc { i() }
+		blocksDelayedTillDealloc.forEach {$0()}
 	}
 	
 	public override init () {
