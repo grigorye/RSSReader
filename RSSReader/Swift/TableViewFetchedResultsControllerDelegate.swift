@@ -23,7 +23,7 @@ class TableViewFetchedResultsControllerDelegate: NSObject, NSFetchedResultsContr
 	// MARK: -
 	func controllerWillChangeContent(controller: NSFetchedResultsController) {
 		precondition(controller == fetchedResultsController)
-		$(controller)
+		(controller)
 		let managedObjectContext = controller.managedObjectContext
 		assert(managedObjectContext.concurrencyType == .MainQueueConcurrencyType)
 		for updatedObject in managedObjectContext.updatedObjects {
@@ -57,19 +57,19 @@ class TableViewFetchedResultsControllerDelegate: NSObject, NSFetchedResultsContr
 			(tableView.numberOfRowsInSection((newIndexPath!).section))
 			tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: rowAnimation)
 		case .Delete:
-			tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: rowAnimation)
+			tableView.deleteRowsAtIndexPaths([(indexPath!)], withRowAnimation: rowAnimation)
 		case .Update:
 			(tableView.numberOfRowsInSection((indexPath!).section))
 			if let cell = tableView.cellForRowAtIndexPath(indexPath!) {
 				self.configureCell(cell: cell, atIndexPath: indexPath!)
 			}
 		case .Move:
-			tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: rowAnimation)
-			tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: rowAnimation)
+			tableView.deleteRowsAtIndexPaths([(indexPath!)], withRowAnimation: rowAnimation)
+			tableView.insertRowsAtIndexPaths([(newIndexPath!)], withRowAnimation: rowAnimation)
 		}
 	}
 	func controllerDidChangeContent(controller: NSFetchedResultsController) {
-		$(controller)
+		(controller)
 		precondition(controller == fetchedResultsController)
 		((fetchResultsAreAnimated) ? invoke : UIView.performWithoutAnimation) {
 			self.tableView.endUpdates()
