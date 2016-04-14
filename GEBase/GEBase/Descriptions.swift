@@ -9,9 +9,6 @@
 import Foundation
 
 func description(value: NSIndexPath) -> String {
-	var components = [String]()
-	for i in 0 ..< value.length {
-		components += ["\(value.indexAtPosition(i))"]
-	}
+	let components = (0 ..< value.length).map {"\(value.indexAtPosition($0))"}
 	return components.joinWithSeparator(", ")
 }
