@@ -9,7 +9,6 @@
 import GEKeyPaths
 import Foundation
 
-
 func objCEncode<T>(type: T.Type) -> String {
 	switch type {
 	case is Int.Type:
@@ -41,7 +40,7 @@ struct PropertyInfo {
 }
 
 extension PropertyInfo {
-	init (property: objc_property_t) {
+	init(property: objc_property_t) {
 		self.name = String.fromCString(property_getName(property))!
 		self.attributes = String.fromCString(property_getAttributes(property))!
 		self.attributesDictionary = {
