@@ -54,6 +54,12 @@
 		C46934DF1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46934DE1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift */; };
 		C46F04141C0A142000A970D7 /* Readability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46F04131C0A142000A970D7 /* Readability.swift */; };
 		C46FA8691AA56018004B5C45 /* UITableView+SnappingHeaderToTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46FA8681AA56018004B5C45 /* UITableView+SnappingHeaderToTop.swift */; };
+		C486B3381CC07D5A0019F380 /* FBAllocationTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C486B3371CC07D5A0019F380 /* FBAllocationTracker.framework */; };
+		C486B3391CC07D5A0019F380 /* FBAllocationTracker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C486B3371CC07D5A0019F380 /* FBAllocationTracker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C486B33B1CC07D5A0019F380 /* FBMemoryProfiler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C486B33A1CC07D5A0019F380 /* FBMemoryProfiler.framework */; };
+		C486B33C1CC07D5A0019F380 /* FBMemoryProfiler.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C486B33A1CC07D5A0019F380 /* FBMemoryProfiler.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C486B33E1CC07D5A0019F380 /* FBRetainCycleDetector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C486B33D1CC07D5A0019F380 /* FBRetainCycleDetector.framework */; };
+		C486B33F1CC07D5A0019F380 /* FBRetainCycleDetector.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C486B33D1CC07D5A0019F380 /* FBRetainCycleDetector.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C48C5F971A87344000A1EA12 /* ItemsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */; };
 		C495409B1A575C1900F56168 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495409A1A575C1900F56168 /* UserDefaults.swift */; };
 		C49540A11A57825100F56168 /* ItemsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49540A01A57825100F56168 /* ItemsListViewController.swift */; };
@@ -153,9 +159,12 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				C486B33F1CC07D5A0019F380 /* FBRetainCycleDetector.framework in Embed Frameworks */,
 				C424B8F21C6FC5C8008AD647 /* RSSReaderData.framework in Embed Frameworks */,
+				C486B33C1CC07D5A0019F380 /* FBMemoryProfiler.framework in Embed Frameworks */,
 				C40EA7261C6FC8A9002C6D9E /* AFMInfoBanner.framework in Embed Frameworks */,
 				C424B8F51C6FC5CD008AD647 /* GEBase.framework in Embed Frameworks */,
+				C486B3391CC07D5A0019F380 /* FBAllocationTracker.framework in Embed Frameworks */,
 				C40EA7311C6FCC07002C6D9E /* CVKHierarchySearcher.framework in Embed Frameworks */,
 				C424B8F81C6FC5D2008AD647 /* GEKeyPaths.framework in Embed Frameworks */,
 			);
@@ -203,6 +212,9 @@
 		C46934DE1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemsPageViewControllerDataSource.swift; path = Swift/ItemsPageViewControllerDataSource.swift; sourceTree = "<group>"; };
 		C46F04131C0A142000A970D7 /* Readability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Readability.swift; path = Swift/Readability.swift; sourceTree = "<group>"; };
 		C46FA8681AA56018004B5C45 /* UITableView+SnappingHeaderToTop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+SnappingHeaderToTop.swift"; path = "Swift/UITableView+SnappingHeaderToTop.swift"; sourceTree = "<group>"; };
+		C486B3371CC07D5A0019F380 /* FBAllocationTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBAllocationTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C486B33A1CC07D5A0019F380 /* FBMemoryProfiler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBMemoryProfiler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C486B33D1CC07D5A0019F380 /* FBRetainCycleDetector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBRetainCycleDetector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ItemsPageViewController.swift; path = Swift/ItemsPageViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C495409A1A575C1900F56168 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDefaults.swift; path = Swift/UserDefaults.swift; sourceTree = "<group>"; };
 		C49540A01A57825100F56168 /* ItemsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ItemsListViewController.swift; path = Swift/ItemsListViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -256,9 +268,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C486B33E1CC07D5A0019F380 /* FBRetainCycleDetector.framework in Frameworks */,
 				C424B8F11C6FC5C8008AD647 /* RSSReaderData.framework in Frameworks */,
+				C486B33B1CC07D5A0019F380 /* FBMemoryProfiler.framework in Frameworks */,
 				C40EA7251C6FC8A9002C6D9E /* AFMInfoBanner.framework in Frameworks */,
 				C424B8F41C6FC5CD008AD647 /* GEBase.framework in Frameworks */,
+				C486B3381CC07D5A0019F380 /* FBAllocationTracker.framework in Frameworks */,
 				C40EA7301C6FCC07002C6D9E /* CVKHierarchySearcher.framework in Frameworks */,
 				C424B8F71C6FC5D2008AD647 /* GEKeyPaths.framework in Frameworks */,
 			);
@@ -301,6 +316,9 @@
 		C424B8F91C6FC5E1008AD647 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C486B33D1CC07D5A0019F380 /* FBRetainCycleDetector.framework */,
+				C486B33A1CC07D5A0019F380 /* FBMemoryProfiler.framework */,
+				C486B3371CC07D5A0019F380 /* FBAllocationTracker.framework */,
 				C40EA72E1C6FCBED002C6D9E /* CVKHierarchySearcher.framework */,
 				C40EA71F1C6FC86F002C6D9E /* AFMInfoBanner.framework */,
 				C424B8F61C6FC5D2008AD647 /* GEKeyPaths.framework */,
