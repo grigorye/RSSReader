@@ -11,6 +11,8 @@ import GEBase
 import GEKeyPaths
 import UIKit
 import CoreData
+import FBAllocationTracker
+import FBMemoryProfiler
 #if ANALYTICS_ENABLED
 #if CRASHLYTICS_ENABLED
 import Fabric
@@ -36,6 +38,7 @@ class AppDelegateInternals {
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 	var window: UIWindow?
+	final var retainedObjects = [AnyObject]()
 #if false
 	var foldersLastUpdateDate: NSDate?
 #else
@@ -175,6 +178,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 				self.rssSession = RSSSession(loginAndPassword: self.loginAndPassword)
 			}
 		}
+		let memoryProfiler = FBMemoryProfiler()
+		memoryProfiler.enable()
+		self.retainedObjects += [memoryProfiler]
 		return true
 	}
 	// MARK: -
@@ -203,5 +209,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 		let libraryDirectoryURL = fileManager.URLsForDirectory(.LibraryDirectory, inDomains: .UserDomainMask).last!
 		let libraryDirectory = libraryDirectoryURL.path!
         $(libraryDirectory)
+	}
+	private static var configureAllocationTrackerOnce = dispatch_once_t()
+	override class func initialize() {
+		dispatch_once(&configureAllocationTrackerOnce) {
+			FBAllocationTrackerManager.sharedManager()!.startTrackingAllocations()
+			FBAllocationTrackerManager.sharedManager()!.enableGenerations()
+		}
 	}
 }

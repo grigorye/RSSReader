@@ -15,3 +15,5 @@
 #if DZ_READABILITY_ENABLED
 #import <DZReadability/DZReadability.h>
 #endif
+#import <FBAllocationTracker/FBAllocationTracker.h>
+#import <FBMemoryProfiler/FBMemoryProfiler.h>
