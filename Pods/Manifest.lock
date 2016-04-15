@@ -8,6 +8,11 @@ PODS:
   - DZReadability (0.2.3):
     - HTMLReader
   - Fabric (1.6.1)
+  - FBAllocationTracker (0.1.2)
+  - FBMemoryProfiler (0.1.1):
+    - FBAllocationTracker (~> 0.1)
+    - FBRetainCycleDetector (~> 0.1)
+  - FBRetainCycleDetector (0.1.1)
   - Flurry-iOS-SDK/FlurrySDK (7.3.0)
   - HTMLReader (0.9.3)
   - TUSafariActivity (1.0.4)
@@ -19,6 +24,7 @@ DEPENDENCIES:
   - Crashlytics
   - DZReadability
   - Fabric
+  - FBMemoryProfiler
   - Flurry-iOS-SDK/FlurrySDK
   - HTMLReader
   - TUSafariActivity
@@ -31,6 +37,9 @@ SPEC CHECKSUMS:
   CVKHierarchySearcher: 7be8d3bcbcc6f86ff07f785e6c632b5e40da2553
   DZReadability: 451e9134abd6861bc855467e01c7b05680734d4f
   Fabric: bf0ceb04e7c924090efc5f8c55e4fbcca189e0a0
+  FBAllocationTracker: f8086f5eacc992bd87d460eea7b084d63d62cf67
+  FBMemoryProfiler: e8192cfb24b96d89a0784698978259ffccc561c6
+  FBRetainCycleDetector: 2f5eede420492607df2bee1807887383b9887109
   Flurry-iOS-SDK: 054befae0fa0244fb000985bfe757d70f87a9f60
   HTMLReader: 01de6ebb3b5f0f9dc4f6f165fdac0a15b3648167
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
