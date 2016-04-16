@@ -20,6 +20,7 @@ extension KVOCompliantUserDefaults {
 	@NSManaged var analyticsEnabled: Bool
 	@NSManaged var stateRestorationDisabled: Bool
 	@NSManaged var fetchResultsAreAnimated: Bool
+	@NSManaged var memoryProfilingEnabled: Bool
 	@NSManaged var itemsAreSortedByLoadDate: Bool
 	@NSManaged var foldersLastUpdateDate: NSDate!
 	@NSManaged var foldersLastUpdateErrorEncoded: NSData!

@@ -178,9 +178,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 				self.rssSession = RSSSession(loginAndPassword: self.loginAndPassword)
 			}
 		}
-		let memoryProfiler = FBMemoryProfiler()
-		memoryProfiler.enable()
-		self.retainedObjects += [memoryProfiler]
+		var memoryProfiler: FBMemoryProfiler!
+		retainedObjects += [KVOBinding(defaults•{$0.memoryProfilingEnabled}, options: .Initial) { change in
+			if defaults.memoryProfilingEnabled {
+				guard (memoryProfiler == nil) else {
+					return
+				}
+				memoryProfiler = FBMemoryProfiler()
+				memoryProfiler.enable()
+			}
+			else {
+				guard (memoryProfiler != nil) else {
+					return
+				}
+				memoryProfiler.disable()
+				memoryProfiler = nil
+			}
+		}]
 		return true
 	}
 	// MARK: -

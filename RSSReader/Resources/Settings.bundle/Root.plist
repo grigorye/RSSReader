@@ -142,6 +142,16 @@
 			<key>DefaultValue</key>
 			<false/>
 			<key>Key</key>
+			<string>memoryProfilingEnabled</string>
+			<key>Title</key>
+			<string>Memory Profiling</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>Key</key>
 			<string>fetchResultsAreAnimated</string>
 			<key>Title</key>
 			<string>Fetch Results Are Animated</string>
