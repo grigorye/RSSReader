@@ -17,7 +17,7 @@ private var fetchResultsAreAnimated: Bool {
 class TableViewFetchedResultsControllerDelegate: NSObject, NSFetchedResultsControllerDelegate {
 	var tableView: UITableView
 	var fetchedResultsController: NSFetchedResultsController
-	var configureCell: (cell: UITableViewCell, atIndexPath: NSIndexPath) -> Void
+	var configureCell: (UITableViewCell, atIndexPath: NSIndexPath) -> Void
 
 	var rowAnimation: UITableViewRowAnimation { return UITableViewRowAnimation.None }
 	// MARK: -
@@ -61,7 +61,7 @@ class TableViewFetchedResultsControllerDelegate: NSObject, NSFetchedResultsContr
 		case .Update:
 			(tableView.numberOfRowsInSection((indexPath!).section))
 			if let cell = tableView.cellForRowAtIndexPath(indexPath!) {
-				self.configureCell(cell: cell, atIndexPath: indexPath!)
+				self.configureCell(cell, atIndexPath: indexPath!)
 			}
 		case .Move:
 			tableView.deleteRowsAtIndexPaths([(indexPath!)], withRowAnimation: rowAnimation)
@@ -76,7 +76,7 @@ class TableViewFetchedResultsControllerDelegate: NSObject, NSFetchedResultsContr
 		}
 	}
 	// MARK: -
-	init(tableView: UITableView, fetchedResultsController: NSFetchedResultsController, configureCell: (cell: UITableViewCell, atIndexPath: NSIndexPath) -> Void ) {
+	init(tableView: UITableView, fetchedResultsController: NSFetchedResultsController, configureCell: (UITableViewCell, atIndexPath: NSIndexPath) -> Void) {
 		self.tableView = tableView
 		self.fetchedResultsController = fetchedResultsController
 		self.configureCell = configureCell
