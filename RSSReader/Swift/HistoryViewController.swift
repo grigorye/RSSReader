@@ -13,17 +13,21 @@ import UIKit.UITableViewController
 import CoreData.NSFetchedResultsController
 
 class HistoryViewController: UITableViewController {
+	typealias _Self = HistoryViewController
 	private var nowDate: NSDate!
+	static let fetchRequest: NSFetchRequest = {
+		let E = Item.self
+		let $ = NSFetchRequest(entityName: E.entityName())
+		$.sortDescriptors = [NSSortDescriptor(key: E••{$0.lastOpenedDate}, ascending: false)]
+		$.predicate = NSPredicate(format: "\(E••{$0.lastOpenedDate}) != nil", argumentArray: [])
+		return $
+	}()
 	lazy var fetchedResultsControllerDelegate: TableViewFetchedResultsControllerDelegate = {
-		let fetchRequest: NSFetchRequest = {
-			let E = Item.self
-			let $ = NSFetchRequest(entityName: E.entityName())
-			$.sortDescriptors = [NSSortDescriptor(key: E••{$0.lastOpenedDate}, ascending: false)]
-			$.predicate = NSPredicate(format: "\(E••{$0.lastOpenedDate}) != nil", argumentArray: [])
-			return $
-		}()
-		let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainQueueManagedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-		let $ = TableViewFetchedResultsControllerDelegate(tableView: self.tableView, fetchedResultsController: fetchedResultsController, configureCell: self.configureCell)
+		let fetchedResultsController = NSFetchedResultsController(fetchRequest: _Self.fetchRequest, managedObjectContext: mainQueueManagedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+		let configureCell = { [unowned self] (cell: UITableViewCell, indexPath: NSIndexPath) -> Void in
+			self.configureCell(cell, atIndexPath: indexPath)
+		}
+		let $ = TableViewFetchedResultsControllerDelegate(tableView: self.tableView, fetchedResultsController: fetchedResultsController, configureCell: configureCell)
 		fetchedResultsController.delegate = $
 		return $
 	}()
@@ -110,4 +114,8 @@ class HistoryViewController: UITableViewController {
 		tableView.registerNib(cellNib, forCellReuseIdentifier: "Item")
 		try! fetchedResultsController.performFetch()
     }
+	// MARK: -
+	deinit {
+		$(self)
+	}
 }
