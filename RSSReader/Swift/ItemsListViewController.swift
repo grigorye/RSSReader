@@ -500,6 +500,10 @@ class ItemsListViewController: UITableViewController {
 		self.loadedRightBarButtonItems = self.navigationItem.rightBarButtonItems
 		self.navigationItem.rightBarButtonItems = regeneratedRightBarButtonItems()
 	}
+	// MARK: -
+	deinit {
+		$(self)
+	}
 }
 
 extension ItemsListViewController {
@@ -525,7 +529,10 @@ extension ItemsListViewController {
 		}()
 		let itemLoadDateTimeIntervalSinceReferenceDateKeyPath = Item.self••{$0.loadDate.timeIntervalSinceReferenceDate}
 		let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainQueueManagedObjectContext, sectionNameKeyPath: !defaults.itemsAreSortedByLoadDate ? nil : itemLoadDateTimeIntervalSinceReferenceDateKeyPath, cacheName: nil)
-		let $ = TableViewFetchedResultsControllerDelegate(tableView: tableView, fetchedResultsController: fetchedResultsController, configureCell: self.configureCell)
+		let configureCell = { [unowned self] (cell: UITableViewCell, indexPath: NSIndexPath) -> Void in
+			self.configureCell(cell, atIndexPath: indexPath)
+		}
+		let $ = TableViewFetchedResultsControllerDelegate(tableView: tableView, fetchedResultsController: fetchedResultsController, configureCell: configureCell)
 		fetchedResultsController.delegate = $
 		return $
 	}
