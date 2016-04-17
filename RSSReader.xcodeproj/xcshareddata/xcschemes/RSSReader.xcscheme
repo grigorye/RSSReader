@@ -43,7 +43,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
-            skipped = "NO">
+            skipped = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C4CDD3B31A5350B50087DD05"
@@ -53,7 +53,7 @@
             </BuildableReference>
          </TestableReference>
          <TestableReference
-            skipped = "YES">
+            skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C444F53B1B2E53F200A6E378"
@@ -119,7 +119,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-stateRestorationDisabled YES"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-com.apple.CoreData.SQLDebug 1"
@@ -134,7 +134,7 @@
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
