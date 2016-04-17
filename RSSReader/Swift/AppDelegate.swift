@@ -201,9 +201,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 	override init() {
 		super.init()
 		RSSReader.foldersController = self
-#if ANALYTICS_ENABLED
 		let version = NSBundle.mainBundle().infoDictionary!["CFBundleVersion"] as! NSString
-		let versionIsClean = NSNotFound == $(version).rangeOfCharacterFromSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet).location
+		$(version)
+		let buildDate = try! NSFileManager().attributesOfItemAtPath(NSBundle.mainBundle().bundlePath)[NSFileModificationDate] as! NSDate
+		let buildAge = NSDate().timeIntervalSinceDate(buildDate)
+		$(buildAge)
+#if ANALYTICS_ENABLED
+		let versionIsClean = NSNotFound == version.rangeOfCharacterFromSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet).location
 		if (versionIsClean) && $(defaults.analyticsEnabled) {
 #if CRASHLYTICS_ENABLED
 			Fabric.with([Crashlytics()])
