@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		C40A24FF1A672B2100B5D959 /* TableViewContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A24FE1A672B2100B5D959 /* TableViewContainerCell.swift */; };
-		C40AA86A1CB894FA00EEF7B1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C40AA8691CB894FA00EEF7B1 /* InfoPlist.strings */; };
 		C40EA7251C6FC8A9002C6D9E /* AFMInfoBanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C40EA71F1C6FC86F002C6D9E /* AFMInfoBanner.framework */; };
 		C40EA7261C6FC8A9002C6D9E /* AFMInfoBanner.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C40EA71F1C6FC86F002C6D9E /* AFMInfoBanner.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C40EA7301C6FCC07002C6D9E /* CVKHierarchySearcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C40EA72E1C6FCBED002C6D9E /* CVKHierarchySearcher.framework */; };
@@ -184,7 +183,6 @@
 
 /* Begin PBXFileReference section */
 		C40A24FE1A672B2100B5D959 /* TableViewContainerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = TableViewContainerCell.swift; path = Swift/TableViewContainerCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		C40AA8691CB894FA00EEF7B1 /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		C40C6BFB1A73C6DF00FAFA17 /* RSSReader-app.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "RSSReader-app.xcconfig"; path = "XcodeConfiguration/RSSReader-app.xcconfig"; sourceTree = "<group>"; };
 		C40C6BFD1A73C78F00FAFA17 /* EmbedSourceVersionIntoBundle */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = EmbedSourceVersionIntoBundle; sourceTree = "<group>"; };
 		C40C6BFE1A73C78F00FAFA17 /* IntegrateAppsee */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = IntegrateAppsee; sourceTree = "<group>"; };
@@ -228,6 +226,7 @@
 		C4C780131A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MarkAllAsReadActivity.swift; path = Swift/MarkAllAsReadActivity.swift; sourceTree = "<group>"; };
 		C4C780151A7DF1EC009CB5FC /* ApplicationActivities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationActivities.swift; path = Swift/ApplicationActivities.swift; sourceTree = "<group>"; };
 		C4C780171A7DF2B0009CB5FC /* TypeFilteringActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TypeFilteringActivity.swift; path = Swift/TypeFilteringActivity.swift; sourceTree = "<group>"; };
+		C4CD8B551CC1FD3100A59696 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C4CDD39D1A5350B40087DD05 /* RSSReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = AppDelegate.swift; path = Swift/AppDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C4CDD3AB1A5350B50087DD05 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -332,7 +331,6 @@
 			isa = PBXGroup;
 			children = (
 				C4CE354B1CB89890001712C8 /* InfoPlist.strings */,
-				C40AA8691CB894FA00EEF7B1 /* InfoPlist.strings */,
 				C444F53E1B2E53F200A6E378 /* RSSReaderUITests.swift */,
 				C444F5401B2E53F200A6E378 /* Info.plist */,
 			);
@@ -555,7 +553,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C40AA86A1CB894FA00EEF7B1 /* InfoPlist.strings in Resources */,
 				C4CE35491CB89890001712C8 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -743,6 +740,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				C4CE354A1CB89890001712C8 /* ru */,
+				C4CD8B551CC1FD3100A59696 /* Base */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
