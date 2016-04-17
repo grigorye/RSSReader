@@ -178,23 +178,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 				self.rssSession = RSSSession(loginAndPassword: self.loginAndPassword)
 			}
 		}
-		var memoryProfiler: FBMemoryProfiler!
-		retainedObjects += [KVOBinding(defaults•{$0.memoryProfilingEnabled}, options: .Initial) { change in
+		if _1 {
 			if defaults.memoryProfilingEnabled {
-				guard (memoryProfiler == nil) else {
-					return
-				}
-				memoryProfiler = FBMemoryProfiler()
+				let memoryProfiler = FBMemoryProfiler()
 				memoryProfiler.enable()
+				retainedObjects += [memoryProfiler]
 			}
-			else {
-				guard (memoryProfiler != nil) else {
-					return
+		}
+		else {
+			var memoryProfiler: FBMemoryProfiler!
+			retainedObjects += [KVOBinding(defaults•{$0.memoryProfilingEnabled}, options: .Initial) { change in
+				if defaults.memoryProfilingEnabled {
+					guard (memoryProfiler == nil) else {
+						return
+					}
+					memoryProfiler = FBMemoryProfiler()
+					memoryProfiler.enable()
 				}
-				memoryProfiler.disable()
-				memoryProfiler = nil
-			}
-		}]
+				else {
+					guard (memoryProfiler != nil) else {
+						return
+					}
+					memoryProfiler.disable()
+					memoryProfiler = nil
+				}
+			}]
+		}
 		return true
 	}
 	// MARK: -
@@ -230,9 +239,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 	}
 	private static var configureAllocationTrackerOnce = dispatch_once_t()
 	override class func initialize() {
-		dispatch_once(&configureAllocationTrackerOnce) {
-			FBAllocationTrackerManager.sharedManager()!.startTrackingAllocations()
-			FBAllocationTrackerManager.sharedManager()!.enableGenerations()
+		if defaults.memoryProfilingEnabled {
+			dispatch_once(&configureAllocationTrackerOnce) {
+				FBAllocationTrackerManager.sharedManager()!.startTrackingAllocations()
+				FBAllocationTrackerManager.sharedManager()!.enableGenerations()
+			}
 		}
 	}
 }
