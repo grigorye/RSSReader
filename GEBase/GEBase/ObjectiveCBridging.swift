@@ -29,7 +29,7 @@ func objCDefaultSetterNameForPropertyName(propertyName: String) -> String {
 func objCPropertyAttributeValue(property: objc_property_t, attributeName: String) -> String? {
 	let valueCString = property_copyAttributeValue(property, attributeName)
 	let $ = String.fromCString(valueCString)
-	valueCString.destroy()
+	free(valueCString)
 	return $;
 }
 
