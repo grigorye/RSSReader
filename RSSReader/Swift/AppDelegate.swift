@@ -209,6 +209,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 	// MARK: -
 	override init() {
 		super.init()
+		if defaults.memoryProfilingEnabled {
+			FBAllocationTrackerManager.sharedManager()!.startTrackingAllocations()
+			FBAllocationTrackerManager.sharedManager()!.enableGenerations()
+		}
 		RSSReader.foldersController = self
 		let version = NSBundle.mainBundle().infoDictionary!["CFBundleVersion"] as! NSString
 		$(version)
@@ -236,14 +240,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 		let libraryDirectoryURL = fileManager.URLsForDirectory(.LibraryDirectory, inDomains: .UserDomainMask).last!
 		let libraryDirectory = libraryDirectoryURL.path!
         $(libraryDirectory)
-	}
-	private static var configureAllocationTrackerOnce = dispatch_once_t()
-	override class func initialize() {
-		if defaults.memoryProfilingEnabled {
-			dispatch_once(&configureAllocationTrackerOnce) {
-				FBAllocationTrackerManager.sharedManager()!.startTrackingAllocations()
-				FBAllocationTrackerManager.sharedManager()!.enableGenerations()
-			}
-		}
 	}
 }
