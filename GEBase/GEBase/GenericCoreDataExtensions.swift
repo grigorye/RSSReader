@@ -40,8 +40,8 @@ func objectFetchedWithPredicate<T: Managed where T: NSManagedObject>(cls: T.Type
 	let object = objects.last as! T?
 	if let object = object {
 		void(managedObjectContext.objectWithID(object.objectID))
+		assert(object.managedObjectContext == managedObjectContext)
 	}
-	assert((nil == object) || (object?.managedObjectContext == managedObjectContext))
 	return object
 }
 
