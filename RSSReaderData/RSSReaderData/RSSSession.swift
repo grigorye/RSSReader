@@ -353,12 +353,13 @@ extension RSSSession {
 							try backgroundQueueManagedObjectContext.save()
 						}
 					}
-					if let excludedCategory = excludedCategory, let lastItem = items.last {
+					if let excludedCategory = excludedCategory {
+						let lastItem = items.last
 						let containerInBackground = backgroundQueueManagedObjectContext.sameObject(container)
 						let excludedCategoryInBackground = backgroundQueueManagedObjectContext.sameObject(excludedCategory)
 						let fetchRequest: NSFetchRequest = {
 							let $ = NSFetchRequest(entityName: Item.entityName())
-							$.predicate = NSPredicate(format: "(loadDate != %@) && (date < %@) && (subscription == %@) && SUBQUERY(\(Item.self••{$0.categories}), $x, $x.\(Folder.self••{$0.streamID}) ENDSWITH %@).@count == 0", argumentArray: [loadDate, lastItem.date, containerInBackground, excludedCategoryInBackground.streamID])
+							$.predicate = NSPredicate(format: "(loadDate != %@) && (date < %@) && (subscription == %@) && SUBQUERY(\(Item.self••{$0.categories}), $x, $x.\(Folder.self••{$0.streamID}) ENDSWITH %@).@count == 0", argumentArray: [loadDate, lastItem?.date ?? NSDate.distantFuture(), containerInBackground, excludedCategoryInBackground.streamID])
 							return $
 						}()
 						let itemsNowAssignedToExcludedCategory = try! backgroundQueueManagedObjectContext.executeFetchRequest(fetchRequest) as! [Item]
