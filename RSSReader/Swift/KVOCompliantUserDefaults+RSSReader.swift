@@ -25,5 +25,6 @@ extension KVOCompliantUserDefaults {
 	@NSManaged var foldersLastUpdateDate: NSDate!
 	@NSManaged var foldersLastUpdateErrorEncoded: NSData!
 	@NSManaged var pageViewsEnabled: Bool
+	@NSManaged var hideBarsOnSwipe: Bool
 
 }
