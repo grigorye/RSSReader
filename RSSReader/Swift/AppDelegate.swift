@@ -154,7 +154,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 			"TableViewFetchedResultsControllerDelegate.swift",
 			"KVOCompliantUserDefaults.swift"
 		]
-		hideBarsOnSwipe = nil == self.tabBarController
+		hideBarsOnSwipe = (nil == self.tabBarController) && defaults.hideBarsOnSwipe
 		assert(nil == managedObjectContextError)
 		if let managedObjectContextError = managedObjectContextError {
 			$(managedObjectContextError)
@@ -162,7 +162,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 			return false
 		}
 		else {
-			if !hideBarsOnSwipe {
+			if nil != self.tabBarController {
 				void(self.fetchedRootFolderBinding)
 				void(self.fetchedFavoritesFolderBinding)
 				foldersViewController.hidesBottomBarWhenPushed = false
