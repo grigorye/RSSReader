@@ -49,6 +49,7 @@
 		C44D916D1AAE773B0053B9E6 /* ItemSimpleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C44D916C1AAE773B0053B9E6 /* ItemSimpleTableViewCell.xib */; };
 		C45BC3EA1A8003F40008A5D1 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45BC3E91A8003F40008A5D1 /* HistoryViewController.swift */; };
 		C45ECD061A62054C00ADC113 /* SBConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45ECD051A62054C00ADC113 /* SBConstants.swift */; };
+		C4667F0D1CC80A050039C480 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667F0C1CC80A050039C480 /* Appearance.swift */; };
 		C4676E091A6A4D1F00AE8BC2 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4676E081A6A4D1F00AE8BC2 /* ItemTableViewCell.swift */; };
 		C46934DF1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46934DE1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift */; };
 		C46F04141C0A142000A970D7 /* Readability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46F04131C0A142000A970D7 /* Readability.swift */; };
@@ -79,7 +80,6 @@
 		C4CDE1911A5A06A600F16A2E /* ItemSummaryTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */; };
 		C4CE35441CB8988F001712C8 /* RSSReaderTests-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4CE35461CB8988F001712C8 /* RSSReaderTests-InfoPlist.strings */; };
 		C4CE35491CB89890001712C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4CE354B1CB89890001712C8 /* InfoPlist.strings */; };
-		C4D2C9DD1C136E5E00235392 /* MultisourceItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4D2C9DC1C136E5E00235392 /* MultisourceItemTableViewCell.xib */; };
 		C4EA6B301CB895EF00FCDAA5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4EA6B2E1CB895EF00FCDAA5 /* Localizable.strings */; };
 		C4EF270E1A8D353C000EBE63 /* UserMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EF270D1A8D353C000EBE63 /* UserMessages.swift */; };
 		C4F1118B1CB84F66005C5A0F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4F1118D1CB84F66005C5A0F /* LaunchScreen.xib */; };
@@ -206,6 +206,7 @@
 		C44FCA5F1A8AF9CF00C91544 /* XcodeBotScripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XcodeBotScripts; sourceTree = "<group>"; };
 		C45BC3E91A8003F40008A5D1 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = HistoryViewController.swift; path = Swift/HistoryViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C45ECD051A62054C00ADC113 /* SBConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SBConstants.swift; path = Swift/SBConstants.swift; sourceTree = "<group>"; };
+		C4667F0C1CC80A050039C480 /* Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Appearance.swift; path = Swift/Appearance.swift; sourceTree = "<group>"; };
 		C4676E081A6A4D1F00AE8BC2 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemTableViewCell.swift; path = Swift/ItemTableViewCell.swift; sourceTree = "<group>"; };
 		C46934DE1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemsPageViewControllerDataSource.swift; path = Swift/ItemsPageViewControllerDataSource.swift; sourceTree = "<group>"; };
 		C46F04131C0A142000A970D7 /* Readability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Readability.swift; path = Swift/Readability.swift; sourceTree = "<group>"; };
@@ -238,7 +239,6 @@
 		C4CE354A1CB89890001712C8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C4CE354C1CB89C0E001712C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C4CE354D1CB89C28001712C8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		C4D2C9DC1C136E5E00235392 /* MultisourceItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MultisourceItemTableViewCell.xib; path = Resources/MultisourceItemTableViewCell.xib; sourceTree = "<group>"; };
 		C4D56A2A1A7C33C0007BE398 /* PackageApplication */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = PackageApplication; sourceTree = "<group>"; };
 		C4EA6B2F1CB895EF00FCDAA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Localizable/Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C4EA6B311CB895F500FCDAA5 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = Localizable/ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -340,6 +340,7 @@
 		C49540A21A57827300F56168 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				C4667F0C1CC80A050039C480 /* Appearance.swift */,
 				C4FEBB211BF96E4200A5709B /* KVOCompliantUserDefaults+RSSReader.swift */,
 				C4F1118D1CB84F66005C5A0F /* LaunchScreen.xib */,
 				C4F111901CB84F6D005C5A0F /* Main.storyboard */,
@@ -348,7 +349,6 @@
 				C44B2F001AC0C881006A67F1 /* HomeViewController.swift */,
 				C4676E081A6A4D1F00AE8BC2 /* ItemTableViewCell.swift */,
 				C44D91631AAE73830053B9E6 /* ItemTableViewCell.xib */,
-				C4D2C9DC1C136E5E00235392 /* MultisourceItemTableViewCell.xib */,
 				C49540A01A57825100F56168 /* ItemsListViewController.swift */,
 				C44D916C1AAE773B0053B9E6 /* ItemSimpleTableViewCell.xib */,
 				C46934DE1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift */,
@@ -564,7 +564,6 @@
 				C4CDE1911A5A06A600F16A2E /* ItemSummaryTemplate.html in Resources */,
 				C4CDD3C51A5357B20087DD05 /* Settings.bundle in Resources */,
 				C4EA6B301CB895EF00FCDAA5 /* Localizable.strings in Resources */,
-				C4D2C9DD1C136E5E00235392 /* MultisourceItemTableViewCell.xib in Resources */,
 				C44D91641AAE73830053B9E6 /* ItemTableViewCell.xib in Resources */,
 				C4F1118B1CB84F66005C5A0F /* LaunchScreen.xib in Resources */,
 				C4CDD3AC1A5350B50087DD05 /* Images.xcassets in Resources */,
@@ -688,6 +687,7 @@
 				C46FA8691AA56018004B5C45 /* UITableView+SnappingHeaderToTop.swift in Sources */,
 				C4C780141A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift in Sources */,
 				C4F575D01A797C7B00F12F20 /* AddToFavoritesActivity.swift in Sources */,
+				C4667F0D1CC80A050039C480 /* Appearance.swift in Sources */,
 				C4F575D61A7988DB00F12F20 /* OpenWebPageActivity.swift in Sources */,
 				C46934DF1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift in Sources */,
 				C45BC3EA1A8003F40008A5D1 /* HistoryViewController.swift in Sources */,
