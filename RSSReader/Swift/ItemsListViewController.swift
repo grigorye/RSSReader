@@ -327,13 +327,13 @@ class ItemsListViewController: UITableViewController {
 			titleLabel.text = item.title ?? (item.itemID as NSString).lastPathComponent
 		}
 		if let sourceLabel = cell.sourceLabel {
-			sourceLabel.text = item.subscription.title
+			sourceLabel.text = item.subscription.title?.lowercaseString
 		}
-		if let subtitleLabel = cell.subtitleLabel {
+		if let dateLabel = cell.dateLabel {
 			let timeIntervalFormatted = (nil == NSClassFromString("NSDateComponentsFormatter")) ? "x" : dateComponentsFormatter.stringFromDate(item.date, toDate: nowDate) ?? ""
-			subtitleLabel.text = "\(timeIntervalFormatted)"
+			dateLabel.text = "\(timeIntervalFormatted)".lowercaseString
 			if _0 {
-			subtitleLabel.textColor = item.markedAsRead ? nil : UIColor.redColor()
+			dateLabel.textColor = item.markedAsRead ? nil : UIColor.redColor()
 			}
 		}
 		if let readMarkLabel = cell.readMarkLabel {
@@ -471,7 +471,7 @@ class ItemsListViewController: UITableViewController {
 			self.fetchedResultsControllerDelegate = self.regeneratedFetchedResultsControllerDelegate()
 			try! $(self.fetchedResultsController).performFetch()
 		}]
-		let cellNib = UINib(nibName: self.multipleSourcesEnabled ? "MultisourceItemTableViewCell" : "ItemTableViewCell", bundle: nil)
+		let cellNib = UINib(nibName: "ItemTableViewCell", bundle: nil)
 		tableView.registerNib(cellNib, forCellReuseIdentifier: "Item")
 		blocksDelayedTillViewWillAppear += [{ [unowned self] in
 			self.title = self.title ?? (self.container as! Titled).visibleTitle
