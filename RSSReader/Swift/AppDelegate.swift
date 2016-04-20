@@ -209,6 +209,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 	// MARK: -
 	override init() {
 		super.init()
+		configureAppearance()
 		if defaults.memoryProfilingEnabled {
 			FBAllocationTrackerManager.sharedManager()!.startTrackingAllocations()
 			FBAllocationTrackerManager.sharedManager()!.enableGenerations()
