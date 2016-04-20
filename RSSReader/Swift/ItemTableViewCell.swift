@@ -10,7 +10,7 @@ import UIKit
 
 class ItemTableViewCell : UITableViewCell {
 	@IBOutlet var titleLabel: UILabel!
-	@IBOutlet var subtitleLabel: UILabel!
+	@IBOutlet var dateLabel: UILabel!
 	@IBOutlet var sourceLabel: UILabel!
 	@IBOutlet var readMarkLabel: UILabel!
 	@IBOutlet var favoriteMarkLabel: UILabel!
