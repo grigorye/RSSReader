@@ -48,12 +48,12 @@ class HistoryViewController: UITableViewController {
 		if let titleLabel = cell.titleLabel {
 			titleLabel.text = item.title ?? (item.itemID as NSString).lastPathComponent
 		}
-		if let subtitleLabel = cell.subtitleLabel {
+		if let dateLabel = cell.dateLabel {
 			let timeIntervalFormatted = (nil == NSClassFromString("NSDateComponentsFormatter")) ? "x" : dateComponentsFormatter.stringFromDate(item.date, toDate: nowDate) ?? ""
-			subtitleLabel.text = "\(timeIntervalFormatted)"
+			dateLabel.text = "\(timeIntervalFormatted)".uppercaseString
 		}
 		if let sourceLabel = cell.sourceLabel {
-			sourceLabel.text = item.subscription.title
+			sourceLabel.text = item.subscription.title?.uppercaseString
 		}
 	}
 	// MARK: -
