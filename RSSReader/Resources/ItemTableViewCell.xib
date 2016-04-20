@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -7,60 +7,91 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Item" id="cNq-Au-aQ4" customClass="ItemTableViewCell" customModule="RSSReader" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Item" rowHeight="55" id="cNq-Au-aQ4" customClass="ItemTableViewCell" customModule="RSSReader" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="364" height="55"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cNq-Au-aQ4" id="F3g-3I-Lln">
-                <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="364" height="54.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="999" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" text="Title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjw-6Q-5OY">
-                        <rect key="frame" x="16" y="12" width="552.5" height="19.5"/>
-                        <constraints>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="19" id="lqz-Kx-tH0"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" text="1 y" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tel-yN-qPz">
-                        <rect key="frame" x="576" y="14" width="15.5" height="14.5"/>
-                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                        <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="●" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hcI-eB-8B5">
-                        <rect key="frame" x="4" y="12" width="9" height="17"/>
-                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5G-hM-wcM">
-                        <rect key="frame" x="2" y="12" width="14" height="17"/>
-                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="aak-zq-cOr">
+                        <rect key="frame" x="8" y="8" width="348" height="38"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="251" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="infinite" translatesAutoresizingMaskIntoConstraints="NO" id="YS4-24-e3k">
+                                <rect key="frame" x="0.0" y="0.0" width="9" height="17"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="●" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wvG-rm-eWV" customClass="ItemCellReadMarkLabel" customModule="RSSReader" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="9" height="17"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UXW-nX-pSF" customClass="ItemCellFavoriteMarkLabel" customModule="RSSReader" customModuleProvider="target">
+                                        <rect key="frame" x="-3" y="0.0" width="14" height="17"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="wvG-rm-eWV" secondAttribute="bottom" id="2Ei-5e-2Df"/>
+                                    <constraint firstAttribute="trailing" secondItem="wvG-rm-eWV" secondAttribute="trailing" id="A2e-PJ-1eI"/>
+                                    <constraint firstItem="wvG-rm-eWV" firstAttribute="top" secondItem="YS4-24-e3k" secondAttribute="top" id="BhS-e7-1rT"/>
+                                    <constraint firstItem="wvG-rm-eWV" firstAttribute="leading" secondItem="YS4-24-e3k" secondAttribute="leading" id="dez-mQ-L4Z"/>
+                                    <constraint firstItem="wvG-rm-eWV" firstAttribute="centerX" secondItem="UXW-nX-pSF" secondAttribute="centerX" id="vTB-gz-u7l"/>
+                                    <constraint firstItem="wvG-rm-eWV" firstAttribute="centerY" secondItem="UXW-nX-pSF" secondAttribute="centerY" id="wwl-yl-2fO"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Snc-5K-l1M">
+                                <rect key="frame" x="13" y="0.0" width="335" height="38"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Agr-7q-y7y">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="15"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FFp-nP-2aG" customClass="ItemCellSourceLabel" customModule="RSSReader" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="316" height="15"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="1 y" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tel-yN-qPz" customClass="ItemCellDateLabel" customModule="RSSReader" customModuleProvider="target">
+                                                <rect key="frame" x="320" y="0.0" width="16" height="15"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" misplaced="YES" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjw-6Q-5OY" customClass="ItemCellTitleLabel" customModule="RSSReader" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="19" width="335" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="19" id="lqz-Kx-tH0"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                    </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="jjw-6Q-5OY" firstAttribute="leading" secondItem="hcI-eB-8B5" secondAttribute="trailing" constant="3" id="4ax-Yr-s2N"/>
-                    <constraint firstItem="Tel-yN-qPz" firstAttribute="trailing" secondItem="F3g-3I-Lln" secondAttribute="trailingMargin" id="BIQ-8R-37Z"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="jjw-6Q-5OY" secondAttribute="bottom" constant="4" id="Omm-Pa-kk5"/>
-                    <constraint firstItem="Tel-yN-qPz" firstAttribute="leading" secondItem="jjw-6Q-5OY" secondAttribute="trailing" constant="8" id="S6Y-dE-EfC"/>
-                    <constraint firstItem="jjw-6Q-5OY" firstAttribute="leading" secondItem="N5G-hM-wcM" secondAttribute="trailing" id="dcl-3O-jmU"/>
-                    <constraint firstItem="jjw-6Q-5OY" firstAttribute="top" secondItem="F3g-3I-Lln" secondAttribute="topMargin" constant="4" id="mLF-It-IXk"/>
-                    <constraint firstItem="hcI-eB-8B5" firstAttribute="baseline" secondItem="Tel-yN-qPz" secondAttribute="baseline" id="qdK-qb-y54"/>
-                    <constraint firstItem="N5G-hM-wcM" firstAttribute="top" secondItem="hcI-eB-8B5" secondAttribute="top" id="sgr-a2-zyP"/>
-                    <constraint firstItem="jjw-6Q-5OY" firstAttribute="top" secondItem="hcI-eB-8B5" secondAttribute="top" id="wVY-rX-SLD"/>
-                    <constraint firstItem="jjw-6Q-5OY" firstAttribute="leading" secondItem="F3g-3I-Lln" secondAttribute="leadingMargin" constant="8" id="xXw-nn-cma"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="aak-zq-cOr" secondAttribute="trailing" id="PEr-Il-qgc"/>
+                    <constraint firstItem="aak-zq-cOr" firstAttribute="top" secondItem="F3g-3I-Lln" secondAttribute="topMargin" id="Rat-av-eSE"/>
+                    <constraint firstItem="aak-zq-cOr" firstAttribute="leading" secondItem="F3g-3I-Lln" secondAttribute="leadingMargin" id="pUc-i2-ZVy"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="aak-zq-cOr" secondAttribute="bottom" id="vRH-NI-XKF"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="favoriteMarkLabel" destination="N5G-hM-wcM" id="ywg-dh-l9B"/>
-                <outlet property="readMarkLabel" destination="hcI-eB-8B5" id="96V-QZ-PNP"/>
-                <outlet property="subtitleLabel" destination="Tel-yN-qPz" id="pEV-K2-yHX"/>
+                <outlet property="dateLabel" destination="Tel-yN-qPz" id="HW8-qk-aCw"/>
+                <outlet property="favoriteMarkLabel" destination="UXW-nX-pSF" id="WGb-Ri-O7t"/>
+                <outlet property="readMarkLabel" destination="wvG-rm-eWV" id="3sB-jU-52H"/>
+                <outlet property="sourceLabel" destination="FFp-nP-2aG" id="wne-0k-JE1"/>
                 <outlet property="titleLabel" destination="jjw-6Q-5OY" id="9Y5-Fn-rMe"/>
             </connections>
+            <point key="canvasLocation" x="143" y="385.5"/>
         </tableViewCell>
     </objects>
 </document>
