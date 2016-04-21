@@ -337,7 +337,7 @@ class ItemsListViewController: UITableViewController {
 			}
 		}
 		if let readMarkLabel = cell.readMarkLabel {
-			readMarkLabel.hidden = item.markedAsRead
+			readMarkLabel.alpha = item.markedAsRead ? 0 : 1
 		}
 	}
 	// MARK: -
