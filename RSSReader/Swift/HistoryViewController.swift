@@ -24,7 +24,7 @@ class HistoryViewController: UITableViewController {
 	}()
 	lazy var fetchedResultsControllerDelegate: TableViewFetchedResultsControllerDelegate = {
 		let fetchedResultsController = NSFetchedResultsController(fetchRequest: _Self.fetchRequest, managedObjectContext: mainQueueManagedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-		let configureCell = { [unowned self] (cell: UITableViewCell, indexPath: NSIndexPath) -> Void in
+		let configureCell = { [unowned self] cell, indexPath in
 			self.configureCell(cell, atIndexPath: indexPath)
 		}
 		let $ = TableViewFetchedResultsControllerDelegate(tableView: self.tableView, fetchedResultsController: fetchedResultsController, configureCell: configureCell)
@@ -39,7 +39,7 @@ class HistoryViewController: UITableViewController {
 		return self.fetchedResultsController.fetchedObjects![indexPath.row] as! Item
 	}
 	var selectedItem: Item {
-		return self.itemForIndexPath(self.tableView.indexPathForSelectedRow!)
+		return self.itemForIndexPath(tableView.indexPathForSelectedRow!)
 	}
 	// MARK: -
 	func configureCell(rawCell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
@@ -110,7 +110,7 @@ class HistoryViewController: UITableViewController {
 	}
     override func viewDidLoad() {
         super.viewDidLoad()
-		let cellNib = UINib(nibName: "MultisourceItemTableViewCell", bundle: nil)
+		let cellNib = UINib(nibName: "ItemTableViewCell", bundle: nil)
 		tableView.registerNib(cellNib, forCellReuseIdentifier: "Item")
 		try! fetchedResultsController.performFetch()
     }
