@@ -16,7 +16,7 @@ class ItemCellReadMarkLabel: ItemCellSmallCapsLabel {}
 class ItemCellTitleLabel: UILabel {}
 
 func configureAppearance() {
-	let styledFont = UIFont.preferredFontForTextStyle(UIFontTextStyleCaption1)
+	let styledFont = UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote)
 	let font = UIFont.smallCapsFontOfSize(styledFont.pointSize, withName: styledFont.fontName)
 	let label = ItemCellSmallCapsLabel.appearance()
 	label.font = font
