@@ -12,12 +12,18 @@ class ItemCellSmallCapsLabel: UILabel {}
 class ItemCellSourceLabel: ItemCellSmallCapsLabel {}
 class ItemCellDateLabel: ItemCellSmallCapsLabel {}
 class ItemCellFavoriteMarkLabel: ItemCellSmallCapsLabel {}
-class ItemCellReadMarkLabel: ItemCellSmallCapsLabel {}
+class ItemCellReadMarkLabel: UILabel {}
 class ItemCellTitleLabel: UILabel {}
 
 func configureAppearance() {
-	let styledFont = UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote)
-	let font = UIFont.smallCapsFontOfSize(styledFont.pointSize, withName: styledFont.fontName)
-	let label = ItemCellSmallCapsLabel.appearance()
-	label.font = font
+	do {
+		let label = ItemCellSmallCapsLabel.appearance()
+		let styledFont = UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote)
+		let font = UIFont.smallCapsFontOfSize(styledFont.pointSize, withName: styledFont.fontName)
+		label.font = font
+	}
+	do {
+		let label = ItemCellReadMarkLabel.appearance()
+		label.textColor = UIView().tintColor
+	}
 }
