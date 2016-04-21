@@ -2,6 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -14,56 +16,55 @@
                 <rect key="frame" x="0.0" y="0.0" width="364" height="54.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="aak-zq-cOr">
-                        <rect key="frame" x="5" y="8" width="351" height="38"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="aak-zq-cOr">
+                        <rect key="frame" x="4" y="8" width="352" height="38"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="●" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wvG-rm-eWV" customClass="ItemCellReadMarkLabel" customModule="RSSReader" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="9" height="15"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="●" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wvG-rm-eWV" customClass="ItemCellReadMarkLabel" customModule="RSSReader" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="11" height="19"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Snc-5K-l1M">
-                                <rect key="frame" x="12" y="0.0" width="339" height="38"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" misplaced="YES" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Snc-5K-l1M">
+                                <rect key="frame" x="12" y="0.0" width="341" height="38"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Agr-7q-y7y">
-                                        <rect key="frame" x="0.0" y="0.0" width="339" height="15"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" misplaced="YES" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjw-6Q-5OY" customClass="ItemCellTitleLabel" customModule="RSSReader" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="341" height="19"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="19" id="lqz-Kx-tH0"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" misplaced="YES" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Agr-7q-y7y">
+                                        <rect key="frame" x="0.0" y="23" width="341" height="15"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FFp-nP-2aG" customClass="ItemCellSourceLabel" customModule="RSSReader" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="15"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="321" height="15"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="1 y" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tel-yN-qPz" customClass="ItemCellDateLabel" customModule="RSSReader" customModuleProvider="target">
-                                                <rect key="frame" x="324" y="0.0" width="16" height="15"/>
+                                                <rect key="frame" x="325" y="0.0" width="16" height="15"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjw-6Q-5OY" customClass="ItemCellTitleLabel" customModule="RSSReader" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="19" width="339" height="19"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="19" id="lqz-Kx-tH0"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="wvG-rm-eWV" firstAttribute="baseline" secondItem="FFp-nP-2aG" secondAttribute="baseline" id="8Rp-6N-ezL"/>
+                            <constraint firstItem="wvG-rm-eWV" firstAttribute="baseline" secondItem="jjw-6Q-5OY" secondAttribute="firstBaseline" id="3GS-Re-quy"/>
                         </constraints>
                     </stackView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="aak-zq-cOr" secondAttribute="trailing" id="PEr-Il-qgc"/>
                     <constraint firstItem="aak-zq-cOr" firstAttribute="top" secondItem="F3g-3I-Lln" secondAttribute="topMargin" id="Rat-av-eSE"/>
-                    <constraint firstItem="aak-zq-cOr" firstAttribute="leading" secondItem="F3g-3I-Lln" secondAttribute="leadingMargin" constant="-3" id="pUc-i2-ZVy"/>
+                    <constraint firstItem="aak-zq-cOr" firstAttribute="leading" secondItem="F3g-3I-Lln" secondAttribute="leadingMargin" constant="-4" id="pUc-i2-ZVy"/>
                     <constraint firstAttribute="bottomMargin" secondItem="aak-zq-cOr" secondAttribute="bottom" id="vRH-NI-XKF"/>
                 </constraints>
             </tableViewCellContentView>
