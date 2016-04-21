@@ -14,57 +14,37 @@
                 <rect key="frame" x="0.0" y="0.0" width="364" height="54.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="aak-zq-cOr">
-                        <rect key="frame" x="8" y="8" width="348" height="38"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="aak-zq-cOr">
+                        <rect key="frame" x="5" y="8" width="351" height="38"/>
                         <subviews>
-                            <view contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="251" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="infinite" translatesAutoresizingMaskIntoConstraints="NO" id="YS4-24-e3k">
-                                <rect key="frame" x="0.0" y="0.0" width="9" height="17"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="●" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wvG-rm-eWV" customClass="ItemCellReadMarkLabel" customModule="RSSReader" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="9" height="17"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UXW-nX-pSF" customClass="ItemCellFavoriteMarkLabel" customModule="RSSReader" customModuleProvider="target">
-                                        <rect key="frame" x="-3" y="0.0" width="14" height="17"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="wvG-rm-eWV" secondAttribute="bottom" id="2Ei-5e-2Df"/>
-                                    <constraint firstAttribute="trailing" secondItem="wvG-rm-eWV" secondAttribute="trailing" id="A2e-PJ-1eI"/>
-                                    <constraint firstItem="wvG-rm-eWV" firstAttribute="top" secondItem="YS4-24-e3k" secondAttribute="top" id="BhS-e7-1rT"/>
-                                    <constraint firstItem="wvG-rm-eWV" firstAttribute="leading" secondItem="YS4-24-e3k" secondAttribute="leading" id="dez-mQ-L4Z"/>
-                                    <constraint firstItem="wvG-rm-eWV" firstAttribute="centerX" secondItem="UXW-nX-pSF" secondAttribute="centerX" id="vTB-gz-u7l"/>
-                                    <constraint firstItem="wvG-rm-eWV" firstAttribute="centerY" secondItem="UXW-nX-pSF" secondAttribute="centerY" id="wwl-yl-2fO"/>
-                                </constraints>
-                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="●" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wvG-rm-eWV" customClass="ItemCellReadMarkLabel" customModule="RSSReader" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="9" height="15"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Snc-5K-l1M">
-                                <rect key="frame" x="13" y="0.0" width="335" height="38"/>
+                                <rect key="frame" x="12" y="0.0" width="339" height="38"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Agr-7q-y7y">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="15"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="339" height="15"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FFp-nP-2aG" customClass="ItemCellSourceLabel" customModule="RSSReader" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="316" height="15"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="15"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="1 y" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tel-yN-qPz" customClass="ItemCellDateLabel" customModule="RSSReader" customModuleProvider="target">
-                                                <rect key="frame" x="320" y="0.0" width="16" height="15"/>
+                                                <rect key="frame" x="324" y="0.0" width="16" height="15"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" misplaced="YES" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjw-6Q-5OY" customClass="ItemCellTitleLabel" customModule="RSSReader" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="19" width="335" height="20"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjw-6Q-5OY" customClass="ItemCellTitleLabel" customModule="RSSReader" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="19" width="339" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="19" id="lqz-Kx-tH0"/>
                                         </constraints>
@@ -75,18 +55,20 @@
                                 </subviews>
                             </stackView>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="wvG-rm-eWV" firstAttribute="baseline" secondItem="FFp-nP-2aG" secondAttribute="baseline" id="8Rp-6N-ezL"/>
+                        </constraints>
                     </stackView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="aak-zq-cOr" secondAttribute="trailing" id="PEr-Il-qgc"/>
                     <constraint firstItem="aak-zq-cOr" firstAttribute="top" secondItem="F3g-3I-Lln" secondAttribute="topMargin" id="Rat-av-eSE"/>
-                    <constraint firstItem="aak-zq-cOr" firstAttribute="leading" secondItem="F3g-3I-Lln" secondAttribute="leadingMargin" id="pUc-i2-ZVy"/>
+                    <constraint firstItem="aak-zq-cOr" firstAttribute="leading" secondItem="F3g-3I-Lln" secondAttribute="leadingMargin" constant="-3" id="pUc-i2-ZVy"/>
                     <constraint firstAttribute="bottomMargin" secondItem="aak-zq-cOr" secondAttribute="bottom" id="vRH-NI-XKF"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="dateLabel" destination="Tel-yN-qPz" id="HW8-qk-aCw"/>
-                <outlet property="favoriteMarkLabel" destination="UXW-nX-pSF" id="WGb-Ri-O7t"/>
                 <outlet property="readMarkLabel" destination="wvG-rm-eWV" id="3sB-jU-52H"/>
                 <outlet property="sourceLabel" destination="FFp-nP-2aG" id="wne-0k-JE1"/>
                 <outlet property="titleLabel" destination="jjw-6Q-5OY" id="9Y5-Fn-rMe"/>
