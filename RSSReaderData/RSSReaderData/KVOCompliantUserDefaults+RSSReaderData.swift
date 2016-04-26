@@ -11,8 +11,11 @@ import Foundation
 
 extension KVOCompliantUserDefaults {
 
-	@NSManaged var itemsAreSortedByLoadDate: Bool
+	@NSManaged public var itemsAreSortedByLoadDate: Bool
 	@NSManaged var authToken: String?
+	
 	@NSManaged var batchSavingDisabled: Bool
+	@NSManaged var coreDataCachingDisabled: Bool
+	@NSManaged var backgroundImportDisabled: Bool
 
 }
