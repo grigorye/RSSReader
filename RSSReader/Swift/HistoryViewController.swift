@@ -27,7 +27,7 @@ class HistoryViewController: UITableViewController {
 		let configureCell = { [unowned self] cell, indexPath in
 			self.configureCell(cell, atIndexPath: indexPath)
 		}
-		let $ = TableViewFetchedResultsControllerDelegate(tableView: self.tableView, fetchedResultsController: fetchedResultsController, configureCell: configureCell)
+		let $ = TableViewFetchedResultsControllerDelegate(tableView: self.tableView, fetchedResultsController: fetchedResultsController, updateCell: configureCell)
 		fetchedResultsController.delegate = $
 		return $
 	}()
