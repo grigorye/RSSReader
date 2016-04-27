@@ -54,10 +54,6 @@ private let loadAgoLongDateComponentsFormatter: NSDateComponentsFormatter = {
 	return $;
 }()
 
-private var fetchResultsAreAnimated: Bool {
-	return defaults.fetchResultsAreAnimated
-}
-
 class ItemsListViewController: UITableViewController {
 	static let Self_ = ItemsListViewController.self
 	final var container: Container?
@@ -276,9 +272,9 @@ class ItemsListViewController: UITableViewController {
 			self.continuation = nil
 			self.loadInProgress = false
 			self.loadError = nil
+			refreshControl.endRefreshing()
 			self.loadMore { loadDateDidChange in
 				if !loadDateDidChange {
-					refreshControl.endRefreshing()
 				}
 			}
 			UIView.animateWithDuration(0.4) {
@@ -346,7 +342,7 @@ class ItemsListViewController: UITableViewController {
 		return (numberOfSections)
 	}
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		let numberOfRows = fetchedResultsController.sections![section].numberOfObjects
+		let numberOfRows = $($(fetchedResultsController).sections![section].numberOfObjects)
 		return $(numberOfRows)
 	}
 	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -375,7 +371,7 @@ class ItemsListViewController: UITableViewController {
 	}
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("Item", forIndexPath: indexPath)
-		self.configureCell(cell, atIndexPath: indexPath)
+		self.configureCell(cell, atIndexPath: $(indexPath))
 		return cell
 	}
 	// MARK: -
@@ -387,7 +383,7 @@ class ItemsListViewController: UITableViewController {
 		tableView.snapHeaderToTop(animated: true)
 	}
 	override func scrollViewDidScroll(scrollView: UIScrollView) {
-		if nil != rssSession && nil != self.view.superview {
+		if nil != rssSession && nil != self.view.superview && !self.refreshControl!.refreshing {
 			self.loadMoreIfNecessary()
 		}
 	}
@@ -532,7 +528,7 @@ extension ItemsListViewController {
 		let configureCell = { [unowned self] (cell: UITableViewCell, indexPath: NSIndexPath) -> Void in
 			self.configureCell(cell, atIndexPath: indexPath)
 		}
-		let $ = TableViewFetchedResultsControllerDelegate(tableView: tableView, fetchedResultsController: fetchedResultsController, configureCell: configureCell)
+		let $ = TableViewFetchedResultsControllerDelegate(tableView: tableView, fetchedResultsController: fetchedResultsController, updateCell: configureCell)
 		fetchedResultsController.delegate = $
 		return $
 	}
