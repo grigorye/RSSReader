@@ -162,9 +162,19 @@
 			<key>DefaultValue</key>
 			<false/>
 			<key>Key</key>
-			<string>fetchResultsAreAnimated</string>
+			<string>fetchResultsAnimationEnabled</string>
 			<key>Title</key>
-			<string>Fetch Results Are Animated</string>
+			<string>Animate Fetch Results</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>Key</key>
+			<string>groupingTableUpdatesEnabled</string>
+			<key>Title</key>
+			<string>Group Table Updates</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
@@ -172,9 +182,47 @@
 			<key>DefaultValue</key>
 			<false/>
 			<key>Key</key>
-			<string>batchSavingDisabled</string>
+			<string>updateCellsInPlaceEnabled</string>
 			<key>Title</key>
-			<string>Disable Batch Saving</string>
+			<string>Update Cells in Place</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>Key</key>
+			<string>batchSavingEnabled</string>
+			<key>Title</key>
+			<string>Batch Saving</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>TrueValue</key>
+			<false/>
+			<key>FalseValue</key>
+			<true/>
+			<key>Key</key>
+			<string>backgroundImportDisabled</string>
+			<key>Title</key>
+			<string>Background Import</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>TrueValue</key>
+			<false/>
+			<key>FalseValue</key>
+			<true/>
+			<key>Key</key>
+			<string>coreDataCachingDisabled</string>
+			<key>Title</key>
+			<string>Core Data Caching</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
