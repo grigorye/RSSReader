@@ -142,7 +142,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 		if $(restorationFormatVersion) < currentRestorationFormatVersion {
 			return false
 		}
-		return !$(defaults.stateRestorationDisabled)
+		return $(defaults.stateRestorationEnabled)
 	}
 	//
 	func application(application: UIApplication, willFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
@@ -209,7 +209,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 	// MARK: -
 	override init() {
 		super.init()
-		configureAppearance()
+		let defaultsPlistURL = NSBundle.mainBundle().URLForResource("Settings", withExtension: "bundle")!.URLByAppendingPathComponent("Root.plist")
+		try! loadDefaultsFromSettingsPlistAtURL(defaultsPlistURL)
 		if defaults.memoryProfilingEnabled {
 			FBAllocationTrackerManager.sharedManager()!.startTrackingAllocations()
 			FBAllocationTrackerManager.sharedManager()!.enableGenerations()
@@ -237,6 +238,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 #endif
 		}
 #endif
+		configureAppearance()
 		let fileManager = NSFileManager()
 		let libraryDirectoryURL = fileManager.URLsForDirectory(.LibraryDirectory, inDomains: .UserDomainMask).last!
 		let libraryDirectory = libraryDirectoryURL.path!
