@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C416F00D1CD1E8A90006F6A2 /* DefaultsInSettingsPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C416F00C1CD1E8A90006F6A2 /* DefaultsInSettingsPlist.swift */; };
+		C416F00E1CD1FF820006F6A2 /* DefaultsInSettingsPlist.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C416F00C1CD1E8A90006F6A2 /* DefaultsInSettingsPlist.swift */; };
 		C418186B1B6A65B100872EB3 /* GEBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C41818601B6A65B100872EB3 /* GEBase.framework */; };
 		C41818901B6A66AE00872EB3 /* Descriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C418187A1B6A66AE00872EB3 /* Descriptions.swift */; };
 		C41818911B6A66AE00872EB3 /* FetchedObjectBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C418187B1B6A66AE00872EB3 /* FetchedObjectBinding.swift */; };
@@ -92,6 +94,7 @@
 				C4FEBB071BF9196E00A5709B /* KVOBinding.swift in Embed Sources */,
 				C4EC2F8A1C7534030028C729 /* CoreDataCaching.swift in Embed Sources */,
 				C4FEBB0B1BF9196E00A5709B /* ProgressEnabledURLSessionTaskGenerator.swift in Embed Sources */,
+				C416F00E1CD1FF820006F6A2 /* DefaultsInSettingsPlist.swift in Embed Sources */,
 			);
 			name = "Embed Sources";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -100,6 +103,7 @@
 
 /* Begin PBXFileReference section */
 		C40EA7281C6FCA2B002C6D9E /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		C416F00C1CD1E8A90006F6A2 /* DefaultsInSettingsPlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsInSettingsPlist.swift; sourceTree = "<group>"; };
 		C41818601B6A65B100872EB3 /* GEBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GEBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C41818651B6A65B100872EB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C418186A1B6A65B100872EB3 /* GEBaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GEBaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,6 +192,7 @@
 				C41818891B6A66AE00872EB3 /* KVOBinding.swift */,
 				C4FEBB191BF91E6600A5709B /* KVOCompliantUserDefaults.swift */,
 				C418188F1B6A66AE00872EB3 /* ProgressEnabledURLSessionTaskGenerator.swift */,
+				C416F00C1CD1E8A90006F6A2 /* DefaultsInSettingsPlist.swift */,
 				C40EA7281C6FCA2B002C6D9E /* Bridging-Header.h */,
 				C41818651B6A65B100872EB3 /* Info.plist */,
 			);
@@ -320,6 +325,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C416F00D1CD1E8A90006F6A2 /* DefaultsInSettingsPlist.swift in Sources */,
 				C41818911B6A66AE00872EB3 /* FetchedObjectBinding.swift in Sources */,
 				C418189F1B6A66AE00872EB3 /* KVOBinding.swift in Sources */,
 				C41818AA1B6A673F00872EB3 /* Primitives.swift in Sources */,
