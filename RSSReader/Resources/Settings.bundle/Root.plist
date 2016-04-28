@@ -120,11 +120,11 @@
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
-			<false/>
+			<true/>
 			<key>Key</key>
-			<string>stateRestorationDisabled</string>
+			<string>stateRestorationEnabled</string>
 			<key>Title</key>
-			<string>Disable State Restoration</string>
+			<string>State Restoration</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
@@ -200,13 +200,9 @@
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
-			<false/>
-			<key>TrueValue</key>
-			<false/>
-			<key>FalseValue</key>
 			<true/>
 			<key>Key</key>
-			<string>backgroundImportDisabled</string>
+			<string>backgroundImportEnabled</string>
 			<key>Title</key>
 			<string>Background Import</string>
 			<key>Type</key>
@@ -214,13 +210,9 @@
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
-			<false/>
-			<key>TrueValue</key>
-			<false/>
-			<key>FalseValue</key>
 			<true/>
 			<key>Key</key>
-			<string>coreDataCachingDisabled</string>
+			<string>coreDataCachingEnabled</string>
 			<key>Title</key>
 			<string>Core Data Caching</string>
 			<key>Type</key>
