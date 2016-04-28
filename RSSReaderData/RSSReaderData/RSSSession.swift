@@ -13,8 +13,8 @@ import CoreData
 
 let lastTagsDataPath = "\(NSTemporaryDirectory())/lastTags"
 
-var batchSavingDisabled: Bool {
-	return defaults.batchSavingDisabled
+private var batchSavingDisabled: Bool {
+	return !defaults.batchSavingEnabled
 }
 
 var itemsAreSortedByLoadDate: Bool {
