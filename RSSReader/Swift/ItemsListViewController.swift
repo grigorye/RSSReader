@@ -196,7 +196,7 @@ class ItemsListViewController: UITableViewController {
 					else {
  						assert(self.loadDate == ongoingLoadDate)
 					}
-					if let lastItemInCompletion = (items).last {
+					if let lastItemInCompletion = (items).last where _0 {
 						let managedObjectContext = self.fetchedResultsController.managedObjectContext
 						let lastLoadedItem = managedObjectContext.sameObject(lastItemInCompletion)
 						assert(self.containerViewPredicate.evaluateWithObject(lastLoadedItem))
@@ -217,20 +217,28 @@ class ItemsListViewController: UITableViewController {
 			}
 		}
 	}
-	private func loadMoreIfNecessary() {
+	private func fetchLastLoadedItemDate(completionHandler: NSDate? -> ()) {
+		let containerViewStateObjectID = containerViewState!.objectID;
+		backgroundQueueManagedObjectContext.performBlock {
+			let containerViewState = backgroundQueueManagedObjectContext.objectWithID(containerViewStateObjectID) as! ContainerViewState
+			let date = containerViewState.lastLoadedItem?.date
+			completionHandler(date)
+		}
+	}
+	private func loadMoreIfNecessaryWithLastLoadedItemDate(lastLoadedItemDate: NSDate?) {
 		let shouldLoadMore: Bool = {
 			if (self.loadInProgress || self.loadCompleted || self.loadError != nil) {
 				return false
 			}
 			if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows {
-				if let lastLoadedItem = self.lastLoadedItem where 0 < indexPathsForVisibleRows.count {
+				if let lastLoadedItemDate = lastLoadedItemDate where 0 < indexPathsForVisibleRows.count {
 					let lastVisibleIndexPath = indexPathsForVisibleRows.last!
 					let numberOfRows = fetchedResultsController.fetchedObjects!.count
 					assert(0 < numberOfRows)
 					let barrierRow = min(lastVisibleIndexPath.row + self.numberOfItemsToLoadPastVisible, numberOfRows - 1)
 					let barrierIndexPath = NSIndexPath(forRow: (barrierRow) , inSection: lastVisibleIndexPath.section)
 					let barrierItem = self.fetchedResultsController.objectAtIndexPath(barrierIndexPath) as! Item
-					return !(((lastLoadedItem.date).compare((barrierItem.date))) == .OrderedAscending)
+					return !(((lastLoadedItemDate).compare((barrierItem.date))) == .OrderedAscending)
 				}
 				else {
 					return true
@@ -244,6 +252,13 @@ class ItemsListViewController: UITableViewController {
 		}
 		else if (loadCompleted) {
 			tableView.tableFooterView = nil
+		}
+	}
+	private func loadMoreIfNecessary() {
+		fetchLastLoadedItemDate { lastLoadedItemDate in
+			dispatch_async(dispatch_get_main_queue()) {
+				self.loadMoreIfNecessaryWithLastLoadedItemDate(lastLoadedItemDate)
+			}
 		}
 	}
 	func reloadViewForNewConfiguration() {
