@@ -233,7 +233,7 @@ class ItemsListViewController: UITableViewController {
 			if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows {
 				if let lastLoadedItemDate = lastLoadedItemDate where 0 < indexPathsForVisibleRows.count {
 					let lastVisibleIndexPath = indexPathsForVisibleRows.last!
-					let numberOfRows = fetchedResultsController.fetchedObjects!.count
+					let numberOfRows = fetchedResultsController.sections![0].numberOfObjects
 					assert(0 < numberOfRows)
 					let barrierRow = min(lastVisibleIndexPath.row + self.numberOfItemsToLoadPastVisible, numberOfRows - 1)
 					let barrierIndexPath = NSIndexPath(forRow: (barrierRow) , inSection: lastVisibleIndexPath.section)
