@@ -10,6 +10,7 @@ import Foundation
 
 private let objcEncode_Bool = String.fromCString(NSNumber(bool: true).objCType)!
 private let objcEncode_Long = "l"
+private let objcEncode_LongLong = "q"
 private let objcEncode_C99Bool = "B"
 private let objcEncode_AnyObject = "@"
 
@@ -54,7 +55,7 @@ extension KVOCompliantUserDefaults {
 		(propertyName)
 		return (value)
 	}
-	static private let intValueIMP: @convention(c) (_Self, Selector) -> Int = { _self, _cmd in
+	static private let longValueIMP: @convention(c) (_Self, Selector) -> CLong = { _self, _cmd in
 		let propertyName = NSStringFromSelector(_cmd)
 		let valueObject = _self.values[propertyName]
 		let value: Int = {
@@ -72,6 +73,24 @@ extension KVOCompliantUserDefaults {
 		(propertyName)
 		return (value)
 	}
+	static private let longLongValueIMP: @convention(c) (_Self, Selector) -> CLongLong = { _self, _cmd in
+		let propertyName = NSStringFromSelector(_cmd)
+		let valueObject = _self.values[propertyName]
+		let value: CLongLong = {
+			switch valueObject {
+			case let numberValue as NSNumber:
+				return numberValue.longLongValue
+			case let stringValue as NSString:
+				return stringValue.longLongValue
+			case nil:
+				return 0
+			default:
+				abort()
+			}
+		}()
+		(propertyName)
+		return (value)
+	}
 
 	static private let setBoolValueIMP: @convention(c) (_Self, Selector, Bool) -> Void = { _self, _cmd, value in
 		let propertyName = NSStringFromSelector(_cmd)
@@ -79,11 +98,17 @@ extension KVOCompliantUserDefaults {
 		_self.defaults.setBool(value, forKey: propertyName)
 		_self.values[propertyName] = NSNumber(bool: value)
 	}
-	static private let setIntValueIMP: @convention(c) (_Self, Selector, Int) -> Void = { _self, _cmd, value in
+	static private let setLongValueIMP: @convention(c) (_Self, Selector, CLong) -> Void = { _self, _cmd, value in
 		let propertyName = NSStringFromSelector(_cmd)
 		$(propertyName)
 		_self.defaults.setInteger(value, forKey: propertyName)
 		_self.values[propertyName] = NSNumber(long: value)
+	}
+	static private let setLongLongValueIMP: @convention(c) (_Self, Selector, CLongLong) -> Void = { _self, _cmd, value in
+		let propertyName = NSStringFromSelector(_cmd)
+		$(propertyName)
+		_self.defaults.setInteger(Int(value), forKey: propertyName)
+		_self.values[propertyName] = NSNumber(longLong: value)
 	}
 
 	// MARK: -
@@ -151,7 +176,9 @@ public class KVOCompliantUserDefaults : NSObject {
 				case objcEncode_Bool, objcEncode_C99Bool:
 					return isSetter ? unsafeBitCast(setBoolValueIMP, IMP.self) : unsafeBitCast(boolValueIMP, IMP.self)
 				case objcEncode_Long:
-					return isSetter ? unsafeBitCast(setIntValueIMP, IMP.self) : unsafeBitCast(intValueIMP, IMP.self)
+					return isSetter ? unsafeBitCast(setLongValueIMP, IMP.self) : unsafeBitCast(longValueIMP, IMP.self)
+				case objcEncode_LongLong:
+					return isSetter ? unsafeBitCast(setLongLongValueIMP, IMP.self) : unsafeBitCast(longLongValueIMP, IMP.self)
 				case objcEncode_AnyObject:
 					return isSetter ? unsafeBitCast(setObjectValueIMP, IMP.self) : unsafeBitCast(objectValueIMP, IMP.self)
 				default:
