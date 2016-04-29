@@ -9,6 +9,7 @@
 import Foundation
 
 private let objcEncode_Bool = String.fromCString(NSNumber(bool: true).objCType)!
+private let objcEncode_Long = "l"
 private let objcEncode_C99Bool = "B"
 private let objcEncode_AnyObject = "@"
 
@@ -53,12 +54,36 @@ extension KVOCompliantUserDefaults {
 		(propertyName)
 		return (value)
 	}
+	static private let intValueIMP: @convention(c) (_Self, Selector) -> Int = { _self, _cmd in
+		let propertyName = NSStringFromSelector(_cmd)
+		let valueObject = _self.values[propertyName]
+		let value: Int = {
+			switch valueObject {
+			case let numberValue as NSNumber:
+				return numberValue.integerValue
+			case let stringValue as NSString:
+				return stringValue.integerValue
+			case nil:
+				return 0
+			default:
+				abort()
+			}
+		}()
+		(propertyName)
+		return (value)
+	}
 
 	static private let setBoolValueIMP: @convention(c) (_Self, Selector, Bool) -> Void = { _self, _cmd, value in
 		let propertyName = NSStringFromSelector(_cmd)
 		$(propertyName)
 		_self.defaults.setBool(value, forKey: propertyName)
 		_self.values[propertyName] = NSNumber(bool: value)
+	}
+	static private let setIntValueIMP: @convention(c) (_Self, Selector, Int) -> Void = { _self, _cmd, value in
+		let propertyName = NSStringFromSelector(_cmd)
+		$(propertyName)
+		_self.defaults.setInteger(value, forKey: propertyName)
+		_self.values[propertyName] = NSNumber(long: value)
 	}
 
 	// MARK: -
@@ -125,6 +150,8 @@ public class KVOCompliantUserDefaults : NSObject {
 				switch (valueTypeEncoded) {
 				case objcEncode_Bool, objcEncode_C99Bool:
 					return isSetter ? unsafeBitCast(setBoolValueIMP, IMP.self) : unsafeBitCast(boolValueIMP, IMP.self)
+				case objcEncode_Long:
+					return isSetter ? unsafeBitCast(setIntValueIMP, IMP.self) : unsafeBitCast(intValueIMP, IMP.self)
 				case objcEncode_AnyObject:
 					return isSetter ? unsafeBitCast(setObjectValueIMP, IMP.self) : unsafeBitCast(objectValueIMP, IMP.self)
 				default:
