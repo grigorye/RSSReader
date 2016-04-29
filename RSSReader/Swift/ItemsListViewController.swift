@@ -218,7 +218,11 @@ class ItemsListViewController: UITableViewController {
 		}
 	}
 	private func fetchLastLoadedItemDate(completionHandler: NSDate? -> ()) {
-		let containerViewStateObjectID = containerViewState!.objectID;
+		guard let containerViewState = containerViewState else {
+			completionHandler(nil)
+			return
+		}
+		let containerViewStateObjectID = containerViewState.objectID
 		backgroundQueueManagedObjectContext.performBlock {
 			let containerViewState = backgroundQueueManagedObjectContext.objectWithID(containerViewStateObjectID) as! ContainerViewState
 			let date = containerViewState.lastLoadedItem?.date
@@ -227,7 +231,7 @@ class ItemsListViewController: UITableViewController {
 	}
 	private func loadMoreIfNecessaryWithLastLoadedItemDate(lastLoadedItemDate: NSDate?) {
 		let shouldLoadMore: Bool = {
-			if (self.loadInProgress || self.loadCompleted || self.loadError != nil) {
+			guard !(self.loadInProgress || self.loadCompleted || self.loadError != nil) else {
 				return false
 			}
 			if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows {
