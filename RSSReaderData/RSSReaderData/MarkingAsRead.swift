@@ -17,12 +17,8 @@ public let favoriteTagSuffix = "state/com.google/starred"
 public let canonicalReadTag = "user/-/state/com.google/read"
 public let canonicalFavoriteTag = "user/-/state/com.google/starred"
 
-var markedAsReadCategory: Folder! = {
-	return Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: mainQueueManagedObjectContext)
-}()
-var markedAsFavoriteCategory: Folder! = {
-	return Folder.folderWithTagSuffix(favoriteTagSuffix, managedObjectContext: mainQueueManagedObjectContext)
-}()
+let markedAsReadCategory = Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: mainQueueManagedObjectContext)!
+let markedAsFavoriteCategory = Folder.folderWithTagSuffix(favoriteTagSuffix, managedObjectContext: mainQueueManagedObjectContext)!
 
 extension Folder {
 	public static func predicateForFetchingFolderWithTagSuffix(tagSuffix: String) -> NSPredicate {
