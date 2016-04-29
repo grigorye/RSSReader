@@ -146,13 +146,13 @@ class ItemsListViewController: UITableViewController {
 	}
 	// MARK: -
 	var numberOfItemsToLoadPastVisible: Int {
-		return 10
+		return defaults.numberOfItemsToLoadPastVisible
 	}
 	var numberOfItemsToLoadInitially: Int {
-		return numberOfItemsToLoadPastVisible * 2
+		return defaults.numberOfItemsToLoadInitially
 	}
 	var numberOfItemsToLoadLater: Int {
-		return numberOfItemsToLoadPastVisible * 5
+		return defaults.numberOfItemsToLoadLater
 	}
 	private func loadMore(completionHandler: (loadDateDidChange: Bool) -> Void) {
 		assert(!loadInProgress)
@@ -535,7 +535,7 @@ extension ItemsListViewController {
 				}(),
 				self.containerViewPredicate
 			])
-			$.fetchBatchSize = 20
+			$.fetchBatchSize = defaults.fetchBatchSize
 			return $
 		}()
 		let itemLoadDateTimeIntervalSinceReferenceDateKeyPath = Item.self••{$0.loadDate.timeIntervalSinceReferenceDate}

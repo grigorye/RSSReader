@@ -28,5 +28,10 @@ extension KVOCompliantUserDefaults {
 	@NSManaged var memoryProfilingEnabled: Bool
 	@NSManaged var pageViewsEnabled: Bool
 	@NSManaged var hideBarsOnSwipe: Bool
+	//
+	@NSManaged var numberOfItemsToLoadPastVisible: Int
+	@NSManaged var numberOfItemsToLoadInitially: Int
+	@NSManaged var numberOfItemsToLoadLater: Int
+	@NSManaged var fetchBatchSize: Int
 
 }
