@@ -64,6 +64,9 @@ public let (managedObjectContextError, mainQueueManagedObjectContext, background
 			let $ = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
 			$.parentContext = mainQueueManagedObjectContext
 			$.name = "background"
+			if defaults.coreDataCachingEnabled {
+				$.cachingEnabled = true
+			}
 			return $
 		}()
 		var supplementaryObjects = [AnyObject]()
