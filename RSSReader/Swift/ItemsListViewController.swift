@@ -223,8 +223,9 @@ class ItemsListViewController: UITableViewController {
 			return
 		}
 		let containerViewStateObjectID = containerViewState.objectID
-		backgroundQueueManagedObjectContext.performBlock {
-			let containerViewState = backgroundQueueManagedObjectContext.objectWithID(containerViewStateObjectID) as! ContainerViewState
+		let managedObjectContext = backgroundQueueManagedObjectContext
+		managedObjectContext.performBlock {
+			let containerViewState = managedObjectContext.objectWithID(containerViewStateObjectID) as! ContainerViewState
 			let date = containerViewState.lastLoadedItem?.date
 			completionHandler(date)
 		}
@@ -351,9 +352,11 @@ class ItemsListViewController: UITableViewController {
 			dateLabel.textColor = item.markedAsRead ? nil : UIColor.redColor()
 			}
 		}
+#if true
 		if let readMarkLabel = cell.readMarkLabel {
 			readMarkLabel.alpha = item.markedAsRead ? 0 : 1
 		}
+#endif
 	}
 	// MARK: -
 	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -539,6 +542,9 @@ extension ItemsListViewController {
 				}(),
 				self.containerViewPredicate
 			])
+#if false
+			$.relationshipKeyPathsForPrefetching = [E••{$0.categories}]
+#endif
 			$.fetchBatchSize = defaults.fetchBatchSize
 			return $
 		}()
