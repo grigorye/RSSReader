@@ -80,37 +80,35 @@ class FoldersListTableViewController: UITableViewController, UIDataSourceModelAs
 			return
 		}
 		RSSReader.foldersController.updateFolders { updateError in dispatch_async(dispatch_get_main_queue()) {
-			if let foldersControllerError = updateError as? FoldersControllerError {
-				let error: ErrorType = {
-					switch foldersControllerError {
-					case .UserInfoRetrieval(let underlyingError):
-						return underlyingError
+			defer {
+				self.refreshControl?.endRefreshing()
+			}
+			guard nil == updateError else {
+				let updateError = $(updateError!)
+				let presentedError: ErrorType = {
+					switch updateError {
+					case let foldersControllerError as FoldersControllerError:
+						switch foldersControllerError {
+						case .UserInfoRetrieval(let underlyingError):
+							return underlyingError
+						default:
+							return foldersControllerError
+						}
 					default:
-						return foldersControllerError
+						return updateError
 					}
 				}()
-				let errorViewController = self.dynamicType.viewControllerForErrorOnRefresh(error as NSError) {
+				let errorViewController = self.dynamicType.viewControllerForErrorOnRefresh(presentedError as NSError) {
 					self.refresh(self)
 				}
 				self.presentViewController(errorViewController, animated: true, completion: nil)
+				return
 			}
-			else if let error = updateError as NSError? {
-				let errorViewController = self.dynamicType.viewControllerForErrorOnRefresh(error) {
-					self.refresh(self)
-				}
-				self.presentViewController(errorViewController, animated: true, completion: nil)
+			if nil == self.rootFolder {
+				self.rootFolder = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: mainQueueManagedObjectContext)
+				assert(nil != self.rootFolder)
 			}
-			else if nil != updateError {
-				$(updateError)
-			}
-			else {
-				if nil == self.rootFolder {
-					self.rootFolder = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: mainQueueManagedObjectContext)
-					assert(nil != self.rootFolder)
-				}
-				self.tableView.reloadData()
-			}
-			self.refreshControl?.endRefreshing()
+			self.tableView.reloadData()
 		}}
 	}
 	// MARK: -
