@@ -17,10 +17,8 @@ public struct LoginAndPassword {
 		self.password = password
 	}
 }
+extension LoginAndPassword : Equatable {}
 
-func == (left: LoginAndPassword, right: LoginAndPassword) -> Bool {
+public func == (left: LoginAndPassword, right: LoginAndPassword) -> Bool {
 	return (left.login == right.login) && (left.password == right.password)
-}
-func != (left: LoginAndPassword, right: LoginAndPassword) -> Bool {
-	return !(left == right)
 }
