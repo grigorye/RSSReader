@@ -46,11 +46,18 @@ class FoldersListTableViewController: UITableViewController, UIDataSourceModelAs
 		refreshControl?.beginRefreshing()
 		self.refresh(refreshControl)
 	}
-	static func viewControllerForErrorOnRefresh(error: NSError, retryAction: () -> Void) -> UIViewController {
+	static func viewControllerForErrorOnRefresh(error: ErrorType, retryAction: () -> Void) -> UIViewController {
 		let alertController: UIAlertController = {
 			let message: String = {
-				let localizedDescription = error.localizedDescription
-				if let localizedRecoverySuggestion = error.localizedRecoverySuggestion {
+				let localizedDescription: String = {
+					switch error {
+					case RSSReaderData.RSSSession.Error.AuthenticationFailed:
+						return NSLocalizedString("Authentication Failed", comment: "Error description for authentication failure on refresh")
+					default:
+						return (error as NSError).localizedDescription
+					}
+				}()
+				if let localizedRecoverySuggestion = (error as NSError).localizedRecoverySuggestion {
 					return String.localizedStringWithFormat(NSLocalizedString("%@ %@", comment: "Error message on failed refresh"), localizedDescription, localizedRecoverySuggestion)
 				}
 				else {
@@ -83,10 +90,9 @@ class FoldersListTableViewController: UITableViewController, UIDataSourceModelAs
 			defer {
 				self.refreshControl?.endRefreshing()
 			}
-			guard nil == updateError else {
-				let updateError = $(updateError!)
+			if let updateError = updateError {
 				let presentedError: ErrorType = {
-					switch updateError {
+					switch $(updateError) {
 					case let foldersControllerError as FoldersControllerError:
 						switch foldersControllerError {
 						case .UserInfoRetrieval(let underlyingError):
@@ -98,7 +104,7 @@ class FoldersListTableViewController: UITableViewController, UIDataSourceModelAs
 						return updateError
 					}
 				}()
-				let errorViewController = self.dynamicType.viewControllerForErrorOnRefresh(presentedError as NSError) {
+				let errorViewController = self.dynamicType.viewControllerForErrorOnRefresh(presentedError) {
 					self.refresh(self)
 				}
 				self.presentViewController(errorViewController, animated: true, completion: nil)
