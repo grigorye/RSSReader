@@ -12,10 +12,6 @@ import Foundation
 
 extension KVOCompliantUserDefaults {
 	var loginAndPassword: LoginAndPassword {
-		get {
-			let login = self.login
-			let password = self.password
-			return LoginAndPassword(login: login, password: password)
-		}
+		return LoginAndPassword(login: self.login, password: self.password)
 	}
 }
