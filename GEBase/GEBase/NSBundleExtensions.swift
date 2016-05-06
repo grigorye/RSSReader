@@ -9,7 +9,7 @@
 import Foundation
 
 extension NSBundle {
-	static func bundleOnStack() -> NSBundle? {
+	public static func bundleOnStack() -> NSBundle? {
 		let length = 10
 		let addr = UnsafeMutablePointer<UnsafeMutablePointer<Void>>.alloc(length)
 		let frames = backtrace(addr, Int32(length))
