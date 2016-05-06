@@ -22,7 +22,8 @@ var itemsAreSortedByLoadDate: Bool {
 }
 
 public class RSSSession: NSObject {
-	enum Error: ErrorType {
+	public enum Error: ErrorType {
+		case AuthenticationFailed(underlyingError: ErrorType)
 		case JsonObjectIsNotDictionary(jsonObject: AnyObject)
 		case JsonMissingUserID(json: [String: AnyObject])
 		case JsonMissingUnreadCounts(json: [String: AnyObject])
@@ -115,7 +116,18 @@ extension RSSSession {
 		$(request)
 		let sessionTask = progressEnabledURLSessionTaskGenerator.dataTaskForHTTPRequest(request) { data, httpResponse, error in
 			if let error = error {
-				completionHandler($(error))
+				let adjustedError: ErrorType = {
+					switch error {
+					case GEBase.URLSessionTaskGeneratorError.UnexpectedHTTPResponseStatus(let httpResponse):
+						guard httpResponse.statusCode == 401 else {
+							return error
+						}
+						return Error.AuthenticationFailed(underlyingError: error)
+					default:
+						return error
+					}
+				}()
+				completionHandler($(adjustedError))
 				return
 			}
 			let authToken: String? = {
@@ -331,23 +343,31 @@ extension RSSSession {
 			queryComponents += ["xt=\($(excludedCategory.streamID))"]
 		}
 		queryComponents += ["n=\(count)"]
-		let subscriptionIDPercentEncoded = container.streamID.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())!
+		let streamIDPercentEncoded = container.streamID.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())!
 		let querySuffix = URLQuerySuffixFromComponents(queryComponents)
-		let relativeString = "/reader/api/0/stream/contents/\(subscriptionIDPercentEncoded)\(querySuffix)"
+		let relativeString = "/reader/api/0/stream/contents/\(streamIDPercentEncoded)\(querySuffix)"
 		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithRelativeString(relativeString) { data, httpResponse, error in
 			if let error = error {
 				completionHandler(continuation: nil, items: nil, error: error)
 				return
 			}
-			backgroundQueueManagedObjectContext.performBlock {
+			let subscriptionObjectID = (container as? Subscription)?.objectID
+			let managedObjectContext = backgroundQueueManagedObjectContext
+			managedObjectContext.performBlock {
 				do {
 					let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions())
 					guard let json = jsonObject as? [String : AnyObject] else {
 						throw Error.JsonObjectIsNotDictionary(jsonObject: jsonObject)
 					}
 					let continuation = json["continuation"] as? String
-					let items = try importItemsFromJson(json, type: Item.self, elementName: "items", managedObjectContext: backgroundQueueManagedObjectContext) { (item, itemJson) in
-						try item.importFromJson(itemJson)
+					let items = try importItemsFromJson(json, type: Item.self, elementName: "items", managedObjectContext: managedObjectContext) { (item, itemJson) in
+						let subscription: Subscription? = {
+							guard let subscriptionObjectID = subscriptionObjectID else {
+								return nil
+							}
+							return (managedObjectContext.objectWithID(subscriptionObjectID) as! Subscription)
+						}()
+						try item.importFromJson(itemJson, subscription: subscription)
 						item.loadDate = loadDate
 						if batchSavingDisabled {
 							try backgroundQueueManagedObjectContext.save()
