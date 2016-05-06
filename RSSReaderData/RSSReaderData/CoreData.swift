@@ -42,7 +42,7 @@ extension Item : ManagedIdentifiable {
 	public class func entityName() -> String {
 		return "Item"
 	}
-	func importFromJson(jsonObject: AnyObject) throws {
+	func importFromJson(jsonObject: AnyObject, subscription: Subscription? = nil) throws {
 		let json = jsonObject as! [String: AnyObject]
 		let updatedDate: NSDate? = {
 			if let updatedTimeIntervalSince1970 = json["updated"] as! NSTimeInterval? {
@@ -62,7 +62,8 @@ extension Item : ManagedIdentifiable {
 			let summary = (json["summary"] as! [String: AnyObject])["content"] as! String?
 			self.summary = summary
 			let streamID = (json["origin"] as? NSDictionary)?["streamId"] as! String
-			let subscription = try insertedObjectUnlessFetchedWithID(Subscription.self, id: streamID, managedObjectContext: managedObjectContext)
+			assert(nil == subscription || streamID == subscription?.streamID)
+			let subscription = try subscription ?? insertedObjectUnlessFetchedWithID(Subscription.self, id: streamID, managedObjectContext: managedObjectContext)
 			self.subscription = subscription
 			self.canonical = json["canonical"] as! [[String : String]]?
 		}
