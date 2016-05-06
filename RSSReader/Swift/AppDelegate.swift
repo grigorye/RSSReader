@@ -107,9 +107,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 		configureFavoritesItemsListViewController($)
 		return $
 	}()
-	var loginAndPassword: LoginAndPassword {
-		return defaults.loginAndPassword
-	}
+	var loginAndPassword: LoginAndPassword!
 	// MARK: -
 	@IBAction func openSettings(sender: AnyObject?) {
 		UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
@@ -154,30 +152,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 			"TableViewFetchedResultsControllerDelegate.swift",
 			"KVOCompliantUserDefaults.swift"
 		]
-		hideBarsOnSwipe = (nil == self.tabBarController) && defaults.hideBarsOnSwipe
-		assert(nil == managedObjectContextError)
-		if let managedObjectContextError = managedObjectContextError {
-			$(managedObjectContextError)
-			presentErrorMessage(NSLocalizedString("Something went wrong.", comment: ""))
-			return false
-		}
-		else {
-			if nil != self.tabBarController {
-				void(self.fetchedRootFolderBinding)
-				void(self.fetchedFavoritesFolderBinding)
-				foldersViewController.hidesBottomBarWhenPushed = false
-				favoritesViewController.navigationItem.backBarButtonItem = {
-					let title = NSLocalizedString("Favorites", comment: "");
-					return UIBarButtonItem(title: title, style: .Plain, target: nil, action: nil)
-				}()
-			}
-			if !loginAndPassword.isValid() {
-				self.openSettings(nil)
-			}
-			else {
-				self.rssSession = RSSSession(loginAndPassword: self.loginAndPassword)
-			}
-		}
 		if _1 {
 			if defaults.memoryProfilingEnabled {
 				let memoryProfiler = FBMemoryProfiler()
@@ -204,6 +178,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 				}
 			}]
 		}
+		hideBarsOnSwipe = (nil == self.tabBarController) && defaults.hideBarsOnSwipe
+		guard nil == managedObjectContextError else {
+			$(managedObjectContextError)
+			presentErrorMessage(NSLocalizedString("Something went wrong.", comment: ""))
+			return false
+		}
+		if nil != self.tabBarController {
+			void(self.fetchedRootFolderBinding)
+			void(self.fetchedFavoritesFolderBinding)
+			foldersViewController.hidesBottomBarWhenPushed = false
+			favoritesViewController.navigationItem.backBarButtonItem = {
+				let title = NSLocalizedString("Favorites", comment: "");
+				return UIBarButtonItem(title: title, style: .Plain, target: nil, action: nil)
+			}()
+		}
+		let notificationCenter = NSNotificationCenter.defaultCenter()
+		let updateLoginAndPassword = {
+			self.loginAndPassword = $(defaults.loginAndPassword)
+			guard let loginAndPassword = self.loginAndPassword where loginAndPassword.isValid() else {
+				self.rssSession = nil
+				self.openSettings(nil)
+				return
+			}
+			self.rssSession = RSSSession(loginAndPassword: loginAndPassword)
+		}
+		updateLoginAndPassword()
+		retainedObjects += [notificationCenter.addObserverForName(NSUserDefaultsDidChangeNotification, object:nil, queue:nil) { [unowned self] notification in
+			if defaults.loginAndPassword != self.loginAndPassword {
+				updateLoginAndPassword()
+			}
+		}]
 		return true
 	}
 	// MARK: -
