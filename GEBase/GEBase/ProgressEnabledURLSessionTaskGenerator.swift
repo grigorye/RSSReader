@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum URLSessionTaskGeneratorError: ErrorType {
+public enum URLSessionTaskGeneratorError: ErrorType {
 	case UnexpectedHTTPResponseStatus(httpResponse: NSHTTPURLResponse)
 }
 
