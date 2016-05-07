@@ -5,6 +5,9 @@
       location = "container:"
       name = "Modules">
       <FileRef
+         location = "group:XcodeConfiguration/GEShared.xcconfig">
+      </FileRef>
+      <FileRef
          location = "group:RSSReader.xcodeproj">
       </FileRef>
       <FileRef
