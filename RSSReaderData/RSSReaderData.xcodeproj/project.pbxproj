@@ -72,7 +72,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C424B8E21C6FC52D008AD647 /* GEBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GEBase.framework; path = "../../../Library/Developer/Xcode/DerivedData/RSSReader-eehjnhhfirrojtathkxfsicskrbn/Build/Products/Debug/GEBase.framework"; sourceTree = "<group>"; };
+		C424B8E21C6FC52D008AD647 /* GEBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GEBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C459879D1CDE0A8300B8E9E4 /* GEShared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = GEShared.xcconfig; path = ../XcodeConfiguration/GEShared.xcconfig; sourceTree = "<group>"; };
 		C48F799E1C008D0D00CC6F74 /* RSSReaderData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RSSReaderData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C48F79A31C008D0D00CC6F74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
