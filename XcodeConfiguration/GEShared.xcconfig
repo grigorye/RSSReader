@@ -1,0 +1,11 @@
+//
+//  GEShared.xcconfig
+//  
+//
+//  Created by Grigory Entin on 07/05/16.
+//
+//
+
+SWIFT_OPTIMIZATION_LEVEL__Configuration__Debug = -Onone
+SWIFT_OPTIMIZATION_LEVEL__Configuration__Release = -Owholemodule
+SWIFT_OPTIMIZATION_LEVEL = $(SWIFT_OPTIMIZATION_LEVEL__Configuration__$(CONFIGURATION))
