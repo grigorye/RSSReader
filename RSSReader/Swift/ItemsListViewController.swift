@@ -364,6 +364,7 @@ class ItemsListViewController: UITableViewController {
 		return (numberOfSections)
 	}
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		let t = disableTrace(); defer { t }
 		let numberOfRows = $($(fetchedResultsController).sections![section].numberOfObjects)
 		return $(numberOfRows)
 	}
@@ -392,6 +393,7 @@ class ItemsListViewController: UITableViewController {
 		return _0 ? nil : title
 	}
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+		let t = disableTrace(); defer { t }
 		let cell = tableView.dequeueReusableCellWithIdentifier("Item", forIndexPath: indexPath)
 		self.configureCell(cell, atIndexPath: $(indexPath))
 		return cell
