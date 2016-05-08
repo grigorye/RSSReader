@@ -58,7 +58,7 @@ extension Item : ManagedIdentifiable {
 			let date = NSDate(timestampUsec: json["timestampUsec"] as! String)
 			self.updatedDate = updatedDate
 			self.date = date
-			self.title = json["title"] as! String?
+			self.title = json["title"] as! String
 			let summary = (json["summary"] as! [String: AnyObject])["content"] as! String?
 			self.summary = summary
 			let streamID = (json["origin"] as? NSDictionary)?["streamId"] as! String
