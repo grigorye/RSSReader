@@ -190,6 +190,26 @@
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
+			<false/>
+			<key>Key</key>
+			<string>cellHeightCachingEnabled</string>
+			<key>Title</key>
+			<string>Cell Height Caching</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>Key</key>
+			<string>cellSystemLayoutSizeCachingEnabled</string>
+			<key>Title</key>
+			<string>Cell Layout Size Caching</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
 			<true/>
 			<key>Key</key>
 			<string>batchSavingEnabled</string>
