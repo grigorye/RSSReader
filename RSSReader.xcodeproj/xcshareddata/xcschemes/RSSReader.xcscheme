@@ -85,7 +85,8 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
-      showNonLocalizedStrings = "YES">
+      showNonLocalizedStrings = "YES"
+      language = "ru">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
@@ -102,6 +103,14 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "-cellHeightCachingEnabled YES"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-fetchBatchSize 20"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "-coreDataCachingEnabled YES"
             isEnabled = "NO">
          </CommandLineArgument>
@@ -115,14 +124,14 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-traceEnabled YES"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-forceStoreRemoval YES"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-stateRestorationDisabled YES"
+            argument = "-stateRestorationEnabled NO"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
