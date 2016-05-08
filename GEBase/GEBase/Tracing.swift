@@ -152,13 +152,19 @@ public class TraceUnlocker {
 	}
 }
 public func disableTrace(file: String = #file, function: String = #function) -> TraceLocker? {
+	guard traceEnabled else {
+		return nil
+	}
 	return TraceLocker(file: file, function: function)
 }
 public func enableTrace(file: String = #file, function: String = #function) -> TraceUnlocker? {
+	guard traceEnabled else {
+		return nil
+	}
 	return TraceUnlocker(file: file, function: function)
 }
 
-public func tracingShouldBeEnabledForLocation(location: SourceLocation) -> Bool {
+func tracingShouldBeEnabledForLocation(location: SourceLocation) -> Bool {
 	guard !filesWithTracingDisabled.contains(location.fileURL.lastPathComponent!) else {
 		return false
 	}
@@ -171,14 +177,14 @@ public func tracingShouldBeEnabledForLocation(location: SourceLocation) -> Bool 
 public struct Traceable<T> {
 	let value: T
 	let location: SourceLocation
-	init(value: T, location: SourceLocation = SourceLocation(file: #file, line: #line, column: #column, function: #function)) {
+	init(value: T, location: SourceLocation = SourceLocation(file: #file, line: #line, column: #column, function: #function, bundle: NSBundle.bundleOnStackFrame(2))) {
 		self.value = value
 		self.location = location
 	}
-	public func $(level: Int = defaultTraceLevel, date: NSDate = NSDate(), file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) -> T {
+	public func $(level: Int = defaultTraceLevel, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) -> T {
 		if 1 == level || ((level == defaultTraceLevel) && defaultTracingEnabled && tracingShouldBeEnabledForLocation(self.location)) {
 			let column = column + ((level == defaultTraceLevel) ? 0 : -1)
-			trace(value, date: date, startLocation: self.location, endLocation: SourceLocation(file: file, line: line, column: column, function: function))
+			trace(value, startLocation: self.location, endLocation: SourceLocation(file: file, line: line, column: column, function: function))
 		}
 		return value
 	}
@@ -196,22 +202,24 @@ public struct Labelable<T> {
 	}
 }
 
-public func x$<T>(v: T, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, bundle: NSBundle? = NSBundle.bundleOnStack()) -> Traceable<T> {
+public func x$<T>(v: T, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, bundle: NSBundle? = NSBundle.bundleOnStackFrame(2)) -> Traceable<T> {
 	return Traceable(value: v, location: SourceLocation(file: file, line: line, column: column, function: function, bundle: bundle))
 }
 
-public func xL<T>(v: T, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, bundle: NSBundle? = NSBundle.bundleOnStack()) -> Labelable<T> {
+public func xL<T>(v: T, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, bundle: NSBundle? = NSBundle.bundleOnStackFrame(2)) -> Labelable<T> {
 	return Labelable(value: v, location: SourceLocation(file: file, line: line, column: column, function: function, bundle: bundle))
 }
 
-public func trace$<T>(v: T, date: NSDate = NSDate(), file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, bundle: NSBundle? = NSBundle.bundleOnStack()) -> T {
-	let location = SourceLocation(file: file, line: line, column: column, function: function, bundle: bundle)
-	trace(v, date: date, startLocation: location, endLocation: location)
-	return v
+func trace<T>(v: T, file: String, line: Int, column: Int, function: String) {
+	let location = SourceLocation(file: file, line: line, column: column, function: function, bundle: NSBundle.bundleOnStackFrame(3))
+	trace(v, startLocation: location, endLocation: location)
 }
 
-public func $<T>(v: T, date: NSDate = NSDate(), file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, bundle: NSBundle? = NSBundle.bundleOnStack()) -> T {
-	return trace$(v, date: date, file: file, line: line, column: column, function: function, bundle: bundle)
+public func $<T>(v: T, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) -> T {
+	if traceEnabled {
+		trace(v, file: file, line: line, column: column, function: function)
+	}
+	return v
 }
 
 prefix operator • {}
@@ -229,16 +237,15 @@ public postfix func »<T>(v: T) -> T {
 	return v
 }
 
-public func L<T>(v: T, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, bundle: NSBundle? = NSBundle.bundleOnStack()) -> String {
+public func L<T>(v: T, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, bundle: NSBundle? = NSBundle.bundleOnStackFrame(2)) -> String {
 	let location = SourceLocation(file: file, line: line, column: column, function: function, bundle: bundle)
 	return labelValue(v, startLocation: location, endLocation: location)
 }
 
-func trace<T>(value: T, date: NSDate, startLocation: SourceLocation, endLocation: SourceLocation) -> T {
-	if traceEnabled && tracingShouldBeEnabledForLocation(startLocation){
-		traceString(description(value), date: date, location: startLocation, lastLocation: endLocation)
+func trace<T>(value: T, startLocation: SourceLocation, endLocation: SourceLocation) {
+	if tracingShouldBeEnabledForLocation(startLocation) {
+		traceString(description(value), date: NSDate(), location: startLocation, lastLocation: endLocation)
 	}
-	return value
 }
 
 func labelValue<T>(value: T, startLocation: SourceLocation, endLocation: SourceLocation) -> String {
