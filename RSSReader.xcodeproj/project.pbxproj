@@ -61,6 +61,10 @@
 		C486B33E1CC07D5A0019F380 /* FBRetainCycleDetector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C486B33D1CC07D5A0019F380 /* FBRetainCycleDetector.framework */; };
 		C486B33F1CC07D5A0019F380 /* FBRetainCycleDetector.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C486B33D1CC07D5A0019F380 /* FBRetainCycleDetector.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C48C5F971A87344000A1EA12 /* ItemsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */; };
+		C492A4CE1CDEE9AB00F8AD5F /* ItemTableViewCell-0.xib in Resources */ = {isa = PBXBuildFile; fileRef = C492A4CA1CDEE9AB00F8AD5F /* ItemTableViewCell-0.xib */; };
+		C492A4CF1CDEE9AB00F8AD5F /* ItemTableViewCell-1.xib in Resources */ = {isa = PBXBuildFile; fileRef = C492A4CB1CDEE9AB00F8AD5F /* ItemTableViewCell-1.xib */; };
+		C492A4D01CDEE9AB00F8AD5F /* ItemTableViewCell-2.xib in Resources */ = {isa = PBXBuildFile; fileRef = C492A4CC1CDEE9AB00F8AD5F /* ItemTableViewCell-2.xib */; };
+		C492A4D11CDEE9AB00F8AD5F /* ItemTableViewCell-3.xib in Resources */ = {isa = PBXBuildFile; fileRef = C492A4CD1CDEE9AB00F8AD5F /* ItemTableViewCell-3.xib */; };
 		C495409B1A575C1900F56168 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495409A1A575C1900F56168 /* UserDefaults.swift */; };
 		C49540A11A57825100F56168 /* ItemsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49540A01A57825100F56168 /* ItemsListViewController.swift */; };
 		C49540A51A57906600F56168 /* ItemSummaryWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */; };
@@ -216,6 +220,10 @@
 		C486B33A1CC07D5A0019F380 /* FBMemoryProfiler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBMemoryProfiler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C486B33D1CC07D5A0019F380 /* FBRetainCycleDetector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBRetainCycleDetector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ItemsPageViewController.swift; path = Swift/ItemsPageViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		C492A4CA1CDEE9AB00F8AD5F /* ItemTableViewCell-0.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "ItemTableViewCell-0.xib"; path = "Resources/ItemTableViewCell-0.xib"; sourceTree = "<group>"; };
+		C492A4CB1CDEE9AB00F8AD5F /* ItemTableViewCell-1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "ItemTableViewCell-1.xib"; path = "Resources/ItemTableViewCell-1.xib"; sourceTree = "<group>"; };
+		C492A4CC1CDEE9AB00F8AD5F /* ItemTableViewCell-2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "ItemTableViewCell-2.xib"; path = "Resources/ItemTableViewCell-2.xib"; sourceTree = "<group>"; };
+		C492A4CD1CDEE9AB00F8AD5F /* ItemTableViewCell-3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "ItemTableViewCell-3.xib"; path = "Resources/ItemTableViewCell-3.xib"; sourceTree = "<group>"; };
 		C495409A1A575C1900F56168 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDefaults.swift; path = Swift/UserDefaults.swift; sourceTree = "<group>"; };
 		C49540A01A57825100F56168 /* ItemsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ItemsListViewController.swift; path = Swift/ItemsListViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ItemSummaryWebViewController.swift; path = Swift/ItemSummaryWebViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -351,6 +359,10 @@
 				C44B2F001AC0C881006A67F1 /* HomeViewController.swift */,
 				C4676E081A6A4D1F00AE8BC2 /* ItemTableViewCell.swift */,
 				C44D91631AAE73830053B9E6 /* ItemTableViewCell.xib */,
+				C492A4CA1CDEE9AB00F8AD5F /* ItemTableViewCell-0.xib */,
+				C492A4CB1CDEE9AB00F8AD5F /* ItemTableViewCell-1.xib */,
+				C492A4CC1CDEE9AB00F8AD5F /* ItemTableViewCell-2.xib */,
+				C492A4CD1CDEE9AB00F8AD5F /* ItemTableViewCell-3.xib */,
 				C49540A01A57825100F56168 /* ItemsListViewController.swift */,
 				C44D916C1AAE773B0053B9E6 /* ItemSimpleTableViewCell.xib */,
 				C46934DE1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift */,
@@ -565,14 +577,18 @@
 			files = (
 				C4CDE1911A5A06A600F16A2E /* ItemSummaryTemplate.html in Resources */,
 				C4CDD3C51A5357B20087DD05 /* Settings.bundle in Resources */,
+				C492A4D11CDEE9AB00F8AD5F /* ItemTableViewCell-3.xib in Resources */,
 				C4EA6B301CB895EF00FCDAA5 /* Localizable.strings in Resources */,
 				C44D91641AAE73830053B9E6 /* ItemTableViewCell.xib in Resources */,
 				C4F1118B1CB84F66005C5A0F /* LaunchScreen.xib in Resources */,
 				C4CDD3AC1A5350B50087DD05 /* Images.xcassets in Resources */,
 				C4F1118E1CB84F6D005C5A0F /* Main.storyboard in Resources */,
 				C49B127D1BF686D500EA5DE5 /* Debug.storyboard in Resources */,
+				C492A4D01CDEE9AB00F8AD5F /* ItemTableViewCell-2.xib in Resources */,
+				C492A4CF1CDEE9AB00F8AD5F /* ItemTableViewCell-1.xib in Resources */,
 				C44D916D1AAE773B0053B9E6 /* ItemSimpleTableViewCell.xib in Resources */,
 				C4A1646A1CB8938C009D8B86 /* InfoPlist.strings in Resources */,
+				C492A4CE1CDEE9AB00F8AD5F /* ItemTableViewCell-0.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
