@@ -81,7 +81,7 @@ public struct SourceLocation {
 	let column: Int
 	let function: String
 	let bundle: NSBundle?
-	public init(file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, bundle: NSBundle? = NSBundle.bundleOnStack()) {
+	public init(file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, bundle: NSBundle? = NSBundle.bundleOnStackFrame(2)) {
 		precondition(file != "")
 		self.fileURL = NSURL(fileURLWithPath: file, isDirectory: false)
 		self.line = line
