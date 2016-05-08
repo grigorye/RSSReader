@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15B42" minimumToolsVersion="Xcode 4.3">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15E65" minimumToolsVersion="Xcode 4.3">
     <entity name="Container" representedClassName=".Container" isAbstract="YES" syncable="YES">
         <attribute name="newestItemDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="sortID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -27,8 +27,8 @@
         <attribute name="itemID" attributeType="String" indexed="YES" elementID="id" syncable="YES"/>
         <attribute name="lastOpenedDate" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="loadDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="summaryData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="titleData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="updatedDate" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Folder" inverseName="items" inverseEntity="Folder" syncable="YES"/>
         <relationship name="subscription" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Subscription" inverseName="items" inverseEntity="Subscription" syncable="YES"/>
@@ -46,7 +46,7 @@
         <element name="Container" positionX="-63" positionY="18" width="128" height="135"/>
         <element name="ContainerViewState" positionX="-54" positionY="81" width="128" height="135"/>
         <element name="Folder" positionX="-54" positionY="72" width="128" height="90"/>
-        <element name="Item" positionX="-63" positionY="36" width="128" height="210"/>
+        <element name="Item" positionX="-63" positionY="36" width="128" height="195"/>
         <element name="Subscription" positionX="-63" positionY="-18" width="128" height="150"/>
     </elements>
 </model>
