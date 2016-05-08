@@ -335,19 +335,30 @@ class ItemsListViewController: UITableViewController {
 	private var selectedItem: Item {
 		return self.itemForIndexPath(self.tableView.indexPathForSelectedRow!)
 	}
+	func itemDateFormatted(itemDate: NSDate) -> String {
+		guard nil != NSClassFromString("NSDateComponentsFormatter") else {
+			return ""
+		}
+		let timeInterval = nowDate.timeIntervalSinceDate(itemDate)
+		return dateComponentsFormatter.stringFromTimeInterval(timeInterval)!
+	}
 	// MARK: -
-	internal func configureCell(rawCell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-		let cell = rawCell as! ItemTableViewCell
+	internal func configureCell(cell: ItemTableViewCell, atIndexPath indexPath: NSIndexPath) {
 		let item = fetchedResultsController.objectAtIndexPath((indexPath)) as! Item
+		defer {
+			cell.itemObjectID = item.objectID
+		}
+		guard cell.itemObjectID != item.objectID else {
+			return
+		}
 		if let titleLabel = cell.titleLabel {
 			titleLabel.text = item.title ?? (item.itemID as NSString).lastPathComponent
 		}
 		if let sourceLabel = cell.sourceLabel {
 			sourceLabel.text = item.subscription.title?.lowercaseString
 		}
-		if let dateLabel = cell.dateLabel {
-			let timeIntervalFormatted = (nil == NSClassFromString("NSDateComponentsFormatter")) ? "x" : dateComponentsFormatter.stringFromDate(item.date, toDate: nowDate) ?? ""
-			dateLabel.text = "\(timeIntervalFormatted)".lowercaseString
+		if let dateLabel = cell.dateLabel where _1 {
+			dateLabel.text = "\(self.itemDateFormatted(item.date))".lowercaseString
 			if _0 {
 			dateLabel.textColor = item.markedAsRead ? nil : UIColor.redColor()
 			}
@@ -392,11 +403,29 @@ class ItemsListViewController: UITableViewController {
 		}()
 		return _0 ? nil : title
 	}
+	var cellHeightCacheController: TableViewDynamicHeightCellCacheController<ItemsListViewController>!
+	var systemLayoutSizeCachingDataSource = SystemLayoutSizeCachingTableViewCellDataSource(layoutSizeDefiningValueForCell: {($0 as! ItemTableViewCell).titleLabel!.text!}, cellShouldBeReusedWithoutLayout: {$0.reuseIdentifier != "Item"})
+	// MARK: -
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let t = disableTrace(); defer { t }
-		let cell = tableView.dequeueReusableCellWithIdentifier("Item", forIndexPath: indexPath)
+		let reuseIdentifier = cellHeightCacheController?.reuseIdentifierForCellForRowAtIndexPath(indexPath) ?? "Item"
+		let cell = tableView.dequeueReusableCellWithIdentifier($(reuseIdentifier), forIndexPath: indexPath) as! ItemTableViewCell
+		if nil != cellHeightCacheController {
+			cell.systemLayoutSizeCachingDataSource = systemLayoutSizeCachingDataSource
+		}
 		self.configureCell(cell, atIndexPath: $(indexPath))
 		return cell
+	}
+	override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+		cellHeightCacheController?.trackHeightForTableView(tableView, displayedCell: cell, atIndexPath: indexPath)
+	}
+	override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+		guard let cellHeightCacheController = cellHeightCacheController else {
+			return UITableViewAutomaticDimension
+		}
+		guard let estimatedHeight = cellHeightCacheController.estimatedRowHeightForItemAtIndexPath(indexPath) else {
+			return UITableViewAutomaticDimension
+		}
+		return estimatedHeight
 	}
 	// MARK: -
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -487,6 +516,14 @@ class ItemsListViewController: UITableViewController {
 	}
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		if defaults.cellHeightCachingEnabled {
+			let reuseIdentifiersForHeightCachingCells = (0...3).map {"Item-\($0)"}
+			self.cellHeightCacheController = TableViewDynamicHeightCellCacheController(dataSource: self, heightAgnosticCellReuseIdentifier: "Item", reuseIdentifiersForHeightCachingCells: reuseIdentifiersForHeightCachingCells)
+			for (i, reuseIdentifier) in reuseIdentifiersForHeightCachingCells.enumerate() {
+				let cellNib = UINib(nibName: "ItemTableViewCell-\(i)", bundle: nil)
+				tableView.registerNib(cellNib, forCellReuseIdentifier: reuseIdentifier)
+			}
+		}
 		blocksDelayedTillViewWillAppearOrStateRestoration += [{ [unowned self] in
 			self.fetchedResultsControllerDelegate = self.regeneratedFetchedResultsControllerDelegate()
 			try! $(self.fetchedResultsController).performFetch()
@@ -526,6 +563,14 @@ class ItemsListViewController: UITableViewController {
 	}
 }
 
+extension ItemsListViewController: TableViewDynamicHeightCellCacheControllerDataSource {
+	func weightForHeightDefiningValueAtIndexPath(indexPath: NSIndexPath) -> Int {
+		let item = fetchedResultsController.objectAtIndexPath(indexPath) as! Item
+		let length = item.title.utf16.count
+		return length
+	}
+}
+
 extension ItemsListViewController {
 	func regeneratedFetchedResultsControllerDelegate() -> TableViewFetchedResultsControllerDelegate {
 		let fetchRequest: NSFetchRequest = {
@@ -553,7 +598,7 @@ extension ItemsListViewController {
 		let itemLoadDateTimeIntervalSinceReferenceDateKeyPath = Item.self••{$0.loadDate.timeIntervalSinceReferenceDate}
 		let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainQueueManagedObjectContext, sectionNameKeyPath: !defaults.itemsAreSortedByLoadDate ? nil : itemLoadDateTimeIntervalSinceReferenceDateKeyPath, cacheName: nil)
 		let configureCell = { [unowned self] (cell: UITableViewCell, indexPath: NSIndexPath) -> Void in
-			self.configureCell(cell, atIndexPath: indexPath)
+			self.configureCell(cell as! ItemTableViewCell, atIndexPath: indexPath)
 		}
 		let $ = TableViewFetchedResultsControllerDelegate(tableView: tableView, fetchedResultsController: fetchedResultsController, updateCell: configureCell)
 		fetchedResultsController.delegate = $
@@ -597,4 +642,3 @@ extension ItemsListViewController {
 		presentMessage(text)
 	}
 }
-
