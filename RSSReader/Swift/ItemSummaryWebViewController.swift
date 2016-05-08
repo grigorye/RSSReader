@@ -47,7 +47,7 @@ class ItemSummaryWebViewController: UIViewController {
 		let htmlString =
 			htmlTemplate
 				.stringByReplacingOccurrencesOfString("$$Summary$$", withString: item.summary!)
-				.stringByReplacingOccurrencesOfString("$$Title$$", withString: item.title!)
+				.stringByReplacingOccurrencesOfString("$$Title$$", withString: item.title)
 		return htmlString
 	}
 	// MARK:-
