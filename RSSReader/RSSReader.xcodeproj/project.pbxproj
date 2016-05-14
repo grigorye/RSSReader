@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C408F1841CE73FAE00DB943F /* GEBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C424B8F31C6FC5CD008AD647 /* GEBase.framework */; };
+		C408F1851CE73FAE00DB943F /* GEBase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C424B8F31C6FC5CD008AD647 /* GEBase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C408F1A41CE7431A00DB943F /* FBAllocationTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C408F1A11CE7431A00DB943F /* FBAllocationTracker.framework */; };
+		C408F1A51CE7431A00DB943F /* FBMemoryProfiler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C408F1A21CE7431A00DB943F /* FBMemoryProfiler.framework */; };
+		C408F1A61CE7431A00DB943F /* FBRetainCycleDetector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C408F1A31CE7431A00DB943F /* FBRetainCycleDetector.framework */; };
 		C40A24FF1A672B2100B5D959 /* TableViewContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A24FE1A672B2100B5D959 /* TableViewContainerCell.swift */; };
 		C40EA7251C6FC8A9002C6D9E /* AFMInfoBanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C40EA71F1C6FC86F002C6D9E /* AFMInfoBanner.framework */; };
 		C40EA7261C6FC8A9002C6D9E /* AFMInfoBanner.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C40EA71F1C6FC86F002C6D9E /* AFMInfoBanner.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -38,8 +43,6 @@
 		C41F05871AD0E3AB00A659EC /* UITabBarController+CVKHiearachySearcher.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = CA2E0441FFA564885EE4A6C9 /* UITabBarController+CVKHiearachySearcher.swift */; };
 		C424B8F11C6FC5C8008AD647 /* RSSReaderData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C424B8F01C6FC5C8008AD647 /* RSSReaderData.framework */; };
 		C424B8F21C6FC5C8008AD647 /* RSSReaderData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C424B8F01C6FC5C8008AD647 /* RSSReaderData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C424B8F41C6FC5CD008AD647 /* GEBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C424B8F31C6FC5CD008AD647 /* GEBase.framework */; };
-		C424B8F51C6FC5CD008AD647 /* GEBase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C424B8F31C6FC5CD008AD647 /* GEBase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C424B8F71C6FC5D2008AD647 /* GEKeyPaths.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C424B8F61C6FC5D2008AD647 /* GEKeyPaths.framework */; };
 		C424B8F81C6FC5D2008AD647 /* GEKeyPaths.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C424B8F61C6FC5D2008AD647 /* GEKeyPaths.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C42802691A5B47EA002474E1 /* FoldersListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42802681A5B47EA002474E1 /* FoldersListTableViewController.swift */; };
@@ -54,12 +57,6 @@
 		C46934DF1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46934DE1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift */; };
 		C46F04141C0A142000A970D7 /* Readability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46F04131C0A142000A970D7 /* Readability.swift */; };
 		C46FA8691AA56018004B5C45 /* UITableView+SnappingHeaderToTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46FA8681AA56018004B5C45 /* UITableView+SnappingHeaderToTop.swift */; };
-		C486B3381CC07D5A0019F380 /* FBAllocationTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C486B3371CC07D5A0019F380 /* FBAllocationTracker.framework */; };
-		C486B3391CC07D5A0019F380 /* FBAllocationTracker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C486B3371CC07D5A0019F380 /* FBAllocationTracker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C486B33B1CC07D5A0019F380 /* FBMemoryProfiler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C486B33A1CC07D5A0019F380 /* FBMemoryProfiler.framework */; };
-		C486B33C1CC07D5A0019F380 /* FBMemoryProfiler.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C486B33A1CC07D5A0019F380 /* FBMemoryProfiler.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C486B33E1CC07D5A0019F380 /* FBRetainCycleDetector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C486B33D1CC07D5A0019F380 /* FBRetainCycleDetector.framework */; };
-		C486B33F1CC07D5A0019F380 /* FBRetainCycleDetector.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C486B33D1CC07D5A0019F380 /* FBRetainCycleDetector.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C48C5F971A87344000A1EA12 /* ItemsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */; };
 		C492A4CE1CDEE9AB00F8AD5F /* ItemTableViewCell-0.xib in Resources */ = {isa = PBXBuildFile; fileRef = C492A4CA1CDEE9AB00F8AD5F /* ItemTableViewCell-0.xib */; };
 		C492A4CF1CDEE9AB00F8AD5F /* ItemTableViewCell-1.xib in Resources */ = {isa = PBXBuildFile; fileRef = C492A4CB1CDEE9AB00F8AD5F /* ItemTableViewCell-1.xib */; };
@@ -162,12 +159,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C486B33F1CC07D5A0019F380 /* FBRetainCycleDetector.framework in Embed Frameworks */,
 				C424B8F21C6FC5C8008AD647 /* RSSReaderData.framework in Embed Frameworks */,
-				C486B33C1CC07D5A0019F380 /* FBMemoryProfiler.framework in Embed Frameworks */,
+				C408F1851CE73FAE00DB943F /* GEBase.framework in Embed Frameworks */,
 				C40EA7261C6FC8A9002C6D9E /* AFMInfoBanner.framework in Embed Frameworks */,
-				C424B8F51C6FC5CD008AD647 /* GEBase.framework in Embed Frameworks */,
-				C486B3391CC07D5A0019F380 /* FBAllocationTracker.framework in Embed Frameworks */,
 				C40EA7311C6FCC07002C6D9E /* CVKHierarchySearcher.framework in Embed Frameworks */,
 				C424B8F81C6FC5D2008AD647 /* GEKeyPaths.framework in Embed Frameworks */,
 			);
@@ -186,8 +180,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C408F1A11CE7431A00DB943F /* FBAllocationTracker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBAllocationTracker.framework; path = "../../../Library/Developer/Xcode/DerivedData/RSSReader-eehjnhhfirrojtathkxfsicskrbn/Build/Products/Debug-iphoneos/FBAllocationTracker/FBAllocationTracker.framework"; sourceTree = "<group>"; };
+		C408F1A21CE7431A00DB943F /* FBMemoryProfiler.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBMemoryProfiler.framework; path = "../../../Library/Developer/Xcode/DerivedData/RSSReader-eehjnhhfirrojtathkxfsicskrbn/Build/Products/Debug-iphoneos/FBMemoryProfiler/FBMemoryProfiler.framework"; sourceTree = "<group>"; };
+		C408F1A31CE7431A00DB943F /* FBRetainCycleDetector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBRetainCycleDetector.framework; path = "../../../Library/Developer/Xcode/DerivedData/RSSReader-eehjnhhfirrojtathkxfsicskrbn/Build/Products/Debug-iphoneos/FBRetainCycleDetector/FBRetainCycleDetector.framework"; sourceTree = "<group>"; };
 		C40A24FE1A672B2100B5D959 /* TableViewContainerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = TableViewContainerCell.swift; path = Swift/TableViewContainerCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		C40C6BFB1A73C6DF00FAFA17 /* RSSReader-app.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "RSSReader-app.xcconfig"; path = "XcodeConfiguration/RSSReader-app.xcconfig"; sourceTree = "<group>"; };
 		C40C6BFD1A73C78F00FAFA17 /* EmbedSourceVersionIntoBundle */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = EmbedSourceVersionIntoBundle; sourceTree = "<group>"; };
 		C40C6BFE1A73C78F00FAFA17 /* IntegrateAppsee */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = IntegrateAppsee; sourceTree = "<group>"; };
 		C40C6C001A73C78F00FAFA17 /* RegenerateSBConstantsSwift */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = RegenerateSBConstantsSwift; sourceTree = "<group>"; };
@@ -208,7 +204,7 @@
 		C44D916C1AAE773B0053B9E6 /* ItemSimpleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ItemSimpleTableViewCell.xib; path = Resources/ItemSimpleTableViewCell.xib; sourceTree = "<group>"; };
 		C44FCA5C1A8AEECA00C91544 /* UploadToFabric */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = UploadToFabric; sourceTree = "<group>"; };
 		C44FCA5F1A8AF9CF00C91544 /* XcodeBotScripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XcodeBotScripts; sourceTree = "<group>"; };
-		C459879E1CDE0AAA00B8E9E4 /* GEShared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = GEShared.xcconfig; path = XcodeConfiguration/GEShared.xcconfig; sourceTree = "<group>"; };
+		C459879E1CDE0AAA00B8E9E4 /* GEShared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = GEShared.xcconfig; path = ../XcodeConfiguration/GEShared.xcconfig; sourceTree = "<group>"; };
 		C45BC3E91A8003F40008A5D1 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = HistoryViewController.swift; path = Swift/HistoryViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C45ECD051A62054C00ADC113 /* SBConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SBConstants.swift; path = Swift/SBConstants.swift; sourceTree = "<group>"; };
 		C4667F0C1CC80A050039C480 /* Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Appearance.swift; path = Swift/Appearance.swift; sourceTree = "<group>"; };
@@ -216,10 +212,8 @@
 		C46934DE1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemsPageViewControllerDataSource.swift; path = Swift/ItemsPageViewControllerDataSource.swift; sourceTree = "<group>"; };
 		C46F04131C0A142000A970D7 /* Readability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Readability.swift; path = Swift/Readability.swift; sourceTree = "<group>"; };
 		C46FA8681AA56018004B5C45 /* UITableView+SnappingHeaderToTop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+SnappingHeaderToTop.swift"; path = "Swift/UITableView+SnappingHeaderToTop.swift"; sourceTree = "<group>"; };
-		C486B3371CC07D5A0019F380 /* FBAllocationTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBAllocationTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C486B33A1CC07D5A0019F380 /* FBMemoryProfiler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBMemoryProfiler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C486B33D1CC07D5A0019F380 /* FBRetainCycleDetector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBRetainCycleDetector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ItemsPageViewController.swift; path = Swift/ItemsPageViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		C4915FE31CE734A40063A734 /* RSSReader-app.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "RSSReader-app.xcconfig"; sourceTree = SOURCE_ROOT; };
 		C492A4CA1CDEE9AB00F8AD5F /* ItemTableViewCell-0.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "ItemTableViewCell-0.xib"; path = "Resources/ItemTableViewCell-0.xib"; sourceTree = "<group>"; };
 		C492A4CB1CDEE9AB00F8AD5F /* ItemTableViewCell-1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "ItemTableViewCell-1.xib"; path = "Resources/ItemTableViewCell-1.xib"; sourceTree = "<group>"; };
 		C492A4CC1CDEE9AB00F8AD5F /* ItemTableViewCell-2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "ItemTableViewCell-2.xib"; path = "Resources/ItemTableViewCell-2.xib"; sourceTree = "<group>"; };
@@ -276,12 +270,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C486B33E1CC07D5A0019F380 /* FBRetainCycleDetector.framework in Frameworks */,
+				C408F1A41CE7431A00DB943F /* FBAllocationTracker.framework in Frameworks */,
+				C408F1A51CE7431A00DB943F /* FBMemoryProfiler.framework in Frameworks */,
+				C408F1A61CE7431A00DB943F /* FBRetainCycleDetector.framework in Frameworks */,
 				C424B8F11C6FC5C8008AD647 /* RSSReaderData.framework in Frameworks */,
-				C486B33B1CC07D5A0019F380 /* FBMemoryProfiler.framework in Frameworks */,
+				C408F1841CE73FAE00DB943F /* GEBase.framework in Frameworks */,
 				C40EA7251C6FC8A9002C6D9E /* AFMInfoBanner.framework in Frameworks */,
-				C424B8F41C6FC5CD008AD647 /* GEBase.framework in Frameworks */,
-				C486B3381CC07D5A0019F380 /* FBAllocationTracker.framework in Frameworks */,
 				C40EA7301C6FCC07002C6D9E /* CVKHierarchySearcher.framework in Frameworks */,
 				C424B8F71C6FC5D2008AD647 /* GEKeyPaths.framework in Frameworks */,
 			);
@@ -307,7 +301,8 @@
 				C40C6C001A73C78F00FAFA17 /* RegenerateSBConstantsSwift */,
 				C4D56A2A1A7C33C0007BE398 /* PackageApplication */,
 			);
-			path = XcodeBuildPhases;
+			name = XcodeBuildPhases;
+			path = ../XcodeBuildPhases;
 			sourceTree = "<group>";
 		};
 		C418B32D1A594705002C0578 /* Generic */ = {
@@ -324,10 +319,10 @@
 		C424B8F91C6FC5E1008AD647 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C408F1A11CE7431A00DB943F /* FBAllocationTracker.framework */,
+				C408F1A21CE7431A00DB943F /* FBMemoryProfiler.framework */,
+				C408F1A31CE7431A00DB943F /* FBRetainCycleDetector.framework */,
 				C459879E1CDE0AAA00B8E9E4 /* GEShared.xcconfig */,
-				C486B33D1CC07D5A0019F380 /* FBRetainCycleDetector.framework */,
-				C486B33A1CC07D5A0019F380 /* FBMemoryProfiler.framework */,
-				C486B3371CC07D5A0019F380 /* FBAllocationTracker.framework */,
 				C40EA72E1C6FCBED002C6D9E /* CVKHierarchySearcher.framework */,
 				C40EA71F1C6FC86F002C6D9E /* AFMInfoBanner.framework */,
 				C424B8F61C6FC5D2008AD647 /* GEKeyPaths.framework */,
@@ -396,7 +391,6 @@
 		C4CDD3941A5350B40087DD05 = {
 			isa = PBXGroup;
 			children = (
-				C40C6BFB1A73C6DF00FAFA17 /* RSSReader-app.xcconfig */,
 				C4CDD39F1A5350B40087DD05 /* RSSReader */,
 				C4CDD3B71A5350B50087DD05 /* RSSReaderTests */,
 				C44FCA5F1A8AF9CF00C91544 /* XcodeBotScripts */,
@@ -420,6 +414,7 @@
 		C4CDD39F1A5350B40087DD05 /* RSSReader */ = {
 			isa = PBXGroup;
 			children = (
+				C4915FE31CE734A40063A734 /* RSSReader-app.xcconfig */,
 				C4EA6B2E1CB895EF00FCDAA5 /* Localizable.strings */,
 				C41707CA1A56076A00AED81C /* Globals.swift */,
 				C495409A1A575C1900F56168 /* UserDefaults.swift */,
@@ -630,7 +625,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -e";
-			shellScript = "\"${SRCROOT:?}\"/XcodeBuildPhases/EmbedSourceVersionIntoBundle\n";
+			shellScript = "\"${SRCROOT:?}\"/../XcodeBuildPhases/EmbedSourceVersionIntoBundle\n";
 			showEnvVarsInLog = 0;
 		};
 		C45ECD071A62070900ADC113 /* Regenerate SBConstants.swift */ = {
@@ -647,7 +642,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -e";
-			shellScript = "\"${SRCROOT:?}\"/XcodeBuildPhases/RegenerateSBConstantsSwift";
+			shellScript = "\"${SRCROOT:?}\"/../XcodeBuildPhases/RegenerateSBConstantsSwift";
 			showEnvVarsInLog = 0;
 		};
 		C4676E7F1A6DB0C900AE8BC2 /* Integrate Fabric */ = {
@@ -911,7 +906,7 @@
 		};
 		C4CDD3BF1A5350B50087DD05 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C40C6BFB1A73C6DF00FAFA17 /* RSSReader-app.xcconfig */;
+			baseConfigurationReference = C4915FE31CE734A40063A734 /* RSSReader-app.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -934,7 +929,7 @@
 		};
 		C4CDD3C01A5350B50087DD05 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C40C6BFB1A73C6DF00FAFA17 /* RSSReader-app.xcconfig */;
+			baseConfigurationReference = C4915FE31CE734A40063A734 /* RSSReader-app.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

@@ -8,7 +8,7 @@
          location = "group:XcodeConfiguration/GEShared.xcconfig">
       </FileRef>
       <FileRef
-         location = "group:RSSReader.xcodeproj">
+         location = "group:RSSReader/RSSReader.xcodeproj">
       </FileRef>
       <FileRef
          location = "group:RSSReaderData/RSSReaderData.xcodeproj">
