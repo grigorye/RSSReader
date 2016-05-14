@@ -46,8 +46,10 @@ public class Item: NSManagedObject {
 	private static var registerCachedPropertiesOnce = dispatch_once_t()
 	override public class func initialize() {
 		super.initialize()
+		if _0 {
 		dispatch_once(&registerCachedPropertiesOnce) {
 			cachePropertyWithName(self, name: "markedAsRead")
+		}
 		}
 	}
 }
