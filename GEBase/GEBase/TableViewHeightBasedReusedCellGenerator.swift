@@ -1,4 +1,3 @@
-
 //
 //  TableViewDynamicHeightCellEstimator.swift
 //  GEBase
@@ -15,14 +14,14 @@ public extension KVOCompliantUserDefaults {
 	@NSManaged public var cellHeightCachingEnabled: Bool
 }
 
-public protocol TableViewHeightBasedReusedCellGeneratorDataSource {
+public protocol TableViewHeightBasedReusedCellGeneratorDataSource : class {
 	func variableHeightForCell(cell: UITableViewCell) -> CGFloat
 	func isReadyForMeasuringHeigthsForData() -> Bool
 	func variableHeightForDataAtIndexPath(indexPath: NSIndexPath) -> CGFloat
 }
 
 public struct TableViewHeightBasedReusedCellGenerator<DataSource: TableViewHeightBasedReusedCellGeneratorDataSource> {
-	public let dataSource: DataSource
+	public weak var dataSource: DataSource!
 	public let heightAgnosticCellReuseIdentifier: String
 	public let reuseIdentifiersForHeightCachingCells: [String]
 	// MARK: -

@@ -9,13 +9,13 @@
 import Foundation
 import UIKit
 
-public protocol FrequencyAndWeightBasedTableRowHeightEstimatorDataSource {
+public protocol FrequencyAndWeightBasedTableRowHeightEstimatorDataSource : class {
 	associatedtype Weight: Hashable
 	func weightForHeightDefiningValueAtIndexPath(indexPath: NSIndexPath) -> Weight
 }
 
 public struct FrequencyAndWeightBasedTableRowHeightEstimator<DataSource: FrequencyAndWeightBasedTableRowHeightEstimatorDataSource> {
-	public let dataSource: DataSource
+	public weak var dataSource: DataSource!
 	var frequencyForHeightsByHeightDefiningValueWeight: [DataSource.Weight : [CGFloat : Int]] = [:]
 	// MARK: -
 	public func estimatedRowHeightForItemAtIndexPath(indexPath: NSIndexPath) -> CGFloat? {
