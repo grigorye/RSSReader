@@ -103,6 +103,10 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "-cellSystemLayoutSizeCachingEnabled YES"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "-cellHeightCachingEnabled YES"
             isEnabled = "YES">
          </CommandLineArgument>
