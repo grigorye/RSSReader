@@ -352,20 +352,34 @@ class ItemsListViewController: UITableViewController {
 			return
 		}
 		if let titleLabel = cell.titleLabel {
-			titleLabel.text = item.title ?? (item.itemID as NSString).lastPathComponent
-		}
-		if let sourceLabel = cell.sourceLabel {
-			sourceLabel.text = item.subscription.title?.lowercaseString
-		}
-		if let dateLabel = cell.dateLabel where _1 {
-			dateLabel.text = "\(self.itemDateFormatted(item.date))".lowercaseString
-			if _0 {
-			dateLabel.textColor = item.markedAsRead ? nil : UIColor.redColor()
+			let text = item.title ?? (item.itemID as NSString).lastPathComponent
+			if text != titleLabel.text {
+				titleLabel.text = text
 			}
 		}
-#if true
+		if let sourceLabel = cell.sourceLabel {
+			let text = item.subscription.title?.lowercaseString
+			if text != sourceLabel.text {
+				sourceLabel.text = text
+			}
+		}
+#if false
+		if let dateLabel = cell.dateLabel {
+			let text = "\(self.itemDateFormatted(item.date))".lowercaseString
+			if dateLabel.text != text {
+				dateLabel.text = text
+				if _0 {
+				dateLabel.textColor = item.markedAsRead ? nil : UIColor.redColor()
+				}
+			}
+		}
+#endif
+#if false
 		if let readMarkLabel = cell.readMarkLabel {
-			readMarkLabel.alpha = item.markedAsRead ? 0 : 1
+			let alpha = CGFloat(item.markedAsRead ? 0 : 1)
+			if readMarkLabel.alpha != alpha {
+				readMarkLabel.alpha = alpha
+			}
 		}
 #endif
 	}
@@ -403,26 +417,31 @@ class ItemsListViewController: UITableViewController {
 		}()
 		return _0 ? nil : title
 	}
-	var cellHeightCacheController: TableViewDynamicHeightCellCacheController<ItemsListViewController>!
-	var systemLayoutSizeCachingDataSource = SystemLayoutSizeCachingTableViewCellDataSource(layoutSizeDefiningValueForCell: {($0 as! ItemTableViewCell).titleLabel!.text!}, cellShouldBeReusedWithoutLayout: {$0.reuseIdentifier != "Item"})
+	var reusedCellGenerator: TableViewHeightBasedReusedCellGenerator<ItemsListViewController>!
+	var systemLayoutSizeCachingDataSource = SystemLayoutSizeCachingTableViewCellDataSource(layoutSizeDefiningValueForCell: {guard $0.reuseIdentifier != "Item" else { return nil }; return $0.reuseIdentifier}, cellShouldBeReusedWithoutLayout: {$0.reuseIdentifier != "Item"})
 	// MARK: -
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let reuseIdentifier = cellHeightCacheController?.reuseIdentifierForCellForRowAtIndexPath(indexPath) ?? "Item"
+		let reuseIdentifier = reusedCellGenerator?.reuseIdentifierForCellForRowAtIndexPath(indexPath) ?? "Item"
 		let cell = tableView.dequeueReusableCellWithIdentifier($(reuseIdentifier), forIndexPath: indexPath) as! ItemTableViewCell
-		if nil != cellHeightCacheController {
+		if nil != reusedCellGenerator {
 			cell.systemLayoutSizeCachingDataSource = systemLayoutSizeCachingDataSource
 		}
+		let dt = disableTrace(); defer { dt }
 		self.configureCell(cell, atIndexPath: $(indexPath))
 		return cell
 	}
 	override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-		cellHeightCacheController?.trackHeightForTableView(tableView, displayedCell: cell, atIndexPath: indexPath)
-	}
-	override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-		guard let cellHeightCacheController = cellHeightCacheController else {
-			return UITableViewAutomaticDimension
+		if nil == heightSampleLabel {
+			let viewWithVariableHeight = viewWithVariableHeightForCell(cell)
+			heightSampleLabel = NSKeyedUnarchiver.unarchiveObjectWithData(NSKeyedArchiver.archivedDataWithRootObject(viewWithVariableHeight)) as! UILabel
 		}
-		guard let estimatedHeight = cellHeightCacheController.estimatedRowHeightForItemAtIndexPath(indexPath) else {
+		let rowHeight = tableView.rectForRowAtIndexPath(indexPath).height
+		reusedCellGenerator?.addRowHeight(rowHeight, forCell: cell, atIndexPath: indexPath)
+		rowHeightEstimator.addRowHeight(rowHeight, forIndexPath: indexPath)
+	}
+	var rowHeightEstimator: FrequencyAndWeightBasedTableRowHeightEstimator<ItemsListViewController>!
+	override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+		guard let estimatedHeight = rowHeightEstimator.estimatedRowHeightForItemAtIndexPath(indexPath) else {
 			return UITableViewAutomaticDimension
 		}
 		return estimatedHeight
@@ -518,12 +537,13 @@ class ItemsListViewController: UITableViewController {
 		super.viewDidLoad()
 		if defaults.cellHeightCachingEnabled {
 			let reuseIdentifiersForHeightCachingCells = (0...3).map {"Item-\($0)"}
-			self.cellHeightCacheController = TableViewDynamicHeightCellCacheController(dataSource: self, heightAgnosticCellReuseIdentifier: "Item", reuseIdentifiersForHeightCachingCells: reuseIdentifiersForHeightCachingCells)
+			self.reusedCellGenerator = TableViewHeightBasedReusedCellGenerator(dataSource: self, heightAgnosticCellReuseIdentifier: "Item", reuseIdentifiersForHeightCachingCells: reuseIdentifiersForHeightCachingCells)
 			for (i, reuseIdentifier) in reuseIdentifiersForHeightCachingCells.enumerate() {
 				let cellNib = UINib(nibName: "ItemTableViewCell-\(i)", bundle: nil)
 				tableView.registerNib(cellNib, forCellReuseIdentifier: reuseIdentifier)
 			}
 		}
+		self.rowHeightEstimator = FrequencyAndWeightBasedTableRowHeightEstimator(dataSource: self)
 		blocksDelayedTillViewWillAppearOrStateRestoration += [{ [unowned self] in
 			self.fetchedResultsControllerDelegate = self.regeneratedFetchedResultsControllerDelegate()
 			try! $(self.fetchedResultsController).performFetch()
@@ -557,17 +577,44 @@ class ItemsListViewController: UITableViewController {
 		self.loadedRightBarButtonItems = self.navigationItem.rightBarButtonItems
 		self.navigationItem.rightBarButtonItems = regeneratedRightBarButtonItems()
 	}
+	var heightSampleLabel: UILabel!
+	var cachedVariableHeights: [NSManagedObjectID : CGFloat] = [:]
 	// MARK: -
 	deinit {
 		$(self)
 	}
 }
 
-extension ItemsListViewController: TableViewDynamicHeightCellCacheControllerDataSource {
+extension ItemsListViewController: FrequencyAndWeightBasedTableRowHeightEstimatorDataSource {
 	func weightForHeightDefiningValueAtIndexPath(indexPath: NSIndexPath) -> Int {
 		let item = fetchedResultsController.objectAtIndexPath(indexPath) as! Item
 		let length = item.title.utf16.count
 		return length
+	}
+}
+
+extension ItemsListViewController: TableViewHeightBasedReusedCellGeneratorDataSource {
+	func viewWithVariableHeightForCell(cell: UITableViewCell) -> UIView {
+		let cell = cell as! ItemTableViewCell
+		return cell.titleLabel
+	}
+	func variableHeightForCell(cell: UITableViewCell) -> CGFloat {
+		return viewWithVariableHeightForCell(cell).bounds.height
+	}
+	func isReadyForMeasuringHeigthsForData() -> Bool {
+		return nil != heightSampleLabel
+	}
+	func variableHeightForDataAtIndexPath(indexPath: NSIndexPath) -> CGFloat {
+		let item = fetchedResultsController.objectAtIndexPath(indexPath) as! Item
+		let cacheKey = item.objectID
+		if let cachedHeight = cachedVariableHeights[cacheKey] {
+			return cachedHeight
+		}
+		heightSampleLabel.text = item.title
+		let size = heightSampleLabel.sizeThatFits(CGSize(width: heightSampleLabel.bounds.width, height: CGFloat.max))
+		let height = size.height
+		cachedVariableHeights[cacheKey] = height
+		return height
 	}
 }
 
@@ -592,6 +639,7 @@ extension ItemsListViewController {
 #if false
 			$.relationshipKeyPathsForPrefetching = [E••{$0.categories}]
 #endif
+			$.returnsObjectsAsFaults = false
 			$.fetchBatchSize = defaults.fetchBatchSize
 			return $
 		}()
