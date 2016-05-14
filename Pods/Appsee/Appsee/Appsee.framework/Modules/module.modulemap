@@ -1,6 +1,8 @@
 framework module Appsee {
-  umbrella header "Appsee.h"
-
-  export *
-  module * { export * }
+    umbrella header "Appsee.h"
+    
+    export *
+    module * { export * }
+    
+    link "z" // zlib auto link
 }

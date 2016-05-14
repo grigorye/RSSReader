@@ -1,6 +1,8 @@
 # FBRetainCycleDetector
-[![Build Status](https://travis-ci.com/facebook/FBRetainCycleDetector.svg?token=V7h8T5yowczhx1y5QxeQ&branch=master)](https://travis-ci.com/facebook/FBRetainCycleDetector)
+[![Build Status](https://travis-ci.org/facebook/FBRetainCycleDetector.svg?branch=master)](https://travis-ci.org/facebook/FBRetainCycleDetector)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![CocoaPods](https://img.shields.io/cocoapods/v/FBRetainCycleDetector.svg?maxAge=2592000)]()
+[![License](https://img.shields.io/cocoapods/l/FBRetainCycleDetector.svg)](https://github.com/facebook/FBRetainCycledetector/blob/master/LICENSE)
 
 An iOS library that finds retain cycles using runtime analysis.
 

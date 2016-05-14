@@ -1,0 +1,6 @@
+framework module Pods_RSSReader {
+  umbrella header "Pods-RSSReader-umbrella.h"
+
+  export *
+  module * { export * }
+}

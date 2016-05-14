@@ -1,8 +1,8 @@
 //
 //  Appsee.h
-//  Appsee v2.1.5 
+//  Appsee v2.2
 //
-//  Copyright (c) 2014 Shift 6 Ltd. All rights reserved.
+//  Copyright (c) 2016 Shift 6 Ltd. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -145,6 +145,9 @@ This method should be usually called right after the start: method.
 @param isPersistent Whether the identifier should be persistent across sessions.
 */
 +(void)set3rdPartyID:(NSString *)externalID forSystem:(NSString *)systemName persistent:(BOOL)isPersistent;
+
+
+
 
 @end
 

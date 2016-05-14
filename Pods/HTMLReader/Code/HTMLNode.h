@@ -2,8 +2,8 @@
 //
 //  Public domain. https://github.com/nolanw/HTMLReader
 
-#import <HTMLReader/HTMLNamespace.h>
-#import <HTMLReader/HTMLSupport.h>
+#import "HTMLNamespace.h"
+#import "HTMLSupport.h"
 @class HTMLDocument;
 @class HTMLElement;
 
@@ -38,6 +38,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Convenience method that returns a mutable proxy for children. The proxy returned by -mutableChildren is much faster than the one obtained by calling -mutableOrderedSetValueForKey: yourself.
 @property (readonly, nonatomic) HTMLMutableOrderedSetOf(HTMLNode *) *mutableChildren;
+
+/**
+    Add a child to the end of the node's set of children, removing it from its current parentNode's set of children. If the child is already in the node's set of children, nothing happens.
+ */
+- (void)addChild:(HTMLNode *)child;
+
+/**
+    Remove a child from the node's set of children. If the child is not in the node's set of children, nothing happens.
+ */
+- (void)removeChild:(HTMLNode *)child;
 
 /**
     The number of nodes that have the node as their parent.
