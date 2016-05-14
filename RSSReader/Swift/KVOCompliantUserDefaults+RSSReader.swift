@@ -18,6 +18,9 @@ extension KVOCompliantUserDefaults {
 	@NSManaged var password: String!
 	@NSManaged var showUnreadOnly: Bool
 	//
+	@NSManaged var showDates: Bool
+	@NSManaged var showUnreadMark: Bool
+	//
 	@NSManaged var traceEnabled: Bool
 	@NSManaged var traceLabelsEnabled: Bool
 	@NSManaged var analyticsEnabled: Bool

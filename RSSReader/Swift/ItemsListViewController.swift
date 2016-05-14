@@ -363,8 +363,7 @@ class ItemsListViewController: UITableViewController {
 				sourceLabel.text = text
 			}
 		}
-#if false
-		if let dateLabel = cell.dateLabel {
+		if let dateLabel = cell.dateLabel where defaults.showDates {
 			let text = "\(self.itemDateFormatted(item.date))".lowercaseString
 			if dateLabel.text != text {
 				dateLabel.text = text
@@ -373,15 +372,12 @@ class ItemsListViewController: UITableViewController {
 				}
 			}
 		}
-#endif
-#if false
-		if let readMarkLabel = cell.readMarkLabel {
+		if let readMarkLabel = cell.readMarkLabel where defaults.showUnreadMark {
 			let alpha = CGFloat(item.markedAsRead ? 0 : 1)
 			if readMarkLabel.alpha != alpha {
 				readMarkLabel.alpha = alpha
 			}
 		}
-#endif
 	}
 	// MARK: -
 	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
