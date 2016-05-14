@@ -45,12 +45,12 @@ public extension KVOCompliantUserDefaults {
 
 public class SystemLayoutSizeCachingTableViewCell: UITableViewCell {
 	var reused = false
-	public var systemLayoutSizeCachingDataSource: SystemLayoutSizeCachingTableViewCellDataSource!
+	public var systemLayoutSizeCachingDataSource: SystemLayoutSizeCachingTableViewCellDataSource?
 	public override func systemLayoutSizeFittingSize(targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
 		guard defaults.cellSystemLayoutSizeCachingEnabled else {
 			return super.systemLayoutSizeFittingSize(targetSize, withHorizontalFittingPriority: horizontalFittingPriority, verticalFittingPriority: verticalFittingPriority)
 		}
-		guard let layoutSizeDefiningValue = systemLayoutSizeCachingDataSource.layoutSizeDefiningValueForCell(self) else {
+		guard let systemLayoutSizeCachingDataSource = systemLayoutSizeCachingDataSource, let layoutSizeDefiningValue = systemLayoutSizeCachingDataSource.layoutSizeDefiningValueForCell(self) else {
 			return super.systemLayoutSizeFittingSize(targetSize, withHorizontalFittingPriority: horizontalFittingPriority, verticalFittingPriority: verticalFittingPriority)
 		}
 		let cacheKey = TargetSizeAndLayoutSizeDefiningValue(targetSize: targetSize, layoutSizeDefiningValue: layoutSizeDefiningValue)
@@ -74,6 +74,10 @@ public class SystemLayoutSizeCachingTableViewCell: UITableViewCell {
 		layoutSubviewsInvocationsCount += 1
 		let dt = disableTrace(); defer { dt }
 		$(layoutSubviewsInvocationsCount)
+		guard let systemLayoutSizeCachingDataSource = systemLayoutSizeCachingDataSource else {
+			super.layoutSubviews()
+			return
+		}
 		guard defaults.cellSystemLayoutSizeCachingEnabled else {
 			super.layoutSubviews()
 			return
