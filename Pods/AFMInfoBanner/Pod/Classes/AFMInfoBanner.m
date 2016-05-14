@@ -33,6 +33,8 @@ static const CGFloat kDefaultHideInterval = 2.0;
 @property (nonatomic) CGFloat additionalTopSpacing;
 @property (nonatomic) NSLayoutConstraint *topSpacingConstraint;
 
+@property (nonatomic) BOOL needsToSetupViews;
+
 @end
 
 @implementation AFMInfoBanner
@@ -55,6 +57,21 @@ static const CGFloat kDefaultHideInterval = 2.0;
     return self;
 }
 
+- (id)initWithTargetView:(UIView *)targetView
+         viewAboveBanner:(UIView *)viewAboveBanner
+    additionalTopSpacing:(CGFloat)additionalTopSpacing
+{
+    self = [self init];
+    if (self) {
+        [self setUp];
+        self.targetView = targetView;
+        self.viewAboveBanner = viewAboveBanner;
+        self.additionalTopSpacing = additionalTopSpacing;
+        self.needsToSetupViews = NO;
+    }
+    return self;
+}
+
 - (void)setStyle:(AFMInfoBannerStyle)style
 {
     _style = style;
@@ -63,14 +80,33 @@ static const CGFloat kDefaultHideInterval = 2.0;
 
 - (void)applyStyle
 {
-    if (self.style == AFMInfoBannerStyleError) {
-        [self setBackgroundColor:self.errorBackgroundColor ?: UIColorFromRGB(kRedBannerColor)];
-        [self.textLabel setTextColor:self.errorTextColor ?: UIColorFromRGB(kDefaultTextColor)];
-    } else if (self.style == AFMInfoBannerStyleInfo) {
-        [self setBackgroundColor:self.infoBackgroundColor ?: UIColorFromRGB(kGreenBannerColor)];
-        [self.textLabel setTextColor:self.infoTextColor ?: UIColorFromRGB(kDefaultTextColor)];
-    }
+    [self applyBackgroundColor];
+    [self applyTextColor];
     [self.textLabel setFont:self.font ?: [UIFont boldSystemFontOfSize:kFontSize]];
+}
+
+- (void)applyBackgroundColor
+{
+    if (self.customBackgroundColor) {
+        [self setBackgroundColor:self.customBackgroundColor];
+    } else {
+        if (self.style == AFMInfoBannerStyleError)
+            [self setBackgroundColor:self.errorBackgroundColor ?: UIColorFromRGB(kRedBannerColor)];
+        else
+            [self setBackgroundColor:self.infoBackgroundColor ?: UIColorFromRGB(kGreenBannerColor)];
+    }
+}
+
+- (void)applyTextColor
+{
+    if (self.customTextColor) {
+        [self.textLabel setTextColor:self.customTextColor];
+    } else {
+        if (self.style == AFMInfoBannerStyleError)
+            [self.textLabel setTextColor:self.errorTextColor ?: UIColorFromRGB(kDefaultTextColor)];
+        else
+            [self.textLabel setTextColor:self.infoTextColor ?: UIColorFromRGB(kDefaultTextColor)];
+    }
 }
 
 - (void)setText:(NSString *)text
@@ -92,6 +128,12 @@ static const CGFloat kDefaultHideInterval = 2.0;
     [self applyStyle];
 }
 
+- (void)setCustomBackgroundColor:(UIColor *)customBackgroundColor
+{
+    _customBackgroundColor = customBackgroundColor;
+    [self applyStyle];
+}
+
 - (void)setErrorTextColor:(UIColor *)errorTextColor
 {
     _errorTextColor = errorTextColor;
@@ -101,6 +143,12 @@ static const CGFloat kDefaultHideInterval = 2.0;
 - (void)setInfoTextColor:(UIColor *)infoTextColor
 {
     _infoTextColor = infoTextColor;
+    [self applyStyle];
+}
+
+- (void)setCustomTextColor:(UIColor *)customTextColor
+{
+    _customTextColor = customTextColor;
     [self applyStyle];
 }
 
@@ -119,6 +167,8 @@ static const CGFloat kDefaultHideInterval = 2.0;
     [self configureLabel];
     [self configureTaps];
     [self addSubview:label];
+    self.topSpacing = 0;
+    self.needsToSetupViews = YES;
 }
 
 - (void)configureLabel
@@ -198,7 +248,9 @@ static const CGFloat kDefaultHideInterval = 2.0;
 - (void)show:(BOOL)animated
 {
     [self applyStyle];
-    [self setupViewsAndFrames];
+
+    if (self.needsToSetupViews)
+        [self setupViewsAndFrames];
 
     // In previously indicated, send subview to be below another view.
     // This is used when showing below navigation bar
@@ -223,7 +275,7 @@ static const CGFloat kDefaultHideInterval = 2.0;
         [self.superview layoutIfNeeded];
 
         // Target top layout after animation is one frame down
-        self.topSpacingConstraint.constant += self.frame.size.height;
+        self.topSpacingConstraint.constant += self.topSpacing + self.frame.size.height;
         [UIView animateWithDuration:kAnimationDuration animations:^{
             [self.superview layoutIfNeeded];
         } completion:^(BOOL finished) {
@@ -231,10 +283,20 @@ static const CGFloat kDefaultHideInterval = 2.0;
                 self.showCompletionBlock();
         }];
     } else {
-        self.topSpacingConstraint.constant += self.frame.size.height;
+        self.topSpacingConstraint.constant += self.topSpacing + self.frame.size.height;
         if (self.showCompletionBlock)
             self.showCompletionBlock();
     }
+}
+
+- (void)showAndHideAfter:(NSTimeInterval)timeout animated:(BOOL)animated
+{
+    [self show:animated];
+
+    dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, timeout * NSEC_PER_SEC);
+    dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+        [self hide:animated];
+    });
 }
 
 - (void)setupViewsAndFrames
@@ -242,11 +304,11 @@ static const CGFloat kDefaultHideInterval = 2.0;
     CVKHierarchySearcher *searcher = [[CVKHierarchySearcher alloc] init];
     UIViewController *topmostVC = [searcher topmostViewController];
     UINavigationBar *possibleBar = [self navigationBarFor:topmostVC];
-    if (possibleBar) {
+    if (possibleBar && !possibleBar.translucent) {
         [self setupViewsForNavigationBar:possibleBar];
     } else {
         UINavigationController *navVC = [searcher topmostNavigationController];
-        if (navVC && navVC.navigationBar.superview) {
+        if (navVC && navVC.navigationBar.superview && !navVC.navigationBar.translucent) {
             [self setupViewsForNavigationBar:navVC.navigationBar];
         } else {
             [self setupViewsToShowInWindow];
@@ -280,13 +342,12 @@ static const CGFloat kDefaultHideInterval = 2.0;
 - (void)hide:(BOOL)animated
 {
     if (animated) {
-        __weak __typeof(self) weakSelf = self;
         [UIView animateWithDuration:kAnimationDuration animations:^{
-            weakSelf.frame = CGRectOffset(weakSelf.frame, 0, -weakSelf.frame.size.height);
+            self.frame = CGRectOffset(self.frame, 0, -self.frame.size.height);
         } completion:^(BOOL finished) {
-            [weakSelf removeFromSuperview];
-            if (weakSelf.hideCompletionBlock)
-                weakSelf.hideCompletionBlock();
+            [self removeFromSuperview];
+            if (self.hideCompletionBlock)
+                self.hideCompletionBlock();
         }];
     } else {
         [self removeFromSuperview];
@@ -305,8 +366,10 @@ static const CGFloat kDefaultHideInterval = 2.0;
                        style:(AFMInfoBannerStyle)style
                 andHideAfter:(NSTimeInterval)timeout
 {
-    AFMInfoBanner *banner = [self showWithText:text style:style animated:YES];
-    [banner performSelector:@selector(hide) withObject:nil afterDelay:timeout];
+    AFMInfoBanner *banner = [[AFMInfoBanner alloc] init];
+    banner.style = style;
+    banner.text = text;
+    [banner showAndHideAfter:timeout animated:YES];
     return banner;
 }
 

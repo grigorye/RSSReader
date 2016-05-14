@@ -1,4 +1,7 @@
 # FBMemoryProfiler
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![CocoaPods](https://img.shields.io/cocoapods/v/FBMemoryProfiler.svg?maxAge=2592000)]()
+
 
 An iOS library providing developer tools for browsing objects in memory over time, using [FBAllocationTracker](https://github.com/facebook/FBAllocationTracker) and [FBRetainCycleDetector](https://github.com/facebook/FBRetainCycleDetector).
 
@@ -31,7 +34,7 @@ To your podspec add:
 
     pod 'FBMemoryProfiler'
 
-You'll be able to use `FBMemoryProfiler` fully only in `Debug` builds. This is controlled by [compilation flag](https://github.com/facebook/FBMemoryProfiler/blob/master/FBMemoryProfiler/FBMemoryProfiler.h#L29) that can be provided to the build to make it work in other configurations.
+You'll be able to use `FBMemoryProfiler` fully only in `Debug` builds. This is controlled by [compilation flag](FBMemoryProfiler/FBMemoryProfiler.h#L29) that can be provided to the build to make it work in other configurations.
 
 ## Usage
 
@@ -69,7 +72,7 @@ _memoryProfiler = [[FBMemoryProfiler alloc] initWithPlugins:@[[IncredibleCacheCl
 
 ## Plugins
 
-Plugins are objects that conform to [FBMemoryProfilerPluggable](FBMemoryProfiler/Options/FBMemoryProfilerPluggable.h) protocol. Example usage: [custom cache cleaners](FBMemoryProfiler/Example/ExampleApp/CacheCleanerPlugin.h), [loggers that log data to server](https://github.com/facebook/FBMemoryProfiler/blob/master/Example/ExampleApp/RetainCycleLoggerPlugin.h).
+Plugins are objects that conform to [FBMemoryProfilerPluggable](FBMemoryProfiler/Options/FBMemoryProfilerPluggable.h) protocol. Example usage: [custom cache cleaners](Example/ExampleApp/CacheCleanerPlugin.h), [loggers that log data to server](Example/ExampleApp/RetainCycleLoggerPlugin.h).
 
 ## Contributing
-See the [CONTRIBUTING](CONTRIBUTING) file for how to help out.
+See the [CONTRIBUTING](CONTRIBUTING.md) file for how to help out.

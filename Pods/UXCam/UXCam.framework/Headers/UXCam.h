@@ -1,9 +1,9 @@
 //
 //  UXCam.h
 //
-//  Copyright (c) 2013-2015 UXCam Ltd. All rights reserved.
+//  Copyright (c) 2013-2016 UXCam Ltd. All rights reserved.
 //
-//  UXCam SDK VERSION: 2.4.2
+//  UXCam SDK VERSION: 2.5.3
 //
 
 #import <Foundation/Foundation.h>
@@ -144,6 +144,15 @@ FOUNDATION_EXPORT const unsigned char UXCamVersionString[];
 */
 + (void) addTag:(NSString*)tag;
 
+/**
+	Insert a general tag, with associated properties, into the timeline - stores the tag with the timestamp when it was added.
+ 
+	@param tag A tag to attach to the session recording at the current time
+	@param properties An NSDictionary of properties to associate with this tag 
+ 
+	@note Only NSNumber and NSString property types are supported to a maxiumum count of 100 and maximum size per entry of 1KiB
+ */
++ (void) addTag:(NSString*)tag withProperties:(NSDictionary*)properties;
 
 /**
 	You can mark a session specifically if certain condition are met making them a good user for further testing.
