@@ -30,10 +30,10 @@ func == (lhs: TargetSizeAndLayoutSizeDefiningValue, rhs: TargetSizeAndLayoutSize
 }
 
 public class SystemLayoutSizeCachingTableViewCellDataSource {
-	let layoutSizeDefiningValueForCell: (UITableViewCell) -> NSObject
+	let layoutSizeDefiningValueForCell: (UITableViewCell) -> NSObject?
 	let cellShouldBeReusedWithoutLayout: (UITableViewCell) -> Bool
 	var cachedSystemLayoutSizes: [TargetSizeAndLayoutSizeDefiningValue : CGSize] = [:]
-	public init(layoutSizeDefiningValueForCell: (UITableViewCell) -> NSObject, cellShouldBeReusedWithoutLayout: (UITableViewCell) -> Bool) {
+	public init(layoutSizeDefiningValueForCell: (UITableViewCell) -> NSObject?, cellShouldBeReusedWithoutLayout: (UITableViewCell) -> Bool) {
 		self.layoutSizeDefiningValueForCell = layoutSizeDefiningValueForCell
 		self.cellShouldBeReusedWithoutLayout = cellShouldBeReusedWithoutLayout
 	}
@@ -50,7 +50,10 @@ public class SystemLayoutSizeCachingTableViewCell: UITableViewCell {
 		guard defaults.cellSystemLayoutSizeCachingEnabled else {
 			return super.systemLayoutSizeFittingSize(targetSize, withHorizontalFittingPriority: horizontalFittingPriority, verticalFittingPriority: verticalFittingPriority)
 		}
-		let cacheKey = TargetSizeAndLayoutSizeDefiningValue(targetSize: targetSize, layoutSizeDefiningValue: systemLayoutSizeCachingDataSource.layoutSizeDefiningValueForCell(self))
+		guard let layoutSizeDefiningValue = systemLayoutSizeCachingDataSource.layoutSizeDefiningValueForCell(self) else {
+			return super.systemLayoutSizeFittingSize(targetSize, withHorizontalFittingPriority: horizontalFittingPriority, verticalFittingPriority: verticalFittingPriority)
+		}
+		let cacheKey = TargetSizeAndLayoutSizeDefiningValue(targetSize: targetSize, layoutSizeDefiningValue: layoutSizeDefiningValue)
 		if let cachedSystemLayoutSize = systemLayoutSizeCachingDataSource.cachedSystemLayoutSizes[cacheKey] {
 			return cachedSystemLayoutSize
 		}
@@ -66,15 +69,27 @@ public class SystemLayoutSizeCachingTableViewCell: UITableViewCell {
 		super.prepareForReuse()
 		reused = true
 	}
+	var layoutSubviewsInvocationsCount = 0
 	public override func layoutSubviews() {
+		layoutSubviewsInvocationsCount += 1
+		let dt = disableTrace(); defer { dt }
+		$(layoutSubviewsInvocationsCount)
 		guard defaults.cellSystemLayoutSizeCachingEnabled else {
 			super.layoutSubviews()
 			return
 		}
-		guard _0 || !reused && systemLayoutSizeCachingDataSource.cellShouldBeReusedWithoutLayout(self) else {
-			self.translatesAutoresizingMaskIntoConstraints = true
+		guard reused && systemLayoutSizeCachingDataSource.cellShouldBeReusedWithoutLayout(self) else {
+			super.layoutSubviews()
 			return
 		}
-		super.layoutSubviews()
+		self.translatesAutoresizingMaskIntoConstraints = true
+	}
+	
+	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+		super.init(style: style, reuseIdentifier: $(reuseIdentifier))
+	}
+	required public override init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+		$(reuseIdentifier!)
 	}
 }
