@@ -23,7 +23,9 @@
 		C424B8DE1C6FC322008AD647 /* GEKeyPaths.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C424B8DD1C6FC322008AD647 /* GEKeyPaths.framework */; };
 		C4667F0B1CC71F450039C480 /* UIFontExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667F0A1CC71F450039C480 /* UIFontExtensions.swift */; };
 		C46C93F61C6FF77E007E4302 /* DefaultLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46C93F51C6FF77E007E4302 /* DefaultLogger.swift */; };
-		C492A4D31CDFB2B900F8AD5F /* TableViewDynamicHeightCellCacheController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492A4D21CDFB2B900F8AD5F /* TableViewDynamicHeightCellCacheController.swift */; };
+		C48D5DE31CE54BDC0078023A /* TableViewHeightBasedReusedCellGenerator.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C492A4D21CDFB2B900F8AD5F /* TableViewHeightBasedReusedCellGenerator.swift */; };
+		C48D5DE41CE54BDC0078023A /* SystemLayoutSizeCachingTableViewCell.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C492A4D41CDFB78700F8AD5F /* SystemLayoutSizeCachingTableViewCell.swift */; };
+		C492A4D31CDFB2B900F8AD5F /* TableViewHeightBasedReusedCellGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492A4D21CDFB2B900F8AD5F /* TableViewHeightBasedReusedCellGenerator.swift */; };
 		C492A4D51CDFB78700F8AD5F /* SystemLayoutSizeCachingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492A4D41CDFB78700F8AD5F /* SystemLayoutSizeCachingTableViewCell.swift */; };
 		C495D8991C02592100A7F7D5 /* GenericExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495D8981C02592100A7F7D5 /* GenericExtensionsTests.swift */; };
 		C495D89B1C025A0800A7F7D5 /* GenericExtensionsTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C495D8981C02592100A7F7D5 /* GenericExtensionsTests.swift */; };
@@ -36,6 +38,7 @@
 		C4CB38861CDBA78D00562665 /* SourceLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CB38851CDBA78D00562665 /* SourceLocation.swift */; };
 		C4D6F41A1C73CCC000A7E2ED /* Tracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D6F4191C73CCC000A7E2ED /* Tracing.swift */; };
 		C4D6F41C1C73CD3500A7E2ED /* CoreDataCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D6F41B1C73CD3500A7E2ED /* CoreDataCaching.swift */; };
+		C4DDBC841CE693690000588F /* FrequencyAndWeightBasedTableRowHeightEstimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DDBC831CE693690000588F /* FrequencyAndWeightBasedTableRowHeightEstimator.swift */; };
 		C4EC2F8A1C7534030028C729 /* CoreDataCaching.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4D6F41B1C73CD3500A7E2ED /* CoreDataCaching.swift */; };
 		C4FEBAFD1BF9196E00A5709B /* Primitives.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41818A71B6A673F00872EB3 /* Primitives.swift */; };
 		C4FEBAFE1BF9196E00A5709B /* Globals.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41818A81B6A673F00872EB3 /* Globals.swift */; };
@@ -98,6 +101,8 @@
 				C4EC2F8A1C7534030028C729 /* CoreDataCaching.swift in Embed Sources */,
 				C4FEBB0B1BF9196E00A5709B /* ProgressEnabledURLSessionTaskGenerator.swift in Embed Sources */,
 				C416F00E1CD1FF820006F6A2 /* DefaultsInSettingsPlist.swift in Embed Sources */,
+				C48D5DE31CE54BDC0078023A /* TableViewHeightBasedReusedCellGenerator.swift in Embed Sources */,
+				C48D5DE41CE54BDC0078023A /* SystemLayoutSizeCachingTableViewCell.swift in Embed Sources */,
 			);
 			name = "Embed Sources";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -125,7 +130,7 @@
 		C459879B1CDE087200B8E9E4 /* GEShared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = GEShared.xcconfig; path = ../XcodeConfiguration/GEShared.xcconfig; sourceTree = "<group>"; };
 		C4667F0A1CC71F450039C480 /* UIFontExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtensions.swift; sourceTree = "<group>"; };
 		C46C93F51C6FF77E007E4302 /* DefaultLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultLogger.swift; sourceTree = "<group>"; };
-		C492A4D21CDFB2B900F8AD5F /* TableViewDynamicHeightCellCacheController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewDynamicHeightCellCacheController.swift; sourceTree = "<group>"; };
+		C492A4D21CDFB2B900F8AD5F /* TableViewHeightBasedReusedCellGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewHeightBasedReusedCellGenerator.swift; sourceTree = "<group>"; };
 		C492A4D41CDFB78700F8AD5F /* SystemLayoutSizeCachingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemLayoutSizeCachingTableViewCell.swift; sourceTree = "<group>"; };
 		C495D8981C02592100A7F7D5 /* GenericExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericExtensionsTests.swift; sourceTree = "<group>"; };
 		C4A6B8C51CB03B8A0053D44E /* PropertyCaching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyCaching.swift; sourceTree = "<group>"; };
@@ -134,6 +139,7 @@
 		C4CB38851CDBA78D00562665 /* SourceLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceLocation.swift; sourceTree = "<group>"; };
 		C4D6F4191C73CCC000A7E2ED /* Tracing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tracing.swift; sourceTree = "<group>"; };
 		C4D6F41B1C73CD3500A7E2ED /* CoreDataCaching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataCaching.swift; sourceTree = "<group>"; };
+		C4DDBC831CE693690000588F /* FrequencyAndWeightBasedTableRowHeightEstimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrequencyAndWeightBasedTableRowHeightEstimator.swift; sourceTree = "<group>"; };
 		C4FEBB191BF91E6600A5709B /* KVOCompliantUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOCompliantUserDefaults.swift; sourceTree = "<group>"; };
 		C4FEBB1C1BF960A300A5709B /* NSBundleExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSBundleExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -201,7 +207,8 @@
 				C4FEBB191BF91E6600A5709B /* KVOCompliantUserDefaults.swift */,
 				C418188F1B6A66AE00872EB3 /* ProgressEnabledURLSessionTaskGenerator.swift */,
 				C416F00C1CD1E8A90006F6A2 /* DefaultsInSettingsPlist.swift */,
-				C492A4D21CDFB2B900F8AD5F /* TableViewDynamicHeightCellCacheController.swift */,
+				C492A4D21CDFB2B900F8AD5F /* TableViewHeightBasedReusedCellGenerator.swift */,
+				C4DDBC831CE693690000588F /* FrequencyAndWeightBasedTableRowHeightEstimator.swift */,
 				C492A4D41CDFB78700F8AD5F /* SystemLayoutSizeCachingTableViewCell.swift */,
 				C40EA7281C6FCA2B002C6D9E /* Bridging-Header.h */,
 				C41818651B6A65B100872EB3 /* Info.plist */,
@@ -341,7 +348,7 @@
 				C418189F1B6A66AE00872EB3 /* KVOBinding.swift in Sources */,
 				C41818AA1B6A673F00872EB3 /* Primitives.swift in Sources */,
 				C41818AB1B6A673F00872EB3 /* Globals.swift in Sources */,
-				C492A4D31CDFB2B900F8AD5F /* TableViewDynamicHeightCellCacheController.swift in Sources */,
+				C492A4D31CDFB2B900F8AD5F /* TableViewHeightBasedReusedCellGenerator.swift in Sources */,
 				C41818941B6A66AE00872EB3 /* GenericURLSessionExtensions.swift in Sources */,
 				C4FEBB1D1BF960A300A5709B /* NSBundleExtensions.swift in Sources */,
 				C41818A51B6A66AE00872EB3 /* ProgressEnabledURLSessionTaskGenerator.swift in Sources */,
@@ -349,6 +356,7 @@
 				C41818921B6A66AE00872EB3 /* GenericCoreDataExtensions.swift in Sources */,
 				C4D6F41C1C73CD3500A7E2ED /* CoreDataCaching.swift in Sources */,
 				C4D6F41A1C73CCC000A7E2ED /* Tracing.swift in Sources */,
+				C4DDBC841CE693690000588F /* FrequencyAndWeightBasedTableRowHeightEstimator.swift in Sources */,
 				C41818B11B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift in Sources */,
 				C492A4D51CDFB78700F8AD5F /* SystemLayoutSizeCachingTableViewCell.swift in Sources */,
 				C4A6B8C81CB082F70053D44E /* AssociatedObjects.swift in Sources */,
