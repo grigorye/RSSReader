@@ -15,7 +15,7 @@ public protocol FrequencyAndWeightBasedTableRowHeightEstimatorDataSource : class
 }
 
 public struct FrequencyAndWeightBasedTableRowHeightEstimator<DataSource: FrequencyAndWeightBasedTableRowHeightEstimatorDataSource> {
-	public weak var dataSource: DataSource!
+	public unowned let dataSource: DataSource
 	var frequencyForHeightsByHeightDefiningValueWeight: [DataSource.Weight : [CGFloat : Int]] = [:]
 	// MARK: -
 	public func estimatedRowHeightForItemAtIndexPath(indexPath: NSIndexPath) -> CGFloat? {

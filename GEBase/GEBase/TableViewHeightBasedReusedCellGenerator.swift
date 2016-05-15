@@ -21,7 +21,7 @@ public protocol TableViewHeightBasedReusedCellGeneratorDataSource : class {
 }
 
 public struct TableViewHeightBasedReusedCellGenerator<DataSource: TableViewHeightBasedReusedCellGeneratorDataSource> {
-	public weak var dataSource: DataSource!
+	public unowned let dataSource: DataSource
 	public let heightAgnosticCellReuseIdentifier: String
 	public let reuseIdentifiersForHeightCachingCells: [String]
 	// MARK: -
