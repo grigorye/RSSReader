@@ -42,7 +42,7 @@ let loadAgoDateComponentsFormatter: NSDateComponentsFormatter = {
 	$.allowsFractionalUnits = true
 	$.maximumUnitCount = 1
 	$.allowedUnits = [.Minute, .Year, .Month, .WeekOfMonth, .Day, .Hour]
-	return $;
+	return $
 }()
 private let loadAgoLongDateComponentsFormatter: NSDateComponentsFormatter = {
 	let $ = NSDateComponentsFormatter()
@@ -51,7 +51,7 @@ private let loadAgoLongDateComponentsFormatter: NSDateComponentsFormatter = {
 	$.maximumUnitCount = 1
 	$.includesApproximationPhrase = true
 	$.allowedUnits = [.Minute, .Year, .Month, .WeekOfMonth, .Day, .Hour]
-	return $;
+	return $
 }()
 
 class ItemsListViewController: UITableViewController {
@@ -412,6 +412,7 @@ class ItemsListViewController: UITableViewController {
 		return _0 ? nil : title
 	}
 	var reusedCellGenerator: TableViewHeightBasedReusedCellGenerator<ItemsListViewController>!
+	var rowHeightEstimator: FrequencyAndWeightBasedTableRowHeightEstimator<ItemsListViewController>!
 	var systemLayoutSizeCachingDataSource = SystemLayoutSizeCachingTableViewCellDataSource(layoutSizeDefiningValueForCell: {guard $0.reuseIdentifier != "Item" else { return nil }; return $0.reuseIdentifier}, cellShouldBeReusedWithoutLayout: {$0.reuseIdentifier != "Item"})
 	// MARK: -
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -431,10 +432,12 @@ class ItemsListViewController: UITableViewController {
 		}
 		let rowHeight = tableView.rectForRowAtIndexPath(indexPath).height
 		reusedCellGenerator?.addRowHeight(rowHeight, forCell: cell, atIndexPath: indexPath)
-		rowHeightEstimator.addRowHeight(rowHeight, forIndexPath: indexPath)
+		rowHeightEstimator?.addRowHeight(rowHeight, forIndexPath: indexPath)
 	}
-	var rowHeightEstimator: FrequencyAndWeightBasedTableRowHeightEstimator<ItemsListViewController>!
 	override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+		guard let rowHeightEstimator = rowHeightEstimator else {
+			return UITableViewAutomaticDimension
+		}
 		guard let estimatedHeight = rowHeightEstimator.estimatedRowHeightForItemAtIndexPath(indexPath) else {
 			return UITableViewAutomaticDimension
 		}
@@ -542,23 +545,31 @@ class ItemsListViewController: UITableViewController {
 			}
 		}
 	}
-	// MARK: -
-	override func viewDidLoad() {
-		super.viewDidLoad()
+	func configureReusableCells() {
 		if defaults.cellHeightCachingEnabled {
 			let reuseIdentifiersForHeightCachingCells = (0...3).map {"Item-\($0)"}
-			reusedCellGenerator = TableViewHeightBasedReusedCellGenerator(dataSource: self, heightAgnosticCellReuseIdentifier: "Item", reuseIdentifiersForHeightCachingCells: reuseIdentifiersForHeightCachingCells)
 			for (i, reuseIdentifier) in reuseIdentifiersForHeightCachingCells.enumerate() {
 				let cellNib = UINib(nibName: "ItemTableViewCell-\(i)", bundle: nil)
 				tableView.registerNib(cellNib, forCellReuseIdentifier: reuseIdentifier)
 			}
+			reusedCellGenerator = TableViewHeightBasedReusedCellGenerator(dataSource: self, heightAgnosticCellReuseIdentifier: "Item", reuseIdentifiersForHeightCachingCells: reuseIdentifiersForHeightCachingCells)
 		}
-		rowHeightEstimator = FrequencyAndWeightBasedTableRowHeightEstimator(dataSource: self)
+		let cellNib = UINib(nibName: "ItemTableViewCell", bundle: nil)
+		tableView.registerNib(cellNib, forCellReuseIdentifier: "Item")
+	}
+	func configureRowHeightEstimator() {
+		if defaults.frequencyAndWeightBasedTableRowHeightEstimatorEnabled {
+			rowHeightEstimator = FrequencyAndWeightBasedTableRowHeightEstimator(dataSource: self)
+		}
+	}
+	// MARK: -
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		configureRowHeightEstimator()
+		configureReusableCells()
 		blocksDelayedTillViewWillAppearOrStateRestoration += [{ [unowned self] in
 			self.configureFetchedResultsController()
 		}]
-		let cellNib = UINib(nibName: "ItemTableViewCell", bundle: nil)
-		tableView.registerNib(cellNib, forCellReuseIdentifier: "Item")
 		blocksDelayedTillViewWillAppear += [{ [unowned self] in
 			self.configureTitle()
 		}]
