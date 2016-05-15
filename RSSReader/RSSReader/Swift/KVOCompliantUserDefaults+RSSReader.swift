@@ -20,6 +20,8 @@ extension KVOCompliantUserDefaults {
 	//
 	@NSManaged var showDates: Bool
 	@NSManaged var showUnreadMark: Bool
+	@NSManaged var frequencyAndWeightBasedTableRowHeightEstimatorEnabled: Bool
+	@NSManaged var cellHeightCachingEnabled: Bool
 	//
 	@NSManaged var traceEnabled: Bool
 	@NSManaged var traceLabelsEnabled: Bool
