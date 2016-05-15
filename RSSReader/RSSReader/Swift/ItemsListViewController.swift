@@ -184,7 +184,7 @@ class ItemsListViewController: UITableViewController {
 		else {
 			assert(loadDate == ongoingLoadDate)
 		}
-		if let lastItemInResultAsync = (items).last where _0 {
+		if let lastItemInResultAsync = (items).last {
 			let managedObjectContext = fetchedResultsController.managedObjectContext
 			let lastItemInResult = managedObjectContext.sameObject(lastItemInResultAsync)
 			assert(containerViewPredicate.evaluateWithObject(lastItemInResult))
