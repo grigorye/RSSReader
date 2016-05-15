@@ -8,11 +8,6 @@
 
 import Foundation
 import UIKit
-import CoreData
-
-public extension KVOCompliantUserDefaults {
-	@NSManaged public var cellHeightCachingEnabled: Bool
-}
 
 public protocol TableViewHeightBasedReusedCellGeneratorDataSource : class {
 	func variableHeightForCell(cell: UITableViewCell) -> CGFloat
