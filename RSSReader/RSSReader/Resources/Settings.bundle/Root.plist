@@ -190,26 +190,6 @@
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
-			<false/>
-			<key>Key</key>
-			<string>cellHeightCachingEnabled</string>
-			<key>Title</key>
-			<string>Cell Height Caching</string>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-		</dict>
-		<dict>
-			<key>DefaultValue</key>
-			<false/>
-			<key>Key</key>
-			<string>cellSystemLayoutSizeCachingEnabled</string>
-			<key>Title</key>
-			<string>Cell Layout Size Caching</string>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-		</dict>
-		<dict>
-			<key>DefaultValue</key>
 			<true/>
 			<key>Key</key>
 			<string>batchSavingEnabled</string>
@@ -245,6 +225,42 @@
 			<string>itemsAreSortedByLoadDate</string>
 			<key>Title</key>
 			<string>Sort Items by Load Date</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>Table Layout Optimization</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>Key</key>
+			<string>frequencyAndWeightBasedTableRowHeightEstimatorEnabled</string>
+			<key>Title</key>
+			<string>Row Height Estimation</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>Key</key>
+			<string>cellHeightCachingEnabled</string>
+			<key>Title</key>
+			<string>Cell Height Caching</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>Key</key>
+			<string>cellSystemLayoutSizeCachingEnabled</string>
+			<key>Title</key>
+			<string>Cell Layout Size Caching</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
