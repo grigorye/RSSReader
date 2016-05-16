@@ -392,7 +392,7 @@
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="il3-qa-apI"/>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Subscsriptions" id="PfS-Px-hbx">
+                    <navigationItem key="navigationItem" id="PfS-Px-hbx">
                         <barButtonItem key="backBarButtonItem" title=" " id="pG2-fU-3i2"/>
                         <rightBarButtonItems>
                             <barButtonItem title="Combined" id="ZU6-a2-UhT">
@@ -677,11 +677,11 @@
         <image name="Unstar" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="8Da-vm-piJ"/>
+        <segue reference="cdM-xC-qIu"/>
         <segue reference="FhY-D2-pL1"/>
-        <segue reference="51W-HV-eUd"/>
         <segue reference="IQP-ep-vtz"/>
         <segue reference="EUy-Yi-gV8"/>
-        <segue reference="8Da-vm-piJ"/>
         <segue reference="w0U-iJ-oAk"/>
     </inferredMetricsTieBreakers>
 </document>
