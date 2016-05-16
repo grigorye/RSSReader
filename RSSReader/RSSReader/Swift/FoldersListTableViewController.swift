@@ -12,8 +12,16 @@ import GEKeyPaths
 import UIKit
 import CoreData
 
-class FoldersListTableViewController: UITableViewController, UIDataSourceModelAssociation {
+class FoldersListTableViewController: ContainerTableViewController, UIDataSourceModelAssociation {
 	dynamic var rootFolder: Folder?
+	override var container: Container? {
+		set {
+			fatalError()
+		}
+		get {
+			return rootFolder
+		}
+	}
 	var childContainers: [Container]!
 	dynamic let defaults = KVOCompliantUserDefaults()
 	//
@@ -168,6 +176,9 @@ class FoldersListTableViewController: UITableViewController, UIDataSourceModelAs
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return childContainers.count
 	}
+	override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+		return UITableViewAutomaticDimension
+	}
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let childContainer = childContainers[indexPath.row]
 		switch childContainer {
@@ -238,14 +249,6 @@ class FoldersListTableViewController: UITableViewController, UIDataSourceModelAs
 	override func viewDidDisappear(animated: Bool) {
 		super.viewDidDisappear(animated)
 		viewDidDisappearRetainedObjects = []
-	}
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		blocksScheduledForViewWillAppear += [{
-			if nil != self.rootFolder?.parentFolder {
-				self.title = self.rootFolder!.visibleTitle
-			}
-		}]
 	}
 	// MARK: -
 	deinit {
