@@ -14,6 +14,7 @@ import CoreData
 public class Item: NSManagedObject {
     @NSManaged public var itemID: String
 	@NSManaged public var date: NSDate
+	@NSManaged public var author: String
 	@NSManaged public var updatedDate: NSDate?
 	@NSManaged public var loadDate: NSDate
 	@NSManaged public var lastOpenedDate: NSDate?
