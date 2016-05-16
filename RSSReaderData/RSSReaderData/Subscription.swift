@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 public class Subscription: Container, Titled {
-	@NSManaged public var title: String?
+	@NSManaged public var title: String
     @NSManaged public var htmlURL: NSURL?
     @NSManaged public var iconURL: NSURL?
     @NSManaged public var url: NSURL?
