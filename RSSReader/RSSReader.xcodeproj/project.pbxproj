@@ -84,6 +84,9 @@
 		C4CDE1911A5A06A600F16A2E /* ItemSummaryTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */; };
 		C4CE35441CB8988F001712C8 /* RSSReaderTests-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4CE35461CB8988F001712C8 /* RSSReaderTests-InfoPlist.strings */; };
 		C4CE35491CB89890001712C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4CE354B1CB89890001712C8 /* InfoPlist.strings */; };
+		C4EA5C361CE91E8600E395FE /* ContainerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5C351CE91E8600E395FE /* ContainerTableViewController.swift */; };
+		C4EA5C381CE929D300E395FE /* ContainerTableViewSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4EA5C371CE929D300E395FE /* ContainerTableViewSectionHeader.xib */; };
+		C4EA5C3C1CE930B200E395FE /* ContainerTableViewSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5C3B1CE930B200E395FE /* ContainerTableViewSectionHeaderView.swift */; };
 		C4EA6B301CB895EF00FCDAA5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4EA6B2E1CB895EF00FCDAA5 /* Localizable.strings */; };
 		C4EF270E1A8D353C000EBE63 /* UserMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EF270D1A8D353C000EBE63 /* UserMessages.swift */; };
 		C4F1118B1CB84F66005C5A0F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4F1118D1CB84F66005C5A0F /* LaunchScreen.xib */; };
@@ -249,6 +252,9 @@
 		C4CE354C1CB89C0E001712C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C4CE354D1CB89C28001712C8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C4D56A2A1A7C33C0007BE398 /* PackageApplication */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = PackageApplication; sourceTree = "<group>"; };
+		C4EA5C351CE91E8600E395FE /* ContainerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerTableViewController.swift; path = Swift/ContainerTableViewController.swift; sourceTree = "<group>"; };
+		C4EA5C371CE929D300E395FE /* ContainerTableViewSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ContainerTableViewSectionHeader.xib; path = Resources/ContainerTableViewSectionHeader.xib; sourceTree = "<group>"; };
+		C4EA5C3B1CE930B200E395FE /* ContainerTableViewSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerTableViewSectionHeaderView.swift; path = Swift/ContainerTableViewSectionHeaderView.swift; sourceTree = "<group>"; };
 		C4EA6B2F1CB895EF00FCDAA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Localizable/Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C4EA6B311CB895F500FCDAA5 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = Localizable/ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C4EF270D1A8D353C000EBE63 /* UserMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserMessages.swift; path = Swift/UserMessages.swift; sourceTree = "<group>"; };
@@ -365,6 +371,9 @@
 				C492A4CC1CDEE9AB00F8AD5F /* ItemTableViewCell-2.xib */,
 				C492A4CD1CDEE9AB00F8AD5F /* ItemTableViewCell-3.xib */,
 				C49540A01A57825100F56168 /* ItemsListViewController.swift */,
+				C4EA5C351CE91E8600E395FE /* ContainerTableViewController.swift */,
+				C4EA5C371CE929D300E395FE /* ContainerTableViewSectionHeader.xib */,
+				C4EA5C3B1CE930B200E395FE /* ContainerTableViewSectionHeaderView.swift */,
 				C44D916C1AAE773B0053B9E6 /* ItemSimpleTableViewCell.xib */,
 				C46934DE1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift */,
 				C4AD2ADA1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift */,
@@ -590,6 +599,7 @@
 				C44D916D1AAE773B0053B9E6 /* ItemSimpleTableViewCell.xib in Resources */,
 				C4A1646A1CB8938C009D8B86 /* InfoPlist.strings in Resources */,
 				C492A4CE1CDEE9AB00F8AD5F /* ItemTableViewCell-0.xib in Resources */,
+				C4EA5C381CE929D300E395FE /* ContainerTableViewSectionHeader.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -684,6 +694,8 @@
 				C46F04141C0A142000A970D7 /* Readability.swift in Sources */,
 				C4C780161A7DF1EC009CB5FC /* ApplicationActivities.swift in Sources */,
 				C49540A51A57906600F56168 /* ItemSummaryWebViewController.swift in Sources */,
+				C4EA5C3C1CE930B200E395FE /* ContainerTableViewSectionHeaderView.swift in Sources */,
+				C4EA5C361CE91E8600E395FE /* ContainerTableViewController.swift in Sources */,
 				C4C327F21AF30CB400119573 /* FoldersController.swift in Sources */,
 				C4AD2ADB1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift in Sources */,
 				C4676E091A6A4D1F00AE8BC2 /* ItemTableViewCell.swift in Sources */,
