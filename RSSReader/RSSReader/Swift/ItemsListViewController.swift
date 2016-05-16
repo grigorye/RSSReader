@@ -54,9 +54,8 @@ private let loadAgoLongDateComponentsFormatter: NSDateComponentsFormatter = {
 	return $
 }()
 
-class ItemsListViewController: UITableViewController {
+class ItemsListViewController: ContainerTableViewController {
 	static let Self_ = ItemsListViewController.self
-	final var container: Container?
 	final var multipleSourcesEnabled = false
 	var showUnreadEnabled = true
 	class var keyPathsForValuesAffectingContainerViewState: Set<String> {
@@ -184,7 +183,7 @@ class ItemsListViewController: UITableViewController {
 		else {
 			assert(loadDate == ongoingLoadDate)
 		}
-		if let lastItemInResultAsync = (items).last {
+		if let lastItemInResultAsync = (items).last where _0 {
 			let managedObjectContext = fetchedResultsController.managedObjectContext
 			let lastItemInResult = managedObjectContext.sameObject(lastItemInResultAsync)
 			assert(containerViewPredicate.evaluateWithObject(lastItemInResult))
@@ -497,7 +496,7 @@ class ItemsListViewController: UITableViewController {
 	private var blocksDelayedTillViewWillAppear = [Handler]()
 	// MARK: -
 	override func viewWillAppear(animated: Bool) {
-		(self)
+		$(self)
 		nowDate = NSDate()
 		let binding = KVOBinding(self•{$0.loadDate}, options: [.New, .Initial]) { change in
 			(•self.toolbarItems!)
@@ -536,9 +535,6 @@ class ItemsListViewController: UITableViewController {
 		try! $(fetchedResultsController).performFetch()
 	}
 	func configureTitle() {
-		if nil == title {
-			title = (container as! Titled).visibleTitle
-		}
 		if let tableHeaderView = tableView.tableHeaderView {
 			if tableView.contentOffset.y == 0 {
 				tableView.contentOffset = CGPoint(x: 0, y: CGRectGetHeight(tableHeaderView.frame))
