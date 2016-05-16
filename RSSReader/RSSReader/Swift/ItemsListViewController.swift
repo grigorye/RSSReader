@@ -362,7 +362,14 @@ class ItemsListViewController: ContainerTableViewController {
 			}
 		}
 		if let sourceLabel = cell.sourceLabel {
-			let text = item.subscription.title?.lowercaseString
+			let textNaturalCased: String = {
+				let itemAuthor = item.author
+				guard (itemAuthor != "") && (self.container is Subscription) else {
+					return item.subscription.title
+				}
+				return itemAuthor
+			}()
+			let text = textNaturalCased.lowercaseString
 			if text != sourceLabel.text {
 				sourceLabel.text = text
 			}
