@@ -59,6 +59,7 @@ extension Item : ManagedIdentifiable {
 			self.updatedDate = updatedDate
 			self.date = date
 			self.title = json["title"] as! String
+			self.author = json["author"] as! String
 			let summary = (json["summary"] as! [String: AnyObject])["content"] as! String?
 			self.summary = summary
 			let streamID = (json["origin"] as? NSDictionary)?["streamId"] as! String
@@ -93,7 +94,7 @@ extension Subscription {
 	override func importFromJson(jsonObject: AnyObject) throws {
 		try super.importFromJson(jsonObject)
 		let json = jsonObject as! [String: AnyObject]
-		self.title = json["title"] as! String?
+		self.title = json["title"] as! String
 		self.url = NSURL(string: json["url"] as! String)
 		self.iconURL = NSURL(string: json["iconUrl"] as! String)
 		self.htmlURL = NSURL(string: json["htmlUrl"] as! String)
