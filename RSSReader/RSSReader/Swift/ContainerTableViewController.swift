@@ -13,7 +13,7 @@ class ContainerTableViewController: UITableViewController {
 	var container: Container!
 	override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 		let sectionHeaderView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("SectionHeader") as! ContainerTableViewSectionHeaderView
-		sectionHeaderView.titleLabel.text = (self.container as! Titled).visibleTitle
+		sectionHeaderView.titleLabel.text = (self.container as! Titled?)?.visibleTitle
 		return sectionHeaderView
 	}
 	override func viewDidLoad() {
