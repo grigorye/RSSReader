@@ -53,7 +53,7 @@ class HistoryViewController: UITableViewController {
 			dateLabel.text = "\(timeIntervalFormatted)".uppercaseString
 		}
 		if let sourceLabel = cell.sourceLabel {
-			sourceLabel.text = item.subscription.title?.uppercaseString
+			sourceLabel.text = item.subscription.title.uppercaseString
 		}
 	}
 	// MARK: -
