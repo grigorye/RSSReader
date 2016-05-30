@@ -8,7 +8,7 @@ PODS:
   - DZReadability (0.2.3):
     - HTMLReader
   - Fabric (1.6.7)
-  - FBAllocationTracker (0.1.4)
+  - FBAllocationTracker (0.1.5)
   - FBMemoryProfiler (0.1.3):
     - FBAllocationTracker (~> 0.1)
     - FBRetainCycleDetector (~> 0.1)
@@ -37,7 +37,7 @@ SPEC CHECKSUMS:
   CVKHierarchySearcher: 7be8d3bcbcc6f86ff07f785e6c632b5e40da2553
   DZReadability: 451e9134abd6861bc855467e01c7b05680734d4f
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
-  FBAllocationTracker: 593c329f97edf6c719a9a9d7ce55a2a674d91982
+  FBAllocationTracker: dfdca3f71aceca6a85e95e3c6ec76a9785eba0f1
   FBMemoryProfiler: 623fc5f8a61f7d02ec75c87e3b97c90f621d8b02
   FBRetainCycleDetector: 45462f9ed1af0cd77224a4cc4e6dacaca47371b4
   Flurry-iOS-SDK: 5ea9c76a73ce16bff005d21a4f0b539d2c15d97d
