@@ -1991,37 +1991,7 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0A10B1B994944E833FC2D7093E60FCFA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2A2C808512FF6ABC2A898B618CD82D70 /* DZReadability.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CONFIGURATION_BUILD_DIR = "${PODS_CONFIGURATION_BUILD_DIR}";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/DZReadability/DZReadability-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/DZReadability/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/DZReadability/DZReadability.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = DZReadability;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		0FCEA662F44E8B4998090B90DD059FCB /* Debug */ = {
+		00DEFDABBEC9E8B75A60D874D03497A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 28DCE5599351B21D24FD0ACFBF2E873F /* Pods-RSSReader.debug.xcconfig */;
 			buildSettings = {
@@ -2034,6 +2004,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "${PODS_CONFIGURATION_BUILD_DIR}";
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "Target Support Files/Pods-RSSReader/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -2055,7 +2026,73 @@
 			};
 			name = Debug;
 		};
-		176A1C41C3579123DAA0BF8C54BD009D /* Release */ = {
+		0DE44C5AA32A4D3EEC96F17644DEF6CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 644EF4C3C37871999B5E62CA2579AE88 /* Flurry-iOS-SDK.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "${PODS_CONFIGURATION_BUILD_DIR}";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "${PODS_CONFIGURATION_BUILD_DIR}";
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Flurry-iOS-SDK/Flurry-iOS-SDK-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Flurry-iOS-SDK/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Flurry-iOS-SDK/Flurry-iOS-SDK.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Flurry_iOS_SDK;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3A071BC3F80748125E8E6AEA807ED4D2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 132C1ADEB8425ECCCF77F9D2188A41A8 /* Pods-RSSReader.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "${PODS_CONFIGURATION_BUILD_DIR}";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "${PODS_CONFIGURATION_BUILD_DIR}";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-RSSReader/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-RSSReader/Pods-RSSReader.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_RSSReader;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		3E75754C7C5F56CE2E1A1635832F1A3C /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2A2C808512FF6ABC2A898B618CD82D70 /* DZReadability.xcconfig */;
 			buildSettings = {
@@ -2068,6 +2105,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "${PODS_CONFIGURATION_BUILD_DIR}";
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/DZReadability/DZReadability-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/DZReadability/Info.plist";
@@ -2077,66 +2115,6 @@
 				MODULEMAP_FILE = "Target Support Files/DZReadability/DZReadability.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = DZReadability;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		2843CB7EE49F1A47D9CDC4F9DC684C9A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 70AE5732BAAE4F64B056DF12B95BCB35 /* AFMInfoBanner.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CONFIGURATION_BUILD_DIR = "${PODS_CONFIGURATION_BUILD_DIR}";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/AFMInfoBanner/AFMInfoBanner-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/AFMInfoBanner/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/AFMInfoBanner/AFMInfoBanner.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = AFMInfoBanner;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		42CBBAF1E555D0E78A5F3A8BFF9C8A2D /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 20EB1F5A634537FC9DC60B156A1D99C5 /* FBAllocationTracker.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CONFIGURATION_BUILD_DIR = "${PODS_CONFIGURATION_BUILD_DIR}";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/FBAllocationTracker/FBAllocationTracker-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/FBAllocationTracker/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/FBAllocationTracker/FBAllocationTracker.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = FBAllocationTracker;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2187,9 +2165,9 @@
 			};
 			name = Debug;
 		};
-		4CCCC3314F1A8171895B1103E36D8F72 /* Release */ = {
+		49415014DA9254C1D39DE07B1CFDC73A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C214D9F8AF562DC1C4AAE11DA1512148 /* CVKHierarchySearcher.xcconfig */;
+			baseConfigurationReference = 69C39FA3F2F6EAF54479DFBF74E28A56 /* FBMemoryProfiler.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "${PODS_CONFIGURATION_BUILD_DIR}";
@@ -2200,15 +2178,16 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "${PODS_CONFIGURATION_BUILD_DIR}";
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/CVKHierarchySearcher/CVKHierarchySearcher-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/CVKHierarchySearcher/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/FBMemoryProfiler/FBMemoryProfiler-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FBMemoryProfiler/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/CVKHierarchySearcher/CVKHierarchySearcher.modulemap";
+				MODULEMAP_FILE = "Target Support Files/FBMemoryProfiler/FBMemoryProfiler.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = CVKHierarchySearcher;
+				PRODUCT_NAME = FBMemoryProfiler;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2217,9 +2196,9 @@
 			};
 			name = Release;
 		};
-		6498E5EF8284A44EDBBE1A11A3F08BE8 /* Release */ = {
+		4C294F6C3915FC249504145E28669E10 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 644EF4C3C37871999B5E62CA2579AE88 /* Flurry-iOS-SDK.xcconfig */;
+			baseConfigurationReference = FC335B52D5AA2F928FA969173BB29298 /* FBRetainCycleDetector.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "${PODS_CONFIGURATION_BUILD_DIR}";
@@ -2230,15 +2209,16 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "${PODS_CONFIGURATION_BUILD_DIR}";
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Flurry-iOS-SDK/Flurry-iOS-SDK-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Flurry-iOS-SDK/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/FBRetainCycleDetector/FBRetainCycleDetector-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FBRetainCycleDetector/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Flurry-iOS-SDK/Flurry-iOS-SDK.modulemap";
+				MODULEMAP_FILE = "Target Support Files/FBRetainCycleDetector/FBRetainCycleDetector.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = Flurry_iOS_SDK;
+				PRODUCT_NAME = FBRetainCycleDetector;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2247,12 +2227,75 @@
 			};
 			name = Release;
 		};
-		675DDB3C29E937B50547BA6C78C94345 /* Release */ = {
+		4D53E98A5A2A130E63427E5E4988A0CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A2C808512FF6ABC2A898B618CD82D70 /* DZReadability.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "${PODS_CONFIGURATION_BUILD_DIR}";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "${PODS_CONFIGURATION_BUILD_DIR}";
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/DZReadability/DZReadability-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/DZReadability/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/DZReadability/DZReadability.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = DZReadability;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		5535A9CA786F44FD4489223D311CC13E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9CD1AE32E18C12ABB0E9875143CF1A2D /* HTMLReader.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "${PODS_CONFIGURATION_BUILD_DIR}";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "${PODS_CONFIGURATION_BUILD_DIR}";
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/HTMLReader/HTMLReader-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/HTMLReader/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/HTMLReader/HTMLReader.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = HTMLReader;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		6602496A1F7BB24A0DF5BBA3E181A6AE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3268A6631D5D70E0D2628486E23CB753 /* TUSafariActivity.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "${PODS_CONFIGURATION_BUILD_DIR}";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "${PODS_CONFIGURATION_BUILD_DIR}";
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "Target Support Files/TUSafariActivity/ResourceBundle-TUSafariActivity-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -2262,9 +2305,71 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = bundle;
 			};
-			name = Release;
+			name = Debug;
 		};
-		68AEDF0CF636A10B3D9B7EB97F0FAF26 /* Release */ = {
+		66FB382B8FC51C642BFD79FC334D8CAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C214D9F8AF562DC1C4AAE11DA1512148 /* CVKHierarchySearcher.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "${PODS_CONFIGURATION_BUILD_DIR}";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "${PODS_CONFIGURATION_BUILD_DIR}";
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/CVKHierarchySearcher/CVKHierarchySearcher-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CVKHierarchySearcher/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CVKHierarchySearcher/CVKHierarchySearcher.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = CVKHierarchySearcher;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		6C2D83A61F42D654A232930070D9812D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3268A6631D5D70E0D2628486E23CB753 /* TUSafariActivity.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "${PODS_CONFIGURATION_BUILD_DIR}";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "${PODS_CONFIGURATION_BUILD_DIR}";
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/TUSafariActivity/TUSafariActivity-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TUSafariActivity/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TUSafariActivity/TUSafariActivity.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = TUSafariActivity;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		7846241C5E9669C845A0CE21ECED9717 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3268A6631D5D70E0D2628486E23CB753 /* TUSafariActivity.xcconfig */;
 			buildSettings = {
@@ -2277,6 +2382,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "${PODS_CONFIGURATION_BUILD_DIR}";
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/TUSafariActivity/TUSafariActivity-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/TUSafariActivity/Info.plist";
@@ -2294,9 +2400,9 @@
 			};
 			name = Release;
 		};
-		7C8727C93DF248F2E2CC6127C6581401 /* Release */ = {
+		8BDF6B42535D32FB4FC0F5EAC33C11A8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 132C1ADEB8425ECCCF77F9D2188A41A8 /* Pods-RSSReader.release.xcconfig */;
+			baseConfigurationReference = 70AE5732BAAE4F64B056DF12B95BCB35 /* AFMInfoBanner.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "${PODS_CONFIGURATION_BUILD_DIR}";
@@ -2307,19 +2413,16 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "${PODS_CONFIGURATION_BUILD_DIR}";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-RSSReader/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/AFMInfoBanner/AFMInfoBanner-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/AFMInfoBanner/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-RSSReader/Pods-RSSReader.modulemap";
+				MODULEMAP_FILE = "Target Support Files/AFMInfoBanner/AFMInfoBanner.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_RSSReader;
+				PRODUCT_NAME = AFMInfoBanner;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2328,9 +2431,9 @@
 			};
 			name = Release;
 		};
-		8FAA90F1DBAD4B604A86EC8EA3F44DF6 /* Debug */ = {
+		8E2F3EA66D47588EE6CEA4C230806C85 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 20EB1F5A634537FC9DC60B156A1D99C5 /* FBAllocationTracker.xcconfig */;
+			baseConfigurationReference = 9CD1AE32E18C12ABB0E9875143CF1A2D /* HTMLReader.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "${PODS_CONFIGURATION_BUILD_DIR}";
@@ -2341,15 +2444,16 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "${PODS_CONFIGURATION_BUILD_DIR}";
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/FBAllocationTracker/FBAllocationTracker-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/FBAllocationTracker/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/HTMLReader/HTMLReader-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/HTMLReader/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/FBAllocationTracker/FBAllocationTracker.modulemap";
+				MODULEMAP_FILE = "Target Support Files/HTMLReader/HTMLReader.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = FBAllocationTracker;
+				PRODUCT_NAME = HTMLReader;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2358,7 +2462,7 @@
 			};
 			name = Debug;
 		};
-		97E3CCA82F133089CE9977E136757931 /* Debug */ = {
+		9B9DBA5826BBAE324CFD861B22C8C192 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FC335B52D5AA2F928FA969173BB29298 /* FBRetainCycleDetector.xcconfig */;
 			buildSettings = {
@@ -2371,6 +2475,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "${PODS_CONFIGURATION_BUILD_DIR}";
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/FBRetainCycleDetector/FBRetainCycleDetector-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/FBRetainCycleDetector/Info.plist";
@@ -2388,9 +2493,9 @@
 			};
 			name = Debug;
 		};
-		A92427DF90FEB5B8821EA76EB1AF6D11 /* Debug */ = {
+		9F460BCE027EB404B333A1781E733AD4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C214D9F8AF562DC1C4AAE11DA1512148 /* CVKHierarchySearcher.xcconfig */;
+			baseConfigurationReference = 69C39FA3F2F6EAF54479DFBF74E28A56 /* FBMemoryProfiler.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "${PODS_CONFIGURATION_BUILD_DIR}";
@@ -2401,15 +2506,16 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "${PODS_CONFIGURATION_BUILD_DIR}";
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/CVKHierarchySearcher/CVKHierarchySearcher-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/CVKHierarchySearcher/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/FBMemoryProfiler/FBMemoryProfiler-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FBMemoryProfiler/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/CVKHierarchySearcher/CVKHierarchySearcher.modulemap";
+				MODULEMAP_FILE = "Target Support Files/FBMemoryProfiler/FBMemoryProfiler.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = CVKHierarchySearcher;
+				PRODUCT_NAME = FBMemoryProfiler;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2418,22 +2524,36 @@
 			};
 			name = Debug;
 		};
-		AA4A1B2ED98748A607BDC030AEF6AB0B /* Debug */ = {
+		A54F8A3DE0589CE6C84623D5B5BEC705 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3268A6631D5D70E0D2628486E23CB753 /* TUSafariActivity.xcconfig */;
+			baseConfigurationReference = C214D9F8AF562DC1C4AAE11DA1512148 /* CVKHierarchySearcher.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "${PODS_CONFIGURATION_BUILD_DIR}";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "${PODS_CONFIGURATION_BUILD_DIR}";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/TUSafariActivity/ResourceBundle-TUSafariActivity-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/CVKHierarchySearcher/CVKHierarchySearcher-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CVKHierarchySearcher/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_NAME = TUSafariActivity;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CVKHierarchySearcher/CVKHierarchySearcher.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = CVKHierarchySearcher;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 		AAF678CED40D3499169D10F63CA0719E /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -2473,49 +2593,20 @@
 			};
 			name = Release;
 		};
-		B34350A67D920153391D4828E00CDD3F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3268A6631D5D70E0D2628486E23CB753 /* TUSafariActivity.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CONFIGURATION_BUILD_DIR = "${PODS_CONFIGURATION_BUILD_DIR}";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/TUSafariActivity/TUSafariActivity-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/TUSafariActivity/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/TUSafariActivity/TUSafariActivity.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = TUSafariActivity;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		B4A1A3F992338C3EE549672049157984 /* Debug */ = {
+		BFBF90EAC757610C8746CF9D0031E8B6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 644EF4C3C37871999B5E62CA2579AE88 /* Flurry-iOS-SDK.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "${PODS_CONFIGURATION_BUILD_DIR}";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "${PODS_CONFIGURATION_BUILD_DIR}";
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/Flurry-iOS-SDK/Flurry-iOS-SDK-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Flurry-iOS-SDK/Info.plist";
@@ -2523,7 +2614,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Flurry-iOS-SDK/Flurry-iOS-SDK.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = Flurry_iOS_SDK;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2531,11 +2622,42 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
+			name = Release;
+		};
+		CE63E46AB7F18BA29F77422C625A4FDF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20EB1F5A634537FC9DC60B156A1D99C5 /* FBAllocationTracker.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "${PODS_CONFIGURATION_BUILD_DIR}";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "${PODS_CONFIGURATION_BUILD_DIR}";
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/FBAllocationTracker/FBAllocationTracker-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FBAllocationTracker/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/FBAllocationTracker/FBAllocationTracker.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = FBAllocationTracker;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
 			name = Debug;
 		};
-		B8A4180FDDD21B5F12C281C64A6FF251 /* Release */ = {
+		EB11BDB1C1A34C2354E75638905F3C8E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9CD1AE32E18C12ABB0E9875143CF1A2D /* HTMLReader.xcconfig */;
+			baseConfigurationReference = 20EB1F5A634537FC9DC60B156A1D99C5 /* FBAllocationTracker.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "${PODS_CONFIGURATION_BUILD_DIR}";
@@ -2546,15 +2668,16 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "${PODS_CONFIGURATION_BUILD_DIR}";
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/HTMLReader/HTMLReader-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/HTMLReader/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/FBAllocationTracker/FBAllocationTracker-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FBAllocationTracker/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/HTMLReader/HTMLReader.modulemap";
+				MODULEMAP_FILE = "Target Support Files/FBAllocationTracker/FBAllocationTracker.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = HTMLReader;
+				PRODUCT_NAME = FBAllocationTracker;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2563,49 +2686,20 @@
 			};
 			name = Release;
 		};
-		CC03873226AC46ADDEAD9049472999BB /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FC335B52D5AA2F928FA969173BB29298 /* FBRetainCycleDetector.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CONFIGURATION_BUILD_DIR = "${PODS_CONFIGURATION_BUILD_DIR}";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/FBRetainCycleDetector/FBRetainCycleDetector-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/FBRetainCycleDetector/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/FBRetainCycleDetector/FBRetainCycleDetector.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = FBRetainCycleDetector;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		D52EE33417ACD153B5B6115AFF014392 /* Release */ = {
+		F426F0CD7697E3967CB9887F370AB143 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 70AE5732BAAE4F64B056DF12B95BCB35 /* AFMInfoBanner.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "${PODS_CONFIGURATION_BUILD_DIR}";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "${PODS_CONFIGURATION_BUILD_DIR}";
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/AFMInfoBanner/AFMInfoBanner-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/AFMInfoBanner/Info.plist";
@@ -2613,7 +2707,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/AFMInfoBanner/AFMInfoBanner.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = AFMInfoBanner;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2621,95 +2715,23 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
-		};
-		DC673CA95D4BD13D91CFD0F60B483FF3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 69C39FA3F2F6EAF54479DFBF74E28A56 /* FBMemoryProfiler.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CONFIGURATION_BUILD_DIR = "${PODS_CONFIGURATION_BUILD_DIR}";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/FBMemoryProfiler/FBMemoryProfiler-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/FBMemoryProfiler/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/FBMemoryProfiler/FBMemoryProfiler.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = FBMemoryProfiler;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
 			name = Debug;
 		};
-		DF09EC9ED2FBC4E836681A4F2A356324 /* Debug */ = {
+		F7AB8B6C690F67542023CA47E1A5B376 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9CD1AE32E18C12ABB0E9875143CF1A2D /* HTMLReader.xcconfig */;
+			baseConfigurationReference = 3268A6631D5D70E0D2628486E23CB753 /* TUSafariActivity.xcconfig */;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "${PODS_CONFIGURATION_BUILD_DIR}";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "${PODS_CONFIGURATION_BUILD_DIR}";
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/HTMLReader/HTMLReader-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/HTMLReader/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				INFOPLIST_FILE = "Target Support Files/TUSafariActivity/ResourceBundle-TUSafariActivity-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/HTMLReader/HTMLReader.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = HTMLReader;
+				PRODUCT_NAME = TUSafariActivity;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		DF95E0A8A777ED0B7A13EB12A820D5D1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 69C39FA3F2F6EAF54479DFBF74E28A56 /* FBMemoryProfiler.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CONFIGURATION_BUILD_DIR = "${PODS_CONFIGURATION_BUILD_DIR}";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/FBMemoryProfiler/FBMemoryProfiler-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/FBMemoryProfiler/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/FBMemoryProfiler/FBMemoryProfiler.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = FBMemoryProfiler;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
+				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
 		};
@@ -2728,8 +2750,8 @@
 		3519DA18EA7F28C6F051048EC4333AAA /* Build configuration list for PBXNativeTarget "DZReadability" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0A10B1B994944E833FC2D7093E60FCFA /* Debug */,
-				176A1C41C3579123DAA0BF8C54BD009D /* Release */,
+				4D53E98A5A2A130E63427E5E4988A0CE /* Debug */,
+				3E75754C7C5F56CE2E1A1635832F1A3C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2737,8 +2759,8 @@
 		4290D4F08EA9507872F027D3880A606F /* Build configuration list for PBXNativeTarget "AFMInfoBanner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2843CB7EE49F1A47D9CDC4F9DC684C9A /* Debug */,
-				D52EE33417ACD153B5B6115AFF014392 /* Release */,
+				F426F0CD7697E3967CB9887F370AB143 /* Debug */,
+				8BDF6B42535D32FB4FC0F5EAC33C11A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2746,8 +2768,8 @@
 		46CCEAB7BD4694EEFAD0048831A04C72 /* Build configuration list for PBXNativeTarget "FBAllocationTracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8FAA90F1DBAD4B604A86EC8EA3F44DF6 /* Debug */,
-				42CBBAF1E555D0E78A5F3A8BFF9C8A2D /* Release */,
+				CE63E46AB7F18BA29F77422C625A4FDF /* Debug */,
+				EB11BDB1C1A34C2354E75638905F3C8E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2755,8 +2777,8 @@
 		8BA01E567C25F554D42015E8FE9BBBDC /* Build configuration list for PBXNativeTarget "Pods-RSSReader" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0FCEA662F44E8B4998090B90DD059FCB /* Debug */,
-				7C8727C93DF248F2E2CC6127C6581401 /* Release */,
+				00DEFDABBEC9E8B75A60D874D03497A3 /* Debug */,
+				3A071BC3F80748125E8E6AEA807ED4D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2764,8 +2786,8 @@
 		977EB72A0DC2EE0CB219C10A9C382ADA /* Build configuration list for PBXNativeTarget "HTMLReader" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DF09EC9ED2FBC4E836681A4F2A356324 /* Debug */,
-				B8A4180FDDD21B5F12C281C64A6FF251 /* Release */,
+				8E2F3EA66D47588EE6CEA4C230806C85 /* Debug */,
+				5535A9CA786F44FD4489223D311CC13E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2773,8 +2795,8 @@
 		9D7F54DCD07141DCF5EEB136A1DF97F6 /* Build configuration list for PBXNativeTarget "FBMemoryProfiler" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DC673CA95D4BD13D91CFD0F60B483FF3 /* Debug */,
-				DF95E0A8A777ED0B7A13EB12A820D5D1 /* Release */,
+				9F460BCE027EB404B333A1781E733AD4 /* Debug */,
+				49415014DA9254C1D39DE07B1CFDC73A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2782,8 +2804,8 @@
 		A18D86AD40C45B03DB838CA0D2D3B978 /* Build configuration list for PBXNativeTarget "CVKHierarchySearcher" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A92427DF90FEB5B8821EA76EB1AF6D11 /* Debug */,
-				4CCCC3314F1A8171895B1103E36D8F72 /* Release */,
+				66FB382B8FC51C642BFD79FC334D8CAD /* Debug */,
+				A54F8A3DE0589CE6C84623D5B5BEC705 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2791,8 +2813,8 @@
 		C36B1AD6DE76A1C502B8263D70537393 /* Build configuration list for PBXNativeTarget "TUSafariActivity" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B34350A67D920153391D4828E00CDD3F /* Debug */,
-				68AEDF0CF636A10B3D9B7EB97F0FAF26 /* Release */,
+				6C2D83A61F42D654A232930070D9812D /* Debug */,
+				7846241C5E9669C845A0CE21ECED9717 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2800,8 +2822,8 @@
 		D8113172B51B53490FB1AEB2C4C949C4 /* Build configuration list for PBXNativeTarget "FBRetainCycleDetector" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				97E3CCA82F133089CE9977E136757931 /* Debug */,
-				CC03873226AC46ADDEAD9049472999BB /* Release */,
+				9B9DBA5826BBAE324CFD861B22C8C192 /* Debug */,
+				4C294F6C3915FC249504145E28669E10 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2809,8 +2831,8 @@
 		E783AC727DAC0C8FD7AF7D837D2600DC /* Build configuration list for PBXNativeTarget "Flurry-iOS-SDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B4A1A3F992338C3EE549672049157984 /* Debug */,
-				6498E5EF8284A44EDBBE1A11A3F08BE8 /* Release */,
+				0DE44C5AA32A4D3EEC96F17644DEF6CE /* Debug */,
+				BFBF90EAC757610C8746CF9D0031E8B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2818,8 +2840,8 @@
 		F5EE8AF358A2AD885BEF6FFC4991E10C /* Build configuration list for PBXNativeTarget "TUSafariActivity-TUSafariActivity" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AA4A1B2ED98748A607BDC030AEF6AB0B /* Debug */,
-				675DDB3C29E937B50547BA6C78C94345 /* Release */,
+				6602496A1F7BB24A0DF5BBA3E181A6AE /* Debug */,
+				F7AB8B6C690F67542023CA47E1A5B376 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
