@@ -72,7 +72,7 @@ public class SystemLayoutSizeCachingTableViewCell: UITableViewCell {
 	var layoutSubviewsInvocationsCount = 0
 	public override func layoutSubviews() {
 		layoutSubviewsInvocationsCount += 1
-		let dt = disableTrace(); defer { •dt }
+		let dt = disableTrace(); defer { _ = dt }
 		$(layoutSubviewsInvocationsCount)
 		guard let systemLayoutSizeCachingDataSource = systemLayoutSizeCachingDataSource else {
 			super.layoutSubviews()

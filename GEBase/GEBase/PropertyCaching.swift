@@ -118,7 +118,7 @@ private func cachedSetterImpForPropertyTypeEncoding(_ propertyTypeEncoding: Stri
 // MARK:-
 
 public func cachePropertyWithName(_ cls: AnyClass!, name propertyName: String) {
-	let dt = disableTrace(); defer { •dt }
+	let dt = disableTrace(); defer { _ = dt }
 	let property = class_getProperty(cls, propertyName)!
 	let propertyTypeEncoding = objCValue(forProperty: property, attributeName: "T")!
 	do {
