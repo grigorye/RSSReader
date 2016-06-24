@@ -6,11 +6,10 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
-import GEKeyPaths
 import CoreData
 
 public class Folder : Container, Titled {
-	@NSManaged public var childContainers: NSOrderedSet
+	@NSManaged public var childContainers: OrderedSet
 	@NSManaged var items: Set<Item>
 	public var visibleTitle: String? {
 		return (streamID as NSString).lastPathComponent

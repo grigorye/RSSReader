@@ -7,7 +7,6 @@
 //
 
 import GEBase
-import GEKeyPaths
 import CoreData
 import Foundation
 
@@ -21,33 +20,33 @@ let markedAsReadCategory = Folder.folderWithTagSuffix(readTagSuffix, managedObje
 let markedAsFavoriteCategory = Folder.folderWithTagSuffix(favoriteTagSuffix, managedObjectContext: mainQueueManagedObjectContext)!
 
 extension Folder {
-	public static func predicateForFetchingFolderWithTagSuffix(tagSuffix: String) -> NSPredicate {
-		let E = Folder.self
-		return NSPredicate(format: "\(E••{$0.streamID}) ENDSWITH %@", argumentArray: [tagSuffix])
+	public static func predicateForFetchingFolderWithTagSuffix(_ tagSuffix: String) -> Predicate {
+		typealias E = Folder
+		return Predicate(format: "\(#keyPath(E.streamID)) ENDSWITH %@", argumentArray: [tagSuffix])
 	}
-	public static func fetchRequestForFolderWithTagSuffix(tagSuffix: String) -> NSFetchRequest {
-		let $ = NSFetchRequest(entityName: Folder.entityName())
+	public static func fetchRequestForFolderWithTagSuffix(_ tagSuffix: String) -> NSFetchRequest<Folder> {
+		let $ = NSFetchRequest<Folder>(entityName: Folder.entityName())
 		$.predicate = self.predicateForFetchingFolderWithTagSuffix(tagSuffix)
 		$.fetchLimit = 1
 		return $
 	}
-	public static func folderWithTagSuffix(tagSuffix: String, managedObjectContext: NSManagedObjectContext) -> Folder? {
+	public static func folderWithTagSuffix(_ tagSuffix: String, managedObjectContext: NSManagedObjectContext) -> Folder? {
 		let fetchRequest = self.fetchRequestForFolderWithTagSuffix(tagSuffix)
-		let folder = (try! managedObjectContext.executeFetchRequest(fetchRequest)).onlyElement as! Folder?
+		let folder = (try! managedObjectContext.fetch(fetchRequest)).onlyElement
 		return folder
 	}
 }
 
 public extension Item {
-	func categoryForTagSuffix(tagSuffix: String) -> Folder? {
+	func categoryForTagSuffix(_ tagSuffix: String) -> Folder? {
 		let matchingCategories = self.categories.filter { folder in folder.streamID.hasSuffix(tagSuffix) }
 		return matchingCategories.onlyElement
 	}
-	func includedInCategoryWithTagSuffix(tagSuffix: String) -> Bool {
+	func includedInCategoryWithTagSuffix(_ tagSuffix: String) -> Bool {
 		let $ = nil != self.categoryForTagSuffix(tagSuffix)
 		return $
 	}
-	func setIncludedInCategoryWithTagSuffix(tagSuffix: String, newValue: Bool) {
+	func setIncludedInCategoryWithTagSuffix(_ tagSuffix: String, newValue: Bool) {
 		let oldValue = includedInCategoryWithTagSuffix(tagSuffix)
 		if (newValue && oldValue) || (!newValue && !oldValue) {
 		}

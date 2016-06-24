@@ -7,11 +7,10 @@
 //
 
 import GEBase
-import GEKeyPaths
 import Foundation
 import CoreData
 
-let lastTagsDataPath = "\(NSTemporaryDirectory())/lastTags"
+let lastTagsFileURL = URL(fileURLWithPath: "\(NSTemporaryDirectory())/lastTags")
 
 private var batchSavingDisabled: Bool {
 	return !defaults.batchSavingEnabled
@@ -22,8 +21,8 @@ var itemsAreSortedByLoadDate: Bool {
 }
 
 public class RSSSession: NSObject {
-	public enum Error: ErrorType {
-		case AuthenticationFailed(underlyingError: ErrorType)
+	public enum Error: ErrorProtocol {
+		case AuthenticationFailed(underlyingError: ErrorProtocol)
 		case JsonObjectIsNotDictionary(jsonObject: AnyObject)
 		case JsonMissingUserID(json: [String: AnyObject])
 		case JsonMissingUnreadCounts(json: [String: AnyObject])
@@ -54,69 +53,69 @@ public extension RSSSession {
 extension RSSSession {
 	typealias TaskCompletionHandler = ProgressEnabledURLSessionTaskGenerator.HTTPDataTaskCompletionHandler
 	// MARK: -
-	func dataTaskForAuthenticatedHTTPRequestWithURL(url: NSURL, completionHandler: TaskCompletionHandler) -> NSURLSessionDataTask? {
+	func dataTaskForAuthenticatedHTTPRequestWithURL(_ url: URL, completionHandler: TaskCompletionHandler) -> URLSessionDataTask? {
 		precondition(nil != self.authToken)
-		let request: NSURLRequest = {
-			let $ = NSMutableURLRequest(URL: url)
+		let request: URLRequest = {
+			var $ = URLRequest(url: url)
 			$.addValue("GoogleLogin auth=\(self.authToken!)", forHTTPHeaderField: "Authorization")
 			$.addValue(self.inoreaderAppID, forHTTPHeaderField: "AppId")
 			$.addValue(self.inoreaderAppKey, forHTTPHeaderField: "AppKey")
 			return $
 		}()
-		return progressEnabledURLSessionTaskGenerator.dataTaskForHTTPRequest(request, completionHandler: completionHandler)
+		return progressEnabledURLSessionTaskGenerator.dataTask(forHTTPRequest: request, completionHandler: completionHandler)
 	}
 	// MARK: -
-	func dataTaskForAuthenticatedHTTPRequestWithPath(path: String, completionHandler: TaskCompletionHandler) -> NSURLSessionDataTask? {
-		let url: NSURL = {
+	func dataTaskForAuthenticatedHTTPRequest(withPath path: String, completionHandler: TaskCompletionHandler) -> URLSessionDataTask? {
+		let url: URL = {
 			let $ = NSURLComponents()
 			$.scheme = "https"
 			$.host = "www.inoreader.com"
 			$.path = path
-			return $.URL!
+			return $.url!
 		}()
 		return self.dataTaskForAuthenticatedHTTPRequestWithURL(url, completionHandler: completionHandler)
 	}
-	func dataTaskForAuthenticatedHTTPRequestWithRelativeString(relativeString: String, completionHandler: TaskCompletionHandler) -> NSURLSessionDataTask? {
-		let baseURL: NSURL = {
+	func dataTaskForAuthenticatedHTTPRequest(withRelativeString relativeString: String, completionHandler: TaskCompletionHandler) -> URLSessionDataTask? {
+		let baseURL: URL = {
 			let $ = NSURLComponents()
 			$.scheme = "https"
 			$.host = "www.inoreader.com"
 			$.path = "/"
-			return $.URL!
+			return $.url!
 		}()
-		let url = NSURL(string: relativeString, relativeToURL: baseURL)!
+		let url = URL(string: relativeString, relativeTo: baseURL)!
 		return self.dataTaskForAuthenticatedHTTPRequestWithURL((url), completionHandler: completionHandler)
 	}
 	// MARK: -
-	public func authenticate(completionHandler: (ErrorType?) -> Void) {
-		let url: NSURL = {
+	public func authenticate(_ completionHandler: (ErrorProtocol?) -> Void) {
+		let url: URL = {
 			let $ = NSURLComponents()
 			$.scheme = "https"
 			$.host = "www.inoreader.com"
 			$.path = "/accounts/ClientLogin"
-			return $.URL!
+			return $.url!
 		}()
-		let request: NSURLRequest = {
-			let $ = NSMutableURLRequest(URL: url)
-			$.HTTPMethod = "POST"
-			$.HTTPBody = {
-				let allowedCharacters = NSCharacterSet.alphanumericCharacterSet()
-				let loginEncoded = self.loginAndPassword.login?.stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters)
-				let passwordEncoded = self.loginAndPassword.password?.stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters)
-				let body: NSString = {
+		let request: URLRequest = {
+			var $ = URLRequest(url: url)
+			$.httpMethod = "POST"
+			$.httpBody = {
+				let allowedCharacters = NSCharacterSet.alphanumerics()
+				let loginEncoded = self.loginAndPassword.login?.addingPercentEncoding(withAllowedCharacters: allowedCharacters)
+				let passwordEncoded = self.loginAndPassword.password?.addingPercentEncoding(withAllowedCharacters: allowedCharacters)
+				let body: String = {
 					if passwordEncoded == nil && loginEncoded == nil {
 						return ""
 					}
 					return "Email=\(loginEncoded!)&Passwd=\(passwordEncoded!)"
 				}()
-				return body.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+				return body.data(using: String.Encoding.utf8, allowLossyConversion: false)
 			}()
 			return $
 		}()
 		$(request)
-		let sessionTask = progressEnabledURLSessionTaskGenerator.dataTaskForHTTPRequest(request) { data, httpResponse, error in
+		let sessionTask = progressEnabledURLSessionTaskGenerator.dataTask(forHTTPRequest: request) { data, httpResponse, error in
 			if let error = error {
-				let adjustedError: ErrorType = {
+				let adjustedError: ErrorProtocol = {
 					switch error {
 					case GEBase.URLSessionTaskGeneratorError.UnexpectedHTTPResponseStatus(let httpResponse):
 						guard httpResponse.statusCode == 401 else {
@@ -130,11 +129,13 @@ extension RSSSession {
 				completionHandler($(adjustedError))
 				return
 			}
+			let data = data!
 			let authToken: String? = {
-				let body = NSString(data: data, encoding: NSUTF8StringEncoding)!
-				let authLocation = NSMaxRange(body.rangeOfString("Auth="))
-				let authRangeMax = body.rangeOfString("\n", options: [], range: NSMakeRange(authLocation, body.length - authLocation)).location
-				let $ = body.substringWithRange(NSMakeRange(authLocation, authRangeMax - authLocation))
+				let body = String(data: data, encoding: String.Encoding.utf8)!
+				let authLocationIndex = body.range(of: "Auth=")!.upperBound
+				let authTail = body.substring(from: authLocationIndex)
+				let lastIndexInAuthTail = authTail.range(of: "\n")!.lowerBound
+				let $ = authTail.substring(to: lastIndexInAuthTail)
 				return $
 			}()
 			self.authToken = authToken
@@ -143,20 +144,21 @@ extension RSSSession {
 		sessionTask.resume()
 	}
 	// MARK: -
-	func reauthenticate(completionHandler: (ErrorType?) -> Void) {
+	func reauthenticate(completionHandler: (ErrorProtocol?) -> Void) {
 		authenticate(completionHandler)
 	}
 	// MARK: -
-	public func updateUserInfo(completionHandler: (ErrorType?) -> Void) {
+	public func updateUserInfo(completionHandler: (ErrorProtocol?) -> Void) {
 		let path = "/reader/api/0/user-info"
-		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithPath(path) { data, httpResponse, error in
+		let sessionTask = self.dataTaskForAuthenticatedHTTPRequest(withPath: path) { data, httpResponse, error in
 			if let error = error {
 				completionHandler(error)
 				return
 			}
-			backgroundQueueManagedObjectContext.performBlock {
+			let data = data!
+			backgroundQueueManagedObjectContext.perform {
 				do {
-					let jsonObject = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions())
+					let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions())
 					guard let json = jsonObject as? [String : AnyObject] else {
 						throw Error.JsonObjectIsNotDictionary(jsonObject: jsonObject)
 					}
@@ -164,7 +166,7 @@ extension RSSSession {
 						throw Error.JsonMissingUserID(json: json)
 					}
 					let id = "user/\(userID)/\(readTagSuffix)"
-					try insertedObjectUnlessFetchedWithID(Folder.self, id: id, managedObjectContext: backgroundQueueManagedObjectContext)
+					try •insertedObjectUnlessFetchedWithID(Folder.self, id: id, managedObjectContext: backgroundQueueManagedObjectContext)
 					try backgroundQueueManagedObjectContext.save()
 					completionHandler(nil)
 				} catch {
@@ -174,29 +176,30 @@ extension RSSSession {
 		}!
 		sessionTask.resume()
 	}
-	public func uploadTag(tag: String, mark: Bool, forItem item: Item, completionHandler: (ErrorType?) -> Void) {
+	public func uploadTag(_ tag: String, mark: Bool, forItem item: Item, completionHandler: (ErrorProtocol?) -> Void) {
 		let command = mark ? "a" : "r"
 		let path = "/reader/api/0/edit-tag?\(command)=\(tag)&i=\(item.itemID)"
-		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithPath(path) { data, httpResponse, error in
+		let sessionTask = self.dataTaskForAuthenticatedHTTPRequest(withPath: path) { data, httpResponse, error in
 			if let data = data {
-				let body = NSString(data: data, encoding: NSUTF8StringEncoding)
+				let body = String(data: data, encoding: String.Encoding.utf8)
 				$(body)
 			}
 			completionHandler(error)
 		}!
 		sessionTask.resume()
 	}
-	public func updateUnreadCounts(completionHandler: (ErrorType?) -> Void) {
+	public func updateUnreadCounts(completionHandler: (ErrorProtocol?) -> Void) {
 		let path = "/reader/api/0/unread-count"
-		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithPath(path) { data, httpResponse, error in
+		let sessionTask = self.dataTaskForAuthenticatedHTTPRequest(withPath: path) { data, httpResponse, error in
 			if let error = error {
 				completionHandler(error)
 				return
 			}
-			backgroundQueueManagedObjectContext.performBlock {
+			let data = data!
+			backgroundQueueManagedObjectContext.perform {
 				var containers = [Container]()
 				do {
-					let jsonObject = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions())
+					let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions())
 					guard let json = jsonObject as? [String : AnyObject] else {
 						throw Error.JsonObjectIsNotDictionary(jsonObject: jsonObject)
 					}
@@ -229,10 +232,10 @@ extension RSSSession {
 		}!
 		sessionTask.resume()
 	}
-	func updateTagsFromData(data: NSData, completionHandler: (ErrorType?) -> Void) {
-		backgroundQueueManagedObjectContext.performBlock {
+	func updateTags(from data: Data, completionHandler: (ErrorProtocol?) -> Void) {
+		backgroundQueueManagedObjectContext.perform {
 			do {
-				try importItemsFromJsonData(data, type: Folder.self, elementName: "tags", managedObjectContext: (backgroundQueueManagedObjectContext)) { (tag, json) in
+				try •importItemsFromJsonData(data, type: Folder.self, elementName: "tags", managedObjectContext: (backgroundQueueManagedObjectContext)) { (tag, json) in
 					assert(tag.managedObjectContext == backgroundQueueManagedObjectContext)
 					if _1 {
 						try tag.importFromJson(json)
@@ -245,28 +248,30 @@ extension RSSSession {
 			}
 		}
 	}
-	public func updateTags(completionHandler: (ErrorType?) -> Void) {
+	public func updateTags(completionHandler: (ErrorProtocol?) -> Void) {
 		let path = "/reader/api/0/tag/list"
-		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithPath(path) { data, httpResponse, error in
+		let sessionTask = self.dataTaskForAuthenticatedHTTPRequest(withPath: path) { data, httpResponse, error in
 			if let error = error {
 				completionHandler(error)
 				return
 			}
-			try! data.writeToFile(lastTagsDataPath, options: .DataWritingAtomic)
-			self.updateTagsFromData(data!, completionHandler: completionHandler)
+			let data = data!
+			try! data.write(to: lastTagsFileURL, options: .dataWritingAtomic)
+			self.updateTags(from: data, completionHandler: completionHandler)
 		}!
 		sessionTask.resume()
 	}
-	public func updateStreamPreferences(completionHandler: (ErrorType?) -> Void) {
+	public func updateStreamPreferences(completionHandler: (ErrorProtocol?) -> Void) {
 		let path = "/reader/api/0/preference/stream/list"
-		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithPath(path) { data, httpResponse, error in
+		let sessionTask = self.dataTaskForAuthenticatedHTTPRequest(withPath: path) { data, httpResponse, error in
 			if let error = error {
 				completionHandler(error)
 				return
 			}
-			backgroundQueueManagedObjectContext.performBlock {
+			let data = data!
+			backgroundQueueManagedObjectContext.perform {
 				do {
-					let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions())
+					let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions())
 					guard let json = jsonObject as? [String : AnyObject] else {
 						throw Error.JsonObjectIsNotDictionary(jsonObject: jsonObject)
 					}
@@ -283,16 +288,17 @@ extension RSSSession {
 		}!
 		sessionTask.resume()
 	}
-	public func updateSubscriptions(completionHandler: (ErrorType?) -> Void) {
+	public func updateSubscriptions(completionHandler: (ErrorProtocol?) -> Void) {
 		let path = "/reader/api/0/subscription/list"
-		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithPath(path) { data, httpResponse, error in
+		let sessionTask = self.dataTaskForAuthenticatedHTTPRequest(withPath: path) { data, httpResponse, error in
 			if let error = error {
 				completionHandler(error)
 				return
 			}
-			backgroundQueueManagedObjectContext.performBlock {
+			let data = data!
+			backgroundQueueManagedObjectContext.perform {
 				do {
-					try importItemsFromJsonData(data, type: Subscription.self, elementName: "subscriptions", managedObjectContext: backgroundQueueManagedObjectContext) { (subscription, json) in
+					try •importItemsFromJsonData(data, type: Subscription.self, elementName: "subscriptions", managedObjectContext: backgroundQueueManagedObjectContext) { (subscription, json) in
 						try subscription.importFromJson(json)
 					}
 					try backgroundQueueManagedObjectContext.save()
@@ -304,22 +310,23 @@ extension RSSSession {
 		}!
 		sessionTask.resume()
 	}
-	public func markAllAsRead(container: Container, completionHandler: (ErrorType?) -> Void) {
-		let containerIDPercentEncoded = container.streamID.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())!
+	public func markAllAsRead(_ container: Container, completionHandler: (ErrorProtocol?) -> Void) {
+		let containerIDPercentEncoded = container.streamID.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.alphanumerics())!
 		let newestItemTimestampUsec = container.newestItemDate.timestampUsec
 		let relativeString = "/reader/api/0/mark-all-as-read?s=\(containerIDPercentEncoded)&ts=\(newestItemTimestampUsec)"
-		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithRelativeString(relativeString) { data, httpResponse, error in
+		let sessionTask = self.dataTaskForAuthenticatedHTTPRequest(withRelativeString: relativeString) { data, httpResponse, error in
 			do {
 				if let error = error {
 					throw error
 				}
-				guard let body = NSString(data: data, encoding: NSUTF8StringEncoding) else {
+				let data = data!
+				guard let body = NSString(data: data, encoding: String.Encoding.utf8.rawValue) else {
 					throw Error.BadResponseDataForMarkAsRead(data: data)
 				}
 				guard body == "OK" else {
 					throw Error.UnexpectedResponseTextForMarkAsRead(body: body as String)
 				}
-				backgroundQueueManagedObjectContext.performBlock {
+				backgroundQueueManagedObjectContext.perform {
 					do {
 						try backgroundQueueManagedObjectContext.save()
 						completionHandler(nil)
@@ -334,7 +341,7 @@ extension RSSSession {
 		sessionTask.resume()
 	}
 	// MARK: -
-	public func streamContents(container: Container, excludedCategory: Folder?, continuation: String?, count: Int = 20, loadDate: NSDate, completionHandler: (continuation: String?, items: [Item]!, error: ErrorType?) -> Void) {
+	public func streamContents(_ container: Container, excludedCategory: Folder?, continuation: String?, count: Int = 20, loadDate: Date, completionHandler: (continuation: String?, items: [Item]?, error: ErrorProtocol?) -> Void) {
 		var queryComponents = [String]()
 		if let continuation = continuation {
 			queryComponents += ["c=\($(continuation))"]
@@ -343,19 +350,20 @@ extension RSSSession {
 			queryComponents += ["xt=\($(excludedCategory.streamID))"]
 		}
 		queryComponents += ["n=\(count)"]
-		let streamIDPercentEncoded = container.streamID.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())!
-		let querySuffix = URLQuerySuffixFromComponents(queryComponents)
+		let streamIDPercentEncoded = container.streamID.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.alphanumerics())!
+		let querySuffix = URLQuerySuffix(fromComponents: queryComponents)
 		let relativeString = "/reader/api/0/stream/contents/\(streamIDPercentEncoded)\(querySuffix)"
-		let sessionTask = self.dataTaskForAuthenticatedHTTPRequestWithRelativeString(relativeString) { data, httpResponse, error in
+		let sessionTask = self.dataTaskForAuthenticatedHTTPRequest(withRelativeString: relativeString) { data, httpResponse, error in
 			if let error = error {
 				completionHandler(continuation: nil, items: nil, error: error)
 				return
 			}
+			let data = data!
 			let subscriptionObjectID = (container as? Subscription)?.objectID
 			let managedObjectContext = backgroundQueueManagedObjectContext
-			managedObjectContext.performBlock {
+			managedObjectContext.perform {
 				do {
-					let jsonObject = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions())
+					let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions())
 					guard let json = jsonObject as? [String : AnyObject] else {
 						throw Error.JsonObjectIsNotDictionary(jsonObject: jsonObject)
 					}
@@ -365,7 +373,7 @@ extension RSSSession {
 							guard let subscriptionObjectID = subscriptionObjectID else {
 								return nil
 							}
-							return (managedObjectContext.objectWithID(subscriptionObjectID) as! Subscription)
+							return (managedObjectContext.object(with: subscriptionObjectID) as! Subscription)
 						}()
 						try item.importFromJson(itemJson, subscription: subscription)
 						item.loadDate = loadDate
@@ -375,16 +383,16 @@ extension RSSSession {
 					}
 					if let excludedCategory = excludedCategory {
 						let lastItem = items.last
-						let containerInBackground = backgroundQueueManagedObjectContext.sameObject(container)
-						let excludedCategoryInBackground = backgroundQueueManagedObjectContext.sameObject(excludedCategory)
-						let fetchRequest: NSFetchRequest = {
-							let $ = NSFetchRequest(entityName: Item.entityName())
-							$.predicate = NSPredicate(format: "(loadDate != %@) && (date < %@) && (subscription == %@) && SUBQUERY(\(Item.self••{$0.categories}), $x, $x.\(Folder.self••{$0.streamID}) ENDSWITH %@).@count == 0", argumentArray: [loadDate, lastItem?.date ?? NSDate.distantFuture(), containerInBackground, excludedCategoryInBackground.streamID])
+						let containerInBackground = backgroundQueueManagedObjectContext.sameObject(as: container)
+						let excludedCategoryInBackground = backgroundQueueManagedObjectContext.sameObject(as: excludedCategory)
+						let fetchRequest: NSFetchRequest<Item> = {
+							let $ = NSFetchRequest<Item>(entityName: Item.entityName())
+							$.predicate = Predicate(format: "(loadDate != %@) && (date < %@) && (subscription == %@) && SUBQUERY(\(#keyPath(Item.categories)), $x, $x.\(#keyPath(Folder.streamID)) ENDSWITH %@).@count == 0", argumentArray: [loadDate, lastItem?.date ?? NSDate.distantFuture(), containerInBackground, excludedCategoryInBackground.streamID])
 							return $
 						}()
-						let itemsNowAssignedToExcludedCategory = try! backgroundQueueManagedObjectContext.executeFetchRequest(fetchRequest) as! [Item]
+						let itemsNowAssignedToExcludedCategory = try! backgroundQueueManagedObjectContext.fetch(fetchRequest)
 						for item in itemsNowAssignedToExcludedCategory {
-							item.categories.unionInPlace([excludedCategoryInBackground])
+							item.categories.formUnion([excludedCategoryInBackground])
 						}
 					}
 					if !batchSavingDisabled {

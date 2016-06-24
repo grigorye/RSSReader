@@ -6,28 +6,27 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
-import GEKeyPaths
 import GEBase
 import CoreData.NSManagedObject
 
-public let sortDescriptorsForContainers = [NSSortDescriptor(key: Item.self••{$0.date}, ascending: false)]
+public let sortDescriptorsForContainers = [SortDescriptor(key: #keyPath(Item.date), ascending: false)]
 public let inversedSortDescriptorsForContainers = inversedSortDescriptors(sortDescriptorsForContainers)
 
-func inversedSortDescriptors(sortDescriptors: [NSSortDescriptor]) -> [NSSortDescriptor] {
+func inversedSortDescriptors(_ sortDescriptors: [SortDescriptor]) -> [SortDescriptor] {
 	return sortDescriptors.map {
-		return NSSortDescriptor(key: $0.key, ascending: !$0.ascending)
+		return SortDescriptor(key: $0.key, ascending: !$0.ascending)
 	}
 }
 
 public class ContainerViewState: NSManagedObject {
 	typealias _Self = ContainerViewState
-	enum ValidationError: ErrorType {
+	enum ValidationError: ErrorProtocol {
 		case NeitherLoadDateNorErrorIsSet
 	}
-	@NSManaged public var containerViewPredicate: NSPredicate
+	@NSManaged public var containerViewPredicate: Predicate
     @NSManaged public var continuation: String?
-    public var loadError: ErrorType?
-    @NSManaged public var loadDate: NSDate?
+    public var loadError: ErrorProtocol?
+    @NSManaged public var loadDate: Date?
     @NSManaged public var loadCompleted: Bool
     @NSManaged public var container: Container?
 
@@ -35,14 +34,14 @@ public class ContainerViewState: NSManagedObject {
 		guard let loadDate = self.loadDate else {
 			return nil
 		}
-		let fetchRequest: NSFetchRequest = {
-			let $ = NSFetchRequest(entityName: "Item")
-			$.predicate = NSPredicate(format: "\(Item.self••{$0.loadDate}) == %@", argumentArray: [loadDate])
+		let fetchRequest: NSFetchRequest<Item> = {
+			let $ = NSFetchRequest<Item>(entityName: "Item")
+			$.predicate = Predicate(format: "\(#keyPath(Item.loadDate)) == %@", argumentArray: [loadDate])
 			$.fetchLimit = 1
 			$.sortDescriptors = inversedSortDescriptorsForContainers
 			return $
 		}()
-		let item = try! self.managedObjectContext!.executeFetchRequest(fetchRequest).onlyElement as! Item?
+		let item = try! self.managedObjectContext!.fetch(fetchRequest).onlyElement
 		return (item)
 	}
 	func validateForUpdateOrInsert() throws {
@@ -60,11 +59,11 @@ public class ContainerViewState: NSManagedObject {
 	}
 	deinit {
 	}
-	private static var registerCachedPropertiesOnce = dispatch_once_t()
+	static private var registerCachedPropertiesOnce = {
+		cachePropertyWithName(_Self.self, name: #keyPath(lastLoadedItem))
+	}
 	override public class func initialize() {
 		super.initialize()
-		dispatch_once(&registerCachedPropertiesOnce) {
-			cachePropertyWithName(self, name: "lastLoadedItem")
-		}
+		_ = registerCachedPropertiesOnce
 	}
 }

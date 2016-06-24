@@ -7,17 +7,17 @@
 //
 
 import GEBase
-import GEKeyPaths
 import Foundation
 import CoreData
 
 public class Item: NSManagedObject {
+	typealias _Self = Item
     @NSManaged public var itemID: String
-	@NSManaged public var date: NSDate
+	@NSManaged public var date: Date
 	@NSManaged public var author: String
-	@NSManaged public var updatedDate: NSDate?
-	@NSManaged public var loadDate: NSDate
-	@NSManaged public var lastOpenedDate: NSDate?
+	@NSManaged public var updatedDate: Date?
+	@NSManaged public var loadDate: Date
+	@NSManaged public var lastOpenedDate: Date?
     @NSManaged public var titleData: NSData
     public var title: String {
 		set {
@@ -26,7 +26,7 @@ public class Item: NSManagedObject {
 		}
 		get {
 			let data = titleData
-			return String(utf16CodeUnitsNoCopy: unsafeBitCast(data.bytes, UnsafePointer<unichar>.self), count: data.length / strideof(unichar), freeWhenDone: false)
+			return String(utf16CodeUnitsNoCopy: unsafeBitCast(data.bytes, to: UnsafePointer<unichar>.self), count: data.length / strideof(unichar), freeWhenDone: false)
 		}
 	}
     @NSManaged public var summaryData: NSData
@@ -37,20 +37,20 @@ public class Item: NSManagedObject {
 		}
 		get {
 			let data = summaryData
-			return String(utf16CodeUnitsNoCopy: unsafeBitCast(data.bytes, UnsafePointer<unichar>.self), count: data.length / strideof(unichar), freeWhenDone: false)
+			return String(utf16CodeUnitsNoCopy: unsafeBitCast(data.bytes, to: UnsafePointer<unichar>.self), count: data.length / strideof(unichar), freeWhenDone: false)
 		}
 	}
 	@NSManaged public var categories: Set<Folder>
 	@NSManaged public var subscription: Subscription
 	@NSManaged public var canonical: [[String: String]]?
 	
-	private static var registerCachedPropertiesOnce = dispatch_once_t()
+	private static var registerCachedPropertiesOnce = {
+		cachePropertyWithName(_Self.self, name: #keyPath(markedAsRead))
+	}
 	override public class func initialize() {
 		super.initialize()
 		if _0 {
-		dispatch_once(&registerCachedPropertiesOnce) {
-			cachePropertyWithName(self, name: "markedAsRead")
-		}
+			_ = registerCachedPropertiesOnce
 		}
 	}
 }

@@ -10,24 +10,24 @@ import GEBase
 import Foundation
 import CoreData
 
-public let (managedObjectContextError, mainQueueManagedObjectContext, backgroundQueueManagedObjectContext, supplementaryObjects): (ErrorType?, NSManagedObjectContext!, NSManagedObjectContext!, [AnyObject]) = {
+public let (managedObjectContextError, optionalMainQueueManagedObjectContext, optionalBackgroundQueueManagedObjectContext, supplementaryObjects): (ErrorProtocol?, NSManagedObjectContext?, NSManagedObjectContext?, [AnyObject]) = {
 	do {
-		let managedObjectModel = NSManagedObjectModel.mergedModelFromBundles([NSBundle(forClass: NSClassFromString("RSSReaderData.Folder")!)])!
+		let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: NSClassFromString("RSSReaderData.Folder")!)])!
 		let psc = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
-		let fileManager = NSFileManager.defaultManager()
-		let urls = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+		let fileManager = FileManager.default()
+		let urls = fileManager.urlsForDirectory(.documentDirectory, inDomains: .userDomainMask)
 		let documentsDirectoryURL = urls[0]
-		if !fileManager.fileExistsAtPath(documentsDirectoryURL.path!) {
-			try fileManager.createDirectoryAtURL(documentsDirectoryURL, withIntermediateDirectories: true, attributes: nil)
+		if !fileManager.fileExists(atPath: documentsDirectoryURL.path!) {
+			try fileManager.createDirectory(at: documentsDirectoryURL, withIntermediateDirectories: true, attributes: nil)
 		}
-		let storeURL = documentsDirectoryURL.URLByAppendingPathComponent("RSSReaderData.sqlite")
-		$(fileManager.fileExistsAtPath(storeURL.path!))
-		if NSUserDefaults().boolForKey("forceStoreRemoval") {
-			let fileManager = NSFileManager.defaultManager()
+		let storeURL = try documentsDirectoryURL.appendingPathComponent("RSSReaderData.sqlite")
+		$(fileManager.fileExists(atPath: storeURL.path!))
+		if UserDefaults().bool(forKey: "forceStoreRemoval") {
+			let fileManager = FileManager.default()
 			do {
-				try fileManager.removeItemAtURL(storeURL)
+				try fileManager.removeItem(at: storeURL)
 			}
-			catch NSCocoaError.FileNoSuchFileError {
+			catch NSCocoaError.fileNoSuchFileError {
 			}
 		}
 		do {
@@ -35,21 +35,21 @@ public let (managedObjectContextError, mainQueueManagedObjectContext, background
 				NSMigratePersistentStoresAutomaticallyOption: true,
 				NSInferMappingModelAutomaticallyOption: true
 			]
-			let persistentStore = try psc.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: options)
+			let persistentStore = try psc.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: options)
 		} catch let error as NSCocoaError {
 			switch error.rawValue {
-			case NSMigrationMissingSourceModelError where NSUserDefaults().boolForKey("allowMissingSourceModelError"):
+			case NSMigrationMissingSourceModelError where UserDefaults().bool(forKey: "allowMissingSourceModelError"):
 			fallthrough
 			case NSPersistentStoreIncompatibleVersionHashError, NSMigrationError:
-				let fileManager = NSFileManager.defaultManager()
-				try fileManager.removeItemAtURL(storeURL)
-				try psc.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil)
+				let fileManager = FileManager.default()
+				try fileManager.removeItem(at: storeURL)
+				try psc.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: nil)
 			default:
 				throw error
 			}
 		}
 		let mainQueueManagedObjectContext: NSManagedObjectContext = {
-			let $ = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+			let $ = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
 			$.persistentStoreCoordinator = psc
 			$.name = "main"
 			if defaults.coreDataCachingEnabled {
@@ -61,8 +61,8 @@ public let (managedObjectContextError, mainQueueManagedObjectContext, background
 			guard defaults.backgroundImportEnabled else {
 				return mainQueueManagedObjectContext
 			}
-			let $ = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
-			$.parentContext = mainQueueManagedObjectContext
+			let $ = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+			$.parent = mainQueueManagedObjectContext
 			$.name = "background"
 			if defaults.coreDataCachingEnabled {
 				$.cachingEnabled = true
@@ -79,3 +79,6 @@ public let (managedObjectContextError, mainQueueManagedObjectContext, background
 		return (error, nil, nil, [])
 	}
 }()
+
+public let mainQueueManagedObjectContext = { optionalMainQueueManagedObjectContext! }()
+public let backgroundQueueManagedObjectContext = { optionalBackgroundQueueManagedObjectContext! }()
