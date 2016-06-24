@@ -9,17 +9,17 @@
 import Foundation
 import XCTest
 
-class RSSReaderUITests: XCTestCase {
+class RSSReaderUITests : XCTestCase {
 
 	var app = XCUIApplication()
 	lazy var tablesQuery: XCUIElementQuery = self.app.tables
-	lazy var backButton: XCUIElement = self.app.navigationBars.elementBoundByIndex(0).buttons.elementBoundByIndex(0)
+	lazy var backButton: XCUIElement = self.app.navigationBars.element(boundBy: 0).buttons.element(boundBy: 0)
 	
 	var isAtHome: Bool {
 		return tablesQuery.staticTexts["Subscriptions-AI"].exists
 	}
 	
-    func pushAndPopHomeItemWithAI(itemAI: String) {
+    func pushAndPopHomeItemWithAI(_ itemAI: String) {
 		let homeItem = tablesQuery.staticTexts[itemAI]
 		homeItem.tap()
 		backButton.tap()
@@ -30,7 +30,7 @@ class RSSReaderUITests: XCTestCase {
 		let subscriptionsItem = tablesQuery.staticTexts["Subscriptions-AI"]
 		subscriptionsItem.tap()
 		while 0 < tablesQuery.count {
-			tablesQuery.cells.elementBoundByIndex(0).tap()
+			tablesQuery.cells.element(boundBy: 0).tap()
 		}
 		XCTAssert(!isAtHome)
 	}
@@ -43,7 +43,7 @@ class RSSReaderUITests: XCTestCase {
 	
 	// MARK:-
 	
-	func repeatForTesting(@noescape block: () -> ()) {
+	func repeatForTesting(_ block: @noescape () -> ()) {
 		for _ in 0..<5 {
 			block()
 		}
