@@ -13,41 +13,23 @@ class TraceAndLabelTestsBase: XCTestCase {
 	var blocksForTearDown = [Handler]()
 	// MARK:-
 	override func setUp() {
-		traceLabelsEnabledEnforced = false
+		let traceLabelsEnabledEnforcedOldValue = traceLabelsEnabledEnforced
 		blocksForTearDown += [{
-			traceLabelsEnabledEnforced = nil
+			traceLabelsEnabledEnforced = traceLabelsEnabledEnforcedOldValue
 		}]
-		traceEnabledEnforced = false
+		let traceEnabledEnforcedOldValue = traceEnabledEnforced
 		blocksForTearDown += [{
-			traceEnabledEnforced = nil
+			traceEnabledEnforced = traceEnabledEnforcedOldValue
+		}]
+		let swiftHashColumnMatchesLastComponentInCompoundExpressionsOldValue = swiftHashColumnMatchesLastComponentInCompoundExpressions
+		blocksForTearDown += [{
+			swiftHashColumnMatchesLastComponentInCompoundExpressions = swiftHashColumnMatchesLastComponentInCompoundExpressionsOldValue
 		}]
 	}
 	override func tearDown() {
 		for block in blocksForTearDown {
 			block()
 		}
-	}
-	// MARK:-
-    func testLabeledString() {
-		let foo = "bar"
-		traceLabelsEnabledEnforced = true
-		XCTAssertEqual(L(foo), "foo: bar")
-		traceLabelsEnabledEnforced = false
-		XCTAssertEqual(L(foo), "bar")
-    }
-	func testLabeledCompoundExpressions() {
-		let foo = "bar"
-		let optionalFoo = Optional("bar")
-		XCTAssertTrue(swiftHashColumnMatchesLastComponentInCompoundExpressions)
-		traceLabelsEnabledEnforced = true
-		XCTAssertEqual(L(String(foo.characters.reverse())), "String(foo.characters.reverse()): rab")
-		XCTAssertEqual(L("baz" + String(foo.characters.reverse())), "\"baz\" + String(foo.characters.reverse()): bazrab")
-		XCTAssertEqual(L(optionalFoo!), "optionalFoo!: bar")
-		swiftHashColumnMatchesLastComponentInCompoundExpressions = false
-		XCTAssertEqual(L(String(foo.characters.reverse())), "String(foo.characters.reverse()): rab")
-		XCTAssertEqual(L("baz" + String(foo.characters.reverse())), "+ String(foo.characters.reverse()): bazrab")
-		XCTAssertEqual(L(optionalFoo!), "!: bar")
-		traceLabelsEnabledEnforced = false
 	}
 }
 
@@ -56,9 +38,9 @@ class TraceTests: TraceAndLabelTestsBase {
 	var tracedMessages = [(label: String, location: SourceLocation, message: String)]()
 	override func setUp() {
 		let oldLoggers = loggers
-		loggers += [{ date, label, location, message in
-			self.tracedMessages += [(label, location, message)]
-		}]
+		loggers.append({ date, label, location, message in
+			self.tracedMessages += [(label: label, location: location, message: message)]
+		})
 		blocksForTearDown += [{
 			loggers = oldLoggers
 		}]
@@ -70,7 +52,7 @@ class TraceTests: TraceAndLabelTestsBase {
 	func testTraceWithTraceEanbled() {
 		traceEnabledEnforced = true
 		$(foo); let line = #line
-		let fileURL = NSURL.fileURLWithPath(#file)
+		let fileURL = URL(fileURLWithPath: #file)
 		XCTAssertEqual(tracedMessages.map {$0.location.line}, [line])
 		XCTAssertEqual(tracedMessages.map {$0.location.fileURL}, [fileURL])
 		XCTAssertEqual(tracedMessages.map {$0.message}, ["bar"])
@@ -80,10 +62,31 @@ class TraceTests: TraceAndLabelTestsBase {
 		traceEnabledEnforced = true
 		traceLabelsEnabledEnforced = true
 		$(foo); let line = #line
-		let fileURL = NSURL.fileURLWithPath(#file)
+		let fileURL = URL(fileURLWithPath: #file)
 		XCTAssertEqual(tracedMessages.map {$0.location.line}, [line])
 		XCTAssertEqual(tracedMessages.map {$0.location.fileURL}, [fileURL])
 		XCTAssertEqual(tracedMessages.map {$0.message}, ["bar"])
 		XCTAssertEqual(tracedMessages.map {$0.label}, ["foo"])
+	}
+	// MARK: -
+    func testLabeledString() {
+		let foo = "bar"
+		traceLabelsEnabledEnforced = true
+		XCTAssertEqual(L(foo), "foo: bar")
+		traceLabelsEnabledEnforced = false
+		XCTAssertEqual(L(foo), "bar")
+    }
+	func testLabeledCompoundExpressions() {
+		let foo = "bar"
+		let optionalFoo = Optional("bar")
+		swiftHashColumnMatchesLastComponentInCompoundExpressions = true
+		traceLabelsEnabledEnforced = true
+		XCTAssertEqual(L(String(foo.characters.reversed())), "String(foo.characters.reversed()): rab")
+		XCTAssertEqual(L("baz" + String(foo.characters.reversed())), "\"baz\" + String(foo.characters.reversed()): bazrab")
+		XCTAssertEqual(L(optionalFoo!), "optionalFoo!: bar")
+		swiftHashColumnMatchesLastComponentInCompoundExpressions = false
+		XCTAssertEqual(L(String(foo.characters.reversed())), "String(foo.characters.reversed()): rab")
+		XCTAssertEqual(L("baz" + String(foo.characters.reversed())), "+ String(foo.characters.reversed()): bazrab")
+		XCTAssertEqual(L(optionalFoo!), "!: bar")
 	}
 }
