@@ -112,7 +112,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 		UIApplication.shared().openURL(URL(string: UIApplicationOpenSettingsURLString)!)
 	}
 	@IBAction func crash(_ sender: AnyObject?) {
-		_ = "foo" as AnyObject as! Int
+		fatalError()
 	}
 	// MARK: -
 	lazy var fetchedRootFolderBinding: FetchedObjectBinding<Folder> = FetchedObjectBinding<Folder>(managedObjectContext: mainQueueManagedObjectContext, predicate: Folder.predicateForFetchingFolderWithTagSuffix(rootTagSuffix)) { folder in
