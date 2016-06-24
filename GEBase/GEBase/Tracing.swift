@@ -234,9 +234,7 @@ public func $<T>(_ v: T, file: String = #file, line: Int = #line, column: Int = 
 }
 
 prefix operator • {}
-@discardableResult
-public prefix func •<T>(v: T) -> T {
-	return v
+public prefix func •<T>(v: T) -> Void {
 }
 
 prefix operator « {}
