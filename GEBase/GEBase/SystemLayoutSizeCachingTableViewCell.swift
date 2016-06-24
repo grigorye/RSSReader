@@ -6,6 +6,8 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
+#if os(iOS)
+
 import Foundation
 import UIKit.UITableViewCell
 
@@ -97,3 +99,5 @@ public class SystemLayoutSizeCachingTableViewCell: UITableViewCell {
 		$(reuseIdentifier!)
 	}
 }
+
+#endif

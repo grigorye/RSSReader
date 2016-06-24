@@ -6,6 +6,8 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
+#if os(iOS)
+
 import Foundation
 import UIKit
 
@@ -40,3 +42,5 @@ public struct FrequencyAndWeightBasedTableRowHeightEstimator<DataSource: Frequen
 		self.dataSource = dataSource
 	}
 }
+
+#endif

@@ -6,6 +6,8 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
+#if os(iOS)
+
 import Foundation
 import UIKit
 
@@ -58,3 +60,5 @@ public struct TableViewHeightBasedReusedCellGenerator<DataSource: TableViewHeigh
 		self.reuseIdentifiersForHeightCachingCells = reuseIdentifiersForHeightCachingCells
 	}
 }
+
+#endif
