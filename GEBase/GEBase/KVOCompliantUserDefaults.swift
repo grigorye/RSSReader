@@ -8,7 +8,8 @@
 
 import Foundation
 
-private let objcEncode_Bool = String.fromCString(NSNumber(bool: true).objCType)!
+private let objcEncode_Bool = String(validatingUTF8: NSNumber(value: true).objCType)!
+private let objcEncode_Int = "i"
 private let objcEncode_Long = "l"
 private let objcEncode_LongLong = "q"
 private let objcEncode_C99Bool = "B"
@@ -19,22 +20,22 @@ private let objcEncode_AnyObject = "@"
 extension KVOCompliantUserDefaults {
 	typealias _Self = KVOCompliantUserDefaults
 
-	static private func defaultNameForSelector(sel: Selector) -> String {
+	static private func defaultNameForSelector(_ sel: Selector) -> String {
 		let selName = NSStringFromSelector(sel)
 		let propertyInfo = getterAndSetterMap[selName]!
-		(propertyInfo)
+		•(propertyInfo)
 		let defaultName = propertyInfo.name
 		return defaultName
 	}
 	static private let objectValueIMP: @convention(c) (_Self, Selector) -> AnyObject? = { _self, _cmd in
 		let propertyName = NSStringFromSelector(_cmd)
 		let value = _self.values[propertyName]
-		(propertyName)
+		•(propertyName)
 		return (value)
 	}
 	static private let setObjectValueIMP: @convention(c) (_Self, Selector, NSObject?) -> Void = { _self, _cmd, value in
 		let defaultName = _Self.defaultNameForSelector(_cmd)
-		_self.defaults.setObject(value, forKey:(defaultName))
+		_self.defaults.set(value, forKey:(defaultName))
 		_self.values[defaultName] = value
 	}
 	static private let boolValueIMP: @convention(c) (_Self, Selector) -> Bool = { _self, _cmd in
@@ -52,7 +53,7 @@ extension KVOCompliantUserDefaults {
 				abort()
 			}
 		}()
-		(propertyName)
+		•(propertyName)
 		return (value)
 	}
 	static private let longValueIMP: @convention(c) (_Self, Selector) -> CLong = { _self, _cmd in
@@ -61,7 +62,7 @@ extension KVOCompliantUserDefaults {
 		let value: Int = {
 			switch valueObject {
 			case let numberValue as NSNumber:
-				return numberValue.integerValue
+				return numberValue.intValue
 			case let stringValue as NSString:
 				return stringValue.integerValue
 			case nil:
@@ -70,7 +71,7 @@ extension KVOCompliantUserDefaults {
 				abort()
 			}
 		}()
-		(propertyName)
+		•(propertyName)
 		return (value)
 	}
 	static private let longLongValueIMP: @convention(c) (_Self, Selector) -> CLongLong = { _self, _cmd in
@@ -79,7 +80,7 @@ extension KVOCompliantUserDefaults {
 		let value: CLongLong = {
 			switch valueObject {
 			case let numberValue as NSNumber:
-				return numberValue.longLongValue
+				return numberValue.int64Value
 			case let stringValue as NSString:
 				return stringValue.longLongValue
 			case nil:
@@ -88,27 +89,27 @@ extension KVOCompliantUserDefaults {
 				abort()
 			}
 		}()
-		(propertyName)
+		•(propertyName)
 		return (value)
 	}
 
 	static private let setBoolValueIMP: @convention(c) (_Self, Selector, Bool) -> Void = { _self, _cmd, value in
 		let propertyName = NSStringFromSelector(_cmd)
 		$(propertyName)
-		_self.defaults.setBool(value, forKey: propertyName)
-		_self.values[propertyName] = NSNumber(bool: value)
+		_self.defaults.set(value, forKey: propertyName)
+		_self.values[propertyName] = NSNumber(value: value)
 	}
 	static private let setLongValueIMP: @convention(c) (_Self, Selector, CLong) -> Void = { _self, _cmd, value in
 		let propertyName = NSStringFromSelector(_cmd)
 		$(propertyName)
-		_self.defaults.setInteger(value, forKey: propertyName)
-		_self.values[propertyName] = NSNumber(long: value)
+		_self.defaults.set(value, forKey: propertyName)
+		_self.values[propertyName] = NSNumber(value: value)
 	}
 	static private let setLongLongValueIMP: @convention(c) (_Self, Selector, CLongLong) -> Void = { _self, _cmd, value in
 		let propertyName = NSStringFromSelector(_cmd)
 		$(propertyName)
-		_self.defaults.setInteger(Int(value), forKey: propertyName)
-		_self.values[propertyName] = NSNumber(longLong: value)
+		_self.defaults.set(Int(value), forKey: propertyName)
+		_self.values[propertyName] = NSNumber(value: value)
 	}
 
 	// MARK: -
@@ -117,16 +118,16 @@ extension KVOCompliantUserDefaults {
 		var propertyInfoMap = [String : PropertyInfo]()
 		var getterAndSetterMap = [String : PropertyInfo]()
 		var propertyCount = UInt32(0)
-		let propertyList = class_copyPropertyList(KVOCompliantUserDefaults.self, &propertyCount)
+		let propertyList = class_copyPropertyList(KVOCompliantUserDefaults.self, &propertyCount)!
 		for i in 0..<Int(propertyCount) {
-			let property = propertyList[i]
+			let property = propertyList[i]!
 			let propertyInfo = PropertyInfo(property: property)
 			let attributesDictionary = propertyInfo.attributesDictionary
 			let propertyName = propertyInfo.name
 			let customSetterName = attributesDictionary["S"]
 			let customGetterName = attributesDictionary["G"]
 			let defaultGetterName = propertyName
-			let defaultSetterName = objCDefaultSetterNameForPropertyName(propertyName)
+			let defaultSetterName = objCDefaultSetterName(forPropertyName: propertyName)
 			getterAndSetterMap[customGetterName ?? defaultGetterName] = propertyInfo
 			getterAndSetterMap[customSetterName ?? defaultSetterName] = propertyInfo
 			propertyInfoMap[propertyName] = propertyInfo
@@ -135,65 +136,65 @@ extension KVOCompliantUserDefaults {
 		return (propertyInfoMap, getterAndSetterMap)
 	}()
 
-	static private func isDefaultName(name: String) -> Bool {
-		return !["values", "defaults"].containsObject(name)
+	static private func isDefaultName(_ name: String) -> Bool {
+		return !["values", "defaults"].contains(name)
 	}
 }
 
 public class KVOCompliantUserDefaults : NSObject {
 	var values = [String : NSObject]()
-	let defaults = NSUserDefaults.standardUserDefaults()
+	let defaults = UserDefaults.standard()
 
 	func synchronizeValues() {
 		for (propertyName, propertyInfo) in _Self.propertyInfoMap {
 			let defaults = self.defaults
 			if (_Self.isDefaultName(propertyInfo.name)) {
 				let oldValue = values[propertyName]
-				let newValue = defaults.objectForKey(propertyName) as! NSObject?
+				let newValue = defaults.object(forKey: propertyName) as! NSObject?
 				if (oldValue == newValue) {
 				}
 				else if (true == (oldValue?.isEqual(newValue))) {
 				}
 				else {
-					self.willChangeValueForKey(propertyName)
+					self.willChangeValue(forKey: propertyName)
 					self.values[propertyName] = newValue
-					self.didChangeValueForKey(propertyName)
+					self.didChangeValue(forKey: propertyName)
 				}
 			}
 		}
 	}
 
-	public override static func resolveInstanceMethod(sel: Selector) -> Bool {
+	public override static func resolveInstanceMethod(_ sel: Selector) -> Bool {
 		let selName = NSStringFromSelector(sel)
 		if let propertyInfo = getterAndSetterMap[selName] {
-			(propertyInfo)
+			•(propertyInfo)
 			let attributesDictionary = propertyInfo.attributesDictionary;
 			let type = attributesDictionary["T"]!
 			let isSetter = selName.hasSuffix(":")
-			let valueTypeEncoded = type.substringToIndex(type.startIndex.advancedBy(1))
+
+			let valueTypeEncoded = String(type.utf8.prefix(1))!
 			let methodIMP: IMP = {
 				switch (valueTypeEncoded) {
 				case objcEncode_Bool, objcEncode_C99Bool:
-					return isSetter ? unsafeBitCast(setBoolValueIMP, IMP.self) : unsafeBitCast(boolValueIMP, IMP.self)
-				case objcEncode_Long:
-					return isSetter ? unsafeBitCast(setLongValueIMP, IMP.self) : unsafeBitCast(longValueIMP, IMP.self)
+					return isSetter ? unsafeBitCast(setBoolValueIMP, to: IMP.self) : unsafeBitCast(boolValueIMP, to: IMP.self)
+				case objcEncode_Long, objcEncode_Int:
+					return isSetter ? unsafeBitCast(setLongValueIMP, to: IMP.self) : unsafeBitCast(longValueIMP, to: IMP.self)
 				case objcEncode_LongLong:
-					return isSetter ? unsafeBitCast(setLongLongValueIMP, IMP.self) : unsafeBitCast(longLongValueIMP, IMP.self)
+					return isSetter ? unsafeBitCast(setLongLongValueIMP, to: IMP.self) : unsafeBitCast(longLongValueIMP, to: IMP.self)
 				case objcEncode_AnyObject:
-					return isSetter ? unsafeBitCast(setObjectValueIMP, IMP.self) : unsafeBitCast(objectValueIMP, IMP.self)
+					return isSetter ? unsafeBitCast(setObjectValueIMP, to: IMP.self) : unsafeBitCast(objectValueIMP, to: IMP.self)
 				default:
 					fatalError("\(L(valueTypeEncoded))")
 				}
 			}()
 			let types = isSetter ? "v@:\(valueTypeEncoded)" : "\(valueTypeEncoded)@:"
 			types.withCString { typesCString in
-				class_addMethod(self, sel, unsafeBitCast(methodIMP, COpaquePointer.self), typesCString)
+				_ = class_addMethod(self, sel, unsafeBitCast(methodIMP, to: OpaquePointer.self), typesCString)
 			}
 			return true
 		}
 		return super.resolveInstanceMethod(sel)
 	}
-
 	var blocksDelayedTillDealloc = [Handler]()
 	deinit {
 		blocksDelayedTillDealloc.forEach {$0()}
@@ -201,9 +202,9 @@ public class KVOCompliantUserDefaults : NSObject {
 	
 	public override init () {
 		super.init()
-		let notificationCenter = NSNotificationCenter.defaultCenter()
+		let notificationCenter = NotificationCenter.default()
 		var handlingNotification = false
-		let observer = notificationCenter.addObserverForName(NSUserDefaultsDidChangeNotification, object:nil, queue:nil) { [unowned self] notification in
+		let observer = notificationCenter.addObserver(forName: UserDefaults.didChangeNotification, object:nil, queue:nil) { [unowned self] notification in
 			if (!handlingNotification) {
 				handlingNotification = true
 				self.defaults.synchronize()

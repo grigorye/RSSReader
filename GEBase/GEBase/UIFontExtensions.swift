@@ -10,7 +10,7 @@ import UIKit.UIFont
 
 // Source: http://stackoverflow.com/questions/12941984/typesetting-a-font-in-small-caps-on-ios
 extension UIFont {
-	public class func smallCapsFontOfSize(size: CGFloat, withName name: String) -> UIFont {
+	public class func smallCapsFontOfSize(_ size: CGFloat, withName name: String) -> UIFont {
 		let fontFeatureSettings = [[
 			UIFontFeatureTypeIdentifierKey: kLowerCaseType,
 			UIFontFeatureSelectorIdentifierKey: kLowerCaseSmallCapsSelector

@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 public protocol TableViewHeightBasedReusedCellGeneratorDataSource : class {
-	func variableHeightForCell(cell: UITableViewCell) -> CGFloat
+	func variableHeight(forCell: UITableViewCell) -> CGFloat
 	func isReadyForMeasuringHeigthsForData() -> Bool
-	func variableHeightForDataAtIndexPath(indexPath: NSIndexPath) -> CGFloat
+	func variableHeightForDataAtIndexPath(_ indexPath: IndexPath) -> CGFloat
 }
 
 public struct TableViewHeightBasedReusedCellGenerator<DataSource: TableViewHeightBasedReusedCellGeneratorDataSource> {
@@ -23,7 +23,7 @@ public struct TableViewHeightBasedReusedCellGenerator<DataSource: TableViewHeigh
 	var reusedHeights: [CGFloat] = []
 	var reusedHeightsSet: Set<CGFloat> = []
 	var variableHeightsForHeight: [CGFloat : CGFloat] = [:]
-	public func reuseIdentifierForCellForRowAtIndexPath(indexPath: NSIndexPath) -> String {
+	public func reuseIdentifierForCellForRowAtIndexPath(_ indexPath: IndexPath) -> String {
 		guard dataSource.isReadyForMeasuringHeigthsForData() else {
 			return heightAgnosticCellReuseIdentifier
 		}
@@ -39,16 +39,16 @@ public struct TableViewHeightBasedReusedCellGenerator<DataSource: TableViewHeigh
 		guard let height = heightX else {
 			return heightAgnosticCellReuseIdentifier
 		}
-		guard let indexInTopReused = reusedHeights.prefix(reuseIdentifiersForHeightCachingCells.count).indexOf(height) else {
+		guard let indexInTopReused = reusedHeights.prefix(reuseIdentifiersForHeightCachingCells.count).index(of: height) else {
 			return heightAgnosticCellReuseIdentifier
 		}
 		return reuseIdentifiersForHeightCachingCells[indexInTopReused]
 	}
-	public mutating func addRowHeight(height: CGFloat, forCell cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+	public mutating func addRowHeight(_ height: CGFloat, forCell cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
 		if !reusedHeightsSet.contains(height) {
 			reusedHeightsSet.insert(height)
 			reusedHeights += [height]
-			variableHeightsForHeight[height] = dataSource.variableHeightForCell(cell)
+			variableHeightsForHeight[height] = dataSource.variableHeight(forCell: cell)
 			(cell as! SystemLayoutSizeCachingTableViewCell).reused = true
 		}
 	}

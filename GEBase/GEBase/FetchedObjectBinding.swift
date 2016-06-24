@@ -8,22 +8,22 @@
 
 import CoreData
 
-#if os(iOS)
-
-public class FetchedAnyObjectBinding : NSObject, NSFetchedResultsControllerDelegate {
-	var handler: ((AnyObject?) -> Void)!
-	let fetchedResultsController: NSFetchedResultsController
-	public func controllerDidChangeContent(controller: NSFetchedResultsController) {
-		let object: AnyObject? = controller.fetchedObjects!.last
-		handler(object)
+public class FetchedObjectBinding<T where T: DefaultSortable, T: Managed, T: NSFetchRequestResult> : NSObject, NSFetchedResultsControllerDelegate {
+	var handler: (T?) -> Void
+	let fetchedResultsController: NSFetchedResultsController<T>
+	public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+		let object = controller.fetchedObjects!.last
+		handler(object as! T?)
 	}
-	public init(entityName: String, managedObjectContext: NSManagedObjectContext, predicate: NSPredicate?, sortDescriptor: NSSortDescriptor, handler: (AnyObject?) -> Void) {
-		self.handler = handler
+	public init(managedObjectContext: NSManagedObjectContext, predicate: Predicate?, handler: (T?) -> Void) {
+		self.handler = { object in
+			handler(object)
+		}
 		self.fetchedResultsController = {
-			let fetchRequest: NSFetchRequest = {
-				let $ = NSFetchRequest(entityName: entityName)
+			let fetchRequest: NSFetchRequest<T> = {
+				let $ = NSFetchRequest<T>(entityName: T.entityName())
 				$.predicate = _0 ? nil : predicate
-				$.sortDescriptors = [sortDescriptor]
+				$.sortDescriptors = [T.defaultSortDescriptor()]
 				return $
 			}()
 			let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
@@ -35,14 +35,3 @@ public class FetchedAnyObjectBinding : NSObject, NSFetchedResultsControllerDeleg
 		handler(fetchedResultsController.fetchedObjects!.last)
 	}
 }
-public class FetchedObjectBinding<T where T: DefaultSortable, T: Managed> : FetchedAnyObjectBinding  {
-	public init(managedObjectContext: NSManagedObjectContext, predicate: NSPredicate?, handler: (T?) -> Void) {
-		super.init(entityName: T.entityName(), managedObjectContext: managedObjectContext, predicate: predicate, sortDescriptor: T.defaultSortDescriptor(), handler: { object in
-			handler(object as! T?)
-		})
-	}
-	deinit {
-	}
-}
-
-#endif

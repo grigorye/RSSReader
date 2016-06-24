@@ -8,23 +8,23 @@
 
 import Foundation
 
-let dateFormatter: NSDateFormatter = {
-	let $ = NSDateFormatter()
+let dateFormatter: DateFormatter = {
+	let $ = DateFormatter()
 	$.dateFormat = "HH:mm.ss.SSS"
 	return $
 }()
 
 private let traceToNSLogEnabled = false
 
-func defaultLogger(date: NSDate, label: String, location: SourceLocation, message: String) {
+func defaultLogger(date: Date, label: String, location: SourceLocation, message: String) {
 	let locationDescription = "\(location.function), \(location.fileURL.lastPathComponent!):\(location.line)"
 	let text = "\(locationDescription) ◾︎ \(label): \(message)"
 	if traceToNSLogEnabled {
 		NSLog("%@", text)
 	}
 	else {
-		let dateDescription = dateFormatter.stringFromDate(date)
-		let threadDescription = NSThread.isMainThread() ? "-" : "\(dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL))"
+		let dateDescription = dateFormatter.string(from: date)
+		let threadDescription = Thread.isMainThread() ? "-" : "\(DispatchQueue.global().label)"
 		let textWithTimestamp = "\(dateDescription) [\(threadDescription)] \(text)"
 		print(textWithTimestamp)
 	}

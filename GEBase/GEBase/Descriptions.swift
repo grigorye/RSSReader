@@ -9,6 +9,6 @@
 import Foundation
 
 func description(value: NSIndexPath) -> String {
-	let components = (0 ..< value.length).map {"\(value.indexAtPosition($0))"}
-	return components.joinWithSeparator(", ")
+	let components = (0 ..< value.length).map {"\(value.index(atPosition: $0))"}
+	return components.joined(separator: ", ")
 }

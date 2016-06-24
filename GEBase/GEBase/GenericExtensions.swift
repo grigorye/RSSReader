@@ -8,7 +8,7 @@
 
 import Foundation
 
-public func void<T>(value: T) {
+public func void<T>(_ value: T) {
 }
 
 public typealias Handler = () -> Void
@@ -17,14 +17,14 @@ public func invoke(handler: Handler) {
 	handler()
 }
 
-public func URLQuerySuffixFromComponents(components: [String]) -> String {
+public func URLQuerySuffix(fromComponents components: [String]) -> String {
 	return components.reduce((prefix: "", suffix: "?")) {
 		let (prefix, suffix) = $0
 		return ("\(prefix)\(suffix)\($1)", "&")
 	}.prefix
 }
 
-public func filterObjectsByType<T>(objects: [AnyObject]) -> [T] {
+public func filterObjectsByType<T>(_ objects: [AnyObject]) -> [T] {
 	let filteredObjects = objects.reduce([T]()) {
 		if let x = $($1) as? T {
 			return $0 + [x]
@@ -36,7 +36,7 @@ public func filterObjectsByType<T>(objects: [AnyObject]) -> [T] {
 	return filteredObjects
 }
 
-public func nilForNull(object: AnyObject) -> AnyObject? {
+public func nilForNull(_ object: AnyObject) -> AnyObject? {
 	if (object as! NSObject) == NSNull() {
 		return nil
 	}
@@ -45,8 +45,8 @@ public func nilForNull(object: AnyObject) -> AnyObject? {
 	}
 }
 
-extension CollectionType {
-	public var onlyElement: Self.Generator.Element? {
+extension Collection {
+	public var onlyElement: Self.Iterator.Element? {
 		precondition(self.count <= 1)
 		return self.first
 	}

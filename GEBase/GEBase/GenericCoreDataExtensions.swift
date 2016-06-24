@@ -8,7 +8,7 @@
 
 import CoreData
 
-enum GenericCoreDataExtensionsError: ErrorType {
+enum GenericCoreDataExtensionsError: ErrorProtocol {
 	case JsonObjectIsNotDictionary(jsonObject: AnyObject)
 	case ElementNotFoundOrInvalidInJson(json: [String: AnyObject], elementName: String)
 }
@@ -18,7 +18,7 @@ public protocol Managed {
 }
 
 public protocol DefaultSortable {
-	static func defaultSortDescriptor() -> NSSortDescriptor
+	static func defaultSortDescriptor() -> SortDescriptor
 }
 
 public protocol Identifiable {
@@ -28,42 +28,43 @@ public protocol Identifiable {
 public protocol ManagedIdentifiable: Managed, Identifiable {
 }
 
-func objectFetchedWithPredicate<T: Managed where T: NSManagedObject>(cls: T.Type, predicate: NSPredicate, managedObjectContext: NSManagedObjectContext) -> T? {
+func objectFetchedWithPredicate<T: Managed where T: NSManagedObject, T: NSFetchRequestResult> (_ cls: T.Type, predicate: Predicate, managedObjectContext: NSManagedObjectContext) -> T? {
 	let entityName = cls.entityName()
-	let request: NSFetchRequest = {
-		let $ = NSFetchRequest(entityName: entityName)
+	let request: NSFetchRequest<T>
+	do {
+		let $ = NSFetchRequest<T>(entityName: entityName)
 		$.predicate = predicate
 		$.fetchLimit = 1
-		return $
-	}()
-	let objects = try! (managedObjectContext).executeFetchRequest((request))
-	let object = objects.last as! T?
+		request = $
+	}
+	let objects = try! managedObjectContext.fetch(request)
+	let object = objects.last
 	if let object = object {
-		void(managedObjectContext.objectWithID(object.objectID))
+		void(managedObjectContext.object(with: object.objectID))
 		assert(object.managedObjectContext == managedObjectContext)
 	}
 	return object
 }
 
-func insertedObjectUnlessFetchedWithPredicate<T: Managed where T: NSManagedObject>(cls: T.Type, predicate: NSPredicate, managedObjectContext: NSManagedObjectContext, newObjectInitializationHandler: (T) -> Void) throws -> T {
+func insertedObjectUnlessFetchedWithPredicate<T: Managed where T: NSManagedObject, T: NSFetchRequestResult>(_ cls: T.Type, predicate: Predicate, managedObjectContext: NSManagedObjectContext, newObjectInitializationHandler: (T) -> Void) throws -> T {
 	let entityName = cls.entityName()
 	if let existingObject = objectFetchedWithPredicate(cls, predicate: predicate, managedObjectContext: managedObjectContext) {
 		return existingObject
 	}
 	else {
-		let newObject = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: managedObjectContext) as! T
+		let newObject = NSEntityDescription.insertNewObject(forEntityName: entityName, into: managedObjectContext) as! T
 		newObjectInitializationHandler(newObject)
 		return newObject
 	}
 }
-public func insertedObjectUnlessFetchedWithID<T: ManagedIdentifiable where T: NSManagedObject>(cls: T.Type, id: String, managedObjectContext: NSManagedObjectContext) throws -> T {
+public func insertedObjectUnlessFetchedWithID<T: NSManagedObject where T: ManagedIdentifiable, T: NSFetchRequestResult>(_ cls: T.Type, id: String, managedObjectContext: NSManagedObjectContext) throws -> T {
 	let identifierKey = cls.identifierKey()
-	let predicate = NSPredicate(format: "%K == %@", argumentArray: [identifierKey, id])
+	let predicate = Predicate(format: "%K == %@", argumentArray: [identifierKey, id])
 	return try insertedObjectUnlessFetchedWithPredicate(cls, predicate: predicate, managedObjectContext: managedObjectContext) { newObject in
 		(newObject as NSManagedObject).setValue(id, forKey:identifierKey)
 	}
 }
-public func importItemsFromJson<T: ManagedIdentifiable where T: NSManagedObject>(json: [String : AnyObject], type: T.Type, elementName: String, managedObjectContext: NSManagedObjectContext, importFromJson: (T, [String: AnyObject]) throws -> Void) throws -> [T] {
+public func importItemsFromJson<T: ManagedIdentifiable where T: NSManagedObject, T: NSFetchRequestResult>(_ json: [String : AnyObject], type: T.Type, elementName: String, managedObjectContext: NSManagedObjectContext, importFromJson: (T, [String: AnyObject]) throws -> Void) throws -> [T] {
 	var items = [T]()
 	guard let itemJsons = json[elementName] as? [[String : AnyObject]] else {
 		throw GenericCoreDataExtensionsError.ElementNotFoundOrInvalidInJson(json: json, elementName: elementName)
@@ -78,8 +79,8 @@ public func importItemsFromJson<T: ManagedIdentifiable where T: NSManagedObject>
 	}
 	return items
 }
-public func importItemsFromJsonData<T: ManagedIdentifiable where T: NSManagedObject>(data: NSData, type: T.Type, elementName: String, managedObjectContext: NSManagedObjectContext, importFromJson: (T, [String: AnyObject]) throws -> Void) throws -> [T] {
-	let jsonObject = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions())
+public func importItemsFromJsonData<T: ManagedIdentifiable where T: NSManagedObject, T: NSFetchRequestResult>(_ data: Data, type: T.Type, elementName: String, managedObjectContext: NSManagedObjectContext, importFromJson: (T, [String: AnyObject]) throws -> Void) throws -> [T] {
+	let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions())
 	guard let json = jsonObject as? [String : AnyObject] else {
 		throw GenericCoreDataExtensionsError.JsonObjectIsNotDictionary(jsonObject: jsonObject)
 	}
@@ -88,15 +89,15 @@ public func importItemsFromJsonData<T: ManagedIdentifiable where T: NSManagedObj
 }
 
 extension NSManagedObject {
-	public func encodeObjectIDWithCoder(coder: NSCoder, key: String) {
-		coder.encodeObject(objectID.URIRepresentation(), forKey: key)
+	public func encodeObjectIDWithCoder(_ coder: NSCoder, key: String) {
+		coder.encode(objectID.uriRepresentation(), forKey: key)
 	}
 }
 extension NSManagedObjectContext {
-	public class func objectWithIDDecodedWithCoder(coder: NSCoder, key: String, managedObjectContext: NSManagedObjectContext) -> NSManagedObject? {
-		if let objectIDURL = coder.decodeObjectForKey(key) as! NSURL? {
-            if let objectID = managedObjectContext.persistentStoreCoordinator!.managedObjectIDForURIRepresentation(objectIDURL) {
-                return managedObjectContext.objectWithID(objectID)
+	public class func objectWithIDDecodedWithCoder(_ coder: NSCoder, key: String, managedObjectContext: NSManagedObjectContext) -> NSManagedObject? {
+		if let objectIDURL = coder.decodeObject(forKey: key) as! URL? {
+            if let objectID = managedObjectContext.persistentStoreCoordinator!.managedObjectID(forURIRepresentation: objectIDURL) {
+                return managedObjectContext.object(with: objectID)
             }
 			else {
 				$(objectIDURL)
@@ -109,21 +110,21 @@ extension NSManagedObjectContext {
 	}
 }
 extension NSManagedObjectContext {
-	public func sameObject<T: NSManagedObject>(object: T) -> T {
-		return self.objectWithID(object.objectID) as! T
+	public func sameObject<T: NSManagedObject>(as object: T) -> T {
+		return self.object(with: object.objectID) as! T
 	}
 }
 
 #if os(iOS)
-public func stringFromFetchedResultsChangeType(type: NSFetchedResultsChangeType) -> String {
+public func stringFromFetchedResultsChangeType(_ type: NSFetchedResultsChangeType) -> String {
 	switch (type) {
-	case .Insert:
+	case .insert:
 		return "Insert"
-	case .Delete:
+	case .delete:
 		return "Delete"
-	case .Update:
+	case .update:
 		return "Update"
-	case .Move:
+	case .move:
 		return "Move"
 	}
 }

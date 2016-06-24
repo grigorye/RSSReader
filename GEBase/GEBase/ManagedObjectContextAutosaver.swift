@@ -10,25 +10,25 @@ import Foundation
 import CoreData
 
 public class ManagedObjectContextAutosaver: NSObject {
-	let notificationCenter = NSNotificationCenter.defaultCenter()
+	let notificationCenter = NotificationCenter.default()
 	let observer: AnyObject
 	deinit {
 		notificationCenter.removeObserver(observer)
 	}
-	public init(managedObjectContext: NSManagedObjectContext, queue: NSOperationQueue?) {
-		observer = notificationCenter.addObserverForName(NSManagedObjectContextObjectsDidChangeNotification, object: managedObjectContext, queue: queue, usingBlock: { notification in
-			(notification)
-			managedObjectContext.performBlock {
-				(managedObjectContext)
+	public init(managedObjectContext: NSManagedObjectContext, queue: OperationQueue?) {
+		observer = notificationCenter.addObserver(forName: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: managedObjectContext, queue: queue, using: { notification in
+			$(notification)
+			managedObjectContext.perform {
+				•(managedObjectContext)
 				if let updatedObjects = notification.userInfo?[NSUpdatedObjectsKey] as! Set<NSManagedObject>? {
 					for updatedObject in updatedObjects {
-						((updatedObject).changedValues())
+						•((updatedObject).changedValues())
 					}
 				}
 				let insertedObjects = notification.userInfo?[NSInsertedObjectsKey] as! Set<NSManagedObject>?
-				(insertedObjects)
+				•(insertedObjects)
 				let deletedObjects = notification.userInfo?[NSDeletedObjectsKey] as! Set<NSManagedObject>?
-				(deletedObjects)
+				•(deletedObjects)
 				try! managedObjectContext.save()
 			}
 		})

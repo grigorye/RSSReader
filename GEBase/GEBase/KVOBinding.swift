@@ -9,18 +9,18 @@
 import GEKeyPaths
 import Foundation
 
-private let KVOBindingContext = UnsafeMutablePointer<Void>.alloc(1)
+private let KVOBindingContext = UnsafeMutablePointer<Void>(allocatingCapacity: 1)
 
 public class KVOBinding : NSObject {
 	unowned let object: NSObject
 	let keyPath: String
 	let KVOHandler: (NSDictionary?) -> Void
-	override public func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+	public override func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
 		if context == KVOBindingContext {
 			KVOHandler(change)
 		}
 		else {
-			super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+			super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
 		}
 	}
 	public init(_ objectAndKeyPath: ObjectAndKeyPath, options: NSKeyValueObservingOptions, KVOHandler: (NSDictionary?) -> Void) {
