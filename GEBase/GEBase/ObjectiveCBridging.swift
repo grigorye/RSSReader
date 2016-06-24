@@ -6,7 +6,6 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
-import GEKeyPaths
 import Foundation
 
 func objCEncode<T>(_ type: T.Type) -> String {
