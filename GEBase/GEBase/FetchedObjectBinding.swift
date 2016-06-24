@@ -11,8 +11,8 @@ import CoreData
 public class FetchedObjectBinding<T where T: DefaultSortable, T: Managed, T: NSFetchRequestResult> : NSObject, NSFetchedResultsControllerDelegate {
 	var handler: (T?) -> Void
 	let fetchedResultsController: NSFetchedResultsController<T>
-	public func controllerDidChangeContent(_ controller: NSFetchedResultsController<T>) {
-		let object = controller.fetchedObjects!.last
+	public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+		let object = controller.fetchedObjects!.last as! T?
 		handler(object)
 	}
 	public init(managedObjectContext: NSManagedObjectContext, predicate: Predicate?, handler: (T?) -> Void) {
