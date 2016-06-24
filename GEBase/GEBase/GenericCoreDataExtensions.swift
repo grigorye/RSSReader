@@ -40,7 +40,7 @@ func objectFetchedWithPredicate<T: Managed where T: NSManagedObject, T: NSFetchR
 	let objects = try! managedObjectContext.fetch(request)
 	let object = objects.last
 	if let object = object {
-		void(managedObjectContext.object(with: object.objectID))
+		•(managedObjectContext.object(with: object.objectID))
 		assert(object.managedObjectContext == managedObjectContext)
 	}
 	return object

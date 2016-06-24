@@ -9,7 +9,7 @@
 import Foundation
 
 func associatedObjectRegeneratedAsNecessary<T>(obj: AnyObject!, key: UnsafePointer<Void>, type: T.Type) -> T {
-	void(NSValue(pointer: unsafeAddress(of: (obj))))
+	•(NSValue(pointer: unsafeAddress(of: (obj))))
 	guard let existingObject = objc_getAssociatedObject(obj, key) as! T! else {
 		let newObject = (type as! NSObject.Type).init()
 		objc_setAssociatedObject(obj, key, newObject, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
@@ -19,7 +19,7 @@ func associatedObjectRegeneratedAsNecessary<T>(obj: AnyObject!, key: UnsafePoint
 }
 
 func associatedObjectRegeneratedAsNecessary<T>(cls obj: AnyClass!, key: UnsafePointer<Void>, type: T.Type) -> T {
-	void(NSValue(pointer: unsafeAddress(of: (obj))))
+	•(NSValue(pointer: unsafeAddress(of: (obj))))
 	guard let existingObject = objc_getAssociatedObject(obj, key) as! T! else {
 		let newObject = (type as! NSObject.Type).init()
 		objc_setAssociatedObject(obj, key, newObject, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
