@@ -8,13 +8,12 @@
 
 import RSSReaderData
 import GEBase
-import GEKeyPaths
 import UIKit
 
 class TableViewContainerCell : UITableViewCell {
 	var unreadCountKVOBinding: KVOBinding!
-	func setFromContainer(container: Container) {
-		self.unreadCountKVOBinding = KVOBinding(container•{$0.unreadCount}, options: NSKeyValueObservingOptions.Initial) {[unowned self] change in
+	func setFromContainer(_ container: Container) {
+		self.unreadCountKVOBinding = KVOBinding(container•#keyPath(Container.unreadCount), options: .initial) {[unowned self] change in
 			self.detailTextLabel?.text = (0 < container.unreadCount) ? "\(container.unreadCount)" : ""
 		}
 	}

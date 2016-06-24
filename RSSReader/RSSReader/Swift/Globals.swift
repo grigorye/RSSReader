@@ -18,12 +18,12 @@ let applicationDomain = "com.grigoryentin.RSSReader"
 var foldersController: FoldersController!
 
 let applicationDelegate: AppDelegate = {
-	return (UIApplication.sharedApplication().delegate as! AppDelegate)
+	return (UIApplication.shared().delegate as! AppDelegate)
 }()
 
-let userCachesDirectoryURL: NSURL = {
-	let fileManager = NSFileManager.defaultManager()
-	let $ = try! fileManager.URLForDirectory(.CachesDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: false)
+let userCachesDirectoryURL: URL = {
+	let fileManager = FileManager.default()
+	let $ = try! fileManager.urlForDirectory(.cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
 	return $
 }()
 
@@ -41,11 +41,11 @@ extension NSObject {
 	}
 }
 
-let dateComponentsFormatter: NSDateComponentsFormatter = {
-	let $ = NSDateComponentsFormatter()
-	$.unitsStyle = .Abbreviated
+let dateComponentsFormatter: DateComponentsFormatter = {
+	let $ = DateComponentsFormatter()
+	$.unitsStyle = .abbreviated
 	$.allowsFractionalUnits = true
 	$.maximumUnitCount = 1
-	$.allowedUnits = [.Minute, .Year, .Month, .WeekOfMonth, .Day, .Hour]
+	$.allowedUnits = [.minute, .year, .month, .weekOfMonth, .day, .hour]
 	return $;
 }()

@@ -13,15 +13,15 @@ import UIKit
 class ItemsPageViewControllerDelegate: NSObject, UIPageViewControllerDelegate {
 	@IBOutlet weak var pageViewController: ItemsPageViewController!
 	// MARK:-
-    func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [UIViewController]) {
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
 		let pendingViewController = pendingViewControllers.first as! ItemSummaryWebViewController
 		let currentViewController = pageViewController.viewControllers!.first as! ItemSummaryWebViewController
-		dispatch_async(dispatch_get_main_queue()) {
+		DispatchQueue.main.async {
 			pendingViewController.view.frame = currentViewController.view.frame
 			pendingViewController.webView.frame = currentViewController.webView.frame
 		}
 	}
-	func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+	func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
 		$(completed)
 		let currentViewController = pageViewController.viewControllers!.first as! ItemSummaryWebViewController
 		if let webView = currentViewController.view.subviews.first as? UIWebView {

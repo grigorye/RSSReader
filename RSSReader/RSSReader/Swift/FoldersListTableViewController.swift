@@ -8,7 +8,6 @@
 
 import RSSReaderData
 import GEBase
-import GEKeyPaths
 import UIKit
 import CoreData
 
@@ -26,14 +25,14 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 	dynamic let defaults = KVOCompliantUserDefaults()
 	//
 	class var keyPathsForValuesAffectingShowUnreadOnly: Set<String> {
-		return [self••{$0.defaults.showUnreadOnly}]
+		return [#keyPath(defaults.showUnreadOnly)]
 	}
 	private dynamic var showUnreadOnly: Bool {
 		return defaults.showUnreadOnly
 	}
 	//
 	class var keyPathsForValuesAffectingRegeneratedChildContainers: Set<String> {
-		return [self••{$0.rootFolder!.childContainers}, self••{$0.showUnreadOnly}]
+		return [#keyPath(rootFolder.childContainers), #keyPath(showUnreadOnly)]
 	}
 	private dynamic var regeneratedChildContainers: [Container] {
 		let regeneratedChildContainers: [Container] = {
@@ -49,12 +48,12 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 	// MARK: -
 	@IBOutlet private var statusLabel: UILabel!
 	@IBOutlet private var statusBarButtonItem: UIBarButtonItem!
-	@IBAction func refreshFromBarButtonItem(sender: AnyObject!) {
+	@IBAction func refreshFromBarButtonItem(_ sender: AnyObject!) {
 		let refreshControl = self.refreshControl
 		refreshControl?.beginRefreshing()
 		self.refresh(refreshControl)
 	}
-	static func viewControllerForErrorOnRefresh(error: ErrorType, retryAction: () -> Void) -> UIViewController {
+	static func viewControllerForErrorOnRefresh(_ error: ErrorProtocol, retryAction: () -> Void) -> UIViewController {
 		let alertController: UIAlertController = {
 			let message: String = {
 				let localizedDescription: String = {
@@ -73,11 +72,11 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 				}
 			}()
 			let title = NSLocalizedString("Refresh Failed", comment: "Title for alert on failed refresh")
-			let $ = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-			let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Proceed action title for alert on failed refresh"), style: .Default) { action in
+			let $ = UIAlertController(title: title, message: message, preferredStyle: .alert)
+			let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Proceed action title for alert on failed refresh"), style: .default) { action in
 				return
 			}
-			let retryAlertAction = UIAlertAction(title: NSLocalizedString("Retry", comment: "Proceed action title for alert on failed refresh"), style: .Default) { action in
+			let retryAlertAction = UIAlertAction(title: NSLocalizedString("Retry", comment: "Proceed action title for alert on failed refresh"), style: .default) { action in
 				retryAction()
 				return
 			}
@@ -88,22 +87,22 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 		}()
 		return alertController
 	}
-	@IBAction func refresh(sender: AnyObject!) {
+	@IBAction func refresh(_ sender: AnyObject!) {
 		guard nil != self.rssSession else {
 			let message = NSLocalizedString("To sync you should be logged in.", comment: "")
 			presentErrorMessage(message)
 			return
 		}
-		RSSReader.foldersController.updateFolders { updateError in dispatch_async(dispatch_get_main_queue()) {
+		RSSReader.foldersController.updateFolders { updateError in DispatchQueue.main.async {
 			defer {
 				self.refreshControl?.endRefreshing()
 			}
 			if let updateError = updateError {
-				let presentedError: ErrorType = {
+				let presentedError: ErrorProtocol = {
 					switch $(updateError) {
 					case let foldersControllerError as FoldersControllerError:
 						switch foldersControllerError {
-						case .UserInfoRetrieval(let underlyingError):
+						case .userInfoRetrieval(let underlyingError):
 							return underlyingError
 						default:
 							return foldersControllerError
@@ -115,7 +114,7 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 				let errorViewController = self.dynamicType.viewControllerForErrorOnRefresh(presentedError) {
 					self.refresh(self)
 				}
-				self.presentViewController(errorViewController, animated: true, completion: nil)
+				self.present(errorViewController, animated: true, completion: nil)
 				return
 			}
 			if nil == self.rootFolder {
@@ -126,16 +125,16 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 		}}
 	}
 	// MARK: -
-	private func configureCell(cell: UITableViewCell, forFolder folder: Folder) {
+	private func configureCell(_ cell: UITableViewCell, forFolder folder: Folder) {
 		(cell as! TableViewContainerCell).setFromContainer(folder)
 		cell.textLabel?.text = (folder.streamID as NSString).lastPathComponent
 	}
-	private func configureCell(cell: UITableViewCell, forSubscription subscription: Subscription) {
+	private func configureCell(_ cell: UITableViewCell, forSubscription subscription: Subscription) {
 		(cell as! TableViewContainerCell).setFromContainer(subscription)
 		cell.textLabel?.text = subscription.title ?? subscription.url?.lastPathComponent
 	}
 	// MARK: -
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+	override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
 		switch segue.identifier! {
 		case MainStoryboard.SegueIdentifiers.ShowFolder:
 			let foldersListTableViewController = segue.destinationViewController as! FoldersListTableViewController
@@ -156,14 +155,14 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 		}
 	}
 	// MARK: -
-    func modelIdentifierForElementAtIndexPath(indexPath: NSIndexPath, inView view: UIView) -> String? {
+    func modelIdentifierForElement(at indexPath: IndexPath, in view: UIView) -> String? {
 		let childContainer = childContainers[indexPath.row]
-		return childContainer.objectID.URIRepresentation().absoluteString
+		return childContainer.objectID.uriRepresentation().absoluteString
 	}
-    func indexPathForElementWithModelIdentifier(identifier: String, inView view: UIView) -> NSIndexPath? {
-		let objectIDURL = NSURL(string: identifier)!
-		if let row = (childContainers.map { return $0.objectID.URIRepresentation().absoluteString }).indexOf(identifier) {
-			let indexPath = NSIndexPath(forRow: row, inSection: 0)
+    func indexPathForElement(withModelIdentifier identifier: String, in view: UIView) -> IndexPath? {
+		let objectIDURL = URL(string: identifier)!
+		if let row = (childContainers.map { return $0.objectID.uriRepresentation().absoluteString }).index(where: { $0 == identifier }) {
+			let indexPath = IndexPath(row: row, section: 0)
 			return $(indexPath)
 		}
 		else {
@@ -173,21 +172,21 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 		}
 	}
 	// MARK: -
-	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return childContainers.count
 	}
-	override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return UITableViewAutomaticDimension
 	}
-	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let childContainer = childContainers[indexPath.row]
 		switch childContainer {
 		case let subscription as Subscription:
-			let cell = tableView.dequeueReusableCellWithIdentifier(MainStoryboard.ReuseIdentifiers.Subscription, forIndexPath: indexPath)
+			let cell = tableView.dequeueReusableCell(withIdentifier: MainStoryboard.ReuseIdentifiers.Subscription, for: indexPath)
 			self.configureCell(cell, forSubscription: subscription)
 			return cell
 		case let folder as Folder:
-			let cell = tableView.dequeueReusableCellWithIdentifier(MainStoryboard.ReuseIdentifiers.Folder, forIndexPath: indexPath)
+			let cell = tableView.dequeueReusableCell(withIdentifier: MainStoryboard.ReuseIdentifiers.Folder, for: indexPath)
 			self.configureCell(cell, forFolder: folder)
 			return cell
 		default:
@@ -198,12 +197,12 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 	private enum Restorable: String {
 		case rootFolderObjectID = "rootFolderObjectID"
 	}
-	override func encodeRestorableStateWithCoder(coder: NSCoder) {
-		super.encodeRestorableStateWithCoder(coder)
+	override func encodeRestorableState(with coder: NSCoder) {
+		super.encodeRestorableState(with: coder)
 		rootFolder?.encodeObjectIDWithCoder(coder, key: Restorable.rootFolderObjectID.rawValue)
 	}
-	override func decodeRestorableStateWithCoder(coder: NSCoder) {
-		super.decodeRestorableStateWithCoder(coder)
+	override func decodeRestorableState(with coder: NSCoder) {
+		super.decodeRestorableState(with: coder)
 		if let rootFolder = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.rootFolderObjectID.rawValue, managedObjectContext: mainQueueManagedObjectContext) as! Folder? {
 			self.rootFolder = rootFolder
 			self.childContainers = self.regeneratedChildContainers
@@ -212,28 +211,28 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 	// MARK: -
 	var viewDidDisappearRetainedObjects = [AnyObject]()
 	var blocksScheduledForViewWillAppear = [Handler]()
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		blocksScheduledForViewWillAppear.forEach {$0()}
 		blocksScheduledForViewWillAppear = []
 		super.viewWillAppear(animated)
-		viewDidDisappearRetainedObjects += [KVOBinding(self•{$0.regeneratedChildContainers}, options: .Initial) { [unowned self] change in
-			$(•change!)
+		viewDidDisappearRetainedObjects += [KVOBinding(self•#keyPath(regeneratedChildContainers), options: .initial) { [unowned self] change in
+			$(change!)
 			self.childContainers = self.regeneratedChildContainers
 			self.tableView.reloadData()
 		}]
-		viewDidDisappearRetainedObjects += [KVOBinding(self•{$0.foldersController.foldersUpdateStateRaw}, options: .Initial) { [unowned self] change in
-			assert(NSThread.isMainThread())
-			(change)
+		viewDidDisappearRetainedObjects += [KVOBinding(self•#keyPath(foldersController.foldersUpdateStateRaw), options: .initial) { [unowned self] change in
+			assert(Thread.isMainThread())
+			•(change)
 			let foldersUpdateState = self.foldersController.foldersUpdateState
 			let message: String = {
 				switch foldersUpdateState {
-				case .Completed:
+				case .completed:
 					let foldersController = self.foldersController
 					if let foldersUpdateError = foldersController.foldersLastUpdateError {
 						return "\(foldersUpdateError)"
 					}
 					else if let foldersLastUpdateDate = foldersController.foldersLastUpdateDate {
-						let loadAgo = loadAgoDateComponentsFormatter.stringFromDate(foldersLastUpdateDate, toDate: NSDate())!
+						let loadAgo = loadAgoDateComponentsFormatter.string(from: foldersLastUpdateDate, to: Date())!
 						return String.localizedStringWithFormat(NSLocalizedString("Updated %@ ago", comment: ""), loadAgo)
 					}
 					else {
@@ -246,7 +245,7 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 			self.presentInfoMessage(message)
 		}]
 	}
-	override func viewDidDisappear(animated: Bool) {
+	override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
 		viewDidDisappearRetainedObjects = []
 	}
@@ -257,16 +256,16 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 }
 
 extension FoldersListTableViewController {
-	func presentMessage(text: String) {
+	func presentMessage(_ text: String) {
 		statusLabel.text = (text)
 		statusLabel.sizeToFit()
 		statusLabel.superview!.frame.size.width = statusLabel.bounds.width
 		statusBarButtonItem.width = (statusLabel.superview!.bounds.width)
 	}
-	override func presentErrorMessage(text: String) {
+	override func presentErrorMessage(_ text: String) {
 		presentMessage(text)
 	}
-	override func presentInfoMessage(text: String) {
+	override func presentInfoMessage(_ text: String) {
 		presentMessage(text)
 	}
 }

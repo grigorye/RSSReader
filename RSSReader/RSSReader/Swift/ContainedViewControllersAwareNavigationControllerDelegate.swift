@@ -10,8 +10,8 @@ import GEBase
 import UIKit.UINavigationController
 
 class ContainedViewControllersAwareNavigationControllerDelegate: NSObject, UINavigationControllerDelegate {
-	func navigationController(navigationController: UINavigationController, didShowViewController viewController: UIViewController, animated: Bool) {
-		(self)
+	func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+		•(self)
 		viewController.makeContainedViewControllersPerformBlock { containedViewController in
 			containedViewController.viewDidAppearInNavigationController(navigationController, animated: animated)
 		}
@@ -19,7 +19,7 @@ class ContainedViewControllersAwareNavigationControllerDelegate: NSObject, UINav
 }
 
 extension UIViewController {
-	func makeContainedViewControllersPerformBlock(block: (viewController: UIViewController) -> ()) {
+	func makeContainedViewControllersPerformBlock(_ block: (viewController: UIViewController) -> ()) {
 		block(viewController: self)
 		for viewController in self.childViewControllers {
 			viewController.makeContainedViewControllersPerformBlock(block)
@@ -28,6 +28,6 @@ extension UIViewController {
 }
 
 extension UIViewController {
-	func viewDidAppearInNavigationController(navigationController: UINavigationController, animated: Bool) {
+	func viewDidAppearInNavigationController(_ navigationController: UINavigationController, animated: Bool) {
 	}
 }

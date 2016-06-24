@@ -14,7 +14,7 @@ extension UINavigationItem {
 			return self.rightBarButtonItems
 		}
 		set {
-			self.rightBarButtonItems = newValue?.sort { $0.tag < $1.tag }
+			self.rightBarButtonItems = newValue?.sorted { $0.tag < $1.tag }
 		}
 	}
 	@IBOutlet var leftBarButtonItemsCollection: [UIBarButtonItem]? {
@@ -22,7 +22,7 @@ extension UINavigationItem {
 			return self.leftBarButtonItems
 		}
 		set {
-			self.leftBarButtonItems = newValue?.sort { $0.tag < $1.tag }
+			self.leftBarButtonItems = newValue?.sorted { $0.tag < $1.tag }
 		}
 	}
 }

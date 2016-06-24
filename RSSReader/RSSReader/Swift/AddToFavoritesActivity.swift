@@ -11,7 +11,7 @@ import GEBase
 import UIKit
 
 class AddToFavoritesActivity : TypeFilteringActivity  {
-	override func performActivity() {
+	override func perform() {
 		let item = acceptedItems.last!
 		item.markedAsFavorite = true
 		rssSession!.uploadTag(canonicalFavoriteTag, mark: true, forItem: item, completionHandler: { uploadFavoritesStateError in
@@ -31,7 +31,7 @@ class AddToFavoritesActivity : TypeFilteringActivity  {
 		return UIImage(named: "AppIcon")
 	}
 	override class func activityCategory() -> UIActivityCategory {
-		return .Action
+		return .action
 	}
 	// MARK: -
 	typealias ItemType = Item

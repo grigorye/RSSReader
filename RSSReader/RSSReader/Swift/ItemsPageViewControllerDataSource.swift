@@ -12,22 +12,22 @@ import UIKit
 
 class ItemsPageViewControllerDataSource: NSObject, UIPageViewControllerDataSource {
 	var items: [Item]!
-	func viewControllerForItem(item: Item, storyboard: UIStoryboard) -> UIViewController {
-		let $ = storyboard.instantiateViewControllerWithIdentifier(MainStoryboard.StoryboardIdentifiers.ItemSummaryWeb) as! ItemSummaryWebViewController
+	func viewControllerForItem(_ item: Item, storyboard: UIStoryboard) -> UIViewController {
+		let $ = storyboard.instantiateViewController(withIdentifier: MainStoryboard.StoryboardIdentifiers.ItemSummaryWeb) as! ItemSummaryWebViewController
 		$.item = item
 		return $
 	}
 	// MARK: -
-	func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+	func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
 		let itemViewController = viewController as! ItemSummaryWebViewController
-		let item = itemViewController.item
+		let item = itemViewController.item!
 		let itemBefore: Item? = {
-			let items = self.items
+			let items = self.items!
 			if items.first == item {
 				return nil
 			}
 			else {
-				let index = items.indexOf(item)!
+				let index = items.index(of: item)!
 				return items[index - 1]
 			}
 		}()
@@ -38,16 +38,16 @@ class ItemsPageViewControllerDataSource: NSObject, UIPageViewControllerDataSourc
 			return nil
 		}
 	}
-	func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+	func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
 		let itemViewController = viewController as! ItemSummaryWebViewController
-		let item = itemViewController.item
+		let item = itemViewController.item!
 		let itemAfter: Item? = {
-			let items = self.items
+			let items = self.items!
 			if items.last == item {
 				return nil
 			}
 			else {
-				let index = items.indexOf(item)!
+				let index = items.index(of: item)!
 				return items[index + 1]
 			}
 		}()
@@ -62,15 +62,15 @@ class ItemsPageViewControllerDataSource: NSObject, UIPageViewControllerDataSourc
 	private enum Restorable: String {
 		case itemObjectIDURLs = "itemObjectIDURLs"
 	}
-	func encodeRestorableStateWithCoder(coder: NSCoder) {
-		let itemObjectIDURLs = self.items.map { $0.objectID.URIRepresentation() }
-		coder.encodeObject(itemObjectIDURLs, forKey: Restorable.itemObjectIDURLs.rawValue)
+	func encodeRestorableStateWithCoder(_ coder: NSCoder) {
+		let itemObjectIDURLs = self.items.map { $0.objectID.uriRepresentation() }
+		coder.encode(itemObjectIDURLs, forKey: Restorable.itemObjectIDURLs.rawValue)
 	}
-	func decodeRestorableStateWithCoder(coder: NSCoder) {
+	func decodeRestorableStateWithCoder(_ coder: NSCoder) {
 		let managedObjectContext = mainQueueManagedObjectContext
 		let persistentStoreCoordinator = managedObjectContext.persistentStoreCoordinator!
-		let itemObjectIDURLs = coder.decodeObjectForKey(Restorable.itemObjectIDURLs.rawValue) as! [NSURL]
-		let items = itemObjectIDURLs.map { managedObjectContext.objectWithID(persistentStoreCoordinator.managedObjectIDForURIRepresentation($0)!) as! Item }
+		let itemObjectIDURLs = coder.decodeObject(forKey: Restorable.itemObjectIDURLs.rawValue) as! [URL]
+		let items = itemObjectIDURLs.map { managedObjectContext.object(with: persistentStoreCoordinator.managedObjectID(forURIRepresentation: $0)!) as! Item }
 		self.items = items
 	}
 	// MARK: -

@@ -11,7 +11,7 @@ import GEBase
 import UIKit
 
 class MarkAllAsReadActivity : TypeFilteringActivity {
-	override func performActivity() {
+	override func perform() {
 		let folder = acceptedItems.last!
 		let items = (folder as! ItemsOwner).ownItems
 		for i in items {
@@ -31,7 +31,7 @@ class MarkAllAsReadActivity : TypeFilteringActivity {
 		return UIImage(named: "AppIcon")
 	}
 	override class func activityCategory() -> UIActivityCategory {
-		return .Action
+		return .action
 	}
 	// MARK: -
 	typealias FilteredItem = Container

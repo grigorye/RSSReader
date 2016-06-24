@@ -8,7 +8,6 @@
 
 import RSSReaderData
 import GEBase
-import GEKeyPaths
 import UIKit
 
 class ItemsPageViewController : UIPageViewController {
@@ -19,48 +18,49 @@ class ItemsPageViewController : UIPageViewController {
 		case viewControllers = "viewControllers"
 		case currentViewControllerIndex = "currentViewControllerIndex"
 	}
-	override func decodeRestorableStateWithCoder(coder: NSCoder) {
-		super.decodeRestorableStateWithCoder(coder)
+	override func decodeRestorableState(with coder: NSCoder) {
+		super.decodeRestorableState(with: coder)
 		let dataSource = self.dataSource as! ItemsPageViewControllerDataSource
 		dataSource.decodeRestorableStateWithCoder(coder)
 		if _1 {
-			let viewControllers = coder.decodeObjectForKey(Restorable.viewControllers.rawValue) as! [UIViewController]
-			let currentViewControllerIndex = coder.decodeObjectForKey(Restorable.currentViewControllerIndex.rawValue) as! Int
+			let viewControllers = coder.decodeObject(forKey: Restorable.viewControllers.rawValue) as! [UIViewController]
+			let currentViewControllerIndex = coder.decodeObject(forKey: Restorable.currentViewControllerIndex.rawValue) as! Int
 			self.currentViewController = viewControllers[currentViewControllerIndex]
 			blocksDelayedTillViewWillAppear += [{
-				self.setViewControllers(viewControllers, direction: .Forward, animated: false) { completed in
+				self.setViewControllers(viewControllers, direction: .forward, animated: false) { completed in
 					$(completed)
 				}
 			}]
 		}
 	}
-	override func encodeRestorableStateWithCoder(coder: NSCoder) {
-		super.encodeRestorableStateWithCoder(coder)
+	override func encodeRestorableState(with coder: NSCoder) {
+		super.encodeRestorableState(with: coder)
 		let dataSource = self.dataSource as! ItemsPageViewControllerDataSource
 		dataSource.encodeRestorableStateWithCoder(coder)
 		if _1 {
-			coder.encodeObject(viewControllers, forKey: Restorable.viewControllers.rawValue)
-			let currentViewControllerIndex = viewControllers!.indexOf(self.currentViewController!)
-			coder.encodeObject(currentViewControllerIndex, forKey: Restorable.currentViewControllerIndex.rawValue)
+			coder.encode(viewControllers, forKey: Restorable.viewControllers.rawValue)
+			let currentViewControllerIndex = viewControllers!.index(of: self.currentViewController!)
+			coder.encode(currentViewControllerIndex, forKey: Restorable.currentViewControllerIndex.rawValue)
 		}
 	}
 	// MARK: -
-	override func setViewControllers(viewControllers: [UIViewController]?, direction: UIPageViewControllerNavigationDirection, animated: Bool, completion: ((Bool) -> Void)?) {
+	override func setViewControllers(_ viewControllers: [UIViewController]?, direction: UIPageViewControllerNavigationDirection, animated: Bool, completion: ((Bool) -> Void)?) {
 		let currentViewController = viewControllers!.first
 		super.setViewControllers(viewControllers, direction: direction, animated: animated, completion: completion)
 		self.currentViewController = currentViewController
 	}
 	// MARK: -
 	var viewDidDisappearRetainedObjects = [AnyObject]()
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		blocksDelayedTillViewWillAppear.forEach {$0()}
 		blocksDelayedTillViewWillAppear = []
 		super.viewWillAppear(animated)
-		viewDidDisappearRetainedObjects += [KVOBinding(self•{$0.currentViewController!.navigationItem.rightBarButtonItems}, options: .Initial) { change in
+		
+		viewDidDisappearRetainedObjects += [KVOBinding(self•#keyPath(currentViewController.navigationItem.rightBarButtonItems), options: .initial) { change in
 			self.navigationItem.rightBarButtonItems = self.currentViewController!.navigationItem.rightBarButtonItems
 		}]
 		if hideBarsOnSwipe {
-			viewDidDisappearRetainedObjects += [KVOBinding(self•{$0.currentViewController}, options: .Initial) { change in
+			viewDidDisappearRetainedObjects += [KVOBinding(self•#keyPath(currentViewController), options: .initial) { change in
 				if let webView = self.currentViewController?.view.subviews.first as? UIWebView {
 					let barHideOnSwipeGestureRecognizer = self.navigationController!.barHideOnSwipeGestureRecognizer
 					let scrollView = webView.scrollView
@@ -68,20 +68,20 @@ class ItemsPageViewController : UIPageViewController {
 				}
 			}]
 		}
-		viewDidDisappearRetainedObjects += [KVOBinding(self•{$0.currentViewController!.toolbarItems}, options: .Initial) { change in
+		viewDidDisappearRetainedObjects += [KVOBinding(self•#keyPath(currentViewController.toolbarItems), options: .initial) { change in
 			self.toolbarItems = self.currentViewController?.toolbarItems
 		}]
 	}
 	override func childViewControllerForStatusBarHidden() -> UIViewController? {
 		return self.currentViewController
 	}
-	override func viewDidAppear(animated: Bool) {
+	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		if let webView = self.currentViewController?.view.subviews.first as? UIWebView {
 			webView.scrollView.flashScrollIndicators()
 		}
 	}
-	override func viewDidDisappear(animated: Bool) {
+	override func viewDidDisappear(_ animated: Bool) {
 		viewDidDisappearRetainedObjects = []
 		super.viewDidDisappear(animated)
 	}

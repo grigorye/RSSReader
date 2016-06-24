@@ -11,46 +11,46 @@ import GEBase
 import Foundation
 
 enum FoldersUpdateState: Int {
-	case Unknown
-	case Completed
-	case Authenticating
-	case UpdatingUserInfo
-	case UpdatingTags
-	case UpdatingSubscriptions
-	case UpdatingUnreadCounts
-	case UpdatingStreamPreferences
+	case unknown
+	case completed
+	case authenticating
+	case updatingUserInfo
+	case updatingTags
+	case updatingSubscriptions
+	case updatingUnreadCounts
+	case updatingStreamPreferences
 }
 
 extension FoldersUpdateState: CustomStringConvertible {
 	var description: String {
 		switch self {
-		case .Unknown:
+		case .unknown:
 			return NSLocalizedString("Unknown", comment: "Folders Update State")
-		case .Authenticating:
+		case .authenticating:
 			return NSLocalizedString("Authenticating", comment: "Folders Update State")
-		case .UpdatingUserInfo:
+		case .updatingUserInfo:
 			return NSLocalizedString("Updating User Info", comment: "Folders Update State")
-		case .UpdatingTags:
+		case .updatingTags:
 			return NSLocalizedString("Updating Tags", comment: "Folders Update State")
-		case .UpdatingSubscriptions:
+		case .updatingSubscriptions:
 			return NSLocalizedString("Updating Subscriptions", comment: "Folders Update State")
-		case .UpdatingUnreadCounts:
+		case .updatingUnreadCounts:
 			return NSLocalizedString("Updating Unread Counts", comment: "Folders Update State")
-		case .UpdatingStreamPreferences:
+		case .updatingStreamPreferences:
 			return NSLocalizedString("Updating Unread Counts", comment: "Folders Update State")
-		case .Completed:
+		case .completed:
 			return NSLocalizedString("Completed", comment: "Folders Update State")
 		}
 	}
 }
 
-enum FoldersControllerError: ErrorType {
-	case UserInfoRetrieval(underlyingError: ErrorType)
-	case TagsUpdate(underlyingError: ErrorType)
-	case SubscriptionsUpdate(underlyingError: ErrorType)
-	case DataDoesNotMatchTextEncoding
-	case UnreadCountsUpdate(underlyingError: ErrorType)
-	case StreamPreferencesUpdate(underlyingError: ErrorType)
+enum FoldersControllerError: ErrorProtocol {
+	case userInfoRetrieval(underlyingError: ErrorProtocol)
+	case tagsUpdate(underlyingError: ErrorProtocol)
+	case subscriptionsUpdate(underlyingError: ErrorProtocol)
+	case dataDoesNotMatchTextEncoding
+	case unreadCountsUpdate(underlyingError: ErrorProtocol)
+	case streamPreferencesUpdate(underlyingError: ErrorProtocol)
 }
 
 @objc protocol FoldersController {
@@ -59,7 +59,7 @@ enum FoldersControllerError: ErrorType {
 	func updateFolders(completionHandler: (ErrorType?) -> Void)
 #endif
 	var rssSession: RSSSession? { get }
-	var foldersLastUpdateDate: NSDate? { get set }
+	var foldersLastUpdateDate: Date? { get set }
 	var foldersLastUpdateErrorRaw: NSError? { get set }
 	var foldersUpdateStateRaw: Int { get set }
 }
@@ -73,7 +73,7 @@ extension FoldersController {
 			return FoldersUpdateState(rawValue: foldersUpdateStateRaw)!
 		}
 	}
-	final var foldersLastUpdateError: ErrorType? {
+	final var foldersLastUpdateError: ErrorProtocol? {
 		set {
 			foldersLastUpdateErrorRaw = NSError(domain: "", code: 1, userInfo: ["swiftError": "\(newValue)"])
 		}
@@ -82,48 +82,48 @@ extension FoldersController {
 		}
 	}
 	typealias Error = FoldersControllerError
-	final func updateFoldersAuthenticated(completionHandler: (ErrorType?) -> Void) {
+	final func updateFoldersAuthenticated(_ completionHandler: (ErrorProtocol?) -> Void) {
 		let rssSession = self.rssSession!
-		foldersUpdateState = .UpdatingUserInfo
-		let errorCompletionHandler = { (error: ErrorType) -> Void in
+		foldersUpdateState = .updatingUserInfo
+		let errorCompletionHandler = { (error: ErrorProtocol) -> Void in
 			self.foldersLastUpdateError = error
-			self.foldersLastUpdateDate = NSDate()
-			self.foldersUpdateState = .Completed
+			self.foldersLastUpdateDate = Date()
+			self.foldersUpdateState = .completed
 			completionHandler(error)
 		}
 		let successCompletionHandler: () -> Void = {
-			self.foldersLastUpdateDate = NSDate()
-			self.foldersUpdateState = .Completed
+			self.foldersLastUpdateDate = Date()
+			self.foldersUpdateState = .completed
 			completionHandler(nil)
 		}
 		self.foldersLastUpdateError = nil
-		rssSession.updateUserInfo { updateUserInfoError in dispatch_async(dispatch_get_main_queue()) {
+		rssSession.updateUserInfo { updateUserInfoError in DispatchQueue.main.async {
 			if let updateUserInfoError = updateUserInfoError {
-				errorCompletionHandler(Error.UserInfoRetrieval(underlyingError: $(updateUserInfoError)))
+				errorCompletionHandler(Error.userInfoRetrieval(underlyingError: $(updateUserInfoError)))
 				return
 			}
-			self.foldersUpdateState = .UpdatingTags
-			rssSession.updateTags { updateTagsError in dispatch_async(dispatch_get_main_queue()) {
+			self.foldersUpdateState = .updatingTags
+			rssSession.updateTags { updateTagsError in DispatchQueue.main.async {
 				if let updateTagsError = updateTagsError {
-					errorCompletionHandler(Error.TagsUpdate(underlyingError: $(updateTagsError)))
+					errorCompletionHandler(Error.tagsUpdate(underlyingError: $(updateTagsError)))
 					return
 				}
-				self.foldersUpdateState = .UpdatingSubscriptions
-				rssSession.updateSubscriptions { updateSubscriptionsError in dispatch_async(dispatch_get_main_queue()) {
+				self.foldersUpdateState = .updatingSubscriptions
+				rssSession.updateSubscriptions { updateSubscriptionsError in DispatchQueue.main.async {
 					if let updateSubscriptionsError = updateSubscriptionsError {
-						errorCompletionHandler(Error.SubscriptionsUpdate(underlyingError: $(updateSubscriptionsError)))
+						errorCompletionHandler(Error.subscriptionsUpdate(underlyingError: $(updateSubscriptionsError)))
 						return
 					}
-					self.foldersUpdateState = .UpdatingUnreadCounts
-					rssSession.updateUnreadCounts { updateUnreadCountsError in dispatch_async(dispatch_get_main_queue()) {
+					self.foldersUpdateState = .updatingUnreadCounts
+					rssSession.updateUnreadCounts { updateUnreadCountsError in DispatchQueue.main.async {
 						if let updateUnreadCountsError = updateUnreadCountsError {
-							errorCompletionHandler(Error.TagsUpdate(underlyingError: $(updateUnreadCountsError)))
+							errorCompletionHandler(Error.tagsUpdate(underlyingError: $(updateUnreadCountsError)))
 							return
 						}
-						self.foldersUpdateState = .UpdatingStreamPreferences
-						rssSession.updateStreamPreferences { updateStreamPreferencesError in dispatch_async(dispatch_get_main_queue()) {
+						self.foldersUpdateState = .updatingStreamPreferences
+						rssSession.updateStreamPreferences { updateStreamPreferencesError in DispatchQueue.main.async {
 							if let updateStreamPreferencesError = updateStreamPreferencesError {
-								errorCompletionHandler(Error.StreamPreferencesUpdate(underlyingError: $(updateStreamPreferencesError)))
+								errorCompletionHandler(Error.streamPreferencesUpdate(underlyingError: $(updateStreamPreferencesError)))
 								return
 							}
 							successCompletionHandler()
@@ -133,17 +133,17 @@ extension FoldersController {
 			}}
 		}}
 	}
-	final func updateFolders(completionHandler: (ErrorType?) -> Void) {
+	final func updateFolders(_ completionHandler: (ErrorProtocol?) -> Void) {
 		let rssSession = self.rssSession!
 		let postAuthenticate = { () -> Void in
 			self.updateFoldersAuthenticated(completionHandler)
 		}
 		if (rssSession.authToken == nil) {
-			self.foldersUpdateState = .Authenticating
-			rssSession.authenticate { error in dispatch_async(dispatch_get_main_queue()) {
+			self.foldersUpdateState = .authenticating
+			rssSession.authenticate { error in DispatchQueue.main.async {
 				if let authenticationError = error {
 					completionHandler(authenticationError)
-					self.foldersUpdateState = .Completed
+					self.foldersUpdateState = .completed
 				}
 				else {
 					postAuthenticate()
