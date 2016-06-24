@@ -8,9 +8,6 @@
 
 import Foundation
 
-public func void<T>(_ value: T) {
-}
-
 public typealias Handler = () -> Void
 
 public func invoke(handler: Handler) {
