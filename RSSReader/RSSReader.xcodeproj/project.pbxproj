@@ -46,8 +46,6 @@
 		C41F05871AD0E3AB00A659EC /* UITabBarController+CVKHiearachySearcher.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = CA2E0441FFA564885EE4A6C9 /* UITabBarController+CVKHiearachySearcher.swift */; };
 		C424B8F11C6FC5C8008AD647 /* RSSReaderData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C424B8F01C6FC5C8008AD647 /* RSSReaderData.framework */; };
 		C424B8F21C6FC5C8008AD647 /* RSSReaderData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C424B8F01C6FC5C8008AD647 /* RSSReaderData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C424B8F71C6FC5D2008AD647 /* GEKeyPaths.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C424B8F61C6FC5D2008AD647 /* GEKeyPaths.framework */; };
-		C424B8F81C6FC5D2008AD647 /* GEKeyPaths.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C424B8F61C6FC5D2008AD647 /* GEKeyPaths.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C42802691A5B47EA002474E1 /* FoldersListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42802681A5B47EA002474E1 /* FoldersListTableViewController.swift */; };
 		C444F53F1B2E53F200A6E378 /* RSSReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C444F53E1B2E53F200A6E378 /* RSSReaderUITests.swift */; };
 		C44B2F011AC0C881006A67F1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44B2F001AC0C881006A67F1 /* HomeViewController.swift */; };
@@ -172,7 +170,6 @@
 				C40EA7261C6FC8A9002C6D9E /* AFMInfoBanner.framework in Embed Frameworks */,
 				C408F1B21CE7520700DB943F /* FBAllocationTracker.framework in Embed Frameworks */,
 				C40EA7311C6FCC07002C6D9E /* CVKHierarchySearcher.framework in Embed Frameworks */,
-				C424B8F81C6FC5D2008AD647 /* GEKeyPaths.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -203,7 +200,6 @@
 		C41707CA1A56076A00AED81C /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Globals.swift; path = Swift/Globals.swift; sourceTree = "<group>"; };
 		C424B8F01C6FC5C8008AD647 /* RSSReaderData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RSSReaderData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C424B8F31C6FC5CD008AD647 /* GEBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GEBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C424B8F61C6FC5D2008AD647 /* GEKeyPaths.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GEKeyPaths.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C42802681A5B47EA002474E1 /* FoldersListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = FoldersListTableViewController.swift; path = Swift/FoldersListTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C444F53C1B2E53F200A6E378 /* RSSReaderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RSSReaderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C444F53E1B2E53F200A6E378 /* RSSReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSReaderUITests.swift; sourceTree = "<group>"; };
@@ -289,7 +285,6 @@
 				C40EA7251C6FC8A9002C6D9E /* AFMInfoBanner.framework in Frameworks */,
 				C408F1B11CE7520700DB943F /* FBAllocationTracker.framework in Frameworks */,
 				C40EA7301C6FCC07002C6D9E /* CVKHierarchySearcher.framework in Frameworks */,
-				C424B8F71C6FC5D2008AD647 /* GEKeyPaths.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,7 +331,6 @@
 				C408F1B01CE7520700DB943F /* FBAllocationTracker.framework */,
 				C40EA72E1C6FCBED002C6D9E /* CVKHierarchySearcher.framework */,
 				C40EA71F1C6FC86F002C6D9E /* AFMInfoBanner.framework */,
-				C424B8F61C6FC5D2008AD647 /* GEKeyPaths.framework */,
 				C424B8F31C6FC5CD008AD647 /* GEBase.framework */,
 				C424B8F01C6FC5C8008AD647 /* RSSReaderData.framework */,
 				C459879E1CDE0AAA00B8E9E4 /* GEShared.xcconfig */,
@@ -539,14 +533,19 @@
 				TargetAttributes = {
 					C444F53B1B2E53F200A6E378 = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0800;
 						TestTargetID = C4CDD39C1A5350B40087DD05;
 					};
 					C4CDD39C1A5350B40087DD05 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = 5BV57B67TB;
+						DevelopmentTeam = 465NA5BW7E;
+						DevelopmentTeamName = "Grigorii Entin";
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 					};
 					C4CDD3B31A5350B50087DD05 = {
 						CreatedOnToolsVersion = 6.2;
+						LastSwiftMigration = 0800;
 						TestTargetID = C4CDD39C1A5350B40087DD05;
 					};
 				};
@@ -819,6 +818,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.grigoryentin.RSSReaderUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = RSSReader;
 				USES_XCTRUNNER = YES;
 			};
@@ -834,6 +834,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.grigoryentin.RSSReaderUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = RSSReader;
 				USES_XCTRUNNER = YES;
 			};
@@ -938,10 +939,11 @@
 				INFOPLIST_FILE = "$(SRCROOT)/RSSReader/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.grigoryentin.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.grigorye.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(TARGET_NAME)/Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -961,10 +963,11 @@
 				INFOPLIST_FILE = "$(SRCROOT)/RSSReader/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.grigoryentin.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.grigorye.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(TARGET_NAME)/Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -983,9 +986,10 @@
 				INFOPLIST_FILE = "RSSReaderTests/RSSReaderTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.grigoryentin.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.grigorye.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RSSReader/RSSReader-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RSSReader.app/RSSReader";
 			};
 			name = Debug;
@@ -1001,9 +1005,10 @@
 				INFOPLIST_FILE = "RSSReaderTests/RSSReaderTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.grigoryentin.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.grigorye.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RSSReader/RSSReader-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RSSReader.app/RSSReader";
 			};
 			name = Release;
