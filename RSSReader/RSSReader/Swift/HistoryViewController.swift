@@ -16,7 +16,7 @@ class HistoryViewController: UITableViewController {
 	private var nowDate: Date!
 	static let fetchRequest: NSFetchRequest<Item> = {
 		typealias E = Item
-		let $ = NSFetchRequest<E>(entityName: E.entityName())
+		let $ = Item.fetchRequestForEntity()
 		$.sortDescriptors = [SortDescriptor(key: #keyPath(E.lastOpenedDate), ascending: false)]
 		$.predicate = Predicate(format: "\(#keyPath(E.lastOpenedDate)) != nil", argumentArray: [])
 		return $

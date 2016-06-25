@@ -638,7 +638,7 @@ extension ItemsListViewController {
 	func regeneratedFetchedResultsControllerDelegate() -> TableViewFetchedResultsControllerDelegate<Item> {
 		let fetchRequest: NSFetchRequest<Item> = {
 			typealias E = Item
-			let $ = NSFetchRequest<Item>(entityName: E.entityName())
+			let $ = E.fetchRequestForEntity()
 			$.sortDescriptors =	sortDescriptorsForContainers
 			$.predicate = CompoundPredicate(andPredicateWithSubpredicates:[
 				{
