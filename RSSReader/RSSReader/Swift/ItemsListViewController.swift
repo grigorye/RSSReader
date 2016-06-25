@@ -339,9 +339,6 @@ class ItemsListViewController: ContainerTableViewController {
 		return itemForIndexPath(tableView.indexPathForSelectedRow!)
 	}
 	func itemDateFormatted(_ itemDate: Date) -> String {
-		guard nil != NSClassFromString("NSDateComponentsFormatter") else {
-			return ""
-		}
 		let timeInterval = nowDate.timeIntervalSince(itemDate)
 		return dateComponentsFormatter.string(from: timeInterval)!
 	}

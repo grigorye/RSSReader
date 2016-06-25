@@ -48,7 +48,7 @@ class HistoryViewController: UITableViewController {
 			titleLabel.text = item.title ?? (item.itemID as NSString).lastPathComponent
 		}
 		if let dateLabel = cell.dateLabel {
-			let timeIntervalFormatted = (nil == NSClassFromString("NSDateComponentsFormatter")) ? "x" : dateComponentsFormatter.string(from: item.date, to: nowDate) ?? ""
+			let timeIntervalFormatted = dateComponentsFormatter.string(from: item.date, to: nowDate)!
 			dateLabel.text = timeIntervalFormatted.uppercased()
 		}
 		if let sourceLabel = cell.sourceLabel {
