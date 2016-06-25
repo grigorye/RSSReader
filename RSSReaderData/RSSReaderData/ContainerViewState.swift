@@ -35,7 +35,7 @@ public class ContainerViewState: NSManagedObject {
 			return nil
 		}
 		let fetchRequest: NSFetchRequest<Item> = {
-			let $ = NSFetchRequest<Item>(entityName: "Item")
+			let $ = Item.fetchRequestForEntity()
 			$.predicate = Predicate(format: "\(#keyPath(Item.loadDate)) == %@", argumentArray: [loadDate])
 			$.fetchLimit = 1
 			$.sortDescriptors = inversedSortDescriptorsForContainers

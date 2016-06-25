@@ -25,7 +25,7 @@ extension Folder {
 		return Predicate(format: "\(#keyPath(E.streamID)) ENDSWITH %@", argumentArray: [tagSuffix])
 	}
 	public static func fetchRequestForFolderWithTagSuffix(_ tagSuffix: String) -> NSFetchRequest<Folder> {
-		let $ = NSFetchRequest<Folder>(entityName: Folder.entityName())
+		let $ = Folder.fetchRequestForEntity()
 		$.predicate = self.predicateForFetchingFolderWithTagSuffix(tagSuffix)
 		$.fetchLimit = 1
 		return $

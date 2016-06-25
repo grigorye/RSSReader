@@ -110,7 +110,7 @@ extension Container {
 				}
 				typealias E = Container
 				let request: NSFetchRequest<E> = {
-					let $ = NSFetchRequest<E>(entityName: E.self.entityName())
+					let $ = E.fetchRequestForEntity()
 					$.predicate = Predicate(format: "\(#keyPath(E.sortID)) IN %@", argumentArray: [sortIDs.map { NSNumber(value: $0) }])
 					return $
 				}()

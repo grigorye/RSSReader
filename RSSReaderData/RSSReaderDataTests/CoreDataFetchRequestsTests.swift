@@ -64,7 +64,7 @@ class CoreDataFetchRequestsTests: XCTestCase {
 	}
 	func testFetchRequestInPerformBlockInBackgroundQueueContextWithDirectAccessFetchedResult() {
 		backgroundQueueManagedObjectContext.perform {
-			let fetchRequest = NSFetchRequest<Folder>(entityName: "Folder")
+			let fetchRequest = Folder.fetchRequestForEntity()
 			let objects = try! backgroundQueueManagedObjectContext.fetch(fetchRequest)
 			if let folder = objects.last {
 				•(folder.sortID)
@@ -77,7 +77,7 @@ class CoreDataFetchRequestsTests: XCTestCase {
 	}
 	func testFetchRequestInPerformBlockInBackgroundQueueContextWithFetchedResultAccessedByObjectID() {
 		backgroundQueueManagedObjectContext.perform {
-			let fetchRequest = NSFetchRequest<NSManagedObjectID>(entityName: "Folder")
+			let fetchRequest = NSFetchRequest<NSManagedObjectID>(entityName: Folder.entityName())
 			fetchRequest.resultType = .managedObjectIDResultType
 			let objectIDs = try! backgroundQueueManagedObjectContext.fetch(fetchRequest)
 			if let folderObjectID = objectIDs.last {
@@ -93,7 +93,7 @@ class CoreDataFetchRequestsTests: XCTestCase {
 	func testFetchRequestInPerformBlockInBackgroundQueueContextWithAccessFetchedResultInPerformBlock() {
     	let didPerformBlock = self.expectation(withDescription: "didPerformBlock")
 		backgroundQueueManagedObjectContext.perform {
-			let fetchRequest = NSFetchRequest<Folder>(entityName: "Folder")
+			let fetchRequest = Folder.fetchRequestForEntity()
 			let objects = try! backgroundQueueManagedObjectContext.fetch(fetchRequest)
 			if let folder = objects.last {
 				backgroundQueueManagedObjectContext.perform {
@@ -113,7 +113,7 @@ class CoreDataFetchRequestsTests: XCTestCase {
 	func testFetchRequestInPerformBlockInBackgroundQueueContextWithAccessFetchedResultInPerformBlockAndWait() {
     	let didPerformBlockAndWait = self.expectation(withDescription: "didPerformBlockAndWait")
 		backgroundQueueManagedObjectContext.perform {
-			let fetchRequest = NSFetchRequest<Folder>(entityName: "Folder")
+			let fetchRequest = Folder.fetchRequestForEntity()
 			let objects = try! backgroundQueueManagedObjectContext.fetch(fetchRequest)
 			if let folder = objects.last {
 				backgroundQueueManagedObjectContext.performAndWait {
@@ -132,7 +132,7 @@ class CoreDataFetchRequestsTests: XCTestCase {
 	}
 	func testFetchRequestInPerformBlockInMainQueueContext() {
 		mainQueueManagedObjectContext.perform {
-			let fetchRequest = NSFetchRequest<Folder>(entityName: "Folder")
+			let fetchRequest = Folder.fetchRequestForEntity()
 			let objects = try! mainQueueManagedObjectContext.fetch(fetchRequest)
 			if let folder = objects.last {
 				•(folder.sortID)
