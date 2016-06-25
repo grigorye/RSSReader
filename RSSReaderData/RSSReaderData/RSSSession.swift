@@ -166,7 +166,7 @@ extension RSSSession {
 						throw Error.JsonMissingUserID(json: json)
 					}
 					let id = "user/\(userID)/\(readTagSuffix)"
-					try •insertedObjectUnlessFetchedWithID(Folder.self, id: id, managedObjectContext: backgroundQueueManagedObjectContext)
+					try insertedObjectUnlessFetchedWithID(Folder.self, id: id, managedObjectContext: backgroundQueueManagedObjectContext)
 					try backgroundQueueManagedObjectContext.save()
 					completionHandler(nil)
 				} catch {
@@ -235,7 +235,7 @@ extension RSSSession {
 	func updateTags(from data: Data, completionHandler: (ErrorProtocol?) -> Void) {
 		backgroundQueueManagedObjectContext.perform {
 			do {
-				try •importItemsFromJsonData(data, type: Folder.self, elementName: "tags", managedObjectContext: (backgroundQueueManagedObjectContext)) { (tag, json) in
+				try importItemsFromJsonData(data, type: Folder.self, elementName: "tags", managedObjectContext: (backgroundQueueManagedObjectContext)) { (tag, json) in
 					assert(tag.managedObjectContext == backgroundQueueManagedObjectContext)
 					if _1 {
 						try tag.importFromJson(json)
@@ -298,7 +298,7 @@ extension RSSSession {
 			let data = data!
 			backgroundQueueManagedObjectContext.perform {
 				do {
-					try •importItemsFromJsonData(data, type: Subscription.self, elementName: "subscriptions", managedObjectContext: backgroundQueueManagedObjectContext) { (subscription, json) in
+					try importItemsFromJsonData(data, type: Subscription.self, elementName: "subscriptions", managedObjectContext: backgroundQueueManagedObjectContext) { (subscription, json) in
 						try subscription.importFromJson(json)
 					}
 					try backgroundQueueManagedObjectContext.save()
