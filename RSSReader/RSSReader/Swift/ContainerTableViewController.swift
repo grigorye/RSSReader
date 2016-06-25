@@ -20,6 +20,6 @@ class ContainerTableViewController: UITableViewController {
 		super.viewDidLoad()
 		tableView.register(UINib(nibName: "ContainerTableViewSectionHeader", bundle: self.nibBundle), forHeaderFooterViewReuseIdentifier: "SectionHeader")
 		tableView.sectionHeaderHeight = UITableViewAutomaticDimension
-		tableView.estimatedSectionHeaderHeight = 10
+		tableView.estimatedSectionHeaderHeight = 44
 	}
 }
