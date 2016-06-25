@@ -13,8 +13,14 @@ enum GenericCoreDataExtensionsError: ErrorProtocol {
 	case ElementNotFoundOrInvalidInJson(json: [String: AnyObject], elementName: String)
 }
 
-public protocol Managed {
+public protocol Managed : NSFetchRequestResult {
 	static func entityName() -> String
+}
+
+public extension Managed {
+	static func fetchRequestForEntity() -> NSFetchRequest<Self> {
+		return NSFetchRequest(entityName: self.entityName())
+	}
 }
 
 public protocol DefaultSortable {
@@ -29,10 +35,9 @@ public protocol ManagedIdentifiable: Managed, Identifiable {
 }
 
 func objectFetchedWithPredicate<T: Managed where T: NSManagedObject, T: NSFetchRequestResult> (_ cls: T.Type, predicate: Predicate, managedObjectContext: NSManagedObjectContext) -> T? {
-	let entityName = cls.entityName()
 	let request: NSFetchRequest<T>
 	do {
-		let $ = NSFetchRequest<T>(entityName: entityName)
+		let $ = T.fetchRequestForEntity()
 		$.predicate = predicate
 		$.fetchLimit = 1
 		request = $
