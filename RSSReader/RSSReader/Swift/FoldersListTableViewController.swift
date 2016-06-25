@@ -53,30 +53,29 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 		refreshControl?.beginRefreshing()
 		self.refresh(refreshControl)
 	}
-	static func viewControllerForErrorOnRefresh(_ error: ErrorProtocol, retryAction: () -> Void) -> UIViewController {
+	static func viewControllerToPresent(on error: ErrorProtocol, title: String, retryAction: () -> Void) -> UIViewController {
 		let alertController: UIAlertController = {
 			let message: String = {
 				let localizedDescription: String = {
 					switch error {
-					case RSSReaderData.RSSSession.Error.AuthenticationFailed:
-						return NSLocalizedString("Authentication Failed", comment: "Error description for authentication failure on refresh")
+					case RSSReaderData.RSSSession.Error.authenticationFailed:
+						return NSLocalizedString("Authentication Failed", comment: "Error description for authentication failure")
 					default:
 						return (error as NSError).localizedDescription
 					}
 				}()
 				if let localizedRecoverySuggestion = (error as NSError).localizedRecoverySuggestion {
-					return String.localizedStringWithFormat(NSLocalizedString("%@ %@", comment: "Error message on failed refresh"), localizedDescription, localizedRecoverySuggestion)
+					return String.localizedStringWithFormat(NSLocalizedString("%@ %@", comment: "Error message"), localizedDescription, localizedRecoverySuggestion)
 				}
 				else {
 					return localizedDescription
 				}
 			}()
-			let title = NSLocalizedString("Refresh Failed", comment: "Title for alert on failed refresh")
 			let $ = UIAlertController(title: title, message: message, preferredStyle: .alert)
-			let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Proceed action title for alert on failed refresh"), style: .default) { action in
+			let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel action title for alert on error"), style: .default) { action in
 				return
 			}
-			let retryAlertAction = UIAlertAction(title: NSLocalizedString("Retry", comment: "Proceed action title for alert on failed refresh"), style: .default) { action in
+			let retryAlertAction = UIAlertAction(title: NSLocalizedString("Retry", comment: "Proceed action title for alert on error"), style: .default) { action in
 				retryAction()
 				return
 			}
@@ -111,7 +110,8 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 						return updateError
 					}
 				}()
-				let errorViewController = self.dynamicType.viewControllerForErrorOnRefresh(presentedError) {
+				let errorTitle = NSLocalizedString("Refresh Failed", comment: "Title for alert on failed refresh")
+				let errorViewController = self.dynamicType.viewControllerToPresent(on: presentedError, title: errorTitle) {
 					self.refresh(self)
 				}
 				self.present(errorViewController, animated: true, completion: nil)
