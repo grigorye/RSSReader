@@ -21,12 +21,12 @@ public class ProgressEnabledURLSessionTaskGenerator: NSObject {
 	let session = URLSession(configuration: URLSessionConfiguration.default())
 	// MARK: -
 	public typealias HTTPDataTaskCompletionHandler = (Data?, HTTPURLResponse?, ErrorProtocol?) -> Void
-	public func dataTask(forHTTPRequest request: URLRequest, completionHandler: HTTPDataTaskCompletionHandler) -> URLSessionDataTask? {
+	public func dataTask(for request: URLRequest, completionHandler: HTTPDataTaskCompletionHandler) -> URLSessionDataTask? {
 		let progress = Progress(totalUnitCount: 1)
 		progress.becomeCurrent(withPendingUnitCount: 1)
 		•(request)
 		•(request.allHTTPHeaderFields)
-		let sessionTask = session.progressEnabledDataTask(withRequest: request) { data, response, error in
+		let sessionTask = session.progressEnabledDataTask(with: request) { data, response, error in
 			self.dispatchQueue.async {
 				self.mutableProgresses.removeObject(identicalTo: progress)
 			}
@@ -51,11 +51,11 @@ public class ProgressEnabledURLSessionTaskGenerator: NSObject {
 		return sessionTask
 	}
 	public typealias TextTaskCompletionHandler = (String?, ErrorProtocol?) -> Void
-	public func textTask(forHTTPRequest request: URLRequest, completionHandler: TextTaskCompletionHandler) -> URLSessionDataTask? {
+	public func textTask(for request: URLRequest, completionHandler: TextTaskCompletionHandler) -> URLSessionDataTask? {
 		enum Error: ErrorProtocol {
 			case DataDoesNotMatchTextEncoding(data: Data, encoding: String.Encoding)
 		}
-		return dataTask(forHTTPRequest: request) { data, httpResponse, error in
+		return dataTask(for: request) { data, httpResponse, error in
 			do {
 				if let error = error {
 					throw error
