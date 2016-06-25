@@ -175,6 +175,13 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return childContainers.count
 	}
+	// MARK: -
+#if true
+	override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+		return 44
+	}
+#endif
+	// MARK: -
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return UITableViewAutomaticDimension
 	}
