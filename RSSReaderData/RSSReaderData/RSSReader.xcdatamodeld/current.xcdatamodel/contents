@@ -1,41 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15E65" minimumToolsVersion="Xcode 4.3">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11147.23" systemVersion="15F34" minimumToolsVersion="Xcode 4.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="Container" representedClassName=".Container" isAbstract="YES" syncable="YES">
-        <attribute name="newestItemDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="sortID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="newestItemDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="sortID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="streamID" attributeType="String" indexed="YES" elementID="id" syncable="YES"/>
-        <attribute name="unreadCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="unreadCount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="parentFolder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Folder" inverseName="childContainers" inverseEntity="Folder" syncable="YES"/>
         <relationship name="viewStates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ContainerViewState" inverseName="container" inverseEntity="ContainerViewState" syncable="YES"/>
     </entity>
     <entity name="ContainerViewState" representedClassName=".ContainerViewState" syncable="YES">
         <attribute name="containerViewPredicate" attributeType="Transformable" syncable="YES"/>
         <attribute name="continuation" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="loadCompleted" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="loadDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="loadCompleted" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="loadDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="loadError" optional="YES" attributeType="Transformable" syncable="YES"/>
         <relationship name="container" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Container" inverseName="viewStates" inverseEntity="Container" syncable="YES"/>
     </entity>
     <entity name="Folder" representedClassName=".Folder" parentEntity="Container" syncable="YES">
         <relationship name="childContainers" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Container" inverseName="parentFolder" inverseEntity="Container" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="categories" inverseEntity="Item" syncable="YES"/>
+        <relationship name="itemsToBeExcluded" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="categoriesToBeExcluded" inverseEntity="Item" syncable="YES"/>
+        <relationship name="itemsToBeIncluded" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="categoriesToBeIncluded" inverseEntity="Item" syncable="YES"/>
         <relationship name="subscriptions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Subscription" inverseName="categories" inverseEntity="Subscription" syncable="YES"/>
     </entity>
     <entity name="Item" representedClassName=".Item" syncable="YES">
         <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="canonical" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <attribute name="date" attributeType="Date" indexed="YES" syncable="YES"/>
-        <attribute name="itemID" attributeType="String" indexed="YES" elementID="id" syncable="YES"/>
-        <attribute name="lastOpenedDate" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
-        <attribute name="loadDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
+        <attribute name="id" attributeType="String" indexed="YES" elementID="itemID" syncable="YES"/>
+        <attribute name="lastOpenedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
+        <attribute name="loadDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="pendingUpdateDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="summaryData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="titleData" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="updatedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="updatedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Folder" inverseName="items" inverseEntity="Folder" syncable="YES"/>
+        <relationship name="categoriesToBeExcluded" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Folder" inverseName="itemsToBeExcluded" inverseEntity="Folder" syncable="YES"/>
+        <relationship name="categoriesToBeIncluded" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Folder" inverseName="itemsToBeIncluded" inverseEntity="Folder" syncable="YES"/>
         <relationship name="subscription" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Subscription" inverseName="items" inverseEntity="Subscription" syncable="YES"/>
     </entity>
     <entity name="Subscription" representedClassName=".Subscription" parentEntity="Container" syncable="YES">
-        <attribute name="firstItemDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="firstItemDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="htmlURL" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="iconURL" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -46,8 +51,8 @@
     <elements>
         <element name="Container" positionX="-63" positionY="18" width="128" height="135"/>
         <element name="ContainerViewState" positionX="-54" positionY="81" width="128" height="135"/>
-        <element name="Folder" positionX="-54" positionY="72" width="128" height="90"/>
-        <element name="Item" positionX="-63" positionY="36" width="128" height="210"/>
+        <element name="Folder" positionX="-54" positionY="72" width="128" height="120"/>
+        <element name="Item" positionX="-63" positionY="36" width="128" height="255"/>
         <element name="Subscription" positionX="-63" positionY="-18" width="128" height="150"/>
     </elements>
 </model>
