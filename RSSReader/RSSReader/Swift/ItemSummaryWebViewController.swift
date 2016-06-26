@@ -27,15 +27,6 @@ class ItemSummaryWebViewController: UIViewController {
 		item.lastOpenedDate = Date()
 		if !item.markedAsRead {
 			item.markedAsRead = true
-			rssSession!.uploadTag(canonicalReadTag, mark: true, forItem: item, completionHandler: { uploadReadStateError in
-				if let uploadReadStateError = uploadReadStateError {
-					$(uploadReadStateError)
-					DispatchQueue.main.async {
-						let message = String.localizedStringWithFormat(NSLocalizedString("Failed to mark as read. %@", comment: ""), (uploadReadStateError as NSError).localizedDescription)
-						self.presentErrorMessage(message)
-					}
-				}
-			})
 		}
 	}
 	// MARK:-
@@ -86,25 +77,9 @@ class ItemSummaryWebViewController: UIViewController {
 	// MARK: -
 	@IBAction func markAsFavorite(_ sender: AnyObject?, event: UIEvent?) {
 		item.markedAsFavorite = true
-		rssSession!.uploadTag(canonicalFavoriteTag, mark: true, forItem: item, completionHandler: { uploadFavoritesStateError in
-			if let uploadFavoritesStateError = uploadFavoritesStateError {
-				$(uploadFavoritesStateError)
-				DispatchQueue.main.async {
-					self.presentErrorMessage(NSLocalizedString("Failed to mark as favorite.", comment: ""))
-				}
-			}
-		})
 	}
 	@IBAction func unmarkAsFavorite(_ sender: AnyObject?, event: UIEvent?) {
 		item.markedAsFavorite = false
-		rssSession!.uploadTag(canonicalFavoriteTag, mark: false, forItem: item, completionHandler: { uploadFavoritesStateError in
-			if let uploadFavoritesStateError = uploadFavoritesStateError {
-				$(uploadFavoritesStateError)
-				DispatchQueue.main.async {
-					self.presentErrorMessage(NSLocalizedString("Failed to unmark as favorite.", comment: ""))
-				}
-			}
-		})
 	}
 	@IBAction func action(_ sender: AnyObject?, event: UIEvent?) {
 		let activityViewController: UIViewController = {
