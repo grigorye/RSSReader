@@ -19,8 +19,9 @@ extension Bundle {
 		guard 0 != dladdr(addr[stackFrameIndex], &info) else {
 			return nil
 		}
-		let sharedObjectName = String(validatingUTF8: info.dli_fname)! as NSString
-		let bundle = Bundle(path: sharedObjectName.deletingLastPathComponent)!
+		let sharedObjectName = String(validatingUTF8: info.dli_fname)!
+		let bundleURL = try! URL(fileURLWithPath: sharedObjectName).deletingLastPathComponent()
+		let bundle = Bundle(url: bundleURL)!
 		addr.deallocateCapacity(length)
 		return bundle
 	}
