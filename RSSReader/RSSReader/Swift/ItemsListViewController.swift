@@ -352,7 +352,7 @@ class ItemsListViewController: ContainerTableViewController {
 			return
 		}
 		if let titleLabel = cell.titleLabel {
-			let text = item.title ?? (item.itemID as NSString).lastPathComponent
+			let text = item.title ?? (item.id as NSString).lastPathComponent
 			if text != titleLabel.text {
 				titleLabel.text = text
 			}
@@ -384,6 +384,9 @@ class ItemsListViewController: ContainerTableViewController {
 			if readMarkLabel.alpha != alpha {
 				readMarkLabel.alpha = alpha
 			}
+		}
+		if let favoriteMarkLabel = cell.favoriteMarkLabel {
+			favoriteMarkLabel.isHidden = !item.markedAsFavorite
 		}
 	}
 	// MARK: -
