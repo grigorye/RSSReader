@@ -30,6 +30,7 @@ public class RSSSession: NSObject {
 		case jsonMissingStreamPrefs(json: [String: AnyObject])
 		case unexpectedResponseTextForMarkAsRead(body: String)
 		case badResponseDataForMarkAsRead(data: NSData)
+		case pushTagsFailed(underlyingErrors: [ErrorProtocol])
 	}
 	let inoreaderAppID = "1000001375"
 	let inoreaderAppKey = "r3O8gX6FPdFaOXE3x4HypYHO2LTCNuDS"
@@ -53,10 +54,11 @@ public extension RSSSession {
 extension RSSSession {
 	typealias TaskCompletionHandler = ProgressEnabledURLSessionTaskGenerator.HTTPDataTaskCompletionHandler
 	// MARK: -
-	func dataTaskForAuthenticatedHTTPRequestWithURL(_ url: URL, completionHandler: TaskCompletionHandler) -> URLSessionDataTask? {
+	func dataTaskForAuthenticatedHTTPRequestWithURL(_ url: URL, httpMethod: String = "GET", completionHandler: TaskCompletionHandler) -> URLSessionDataTask? {
 		precondition(nil != self.authToken)
 		let request: URLRequest = {
 			var $ = URLRequest(url: url)
+			$.httpMethod = httpMethod
 			$.addValue("GoogleLogin auth=\(self.authToken!)", forHTTPHeaderField: "Authorization")
 			$.addValue(self.inoreaderAppID, forHTTPHeaderField: "AppId")
 			$.addValue(self.inoreaderAppKey, forHTTPHeaderField: "AppKey")
@@ -65,7 +67,7 @@ extension RSSSession {
 		return progressEnabledURLSessionTaskGenerator.dataTask(for: request, completionHandler: completionHandler)
 	}
 	// MARK: -
-	func dataTaskForAuthenticatedHTTPRequest(withPath path: String, completionHandler: TaskCompletionHandler) -> URLSessionDataTask? {
+	func dataTaskForAuthenticatedHTTPRequest(withPath path: String, httpMethod: String = "GET", completionHandler: TaskCompletionHandler) -> URLSessionDataTask? {
 		let url: URL = {
 			let $ = NSURLComponents()
 			$.scheme = "https"
@@ -73,9 +75,9 @@ extension RSSSession {
 			$.path = path
 			return $.url!
 		}()
-		return self.dataTaskForAuthenticatedHTTPRequestWithURL(url, completionHandler: completionHandler)
+		return self.dataTaskForAuthenticatedHTTPRequestWithURL(url, httpMethod: httpMethod, completionHandler: completionHandler)
 	}
-	func dataTaskForAuthenticatedHTTPRequest(withRelativeString relativeString: String, completionHandler: TaskCompletionHandler) -> URLSessionDataTask? {
+	func dataTaskForAuthenticatedHTTPRequest(withRelativeString relativeString: String, httpMethod: String = "GET", completionHandler: TaskCompletionHandler) -> URLSessionDataTask? {
 		let baseURL: URL = {
 			let $ = NSURLComponents()
 			$.scheme = "https"
@@ -84,7 +86,7 @@ extension RSSSession {
 			return $.url!
 		}()
 		let url = URL(string: relativeString, relativeTo: baseURL)!
-		return self.dataTaskForAuthenticatedHTTPRequestWithURL((url), completionHandler: completionHandler)
+		return self.dataTaskForAuthenticatedHTTPRequestWithURL((url), httpMethod: httpMethod, completionHandler: completionHandler)
 	}
 	// MARK: -
 	public func authenticate(_ completionHandler: (ErrorProtocol?) -> Void) {
@@ -130,7 +132,7 @@ extension RSSSession {
 				return
 			}
 			let data = data!
-			let authToken: String? = {
+			let authToken: String = {
 				let body = String(data: data, encoding: String.Encoding.utf8)!
 				let authLocationIndex = body.range(of: "Auth=")!.upperBound
 				let authTail = body.substring(from: authLocationIndex)
@@ -173,18 +175,6 @@ extension RSSSession {
 					completionHandler($(error))
 				}
 			}
-		}!
-		sessionTask.resume()
-	}
-	public func uploadTag(_ tag: String, mark: Bool, forItem item: Item, completionHandler: (ErrorProtocol?) -> Void) {
-		let command = mark ? "a" : "r"
-		let path = "/reader/api/0/edit-tag?\(command)=\(tag)&i=\(item.itemID)"
-		let sessionTask = self.dataTaskForAuthenticatedHTTPRequest(withPath: path) { data, httpResponse, error in
-			if let data = data {
-				let body = String(data: data, encoding: String.Encoding.utf8)
-				$(body)
-			}
-			completionHandler(error)
 		}!
 		sessionTask.resume()
 	}
@@ -248,7 +238,63 @@ extension RSSSession {
 			}
 		}
 	}
-	public func updateTags(completionHandler: (ErrorProtocol?) -> Void) {
+	public func pushTags(completionHandler: (ErrorProtocol?) -> ()) {
+		let context = backgroundQueueManagedObjectContext
+		context.perform {
+			let completionLock = ConditionLock()
+			var errors = [ErrorProtocol]()
+			let tasks: [URLSessionTask] = [true, false].flatMap { (excluded: Bool) -> [URLSessionTask] in
+				return try! Folder.allWithItems(toBeExcluded: excluded, in: context).map { category in
+					let items = category.items(toBeExcluded: excluded)
+					let urlArguments: [String] = {
+						assert(0 < items.count)
+						let itemIDsComponents = items.map { "i=\($0.shortID)" }
+						let command = excluded ? "r" : "a"
+						let tag = category.tag()!
+						let urlArguments = ["\(command)=\(tag)"] + itemIDsComponents
+						return urlArguments
+					}()
+					let urlArgumentsJoined = urlArguments.joined(separator: "&")
+					let urlPath = "/reader/api/0/edit-tag?\(urlArgumentsJoined)"
+					let task = self.dataTaskForAuthenticatedHTTPRequest(withRelativeString: urlPath, httpMethod: "POST") { data, httpResponse, error in
+						completionLock.lock()
+						defer { completionLock.unlock(withCondition: completionLock.condition - 1) }
+						guard nil == error else {
+							errors += [error!]
+							return
+						}
+						context.perform {
+							if (excluded) {
+								category.itemsToBeExcluded = category.itemsToBeExcluded.subtracting(items)
+							}
+							else {
+								category.itemsToBeIncluded = category.itemsToBeIncluded.subtracting(items)
+							}
+							try! context.save()
+							assert(try! !Folder.allWithItems(toBeExcluded: excluded, in: context).contains(category))
+						}
+					}!
+					return task
+				}
+			}
+			completionLock.lock()
+			completionLock.unlock(withCondition: tasks.count)
+			for task in tasks {
+				task.resume()
+			}
+			DispatchQueue.global(attributes: .qosBackground).async {
+				completionLock.lock(whenCondition: 0)
+				defer { completionLock.unlock() }
+				guard 0 == errors.count else {
+					completionHandler(Error.pushTagsFailed(underlyingErrors: errors))
+					return
+				}
+				completionHandler(nil)
+			}
+		}
+		
+	}
+	public func pullTags(completionHandler: (ErrorProtocol?) -> Void) {
 		let path = "/reader/api/0/tag/list"
 		let sessionTask = self.dataTaskForAuthenticatedHTTPRequest(withPath: path) { data, httpResponse, error in
 			if let error = error {
