@@ -265,10 +265,10 @@ extension RSSSession {
 						}
 						context.perform {
 							if (excluded) {
-								category.itemsToBeExcluded = category.itemsToBeExcluded.subtracting(items)
+								category.itemsToBeExcluded.subtract(items)
 							}
 							else {
-								category.itemsToBeIncluded = category.itemsToBeIncluded.subtracting(items)
+								category.itemsToBeIncluded.subtract(items)
 							}
 							try! context.save()
 							assert(try! !Folder.allWithItems(toBeExcluded: excluded, in: context).contains(category))
