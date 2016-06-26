@@ -36,7 +36,7 @@ extension Item : ManagedIdentifiable {
 		case CategoriesMissingOrInvalidInJson(json: [String: AnyObject])
 	}
 	public class func identifierKey() -> String {
-		return "itemID"
+		return #keyPath(id)
 	}
 	public class func entityName() -> String {
 		return "Item"

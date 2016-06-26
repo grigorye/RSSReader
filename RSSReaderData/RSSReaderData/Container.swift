@@ -9,7 +9,7 @@
 import GEBase
 import CoreData
 
-public class Container: NSManagedObject {
+public class Container : NSManagedObject {
     @NSManaged public var streamID: String
     @NSManaged public var unreadCount: Int32
     @NSManaged var newestItemDate: Date
@@ -26,7 +26,7 @@ public class Container: NSManagedObject {
 	var ownItems: Set<Item> { get }
 }
 
-extension Container: DefaultSortable {
+extension Container : DefaultSortable {
 	public class func defaultSortDescriptor() -> SortDescriptor {
 		return SortDescriptor(key: #keyPath(streamID), ascending: true)
 	}
@@ -34,7 +34,7 @@ extension Container: DefaultSortable {
 
 extension Container: ManagedIdentifiable {
 	public class func identifierKey() -> String {
-		return "streamID"
+		return #keyPath(streamID)
 	}
 	public class func entityName() -> String {
 		return "Container"
