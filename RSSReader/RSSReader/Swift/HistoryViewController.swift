@@ -45,7 +45,7 @@ class HistoryViewController: UITableViewController {
 		let cell = rawCell as! ItemTableViewCell
 		let item = fetchedResultsController.object(at: indexPath) 
 		if let titleLabel = cell.titleLabel {
-			titleLabel.text = item.title ?? (item.itemID as NSString).lastPathComponent
+			titleLabel.text = item.title ?? (item.id as NSString).lastPathComponent
 		}
 		if let dateLabel = cell.dateLabel {
 			let timeIntervalFormatted = dateComponentsFormatter.string(from: item.date, to: nowDate)!
