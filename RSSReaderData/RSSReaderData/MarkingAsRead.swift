@@ -61,17 +61,25 @@ public extension Item {
 		}
 	}
 	// MARK: -
+	final func set(included: Bool, in category: Folder) {
+		if included {
+			categories.insert(category)
+			categoriesToBeExcluded.remove(category)
+			categoriesToBeIncluded.insert(category)
+		}
+		else {
+			categories.remove(category)
+			categoriesToBeExcluded.remove(category)
+			categoriesToBeIncluded.insert(category)
+		}
+		self.pendingUpdateDate = Date()
+	}
 	dynamic var markedAsFavorite: Bool {
 		get {
 			return categories.contains(markedAsFavoriteCategory)
 		}
 		set {
-			if newValue {
-				self.categories.insert(markedAsFavoriteCategory)
-			}
-			else {
-				self.categories.remove(markedAsFavoriteCategory)
-			}
+			self.set(included: newValue, in: markedAsFavoriteCategory)
 		}
 	}
 	public var markedAsRead: Bool {
@@ -88,13 +96,42 @@ public extension Item {
 				for category in self.categories {
 					category.unreadCount += unreadCountDelta
 				}
-				if newValue {
-					self.categories.insert(markedAsReadCategory)
-				}
-				else {
-					self.categories.remove(markedAsReadCategory)
-				}
+				self.set(included: newValue, in: markedAsReadCategory)
 			}
 		}
+	}
+}
+
+extension Item {
+	public class func allPendingForUpdate(in context: NSManagedObjectContext) throws -> [Item] {
+		let fetchRequest: NSFetchRequest<_Self> = {
+			let $ = _Self.fetchRequestForEntity()
+			$.predicate = Predicate(format: "\(#keyPath(pendingUpdateDate)) != nil")
+			return $
+		}()
+		let items = try context.fetch(fetchRequest)
+		return items
+	}
+}
+
+extension Folder {
+	public class func allWithItems(toBeExcluded excluded: Bool, in context: NSManagedObjectContext) throws -> [Folder] {
+		let fetchRequest: NSFetchRequest<_Self> = {
+			let $ = _Self.fetchRequestForEntity()
+#if false
+			$.shouldRefreshRefetchedObjects = true
+#endif
+			let itemsRelationshipName = excluded ? #keyPath(itemsToBeExcluded) : #keyPath(itemsToBeIncluded)
+			$.predicate = Predicate(format: "0 < \(itemsRelationshipName).@count")
+			return $
+		}()
+		let categories = try context.fetch(fetchRequest)
+		for category in categories {
+#if false
+			context.refresh(category, mergeChanges: true)
+#endif
+			assert(category.items(toBeExcluded: excluded).count > 0)
+		}
+		return categories
 	}
 }
