@@ -35,23 +35,19 @@ extension Item {
 	}
 }
 
-let loadAgoDateComponentsFormatter: DateComponentsFormatter = {
-	let $ = DateComponentsFormatter()
-	$.unitsStyle = .full
-	$.allowsFractionalUnits = true
-	$.maximumUnitCount = 1
-	$.allowedUnits = [.minute, .year, .month, .weekOfMonth, .day, .hour]
-	return $
-}()
-private let loadAgoLongDateComponentsFormatter: DateComponentsFormatter = {
-	let $ = DateComponentsFormatter()
-	$.unitsStyle = .full
-	$.allowsFractionalUnits = true
-	$.maximumUnitCount = 1
-	$.includesApproximationPhrase = true
-	$.allowedUnits = [.minute, .year, .month, .weekOfMonth, .day, .hour]
-	return $
-}()
+let loadAgoDateComponentsFormatter = DateComponentsFormatter() … {
+	$0.unitsStyle = .full
+	$0.allowsFractionalUnits = true
+	$0.maximumUnitCount = 1
+	$0.allowedUnits = [.minute, .year, .month, .weekOfMonth, .day, .hour]
+}
+private let loadAgoLongDateComponentsFormatter = DateComponentsFormatter() … {
+	$0.unitsStyle = .full
+	$0.allowsFractionalUnits = true
+	$0.maximumUnitCount = 1
+	$0.includesApproximationPhrase = true
+	$0.allowedUnits = [.minute, .year, .month, .weekOfMonth, .day, .hour]
+}
 
 class ItemsListViewController: ContainerTableViewController {
 	static let Self_ = ItemsListViewController.self
@@ -466,11 +462,9 @@ class ItemsListViewController: ContainerTableViewController {
 		switch segue.identifier! {
 		case MainStoryboard.SegueIdentifiers.ShowListPages:
 			let pageViewController = segue.destinationViewController as! UIPageViewController
-			let itemsPageViewControllerDataSource: ItemsPageViewControllerDataSource = {
-				let $ = pageViewController.dataSource as! ItemsPageViewControllerDataSource
-				$.items = fetchedResultsController.fetchedObjects! 
-				return $
-			}()
+			let itemsPageViewControllerDataSource = (pageViewController.dataSource as! ItemsPageViewControllerDataSource) … {
+				$0.items = fetchedResultsController.fetchedObjects!
+			}
 			let initialViewController = itemsPageViewControllerDataSource.viewControllerForItem(selectedItem, storyboard: pageViewController.storyboard!)
 			if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
 				pageViewController.edgesForExtendedLayout = UIRectEdge()
@@ -636,11 +630,10 @@ extension ItemsListViewController: TableViewHeightBasedReusedCellGeneratorDataSo
 
 extension ItemsListViewController {
 	func regeneratedFetchedResultsControllerDelegate() -> TableViewFetchedResultsControllerDelegate<Item> {
-		let fetchRequest: NSFetchRequest<Item> = {
-			typealias E = Item
-			let $ = E.fetchRequestForEntity()
-			$.sortDescriptors =	sortDescriptorsForContainers
-			$.predicate = CompoundPredicate(andPredicateWithSubpredicates:[
+		typealias E = Item
+		let fetchRequest = E.fetchRequestForEntity() … {
+			$0.sortDescriptors = sortDescriptorsForContainers
+			$0.predicate = CompoundPredicate(andPredicateWithSubpredicates:[
 				{
 					if container! is Subscription {
 						return Predicate(format: "(\(#keyPath(E.subscription)) == %@)", argumentArray: [container!])
@@ -652,12 +645,11 @@ extension ItemsListViewController {
 				containerViewPredicate
 			])
 #if false
-			$.relationshipKeyPathsForPrefetching = [#keyPath(E.categories)]
+			$0.relationshipKeyPathsForPrefetching = [#keyPath(E.categories)]
 #endif
-			$.returnsObjectsAsFaults = false
-			$.fetchBatchSize = defaults.fetchBatchSize
-			return $
-		}()
+			$0.returnsObjectsAsFaults = false
+			$0.fetchBatchSize = defaults.fetchBatchSize
+		}
 		let itemLoadDateTimeIntervalSinceReferenceDateKeyPath = #keyPath(Item.loadDate.timeIntervalSinceReferenceDate)
 		let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainQueueManagedObjectContext, sectionNameKeyPath: !defaults.itemsAreSortedByLoadDate ? nil : itemLoadDateTimeIntervalSinceReferenceDateKeyPath, cacheName: nil)
 		let configureCell = { [unowned self] (cell: UITableViewCell, indexPath: IndexPath) -> Void in

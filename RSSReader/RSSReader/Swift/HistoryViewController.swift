@@ -14,13 +14,10 @@ import CoreData.NSFetchedResultsController
 class HistoryViewController: UITableViewController {
 	typealias _Self = HistoryViewController
 	private var nowDate: Date!
-	static let fetchRequest: NSFetchRequest<Item> = {
-		typealias E = Item
-		let $ = Item.fetchRequestForEntity()
-		$.sortDescriptors = [SortDescriptor(key: #keyPath(E.lastOpenedDate), ascending: false)]
-		$.predicate = Predicate(format: "\(#keyPath(E.lastOpenedDate)) != nil", argumentArray: [])
-		return $
-	}()
+	static let fetchRequest = Item.fetchRequestForEntity() … {
+		$0.sortDescriptors = [SortDescriptor(key: #keyPath(Item.lastOpenedDate), ascending: false)]
+		$0.predicate = Predicate(format: "\(#keyPath(Item.lastOpenedDate)) != nil", argumentArray: [])
+	}
 	lazy var fetchedResultsControllerDelegate: TableViewFetchedResultsControllerDelegate<Item> = {
 		let fetchedResultsController = NSFetchedResultsController(fetchRequest: _Self.fetchRequest, managedObjectContext: mainQueueManagedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
 		let configureCell = { [unowned self] cell, indexPath in
@@ -84,11 +81,9 @@ class HistoryViewController: UITableViewController {
 		switch segue.identifier! {
 		case MainStoryboard.SegueIdentifiers.ShowHistoryPages:
 			let pageViewController = segue.destinationViewController as! UIPageViewController
-			let itemsPageViewControllerDataSource: ItemsPageViewControllerDataSource = {
-				let $ = pageViewController.dataSource as! ItemsPageViewControllerDataSource
-				$.items = self.fetchedResultsController.fetchedObjects!
-				return $
-			}()
+			let itemsPageViewControllerDataSource = (pageViewController.dataSource as! ItemsPageViewControllerDataSource) … {
+				$0.items = self.fetchedResultsController.fetchedObjects!
+			}
 			let initialViewController = itemsPageViewControllerDataSource.viewControllerForItem(self.selectedItem, storyboard: pageViewController.storyboard!)
 			if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
 				pageViewController.edgesForExtendedLayout = UIRectEdge()
