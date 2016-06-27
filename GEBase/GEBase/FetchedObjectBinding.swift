@@ -20,12 +20,10 @@ public class FetchedObjectBinding<T where T: DefaultSortable, T: Managed, T: NSF
 			handler(object)
 		}
 		self.fetchedResultsController = {
-			let fetchRequest: NSFetchRequest<T> = {
-				let $ = T.fetchRequestForEntity()
-				$.predicate = _0 ? nil : predicate
-				$.sortDescriptors = [T.defaultSortDescriptor()]
-				return $
-			}()
+			let fetchRequest = T.fetchRequestForEntity() … {
+				$0.predicate = _0 ? nil : predicate
+				$0.sortDescriptors = [T.defaultSortDescriptor()]
+			}
 			let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
 			return $
 		}()

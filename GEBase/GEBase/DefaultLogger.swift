@@ -8,11 +8,9 @@
 
 import Foundation
 
-let dateFormatter: DateFormatter = {
-	let $ = DateFormatter()
-	$.dateFormat = "HH:mm.ss.SSS"
-	return $
-}()
+let dateFormatter = DateFormatter() … {
+	$0.dateFormat = "HH:mm.ss.SSS"
+}
 
 private let traceToNSLogEnabled = false
 
