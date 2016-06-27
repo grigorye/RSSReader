@@ -34,13 +34,11 @@ public class ContainerViewState: NSManagedObject {
 		guard let loadDate = self.loadDate else {
 			return nil
 		}
-		let fetchRequest: NSFetchRequest<Item> = {
-			let $ = Item.fetchRequestForEntity()
-			$.predicate = Predicate(format: "\(#keyPath(Item.loadDate)) == %@", argumentArray: [loadDate])
-			$.fetchLimit = 1
-			$.sortDescriptors = inversedSortDescriptorsForContainers
-			return $
-		}()
+		let fetchRequest = Item.fetchRequestForEntity() … {
+			$0.predicate = Predicate(format: "\(#keyPath(Item.loadDate)) == %@", argumentArray: [loadDate])
+			$0.fetchLimit = 1
+			$0.sortDescriptors = inversedSortDescriptorsForContainers
+		}
 		let item = try! self.managedObjectContext!.fetch(fetchRequest).onlyElement
 		return (item)
 	}

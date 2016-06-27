@@ -109,11 +109,9 @@ extension Container {
 					sliceIndex = nextSliceIndex
 				}
 				typealias E = Container
-				let request: NSFetchRequest<E> = {
-					let $ = E.fetchRequestForEntity()
-					$.predicate = Predicate(format: "\(#keyPath(E.sortID)) IN %@", argumentArray: [sortIDs.map { NSNumber(value: $0) }])
-					return $
-				}()
+				let request = E.fetchRequestForEntity() … {
+					$0.predicate = Predicate(format: "\(#keyPath(E.sortID)) IN %@", argumentArray: [sortIDs.map { NSNumber(value: $0) }])
+				}
 				let unorderedChildContainers = try managedObjectContext.fetch(request)
 				•(unorderedChildContainers)
 				let childContainers = sortIDs.map { sortID in

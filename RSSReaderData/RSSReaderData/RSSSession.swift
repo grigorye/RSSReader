@@ -56,34 +56,34 @@ extension RSSSession {
 	// MARK: -
 	func dataTaskForAuthenticatedHTTPRequestWithURL(_ url: URL, httpMethod: String = "GET", completionHandler: TaskCompletionHandler) -> URLSessionDataTask? {
 		precondition(nil != self.authToken)
-		let request: URLRequest = {
-			var $ = URLRequest(url: url)
-			$.httpMethod = httpMethod
-			$.addValue("GoogleLogin auth=\(self.authToken!)", forHTTPHeaderField: "Authorization")
-			$.addValue(self.inoreaderAppID, forHTTPHeaderField: "AppId")
-			$.addValue(self.inoreaderAppKey, forHTTPHeaderField: "AppKey")
-			return $
-		}()
+		let request = URLRequest(url: url) … {
+			$0.httpMethod = httpMethod
+			$0.addValue("GoogleLogin auth=\(self.authToken!)", forHTTPHeaderField: "Authorization")
+			$0.addValue(self.inoreaderAppID, forHTTPHeaderField: "AppId")
+			$0.addValue(self.inoreaderAppKey, forHTTPHeaderField: "AppKey")
+		}
 		return progressEnabledURLSessionTaskGenerator.dataTask(for: request, completionHandler: completionHandler)
 	}
 	// MARK: -
 	func dataTaskForAuthenticatedHTTPRequest(withPath path: String, httpMethod: String = "GET", completionHandler: TaskCompletionHandler) -> URLSessionDataTask? {
 		let url: URL = {
-			let $ = NSURLComponents()
-			$.scheme = "https"
-			$.host = "www.inoreader.com"
-			$.path = path
-			return $.url!
+			let components = NSURLComponents() … {
+				$0.scheme = "https"
+				$0.host = "www.inoreader.com"
+				$0.path = path
+			}
+			return components.url!
 		}()
 		return self.dataTaskForAuthenticatedHTTPRequestWithURL(url, httpMethod: httpMethod, completionHandler: completionHandler)
 	}
 	func dataTaskForAuthenticatedHTTPRequest(withRelativeString relativeString: String, httpMethod: String = "GET", completionHandler: TaskCompletionHandler) -> URLSessionDataTask? {
 		let baseURL: URL = {
-			let $ = NSURLComponents()
-			$.scheme = "https"
-			$.host = "www.inoreader.com"
-			$.path = "/"
-			return $.url!
+			let components = NSURLComponents() … {
+				$0.scheme = "https"
+				$0.host = "www.inoreader.com"
+				$0.path = "/"
+			}
+			return components.url!
 		}()
 		let url = URL(string: relativeString, relativeTo: baseURL)!
 		return self.dataTaskForAuthenticatedHTTPRequestWithURL((url), httpMethod: httpMethod, completionHandler: completionHandler)
@@ -91,16 +91,16 @@ extension RSSSession {
 	// MARK: -
 	public func authenticate(_ completionHandler: (ErrorProtocol?) -> Void) {
 		let url: URL = {
-			let $ = NSURLComponents()
-			$.scheme = "https"
-			$.host = "www.inoreader.com"
-			$.path = "/accounts/ClientLogin"
-			return $.url!
+			let components = NSURLComponents() … {
+				$0.scheme = "https"
+				$0.host = "www.inoreader.com"
+				$0.path = "/accounts/ClientLogin"
+			}
+			return components.url!
 		}()
-		let request: URLRequest = {
-			var $ = URLRequest(url: url)
-			$.httpMethod = "POST"
-			$.httpBody = {
+		let request = URLRequest(url: url) … {
+			$0.httpMethod = "POST"
+			$0.httpBody = {
 				let allowedCharacters = NSCharacterSet.alphanumerics()
 				let loginEncoded = self.loginAndPassword.login?.addingPercentEncoding(withAllowedCharacters: allowedCharacters)
 				let passwordEncoded = self.loginAndPassword.password?.addingPercentEncoding(withAllowedCharacters: allowedCharacters)
@@ -112,8 +112,7 @@ extension RSSSession {
 				}()
 				return body.data(using: String.Encoding.utf8, allowLossyConversion: false)
 			}()
-			return $
-		}()
+		}
 		$(request)
 		let sessionTask = progressEnabledURLSessionTaskGenerator.dataTask(for: request) { data, httpResponse, error in
 			if let error = error {
@@ -431,11 +430,9 @@ extension RSSSession {
 						let lastItem = items.last
 						let containerInBackground = backgroundQueueManagedObjectContext.sameObject(as: container)
 						let excludedCategoryInBackground = backgroundQueueManagedObjectContext.sameObject(as: excludedCategory)
-						let fetchRequest: NSFetchRequest<Item> = {
-							let $ = Item.fetchRequestForEntity()
-							$.predicate = Predicate(format: "(loadDate != %@) && (date < %@) && (subscription == %@) && SUBQUERY(\(#keyPath(Item.categories)), $x, $x.\(#keyPath(Folder.streamID)) ENDSWITH %@).@count == 0", argumentArray: [loadDate, lastItem?.date ?? NSDate.distantFuture(), containerInBackground, excludedCategoryInBackground.streamID])
-							return $
-						}()
+						let fetchRequest = Item.fetchRequestForEntity() … {
+							$0.predicate = Predicate(format: "(loadDate != %@) && (date < %@) && (subscription == %@) && SUBQUERY(\(#keyPath(Item.categories)), $x, $x.\(#keyPath(Folder.streamID)) ENDSWITH %@).@count == 0", argumentArray: [loadDate, lastItem?.date ?? NSDate.distantFuture(), containerInBackground, excludedCategoryInBackground.streamID])
+						}
 						let itemsNowAssignedToExcludedCategory = try! backgroundQueueManagedObjectContext.fetch(fetchRequest)
 						for item in itemsNowAssignedToExcludedCategory {
 							item.categories.formUnion([excludedCategoryInBackground])

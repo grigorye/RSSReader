@@ -25,10 +25,11 @@ extension Folder {
 		return Predicate(format: "\(#keyPath(E.streamID)) ENDSWITH %@", argumentArray: [tagSuffix])
 	}
 	public static func fetchRequestForFolderWithTagSuffix(_ tagSuffix: String) -> NSFetchRequest<Folder> {
-		let $ = Folder.fetchRequestForEntity()
-		$.predicate = self.predicateForFetchingFolderWithTagSuffix(tagSuffix)
-		$.fetchLimit = 1
-		return $
+		let fetchRequest = Folder.fetchRequestForEntity() … {
+			$0.predicate = self.predicateForFetchingFolderWithTagSuffix(tagSuffix)
+			$0.fetchLimit = 1
+		}
+		return fetchRequest
 	}
 	public static func folderWithTagSuffix(_ tagSuffix: String, managedObjectContext: NSManagedObjectContext) -> Folder? {
 		let fetchRequest = self.fetchRequestForFolderWithTagSuffix(tagSuffix)
@@ -104,11 +105,9 @@ public extension Item {
 
 extension Item {
 	public class func allPendingForUpdate(in context: NSManagedObjectContext) throws -> [Item] {
-		let fetchRequest: NSFetchRequest<_Self> = {
-			let $ = _Self.fetchRequestForEntity()
-			$.predicate = Predicate(format: "\(#keyPath(pendingUpdateDate)) != nil")
-			return $
-		}()
+		let fetchRequest = _Self.fetchRequestForEntity() … {
+			$0.predicate = Predicate(format: "\(#keyPath(pendingUpdateDate)) != nil")
+		}
 		let items = try context.fetch(fetchRequest)
 		return items
 	}
@@ -116,15 +115,13 @@ extension Item {
 
 extension Folder {
 	public class func allWithItems(toBeExcluded excluded: Bool, in context: NSManagedObjectContext) throws -> [Folder] {
-		let fetchRequest: NSFetchRequest<_Self> = {
-			let $ = _Self.fetchRequestForEntity()
+		let fetchRequest = _Self.fetchRequestForEntity() … {
 #if false
-			$.shouldRefreshRefetchedObjects = true
+			$0.shouldRefreshRefetchedObjects = true
 #endif
 			let itemsRelationshipName = excluded ? #keyPath(itemsToBeExcluded) : #keyPath(itemsToBeIncluded)
-			$.predicate = Predicate(format: "0 < \(itemsRelationshipName).@count")
-			return $
-		}()
+			$0.predicate = Predicate(format: "0 < \(itemsRelationshipName).@count")
+		}
 		let categories = try context.fetch(fetchRequest)
 		for category in categories {
 #if true

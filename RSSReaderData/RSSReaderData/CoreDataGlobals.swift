@@ -48,15 +48,13 @@ public let (managedObjectContextError, optionalMainQueueManagedObjectContext, op
 				throw error
 			}
 		}
-		let mainQueueManagedObjectContext: NSManagedObjectContext = {
-			let $ = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-			$.persistentStoreCoordinator = psc
-			$.name = "main"
+		let mainQueueManagedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType) … {
+			$0.persistentStoreCoordinator = psc
+			$0.name = "main"
 			if defaults.coreDataCachingEnabled {
-				$.cachingEnabled = true
+				$0.cachingEnabled = true
 			}
-			return $
-		}()
+		}
 		let backgroundQueueManagedObjectContext: NSManagedObjectContext = {
 			guard defaults.backgroundImportEnabled else {
 				return mainQueueManagedObjectContext
