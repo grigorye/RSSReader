@@ -127,7 +127,7 @@ extension Folder {
 		}()
 		let categories = try context.fetch(fetchRequest)
 		for category in categories {
-#if false
+#if true
 			context.refresh(category, mergeChanges: true)
 #endif
 			assert(category.items(toBeExcluded: excluded).count > 0)
