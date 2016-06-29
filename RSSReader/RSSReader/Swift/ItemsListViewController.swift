@@ -35,20 +35,6 @@ extension Item {
 	}
 }
 
-let loadAgoDateComponentsFormatter = DateComponentsFormatter() … {
-	$0.unitsStyle = .full
-	$0.allowsFractionalUnits = true
-	$0.maximumUnitCount = 1
-	$0.allowedUnits = [.minute, .year, .month, .weekOfMonth, .day, .hour]
-}
-private let loadAgoLongDateComponentsFormatter = DateComponentsFormatter() … {
-	$0.unitsStyle = .full
-	$0.allowsFractionalUnits = true
-	$0.maximumUnitCount = 1
-	$0.includesApproximationPhrase = true
-	$0.allowedUnits = [.minute, .year, .month, .weekOfMonth, .day, .hour]
-}
-
 class ItemsListViewController: ContainerTableViewController {
 	static let Self_ = ItemsListViewController.self
 	final var multipleSourcesEnabled = false
@@ -227,39 +213,41 @@ class ItemsListViewController: ContainerTableViewController {
 			completionHandler(date)
 		}
 	}
-	private func loadMoreIfNecessaryWithLastLoadedItemDate(_ lastLoadedItemDate: Date?) {
-		let shouldLoadMore: Bool = {
-			guard !(loadInProgress || loadCompleted || loadError != nil) else {
-				return false
-			}
-			if let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows {
-				if let lastLoadedItemDate = lastLoadedItemDate where 0 < indexPathsForVisibleRows.count {
-					let lastVisibleIndexPath = indexPathsForVisibleRows.last!
-					let numberOfRows = fetchedResultsController.sections![0].numberOfObjects
-					assert(0 < numberOfRows)
-					let barrierRow = min(lastVisibleIndexPath.row + numberOfItemsToLoadPastVisible, numberOfRows - 1)
-					let barrierIndexPath = IndexPath(item: barrierRow, section: lastVisibleIndexPath.section)
-					let barrierItem = fetchedResultsController.object(at: barrierIndexPath) 
-					return !(((lastLoadedItemDate).compare((barrierItem.date))) == .orderedAscending)
-				}
-				else {
-					return true
-				}
-			}
+	private func shouldLoadMore(for lastLoadedItemDate: Date?) -> Bool {
+		guard !(loadInProgress || loadCompleted || loadError != nil) else {
 			return false
-		}()
-		if (shouldLoadMore) {
-			loadMore { loadDateDidChange in
-			}
 		}
-		else if (loadCompleted) {
-			tableView.tableFooterView = nil
+		guard let lastLoadedItemDate = lastLoadedItemDate else {
+			return true
+		}
+		guard let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows else {
+			return false
+		}
+		guard 0 < indexPathsForVisibleRows.count else {
+			return true
+		}
+		let lastVisibleIndexPath = indexPathsForVisibleRows.last!
+		let numberOfRows = fetchedResultsController.sections![0].numberOfObjects
+		assert(0 < numberOfRows)
+		let barrierRow = min(lastVisibleIndexPath.row + numberOfItemsToLoadPastVisible, numberOfRows - 1)
+		let barrierIndexPath = IndexPath(item: barrierRow, section: lastVisibleIndexPath.section)
+		let barrierItem = fetchedResultsController.object(at: barrierIndexPath) 
+		return !(((lastLoadedItemDate).compare((barrierItem.date))) == .orderedAscending)
+	}
+	private func loadMoreIfNecessary(for lastLoadedItemDate: Date?) {
+		guard shouldLoadMore(for: lastLoadedItemDate) else {
+			if (loadCompleted) {
+				tableView.tableFooterView = nil
+			}
+			return
+		}
+		loadMore { _ in
 		}
 	}
 	private func loadMoreIfNecessary() {
 		fetchLastLoadedItemDate { lastLoadedItemDate in
 			DispatchQueue.main.async {
-				self.loadMoreIfNecessaryWithLastLoadedItemDate(lastLoadedItemDate)
+				self.loadMoreIfNecessary(for: lastLoadedItemDate)
 			}
 		}
 	}
