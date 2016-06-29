@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FBAllocationTrackerImpl.h"
+#import "FBAllocationTrackerDefines.h"
 
 /**
  This category will expose methods to swizzle allocs
