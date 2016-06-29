@@ -124,7 +124,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 		foldersViewController.container = folder
 	}
 	// MARK: -
-	private let currentRestorationFormatVersion = 1
+	private let currentRestorationFormatVersion = Int32(1)
 	private enum Restorable: String {
 		case restorationFormatVersion
 	}
@@ -135,7 +135,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 	}
 	func application(_ application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
 		$(self)
-		let restorationFormatVersion = (coder.decodeObject(forKey: Restorable.restorationFormatVersion.rawValue) as! Int?) ?? 0
+		let restorationFormatVersion = coder.decodeInt32(forKey: Restorable.restorationFormatVersion.rawValue)
 		if $(restorationFormatVersion) < currentRestorationFormatVersion {
 			return false
 		}
