@@ -45,3 +45,18 @@ let dateComponentsFormatter = DateComponentsFormatter() … {
 	$0.maximumUnitCount = 1
 	$0.allowedUnits = [.minute, .year, .month, .weekOfMonth, .day, .hour]
 }
+
+let loadAgoDateComponentsFormatter = DateComponentsFormatter() … {
+	$0.unitsStyle = .full
+	$0.allowsFractionalUnits = true
+	$0.maximumUnitCount = 1
+	$0.allowedUnits = [.minute, .year, .month, .weekOfMonth, .day, .hour]
+}
+
+let loadAgoLongDateComponentsFormatter = DateComponentsFormatter() … {
+	$0.unitsStyle = .full
+	$0.allowsFractionalUnits = true
+	$0.maximumUnitCount = 1
+	$0.includesApproximationPhrase = true
+	$0.allowedUnits = [.minute, .year, .month, .weekOfMonth, .day, .hour]
+}
