@@ -33,6 +33,10 @@ extension Item {
 			return "More than Year Ago"
 		}
 	}
+	func itemListFormattedDate(forNowDate nowDate: Date) -> String {
+		let timeInterval = nowDate.timeIntervalSince(self.date)
+		return dateComponentsFormatter.string(from: timeInterval)!
+	}
 }
 
 class ItemsListViewController: ContainerTableViewController {
@@ -322,56 +326,11 @@ class ItemsListViewController: ContainerTableViewController {
 	private var selectedItem: Item {
 		return itemForIndexPath(tableView.indexPathForSelectedRow!)
 	}
-	func itemDateFormatted(_ itemDate: Date) -> String {
-		let timeInterval = nowDate.timeIntervalSince(itemDate)
-		return dateComponentsFormatter.string(from: timeInterval)!
-	}
 	// MARK: -
-	internal func configureCell(_ cell: ItemTableViewCell, atIndexPath indexPath: IndexPath) {
-		let item = fetchedResultsController.object(at: (indexPath)) 
-		defer {
-			cell.itemObjectID = item.objectID
-		}
-		guard cell.itemObjectID != item.objectID else {
-			return
-		}
-		if let titleLabel = cell.titleLabel {
-			let text = item.title ?? (item.id as NSString).lastPathComponent
-			if text != titleLabel.text {
-				titleLabel.text = text
-			}
-		}
-		if let sourceLabel = cell.sourceLabel {
-			let textNaturalCased: String = {
-				let itemAuthor = item.author
-				guard (itemAuthor != "") && (self.container is Subscription) else {
-					return item.subscription.title
-				}
-				return itemAuthor
-			}()
-			let text = textNaturalCased.lowercased()
-			if text != sourceLabel.text {
-				sourceLabel.text = text
-			}
-		}
-		if let dateLabel = cell.dateLabel where defaults.showDates {
-			let text = "\(itemDateFormatted(item.date))".lowercased()
-			if dateLabel.text != text {
-				dateLabel.text = text
-				if _0 {
-				dateLabel.textColor = item.markedAsRead ? nil : UIColor.red()
-				}
-			}
-		}
-		if let readMarkLabel = cell.readMarkLabel where defaults.showUnreadMark {
-			let alpha = CGFloat(item.markedAsRead ? 0 : 1)
-			if readMarkLabel.alpha != alpha {
-				readMarkLabel.alpha = alpha
-			}
-		}
-		if let favoriteMarkLabel = cell.favoriteMarkLabel {
-			favoriteMarkLabel.isHidden = !item.markedAsFavorite
-		}
+	internal func configureCell(_ cell: UITableViewCell, atIndexPath indexPath: IndexPath) {
+		let item = fetchedResultsController.object(at: (indexPath))
+		let cellDataBinder = cell as! ItemTableViewCellDataBinder
+		cellDataBinder.setData((item: item, container: self.container, nowDate: nowDate))
 	}
 	// MARK: -
 	override func numberOfSections(in tableView: UITableView) -> Int {
@@ -406,11 +365,10 @@ class ItemsListViewController: ContainerTableViewController {
 	// MARK: -
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let reuseIdentifier = reusedCellGenerator?.reuseIdentifierForCellForRowAtIndexPath(indexPath) ?? "Item"
-		let cell = tableView.dequeueReusableCell(withIdentifier: $(reuseIdentifier), for: indexPath) as! ItemTableViewCell
+		let cell = tableView.dequeueReusableCell(withIdentifier: $(reuseIdentifier), for: indexPath)
 		if nil != reusedCellGenerator {
-			cell.systemLayoutSizeCachingDataSource = systemLayoutSizeCachingDataSource
+			(cell as! ItemTableViewCell).systemLayoutSizeCachingDataSource = systemLayoutSizeCachingDataSource
 		}
-		let dt = disableTrace(); defer { _ = dt }
 		configureCell(cell, atIndexPath: $(indexPath))
 		return cell
 	}
@@ -641,7 +599,7 @@ extension ItemsListViewController {
 		let itemLoadDateTimeIntervalSinceReferenceDateKeyPath = #keyPath(Item.loadDate.timeIntervalSinceReferenceDate)
 		let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainQueueManagedObjectContext, sectionNameKeyPath: !defaults.itemsAreSortedByLoadDate ? nil : itemLoadDateTimeIntervalSinceReferenceDateKeyPath, cacheName: nil)
 		let configureCell = { [unowned self] (cell: UITableViewCell, indexPath: IndexPath) -> Void in
-			self.configureCell(cell as! ItemTableViewCell, atIndexPath: indexPath)
+			self.configureCell(cell, atIndexPath: indexPath)
 		}
 		let $ = TableViewFetchedResultsControllerDelegate(tableView: tableView, fetchedResultsController: fetchedResultsController, updateCell: configureCell)
 		fetchedResultsController.delegate = $
