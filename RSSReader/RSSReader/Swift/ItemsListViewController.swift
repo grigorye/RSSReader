@@ -373,6 +373,9 @@ class ItemsListViewController: ContainerTableViewController {
 		return cell
 	}
 	override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+		guard !layoutKitEnabled else {
+			return
+		}
 		if nil == heightSampleLabel {
 			let viewWithVariableHeight = viewWithVariableHeightForCell(cell)
 			heightSampleLabel = NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: viewWithVariableHeight)) as! UILabel
@@ -381,7 +384,13 @@ class ItemsListViewController: ContainerTableViewController {
 		reusedCellGenerator?.addRowHeight(rowHeight, forCell: cell, atIndexPath: indexPath)
 		rowHeightEstimator?.addRowHeight(rowHeight, forIndexPath: indexPath)
 	}
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		return UITableViewAutomaticDimension
+    }
 	override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+		guard layoutKitEnabled else {
+			return 100
+		}
 		guard let rowHeightEstimator = rowHeightEstimator else {
 			return UITableViewAutomaticDimension
 		}
@@ -487,8 +496,9 @@ class ItemsListViewController: ContainerTableViewController {
 			}
 		}
 	}
+	var layoutKitEnabled = true
 	func configureReusableCells() {
-		if defaults.cellHeightCachingEnabled {
+		if !layoutKitEnabled && defaults.cellHeightCachingEnabled {
 			let reuseIdentifiersForHeightCachingCells = (0...3).map {"Item-\($0)"}
 			for (i, reuseIdentifier) in reuseIdentifiersForHeightCachingCells.enumerated() {
 				let cellNib = UINib(nibName: "ItemTableViewCell-\(i)", bundle: nil)
@@ -496,8 +506,14 @@ class ItemsListViewController: ContainerTableViewController {
 			}
 			reusedCellGenerator = TableViewHeightBasedReusedCellGenerator(dataSource: self, heightAgnosticCellReuseIdentifier: "Item", reuseIdentifiersForHeightCachingCells: reuseIdentifiersForHeightCachingCells)
 		}
-		let cellNib = UINib(nibName: "ItemTableViewCell", bundle: nil)
-		tableView.register(cellNib, forCellReuseIdentifier: "Item")
+		if layoutKitEnabled {
+			tableView.register(ItemLKTableViewCell.self, forCellReuseIdentifier: "Item")
+			tableView.estimatedRowHeight = 100
+		}
+		else {
+			let cellNib = UINib(nibName: "ItemTableViewCell", bundle: nil)
+			tableView.register(cellNib, forCellReuseIdentifier: "Item")
+		}
 	}
 	func configureRowHeightEstimator() {
 		if defaults.frequencyAndWeightBasedTableRowHeightEstimatorEnabled {
