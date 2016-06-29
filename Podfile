@@ -13,6 +13,7 @@ target "RSSReader" do
 	pod 'Appsee'
 	pod 'Flurry-iOS-SDK/FlurrySDK'
 	pod 'FBMemoryProfiler'
+	pod 'LayoutKit', :git => 'https://github.com/linkedin/LayoutKit', :branch => 'swift3'
 end
 
 post_install do |installer|

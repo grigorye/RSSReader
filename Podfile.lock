@@ -15,6 +15,7 @@ PODS:
   - FBRetainCycleDetector (0.1.2)
   - Flurry-iOS-SDK/FlurrySDK (7.6.4)
   - HTMLReader (0.9.6)
+  - LayoutKit (1.1.0-swift3)
   - TUSafariActivity (1.0.4)
   - UXCam (2.5.5)
 
@@ -27,8 +28,19 @@ DEPENDENCIES:
   - FBMemoryProfiler
   - Flurry-iOS-SDK/FlurrySDK
   - HTMLReader
+  - LayoutKit (from `https://github.com/linkedin/LayoutKit`, branch `swift3`)
   - TUSafariActivity
   - UXCam
+
+EXTERNAL SOURCES:
+  LayoutKit:
+    :branch: swift3
+    :git: https://github.com/linkedin/LayoutKit
+
+CHECKOUT OPTIONS:
+  LayoutKit:
+    :commit: 07068910350646dccaaa1624ea68d3168fe348f5
+    :git: https://github.com/linkedin/LayoutKit
 
 SPEC CHECKSUMS:
   AFMInfoBanner: a7bcfd409faa624f043e604ae4fb789c84b22815
@@ -42,9 +54,10 @@ SPEC CHECKSUMS:
   FBRetainCycleDetector: 45462f9ed1af0cd77224a4cc4e6dacaca47371b4
   Flurry-iOS-SDK: 9da972687d3af9f48038dcd86eae9cad3acca456
   HTMLReader: 7e21488ee378afc56ccade8af35840c4e03e434c
+  LayoutKit: 686067a84bcd66b23a08029273c16500c8262724
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   UXCam: 3318abdb0b2b0d8dc6905579bb5a9ff16185c9a8
 
-PODFILE CHECKSUM: 19c2db9575202c09c44500583edf44bca19e6331
+PODFILE CHECKSUM: e5342b9e855bfd959b58c5c43d144153a03d1a7f
 
 COCOAPODS: 1.0.1
