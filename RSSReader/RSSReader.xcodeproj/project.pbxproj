@@ -89,6 +89,10 @@
 		C4EF270E1A8D353C000EBE63 /* UserMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EF270D1A8D353C000EBE63 /* UserMessages.swift */; };
 		C4F1118B1CB84F66005C5A0F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4F1118D1CB84F66005C5A0F /* LaunchScreen.xib */; };
 		C4F1118E1CB84F6D005C5A0F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4F111901CB84F6D005C5A0F /* Main.storyboard */; };
+		C4F20D4C1D234F9D001D3F5B /* LayoutKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4F20D4A1D234F7B001D3F5B /* LayoutKit.framework */; };
+		C4F20D4D1D234F9D001D3F5B /* LayoutKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4F20D4A1D234F7B001D3F5B /* LayoutKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C4F20D4F1D234FEE001D3F5B /* ItemLKTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F20D4E1D234FEE001D3F5B /* ItemLKTableViewCell.swift */; };
+		C4F20D501D23B2CE001D3F5B /* ItemLKTableViewCell.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4F20D4E1D234FEE001D3F5B /* ItemLKTableViewCell.swift */; };
 		C4F575D01A797C7B00F12F20 /* AddToFavoritesActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F575CF1A797C7B00F12F20 /* AddToFavoritesActivity.swift */; };
 		C4F575D61A7988DB00F12F20 /* OpenWebPageActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F575D51A7988DB00F12F20 /* OpenWebPageActivity.swift */; };
 		C4FEBAF71BF807A600A5709B /* ContainedViewControllersAwareNavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FEBAF61BF807A600A5709B /* ContainedViewControllersAwareNavigationControllerDelegate.swift */; };
@@ -125,6 +129,7 @@
 			dstPath = Sources;
 			dstSubfolderSpec = 7;
 			files = (
+				C4F20D501D23B2CE001D3F5B /* ItemLKTableViewCell.swift in Embed Sources */,
 				C4FEBB261BF9742300A5709B /* UINavigationItem+MultipleButtonItemsCollections.swift in Embed Sources */,
 				C4FEBB231BF9712200A5709B /* KVOCompliantUserDefaults+RSSReader.swift in Embed Sources */,
 				C4FEBB0F1BF919EF00A5709B /* TableViewFetchedResultsControllerDelegate.swift in Embed Sources */,
@@ -168,6 +173,7 @@
 				C408F1B51CE7520700DB943F /* FBMemoryProfiler.framework in Embed Frameworks */,
 				C408F1851CE73FAE00DB943F /* GEBase.framework in Embed Frameworks */,
 				C40EA7261C6FC8A9002C6D9E /* AFMInfoBanner.framework in Embed Frameworks */,
+				C4F20D4D1D234F9D001D3F5B /* LayoutKit.framework in Embed Frameworks */,
 				C408F1B21CE7520700DB943F /* FBAllocationTracker.framework in Embed Frameworks */,
 				C40EA7311C6FCC07002C6D9E /* CVKHierarchySearcher.framework in Embed Frameworks */,
 			);
@@ -258,6 +264,8 @@
 		C4F1118F1CB84F6D005C5A0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C4F111911CB84FE1005C5A0F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		C4F111921CB84FE1005C5A0F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		C4F20D4A1D234F7B001D3F5B /* LayoutKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LayoutKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4F20D4E1D234FEE001D3F5B /* ItemLKTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemLKTableViewCell.swift; path = Swift/ItemLKTableViewCell.swift; sourceTree = "<group>"; };
 		C4F575CF1A797C7B00F12F20 /* AddToFavoritesActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddToFavoritesActivity.swift; path = Swift/AddToFavoritesActivity.swift; sourceTree = "<group>"; };
 		C4F575D51A7988DB00F12F20 /* OpenWebPageActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OpenWebPageActivity.swift; path = Swift/OpenWebPageActivity.swift; sourceTree = "<group>"; };
 		C4FEBAF61BF807A600A5709B /* ContainedViewControllersAwareNavigationControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainedViewControllersAwareNavigationControllerDelegate.swift; path = Swift/ContainedViewControllersAwareNavigationControllerDelegate.swift; sourceTree = "<group>"; };
@@ -281,6 +289,7 @@
 				C408F1B71CE7520700DB943F /* FBRetainCycleDetector.framework in Frameworks */,
 				C424B8F11C6FC5C8008AD647 /* RSSReaderData.framework in Frameworks */,
 				C408F1B41CE7520700DB943F /* FBMemoryProfiler.framework in Frameworks */,
+				C4F20D4C1D234F9D001D3F5B /* LayoutKit.framework in Frameworks */,
 				C408F1841CE73FAE00DB943F /* GEBase.framework in Frameworks */,
 				C40EA7251C6FC8A9002C6D9E /* AFMInfoBanner.framework in Frameworks */,
 				C408F1B11CE7520700DB943F /* FBAllocationTracker.framework in Frameworks */,
@@ -326,6 +335,7 @@
 		C424B8F91C6FC5E1008AD647 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C4F20D4A1D234F7B001D3F5B /* LayoutKit.framework */,
 				C408F1B61CE7520700DB943F /* FBRetainCycleDetector.framework */,
 				C408F1B31CE7520700DB943F /* FBMemoryProfiler.framework */,
 				C408F1B01CE7520700DB943F /* FBAllocationTracker.framework */,
@@ -359,6 +369,7 @@
 				C49B127C1BF686D500EA5DE5 /* Debug.storyboard */,
 				C44B2F001AC0C881006A67F1 /* HomeViewController.swift */,
 				C4676E081A6A4D1F00AE8BC2 /* ItemTableViewCell.swift */,
+				C4F20D4E1D234FEE001D3F5B /* ItemLKTableViewCell.swift */,
 				C44D91631AAE73830053B9E6 /* ItemTableViewCell.xib */,
 				C492A4CA1CDEE9AB00F8AD5F /* ItemTableViewCell-0.xib */,
 				C492A4CB1CDEE9AB00F8AD5F /* ItemTableViewCell-1.xib */,
@@ -615,7 +626,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		C40C6BF81A73017B00FAFA17 /* Integrate Appsee */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -623,14 +634,14 @@
 			name = "Integrate Appsee";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = "/bin/sh -e";
 			shellScript = "if false\nthen\n    \"${SRCROOT:?}\"/XcodeBuildPhases/IntegrateAppsee\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		C418B3281A593F4E002C0578 /* Embed Source Version into Bundle */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -638,7 +649,7 @@
 			name = "Embed Source Version into Bundle";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = "/bin/sh -e";
 			shellScript = "\"${SRCROOT:?}\"/../XcodeBuildPhases/EmbedSourceVersionIntoBundle\n";
 			showEnvVarsInLog = 0;
@@ -662,7 +673,7 @@
 		};
 		C4676E7F1A6DB0C900AE8BC2 /* Integrate Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -670,7 +681,7 @@
 			name = "Integrate Fabric";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = "/bin/sh -e";
 			shellScript = "if false\nthen\n\t\"${SRCROOT:?}\"/XcodeBuildPhases/IntegrateFabric\nfi\n\n";
 			showEnvVarsInLog = 0;
@@ -704,6 +715,7 @@
 				C41707CB1A56076A00AED81C /* Globals.swift in Sources */,
 				C495409B1A575C1900F56168 /* UserDefaults.swift in Sources */,
 				C49540A11A57825100F56168 /* ItemsListViewController.swift in Sources */,
+				C4F20D4F1D234FEE001D3F5B /* ItemLKTableViewCell.swift in Sources */,
 				C4C780181A7DF2B0009CB5FC /* TypeFilteringActivity.swift in Sources */,
 				C4FEBAF71BF807A600A5709B /* ContainedViewControllersAwareNavigationControllerDelegate.swift in Sources */,
 				C44B2F011AC0C881006A67F1 /* HomeViewController.swift in Sources */,
