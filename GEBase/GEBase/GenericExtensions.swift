@@ -10,11 +10,13 @@ import Foundation
 
 public typealias Handler = () -> Void
 
+public typealias Json = [String : AnyObject]
+
 public func invoke(handler: Handler) {
 	handler()
 }
 
-public func URLQuerySuffix(fromComponents components: [String]) -> String {
+public func URLQuerySuffixFromComponents(_ components: [String]) -> String {
 	return components.reduce((prefix: "", suffix: "?")) {
 		let (prefix, suffix) = $0
 		return ("\(prefix)\(suffix)\($1)", "&")
