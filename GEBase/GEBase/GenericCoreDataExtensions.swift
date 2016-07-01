@@ -113,10 +113,22 @@ extension NSManagedObjectContext {
 		return nil
 	}
 }
-extension NSManagedObjectContext {
-	public func sameObject<T: NSManagedObject>(as object: T) -> T {
-		return self.object(with: object.objectID) as! T
+
+public struct TypedManagedObjectID<T> {
+	let objectID: NSManagedObjectID
+	public func object(in managedObjectContext: NSManagedObjectContext) -> T {
+		return managedObjectContext.object(with: objectID) as! T
 	}
+}
+
+public func typedObjectID<T: NSManagedObject>(for object: T) -> TypedManagedObjectID<T> {
+	return TypedManagedObjectID(objectID: object.objectID)
+}
+public func typedObjectID<T: NSManagedObject>(for object: T?) -> TypedManagedObjectID<T>? {
+	guard let object = object else {
+		return nil
+	}
+	return TypedManagedObjectID(objectID: object.objectID)
 }
 
 #if os(iOS)
