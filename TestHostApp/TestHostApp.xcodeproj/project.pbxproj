@@ -98,6 +98,8 @@
 				TargetAttributes = {
 					C4F507151B5B9AC8002D9B02 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = 465NA5BW7E;
+						DevelopmentTeamName = "Grigorii Entin";
 						LastSwiftMigration = 0800;
 					};
 				};
