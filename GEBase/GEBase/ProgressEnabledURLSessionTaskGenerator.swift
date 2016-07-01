@@ -21,7 +21,7 @@ public class ProgressEnabledURLSessionTaskGenerator: NSObject {
 	let session = URLSession(configuration: URLSessionConfiguration.default())
 	// MARK: -
 	public typealias HTTPDataTaskCompletionHandler = (Data?, HTTPURLResponse?, ErrorProtocol?) -> Void
-	public func dataTask(for request: URLRequest, completionHandler: HTTPDataTaskCompletionHandler) -> URLSessionDataTask? {
+	public func dataTask(for request: URLRequest, completionHandler: HTTPDataTaskCompletionHandler) -> URLSessionDataTask {
 		let progress = Progress(totalUnitCount: 1)
 		progress.becomeCurrent(withPendingUnitCount: 1)
 		•(request)
