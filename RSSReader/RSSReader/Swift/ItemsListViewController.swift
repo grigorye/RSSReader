@@ -137,7 +137,7 @@ class ItemsListViewController: ContainerTableViewController {
 	var numberOfItemsToLoadLater: Int {
 		return defaults.numberOfItemsToLoadLater
 	}
-	private func proceedWithStreamContentsResult(_ stateBefore: (ongoingLoadDate: Date, continuation: String?), newContinuation: String?, items: [Item]!, streamError: ErrorProtocol?, completionHandler: (loadDateDidChange: Bool) -> Void) {
+	private func proceedWithStreamContentsResult(stateBefore: (ongoingLoadDate: Date, continuation: String?), newContinuation: String?, lastItemInResult: Item?, streamError: ErrorProtocol?, completionHandler: (loadDateDidChange: Bool) -> Void) {
 		guard stateBefore.ongoingLoadDate == $(ongoingLoadDate) else {
 			// Ignore results from previous sessions.
 			completionHandler(loadDateDidChange: true)
@@ -168,9 +168,7 @@ class ItemsListViewController: ContainerTableViewController {
 		else {
 			assert(loadDate == ongoingLoadDate)
 		}
-		if let lastItemInResultAsync = (items).last where _0 {
-			let managedObjectContext = fetchedResultsController.managedObjectContext
-			let lastItemInResult = managedObjectContext.sameObject(as: lastItemInResultAsync)
+		if let lastItemInResult = lastItemInResult where _0 {
 			assert(containerViewPredicate.evaluate(with: lastItemInResult))
 			assert(lastItemInResult == lastLoadedItem)
 			assert(nil != fetchedResultsController.indexPath(forObject: lastItemInResult))
@@ -199,8 +197,15 @@ class ItemsListViewController: ContainerTableViewController {
 		let excludedCategory: Folder? = showUnreadOnly ? Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: mainQueueManagedObjectContext) : nil
 		let numberOfItemsToLoad = (oldContinuation != nil) ? numberOfItemsToLoadLater : numberOfItemsToLoadInitially
 		rssSession!.streamContents(container!, excludedCategory: excludedCategory, continuation: oldContinuation, count: numberOfItemsToLoad, loadDate: $(oldOngoingLoadDate)) { newContinuation, items, streamError in
+			let lastItemObjectID = typedObjectID(for: items?.last)
 			DispatchQueue.main.async {
-				self.proceedWithStreamContentsResult((ongoingLoadDate: oldOngoingLoadDate, continuation: oldContinuation), newContinuation: newContinuation, items: items, streamError: streamError, completionHandler: completionHandler)
+				self.proceedWithStreamContentsResult(
+					stateBefore: (ongoingLoadDate: oldOngoingLoadDate, continuation: oldContinuation),
+					newContinuation: newContinuation,
+					lastItemInResult: lastItemObjectID?.object(in: mainQueueManagedObjectContext),
+					streamError: streamError,
+					completionHandler: completionHandler
+				)
 			}
 		}
 	}
