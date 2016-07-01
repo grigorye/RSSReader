@@ -20,18 +20,19 @@ var itemsAreSortedByLoadDate: Bool {
 	return defaults.itemsAreSortedByLoadDate
 }
 
+public enum RSSSessionError: ErrorProtocol {
+	case authenticationFailed(underlyingError: ErrorProtocol)
+	case jsonObjectIsNotDictionary(jsonObject: AnyObject)
+	case jsonMissingUserID(json: [String: AnyObject])
+	case jsonMissingUnreadCounts(json: [String: AnyObject])
+	case itemJsonMissingID(itemJson: [String: AnyObject])
+	case jsonMissingStreamPrefs(json: [String: AnyObject])
+	case unexpectedResponseTextForMarkAsRead(body: String)
+	case badResponseDataForMarkAsRead(data: NSData)
+	case pushTagsFailed(underlyingErrors: [ErrorProtocol])
+}
+
 public class RSSSession: NSObject {
-	public enum Error: ErrorProtocol {
-		case authenticationFailed(underlyingError: ErrorProtocol)
-		case jsonObjectIsNotDictionary(jsonObject: AnyObject)
-		case jsonMissingUserID(json: [String: AnyObject])
-		case jsonMissingUnreadCounts(json: [String: AnyObject])
-		case itemJsonMissingID(itemJson: [String: AnyObject])
-		case jsonMissingStreamPrefs(json: [String: AnyObject])
-		case unexpectedResponseTextForMarkAsRead(body: String)
-		case badResponseDataForMarkAsRead(data: NSData)
-		case pushTagsFailed(underlyingErrors: [ErrorProtocol])
-	}
 	let inoreaderAppID = "1000001375"
 	let inoreaderAppKey = "r3O8gX6FPdFaOXE3x4HypYHO2LTCNuDS"
 	let loginAndPassword: LoginAndPassword
@@ -41,6 +42,7 @@ public class RSSSession: NSObject {
 }
 
 public extension RSSSession {
+	typealias Error = RSSSessionError
 	public var authToken: String! {
 		get {
 			return defaults.authToken
@@ -51,10 +53,56 @@ public extension RSSSession {
 	}
 }
 
+func itemsImportedFromStreamJson(_ json: Json, loadDate: Date, container: Container, excludedCategory: Folder?, managedObjectContext: NSManagedObjectContext) throws -> [Item] {
+	let subscription = container as? Subscription
+	let items = try importItemsFromJson(json, type: Item.self, elementName: "items", managedObjectContext: managedObjectContext) { (item, itemJson) in
+		try item.importFromJson(itemJson, subscription: subscription)
+		item.loadDate = loadDate
+		if batchSavingDisabled {
+			try managedObjectContext.save()
+		}
+	}
+	if let excludedCategory = excludedCategory {
+		let lastItem = items.last
+		let fetchRequest = Item.fetchRequestForEntity() … {
+			$0.predicate = Predicate(
+				format: "(loadDate != %@) && (date < %@) && (subscription == %@) && SUBQUERY(\(#keyPath(Item.categories)), $x, $x.\(#keyPath(Folder.streamID)) ENDSWITH %@).@count == 0",
+				argumentArray: [
+					loadDate,
+					lastItem?.date ?? NSDate.distantFuture(),
+					container,
+					excludedCategory.streamID
+				]
+			)
+		}
+		let itemsNowAssignedToExcludedCategory = try! managedObjectContext.fetch(fetchRequest)
+		for item in itemsNowAssignedToExcludedCategory {
+			item.categories.formUnion([excludedCategory])
+		}
+	}
+	if !batchSavingDisabled {
+		try managedObjectContext.save()
+	}
+	else {
+		assert(!managedObjectContext.hasChanges)
+	}
+	return items
+}
+
+func continuationAndItemsImportedFromStreamData(_ data: Data, loadDate: Date, container: Container, excludedCategory: Folder?, managedObjectContext: NSManagedObjectContext) throws -> (String?, [Item]) {
+	let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions())
+	guard let json = jsonObject as? Json else {
+		throw RSSSessionError.jsonObjectIsNotDictionary(jsonObject: jsonObject)
+	}
+	let continuation = json["continuation"] as? String
+	let items = try itemsImportedFromStreamJson(json, loadDate: loadDate, container: container, excludedCategory: excludedCategory, managedObjectContext: managedObjectContext)
+	return (continuation, items)
+}
+
 extension RSSSession {
 	typealias TaskCompletionHandler = ProgressEnabledURLSessionTaskGenerator.HTTPDataTaskCompletionHandler
 	// MARK: -
-	func dataTaskForAuthenticatedHTTPRequestWithURL(_ url: URL, httpMethod: String = "GET", completionHandler: TaskCompletionHandler) -> URLSessionDataTask? {
+	func dataTaskForAuthenticatedHTTPRequestWithURL(_ url: URL, httpMethod: String = "GET", completionHandler: TaskCompletionHandler) -> URLSessionDataTask {
 		precondition(nil != self.authToken)
 		let request = URLRequest(url: url) … {
 			$0.httpMethod = httpMethod
@@ -65,7 +113,7 @@ extension RSSSession {
 		return progressEnabledURLSessionTaskGenerator.dataTask(for: request, completionHandler: completionHandler)
 	}
 	// MARK: -
-	func dataTaskForAuthenticatedHTTPRequest(withPath path: String, httpMethod: String = "GET", completionHandler: TaskCompletionHandler) -> URLSessionDataTask? {
+	func dataTaskForAuthenticatedHTTPRequest(withPath path: String, httpMethod: String = "GET", completionHandler: TaskCompletionHandler) -> URLSessionDataTask {
 		let url: URL = {
 			let components = NSURLComponents() … {
 				$0.scheme = "https"
@@ -76,7 +124,7 @@ extension RSSSession {
 		}()
 		return self.dataTaskForAuthenticatedHTTPRequestWithURL(url, httpMethod: httpMethod, completionHandler: completionHandler)
 	}
-	func dataTaskForAuthenticatedHTTPRequest(withRelativeString relativeString: String, httpMethod: String = "GET", completionHandler: TaskCompletionHandler) -> URLSessionDataTask? {
+	func dataTaskForAuthenticatedHTTPRequest(withRelativeString relativeString: String, httpMethod: String = "GET", completionHandler: TaskCompletionHandler) -> URLSessionDataTask {
 		let baseURL: URL = {
 			let components = NSURLComponents() … {
 				$0.scheme = "https"
@@ -141,7 +189,7 @@ extension RSSSession {
 			}()
 			self.authToken = authToken
 			completionHandler(nil)
-		}!
+		}
 		sessionTask.resume()
 	}
 	// MARK: -
@@ -160,7 +208,7 @@ extension RSSSession {
 			backgroundQueueManagedObjectContext.perform {
 				do {
 					let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions())
-					guard let json = jsonObject as? [String : AnyObject] else {
+					guard let json = jsonObject as? Json else {
 						throw Error.jsonObjectIsNotDictionary(jsonObject: jsonObject)
 					}
 					guard let userID = json["userId"] as? String else {
@@ -174,7 +222,7 @@ extension RSSSession {
 					completionHandler($(error))
 				}
 			}
-		}!
+		}
 		sessionTask.resume()
 	}
 	public func updateUnreadCounts(completionHandler: (ErrorProtocol?) -> Void) {
@@ -189,10 +237,10 @@ extension RSSSession {
 				var containers = [Container]()
 				do {
 					let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions())
-					guard let json = jsonObject as? [String : AnyObject] else {
+					guard let json = jsonObject as? Json else {
 						throw Error.jsonObjectIsNotDictionary(jsonObject: jsonObject)
 					}
-					guard let itemJsons = json["unreadcounts"] as? [[String : AnyObject]] else {
+					guard let itemJsons = json["unreadcounts"] as? [Json] else {
 						throw Error.jsonMissingUnreadCounts(json: json)
 					}
 					for itemJson in itemJsons {
@@ -218,7 +266,7 @@ extension RSSSession {
 					completionHandler($(error))
 				}
 			}
-		}!
+		}
 		sessionTask.resume()
 	}
 	func updateTags(from data: Data, completionHandler: (ErrorProtocol?) -> Void) {
@@ -237,6 +285,21 @@ extension RSSSession {
 			}
 		}
 	}
+	func dataTaskForPushingTags(for items: Set<Item>, category: Folder, excluded: Bool, completionHandler: TaskCompletionHandler) -> URLSessionDataTask {
+		let urlPath: String = {
+			let urlArguments: [String] = {
+				assert(0 < items.count)
+				let itemIDsComponents = items.map { "i=\($0.shortID)" }
+				let command = excluded ? "r" : "a"
+				let tag = category.tag()!
+				let urlArguments = ["\(command)=\(tag)"] + itemIDsComponents
+				return urlArguments
+			}()
+			let urlArgumentsJoined = urlArguments.joined(separator: "&")
+			return "/reader/api/0/edit-tag?\(urlArgumentsJoined)"
+		}()
+		return self.dataTaskForAuthenticatedHTTPRequest(withRelativeString: urlPath, httpMethod: "POST", completionHandler: completionHandler)
+	}
 	public func pushTags(completionHandler: (ErrorProtocol?) -> ()) {
 		let context = backgroundQueueManagedObjectContext
 		context.perform {
@@ -245,17 +308,7 @@ extension RSSSession {
 			let tasks: [URLSessionTask] = [true, false].flatMap { (excluded: Bool) -> [URLSessionTask] in
 				return try! Folder.allWithItems(toBeExcluded: excluded, in: context).map { category in
 					let items = category.items(toBeExcluded: excluded)
-					let urlArguments: [String] = {
-						assert(0 < items.count)
-						let itemIDsComponents = items.map { "i=\($0.shortID)" }
-						let command = excluded ? "r" : "a"
-						let tag = category.tag()!
-						let urlArguments = ["\(command)=\(tag)"] + itemIDsComponents
-						return urlArguments
-					}()
-					let urlArgumentsJoined = urlArguments.joined(separator: "&")
-					let urlPath = "/reader/api/0/edit-tag?\(urlArgumentsJoined)"
-					let task = self.dataTaskForAuthenticatedHTTPRequest(withRelativeString: urlPath, httpMethod: "POST") { data, httpResponse, error in
+					let task = self.dataTaskForPushingTags(for: items, category: category, excluded: excluded) { data, httpResponse, error in
 						completionLock.lock()
 						defer { completionLock.unlock(withCondition: completionLock.condition - 1) }
 						guard nil == error else {
@@ -272,7 +325,7 @@ extension RSSSession {
 							try! context.save()
 							assert(try! !Folder.allWithItems(toBeExcluded: excluded, in: context).contains(category))
 						}
-					}!
+					}
 					return task
 				}
 			}
@@ -303,7 +356,7 @@ extension RSSSession {
 			let data = data!
 			try! data.write(to: lastTagsFileURL, options: .dataWritingAtomic)
 			self.updateTags(from: data, completionHandler: completionHandler)
-		}!
+		}
 		sessionTask.resume()
 	}
 	public func updateStreamPreferences(completionHandler: (ErrorProtocol?) -> Void) {
@@ -317,7 +370,7 @@ extension RSSSession {
 			backgroundQueueManagedObjectContext.perform {
 				do {
 					let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions())
-					guard let json = jsonObject as? [String : AnyObject] else {
+					guard let json = jsonObject as? Json else {
 						throw Error.jsonObjectIsNotDictionary(jsonObject: jsonObject)
 					}
 					guard let streamprefsJson: AnyObject = json["streamprefs"] else {
@@ -330,7 +383,7 @@ extension RSSSession {
 					completionHandler($(error))
 				}
 			}
-		}!
+		}
 		sessionTask.resume()
 	}
 	public func updateSubscriptions(completionHandler: (ErrorProtocol?) -> Void) {
@@ -352,20 +405,22 @@ extension RSSSession {
 					completionHandler($(error))
 				}
 			}
-		}!
+		}
 		sessionTask.resume()
 	}
 	public func markAllAsRead(_ container: Container, completionHandler: (ErrorProtocol?) -> Void) {
-		let containerIDPercentEncoded = container.streamID.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.alphanumerics())!
-		let newestItemTimestampUsec = container.newestItemDate.timestampUsec
-		let relativeString = "/reader/api/0/mark-all-as-read?s=\(containerIDPercentEncoded)&ts=\(newestItemTimestampUsec)"
+		let relativeString: String = {
+			let containerIDPercentEncoded = container.streamID.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.alphanumerics())!
+			let newestItemTimestampUsec = container.newestItemDate.timestampUsec
+			return "/reader/api/0/mark-all-as-read?s=\(containerIDPercentEncoded)&ts=\(newestItemTimestampUsec)"
+		}()
 		let sessionTask = self.dataTaskForAuthenticatedHTTPRequest(withRelativeString: relativeString) { data, httpResponse, error in
 			do {
 				if let error = error {
 					throw error
 				}
 				let data = data!
-				guard let body = NSString(data: data, encoding: String.Encoding.utf8.rawValue) else {
+				guard let body = String(data: data, encoding: String.Encoding.utf8) else {
 					throw Error.badResponseDataForMarkAsRead(data: data)
 				}
 				guard body == "OK" else {
@@ -382,74 +437,43 @@ extension RSSSession {
 			} catch {
 				completionHandler($(error))
 			}
-		}!
+		}
 		sessionTask.resume()
 	}
 	// MARK: -
 	public func streamContents(_ container: Container, excludedCategory: Folder?, continuation: String?, count: Int = 20, loadDate: Date, completionHandler: (continuation: String?, items: [Item]?, error: ErrorProtocol?) -> Void) {
-		var queryComponents = [String]()
-		if let continuation = continuation {
-			queryComponents += ["c=\($(continuation))"]
-		}
-		if let excludedCategory = excludedCategory {
-			queryComponents += ["xt=\($(excludedCategory.streamID))"]
-		}
-		queryComponents += ["n=\(count)"]
-		let streamIDPercentEncoded = container.streamID.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.alphanumerics())!
-		let querySuffix = URLQuerySuffix(fromComponents: queryComponents)
-		let relativeString = "/reader/api/0/stream/contents/\(streamIDPercentEncoded)\(querySuffix)"
+		let relativeString: String = {
+			let querySuffix = URLQuerySuffixFromComponents([String]() … {
+				if let continuation = continuation {
+					$0 += ["c=\($(continuation))"]
+				}
+				if let excludedCategory = excludedCategory {
+					$0 += ["xt=\($(excludedCategory.streamID))"]
+				}
+				$0 += ["n=\(count)"]
+			})
+			let streamIDPercentEncoded = container.streamID.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.alphanumerics())!
+			return "/reader/api/0/stream/contents/\(streamIDPercentEncoded)\(querySuffix)"
+		}()
 		let sessionTask = self.dataTaskForAuthenticatedHTTPRequest(withRelativeString: relativeString) { data, httpResponse, error in
 			if let error = error {
 				completionHandler(continuation: nil, items: nil, error: error)
 				return
 			}
-			let data = data!
-			let subscriptionObjectID = (container as? Subscription)?.objectID
+			let excludedCategoryObjectID = typedObjectID(for: excludedCategory)
+			let containerObjectID = typedObjectID(for: container)
 			let managedObjectContext = backgroundQueueManagedObjectContext
 			managedObjectContext.perform {
 				do {
-					let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions())
-					guard let json = jsonObject as? [String : AnyObject] else {
-						throw Error.jsonObjectIsNotDictionary(jsonObject: jsonObject)
-					}
-					let continuation = json["continuation"] as? String
-					let items = try importItemsFromJson(json, type: Item.self, elementName: "items", managedObjectContext: managedObjectContext) { (item, itemJson) in
-						let subscription: Subscription? = {
-							guard let subscriptionObjectID = subscriptionObjectID else {
-								return nil
-							}
-							return (managedObjectContext.object(with: subscriptionObjectID) as! Subscription)
-						}()
-						try item.importFromJson(itemJson, subscription: subscription)
-						item.loadDate = loadDate
-						if batchSavingDisabled {
-							try backgroundQueueManagedObjectContext.save()
-						}
-					}
-					if let excludedCategory = excludedCategory {
-						let lastItem = items.last
-						let containerInBackground = backgroundQueueManagedObjectContext.sameObject(as: container)
-						let excludedCategoryInBackground = backgroundQueueManagedObjectContext.sameObject(as: excludedCategory)
-						let fetchRequest = Item.fetchRequestForEntity() … {
-							$0.predicate = Predicate(format: "(loadDate != %@) && (date < %@) && (subscription == %@) && SUBQUERY(\(#keyPath(Item.categories)), $x, $x.\(#keyPath(Folder.streamID)) ENDSWITH %@).@count == 0", argumentArray: [loadDate, lastItem?.date ?? NSDate.distantFuture(), containerInBackground, excludedCategoryInBackground.streamID])
-						}
-						let itemsNowAssignedToExcludedCategory = try! backgroundQueueManagedObjectContext.fetch(fetchRequest)
-						for item in itemsNowAssignedToExcludedCategory {
-							item.categories.formUnion([excludedCategoryInBackground])
-						}
-					}
-					if !batchSavingDisabled {
-						try backgroundQueueManagedObjectContext.save()
-					}
-					else {
-						assert(!backgroundQueueManagedObjectContext.hasChanges)
-					}
+					let container = containerObjectID.object(in: managedObjectContext)
+					let excludedCategory = excludedCategoryObjectID?.object(in: managedObjectContext)
+					let (continuation, items) = try continuationAndItemsImportedFromStreamData(data!, loadDate: loadDate, container: container, excludedCategory: excludedCategory, managedObjectContext: managedObjectContext)
 					completionHandler(continuation: continuation, items: items, error: nil)
 				} catch {
 					completionHandler(continuation: nil, items: nil, error: $(error))
 				}
 			}
-		}!
+		}
 		sessionTask.resume()
 	}
 }
