@@ -14,6 +14,7 @@ target "RSSReader" do
 	pod 'Flurry-iOS-SDK/FlurrySDK'
 	pod 'FBMemoryProfiler'
 	pod 'Result'
+	pod 'PromiseKit/CorePromise', :git => 'https://github.com/mxcl/PromiseKit', :branch => '4.0.0-beta1'
 end
 
 post_install do |installer|

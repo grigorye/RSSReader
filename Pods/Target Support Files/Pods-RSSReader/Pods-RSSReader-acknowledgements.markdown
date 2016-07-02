@@ -215,6 +215,10 @@ Developer's use of the SDK is governed by the license in the applicable Flurry T
 HTMLReader is in the public domain.
 
 
+## PromiseKit
+
+@see README
+
 ## Result
 
 The MIT License (MIT)
