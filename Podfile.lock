@@ -15,6 +15,7 @@ PODS:
   - FBRetainCycleDetector (0.1.2)
   - Flurry-iOS-SDK/FlurrySDK (7.6.4)
   - HTMLReader (0.9.6)
+  - Result (2.1.1)
   - TUSafariActivity (1.0.4)
   - UXCam (2.5.5)
 
@@ -27,6 +28,7 @@ DEPENDENCIES:
   - FBMemoryProfiler
   - Flurry-iOS-SDK/FlurrySDK
   - HTMLReader
+  - Result
   - TUSafariActivity
   - UXCam
 
@@ -42,9 +44,10 @@ SPEC CHECKSUMS:
   FBRetainCycleDetector: 45462f9ed1af0cd77224a4cc4e6dacaca47371b4
   Flurry-iOS-SDK: 9da972687d3af9f48038dcd86eae9cad3acca456
   HTMLReader: 7e21488ee378afc56ccade8af35840c4e03e434c
+  Result: 822c879f145943320cc80a9a8372378e3d699fe4
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   UXCam: 3318abdb0b2b0d8dc6905579bb5a9ff16185c9a8
 
-PODFILE CHECKSUM: 19c2db9575202c09c44500583edf44bca19e6331
+PODFILE CHECKSUM: 5086c097458eb4804ee173a99c3c6e43edd5ef52
 
 COCOAPODS: 1.0.1
