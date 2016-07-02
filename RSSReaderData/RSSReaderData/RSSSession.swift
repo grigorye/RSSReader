@@ -7,6 +7,7 @@
 //
 
 import GEBase
+import PromiseKit
 import Result
 import Foundation
 import CoreData
@@ -42,7 +43,7 @@ public class RSSSession: NSObject {
 
 public extension RSSSession {
 	typealias Error = RSSSessionError
-	public var authToken: String! {
+	var authToken: String! {
 		get {
 			return defaults.authToken
 		}
@@ -50,13 +51,15 @@ public extension RSSSession {
 			defaults.authToken = newValue
 		}
 	}
+	var authenticated: Bool {
+		return nil != authToken
+	}
 }
 public typealias ResultCompletionHandler<ResultType, ErrorType: ErrorProtocol> = (Result<ResultType, ErrorType>) -> Void
 
 extension RSSSession {
 	public typealias CommandCompletionHandler<T> = ResultCompletionHandler<T, Error>
 	// MARK: -
-	//
 	func performPersistentDataUpdateCommand<T: PersistentDataUpdateCommand>(_ command: T, completionHandler: (Result<T.ResultType, Error>) -> Void) {
 		command.taskForSession(self) { data, httpResponse, error in
 			if let error = error {
@@ -77,42 +80,49 @@ extension RSSSession {
 			})
 		}.resume()
 	}
-	// MARK: -
-	public func authenticate(_ completionHandler: CommandCompletionHandler<Void>) {
-		self.performPersistentDataUpdateCommand(Authenticate(loginAndPassword: loginAndPassword)) {
-			result in
-			guard case let .Success(authToken) = result else {
-				completionHandler(.Failure(result.error!))
-				return
+	func promise<T: PersistentDataUpdateCommand>(for command: T) -> Promise<T.ResultType> {
+		return Promise { fulfill, reject in
+			self.performPersistentDataUpdateCommand(command) { result in
+				switch result {
+				case .Success(let value):
+					fulfill(value)
+				case .Failure(let error):
+					reject(error)
+				}
 			}
-			self.authToken = authToken
-			completionHandler(.Success())
 		}
 	}
-	func reauthenticate(completionHandler: CommandCompletionHandler<Void>) {
-		authenticate(completionHandler)
+	// MARK: -
+	public func authenticate() -> Promise<Void> {
+		return self.promise(for: Authenticate(loginAndPassword: loginAndPassword)).then {
+			authToken in
+			self.authToken = authToken
+		}
+	}
+	func reauthenticate() -> Promise<Void> {
+		return authenticate()
 	}
 	/// MARK: -
-	public func updateUserInfo(completionHandler: CommandCompletionHandler<Void>) {
-		self.performPersistentDataUpdateCommand(UpdateUserInfo(), completionHandler: completionHandler)
+	public func updateUserInfo() -> Promise<Void> {
+		return self.promise(for: UpdateUserInfo())
 	}
-	public func updateUnreadCounts(completionHandler: CommandCompletionHandler<Void>) {
-		self.performPersistentDataUpdateCommand(UpdateUnreadCounts(), completionHandler: completionHandler)
+	public func updateUnreadCounts() -> Promise<Void> {
+		return self.promise(for: UpdateUnreadCounts())
 	}
-	public func pullTags(completionHandler: CommandCompletionHandler<Void>) {
-		self.performPersistentDataUpdateCommand(PullTags(), completionHandler: completionHandler)
+	public func pullTags() -> Promise<Void> {
+		return self.promise(for: PullTags())
 	}
-	public func updateStreamPreferences(completionHandler: CommandCompletionHandler<Void>) {
-		self.performPersistentDataUpdateCommand(UpdateStreamPreferences(), completionHandler: completionHandler)
+	public func updateStreamPreferences() -> Promise<Void> {
+		return self.promise(for: UpdateStreamPreferences())
 	}
-	public func updateSubscriptions(completionHandler: CommandCompletionHandler<Void>) {
-		self.performPersistentDataUpdateCommand(UpdateSubscriptions(), completionHandler: completionHandler)
+	public func updateSubscriptions() -> Promise<Void> {
+		return self.promise(for: UpdateSubscriptions())
 	}
-	public func markAllAsRead(_ container: Container, completionHandler: CommandCompletionHandler<Void>) {
-		self.performPersistentDataUpdateCommand(MarkAllAsRead(container: container), completionHandler: completionHandler)
+	public func markAllAsRead(_ container: Container) -> Promise<Void> {
+		return self.promise(for: MarkAllAsRead(container: container))
 	}
-	public func streamContents(_ container: Container, excludedCategory: Folder?, continuation: String?, count: Int = 20, loadDate: Date, completionHandler: CommandCompletionHandler<StreamContents.ResultType>) {
-		self.performPersistentDataUpdateCommand(StreamContents(excludedCategory: excludedCategory, container: container, continuation: continuation, loadDate: loadDate), completionHandler: completionHandler)
+	public func streamContents(_ container: Container, excludedCategory: Folder?, continuation: String?, count: Int = 20, loadDate: Date) -> Promise<StreamContents.ResultType> {
+		return self.promise(for: StreamContents(excludedCategory: excludedCategory, container: container, continuation: continuation, loadDate: loadDate))
 	}
 	/// MARK: -
 	func pushTags(from context: NSManagedObjectContext, completionHandler: CommandCompletionHandler<Void>) {
@@ -147,6 +157,18 @@ extension RSSSession {
 		let context = backgroundQueueManagedObjectContext
 		context.perform {
 			self.pushTags(from: context, completionHandler: completionHandler)
+		}
+	}
+	public func pushTags() -> Promise<Void> {
+		return Promise { fulfill, reject in
+			self.pushTags { result in
+				switch result {
+				case .Success(let value):
+					fulfill(value)
+				case .Failure(let error):
+					reject(error)
+				}
+			}
 		}
 	}
 }
