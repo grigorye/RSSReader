@@ -7,6 +7,7 @@
 //
 
 import GEBase
+import Result
 import Foundation
 import CoreData
 
@@ -18,6 +19,7 @@ var itemsAreSortedByLoadDate: Bool {
 
 public enum RSSSessionError: ErrorProtocol {
 	case authenticationFailed(underlyingError: ErrorProtocol)
+	case requestFailed(underlyingError: ErrorProtocol)
 	case jsonObjectIsNotDictionary(jsonObject: AnyObject)
 	case jsonMissingUserID(json: [String: AnyObject])
 	case jsonMissingUnreadCounts(json: [String: AnyObject])
@@ -26,6 +28,7 @@ public enum RSSSessionError: ErrorProtocol {
 	case unexpectedResponseTextForMarkAsRead(body: String)
 	case badResponseDataForMarkAsRead(data: NSData)
 	case pushTagsFailed(underlyingErrors: [ErrorProtocol])
+	case importFailed(underlyingError: ErrorProtocol)
 }
 
 public class RSSSession: NSObject {
@@ -48,35 +51,16 @@ public extension RSSSession {
 		}
 	}
 }
+public typealias ResultCompletionHandler<ResultType, ErrorType: ErrorProtocol> = (Result<ResultType, ErrorType>) -> Void
 
 extension RSSSession {
+	public typealias CommandCompletionHandler<T> = ResultCompletionHandler<T, Error>
 	// MARK: -
-	public typealias CommandCompletionHandler = (ErrorProtocol?) -> Void
 	//
-	func performPersistentDataUpdateCommand<T: PersistentDataUpdateCommand where T.ResultType == Void>(_ command: T, completionHandler: (ErrorProtocol?) -> Void) {
+	func performPersistentDataUpdateCommand<T: PersistentDataUpdateCommand>(_ command: T, completionHandler: (Result<T.ResultType, Error>) -> Void) {
 		command.taskForSession(self) { data, httpResponse, error in
 			if let error = error {
-				completionHandler(command.preprocessed(error))
-				return
-			}
-			command.push(data!, through: { importResultIntoManagedObjectContext in
-				backgroundQueueManagedObjectContext.perform {
-					do {
-						try importResultIntoManagedObjectContext(backgroundQueueManagedObjectContext)
-						try backgroundQueueManagedObjectContext.save()
-						completionHandler(nil)
-					} catch {
-						$(command)
-						completionHandler($(error))
-					}
-				}
-			})
-		}.resume()
-	}
-	func performPersistentDataUpdateCommand<T: PersistentDataUpdateCommand>(_ command: T, completionHandler: (ErrorProtocol?, T.ResultType?) -> Void) {
-		command.taskForSession(self) { data, httpResponse, error in
-			if let error = error {
-				completionHandler(command.preprocessed(error), nil)
+				completionHandler(.Failure(command.preprocessedRequestError(error)))
 				return
 			}
 			command.push(data!, through: { importResultIntoManagedObjectContext in
@@ -84,54 +68,54 @@ extension RSSSession {
 					do {
 						let result = try importResultIntoManagedObjectContext(backgroundQueueManagedObjectContext)
 						try backgroundQueueManagedObjectContext.save()
-						completionHandler(nil, result)
+						completionHandler(.Success(result))
 					} catch {
 						$(command)
-						completionHandler($(error), nil)
+						completionHandler(.Failure(.importFailed(underlyingError: $(error))))
 					}
 				}
 			})
 		}.resume()
 	}
 	// MARK: -
-	public func authenticate(_ completionHandler: (ErrorProtocol?) -> Void) {
+	public func authenticate(_ completionHandler: CommandCompletionHandler<Void>) {
 		self.performPersistentDataUpdateCommand(Authenticate(loginAndPassword: loginAndPassword)) {
-			error, authToken in
-			guard nil != error else {
-				completionHandler(error!)
+			result in
+			guard case let .Success(authToken) = result else {
+				completionHandler(.Failure(result.error!))
 				return
 			}
 			self.authToken = authToken
-			completionHandler(nil)
+			completionHandler(.Success())
 		}
 	}
-	func reauthenticate(completionHandler: (ErrorProtocol?) -> Void) {
+	func reauthenticate(completionHandler: CommandCompletionHandler<Void>) {
 		authenticate(completionHandler)
 	}
 	/// MARK: -
-	public func updateUserInfo(completionHandler: CommandCompletionHandler) {
+	public func updateUserInfo(completionHandler: CommandCompletionHandler<Void>) {
 		self.performPersistentDataUpdateCommand(UpdateUserInfo(), completionHandler: completionHandler)
 	}
-	public func updateUnreadCounts(completionHandler: CommandCompletionHandler) {
+	public func updateUnreadCounts(completionHandler: CommandCompletionHandler<Void>) {
 		self.performPersistentDataUpdateCommand(UpdateUnreadCounts(), completionHandler: completionHandler)
 	}
-	public func pullTags(completionHandler: CommandCompletionHandler) {
+	public func pullTags(completionHandler: CommandCompletionHandler<Void>) {
 		self.performPersistentDataUpdateCommand(PullTags(), completionHandler: completionHandler)
 	}
-	public func updateStreamPreferences(completionHandler: (ErrorProtocol?) -> Void) {
+	public func updateStreamPreferences(completionHandler: CommandCompletionHandler<Void>) {
 		self.performPersistentDataUpdateCommand(UpdateStreamPreferences(), completionHandler: completionHandler)
 	}
-	public func updateSubscriptions(completionHandler: CommandCompletionHandler) {
+	public func updateSubscriptions(completionHandler: CommandCompletionHandler<Void>) {
 		self.performPersistentDataUpdateCommand(UpdateSubscriptions(), completionHandler: completionHandler)
 	}
-	public func markAllAsRead(_ container: Container, completionHandler: CommandCompletionHandler) {
+	public func markAllAsRead(_ container: Container, completionHandler: CommandCompletionHandler<Void>) {
 		self.performPersistentDataUpdateCommand(MarkAllAsRead(container: container), completionHandler: completionHandler)
 	}
-	public func streamContents(_ container: Container, excludedCategory: Folder?, continuation: String?, count: Int = 20, loadDate: Date, completionHandler: (ErrorProtocol?, (String?, [Item])?) -> Void) {
+	public func streamContents(_ container: Container, excludedCategory: Folder?, continuation: String?, count: Int = 20, loadDate: Date, completionHandler: CommandCompletionHandler<StreamContents.ResultType>) {
 		self.performPersistentDataUpdateCommand(StreamContents(excludedCategory: excludedCategory, container: container, continuation: continuation, loadDate: loadDate), completionHandler: completionHandler)
 	}
 	/// MARK: -
-	func pushTags(from context: NSManagedObjectContext, completionHandler: CommandCompletionHandler) {
+	func pushTags(from context: NSManagedObjectContext, completionHandler: CommandCompletionHandler<Void>) {
 		let dispatchGroup = DispatchGroup()
 		var errors = [ErrorProtocol]()
 		let completionQueue = DispatchQueue.global(attributes: .qosUserInteractive)
@@ -140,9 +124,9 @@ extension RSSSession {
 				let items = category.items(toBeExcluded: excluded)
 				dispatchGroup.enter()
 				self.performPersistentDataUpdateCommand(PushTags(items: items, category: category, excluded: excluded)) {
-					(error: ErrorProtocol?) -> Void in
+					result -> Void in
 					completionQueue.async {
-						if let error = error {
+						if case let .Failure(error) = result {
 							errors.append(error)
 						}
 						dispatchGroup.leave()
@@ -153,13 +137,13 @@ extension RSSSession {
 		DispatchQueue.global(attributes: .qosUtility).async {
 			dispatchGroup.wait()
 			if 0 != errors.count {
-				completionHandler(Error.pushTagsFailed(underlyingErrors: errors))
+				completionHandler(.Failure(.pushTagsFailed(underlyingErrors: errors)))
 				return
 			}
-			completionHandler(nil)
+			completionHandler(.Success())
 		}
 	}
-	public func pushTags(completionHandler: (ErrorProtocol?) -> ()) {
+	public func pushTags(completionHandler: CommandCompletionHandler<Void>) {
 		let context = backgroundQueueManagedObjectContext
 		context.perform {
 			self.pushTags(from: context, completionHandler: completionHandler)

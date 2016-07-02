@@ -7,6 +7,7 @@
 //
 
 import GEBase
+import Result
 import CoreData
 import Foundation
 
@@ -14,7 +15,7 @@ import Foundation
 protocol PersistentDataUpdateCommand {
 	associatedtype ResultType
 	var request: URLRequest { get }
-	func preprocessed(_ error: ErrorProtocol) -> ErrorProtocol
+	func preprocessedRequestError(_ error: ErrorProtocol) -> RSSSession.Error
 	func validate(data: Data) throws
 	func push(_ data: Data, through: ((NSManagedObjectContext) throws -> ResultType) -> Void)
 	func taskForSession(_ session: RSSSession, completionHandler: RSSSessionTaskCompletionHandler) -> URLSessionTask
@@ -30,8 +31,8 @@ extension PersistentDataUpdateCommand {
 		return components.url!
 	}
 	//
-	func preprocessed(_ error: ErrorProtocol) -> ErrorProtocol {
-		return error
+	func preprocessedRequestError(_ error: ErrorProtocol) -> RSSSession.Error {
+		return .requestFailed(underlyingError: error)
 	}
 	func validate(data: Data) throws {
 	}
@@ -189,7 +190,8 @@ struct PushTags : PersistentDataUpdateCommand, MostCommonDataUpdateCommand {
 	}
 }
 
-struct StreamContents : PersistentDataUpdateCommand, AuthenticatedDataUpdateCommand, RelativeStringBasedDataUpdateCommand  {
+public struct StreamContents : PersistentDataUpdateCommand, AuthenticatedDataUpdateCommand, RelativeStringBasedDataUpdateCommand  {
+	public typealias ResultType = (continuation: String?, items: [Item])
 	let excludedCategory: Folder?, container: Container, continuation: String?, count: Int = 20, loadDate: Date
 	var requestRelativeString: String {
 		let querySuffix = URLQuerySuffixFromComponents([String]() … {
@@ -204,7 +206,7 @@ struct StreamContents : PersistentDataUpdateCommand, AuthenticatedDataUpdateComm
 		let streamIDPercentEncoded = container.streamID.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.alphanumerics())!
 		return "/reader/api/0/stream/contents/\(streamIDPercentEncoded)\(querySuffix)"
 	}
-	func push(_ data: Data, through: ((NSManagedObjectContext) throws -> (continuation: String?, items: [Item])) -> Void) {
+	func push(_ data: Data, through: ((NSManagedObjectContext) throws -> ResultType) -> Void) {
 		try! data.write(to: lastTagsFileURL, options: .dataWritingAtomic)
 		let excludedCategoryObjectID = typedObjectID(for: excludedCategory)
 		let containerObjectID = typedObjectID(for: container)
