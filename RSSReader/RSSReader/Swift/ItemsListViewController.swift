@@ -196,14 +196,17 @@ class ItemsListViewController: ContainerTableViewController {
 		loadInProgress = true
 		let excludedCategory: Folder? = showUnreadOnly ? Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: mainQueueManagedObjectContext) : nil
 		let numberOfItemsToLoad = (oldContinuation != nil) ? numberOfItemsToLoadLater : numberOfItemsToLoadInitially
-		rssSession!.streamContents(container!, excludedCategory: excludedCategory, continuation: oldContinuation, count: numberOfItemsToLoad, loadDate: $(oldOngoingLoadDate)) { newContinuation, items, streamError in
-			let lastItemObjectID = typedObjectID(for: items?.last)
+		rssSession!.streamContents(container!, excludedCategory: excludedCategory, continuation: oldContinuation, count: numberOfItemsToLoad, loadDate: $(oldOngoingLoadDate)) {
+			(error, r: (continuation: String?, items: [Item])?) -> Void in
+			let newContinuation = r?.continuation
+			let items = r?.items
+			let lastItemObjectID = (nil == items) ? nil : typedObjectID(for: items!.last)
 			DispatchQueue.main.async {
 				self.proceedWithStreamContentsResult(
 					stateBefore: (ongoingLoadDate: oldOngoingLoadDate, continuation: oldContinuation),
 					newContinuation: newContinuation,
 					lastItemInResult: lastItemObjectID?.object(in: mainQueueManagedObjectContext),
-					streamError: streamError,
+					streamError: error,
 					completionHandler: completionHandler
 				)
 			}
