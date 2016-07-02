@@ -52,51 +52,58 @@ public extension RSSSession {
 extension RSSSession {
 	// MARK: -
 	public typealias CommandCompletionHandler = (ErrorProtocol?) -> Void
-	func performPersistentDataUpdateCommand(_ command: PersistentDataUpdateCommand, completionHandler: CommandCompletionHandler) {
-		self.dataTaskForAuthenticatedHTTPRequest(withRelativeString: command.URLRequestRelativeString) { data, httpResponse, error in
+	//
+	func performPersistentDataUpdateCommand<T: PersistentDataUpdateCommand where T.ResultType == Void>(_ command: T, completionHandler: (ErrorProtocol?) -> Void) {
+		command.taskForSession(self) { data, httpResponse, error in
 			if let error = error {
 				completionHandler(command.preprocessed(error))
 				return
 			}
-			backgroundQueueManagedObjectContext.perform {
-				do {
-					try command.importResult(data!, into: backgroundQueueManagedObjectContext)
-					try backgroundQueueManagedObjectContext.save()
-					completionHandler(nil)
-				} catch {
-					$(command)
-					completionHandler($(error))
+			command.push(data!, through: { importResultIntoManagedObjectContext in
+				backgroundQueueManagedObjectContext.perform {
+					do {
+						try importResultIntoManagedObjectContext(backgroundQueueManagedObjectContext)
+						try backgroundQueueManagedObjectContext.save()
+						completionHandler(nil)
+					} catch {
+						$(command)
+						completionHandler($(error))
+					}
 				}
+			})
+		}.resume()
+	}
+	func performPersistentDataUpdateCommand<T: PersistentDataUpdateCommand>(_ command: T, completionHandler: (ErrorProtocol?, T.ResultType?) -> Void) {
+		command.taskForSession(self) { data, httpResponse, error in
+			if let error = error {
+				completionHandler(command.preprocessed(error), nil)
+				return
 			}
+			command.push(data!, through: { importResultIntoManagedObjectContext in
+				backgroundQueueManagedObjectContext.perform {
+					do {
+						let result = try importResultIntoManagedObjectContext(backgroundQueueManagedObjectContext)
+						try backgroundQueueManagedObjectContext.save()
+						completionHandler(nil, result)
+					} catch {
+						$(command)
+						completionHandler($(error), nil)
+					}
+				}
+			})
 		}.resume()
 	}
 	// MARK: -
 	public func authenticate(_ completionHandler: (ErrorProtocol?) -> Void) {
-		self.dataTaskForAuthentication { data, httpResponse, error in
-			if let error = error {
-				let adjustedError: ErrorProtocol = {
-					switch error {
-					case GEBase.URLSessionTaskGeneratorError.UnexpectedHTTPResponseStatus(let httpResponse):
-						guard httpResponse.statusCode == 401 else {
-							return error
-						}
-						return Error.authenticationFailed(underlyingError: error)
-					default:
-						return error
-					}
-				}()
-				completionHandler($(adjustedError))
+		self.performPersistentDataUpdateCommand(Authenticate(loginAndPassword: loginAndPassword)) {
+			error, authToken in
+			guard nil != error else {
+				completionHandler(error!)
 				return
 			}
-			do {
-				let authToken = try authTokenImportedFromJsonData(data!)
-				self.authToken = authToken
-				completionHandler(nil)
-			}
-			catch {
-				completionHandler($(error))
-			}
-		}.resume()
+			self.authToken = authToken
+			completionHandler(nil)
+		}
 	}
 	func reauthenticate(completionHandler: (ErrorProtocol?) -> Void) {
 		authenticate(completionHandler)
@@ -120,43 +127,32 @@ extension RSSSession {
 	public func markAllAsRead(_ container: Container, completionHandler: CommandCompletionHandler) {
 		self.performPersistentDataUpdateCommand(MarkAllAsRead(container: container), completionHandler: completionHandler)
 	}
+	public func streamContents(_ container: Container, excludedCategory: Folder?, continuation: String?, count: Int = 20, loadDate: Date, completionHandler: (ErrorProtocol?, (String?, [Item])?) -> Void) {
+		self.performPersistentDataUpdateCommand(StreamContents(excludedCategory: excludedCategory, container: container, continuation: continuation, loadDate: loadDate), completionHandler: completionHandler)
+	}
 	/// MARK: -
 	func pushTags(from context: NSManagedObjectContext, completionHandler: CommandCompletionHandler) {
-		let completionLock = ConditionLock()
+		let dispatchGroup = DispatchGroup()
 		var errors = [ErrorProtocol]()
-		let tasks: [URLSessionTask] = [true, false].flatMap { (excluded: Bool) -> [URLSessionTask] in
-			return try! Folder.allWithItems(toBeExcluded: excluded, in: context).map { category in
+		let completionQueue = DispatchQueue.global(attributes: .qosUserInteractive)
+		for excluded in [true, false] {
+			for category in try! Folder.allWithItems(toBeExcluded: excluded, in: context) {
 				let items = category.items(toBeExcluded: excluded)
-				let task = self.dataTaskForPushingTags(for: items, category: category, excluded: excluded) { data, httpResponse, error in
-					completionLock.lock()
-					defer { completionLock.unlock(withCondition: completionLock.condition - 1) }
-					guard nil == error else {
-						errors += [error!]
-						return
-					}
-					context.perform {
-						if (excluded) {
-							category.itemsToBeExcluded.subtract(items)
+				dispatchGroup.enter()
+				self.performPersistentDataUpdateCommand(PushTags(items: items, category: category, excluded: excluded)) {
+					(error: ErrorProtocol?) -> Void in
+					completionQueue.async {
+						if let error = error {
+							errors.append(error)
 						}
-						else {
-							category.itemsToBeIncluded.subtract(items)
-						}
-						try! context.save()
-						assert(try! !Folder.allWithItems(toBeExcluded: excluded, in: context).contains(category))
+						dispatchGroup.leave()
 					}
 				}
-				return task
 			}
 		}
-		completionLock.lock()
-		completionLock.unlock(withCondition: tasks.count)
-		for task in tasks {
-			task.resume()
-		}
-		DispatchQueue.global(attributes: .qosBackground).async {
-			completionLock.lock(whenCondition: 0)
-			defer { completionLock.unlock() }
-			guard 0 == errors.count else {
+		DispatchQueue.global(attributes: .qosUtility).async {
+			dispatchGroup.wait()
+			if 0 != errors.count {
 				completionHandler(Error.pushTagsFailed(underlyingErrors: errors))
 				return
 			}
@@ -168,26 +164,5 @@ extension RSSSession {
 		context.perform {
 			self.pushTags(from: context, completionHandler: completionHandler)
 		}
-	}
-	public func streamContents(_ container: Container, excludedCategory: Folder?, continuation: String?, count: Int = 20, loadDate: Date, completionHandler: (continuation: String?, items: [Item]?, error: ErrorProtocol?) -> Void) {
-		self.dataTaskForStreamContents(container, excludedCategory: excludedCategory, continuation: continuation, count: count, loadDate: loadDate) { data, httpResponse, error in
-			if let error = error {
-				completionHandler(continuation: nil, items: nil, error: error)
-				return
-			}
-			let excludedCategoryObjectID = typedObjectID(for: excludedCategory)
-			let containerObjectID = typedObjectID(for: container)
-			let managedObjectContext = backgroundQueueManagedObjectContext
-			managedObjectContext.perform {
-				do {
-					let container = containerObjectID.object(in: managedObjectContext)
-					let excludedCategory = excludedCategoryObjectID?.object(in: managedObjectContext)
-					let (continuation, items) = try continuationAndItemsImportedFromStreamData(data!, loadDate: loadDate, container: container, excludedCategory: excludedCategory, managedObjectContext: managedObjectContext)
-					completionHandler(continuation: continuation, items: items, error: nil)
-				} catch {
-					completionHandler(continuation: nil, items: nil, error: $(error))
-				}
-			}
-		}.resume()
 	}
 }
