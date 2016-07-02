@@ -101,38 +101,38 @@ extension FoldersController {
 			completionHandler(nil)
 		}
 		self.foldersLastUpdateError = nil
-		rssSession.updateUserInfo { updateUserInfoError in DispatchQueue.main.async {
-			if let updateUserInfoError = updateUserInfoError {
+		rssSession.updateUserInfo { updateUserInfoResult in DispatchQueue.main.async {
+			if case let .Failure(updateUserInfoError) = updateUserInfoResult {
 				errorCompletionHandler(Error.userInfoRetrieval(underlyingError: $(updateUserInfoError)))
 				return
 			}
 			self.foldersUpdateState = .pushingTags
-			rssSession.pushTags { pushTagsError in DispatchQueue.main.async {
-				if let pushTagsError = pushTagsError {
+			rssSession.pushTags { pushTagsResult in DispatchQueue.main.async {
+				if case let .Failure(pushTagsError) = pushTagsResult {
 					errorCompletionHandler(Error.pushTags(underlyingError: $(pushTagsError)))
 					return
 				}
 				self.foldersUpdateState = .pullingTags
-				rssSession.pullTags { pullTagsError in DispatchQueue.main.async {
-					if let pullTagsError = pullTagsError {
+				rssSession.pullTags { pullTagsResult in DispatchQueue.main.async {
+					if case let .Failure(pullTagsError) = pullTagsResult {
 						errorCompletionHandler(Error.pullTags(underlyingError: $(pullTagsError)))
 						return
 					}
 					self.foldersUpdateState = .updatingSubscriptions
-					rssSession.updateSubscriptions { updateSubscriptionsError in DispatchQueue.main.async {
-						if let updateSubscriptionsError = updateSubscriptionsError {
+					rssSession.updateSubscriptions { updateSubscriptionsResult in DispatchQueue.main.async {
+						if case let .Failure(updateSubscriptionsError) = updateSubscriptionsResult {
 							errorCompletionHandler(Error.subscriptionsUpdate(underlyingError: $(updateSubscriptionsError)))
 							return
 						}
 						self.foldersUpdateState = .updatingUnreadCounts
-						rssSession.updateUnreadCounts { updateUnreadCountsError in DispatchQueue.main.async {
-							if let updateUnreadCountsError = updateUnreadCountsError {
+						rssSession.updateUnreadCounts { updateUnreadCountsResult in DispatchQueue.main.async {
+							if case let .Failure(updateUnreadCountsError) = updateUnreadCountsResult {
 							errorCompletionHandler(Error.pullTags(underlyingError: $(updateUnreadCountsError)))
 								return
 							}
 							self.foldersUpdateState = .updatingStreamPreferences
-							rssSession.updateStreamPreferences { updateStreamPreferencesError in DispatchQueue.main.async {
-								if let updateStreamPreferencesError = updateStreamPreferencesError {
+							rssSession.updateStreamPreferences { updateStreamPreferencesResult in DispatchQueue.main.async {
+								if case let .Failure(updateStreamPreferencesError) = updateStreamPreferencesResult {
 									errorCompletionHandler(Error.streamPreferencesUpdate(underlyingError: $(updateStreamPreferencesError)))
 									return
 								}
@@ -151,8 +151,8 @@ extension FoldersController {
 		}
 		if (rssSession.authToken == nil) {
 			self.foldersUpdateState = .authenticating
-			rssSession.authenticate { error in DispatchQueue.main.async {
-				if let authenticationError = error {
+			rssSession.authenticate { result in DispatchQueue.main.async {
+				if case let .Failure(authenticationError) = result {
 					completionHandler(authenticationError)
 					self.foldersUpdateState = .completed
 				}

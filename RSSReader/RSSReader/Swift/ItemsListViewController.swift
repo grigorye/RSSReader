@@ -197,16 +197,26 @@ class ItemsListViewController: ContainerTableViewController {
 		let excludedCategory: Folder? = showUnreadOnly ? Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: mainQueueManagedObjectContext) : nil
 		let numberOfItemsToLoad = (oldContinuation != nil) ? numberOfItemsToLoadLater : numberOfItemsToLoadInitially
 		rssSession!.streamContents(container!, excludedCategory: excludedCategory, continuation: oldContinuation, count: numberOfItemsToLoad, loadDate: $(oldOngoingLoadDate)) {
-			(error, r: (continuation: String?, items: [Item])?) -> Void in
-			let newContinuation = r?.continuation
-			let items = r?.items
+			result in
+			let newContinuation: String? = {
+				switch (result) {
+				case .Success: return try! result.dematerialize().continuation
+				case .Failure: return nil
+				}
+			}()
+			let items: [Item]? = {
+				switch (result) {
+				case .Success: return try! result.dematerialize().items
+				case .Failure: return nil
+				}
+			}()
 			let lastItemObjectID = (nil == items) ? nil : typedObjectID(for: items!.last)
 			DispatchQueue.main.async {
 				self.proceedWithStreamContentsResult(
 					stateBefore: (ongoingLoadDate: oldOngoingLoadDate, continuation: oldContinuation),
 					newContinuation: newContinuation,
 					lastItemInResult: lastItemObjectID?.object(in: mainQueueManagedObjectContext),
-					streamError: error,
+					streamError: result.error,
 					completionHandler: completionHandler
 				)
 			}
@@ -306,13 +316,18 @@ class ItemsListViewController: ContainerTableViewController {
 		for i in items {
 			i.markedAsRead = true
 		}
-		rssSession!.markAllAsRead(container!) { error in
-			$(error)
+		rssSession!.markAllAsRead(container!) { result in
+			$(result)
 			DispatchQueue.main.async {
-				if nil != error {
-					self.presentErrorMessage(NSLocalizedString("Failed to mark all as read.", comment: ""))
-				}
-				else {
+				switch result {
+				case .Failure(let error):
+					self.presentErrorMessage(
+						String.localizedStringWithFormat(
+							NSLocalizedString("Failed to mark all as read. %@", comment: ""),
+							"\(error)"
+						)
+					)
+				case .Success:
 					self.presentInfoMessage(NSLocalizedString("Marked all as read.", comment: ""))
 				}
 			}
