@@ -8,6 +8,7 @@
 
 import RSSReaderData
 import GEBase
+import PromiseKit
 import Foundation
 
 enum FoldersUpdateState: Int {
@@ -86,83 +87,36 @@ extension FoldersController {
 		}
 	}
 	typealias Error = FoldersControllerError
-	final func updateFoldersAuthenticated(_ completionHandler: (ErrorProtocol?) -> Void) {
+	final func updateFoldersAuthenticated() -> Promise<Void> {
 		let rssSession = self.rssSession!
-		foldersUpdateState = .updatingUserInfo
-		let errorCompletionHandler = { (error: ErrorProtocol) -> Void in
+		let _1: Promise<Void> = firstly {
+			self.foldersLastUpdateError = nil
+			self.foldersUpdateState = .updatingUserInfo
+			return rssSession.updateUserInfo()
+		}.then {
+			self.foldersUpdateState = .pushingTags
+			return rssSession.pushTags()
+		}.then {
+			self.foldersUpdateState = .pullingTags
+			return rssSession.pullTags()
+		}.then {
+			self.foldersUpdateState = .updatingSubscriptions
+			return rssSession.updateSubscriptions()
+		}.then {
+			self.foldersUpdateState = .updatingUnreadCounts
+			return rssSession.updateUnreadCounts()
+		}.then {
+			self.foldersUpdateState = .updatingStreamPreferences
+			return rssSession.updateStreamPreferences()
+		}; let promise = _1.then { () -> Void in
+			self.foldersLastUpdateDate = Date()
+			self.foldersUpdateState = .completed
+		}.recover { error -> Void in
 			self.foldersLastUpdateError = error
 			self.foldersLastUpdateDate = Date()
 			self.foldersUpdateState = .completed
-			completionHandler(error)
+			throw $(error)
 		}
-		let successCompletionHandler: () -> Void = {
-			self.foldersLastUpdateDate = Date()
-			self.foldersUpdateState = .completed
-			completionHandler(nil)
-		}
-		self.foldersLastUpdateError = nil
-		rssSession.updateUserInfo { updateUserInfoResult in DispatchQueue.main.async {
-			if case let .Failure(updateUserInfoError) = updateUserInfoResult {
-				errorCompletionHandler(Error.userInfoRetrieval(underlyingError: $(updateUserInfoError)))
-				return
-			}
-			self.foldersUpdateState = .pushingTags
-			rssSession.pushTags { pushTagsResult in DispatchQueue.main.async {
-				if case let .Failure(pushTagsError) = pushTagsResult {
-					errorCompletionHandler(Error.pushTags(underlyingError: $(pushTagsError)))
-					return
-				}
-				self.foldersUpdateState = .pullingTags
-				rssSession.pullTags { pullTagsResult in DispatchQueue.main.async {
-					if case let .Failure(pullTagsError) = pullTagsResult {
-						errorCompletionHandler(Error.pullTags(underlyingError: $(pullTagsError)))
-						return
-					}
-					self.foldersUpdateState = .updatingSubscriptions
-					rssSession.updateSubscriptions { updateSubscriptionsResult in DispatchQueue.main.async {
-						if case let .Failure(updateSubscriptionsError) = updateSubscriptionsResult {
-							errorCompletionHandler(Error.subscriptionsUpdate(underlyingError: $(updateSubscriptionsError)))
-							return
-						}
-						self.foldersUpdateState = .updatingUnreadCounts
-						rssSession.updateUnreadCounts { updateUnreadCountsResult in DispatchQueue.main.async {
-							if case let .Failure(updateUnreadCountsError) = updateUnreadCountsResult {
-							errorCompletionHandler(Error.pullTags(underlyingError: $(updateUnreadCountsError)))
-								return
-							}
-							self.foldersUpdateState = .updatingStreamPreferences
-							rssSession.updateStreamPreferences { updateStreamPreferencesResult in DispatchQueue.main.async {
-								if case let .Failure(updateStreamPreferencesError) = updateStreamPreferencesResult {
-									errorCompletionHandler(Error.streamPreferencesUpdate(underlyingError: $(updateStreamPreferencesError)))
-									return
-								}
-								successCompletionHandler()
-							}}
-						}}
-					}}
-				}}
-			}}
-		}}
-	}
-	final func updateFolders(_ completionHandler: (ErrorProtocol?) -> Void) {
-		let rssSession = self.rssSession!
-		let postAuthenticate = { () -> Void in
-			self.updateFoldersAuthenticated(completionHandler)
-		}
-		if (rssSession.authToken == nil) {
-			self.foldersUpdateState = .authenticating
-			rssSession.authenticate { result in DispatchQueue.main.async {
-				if case let .Failure(authenticationError) = result {
-					completionHandler(authenticationError)
-					self.foldersUpdateState = .completed
-				}
-				else {
-					postAuthenticate()
-				}
-			}}
-		}
-		else {
-			postAuthenticate()
-		}
+		return promise
 	}
 }

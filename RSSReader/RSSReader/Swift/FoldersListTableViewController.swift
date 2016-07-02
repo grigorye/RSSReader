@@ -8,6 +8,7 @@
 
 import RSSReaderData
 import GEBase
+import PromiseKit
 import UIKit
 import CoreData
 
@@ -86,43 +87,60 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 		}()
 		return alertController
 	}
+	enum AuthenticationState {
+		case Unknown, InProgress, Succeeded, Failed(error: ErrorProtocol?)
+	}
+	var authenticationState: AuthenticationState = .Unknown {
+		didSet {
+			self.presentInfoMessage("Authentication\(self.authenticationState)")
+		}
+	}
 	@IBAction func refresh(_ sender: AnyObject!) {
-		guard nil != self.rssSession else {
+		guard let rssSession = self.rssSession else {
 			let message = NSLocalizedString("To sync you should be logged in.", comment: "")
 			presentErrorMessage(message)
 			return
 		}
-		RSSReader.foldersController.updateFolders { updateError in DispatchQueue.main.async {
-			defer {
-				self.refreshControl?.endRefreshing()
+		firstly {
+			guard !rssSession.authenticated else {
+				return Promise()
 			}
-			if let updateError = updateError {
-				let presentedError: ErrorProtocol = {
-					switch $(updateError) {
-					case let foldersControllerError as FoldersControllerError:
-						switch foldersControllerError {
-						case .userInfoRetrieval(let underlyingError):
-							return underlyingError
-						default:
-							return foldersControllerError
-						}
-					default:
-						return updateError
-					}
-				}()
-				let errorTitle = NSLocalizedString("Refresh Failed", comment: "Title for alert on failed refresh")
-				let errorViewController = self.dynamicType.viewControllerToPresent(on: presentedError, title: errorTitle) {
-					self.refresh(self)
-				}
-				self.present(errorViewController, animated: true, completion: nil)
-				return
-			}
+			self.authenticationState = .InProgress
+			return rssSession.authenticate()
+		}.recover { authenticationError -> Void in
+			self.authenticationState = .Failed(error: $(authenticationError))
+			throw authenticationError
+		}.then {
+			self.authenticationState = .Succeeded
+			return RSSReader.foldersController.updateFoldersAuthenticated()
+		}.then { () -> Void in
+			self.refreshControl?.endRefreshing()
 			if nil == self.rootFolder {
 				self.rootFolder = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: mainQueueManagedObjectContext)
 				assert(nil != self.rootFolder)
 			}
 			self.tableView.reloadData()
-		}}
+		}.error { updateError in
+			self.refreshControl?.endRefreshing()
+			let presentedError: ErrorProtocol = {
+				switch $(updateError) {
+				case let foldersControllerError as FoldersControllerError:
+					switch foldersControllerError {
+					case .userInfoRetrieval(let underlyingError):
+						return underlyingError
+					default:
+						return foldersControllerError
+					}
+				default:
+					return updateError
+				}
+			}()
+			let errorTitle = NSLocalizedString("Refresh Failed", comment: "Title for alert on failed refresh")
+			let errorViewController = self.dynamicType.viewControllerToPresent(on: presentedError, title: errorTitle) {
+				self.refresh(self)
+			}
+			self.present(errorViewController, animated: true, completion: nil)
+		}
 	}
 	// MARK: -
 	private func configureCell(_ cell: UITableViewCell, forFolder folder: Folder) {

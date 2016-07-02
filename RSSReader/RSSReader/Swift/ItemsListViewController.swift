@@ -7,6 +7,7 @@
 //
 
 import RSSReaderData
+import PromiseKit
 import GEBase
 import UIKit
 import CoreData
@@ -137,7 +138,7 @@ class ItemsListViewController: ContainerTableViewController {
 	var numberOfItemsToLoadLater: Int {
 		return defaults.numberOfItemsToLoadLater
 	}
-	private func proceedWithStreamContentsResult(stateBefore: (ongoingLoadDate: Date, continuation: String?), newContinuation: String?, lastItemInResult: Item?, streamError: ErrorProtocol?, completionHandler: (loadDateDidChange: Bool) -> Void) {
+	private func proceedWithStreamContents(stateBefore: (ongoingLoadDate: Date, continuation: String?), newContinuation: String?, lastItemInResult: Item?, streamError: ErrorProtocol?, completionHandler: (loadDateDidChange: Bool) -> Void) {
 		guard stateBefore.ongoingLoadDate == $(ongoingLoadDate) else {
 			// Ignore results from previous sessions.
 			completionHandler(loadDateDidChange: true)
@@ -196,30 +197,27 @@ class ItemsListViewController: ContainerTableViewController {
 		loadInProgress = true
 		let excludedCategory: Folder? = showUnreadOnly ? Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: mainQueueManagedObjectContext) : nil
 		let numberOfItemsToLoad = (oldContinuation != nil) ? numberOfItemsToLoadLater : numberOfItemsToLoadInitially
-		rssSession!.streamContents(container!, excludedCategory: excludedCategory, continuation: oldContinuation, count: numberOfItemsToLoad, loadDate: $(oldOngoingLoadDate)) {
-			result in
-			let newContinuation: String? = {
-				switch (result) {
-				case .Success: return try! result.dematerialize().continuation
-				case .Failure: return nil
-				}
-			}()
-			let items: [Item]? = {
-				switch (result) {
-				case .Success: return try! result.dematerialize().items
-				case .Failure: return nil
-				}
-			}()
-			let lastItemObjectID = (nil == items) ? nil : typedObjectID(for: items!.last)
-			DispatchQueue.main.async {
-				self.proceedWithStreamContentsResult(
-					stateBefore: (ongoingLoadDate: oldOngoingLoadDate, continuation: oldContinuation),
-					newContinuation: newContinuation,
-					lastItemInResult: lastItemObjectID?.object(in: mainQueueManagedObjectContext),
-					streamError: result.error,
-					completionHandler: completionHandler
-				)
-			}
+		rssSession!.streamContents(
+			container!, excludedCategory: excludedCategory, continuation: oldContinuation, count: numberOfItemsToLoad, loadDate: $(oldOngoingLoadDate)
+		).then(on: zalgo) { result -> (String?, TypedManagedObjectID<Item>?) in
+			let lastItemObjectID = typedObjectID(for: result.items.last)
+			return (result.continuation, lastItemObjectID)
+		}.then { (newContinuation, lastItemObjectID) in
+			self.proceedWithStreamContents(
+				stateBefore: (ongoingLoadDate: oldOngoingLoadDate, continuation: oldContinuation),
+				newContinuation: newContinuation,
+				lastItemInResult: lastItemObjectID?.object(in: mainQueueManagedObjectContext),
+				streamError: nil,
+				completionHandler: completionHandler
+			)
+		}.error { e -> Void in
+			self.proceedWithStreamContents(
+				stateBefore: (ongoingLoadDate: oldOngoingLoadDate, continuation: oldContinuation),
+				newContinuation: nil,
+				lastItemInResult: nil,
+				streamError: e,
+				completionHandler: completionHandler
+			)
 		}
 	}
 	private func fetchLastLoadedItemDate(_ completionHandler: (Date?) -> ()) {
@@ -316,21 +314,15 @@ class ItemsListViewController: ContainerTableViewController {
 		for i in items {
 			i.markedAsRead = true
 		}
-		rssSession!.markAllAsRead(container!) { result in
-			$(result)
-			DispatchQueue.main.async {
-				switch result {
-				case .Failure(let error):
-					self.presentErrorMessage(
-						String.localizedStringWithFormat(
-							NSLocalizedString("Failed to mark all as read. %@", comment: ""),
-							"\(error)"
-						)
-					)
-				case .Success:
-					self.presentInfoMessage(NSLocalizedString("Marked all as read.", comment: ""))
-				}
-			}
+		rssSession!.markAllAsRead(container!).then {
+			self.presentInfoMessage(NSLocalizedString("Marked all as read.", comment: ""))
+		}.error { error in
+			self.presentErrorMessage(
+				String.localizedStringWithFormat(
+					NSLocalizedString("Failed to mark all as read. %@", comment: ""),
+					"\(error)"
+				)
+			)
 		}
 	}
 	@IBAction private func action(_ sender: AnyObject?) {

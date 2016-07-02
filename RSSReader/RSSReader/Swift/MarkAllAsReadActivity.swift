@@ -17,7 +17,7 @@ class MarkAllAsReadActivity : TypeFilteringActivity {
 		for i in items {
 			i.markedAsRead = true
 		}
-		rssSession!.markAllAsRead(folder) { error in
+		rssSession!.markAllAsRead(folder).error { error in
 			$(error)
 		}
 	}
