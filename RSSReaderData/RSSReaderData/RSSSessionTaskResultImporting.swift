@@ -50,7 +50,7 @@ func itemsImportedFromStreamJson(_ json: Json, loadDate: Date, container: Contai
 	return items
 }
 
-func continuationAndItemsImportedFromStreamData(_ data: Data, loadDate: Date, container: Container, excludedCategory: Folder?, managedObjectContext: NSManagedObjectContext) throws -> (String?, [Item]) {
+func continuationAndItemsImportedFromStreamData(_ data: Data, loadDate: Date, container: Container, excludedCategory: Folder?, managedObjectContext: NSManagedObjectContext) throws -> (continuation: String?, items: [Item]) {
 	let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions())
 	guard let json = jsonObject as? Json else {
 		throw RSSSessionError.jsonObjectIsNotDictionary(jsonObject: jsonObject)

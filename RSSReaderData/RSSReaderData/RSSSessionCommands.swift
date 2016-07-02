@@ -204,7 +204,7 @@ struct StreamContents : PersistentDataUpdateCommand, AuthenticatedDataUpdateComm
 		let streamIDPercentEncoded = container.streamID.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.alphanumerics())!
 		return "/reader/api/0/stream/contents/\(streamIDPercentEncoded)\(querySuffix)"
 	}
-	func push(_ data: Data, through: ((NSManagedObjectContext) throws -> (String?, [Item])) -> Void) {
+	func push(_ data: Data, through: ((NSManagedObjectContext) throws -> (continuation: String?, items: [Item])) -> Void) {
 		try! data.write(to: lastTagsFileURL, options: .dataWritingAtomic)
 		let excludedCategoryObjectID = typedObjectID(for: excludedCategory)
 		let containerObjectID = typedObjectID(for: container)
