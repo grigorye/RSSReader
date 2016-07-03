@@ -130,7 +130,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-traceEnabled YES"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-forceStoreRemoval YES"
