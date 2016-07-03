@@ -15,6 +15,7 @@
         <attribute name="loadDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="loadError" optional="YES" attributeType="Transformable" syncable="YES"/>
         <relationship name="container" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Container" inverseName="viewStates" inverseEntity="Container" syncable="YES"/>
+        <relationship name="lastLoadedItem" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Item" inverseName="lastLoadedContainerViewStates" inverseEntity="Item" syncable="YES"/>
     </entity>
     <entity name="Folder" representedClassName=".Folder" parentEntity="Container" syncable="YES">
         <relationship name="childContainers" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Container" inverseName="parentFolder" inverseEntity="Container" syncable="YES"/>
@@ -37,6 +38,7 @@
         <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Folder" inverseName="items" inverseEntity="Folder" syncable="YES"/>
         <relationship name="categoriesToBeExcluded" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Folder" inverseName="itemsToBeExcluded" inverseEntity="Folder" syncable="YES"/>
         <relationship name="categoriesToBeIncluded" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Folder" inverseName="itemsToBeIncluded" inverseEntity="Folder" syncable="YES"/>
+        <relationship name="lastLoadedContainerViewStates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ContainerViewState" inverseName="lastLoadedItem" inverseEntity="ContainerViewState" syncable="YES"/>
         <relationship name="subscription" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Subscription" inverseName="items" inverseEntity="Subscription" syncable="YES"/>
     </entity>
     <entity name="Subscription" representedClassName=".Subscription" parentEntity="Container" syncable="YES">
@@ -50,9 +52,9 @@
     </entity>
     <elements>
         <element name="Container" positionX="-63" positionY="18" width="128" height="135"/>
-        <element name="ContainerViewState" positionX="-54" positionY="81" width="128" height="135"/>
+        <element name="ContainerViewState" positionX="-54" positionY="81" width="128" height="150"/>
         <element name="Folder" positionX="-54" positionY="72" width="128" height="120"/>
-        <element name="Item" positionX="-63" positionY="36" width="128" height="255"/>
+        <element name="Item" positionX="-63" positionY="36" width="128" height="270"/>
         <element name="Subscription" positionX="-63" positionY="-18" width="128" height="150"/>
     </elements>
 </model>
