@@ -95,6 +95,7 @@ public class SystemLayoutSizeCachingTableViewCell: UITableViewCell {
 		super.init(style: style, reuseIdentifier: $(reuseIdentifier))
 	}
 	required public init?(coder aDecoder: NSCoder) {
+		let dt = disableTrace(); defer { _ = dt }
 		super.init(coder: aDecoder)
 		$(reuseIdentifier!)
 	}
