@@ -197,9 +197,9 @@ class ItemsListViewController: ContainerTableViewController {
 		loadInProgress = true
 		let excludedCategory: Folder? = showUnreadOnly ? Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: mainQueueManagedObjectContext) : nil
 		let numberOfItemsToLoad = (oldContinuation != nil) ? numberOfItemsToLoadLater : numberOfItemsToLoadInitially
-		rssSession!.streamContents(
-			container!, excludedCategory: excludedCategory, continuation: oldContinuation, count: numberOfItemsToLoad, loadDate: $(oldOngoingLoadDate)
-		).then(on: zalgo) { result -> (String?, TypedManagedObjectID<Item>?) in
+		firstly {
+			rssSession!.streamContents(container!, excludedCategory: excludedCategory, continuation: oldContinuation, count: numberOfItemsToLoad, loadDate: $(oldOngoingLoadDate))
+		}.then(on: zalgo) { result -> (String?, TypedManagedObjectID<Item>?) in
 			let lastItemObjectID = typedObjectID(for: result.items.last)
 			return (result.continuation, lastItemObjectID)
 		}.then { (newContinuation, lastItemObjectID) in
@@ -210,12 +210,12 @@ class ItemsListViewController: ContainerTableViewController {
 				streamError: nil,
 				completionHandler: completionHandler
 			)
-		}.error { e -> Void in
+		}.error { error in
 			self.proceedWithStreamContents(
 				stateBefore: (ongoingLoadDate: oldOngoingLoadDate, continuation: oldContinuation),
 				newContinuation: nil,
 				lastItemInResult: nil,
-				streamError: e,
+				streamError: error,
 				completionHandler: completionHandler
 			)
 		}
@@ -314,7 +314,9 @@ class ItemsListViewController: ContainerTableViewController {
 		for i in items {
 			i.markedAsRead = true
 		}
-		rssSession!.markAllAsRead(container!).then {
+		firstly {
+			rssSession!.markAllAsRead(container!)
+		}.then {
 			self.presentInfoMessage(NSLocalizedString("Marked all as read.", comment: ""))
 		}.error { error in
 			self.presentErrorMessage(
