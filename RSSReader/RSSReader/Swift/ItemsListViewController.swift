@@ -45,32 +45,16 @@ class ItemsListViewController: ContainerTableViewController {
 	final var multipleSourcesEnabled = false
 	var showUnreadEnabled = true
 	class var keyPathsForValuesAffectingContainerViewState: Set<String> {
-		return [#keyPath(containerViewPredicate)]
+		return [
+			#keyPath(container.viewStates),
+			#keyPath(containerViewPredicate)
+		]
 	}
-#if true
-	lazy var containerViewStates: [RSSReaderData.ContainerViewState] = {
-		return Array(self.container!.viewStates)
-	}()
-#else
-	var containerViewStates: Set<RSSReaderData.ContainerViewState> {
-		return container!.viewStates
-	}
-#endif
+	var containerViewStateRetained: RSSReaderData.ContainerViewState?
 	dynamic var containerViewState: RSSReaderData.ContainerViewState? {
-		get {
-			let containerViewState = (containerViewStates.filter { $0.containerViewPredicate.isEqual(containerViewPredicate) }).onlyElement
-			return containerViewState
-		}
-		set {
-			assert(containerViewState == nil)
-			let newViewState = newValue!
-			newViewState.container = container
-			newViewState.containerViewPredicate = containerViewPredicate
-	#if true
-			containerViewStates += [newViewState]
-	#endif
-			assert(containerViewStates.contains(newViewState))
-		}
+		let containerViewState = (container!.viewStates.filter { $0.containerViewPredicate.isEqual(containerViewPredicate) }).onlyElement
+		self.containerViewStateRetained = containerViewState
+		return $(containerViewState)
 	}
 	private var ongoingLoadDate: Date?
 	private var continuation: String? {
@@ -138,55 +122,11 @@ class ItemsListViewController: ContainerTableViewController {
 	var numberOfItemsToLoadLater: Int {
 		return defaults.numberOfItemsToLoadLater
 	}
-	private func proceedWithStreamContents(stateBefore: (ongoingLoadDate: Date, continuation: String?), newContinuation: String?, lastItemInResult: Item?, streamError: ErrorProtocol?, completionHandler: (loadDateDidChange: Bool) -> Void) {
-		guard stateBefore.ongoingLoadDate == $(ongoingLoadDate) else {
-			// Ignore results from previous sessions.
-			completionHandler(loadDateDidChange: true)
-			return
-		}
-		if nil == containerViewState {
-			let newContainerViewState: ContainerViewState = {
-				let managedObjectContext = container!.managedObjectContext!
-				assert(managedObjectContext == mainQueueManagedObjectContext)
-				let newViewState = NSEntityDescription.insertNewObject(forEntityName: "ContainerViewState", into: managedObjectContext) as! RSSReaderData.ContainerViewState
-				return newViewState
-			}()
-			containerViewState = newContainerViewState
-		}
-		defer {
-			loadInProgress = false
-			completionHandler(loadDateDidChange: false)
-			loadMoreIfNecessary()
-		}
-		guard nil == streamError else {
-			loadError = $(streamError!)
-			presentErrorMessage(NSLocalizedString("Failed to load more.", comment: ""))
-			return
-		}
-		if nil == stateBefore.continuation {
-			loadDate = ongoingLoadDate
-		}
-		else {
-			assert(loadDate == ongoingLoadDate)
-		}
-		if let lastItemInResult = lastItemInResult where _0 {
-			assert(containerViewPredicate.evaluate(with: lastItemInResult))
-			assert(lastItemInResult == lastLoadedItem)
-			assert(nil != fetchedResultsController.indexPath(forObject: lastItemInResult))
-		}
-		continuation = newContinuation
-		if nil == continuation {
-			loadCompleted = true
-			UIView.animate(withDuration: 0.4) {
-				self.tableView.tableFooterView = nil
-			}
-		}
-	}
 	private func loadMore(_ completionHandler: (loadDateDidChange: Bool) -> Void) {
 		assert(!loadInProgress)
 		assert(!loadCompleted)
 		assert(nil == loadError)
-		let oldContinuation = continuation
+		let oldContinuation = self.continuation
 		if nil == oldContinuation {
 			ongoingLoadDate = Date()
 		}
@@ -197,40 +137,69 @@ class ItemsListViewController: ContainerTableViewController {
 		loadInProgress = true
 		let excludedCategory: Folder? = showUnreadOnly ? Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: mainQueueManagedObjectContext) : nil
 		let numberOfItemsToLoad = (oldContinuation != nil) ? numberOfItemsToLoadLater : numberOfItemsToLoadInitially
+		let containerViewStateObjectID = typedObjectID(for: containerViewState)
+		let containerObjectID = typedObjectID(for: container)!
+		let containerViewPredicate = self.containerViewPredicate
 		firstly {
 			rssSession!.streamContents(container!, excludedCategory: excludedCategory, continuation: oldContinuation, count: numberOfItemsToLoad, loadDate: $(oldOngoingLoadDate))
-		}.then(on: zalgo) { result -> (String?, TypedManagedObjectID<Item>?) in
-			let lastItemObjectID = typedObjectID(for: result.items.last)
-			return (result.continuation, lastItemObjectID)
-		}.then { (newContinuation, lastItemObjectID) in
-			self.proceedWithStreamContents(
-				stateBefore: (ongoingLoadDate: oldOngoingLoadDate, continuation: oldContinuation),
-				newContinuation: newContinuation,
-				lastItemInResult: lastItemObjectID?.object(in: mainQueueManagedObjectContext),
-				streamError: nil,
-				completionHandler: completionHandler
+		}.then(on: zalgo) { streamContentsResult -> String? in
+			let ongoingLoadDate = $(self.ongoingLoadDate)
+			guard oldOngoingLoadDate == ongoingLoadDate else {
+				throw NSError.cancelledError()
+			}
+			let managedObjectContext = streamContentsResult.0
+			let containerViewState = containerViewStateObjectID?.object(in: managedObjectContext) ?? {
+				return (NSEntityDescription.insertNewObject(forEntityName: "ContainerViewState", into: managedObjectContext) as! RSSReaderData.ContainerViewState) … {
+					let container = containerObjectID.object(in: managedObjectContext)
+					$0.container = container
+					$0.containerViewPredicate = containerViewPredicate
+				}
+			}()
+			if nil == oldContinuation {
+				containerViewState.loadDate = ongoingLoadDate
+			}
+			else {
+				assert(containerViewState.loadDate == ongoingLoadDate)
+			}
+			let items = streamContentsResult.1.items
+			let lastLoadedItem = items.last
+			let continuation = streamContentsResult.1.continuation
+			containerViewState … {
+				$0.continuation = continuation
+				$0.lastLoadedItem = lastLoadedItem
+			}
+			if let lastLoadedItem = lastLoadedItem {
+				assert(containerViewPredicate.evaluate(with: lastLoadedItem))
+			}
+			try managedObjectContext.save()
+			return continuation
+		}.then { continuation -> Void in
+			if let lastLoadedItem = self.lastLoadedItem {
+				assert(nil != self.fetchedResultsController.indexPath(forObject: lastLoadedItem))
+			}
+			if nil == continuation {
+				self.loadCompleted = true
+				UIView.animate(withDuration: 0.4) {
+					self.tableView.tableFooterView = nil
+				}
+			}
+			self.loadMoreIfNecessary()
+		}.always { () -> Void in
+			guard oldOngoingLoadDate == self.ongoingLoadDate else {
+				return
+			}
+			self.loadInProgress = false
+		}.error { error -> Void in
+			guard oldOngoingLoadDate == self.ongoingLoadDate else {
+				return
+			}
+			self.presentErrorMessage(
+				String.localizedStringWithFormat(
+					"%@ %@",
+					NSLocalizedString("Failed to load more.", comment: ""),
+					(error as NSError).localizedDescription
+				)
 			)
-		}.error { error in
-			self.proceedWithStreamContents(
-				stateBefore: (ongoingLoadDate: oldOngoingLoadDate, continuation: oldContinuation),
-				newContinuation: nil,
-				lastItemInResult: nil,
-				streamError: error,
-				completionHandler: completionHandler
-			)
-		}
-	}
-	private func fetchLastLoadedItemDate(_ completionHandler: (Date?) -> ()) {
-		guard let containerViewState = containerViewState else {
-			completionHandler(nil)
-			return
-		}
-		let containerViewStateObjectID = containerViewState.objectID
-		let managedObjectContext = backgroundQueueManagedObjectContext
-		managedObjectContext.perform {
-			let containerViewState = managedObjectContext.object(with: containerViewStateObjectID) as! ContainerViewState
-			let date = containerViewState.lastLoadedItem?.date
-			completionHandler(date)
 		}
 	}
 	private func shouldLoadMore(for lastLoadedItemDate: Date?) -> Bool {
@@ -265,11 +234,7 @@ class ItemsListViewController: ContainerTableViewController {
 		}
 	}
 	private func loadMoreIfNecessary() {
-		fetchLastLoadedItemDate { lastLoadedItemDate in
-			DispatchQueue.main.async {
-				self.loadMoreIfNecessary(for: lastLoadedItemDate)
-			}
-		}
+		self.loadMoreIfNecessary(for: self.lastLoadedItem?.date)
 	}
 	func reloadViewForNewConfiguration() {
 		navigationItem.rightBarButtonItems = regeneratedRightBarButtonItems()
