@@ -30,6 +30,7 @@ public class ContainerViewState: NSManagedObject {
     @NSManaged public var loadCompleted: Bool
     @NSManaged public var container: Container?
 
+#if false
 	@objc dynamic public var lastLoadedItem: Item? {
 		guard let loadDate = self.loadDate else {
 			return nil
@@ -42,6 +43,9 @@ public class ContainerViewState: NSManagedObject {
 		let item = try! self.managedObjectContext!.fetch(fetchRequest).onlyElement
 		return (item)
 	}
+#else
+	@NSManaged public var lastLoadedItem: Item?
+#endif
 	func validateForUpdateOrInsert() throws {
 		if nil == self.loadDate && nil == self.loadError {
 			throw ValidationError.NeitherLoadDateNorErrorIsSet
