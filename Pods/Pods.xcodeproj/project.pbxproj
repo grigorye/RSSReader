@@ -24,48 +24,6 @@
 				</array>
 			</dict>
 		</dict>
-		<key>003E3ADD2032B78E69923F4CF1BD07EE</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>HTMLNamespace.h</string>
-			<key>path</key>
-			<string>Code/HTMLNamespace.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>0052C18B01211F04C6B8B7A0EEEF4A7C</key>
-		<dict>
-			<key>fileRef</key>
-			<string>01F7319ED327C647994112A50A96308F</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>COMPILER_FLAGS</key>
-				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
-			</dict>
-		</dict>
-		<key>01F7319ED327C647994112A50A96308F</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>HTMLDocument.m</string>
-			<key>path</key>
-			<string>Code/HTMLDocument.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>024F780763691C8E4973620752EF3DBF</key>
 		<dict>
 			<key>fileRef</key>
@@ -154,18 +112,6 @@
 			<string>FBRetainCycleDetector</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>038BA0D4F562E7676BE1940D88137787</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5CE54DFAAEF51A7E28B703EADFF7AC09</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>COMPILER_FLAGS</key>
-				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
-			</dict>
 		</dict>
 		<key>03B4E3D27B55F7D0A31DA1857837D7BC</key>
 		<dict>
@@ -291,65 +237,6 @@
 				</array>
 			</dict>
 		</dict>
-		<key>060777E42D5EA3CF7555C5FC9A113902</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>HTMLTokenizerState.h</string>
-			<key>path</key>
-			<string>Code/HTMLTokenizerState.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>065C612D9A25534EE7859F81961ECD50</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>NSString+HTMLEntities.h</string>
-			<key>path</key>
-			<string>Code/NSString+HTMLEntities.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>067A607CA09DFFCA5DD36DE8C2079216</key>
-		<dict>
-			<key>fileRef</key>
-			<string>9D61E0C6DBFF14D742598CC9B7A79754</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>06C54D2B50DEB96C69466882E6BEE9C6</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>HTMLTreeEnumerator.h</string>
-			<key>path</key>
-			<string>Code/HTMLTreeEnumerator.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>06D3B9CF9FC668985C9DA8424752CD86</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -380,16 +267,32 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>0807CEB6F382736270B4B22AA544DD31</key>
+		<key>08390E665D2E15403ECD577FA6505A88</key>
 		<dict>
 			<key>fileRef</key>
-			<string>89C0CBFCD4D06882D12A3DCA838C8864</string>
+			<string>CD43245C3B07F27CD96DE136C89DC49B</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
 			<dict>
-				<key>COMPILER_FLAGS</key>
-				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>08976E0654F16931678FF5C344F94DFD</key>
+		<dict>
+			<key>fileRef</key>
+			<string>86F10AE42D1D05DDEF33E13C19C7386E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
 			</dict>
 		</dict>
 		<key>09A5B3681EB827C6145633B50E520132</key>
@@ -515,10 +418,22 @@
 			<key>productType</key>
 			<string>com.apple.product-type.framework</string>
 		</dict>
+		<key>0C5422EA74F068C4795683F200E5EC9D</key>
+		<dict>
+			<key>fileRef</key>
+			<string>20BC17AED4B61E210BDC3C9063FEA27A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
+			</dict>
+		</dict>
 		<key>0C6D90E7E0544167648AE011364E1813</key>
 		<dict>
 			<key>fileRef</key>
-			<string>11B26FD3CE3946350000C77DDCEFAEAB</string>
+			<string>218524449EB8F38AE25634DE4E036428</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -580,18 +495,16 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>0DE5C3A5C671DE4735E96EC0E152EFEC</key>
+		<key>0D819E00DA41B9CC7A2A88E89F47B8FB</key>
 		<dict>
 			<key>fileRef</key>
-			<string>E75AEF86DCAAC632869866DF6B484557</string>
+			<string>D8D9B1559BC1418B2EAA88FC0FBF115B</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
 			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
 			</dict>
 		</dict>
 		<key>0E2B757452BBA4E35B2D13084DF03014</key>
@@ -671,6 +584,60 @@
 				</array>
 			</dict>
 		</dict>
+		<key>0F997CC3B4C09F81F3F240EA2052FD2A</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>CB4C154326D9E4498E4C1D2BB231B1E7</string>
+				<string>21BBF7D8EB5627123B3869D237BCF052</string>
+				<string>C47B2D3F9760BD1EB0325E61020D2359</string>
+				<string>72F338A858EDE19DDE808B5F97AA17AA</string>
+				<string>AF997945BDC291D910C645F6171E9847</string>
+				<string>C73DA0A922C7A8522A027C7BA1B26498</string>
+				<string>46953C772E61E68763FCBEF83D90B561</string>
+				<string>2359EA75E8BFCCFBD0252D2BD089ECAD</string>
+				<string>AFBE4B99729F7E3691DDED59C285FAC3</string>
+				<string>88AE615DB2C75BCAF8ABF2E44E38A08B</string>
+				<string>CD43245C3B07F27CD96DE136C89DC49B</string>
+				<string>BA4BBAD01A59C06881EB8795782A1125</string>
+				<string>9A95B413053F3498CDEA524E8B0090A0</string>
+				<string>9330940172A0B5CCDA4FBEE314BB3696</string>
+				<string>30DB48C0575A888564BDC687A536B7F5</string>
+				<string>5502C6E33AFE95B01B1990BB06C54FB3</string>
+				<string>20BC17AED4B61E210BDC3C9063FEA27A</string>
+				<string>86F10AE42D1D05DDEF33E13C19C7386E</string>
+				<string>120EF83D069FA8E7E45904325631F0D3</string>
+				<string>9015BEFE216E7B556978BE78F833A8A1</string>
+				<string>B1C116CABE4EC6B54154AE45A4AC8237</string>
+				<string>5CA78F20B33C21E0F32A9872415073D2</string>
+				<string>E18A6FF7463D61C2E642334E6315A5EC</string>
+				<string>E0672AB5A6749BE09E782765B3F593D6</string>
+				<string>EDB56534F02AB1710E479FDF1CD8985B</string>
+				<string>A33540569EB4179A958F3C3ACEA28C79</string>
+				<string>2FDE27987C9CC35B2FE9AA4A0D71A966</string>
+				<string>3672115F10F145500A11EC4341B24D21</string>
+				<string>9F4D4B54F17229A5B6DB08A6F8B9CD31</string>
+				<string>C1A5026CA02352FB4DE9CAB1A5A25460</string>
+				<string>6B10C21904A20DCAFEC50E843538B1FD</string>
+				<string>74CE6E7CD9395F0F5539BEA248AB109E</string>
+				<string>9151DBC58938B96B3540782A7252DBD7</string>
+				<string>4BC3F7D42B5E02559B38DB0B768A2E11</string>
+				<string>8ED415B39D76D7849FCD1D61FEE6B37B</string>
+				<string>9B219D332347882DEC6C5F52E96D7E76</string>
+				<string>3E5CA74269CF99DD65073348D0BF15C4</string>
+				<string>89425B1267CEA31C963876967C162D40</string>
+				<string>D8D9B1559BC1418B2EAA88FC0FBF115B</string>
+				<string>AB7324A4EAD5917EC4A4AB3DAACC07F1</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>HTMLReader</string>
+			<key>path</key>
+			<string>HTMLReader</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>0FAAEF717AFE92946BB76CD5A1CA7AA0</key>
 		<dict>
 			<key>fileRef</key>
@@ -727,16 +694,18 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>11B26FD3CE3946350000C77DDCEFAEAB</key>
+		<key>120EF83D069FA8E7E45904325631F0D3</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>HTMLParser.m</string>
 			<key>path</key>
-			<string>HTMLReader-umbrella.h</string>
+			<string>Sources/HTMLParser.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -978,6 +947,20 @@
 				</array>
 			</dict>
 		</dict>
+		<key>163095666D4289E052E962C900196661</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A33540569EB4179A958F3C3ACEA28C79</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
 		<key>16B29D8B2A22397E00E01EAD696D971C</key>
 		<dict>
 			<key>fileRef</key>
@@ -1006,18 +989,6 @@
 			<string>FBMemoryProfiler/Window/FBMemoryProfilerWindow.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>16F4331AA5692B28A3C80B1A3EBA82D7</key>
-		<dict>
-			<key>fileRef</key>
-			<string>1A11B5304329C92A91B588EAFE190875</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>COMPILER_FLAGS</key>
-				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
-			</dict>
 		</dict>
 		<key>176B8BC765CD7FCE8328FD07B69B77E1</key>
 		<dict>
@@ -1109,21 +1080,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>1A11B5304329C92A91B588EAFE190875</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>NSString+HTMLEntities.m</string>
-			<key>path</key>
-			<string>Code/NSString+HTMLEntities.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>1A25487EA856322D62E3E1C2721A47BD</key>
 		<dict>
 			<key>fileRef</key>
@@ -1134,7 +1090,7 @@
 		<key>1A5F87C383196A6E947B779F7B4B5030</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>1D816DA4D3788E8FFFF7E9ECF3E6D8D9</string>
+			<string>A11ECA99496E4EC351223D801D693953</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>CODE_SIGNING_REQUIRED</key>
@@ -1221,6 +1177,18 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>1B757FB557A1DE764576F1FF1C6B07FD</key>
+		<dict>
+			<key>fileRef</key>
+			<string>2FDE27987C9CC35B2FE9AA4A0D71A966</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
+			</dict>
+		</dict>
 		<key>1BC5EE98588CD21ACE00F37E859F95FF</key>
 		<dict>
 			<key>explicitFileType</key>
@@ -1287,19 +1255,6 @@
 			<string>FBStructEncodingParser.mm</string>
 			<key>path</key>
 			<string>FBRetainCycleDetector/Layout/Classes/Parser/FBStructEncodingParser.mm</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>1D816DA4D3788E8FFFF7E9ECF3E6D8D9</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>path</key>
-			<string>HTMLReader.xcconfig</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1457,21 +1412,6 @@
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
-		<key>1FA6235AECD36EA04AA921E05410F8B9</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>HTMLString.h</string>
-			<key>path</key>
-			<string>Code/HTMLString.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>1FFE90429AB40898960CF498B473CC25</key>
 		<dict>
 			<key>explicitFileType</key>
@@ -1484,6 +1424,21 @@
 			<string>HTMLReader.framework</string>
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>20BC17AED4B61E210BDC3C9063FEA27A</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>HTMLOrderedDictionary.m</string>
+			<key>path</key>
+			<string>Sources/HTMLOrderedDictionary.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>20C93AAF54F6AA2385AA2421C0C6EFAB</key>
 		<dict>
@@ -1505,6 +1460,20 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
+		<key>20DD2FA4B54057B4626C31897380B8B0</key>
+		<dict>
+			<key>fileRef</key>
+			<string>CB4C154326D9E4498E4C1D2BB231B1E7</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
 		<key>20F78141C42A0DCE633A8CAE4080BD93</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -1523,7 +1492,7 @@
 		<key>215430F035AC085D0F1618B28BF6FEAD</key>
 		<dict>
 			<key>fileRef</key>
-			<string>6BA615FB8BAF7A4D39FA53E0619F7EB4</string>
+			<string>38F1333DBE37A01A51A53FF1CED7CB07</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
@@ -1537,6 +1506,19 @@
 			<string>safari~iPad@2x.png</string>
 			<key>path</key>
 			<string>Pod/Assets/safari~iPad@2x.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>218524449EB8F38AE25634DE4E036428</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>HTMLReader-umbrella.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1555,18 +1537,18 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>21A7E752CDB86DDF43921A0AF648C053</key>
+		<key>21BBF7D8EB5627123B3869D237BCF052</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
+			<string>sourcecode.c.objc</string>
 			<key>name</key>
-			<string>HTMLSerialization.h</string>
+			<string>HTMLComment.m</string>
 			<key>path</key>
-			<string>Code/HTMLSerialization.h</string>
+			<string>Sources/HTMLComment.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1596,6 +1578,21 @@
 			<string>3535D7FFA53B17FE53CC303E23AD6BA8</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+		</dict>
+		<key>2359EA75E8BFCCFBD0252D2BD089ECAD</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>HTMLElement.m</string>
+			<key>path</key>
+			<string>Sources/HTMLElement.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>236903D210F65DEA7B8092E7E24D9AAB</key>
 		<dict>
@@ -1663,7 +1660,7 @@
 				<string>5432785CBD510AAF565D7A0BA3C28CF1</string>
 				<string>03887D217A590F99035E166DF6D2F215</string>
 				<string>134A0ED253123E4780A91BC383E95485</string>
-				<string>E78B85F7435E32801CE5CA1AAAAE45E6</string>
+				<string>0F997CC3B4C09F81F3F240EA2052FD2A</string>
 				<string>5AA8A393D694510EECE49B2591C1495E</string>
 				<string>829E422A0BBE97C315BA4D908C3EFF8D</string>
 				<string>A863D82E8B86FD8769AB0DC4E7014EDA</string>
@@ -1675,18 +1672,6 @@
 			<string>Pods</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>2422877175D93198067EB98B1725CC99</key>
-		<dict>
-			<key>fileRef</key>
-			<string>955E28B3B7D149B68798DB54003672DF</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>COMPILER_FLAGS</key>
-				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
-			</dict>
 		</dict>
 		<key>2423DE4598C5A08D00D42F8803BD9219</key>
 		<dict>
@@ -1809,20 +1794,19 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>263687CCDF2FDD72BACA976133AF1727</key>
+		<key>259EB439CA19F6969EED2D39586CEBA1</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>fileRef</key>
+			<string>5502C6E33AFE95B01B1990BB06C54FB3</string>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>HTMLQuirksMode.h</string>
-			<key>path</key>
-			<string>Code/HTMLQuirksMode.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
 		</dict>
 		<key>263A73F3BBC9A50AB74044F2E2441BB5</key>
 		<dict>
@@ -2089,21 +2073,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>2CCE96086698ED41388BF8A279D9E819</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>HTMLDocumentType.h</string>
-			<key>path</key>
-			<string>Code/HTMLDocumentType.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>2D51F8D10390C5956CFE6FAA711E7462</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -2155,6 +2124,21 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>2FDE27987C9CC35B2FE9AA4A0D71A966</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>HTMLSerialization.m</string>
+			<key>path</key>
+			<string>Sources/HTMLSerialization.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>2FE70DC6FBD7A013DB18E5B5371F231F</key>
 		<dict>
 			<key>fileRef</key>
@@ -2183,6 +2167,21 @@
 			<string>PBXGroup</string>
 			<key>name</key>
 			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>30DB48C0575A888564BDC687A536B7F5</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>HTMLNode.m</string>
+			<key>path</key>
+			<string>Sources/HTMLNode.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -2367,20 +2366,6 @@
 				</array>
 			</dict>
 		</dict>
-		<key>34016D098DB70AC9A270A1169EF0D3C4</key>
-		<dict>
-			<key>fileRef</key>
-			<string>95348AF8AB7DB920D072B14777A7930E</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
 		<key>3519DA18EA7F28C6F051048EC4333AAA</key>
 		<dict>
 			<key>buildConfigurations</key>
@@ -2394,21 +2379,6 @@
 			<string>Release</string>
 			<key>isa</key>
 			<string>XCConfigurationList</string>
-		</dict>
-		<key>351E762EE0A41B607FC994BB295C0179</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>HTMLReader.h</string>
-			<key>path</key>
-			<string>Code/HTMLReader.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>3527E6CC7146A24713C6D89B7E36276D</key>
 		<dict>
@@ -2454,35 +2424,64 @@
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
+		<key>35C8160C2A7D9AC92C4C026D630E8271</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5CA78F20B33C21E0F32A9872415073D2</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
 		<key>3651C0600D999E1C82080B97C941B3FB</key>
 		<dict>
 			<key>buildActionMask</key>
 			<string>2147483647</string>
 			<key>files</key>
 			<array>
-				<string>37DBEF92945500A4580D2760BAA30F33</string>
-				<string>0052C18B01211F04C6B8B7A0EEEF4A7C</string>
-				<string>DBA4FBC09A114DCBC30389827E8E2804</string>
-				<string>824AA508B364FFC1A46F64C76F6A1610</string>
-				<string>69A894A9AA20BA9B490F58261A41F44A</string>
-				<string>D7F335B3E8920F85750723A6A468BAA0</string>
-				<string>77052BB442F7370BE9CDA2D61C8B9730</string>
-				<string>0807CEB6F382736270B4B22AA544DD31</string>
-				<string>5F513AC442D45059C50EA2A4A377DB23</string>
-				<string>038BA0D4F562E7676BE1940D88137787</string>
+				<string>FEA7632AD1FD5DAB9D23A24F4ADA8529</string>
+				<string>CEDA45BFF033C8F310F5604F8990EAD6</string>
+				<string>4BC5DFDE8354A322DC44753B80782657</string>
+				<string>D8D870EE692B379C126CE9E85E9E9188</string>
+				<string>43F612FE5BE07C0120C321AE304C7A85</string>
+				<string>F675A342F3A825FDF1C814949EACB365</string>
+				<string>90C7F8583F74839ADDF0D0A53A50446C</string>
+				<string>0C5422EA74F068C4795683F200E5EC9D</string>
+				<string>7D5016610C297D07D9F54B7F99C5609A</string>
+				<string>6B6827D9569FD04CBF188618CE987A97</string>
 				<string>215430F035AC085D0F1618B28BF6FEAD</string>
-				<string>2422877175D93198067EB98B1725CC99</string>
-				<string>F0C8C55DD5A15FFD732D7F3E357907C0</string>
-				<string>AE4A280FAFF8F7B511C5E4AB0829B42A</string>
-				<string>84C06C767A92639E9193CEA6B50FFDA9</string>
-				<string>BD8B1D5C147CE1FAC79D46A3B856AF33</string>
-				<string>410694AFADAA8242C820EBDBCB1A688C</string>
-				<string>16F4331AA5692B28A3C80B1A3EBA82D7</string>
+				<string>F44AE958D6EB0BE1C963151B04305884</string>
+				<string>1B757FB557A1DE764576F1FF1C6B07FD</string>
+				<string>A4AE7E7B655445010C55ADC302A5C3A1</string>
+				<string>D973557C221832F92F8D2337CE9901F4</string>
+				<string>B3F9F95FAD0AEB5D5C2C181FB1CE3722</string>
+				<string>EFB31E70D80E80A7011E291634FCCE1A</string>
+				<string>0D819E00DA41B9CC7A2A88E89F47B8FB</string>
 			</array>
 			<key>isa</key>
 			<string>PBXSourcesBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
+		</dict>
+		<key>3672115F10F145500A11EC4341B24D21</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>HTMLString.h</string>
+			<key>path</key>
+			<string>Sources/include/HTMLString.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>373CB5DC8E130DE0B763A3CDEB0681D9</key>
 		<dict>
@@ -2512,18 +2511,6 @@
 			<string>FBMemoryProfiler/Utils/FBMemoryProfilerDeviceUtils.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>37DBEF92945500A4580D2760BAA30F33</key>
-		<dict>
-			<key>fileRef</key>
-			<string>844BE03FAD77E1343C62D85B98132674</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>COMPILER_FLAGS</key>
-				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
-			</dict>
 		</dict>
 		<key>383A9A85B1EA88FD3951281CB32F7C52</key>
 		<dict>
@@ -2577,6 +2564,19 @@
 			<string>PBXHeadersBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
+		</dict>
+		<key>38F1333DBE37A01A51A53FF1CED7CB07</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>HTMLReader-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>3A3555A93480D494D27654C7FA22972E</key>
 		<dict>
@@ -2655,20 +2655,6 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>3C24B693C0E53C5BDB12A43F4901B628</key>
-		<dict>
-			<key>fileRef</key>
-			<string>7C7BDFE5ED1797A31F3498A7DF4FBA1C</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
 		<key>3C3D368DFECD6F658285314CBC4FCD2B</key>
 		<dict>
 			<key>fileRef</key>
@@ -2721,6 +2707,21 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
+		<key>3E5CA74269CF99DD65073348D0BF15C4</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>HTMLTreeEnumerator.m</string>
+			<key>path</key>
+			<string>Sources/HTMLTreeEnumerator.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>3E987B3EC218CC3E7A2878628C7C0ED7</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -2768,18 +2769,6 @@
 			<string>E1002C5072D6C8BC6377D1435023A623</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-		</dict>
-		<key>410694AFADAA8242C820EBDBCB1A688C</key>
-		<dict>
-			<key>fileRef</key>
-			<string>44E49D147819B3852BBF8BCFF540BDE5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>COMPILER_FLAGS</key>
-				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
-			</dict>
 		</dict>
 		<key>4157832782F900B86BCA66EB37930ADE</key>
 		<dict>
@@ -2882,6 +2871,18 @@
 			<key>targetProxy</key>
 			<string>84ED208904CAB8AA6A533FD996BCBC76</string>
 		</dict>
+		<key>43F612FE5BE07C0120C321AE304C7A85</key>
+		<dict>
+			<key>fileRef</key>
+			<string>88AE615DB2C75BCAF8ABF2E44E38A08B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
+			</dict>
+		</dict>
 		<key>449089276E5BCA44F979A13B5D4E749F</key>
 		<dict>
 			<key>containerPortal</key>
@@ -2908,21 +2909,6 @@
 					<string>Public</string>
 				</array>
 			</dict>
-		</dict>
-		<key>44E49D147819B3852BBF8BCFF540BDE5</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>HTMLTreeEnumerator.m</string>
-			<key>path</key>
-			<string>Code/HTMLTreeEnumerator.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>4547AFD3DF74AD78A4C02E8C7E22D550</key>
 		<dict>
@@ -3001,6 +2987,21 @@
 			<string>PBXFrameworksBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
+		</dict>
+		<key>46953C772E61E68763FCBEF83D90B561</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>HTMLElement.h</string>
+			<key>path</key>
+			<string>Sources/include/HTMLElement.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>46CCEAB7BD4694EEFAD0048831A04C72</key>
 		<dict>
@@ -3275,20 +3276,6 @@
 			<key>targetProxy</key>
 			<string>F2F88C3853307465BA4BC6CCB6808B9B</string>
 		</dict>
-		<key>4AF97EB57253FFB01C8F52DDED8C8D60</key>
-		<dict>
-			<key>fileRef</key>
-			<string>F8DAEC4776E3BC8AB5BF6CFA433F9BB0</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
 		<key>4B54497E6F783AB6C6FC0518AF55AED1</key>
 		<dict>
 			<key>fileRef</key>
@@ -3317,6 +3304,33 @@
 			<string>iOS/Crashlytics.framework/Headers/CLSAttributes.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>4BC3F7D42B5E02559B38DB0B768A2E11</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>HTMLTokenizer.m</string>
+			<key>path</key>
+			<string>Sources/HTMLTokenizer.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>4BC5DFDE8354A322DC44753B80782657</key>
+		<dict>
+			<key>fileRef</key>
+			<string>C73DA0A922C7A8522A027C7BA1B26498</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
+			</dict>
 		</dict>
 		<key>4BD0531A9B217684B477EAA68FABFC3F</key>
 		<dict>
@@ -3486,20 +3500,6 @@
 			<string>6BA9DFB2E441B89113086C8C7992710A</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-		</dict>
-		<key>4F965807AE8B72F519319263B4D30540</key>
-		<dict>
-			<key>fileRef</key>
-			<string>8F653254BDD6316F965B0C027254C863</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
 		</dict>
 		<key>4FBEF0A7F14FF8218D7BA07959515C74</key>
 		<dict>
@@ -3832,6 +3832,21 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
+		<key>5502C6E33AFE95B01B1990BB06C54FB3</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>HTMLOrderedDictionary.h</string>
+			<key>path</key>
+			<string>Sources/include/HTMLOrderedDictionary.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>5522C639F099BA388B8840DD2621D2FF</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -3873,36 +3888,6 @@
 					<string>Public</string>
 				</array>
 			</dict>
-		</dict>
-		<key>56B68873E076BA45EF13DE87972CEC85</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>HTMLEntities.m</string>
-			<key>path</key>
-			<string>Code/HTMLEntities.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>56CC5A3CFAA640133EF7DEB4687D834D</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>HTMLDocumentType.m</string>
-			<key>path</key>
-			<string>Code/HTMLDocumentType.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>57734F31E01DB00FF8DA620D2B128D8C</key>
 		<dict>
@@ -3988,34 +3973,6 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>595DA5C54BCC1072F4536B424118743B</key>
-		<dict>
-			<key>fileRef</key>
-			<string>065C612D9A25534EE7859F81961ECD50</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>59F447329548E72876614E99DC86A890</key>
-		<dict>
-			<key>fileRef</key>
-			<string>80FB76B1817E29B3A4CD685B314F98AE</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
 		<key>5AA8A393D694510EECE49B2591C1495E</key>
 		<dict>
 			<key>children</key>
@@ -4053,21 +4010,6 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>5C614A36CC227C3A70D000FB4BCEBAE5</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>HTMLNode.h</string>
-			<key>path</key>
-			<string>Code/HTMLNode.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>5C7BC1BD40C7C9B82B57FBE7E474F12B</key>
 		<dict>
 			<key>fileRef</key>
@@ -4082,25 +4024,25 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>5CE54DFAAEF51A7E28B703EADFF7AC09</key>
+		<key>5CA78F20B33C21E0F32A9872415073D2</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
+			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>HTMLPreprocessedInputStream.m</string>
+			<string>HTMLQuirksMode.h</string>
 			<key>path</key>
-			<string>Code/HTMLPreprocessedInputStream.m</string>
+			<string>Sources/include/HTMLQuirksMode.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>5D1E2D719573A0E504C63F5784F0639F</key>
+		<key>5CB1B6A2520C5E2ED55D46DCB3C1ADF5</key>
 		<dict>
 			<key>fileRef</key>
-			<string>21A7E752CDB86DDF43921A0AF648C053</string>
+			<string>E18A6FF7463D61C2E642334E6315A5EC</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -4130,18 +4072,6 @@
 			<string>B68AF56B5E942E7CB1E489172DF8CD73</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-		</dict>
-		<key>5F513AC442D45059C50EA2A4A377DB23</key>
-		<dict>
-			<key>fileRef</key>
-			<string>F66456AD66996FF00BE9AFB3506672CE</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>COMPILER_FLAGS</key>
-				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
-			</dict>
 		</dict>
 		<key>5FC475BF50F6419DE5B20CAD8B4423FC</key>
 		<dict>
@@ -4296,34 +4226,6 @@
 				<string>-fno-objc-arc</string>
 			</dict>
 		</dict>
-		<key>6496618D4F96A3BFEC994FFE4FF6C116</key>
-		<dict>
-			<key>fileRef</key>
-			<string>060777E42D5EA3CF7555C5FC9A113902</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>64C8E0A5FAA9669AD60EDCA469E38C17</key>
-		<dict>
-			<key>fileRef</key>
-			<string>B6D517DBB9C1AE753A5DC5F8B960CAD9</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
 		<key>64D16488800D1FB48F4118AA431E00AD</key>
 		<dict>
 			<key>fileRef</key>
@@ -4335,19 +4237,6 @@
 				<key>COMPILER_FLAGS</key>
 				<string>-fno-objc-arc</string>
 			</dict>
-		</dict>
-		<key>65087DE2F8FDC9E57B413D921BC5A869</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>65F4AD74258FD3B3C308C5E77AF1387D</key>
 		<dict>
@@ -4405,34 +4294,6 @@
 			<string>PBXHeadersBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
-		</dict>
-		<key>66FF30060673C6187AD3226E551521A9</key>
-		<dict>
-			<key>fileRef</key>
-			<string>06C54D2B50DEB96C69466882E6BEE9C6</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>67390AFA1146322F9B0074826BA794B5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>1FA6235AECD36EA04AA921E05410F8B9</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
 		</dict>
 		<key>678AA28F31CC51467D6056DB4ED0B18A</key>
 		<dict>
@@ -4515,6 +4376,20 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
+		<key>684061C6465ABB953907EA4A93ACF2E4</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9B219D332347882DEC6C5F52E96D7E76</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
 		<key>687273ECCC5849480190412F36A356B8</key>
 		<dict>
 			<key>children</key>
@@ -4541,31 +4416,18 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>6926CB3867A784E77946D5580F3DF745</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>HTMLTextNode.m</string>
-			<key>path</key>
-			<string>Code/HTMLTextNode.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>69A894A9AA20BA9B490F58261A41F44A</key>
+		<key>69EFCB712F9C8523B07F69B37FF10995</key>
 		<dict>
 			<key>fileRef</key>
-			<string>6BA686A9B3CB40B933807D8CE13F75A1</string>
+			<string>3672115F10F145500A11EC4341B24D21</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
 			<dict>
-				<key>COMPILER_FLAGS</key>
-				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
 			</dict>
 		</dict>
 		<key>6A076EA453C52711C6D1B172B407850A</key>
@@ -4666,6 +4528,35 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>6B10C21904A20DCAFEC50E843538B1FD</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>HTMLTextNode.h</string>
+			<key>path</key>
+			<string>Sources/include/HTMLTextNode.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6B557F3880AEECADFDE0F080D4995833</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9015BEFE216E7B556978BE78F833A8A1</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
 		<key>6B60736EE81B25DAC82AA47ED05E6177</key>
 		<dict>
 			<key>explicitFileType</key>
@@ -4681,33 +4572,17 @@
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
-		<key>6BA615FB8BAF7A4D39FA53E0619F7EB4</key>
+		<key>6B6827D9569FD04CBF188618CE987A97</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>fileRef</key>
+			<string>B1C116CABE4EC6B54154AE45A4AC8237</string>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>HTMLReader-dummy.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>6BA686A9B3CB40B933807D8CE13F75A1</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>HTMLEncoding.m</string>
-			<key>path</key>
-			<string>Code/HTMLEncoding.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
+			</dict>
 		</dict>
 		<key>6BA9DFB2E441B89113086C8C7992710A</key>
 		<dict>
@@ -4803,6 +4678,20 @@
 				</array>
 			</dict>
 		</dict>
+		<key>6F861936F191063AB482EF16A4B84867</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9151DBC58938B96B3540782A7252DBD7</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
 		<key>706A497CCFC844C5671BDC8F3FD30C79</key>
 		<dict>
 			<key>fileRef</key>
@@ -4816,21 +4705,6 @@
 					<string>Public</string>
 				</array>
 			</dict>
-		</dict>
-		<key>70C3AABC4F983994F6AB51247FB3DD7B</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>HTMLEncoding.h</string>
-			<key>path</key>
-			<string>Code/HTMLEncoding.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>70F7DE640A0A7FE1188A9E72DEA70321</key>
 		<dict>
@@ -4976,6 +4850,21 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
+		<key>72F338A858EDE19DDE808B5F97AA17AA</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>HTMLDocument.m</string>
+			<key>path</key>
+			<string>Sources/HTMLDocument.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>73396ABFB57EB96DFBCE9D5BA149C428</key>
 		<dict>
 			<key>fileRef</key>
@@ -5058,6 +4947,21 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
+		<key>74CE6E7CD9395F0F5539BEA248AB109E</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>HTMLTextNode.m</string>
+			<key>path</key>
+			<string>Sources/HTMLTextNode.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>74DE9EDECCF08CBCB2BBFAC883F3F85A</key>
 		<dict>
 			<key>fileRef</key>
@@ -5130,18 +5034,6 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>77052BB442F7370BE9CDA2D61C8B9730</key>
-		<dict>
-			<key>fileRef</key>
-			<string>DB781C762F033AA69B62578C9BCCF7EA</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>COMPILER_FLAGS</key>
-				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
-			</dict>
-		</dict>
 		<key>77B6A7D266E242A8B586A02921BBA6EB</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -5204,20 +5096,6 @@
 			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/SystemConfiguration.framework</string>
 			<key>sourceTree</key>
 			<string>DEVELOPER_DIR</string>
-		</dict>
-		<key>78C7B5D89CF0679B0D6A0CADB30B02C5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>263687CCDF2FDD72BACA976133AF1727</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
 		</dict>
 		<key>7903AC14B461D5E81440479C80523CEB</key>
 		<dict>
@@ -5467,25 +5345,10 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>7C7BDFE5ED1797A31F3498A7DF4FBA1C</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>HTMLComment.h</string>
-			<key>path</key>
-			<string>Code/HTMLComment.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>7CFEF7BEB0C6EF517C9240717F928273</key>
+		<key>7C89E1646009FE010915FD66E7D2F4F8</key>
 		<dict>
 			<key>fileRef</key>
-			<string>85083E7C6AB127DCC51C122511AEBCC2</string>
+			<string>AFBE4B99729F7E3691DDED59C285FAC3</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -5508,6 +5371,18 @@
 			<string>FBAllocationTracker-prefix.pch</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7D5016610C297D07D9F54B7F99C5609A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>120EF83D069FA8E7E45904325631F0D3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
+			</dict>
 		</dict>
 		<key>7DA870C9287F09DFE038A8893F929438</key>
 		<dict>
@@ -5594,21 +5469,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>80FB76B1817E29B3A4CD685B314F98AE</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>HTMLParser.h</string>
-			<key>path</key>
-			<string>Code/HTMLParser.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>81354D468E285EE438C0FC4D9E0C916A</key>
 		<dict>
 			<key>fileRef</key>
@@ -5623,21 +5483,6 @@
 				</array>
 			</dict>
 		</dict>
-		<key>819B00F354AC5F2F7D07B1F6E8ABBC43</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>HTMLTokenizer.m</string>
-			<key>path</key>
-			<string>Code/HTMLTokenizer.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>81CF25DE5101D92E6CB2CCF5E329BC23</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -5650,18 +5495,6 @@
 			<string>CVKHierarchySearcher-prefix.pch</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>824AA508B364FFC1A46F64C76F6A1610</key>
-		<dict>
-			<key>fileRef</key>
-			<string>C72A062B5153DA904450F76D48EA2E0A</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>COMPILER_FLAGS</key>
-				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
-			</dict>
 		</dict>
 		<key>829D670FEF08B515E7832ED2F3439697</key>
 		<dict>
@@ -5744,21 +5577,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>844BE03FAD77E1343C62D85B98132674</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>HTMLComment.m</string>
-			<key>path</key>
-			<string>Code/HTMLComment.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>84A3399B76EEBF612AE366E3C1C83E92</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -5774,18 +5592,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>84C06C767A92639E9193CEA6B50FFDA9</key>
-		<dict>
-			<key>fileRef</key>
-			<string>6926CB3867A784E77946D5580F3DF745</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>COMPILER_FLAGS</key>
-				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
-			</dict>
-		</dict>
 		<key>84ED208904CAB8AA6A533FD996BCBC76</key>
 		<dict>
 			<key>containerPortal</key>
@@ -5798,21 +5604,6 @@
 			<string>E73654F55A156F55351F1266E04812BE</string>
 			<key>remoteInfo</key>
 			<string>AFMInfoBanner</string>
-		</dict>
-		<key>85083E7C6AB127DCC51C122511AEBCC2</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>HTMLTextNode.h</string>
-			<key>path</key>
-			<string>Code/HTMLTextNode.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>85163641C5799C2001097EBD9ECAFBA5</key>
 		<dict>
@@ -5897,6 +5688,21 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
+		<key>86F10AE42D1D05DDEF33E13C19C7386E</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>HTMLParser.h</string>
+			<key>path</key>
+			<string>Sources/include/HTMLParser.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>87028F1138DCA6DF99A66C09E63075D8</key>
 		<dict>
 			<key>children</key>
@@ -5930,21 +5736,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>8799C47D39F99053B47F5F2996B098CB</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>HTMLElement.h</string>
-			<key>path</key>
-			<string>Code/HTMLElement.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>87FED4AC5DE5D6956824B8F346334185</key>
 		<dict>
 			<key>buildActionMask</key>
@@ -5960,12 +5751,42 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
+		<key>88AE615DB2C75BCAF8ABF2E44E38A08B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>HTMLEncoding.m</string>
+			<key>path</key>
+			<string>Sources/HTMLEncoding.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>88EC5CEC92647807F8ABBB20DC7BCA62</key>
 		<dict>
 			<key>fileRef</key>
 			<string>607F116F2C8CA066F2CAE246D9C51D5B</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+		</dict>
+		<key>89425B1267CEA31C963876967C162D40</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>NSString+HTMLEntities.h</string>
+			<key>path</key>
+			<string>Sources/include/NSString+HTMLEntities.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>896B220D67121A1178B6D2568A094B4E</key>
 		<dict>
@@ -5997,21 +5818,6 @@
 			<string>PBXGroup</string>
 			<key>name</key>
 			<string>CorePromise</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>89C0CBFCD4D06882D12A3DCA838C8864</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>HTMLOrderedDictionary.m</string>
-			<key>path</key>
-			<string>Code/HTMLOrderedDictionary.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -6112,20 +5918,6 @@
 		<dict>
 			<key>fileRef</key>
 			<string>D86088903BA29AE370C7C5272A325D7A</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>8B8B6760423CC7C79E1EE604DAC6E885</key>
-		<dict>
-			<key>fileRef</key>
-			<string>A889D18E0B6B3CD507297B32C28A450E</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -6334,26 +6126,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>8EC5CC651658EF1308DBCF3E23245A91</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>E2AE7AE0D16B77ACF2C6009A3F7673B3</string>
-				<string>1D816DA4D3788E8FFFF7E9ECF3E6D8D9</string>
-				<string>6BA615FB8BAF7A4D39FA53E0619F7EB4</string>
-				<string>FA78126F21FED370C9FC49BE34A0FDB1</string>
-				<string>11B26FD3CE3946350000C77DDCEFAEAB</string>
-				<string>65087DE2F8FDC9E57B413D921BC5A869</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Support Files</string>
-			<key>path</key>
-			<string>../Target Support Files/HTMLReader</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>8EC778B1F7B73DB6110B7FB5B28CC1AA</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -6369,6 +6141,21 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>8ED415B39D76D7849FCD1D61FEE6B37B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>HTMLTokenizerState.h</string>
+			<key>path</key>
+			<string>Sources/include/HTMLTokenizerState.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>8F219D51DBC3478D08D9C88CEF9C8311</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -6381,21 +6168,6 @@
 			<string>FBMemoryProfilerSectionHeaderDelegate.h</string>
 			<key>path</key>
 			<string>FBMemoryProfiler/Controllers/FBMemoryProfilerSectionHeaderDelegate.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8F653254BDD6316F965B0C027254C863</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>HTMLTokenizer.h</string>
-			<key>path</key>
-			<string>Code/HTMLTokenizer.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -6434,6 +6206,21 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
+		<key>9015BEFE216E7B556978BE78F833A8A1</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>HTMLPreprocessedInputStream.h</string>
+			<key>path</key>
+			<string>Sources/include/HTMLPreprocessedInputStream.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>903152B394DB1F7972E1C61F45A3ABE4</key>
 		<dict>
 			<key>fileRef</key>
@@ -6459,7 +6246,7 @@
 		<key>907CA4835C0726349F9AF16E78ACD109</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>1D816DA4D3788E8FFFF7E9ECF3E6D8D9</string>
+			<string>A11ECA99496E4EC351223D801D693953</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>CODE_SIGNING_REQUIRED</key>
@@ -6523,6 +6310,33 @@
 			<string>XCBuildConfiguration</string>
 			<key>name</key>
 			<string>Debug</string>
+		</dict>
+		<key>90C7F8583F74839ADDF0D0A53A50446C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>30DB48C0575A888564BDC687A536B7F5</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
+			</dict>
+		</dict>
+		<key>9151DBC58938B96B3540782A7252DBD7</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>HTMLTokenizer.h</string>
+			<key>path</key>
+			<string>Sources/include/HTMLTokenizer.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>915A80C584A5C22E2E78427855EA141F</key>
 		<dict>
@@ -6645,6 +6459,21 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>9330940172A0B5CCDA4FBEE314BB3696</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>HTMLNode.h</string>
+			<key>path</key>
+			<string>Sources/include/HTMLNode.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>938BA7A634D10835209069D724A4F162</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -6719,6 +6548,20 @@
 				</array>
 			</dict>
 		</dict>
+		<key>945420C50535256701751914A44EE72D</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9A95B413053F3498CDEA524E8B0090A0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
 		<key>94FFFA87F416948422C3D7360AB82A5C</key>
 		<dict>
 			<key>fileRef</key>
@@ -6770,21 +6613,6 @@
 			<string>PBXHeadersBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
-		</dict>
-		<key>95348AF8AB7DB920D072B14777A7930E</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>HTMLOrderedDictionary.h</string>
-			<key>path</key>
-			<string>Code/HTMLOrderedDictionary.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>954EA71C5DA1A637F094B123D1050220</key>
 		<dict>
@@ -6855,21 +6683,6 @@
 			<string>XCBuildConfiguration</string>
 			<key>name</key>
 			<string>Debug</string>
-		</dict>
-		<key>955E28B3B7D149B68798DB54003672DF</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>HTMLSelector.m</string>
-			<key>path</key>
-			<string>Code/HTMLSelector.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>957C940EDFE1C5661CFAF488D552C714</key>
 		<dict>
@@ -7108,6 +6921,50 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>99C74A77F380746B64B5C25E23DF7CFB</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9330940172A0B5CCDA4FBEE314BB3696</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>9A95B413053F3498CDEA524E8B0090A0</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>HTMLNamespace.h</string>
+			<key>path</key>
+			<string>Sources/include/HTMLNamespace.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9B219D332347882DEC6C5F52E96D7E76</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>HTMLTreeEnumerator.h</string>
+			<key>path</key>
+			<string>Sources/include/HTMLTreeEnumerator.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>9B8B60AAB6C28C51CF8E5ED01A8EBA22</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -7120,6 +6977,20 @@
 			<string>PromiseKit-dummy.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9C401D999F6E2E18C0C0621C4536D811</key>
+		<dict>
+			<key>fileRef</key>
+			<string>C47B2D3F9760BD1EB0325E61020D2359</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
 		</dict>
 		<key>9C859A772789FF45E9A516F1E0EED91F</key>
 		<dict>
@@ -7159,21 +7030,6 @@
 			<string>sourcecode.c.h</string>
 			<key>path</key>
 			<string>FBMemoryProfiler-prefix.pch</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>9D61E0C6DBFF14D742598CC9B7A79754</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>HTMLSelector.h</string>
-			<key>path</key>
-			<string>Code/HTMLSelector.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -7239,6 +7095,21 @@
 					<string>Public</string>
 				</array>
 			</dict>
+		</dict>
+		<key>9F4D4B54F17229A5B6DB08A6F8B9CD31</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>HTMLString.m</string>
+			<key>path</key>
+			<string>Sources/HTMLString.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>9F6D9B82460BC1E5D004C01B15CD974B</key>
 		<dict>
@@ -7334,35 +7205,6 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>A089363729E9B51FD1ABA8D33B901FD9</key>
-		<dict>
-			<key>fileRef</key>
-			<string>003E3ADD2032B78E69923F4CF1BD07EE</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>A0E33CAE5FC374F81E220797ED9C8343</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>HTMLString.m</string>
-			<key>path</key>
-			<string>Code/HTMLString.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>A10195709B75BA0B39FF774E59CB98F5</key>
 		<dict>
 			<key>fileRef</key>
@@ -7376,6 +7218,19 @@
 					<string>Public</string>
 				</array>
 			</dict>
+		</dict>
+		<key>A11ECA99496E4EC351223D801D693953</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>HTMLReader.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>A13A98CE223FFC7C2FD65958E0E1AF44</key>
 		<dict>
@@ -7433,6 +7288,20 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
+		<key>A205A2CF1424087D5B327AA8D6CA1EF3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>C1A5026CA02352FB4DE9CAB1A5A25460</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
 		<key>A2B47DE6936F6012B7383F009EBC88F8</key>
 		<dict>
 			<key>fileRef</key>
@@ -7453,6 +7322,21 @@
 			<string>Release</string>
 			<key>isa</key>
 			<string>XCConfigurationList</string>
+		</dict>
+		<key>A33540569EB4179A958F3C3ACEA28C79</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>HTMLSerialization.h</string>
+			<key>path</key>
+			<string>Sources/include/HTMLSerialization.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>A3387CC3ABE9752234DA58100749B755</key>
 		<dict>
@@ -7495,6 +7379,18 @@
 			<string>06D3B9CF9FC668985C9DA8424752CD86</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+		</dict>
+		<key>A4AE7E7B655445010C55ADC302A5C3A1</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9F4D4B54F17229A5B6DB08A6F8B9CD31</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
+			</dict>
 		</dict>
 		<key>A555BB8EDC31DD972D0BC72A85532B17</key>
 		<dict>
@@ -7658,21 +7554,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>A889D18E0B6B3CD507297B32C28A450E</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>HTMLSupport.h</string>
-			<key>path</key>
-			<string>Code/HTMLSupport.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>A8DF7DD19FEC699C9FD7648C70134091</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -7820,6 +7701,26 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>AB7324A4EAD5917EC4A4AB3DAACC07F1</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>C84914F85004DF3200FF990D92F894AF</string>
+				<string>A11ECA99496E4EC351223D801D693953</string>
+				<string>38F1333DBE37A01A51A53FF1CED7CB07</string>
+				<string>E73C32DD44CB170129506B78AEB01AC5</string>
+				<string>218524449EB8F38AE25634DE4E036428</string>
+				<string>DA38ACFB2DC2BF8F021A4E39FA04BE02</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Support Files</string>
+			<key>path</key>
+			<string>../Target Support Files/HTMLReader</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>ABBC434A654830AA243CFB8F8A21025C</key>
 		<dict>
 			<key>fileRef</key>
@@ -7875,18 +7776,6 @@
 				</array>
 			</dict>
 		</dict>
-		<key>AE4A280FAFF8F7B511C5E4AB0829B42A</key>
-		<dict>
-			<key>fileRef</key>
-			<string>A0E33CAE5FC374F81E220797ED9C8343</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>COMPILER_FLAGS</key>
-				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
-			</dict>
-		</dict>
 		<key>AF06065CEEC94FF45719BC9B4CE054C6</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -7913,6 +7802,21 @@
 			<key>targetProxy</key>
 			<string>A17127D2F0E0E054B2810F576E87B88F</string>
 		</dict>
+		<key>AF997945BDC291D910C645F6171E9847</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>HTMLDocumentType.h</string>
+			<key>path</key>
+			<string>Sources/include/HTMLDocumentType.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>AFA6C4756DB2C67A5F4615842600CFC6</key>
 		<dict>
 			<key>fileRef</key>
@@ -7935,6 +7839,21 @@
 			<string>PBXFileReference</string>
 			<key>path</key>
 			<string>FBRetainCycleDetector.modulemap</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>AFBE4B99729F7E3691DDED59C285FAC3</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>HTMLEncoding.h</string>
+			<key>path</key>
+			<string>Sources/include/HTMLEncoding.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -7995,26 +7914,27 @@
 				</array>
 			</dict>
 		</dict>
+		<key>B1C116CABE4EC6B54154AE45A4AC8237</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>HTMLPreprocessedInputStream.m</string>
+			<key>path</key>
+			<string>Sources/HTMLPreprocessedInputStream.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>B27D94B1061D93A851E40FF124AF5E88</key>
 		<dict>
 			<key>fileRef</key>
 			<string>41A87983202ED449109477374CE932E1</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-		</dict>
-		<key>B2DF3BC40C485B44A064D9D6FAD11322</key>
-		<dict>
-			<key>fileRef</key>
-			<string>351E762EE0A41B607FC994BB295C0179</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
 		</dict>
 		<key>B319C528FAA9E1F39CD89A5A08C25813</key>
 		<dict>
@@ -8076,6 +7996,18 @@
 			<string>FBAllocationTracker/Generations/FBAllocationTrackerNSZombieSupport.mm</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B3F9F95FAD0AEB5D5C2C181FB1CE3722</key>
+		<dict>
+			<key>fileRef</key>
+			<string>4BC3F7D42B5E02559B38DB0B768A2E11</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
+			</dict>
 		</dict>
 		<key>B5E5D0E3D9F5A2273390E6EC0FE54ADC</key>
 		<dict>
@@ -8147,21 +8079,6 @@
 			<string>FlurryEmpty.m</string>
 			<key>path</key>
 			<string>Flurry/FlurryEmpty.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>B6D517DBB9C1AE753A5DC5F8B960CAD9</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>HTMLPreprocessedInputStream.h</string>
-			<key>path</key>
-			<string>Code/HTMLPreprocessedInputStream.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -8267,6 +8184,20 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
+		<key>B933FDED5B35DF7F19C59B10906D860C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>46953C772E61E68763FCBEF83D90B561</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
 		<key>B9E328D8B20506ED349AD66CDC06B4CC</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -8286,6 +8217,21 @@
 			<string>279BDFB3833696587B538E3D39149744</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+		</dict>
+		<key>BA4BBAD01A59C06881EB8795782A1125</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>HTMLEntities.m</string>
+			<key>path</key>
+			<string>Sources/HTMLEntities.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>BAE601D4AE10793E5473D463EF2E3DF6</key>
 		<dict>
@@ -8394,18 +8340,6 @@
 				<array>
 					<string>Public</string>
 				</array>
-			</dict>
-		</dict>
-		<key>BD8B1D5C147CE1FAC79D46A3B856AF33</key>
-		<dict>
-			<key>fileRef</key>
-			<string>819B00F354AC5F2F7D07B1F6E8ABBC43</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>COMPILER_FLAGS</key>
-				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
 			</dict>
 		</dict>
 		<key>BE8037518172F9D2F395423896DA29E9</key>
@@ -8519,6 +8453,21 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>C1A5026CA02352FB4DE9CAB1A5A25460</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>HTMLSupport.h</string>
+			<key>path</key>
+			<string>Sources/include/HTMLSupport.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>C211C3E5EA6B7F23784508BD50D158CA</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -8549,20 +8498,6 @@
 			<string>1D0DAAD64E48E507442E68447C4AE0D4</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-		</dict>
-		<key>C26C7B367E434F3816663792DA1525D9</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5C614A36CC227C3A70D000FB4BCEBAE5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
 		</dict>
 		<key>C2C98F971667CCF823D1F22AE81C31FB</key>
 		<dict>
@@ -8642,6 +8577,21 @@
 			<string>XCBuildConfiguration</string>
 			<key>name</key>
 			<string>Debug</string>
+		</dict>
+		<key>C47B2D3F9760BD1EB0325E61020D2359</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>HTMLDocument.h</string>
+			<key>path</key>
+			<string>Sources/include/HTMLDocument.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>C480B6191BED4E76EA77CA3DD874EB42</key>
 		<dict>
@@ -8780,7 +8730,7 @@
 			<key>targetProxy</key>
 			<string>D90FA717801016C16D2D361508C55F7B</string>
 		</dict>
-		<key>C72A062B5153DA904450F76D48EA2E0A</key>
+		<key>C73DA0A922C7A8522A027C7BA1B26498</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -8789,9 +8739,9 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
 			<key>name</key>
-			<string>HTMLElement.m</string>
+			<string>HTMLDocumentType.m</string>
 			<key>path</key>
-			<string>Code/HTMLElement.m</string>
+			<string>Sources/HTMLDocumentType.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -8815,6 +8765,17 @@
 			<string>D297711FE44691A394AA16491E8E9F51</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+		</dict>
+		<key>C84914F85004DF3200FF990D92F894AF</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>HTMLReader.modulemap</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>C8FB8F131D6BFFF3EDFE56A476325927</key>
 		<dict>
@@ -9054,6 +9015,21 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>CB4C154326D9E4498E4C1D2BB231B1E7</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>HTMLComment.h</string>
+			<key>path</key>
+			<string>Sources/include/HTMLComment.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>CB7A6B375B7613FBFBF7020F2AC50529</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -9095,6 +9071,21 @@
 			<string>1F369E9A5CF19E59DF7EBC724EEE8C13</string>
 			<key>remoteInfo</key>
 			<string>PromiseKit</string>
+		</dict>
+		<key>CD43245C3B07F27CD96DE136C89DC49B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>HTMLEntities.h</string>
+			<key>path</key>
+			<string>Sources/include/HTMLEntities.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>CD629D3F17DF5221480ACC3910DA1566</key>
 		<dict>
@@ -9146,6 +9137,18 @@
 			<string>C389EA2C90161AB40B9E88F1986F3076</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+		</dict>
+		<key>CEDA45BFF033C8F310F5604F8990EAD6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>72F338A858EDE19DDE808B5F97AA17AA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
+			</dict>
 		</dict>
 		<key>CF0EB5A036DC83854EC742A76DA91401</key>
 		<dict>
@@ -9208,6 +9211,20 @@
 			<string>Info.plist</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D07E462D297F56AE863358C1738C3198</key>
+		<dict>
+			<key>fileRef</key>
+			<string>89425B1267CEA31C963876967C162D40</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
 		</dict>
 		<key>D114AFE77FD91D1A2B6B3AF1000A3657</key>
 		<dict>
@@ -9615,20 +9632,6 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>D77ED59A860AE43694F29BDF5D0EAE7D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>70C3AABC4F983994F6AB51247FB3DD7B</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
 		<key>D7A6E0C5DA1DC6C9D9F76A71CDEFF475</key>
 		<dict>
 			<key>fileRef</key>
@@ -9657,18 +9660,6 @@
 			<string>FBMemoryProfiler/Controllers/FBMemoryProfilerViewController.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>D7F335B3E8920F85750723A6A468BAA0</key>
-		<dict>
-			<key>fileRef</key>
-			<string>56B68873E076BA45EF13DE87972CEC85</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>COMPILER_FLAGS</key>
-				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
-			</dict>
 		</dict>
 		<key>D8113172B51B53490FB1AEB2C4C949C4</key>
 		<dict>
@@ -9779,6 +9770,33 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>D8D870EE692B379C126CE9E85E9E9188</key>
+		<dict>
+			<key>fileRef</key>
+			<string>2359EA75E8BFCCFBD0252D2BD089ECAD</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
+			</dict>
+		</dict>
+		<key>D8D9B1559BC1418B2EAA88FC0FBF115B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>NSString+HTMLEntities.m</string>
+			<key>path</key>
+			<string>Sources/NSString+HTMLEntities.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>D90FA717801016C16D2D361508C55F7B</key>
 		<dict>
 			<key>containerPortal</key>
@@ -9792,18 +9810,16 @@
 			<key>remoteInfo</key>
 			<string>FBRetainCycleDetector</string>
 		</dict>
-		<key>D9883E169EBD57D531CB2C1AF8E122B5</key>
+		<key>D973557C221832F92F8D2337CE9901F4</key>
 		<dict>
 			<key>fileRef</key>
-			<string>2CCE96086698ED41388BF8A279D9E819</string>
+			<string>74CE6E7CD9395F0F5539BEA248AB109E</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
 			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
 			</dict>
 		</dict>
 		<key>DA00C77303310FAF46CD8CF816712E6B</key>
@@ -9819,6 +9835,19 @@
 					<string>Public</string>
 				</array>
 			</dict>
+		</dict>
+		<key>DA38ACFB2DC2BF8F021A4E39FA04BE02</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>DA4C603CBA962B31886BDAEF17B0E9F3</key>
 		<dict>
@@ -9849,31 +9878,18 @@
 				<string>-fno-objc-arc</string>
 			</dict>
 		</dict>
-		<key>DB781C762F033AA69B62578C9BCCF7EA</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>HTMLNode.m</string>
-			<key>path</key>
-			<string>Code/HTMLNode.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>DBA4FBC09A114DCBC30389827E8E2804</key>
+		<key>DBDA6CD1A09DCA6CCD784C22D6B1E60C</key>
 		<dict>
 			<key>fileRef</key>
-			<string>56CC5A3CFAA640133EF7DEB4687D834D</string>
+			<string>8ED415B39D76D7849FCD1D61FEE6B37B</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
 			<dict>
-				<key>COMPILER_FLAGS</key>
-				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
 			</dict>
 		</dict>
 		<key>DC062A82DC282307514DB18D855745E0</key>
@@ -9974,21 +9990,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>DE4B49301AFEB97BB40A91C85E21B346</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>HTMLSerialization.m</string>
-			<key>path</key>
-			<string>Code/HTMLSerialization.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>DE78276F4ED3CCA2D5A76764D4B76CC0</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -10046,6 +10047,21 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
+		<key>E0672AB5A6749BE09E782765B3F593D6</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>HTMLSelector.h</string>
+			<key>path</key>
+			<string>Sources/include/HTMLSelector.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>E1002C5072D6C8BC6377D1435023A623</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -10071,6 +10087,21 @@
 			<string>PBXSourcesBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
+		</dict>
+		<key>E18A6FF7463D61C2E642334E6315A5EC</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>HTMLReader.h</string>
+			<key>path</key>
+			<string>Sources/include/HTMLReader.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>E201745038B35B13B9259BFC112F5139</key>
 		<dict>
@@ -10105,20 +10136,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>E20CD7DAF52D0C91FA794901FCAC91FE</key>
-		<dict>
-			<key>fileRef</key>
-			<string>8799C47D39F99053B47F5F2996B098CB</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
 		<key>E2361126D663857C781EE201182AFAA2</key>
 		<dict>
 			<key>buildConfigurationList</key>
@@ -10146,17 +10163,6 @@
 			<string>4ED530262182848196BE490D40721ABA</string>
 			<key>productType</key>
 			<string>com.apple.product-type.framework</string>
-		</dict>
-		<key>E2AE7AE0D16B77ACF2C6009A3F7673B3</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>HTMLReader.modulemap</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>E33C91884D5540FDF83CC85CCC7FCF5C</key>
 		<dict>
@@ -10382,7 +10388,7 @@
 			<key>productType</key>
 			<string>com.apple.product-type.framework</string>
 		</dict>
-		<key>E75AEF86DCAAC632869866DF6B484557</key>
+		<key>E73C32DD44CB170129506B78AEB01AC5</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -10390,10 +10396,8 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>HTMLEntities.h</string>
 			<key>path</key>
-			<string>Code/HTMLEntities.h</string>
+			<string>HTMLReader-prefix.pch</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -10410,60 +10414,6 @@
 			<string>Release</string>
 			<key>isa</key>
 			<string>XCConfigurationList</string>
-		</dict>
-		<key>E78B85F7435E32801CE5CA1AAAAE45E6</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>7C7BDFE5ED1797A31F3498A7DF4FBA1C</string>
-				<string>844BE03FAD77E1343C62D85B98132674</string>
-				<string>F8DAEC4776E3BC8AB5BF6CFA433F9BB0</string>
-				<string>01F7319ED327C647994112A50A96308F</string>
-				<string>2CCE96086698ED41388BF8A279D9E819</string>
-				<string>56CC5A3CFAA640133EF7DEB4687D834D</string>
-				<string>8799C47D39F99053B47F5F2996B098CB</string>
-				<string>C72A062B5153DA904450F76D48EA2E0A</string>
-				<string>70C3AABC4F983994F6AB51247FB3DD7B</string>
-				<string>6BA686A9B3CB40B933807D8CE13F75A1</string>
-				<string>E75AEF86DCAAC632869866DF6B484557</string>
-				<string>56B68873E076BA45EF13DE87972CEC85</string>
-				<string>003E3ADD2032B78E69923F4CF1BD07EE</string>
-				<string>5C614A36CC227C3A70D000FB4BCEBAE5</string>
-				<string>DB781C762F033AA69B62578C9BCCF7EA</string>
-				<string>95348AF8AB7DB920D072B14777A7930E</string>
-				<string>89C0CBFCD4D06882D12A3DCA838C8864</string>
-				<string>80FB76B1817E29B3A4CD685B314F98AE</string>
-				<string>F66456AD66996FF00BE9AFB3506672CE</string>
-				<string>B6D517DBB9C1AE753A5DC5F8B960CAD9</string>
-				<string>5CE54DFAAEF51A7E28B703EADFF7AC09</string>
-				<string>263687CCDF2FDD72BACA976133AF1727</string>
-				<string>351E762EE0A41B607FC994BB295C0179</string>
-				<string>9D61E0C6DBFF14D742598CC9B7A79754</string>
-				<string>955E28B3B7D149B68798DB54003672DF</string>
-				<string>21A7E752CDB86DDF43921A0AF648C053</string>
-				<string>DE4B49301AFEB97BB40A91C85E21B346</string>
-				<string>1FA6235AECD36EA04AA921E05410F8B9</string>
-				<string>A0E33CAE5FC374F81E220797ED9C8343</string>
-				<string>A889D18E0B6B3CD507297B32C28A450E</string>
-				<string>85083E7C6AB127DCC51C122511AEBCC2</string>
-				<string>6926CB3867A784E77946D5580F3DF745</string>
-				<string>8F653254BDD6316F965B0C027254C863</string>
-				<string>819B00F354AC5F2F7D07B1F6E8ABBC43</string>
-				<string>060777E42D5EA3CF7555C5FC9A113902</string>
-				<string>06C54D2B50DEB96C69466882E6BEE9C6</string>
-				<string>44E49D147819B3852BBF8BCFF540BDE5</string>
-				<string>065C612D9A25534EE7859F81961ECD50</string>
-				<string>1A11B5304329C92A91B588EAFE190875</string>
-				<string>8EC5CC651658EF1308DBCF3E23245A91</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>HTMLReader</string>
-			<key>path</key>
-			<string>HTMLReader</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>E87C653504B909F1084C63118E9D25A9</key>
 		<dict>
@@ -10824,6 +10774,20 @@
 				</array>
 			</dict>
 		</dict>
+		<key>ED4648F792A5E7455ECC7D37A86DDFC2</key>
+		<dict>
+			<key>fileRef</key>
+			<string>AF997945BDC291D910C645F6171E9847</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
 		<key>ED58697C476F655BFEBD74420A4B427D</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -10848,6 +10812,21 @@
 				<key>COMPILER_FLAGS</key>
 				<string>-fno-objc-arc</string>
 			</dict>
+		</dict>
+		<key>EDB56534F02AB1710E479FDF1CD8985B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>HTMLSelector.m</string>
+			<key>path</key>
+			<string>Sources/HTMLSelector.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>EDC4CBA5E97867496AE5CE0EA6A61484</key>
 		<dict>
@@ -10912,6 +10891,18 @@
 				</array>
 			</dict>
 		</dict>
+		<key>EFB31E70D80E80A7011E291634FCCE1A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3E5CA74269CF99DD65073348D0BF15C4</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
+			</dict>
+		</dict>
 		<key>F064FBAAF8300189BA0561ECB851700E</key>
 		<dict>
 			<key>explicitFileType</key>
@@ -10926,18 +10917,6 @@
 			<string>CVKHierarchySearcher.framework</string>
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>F0C8C55DD5A15FFD732D7F3E357907C0</key>
-		<dict>
-			<key>fileRef</key>
-			<string>DE4B49301AFEB97BB40A91C85E21B346</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>COMPILER_FLAGS</key>
-				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
-			</dict>
 		</dict>
 		<key>F0F07CB884C64C55F20A507488F334BE</key>
 		<dict>
@@ -10985,6 +10964,20 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
+		<key>F13C08C55B96F0D0220F75B2ABEE303F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6B10C21904A20DCAFEC50E843538B1FD</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
 		<key>F24383FDD1A5AA271DF04FB5DE58E312</key>
 		<dict>
 			<key>fileRef</key>
@@ -11017,6 +11010,20 @@
 			<string>FBAllocationTracker-dummy.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F298E39554A4BA0C7342C3B441188EED</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E0672AB5A6749BE09E782765B3F593D6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
 		</dict>
 		<key>F2F88C3853307465BA4BC6CCB6808B9B</key>
 		<dict>
@@ -11058,6 +11065,18 @@
 			<string>FBMemoryProfiler-dummy.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F44AE958D6EB0BE1C963151B04305884</key>
+		<dict>
+			<key>fileRef</key>
+			<string>EDB56534F02AB1710E479FDF1CD8985B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
+			</dict>
 		</dict>
 		<key>F51399337908532AF27B87788E53819B</key>
 		<dict>
@@ -11122,20 +11141,17 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>F66456AD66996FF00BE9AFB3506672CE</key>
+		<key>F675A342F3A825FDF1C814949EACB365</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>fileRef</key>
+			<string>BA4BBAD01A59C06881EB8795782A1125</string>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>HTMLParser.m</string>
-			<key>path</key>
-			<string>Code/HTMLParser.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
+			</dict>
 		</dict>
 		<key>F6A9243D783A3A122B1A463195AC7183</key>
 		<dict>
@@ -11206,21 +11222,6 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>F8DAEC4776E3BC8AB5BF6CFA433F9BB0</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>HTMLDocument.h</string>
-			<key>path</key>
-			<string>Code/HTMLDocument.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>FA26F846A5CAAEE41B963AE617FB010B</key>
 		<dict>
 			<key>baseConfigurationReference</key>
@@ -11289,19 +11290,6 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
-		<key>FA78126F21FED370C9FC49BE34A0FDB1</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>HTMLReader-prefix.pch</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>FAAC26120C472293E223417777F31FE6</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -11321,29 +11309,29 @@
 			<string>2147483647</string>
 			<key>files</key>
 			<array>
-				<string>3C24B693C0E53C5BDB12A43F4901B628</string>
-				<string>4AF97EB57253FFB01C8F52DDED8C8D60</string>
-				<string>D9883E169EBD57D531CB2C1AF8E122B5</string>
-				<string>E20CD7DAF52D0C91FA794901FCAC91FE</string>
-				<string>D77ED59A860AE43694F29BDF5D0EAE7D</string>
-				<string>0DE5C3A5C671DE4735E96EC0E152EFEC</string>
-				<string>A089363729E9B51FD1ABA8D33B901FD9</string>
-				<string>C26C7B367E434F3816663792DA1525D9</string>
-				<string>34016D098DB70AC9A270A1169EF0D3C4</string>
-				<string>59F447329548E72876614E99DC86A890</string>
-				<string>64C8E0A5FAA9669AD60EDCA469E38C17</string>
-				<string>78C7B5D89CF0679B0D6A0CADB30B02C5</string>
+				<string>20DD2FA4B54057B4626C31897380B8B0</string>
+				<string>9C401D999F6E2E18C0C0621C4536D811</string>
+				<string>ED4648F792A5E7455ECC7D37A86DDFC2</string>
+				<string>B933FDED5B35DF7F19C59B10906D860C</string>
+				<string>7C89E1646009FE010915FD66E7D2F4F8</string>
+				<string>08390E665D2E15403ECD577FA6505A88</string>
+				<string>945420C50535256701751914A44EE72D</string>
+				<string>99C74A77F380746B64B5C25E23DF7CFB</string>
+				<string>259EB439CA19F6969EED2D39586CEBA1</string>
+				<string>08976E0654F16931678FF5C344F94DFD</string>
+				<string>6B557F3880AEECADFDE0F080D4995833</string>
+				<string>35C8160C2A7D9AC92C4C026D630E8271</string>
 				<string>0C6D90E7E0544167648AE011364E1813</string>
-				<string>B2DF3BC40C485B44A064D9D6FAD11322</string>
-				<string>067A607CA09DFFCA5DD36DE8C2079216</string>
-				<string>5D1E2D719573A0E504C63F5784F0639F</string>
-				<string>67390AFA1146322F9B0074826BA794B5</string>
-				<string>8B8B6760423CC7C79E1EE604DAC6E885</string>
-				<string>7CFEF7BEB0C6EF517C9240717F928273</string>
-				<string>4F965807AE8B72F519319263B4D30540</string>
-				<string>6496618D4F96A3BFEC994FFE4FF6C116</string>
-				<string>66FF30060673C6187AD3226E551521A9</string>
-				<string>595DA5C54BCC1072F4536B424118743B</string>
+				<string>5CB1B6A2520C5E2ED55D46DCB3C1ADF5</string>
+				<string>F298E39554A4BA0C7342C3B441188EED</string>
+				<string>163095666D4289E052E962C900196661</string>
+				<string>69EFCB712F9C8523B07F69B37FF10995</string>
+				<string>A205A2CF1424087D5B327AA8D6CA1EF3</string>
+				<string>F13C08C55B96F0D0220F75B2ABEE303F</string>
+				<string>6F861936F191063AB482EF16A4B84867</string>
+				<string>DBDA6CD1A09DCA6CCD784C22D6B1E60C</string>
+				<string>684061C6465ABB953907EA4A93ACF2E4</string>
+				<string>D07E462D297F56AE863358C1738C3198</string>
 			</array>
 			<key>isa</key>
 			<string>PBXHeadersBuildPhase</string>
@@ -11528,6 +11516,18 @@
 			<string>7A22C93044BE9EF8B2C2687972BF1936</string>
 			<key>productType</key>
 			<string>com.apple.product-type.bundle</string>
+		</dict>
+		<key>FEA7632AD1FD5DAB9D23A24F4ADA8529</key>
+		<dict>
+			<key>fileRef</key>
+			<string>21BBF7D8EB5627123B3869D237BCF052</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks</string>
+			</dict>
 		</dict>
 		<key>FEF2DE49CEBEDDA25283774143E67912</key>
 		<dict>

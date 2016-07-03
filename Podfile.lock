@@ -14,9 +14,9 @@ PODS:
     - FBRetainCycleDetector (~> 0.1)
   - FBRetainCycleDetector (0.1.2)
   - Flurry-iOS-SDK/FlurrySDK (7.6.4)
-  - HTMLReader (0.9.6)
+  - HTMLReader (1.0)
   - PromiseKit/CorePromise (4.0.0)
-  - Result (2.1.1)
+  - Result (2.1.2)
   - TUSafariActivity (1.0.4)
   - UXCam (2.5.5)
 
@@ -55,9 +55,9 @@ SPEC CHECKSUMS:
   FBMemoryProfiler: 623fc5f8a61f7d02ec75c87e3b97c90f621d8b02
   FBRetainCycleDetector: 45462f9ed1af0cd77224a4cc4e6dacaca47371b4
   Flurry-iOS-SDK: 9da972687d3af9f48038dcd86eae9cad3acca456
-  HTMLReader: 7e21488ee378afc56ccade8af35840c4e03e434c
+  HTMLReader: 8024d86f188a38da8d188d2433003ce652ca444a
   PromiseKit: 9bd3ee549847d953a009f5f21f7b80d4098ce26a
-  Result: 822c879f145943320cc80a9a8372378e3d699fe4
+  Result: 6e722d4a66b1408680dbfcdf51c0b1c4b706316a
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   UXCam: 3318abdb0b2b0d8dc6905579bb5a9ff16185c9a8
 
