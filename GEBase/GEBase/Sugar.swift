@@ -13,6 +13,7 @@ import Foundation
 //
 
 infix operator … {}
+@discardableResult
 public func …<T: AnyObject>(obj: T, initialize: @noescape (T) -> Void) -> T {
 	initialize(obj)
 	return obj
