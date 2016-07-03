@@ -59,10 +59,6 @@ enum FoldersControllerError: ErrorProtocol {
 }
 
 @objc protocol FoldersController {
-#if false
-	func updateFoldersAuthenticated(completionHandler: (ErrorType?) -> Void)
-	func updateFolders(completionHandler: (ErrorType?) -> Void)
-#endif
 	var rssSession: RSSSession? { get }
 	var foldersLastUpdateDate: Date? { get set }
 	var foldersLastUpdateErrorRaw: NSError? { get set }
@@ -89,7 +85,7 @@ extension FoldersController {
 	typealias Error = FoldersControllerError
 	final func updateFoldersAuthenticated() -> Promise<Void> {
 		let rssSession = self.rssSession!
-		let _1: Promise<Void> = firstly {
+		let promise: Promise<Void> = firstly {
 			self.foldersLastUpdateError = nil
 			self.foldersUpdateState = .updatingUserInfo
 			return rssSession.updateUserInfo()
@@ -108,13 +104,11 @@ extension FoldersController {
 		}.then {
 			self.foldersUpdateState = .updatingStreamPreferences
 			return rssSession.updateStreamPreferences()
-		}; let promise = _1.then { () -> Void in
+		}.always {
 			self.foldersLastUpdateDate = Date()
 			self.foldersUpdateState = .completed
 		}.recover { error -> Void in
 			self.foldersLastUpdateError = error
-			self.foldersLastUpdateDate = Date()
-			self.foldersUpdateState = .completed
 			throw $(error)
 		}
 		return promise
