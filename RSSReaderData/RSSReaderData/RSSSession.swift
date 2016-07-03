@@ -29,7 +29,7 @@ public enum RSSSessionError: ErrorProtocol {
 	case unexpectedResponseTextForMarkAsRead(body: String)
 	case badResponseDataForMarkAsRead(data: NSData)
 	case pushTagsFailed(underlyingErrors: [ErrorProtocol])
-	case importFailed(underlyingError: ErrorProtocol)
+	case importFailed(underlyingError: ErrorProtocol, command: AbstractPersistentDataUpdateCommand)
 }
 
 public class RSSSession: NSObject {
@@ -61,6 +61,7 @@ extension RSSSession {
 	public typealias CommandCompletionHandler<T> = ResultCompletionHandler<T, Error>
 	// MARK: -
 	func performPersistentDataUpdateCommand<T: PersistentDataUpdateCommand>(_ command: T, completionHandler: (Result<T.ResultType, Error>) -> Void) {
+		$(command as AbstractPersistentDataUpdateCommand)
 		command.taskForSession(self) { data, httpResponse, error in
 			if let error = error {
 				completionHandler(.Failure(command.preprocessedRequestError(error)))
@@ -73,8 +74,7 @@ extension RSSSession {
 						try backgroundQueueManagedObjectContext.save()
 						completionHandler(.Success(result))
 					} catch {
-						$(command)
-						completionHandler(.Failure(.importFailed(underlyingError: $(error))))
+						completionHandler(.Failure(.importFailed(underlyingError: $(error), command: $(command))))
 					}
 				}
 			})
