@@ -381,6 +381,7 @@ class ItemsListViewController: ContainerTableViewController {
 	var systemLayoutSizeCachingDataSource = SystemLayoutSizeCachingTableViewCellDataSource(layoutSizeDefiningValueForCell: {guard $0.reuseIdentifier != "Item" else { return nil }; return $0.reuseIdentifier}, cellShouldBeReusedWithoutLayout: {$0.reuseIdentifier != "Item"})
 	// MARK: -
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let dt = disableTrace(); defer { _ = dt }
 		let reuseIdentifier = reusedCellGenerator?.reuseIdentifierForCellForRowAtIndexPath(indexPath) ?? "Item"
 		let cell = tableView.dequeueReusableCell(withIdentifier: $(reuseIdentifier), for: indexPath)
 		if nil != reusedCellGenerator {
@@ -596,17 +597,17 @@ extension ItemsListViewController {
 		typealias E = Item
 		let fetchRequest = E.fetchRequestForEntity() … {
 			$0.sortDescriptors = sortDescriptorsForContainers
-			$0.predicate = CompoundPredicate(andPredicateWithSubpredicates:[
-				{
-					if container! is Subscription {
-						return Predicate(format: "(\(#keyPath(E.subscription)) == %@)", argumentArray: [container!])
-					}
-					else {
-						return Predicate(format: "(\(#keyPath(E.categories)) CONTAINS %@)", argumentArray: [container!])
-					}
-				}(),
-				containerViewPredicate
-			])
+			$0.predicate = CompoundPredicate(andPredicateWithSubpredicates:[Predicate]() … {
+				switch container! {
+				case is Subscription:
+					$0 += [Predicate(format: "(\(#keyPath(E.subscription)) == %@)", argumentArray: [container!])]
+				case let category where category.streamID.hasSuffix(rootTagSuffix):
+					()
+				default:
+					$0 += [Predicate(format: "(\(#keyPath(E.categories)) CONTAINS %@)", argumentArray: [container!])]
+				}
+				$0 += [containerViewPredicate]
+			})
 #if false
 			$0.relationshipKeyPathsForPrefetching = [#keyPath(E.categories)]
 #endif
