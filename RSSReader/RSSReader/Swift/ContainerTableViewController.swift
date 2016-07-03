@@ -10,7 +10,7 @@ import RSSReaderData
 import Foundation
 
 class ContainerTableViewController: UITableViewController {
-	var container: Container!
+	dynamic var container: Container!
 	override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 		let sectionHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SectionHeader") as! ContainerTableViewSectionHeaderView
 		sectionHeaderView.titleLabel.text = (self.container as! Titled?)?.visibleTitle
