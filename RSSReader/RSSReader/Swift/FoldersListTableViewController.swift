@@ -72,17 +72,18 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 					return localizedDescription
 				}
 			}()
-			let $ = UIAlertController(title: title, message: message, preferredStyle: .alert)
-			let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel action title for alert on error"), style: .default) { action in
-				return
+			let $ = UIAlertController(title: title, message: message, preferredStyle: .alert) … {
+				let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel action title for alert on error"), style: .default) { action in
+					return
+				}
+				let retryAlertAction = UIAlertAction(title: NSLocalizedString("Retry", comment: "Proceed action title for alert on error"), style: .default) { action in
+					retryAction()
+					return
+				}
+				$0.addAction(cancelAction)
+				$0.addAction(retryAlertAction)
+				$0.preferredAction = retryAlertAction
 			}
-			let retryAlertAction = UIAlertAction(title: NSLocalizedString("Retry", comment: "Proceed action title for alert on error"), style: .default) { action in
-				retryAction()
-				return
-			}
-			$.addAction(cancelAction)
-			$.addAction(retryAlertAction)
-			$.preferredAction = retryAlertAction
 			return $
 		}()
 		return alertController
@@ -108,20 +109,20 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 			self.authenticationState = .InProgress
 			return rssSession.authenticate()
 		}.recover { authenticationError -> Void in
-			self.authenticationState = .Failed(error: $(authenticationError))
-			throw authenticationError
+			self.authenticationState = .Failed(error: authenticationError)
+			throw $(authenticationError)
 		}.then {
 			self.authenticationState = .Succeeded
 			return RSSReader.foldersController.updateFoldersAuthenticated()
 		}.then { () -> Void in
-			self.refreshControl?.endRefreshing()
 			if nil == self.rootFolder {
 				self.rootFolder = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: mainQueueManagedObjectContext)
 				assert(nil != self.rootFolder)
 			}
 			self.tableView.reloadData()
-		}.error { updateError in
+		}.always {
 			self.refreshControl?.endRefreshing()
+		}.error { updateError in
 			let presentedError: ErrorProtocol = {
 				switch $(updateError) {
 				case let foldersControllerError as FoldersControllerError:
