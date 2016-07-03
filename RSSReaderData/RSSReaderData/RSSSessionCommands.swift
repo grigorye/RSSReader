@@ -11,8 +11,10 @@ import Result
 import CoreData
 import Foundation
 
+public protocol AbstractPersistentDataUpdateCommand {}
+
 /// Defines URL request, and the way to import request result into the given managed context and generate (successfull) value as necessary.
-protocol PersistentDataUpdateCommand {
+protocol PersistentDataUpdateCommand : AbstractPersistentDataUpdateCommand {
 	associatedtype ResultType
 	var request: URLRequest { get }
 	func preprocessedRequestError(_ error: ErrorProtocol) -> RSSSession.Error
@@ -191,7 +193,7 @@ struct PushTags : PersistentDataUpdateCommand, MostCommonDataUpdateCommand {
 }
 
 public struct StreamContents : PersistentDataUpdateCommand, AuthenticatedDataUpdateCommand, RelativeStringBasedDataUpdateCommand  {
-	public typealias ResultType = (continuation: String?, items: [Item])
+	public typealias ResultType = (NSManagedObjectContext, (continuation: String?, items: [Item]))
 	let excludedCategory: Folder?, container: Container, continuation: String?, count: Int = 20, loadDate: Date
 	var requestRelativeString: String {
 		let querySuffix = URLQuerySuffixFromComponents([String]() … {
@@ -213,7 +215,7 @@ public struct StreamContents : PersistentDataUpdateCommand, AuthenticatedDataUpd
 		through { managedObjectContext in
 			let container = containerObjectID.object(in: managedObjectContext)
 			let excludedCategory = excludedCategoryObjectID?.object(in: managedObjectContext)
-			return try continuationAndItemsImportedFromStreamData(data, loadDate: self.loadDate, container: container, excludedCategory: excludedCategory, managedObjectContext: managedObjectContext)
+			return (managedObjectContext, try continuationAndItemsImportedFromStreamData(data, loadDate: self.loadDate, container: container, excludedCategory: excludedCategory, managedObjectContext: managedObjectContext))
 		}
 	}
 }
