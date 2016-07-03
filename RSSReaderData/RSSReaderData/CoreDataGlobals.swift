@@ -59,13 +59,13 @@ public let (managedObjectContextError, optionalMainQueueManagedObjectContext, op
 			guard defaults.backgroundImportEnabled else {
 				return mainQueueManagedObjectContext
 			}
-			let $ = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-			$.parent = mainQueueManagedObjectContext
-			$.name = "background"
-			if defaults.coreDataCachingEnabled {
-				$.cachingEnabled = true
+			return NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType) … {
+				$0.parent = mainQueueManagedObjectContext
+				$0.name = "background"
+				if defaults.coreDataCachingEnabled {
+					$0.cachingEnabled = true
+				}
 			}
-			return $
 		}()
 		var supplementaryObjects = [AnyObject]()
 		supplementaryObjects += [
