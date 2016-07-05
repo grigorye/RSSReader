@@ -117,7 +117,7 @@ extension NSError: CancellableErrorType {
      - Warning: You may only call this method on the main thread.
     */
     @objc public var cancelled: Bool {
-        if !Thread.isMainThread() {
+        if !Thread.isMainThread {
             NSLog("PromiseKit: Warning: `cancelled` called on background thread.")
         }
 

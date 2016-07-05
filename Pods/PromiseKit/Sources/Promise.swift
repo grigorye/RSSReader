@@ -563,7 +563,7 @@ func contain_zalgo(_ q: DispatchQueue, block: () -> Void) {
     if q === zalgo {
         block()
     } else if q === waldo {
-        if Thread.isMainThread() {
+        if Thread.isMainThread {
             DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes(rawValue: UInt64(0))).async(execute: block)
         } else {
             block()
