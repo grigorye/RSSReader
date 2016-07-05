@@ -14,7 +14,7 @@ public let (managedObjectContextError, optionalMainQueueManagedObjectContext, op
 	do {
 		let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: NSClassFromString("RSSReaderData.Folder")!)])!
 		let psc = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
-		let fileManager = FileManager.default()
+		let fileManager = FileManager.default
 		let urls = fileManager.urlsForDirectory(.documentDirectory, inDomains: .userDomainMask)
 		let documentsDirectoryURL = urls[0]
 		if !fileManager.fileExists(atPath: documentsDirectoryURL.path!) {
@@ -23,7 +23,7 @@ public let (managedObjectContextError, optionalMainQueueManagedObjectContext, op
 		let storeURL = try documentsDirectoryURL.appendingPathComponent("RSSReaderData.sqlite")
 		$(fileManager.fileExists(atPath: storeURL.path!))
 		if UserDefaults().bool(forKey: "forceStoreRemoval") {
-			let fileManager = FileManager.default()
+			let fileManager = FileManager.default
 			do {
 				try fileManager.removeItem(at: storeURL)
 			}
@@ -41,7 +41,7 @@ public let (managedObjectContextError, optionalMainQueueManagedObjectContext, op
 			case NSMigrationMissingSourceModelError where UserDefaults().bool(forKey: "allowMissingSourceModelError"):
 			fallthrough
 			case NSPersistentStoreIncompatibleVersionHashError, NSMigrationError:
-				let fileManager = FileManager.default()
+				let fileManager = FileManager.default
 				try fileManager.removeItem(at: storeURL)
 				try psc.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: nil)
 			default:

@@ -131,7 +131,7 @@ struct UpdateUnreadCounts : PersistentDataUpdateCommand, MostCommonDataUpdateCom
 struct PullTags : PersistentDataUpdateCommand, MostCommonDataUpdateCommand {
 	let requestRelativeString = "/reader/api/0/tag/list"
 	func importResult(_ data: Data, into managedObjectContext: NSManagedObjectContext) throws {
-		try! data.write(to: lastTagsFileURL, options: .dataWritingAtomic)
+		try! data.write(to: lastTagsFileURL, options: .atomic)
 		let tags = try tagsImportedFromJsonData(data, managedObjectContext: backgroundQueueManagedObjectContext)
 		•(tags)
 	}
@@ -140,7 +140,7 @@ struct PullTags : PersistentDataUpdateCommand, MostCommonDataUpdateCommand {
 struct UpdateStreamPreferences : PersistentDataUpdateCommand, MostCommonDataUpdateCommand {
 	let requestRelativeString = "/reader/api/0/preference/stream/list"
 	func importResult(_ data: Data, into managedObjectContext: NSManagedObjectContext) throws {
-		try! data.write(to: lastTagsFileURL, options: .dataWritingAtomic)
+		try! data.write(to: lastTagsFileURL, options: .atomic)
 		let streamPreferences: () = try streamPreferencesImportedFromJsonData(data, managedObjectContext: backgroundQueueManagedObjectContext)
 		•(streamPreferences)
 	}
@@ -157,7 +157,7 @@ struct MarkAllAsRead : PersistentDataUpdateCommand, MostCommonDataUpdateCommand 
 		}
 	}
 	var requestRelativeString: String {
-		let containerIDPercentEncoded = self.container.streamID.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.alphanumerics())!
+		let containerIDPercentEncoded = self.container.streamID.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.alphanumerics)!
 		let newestItemTimestampUsec = self.container.newestItemDate.timestampUsec
 		return "/reader/api/0/mark-all-as-read?s=\(containerIDPercentEncoded)&ts=\(newestItemTimestampUsec)"
 	}
@@ -205,11 +205,11 @@ public struct StreamContents : PersistentDataUpdateCommand, AuthenticatedDataUpd
 			}
 			$0 += ["n=\(count)"]
 		})
-		let streamIDPercentEncoded = container.streamID.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.alphanumerics())!
+		let streamIDPercentEncoded = container.streamID.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.alphanumerics)!
 		return "/reader/api/0/stream/contents/\(streamIDPercentEncoded)\(querySuffix)"
 	}
 	func push(_ data: Data, through: ((NSManagedObjectContext) throws -> ResultType) -> Void) {
-		try! data.write(to: lastTagsFileURL, options: .dataWritingAtomic)
+		try! data.write(to: lastTagsFileURL, options: .atomic)
 		let excludedCategoryObjectID = typedObjectID(for: excludedCategory)
 		let containerObjectID = typedObjectID(for: container)
 		through { managedObjectContext in
@@ -239,7 +239,7 @@ struct Authenticate : PersistentDataUpdateCommand, SimpleDispatchingDataUpdateCo
 		let request = URLRequest(url: url) … {
 			$0.httpMethod = "POST"
 			$0.httpBody = {
-				let allowedCharacters = NSCharacterSet.alphanumerics()
+				let allowedCharacters = NSCharacterSet.alphanumerics
 				let loginEncoded = self.loginAndPassword.login?.addingPercentEncoding(withAllowedCharacters: allowedCharacters)
 				let passwordEncoded = self.loginAndPassword.password?.addingPercentEncoding(withAllowedCharacters: allowedCharacters)
 				let body: String = {

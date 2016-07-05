@@ -30,7 +30,7 @@ func itemsImportedFromStreamJson(_ json: Json, loadDate: Date, container: Contai
 				format: "(loadDate != %@) && (date < %@) && (subscription == %@) && SUBQUERY(\(#keyPath(Item.categories)), $x, $x.\(#keyPath(Folder.streamID)) ENDSWITH %@).@count == 0",
 				argumentArray: [
 					loadDate,
-					lastItem?.date ?? NSDate.distantFuture(),
+					lastItem?.date ?? NSDate.distantFuture,
 					container,
 					excludedCategory.streamID
 				]
