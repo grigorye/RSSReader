@@ -12,7 +12,7 @@ import CoreData.NSManagedObject
 private let statefulValueCachesForObjectIDsAssoc = UnsafeMutablePointer<Void>(allocatingCapacity: 1)
 private let cachingEnabledMOCDidChangeObserverAssoc = UnsafeMutablePointer<Void>(allocatingCapacity: 1)
 private let cachingEnabledAssoc = UnsafeMutablePointer<Void>(allocatingCapacity: 1)
-private let notificationCenter = NotificationCenter.default()
+private let notificationCenter = NotificationCenter.default
 
 extension NSManagedObjectContext {
 	private var statefulValueCachesForObjectIDs: NSMutableDictionary! {

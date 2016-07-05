@@ -13,10 +13,10 @@ var traceEnabledEnforced: Bool?
 
 extension KVOCompliantUserDefaults {
 	var traceEnabled: Bool {
-		return traceEnabledEnforced ?? UserDefaults.standard().bool(forKey: "traceEnabled")
+		return traceEnabledEnforced ?? UserDefaults.standard.bool(forKey: "traceEnabled")
 	}
 	var traceLabelsEnabled: Bool {
-		return traceLabelsEnabledEnforced ?? UserDefaults.standard().bool(forKey: "traceLabelsEnabled")
+		return traceLabelsEnabledEnforced ?? UserDefaults.standard.bool(forKey: "traceLabelsEnabled")
 	}
 }
 

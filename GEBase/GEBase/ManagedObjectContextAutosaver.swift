@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 public class ManagedObjectContextAutosaver: NSObject {
-	let notificationCenter = NotificationCenter.default()
+	let notificationCenter = NotificationCenter.default
 	let observer: AnyObject
 	deinit {
 		notificationCenter.removeObserver(observer)

@@ -22,7 +22,7 @@ func defaultLogger(date: Date, label: String, location: SourceLocation, message:
 	}
 	else {
 		let dateDescription = dateFormatter.string(from: date)
-		let threadDescription = Thread.isMainThread() ? "-" : "\(DispatchQueue.global().label)"
+		let threadDescription = Thread.isMainThread ? "-" : "\(DispatchQueue.global().label)"
 		let textWithTimestamp = "\(dateDescription) [\(threadDescription)] \(text)"
 		print(textWithTimestamp)
 	}

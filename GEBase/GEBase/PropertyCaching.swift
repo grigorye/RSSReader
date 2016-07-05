@@ -73,17 +73,17 @@ private func cachedSetterImp<T>(_ _self: PropertyCacheable, _cmd: Selector, prop
 
 private func cachedGetterImpForPropertyTypeEncoding(_ propertyTypeEncoding: String, sel: Selector, propertyName: String, oldImp: IMP) -> IMP {
 	switch propertyTypeEncoding {
-	case objCEncode(Int):
+	case objCEncode(Int.self):
 		let block: @convention(block) (AnyObject!) -> Int = { _self in
 			return cachedGetterImp(_self as! PropertyCacheable, _cmd: sel, propertyName: propertyName, dispatch: dispatchGetter, oldImp: oldImp)
 		}
 		return imp_implementationWithBlock(unsafeBitCast(block, to: AnyObject.self))
-	case objCEncode(Bool), "B":
+	case objCEncode(Bool.self), "B":
 		let block: @convention(block) (AnyObject!) -> Bool = { _self in
 			return cachedGetterImp(_self as! PropertyCacheable, _cmd: sel, propertyName: propertyName, dispatch: dispatchGetter, oldImp: oldImp)
 		}
 		return imp_implementationWithBlock(unsafeBitCast(block, to: AnyObject.self))
-	case _ where propertyTypeEncoding.hasPrefix("@"), objCEncode(NSObject):
+	case _ where propertyTypeEncoding.hasPrefix("@"), objCEncode(NSObject.self):
 		let block: @convention(block) (AnyObject!) -> AnyObject! = { _self in
 			return cachedGetterImp(_self as! PropertyCacheable, _cmd: sel, propertyName: propertyName, dispatch: dispatchGetter, oldImp: oldImp)
 		}
@@ -95,17 +95,17 @@ private func cachedGetterImpForPropertyTypeEncoding(_ propertyTypeEncoding: Stri
 
 private func cachedSetterImpForPropertyTypeEncoding(_ propertyTypeEncoding: String, sel: Selector, propertyName: String, oldImp: IMP) -> IMP {
 	switch propertyTypeEncoding {
-	case objCEncode(Int):
+	case objCEncode(Int.self):
 		let block: @convention(block) (AnyObject, Int) -> Void = { _self, value in
 			cachedSetterImp(_self as! PropertyCacheable, _cmd: sel, propertyName: propertyName, value: value, dispatch: dispatchSetter, oldImp: oldImp)
 		}
 		return imp_implementationWithBlock(unsafeBitCast(block, to: AnyObject.self))
-	case objCEncode(Bool), "B":
+	case objCEncode(Bool.self), "B":
 		let block: @convention(block) (AnyObject, Bool) -> Void = { _self, value in
 			cachedSetterImp(_self as! PropertyCacheable, _cmd: sel, propertyName: propertyName, value: value, dispatch: dispatchSetter, oldImp: oldImp)
 		}
 		return imp_implementationWithBlock(unsafeBitCast(block, to: AnyObject.self))
-	case objCEncode(NSObject):
+	case objCEncode(NSObject.self):
 		let block: @convention(block) (AnyObject, AnyObject?) -> Void = { _self, value in
 			cachedSetterImp(_self as! PropertyCacheable, _cmd: sel, propertyName: propertyName, value: value, dispatch: dispatchSetter, oldImp: oldImp)
 		}

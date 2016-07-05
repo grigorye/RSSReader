@@ -18,7 +18,7 @@ public class ProgressEnabledURLSessionTaskGenerator: NSObject {
 	private var mutableProgresses: NSMutableArray {
 		return mutableArrayValue(forKey: "progresses")
 	}
-	let session = URLSession(configuration: URLSessionConfiguration.default())
+	let session = URLSession(configuration: URLSessionConfiguration.default)
 	// MARK: -
 	public typealias HTTPDataTaskCompletionHandler = (Data?, HTTPURLResponse?, ErrorProtocol?) -> Void
 	public func dataTask(for request: URLRequest, completionHandler: HTTPDataTaskCompletionHandler) -> URLSessionDataTask {

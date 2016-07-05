@@ -143,7 +143,7 @@ extension KVOCompliantUserDefaults {
 
 public class KVOCompliantUserDefaults : NSObject {
 	var values = [String : NSObject]()
-	let defaults = UserDefaults.standard()
+	let defaults = UserDefaults.standard
 
 	func synchronizeValues() {
 		for (propertyName, propertyInfo) in _Self.propertyInfoMap {
@@ -202,7 +202,7 @@ public class KVOCompliantUserDefaults : NSObject {
 	
 	public override init () {
 		super.init()
-		let notificationCenter = NotificationCenter.default()
+		let notificationCenter = NotificationCenter.default
 		var handlingNotification = false
 		let observer = notificationCenter.addObserver(forName: UserDefaults.didChangeNotification, object:nil, queue:nil) { [unowned self] notification in
 			if (!handlingNotification) {
