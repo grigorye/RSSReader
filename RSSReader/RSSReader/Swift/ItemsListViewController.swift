@@ -579,8 +579,7 @@ extension ItemsListViewController {
 			$0.returnsObjectsAsFaults = false
 			$0.fetchBatchSize = defaults.fetchBatchSize
 		}
-		let itemLoadDateTimeIntervalSinceReferenceDateKeyPath = #keyPath(Item.loadDate.timeIntervalSinceReferenceDate)
-		let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainQueueManagedObjectContext, sectionNameKeyPath: !defaults.itemsAreSortedByLoadDate ? nil : itemLoadDateTimeIntervalSinceReferenceDateKeyPath, cacheName: nil)
+		let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainQueueManagedObjectContext, sectionNameKeyPath: !defaults.itemsAreSortedByLoadDate ? nil : #keyPath(Item.loadDate), cacheName: nil)
 		let configureCell = { [unowned self] (cell: UITableViewCell, indexPath: IndexPath) -> Void in
 			self.configureCell(cell, atIndexPath: indexPath)
 		}

@@ -31,7 +31,7 @@ class ItemSummaryWebViewController: UIViewController {
 	}
 	// MARK:-
 	var summaryHTMLString: String {
-		let bundle = Bundle.main()
+		let bundle = Bundle.main
 		let htmlTemplateURL = bundle.urlForResource("ItemSummaryTemplate", withExtension: "html")!
 		let htmlTemplate = try! NSString(contentsOf: htmlTemplateURL, encoding: String.Encoding.utf8.rawValue)
 		let htmlString =
@@ -53,7 +53,7 @@ class ItemSummaryWebViewController: UIViewController {
 	}
 	// MARK:-
 	func regenerateStoredHTMLFromString(_ HTMLString: String) throws {
-		let fileManager = FileManager.default()
+		let fileManager = FileManager.default
 		try fileManager.createDirectory(at: try! storedHTMLURL.deletingLastPathComponent(), withIntermediateDirectories: true, attributes: nil)
 		try HTMLString.write(to: storedHTMLURL, atomically: true, encoding: String.Encoding.utf8)
 	}
@@ -69,7 +69,7 @@ class ItemSummaryWebViewController: UIViewController {
 				webView?.loadRequest(request)
 			}
 			else {
-				let bundle = Bundle.main()
+				let bundle = Bundle.main
 				self.webView.loadHTMLString(HTMLString, baseURL: bundle.resourceURL)
 			}
 		}

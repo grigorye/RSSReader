@@ -192,7 +192,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 				return UIBarButtonItem(title: title, style: .plain, target: nil, action: nil)
 			}()
 		}
-		let notificationCenter = NotificationCenter.default()
+		let notificationCenter = NotificationCenter.default
 		let updateLoginAndPassword = {
 			self.loginAndPassword = $(defaults.loginAndPassword)
 			guard let loginAndPassword = self.loginAndPassword where loginAndPassword.isValid() else {
@@ -213,20 +213,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 	// MARK: -
 	override init() {
 		super.init()
-		let defaultsPlistURL = try! Bundle.main().urlForResource("Settings", withExtension: "bundle")!.appendingPathComponent("Root.plist")
+		let defaultsPlistURL = try! Bundle.main.urlForResource("Settings", withExtension: "bundle")!.appendingPathComponent("Root.plist")
 		try! loadDefaultsFromSettingsPlistAtURL(defaultsPlistURL)
 		if defaults.memoryProfilingEnabled {
 			FBAllocationTrackerManager.shared()!.startTrackingAllocations()
 			FBAllocationTrackerManager.shared()!.enableGenerations()
 		}
 		RSSReader.foldersController = self
-		let version = Bundle.main().infoDictionary!["CFBundleVersion"] as! NSString
+		let version = Bundle.main.infoDictionary!["CFBundleVersion"] as! NSString
 		$(version)
-		let buildDate = try! FileManager.default().attributesOfItem(atPath: Bundle.main().bundlePath)[FileAttributeKey.modificationDate.rawValue] as! Date
+		let buildDate = try! FileManager.default.attributesOfItem(atPath: Bundle.main.bundlePath)[FileAttributeKey.modificationDate] as! Date
 		let buildAge = Date().timeIntervalSince(buildDate)
 		$(buildAge)
 #if ANALYTICS_ENABLED
-		let versionIsClean = NSNotFound == version.rangeOfCharacter(from: NSCharacterSet.decimalDigits().inverted).location
+		let versionIsClean = NSNotFound == version.rangeOfCharacter(from: NSCharacterSet.decimalDigits.inverted).location
 		if (versionIsClean) && $(defaults.analyticsEnabled) {
 #if CRASHLYTICS_ENABLED
 			Fabric.with([Crashlytics()])

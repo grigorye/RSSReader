@@ -241,7 +241,7 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 			self.tableView.reloadData()
 		}]
 		viewDidDisappearRetainedObjects += [KVOBinding(self•#keyPath(foldersController.foldersUpdateStateRaw), options: .initial) { [unowned self] change in
-			assert(Thread.isMainThread())
+			assert(Thread.isMainThread)
 			•(change)
 			let foldersUpdateState = self.foldersController.foldersUpdateState
 			let message: String = {
