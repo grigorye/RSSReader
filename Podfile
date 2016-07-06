@@ -1,8 +1,8 @@
-platform :ios, '8.0'
 install! 'cocoapods', :integrate_targets => false
 use_frameworks!
 
-target "RSSReader" do
+target "iOS" do
+	platform :ios, '8.0'
 	pod 'AFMInfoBanner'
 	pod 'UXCam'
 	pod 'TUSafariActivity'
@@ -15,6 +15,14 @@ target "RSSReader" do
 	pod 'FBMemoryProfiler'
 	pod 'Result'
 	pod 'PromiseKit/CorePromise', :git => 'https://github.com/mxcl/PromiseKit', :branch => '4.0.0-beta1'
+end
+target "macOS" do
+	platform :osx, '10.11'
+	pod 'Crashlytics'
+	pod 'Fabric'
+	pod 'Result'
+	pod 'PromiseKit/CorePromise', :git => 'https://github.com/mxcl/PromiseKit', :branch => '4.0.0-beta1'
+	pod 'Result'
 end
 
 post_install do |installer|

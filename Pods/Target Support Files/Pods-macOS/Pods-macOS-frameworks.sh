@@ -84,28 +84,10 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/AFMInfoBanner/AFMInfoBanner.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/CVKHierarchySearcher/CVKHierarchySearcher.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/DZReadability/DZReadability.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/FBAllocationTracker/FBAllocationTracker.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/FBMemoryProfiler/FBMemoryProfiler.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/FBRetainCycleDetector/FBRetainCycleDetector.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Flurry-iOS-SDK/Flurry_iOS_SDK.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/HTMLReader/HTMLReader.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/PromiseKit/PromiseKit.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Result/Result.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/TUSafariActivity/TUSafariActivity.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/PromiseKit-OSX/PromiseKit.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Result-OSX/Result.framework"
 fi
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/AFMInfoBanner/AFMInfoBanner.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/CVKHierarchySearcher/CVKHierarchySearcher.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/DZReadability/DZReadability.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/FBAllocationTracker/FBAllocationTracker.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/FBMemoryProfiler/FBMemoryProfiler.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/FBRetainCycleDetector/FBRetainCycleDetector.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Flurry-iOS-SDK/Flurry_iOS_SDK.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/HTMLReader/HTMLReader.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/PromiseKit/PromiseKit.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Result/Result.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/TUSafariActivity/TUSafariActivity.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/PromiseKit-OSX/PromiseKit.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Result-OSX/Result.framework"
 fi
