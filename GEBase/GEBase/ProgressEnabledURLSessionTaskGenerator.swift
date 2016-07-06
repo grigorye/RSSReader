@@ -15,9 +15,6 @@ public enum URLSessionTaskGeneratorError: ErrorProtocol {
 public class ProgressEnabledURLSessionTaskGenerator: NSObject {
 	let dispatchQueue = DispatchQueue.main
 	public dynamic var progresses = [Progress]()
-	private var mutableProgresses: NSMutableArray {
-		return mutableArrayValue(forKey: "progresses")
-	}
 	let session = URLSession(configuration: URLSessionConfiguration.default)
 	// MARK: -
 	public typealias HTTPDataTaskCompletionHandler = (Data?, HTTPURLResponse?, ErrorProtocol?) -> Void
@@ -28,7 +25,7 @@ public class ProgressEnabledURLSessionTaskGenerator: NSObject {
 		•(request.allHTTPHeaderFields)
 		let sessionTask = session.progressEnabledDataTask(with: request) { data, response, error in
 			self.dispatchQueue.async {
-				self.mutableProgresses.removeObject(identicalTo: progress)
+				self.progresses.remove(at: self.progresses.index(of: progress)!)
 			}
 			let httpResponse = response as! HTTPURLResponse?
 			do {
@@ -46,7 +43,7 @@ public class ProgressEnabledURLSessionTaskGenerator: NSObject {
 		}
 		progress.resignCurrent()
 		self.dispatchQueue.async {
-			self.mutableProgresses.add(progress)
+			self.progresses.append(progress)
 		}
 		return sessionTask
 	}
