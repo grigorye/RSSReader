@@ -10,7 +10,7 @@ import GEBase
 import Foundation
 import CoreData
 
-public let (managedObjectContextError, optionalMainQueueManagedObjectContext, optionalBackgroundQueueManagedObjectContext, supplementaryObjects): (ErrorProtocol?, NSManagedObjectContext?, NSManagedObjectContext?, [AnyObject]) = {
+public let (managedObjectContextError, saveQueueManagedObjectContext, optionalMainQueueManagedObjectContext, optionalBackgroundQueueManagedObjectContext, supplementaryObjects): (ErrorProtocol?, NSManagedObjectContext?, NSManagedObjectContext?, NSManagedObjectContext?, [AnyObject]) = {
 	do {
 		let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: NSClassFromString("RSSReaderData.Folder")!)])!
 		let psc = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
@@ -22,7 +22,7 @@ public let (managedObjectContextError, optionalMainQueueManagedObjectContext, op
 		}
 		let storeURL = try documentsDirectoryURL.appendingPathComponent("RSSReaderData.sqlite")
 		$(fileManager.fileExists(atPath: storeURL.path!))
-		if UserDefaults().bool(forKey: "forceStoreRemoval") {
+		if defaults.forceStoreRemoval {
 			let fileManager = FileManager.default
 			do {
 				try fileManager.removeItem(at: storeURL)
@@ -48,20 +48,21 @@ public let (managedObjectContextError, optionalMainQueueManagedObjectContext, op
 				throw error
 			}
 		}
-		let mainQueueManagedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType) … {
+		let saveQueueManagedObjectContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType) … {
+			$0.name = "save"
 			$0.persistentStoreCoordinator = psc
+		}
+		let mainQueueManagedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType) … {
 			$0.name = "main"
-			if defaults.coreDataCachingEnabled {
-				$0.cachingEnabled = true
-			}
+			$0.parent = saveQueueManagedObjectContext
 		}
 		let backgroundQueueManagedObjectContext: NSManagedObjectContext = {
 			guard defaults.backgroundImportEnabled else {
 				return mainQueueManagedObjectContext
 			}
 			return NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType) … {
-				$0.parent = mainQueueManagedObjectContext
 				$0.name = "background"
+				$0.parent = mainQueueManagedObjectContext
 				if defaults.coreDataCachingEnabled {
 					$0.cachingEnabled = true
 				}
@@ -69,12 +70,13 @@ public let (managedObjectContextError, optionalMainQueueManagedObjectContext, op
 		}()
 		var supplementaryObjects = [AnyObject]()
 		supplementaryObjects += [
-			ManagedObjectContextAutosaver(managedObjectContext: mainQueueManagedObjectContext, queue: nil)
+			ManagedObjectContextAutosaver(managedObjectContext: mainQueueManagedObjectContext, queue: nil),
+			ManagedObjectContextAutosaver(managedObjectContext: saveQueueManagedObjectContext, queue: nil)
 		]
-		return (nil, mainQueueManagedObjectContext, backgroundQueueManagedObjectContext, supplementaryObjects)
+		return (nil, saveQueueManagedObjectContext, mainQueueManagedObjectContext, backgroundQueueManagedObjectContext, supplementaryObjects)
 	}
 	catch {
-		return (error, nil, nil, [])
+		return (error, nil, nil, nil, [])
 	}
 }()
 
