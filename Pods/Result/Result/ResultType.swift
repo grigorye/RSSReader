@@ -51,7 +51,6 @@ public extension ResultType {
 
 	/// Returns a new Result by mapping `Success`es’ values using `transform`, or re-wrapping `Failure`s’ errors.
 #if swift(>=3)
-	@warn_unused_result
 	public func map<U>(_ transform: @noescape (Value) -> U) -> Result<U, Error> {
 		return flatMap { .Success(transform($0)) }
 	}
@@ -64,7 +63,6 @@ public extension ResultType {
 
 	/// Returns the result of applying `transform` to `Success`es’ values, or re-wrapping `Failure`’s errors.
 #if swift(>=3)
-	@warn_unused_result
 	public func flatMap<U>(_ transform: @noescape (Value) -> Result<U, Error>) -> Result<U, Error> {
 		return analysis(
 			ifSuccess: transform,
@@ -81,7 +79,6 @@ public extension ResultType {
 	
 	/// Returns a new Result by mapping `Failure`'s values using `transform`, or re-wrapping `Success`es’ values.
 #if swift(>=3)
-	@warn_unused_result
 	public func mapError<Error2>(_ transform: @noescape (Error) -> Error2) -> Result<Value, Error2> {
 		return flatMapError { .Failure(transform($0)) }
 	}
@@ -94,7 +91,6 @@ public extension ResultType {
 
 	/// Returns the result of applying `transform` to `Failure`’s errors, or re-wrapping `Success`es’ values.
 #if swift(>=3)
-	@warn_unused_result
 	public func flatMapError<Error2>(_ transform: @noescape (Error) -> Result<Value, Error2>) -> Result<Value, Error2> {
 		return analysis(
 			ifSuccess: Result<Value, Error2>.Success,
@@ -154,7 +150,6 @@ public extension ResultType where Error: ErrorTypeConvertible {
 
 	/// Returns the result of applying `transform` to `Success`es’ values, or wrapping thrown errors.
 #if swift(>=3)
-	@warn_unused_result
 	public func tryMap<U>(_ transform: @noescape (Value) throws -> U) -> Result<U, Error> {
 		return flatMap { value in
 			do {
