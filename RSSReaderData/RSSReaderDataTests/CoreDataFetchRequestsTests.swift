@@ -8,6 +8,7 @@
 
 import XCTest
 import CoreData
+import PromiseKit
 @testable import RSSReaderData
 @testable import GEBase
 
@@ -16,9 +17,12 @@ class CoreDataFetchRequestsTests: XCTestCase {
 	// MARK: -
     override func setUp() {
     	let authenticateDidComplete = self.expectation(withDescription: "authenticateDidComplete")
-		rssSession.authenticate { error in
-			XCTAssert(nil == error, "error: \(error)")
+		firstly {
+			return rssSession.authenticate()
+		}.then {
 			authenticateDidComplete.fulfill()
+		}.error { error in
+			XCTFail("error: \(error)")
 		}
 		self.waitForExpectations(withTimeout: 5) { error in
 			$(error)
@@ -29,38 +33,35 @@ class CoreDataFetchRequestsTests: XCTestCase {
         super.tearDown()
     }
 	// MARK: -
-	func testAuthenticate() {
-    	let authenticateDidComplete = self.expectation(withDescription: "authenticateDidComplete")
-		rssSession.authenticate { error in
-			XCTAssert(nil == error, "error: \(error)")
-			authenticateDidComplete.fulfill()
-		}
-		self.waitForExpectations(withTimeout: 5) { error in
-			$(error)
-		}
-	}
-    func testUpdateTags() {
+    func testPullTags() {
 		$(mainQueueManagedObjectContext.persistentStoreCoordinator)
-    	let updateTagsComplete = self.expectation(withDescription: "updateTagsComplete")
-		rssSession.updateTags { error in
-			XCTAssert(nil == error, "error: \(error)")
-			updateTagsComplete.fulfill()
+    	let pullTagsComplete = self.expectation(withDescription: "pullTagsComplete")
+		firstly {
+			return rssSession.pullTags()
+		}.then {
+			pullTagsComplete.fulfill()
+		}.error { error in
+			XCTFail("error: \(error)")
 		}
 		self.waitForExpectations(withTimeout: 5) { error in
 			$(error)
 		}
 	}
-    func testUpdateTagsFromLastData() {
-    	let updateTagsComplete = self.expectation(withDescription: "updateTagsComplete")
-		let data = try! Data(contentsOf: lastTagsFileURL)
-		rssSession.updateTags(from: data) { error in
-			updateTagsComplete.fulfill()
-			XCTAssert(nil == error, "error: \(error)")
+    func testPullTagsFromLastData() {
+		$(mainQueueManagedObjectContext.persistentStoreCoordinator)
+		_ = try! Data(contentsOf: lastTagsFileURL)
+    	let pullTagsComplete = self.expectation(withDescription: "pullTagsComplete")
+		firstly {
+			return rssSession.pullTags()
+		}.then {
+			pullTagsComplete.fulfill()
+		}.error { error in
+			XCTFail("error: \(error)")
 		}
 		self.waitForExpectations(withTimeout: 5) { error in
 			$(error)
 		}
-		RunLoop.current().run(until: Date(timeIntervalSinceNow: 5))
+		RunLoop.current.run(until: Date(timeIntervalSinceNow: 5))
 	}
 	func testFetchRequestInPerformBlockInBackgroundQueueContextWithDirectAccessFetchedResult() {
 		backgroundQueueManagedObjectContext.perform {
@@ -73,7 +74,7 @@ class CoreDataFetchRequestsTests: XCTestCase {
 				XCTAssertTrue(false)
 			}
 		}
-		RunLoop.current().run(until: Date(timeIntervalSinceNow: 5))
+		RunLoop.current.run(until: Date(timeIntervalSinceNow: 5))
 	}
 	func testFetchRequestInPerformBlockInBackgroundQueueContextWithFetchedResultAccessedByObjectID() {
 		backgroundQueueManagedObjectContext.perform {
@@ -88,7 +89,7 @@ class CoreDataFetchRequestsTests: XCTestCase {
 				XCTAssertTrue(false)
 			}
 		}
-		RunLoop.current().run(until: Date(timeIntervalSinceNow: 5))
+		RunLoop.current.run(until: Date(timeIntervalSinceNow: 5))
 	}
 	func testFetchRequestInPerformBlockInBackgroundQueueContextWithAccessFetchedResultInPerformBlock() {
     	let didPerformBlock = self.expectation(withDescription: "didPerformBlock")
@@ -105,7 +106,7 @@ class CoreDataFetchRequestsTests: XCTestCase {
 				XCTAssertTrue(false)
 			}
 		}
-		RunLoop.current().run(until: Date(timeIntervalSinceNow: 5))
+		RunLoop.current.run(until: Date(timeIntervalSinceNow: 5))
 		self.waitForExpectations(withTimeout: 5) { error in
 			$(error)
 		}
@@ -125,7 +126,7 @@ class CoreDataFetchRequestsTests: XCTestCase {
 				XCTAssertTrue(false)
 			}
 		}
-		RunLoop.current().run(until: Date(timeIntervalSinceNow: 5))
+		RunLoop.current.run(until: Date(timeIntervalSinceNow: 5))
 		self.waitForExpectations(withTimeout: 5) { error in
 			$(error)
 		}
@@ -138,6 +139,6 @@ class CoreDataFetchRequestsTests: XCTestCase {
 				•(folder.sortID)
 			}
 		}
-		RunLoop.current().run(until: Date(timeIntervalSinceNow: 5))
+		RunLoop.current.run(until: Date(timeIntervalSinceNow: 5))
 	}
 }
