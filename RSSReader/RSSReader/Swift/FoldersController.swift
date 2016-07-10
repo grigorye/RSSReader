@@ -21,6 +21,7 @@ enum FoldersUpdateState: Int {
 	case updatingSubscriptions
 	case updatingUnreadCounts
 	case updatingStreamPreferences
+	case prefetching
 }
 
 extension FoldersUpdateState: CustomStringConvertible {
@@ -42,6 +43,8 @@ extension FoldersUpdateState: CustomStringConvertible {
 			return NSLocalizedString("Updating Unread Counts", comment: "Folders Update State")
 		case .updatingStreamPreferences:
 			return NSLocalizedString("Updating Folder List", comment: "Folders Update State")
+		case .prefetching:
+			return NSLocalizedString("Prefetching", comment: "Folders Update State")
 		case .completed:
 			return NSLocalizedString("Completed", comment: "Folders Update State")
 		}
@@ -59,7 +62,6 @@ enum FoldersControllerError: ErrorProtocol {
 }
 
 @objc protocol FoldersController {
-	var rssSession: RSSSession? { get }
 	var foldersLastUpdateDate: Date? { get set }
 	var foldersLastUpdateErrorRaw: NSError? { get set }
 	var foldersUpdateStateRaw: Int { get set }
@@ -84,7 +86,7 @@ extension FoldersController {
 	}
 	typealias Error = FoldersControllerError
 	final func updateFoldersAuthenticated() -> Promise<Void> {
-		let rssSession = self.rssSession!
+		let rssSession = RSSReader.rssSession!
 		let promise: Promise<Void> = firstly {
 			self.foldersLastUpdateError = nil
 			self.foldersUpdateState = .updatingUserInfo
@@ -104,9 +106,27 @@ extension FoldersController {
 		}.then {
 			self.foldersUpdateState = .updatingStreamPreferences
 			return rssSession.updateStreamPreferences()
+		}.then {
+			self.foldersUpdateState = .prefetching
+			let context = backgroundQueueManagedObjectContext
+			return Promise { fulfill, reject in
+				context.perform {
+					let containerLoadController = ContainerLoadController()…{
+						$0.container = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: context)
+						$0.unreadOnly = true
+					}
+					containerLoadController.loadMore { error in
+						guard let error = error else {
+							fulfill()
+							return
+						}
+						reject(error)
+					}
+				}
+			}
 		}.always {
-			self.foldersLastUpdateDate = Date()
 			self.foldersUpdateState = .completed
+			self.foldersLastUpdateDate = Date()
 		}.recover { error -> Void in
 			self.foldersLastUpdateError = error
 			throw $(error)
