@@ -122,7 +122,7 @@ extension RSSSession {
 		return self.promise(for: MarkAllAsRead(container: container))
 	}
 	public func streamContents(_ container: Container, excludedCategory: Folder?, continuation: String?, count: Int = 20, loadDate: Date) -> Promise<StreamContents.ResultType> {
-		return self.promise(for: StreamContents(excludedCategory: excludedCategory, container: container, continuation: continuation, loadDate: loadDate))
+		return self.promise(for: StreamContents(excludedCategory: excludedCategory, container: container, continuation: continuation, count: count, loadDate: loadDate))
 	}
 	/// MARK: -
 	func pushTags(from context: NSManagedObjectContext, completionHandler: CommandCompletionHandler<Void>) {
