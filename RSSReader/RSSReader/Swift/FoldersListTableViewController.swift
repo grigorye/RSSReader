@@ -13,6 +13,7 @@ import UIKit
 import CoreData
 
 class FoldersListTableViewController: ContainerTableViewController, UIDataSourceModelAssociation {
+	typealias _Self = FoldersListTableViewController
 	dynamic var rootFolder: Folder?
 	override var container: Container? {
 		set {
@@ -46,6 +47,8 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 		}()
 		return (regeneratedChildContainers)
 	}
+	// MARK: -
+	@IBOutlet private var combinedBarButtonItem: UIBarButtonItem!
 	// MARK: -
 	@IBOutlet private var statusLabel: UILabel!
 	@IBOutlet private var statusBarButtonItem: UIBarButtonItem!
@@ -97,7 +100,7 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 		}
 	}
 	@IBAction func refresh(_ sender: AnyObject!) {
-		guard let rssSession = self.rssSession else {
+		guard let rssSession = rssSession else {
 			let message = NSLocalizedString("To sync you should be logged in.", comment: "")
 			presentErrorMessage(message)
 			return
@@ -229,18 +232,16 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 		}
 	}
 	// MARK: -
-	var viewDidDisappearRetainedObjects = [AnyObject]()
-	var blocksScheduledForViewWillAppear = [Handler]()
-	override func viewWillAppear(_ animated: Bool) {
-		blocksScheduledForViewWillAppear.forEach {$0()}
-		blocksScheduledForViewWillAppear = []
-		super.viewWillAppear(animated)
-		viewDidDisappearRetainedObjects += [KVOBinding(self•#keyPath(regeneratedChildContainers), options: .initial) { [unowned self] change in
+	func bindChildContainers() -> Handler {
+		let binding = KVOBinding(self•#keyPath(regeneratedChildContainers), options: .initial) { [unowned self] change in
 			$(change!)
 			self.childContainers = self.regeneratedChildContainers
 			self.tableView.reloadData()
-		}]
-		viewDidDisappearRetainedObjects += [KVOBinding(self•#keyPath(foldersController.foldersUpdateStateRaw), options: .initial) { [unowned self] change in
+		}
+		return {_ = binding}
+	}
+	func bindFoldersUpdateState() -> Handler {
+		let binding = KVOBinding(self•#keyPath(foldersController.foldersUpdateStateRaw), options: .initial) { [unowned self] change in
 			assert(Thread.isMainThread)
 			•(change)
 			let foldersUpdateState = self.foldersController.foldersUpdateState
@@ -263,11 +264,32 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 				}
 			}()
 			self.presentInfoMessage(message)
-		}]
+		}
+		return {_ = binding}
 	}
+	func bindCombinedTitle() -> Handler {
+		let binding = KVOBinding(self•#keyPath(itemsCount), options: [.initial]) { _ in
+			self.combinedBarButtonItem.title = "\(self.itemsCount)"
+		}
+		return {
+			_ = binding
+		}
+	}
+	// MARK: -
+	var blocksScheduledForViewWillAppear = [Handler]()
+	override func viewWillAppear(_ animated: Bool) {
+		blocksScheduledForViewWillAppear.forEach {$0()}
+		blocksScheduledForViewWillAppear = []
+		super.viewWillAppear(animated)
+		blocksScheduledForViewDidDisappear += [bindChildContainers()]
+		blocksScheduledForViewDidDisappear += [bindFoldersUpdateState()]
+		blocksScheduledForViewDidDisappear += [bindCombinedTitle()]
+	}
+	var blocksScheduledForViewDidDisappear = [Handler]()
 	override func viewDidDisappear(_ animated: Bool) {
+		blocksScheduledForViewDidDisappear.forEach {$0()}
+		blocksScheduledForViewDidDisappear = []
 		super.viewDidDisappear(animated)
-		viewDidDisappearRetainedObjects = []
 	}
 	// MARK: -
 	deinit {
