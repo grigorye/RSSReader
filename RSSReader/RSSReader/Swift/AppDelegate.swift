@@ -115,13 +115,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 		fatalError()
 	}
 	// MARK: -
-	lazy var fetchedRootFolderBinding: FetchedObjectBinding<Folder> = FetchedObjectBinding<Folder>(managedObjectContext: mainQueueManagedObjectContext, predicate: Folder.predicateForFetchingFolderWithTagSuffix(rootTagSuffix)) { folder in
+	lazy var fetchedRootFolderBinding: FetchedObjectBinding<Folder> = FetchedObjectBinding<Folder>(managedObjectContext: mainQueueManagedObjectContext, predicate: Folder.predicateForFetchingFolderWithTagSuffix(rootTagSuffix)) { folders in
 		let foldersViewController = self.foldersViewController
-		foldersViewController.rootFolder = folder
+		foldersViewController.rootFolder = folders.last!
 	}
-	lazy var fetchedFavoritesFolderBinding: FetchedObjectBinding<Folder> = FetchedObjectBinding<Folder>(managedObjectContext: mainQueueManagedObjectContext, predicate: Folder.predicateForFetchingFolderWithTagSuffix(favoriteTagSuffix)) { folder in
+	lazy var fetchedFavoritesFolderBinding: FetchedObjectBinding<Folder> = FetchedObjectBinding<Folder>(managedObjectContext: mainQueueManagedObjectContext, predicate: Folder.predicateForFetchingFolderWithTagSuffix(favoriteTagSuffix)) { folders in
 		let foldersViewController = self.favoritesViewController
-		foldersViewController.container = folder
+		foldersViewController.container = folders.last!
 	}
 	// MARK: -
 	private let currentRestorationFormatVersion = Int32(1)
@@ -196,11 +196,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 		let updateLoginAndPassword = {
 			self.loginAndPassword = $(defaults.loginAndPassword)
 			guard let loginAndPassword = self.loginAndPassword where loginAndPassword.isValid() else {
-				self.rssSession = nil
+				rssSession = nil
 				self.openSettings(nil)
 				return
 			}
-			self.rssSession = RSSSession(loginAndPassword: loginAndPassword)
+			rssSession = RSSSession(loginAndPassword: loginAndPassword)
 		}
 		updateLoginAndPassword()
 		retainedObjects += [notificationCenter.addObserver(forName: UserDefaults.didChangeNotification, object:nil, queue:nil) { [unowned self] notification in
