@@ -9,16 +9,13 @@
 import CoreData
 
 public class FetchedObjectBinding<T where T: DefaultSortable, T: Managed, T: NSFetchRequestResult> : NSObject, NSFetchedResultsControllerDelegate {
-	var handler: (T?) -> Void
+	var handler: ([T]) -> Void
 	let fetchedResultsController: NSFetchedResultsController<T>
 	public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-		let object = controller.fetchedObjects!.last as! T?
-		handler(object)
+		handler(controller.fetchedObjects! as! [T])
 	}
-	public init(managedObjectContext: NSManagedObjectContext, predicate: Predicate?, handler: (T?) -> Void) {
-		self.handler = { object in
-			handler(object)
-		}
+	public init(managedObjectContext: NSManagedObjectContext, predicate: Predicate?, handler: ([T]) -> Void) {
+		self.handler = handler
 		self.fetchedResultsController = {
 			let fetchRequest = T.fetchRequestForEntity() … {
 				$0.predicate = _0 ? nil : predicate
@@ -30,6 +27,6 @@ public class FetchedObjectBinding<T where T: DefaultSortable, T: Managed, T: NSF
 		super.init()
 		fetchedResultsController.delegate = self
 		try! fetchedResultsController.performFetch()
-		handler(fetchedResultsController.fetchedObjects!.last)
+		handler(fetchedResultsController.fetchedObjects!)
 	}
 }
