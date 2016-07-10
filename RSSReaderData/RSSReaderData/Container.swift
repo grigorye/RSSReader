@@ -42,6 +42,19 @@ extension Container: ManagedIdentifiable {
 }
 
 extension Container {
+	public var predicateForItems: Predicate {
+		switch self {
+		case is Subscription:
+			return Predicate(format: "(\(#keyPath(Item.subscription)) == %@)", argumentArray: [self])
+		case let category where category.streamID.hasSuffix(rootTagSuffix):
+			return Predicate(value: true)
+		default:
+			return Predicate(format: "(\(#keyPath(Item.categories)) CONTAINS %@)", argumentArray: [self])
+		}
+	}
+}
+
+extension Container {
 	func importFromJson(_ jsonObject: AnyObject) throws {
 		let sortID: Int32 = try {
 			guard let json = jsonObject as? [String: AnyObject] else {
