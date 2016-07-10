@@ -29,13 +29,13 @@ extension NSObject {
 	var foldersController: FoldersController {
 		return applicationDelegate
 	}
-	var rssSession: RSSSession? {
-		get {
-			return applicationDelegate.internals.rssSession
-		}
-		set {
-			applicationDelegate.internals.rssSession = newValue
-		}
+}
+var rssSession: RSSSession? {
+	get {
+		return applicationDelegate.internals.rssSession
+	}
+	set {
+		applicationDelegate.internals.rssSession = newValue
 	}
 }
 
