@@ -20,12 +20,10 @@ private var groupingTableUpdatesEnabled: Bool {
 
 class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate {
 	var tableView: UITableView
-	var fetchedResultsController: NSFetchedResultsController<T>
 	var updateCell: (UITableViewCell, atIndexPath: IndexPath) -> Void
 	var rowAnimation: UITableViewRowAnimation { return .automatic }
 	// MARK: -
 	func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-		precondition(controller == fetchedResultsController)
 		$(controller)
 		let managedObjectContext = controller.managedObjectContext
 		assert(managedObjectContext.concurrencyType == .mainQueueConcurrencyType)
@@ -40,7 +38,6 @@ class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSObject, N
 		}
 	}
 	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-		precondition(controller == fetchedResultsController)
 		$(controller)
 		$(stringFromFetchedResultsChangeType(type))
 		switch type {
@@ -53,7 +50,6 @@ class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSObject, N
 		}
 	}
 	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: AnyObject, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-		precondition(controller == fetchedResultsController)
 		let tableView = self.tableView
 		$(tableView)
 		$(controller)
@@ -82,7 +78,6 @@ class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSObject, N
 	}
 	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		$(controller)
-		precondition(controller == fetchedResultsController)
 		if groupingTableUpdatesEnabled {
 			($(fetchResultsAnimationEnabled) ? invoke : UIView.performWithoutAnimation) {
 				$(self.tableView).endUpdates()
@@ -90,9 +85,8 @@ class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSObject, N
 		}
 	}
 	// MARK: -
-	init(tableView: UITableView, fetchedResultsController: NSFetchedResultsController<T>, updateCell: (UITableViewCell, atIndexPath: IndexPath) -> Void) {
+	init(tableView: UITableView, updateCell: (UITableViewCell, atIndexPath: IndexPath) -> Void) {
 		self.tableView = tableView
-		self.fetchedResultsController = fetchedResultsController
 		self.updateCell = updateCell
 	}
 }
