@@ -69,3 +69,9 @@ extension Item {
 		return shortID
 	}
 }
+
+extension Item : DefaultSortable {
+	public static func defaultSortDescriptor() -> SortDescriptor {
+		return SortDescriptor(key: #keyPath(date), ascending: false)
+	}
+}
