@@ -18,18 +18,17 @@ class HistoryViewController: UITableViewController {
 		$0.sortDescriptors = [SortDescriptor(key: #keyPath(Item.lastOpenedDate), ascending: false)]
 		$0.predicate = Predicate(format: "\(#keyPath(Item.lastOpenedDate)) != nil", argumentArray: [])
 	}
-	lazy var fetchedResultsControllerDelegate: TableViewFetchedResultsControllerDelegate<Item> = {
+	static var fetchedResultsControllerDelegateAOKey: Void?
+	lazy var fetchedResultsController: NSFetchedResultsController<Item> = {
 		let fetchedResultsController = NSFetchedResultsController(fetchRequest: _Self.fetchRequest, managedObjectContext: mainQueueManagedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
 		let configureCell = { [unowned self] cell, indexPath in
 			self.configureCell(cell, atIndexPath: indexPath)
 		}
-		let $ = TableViewFetchedResultsControllerDelegate(tableView: self.tableView, fetchedResultsController: fetchedResultsController, updateCell: configureCell)
+		let $ = TableViewFetchedResultsControllerDelegate(tableView: self.tableView, updateCell: configureCell)
+		objc_setAssociatedObject(fetchedResultsController, &fetchedResultsControllerDelegateAOKey, $, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
 		fetchedResultsController.delegate = $
-		return $
+		return fetchedResultsController
 	}()
-	var fetchedResultsController: NSFetchedResultsController<Item> {
-		return fetchedResultsControllerDelegate.fetchedResultsController
-	}
 	// MARK: -
 	func itemForIndexPath(_ indexPath: NSIndexPath) -> Item {
 		return self.fetchedResultsController.fetchedObjects![indexPath.row] 
