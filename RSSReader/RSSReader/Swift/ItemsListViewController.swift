@@ -108,10 +108,16 @@ class ItemsListViewController: ContainerTableViewController {
 		}
 	}
 	// MARK: -
-	internal var fetchedResultsControllerDelegate : TableViewFetchedResultsControllerDelegate<Item>!
-	var fetchedResultsController: NSFetchedResultsController<Item> {
-		return fetchedResultsControllerDelegate.fetchedResultsController
+	class var keyPathsForValuesAffectingPredicateForItems: Set<String> {
+		return [#keyPath(fetchedResultsController)]
 	}
+	override dynamic var predicateForItems: Predicate {
+		return fetchedResultsController.fetchRequest.predicate!
+	}
+	// MARK: -
+	internal var fetchedResultsControllerDelegate : TableViewFetchedResultsControllerDelegate<Item>!
+	var fetchedResultsControllerDelegateAOKey: Void?
+	var fetchedResultsController: NSFetchedResultsController<Item>!
 	// MARK: -
 	var numberOfItemsToLoadPastVisible: Int {
 		return defaults.numberOfItemsToLoadPastVisible
@@ -238,7 +244,7 @@ class ItemsListViewController: ContainerTableViewController {
 	}
 	func reloadViewForNewConfiguration() {
 		navigationItem.rightBarButtonItems = regeneratedRightBarButtonItems()
-		fetchedResultsControllerDelegate = regeneratedFetchedResultsControllerDelegate()
+		fetchedResultsController = regeneratedFetchedResultsController()
 		ongoingLoadDate = nil
 		try! $(self).fetchedResultsController.performFetch()
 		tableView.reloadData()
@@ -427,24 +433,12 @@ class ItemsListViewController: ContainerTableViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		$(self)
 		nowDate = Date()
-		let binding = KVOBinding(self•#keyPath(loadDate), options: [.new, .initial]) { change in
-			•(self.toolbarItems!)
-			let newValue = change![NSKeyValueChangeKey.newKey]
-			if let loadDate = nilForNull(newValue!) as! Date? {
-				let loadAgo = loadAgoDateComponentsFormatter.string(from: loadDate, to: Date())
-				self.presentInfoMessage(String.localizedStringWithFormat(NSLocalizedString("Updated %@ ago", comment: ""), loadAgo!))
-			}
-			else {
-				self.presentInfoMessage(NSLocalizedString("Not updated before", comment: ""))
-			}
- 		}
 		blocksDelayedTillViewWillAppearOrStateRestoration.forEach {$0()}
 		blocksDelayedTillViewWillAppearOrStateRestoration = []
 		blocksDelayedTillViewWillAppear.forEach {$0()}
 		blocksDelayedTillViewWillAppear = []
-		blocksDelayedTillViewDidDisappear += [{
-			_ = binding
-		}]
+		blocksDelayedTillViewDidDisappear += [self.bindLoadDate()]
+		blocksDelayedTillViewDidDisappear += [self.bindTitle()]
 		super.viewWillAppear(animated)
 	}
 	override func viewDidAppear(_ animated: Bool) {
@@ -460,10 +454,10 @@ class ItemsListViewController: ContainerTableViewController {
 	}
 	// MARK: -
 	func configureFetchedResultsController() {
-		fetchedResultsControllerDelegate = regeneratedFetchedResultsControllerDelegate()
+		fetchedResultsController = regeneratedFetchedResultsController()
 		try! $(fetchedResultsController).performFetch()
 	}
-	func configureTitle() {
+	func configureTitleHeaderView() {
 		if let tableHeaderView = tableView.tableHeaderView {
 			if tableView.contentOffset.y == 0 {
 				tableView.contentOffset = CGPoint(x: 0, y: (tableHeaderView.frame).height)
@@ -487,18 +481,7 @@ class ItemsListViewController: ContainerTableViewController {
 			rowHeightEstimator = FrequencyAndWeightBasedTableRowHeightEstimator(dataSource: self)
 		}
 	}
-	// MARK: -
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		configureRowHeightEstimator()
-		configureReusableCells()
-		blocksDelayedTillViewWillAppearOrStateRestoration += [{ [unowned self] in
-			self.configureFetchedResultsController()
-		}]
-		blocksDelayedTillViewWillAppear += [{ [unowned self] in
-			self.configureTitle()
-		}]
-		tableFooterView = tableView.tableFooterView
+	func configureRightBarButtonItems() {
 		for item in [unfilterUnreadBarButtonItem, filterUnreadBarButtonItem] {
 			if let customView = item?.customView {
 				customView.layoutIfNeeded()
@@ -515,6 +498,47 @@ class ItemsListViewController: ContainerTableViewController {
 		}
 		loadedRightBarButtonItems = navigationItem.rightBarButtonItems
 		navigationItem.rightBarButtonItems = regeneratedRightBarButtonItems()
+	}
+	// MARK: -
+	class var keyPathsForValuesAffectingTitleText: Set<String> {
+		return [#keyPath(itemsCount)]
+	}
+	dynamic var titleText: String {
+		return "\(itemsCount)"
+	}
+	func bindTitle() -> Handler {
+		let binding = KVOBinding(self•#keyPath(titleText), options: [.initial]) { _ in
+			self.navigationItem.title = self.titleText
+		}
+		return {
+			_ = binding
+		}
+	}
+	func bindLoadDate() -> Handler {
+		let binding = KVOBinding(self•#keyPath(loadDate), options: [.new, .initial]) { change in
+			•(self.toolbarItems!)
+			let newValue = change![NSKeyValueChangeKey.newKey]
+			if let loadDate = nilForNull(newValue!) as! Date? {
+				let loadAgo = loadAgoDateComponentsFormatter.string(from: loadDate, to: Date())
+				self.presentInfoMessage(String.localizedStringWithFormat(NSLocalizedString("Updated %@ ago", comment: ""), loadAgo!))
+			}
+			else {
+				self.presentInfoMessage(NSLocalizedString("Not updated before", comment: ""))
+			}
+		}
+		return {_ = binding}
+	}
+	// MARK: -
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		configureRowHeightEstimator()
+		configureReusableCells()
+		blocksDelayedTillViewWillAppearOrStateRestoration += [{ [unowned self] in
+			self.configureFetchedResultsController()
+		}]
+		blocksDelayedTillViewWillAppear += [{[unowned self] in self.configureTitleHeaderView()}]
+		tableFooterView = tableView.tableFooterView
+		configureRightBarButtonItems()
 	}
 	var heightSampleLabel: UILabel!
 	var cachedVariableHeights: [NSManagedObjectID : CGFloat] = [:]
@@ -558,19 +582,12 @@ extension ItemsListViewController: TableViewHeightBasedReusedCellGeneratorDataSo
 }
 
 extension ItemsListViewController {
-	func regeneratedFetchedResultsControllerDelegate() -> TableViewFetchedResultsControllerDelegate<Item> {
+	func regeneratedFetchedResultsController() -> NSFetchedResultsController<Item> {
 		typealias E = Item
 		let fetchRequest = E.fetchRequestForEntity() … {
 			$0.sortDescriptors = sortDescriptorsForContainers
 			$0.predicate = CompoundPredicate(andPredicateWithSubpredicates:[Predicate]() … {
-				switch container! {
-				case is Subscription:
-					$0 += [Predicate(format: "(\(#keyPath(E.subscription)) == %@)", argumentArray: [container!])]
-				case let category where category.streamID.hasSuffix(rootTagSuffix):
-					()
-				default:
-					$0 += [Predicate(format: "(\(#keyPath(E.categories)) CONTAINS %@)", argumentArray: [container!])]
-				}
+				$0 += [container!.predicateForItems]
 				$0 += [containerViewPredicate]
 			})
 #if false
@@ -583,9 +600,10 @@ extension ItemsListViewController {
 		let configureCell = { [unowned self] (cell: UITableViewCell, indexPath: IndexPath) -> Void in
 			self.configureCell(cell, atIndexPath: indexPath)
 		}
-		let $ = TableViewFetchedResultsControllerDelegate(tableView: tableView, fetchedResultsController: fetchedResultsController, updateCell: configureCell)
+		let $ = TableViewFetchedResultsControllerDelegate(tableView: tableView, updateCell: configureCell)
+		objc_setAssociatedObject(fetchedResultsController, &fetchedResultsControllerDelegateAOKey, $, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
 		fetchedResultsController.delegate = $
-		return $
+		return fetchedResultsController
 	}
 }
 
