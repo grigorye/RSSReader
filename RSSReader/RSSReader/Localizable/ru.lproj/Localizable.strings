@@ -1,4 +1,4 @@
-/* Error message on failed refresh */
+/* Error message */
 "%@ %@" = "%1$@ %2$@";
 
 /* No comment provided by engineer. */
@@ -10,7 +10,10 @@
 /* Folders Update State */
 "Authenticating" = "Подключение";
 
-/* Proceed action title for alert on failed refresh */
+/* Error description for authentication failure */
+"Authentication Failed" = "Сбой авторизации";
+
+/* Cancel action title for alert on error */
 "Cancel" = "Отменить";
 
 /* Folders Update State */
@@ -20,16 +23,7 @@
 "Failed to load more." = "Не удалось загрузить еще.";
 
 /* No comment provided by engineer. */
-"Failed to mark all as read." = "Не удалось отметить все как прочитанное.";
-
-/* No comment provided by engineer. */
-"Failed to mark as favorite." = "Не удалось добавить в избранное.";
-
-/* No comment provided by engineer. */
-"Failed to mark as read. %@" = "Не удалось отметить как прочитанное. %@";
-
-/* No comment provided by engineer. */
-"Failed to unmark as favorite." = "Не удалось убрать из избранного.";
+"Failed to mark all as read. %@" = "Не удалось отметить все как прочитанное. %@";
 
 /* No comment provided by engineer. */
 "Favorites" = "Избранное";
@@ -49,10 +43,19 @@
 /* No comment provided by engineer. */
 "Open in Safari" = "Открыть в Safari";
 
+/* Folders Update State */
+"Prefetching" = "Предварительное скачивание";
+
+/* Folders Update State */
+"Pulling Tags" = "Получение тэгов";
+
+/* Folders Update State */
+"Pushing Tags" = "Отправка тэгов";
+
 /* Title for alert on failed refresh */
 "Refresh Failed" = "Ошибка обновления";
 
-/* Proceed action title for alert on failed refresh */
+/* Proceed action title for alert on error */
 "Retry" = "Повторить";
 
 /* No comment provided by engineer. */
@@ -74,10 +77,10 @@
 "Updated %@ ago" = "Обновлено %@ назад";
 
 /* Folders Update State */
-"Updating Subscriptions" = "Обновление подписок";
+"Updating Folder List" = "Обновление списка папок";
 
 /* Folders Update State */
-"Updating Tags" = "Обновление тэгов";
+"Updating Subscriptions" = "Обновление подписок";
 
 /* Folders Update State */
 "Updating Unread Counts" = "Обновление счетчиков непрочитанного";

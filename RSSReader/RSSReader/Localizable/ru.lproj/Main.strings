@@ -28,14 +28,14 @@
 /* Class = "UILabel"; text = "Title"; ObjectID = "Fgt-yI-K6M"; */
 "Fgt-yI-K6M.text" = "Title";
 
-/* Class = "UINavigationItem"; title = "Subscsriptions"; ObjectID = "PfS-Px-hbx"; */
-"PfS-Px-hbx.title" = "Подписки";
-
 /* Class = "UINavigationItem"; title = "History"; ObjectID = "Qyl-H4-2jl"; */
 "Qyl-H4-2jl.title" = "История";
 
 /* Class = "UITabBarItem"; title = "Subscriptions"; ObjectID = "RhV-dz-5gA"; */
 "RhV-dz-5gA.title" = "Подписки";
+
+/* Class = "UIBarButtonItem"; title = "Refresh All"; ObjectID = "U5i-x6-HdR"; */
+"U5i-x6-HdR.title" = "Обновить все";
 
 /* Class = "UILabel"; text = "Favorites"; ObjectID = "W01-H4-Bt3"; */
 "W01-H4-Bt3.text" = "Избранное";
@@ -63,9 +63,6 @@
 
 /* Class = "UIBarButtonItem"; title = "R"; ObjectID = "gnU-AB-lLM"; */
 "gnU-AB-lLM.title" = "R";
-
-/* Class = "UIBarButtonItem"; title = " "; ObjectID = "pG2-fU-3i2"; */
-"pG2-fU-3i2.title" = " ";
 
 /* Class = "UILabel"; text = "Debug"; ObjectID = "qOu-K3-OJ2"; */
 "qOu-K3-OJ2.text" = "Разработчик";
