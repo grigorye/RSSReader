@@ -195,7 +195,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 		let notificationCenter = NotificationCenter.default
 		let updateLoginAndPassword = {
 			self.loginAndPassword = $(defaults.loginAndPassword)
-			guard let loginAndPassword = self.loginAndPassword where loginAndPassword.isValid() else {
+			guard let loginAndPassword = self.loginAndPassword, loginAndPassword.isValid() else {
 				rssSession = nil
 				self.openSettings(nil)
 				return

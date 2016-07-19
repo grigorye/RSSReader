@@ -59,7 +59,7 @@ class ItemSummaryWebViewController: UIViewController {
 	}
 	func loadHTMLString(_ HTMLString: String, ignoringExisting: Bool) throws {
 		let webView = self.webView
-		if let _ = webView?.request where !ignoringExisting {
+		if let _ = webView?.request, !ignoringExisting {
 			webView?.reload()
 		}
 		else {
@@ -112,7 +112,7 @@ class ItemSummaryWebViewController: UIViewController {
 		let url = URL(string: href)!
 		retrieveReadableHTMLFromURL(url) { HTMLString, error in
 			DispatchQueue.main.async {
-				guard let HTMLString = HTMLString where nil == error else {
+				guard let HTMLString = HTMLString, nil == error else {
 					$(error)
 					let message = NSLocalizedString("Unable to expand", comment: "")
 					self.presentErrorMessage(message)

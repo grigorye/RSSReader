@@ -17,7 +17,7 @@ func retrieveReadableHTMLFromURL(_ url: URL, completionHandler: (HTMLString: Str
 		completionHandler(HTMLString: nil, error: error)
 	}
 	let dataTask = progressEnabledURLSessionTaskGenerator.textTask(for: URLRequest(url: url)) { text, error in
-		guard let HTMLString = text where nil == error else {
+		guard let HTMLString = text, nil == error else {
 			completeWithError($(error!))
 			return
 		}
