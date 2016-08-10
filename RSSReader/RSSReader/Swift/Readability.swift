@@ -12,11 +12,11 @@ import DZReadability
 #endif
 import Foundation
 
-func retrieveReadableHTMLFromURL(url: NSURL, completionHandler: (HTMLString: String?, error: ErrorType?) -> ()) {
-	let completeWithError: (ErrorType) -> () = { error in
+func retrieveReadableHTMLFromURL(_ url: URL, completionHandler: (HTMLString: String?, error: ErrorProtocol?) -> ()) {
+	let completeWithError: (ErrorProtocol) -> () = { error in
 		completionHandler(HTMLString: nil, error: error)
 	}
-	let dataTask = progressEnabledURLSessionTaskGenerator.textTaskForHTTPRequest(NSURLRequest(URL: url)) { text, error in
+	let dataTask = progressEnabledURLSessionTaskGenerator.textTask(for: URLRequest(url: url)) { text, error in
 		guard let HTMLString = text where nil == error else {
 			completeWithError($(error!))
 			return
@@ -24,7 +24,7 @@ func retrieveReadableHTMLFromURL(url: NSURL, completionHandler: (HTMLString: Str
 #if !DZ_READABILITY_ENABLED
 		completionHandler(HTMLString: HTMLString, error: nil)
 #else
-		dispatch_async(dispatch_get_main_queue()) {
+		DispatchQueue.main.async {
 			let readability = DZReadability(URL: url, rawDocumentContent: text, options: nil) { sender, content, error in
 				if let error = error {
 					completeWithError($(error))

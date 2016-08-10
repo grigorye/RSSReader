@@ -7,12 +7,11 @@
 //
 
 import GEBase
-import GEKeyPaths
 import CoreData
 import Foundation
 
-extension NSDate {
-	convenience init(timestampUsec: String) {
+extension Date {
+	init(timestampUsec: String) {
 		let timeIntervalSince1970 = (timestampUsec as NSString).doubleValue * 1e-6
 		self.init(timeIntervalSince1970: timeIntervalSince1970)
 	}
@@ -33,32 +32,33 @@ extension NSDate {
 	}
 }
 extension Item : ManagedIdentifiable {
-	enum Error: ErrorType {
+	enum Error: ErrorProtocol {
 		case CategoriesMissingOrInvalidInJson(json: [String: AnyObject])
 	}
 	public class func identifierKey() -> String {
-		return "itemID"
+		return #keyPath(id)
 	}
 	public class func entityName() -> String {
 		return "Item"
 	}
-	func importFromJson(jsonObject: AnyObject, subscription: Subscription? = nil) throws {
+	func importFromJson(_ jsonObject: AnyObject, subscription: Subscription? = nil) throws {
 		let json = jsonObject as! [String: AnyObject]
-		let updatedDate: NSDate? = {
-			if let updatedTimeIntervalSince1970 = json["updated"] as! NSTimeInterval? {
-				return NSDate(timeIntervalSince1970: updatedTimeIntervalSince1970)
+		let updatedDate: Date? = {
+			if let updatedTimeIntervalSince1970 = json["updated"] as! TimeInterval? {
+				return Date(timeIntervalSince1970: updatedTimeIntervalSince1970)
 			}
 			return nil
 		}()
 		let managedObjectContext = self.managedObjectContext!
 		if nil != updatedDate && (updatedDate == self.updatedDate) {
-			(self)
+			•(self)
 		}
 		else {
-			let date = NSDate(timestampUsec: json["timestampUsec"] as! String)
+			let date = Date(timestampUsec: json["timestampUsec"] as! String)
 			self.updatedDate = updatedDate
 			self.date = date
 			self.title = json["title"] as! String
+			self.author = json["author"] as! String
 			let summary = (json["summary"] as! [String: AnyObject])["content"] as! String?
 			self.summary = summary
 			let streamID = (json["origin"] as? NSDictionary)?["streamId"] as! String
@@ -87,13 +87,13 @@ extension Subscription {
 	override public class func entityName() -> String {
 		return "Subscription"
 	}
-	class func sortDescriptorsVariants() -> [[NSSortDescriptor]] {
-		return [[NSSortDescriptor(key: self••{$0.sortID}, ascending: true)]]
+	class func sortDescriptorsVariants() -> [[SortDescriptor]] {
+		return [[SortDescriptor(key: #keyPath(sortID), ascending: true)]]
 	}
-	override func importFromJson(jsonObject: AnyObject) throws {
+	override func importFromJson(_ jsonObject: AnyObject) throws {
 		try super.importFromJson(jsonObject)
 		let json = jsonObject as! [String: AnyObject]
-		self.title = json["title"] as! String?
+		self.title = json["title"] as! String
 		self.url = NSURL(string: json["url"] as! String)
 		self.iconURL = NSURL(string: json["iconUrl"] as! String)
 		self.htmlURL = NSURL(string: json["htmlUrl"] as! String)
@@ -106,7 +106,7 @@ extension Subscription {
 		}
 	}
 }
-enum JsonImportError: ErrorType {
+enum JsonImportError: ErrorProtocol {
 	case JsonObjectIsNotDictionary(jsonObject: AnyObject)
 	case MissingSortID(json: [String: AnyObject])
 	case SortIDIsNotHex(json: [String: AnyObject])
@@ -114,14 +114,14 @@ enum JsonImportError: ErrorType {
 	case MissingPrefsID(json: [String: AnyObject])
 	case PrefsMissingValue(prefs: [String: AnyObject])
 	case PrefsValueLengthIsNotFactorOf8(prefs: [String: AnyObject])
-	case SortIDInPrefsValueIsNotHex(prefs: [String: AnyObject], range: Range<String.Index>)
+	case SortIDInPrefsValueIsNotHex(prefs: [String: AnyObject], value: String)
 }
 
 extension Folder {
 	override public static func entityName() -> String {
 		return "Folder"
 	}
-	class func sortDescriptors() -> [[NSSortDescriptor]] {
-		return [[NSSortDescriptor(key: self••{$0.newestItemDate}, ascending: false)]]
+	class func sortDescriptors() -> [[SortDescriptor]] {
+		return [[SortDescriptor(key: #keyPath(newestItemDate), ascending: false)]]
 	}
 }

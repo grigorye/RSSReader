@@ -8,33 +8,31 @@
 
 import Foundation
 
-public enum URLSessionTaskGeneratorError: ErrorType {
-	case UnexpectedHTTPResponseStatus(httpResponse: NSHTTPURLResponse)
+public enum URLSessionTaskGeneratorError: ErrorProtocol {
+	case UnexpectedHTTPResponseStatus(httpResponse: HTTPURLResponse)
 }
 
 public class ProgressEnabledURLSessionTaskGenerator: NSObject {
-	let dispatchQueue = dispatch_get_main_queue()
-	public dynamic var progresses = [NSProgress]()
-	private var mutableProgresses: NSMutableArray {
-		return mutableArrayValueForKey("progresses")
-	}
-	let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+	let dispatchQueue = DispatchQueue.main
+	public dynamic var progresses = [Progress]()
+	let session = URLSession(configuration: URLSessionConfiguration.default)
 	// MARK: -
-	public typealias HTTPDataTaskCompletionHandler = (NSData!, NSHTTPURLResponse!, ErrorType?) -> Void
-	public func dataTaskForHTTPRequest(request: NSURLRequest, completionHandler: HTTPDataTaskCompletionHandler) -> NSURLSessionDataTask? {
-		let progress = NSProgress(totalUnitCount: 1)
-		progress.becomeCurrentWithPendingUnitCount(1)
-		(request)
-		(request.allHTTPHeaderFields)
-		let sessionTask = session.progressEnabledDataTaskWithRequest(request) { data, response, error in
-			dispatch_async(self.dispatchQueue) {
-				self.mutableProgresses.removeObjectIdenticalTo(progress)
+	public typealias HTTPDataTaskCompletionHandler = (Data?, HTTPURLResponse?, ErrorProtocol?) -> Void
+	public func dataTask(for request: URLRequest, completionHandler: HTTPDataTaskCompletionHandler) -> URLSessionDataTask {
+		let progress = Progress(totalUnitCount: 1)
+		progress.becomeCurrent(withPendingUnitCount: 1)
+		•(request)
+		•(request.allHTTPHeaderFields)
+		let sessionTask = session.progressEnabledDataTask(with: request) { data, response, error in
+			self.dispatchQueue.async {
+				self.progresses.remove(at: self.progresses.index(of: progress)!)
 			}
-			let httpResponse = response as! NSHTTPURLResponse!
+			let httpResponse = response as! HTTPURLResponse?
 			do {
 				guard nil == error else {
-					throw error
+					throw error!
 				}
+				let httpResponse = httpResponse!
 				guard httpResponse.statusCode == 200 else {
 					throw URLSessionTaskGeneratorError.UnexpectedHTTPResponseStatus(httpResponse: httpResponse)
 				}
@@ -44,30 +42,32 @@ public class ProgressEnabledURLSessionTaskGenerator: NSObject {
 			}
 		}
 		progress.resignCurrent()
-		dispatch_async(self.dispatchQueue) {
-			self.mutableProgresses.addObject(progress)
+		self.dispatchQueue.async {
+			self.progresses.append(progress)
 		}
 		return sessionTask
 	}
-	public typealias TextTaskCompletionHandler = (String!, ErrorType!) -> Void
-	public func textTaskForHTTPRequest(request: NSURLRequest, completionHandler: TextTaskCompletionHandler) -> NSURLSessionDataTask? {
-		enum Error: ErrorType {
-			case DataDoesNotMatchTextEncoding(data: NSData, encoding: NSStringEncoding)
+	public typealias TextTaskCompletionHandler = (String?, ErrorProtocol?) -> Void
+	public func textTask(for request: URLRequest, completionHandler: TextTaskCompletionHandler) -> URLSessionDataTask? {
+		enum Error: ErrorProtocol {
+			case DataDoesNotMatchTextEncoding(data: Data, encoding: String.Encoding)
 		}
-		return dataTaskForHTTPRequest(request) { data, httpResponse, error in
+		return dataTask(for: request) { data, httpResponse, error in
 			do {
 				if let error = error {
 					throw error
 				}
-				let encoding: NSStringEncoding = {
+				let httpResponse = httpResponse!
+				let encoding: String.Encoding = {
 					if let textEncodingName = httpResponse.textEncodingName {
-						return CFStringConvertEncodingToNSStringEncoding(CFStringConvertIANACharSetNameToEncoding(textEncodingName))
+						return String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(CFStringConvertIANACharSetNameToEncoding(textEncodingName)))
 					}
 					else {
-						return NSUTF8StringEncoding
+						return String.Encoding.utf8
 					}
 				}()
-				guard let text = NSString(data: data, encoding: encoding) as String? else {
+				let data = data!
+				guard let text = String(data: data, encoding: encoding) else {
 					throw Error.DataDoesNotMatchTextEncoding(data: data, encoding: encoding)
 				}
 				completionHandler(text, nil)

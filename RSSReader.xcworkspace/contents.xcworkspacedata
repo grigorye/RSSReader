@@ -17,9 +17,6 @@
          location = "group:GEBase/GEBase.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:GEKeyPaths/GEKeyPaths.xcodeproj">
-      </FileRef>
-      <FileRef
          location = "group:TestHostApp/TestHostApp.xcodeproj">
       </FileRef>
    </Group>

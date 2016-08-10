@@ -8,58 +8,61 @@
 
 import RSSReaderData
 import GEBase
+import PromiseKit
 import Foundation
 
 enum FoldersUpdateState: Int {
-	case Unknown
-	case Completed
-	case Authenticating
-	case UpdatingUserInfo
-	case UpdatingTags
-	case UpdatingSubscriptions
-	case UpdatingUnreadCounts
-	case UpdatingStreamPreferences
+	case unknown
+	case completed
+	case authenticating
+	case updatingUserInfo
+	case pushingTags
+	case pullingTags
+	case updatingSubscriptions
+	case updatingUnreadCounts
+	case updatingStreamPreferences
+	case prefetching
 }
 
 extension FoldersUpdateState: CustomStringConvertible {
 	var description: String {
 		switch self {
-		case .Unknown:
+		case .unknown:
 			return NSLocalizedString("Unknown", comment: "Folders Update State")
-		case .Authenticating:
+		case .authenticating:
 			return NSLocalizedString("Authenticating", comment: "Folders Update State")
-		case .UpdatingUserInfo:
+		case .updatingUserInfo:
 			return NSLocalizedString("Updating User Info", comment: "Folders Update State")
-		case .UpdatingTags:
-			return NSLocalizedString("Updating Tags", comment: "Folders Update State")
-		case .UpdatingSubscriptions:
+		case .pushingTags:
+			return NSLocalizedString("Pushing Tags", comment: "Folders Update State")
+		case .pullingTags:
+			return NSLocalizedString("Pulling Tags", comment: "Folders Update State")
+		case .updatingSubscriptions:
 			return NSLocalizedString("Updating Subscriptions", comment: "Folders Update State")
-		case .UpdatingUnreadCounts:
+		case .updatingUnreadCounts:
 			return NSLocalizedString("Updating Unread Counts", comment: "Folders Update State")
-		case .UpdatingStreamPreferences:
-			return NSLocalizedString("Updating Unread Counts", comment: "Folders Update State")
-		case .Completed:
+		case .updatingStreamPreferences:
+			return NSLocalizedString("Updating Folder List", comment: "Folders Update State")
+		case .prefetching:
+			return NSLocalizedString("Prefetching", comment: "Folders Update State")
+		case .completed:
 			return NSLocalizedString("Completed", comment: "Folders Update State")
 		}
 	}
 }
 
-enum FoldersControllerError: ErrorType {
-	case UserInfoRetrieval(underlyingError: ErrorType)
-	case TagsUpdate(underlyingError: ErrorType)
-	case SubscriptionsUpdate(underlyingError: ErrorType)
-	case DataDoesNotMatchTextEncoding
-	case UnreadCountsUpdate(underlyingError: ErrorType)
-	case StreamPreferencesUpdate(underlyingError: ErrorType)
+enum FoldersControllerError: ErrorProtocol {
+	case userInfoRetrieval(underlyingError: ErrorProtocol)
+	case pushTags(underlyingError: ErrorProtocol)
+	case pullTags(underlyingError: ErrorProtocol)
+	case subscriptionsUpdate(underlyingError: ErrorProtocol)
+	case dataDoesNotMatchTextEncoding
+	case unreadCountsUpdate(underlyingError: ErrorProtocol)
+	case streamPreferencesUpdate(underlyingError: ErrorProtocol)
 }
 
 @objc protocol FoldersController {
-#if false
-	func updateFoldersAuthenticated(completionHandler: (ErrorType?) -> Void)
-	func updateFolders(completionHandler: (ErrorType?) -> Void)
-#endif
-	var rssSession: RSSSession? { get }
-	var foldersLastUpdateDate: NSDate? { get set }
+	var foldersLastUpdateDate: Date? { get set }
 	var foldersLastUpdateErrorRaw: NSError? { get set }
 	var foldersUpdateStateRaw: Int { get set }
 }
@@ -73,7 +76,7 @@ extension FoldersController {
 			return FoldersUpdateState(rawValue: foldersUpdateStateRaw)!
 		}
 	}
-	final var foldersLastUpdateError: ErrorType? {
+	final var foldersLastUpdateError: ErrorProtocol? {
 		set {
 			foldersLastUpdateErrorRaw = NSError(domain: "", code: 1, userInfo: ["swiftError": "\(newValue)"])
 		}
@@ -82,76 +85,52 @@ extension FoldersController {
 		}
 	}
 	typealias Error = FoldersControllerError
-	final func updateFoldersAuthenticated(completionHandler: (ErrorType?) -> Void) {
-		let rssSession = self.rssSession!
-		foldersUpdateState = .UpdatingUserInfo
-		let errorCompletionHandler = { (error: ErrorType) -> Void in
-			self.foldersLastUpdateError = error
-			self.foldersLastUpdateDate = NSDate()
-			self.foldersUpdateState = .Completed
-			completionHandler(error)
-		}
-		let successCompletionHandler: () -> Void = {
-			self.foldersLastUpdateDate = NSDate()
-			self.foldersUpdateState = .Completed
-			completionHandler(nil)
-		}
-		self.foldersLastUpdateError = nil
-		rssSession.updateUserInfo { updateUserInfoError in dispatch_async(dispatch_get_main_queue()) {
-			if let updateUserInfoError = updateUserInfoError {
-				errorCompletionHandler(Error.UserInfoRetrieval(underlyingError: $(updateUserInfoError)))
-				return
-			}
-			self.foldersUpdateState = .UpdatingTags
-			rssSession.updateTags { updateTagsError in dispatch_async(dispatch_get_main_queue()) {
-				if let updateTagsError = updateTagsError {
-					errorCompletionHandler(Error.TagsUpdate(underlyingError: $(updateTagsError)))
-					return
-				}
-				self.foldersUpdateState = .UpdatingSubscriptions
-				rssSession.updateSubscriptions { updateSubscriptionsError in dispatch_async(dispatch_get_main_queue()) {
-					if let updateSubscriptionsError = updateSubscriptionsError {
-						errorCompletionHandler(Error.SubscriptionsUpdate(underlyingError: $(updateSubscriptionsError)))
-						return
+	final func updateFoldersAuthenticated() -> Promise<Void> {
+		let rssSession = RSSReader.rssSession!
+		let promise: Promise<Void> = firstly {
+			self.foldersLastUpdateError = nil
+			self.foldersUpdateState = .updatingUserInfo
+			return rssSession.updateUserInfo()
+		}.then {
+			self.foldersUpdateState = .pushingTags
+			return rssSession.pushTags()
+		}.then {
+			self.foldersUpdateState = .pullingTags
+			return rssSession.pullTags()
+		}.then {
+			self.foldersUpdateState = .updatingSubscriptions
+			return rssSession.updateSubscriptions()
+		}.then {
+			self.foldersUpdateState = .updatingUnreadCounts
+			return rssSession.updateUnreadCounts()
+		}.then {
+			self.foldersUpdateState = .updatingStreamPreferences
+			return rssSession.updateStreamPreferences()
+		}.then {
+			self.foldersUpdateState = .prefetching
+			let context = backgroundQueueManagedObjectContext
+			return Promise { fulfill, reject in
+				context.perform {
+					let containerLoadController = ContainerLoadController()…{
+						$0.container = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: context)
+						$0.unreadOnly = true
 					}
-					self.foldersUpdateState = .UpdatingUnreadCounts
-					rssSession.updateUnreadCounts { updateUnreadCountsError in dispatch_async(dispatch_get_main_queue()) {
-						if let updateUnreadCountsError = updateUnreadCountsError {
-							errorCompletionHandler(Error.TagsUpdate(underlyingError: $(updateUnreadCountsError)))
+					containerLoadController.loadMore { error in
+						guard let error = error else {
+							fulfill()
 							return
 						}
-						self.foldersUpdateState = .UpdatingStreamPreferences
-						rssSession.updateStreamPreferences { updateStreamPreferencesError in dispatch_async(dispatch_get_main_queue()) {
-							if let updateStreamPreferencesError = updateStreamPreferencesError {
-								errorCompletionHandler(Error.StreamPreferencesUpdate(underlyingError: $(updateStreamPreferencesError)))
-								return
-							}
-							successCompletionHandler()
-						}}
-					}}
-				}}
-			}}
-		}}
-	}
-	final func updateFolders(completionHandler: (ErrorType?) -> Void) {
-		let rssSession = self.rssSession!
-		let postAuthenticate = { () -> Void in
-			self.updateFoldersAuthenticated(completionHandler)
-		}
-		if (rssSession.authToken == nil) {
-			self.foldersUpdateState = .Authenticating
-			rssSession.authenticate { error in dispatch_async(dispatch_get_main_queue()) {
-				if let authenticationError = error {
-					completionHandler(authenticationError)
-					self.foldersUpdateState = .Completed
+						reject(error)
+					}
 				}
-				else {
-					postAuthenticate()
-				}
-			}}
+			}
+		}.always {
+			self.foldersUpdateState = .completed
+			self.foldersLastUpdateDate = Date()
+		}.recover { error -> Void in
+			self.foldersLastUpdateError = error
+			throw $(error)
 		}
-		else {
-			postAuthenticate()
-		}
+		return promise
 	}
 }

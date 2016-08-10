@@ -8,6 +8,15 @@
 
 import Foundation
 
+extension String {
+	func substring(toOffset offset: Int) -> String {
+		return substring(to: index(startIndex, offsetBy: offset))
+	}
+	func substring(fromOffset offset: Int) -> String {
+		return substring(from: index(startIndex, offsetBy: offset))
+	}
+}
+
 var swiftHashColumnMatchesLastComponentInCompoundExpressions = true
 
 var traceEnabled: Bool {
@@ -17,30 +26,31 @@ var traceLabelsEnabled: Bool {
 	return defaults.traceLabelsEnabled
 }
 
-func description<T>(value: T) -> String {
+func description<T>(of value: T) -> String {
 	return "\(value)"
 }
 
-func descriptionForInLineLocation(firstLocation: SourceLocation, lastLocation: SourceLocation) -> String {
+func descriptionForInLineLocation(_ firstLocation: SourceLocation, lastLocation: SourceLocation) -> String {
 	return "[\(firstLocation.column)-\(lastLocation.column - 3)]"
 }
 
-func indexOfClosingBracket(string: NSString, openingBracket: NSString, closingBracket: NSString) -> Int {
-	let openingBracketIndex = string.rangeOfString(openingBracket as String).location
-	let closingBracketIndex = string.rangeOfString(closingBracket as String).location
+func indexOfClosingBracket(_ string: NSString, openingBracket: NSString, closingBracket: NSString) -> Int {
+	let openingBracketIndex = string.range(of: openingBracket as String).location
+	let closingBracketIndex = string.range(of: closingBracket as String).location
 	guard (openingBracketIndex != NSNotFound) && (openingBracketIndex < closingBracketIndex) else {
+		assert(NSNotFound != closingBracketIndex)
 		return closingBracketIndex
 	}
 	let tailIndex = openingBracketIndex + openingBracket.length
-	let tail = string.substringFromIndex(tailIndex) as NSString
+	let tail = string.substring(from: tailIndex) as NSString
 	let ignoredClosingBracketIndex = indexOfClosingBracket(tail, openingBracket: openingBracket, closingBracket: closingBracket)
 	let remainingStringIndex = ignoredClosingBracketIndex + closingBracket.length
-	return tailIndex + remainingStringIndex + indexOfClosingBracket(tail.substringFromIndex(remainingStringIndex), openingBracket: openingBracket, closingBracket: closingBracket)
+	return tailIndex + remainingStringIndex + indexOfClosingBracket(tail.substring(from: remainingStringIndex), openingBracket: openingBracket, closingBracket: closingBracket)
 }
 
-func labelFromLocation(firstLocation: SourceLocation, lastLocation: SourceLocation) -> String {
+func label(from firstLocation: SourceLocation, to lastLocation: SourceLocation) -> String {
 	let fileURL = firstLocation.fileURL
-	let resourceName = fileURL.URLByDeletingPathExtension!.lastPathComponent!
+	let resourceName = fileURL.deletingPathExtension!.lastPathComponent!
 	let resourceType = fileURL.pathExtension!
 	guard let bundle = firstLocation.bundle else {
 		// Console
@@ -51,66 +61,68 @@ func labelFromLocation(firstLocation: SourceLocation, lastLocation: SourceLocati
 		// File missing in the bundle
 		return "\(bundleName)/\(resourceName).\(resourceType)[!exist]:\(descriptionForInLineLocation(firstLocation, lastLocation: lastLocation)):?"
 	}
-	guard let fileContents = try? NSString(contentsOfFile: file, encoding: NSUTF8StringEncoding) else {
+	guard let fileContents = try? String(contentsOfFile: file, encoding: String.Encoding.utf8) else {
 		return "\(bundleName)/\(resourceName).\(resourceType)[!read]:\(descriptionForInLineLocation(firstLocation, lastLocation: lastLocation)):?"
 	}
-	let lines = fileContents.componentsSeparatedByString("\n")
-	let line = lines[firstLocation.line - 1] as NSString
+	let lines = fileContents.components(separatedBy: "\n")
+	let line = lines[firstLocation.line - 1]
 	let firstIndex = firstLocation.column - 1
-	let lineSuffix = line.substringFromIndex(firstIndex) as NSString
+	let lineSuffix = line.substring(fromOffset: firstIndex)
 	let lengthInLineSuffix: Int = {
 		guard firstLocation.column != lastLocation.column else {
 			return indexOfClosingBracket(lineSuffix, openingBracket: "(", closingBracket: ")")
 		}
 		return lastLocation.column - firstLocation.column - 3
 	}()
-	let suffix = lineSuffix.substringToIndex(lengthInLineSuffix)
+	let suffix = lineSuffix.substring(toOffset: lengthInLineSuffix)
 	guard swiftHashColumnMatchesLastComponentInCompoundExpressions else {
 		return suffix
 	}
-	let linePrefixReversed = String(line.substringToIndex(firstIndex).characters.reverse()) as NSString
+	let linePrefixReversed = String(line.substring(toOffset: firstIndex).characters.reversed())
 	let lengthInLinePrefixReversed: Int = {
 		guard firstLocation.column != lastLocation.column else {
 			return indexOfClosingBracket(linePrefixReversed, openingBracket: ")", closingBracket: "(")
 		}
 		return 0
 	}()
-	let prefix = String(linePrefixReversed.substringToIndex(lengthInLinePrefixReversed).characters.reverse())
+	let prefix = String(linePrefixReversed.substring(toOffset: lengthInLinePrefixReversed).characters.reversed())
 	let text = prefix + suffix
 	return text
 }
 
-public func labeledString(string: String, location: SourceLocation, lastLocation: SourceLocation) -> String {
+func labeled(_ string: String, from location: SourceLocation, to lastLocation: SourceLocation) -> String {
 	guard traceLabelsEnabled else {
 		return string
 	}
-	let label = labelFromLocation(location, lastLocation: lastLocation)
-	let labeledString = "\(label): \(string)"
+	let locationLabel = label(from: location, to: lastLocation)
+	let labeledString = "\(locationLabel): \(string)"
 	return labeledString
 }
 
-func labelForTracedLocation(location: SourceLocation, lastLocation: SourceLocation) -> String {
-	let label = !traceLabelsEnabled ? descriptionForInLineLocation(location, lastLocation: lastLocation) : {
-		return "\(labelFromLocation(location, lastLocation: lastLocation))"
-	}()
-	return label
+/// Returns label used in `trace`.
+func traceLabel(from location: SourceLocation, to lastLocation: SourceLocation) -> String {
+	guard traceLabelsEnabled else {
+		return descriptionForInLineLocation(location, lastLocation: lastLocation)
+	}
+	return "\(label(from: location, to: lastLocation))"
 }
 
-public typealias Logger = (date: NSDate, label: String, location: SourceLocation, message: String) -> ()
+public typealias Logger = (date: Date, label: String, location: SourceLocation, message: String) -> ()
 
+/// Loggers to be used with `trace`.
 public var loggers: [Logger] = [
 	defaultLogger
 ]
 
-func logString(date: NSDate, label: String, location: SourceLocation, message: String) {
+func log(message: String, withLabel label: String, on date: Date, at location: SourceLocation) {
 	for logger in loggers {
 		logger(date: date, label: label, location: location, message: message)
 	}
 }
 
-public func traceString(string: String, date: NSDate, location: SourceLocation, lastLocation: SourceLocation) {
-	let label = labelForTracedLocation(location, lastLocation: lastLocation)
-	logString(date, label: label, location: location, message: string)
+func trace(_ string: String, on date: Date, from location: SourceLocation, to lastLocation: SourceLocation) {
+	let label = traceLabel(from: location, to: lastLocation)
+	log(message: string, withLabel: label, on: date, at: location)
 }
 
 private let defaultTraceLevel = 0x0badf00d
@@ -164,7 +176,7 @@ public func enableTrace(file: String = #file, function: String = #function) -> T
 	return TraceUnlocker(file: file, function: function)
 }
 
-func tracingShouldBeEnabledForLocation(location: SourceLocation) -> Bool {
+func tracingShouldBeEnabledForLocation(_ location: SourceLocation) -> Bool {
 	guard !filesWithTracingDisabled.contains(location.fileURL.lastPathComponent!) else {
 		return false
 	}
@@ -177,14 +189,14 @@ func tracingShouldBeEnabledForLocation(location: SourceLocation) -> Bool {
 public struct Traceable<T> {
 	let value: T
 	let location: SourceLocation
-	init(value: T, location: SourceLocation = SourceLocation(file: #file, line: #line, column: #column, function: #function, bundle: NSBundle.bundleOnStackFrame(2))) {
+	init(value: T, location: SourceLocation = SourceLocation(file: #file, line: #line, column: #column, function: #function, bundle: Bundle.bundle(forStackFrameIndex: 2))) {
 		self.value = value
 		self.location = location
 	}
 	public func $(level: Int = defaultTraceLevel, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) -> T {
 		if 1 == level || ((level == defaultTraceLevel) && defaultTracingEnabled && tracingShouldBeEnabledForLocation(self.location)) {
 			let column = column + ((level == defaultTraceLevel) ? 0 : -1)
-			trace(value, startLocation: self.location, endLocation: SourceLocation(file: file, line: line, column: column, function: function))
+			trace(value, from: self.location, to: SourceLocation(file: file, line: line, column: column, function: function))
 		}
 		return value
 	}
@@ -198,34 +210,93 @@ public struct Labelable<T> {
 		self.location = location
 	}
 	public func $(file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) -> String {
-		return labelValue(value, startLocation: self.location, endLocation: SourceLocation(file: file, line: line, column: column, function: function))
+		return label(for: value, from: self.location, to: SourceLocation(file: file, line: line, column: column, function: function))
 	}
 }
 
-public func x$<T>(v: T, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, bundle: NSBundle? = NSBundle.bundleOnStackFrame(2)) -> Traceable<T> {
+public func x$<T>(v: T, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, bundle: Bundle? = Bundle.bundle(forStackFrameIndex: 2)) -> Traceable<T> {
 	return Traceable(value: v, location: SourceLocation(file: file, line: line, column: column, function: function, bundle: bundle))
 }
 
-public func xL<T>(v: T, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, bundle: NSBundle? = NSBundle.bundleOnStackFrame(2)) -> Labelable<T> {
+public func xL<T>(v: T, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, bundle: Bundle? = Bundle.bundle(forStackFrameIndex: 2)) -> Labelable<T> {
 	return Labelable(value: v, location: SourceLocation(file: file, line: line, column: column, function: function, bundle: bundle))
 }
 
-func trace<T>(v: T, file: String, line: Int, column: Int, function: String) {
-	let location = SourceLocation(file: file, line: line, column: column, function: function, bundle: NSBundle.bundleOnStackFrame(3))
-	trace(v, startLocation: location, endLocation: location)
+func trace<T>(_ v: T, file: String, line: Int, column: Int, function: String) {
+	let location = SourceLocation(file: file, line: line, column: column, function: function, bundle: Bundle.bundle(forStackFrameIndex: 3))
+	trace(v, from: location, to: location)
 }
 
-public func $<T>(v: T, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) -> T {
+/// Passes-through `value`, logging it as necessary with `loggers`.
+///
+/// Consider Baz.swift:
+/// ````
+/// func sinPi() -> Float {
+///     let foo = Float.pi
+///     let bar = sin(foo)
+///     return bar
+/// }
+/// ````
+/// Any expression used in the code might be logged by simply wrapping it in `$()`:
+/// ````
+/// func sinPi() -> Float {
+///     let foo = Float.pi
+///     $(cos(foo))
+///     let bar = sin($(foo))
+///     return bar
+/// }
+/// ````
+/// When `sinPi` is executed, value for `cos(foo)` as well as `foo` passed to `sin` may be logged as below:
+/// ````
+/// 03:12.13.869 [-] sinPi, Baz.swift:4, cos(foo): -1
+/// 03:12.13.855 [-] sinPi, Baz.swift:5, foo: 3.141593
+/// ````
+/// - seealso: `•`.
+/// - seealso: `loggers`.
+@discardableResult
+public func $<T>(_ value: T, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) -> T {
 	if traceEnabled {
-		trace(v, file: file, line: line, column: column, function: function)
+		trace(value, file: file, line: line, column: column, function: function)
 	}
-	return v
+	return value
 }
 
-prefix operator • {}
-public prefix func •<T>(v: T) -> T {
-	return v
+/// When it replaces `$` used without passing-through the logged value, disables logging and supresses evaluation of `argument`.
+///
+/// Consider Baz.swift that uses `$` for logging value of `cos(foo)` and `foo`:
+/// ````
+/// func sinPi() -> Float {
+///     let foo = Float.pi
+///     $(cos(foo))
+///     let bar = sin($(foo))
+///     return bar
+/// }
+/// ````
+/// To temporarily supress logging *and* evaluation of `cos(foo)`
+/// ````
+/// $(cos(foo))
+/// ````
+/// should be changed to
+/// ````
+/// •(cos(foo))
+/// ````
+/// , hence replacing `$` with `•`, leaving the possibility to enable logging again just by replacing `•` with `$`.
+///
+/// Not adding `•` above would result in a compiler warning about unused value as well as wasting cpu on no-effect invocation.
+///
+/// To temporarily supress logging of `foo` (but still have it evaluated as the argument of `sin`),
+/// ````
+/// let bar = sin($(foo))
+/// ````
+/// should be changed to
+/// ````
+/// let bar = sin((foo))
+/// ````
+/// , ommitting `$`, leaving the possibility to enable logging again just by adding back `$`.
+/// - seealso: `$`.
+public prefix func •<T>(argument: @autoclosure () -> T) -> Void {
 }
+prefix operator • {}
 
 prefix operator « {}
 public prefix func «<T>(v: T) -> T {
@@ -237,17 +308,17 @@ public postfix func »<T>(v: T) -> T {
 	return v
 }
 
-public func L<T>(v: T, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, bundle: NSBundle? = NSBundle.bundleOnStackFrame(2)) -> String {
+public func L<T>(_ v: T, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, bundle: Bundle? = Bundle.bundle(forStackFrameIndex: 2)) -> String {
 	let location = SourceLocation(file: file, line: line, column: column, function: function, bundle: bundle)
-	return labelValue(v, startLocation: location, endLocation: location)
+	return label(for: v, from: location, to: location)
 }
 
-func trace<T>(value: T, startLocation: SourceLocation, endLocation: SourceLocation) {
+func trace<T>(_ value: T, from startLocation: SourceLocation, to endLocation: SourceLocation) {
 	if tracingShouldBeEnabledForLocation(startLocation) {
-		traceString(description(value), date: NSDate(), location: startLocation, lastLocation: endLocation)
+		trace(description(of: value), on: Date(), from: startLocation, to: endLocation)
 	}
 }
 
-func labelValue<T>(value: T, startLocation: SourceLocation, endLocation: SourceLocation) -> String {
-	return labeledString(description(value), location: startLocation, lastLocation: endLocation)
+func label<T>(for value: T, from startLocation: SourceLocation, to endLocation: SourceLocation) -> String {
+	return labeled(description(of: value), from: startLocation, to: endLocation)
 }

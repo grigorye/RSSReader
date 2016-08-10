@@ -2,7 +2,7 @@ PODS:
   - AFMInfoBanner (1.2.1):
     - CVKHierarchySearcher (~> 0.2)
   - Appsee (2.2)
-  - Crashlytics (3.7.0):
+  - Crashlytics (3.7.2):
     - Fabric (~> 1.6.3)
   - CVKHierarchySearcher (0.2.0)
   - DZReadability (0.2.3):
@@ -13,10 +13,12 @@ PODS:
     - FBAllocationTracker (~> 0.1)
     - FBRetainCycleDetector (~> 0.1)
   - FBRetainCycleDetector (0.1.2)
-  - Flurry-iOS-SDK/FlurrySDK (7.6.3)
-  - HTMLReader (0.9.6)
+  - Flurry-iOS-SDK/FlurrySDK (7.6.4)
+  - HTMLReader (1.0)
+  - PromiseKit/CorePromise (4.0.0)
+  - Result (2.1.2)
   - TUSafariActivity (1.0.4)
-  - UXCam (2.5.3)
+  - UXCam (2.5.5)
 
 DEPENDENCIES:
   - AFMInfoBanner
@@ -27,24 +29,38 @@ DEPENDENCIES:
   - FBMemoryProfiler
   - Flurry-iOS-SDK/FlurrySDK
   - HTMLReader
+  - PromiseKit/CorePromise (from `https://github.com/mxcl/PromiseKit`, branch `4.0.0-beta1`)
+  - Result
   - TUSafariActivity
   - UXCam
+
+EXTERNAL SOURCES:
+  PromiseKit:
+    :branch: 4.0.0-beta1
+    :git: https://github.com/mxcl/PromiseKit
+
+CHECKOUT OPTIONS:
+  PromiseKit:
+    :commit: e4acdf97f2243fe7b0447e974bb6451bdd203b9f
+    :git: https://github.com/mxcl/PromiseKit
 
 SPEC CHECKSUMS:
   AFMInfoBanner: a7bcfd409faa624f043e604ae4fb789c84b22815
   Appsee: c95173e65acaab0ffc8a082c70633c9f5f45d5f0
-  Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
+  Crashlytics: 130ab943f8c78cda7a814b434f270b2e2c8a3cba
   CVKHierarchySearcher: 7be8d3bcbcc6f86ff07f785e6c632b5e40da2553
   DZReadability: 451e9134abd6861bc855467e01c7b05680734d4f
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   FBAllocationTracker: dfdca3f71aceca6a85e95e3c6ec76a9785eba0f1
   FBMemoryProfiler: 623fc5f8a61f7d02ec75c87e3b97c90f621d8b02
   FBRetainCycleDetector: 45462f9ed1af0cd77224a4cc4e6dacaca47371b4
-  Flurry-iOS-SDK: 5ea9c76a73ce16bff005d21a4f0b539d2c15d97d
-  HTMLReader: 7e21488ee378afc56ccade8af35840c4e03e434c
+  Flurry-iOS-SDK: 9da972687d3af9f48038dcd86eae9cad3acca456
+  HTMLReader: 8024d86f188a38da8d188d2433003ce652ca444a
+  PromiseKit: 9bd3ee549847d953a009f5f21f7b80d4098ce26a
+  Result: 6e722d4a66b1408680dbfcdf51c0b1c4b706316a
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
-  UXCam: d56a673dcfe6cdac982b78691c9e10b4c60e9b15
+  UXCam: 3318abdb0b2b0d8dc6905579bb5a9ff16185c9a8
 
-PODFILE CHECKSUM: 83b8080cb2442fcb35aa008d5e22b2ab175899aa
+PODFILE CHECKSUM: 7c648664ef1dbd2640f1dbc6128ca5dfef47c9e6
 
-COCOAPODS: 1.0.0
+COCOAPODS: 1.0.1

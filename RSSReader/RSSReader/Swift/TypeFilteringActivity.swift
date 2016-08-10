@@ -11,17 +11,17 @@ import GEBase
 import UIKit.UIActivity
 
 protocol ActivityItemsFilter {
-	func canPerformWithActivityItems(activityItems: [AnyObject]) -> Bool
-	func prepareWithActivityItems(activityItems: [AnyObject])
+	func canPerformWithActivityItems(_ activityItems: [AnyObject]) -> Bool
+	func prepareWithActivityItems(_ activityItems: [AnyObject])
 }
 
 class TypeBasedActivityItemsFilter<T> : ActivityItemsFilter {
 	var acceptedItems: [T]! = nil
-	func canPerformWithActivityItems(activityItems: [AnyObject]) -> Bool {
+	func canPerformWithActivityItems(_ activityItems: [AnyObject]) -> Bool {
 		let acceptableItems = filterObjectsByType(activityItems) as [T]
 		return acceptableItems.count != 0
 	}
-	func prepareWithActivityItems(activityItems: [AnyObject]) {
+	func prepareWithActivityItems(_ activityItems: [AnyObject]) {
 		let acceptableItems = filterObjectsByType(activityItems) as [T]
 		self.acceptedItems = acceptableItems
 	}
@@ -29,10 +29,10 @@ class TypeBasedActivityItemsFilter<T> : ActivityItemsFilter {
 
 class TypeFilteringActivity : UIActivity {
 	let untypedItemsFilter: ActivityItemsFilter
-	override func canPerformWithActivityItems(activityItems: [AnyObject]) -> Bool {
+	override func canPerform(withActivityItems activityItems: [AnyObject]) -> Bool {
 		return untypedItemsFilter.canPerformWithActivityItems(activityItems)
 	}
-	override func prepareWithActivityItems(activityItems: [AnyObject]) {
+	override func prepare(withActivityItems activityItems: [AnyObject]) {
 		untypedItemsFilter.prepareWithActivityItems(activityItems)
 	}
 	init(untypedItemsFilter: ActivityItemsFilter) {

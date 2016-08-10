@@ -7,7 +7,6 @@
 //
 
 import GEBase
-import GEKeyPaths
 import CoreData
 import Foundation
 
@@ -21,33 +20,34 @@ let markedAsReadCategory = Folder.folderWithTagSuffix(readTagSuffix, managedObje
 let markedAsFavoriteCategory = Folder.folderWithTagSuffix(favoriteTagSuffix, managedObjectContext: mainQueueManagedObjectContext)!
 
 extension Folder {
-	public static func predicateForFetchingFolderWithTagSuffix(tagSuffix: String) -> NSPredicate {
-		let E = Folder.self
-		return NSPredicate(format: "\(E••{$0.streamID}) ENDSWITH %@", argumentArray: [tagSuffix])
+	public static func predicateForFetchingFolderWithTagSuffix(_ tagSuffix: String) -> Predicate {
+		typealias E = Folder
+		return Predicate(format: "\(#keyPath(E.streamID)) ENDSWITH %@", argumentArray: [tagSuffix])
 	}
-	public static func fetchRequestForFolderWithTagSuffix(tagSuffix: String) -> NSFetchRequest {
-		let $ = NSFetchRequest(entityName: Folder.entityName())
-		$.predicate = self.predicateForFetchingFolderWithTagSuffix(tagSuffix)
-		$.fetchLimit = 1
-		return $
+	public static func fetchRequestForFolderWithTagSuffix(_ tagSuffix: String) -> NSFetchRequest<Folder> {
+		let fetchRequest = Folder.fetchRequestForEntity() … {
+			$0.predicate = self.predicateForFetchingFolderWithTagSuffix(tagSuffix)
+			$0.fetchLimit = 1
+		}
+		return fetchRequest
 	}
-	public static func folderWithTagSuffix(tagSuffix: String, managedObjectContext: NSManagedObjectContext) -> Folder? {
+	public static func folderWithTagSuffix(_ tagSuffix: String, managedObjectContext: NSManagedObjectContext) -> Folder? {
 		let fetchRequest = self.fetchRequestForFolderWithTagSuffix(tagSuffix)
-		let folder = (try! managedObjectContext.executeFetchRequest(fetchRequest)).onlyElement as! Folder?
+		let folder = (try! managedObjectContext.fetch(fetchRequest)).onlyElement
 		return folder
 	}
 }
 
 public extension Item {
-	func categoryForTagSuffix(tagSuffix: String) -> Folder? {
+	func categoryForTagSuffix(_ tagSuffix: String) -> Folder? {
 		let matchingCategories = self.categories.filter { folder in folder.streamID.hasSuffix(tagSuffix) }
 		return matchingCategories.onlyElement
 	}
-	func includedInCategoryWithTagSuffix(tagSuffix: String) -> Bool {
+	func includedInCategoryWithTagSuffix(_ tagSuffix: String) -> Bool {
 		let $ = nil != self.categoryForTagSuffix(tagSuffix)
 		return $
 	}
-	func setIncludedInCategoryWithTagSuffix(tagSuffix: String, newValue: Bool) {
+	func setIncludedInCategoryWithTagSuffix(_ tagSuffix: String, newValue: Bool) {
 		let oldValue = includedInCategoryWithTagSuffix(tagSuffix)
 		if (newValue && oldValue) || (!newValue && !oldValue) {
 		}
@@ -62,17 +62,25 @@ public extension Item {
 		}
 	}
 	// MARK: -
+	final func set(included: Bool, in category: Folder) {
+		if included {
+			categories.insert(category)
+			categoriesToBeExcluded.remove(category)
+			categoriesToBeIncluded.insert(category)
+		}
+		else {
+			categories.remove(category)
+			categoriesToBeExcluded.remove(category)
+			categoriesToBeIncluded.insert(category)
+		}
+		self.pendingUpdateDate = Date()
+	}
 	dynamic var markedAsFavorite: Bool {
 		get {
 			return categories.contains(markedAsFavoriteCategory)
 		}
 		set {
-			if newValue {
-				self.categories.insert(markedAsFavoriteCategory)
-			}
-			else {
-				self.categories.remove(markedAsFavoriteCategory)
-			}
+			self.set(included: newValue, in: markedAsFavoriteCategory)
 		}
 	}
 	public var markedAsRead: Bool {
@@ -89,13 +97,38 @@ public extension Item {
 				for category in self.categories {
 					category.unreadCount += unreadCountDelta
 				}
-				if newValue {
-					self.categories.insert(markedAsReadCategory)
-				}
-				else {
-					self.categories.remove(markedAsReadCategory)
-				}
+				self.set(included: newValue, in: markedAsReadCategory)
 			}
 		}
+	}
+}
+
+extension Item {
+	public class func allPendingForUpdate(in context: NSManagedObjectContext) throws -> [Item] {
+		let fetchRequest = _Self.fetchRequestForEntity() … {
+			$0.predicate = Predicate(format: "\(#keyPath(pendingUpdateDate)) != nil")
+		}
+		let items = try context.fetch(fetchRequest)
+		return items
+	}
+}
+
+extension Folder {
+	public class func allWithItems(toBeExcluded excluded: Bool, in context: NSManagedObjectContext) throws -> [Folder] {
+		let fetchRequest = _Self.fetchRequestForEntity() … {
+#if false
+			$0.shouldRefreshRefetchedObjects = true
+#endif
+			let itemsRelationshipName = excluded ? #keyPath(itemsToBeExcluded) : #keyPath(itemsToBeIncluded)
+			$0.predicate = Predicate(format: "0 < \(itemsRelationshipName).@count")
+		}
+		let categories = try context.fetch(fetchRequest)
+		for category in categories {
+#if true
+			context.refresh(category, mergeChanges: true)
+#endif
+			assert(category.items(toBeExcluded: excluded).count > 0)
+		}
+		return categories
 	}
 }

@@ -9,35 +9,35 @@
 import CoreData.NSManagedObjectContext
 import CoreData.NSManagedObject
 
-private let statefulValueCachesForObjectIDsAssoc = UnsafeMutablePointer<Void>.alloc(1)
-private let cachingEnabledMOCDidChangeObserverAssoc = UnsafeMutablePointer<Void>.alloc(1)
-private let cachingEnabledAssoc = UnsafeMutablePointer<Void>.alloc(1)
-private let notificationCenter = NSNotificationCenter.defaultCenter()
+private var statefulValueCachesForObjectIDsAssoc: Void?
+private var cachingEnabledMOCDidChangeObserverAssoc: Void?
+private var cachingEnabledAssoc: Void?
+private let notificationCenter = NotificationCenter.default
 
 extension NSManagedObjectContext {
 	private var statefulValueCachesForObjectIDs: NSMutableDictionary! {
 		get {
-			return associatedObjectRegeneratedAsNecessary(obj: self, key: statefulValueCachesForObjectIDsAssoc, type: NSMutableDictionary.self)
+			return associatedObjectRegeneratedAsNecessary(obj: self, key: &statefulValueCachesForObjectIDsAssoc, type: NSMutableDictionary.self)
 		}
 		set {
 			precondition(nil == newValue)
-			objc_setAssociatedObject(self, statefulValueCachesForObjectIDsAssoc, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+			objc_setAssociatedObject(self, &statefulValueCachesForObjectIDsAssoc, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
 		}
 	}
 	public var cachingEnabled: Bool {
 		get {
-			return objc_getAssociatedObject(self, cachingEnabledAssoc) as! Bool? ?? false
+			return objc_getAssociatedObject(self, &cachingEnabledAssoc) as! Bool? ?? false
 		}
 		set {
-			objc_setAssociatedObject(self, cachingEnabledAssoc, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC)
+			objc_setAssociatedObject(self, &cachingEnabledAssoc, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC)
 			if newValue {
-				let observer = notificationCenter.addObserverForName(NSManagedObjectContextObjectsDidChangeNotification, object: self, queue: nil) { _ in
+				let observer = notificationCenter.addObserver(forName: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: self, queue: nil) { _ in
 					self.statefulValueCachesForObjectIDs = nil
 				}
-				objc_setAssociatedObject(self, cachingEnabledMOCDidChangeObserverAssoc, observer, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+				objc_setAssociatedObject(self, &cachingEnabledMOCDidChangeObserverAssoc, observer, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
 			}
 			else {
-				let observer = objc_getAssociatedObject(self, cachingEnabledMOCDidChangeObserverAssoc)
+				let observer = objc_getAssociatedObject(self, &cachingEnabledMOCDidChangeObserverAssoc)!
 				notificationCenter.removeObserver(observer)
 			}
 		}
@@ -50,12 +50,12 @@ extension NSManagedObject : PropertyCacheable {
 			return nil
 		}
 		let objectID = self.objectID
-		guard !objectID.temporaryID else {
+		guard !objectID.isTemporaryID else {
 			return nil
 		}
-		precondition(!objectID.temporaryID)
+		precondition(!objectID.isTemporaryID)
 		self.managedObjectContext!.processPendingChanges()
-		let statefulValueCachesForObjectIDs = self.managedObjectContext!.statefulValueCachesForObjectIDs
+		let statefulValueCachesForObjectIDs = self.managedObjectContext!.statefulValueCachesForObjectIDs!
 		guard let valuesCache = statefulValueCachesForObjectIDs[objectID] as! NSMutableDictionary? else {
 			let newValuesCache = NSMutableDictionary()
 			statefulValueCachesForObjectIDs[objectID] = newValuesCache

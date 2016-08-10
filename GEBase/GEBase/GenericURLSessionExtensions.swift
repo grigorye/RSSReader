@@ -8,11 +8,11 @@
 
 import Foundation
 
-extension NSURLSession {
-	func progressEnabledDataTaskWithRequest(request: NSURLRequest, completionHandler: ((NSData!, NSURLResponse!, NSError!) -> Void)?) -> NSURLSessionDataTask? {
-		let progress = NSProgress(totalUnitCount: 1)
-		return self.dataTaskWithRequest($(request)) { data, response, error in
-			progress.becomeCurrentWithPendingUnitCount(1)
+extension URLSession {
+	func progressEnabledDataTask(with request: URLRequest, completionHandler: ((Data?, URLResponse?, NSError?) -> Void)?) -> URLSessionDataTask {
+		let progress = Progress(totalUnitCount: 1)
+		return self.dataTask(with: $(request)) { data, response, error in
+			progress.becomeCurrent(withPendingUnitCount: 1)
 			progress.resignCurrent()
 			completionHandler?(data, $(response), error)
 		}

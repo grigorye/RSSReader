@@ -18,71 +18,66 @@ private var groupingTableUpdatesEnabled: Bool {
 	return defaults.groupingTableUpdatesEnabled
 }
 
-class TableViewFetchedResultsControllerDelegate: NSObject, NSFetchedResultsControllerDelegate {
+class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate {
 	var tableView: UITableView
-	var fetchedResultsController: NSFetchedResultsController
-	var updateCell: (UITableViewCell, atIndexPath: NSIndexPath) -> Void
-	var rowAnimation: UITableViewRowAnimation { return .Automatic }
+	var updateCell: (UITableViewCell, atIndexPath: IndexPath) -> Void
+	var rowAnimation: UITableViewRowAnimation { return .automatic }
 	// MARK: -
-	func controllerWillChangeContent(controller: NSFetchedResultsController) {
-		precondition(controller == fetchedResultsController)
+	func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		$(controller)
 		let managedObjectContext = controller.managedObjectContext
-		assert(managedObjectContext.concurrencyType == .MainQueueConcurrencyType)
+		assert(managedObjectContext.concurrencyType == .mainQueueConcurrencyType)
 		for updatedObject in managedObjectContext.updatedObjects {
 			((updatedObject).changedValues())
 		}
-		(managedObjectContext.insertedObjects)
+		•(managedObjectContext.insertedObjects)
 		if groupingTableUpdatesEnabled {
 			($(fetchResultsAnimationEnabled) ? invoke : UIView.performWithoutAnimation) {
 				$(self.tableView).beginUpdates()
 			}
 		}
 	}
-	func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
-		precondition(controller == fetchedResultsController)
+	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
 		$(controller)
 		$(stringFromFetchedResultsChangeType(type))
 		switch type {
-		case .Insert:
-			tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: rowAnimation)
-		case .Delete:
-			tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: rowAnimation)
+		case .insert:
+			tableView.insertSections(IndexSet(integer: sectionIndex), with: rowAnimation)
+		case .delete:
+			tableView.deleteSections(IndexSet(integer: sectionIndex), with: rowAnimation)
 		default:
 			abort()
 		}
 	}
-	func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-		precondition(controller == fetchedResultsController)
+	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: AnyObject, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
 		let tableView = self.tableView
 		$(tableView)
 		$(controller)
 		$(stringFromFetchedResultsChangeType(type))
 		switch type {
-		case .Insert:
-			$(tableView.numberOfRowsInSection($(newIndexPath!).section))
-			tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: rowAnimation)
-		case .Delete:
-			tableView.deleteRowsAtIndexPaths([$(indexPath!)], withRowAnimation: rowAnimation)
-		case .Update:
-			$(tableView.numberOfRowsInSection($(indexPath!).section))
+		case .insert:
+			$(tableView.numberOfRows(inSection: $(newIndexPath!).section))
+			tableView.insertRows(at: [newIndexPath!], with: rowAnimation)
+		case .delete:
+			tableView.deleteRows(at: [$(indexPath!)], with: rowAnimation)
+		case .update:
+			$(tableView.numberOfRows(inSection: $(indexPath!).section))
 			if defaults.updateCellsInPlaceEnabled {
-				if let cell = tableView.cellForRowAtIndexPath(indexPath!) {
-					let indexPathForCell = tableView.indexPathForCell(cell)!
+				if let cell = tableView.cellForRow(at: indexPath!) {
+					let indexPathForCell = tableView.indexPath(for: cell)!
 					updateCell(cell, atIndexPath: indexPathForCell)
 				}
 			}
 			else {
-				tableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: rowAnimation)
+				tableView.reloadRows(at: [indexPath!], with: rowAnimation)
 			}
-		case .Move:
-			tableView.deleteRowsAtIndexPaths([$(indexPath!)], withRowAnimation: rowAnimation)
-			tableView.insertRowsAtIndexPaths([$(newIndexPath!)], withRowAnimation: rowAnimation)
+		case .move:
+			tableView.deleteRows(at: [$(indexPath!)], with: rowAnimation)
+			tableView.insertRows(at: [$(newIndexPath!)], with: rowAnimation)
 		}
 	}
-	func controllerDidChangeContent(controller: NSFetchedResultsController) {
+	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		$(controller)
-		precondition(controller == fetchedResultsController)
 		if groupingTableUpdatesEnabled {
 			($(fetchResultsAnimationEnabled) ? invoke : UIView.performWithoutAnimation) {
 				$(self.tableView).endUpdates()
@@ -90,9 +85,8 @@ class TableViewFetchedResultsControllerDelegate: NSObject, NSFetchedResultsContr
 		}
 	}
 	// MARK: -
-	init(tableView: UITableView, fetchedResultsController: NSFetchedResultsController, updateCell: (UITableViewCell, atIndexPath: NSIndexPath) -> Void) {
+	init(tableView: UITableView, updateCell: (UITableViewCell, atIndexPath: IndexPath) -> Void) {
 		self.tableView = tableView
-		self.fetchedResultsController = fetchedResultsController
 		self.updateCell = updateCell
 	}
 }

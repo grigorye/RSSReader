@@ -8,9 +8,9 @@
 
 import Foundation
 
-public func loadDefaultsFromSettingsPlistAtURL(url: NSURL) throws {
-	let data = try NSData(contentsOfURL: url, options: NSDataReadingOptions(rawValue: 0))
-    let settingsPlist = try NSPropertyListSerialization.propertyListWithData(data, options: NSPropertyListReadOptions(), format: nil) as! NSDictionary
+public func loadDefaultsFromSettingsPlistAtURL(_ url: URL) throws {
+	let data = try Data(contentsOf: url, options: NSData.ReadingOptions(rawValue: 0))
+    let settingsPlist = try PropertyListSerialization.propertyList(from: data, options: PropertyListSerialization.ReadOptions(), format: nil) as! NSDictionary
     let preferencesSpecifiers = settingsPlist["PreferenceSpecifiers"] as! [[String : AnyObject]]
 	let defaultKeysAndValuesForRegistration: [(key: String, defaultValue: AnyObject)] = preferencesSpecifiers.flatMap {
 		guard let key = $0["Key"] as! String? else {
@@ -24,5 +24,5 @@ public func loadDefaultsFromSettingsPlistAtURL(url: NSURL) throws {
 		$[$1.key] = $1.defaultValue
 		return $
 	}
-    NSUserDefaults().registerDefaults($(defaultsForRegistration))
+    UserDefaults().register($(defaultsForRegistration))
 }

@@ -8,7 +8,6 @@
 
 import RSSReaderData
 import GEBase
-import GEKeyPaths
 import UIKit
 import CoreData
 import FBAllocationTracker
@@ -28,9 +27,9 @@ class AppDelegateInternals {
 	private let urlTaskGeneratorProgressKVOBinding: KVOBinding
 	init() {
 		let taskGenerator = progressEnabledURLSessionTaskGenerator
-		urlTaskGeneratorProgressKVOBinding = KVOBinding(taskGenerator•{$0.progresses}, options: []) { change in
+		urlTaskGeneratorProgressKVOBinding = KVOBinding(taskGenerator•#keyPath(ProgressEnabledURLSessionTaskGenerator.progresses), options: []) { change in
 			let networkActivityIndicatorShouldBeVisible = 0 < taskGenerator.progresses.count
-			UIApplication.sharedApplication().networkActivityIndicatorVisible = (networkActivityIndicatorShouldBeVisible)
+			UIApplication.shared().isNetworkActivityIndicatorVisible = (networkActivityIndicatorShouldBeVisible)
 		}
 	}
 }
@@ -42,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 #if false
 	var foldersLastUpdateDate: NSDate?
 #else
-	final var foldersLastUpdateDate: NSDate? {
+	final var foldersLastUpdateDate: Date? {
 		get {
 			return defaults.foldersLastUpdateDate
 		}
@@ -54,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 	final var foldersLastUpdateErrorRaw: NSError? {
 		get {
 			if let data = defaults.foldersLastUpdateErrorEncoded {
-				return NSKeyedUnarchiver.unarchiveObjectWithData(data) as! NSError?
+				return NSKeyedUnarchiver.unarchiveObject(with: data) as! NSError?
 			}
 			else {
 				return nil
@@ -63,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 		set {
 			defaults.foldersLastUpdateErrorEncoded = {
 				if let error = newValue {
-					return NSKeyedArchiver.archivedDataWithRootObject(error)
+					return NSKeyedArchiver.archivedData(withRootObject: error)
 				}
 				else {
 					return nil
@@ -72,8 +71,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 		}
 	}
 	let internals = AppDelegateInternals()
-	dynamic var foldersUpdateStateRaw = FoldersUpdateState.Completed.rawValue
-	var foldersUpdateState = FoldersUpdateState.Completed {
+	dynamic var foldersUpdateStateRaw = FoldersUpdateState.completed.rawValue
+	var foldersUpdateState = FoldersUpdateState.completed {
 		didSet {
 			foldersUpdateStateRaw = foldersUpdateState.rawValue
 		}
@@ -102,52 +101,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 		return foldersNavigationController.viewControllers.first as! FoldersListTableViewController
 	}
 	lazy var favoritesViewController: ItemsListViewController = {
-		let self_ = UIApplication.sharedApplication().delegate! as! AppDelegate
+		let self_ = UIApplication.shared().delegate! as! AppDelegate
 		let $ = (self_.tabBarController.viewControllers![1] as! UINavigationController).viewControllers.first as! ItemsListViewController
 		configureFavoritesItemsListViewController($)
 		return $
 	}()
 	var loginAndPassword: LoginAndPassword!
 	// MARK: -
-	@IBAction func openSettings(sender: AnyObject?) {
-		UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+	@IBAction func openSettings(_ sender: AnyObject?) {
+		UIApplication.shared().openURL(URL(string: UIApplicationOpenSettingsURLString)!)
 	}
-	@IBAction func crash(sender: AnyObject?) {
-		let _ = "foo" as AnyObject as! Int
+	@IBAction func crash(_ sender: AnyObject?) {
+		fatalError()
 	}
 	// MARK: -
-	lazy var fetchedRootFolderBinding: FetchedObjectBinding<Folder> = FetchedObjectBinding<Folder>(managedObjectContext: mainQueueManagedObjectContext, predicate: Folder.predicateForFetchingFolderWithTagSuffix(rootTagSuffix)) { folder in
+	lazy var fetchedRootFolderBinding: FetchedObjectBinding<Folder> = FetchedObjectBinding<Folder>(managedObjectContext: mainQueueManagedObjectContext, predicate: Folder.predicateForFetchingFolderWithTagSuffix(rootTagSuffix)) { folders in
 		let foldersViewController = self.foldersViewController
-		foldersViewController.rootFolder = folder
+		foldersViewController.rootFolder = folders.last!
 	}
-	lazy var fetchedFavoritesFolderBinding: FetchedObjectBinding<Folder> = FetchedObjectBinding<Folder>(managedObjectContext: mainQueueManagedObjectContext, predicate: Folder.predicateForFetchingFolderWithTagSuffix(favoriteTagSuffix)) { folder in
+	lazy var fetchedFavoritesFolderBinding: FetchedObjectBinding<Folder> = FetchedObjectBinding<Folder>(managedObjectContext: mainQueueManagedObjectContext, predicate: Folder.predicateForFetchingFolderWithTagSuffix(favoriteTagSuffix)) { folders in
 		let foldersViewController = self.favoritesViewController
-		foldersViewController.container = folder
+		foldersViewController.container = folders.last!
 	}
 	// MARK: -
-	private let currentRestorationFormatVersion = 1
+	private let currentRestorationFormatVersion = Int32(1)
 	private enum Restorable: String {
 		case restorationFormatVersion
 	}
-	func application(application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
+	func application(_ application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
 		$(self)
-		coder.encodeObject(currentRestorationFormatVersion, forKey: Restorable.restorationFormatVersion.rawValue)
+		coder.encode(currentRestorationFormatVersion, forKey: Restorable.restorationFormatVersion.rawValue)
 		return true
 	}
-	func application(application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
+	func application(_ application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
 		$(self)
-		let restorationFormatVersion = (coder.decodeObjectForKey(Restorable.restorationFormatVersion.rawValue) as! Int?) ?? 0
+		let restorationFormatVersion = coder.decodeInt32(forKey: Restorable.restorationFormatVersion.rawValue)
 		if $(restorationFormatVersion) < currentRestorationFormatVersion {
 			return false
 		}
 		return $(defaults.stateRestorationEnabled)
 	}
 	//
-	func application(application: UIApplication, willFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+	func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
 		$(self)
 		return true
 	}
-	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		filesWithTracingDisabled += [
 			"TableViewFetchedResultsControllerDelegate.swift",
 			"KVOCompliantUserDefaults.swift"
@@ -161,7 +160,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 		}
 		else {
 			var memoryProfiler: FBMemoryProfiler!
-			retainedObjects += [KVOBinding(defaults•{$0.memoryProfilingEnabled}, options: .Initial) { change in
+			retainedObjects += [KVOBinding(defaults•#keyPath(KVOCompliantUserDefaults.memoryProfilingEnabled), options: .initial) { change in
 				if defaults.memoryProfilingEnabled {
 					guard (memoryProfiler == nil) else {
 						return
@@ -185,26 +184,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 			return false
 		}
 		if nil != self.tabBarController {
-			void(self.fetchedRootFolderBinding)
-			void(self.fetchedFavoritesFolderBinding)
+			•(self.fetchedRootFolderBinding)
+			•(self.fetchedFavoritesFolderBinding)
 			foldersViewController.hidesBottomBarWhenPushed = false
 			favoritesViewController.navigationItem.backBarButtonItem = {
 				let title = NSLocalizedString("Favorites", comment: "");
-				return UIBarButtonItem(title: title, style: .Plain, target: nil, action: nil)
+				return UIBarButtonItem(title: title, style: .plain, target: nil, action: nil)
 			}()
 		}
-		let notificationCenter = NSNotificationCenter.defaultCenter()
+		let notificationCenter = NotificationCenter.default
 		let updateLoginAndPassword = {
 			self.loginAndPassword = $(defaults.loginAndPassword)
 			guard let loginAndPassword = self.loginAndPassword where loginAndPassword.isValid() else {
-				self.rssSession = nil
+				rssSession = nil
 				self.openSettings(nil)
 				return
 			}
-			self.rssSession = RSSSession(loginAndPassword: loginAndPassword)
+			rssSession = RSSSession(loginAndPassword: loginAndPassword)
 		}
 		updateLoginAndPassword()
-		retainedObjects += [notificationCenter.addObserverForName(NSUserDefaultsDidChangeNotification, object:nil, queue:nil) { [unowned self] notification in
+		retainedObjects += [notificationCenter.addObserver(forName: UserDefaults.didChangeNotification, object:nil, queue:nil) { [unowned self] notification in
 			if defaults.loginAndPassword != self.loginAndPassword {
 				updateLoginAndPassword()
 			}
@@ -214,20 +213,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 	// MARK: -
 	override init() {
 		super.init()
-		let defaultsPlistURL = NSBundle.mainBundle().URLForResource("Settings", withExtension: "bundle")!.URLByAppendingPathComponent("Root.plist")
+		let defaultsPlistURL = try! Bundle.main.urlForResource("Settings", withExtension: "bundle")!.appendingPathComponent("Root.plist")
 		try! loadDefaultsFromSettingsPlistAtURL(defaultsPlistURL)
 		if defaults.memoryProfilingEnabled {
-			FBAllocationTrackerManager.sharedManager()!.startTrackingAllocations()
-			FBAllocationTrackerManager.sharedManager()!.enableGenerations()
+			FBAllocationTrackerManager.shared()!.startTrackingAllocations()
+			FBAllocationTrackerManager.shared()!.enableGenerations()
 		}
 		RSSReader.foldersController = self
-		let version = NSBundle.mainBundle().infoDictionary!["CFBundleVersion"] as! NSString
+		let version = Bundle.main.infoDictionary!["CFBundleVersion"] as! NSString
 		$(version)
-		let buildDate = try! NSFileManager().attributesOfItemAtPath(NSBundle.mainBundle().bundlePath)[NSFileModificationDate] as! NSDate
-		let buildAge = NSDate().timeIntervalSinceDate(buildDate)
+		let buildDate = try! FileManager.default.attributesOfItem(atPath: Bundle.main.bundlePath)[FileAttributeKey.modificationDate] as! Date
+		let buildAge = Date().timeIntervalSince(buildDate)
 		$(buildAge)
 #if ANALYTICS_ENABLED
-		let versionIsClean = NSNotFound == version.rangeOfCharacterFromSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet).location
+		let versionIsClean = NSNotFound == version.rangeOfCharacter(from: NSCharacterSet.decimalDigits.inverted).location
 		if (versionIsClean) && $(defaults.analyticsEnabled) {
 #if CRASHLYTICS_ENABLED
 			Fabric.with([Crashlytics()])
@@ -244,8 +243,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 		}
 #endif
 		configureAppearance()
-		let fileManager = NSFileManager()
-		let libraryDirectoryURL = fileManager.URLsForDirectory(.LibraryDirectory, inDomains: .UserDomainMask).last!
+		let fileManager = FileManager()
+		let libraryDirectoryURL = fileManager.urlsForDirectory(.libraryDirectory, inDomains: .userDomainMask).last!
 		let libraryDirectory = libraryDirectoryURL.path!
         $(libraryDirectory)
 	}

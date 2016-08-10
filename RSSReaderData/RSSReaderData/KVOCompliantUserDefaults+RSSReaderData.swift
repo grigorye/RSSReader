@@ -17,5 +17,6 @@ extension KVOCompliantUserDefaults {
 	@NSManaged var batchSavingEnabled: Bool
 	@NSManaged var coreDataCachingEnabled: Bool
 	@NSManaged var backgroundImportEnabled: Bool
+	@NSManaged var forceStoreRemoval: Bool
 
 }

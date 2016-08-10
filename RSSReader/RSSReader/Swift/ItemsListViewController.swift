@@ -7,17 +7,17 @@
 //
 
 import RSSReaderData
+import PromiseKit
 import GEBase
-import GEKeyPaths
 import UIKit
 import CoreData
 
 extension Item {
 	class func keyPathsForValuesAffectingItemListSectionName() -> Set<String> {
-		return [self••{$0.date}, self••{$0.loadDate}]
+		return [#keyPath(date), #keyPath(loadDate)]
 	}
 	func itemsListSectionName() -> String {
-		let timeInterval = date.timeIntervalSinceDate(date)
+		let timeInterval = date.timeIntervalSince(date)
 		if timeInterval < 24 * 3600 {
 			return ""
 		}
@@ -34,67 +34,37 @@ extension Item {
 			return "More than Year Ago"
 		}
 	}
+	func itemListFormattedDate(forNowDate nowDate: Date) -> String {
+		let timeInterval = nowDate.timeIntervalSince(self.date)
+		return dateComponentsFormatter.string(from: timeInterval)!
+	}
 }
-
-let loadAgoDateComponentsFormatter: NSDateComponentsFormatter = {
-	let $ = NSDateComponentsFormatter()
-	$.unitsStyle = .Full
-	$.allowsFractionalUnits = true
-	$.maximumUnitCount = 1
-	$.allowedUnits = [.Minute, .Year, .Month, .WeekOfMonth, .Day, .Hour]
-	return $
-}()
-private let loadAgoLongDateComponentsFormatter: NSDateComponentsFormatter = {
-	let $ = NSDateComponentsFormatter()
-	$.unitsStyle = .Full
-	$.allowsFractionalUnits = true
-	$.maximumUnitCount = 1
-	$.includesApproximationPhrase = true
-	$.allowedUnits = [.Minute, .Year, .Month, .WeekOfMonth, .Day, .Hour]
-	return $
-}()
 
 class ItemsListViewController: ContainerTableViewController {
 	static let Self_ = ItemsListViewController.self
 	final var multipleSourcesEnabled = false
 	var showUnreadEnabled = true
 	class var keyPathsForValuesAffectingContainerViewState: Set<String> {
-		return [Self_••{$0.containerViewPredicate}]
+		return [
+			#keyPath(container.viewStates),
+			#keyPath(containerViewPredicate)
+		]
 	}
-#if true
-	lazy var containerViewStates: [RSSReaderData.ContainerViewState] = {
-		return Array(self.container!.viewStates)
-	}()
-#else
-	var containerViewStates: Set<RSSReaderData.ContainerViewState> {
-		return container!.viewStates
-	}
-#endif
+	var containerViewStateRetained: RSSReaderData.ContainerViewState?
 	dynamic var containerViewState: RSSReaderData.ContainerViewState? {
-		get {
-			let containerViewState = (containerViewStates.filter { $0.containerViewPredicate.isEqual(containerViewPredicate) }).onlyElement
-			return containerViewState
-		}
-		set {
-			assert(containerViewState == nil)
-			let newViewState = newValue!
-			newViewState.container = container
-			newViewState.containerViewPredicate = containerViewPredicate
-	#if true
-			containerViewStates += [newViewState]
-	#endif
-			assert(containerViewStates.contains(newViewState))
-		}
+		let containerViewState = (container!.viewStates.filter { $0.containerViewPredicate.isEqual(containerViewPredicate) }).onlyElement
+		self.containerViewStateRetained = containerViewState
+		return $(containerViewState)
 	}
-	private var ongoingLoadDate: NSDate?
+	private var ongoingLoadDate: Date?
 	private var continuation: String? {
 		set { containerViewState!.continuation = newValue }
 		get { return containerViewState?.continuation }
 	}
 	class var keyPathsForValuesAffectingLoadDate: Set<String> {
-		return [Self_••{$0.containerViewState!.loadDate}]
+		return [#keyPath(containerViewState.loadDate)]
 	}
-	private dynamic var loadDate: NSDate? {
+	private dynamic var loadDate: Date? {
 		set { containerViewState!.loadDate = newValue! }
 		get { return containerViewState?.loadDate }
 	}
@@ -105,15 +75,15 @@ class ItemsListViewController: ContainerTableViewController {
 		set { containerViewState!.loadCompleted = newValue }
 		get { return containerViewState?.loadCompleted ?? false }
 	}
-	private var loadError: ErrorType? {
+	private var loadError: ErrorProtocol? {
 		set { containerViewState!.loadError = newValue }
 		get { return containerViewState?.loadError }
 	}
 	//
 	private var loadInProgress = false
-	private var nowDate: NSDate!
+	private var nowDate: Date!
 	private var tableFooterView: UIView?
-	private var indexPathForTappedAccessoryButton: NSIndexPath?
+	private var indexPathForTappedAccessoryButton: IndexPath?
 	// MARK: -
 	private var loadedRightBarButtonItems: [UIBarButtonItem]!
 	@IBOutlet private var statusLabel: UILabel!
@@ -123,25 +93,31 @@ class ItemsListViewController: ContainerTableViewController {
 	private dynamic var showUnreadOnly = false
 	private func regeneratedRightBarButtonItems() -> [UIBarButtonItem] {
 		let excludedItems = showUnreadEnabled ? [(showUnreadOnly ?  filterUnreadBarButtonItem : unfilterUnreadBarButtonItem)!] : [filterUnreadBarButtonItem!, unfilterUnreadBarButtonItem!]
-		let $ = loadedRightBarButtonItems.filter { nil == excludedItems.indexOf($0) }
+		let $ = loadedRightBarButtonItems.filter { nil == excludedItems.index(of: $0) }
 		return $
 	}
 	class var keyPathsForValuesAffectingContainerViewPredicate: Set<String> {
-		return [Self_.self••{$0.showUnreadOnly}]
+		return [#keyPath(showUnreadOnly)]
 	}
-	private var containerViewPredicate: NSPredicate {
+	@objc private var containerViewPredicate: Predicate {
 		if showUnreadOnly {
-			return NSPredicate(format: "SUBQUERY(\(Item.self••{$0.categories}), $x, $x.\(Folder.self••{$0.streamID}) ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
+			return Predicate(format: "SUBQUERY(\(#keyPath(Item.categories)), $x, $x.\(#keyPath(Folder.streamID)) ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
 		}
 		else {
-			return NSPredicate(value: true)
+			return Predicate(value: true)
 		}
 	}
 	// MARK: -
-	internal var fetchedResultsControllerDelegate : TableViewFetchedResultsControllerDelegate!
-	var fetchedResultsController: NSFetchedResultsController {
-		return fetchedResultsControllerDelegate.fetchedResultsController
+	class var keyPathsForValuesAffectingPredicateForItems: Set<String> {
+		return [#keyPath(fetchedResultsController)]
 	}
+	override dynamic var predicateForItems: Predicate {
+		return fetchedResultsController.fetchRequest.predicate!
+	}
+	// MARK: -
+	internal var fetchedResultsControllerDelegate : TableViewFetchedResultsControllerDelegate<Item>!
+	var fetchedResultsControllerDelegateAOKey: Void?
+	var fetchedResultsController: NSFetchedResultsController<Item>!
 	// MARK: -
 	var numberOfItemsToLoadPastVisible: Int {
 		return defaults.numberOfItemsToLoadPastVisible
@@ -152,59 +128,13 @@ class ItemsListViewController: ContainerTableViewController {
 	var numberOfItemsToLoadLater: Int {
 		return defaults.numberOfItemsToLoadLater
 	}
-	private func proceedWithStreamContentsResult(stateBefore: (ongoingLoadDate: NSDate, continuation: String?), newContinuation: String?, items: [Item]!, streamError: ErrorType?, completionHandler: (loadDateDidChange: Bool) -> Void) {
-		guard stateBefore.ongoingLoadDate == $(ongoingLoadDate) else {
-			// Ignore results from previous sessions.
-			completionHandler(loadDateDidChange: true)
-			return
-		}
-		if nil == containerViewState {
-			let newContainerViewState: ContainerViewState = {
-				let managedObjectContext = container!.managedObjectContext!
-				assert(managedObjectContext == mainQueueManagedObjectContext)
-				let newViewState = NSEntityDescription.insertNewObjectForEntityForName("ContainerViewState", inManagedObjectContext: managedObjectContext) as! RSSReaderData.ContainerViewState
-				return newViewState
-			}()
-			containerViewState = newContainerViewState
-		}
-		defer {
-			loadInProgress = false
-			completionHandler(loadDateDidChange: false)
-			loadMoreIfNecessary()
-		}
-		guard nil == streamError else {
-			loadError = $(streamError!)
-			presentErrorMessage(NSLocalizedString("Failed to load more.", comment: ""))
-			return
-		}
-		if nil == stateBefore.continuation {
-			loadDate = ongoingLoadDate
-		}
-		else {
-			assert(loadDate == ongoingLoadDate)
-		}
-		if let lastItemInResultAsync = (items).last where _0 {
-			let managedObjectContext = fetchedResultsController.managedObjectContext
-			let lastItemInResult = managedObjectContext.sameObject(lastItemInResultAsync)
-			assert(containerViewPredicate.evaluateWithObject(lastItemInResult))
-			assert(lastItemInResult == lastLoadedItem)
-			assert(nil != fetchedResultsController.indexPathForObject(lastItemInResult))
-		}
-		continuation = newContinuation
-		if nil == continuation {
-			loadCompleted = true
-			UIView.animateWithDuration(0.4) {
-				self.tableView.tableFooterView = nil
-			}
-		}
-	}
-	private func loadMore(completionHandler: (loadDateDidChange: Bool) -> Void) {
+	private func loadMore(_ completionHandler: (loadDateDidChange: Bool) -> Void) {
 		assert(!loadInProgress)
 		assert(!loadCompleted)
 		assert(nil == loadError)
-		let oldContinuation = continuation
+		let oldContinuation = self.continuation
 		if nil == oldContinuation {
-			ongoingLoadDate = NSDate()
+			ongoingLoadDate = Date()
 		}
 		else if nil == ongoingLoadDate {
 			ongoingLoadDate = loadDate
@@ -213,78 +143,122 @@ class ItemsListViewController: ContainerTableViewController {
 		loadInProgress = true
 		let excludedCategory: Folder? = showUnreadOnly ? Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: mainQueueManagedObjectContext) : nil
 		let numberOfItemsToLoad = (oldContinuation != nil) ? numberOfItemsToLoadLater : numberOfItemsToLoadInitially
-		rssSession!.streamContents(container!, excludedCategory: excludedCategory, continuation: oldContinuation, count: numberOfItemsToLoad, loadDate: $(oldOngoingLoadDate)) { newContinuation, items, streamError in
-			dispatch_async(dispatch_get_main_queue()) {
-				self.proceedWithStreamContentsResult((ongoingLoadDate: oldOngoingLoadDate, continuation: oldContinuation), newContinuation: newContinuation, items: items, streamError: streamError, completionHandler: completionHandler)
+		let containerViewStateObjectID = typedObjectID(for: containerViewState)
+		let containerObjectID = typedObjectID(for: container)!
+		let containerViewPredicate = self.containerViewPredicate
+		firstly {
+			rssSession!.streamContents(container!, excludedCategory: excludedCategory, continuation: oldContinuation, count: numberOfItemsToLoad, loadDate: $(oldOngoingLoadDate))
+		}.then(on: zalgo) { streamContentsResult -> String? in
+			let ongoingLoadDate = $(self.ongoingLoadDate)
+			guard oldOngoingLoadDate == ongoingLoadDate else {
+				throw NSError.cancelledError()
 			}
+			let managedObjectContext = streamContentsResult.0
+			let containerViewState = containerViewStateObjectID?.object(in: managedObjectContext) ?? {
+				return (NSEntityDescription.insertNewObject(forEntityName: "ContainerViewState", into: managedObjectContext) as! RSSReaderData.ContainerViewState) … {
+					let container = containerObjectID.object(in: managedObjectContext)
+					$0.container = container
+					$0.containerViewPredicate = containerViewPredicate
+				}
+			}()
+			if nil == oldContinuation {
+				containerViewState.loadDate = ongoingLoadDate
+			}
+			else {
+				assert(containerViewState.loadDate == ongoingLoadDate)
+			}
+			let items = streamContentsResult.1.items
+			let lastLoadedItem = items.last
+			let continuation = streamContentsResult.1.continuation
+			containerViewState … {
+				$0.continuation = continuation
+				$0.lastLoadedItem = lastLoadedItem
+			}
+			if let lastLoadedItem = lastLoadedItem {
+				assert(containerViewPredicate.evaluate(with: lastLoadedItem))
+			}
+			try managedObjectContext.save()
+			return continuation
+		}.then { continuation -> Void in
+			if let lastLoadedItem = self.lastLoadedItem {
+				assert(nil != self.fetchedResultsController.indexPath(forObject: lastLoadedItem))
+			}
+			if nil == continuation {
+				self.loadCompleted = true
+				UIView.animate(withDuration: 0.4) {
+					self.tableView.tableFooterView = nil
+				}
+			}
+			self.loadMoreIfNecessary()
+		}.always { () -> Void in
+			guard oldOngoingLoadDate == self.ongoingLoadDate else {
+				return
+			}
+			self.loadInProgress = false
+		}.error { error -> Void in
+			guard oldOngoingLoadDate == self.ongoingLoadDate else {
+				return
+			}
+			self.presentErrorMessage(
+				String.localizedStringWithFormat(
+					"%@ %@",
+					NSLocalizedString("Failed to load more.", comment: ""),
+					(error as NSError).localizedDescription
+				)
+			)
 		}
 	}
-	private func fetchLastLoadedItemDate(completionHandler: NSDate? -> ()) {
-		guard let containerViewState = containerViewState else {
-			completionHandler(nil)
+	private func shouldLoadMore(for lastLoadedItemDate: Date?) -> Bool {
+		guard !(loadInProgress || loadCompleted || loadError != nil) else {
+			return false
+		}
+		guard let lastLoadedItemDate = lastLoadedItemDate else {
+			return true
+		}
+		guard let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows else {
+			return false
+		}
+		guard 0 < indexPathsForVisibleRows.count else {
+			return true
+		}
+		let lastVisibleIndexPath = indexPathsForVisibleRows.last!
+		let numberOfRows = fetchedResultsController.sections![0].numberOfObjects
+		assert(0 < numberOfRows)
+		let barrierRow = min(lastVisibleIndexPath.row + numberOfItemsToLoadPastVisible, numberOfRows - 1)
+		let barrierIndexPath = IndexPath(item: barrierRow, section: lastVisibleIndexPath.section)
+		let barrierItem = fetchedResultsController.object(at: barrierIndexPath) 
+		return !(((lastLoadedItemDate).compare((barrierItem.date))) == .orderedAscending)
+	}
+	private func loadMoreIfNecessary(for lastLoadedItemDate: Date?) {
+		guard shouldLoadMore(for: lastLoadedItemDate) else {
+			if (loadCompleted) {
+				tableView.tableFooterView = nil
+			}
 			return
 		}
-		let containerViewStateObjectID = containerViewState.objectID
-		let managedObjectContext = backgroundQueueManagedObjectContext
-		managedObjectContext.performBlock {
-			let containerViewState = managedObjectContext.objectWithID(containerViewStateObjectID) as! ContainerViewState
-			let date = containerViewState.lastLoadedItem?.date
-			completionHandler(date)
-		}
-	}
-	private func loadMoreIfNecessaryWithLastLoadedItemDate(lastLoadedItemDate: NSDate?) {
-		let shouldLoadMore: Bool = {
-			guard !(loadInProgress || loadCompleted || loadError != nil) else {
-				return false
-			}
-			if let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows {
-				if let lastLoadedItemDate = lastLoadedItemDate where 0 < indexPathsForVisibleRows.count {
-					let lastVisibleIndexPath = indexPathsForVisibleRows.last!
-					let numberOfRows = fetchedResultsController.sections![0].numberOfObjects
-					assert(0 < numberOfRows)
-					let barrierRow = min(lastVisibleIndexPath.row + numberOfItemsToLoadPastVisible, numberOfRows - 1)
-					let barrierIndexPath = NSIndexPath(forRow: (barrierRow) , inSection: lastVisibleIndexPath.section)
-					let barrierItem = fetchedResultsController.objectAtIndexPath(barrierIndexPath) as! Item
-					return !(((lastLoadedItemDate).compare((barrierItem.date))) == .OrderedAscending)
-				}
-				else {
-					return true
-				}
-			}
-			return false
-		}()
-		if (shouldLoadMore) {
-			loadMore { loadDateDidChange in
-			}
-		}
-		else if (loadCompleted) {
-			tableView.tableFooterView = nil
+		loadMore { _ in
 		}
 	}
 	private func loadMoreIfNecessary() {
-		fetchLastLoadedItemDate { lastLoadedItemDate in
-			dispatch_async(dispatch_get_main_queue()) {
-				self.loadMoreIfNecessaryWithLastLoadedItemDate(lastLoadedItemDate)
-			}
-		}
+		self.loadMoreIfNecessary(for: self.lastLoadedItem?.date)
 	}
 	func reloadViewForNewConfiguration() {
 		navigationItem.rightBarButtonItems = regeneratedRightBarButtonItems()
-		fetchedResultsControllerDelegate = regeneratedFetchedResultsControllerDelegate()
+		fetchedResultsController = regeneratedFetchedResultsController()
 		ongoingLoadDate = nil
 		try! $(self).fetchedResultsController.performFetch()
 		tableView.reloadData()
 		loadMoreIfNecessary()
 	}
-	@IBAction private func selectUnread(sender: AnyObject!) {
+	@IBAction private func selectUnread(_ sender: AnyObject!) {
 		showUnreadOnly = true
 		reloadViewForNewConfiguration()
 	}
-	@IBAction private func unselectUnread(sender: AnyObject!) {
+	@IBAction private func unselectUnread(_ sender: AnyObject!) {
 		showUnreadOnly = false
 		reloadViewForNewConfiguration()
 	}
-	@IBAction private func refresh(sender: AnyObject!) {
+	@IBAction private func refresh(_ sender: AnyObject!) {
 		guard let refreshControl = refreshControl else {
 			fatalError()
 		}
@@ -301,36 +275,37 @@ class ItemsListViewController: ContainerTableViewController {
 				if !loadDateDidChange {
 				}
 			}
-			UIView.animateWithDuration(0.4) {
+			UIView.animate(withDuration: 0.4) {
 				self.tableView.tableFooterView = self.tableFooterView
 			}
 		}
 	}
-	@IBAction private func markAllAsRead(sender: AnyObject!) {
+	@IBAction private func markAllAsRead(_ sender: AnyObject!) {
 		let items = (container as! ItemsOwner).ownItems
 		for i in items {
 			i.markedAsRead = true
 		}
-		rssSession!.markAllAsRead(container!) { error in
-			$(error)
-			dispatch_async(dispatch_get_main_queue()) {
-				if nil != error {
-					self.presentErrorMessage(NSLocalizedString("Failed to mark all as read.", comment: ""))
-				}
-				else {
-					self.presentInfoMessage(NSLocalizedString("Marked all as read.", comment: ""))
-				}
-			}
+		firstly {
+			rssSession!.markAllAsRead(container!)
+		}.then {
+			self.presentInfoMessage(NSLocalizedString("Marked all as read.", comment: ""))
+		}.error { error in
+			self.presentErrorMessage(
+				String.localizedStringWithFormat(
+					NSLocalizedString("Failed to mark all as read. %@", comment: ""),
+					"\(error)"
+				)
+			)
 		}
 	}
-	@IBAction private func action(sender: AnyObject?) {
+	@IBAction private func action(_ sender: AnyObject?) {
 		let activityViewController = UIActivityViewController(activityItems: [container!], applicationActivities: applicationActivities)
-		navigationController?.presentViewController(activityViewController, animated: true, completion: nil)
+		navigationController?.present(activityViewController, animated: true, completion: nil)
 	}
 	// MARK: -
-	private func itemForIndexPath(indexPath: NSIndexPath!) -> Item! {
+	private func itemForIndexPath(_ indexPath: IndexPath!) -> Item! {
 		if nil != indexPath {
-			return fetchedResultsController.objectAtIndexPath(indexPath) as! Item
+			return fetchedResultsController.object(at: indexPath) 
 		}
 		else {
 			return nil
@@ -339,69 +314,31 @@ class ItemsListViewController: ContainerTableViewController {
 	private var selectedItem: Item {
 		return itemForIndexPath(tableView.indexPathForSelectedRow!)
 	}
-	func itemDateFormatted(itemDate: NSDate) -> String {
-		guard nil != NSClassFromString("NSDateComponentsFormatter") else {
-			return ""
-		}
-		let timeInterval = nowDate.timeIntervalSinceDate(itemDate)
-		return dateComponentsFormatter.stringFromTimeInterval(timeInterval)!
+	// MARK: -
+	internal func configureCell(_ cell: UITableViewCell, atIndexPath indexPath: IndexPath) {
+		let item = fetchedResultsController.object(at: (indexPath))
+		let cellDataBinder = cell as! ItemTableViewCellDataBinder
+		cellDataBinder.setData((item: item, container: self.container, nowDate: nowDate))
 	}
 	// MARK: -
-	internal func configureCell(cell: ItemTableViewCell, atIndexPath indexPath: NSIndexPath) {
-		let item = fetchedResultsController.objectAtIndexPath((indexPath)) as! Item
-		defer {
-			cell.itemObjectID = item.objectID
-		}
-		guard cell.itemObjectID != item.objectID else {
-			return
-		}
-		if let titleLabel = cell.titleLabel {
-			let text = item.title ?? (item.itemID as NSString).lastPathComponent
-			if text != titleLabel.text {
-				titleLabel.text = text
-			}
-		}
-		if let sourceLabel = cell.sourceLabel {
-			let text = item.subscription.title?.lowercaseString
-			if text != sourceLabel.text {
-				sourceLabel.text = text
-			}
-		}
-		if let dateLabel = cell.dateLabel where defaults.showDates {
-			let text = "\(itemDateFormatted(item.date))".lowercaseString
-			if dateLabel.text != text {
-				dateLabel.text = text
-				if _0 {
-				dateLabel.textColor = item.markedAsRead ? nil : UIColor.redColor()
-				}
-			}
-		}
-		if let readMarkLabel = cell.readMarkLabel where defaults.showUnreadMark {
-			let alpha = CGFloat(item.markedAsRead ? 0 : 1)
-			if readMarkLabel.alpha != alpha {
-				readMarkLabel.alpha = alpha
-			}
-		}
-	}
-	// MARK: -
-	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+	override func numberOfSections(in tableView: UITableView) -> Int {
 		let numberOfSections = fetchedResultsController.sections?.count ?? 0
 		return (numberOfSections)
 	}
-	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		let t = disableTrace(); defer { t }
+	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		let dt = disableTrace(); defer { _ = dt }
 		let numberOfRows = $($(fetchedResultsController).sections![section].numberOfObjects)
 		return $(numberOfRows)
 	}
-	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		guard defaults.itemsAreSortedByLoadDate else {
 			return nil
 		}
 		let sectionName = fetchedResultsController.sections![section].name
-		let dateForDisplay: NSDate? = NSDate(timeIntervalSinceReferenceDate: (sectionName as NSString).doubleValue)
+		let dateForDisplay: Date? = Date(timeIntervalSinceReferenceDate: (sectionName as NSString).doubleValue)
 		let title: String = {
 			if let loadDate = dateForDisplay {
-				let loadAgo = loadAgoLongDateComponentsFormatter.stringFromDate(loadDate, toDate: nowDate)
+				let loadAgo = loadAgoLongDateComponentsFormatter.string(from: loadDate, to: nowDate)
 				return String.localizedStringWithFormat(NSLocalizedString("%@ ago", comment: ""), loadAgo!)
 			}
 			else {
@@ -414,26 +351,26 @@ class ItemsListViewController: ContainerTableViewController {
 	var rowHeightEstimator: FrequencyAndWeightBasedTableRowHeightEstimator<ItemsListViewController>!
 	var systemLayoutSizeCachingDataSource = SystemLayoutSizeCachingTableViewCellDataSource(layoutSizeDefiningValueForCell: {guard $0.reuseIdentifier != "Item" else { return nil }; return $0.reuseIdentifier}, cellShouldBeReusedWithoutLayout: {$0.reuseIdentifier != "Item"})
 	// MARK: -
-	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let dt = disableTrace(); defer { _ = dt }
 		let reuseIdentifier = reusedCellGenerator?.reuseIdentifierForCellForRowAtIndexPath(indexPath) ?? "Item"
-		let cell = tableView.dequeueReusableCellWithIdentifier($(reuseIdentifier), forIndexPath: indexPath) as! ItemTableViewCell
+		let cell = tableView.dequeueReusableCell(withIdentifier: $(reuseIdentifier), for: indexPath)
 		if nil != reusedCellGenerator {
-			cell.systemLayoutSizeCachingDataSource = systemLayoutSizeCachingDataSource
+			(cell as! ItemTableViewCell).systemLayoutSizeCachingDataSource = systemLayoutSizeCachingDataSource
 		}
-		let dt = disableTrace(); defer { dt }
 		configureCell(cell, atIndexPath: $(indexPath))
 		return cell
 	}
-	override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+	override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 		if nil == heightSampleLabel {
 			let viewWithVariableHeight = viewWithVariableHeightForCell(cell)
-			heightSampleLabel = NSKeyedUnarchiver.unarchiveObjectWithData(NSKeyedArchiver.archivedDataWithRootObject(viewWithVariableHeight)) as! UILabel
+			heightSampleLabel = NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: viewWithVariableHeight)) as! UILabel
 		}
-		let rowHeight = tableView.rectForRowAtIndexPath(indexPath).height
+		let rowHeight = tableView.rectForRow(at: indexPath).height
 		reusedCellGenerator?.addRowHeight(rowHeight, forCell: cell, atIndexPath: indexPath)
 		rowHeightEstimator?.addRowHeight(rowHeight, forIndexPath: indexPath)
 	}
-	override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+	override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
 		guard let rowHeightEstimator = rowHeightEstimator else {
 			return UITableViewAutomaticDimension
 		}
@@ -443,33 +380,31 @@ class ItemsListViewController: ContainerTableViewController {
 		return estimatedHeight
 	}
 	// MARK: -
-	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		performSegueWithIdentifier(MainStoryboard.SegueIdentifiers.ShowListPages, sender: self)
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		performSegue(withIdentifier: MainStoryboard.SegueIdentifiers.ShowListPages, sender: self)
 	}
 	// MARK: -
-	override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+	override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
 		tableView.snapHeaderToTop(animated: true)
 	}
-	override func scrollViewDidScroll(scrollView: UIScrollView) {
-		if nil != rssSession && nil != view.superview && !refreshControl!.refreshing {
+	override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+		if nil != rssSession && nil != view.superview && !refreshControl!.isRefreshing {
 			loadMoreIfNecessary()
 		}
 	}
 	// MARK: -
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+	override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
 		switch segue.identifier! {
 		case MainStoryboard.SegueIdentifiers.ShowListPages:
 			let pageViewController = segue.destinationViewController as! UIPageViewController
-			let itemsPageViewControllerDataSource: ItemsPageViewControllerDataSource = {
-				let $ = pageViewController.dataSource as! ItemsPageViewControllerDataSource
-				$.items = fetchedResultsController.fetchedObjects! as! [Item]
-				return $
-			}()
+			let itemsPageViewControllerDataSource = (pageViewController.dataSource as! ItemsPageViewControllerDataSource) … {
+				$0.items = fetchedResultsController.fetchedObjects!
+			}
 			let initialViewController = itemsPageViewControllerDataSource.viewControllerForItem(selectedItem, storyboard: pageViewController.storyboard!)
 			if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
-				pageViewController.edgesForExtendedLayout = .None
+				pageViewController.edgesForExtendedLayout = UIRectEdge()
 			}
-			pageViewController.setViewControllers([initialViewController], direction: .Forward, animated: false, completion: nil)
+			pageViewController.setViewControllers([initialViewController], direction: .forward, animated: false, completion: nil)
 		default:
 			abort()
 		}
@@ -479,15 +414,15 @@ class ItemsListViewController: ContainerTableViewController {
 	private enum Restorable: String {
 		case containerObjectID = "containerObjectID"
 	}
-	override func encodeRestorableStateWithCoder(coder: NSCoder) {
-		super.encodeRestorableStateWithCoder(coder)
+	override func encodeRestorableState(with coder: NSCoder) {
+		super.encodeRestorableState(with: coder)
 		container?.encodeObjectIDWithCoder(coder, key: Restorable.containerObjectID.rawValue)
 	}
-	override func decodeRestorableStateWithCoder(coder: NSCoder) {
-		super.decodeRestorableStateWithCoder(coder)
+	override func decodeRestorableState(with coder: NSCoder) {
+		super.decodeRestorableState(with: coder)
 		container = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.containerObjectID.rawValue, managedObjectContext: mainQueueManagedObjectContext) as! Container?
 		if nil != container {
-			nowDate = NSDate()
+			nowDate = Date()
 		}
 		blocksDelayedTillViewWillAppearOrStateRestoration.forEach {$0()}
 		blocksDelayedTillViewWillAppearOrStateRestoration = []
@@ -495,83 +430,60 @@ class ItemsListViewController: ContainerTableViewController {
 	// MARK: -
 	private var blocksDelayedTillViewWillAppear = [Handler]()
 	// MARK: -
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		$(self)
-		nowDate = NSDate()
-		let binding = KVOBinding(self•{$0.loadDate}, options: [.New, .Initial]) { change in
-			(•self.toolbarItems!)
-			let newValue = change![NSKeyValueChangeNewKey]
-			if let loadDate = nilForNull(newValue!) as! NSDate? {
-				let loadAgo = loadAgoDateComponentsFormatter.stringFromDate(loadDate, toDate: NSDate())
-				self.presentInfoMessage(String.localizedStringWithFormat(NSLocalizedString("Updated %@ ago", comment: ""), loadAgo!))
-			}
-			else {
-				self.presentInfoMessage(NSLocalizedString("Not updated before", comment: ""))
-			}
- 		}
+		nowDate = Date()
 		blocksDelayedTillViewWillAppearOrStateRestoration.forEach {$0()}
 		blocksDelayedTillViewWillAppearOrStateRestoration = []
 		blocksDelayedTillViewWillAppear.forEach {$0()}
 		blocksDelayedTillViewWillAppear = []
-		blocksDelayedTillViewDidDisappear += [{
-			void(binding)
-		}]
+		blocksDelayedTillViewDidDisappear += [self.bindLoadDate()]
+		blocksDelayedTillViewDidDisappear += [self.bindTitle()]
 		super.viewWillAppear(animated)
 	}
-	override func viewDidAppear(animated: Bool) {
+	override func viewDidAppear(_ animated: Bool) {
 		$(self)
 		super.viewDidAppear(animated)
 		loadMoreIfNecessary()
 	}
 	private var blocksDelayedTillViewDidDisappear = [Handler]()
-	override func viewDidDisappear(animated: Bool) {
+	override func viewDidDisappear(_ animated: Bool) {
 		blocksDelayedTillViewDidDisappear.forEach {$0()}
 		blocksDelayedTillViewDidDisappear = []
 		super.viewDidDisappear(animated)
 	}
 	// MARK: -
 	func configureFetchedResultsController() {
-		fetchedResultsControllerDelegate = regeneratedFetchedResultsControllerDelegate()
+		fetchedResultsController = regeneratedFetchedResultsController()
 		try! $(fetchedResultsController).performFetch()
 	}
-	func configureTitle() {
+	func configureTitleHeaderView() {
 		if let tableHeaderView = tableView.tableHeaderView {
 			if tableView.contentOffset.y == 0 {
-				tableView.contentOffset = CGPoint(x: 0, y: CGRectGetHeight(tableHeaderView.frame))
+				tableView.contentOffset = CGPoint(x: 0, y: (tableHeaderView.frame).height)
 			}
 		}
 	}
 	func configureReusableCells() {
 		if defaults.cellHeightCachingEnabled {
 			let reuseIdentifiersForHeightCachingCells = (0...3).map {"Item-\($0)"}
-			for (i, reuseIdentifier) in reuseIdentifiersForHeightCachingCells.enumerate() {
+			for (i, reuseIdentifier) in reuseIdentifiersForHeightCachingCells.enumerated() {
 				let cellNib = UINib(nibName: "ItemTableViewCell-\(i)", bundle: nil)
-				tableView.registerNib(cellNib, forCellReuseIdentifier: reuseIdentifier)
+				tableView.register(cellNib, forCellReuseIdentifier: reuseIdentifier)
 			}
 			reusedCellGenerator = TableViewHeightBasedReusedCellGenerator(dataSource: self, heightAgnosticCellReuseIdentifier: "Item", reuseIdentifiersForHeightCachingCells: reuseIdentifiersForHeightCachingCells)
 		}
 		let cellNib = UINib(nibName: "ItemTableViewCell", bundle: nil)
-		tableView.registerNib(cellNib, forCellReuseIdentifier: "Item")
+		tableView.register(cellNib, forCellReuseIdentifier: "Item")
 	}
 	func configureRowHeightEstimator() {
 		if defaults.frequencyAndWeightBasedTableRowHeightEstimatorEnabled {
 			rowHeightEstimator = FrequencyAndWeightBasedTableRowHeightEstimator(dataSource: self)
 		}
 	}
-	// MARK: -
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		configureRowHeightEstimator()
-		configureReusableCells()
-		blocksDelayedTillViewWillAppearOrStateRestoration += [{ [unowned self] in
-			self.configureFetchedResultsController()
-		}]
-		blocksDelayedTillViewWillAppear += [{ [unowned self] in
-			self.configureTitle()
-		}]
-		tableFooterView = tableView.tableFooterView
+	func configureRightBarButtonItems() {
 		for item in [unfilterUnreadBarButtonItem, filterUnreadBarButtonItem] {
-			if let customView = item.customView {
+			if let customView = item?.customView {
 				customView.layoutIfNeeded()
 				customView.sizeToFit()
 				let button = customView.subviews.first as! UIButton
@@ -581,11 +493,52 @@ class ItemsListViewController: ContainerTableViewController {
 					return $
 				}()
 				button.frame.origin.x = 0
-				item.width = customView.bounds.width
+				item?.width = customView.bounds.width
 			}
 		}
 		loadedRightBarButtonItems = navigationItem.rightBarButtonItems
 		navigationItem.rightBarButtonItems = regeneratedRightBarButtonItems()
+	}
+	// MARK: -
+	class var keyPathsForValuesAffectingTitleText: Set<String> {
+		return [#keyPath(itemsCount)]
+	}
+	dynamic var titleText: String {
+		return "\(itemsCount)"
+	}
+	func bindTitle() -> Handler {
+		let binding = KVOBinding(self•#keyPath(titleText), options: [.initial]) { _ in
+			self.navigationItem.title = self.titleText
+		}
+		return {
+			_ = binding
+		}
+	}
+	func bindLoadDate() -> Handler {
+		let binding = KVOBinding(self•#keyPath(loadDate), options: [.new, .initial]) { change in
+			•(self.toolbarItems!)
+			let newValue = change![NSKeyValueChangeKey.newKey]
+			if let loadDate = nilForNull(newValue!) as! Date? {
+				let loadAgo = loadAgoDateComponentsFormatter.string(from: loadDate, to: Date())
+				self.presentInfoMessage(String.localizedStringWithFormat(NSLocalizedString("Updated %@ ago", comment: ""), loadAgo!))
+			}
+			else {
+				self.presentInfoMessage(NSLocalizedString("Not updated before", comment: ""))
+			}
+		}
+		return {_ = binding}
+	}
+	// MARK: -
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		configureRowHeightEstimator()
+		configureReusableCells()
+		blocksDelayedTillViewWillAppearOrStateRestoration += [{ [unowned self] in
+			self.configureFetchedResultsController()
+		}]
+		blocksDelayedTillViewWillAppear += [{[unowned self] in self.configureTitleHeaderView()}]
+		tableFooterView = tableView.tableFooterView
+		configureRightBarButtonItems()
 	}
 	var heightSampleLabel: UILabel!
 	var cachedVariableHeights: [NSManagedObjectID : CGFloat] = [:]
@@ -596,32 +549,32 @@ class ItemsListViewController: ContainerTableViewController {
 }
 
 extension ItemsListViewController: FrequencyAndWeightBasedTableRowHeightEstimatorDataSource {
-	func weightForHeightDefiningValueAtIndexPath(indexPath: NSIndexPath) -> Int {
-		let item = fetchedResultsController.objectAtIndexPath(indexPath) as! Item
+	func weightForHeightDefiningValue(atIndexPath indexPath: IndexPath) -> Int {
+		let item = fetchedResultsController.object(at: indexPath) 
 		let length = item.title.utf16.count
 		return length
 	}
 }
 
 extension ItemsListViewController: TableViewHeightBasedReusedCellGeneratorDataSource {
-	func viewWithVariableHeightForCell(cell: UITableViewCell) -> UIView {
+	func viewWithVariableHeightForCell(_ cell: UITableViewCell) -> UIView {
 		let cell = cell as! ItemTableViewCell
 		return cell.titleLabel
 	}
-	func variableHeightForCell(cell: UITableViewCell) -> CGFloat {
+	func variableHeight(forCell cell: UITableViewCell) -> CGFloat {
 		return viewWithVariableHeightForCell(cell).bounds.height
 	}
 	func isReadyForMeasuringHeigthsForData() -> Bool {
 		return nil != heightSampleLabel
 	}
-	func variableHeightForDataAtIndexPath(indexPath: NSIndexPath) -> CGFloat {
-		let item = fetchedResultsController.objectAtIndexPath(indexPath) as! Item
+	func variableHeightForDataAtIndexPath(_ indexPath: IndexPath) -> CGFloat {
+		let item = fetchedResultsController.object(at: indexPath) 
 		let cacheKey = item.objectID
 		if let cachedHeight = cachedVariableHeights[cacheKey] {
 			return cachedHeight
 		}
 		heightSampleLabel.text = item.title
-		let size = heightSampleLabel.sizeThatFits(CGSize(width: heightSampleLabel.bounds.width, height: CGFloat.max))
+		let size = heightSampleLabel.sizeThatFits(CGSize(width: heightSampleLabel.bounds.width, height: CGFloat.greatestFiniteMagnitude))
 		let height = size.height
 		cachedVariableHeights[cacheKey] = height
 		return height
@@ -629,73 +582,64 @@ extension ItemsListViewController: TableViewHeightBasedReusedCellGeneratorDataSo
 }
 
 extension ItemsListViewController {
-	func regeneratedFetchedResultsControllerDelegate() -> TableViewFetchedResultsControllerDelegate {
-		let fetchRequest: NSFetchRequest = {
-			let E = Item.self
-			let $ = NSFetchRequest(entityName: E.entityName())
-			$.sortDescriptors =	sortDescriptorsForContainers
-			$.predicate = NSCompoundPredicate(andPredicateWithSubpredicates:[
-				{
-					if container! is Subscription {
-						return NSPredicate(format: "(\(E••{$0.subscription}) == %@)", argumentArray: [container!])
-					}
-					else {
-						return NSPredicate(format: "(\(E••{$0.categories}) CONTAINS %@)", argumentArray: [container!])
-					}
-				}(),
-				containerViewPredicate
-			])
+	func regeneratedFetchedResultsController() -> NSFetchedResultsController<Item> {
+		typealias E = Item
+		let fetchRequest = E.fetchRequestForEntity() … {
+			$0.sortDescriptors = sortDescriptorsForContainers
+			$0.predicate = CompoundPredicate(andPredicateWithSubpredicates:[Predicate]() … {
+				$0 += [container!.predicateForItems]
+				$0 += [containerViewPredicate]
+			})
 #if false
-			$.relationshipKeyPathsForPrefetching = [E••{$0.categories}]
+			$0.relationshipKeyPathsForPrefetching = [#keyPath(E.categories)]
 #endif
-			$.returnsObjectsAsFaults = false
-			$.fetchBatchSize = defaults.fetchBatchSize
-			return $
-		}()
-		let itemLoadDateTimeIntervalSinceReferenceDateKeyPath = Item.self••{$0.loadDate.timeIntervalSinceReferenceDate}
-		let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainQueueManagedObjectContext, sectionNameKeyPath: !defaults.itemsAreSortedByLoadDate ? nil : itemLoadDateTimeIntervalSinceReferenceDateKeyPath, cacheName: nil)
-		let configureCell = { [unowned self] (cell: UITableViewCell, indexPath: NSIndexPath) -> Void in
-			self.configureCell(cell as! ItemTableViewCell, atIndexPath: indexPath)
+			$0.returnsObjectsAsFaults = false
+			$0.fetchBatchSize = defaults.fetchBatchSize
 		}
-		let $ = TableViewFetchedResultsControllerDelegate(tableView: tableView, fetchedResultsController: fetchedResultsController, updateCell: configureCell)
+		let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainQueueManagedObjectContext, sectionNameKeyPath: !defaults.itemsAreSortedByLoadDate ? nil : #keyPath(Item.loadDate), cacheName: nil)
+		let configureCell = { [unowned self] (cell: UITableViewCell, indexPath: IndexPath) -> Void in
+			self.configureCell(cell, atIndexPath: indexPath)
+		}
+		let $ = TableViewFetchedResultsControllerDelegate(tableView: tableView, updateCell: configureCell)
+		objc_setAssociatedObject(fetchedResultsController, &fetchedResultsControllerDelegateAOKey, $, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
 		fetchedResultsController.delegate = $
-		return $
+		return fetchedResultsController
 	}
 }
 
 // MARK: - UIDataSourceModelAssociation
 extension ItemsListViewController: UIDataSourceModelAssociation {
-    func modelIdentifierForElementAtIndexPath(indexPath: NSIndexPath, inView view: UIView) -> String? {
+    func modelIdentifierForElement(at indexPath: IndexPath, in view: UIView) -> String? {
 		if let item = itemForIndexPath(indexPath) {
-			return item.objectID.URIRepresentation().absoluteString
+			return item.objectID.uriRepresentation().absoluteString
 		}
 		else {
 			let invalidModelIdentifier = ""
 			return $(invalidModelIdentifier)
 		}
 	}
-    func indexPathForElementWithModelIdentifier(identifier: String, inView view: UIView) -> NSIndexPath? {
-		let objectIDURL = NSURL(string: identifier)!
+    func indexPathForElement(withModelIdentifier identifier: String, in view: UIView) -> IndexPath? {
+		let objectIDURL = URL(string: identifier)!
 		let managedObjectContext = fetchedResultsController.managedObjectContext
 		assert(managedObjectContext == mainQueueManagedObjectContext)
-		let objectID = managedObjectContext.persistentStoreCoordinator!.managedObjectIDForURIRepresentation(objectIDURL)!
-		let object = managedObjectContext.objectWithID(objectID)
-		let indexPath = fetchedResultsController.indexPathForObject(object)!
+		let objectID = managedObjectContext.persistentStoreCoordinator!.managedObjectID(forURIRepresentation: objectIDURL)!
+		let object = managedObjectContext.object(with: objectID) as! Item
+		let indexPath = fetchedResultsController.indexPath(forObject: object)!
 		return $(indexPath)
 	}
 }
 
 extension ItemsListViewController {
-	func presentMessage(text: String) {
+	func presentMessage(_ text: String) {
 		statusLabel.text = text
 		statusLabel.sizeToFit()
 		statusLabel.superview!.frame.size.width = statusLabel.bounds.width
 		statusBarButtonItem.width = (statusLabel.superview!.bounds.width)
 	}
-	override func presentErrorMessage(text: String) {
+	override func presentErrorMessage(_ text: String) {
 		presentMessage(text)
 	}
-	override func presentInfoMessage(text: String) {
+	override func presentInfoMessage(_ text: String) {
 		presentMessage(text)
 	}
 }

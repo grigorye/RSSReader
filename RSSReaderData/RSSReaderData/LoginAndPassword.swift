@@ -10,7 +10,7 @@ public struct LoginAndPassword {
 	public let login: String?
 	public let password: String?
 	public func isValid() -> Bool {
-		return (login != nil) && (password != nil)
+		return (login?.lengthOfBytes(using: .utf8) != 0) && (password?.lengthOfBytes(using: .utf8) != 0)
 	}
 	public init(login: String?, password: String?) {
 		self.login = login

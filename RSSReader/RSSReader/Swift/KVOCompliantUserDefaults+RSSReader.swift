@@ -11,8 +11,8 @@ import GEBase
 
 extension KVOCompliantUserDefaults {
 
-	@NSManaged var foldersLastUpdateDate: NSDate!
-	@NSManaged var foldersLastUpdateErrorEncoded: NSData!
+	@NSManaged var foldersLastUpdateDate: Date!
+	@NSManaged var foldersLastUpdateErrorEncoded: Data!
 	//
 	@NSManaged var login: String!
 	@NSManaged var password: String!

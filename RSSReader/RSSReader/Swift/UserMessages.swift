@@ -10,26 +10,26 @@ import AFMInfoBanner
 import UIKit
 import Foundation
 
-func presentErrorMessage(text: String) {
+func presentErrorMessage(_ text: String) {
 #if true
-	AFMInfoBanner.showAndHideWithText(text, style: .Error)
+	AFMInfoBanner.showAndHide(withText: text, style: .error)
 #else
 	print("Error: \(text)")
 #endif
 }
-func presentInfoMessage(text: String) {
+func presentInfoMessage(_ text: String) {
 #if true
-	AFMInfoBanner.showAndHideWithText(text, style: .Info)
+	AFMInfoBanner.showAndHide(withText: text, style: .info)
 #else
 	print("Info: \(text)")
 #endif
 }
 
 extension UIViewController {
-	func presentErrorMessage(text: String) {
+	func presentErrorMessage(_ text: String) {
 		RSSReader.presentErrorMessage(text)
 	}
-	func presentInfoMessage(text: String) {
+	func presentInfoMessage(_ text: String) {
 		RSSReader.presentInfoMessage(text)
 	}
 }

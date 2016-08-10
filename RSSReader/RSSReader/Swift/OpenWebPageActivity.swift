@@ -9,9 +9,9 @@
 import UIKit
 
 class OpenWebPageActivity : TypeFilteringActivity {
-	override func performActivity() {
+	override func perform() {
 		let url = acceptedItems.last!
-		UIApplication.sharedApplication().openURL(url)
+		UIApplication.shared().openURL(url)
 	}
 	override func activityType() -> String {
 		return "\(applicationDomain).openWebPage"
@@ -23,10 +23,10 @@ class OpenWebPageActivity : TypeFilteringActivity {
 		return UIImage(named: "AppIcon")
 	}
 	override class func activityCategory() -> UIActivityCategory {
-		return .Action
+		return .action
 	}
 	// MARK: -
-	typealias FilteredItem = NSURL
+	typealias FilteredItem = URL
 	var itemsFilter = TypeBasedActivityItemsFilter<FilteredItem>()
 	var acceptedItems: [FilteredItem] {
 		return itemsFilter.acceptedItems

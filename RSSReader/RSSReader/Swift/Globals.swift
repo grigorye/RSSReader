@@ -17,13 +17,11 @@ let applicationDomain = "com.grigoryentin.RSSReader"
 
 var foldersController: FoldersController!
 
-let applicationDelegate: AppDelegate = {
-	return (UIApplication.sharedApplication().delegate as! AppDelegate)
-}()
+let applicationDelegate = (UIApplication.shared().delegate as! AppDelegate)
 
-let userCachesDirectoryURL: NSURL = {
-	let fileManager = NSFileManager.defaultManager()
-	let $ = try! fileManager.URLForDirectory(.CachesDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: false)
+let userCachesDirectoryURL: URL = {
+	let fileManager = FileManager.default
+	let $ = try! fileManager.urlForDirectory(.cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
 	return $
 }()
 
@@ -31,21 +29,34 @@ extension NSObject {
 	var foldersController: FoldersController {
 		return applicationDelegate
 	}
-	var rssSession: RSSSession? {
-		get {
-			return applicationDelegate.internals.rssSession
-		}
-		set {
-			applicationDelegate.internals.rssSession = newValue
-		}
+}
+var rssSession: RSSSession? {
+	get {
+		return applicationDelegate.internals.rssSession
+	}
+	set {
+		applicationDelegate.internals.rssSession = newValue
 	}
 }
 
-let dateComponentsFormatter: NSDateComponentsFormatter = {
-	let $ = NSDateComponentsFormatter()
-	$.unitsStyle = .Abbreviated
-	$.allowsFractionalUnits = true
-	$.maximumUnitCount = 1
-	$.allowedUnits = [.Minute, .Year, .Month, .WeekOfMonth, .Day, .Hour]
-	return $;
-}()
+let dateComponentsFormatter = DateComponentsFormatter() … {
+	$0.unitsStyle = .abbreviated
+	$0.allowsFractionalUnits = true
+	$0.maximumUnitCount = 1
+	$0.allowedUnits = [.minute, .year, .month, .weekOfMonth, .day, .hour]
+}
+
+let loadAgoDateComponentsFormatter = DateComponentsFormatter() … {
+	$0.unitsStyle = .full
+	$0.allowsFractionalUnits = true
+	$0.maximumUnitCount = 1
+	$0.allowedUnits = [.minute, .year, .month, .weekOfMonth, .day, .hour]
+}
+
+let loadAgoLongDateComponentsFormatter = DateComponentsFormatter() … {
+	$0.unitsStyle = .full
+	$0.allowsFractionalUnits = true
+	$0.maximumUnitCount = 1
+	$0.includesApproximationPhrase = true
+	$0.allowedUnits = [.minute, .year, .month, .weekOfMonth, .day, .hour]
+}
