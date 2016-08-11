@@ -5,18 +5,15 @@
     "git": "https://github.com/mxcl/PromiseKit.git",
     "tag": "4.0.0"
   },
-  "license": {
-    "type": "MIT",
-    "text": "@see README"
-  },
+  "license": "MIT",
   "summary": "A delightful Promises implementation for iOS and OS X.",
   "homepage": "http://promisekit.org",
-  "description": "UIActionSheet UIAlertView CLLocationManager MFMailComposeViewController ACAccountStore StoreKit SKRequest SKProductRequest blocks",
+  "description": "A thoughtful and complete implementation of promises for iOS and macOS with first-class support for both Objective-C and Swift.",
   "social_media_url": "https://twitter.com/mxcl",
   "authors": {
     "Max Howell": "mxcl@me.com"
   },
-  "documentation_url": "http://promisekit.org/introduction",
+  "documentation_url": "http://promisekit.org/docs/",
   "default_subspecs": [
     "Foundation",
     "UIKit",
@@ -25,11 +22,11 @@
   "requires_arc": true,
   "platforms": {
     "ios": "8.0",
-    "osx": "10.9",
+    "osx": "10.10",
     "watchos": "2.0",
     "tvos": "9.0"
   },
-  "module_map": "Sources/PMK.modulemap",
+  "module_map": "PromiseKit.modulemap",
   "xcconfig": {
     "SWIFT_INSTALL_OBJC_HEADER": "NO"
   },
@@ -86,6 +83,18 @@
       }
     },
     {
+      "name": "Bolts",
+      "source_files": "Categories/Bolts/*",
+      "dependencies": {
+        "PromiseKit/CorePromise": [
+
+        ],
+        "Bolts": [
+          "~> 1.6.0"
+        ]
+      }
+    },
+    {
       "name": "CloudKit",
       "source_files": "Categories/CloudKit/*",
       "dependencies": {
@@ -100,18 +109,44 @@
       }
     },
     {
+      "name": "CoreBluetooth",
+      "osx": {
+        "source_files": "Categories/CoreBluetooth/*"
+      },
+      "ios": {
+        "source_files": "Categories/CoreBluetooth/*"
+      },
+      "dependencies": {
+        "PromiseKit/CorePromise": [
+
+        ]
+      },
+      "frameworks": "CoreBluetooth"
+    },
+    {
       "name": "CorePromise",
       "source_files": [
-        "Sources/*.{swift}",
-        "Sources/{after,AnyPromise,dispatch_promise,hang,join,PMKPromise,when}.m",
+        "Sources/after.swift",
+        "Sources/AnyPromise.swift",
+        "Sources/DispatchQueue+Promise.swift",
+        "Sources/Error.swift",
+        "Sources/join.swift",
+        "Sources/Promise+Adapters.swift",
+        "Sources/Promise+AnyPromise.swift",
+        "Sources/Promise+Properties.swift",
+        "Sources/Promise.swift",
+        "Sources/race.swift",
+        "Sources/State.swift",
+        "Sources/URLDataPromise.swift",
+        "Sources/when.swift",
+        "Sources/Zalgo.swift",
+        "Sources/{after,AnyPromise,GlobalState,dispatch_promise,hang,join,PMKPromise,when}.m",
         "Sources/AnyPromise.h",
-        "Sources/NSError+Cancellation.h",
         "Sources/PromiseKit.h",
         "Sources/Umbrella.h"
       ],
       "public_header_files": [
         "Sources/AnyPromise.h",
-        "Sources/NSError+Cancellation.h",
         "Sources/PromiseKit.h",
         "Sources/Umbrella.h"
       ],
@@ -163,14 +198,25 @@
           "Categories/Foundation/NSNotificationCenter+AnyPromise.m",
           "Categories/Foundation/NSNotificationCenter+Promise.swift",
           "Categories/Foundation/NSObject+Promise.swift",
-          "Categories/Foundation/NSURLConnection+AnyPromise.h",
-          "Categories/Foundation/NSURLConnection+AnyPromise.m",
-          "Categories/Foundation/NSURLConnection+Promise.swift",
+          "Categories/Foundation/NSURLSession+AnyPromise.h",
+          "Categories/Foundation/NSURLSession+AnyPromise.m",
           "Categories/Foundation/NSURLSession+Promise.swift"
         ]
       },
       "osx": {
-        "source_files": "Categories/Foundation/*"
+        "source_files": [
+          "Categories/Foundation/afterlife.swift",
+          "Categories/Foundation/NSNotificationCenter+AnyPromise.h",
+          "Categories/Foundation/NSNotificationCenter+AnyPromise.m",
+          "Categories/Foundation/NSNotificationCenter+Promise.swift",
+          "Categories/Foundation/NSObject+Promise.swift",
+          "Categories/Foundation/NSTask+AnyPromise.h",
+          "Categories/Foundation/NSTask+AnyPromise.m",
+          "Categories/Foundation/NSTask+Promise.swift",
+          "Categories/Foundation/NSURLSession+AnyPromise.h",
+          "Categories/Foundation/NSURLSession+AnyPromise.m",
+          "Categories/Foundation/NSURLSession+Promise.swift"
+        ]
       },
       "watchos": {
         "source_files": [
@@ -179,6 +225,8 @@
           "Categories/Foundation/NSNotificationCenter+AnyPromise.m",
           "Categories/Foundation/NSNotificationCenter+Promise.swift",
           "Categories/Foundation/NSObject+Promise.swift",
+          "Categories/Foundation/NSURLSession+AnyPromise.h",
+          "Categories/Foundation/NSURLSession+AnyPromise.m",
           "Categories/Foundation/NSURLSession+Promise.swift"
         ]
       },
@@ -187,10 +235,21 @@
 
         ],
         "OMGHTTPURLRQ": [
-          "~> 3.1.0"
+          "~> 3.2.0"
         ]
       },
-      "frameworks": "Foundation"
+      "frameworks": "Foundation",
+      "subspecs": [
+        {
+          "name": "Deprecated",
+          "source_files": [
+            "Categories/Foundation/NSURLConnection+AnyPromise.h",
+            "Categories/Foundation/NSURLConnection+AnyPromise.m",
+            "Categories/Foundation/NSURLConnection+Promise.swift"
+          ],
+          "frameworks": "Foundation"
+        }
+      ]
     },
     {
       "name": "DietFoundation",
@@ -273,17 +332,18 @@
     {
       "name": "QuartzCore",
       "ios": {
-        "source_files": "Categories/QuartzCore/*"
+        "source_files": "Categories/QuartzCore/*",
+        "frameworks": "QuartzCore"
       },
       "osx": {
-        "source_files": "Categories/QuartzCore/*"
+        "source_files": "Categories/QuartzCore/*",
+        "frameworks": "QuartzCore"
       },
       "dependencies": {
         "PromiseKit/CorePromise": [
 
         ]
-      },
-      "frameworks": "QuartzCore"
+      }
     },
     {
       "name": "Social",
@@ -340,13 +400,51 @@
     {
       "name": "UIKit",
       "ios": {
-        "source_files": "Categories/UIKit/*",
+        "source_files": [
+          "Categories/UIKit/PMKAlertController.swift",
+          "Categories/UIKit/UIView+AnyPromise.h",
+          "Categories/UIKit/UIView+AnyPromise.m",
+          "Categories/UIKit/UIView+Promise.swift",
+          "Categories/UIKit/UIViewController+AnyPromise.h",
+          "Categories/UIKit/UIViewController+AnyPromise.m",
+          "Categories/UIKit/UIViewController+Promise.swift"
+        ],
         "frameworks": "UIKit"
       },
       "dependencies": {
         "PromiseKit/CorePromise": [
 
         ]
+      },
+      "subspecs": [
+        {
+          "name": "Deprecated",
+          "ios": {
+            "source_files": [
+              "Categories/UIKit/UIActionSheet+AnyPromise.h",
+              "Categories/UIKit/UIActionSheet+AnyPromise.m",
+              "Categories/UIKit/UIActionSheet+Promise.swift",
+              "Categories/UIKit/UIAlertView+AnyPromise.h",
+              "Categories/UIKit/UIAlertView+AnyPromise.m",
+              "Categories/UIKit/UIAlertView+Promise.swift"
+            ],
+            "frameworks": "UIKit"
+          }
+        }
+      ]
+    },
+    {
+      "name": "WatchConnectivity",
+      "source_files": "Categories/WatchConnectivity/*",
+      "dependencies": {
+        "PromiseKit/CorePromise": [
+
+        ]
+      },
+      "frameworks": "WatchConnectivity",
+      "platforms": {
+        "ios": "8.0",
+        "watchos": "2.0"
       }
     }
   ]

@@ -5,7 +5,7 @@
 FOUNDATION_EXPORT double PromiseKitVersionNumber;
 FOUNDATION_EXPORT const unsigned char PromiseKitVersionString[];
 
-extern NSString * __nonnull const PMKErrorDomain;
+extern NSString * const PMKErrorDomain;
 
 #define PMKFailingPromiseIndexKey @"PMKFailingPromiseIndexKey"
 #define PMKURLErrorFailingURLResponseKey @"PMKURLErrorFailingURLResponseKey"
@@ -30,7 +30,7 @@ extern NSString * __nonnull const PMKErrorDomain;
  
  By default this returns dispatch_get_main_queue()
  */
-FOUNDATION_EXPORT __nonnull dispatch_queue_t (^__nonnull PMKDefaultDispatchQueue)();
+FOUNDATION_EXPORT dispatch_queue_t (^PMKDefaultDispatchQueue)();
 
 #if !(defined(PMKEZBake) && defined(SWIFT_CLASS))
     #if !defined(SWIFT_PASTE)
@@ -51,10 +51,20 @@ FOUNDATION_EXPORT __nonnull dispatch_queue_t (^__nonnull PMKDefaultDispatchQueue
     #endif
     #if !defined(SWIFT_CLASS)
     # if defined(__has_attribute) && __has_attribute(objc_subclassing_restricted)
-    #  define SWIFT_CLASS(SWIFT_NAME) SWIFT_RUNTIME_NAME(SWIFT_NAME) __attribute__((objc_subclassing_restricted)) SWIFT_CLASS_EXTRA
+	#  define SWIFT_CLASS(SWIFT_NAME) SWIFT_RUNTIME_NAME(SWIFT_NAME) __attribute__((objc_subclassing_restricted)) SWIFT_CLASS_EXTRA
+	#  define SWIFT_CLASS_NAMED(SWIFT_NAME) __attribute__((objc_subclassing_restricted)) SWIFT_COMPILE_NAME(SWIFT_NAME) SWIFT_CLASS_EXTRA
     # else
-    #  define SWIFT_CLASS(SWIFT_NAME) SWIFT_RUNTIME_NAME(SWIFT_NAME) SWIFT_CLASS_EXTRA
+	#  define SWIFT_CLASS(SWIFT_NAME) SWIFT_RUNTIME_NAME(SWIFT_NAME) SWIFT_CLASS_EXTRA
+	#  define SWIFT_CLASS_NAMED(SWIFT_NAME) SWIFT_COMPILE_NAME(SWIFT_NAME) SWIFT_CLASS_EXTRA
     # endif
+    #endif
+
+    #if !defined(SWIFT_PROTOCOL_EXTRA)
+    # define SWIFT_PROTOCOL_EXTRA
+    #endif
+    #if !defined(SWIFT_PROTOCOL)
+    # define SWIFT_PROTOCOL(SWIFT_NAME) SWIFT_RUNTIME_NAME(SWIFT_NAME) SWIFT_PROTOCOL_EXTRA
+    # define SWIFT_PROTOCOL_NAMED(SWIFT_NAME) SWIFT_COMPILE_NAME(SWIFT_NAME) SWIFT_PROTOCOL_EXTRA
     #endif
 
     SWIFT_CLASS("AnyPromise")
@@ -64,4 +74,16 @@ FOUNDATION_EXPORT __nonnull dispatch_queue_t (^__nonnull PMKDefaultDispatchQueue
     @property (nonatomic, readonly) BOOL fulfilled;
     @property (nonatomic, readonly) BOOL rejected;
     @end
+
+    SWIFT_PROTOCOL("Promisable")
+    @protocol Promisable
+    @property (nonatomic, readonly, strong) id promise;
+    @end
+
 #endif
+
+typedef NS_OPTIONS(NSInteger, PMKAnimationOptions) {
+    PMKAnimationOptionsNone = 1 << 0,
+    PMKAnimationOptionsAppear = 1 << 1,
+    PMKAnimationOptionsDisappear = 1 << 2,
+};

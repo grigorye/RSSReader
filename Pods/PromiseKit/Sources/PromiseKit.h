@@ -1,15 +1,34 @@
-#if defined(__cplusplus)
-  #import <dispatch/dispatch.h>
-#else
-  #import <dispatch/queue.h>
-#endif
-#import <Foundation/NSDate.h>
+#import "AnyPromise.h"
 #import <Foundation/NSObject.h>
-#import <PromiseKit/AnyPromise.h>
-#import <PromiseKit/NSError+Cancellation.h>
-#import <PromiseKit/Umbrella.h>
+#import <Foundation/NSDate.h>
+#import <dispatch/dispatch.h>
 
+FOUNDATION_EXPORT double PromiseKitVersionNumber;
+FOUNDATION_EXPORT const unsigned char PromiseKitVersionString[];
 
+extern NSString * __nonnull const PMKErrorDomain;
+
+#define PMKFailingPromiseIndexKey @"PMKFailingPromiseIndexKey"
+#define PMKURLErrorFailingURLResponseKey @"PMKURLErrorFailingURLResponseKey"
+#define PMKURLErrorFailingDataKey @"PMKURLErrorFailingDataKey"
+#define PMKURLErrorFailingStringKey @"PMKURLErrorFailingStringKey"
+#define PMKJSONErrorJSONObjectKey @"PMKJSONErrorJSONObjectKey"
+#define PMKJoinPromisesKey @"PMKJoinPromisesKey"
+
+#define PMKUnexpectedError 1l
+#define PMKUnknownError 2l
+#define PMKInvalidUsageError 3l
+#define PMKAccessDeniedError 4l
+#define PMKOperationCancelled 5l
+#define PMKNotFoundError 6l
+#define PMKJSONError 7l
+#define PMKOperationFailed 8l
+#define PMKTaskError 9l
+#define PMKJoinError 10l
+
+#if __cplusplus
+extern "C" {
+#endif
 
 /**
  @return A new promise that resolves after the specified duration.
@@ -22,7 +41,7 @@
         //…
     });
 */
-extern AnyPromise * __nonnull PMKAfter(NSTimeInterval duration);
+extern AnyPromise * __nonnull PMKAfter(NSTimeInterval duration) NS_REFINED_FOR_SWIFT;
 
 
 
@@ -54,7 +73,7 @@ extern AnyPromise * __nonnull PMKAfter(NSTimeInterval duration);
  @see PMKJoin
 
 */
-extern AnyPromise * __nonnull PMKWhen(id __nonnull input);
+extern AnyPromise * __nonnull PMKWhen(id __nonnull input) NS_REFINED_FOR_SWIFT;
 
 
 
@@ -89,7 +108,7 @@ extern AnyPromise * __nonnull PMKWhen(id __nonnull input);
 
  @see when
 */
-AnyPromise *__nonnull PMKJoin(NSArray * __nonnull promises);
+AnyPromise *__nonnull PMKJoin(NSArray * __nonnull promises) NS_REFINED_FOR_SWIFT;
 
 
 
@@ -134,7 +153,24 @@ extern id __nullable PMKHang(AnyPromise * __nonnull promise);
 */
 extern void PMKSetUnhandledExceptionHandler(NSError * __nullable (^__nonnull handler)(id __nullable));
 
+/**
+ If an error cascades through a promise chain and is not handled by any
+ `catch`, the unhandled error handler is called. The default logs all
+ non-cancelled errors.
 
+ This handler can only be set once, and must be set before any promises
+ are rejected in your application.
+
+     PMKSetUnhandledErrorHandler({ error in
+        mylogf("Unhandled error: \(error)")
+     })
+
+ - Warning: *Important* The handler is executed on an undefined queue.
+ - Warning: *Important* Don’t use promises in your handler, or you risk an infinite error loop.
+*/
+extern void PMKSetUnhandledErrorHandler(void (^__nonnull handler)(NSError * __nonnull));
+
+extern void PMKUnhandledErrorHandler(NSError * __nonnull error);
 
 /**
  Executes the provided block on a background queue.
@@ -154,7 +190,7 @@ extern void PMKSetUnhandledExceptionHandler(NSError * __nullable (^__nonnull han
 
  @see dispatch_async
 */
-extern AnyPromise * __nonnull dispatch_promise(id __nonnull block);
+extern AnyPromise * __nonnull dispatch_promise(id __nonnull block) NS_SWIFT_UNAVAILABLE("Use our `DispatchQueue.async` override instead");
 
 
 
@@ -173,8 +209,7 @@ extern AnyPromise * __nonnull dispatch_promise(id __nonnull block);
 
  @see dispatch_promise
 */
-extern AnyPromise * __nonnull dispatch_promise_on(dispatch_queue_t __nonnull queue, id __nonnull block);
-
+extern AnyPromise * __nonnull dispatch_promise_on(dispatch_queue_t __nonnull queue, id __nonnull block) NS_SWIFT_UNAVAILABLE("Use our `DispatchQueue.async` override instead");
 
 
 #define PMKJSONDeserializationOptions ((NSJSONReadingOptions)(NSJSONReadingAllowFragments | NSJSONReadingMutableContainers))
@@ -189,6 +224,23 @@ extern AnyPromise * __nonnull dispatch_promise_on(dispatch_queue_t __nonnull que
 #define PMKHTTPURLResponseIsImage(rsp) [@[@"image/tiff", @"image/jpeg", @"image/gif", @"image/png", @"image/ico", @"image/x-icon", @"image/bmp", @"image/x-bmp", @"image/x-xbitmap", @"image/x-win-bitmap"] containsObject:[rsp MIMEType]]
 #define PMKHTTPURLResponseIsText(rsp) [[rsp MIMEType] hasPrefix:@"text/"]
 
+/**
+ The default queue for all calls to `then`, `catch` etc. is the main queue.
+
+ By default this returns dispatch_get_main_queue()
+ */
+extern __nonnull dispatch_queue_t PMKDefaultDispatchQueue();
+
+/**
+ You may alter the default dispatch queue, but you may only alter it once, and you must alter it before any `then`, etc. calls are made in your app.
+ 
+ The primary motivation for this function is so that your tests can operate off the main thread preventing dead-locking, or with `zalgo` to speed them up.
+*/
+extern void PMKSetDefaultDispatchQueue(__nonnull dispatch_queue_t);
+
+#if __cplusplus
+}   // Extern C
+#endif
 
 
 #if defined(__has_include)
@@ -218,6 +270,9 @@ extern AnyPromise * __nonnull dispatch_promise_on(dispatch_queue_t __nonnull que
   #endif
   #if __has_include(<PromiseKit/NSURLConnection+AnyPromise.h>)
     #import <PromiseKit/NSURLConnection+AnyPromise.h>
+  #endif
+  #if __has_include(<PromiseKit/NSURLSession+AnyPromise.h>)
+    #import <PromiseKit/NSURLSession+AnyPromise.h>
   #endif
   #if __has_include(<PromiseKit/MKDirections+AnyPromise.h>)
     #import <PromiseKit/MKDirections+AnyPromise.h>
@@ -250,3 +305,62 @@ extern AnyPromise * __nonnull dispatch_promise_on(dispatch_queue_t __nonnull que
     #import <PromiseKit/UIViewController+AnyPromise.h>
   #endif
 #endif
+
+
+#if !defined(SWIFT_PASTE)
+# define SWIFT_PASTE_HELPER(x, y) x##y
+# define SWIFT_PASTE(x, y) SWIFT_PASTE_HELPER(x, y)
+#endif
+
+#if !defined(SWIFT_EXTENSION)
+# define SWIFT_EXTENSION(M) SWIFT_PASTE(M##_Swift_, __LINE__)
+#endif
+
+@interface NSError (SWIFT_EXTENSION(PromiseKit))
++ (NSError * __nonnull)cancelledError;
++ (void)registerCancelledErrorDomain:(NSString * __nonnull)domain code:(NSInteger)code;
+@property (nonatomic, readonly) BOOL isCancelled;
+@end
+
+
+#if defined(__has_attribute) && __has_attribute(objc_runtime_name)
+# define SWIFT_RUNTIME_NAME(X) __attribute__((objc_runtime_name(X)))
+#else
+# define SWIFT_RUNTIME_NAME(X)
+#endif
+#if defined(__has_attribute) && __has_attribute(swift_name)
+# define SWIFT_COMPILE_NAME(X) __attribute__((swift_name(X)))
+#else
+# define SWIFT_COMPILE_NAME(X)
+#endif
+#if !defined(SWIFT_PROTOCOL_EXTRA)
+# define SWIFT_PROTOCOL_EXTRA
+#endif
+
+#if !defined(SWIFT_PROTOCOL_EXTRA)
+# define SWIFT_PROTOCOL_EXTRA
+#endif
+#if !defined(SWIFT_PROTOCOL)
+# define SWIFT_PROTOCOL(SWIFT_NAME) SWIFT_RUNTIME_NAME(SWIFT_NAME) SWIFT_PROTOCOL_EXTRA
+# define SWIFT_PROTOCOL_NAMED(SWIFT_NAME) SWIFT_COMPILE_NAME(SWIFT_NAME) SWIFT_PROTOCOL_EXTRA
+#endif
+
+SWIFT_PROTOCOL("Promisable")
+@protocol Promisable
+@property (nonatomic, readonly, strong) __nonnull id promise;
+@end
+
+typedef NS_OPTIONS(NSInteger, PMKAnimationOptions) {
+    PMKAnimationOptionsNone = 1 << 0,
+    PMKAnimationOptionsAppear = 1 << 1,
+    PMKAnimationOptionsDisappear = 1 << 2,
+};
+
+#undef SWIFT_PASTE_HELPER
+#undef SWIFT_PASTE
+#undef SWIFT_EXTENSION
+#undef SWIFT_RUNTIME_NAME
+#undef SWIFT_COMPILE_NAME
+#undef SWIFT_NAME
+#undef SWIFT_PROTOCOL
+#undef SWIFT_PROTOCOL_NAMED
