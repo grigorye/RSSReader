@@ -71,8 +71,6 @@
 		C49D01921AF6C647008D8DB3 /* FoldersController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4C327F11AF30CB400119573 /* FoldersController.swift */; };
 		C4A1646A1CB8938C009D8B86 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4A1646C1CB8938C009D8B86 /* InfoPlist.strings */; };
 		C4AD2ADB1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD2ADA1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift */; };
-		C4AD5B321D280A8100358DEA /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4AD5B311D280A8100358DEA /* Result.framework */; };
-		C4AD5B331D280A8100358DEA /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4AD5B311D280A8100358DEA /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4AD5B371D282F1800358DEA /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4AD5B361D282F1800358DEA /* PromiseKit.framework */; };
 		C4AD5B381D282F1800358DEA /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4AD5B361D282F1800358DEA /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4C0261F1B5281B7005452D1 /* TableViewFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0261E1B5281B7005452D1 /* TableViewFetchedResultsControllerDelegate.swift */; };
@@ -172,7 +170,6 @@
 				C424B8F21C6FC5C8008AD647 /* RSSReaderData.framework in Embed Frameworks */,
 				C408F1B51CE7520700DB943F /* FBMemoryProfiler.framework in Embed Frameworks */,
 				C4AD5B381D282F1800358DEA /* PromiseKit.framework in Embed Frameworks */,
-				C4AD5B331D280A8100358DEA /* Result.framework in Embed Frameworks */,
 				C408F1851CE73FAE00DB943F /* GEBase.framework in Embed Frameworks */,
 				C40EA7261C6FC8A9002C6D9E /* AFMInfoBanner.framework in Embed Frameworks */,
 				C408F1B21CE7520700DB943F /* FBAllocationTracker.framework in Embed Frameworks */,
@@ -237,7 +234,6 @@
 		C49B127C1BF686D500EA5DE5 /* Debug.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Debug.storyboard; path = Resources/Debug.storyboard; sourceTree = "<group>"; };
 		C4A164671CB89076009D8B86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		C4AD2ADA1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemsPageViewControllerDelegate.swift; path = Swift/ItemsPageViewControllerDelegate.swift; sourceTree = "<group>"; };
-		C4AD5B311D280A8100358DEA /* Result.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4AD5B361D282F1800358DEA /* PromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4C0261E1B5281B7005452D1 /* TableViewFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewFetchedResultsControllerDelegate.swift; path = Swift/TableViewFetchedResultsControllerDelegate.swift; sourceTree = "<group>"; };
 		C4C327F11AF30CB400119573 /* FoldersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FoldersController.swift; path = Swift/FoldersController.swift; sourceTree = "<group>"; };
@@ -292,7 +288,6 @@
 				C424B8F11C6FC5C8008AD647 /* RSSReaderData.framework in Frameworks */,
 				C408F1B41CE7520700DB943F /* FBMemoryProfiler.framework in Frameworks */,
 				C4AD5B371D282F1800358DEA /* PromiseKit.framework in Frameworks */,
-				C4AD5B321D280A8100358DEA /* Result.framework in Frameworks */,
 				C408F1841CE73FAE00DB943F /* GEBase.framework in Frameworks */,
 				C40EA7251C6FC8A9002C6D9E /* AFMInfoBanner.framework in Frameworks */,
 				C408F1B11CE7520700DB943F /* FBAllocationTracker.framework in Frameworks */,
@@ -339,7 +334,6 @@
 			isa = PBXGroup;
 			children = (
 				C4AD5B361D282F1800358DEA /* PromiseKit.framework */,
-				C4AD5B311D280A8100358DEA /* Result.framework */,
 				C408F1B61CE7520700DB943F /* FBRetainCycleDetector.framework */,
 				C408F1B31CE7520700DB943F /* FBMemoryProfiler.framework */,
 				C408F1B01CE7520700DB943F /* FBAllocationTracker.framework */,
