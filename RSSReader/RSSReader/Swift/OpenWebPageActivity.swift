@@ -11,18 +11,18 @@ import UIKit
 class OpenWebPageActivity : TypeFilteringActivity {
 	override func perform() {
 		let url = acceptedItems.last!
-		UIApplication.shared().openURL(url)
+		UIApplication.shared.openURL(url)
 	}
-	override func activityType() -> String {
+	override var activityType: String {
 		return "\(applicationDomain).openWebPage"
 	}
-	override func activityTitle() -> String {
+	override var activityTitle: String {
 		return NSLocalizedString("Open in Safari", comment: "")
 	}
-	override func activityImage() -> UIImage? {
+	override var activityImage: UIImage? {
 		return UIImage(named: "AppIcon")
 	}
-	override class func activityCategory() -> UIActivityCategory {
+	override class var activityCategory: UIActivityCategory {
 		return .action
 	}
 	// MARK: -

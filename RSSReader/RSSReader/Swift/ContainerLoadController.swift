@@ -46,7 +46,7 @@ class ContainerLoadController {
 		set { containerViewState!.loadCompleted = newValue }
 		get { return containerViewState?.loadCompleted ?? false }
 	}
-	private var loadError: ErrorProtocol? {
+	private var loadError: Error? {
 		set { containerViewState!.loadError = newValue }
 		get { return containerViewState?.loadError }
 	}
@@ -57,16 +57,16 @@ class ContainerLoadController {
 	class var keyPathsForValuesAffectingContainerViewPredicate: Set<String> {
 		return [#keyPath(unreadOnly)]
 	}
-	@objc private var containerViewPredicate: Predicate {
+	@objc private var containerViewPredicate: NSPredicate {
 		if unreadOnly {
-			return Predicate(format: "SUBQUERY(\(#keyPath(Item.categories)), $x, $x.\(#keyPath(Folder.streamID)) ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
+			return NSPredicate(format: "SUBQUERY(\(#keyPath(Item.categories)), $x, $x.\(#keyPath(Folder.streamID)) ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
 		}
 		else {
-			return Predicate(value: true)
+			return NSPredicate(value: true)
 		}
 	}
 	//
-	func loadMore(_ completionHandler: (ErrorProtocol?) -> Void) {
+	func loadMore(_ completionHandler: (Error?) -> Void) {
 		assert(!loadInProgress)
 		assert(!loadCompleted)
 		assert(nil == loadError)
@@ -128,7 +128,7 @@ class ContainerLoadController {
 			self.loadInProgress = false
 		}.then {
 			completionHandler(nil)
-		}.error { error -> Void in
+		}.catch { error -> Void in
 			guard oldOngoingLoadDate == self.ongoingLoadDate else {
 				return
 			}

@@ -72,7 +72,7 @@ class ItemsPageViewController : UIPageViewController {
 			self.toolbarItems = self.currentViewController?.toolbarItems
 		}]
 	}
-	override func childViewControllerForStatusBarHidden() -> UIViewController? {
+	override var childViewControllerForStatusBarHidden: UIViewController? {
 		return self.currentViewController
 	}
 	override func viewDidAppear(_ animated: Bool) {

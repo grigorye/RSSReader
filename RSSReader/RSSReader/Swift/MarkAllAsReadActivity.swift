@@ -17,20 +17,20 @@ class MarkAllAsReadActivity : TypeFilteringActivity {
 		for i in items {
 			i.markedAsRead = true
 		}
-		rssSession!.markAllAsRead(folder).error { error in
+		rssSession!.markAllAsRead(folder).catch { error in
 			$(error)
 		}
 	}
-	override func activityType() -> String {
+	override var activityType: String {
 		return "\(applicationDomain).markAllAsRead"
 	}
-	override func activityTitle() -> String {
+	override var activityTitle: String {
 		return NSLocalizedString("Mark All as Read", comment: "")
 	}
-	override func activityImage() -> UIImage? {
+	override var activityImage: UIImage? {
 		return UIImage(named: "AppIcon")
 	}
-	override class func activityCategory() -> UIActivityCategory {
+	override class var activityCategory: UIActivityCategory {
 		return .action
 	}
 	// MARK: -

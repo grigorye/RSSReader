@@ -12,12 +12,12 @@ import DZReadability
 #endif
 import Foundation
 
-func retrieveReadableHTMLFromURL(_ url: URL, completionHandler: (HTMLString: String?, error: ErrorProtocol?) -> ()) {
-	let completeWithError: (ErrorProtocol) -> () = { error in
+func retrieveReadableHTMLFromURL(_ url: URL, completionHandler: (HTMLString: String?, error: Error?) -> ()) {
+	let completeWithError: (Error) -> () = { error in
 		completionHandler(HTMLString: nil, error: error)
 	}
 	let dataTask = progressEnabledURLSessionTaskGenerator.textTask(for: URLRequest(url: url)) { text, error in
-		guard let HTMLString = text where nil == error else {
+		guard let HTMLString = text, nil == error else {
 			completeWithError($(error!))
 			return
 		}

@@ -32,7 +32,7 @@ class ItemSummaryWebViewController: UIViewController {
 	// MARK:-
 	var summaryHTMLString: String {
 		let bundle = Bundle.main
-		let htmlTemplateURL = bundle.urlForResource("ItemSummaryTemplate", withExtension: "html")!
+		let htmlTemplateURL = bundle.url(forResource: "ItemSummaryTemplate", withExtension: "html")!
 		let htmlTemplate = try! NSString(contentsOf: htmlTemplateURL, encoding: String.Encoding.utf8.rawValue)
 		let htmlString =
 			htmlTemplate
@@ -42,7 +42,7 @@ class ItemSummaryWebViewController: UIViewController {
 	}
 	// MARK:-
 	var directoryInCaches: String {
-		let directoryInCaches = (item.objectID.uriRepresentation().path! as NSString).substring(from: 1)
+		let directoryInCaches = (item.objectID.uriRepresentation().path as NSString).substring(from: 1)
 		return directoryInCaches
 	}
 	// MARK:-
@@ -54,18 +54,18 @@ class ItemSummaryWebViewController: UIViewController {
 	// MARK:-
 	func regenerateStoredHTMLFromString(_ HTMLString: String) throws {
 		let fileManager = FileManager.default
-		try fileManager.createDirectory(at: try! storedHTMLURL.deletingLastPathComponent(), withIntermediateDirectories: true, attributes: nil)
+		try fileManager.createDirectory(at: storedHTMLURL.deletingLastPathComponent(), withIntermediateDirectories: true, attributes: nil)
 		try HTMLString.write(to: storedHTMLURL, atomically: true, encoding: String.Encoding.utf8)
 	}
 	func loadHTMLString(_ HTMLString: String, ignoringExisting: Bool) throws {
 		let webView = self.webView
-		if let _ = webView?.request where !ignoringExisting {
+		if let _ = webView?.request, !ignoringExisting {
 			webView?.reload()
 		}
 		else {
 			if _1 {
 				try self.regenerateStoredHTMLFromString(HTMLString)
-				let request = URLRequest(url: try! storedHTMLURL.fileReferenceURL())
+				let request = URLRequest(url: storedHTMLURL)
 				webView?.loadRequest(request)
 			}
 			else {
@@ -112,7 +112,7 @@ class ItemSummaryWebViewController: UIViewController {
 		let url = URL(string: href)!
 		retrieveReadableHTMLFromURL(url) { HTMLString, error in
 			DispatchQueue.main.async {
-				guard let HTMLString = HTMLString where nil == error else {
+				guard let HTMLString = HTMLString, nil == error else {
 					$(error)
 					let message = NSLocalizedString("Unable to expand", comment: "")
 					self.presentErrorMessage(message)
@@ -188,7 +188,7 @@ class ItemSummaryWebViewController: UIViewController {
 		super.viewDidDisappear(animated)
 	}
 	// MARK: -
-	override func prefersStatusBarHidden() -> Bool {
+	override var prefersStatusBarHidden: Bool {
 		return navigationController?.isNavigationBarHidden ?? false
 	}
 	// MARK: - State Preservation and Restoration
@@ -211,14 +211,14 @@ class ItemSummaryWebViewDelegate: NSObject, UIWebViewDelegate {
 	func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
 		if navigationType == .linkClicked {
 			let url = request.url!
-			UIApplication.shared().openURL(url)
+			UIApplication.shared.openURL(url)
 			return false
 		}
 		else {
 			return true
 		}
 	}
-	func webView(_ webView: UIWebView, didFailLoadWithError error: NSError?) {
+	func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
 		$(error)
 	}
 	func webViewDidFinishLoad(_ webView: UIWebView) {

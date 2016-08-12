@@ -15,8 +15,8 @@ class HistoryViewController: UITableViewController {
 	typealias _Self = HistoryViewController
 	private var nowDate: Date!
 	static let fetchRequest = Item.fetchRequestForEntity() … {
-		$0.sortDescriptors = [SortDescriptor(key: #keyPath(Item.lastOpenedDate), ascending: false)]
-		$0.predicate = Predicate(format: "\(#keyPath(Item.lastOpenedDate)) != nil", argumentArray: [])
+		$0.sortDescriptors = [NSSortDescriptor(key: #keyPath(Item.lastOpenedDate), ascending: false)]
+		$0.predicate = NSPredicate(format: "\(#keyPath(Item.lastOpenedDate)) != nil", argumentArray: [])
 	}
 	static var fetchedResultsControllerDelegateAOKey: Void?
 	lazy var fetchedResultsController: NSFetchedResultsController<Item> = {
@@ -79,7 +79,7 @@ class HistoryViewController: UITableViewController {
 	override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
 		switch segue.identifier! {
 		case MainStoryboard.SegueIdentifiers.ShowHistoryPages:
-			let pageViewController = segue.destinationViewController as! UIPageViewController
+			let pageViewController = segue.destination as! UIPageViewController
 			let itemsPageViewControllerDataSource = (pageViewController.dataSource as! ItemsPageViewControllerDataSource) … {
 				$0.items = self.fetchedResultsController.fetchedObjects!
 			}
@@ -89,7 +89,7 @@ class HistoryViewController: UITableViewController {
 			}
 			pageViewController.setViewControllers([initialViewController], direction: .forward, animated: false, completion: nil)
 		case MainStoryboard.SegueIdentifiers.ShowHistoryArticle:
-			let itemViewController = segue.destinationViewController as! ItemSummaryWebViewController
+			let itemViewController = segue.destination as! ItemSummaryWebViewController
 			itemViewController.item = selectedItem
 			$(segue)
 		default:

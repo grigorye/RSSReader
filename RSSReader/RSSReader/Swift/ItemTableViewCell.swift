@@ -53,16 +53,16 @@ class ItemTableViewCell : SystemLayoutSizeCachingTableViewCell, ItemTableViewCel
 				sourceLabel.text = text
 			}
 		}
-		if let dateLabel = self.dateLabel where defaults.showDates {
+		if let dateLabel = self.dateLabel, defaults.showDates {
 			let text = "\(item.itemListFormattedDate(forNowDate: nowDate))".lowercased()
 			if dateLabel.text != text {
 				dateLabel.text = text
 				if _0 {
-				dateLabel.textColor = item.markedAsRead ? nil : UIColor.red()
+				dateLabel.textColor = item.markedAsRead ? nil : UIColor.red
 				}
 			}
 		}
-		if let readMarkLabel = self.readMarkLabel where defaults.showUnreadMark {
+		if let readMarkLabel = self.readMarkLabel, defaults.showUnreadMark {
 			let alpha = CGFloat(item.markedAsRead ? 0 : 1)
 			if readMarkLabel.alpha != alpha {
 				readMarkLabel.alpha = alpha

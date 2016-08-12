@@ -75,7 +75,7 @@ class ItemsListViewController: ContainerTableViewController {
 		set { containerViewState!.loadCompleted = newValue }
 		get { return containerViewState?.loadCompleted ?? false }
 	}
-	private var loadError: ErrorProtocol? {
+	private var loadError: Error? {
 		set { containerViewState!.loadError = newValue }
 		get { return containerViewState?.loadError }
 	}
@@ -99,19 +99,19 @@ class ItemsListViewController: ContainerTableViewController {
 	class var keyPathsForValuesAffectingContainerViewPredicate: Set<String> {
 		return [#keyPath(showUnreadOnly)]
 	}
-	@objc private var containerViewPredicate: Predicate {
+	@objc private var containerViewPredicate: NSPredicate {
 		if showUnreadOnly {
-			return Predicate(format: "SUBQUERY(\(#keyPath(Item.categories)), $x, $x.\(#keyPath(Folder.streamID)) ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
+			return NSPredicate(format: "SUBQUERY(\(#keyPath(Item.categories)), $x, $x.\(#keyPath(Folder.streamID)) ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
 		}
 		else {
-			return Predicate(value: true)
+			return NSPredicate(value: true)
 		}
 	}
 	// MARK: -
 	class var keyPathsForValuesAffectingPredicateForItems: Set<String> {
 		return [#keyPath(fetchedResultsController)]
 	}
-	override dynamic var predicateForItems: Predicate {
+	override dynamic var predicateForItems: NSPredicate {
 		return fetchedResultsController.fetchRequest.predicate!
 	}
 	// MARK: -
@@ -195,7 +195,7 @@ class ItemsListViewController: ContainerTableViewController {
 				return
 			}
 			self.loadInProgress = false
-		}.error { error -> Void in
+		}.catch { error -> Void in
 			guard oldOngoingLoadDate == self.ongoingLoadDate else {
 				return
 			}
@@ -289,7 +289,7 @@ class ItemsListViewController: ContainerTableViewController {
 			rssSession!.markAllAsRead(container!)
 		}.then {
 			self.presentInfoMessage(NSLocalizedString("Marked all as read.", comment: ""))
-		}.error { error in
+		}.catch { error in
 			self.presentErrorMessage(
 				String.localizedStringWithFormat(
 					NSLocalizedString("Failed to mark all as read. %@", comment: ""),
@@ -396,7 +396,7 @@ class ItemsListViewController: ContainerTableViewController {
 	override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
 		switch segue.identifier! {
 		case MainStoryboard.SegueIdentifiers.ShowListPages:
-			let pageViewController = segue.destinationViewController as! UIPageViewController
+			let pageViewController = segue.destination as! UIPageViewController
 			let itemsPageViewControllerDataSource = (pageViewController.dataSource as! ItemsPageViewControllerDataSource) … {
 				$0.items = fetchedResultsController.fetchedObjects!
 			}
@@ -586,7 +586,7 @@ extension ItemsListViewController {
 		typealias E = Item
 		let fetchRequest = E.fetchRequestForEntity() … {
 			$0.sortDescriptors = sortDescriptorsForContainers
-			$0.predicate = CompoundPredicate(andPredicateWithSubpredicates:[Predicate]() … {
+			$0.predicate = NSCompoundPredicate(andPredicateWithSubpredicates:[NSPredicate]() … {
 				$0 += [container!.predicateForItems]
 				$0 += [containerViewPredicate]
 			})

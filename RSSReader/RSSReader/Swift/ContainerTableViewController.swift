@@ -12,7 +12,7 @@ import Foundation
 
 class ContainerTableViewController: UITableViewController {
 	dynamic var container: Container!
-	dynamic var predicateForItems: Predicate {
+	dynamic var predicateForItems: NSPredicate {
 		return container!.predicateForItems
 	}
 	// MARK: -

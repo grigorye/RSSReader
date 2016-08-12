@@ -57,12 +57,12 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 		refreshControl?.beginRefreshing()
 		self.refresh(refreshControl)
 	}
-	static func viewControllerToPresent(on error: ErrorProtocol, title: String, retryAction: () -> Void) -> UIViewController {
+	static func viewControllerToPresent(on error: Error, title: String, retryAction: () -> Void) -> UIViewController {
 		let alertController: UIAlertController = {
 			let message: String = {
 				let localizedDescription: String = {
 					switch error {
-					case RSSReaderData.RSSSession.Error.authenticationFailed:
+					case RSSReaderData.RSSSessionError.authenticationFailed:
 						return NSLocalizedString("Authentication Failed", comment: "Error description for authentication failure")
 					default:
 						return (error as NSError).localizedDescription
@@ -92,7 +92,7 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 		return alertController
 	}
 	enum AuthenticationState {
-		case Unknown, InProgress, Succeeded, Failed(error: ErrorProtocol?)
+		case Unknown, InProgress, Succeeded, Failed(error: Error?)
 	}
 	var authenticationState: AuthenticationState = .Unknown {
 		didSet {
@@ -107,7 +107,7 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 		}
 		firstly {
 			guard !rssSession.authenticated else {
-				return Promise()
+				return Promise(value: ())
 			}
 			self.authenticationState = .InProgress
 			return rssSession.authenticate()
@@ -125,8 +125,8 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 			self.tableView.reloadData()
 		}.always {
 			self.refreshControl?.endRefreshing()
-		}.error { updateError in
-			let presentedError: ErrorProtocol = {
+		}.catch { updateError in
+			let presentedError: Error = {
 				switch $(updateError) {
 				case let foldersControllerError as FoldersControllerError:
 					switch foldersControllerError {
@@ -159,17 +159,17 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 	override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
 		switch segue.identifier! {
 		case MainStoryboard.SegueIdentifiers.ShowFolder:
-			let foldersListTableViewController = segue.destinationViewController as! FoldersListTableViewController
+			let foldersListTableViewController = segue.destination as! FoldersListTableViewController
 			let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow!
 			let folder = childContainers[indexPathForSelectedRow.row] as! Folder
 			foldersListTableViewController.rootFolder = folder
 		case MainStoryboard.SegueIdentifiers.ShowSubscription:
-			let itemsListViewController = segue.destinationViewController as! ItemsListViewController
+			let itemsListViewController = segue.destination as! ItemsListViewController
 			let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow!
 			let subscription = childContainers[indexPathForSelectedRow.row] as! Subscription
 			itemsListViewController.container = subscription
 		case MainStoryboard.SegueIdentifiers.ShowCombined:
-			let itemsListViewController = segue.destinationViewController as! ItemsListViewController
+			let itemsListViewController = segue.destination as! ItemsListViewController
 			itemsListViewController.container = self.rootFolder
 			itemsListViewController.multipleSourcesEnabled = true
 		default:
