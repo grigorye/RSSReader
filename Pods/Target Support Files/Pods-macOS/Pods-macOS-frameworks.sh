@@ -85,9 +85,7 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/PromiseKit-OSX/PromiseKit.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Result-OSX/Result.framework"
 fi
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/PromiseKit-OSX/PromiseKit.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Result-OSX/Result.framework"
 fi

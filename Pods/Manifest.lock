@@ -16,7 +16,6 @@ PODS:
   - Flurry-iOS-SDK/FlurrySDK (7.6.6)
   - HTMLReader (1.0)
   - PromiseKit/CorePromise (4.0.0)
-  - Result (3.0.0-alpha.1)
   - TUSafariActivity (1.0.4)
   - UXCam (2.5.5)
 
@@ -30,7 +29,6 @@ DEPENDENCIES:
   - Flurry-iOS-SDK/FlurrySDK
   - HTMLReader
   - PromiseKit/CorePromise (from `https://github.com/mxcl/PromiseKit`, branch `swift-3.0`)
-  - Result (from `https://github.com/antitypical/Result`)
   - TUSafariActivity
   - UXCam
 
@@ -38,16 +36,11 @@ EXTERNAL SOURCES:
   PromiseKit:
     :branch: swift-3.0
     :git: https://github.com/mxcl/PromiseKit
-  Result:
-    :git: https://github.com/antitypical/Result
 
 CHECKOUT OPTIONS:
   PromiseKit:
     :commit: e6c46721020f85137e2697873fc59e424dd9719f
     :git: https://github.com/mxcl/PromiseKit
-  Result:
-    :commit: 21485bc2814fbafe5b769ac39ab48ecf61100f02
-    :git: https://github.com/antitypical/Result
 
 SPEC CHECKSUMS:
   AFMInfoBanner: a7bcfd409faa624f043e604ae4fb789c84b22815
@@ -62,10 +55,9 @@ SPEC CHECKSUMS:
   Flurry-iOS-SDK: 97bbeec09cca666c2f1772f6e161c4f8ccff611e
   HTMLReader: 8024d86f188a38da8d188d2433003ce652ca444a
   PromiseKit: 4dc3b2f7ef8a4de500e367f12dc9e49b29a7302f
-  Result: 7368f351c7e2ed4d3fa48e852d3ab12a27f46e9a
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   UXCam: 3318abdb0b2b0d8dc6905579bb5a9ff16185c9a8
 
-PODFILE CHECKSUM: 5ca71766db04b6dae223cbab55cb5e0f49537be0
+PODFILE CHECKSUM: b88ba9447d6b0147f625511bcd7bdc1427bfef51
 
 COCOAPODS: 1.0.1
