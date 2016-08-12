@@ -30,7 +30,6 @@
 		0FAAEF717AFE92946BB76CD5A1CA7AA0 /* FBRetainCycleUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2425E9B6DACE8CDC58131DFFF2071860 /* FBRetainCycleUtils.m */; };
 		1171D294BCB5705B65BD34B46B8A27D8 /* FBMemoryProfiler-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A0C0704B832AF27E7B769BE4154C4A /* FBMemoryProfiler-dummy.m */; };
 		138D97E157FA67C5E077E2C43EDEBE00 /* CVKHierarchySearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = F8B119C83087EE180F28C3A0CB11CBE4 /* CVKHierarchySearcher.m */; };
-		141D1EAA14A6F2006DB99DA3A3EA30AA /* Umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7509EC0A78CDB07CB106479F4A2CA05A /* Umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		160158A31A2A5C167E0D3CF4868BE560 /* FBMemoryProfilerContainerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CBF3761B6898F64C3056172DEB71F54 /* FBMemoryProfilerContainerViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		163095666D4289E052E962C900196661 /* HTMLSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = C32B6A9CC792E6BD037B341F242C9B81 /* HTMLSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		16B29D8B2A22397E00E01EAD696D971C /* FBMemoryProfiler-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5CB9EC369402349834813B617314C960 /* FBMemoryProfiler-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -194,7 +193,6 @@
 		A92B4F84209723FC7C5B953BECC51BBB /* FBSingleRetainCycleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDB566570060F0A954E310A534BF3F7E /* FBSingleRetainCycleViewController.m */; };
 		A9532A00857697BB0F037480C3604770 /* hang.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F304A9BBCCAEA678712E010FD31CDC /* hang.m */; };
 		ABA3E7A140217F080BCDD12E2D8A2588 /* TUSafariActivity.h in Headers */ = {isa = PBXBuildFile; fileRef = BD6860740D61AC22502A2CD1F0595606 /* TUSafariActivity.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ABFD9161C85BBE3AA1F7179488108822 /* Umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7509EC0A78CDB07CB106479F4A2CA05A /* Umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AC1E5BFCF26D250EDE257DE7599B318D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 561C9E7484D5D541A2D56282ED05127B /* Foundation.framework */; };
 		ACDD8E4D2A84651A8B3FB087EDAFEBD8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 561C9E7484D5D541A2D56282ED05127B /* Foundation.framework */; };
 		AEB2AE91C20EE97BDA7930A66C8BCFC6 /* Pods-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD41C1D63F7E1BA3F4B041D60D286A8 /* Pods-iOS-dummy.m */; };
@@ -1625,7 +1623,6 @@
 			files = (
 				356CE3ADD7692C4650F15A047E9CB4D0 /* AnyPromise.h in Headers */,
 				415887C838C7EDD4FE3E83E294B4274A /* PromiseKit.h in Headers */,
-				141D1EAA14A6F2006DB99DA3A3EA30AA /* Umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1698,7 +1695,6 @@
 			files = (
 				733D6D70D56B7B5FA922785EB1FC708F /* AnyPromise.h in Headers */,
 				50D085C964F83F9EA1E45B256C3885E1 /* PromiseKit.h in Headers */,
-				ABFD9161C85BBE3AA1F7179488108822 /* Umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
