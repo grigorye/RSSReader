@@ -71,7 +71,7 @@ extension Item {
 }
 
 extension Item : DefaultSortable {
-	public static func defaultSortDescriptor() -> SortDescriptor {
-		return SortDescriptor(key: #keyPath(date), ascending: false)
+	public static func defaultSortDescriptor() -> NSSortDescriptor {
+		return NSSortDescriptor(key: #keyPath(date), ascending: false)
 	}
 }

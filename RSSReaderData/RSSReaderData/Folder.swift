@@ -10,7 +10,7 @@ import CoreData
 
 public class Folder : Container {
 	typealias _Self = Folder
-	@NSManaged public var childContainers: OrderedSet
+	@NSManaged public var childContainers: NSOrderedSet
 	@NSManaged var items: Set<Item>
 	@NSManaged var itemsToBeExcluded: Set<Item>
 	@NSManaged var itemsToBeIncluded: Set<Item>

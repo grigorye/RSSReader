@@ -27,8 +27,8 @@ public class Container : NSManagedObject {
 }
 
 extension Container : DefaultSortable {
-	public class func defaultSortDescriptor() -> SortDescriptor {
-		return SortDescriptor(key: #keyPath(streamID), ascending: true)
+	public class func defaultSortDescriptor() -> NSSortDescriptor {
+		return NSSortDescriptor(key: #keyPath(streamID), ascending: true)
 	}
 }
 
@@ -42,14 +42,14 @@ extension Container: ManagedIdentifiable {
 }
 
 extension Container {
-	public var predicateForItems: Predicate {
+	public var predicateForItems: NSPredicate {
 		switch self {
 		case is Subscription:
-			return Predicate(format: "(\(#keyPath(Item.subscription)) == %@)", argumentArray: [self])
+			return NSPredicate(format: "(\(#keyPath(Item.subscription)) == %@)", argumentArray: [self])
 		case let category where category.streamID.hasSuffix(rootTagSuffix):
-			return Predicate(value: true)
+			return NSPredicate(value: true)
 		default:
-			return Predicate(format: "(\(#keyPath(Item.categories)) CONTAINS %@)", argumentArray: [self])
+			return NSPredicate(format: "(\(#keyPath(Item.categories)) CONTAINS %@)", argumentArray: [self])
 		}
 	}
 }
@@ -123,14 +123,14 @@ extension Container {
 				}
 				typealias E = Container
 				let request = E.fetchRequestForEntity() … {
-					$0.predicate = Predicate(format: "\(#keyPath(E.sortID)) IN %@", argumentArray: [sortIDs.map { NSNumber(value: $0) }])
+					$0.predicate = NSPredicate(format: "\(#keyPath(E.sortID)) IN %@", argumentArray: [sortIDs.map { NSNumber(value: $0) }])
 				}
 				let unorderedChildContainers = try managedObjectContext.fetch(request)
 				•(unorderedChildContainers)
 				let childContainers = sortIDs.map { sortID in
 					return unorderedChildContainers.filter { $0.sortID == sortID }.onlyElement!
 				}
-				folder.childContainers = OrderedSet(array: childContainers)
+				folder.childContainers = NSOrderedSet(array: childContainers)
 			}
 		}
 	}

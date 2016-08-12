@@ -17,7 +17,7 @@ public protocol AbstractPersistentDataUpdateCommand {}
 protocol PersistentDataUpdateCommand : AbstractPersistentDataUpdateCommand {
 	associatedtype ResultType
 	var request: URLRequest { get }
-	func preprocessedRequestError(_ error: ErrorProtocol) -> RSSSession.Error
+	func preprocessedRequestError(_ error: Error) -> RSSSessionError
 	func validate(data: Data) throws
 	func push(_ data: Data, through: ((NSManagedObjectContext) throws -> ResultType) -> Void)
 	func taskForSession(_ session: RSSSession, completionHandler: RSSSessionTaskCompletionHandler) -> URLSessionTask
@@ -33,7 +33,7 @@ extension PersistentDataUpdateCommand {
 		return components.url!
 	}
 	//
-	func preprocessedRequestError(_ error: ErrorProtocol) -> RSSSession.Error {
+	func preprocessedRequestError(_ error: Error) -> RSSSessionError {
 		return .requestFailed(underlyingError: error)
 	}
 	func validate(data: Data) throws {
@@ -223,7 +223,7 @@ public struct StreamContents : PersistentDataUpdateCommand, AuthenticatedDataUpd
 struct Authenticate : PersistentDataUpdateCommand, SimpleDispatchingDataUpdateCommand {
 	typealias ResultType = String
 	let loginAndPassword: LoginAndPassword
-	func preprocessed(_ error: ErrorProtocol) -> ErrorProtocol {
+	func preprocessed(_ error: Error) -> Error {
 		switch error {
 		case GEBase.URLSessionTaskGeneratorError.UnexpectedHTTPResponseStatus(let httpResponse):
 			guard httpResponse.statusCode == 401 else {

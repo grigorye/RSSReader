@@ -26,7 +26,7 @@ func itemsImportedFromStreamJson(_ json: Json, loadDate: Date, container: Contai
 	if let excludedCategory = excludedCategory {
 		let lastItem = items.last
 		let fetchRequest = Item.fetchRequestForEntity() … {
-			$0.predicate = Predicate(
+			$0.predicate = NSPredicate(
 				format: "(loadDate != %@) && (date < %@) && (subscription == %@) && SUBQUERY(\(#keyPath(Item.categories)), $x, $x.\(#keyPath(Folder.streamID)) ENDSWITH %@).@count == 0",
 				argumentArray: [
 					loadDate,
