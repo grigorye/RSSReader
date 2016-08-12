@@ -7,7 +7,6 @@
 //
 
 import GEBase
-import Result
 import CoreData
 import Foundation
 
