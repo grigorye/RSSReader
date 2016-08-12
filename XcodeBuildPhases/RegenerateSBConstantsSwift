@@ -9,7 +9,7 @@
 scriptName=$(basename "$0")
 swiftrsrc=~/.toast/armed/bin/swiftrsrc
 input="${SRCROOT:?}/${TARGET_NAME:?}"/Localizable/Base.lproj/Main.storyboard
-output="${SRCROOT:?}/${TARGET_NAME:?}"/SBConstants.swift
+output="${SRCROOT:?}/${TARGET_NAME:?}"/Swift/SBConstants.swift
 
 if [ -x "${swiftrsrc:?}" ]
 then
