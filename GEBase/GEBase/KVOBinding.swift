@@ -8,7 +8,7 @@
 
 import Foundation
 
-private let KVOBindingContext = UnsafeMutablePointer<Void>(allocatingCapacity: 1)
+private let KVOBindingContext = UnsafeMutablePointer<Void>.allocate(capacity: 1)
 
 public class KVOBinding : NSObject {
 	unowned let object: NSObject

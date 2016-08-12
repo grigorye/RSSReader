@@ -12,7 +12,7 @@ extension Bundle {
 	public static func bundle(forStackFrameIndex stackFrameIndex: Int) -> Bundle? {
 		precondition(0 <= stackFrameIndex)
 		let length = stackFrameIndex + 1
-		let addr = UnsafeMutablePointer<UnsafeMutablePointer<Void>?>(allocatingCapacity: length)
+		let addr = UnsafeMutablePointer<UnsafeMutablePointer<Void>?>.allocate(capacity: length)
 		let frames = Int(backtrace(addr, Int32(length)))
 		assert(stackFrameIndex < frames)
 		var info = Dl_info()
@@ -20,9 +20,9 @@ extension Bundle {
 			return nil
 		}
 		let sharedObjectName = String(validatingUTF8: info.dli_fname)!
-		let bundleURL = try! URL(fileURLWithPath: sharedObjectName).deletingLastPathComponent()
+		let bundleURL = URL(fileURLWithPath: sharedObjectName).deletingLastPathComponent()
 		let bundle = Bundle(url: bundleURL)!
-		addr.deallocateCapacity(length)
+		addr.deallocate(capacity: length)
 		return bundle
 	}
 }

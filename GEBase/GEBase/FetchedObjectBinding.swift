@@ -14,7 +14,7 @@ public class FetchedObjectBinding<T where T: DefaultSortable, T: Managed, T: NSF
 	public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		handler(controller.fetchedObjects! as! [T])
 	}
-	public init(managedObjectContext: NSManagedObjectContext, predicate: Predicate?, handler: ([T]) -> Void) {
+	public init(managedObjectContext: NSManagedObjectContext, predicate: NSPredicate?, handler: ([T]) -> Void) {
 		self.handler = handler
 		self.fetchedResultsController = {
 			let fetchRequest = T.fetchRequestForEntity() … {

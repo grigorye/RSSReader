@@ -8,7 +8,7 @@
 
 import CoreData
 
-enum GenericCoreDataExtensionsError: ErrorProtocol {
+enum GenericCoreDataExtensionsError: Error {
 	case JsonObjectIsNotDictionary(jsonObject: AnyObject)
 	case ElementNotFoundOrInvalidInJson(json: [String: AnyObject], elementName: String)
 }
@@ -24,7 +24,7 @@ public extension Managed {
 }
 
 public protocol DefaultSortable {
-	static func defaultSortDescriptor() -> SortDescriptor
+	static func defaultSortDescriptor() -> NSSortDescriptor
 }
 
 public protocol Identifiable {
@@ -34,7 +34,7 @@ public protocol Identifiable {
 public protocol ManagedIdentifiable: Managed, Identifiable {
 }
 
-func objectFetchedWithPredicate<T: Managed where T: NSManagedObject, T: NSFetchRequestResult> (_ cls: T.Type, predicate: Predicate, managedObjectContext: NSManagedObjectContext) -> T? {
+func objectFetchedWithPredicate<T: Managed where T: NSManagedObject, T: NSFetchRequestResult> (_ cls: T.Type, predicate: NSPredicate, managedObjectContext: NSManagedObjectContext) -> T? {
 	let request: NSFetchRequest<T> = {
 		let $ = T.fetchRequestForEntity()
 		$.predicate = predicate
@@ -50,7 +50,7 @@ func objectFetchedWithPredicate<T: Managed where T: NSManagedObject, T: NSFetchR
 	return object
 }
 
-func insertedObjectUnlessFetchedWithPredicate<T: Managed where T: NSManagedObject, T: NSFetchRequestResult>(_ cls: T.Type, predicate: Predicate, managedObjectContext: NSManagedObjectContext, newObjectInitializationHandler: (T) -> Void) throws -> T {
+func insertedObjectUnlessFetchedWithPredicate<T: Managed where T: NSManagedObject, T: NSFetchRequestResult>(_ cls: T.Type, predicate: NSPredicate, managedObjectContext: NSManagedObjectContext, newObjectInitializationHandler: (T) -> Void) throws -> T {
 	let entityName = cls.entityName()
 	if let existingObject = objectFetchedWithPredicate(cls, predicate: predicate, managedObjectContext: managedObjectContext) {
 		return existingObject
@@ -63,7 +63,7 @@ func insertedObjectUnlessFetchedWithPredicate<T: Managed where T: NSManagedObjec
 }
 public func insertedObjectUnlessFetchedWithID<T: NSManagedObject where T: ManagedIdentifiable, T: NSFetchRequestResult>(_ cls: T.Type, id: String, managedObjectContext: NSManagedObjectContext) throws -> T {
 	let identifierKey = cls.identifierKey()
-	let predicate = Predicate(format: "%K == %@", argumentArray: [identifierKey, id])
+	let predicate = NSPredicate(format: "%K == %@", argumentArray: [identifierKey, id])
 	return try insertedObjectUnlessFetchedWithPredicate(cls, predicate: predicate, managedObjectContext: managedObjectContext) { newObject in
 		(newObject as NSManagedObject).setValue(id, forKey:identifierKey)
 	}

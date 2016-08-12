@@ -50,14 +50,14 @@ func indexOfClosingBracket(_ string: NSString, openingBracket: NSString, closing
 
 func label(from firstLocation: SourceLocation, to lastLocation: SourceLocation) -> String {
 	let fileURL = firstLocation.fileURL
-	let resourceName = fileURL.deletingPathExtension!.lastPathComponent!
+	let resourceName = fileURL.deletingPathExtension!.lastPathComponent
 	let resourceType = fileURL.pathExtension!
 	guard let bundle = firstLocation.bundle else {
 		// Console
 		return "\(resourceName).\(resourceType):?"
 	}
 	let bundleName = (bundle.bundlePath as NSString).lastPathComponent
-	guard let file = bundle.pathForResource(resourceName, ofType: resourceType, inDirectory: "Sources") else {
+	guard let file = bundle.path(forResource: resourceName, ofType: resourceType, inDirectory: "Sources") else {
 		// File missing in the bundle
 		return "\(bundleName)/\(resourceName).\(resourceType)[!exist]:\(descriptionForInLineLocation(firstLocation, lastLocation: lastLocation)):?"
 	}
