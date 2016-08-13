@@ -189,12 +189,12 @@ class ItemsListViewController: ContainerTableViewController {
 					self.tableView.tableFooterView = nil
 				}
 			}
-			self.loadMoreIfNecessary()
 		}.always { () -> Void in
 			guard oldOngoingLoadDate == self.ongoingLoadDate else {
 				return
 			}
 			self.loadInProgress = false
+			self.loadMoreIfNecessary()
 		}.catch { error -> Void in
 			guard oldOngoingLoadDate == self.ongoingLoadDate else {
 				return
