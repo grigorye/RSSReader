@@ -16,15 +16,15 @@ class CoreDataFetchRequestsTests: XCTestCase {
 	let rssSession = RSSSession(loginAndPassword: LoginAndPassword(login: "cake218@icloud.com", password: "7L3-Skb-nJ2-Dh2"))
 	// MARK: -
     override func setUp() {
-    	let authenticateDidComplete = self.expectation(withDescription: "authenticateDidComplete")
+    	let authenticateDidComplete = self.expectation(description: "authenticateDidComplete")
 		firstly {
 			return rssSession.authenticate()
 		}.then {
 			authenticateDidComplete.fulfill()
-		}.error { error in
+		}.catch { error in
 			XCTFail("error: \(error)")
 		}
-		self.waitForExpectations(withTimeout: 5) { error in
+		self.waitForExpectations(timeout: 5) { error in
 			$(error)
 		}
         super.setUp()
@@ -35,30 +35,30 @@ class CoreDataFetchRequestsTests: XCTestCase {
 	// MARK: -
     func testPullTags() {
 		$(mainQueueManagedObjectContext.persistentStoreCoordinator)
-    	let pullTagsComplete = self.expectation(withDescription: "pullTagsComplete")
+    	let pullTagsComplete = self.expectation(description: "pullTagsComplete")
 		firstly {
 			return rssSession.pullTags()
 		}.then {
 			pullTagsComplete.fulfill()
-		}.error { error in
+		}.catch { error in
 			XCTFail("error: \(error)")
 		}
-		self.waitForExpectations(withTimeout: 5) { error in
+		self.waitForExpectations(timeout: 5) { error in
 			$(error)
 		}
 	}
     func testPullTagsFromLastData() {
 		$(mainQueueManagedObjectContext.persistentStoreCoordinator)
 		_ = try! Data(contentsOf: lastTagsFileURL)
-    	let pullTagsComplete = self.expectation(withDescription: "pullTagsComplete")
+    	let pullTagsComplete = self.expectation(description: "pullTagsComplete")
 		firstly {
 			return rssSession.pullTags()
 		}.then {
 			pullTagsComplete.fulfill()
-		}.error { error in
+		}.catch { error in
 			XCTFail("error: \(error)")
 		}
-		self.waitForExpectations(withTimeout: 5) { error in
+		self.waitForExpectations(timeout: 5) { error in
 			$(error)
 		}
 		RunLoop.current.run(until: Date(timeIntervalSinceNow: 5))
@@ -92,7 +92,7 @@ class CoreDataFetchRequestsTests: XCTestCase {
 		RunLoop.current.run(until: Date(timeIntervalSinceNow: 5))
 	}
 	func testFetchRequestInPerformBlockInBackgroundQueueContextWithAccessFetchedResultInPerformBlock() {
-    	let didPerformBlock = self.expectation(withDescription: "didPerformBlock")
+    	let didPerformBlock = self.expectation(description: "didPerformBlock")
 		backgroundQueueManagedObjectContext.perform {
 			let fetchRequest = Folder.fetchRequestForEntity()
 			let objects = try! backgroundQueueManagedObjectContext.fetch(fetchRequest)
@@ -107,12 +107,12 @@ class CoreDataFetchRequestsTests: XCTestCase {
 			}
 		}
 		RunLoop.current.run(until: Date(timeIntervalSinceNow: 5))
-		self.waitForExpectations(withTimeout: 5) { error in
+		self.waitForExpectations(timeout: 5) { error in
 			$(error)
 		}
 	}
 	func testFetchRequestInPerformBlockInBackgroundQueueContextWithAccessFetchedResultInPerformBlockAndWait() {
-    	let didPerformBlockAndWait = self.expectation(withDescription: "didPerformBlockAndWait")
+    	let didPerformBlockAndWait = self.expectation(description: "didPerformBlockAndWait")
 		backgroundQueueManagedObjectContext.perform {
 			let fetchRequest = Folder.fetchRequestForEntity()
 			let objects = try! backgroundQueueManagedObjectContext.fetch(fetchRequest)
@@ -127,7 +127,7 @@ class CoreDataFetchRequestsTests: XCTestCase {
 			}
 		}
 		RunLoop.current.run(until: Date(timeIntervalSinceNow: 5))
-		self.waitForExpectations(withTimeout: 5) { error in
+		self.waitForExpectations(timeout: 5) { error in
 			$(error)
 		}
 	}

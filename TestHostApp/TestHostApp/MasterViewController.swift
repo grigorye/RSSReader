@@ -17,9 +17,9 @@ class MasterViewController: UITableViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
-		self.navigationItem.leftBarButtonItem = self.editButtonItem()
+		self.navigationItem.leftBarButtonItem = self.editButtonItem
 
-		let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(MasterViewController.insertNewObject(_:)))
+		let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.insertNewObject(_:)))
 		self.navigationItem.rightBarButtonItem = addButton
 		if let split = self.splitViewController {
 		    let controllers = split.viewControllers
@@ -49,9 +49,9 @@ class MasterViewController: UITableViewController {
 		if segue.identifier == "showDetail" {
 		    if let indexPath = self.tableView.indexPathForSelectedRow {
 		        let object = objects[(indexPath as NSIndexPath).row] as! Date
-		        let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
+		        let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
 		        controller.detailItem = object
-		        controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+		        controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
 		        controller.navigationItem.leftItemsSupplementBackButton = true
 		    }
 		}
