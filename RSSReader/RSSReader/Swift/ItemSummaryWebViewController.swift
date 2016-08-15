@@ -175,7 +175,7 @@ class ItemSummaryWebViewController: UIViewController {
 		blocksScheduledForViewWillDisappear += [{
 			self.managesBarVisiblity = false
 		}]
-		self.markAsOpenAndReadTimer = Timer.scheduledTimer(timeInterval: markAsReadTimeInterval, target: self, selector: #selector(ItemSummaryWebViewController.markAsOpenAndRead), userInfo: nil, repeats: false)
+		self.markAsOpenAndReadTimer = Timer.scheduledTimer(timeInterval: markAsReadTimeInterval, target: self, selector: #selector(self.markAsOpenAndRead), userInfo: nil, repeats: false)
 	}
 	override func viewWillDisappear(_ animated: Bool) {
 		blocksScheduledForViewWillDisappear.forEach { $0() }
