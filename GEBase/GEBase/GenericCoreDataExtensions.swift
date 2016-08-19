@@ -9,7 +9,7 @@
 import CoreData
 
 enum GenericCoreDataExtensionsError: Error {
-	case JsonObjectIsNotDictionary(jsonObject: AnyObject)
+	case JsonObjectIsNotDictionary(jsonObject: Any)
 	case ElementNotFoundOrInvalidInJson(json: [String: AnyObject], elementName: String)
 }
 
@@ -34,7 +34,7 @@ public protocol Identifiable {
 public protocol ManagedIdentifiable: Managed, Identifiable {
 }
 
-func objectFetchedWithPredicate<T: Managed where T: NSManagedObject, T: NSFetchRequestResult> (_ cls: T.Type, predicate: NSPredicate, managedObjectContext: NSManagedObjectContext) -> T? {
+func objectFetchedWithPredicate<T: Managed> (_ cls: T.Type, predicate: NSPredicate, managedObjectContext: NSManagedObjectContext) -> T? where T: NSManagedObject, T: NSFetchRequestResult {
 	let request: NSFetchRequest<T> = {
 		let $ = T.fetchRequestForEntity()
 		$.predicate = predicate
@@ -50,7 +50,7 @@ func objectFetchedWithPredicate<T: Managed where T: NSManagedObject, T: NSFetchR
 	return object
 }
 
-func insertedObjectUnlessFetchedWithPredicate<T: Managed where T: NSManagedObject, T: NSFetchRequestResult>(_ cls: T.Type, predicate: NSPredicate, managedObjectContext: NSManagedObjectContext, newObjectInitializationHandler: (T) -> Void) throws -> T {
+func insertedObjectUnlessFetchedWithPredicate<T: Managed>(_ cls: T.Type, predicate: NSPredicate, managedObjectContext: NSManagedObjectContext, newObjectInitializationHandler: (T) -> Void) throws -> T where T: NSManagedObject, T: NSFetchRequestResult {
 	let entityName = cls.entityName()
 	if let existingObject = objectFetchedWithPredicate(cls, predicate: predicate, managedObjectContext: managedObjectContext) {
 		return existingObject
@@ -61,14 +61,14 @@ func insertedObjectUnlessFetchedWithPredicate<T: Managed where T: NSManagedObjec
 		return newObject
 	}
 }
-public func insertedObjectUnlessFetchedWithID<T: NSManagedObject where T: ManagedIdentifiable, T: NSFetchRequestResult>(_ cls: T.Type, id: String, managedObjectContext: NSManagedObjectContext) throws -> T {
+public func insertedObjectUnlessFetchedWithID<T: NSManagedObject>(_ cls: T.Type, id: String, managedObjectContext: NSManagedObjectContext) throws -> T where T: ManagedIdentifiable, T: NSFetchRequestResult {
 	let identifierKey = cls.identifierKey()
 	let predicate = NSPredicate(format: "%K == %@", argumentArray: [identifierKey, id])
 	return try insertedObjectUnlessFetchedWithPredicate(cls, predicate: predicate, managedObjectContext: managedObjectContext) { newObject in
 		(newObject as NSManagedObject).setValue(id, forKey:identifierKey)
 	}
 }
-public func importItemsFromJson<T: ManagedIdentifiable where T: NSManagedObject, T: NSFetchRequestResult>(_ json: [String : AnyObject], type: T.Type, elementName: String, managedObjectContext: NSManagedObjectContext, importFromJson: (T, [String: AnyObject]) throws -> Void) throws -> [T] {
+public func importItemsFromJson<T: ManagedIdentifiable>(_ json: [String : AnyObject], type: T.Type, elementName: String, managedObjectContext: NSManagedObjectContext, importFromJson: (T, [String: AnyObject]) throws -> Void) throws -> [T] where T: NSManagedObject, T: NSFetchRequestResult {
 	var items = [T]()
 	guard let itemJsons = json[elementName] as? [[String : AnyObject]] else {
 		throw GenericCoreDataExtensionsError.ElementNotFoundOrInvalidInJson(json: json, elementName: elementName)
@@ -83,7 +83,7 @@ public func importItemsFromJson<T: ManagedIdentifiable where T: NSManagedObject,
 	}
 	return items
 }
-public func importItemsFromJsonData<T: ManagedIdentifiable where T: NSManagedObject, T: NSFetchRequestResult>(_ data: Data, type: T.Type, elementName: String, managedObjectContext: NSManagedObjectContext, importFromJson: (T, [String: AnyObject]) throws -> Void) throws -> [T] {
+public func importItemsFromJsonData<T: ManagedIdentifiable>(_ data: Data, type: T.Type, elementName: String, managedObjectContext: NSManagedObjectContext, importFromJson: (T, [String: AnyObject]) throws -> Void) throws -> [T] where T: NSManagedObject, T: NSFetchRequestResult {
 	let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions())
 	guard let json = jsonObject as? [String : AnyObject] else {
 		throw GenericCoreDataExtensionsError.JsonObjectIsNotDictionary(jsonObject: jsonObject)

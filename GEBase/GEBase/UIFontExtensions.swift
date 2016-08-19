@@ -17,11 +17,11 @@ extension UIFont {
 			UIFontFeatureTypeIdentifierKey: kLowerCaseType,
 			UIFontFeatureSelectorIdentifierKey: kLowerCaseSmallCapsSelector
 		]]
-		let fontAttributes = [
+		let fontAttributes: [String : Any] = [
 			UIFontDescriptorFeatureSettingsAttribute: fontFeatureSettings,
 			UIFontDescriptorNameAttribute: name
 		]
-		let fontDescriptor = UIFontDescriptor(fontAttributes: fontAttributes as! [String : AnyObject])
+		let fontDescriptor = UIFontDescriptor(fontAttributes: fontAttributes)
 		let font = UIFont(descriptor: fontDescriptor, size: size)
 		return font
 	}

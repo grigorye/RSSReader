@@ -12,7 +12,7 @@ extension Bundle {
 	public static func bundle(forStackFrameIndex stackFrameIndex: Int) -> Bundle? {
 		precondition(0 <= stackFrameIndex)
 		let length = stackFrameIndex + 1
-		let addr = UnsafeMutablePointer<UnsafeMutablePointer<Void>?>.allocate(capacity: length)
+		let addr = UnsafeMutablePointer<UnsafeMutableRawPointer?>.allocate(capacity: length)
 		let frames = Int(backtrace(addr, Int32(length)))
 		assert(stackFrameIndex < frames)
 		var info = Dl_info()

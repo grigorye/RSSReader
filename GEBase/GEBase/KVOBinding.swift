@@ -8,13 +8,14 @@
 
 import Foundation
 
-private let KVOBindingContext = UnsafeMutablePointer<Void>.allocate(capacity: 1)
+private let KVOBindingContext = UnsafeMutableRawPointer.allocate(bytes: 1, alignedTo: 0)
 
 public class KVOBinding : NSObject {
 	unowned let object: NSObject
 	let keyPath: String
-	let KVOHandler: (NSDictionary?) -> Void
-	public override func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
+	public typealias KVOHandlerType = @escaping ([NSKeyValueChangeKey : Any]?) -> Void
+	let KVOHandler: KVOHandlerType
+	public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 		if context == KVOBindingContext {
 			KVOHandler(change)
 		}
@@ -22,7 +23,7 @@ public class KVOBinding : NSObject {
 			super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
 		}
 	}
-	public init(_ objectAndKeyPath: ObjectAndKeyPath, options: NSKeyValueObservingOptions, KVOHandler: (NSDictionary?) -> Void) {
+	public init(_ objectAndKeyPath: ObjectAndKeyPath, options: NSKeyValueObservingOptions, KVOHandler: KVOHandlerType) {
 		self.object = objectAndKeyPath.object
 		self.keyPath = objectAndKeyPath.keyPath
 		self.KVOHandler = KVOHandler
