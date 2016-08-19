@@ -38,17 +38,17 @@ class MasterViewController: UITableViewController {
 	}
 
 	func insertNewObject(_ sender: AnyObject) {
-		objects.insert(Date(), at: 0)
+		objects.insert(NSDate(), at: 0)
 		let indexPath = IndexPath(row: 0, section: 0)
 		self.tableView.insertRows(at: [indexPath], with: .automatic)
 	}
 
 	// MARK: - Segues
 
-	override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "showDetail" {
 		    if let indexPath = self.tableView.indexPathForSelectedRow {
-		        let object = objects[(indexPath as NSIndexPath).row] as! Date
+		        let object = objects[(indexPath as NSIndexPath).row] as! NSDate
 		        let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
 		        controller.detailItem = object
 		        controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
