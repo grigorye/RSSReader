@@ -47,6 +47,8 @@ AnyPromise *PMKJoin(NSArray *promises) {
                     }
                 }
             }];
+
+            (void) stop;
         }];
     }];
 }

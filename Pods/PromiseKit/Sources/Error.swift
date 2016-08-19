@@ -35,11 +35,6 @@ public enum URLError: Error {
     case invalidImageData(URLRequest, Data)
 
     /**
-     An NSError was received from an underlying Cocoa function.
-    */
-    case underlyingCocoaError(URLRequest, Data?, URLResponse?, NSError)
-
-    /**
      The HTTP request returned a non-200 status code.
     */
     case badResponse(URLRequest, Data?, URLResponse?)
@@ -59,8 +54,6 @@ public enum URLError: Error {
         switch self {
         case .invalidImageData:
             return nil
-        case .underlyingCocoaError(_, _, let rsp, _):
-            return rsp as! Foundation.HTTPURLResponse
         case .badResponse(_, _, let rsp):
             return rsp as! Foundation.HTTPURLResponse
         case .stringEncoding(_, _, let rsp):
@@ -71,14 +64,13 @@ public enum URLError: Error {
 
 public enum JSONError: Error {
     /// The JSON response was different to that requested
-    case unexpectedRootNode(AnyObject)
+    case unexpectedRootNode(Any)
 }
 
 
 //////////////////////////////////////////////////////////// Cancellation
 
 public protocol CancellableError: Error {
-    /// - Returns: true if the error represents cancellation.
     var isCancelled: Bool { get }
 }
 
@@ -101,7 +93,7 @@ private func ==(lhs: ErrorPair, rhs: ErrorPair) -> Bool {
 
 extension NSError {
     @objc public class func cancelledError() -> NSError {
-        let info: [NSObject: AnyObject] = [NSLocalizedDescriptionKey: "The operation was cancelled"]
+        let info = [NSLocalizedDescriptionKey: "The operation was cancelled"]
         return NSError(domain: PMKErrorDomain, code: PMKOperationCancelled, userInfo: info)
     }
 

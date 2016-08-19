@@ -23,9 +23,9 @@ class State<T> {
     // it was a protocol. There is no work around. Update: nor Swift 3
 
     func get() -> Resolution<T>? { fatalError("Abstract Base Class") }
-    func get(body: (Seal<T>) -> Void) { fatalError("Abstract Base Class") }
+    func get(body: @escaping (Seal<T>) -> Void) { fatalError("Abstract Base Class") }
 
-    final func pipe(_ body: (Resolution<T>) -> Void) {
+    final func pipe(_ body: @escaping (Resolution<T>) -> Void) {
         get { seal in
             switch seal {
             case .pending(let handlers):
@@ -36,7 +36,7 @@ class State<T> {
         }
     }
 
-    final func then<U>(on q: DispatchQueue, else rejecter: (Resolution<U>) -> Void, execute body: (T) throws -> Void) {
+    final func then<U>(on q: DispatchQueue, else rejecter: @escaping (Resolution<U>) -> Void, execute body: @escaping (T) throws -> Void) {
         pipe { resolution in
             switch resolution {
             case .fulfilled(let value):
@@ -49,7 +49,7 @@ class State<T> {
         }
     }
 
-    final func always(on q: DispatchQueue, body: (Resolution<T>) -> Void) {
+    final func always(on q: DispatchQueue, body: @escaping (Resolution<T>) -> Void) {
         pipe { resolution in
             contain_zalgo(q) {
                 body(resolution)
@@ -57,7 +57,7 @@ class State<T> {
         }
     }
 
-    final func `catch`(on q: DispatchQueue, policy: CatchPolicy, else resolve: (Resolution<T>) -> Void, execute body: (Error) throws -> Void) {
+    final func `catch`(on q: DispatchQueue, policy: CatchPolicy, else resolve: @escaping (Resolution<T>) -> Void, execute body: @escaping (Error) throws -> Void) {
         pipe { resolution in
             switch (resolution, policy) {
             case (.fulfilled, _):
@@ -93,7 +93,7 @@ class UnsealedState<T>: State<T> {
         return result
     }
 
-    override func get(body: (Seal<T>) -> Void) {
+    override func get(body: @escaping (Seal<T>) -> Void) {
         var sealed = false
         barrier.sync {
             switch self.seal {
@@ -146,7 +146,7 @@ class UnsealedState<T>: State<T> {
 }
 
 class SealedState<T>: State<T> {
-    private let resolution: Resolution<T>
+    fileprivate let resolution: Resolution<T>
     
     init(resolution: Resolution<T>) {
         self.resolution = resolution
@@ -156,7 +156,7 @@ class SealedState<T>: State<T> {
         return resolution
     }
 
-    override func get(body: (Seal<T>) -> Void) {
+    override func get(body: @escaping (Seal<T>) -> Void) {
         body(.resolved(resolution))
     }
 }
@@ -165,11 +165,11 @@ class SealedState<T>: State<T> {
 class Handlers<T>: Sequence {
     var bodies: [(Resolution<T>) -> Void] = []
 
-    func append(_ body: (Resolution<T>) -> Void) {
+    func append(_ body: @escaping (Resolution<T>) -> Void) {
         bodies.append(body)
     }
 
-    func makeIterator() -> IndexingIterator<[(Resolution<T>) -> Void]> {
+    func makeIterator() -> IndexingIterator<[@escaping (Resolution<T>) -> Void]> {
         return bodies.makeIterator()
     }
 

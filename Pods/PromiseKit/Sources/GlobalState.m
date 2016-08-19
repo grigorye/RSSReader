@@ -1,5 +1,9 @@
 #import "PromiseKit.h"
 
+@interface NSError (PMK)
+- (BOOL)isCancelled;
+@end
+
 static dispatch_once_t __PMKDefaultDispatchQueueToken;
 static dispatch_queue_t __PMKDefaultDispatchQueue;
 
@@ -25,7 +29,7 @@ static void (^__PMKErrorUnhandler)(NSError *);
 void PMKUnhandledErrorHandler(NSError *error) {
     dispatch_once(&__PMKErrorUnhandlerToken, ^{
         if (__PMKErrorUnhandler == nil) {
-            __PMKErrorUnhandler = ^(NSError *err){
+            __PMKErrorUnhandler = ^(NSError *error){
                 if (!error.isCancelled) {
                     NSLog(@"PromiseKit: unhandled error: %@", error);
                 }

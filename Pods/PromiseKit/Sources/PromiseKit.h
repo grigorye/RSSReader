@@ -1,7 +1,7 @@
-#import "AnyPromise.h"
 #import <Foundation/NSObject.h>
 #import <Foundation/NSDate.h>
 #import <dispatch/dispatch.h>
+#import "AnyPromise.h"
 
 FOUNDATION_EXPORT double PromiseKitVersionNumber;
 FOUNDATION_EXPORT const unsigned char PromiseKitVersionString[];
@@ -29,6 +29,8 @@ extern NSString * __nonnull const PMKErrorDomain;
 #if __cplusplus
 extern "C" {
 #endif
+
+@class AnyPromise;
 
 /**
  @return A new promise that resolves after the specified duration.
@@ -243,124 +245,8 @@ extern void PMKSetDefaultDispatchQueue(__nonnull dispatch_queue_t);
 #endif
 
 
-#if defined(__has_include)
-  #if __has_include(<PromiseKit/ACAccountStore+AnyPromise.h>)
-    #import <PromiseKit/ACAccountStore+AnyPromise.h>
-  #endif
-  #if __has_include(<PromiseKit/AVAudioSession+AnyPromise.h>)
-    #import <PromiseKit/AVAudioSession+AnyPromise.h>
-  #endif
-  #if __has_include(<PromiseKit/CKContainer+AnyPromise.h>)
-    #import <PromiseKit/CKContainer+AnyPromise.h>
-  #endif
-  #if __has_include(<PromiseKit/CKDatabase+AnyPromise.h>)
-    #import <PromiseKit/CKDatabase+AnyPromise.h>
-  #endif
-  #if __has_include(<PromiseKit/CLGeocoder+AnyPromise.h>)
-    #import <PromiseKit/CLGeocoder+AnyPromise.h>
-  #endif
-  #if __has_include(<PromiseKit/CLLocationManager+AnyPromise.h>)
-    #import <PromiseKit/CLLocationManager+AnyPromise.h>
-  #endif
-  #if __has_include(<PromiseKit/NSNotificationCenter+AnyPromise.h>)
-    #import <PromiseKit/NSNotificationCenter+AnyPromise.h>
-  #endif
-  #if __has_include(<PromiseKit/NSTask+AnyPromise.h>)
-    #import <PromiseKit/NSTask+AnyPromise.h>
-  #endif
-  #if __has_include(<PromiseKit/NSURLConnection+AnyPromise.h>)
-    #import <PromiseKit/NSURLConnection+AnyPromise.h>
-  #endif
-  #if __has_include(<PromiseKit/NSURLSession+AnyPromise.h>)
-    #import <PromiseKit/NSURLSession+AnyPromise.h>
-  #endif
-  #if __has_include(<PromiseKit/MKDirections+AnyPromise.h>)
-    #import <PromiseKit/MKDirections+AnyPromise.h>
-  #endif
-  #if __has_include(<PromiseKit/MKMapSnapshotter+AnyPromise.h>)
-    #import <PromiseKit/MKMapSnapshotter+AnyPromise.h>
-  #endif
-  #if __has_include(<PromiseKit/CALayer+AnyPromise.h>)
-    #import <PromiseKit/CALayer+AnyPromise.h>
-  #endif
-  #if __has_include(<PromiseKit/SLRequest+AnyPromise.h>)
-    #import <PromiseKit/SLRequest+AnyPromise.h>
-  #endif
-  #if __has_include(<PromiseKit/SKRequest+AnyPromise.h>)
-    #import <PromiseKit/SKRequest+AnyPromise.h>
-  #endif
-  #if __has_include(<PromiseKit/SCNetworkReachability+AnyPromise.h>)
-    #import <PromiseKit/SCNetworkReachability+AnyPromise.h>
-  #endif
-  #if __has_include(<PromiseKit/UIActionSheet+AnyPromise.h>)
-    #import <PromiseKit/UIActionSheet+AnyPromise.h>
-  #endif
-  #if __has_include(<PromiseKit/UIAlertView+AnyPromise.h>)
-    #import <PromiseKit/UIAlertView+AnyPromise.h>
-  #endif
-  #if __has_include(<PromiseKit/UIView+AnyPromise.h>)
-    #import <PromiseKit/UIView+AnyPromise.h>
-  #endif
-  #if __has_include(<PromiseKit/UIViewController+AnyPromise.h>)
-    #import <PromiseKit/UIViewController+AnyPromise.h>
-  #endif
-#endif
-
-
-#if !defined(SWIFT_PASTE)
-# define SWIFT_PASTE_HELPER(x, y) x##y
-# define SWIFT_PASTE(x, y) SWIFT_PASTE_HELPER(x, y)
-#endif
-
-#if !defined(SWIFT_EXTENSION)
-# define SWIFT_EXTENSION(M) SWIFT_PASTE(M##_Swift_, __LINE__)
-#endif
-
-@interface NSError (SWIFT_EXTENSION(PromiseKit))
-+ (NSError * __nonnull)cancelledError;
-+ (void)registerCancelledErrorDomain:(NSString * __nonnull)domain code:(NSInteger)code;
-@property (nonatomic, readonly) BOOL isCancelled;
-@end
-
-
-#if defined(__has_attribute) && __has_attribute(objc_runtime_name)
-# define SWIFT_RUNTIME_NAME(X) __attribute__((objc_runtime_name(X)))
-#else
-# define SWIFT_RUNTIME_NAME(X)
-#endif
-#if defined(__has_attribute) && __has_attribute(swift_name)
-# define SWIFT_COMPILE_NAME(X) __attribute__((swift_name(X)))
-#else
-# define SWIFT_COMPILE_NAME(X)
-#endif
-#if !defined(SWIFT_PROTOCOL_EXTRA)
-# define SWIFT_PROTOCOL_EXTRA
-#endif
-
-#if !defined(SWIFT_PROTOCOL_EXTRA)
-# define SWIFT_PROTOCOL_EXTRA
-#endif
-#if !defined(SWIFT_PROTOCOL)
-# define SWIFT_PROTOCOL(SWIFT_NAME) SWIFT_RUNTIME_NAME(SWIFT_NAME) SWIFT_PROTOCOL_EXTRA
-# define SWIFT_PROTOCOL_NAMED(SWIFT_NAME) SWIFT_COMPILE_NAME(SWIFT_NAME) SWIFT_PROTOCOL_EXTRA
-#endif
-
-SWIFT_PROTOCOL("Promisable")
-@protocol Promisable
-@property (nonatomic, readonly, strong) __nonnull id promise;
-@end
-
 typedef NS_OPTIONS(NSInteger, PMKAnimationOptions) {
     PMKAnimationOptionsNone = 1 << 0,
     PMKAnimationOptionsAppear = 1 << 1,
     PMKAnimationOptionsDisappear = 1 << 2,
 };
-
-#undef SWIFT_PASTE_HELPER
-#undef SWIFT_PASTE
-#undef SWIFT_EXTENSION
-#undef SWIFT_RUNTIME_NAME
-#undef SWIFT_COMPILE_NAME
-#undef SWIFT_NAME
-#undef SWIFT_PROTOCOL
-#undef SWIFT_PROTOCOL_NAMED

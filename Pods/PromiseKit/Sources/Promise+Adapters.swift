@@ -1,7 +1,4 @@
-import class Foundation.NSError
-
 extension Promise {
-    
     /**
      Create a new pending promise.
 
@@ -16,7 +13,7 @@ extension Promise {
 
      - SeeAlso: init(resolvers:)
     */
-    public class func wrap(resolver: @noescape ((T?, Error?) -> Void) throws -> Void) -> Promise {
+    public class func wrap(resolver: (@escaping (T?, Error?) -> Void) throws -> Void) -> Promise {
         return self.init { fulfill, reject in
             try resolver { obj, err in
                 if let obj = obj {
@@ -44,7 +41,7 @@ extension Promise {
 
      - SeeAlso: init(resolvers:)
     */
-    public class func wrap(resolver: @noescape ((T, Error?) -> Void) throws -> Void) -> Promise  {
+    public class func wrap(resolver: (@escaping (T, Error?) -> Void) throws -> Void) -> Promise  {
         return self.init { fulfill, reject in
             try resolver { obj, err in
                 if let err = err {

@@ -50,22 +50,20 @@ public class URLDataPromise: Promise<Data> {
         }
     }
 
-    private var URLRequest: Foundation.URLRequest!
-    private var URLResponse: Foundation.URLResponse!
+    fileprivate var URLRequest: Foundation.URLRequest!
+    fileprivate var URLResponse: Foundation.URLResponse!
 
     /// Internal
-    public class func go(_ request: URLRequest, body: @noescape ((Data?, URLResponse?, Error?) -> Void) -> Void) -> URLDataPromise {
-        var fulfill: ((Data) -> Void)!
-        var reject: ((Error) -> Void)!
-
-        let promise = URLDataPromise { fulfill = $0; reject = $1 }
+    public class func go(_ request: URLRequest, body: (@escaping (Data?, URLResponse?, Error?) -> Void) -> Void) -> URLDataPromise {
+        let (p, fulfill, reject) = URLDataPromise.pending()
+        let promise  = p as! URLDataPromise
 
         body { data, rsp, error in
             promise.URLRequest = request
             promise.URLResponse = rsp
 
             if let error = error {
-                reject(URLError.underlyingCocoaError(request, data, rsp, error))
+                reject(error)
             } else if let data = data, let rsp = rsp as? HTTPURLResponse, rsp.statusCode >= 200, rsp.statusCode < 300 {
                 fulfill(data)
             } else if let data = data, !(rsp is HTTPURLResponse) {
@@ -97,16 +95,16 @@ public class URLDataPromise: Promise<Data> {
 #endif
 
 extension URLResponse {
-    private var stringEncoding: String.Encoding? {
+    fileprivate var stringEncoding: String.Encoding? {
         guard let encodingName = textEncodingName else { return nil }
-        let encoding = CFStringConvertIANACharSetNameToEncoding(encodingName)
+        let encoding = CFStringConvertIANACharSetNameToEncoding(encodingName as CFString)
         guard encoding != kCFStringEncodingInvalidId else { return nil }
         return String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(encoding))
     }
 }
 
 extension Data {
-    private var b0rkedEmptyRailsResponse: Bool {
+    fileprivate var b0rkedEmptyRailsResponse: Bool {
         return count == 1 && withUnsafeBytes{ $0[0] == " " }
     }
 }

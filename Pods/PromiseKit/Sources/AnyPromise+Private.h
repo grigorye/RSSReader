@@ -34,3 +34,5 @@
 @end
 
 extern NSError * __nullable PMKProcessUnhandledException(id __nonnull thrown);
+
+@class PMKArray;

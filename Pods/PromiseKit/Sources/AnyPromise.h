@@ -8,64 +8,41 @@ typedef NS_ENUM(NSInteger, PMKCatchPolicy) {
     PMKCatchPolicyAllErrorsExceptCancellation
 } NS_SWIFT_NAME(CatchPolicy);
 
-#if defined(__has_attribute) && __has_attribute(objc_runtime_name)
-# define SWIFT_RUNTIME_NAME(X) __attribute__((objc_runtime_name(X)))
+
+#if __has_include("PromiseKit-Swift.h")
+
+    #if COCOAPODS
+        // work around CocoaPods ordering headers in alphabetical
+        // order in its generated umbrella header.
+        // https://github.com/mxcl/PromiseKit/issues/504
+        @class AnyPromise;
+        #import "PromiseKit.h"
+    #endif
+
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored"-Wdocumentation"
+    #import "PromiseKit-Swift.h"
+    #pragma clang diagnostic pop
 #else
-# define SWIFT_RUNTIME_NAME(X)
-#endif
-#if defined(__has_attribute) && __has_attribute(swift_name)
-# define SWIFT_COMPILE_NAME(X) __attribute__((swift_name(X)))
-#else
-# define SWIFT_COMPILE_NAME(X)
-#endif
-#if !defined(SWIFT_CLASS_EXTRA)
-# define SWIFT_CLASS_EXTRA
-#endif
-#if !defined(SWIFT_PROTOCOL_EXTRA)
-# define SWIFT_PROTOCOL_EXTRA
-#endif
-#if !defined(SWIFT_ENUM_EXTRA)
-# define SWIFT_ENUM_EXTRA
-#endif
-#if !defined(SWIFT_CLASS)
-# if defined(__has_attribute) && __has_attribute(objc_subclassing_restricted)
-#  define SWIFT_CLASS(SWIFT_NAME) SWIFT_RUNTIME_NAME(SWIFT_NAME) __attribute__((objc_subclassing_restricted)) SWIFT_CLASS_EXTRA
-#  define SWIFT_CLASS_NAMED(SWIFT_NAME) __attribute__((objc_subclassing_restricted)) SWIFT_COMPILE_NAME(SWIFT_NAME) SWIFT_CLASS_EXTRA
-# else
-#  define SWIFT_CLASS(SWIFT_NAME) SWIFT_RUNTIME_NAME(SWIFT_NAME) SWIFT_CLASS_EXTRA
-#  define SWIFT_CLASS_NAMED(SWIFT_NAME) SWIFT_COMPILE_NAME(SWIFT_NAME) SWIFT_CLASS_EXTRA
-# endif
+    __attribute__((objc_subclassing_restricted)) __attribute__((objc_runtime_name("AnyPromise")))
+    @interface AnyPromise : NSObject
+    @property (nonatomic, readonly) BOOL resolved;
+    @property (nonatomic, readonly) BOOL pending;
+    @property (nonatomic, readonly) __nullable id value;
+    + (instancetype __nonnull)promiseWithResolverBlock:(void (^ __nonnull)(__nonnull PMKResolver))resolveBlock;
+    + (instancetype __nonnull)promiseWithValue:(__nullable id)value;
+    @end
 #endif
 
-/**
- @see AnyPromise.swift
-*/
-SWIFT_CLASS_NAMED("AnyPromise")
-@interface AnyPromise : NSObject
-@property (nonatomic, readonly) BOOL resolved;
-@property (nonatomic, readonly) BOOL pending;
+
+@interface AnyPromise (obj)
+
 @property (nonatomic, readonly) __nullable id value;
-+ (instancetype __nonnull)promiseWithResolverBlock:(void (^ __nonnull)(__nonnull PMKResolver))resolveBlock;
-+ (instancetype __nonnull)promiseWithValue:(__nullable id)value;
-@end
-
-#undef SWIFT_RUNTIME_NAME
-#undef SWIFT_COMPILE_NAME
-#undef SWIFT_CLASS_EXTRA
-#undef SWIFT_PROTOCOL_EXTRA
-#undef SWIFT_ENUM_EXTRA
-#undef SWIFT_CLASS
-#undef SWIFT_CLASS_NAMED
-
-
-@interface AnyPromise (objc)
 
 /**
  The provided block is executed when its receiver is resolved.
 
  If you provide a block that takes a parameter, the value of the receiver will be passed as that parameter.
-
- @param block The block that is executed when the receiver is resolved.
 
     [NSURLSession GET:url].then(^(NSData *data){
         // do something with data
@@ -129,7 +106,7 @@ SWIFT_CLASS_NAMED("AnyPromise")
 /**
  The provided block is executed when the receiver is rejected with the specified policy.
 
- @param policy The policy with which to catch. Either for all errors, or all errors *except* cancellation errors.
+ Specify the policy with which to catch as the first parameter to your block. Either for all errors, or all errors *except* cancellation errors.
 
  @see catch
 */
@@ -140,16 +117,21 @@ SWIFT_CLASS_NAMED("AnyPromise")
 
  The provided block always runs on the main queue.
 
- @see finallyOn
+ @see alwaysOn
 */
 - (AnyPromise * __nonnull(^ __nonnull)(dispatch_block_t __nonnull))always NS_REFINED_FOR_SWIFT;
 
 /**
  The provided block is executed on the dispatch queue of your choice when the receiver is resolved.
 
- @see finally
+ @see always
  */
 - (AnyPromise * __nonnull(^ __nonnull)(dispatch_queue_t __nonnull, dispatch_block_t __nonnull))alwaysOn NS_REFINED_FOR_SWIFT;
+
+/// @see always
+- (AnyPromise * __nonnull(^ __nonnull)(dispatch_block_t __nonnull))finally __attribute__((deprecated("Use always")));
+/// @see alwaysOn
+- (AnyPromise * __nonnull(^ __nonnull)(dispatch_block_t __nonnull, dispatch_block_t __nonnull))finallyOn __attribute__((deprecated("Use always")));
 
 /**
  Create a new promise with an associated resolver.
