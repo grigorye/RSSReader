@@ -30,7 +30,7 @@ class HistoryViewController: UITableViewController {
 		return fetchedResultsController
 	}()
 	// MARK: -
-	func itemForIndexPath(_ indexPath: NSIndexPath) -> Item {
+	func itemForIndexPath(_ indexPath: IndexPath) -> Item {
 		return self.fetchedResultsController.fetchedObjects![indexPath.row] 
 	}
 	var selectedItem: Item {
@@ -41,7 +41,7 @@ class HistoryViewController: UITableViewController {
 		let cell = rawCell as! ItemTableViewCell
 		let item = fetchedResultsController.object(at: indexPath) 
 		if let titleLabel = cell.titleLabel {
-			titleLabel.text = item.title ?? (item.id as NSString).lastPathComponent
+			titleLabel.text = item.title /*?? (item.id as NSString).lastPathComponent*/
 		}
 		if let dateLabel = cell.dateLabel {
 			let timeIntervalFormatted = dateComponentsFormatter.string(from: item.date, to: nowDate)!
@@ -76,7 +76,7 @@ class HistoryViewController: UITableViewController {
 		return cell
 	}
 	// MARK: -
-	override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		switch segue.identifier! {
 		case MainStoryboard.SegueIdentifiers.ShowHistoryPages:
 			let pageViewController = segue.destination as! UIPageViewController

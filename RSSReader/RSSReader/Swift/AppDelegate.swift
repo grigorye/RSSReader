@@ -37,7 +37,7 @@ class AppDelegateInternals {
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 	var window: UIWindow?
-	final var retainedObjects = [AnyObject]()
+	final var retainedObjects = [Any]()
 #if false
 	var foldersLastUpdateDate: NSDate?
 #else
@@ -142,11 +142,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 		return $(defaults.stateRestorationEnabled)
 	}
 	//
-	func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+	func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]?) -> Bool {
 		$(self)
 		return true
 	}
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
 		filesWithTracingDisabled += [
 			"TableViewFetchedResultsControllerDelegate.swift",
 			"KVOCompliantUserDefaults.swift"

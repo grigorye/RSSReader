@@ -13,8 +13,8 @@ class OpenWebPageActivity : TypeFilteringActivity {
 		let url = acceptedItems.last!
 		UIApplication.shared.openURL(url)
 	}
-	override var activityType: String {
-		return "\(applicationDomain).openWebPage"
+	override var activityType: UIActivityType {
+		return UIActivityType(rawValue: "\(applicationDomain).openWebPage")
 	}
 	override var activityTitle: String {
 		return NSLocalizedString("Open in Safari", comment: "")

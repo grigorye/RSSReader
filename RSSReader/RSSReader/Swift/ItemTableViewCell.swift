@@ -35,7 +35,7 @@ class ItemTableViewCell : SystemLayoutSizeCachingTableViewCell, ItemTableViewCel
 			return
 		}
 		if let titleLabel = self.titleLabel {
-			let text = item.title ?? (item.id as NSString).lastPathComponent
+			let text = item.title /*?? (item.id as NSString).lastPathComponent*/
 			if text != titleLabel.text {
 				titleLabel.text = text
 			}

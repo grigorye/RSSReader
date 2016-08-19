@@ -50,14 +50,14 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 	// MARK: -
 	@IBOutlet private var combinedBarButtonItem: UIBarButtonItem!
 	// MARK: -
-	@IBOutlet private var statusLabel: UILabel!
-	@IBOutlet private var statusBarButtonItem: UIBarButtonItem!
+	@IBOutlet var statusLabel: UILabel!
+	@IBOutlet var statusBarButtonItem: UIBarButtonItem!
 	@IBAction func refreshFromBarButtonItem(_ sender: AnyObject!) {
 		let refreshControl = self.refreshControl
 		refreshControl?.beginRefreshing()
 		self.refresh(refreshControl)
 	}
-	static func viewControllerToPresent(on error: Error, title: String, retryAction: () -> Void) -> UIViewController {
+	static func viewControllerToPresent(on error: Error, title: String, retryAction: @escaping () -> Void) -> UIViewController {
 		let alertController: UIAlertController = {
 			let message: String = {
 				let localizedDescription: String = {
@@ -140,7 +140,7 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 				}
 			}()
 			let errorTitle = NSLocalizedString("Refresh Failed", comment: "Title for alert on failed refresh")
-			let errorViewController = self.dynamicType.viewControllerToPresent(on: presentedError, title: errorTitle) {
+			let errorViewController = type(of: self).viewControllerToPresent(on: presentedError, title: errorTitle) {
 				self.refresh(self)
 			}
 			self.present(errorViewController, animated: true, completion: nil)
@@ -153,10 +153,10 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 	}
 	private func configureCell(_ cell: UITableViewCell, forSubscription subscription: Subscription) {
 		(cell as! TableViewContainerCell).setFromContainer(subscription)
-		cell.textLabel?.text = subscription.title ?? subscription.url?.lastPathComponent
+		cell.textLabel?.text = subscription.title /*?? subscription.url?.lastPathComponent*/
 	}
 	// MARK: -
-	override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		switch segue.identifier! {
 		case MainStoryboard.SegueIdentifiers.ShowFolder:
 			let foldersListTableViewController = segue.destination as! FoldersListTableViewController

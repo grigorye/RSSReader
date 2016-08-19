@@ -50,7 +50,7 @@ class ItemsPageViewController : UIPageViewController {
 		self.currentViewController = currentViewController
 	}
 	// MARK: -
-	var viewDidDisappearRetainedObjects = [AnyObject]()
+	var viewDidDisappearRetainedObjects = [Any]()
 	override func viewWillAppear(_ animated: Bool) {
 		blocksDelayedTillViewWillAppear.forEach {$0()}
 		blocksDelayedTillViewWillAppear = []

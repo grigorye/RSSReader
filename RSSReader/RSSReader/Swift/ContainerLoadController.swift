@@ -66,7 +66,7 @@ class ContainerLoadController {
 		}
 	}
 	//
-	func loadMore(_ completionHandler: (Error?) -> Void) {
+	func loadMore(_ completionHandler: @escaping (Error?) -> Void) {
 		assert(!loadInProgress)
 		assert(!loadCompleted)
 		assert(nil == loadError)

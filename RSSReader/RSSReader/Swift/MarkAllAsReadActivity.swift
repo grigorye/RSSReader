@@ -21,8 +21,8 @@ class MarkAllAsReadActivity : TypeFilteringActivity {
 			$(error)
 		}
 	}
-	override var activityType: String {
-		return "\(applicationDomain).markAllAsRead"
+	override var activityType: UIActivityType {
+		return UIActivityType(rawValue: "\(applicationDomain).markAllAsRead")
 	}
 	override var activityTitle: String {
 		return NSLocalizedString("Mark All as Read", comment: "")

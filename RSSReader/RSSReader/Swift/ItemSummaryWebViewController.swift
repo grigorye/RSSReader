@@ -86,7 +86,7 @@ class ItemSummaryWebViewController: UIViewController {
 			let item = self.item!
 			let href = item.canonical!.first!["href"]!
 			let url = URL(string: href)!
-			let activityItems = [url, item]
+			let activityItems: [Any] = [url, item]
 			return UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
 		}()
 		self.present(activityViewController, animated: true, completion: nil)
@@ -156,7 +156,7 @@ class ItemSummaryWebViewController: UIViewController {
 		}
 	}
 	// MARK: -
-	var viewDidDisappearRetainedObjects = [AnyObject]()
+	var viewDidDisappearRetainedObjects = [Any]()
 	override func viewWillAppear(_ animated: Bool) {
 		blocksScheduledForViewWillAppear.forEach { $0() }
 		blocksScheduledForViewWillAppear = []
