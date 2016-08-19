@@ -43,7 +43,7 @@ class RSSReaderUITests : XCTestCase {
 	
 	// MARK:-
 	
-	func repeatForTesting(_ block: @noescape () -> ()) {
+	func repeatForTesting(_ block: () -> ()) {
 		for _ in 0..<5 {
 			block()
 		}
