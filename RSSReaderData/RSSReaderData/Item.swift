@@ -23,22 +23,22 @@ public class Item : NSManagedObject {
     public var title: String {
 		set {
 			let bytes = Array(newValue.utf16)
-			titleData = NSData(bytes: bytes, length: bytes.count * strideof(unichar.self))
+			titleData = NSData(bytes: bytes, length: bytes.count * MemoryLayout<unichar>.stride)
 		}
 		get {
 			let data = titleData
-			return String(utf16CodeUnitsNoCopy: unsafeBitCast(data.bytes, to: UnsafePointer<unichar>.self), count: data.length / strideof(unichar.self), freeWhenDone: false)
+			return String(utf16CodeUnitsNoCopy: unsafeBitCast(data.bytes, to: UnsafePointer<unichar>.self), count: data.length / MemoryLayout<unichar>.stride, freeWhenDone: false)
 		}
 	}
     @NSManaged public var summaryData: NSData
     public var summary: String? {
 		set {
 			let bytes = Array(newValue!.utf16)
-			summaryData = NSData(bytes: bytes, length: bytes.count * strideof(unichar.self))
+			summaryData = NSData(bytes: bytes, length: bytes.count * MemoryLayout<unichar>.stride)
 		}
 		get {
 			let data = summaryData
-			return String(utf16CodeUnitsNoCopy: unsafeBitCast(data.bytes, to: UnsafePointer<unichar>.self), count: data.length / strideof(unichar.self), freeWhenDone: false)
+			return String(utf16CodeUnitsNoCopy: unsafeBitCast(data.bytes, to: UnsafePointer<unichar>.self), count: data.length / MemoryLayout<unichar>.stride, freeWhenDone: false)
 		}
 	}
 	@NSManaged public var categories: Set<Folder>

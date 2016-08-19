@@ -55,7 +55,7 @@ extension Container {
 }
 
 extension Container {
-	func importFromJson(_ jsonObject: AnyObject) throws {
+	func importFromJson(_ jsonObject: Any) throws {
 		let sortID: Int32 = try {
 			guard let json = jsonObject as? [String: AnyObject] else {
 				throw JsonImportError.JsonObjectIsNotDictionary(jsonObject: jsonObject)
@@ -74,7 +74,7 @@ extension Container {
 			self.sortID = sortID
 		}
 	}
-	func importFromUnreadCountJson(_ jsonObject: AnyObject) {
+	func importFromUnreadCountJson(_ jsonObject: Any) {
 		let json = jsonObject as! [String: AnyObject]
 		self.streamID = {
 			let streamID = json["id"] as! String

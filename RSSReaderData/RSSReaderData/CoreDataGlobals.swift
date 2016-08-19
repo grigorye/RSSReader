@@ -10,7 +10,7 @@ import GEBase
 import Foundation
 import CoreData
 
-public let (managedObjectContextError, saveQueueManagedObjectContext, optionalMainQueueManagedObjectContext, optionalBackgroundQueueManagedObjectContext, supplementaryObjects): (Error?, NSManagedObjectContext?, NSManagedObjectContext?, NSManagedObjectContext?, [AnyObject]) = {
+public let (managedObjectContextError, saveQueueManagedObjectContext, optionalMainQueueManagedObjectContext, optionalBackgroundQueueManagedObjectContext, supplementaryObjects): (Error?, NSManagedObjectContext?, NSManagedObjectContext?, NSManagedObjectContext?, [Any]) = {
 	do {
 		let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: NSClassFromString("RSSReaderData.Folder")!)])!
 		let psc = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
@@ -68,7 +68,7 @@ public let (managedObjectContextError, saveQueueManagedObjectContext, optionalMa
 				}
 			}
 		}()
-		var supplementaryObjects = [AnyObject]()
+		var supplementaryObjects = [Any]()
 		supplementaryObjects += [
 			ManagedObjectContextAutosaver(managedObjectContext: mainQueueManagedObjectContext, queue: nil),
 			ManagedObjectContextAutosaver(managedObjectContext: saveQueueManagedObjectContext, queue: nil)

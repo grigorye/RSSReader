@@ -20,13 +20,13 @@ var itemsAreSortedByLoadDate: Bool {
 public enum RSSSessionError: Error {
 	case authenticationFailed(underlyingError: Error)
 	case requestFailed(underlyingError: Error)
-	case jsonObjectIsNotDictionary(jsonObject: AnyObject)
+	case jsonObjectIsNotDictionary(jsonObject: Any)
 	case jsonMissingUserID(json: [String: AnyObject])
 	case jsonMissingUnreadCounts(json: [String: AnyObject])
 	case itemJsonMissingID(itemJson: [String: AnyObject])
 	case jsonMissingStreamPrefs(json: [String: AnyObject])
 	case unexpectedResponseTextForMarkAsRead(body: String)
-	case badResponseDataForMarkAsRead(data: NSData)
+	case badResponseDataForMarkAsRead(data: Data)
 	case pushTagsFailed(underlyingErrors: [Error])
 	case importFailed(underlyingError: Error, command: AbstractPersistentDataUpdateCommand)
 }

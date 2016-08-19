@@ -41,7 +41,7 @@ extension Item : ManagedIdentifiable {
 	public class func entityName() -> String {
 		return "Item"
 	}
-	func importFromJson(_ jsonObject: AnyObject, subscription: Subscription? = nil) throws {
+	func importFromJson(_ jsonObject: Any, subscription: Subscription? = nil) throws {
 		let json = jsonObject as! [String: AnyObject]
 		let updatedDate: Date? = {
 			if let updatedTimeIntervalSince1970 = json["updated"] as! TimeInterval? {
@@ -90,7 +90,7 @@ extension Subscription {
 	class func sortDescriptorsVariants() -> [[NSSortDescriptor]] {
 		return [[NSSortDescriptor(key: #keyPath(sortID), ascending: true)]]
 	}
-	override func importFromJson(_ jsonObject: AnyObject) throws {
+	override func importFromJson(_ jsonObject: Any) throws {
 		try super.importFromJson(jsonObject)
 		let json = jsonObject as! [String: AnyObject]
 		self.title = json["title"] as! String
@@ -107,7 +107,7 @@ extension Subscription {
 	}
 }
 enum JsonImportError: Error {
-	case JsonObjectIsNotDictionary(jsonObject: AnyObject)
+	case JsonObjectIsNotDictionary(jsonObject: Any)
 	case MissingSortID(json: [String: AnyObject])
 	case SortIDIsNotHex(json: [String: AnyObject])
 	case SubscriptionOrderingMissingValue(json: [String: AnyObject])
