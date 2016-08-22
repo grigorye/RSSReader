@@ -39,7 +39,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   PromiseKit:
-    :commit: 7743792ca36a76aee8c02b155c92f441f838eaa2
+    :commit: cb2241c115a81bdb2b6f25e550df8477e4562ef5
     :git: https://github.com/mxcl/PromiseKit
 
 SPEC CHECKSUMS:
@@ -54,7 +54,7 @@ SPEC CHECKSUMS:
   FBRetainCycleDetector: f0c7b290bf48ae77f6ae060843ce34ae341781eb
   Flurry-iOS-SDK: 97bbeec09cca666c2f1772f6e161c4f8ccff611e
   HTMLReader: 9c9a018b11d7e9884a52ab97ce1bd23bdca7fddb
-  PromiseKit: 98c258f5e43cff92d87c54067865a59aeb53cca7
+  PromiseKit: 4d60661d1caf78057d199fd611a49f537984afa5
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   UXCam: 3318abdb0b2b0d8dc6905579bb5a9ff16185c9a8
 

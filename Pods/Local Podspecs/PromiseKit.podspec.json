@@ -128,14 +128,13 @@
         "Sources/DispatchQueue+Promise.swift",
         "Sources/Error.swift",
         "Sources/join.swift",
-        "Sources/Promise+Adapters.swift",
         "Sources/Promise+AnyPromise.swift",
         "Sources/Promise+Properties.swift",
         "Sources/Promise.swift",
         "Sources/race.swift",
         "Sources/State.swift",
-        "Sources/URLDataPromise.swift",
         "Sources/when.swift",
+        "Sources/wrap.swift",
         "Sources/Zalgo.swift",
         "Sources/{after,AnyPromise,GlobalState,dispatch_promise,hang,join,PMKPromise,when}.m",
         "Sources/AnyPromise.h",
@@ -204,42 +203,19 @@
       "dependencies": {
         "PromiseKit/CorePromise": [
 
-        ],
-        "OMGHTTPURLRQ": [
-          "~> 3.2.0"
         ]
       },
-      "frameworks": "Foundation",
-      "subspecs": [
-        {
-          "name": "Deprecated",
-          "source_files": [
-
-          ],
-          "frameworks": "Foundation"
-        }
-      ]
+      "frameworks": "Foundation"
     },
     {
-      "name": "DietFoundation",
-      "ios": {
-        "source_files": [
-
-        ]
-      },
-      "osx": {
-        "source_files": [
-
-        ]
-      },
-      "watchos": {
-        "source_files": [
-
-        ]
-      },
+      "name": "OMGHTTPURLRQ",
+      "source_files": "Extensions/OMGHTTPURLRQ/Sources/*",
       "dependencies": {
         "PromiseKit/CorePromise": [
 
+        ],
+        "OMGHTTPURLRQ": [
+          "~> 3.2"
         ]
       },
       "frameworks": "Foundation"
@@ -361,18 +337,7 @@
         "PromiseKit/CorePromise": [
 
         ]
-      },
-      "subspecs": [
-        {
-          "name": "Deprecated",
-          "ios": {
-            "source_files": [
-
-            ],
-            "frameworks": "UIKit"
-          }
-        }
-      ]
+      }
     },
     {
       "name": "WatchConnectivity",

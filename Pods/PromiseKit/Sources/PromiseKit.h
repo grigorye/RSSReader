@@ -9,28 +9,20 @@ FOUNDATION_EXPORT const unsigned char PromiseKitVersionString[];
 extern NSString * __nonnull const PMKErrorDomain;
 
 #define PMKFailingPromiseIndexKey @"PMKFailingPromiseIndexKey"
-#define PMKURLErrorFailingURLResponseKey @"PMKURLErrorFailingURLResponseKey"
-#define PMKURLErrorFailingDataKey @"PMKURLErrorFailingDataKey"
-#define PMKURLErrorFailingStringKey @"PMKURLErrorFailingStringKey"
-#define PMKJSONErrorJSONObjectKey @"PMKJSONErrorJSONObjectKey"
 #define PMKJoinPromisesKey @"PMKJoinPromisesKey"
 
 #define PMKUnexpectedError 1l
-#define PMKUnknownError 2l
 #define PMKInvalidUsageError 3l
 #define PMKAccessDeniedError 4l
 #define PMKOperationCancelled 5l
-#define PMKNotFoundError 6l
-#define PMKJSONError 7l
 #define PMKOperationFailed 8l
 #define PMKTaskError 9l
 #define PMKJoinError 10l
 
+
 #if __cplusplus
 extern "C" {
 #endif
-
-@class AnyPromise;
 
 /**
  @return A new promise that resolves after the specified duration.
@@ -231,14 +223,14 @@ extern AnyPromise * __nonnull dispatch_promise_on(dispatch_queue_t __nonnull que
 
  By default this returns dispatch_get_main_queue()
  */
-extern __nonnull dispatch_queue_t PMKDefaultDispatchQueue();
+extern __nonnull dispatch_queue_t PMKDefaultDispatchQueue() NS_REFINED_FOR_SWIFT;
 
 /**
  You may alter the default dispatch queue, but you may only alter it once, and you must alter it before any `then`, etc. calls are made in your app.
  
  The primary motivation for this function is so that your tests can operate off the main thread preventing dead-locking, or with `zalgo` to speed them up.
 */
-extern void PMKSetDefaultDispatchQueue(__nonnull dispatch_queue_t);
+extern void PMKSetDefaultDispatchQueue(__nonnull dispatch_queue_t) NS_REFINED_FOR_SWIFT;
 
 #if __cplusplus
 }   // Extern C

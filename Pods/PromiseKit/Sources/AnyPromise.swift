@@ -60,42 +60,42 @@ import Foundation
     }
 
     /// - See: `Promise.then()`
-    public func then<T>(on q: DispatchQueue = PMKDefaultDispatchQueue(), execute body: @escaping (Any?) throws -> T) -> Promise<T> {
+    public func then<T>(on q: DispatchQueue = .default, execute body: @escaping (Any?) throws -> T) -> Promise<T> {
         return asPromise().then(on: q, execute: body)
     }
 
     /// - See: `Promise.then()`
-    public func then(on q: DispatchQueue = PMKDefaultDispatchQueue(), execute body: @escaping (Any?) throws -> AnyPromise) -> Promise<Any?> {
+    public func then(on q: DispatchQueue = .default, execute body: @escaping (Any?) throws -> AnyPromise) -> Promise<Any?> {
         return asPromise().then(on: q, execute: body)
     }
 
     /// - See: `Promise.then()`
-    public func then<T>(on q: DispatchQueue = PMKDefaultDispatchQueue(), execute body: @escaping (Any?) throws -> Promise<T>) -> Promise<T> {
+    public func then<T>(on q: DispatchQueue = .default, execute body: @escaping (Any?) throws -> Promise<T>) -> Promise<T> {
         return asPromise().then(on: q, execute: body)
     }
 
     /// - See: `Promise.always()`
-    public func always(on q: DispatchQueue = PMKDefaultDispatchQueue(), execute body: @escaping () -> Void) -> Promise<Any?> {
+    public func always(on q: DispatchQueue = .default, execute body: @escaping () -> Void) -> Promise<Any?> {
         return asPromise().always(execute: body)
     }
 
     /// - See: `Promise.tap()`
-    public func tap(on q: DispatchQueue = PMKDefaultDispatchQueue(), execute body: @escaping (Result<Any?>) -> Void) -> Promise<Any?> {
+    public func tap(on q: DispatchQueue = .default, execute body: @escaping (Result<Any?>) -> Void) -> Promise<Any?> {
         return asPromise().tap(execute: body)
     }
 
     /// - See: `Promise.recover()`
-    public func recover(on q: DispatchQueue = PMKDefaultDispatchQueue(), policy: CatchPolicy = .allErrorsExceptCancellation, execute body: @escaping (Error) throws -> Promise<Any?>) -> Promise<Any?> {
+    public func recover(on q: DispatchQueue = .default, policy: CatchPolicy = .allErrorsExceptCancellation, execute body: @escaping (Error) throws -> Promise<Any?>) -> Promise<Any?> {
         return asPromise().recover(on: q, policy: policy, execute: body)
     }
 
     /// - See: `Promise.recover()`
-    public func recover(on q: DispatchQueue = PMKDefaultDispatchQueue(), policy: CatchPolicy = .allErrorsExceptCancellation, execute body: @escaping (Error) throws -> Any?) -> Promise<Any?> {
+    public func recover(on q: DispatchQueue = .default, policy: CatchPolicy = .allErrorsExceptCancellation, execute body: @escaping (Error) throws -> Any?) -> Promise<Any?> {
         return asPromise().recover(on: q, policy: policy, execute: body)
     }
 
     /// - See: `Promise.catch()`
-    public func `catch`(on q: DispatchQueue = PMKDefaultDispatchQueue(), policy: CatchPolicy = .allErrorsExceptCancellation, execute body: @escaping (Error) -> Void) {
+    public func `catch`(on q: DispatchQueue = .default, policy: CatchPolicy = .allErrorsExceptCancellation, execute body: @escaping (Error) -> Void) {
         state.catch(on: q, policy: policy, else: { _ in }, execute: body)
     }
 
@@ -207,7 +207,7 @@ import Foundation
 
     @objc func __catchWithPolicy(_ policy: CatchPolicy, execute body: @escaping (Any?) -> Any?) -> AnyPromise {
         return AnyPromise(sealant: { resolve in
-            state.catch(on: PMKDefaultDispatchQueue(), policy: policy, else: resolve) { err in
+            state.catch(on: .default, policy: policy, else: resolve) { err in
                 makeHandler(body, resolve)(err as NSError)
             }
         })

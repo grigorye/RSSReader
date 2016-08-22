@@ -15,7 +15,7 @@ extension Promise {
                //…
            }
      */
-    public func then(on q: DispatchQueue = PMKDefaultDispatchQueue(), execute body: @escaping (T) throws -> AnyPromise) -> Promise<Any?> {
+    public func then(on q: DispatchQueue = .default, execute body: @escaping (T) throws -> AnyPromise) -> Promise<Any?> {
         return Promise<Any?>(sealant: { resolve in
             state.then(on: q, else: resolve) { value in
                 try body(value).state.pipe(resolve)
@@ -24,7 +24,7 @@ extension Promise {
     }
 
     @available(*, unavailable, message: "unwrap the promise")
-    public func then(on: DispatchQueue = PMKDefaultDispatchQueue(), execute body: (T) throws -> AnyPromise?) -> Promise<AnyObject?> { fatalError() }
+    public func then(on: DispatchQueue = .default, execute body: (T) throws -> AnyPromise?) -> Promise<AnyObject?> { fatalError() }
 }
 
 /**

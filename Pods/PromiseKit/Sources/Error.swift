@@ -9,10 +9,10 @@ public enum PMKError: Error {
     case join([AnyObject])
 
     /**
-     The closure with form (T?, ErrorType?) was called with (nil, nil)
-     This is invalid as per the calling convention.
+     The completionHandler with form (T?, ErrorType?) was called with (nil, nil)
+     This is invalid as per Cocoa/Apple calling conventions.
     */
-    case invalidCompletionHandlerCallingConvention
+    case invalidCallingConvention
 
     /**
      A handler returned its own promise. 99% of the time, this is likely a 

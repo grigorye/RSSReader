@@ -9,7 +9,7 @@ made programming asynchronously powerful, easy and delightful?
 UIApplication.shared.networkActivityIndicatorVisible = true
 
 firstly {
-    when(NSURLSession.GET(url).asImage(), CLLocationManager.promise())
+    when(URLSession.dataTask(with: url).asImage(), CLLocationManager.promise())
 }.then { image, location -> Void in
     self.imageView.image = image;
     self.label.text = "\(location)"
@@ -165,6 +165,29 @@ For Carthage specify the additional repositories in your `Cartfile`:
 github "PromiseKit/MapKit" ~> 1.0
 ```
 
+## Choose Your Networking Library
+
+`NSURLSession` is typically inadequate; choose from [Alamofire] or [OMGHTTPURLRQ]:
+
+```swift
+// pod 'PromiseKit/Alamofire'
+// github 'PromiseKit/Alamofire'
+Alamofire.request("http://example.com", withMethod: .GET).responseJSON().then {
+    json in
+    //…
+}.catch { error in
+    //…
+}
+
+// pod 'PromiseKit/OMGHTTPURLRQ'
+// github 'PromiseKit/OMGHTTPURLRQ'
+URLSession.GET("http://example.com").asDictionary().then { json in
+    
+}.catch { error in
+    //…
+}
+```
+
 # Support
 
 Ask your question on [Gitter chat](https://gitter.im/mxcl/PromiseKit) or
@@ -190,3 +213,5 @@ Ask your question on [Gitter chat](https://gitter.im/mxcl/PromiseKit) or
 [badge-languages]: https://img.shields.io/badge/languages-Swift%20%7C%20ObjC-orange.svg
 [badge-mit]: https://img.shields.io/badge/license-MIT-blue.svg
 [badge-pms]: https://img.shields.io/badge/supports-CocoaPods%20%7C%20Carthage%20%7C%20SwiftPM-green.svg
+[OMGHTTPURLRQ]: https://github.com/mxcl/OMGHTTPURLRQ
+[Alamofire]: http://alamofire.org
