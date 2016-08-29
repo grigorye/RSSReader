@@ -170,23 +170,22 @@ github "PromiseKit/MapKit" ~> 1.0
 `NSURLSession` is typically inadequate; choose from [Alamofire] or [OMGHTTPURLRQ]:
 
 ```swift
-// pod 'PromiseKit/Alamofire'
-// github 'PromiseKit/Alamofire'
-Alamofire.request("http://example.com", withMethod: .GET).responseJSON().then {
-    json in
+// pod 'PromiseKit/Alamofire'  
+Alamofire.request("http://example.com", withMethod: .GET).responseJSON().then { json in
     //…
 }.catch { error in
     //…
 }
 
 // pod 'PromiseKit/OMGHTTPURLRQ'
-// github 'PromiseKit/OMGHTTPURLRQ'
 URLSession.GET("http://example.com").asDictionary().then { json in
     
 }.catch { error in
     //…
 }
 ```
+
+For [AFNetworking] we recommend [csotiriou/AFNetworking].
 
 # Support
 
@@ -215,3 +214,5 @@ Ask your question on [Gitter chat](https://gitter.im/mxcl/PromiseKit) or
 [badge-pms]: https://img.shields.io/badge/supports-CocoaPods%20%7C%20Carthage%20%7C%20SwiftPM-green.svg
 [OMGHTTPURLRQ]: https://github.com/mxcl/OMGHTTPURLRQ
 [Alamofire]: http://alamofire.org
+[AFNetworking]: https://github.com/AFNetworking/AFNetworking
+[csotiriou/AFNetworking]: https://github.com/csotiriou/AFNetworking-PromiseKit

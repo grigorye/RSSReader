@@ -195,7 +195,7 @@ open class Promise<T> {
      - Important: The promise that is returned is `self`. `catch` cannot affect the chain, in PromiseKit 3 no promise was returned to strongly imply this, however for PromiseKit 4 we started returning a promise so that you can `always` after a catch or return from a function that has an error handler.
      */
     @discardableResult
-    public func `catch`(on q: DispatchQueue = .default, policy: CatchPolicy = .allErrorsExceptCancellation, execute body: @escaping (Error) -> Void) -> Promise {
+    public func `catch`(on q: DispatchQueue = .main, policy: CatchPolicy = .allErrorsExceptCancellation, execute body: @escaping (Error) -> Void) -> Promise {
         state.catch(on: q, policy: policy, else: { _ in }, execute: body)
         return self
     }
@@ -287,6 +287,7 @@ open class Promise<T> {
      - Parameter execute: The closure that executes when this promise resolves.
      - Returns: A new promise, resolved with this promise’s resolution.
      */
+    @discardableResult
     public func tap(on q: DispatchQueue = .default, execute body: @escaping (Result<T>) -> Void) -> Promise {
         state.always(on: q) { resolution in
             body(Result(resolution))
@@ -316,7 +317,7 @@ open class Promise<T> {
     @available(*, unavailable, renamed: "pending()")
     public class func `pendingPromise`() -> PendingTuple { fatalError() }
 
-    @available(*, unavailable, message: "deprecated: use then(on: DispatchQueue.global())")
+    @available(*, unavailable, message: "deprecated: use then(on: .global())")
     public func thenInBackground<U>(execute body: (T) throws -> U) -> Promise<U> { fatalError() }
 
     @available(*, unavailable, renamed: "catch")

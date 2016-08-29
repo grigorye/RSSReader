@@ -44,6 +44,25 @@
       "frameworks": "Accounts"
     },
     {
+      "name": "Alamofire",
+      "source_files": "Extensions/Alamofire/Sources/*",
+      "dependencies": {
+        "Alamofire": [
+
+        ],
+        "PromiseKit/CorePromise": [
+
+        ]
+      },
+      "frameworks": "Foundation",
+      "platforms": {
+        "ios": "9.0",
+        "osx": "10.11",
+        "tvos": "9.0",
+        "watchos": "2.0"
+      }
+    },
+    {
       "name": "AddressBook",
       "ios": {
         "source_files": "Extensions/AddressBook/Sources/*",
@@ -62,7 +81,7 @@
         "frameworks": "AssetsLibrary"
       },
       "dependencies": {
-        "PromiseKit/UIKit": [
+        "PromiseKit/CorePromise": [
 
         ]
       }
@@ -160,9 +179,7 @@
         "source_files": "Extensions/CoreLocation/Sources/*"
       },
       "watchos": {
-        "source_files": [
-
-        ]
+        "source_files": "Extensions/CoreLocation/Sources/CLGeocoder*"
       },
       "dependencies": {
         "PromiseKit/CorePromise": [
