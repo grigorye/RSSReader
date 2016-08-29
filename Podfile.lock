@@ -2,21 +2,20 @@ PODS:
   - AFMInfoBanner (1.2.1):
     - CVKHierarchySearcher (~> 0.2)
   - Appsee (2.2)
-  - Crashlytics (3.7.2):
+  - Crashlytics (3.7.3):
     - Fabric (~> 1.6.3)
   - CVKHierarchySearcher (0.2.0)
   - DZReadability (0.2.3):
     - HTMLReader
-  - Fabric (1.6.7)
+  - Fabric (1.6.8)
   - FBAllocationTracker (0.1.5)
   - FBMemoryProfiler (0.1.3):
     - FBAllocationTracker (~> 0.1)
     - FBRetainCycleDetector (~> 0.1)
-  - FBRetainCycleDetector (0.1.2)
-  - Flurry-iOS-SDK/FlurrySDK (7.6.4)
-  - HTMLReader (1.0)
+  - FBRetainCycleDetector (0.1.3)
+  - Flurry-iOS-SDK/FlurrySDK (7.6.6)
+  - HTMLReader (1.0.1)
   - PromiseKit/CorePromise (4.0.0)
-  - Result (2.1.2)
   - TUSafariActivity (1.0.4)
   - UXCam (2.5.5)
 
@@ -29,38 +28,36 @@ DEPENDENCIES:
   - FBMemoryProfiler
   - Flurry-iOS-SDK/FlurrySDK
   - HTMLReader
-  - PromiseKit/CorePromise (from `https://github.com/mxcl/PromiseKit`, branch `4.0.0-beta1`)
-  - Result
+  - PromiseKit/CorePromise (from `https://github.com/mxcl/PromiseKit`, branch `swift-3.0`)
   - TUSafariActivity
   - UXCam
 
 EXTERNAL SOURCES:
   PromiseKit:
-    :branch: 4.0.0-beta1
+    :branch: swift-3.0
     :git: https://github.com/mxcl/PromiseKit
 
 CHECKOUT OPTIONS:
   PromiseKit:
-    :commit: e4acdf97f2243fe7b0447e974bb6451bdd203b9f
+    :commit: cb2241c115a81bdb2b6f25e550df8477e4562ef5
     :git: https://github.com/mxcl/PromiseKit
 
 SPEC CHECKSUMS:
   AFMInfoBanner: a7bcfd409faa624f043e604ae4fb789c84b22815
   Appsee: c95173e65acaab0ffc8a082c70633c9f5f45d5f0
-  Crashlytics: 130ab943f8c78cda7a814b434f270b2e2c8a3cba
+  Crashlytics: 76f6beaff70acf226139582c09c78461597c2b98
   CVKHierarchySearcher: 7be8d3bcbcc6f86ff07f785e6c632b5e40da2553
   DZReadability: 451e9134abd6861bc855467e01c7b05680734d4f
-  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
+  Fabric: 5755268d0171435ab167e3d0878a28a777deaf10
   FBAllocationTracker: dfdca3f71aceca6a85e95e3c6ec76a9785eba0f1
   FBMemoryProfiler: 623fc5f8a61f7d02ec75c87e3b97c90f621d8b02
-  FBRetainCycleDetector: 45462f9ed1af0cd77224a4cc4e6dacaca47371b4
-  Flurry-iOS-SDK: 9da972687d3af9f48038dcd86eae9cad3acca456
-  HTMLReader: 8024d86f188a38da8d188d2433003ce652ca444a
-  PromiseKit: 9bd3ee549847d953a009f5f21f7b80d4098ce26a
-  Result: 6e722d4a66b1408680dbfcdf51c0b1c4b706316a
+  FBRetainCycleDetector: f0c7b290bf48ae77f6ae060843ce34ae341781eb
+  Flurry-iOS-SDK: 97bbeec09cca666c2f1772f6e161c4f8ccff611e
+  HTMLReader: 9c9a018b11d7e9884a52ab97ce1bd23bdca7fddb
+  PromiseKit: 4d60661d1caf78057d199fd611a49f537984afa5
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   UXCam: 3318abdb0b2b0d8dc6905579bb5a9ff16185c9a8
 
-PODFILE CHECKSUM: 7c648664ef1dbd2640f1dbc6128ca5dfef47c9e6
+PODFILE CHECKSUM: b88ba9447d6b0147f625511bcd7bdc1427bfef51
 
 COCOAPODS: 1.0.1

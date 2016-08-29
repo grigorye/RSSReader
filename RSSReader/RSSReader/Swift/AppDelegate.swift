@@ -29,7 +29,7 @@ class AppDelegateInternals {
 		let taskGenerator = progressEnabledURLSessionTaskGenerator
 		urlTaskGeneratorProgressKVOBinding = KVOBinding(taskGenerator•#keyPath(ProgressEnabledURLSessionTaskGenerator.progresses), options: []) { change in
 			let networkActivityIndicatorShouldBeVisible = 0 < taskGenerator.progresses.count
-			UIApplication.shared().isNetworkActivityIndicatorVisible = (networkActivityIndicatorShouldBeVisible)
+			UIApplication.shared.isNetworkActivityIndicatorVisible = (networkActivityIndicatorShouldBeVisible)
 		}
 	}
 }
@@ -37,7 +37,7 @@ class AppDelegateInternals {
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 	var window: UIWindow?
-	final var retainedObjects = [AnyObject]()
+	final var retainedObjects = [Any]()
 #if false
 	var foldersLastUpdateDate: NSDate?
 #else
@@ -101,7 +101,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 		return foldersNavigationController.viewControllers.first as! FoldersListTableViewController
 	}
 	lazy var favoritesViewController: ItemsListViewController = {
-		let self_ = UIApplication.shared().delegate! as! AppDelegate
+		let self_ = UIApplication.shared.delegate! as! AppDelegate
 		let $ = (self_.tabBarController.viewControllers![1] as! UINavigationController).viewControllers.first as! ItemsListViewController
 		configureFavoritesItemsListViewController($)
 		return $
@@ -109,7 +109,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 	var loginAndPassword: LoginAndPassword!
 	// MARK: -
 	@IBAction func openSettings(_ sender: AnyObject?) {
-		UIApplication.shared().openURL(URL(string: UIApplicationOpenSettingsURLString)!)
+		UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
 	}
 	@IBAction func crash(_ sender: AnyObject?) {
 		fatalError()
@@ -142,11 +142,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 		return $(defaults.stateRestorationEnabled)
 	}
 	//
-	func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+	func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]?) -> Bool {
 		$(self)
 		return true
 	}
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
 		filesWithTracingDisabled += [
 			"TableViewFetchedResultsControllerDelegate.swift",
 			"KVOCompliantUserDefaults.swift"
@@ -213,7 +213,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 	// MARK: -
 	override init() {
 		super.init()
-		let defaultsPlistURL = try! Bundle.main.urlForResource("Settings", withExtension: "bundle")!.appendingPathComponent("Root.plist")
+		let defaultsPlistURL = Bundle.main.url(forResource: "Settings", withExtension: "bundle")!.appendingPathComponent("Root.plist")
 		try! loadDefaultsFromSettingsPlistAtURL(defaultsPlistURL)
 		if defaults.memoryProfilingEnabled {
 			FBAllocationTrackerManager.shared()!.startTrackingAllocations()
@@ -244,8 +244,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 #endif
 		configureAppearance()
 		let fileManager = FileManager()
-		let libraryDirectoryURL = fileManager.urlsForDirectory(.libraryDirectory, inDomains: .userDomainMask).last!
-		let libraryDirectory = libraryDirectoryURL.path!
+		let libraryDirectoryURL = fileManager.urls(for: .libraryDirectory, in: .userDomainMask).last!
+		let libraryDirectory = libraryDirectoryURL.path
         $(libraryDirectory)
 	}
 }

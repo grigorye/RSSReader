@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum URLSessionTaskGeneratorError: ErrorProtocol {
+public enum URLSessionTaskGeneratorError: Error {
 	case UnexpectedHTTPResponseStatus(httpResponse: HTTPURLResponse)
 }
 
@@ -17,7 +17,7 @@ public class ProgressEnabledURLSessionTaskGenerator: NSObject {
 	public dynamic var progresses = [Progress]()
 	let session = URLSession(configuration: URLSessionConfiguration.default)
 	// MARK: -
-	public typealias HTTPDataTaskCompletionHandler = (Data?, HTTPURLResponse?, ErrorProtocol?) -> Void
+	public typealias HTTPDataTaskCompletionHandler = (Data?, HTTPURLResponse?, Error?) -> Void
 	public func dataTask(for request: URLRequest, completionHandler: HTTPDataTaskCompletionHandler) -> URLSessionDataTask {
 		let progress = Progress(totalUnitCount: 1)
 		progress.becomeCurrent(withPendingUnitCount: 1)
@@ -47,9 +47,9 @@ public class ProgressEnabledURLSessionTaskGenerator: NSObject {
 		}
 		return sessionTask
 	}
-	public typealias TextTaskCompletionHandler = (String?, ErrorProtocol?) -> Void
+	public typealias TextTaskCompletionHandler = (String?, Error?) -> Void
 	public func textTask(for request: URLRequest, completionHandler: TextTaskCompletionHandler) -> URLSessionDataTask? {
-		enum Error: ErrorProtocol {
+		enum TextTaskError: Error {
 			case DataDoesNotMatchTextEncoding(data: Data, encoding: String.Encoding)
 		}
 		return dataTask(for: request) { data, httpResponse, error in
@@ -60,7 +60,7 @@ public class ProgressEnabledURLSessionTaskGenerator: NSObject {
 				let httpResponse = httpResponse!
 				let encoding: String.Encoding = {
 					if let textEncodingName = httpResponse.textEncodingName {
-						return String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(CFStringConvertIANACharSetNameToEncoding(textEncodingName)))
+						return String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(CFStringConvertIANACharSetNameToEncoding(textEncodingName as CFString!)))
 					}
 					else {
 						return String.Encoding.utf8
@@ -68,7 +68,7 @@ public class ProgressEnabledURLSessionTaskGenerator: NSObject {
 				}()
 				let data = data!
 				guard let text = String(data: data, encoding: encoding) else {
-					throw Error.DataDoesNotMatchTextEncoding(data: data, encoding: encoding)
+					throw TextTaskError.DataDoesNotMatchTextEncoding(data: data, encoding: encoding)
 				}
 				completionHandler(text, nil)
 			} catch {

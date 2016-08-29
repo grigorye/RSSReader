@@ -20,7 +20,7 @@ private var groupingTableUpdatesEnabled: Bool {
 
 class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate {
 	var tableView: UITableView
-	var updateCell: (UITableViewCell, atIndexPath: IndexPath) -> Void
+	var updateCell: ((UITableViewCell, atIndexPath: IndexPath)) -> Void
 	var rowAnimation: UITableViewRowAnimation { return .automatic }
 	// MARK: -
 	func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
@@ -49,7 +49,7 @@ class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSObject, N
 			abort()
 		}
 	}
-	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: AnyObject, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
 		let tableView = self.tableView
 		$(tableView)
 		$(controller)
@@ -85,7 +85,7 @@ class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSObject, N
 		}
 	}
 	// MARK: -
-	init(tableView: UITableView, updateCell: (UITableViewCell, atIndexPath: IndexPath) -> Void) {
+	init(tableView: UITableView, updateCell: @escaping ((UITableViewCell, atIndexPath: IndexPath)) -> Void) {
 		self.tableView = tableView
 		self.updateCell = updateCell
 	}

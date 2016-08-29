@@ -9,7 +9,7 @@
 import Foundation
 
 struct SourceFileAndFunction {
-	let fileURL: NSURL
+	let fileURL: URL
 	let function: String
 }
 extension SourceFileAndFunction: Hashable {
@@ -76,14 +76,14 @@ extension FunctionSourceLocationRange {
 // MARK: -
 
 public struct SourceLocation {
-	let fileURL: NSURL
+	let fileURL: URL
 	let line: Int
 	let column: Int
 	let function: String
 	let bundle: Bundle?
 	public init(file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, bundle: Bundle? = Bundle.bundle(forStackFrameIndex: 2)) {
 		precondition(file != "")
-		self.fileURL = NSURL(fileURLWithPath: file, isDirectory: false)
+		self.fileURL = URL(fileURLWithPath: file, isDirectory: false)
 		self.line = line
 		self.column = column
 		self.function = function

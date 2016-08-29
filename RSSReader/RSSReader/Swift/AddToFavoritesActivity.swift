@@ -15,16 +15,16 @@ class AddToFavoritesActivity : TypeFilteringActivity  {
 		let item = acceptedItems.last!
 		item.markedAsFavorite = true
 	}
-	override func activityType() -> String {
-		return "\(applicationDomain).addToFavorites"
+	override var activityType: UIActivityType {
+		return UIActivityType(rawValue: "\(applicationDomain).addToFavorites")
 	}
-	override func activityTitle() -> String {
+	override var activityTitle: String {
 		return NSLocalizedString("Add to Favorites", comment: "")
 	}
-	override func activityImage() -> UIImage? {
+	override var activityImage: UIImage? {
 		return UIImage(named: "AppIcon")
 	}
-	override class func activityCategory() -> UIActivityCategory {
+	override class var activityCategory: UIActivityCategory {
 		return .action
 	}
 	// MARK: -

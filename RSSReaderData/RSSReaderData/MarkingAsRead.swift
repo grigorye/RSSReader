@@ -20,9 +20,9 @@ let markedAsReadCategory = Folder.folderWithTagSuffix(readTagSuffix, managedObje
 let markedAsFavoriteCategory = Folder.folderWithTagSuffix(favoriteTagSuffix, managedObjectContext: mainQueueManagedObjectContext)!
 
 extension Folder {
-	public static func predicateForFetchingFolderWithTagSuffix(_ tagSuffix: String) -> Predicate {
+	public static func predicateForFetchingFolderWithTagSuffix(_ tagSuffix: String) -> NSPredicate {
 		typealias E = Folder
-		return Predicate(format: "\(#keyPath(E.streamID)) ENDSWITH %@", argumentArray: [tagSuffix])
+		return NSPredicate(format: "\(#keyPath(E.streamID)) ENDSWITH %@", argumentArray: [tagSuffix])
 	}
 	public static func fetchRequestForFolderWithTagSuffix(_ tagSuffix: String) -> NSFetchRequest<Folder> {
 		let fetchRequest = Folder.fetchRequestForEntity() … {
@@ -106,7 +106,7 @@ public extension Item {
 extension Item {
 	public class func allPendingForUpdate(in context: NSManagedObjectContext) throws -> [Item] {
 		let fetchRequest = _Self.fetchRequestForEntity() … {
-			$0.predicate = Predicate(format: "\(#keyPath(pendingUpdateDate)) != nil")
+			$0.predicate = NSPredicate(format: "\(#keyPath(pendingUpdateDate)) != nil")
 		}
 		let items = try context.fetch(fetchRequest)
 		return items
@@ -120,7 +120,7 @@ extension Folder {
 			$0.shouldRefreshRefetchedObjects = true
 #endif
 			let itemsRelationshipName = excluded ? #keyPath(itemsToBeExcluded) : #keyPath(itemsToBeIncluded)
-			$0.predicate = Predicate(format: "0 < \(itemsRelationshipName).@count")
+			$0.predicate = NSPredicate(format: "0 < \(itemsRelationshipName).@count")
 		}
 		let categories = try context.fetch(fetchRequest)
 		for category in categories {

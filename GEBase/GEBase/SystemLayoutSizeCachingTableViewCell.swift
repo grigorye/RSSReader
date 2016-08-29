@@ -35,7 +35,7 @@ public class SystemLayoutSizeCachingTableViewCellDataSource {
 	let layoutSizeDefiningValueForCell: (UITableViewCell) -> NSObject?
 	let cellShouldBeReusedWithoutLayout: (UITableViewCell) -> Bool
 	var cachedSystemLayoutSizes: [TargetSizeAndLayoutSizeDefiningValue : CGSize] = [:]
-	public init(layoutSizeDefiningValueForCell: (UITableViewCell) -> NSObject?, cellShouldBeReusedWithoutLayout: (UITableViewCell) -> Bool) {
+	public init(layoutSizeDefiningValueForCell: @escaping (UITableViewCell) -> NSObject?, cellShouldBeReusedWithoutLayout: @escaping (UITableViewCell) -> Bool) {
 		self.layoutSizeDefiningValueForCell = layoutSizeDefiningValueForCell
 		self.cellShouldBeReusedWithoutLayout = cellShouldBeReusedWithoutLayout
 	}
@@ -45,10 +45,10 @@ public extension KVOCompliantUserDefaults {
 	@NSManaged public var cellSystemLayoutSizeCachingEnabled: Bool
 }
 
-public class SystemLayoutSizeCachingTableViewCell: UITableViewCell {
+open class SystemLayoutSizeCachingTableViewCell: UITableViewCell {
 	var reused = false
 	public var systemLayoutSizeCachingDataSource: SystemLayoutSizeCachingTableViewCellDataSource?
-	public override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
+	open override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
 		guard defaults.cellSystemLayoutSizeCachingEnabled else {
 			return super.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: horizontalFittingPriority, verticalFittingPriority: verticalFittingPriority)
 		}
@@ -63,7 +63,7 @@ public class SystemLayoutSizeCachingTableViewCell: UITableViewCell {
 		systemLayoutSizeCachingDataSource.cachedSystemLayoutSizes[cacheKey] = systemLayoutSize
 		return systemLayoutSize
 	}
-	public override func prepareForReuse() {
+	open override func prepareForReuse() {
 		guard defaults.cellSystemLayoutSizeCachingEnabled else {
 			super.prepareForReuse()
 			return
@@ -72,7 +72,7 @@ public class SystemLayoutSizeCachingTableViewCell: UITableViewCell {
 		reused = true
 	}
 	var layoutSubviewsInvocationsCount = 0
-	public override func layoutSubviews() {
+	open override func layoutSubviews() {
 		layoutSubviewsInvocationsCount += 1
 		let dt = disableTrace(); defer { _ = dt }
 		$(layoutSubviewsInvocationsCount)

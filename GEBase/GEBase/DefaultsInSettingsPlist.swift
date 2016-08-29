@@ -24,5 +24,5 @@ public func loadDefaultsFromSettingsPlistAtURL(_ url: URL) throws {
 		$[$1.key] = $1.defaultValue
 		return $
 	}
-    UserDefaults().register($(defaultsForRegistration))
+    UserDefaults().register(defaults: $(defaultsForRegistration))
 }

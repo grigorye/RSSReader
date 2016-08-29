@@ -17,11 +17,11 @@ let applicationDomain = "com.grigoryentin.RSSReader"
 
 var foldersController: FoldersController!
 
-let applicationDelegate = (UIApplication.shared().delegate as! AppDelegate)
+let applicationDelegate = (UIApplication.shared.delegate as! AppDelegate)
 
 let userCachesDirectoryURL: URL = {
 	let fileManager = FileManager.default
-	let $ = try! fileManager.urlForDirectory(.cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+	let $ = try! fileManager.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
 	return $
 }()
 

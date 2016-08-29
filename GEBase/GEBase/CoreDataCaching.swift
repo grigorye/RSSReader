@@ -15,7 +15,7 @@ private var cachingEnabledAssoc: Void?
 private let notificationCenter = NotificationCenter.default
 
 extension NSManagedObjectContext {
-	private var statefulValueCachesForObjectIDs: NSMutableDictionary! {
+	var statefulValueCachesForObjectIDs: NSMutableDictionary! {
 		get {
 			return associatedObjectRegeneratedAsNecessary(obj: self, key: &statefulValueCachesForObjectIDsAssoc, type: NSMutableDictionary.self)
 		}

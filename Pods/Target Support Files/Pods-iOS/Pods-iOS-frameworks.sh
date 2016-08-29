@@ -93,7 +93,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Flurry-iOS-SDK/Flurry_iOS_SDK.framework"
   install_framework "$BUILT_PRODUCTS_DIR/HTMLReader/HTMLReader.framework"
   install_framework "$BUILT_PRODUCTS_DIR/PromiseKit-iOS/PromiseKit.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Result-iOS/Result.framework"
   install_framework "$BUILT_PRODUCTS_DIR/TUSafariActivity/TUSafariActivity.framework"
 fi
 if [[ "$CONFIGURATION" == "Debug" ]]; then
@@ -106,6 +105,5 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Flurry-iOS-SDK/Flurry_iOS_SDK.framework"
   install_framework "$BUILT_PRODUCTS_DIR/HTMLReader/HTMLReader.framework"
   install_framework "$BUILT_PRODUCTS_DIR/PromiseKit-iOS/PromiseKit.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Result-iOS/Result.framework"
   install_framework "$BUILT_PRODUCTS_DIR/TUSafariActivity/TUSafariActivity.framework"
 fi

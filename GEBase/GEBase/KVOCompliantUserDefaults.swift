@@ -17,104 +17,107 @@ private let objcEncode_AnyObject = "@"
 
 // MARK: -
 
+typealias _Self = KVOCompliantUserDefaults
+
+private let objectValueIMP: @convention(c) (_Self, Selector) -> AnyObject? = { _self, _cmd in
+	let propertyName = NSStringFromSelector(_cmd)
+	let value = _self.values[propertyName]
+	•(propertyName)
+	return (value)
+}
+private let setObjectValueIMP: @convention(c) (_Self, Selector, NSObject?) -> Void = { _self, _cmd, value in
+	let defaultName = _Self.defaultNameForSelector(_cmd)
+	_self.defaults.set(value, forKey:(defaultName))
+	_self.values[defaultName] = value
+}
+private let boolValueIMP: @convention(c) (_Self, Selector) -> Bool = { _self, _cmd in
+	let propertyName = NSStringFromSelector(_cmd)
+	let valueObject = _self.values[propertyName]
+	let value: Bool = {
+		switch valueObject {
+		case let numberValue as NSNumber:
+			return numberValue.boolValue
+		case let stringValue as NSString:
+			return stringValue.boolValue
+		case nil:
+			return false
+		default:
+			abort()
+		}
+	}()
+	•(propertyName)
+	return (value)
+}
+private let longValueIMP: @convention(c) (_Self, Selector) -> CLong = { _self, _cmd in
+	let propertyName = NSStringFromSelector(_cmd)
+	let valueObject = _self.values[propertyName]
+	let value: Int = {
+		switch valueObject {
+		case let numberValue as NSNumber:
+			return numberValue.intValue
+		case let stringValue as NSString:
+			return stringValue.integerValue
+		case nil:
+			return 0
+		default:
+			abort()
+		}
+	}()
+	•(propertyName)
+	return (value)
+}
+private let longLongValueIMP: @convention(c) (_Self, Selector) -> CLongLong = { _self, _cmd in
+	let propertyName = NSStringFromSelector(_cmd)
+	let valueObject = _self.values[propertyName]
+	let value: CLongLong = {
+		switch valueObject {
+		case let numberValue as NSNumber:
+			return numberValue.int64Value
+		case let stringValue as NSString:
+			return stringValue.longLongValue
+		case nil:
+			return 0
+		default:
+			abort()
+		}
+	}()
+	•(propertyName)
+	return (value)
+}
+
+private let setBoolValueIMP: @convention(c) (_Self, Selector, Bool) -> Void = { _self, _cmd, value in
+	let propertyName = NSStringFromSelector(_cmd)
+	$(propertyName)
+	_self.defaults.set(value, forKey: propertyName)
+	_self.values[propertyName] = NSNumber(value: value)
+}
+private let setLongValueIMP: @convention(c) (_Self, Selector, CLong) -> Void = { _self, _cmd, value in
+	let propertyName = NSStringFromSelector(_cmd)
+	$(propertyName)
+	_self.defaults.set(value, forKey: propertyName)
+	_self.values[propertyName] = NSNumber(value: value)
+}
+private let setLongLongValueIMP: @convention(c) (_Self, Selector, CLongLong) -> Void = { _self, _cmd, value in
+	let propertyName = NSStringFromSelector(_cmd)
+	$(propertyName)
+	_self.defaults.set(Int(value), forKey: propertyName)
+	_self.values[propertyName] = NSNumber(value: value)
+}
+
 extension KVOCompliantUserDefaults {
 	typealias _Self = KVOCompliantUserDefaults
 
-	static private func defaultNameForSelector(_ sel: Selector) -> String {
+	static func defaultNameForSelector(_ sel: Selector) -> String {
 		let selName = NSStringFromSelector(sel)
 		let propertyInfo = getterAndSetterMap[selName]!
 		•(propertyInfo)
 		let defaultName = propertyInfo.name
 		return defaultName
 	}
-	static private let objectValueIMP: @convention(c) (_Self, Selector) -> AnyObject? = { _self, _cmd in
-		let propertyName = NSStringFromSelector(_cmd)
-		let value = _self.values[propertyName]
-		•(propertyName)
-		return (value)
-	}
-	static private let setObjectValueIMP: @convention(c) (_Self, Selector, NSObject?) -> Void = { _self, _cmd, value in
-		let defaultName = _Self.defaultNameForSelector(_cmd)
-		_self.defaults.set(value, forKey:(defaultName))
-		_self.values[defaultName] = value
-	}
-	static private let boolValueIMP: @convention(c) (_Self, Selector) -> Bool = { _self, _cmd in
-		let propertyName = NSStringFromSelector(_cmd)
-		let valueObject = _self.values[propertyName]
-		let value: Bool = {
-			switch valueObject {
-			case let numberValue as NSNumber:
-				return numberValue.boolValue
-			case let stringValue as NSString:
-				return stringValue.boolValue
-			case nil:
-				return false
-			default:
-				abort()
-			}
-		}()
-		•(propertyName)
-		return (value)
-	}
-	static private let longValueIMP: @convention(c) (_Self, Selector) -> CLong = { _self, _cmd in
-		let propertyName = NSStringFromSelector(_cmd)
-		let valueObject = _self.values[propertyName]
-		let value: Int = {
-			switch valueObject {
-			case let numberValue as NSNumber:
-				return numberValue.intValue
-			case let stringValue as NSString:
-				return stringValue.integerValue
-			case nil:
-				return 0
-			default:
-				abort()
-			}
-		}()
-		•(propertyName)
-		return (value)
-	}
-	static private let longLongValueIMP: @convention(c) (_Self, Selector) -> CLongLong = { _self, _cmd in
-		let propertyName = NSStringFromSelector(_cmd)
-		let valueObject = _self.values[propertyName]
-		let value: CLongLong = {
-			switch valueObject {
-			case let numberValue as NSNumber:
-				return numberValue.int64Value
-			case let stringValue as NSString:
-				return stringValue.longLongValue
-			case nil:
-				return 0
-			default:
-				abort()
-			}
-		}()
-		•(propertyName)
-		return (value)
-	}
-
-	static private let setBoolValueIMP: @convention(c) (_Self, Selector, Bool) -> Void = { _self, _cmd, value in
-		let propertyName = NSStringFromSelector(_cmd)
-		$(propertyName)
-		_self.defaults.set(value, forKey: propertyName)
-		_self.values[propertyName] = NSNumber(value: value)
-	}
-	static private let setLongValueIMP: @convention(c) (_Self, Selector, CLong) -> Void = { _self, _cmd, value in
-		let propertyName = NSStringFromSelector(_cmd)
-		$(propertyName)
-		_self.defaults.set(value, forKey: propertyName)
-		_self.values[propertyName] = NSNumber(value: value)
-	}
-	static private let setLongLongValueIMP: @convention(c) (_Self, Selector, CLongLong) -> Void = { _self, _cmd, value in
-		let propertyName = NSStringFromSelector(_cmd)
-		$(propertyName)
-		_self.defaults.set(Int(value), forKey: propertyName)
-		_self.values[propertyName] = NSNumber(value: value)
-	}
 
 	// MARK: -
 
-	static private let (propertyInfoMap, getterAndSetterMap): ([String : PropertyInfo], [String : PropertyInfo]) = {
+	static let (propertyInfoMap, getterAndSetterMap): ([String : PropertyInfo], [String : PropertyInfo]) = {
 		var propertyInfoMap = [String : PropertyInfo]()
 		var getterAndSetterMap = [String : PropertyInfo]()
 		var propertyCount = UInt32(0)
@@ -136,7 +139,7 @@ extension KVOCompliantUserDefaults {
 		return (propertyInfoMap, getterAndSetterMap)
 	}()
 
-	static private func isDefaultName(_ name: String) -> Bool {
+	static func isDefaultName(_ name: String) -> Bool {
 		return !["values", "defaults"].contains(name)
 	}
 }

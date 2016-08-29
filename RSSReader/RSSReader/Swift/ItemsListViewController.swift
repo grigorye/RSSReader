@@ -75,7 +75,7 @@ class ItemsListViewController: ContainerTableViewController {
 		set { containerViewState!.loadCompleted = newValue }
 		get { return containerViewState?.loadCompleted ?? false }
 	}
-	private var loadError: ErrorProtocol? {
+	private var loadError: Error? {
 		set { containerViewState!.loadError = newValue }
 		get { return containerViewState?.loadError }
 	}
@@ -86,8 +86,8 @@ class ItemsListViewController: ContainerTableViewController {
 	private var indexPathForTappedAccessoryButton: IndexPath?
 	// MARK: -
 	private var loadedRightBarButtonItems: [UIBarButtonItem]!
-	@IBOutlet private var statusLabel: UILabel!
-	@IBOutlet private var statusBarButtonItem: UIBarButtonItem!
+	@IBOutlet var statusLabel: UILabel!
+	@IBOutlet var statusBarButtonItem: UIBarButtonItem!
 	@IBOutlet private var filterUnreadBarButtonItem: UIBarButtonItem!
 	@IBOutlet private var unfilterUnreadBarButtonItem: UIBarButtonItem!
 	private dynamic var showUnreadOnly = false
@@ -99,19 +99,19 @@ class ItemsListViewController: ContainerTableViewController {
 	class var keyPathsForValuesAffectingContainerViewPredicate: Set<String> {
 		return [#keyPath(showUnreadOnly)]
 	}
-	@objc private var containerViewPredicate: Predicate {
+	@objc var containerViewPredicate: NSPredicate {
 		if showUnreadOnly {
-			return Predicate(format: "SUBQUERY(\(#keyPath(Item.categories)), $x, $x.\(#keyPath(Folder.streamID)) ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
+			return NSPredicate(format: "SUBQUERY(\(#keyPath(Item.categories)), $x, $x.\(#keyPath(Folder.streamID)) ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
 		}
 		else {
-			return Predicate(value: true)
+			return NSPredicate(value: true)
 		}
 	}
 	// MARK: -
 	class var keyPathsForValuesAffectingPredicateForItems: Set<String> {
 		return [#keyPath(fetchedResultsController)]
 	}
-	override dynamic var predicateForItems: Predicate {
+	override dynamic var predicateForItems: NSPredicate {
 		return fetchedResultsController.fetchRequest.predicate!
 	}
 	// MARK: -
@@ -128,7 +128,7 @@ class ItemsListViewController: ContainerTableViewController {
 	var numberOfItemsToLoadLater: Int {
 		return defaults.numberOfItemsToLoadLater
 	}
-	private func loadMore(_ completionHandler: (loadDateDidChange: Bool) -> Void) {
+	private func loadMore(_ completionHandler: (Bool) -> Void) {
 		assert(!loadInProgress)
 		assert(!loadCompleted)
 		assert(nil == loadError)
@@ -189,13 +189,13 @@ class ItemsListViewController: ContainerTableViewController {
 					self.tableView.tableFooterView = nil
 				}
 			}
-			self.loadMoreIfNecessary()
 		}.always { () -> Void in
 			guard oldOngoingLoadDate == self.ongoingLoadDate else {
 				return
 			}
 			self.loadInProgress = false
-		}.error { error -> Void in
+			self.loadMoreIfNecessary()
+		}.catch { error -> Void in
 			guard oldOngoingLoadDate == self.ongoingLoadDate else {
 				return
 			}
@@ -289,7 +289,7 @@ class ItemsListViewController: ContainerTableViewController {
 			rssSession!.markAllAsRead(container!)
 		}.then {
 			self.presentInfoMessage(NSLocalizedString("Marked all as read.", comment: ""))
-		}.error { error in
+		}.catch { error in
 			self.presentErrorMessage(
 				String.localizedStringWithFormat(
 					NSLocalizedString("Failed to mark all as read. %@", comment: ""),
@@ -303,7 +303,7 @@ class ItemsListViewController: ContainerTableViewController {
 		navigationController?.present(activityViewController, animated: true, completion: nil)
 	}
 	// MARK: -
-	private func itemForIndexPath(_ indexPath: IndexPath!) -> Item! {
+	func itemForIndexPath(_ indexPath: IndexPath!) -> Item! {
 		if nil != indexPath {
 			return fetchedResultsController.object(at: indexPath) 
 		}
@@ -349,7 +349,7 @@ class ItemsListViewController: ContainerTableViewController {
 	}
 	var reusedCellGenerator: TableViewHeightBasedReusedCellGenerator<ItemsListViewController>!
 	var rowHeightEstimator: FrequencyAndWeightBasedTableRowHeightEstimator<ItemsListViewController>!
-	var systemLayoutSizeCachingDataSource = SystemLayoutSizeCachingTableViewCellDataSource(layoutSizeDefiningValueForCell: {guard $0.reuseIdentifier != "Item" else { return nil }; return $0.reuseIdentifier}, cellShouldBeReusedWithoutLayout: {$0.reuseIdentifier != "Item"})
+	var systemLayoutSizeCachingDataSource = SystemLayoutSizeCachingTableViewCellDataSource(layoutSizeDefiningValueForCell: { guard $0.reuseIdentifier != "Item" else { return nil }; return $0.reuseIdentifier as NSString? }, cellShouldBeReusedWithoutLayout: {$0.reuseIdentifier != "Item"})
 	// MARK: -
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let dt = disableTrace(); defer { _ = dt }
@@ -393,10 +393,10 @@ class ItemsListViewController: ContainerTableViewController {
 		}
 	}
 	// MARK: -
-	override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		switch segue.identifier! {
 		case MainStoryboard.SegueIdentifiers.ShowListPages:
-			let pageViewController = segue.destinationViewController as! UIPageViewController
+			let pageViewController = segue.destination as! UIPageViewController
 			let itemsPageViewControllerDataSource = (pageViewController.dataSource as! ItemsPageViewControllerDataSource) … {
 				$0.items = fetchedResultsController.fetchedObjects!
 			}
@@ -586,9 +586,9 @@ extension ItemsListViewController {
 		typealias E = Item
 		let fetchRequest = E.fetchRequestForEntity() … {
 			$0.sortDescriptors = sortDescriptorsForContainers
-			$0.predicate = CompoundPredicate(andPredicateWithSubpredicates:[Predicate]() … {
-				$0 += [container!.predicateForItems]
-				$0 += [containerViewPredicate]
+			$0.predicate = NSCompoundPredicate(andPredicateWithSubpredicates:[NSPredicate]() … { (x: inout [NSPredicate]) in
+				x += [container!.predicateForItems]
+				x += [containerViewPredicate]
 			})
 #if false
 			$0.relationshipKeyPathsForPrefetching = [#keyPath(E.categories)]

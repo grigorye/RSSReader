@@ -34,30 +34,35 @@ func descriptionForInLineLocation(_ firstLocation: SourceLocation, lastLocation:
 	return "[\(firstLocation.column)-\(lastLocation.column - 3)]"
 }
 
-func indexOfClosingBracket(_ string: NSString, openingBracket: NSString, closingBracket: NSString) -> Int {
-	let openingBracketIndex = string.range(of: openingBracket as String).location
-	let closingBracketIndex = string.range(of: closingBracket as String).location
-	guard (openingBracketIndex != NSNotFound) && (openingBracketIndex < closingBracketIndex) else {
-		assert(NSNotFound != closingBracketIndex)
-		return closingBracketIndex
+extension String {
+	func rangeOfClosingBracket(_ closingBracket: String, openingBracket: String, range searchRange: Range<Index>? = nil) -> Range<String.CharacterView.Index>? {
+		guard let openingBracketRange = range(of: openingBracket, range: searchRange) else {
+			return range(of: closingBracket)
+		}
+		guard let closingBracketRange = range(of: closingBracket, range: searchRange) else {
+			return nil
+		}
+		guard openingBracketRange.lowerBound < closingBracketRange.lowerBound else {
+			return closingBracketRange
+		}
+		let upperBound = searchRange?.upperBound ?? self.characters.endIndex
+		let tailIndex = openingBracketRange.upperBound
+		let ignoredClosingBracketRange = rangeOfClosingBracket(closingBracket, openingBracket: openingBracket, range: tailIndex..<upperBound)!
+		let remainingStringIndex = ignoredClosingBracketRange.upperBound
+		return rangeOfClosingBracket(closingBracket, openingBracket: openingBracket, range: remainingStringIndex..<upperBound)
 	}
-	let tailIndex = openingBracketIndex + openingBracket.length
-	let tail = string.substring(from: tailIndex) as NSString
-	let ignoredClosingBracketIndex = indexOfClosingBracket(tail, openingBracket: openingBracket, closingBracket: closingBracket)
-	let remainingStringIndex = ignoredClosingBracketIndex + closingBracket.length
-	return tailIndex + remainingStringIndex + indexOfClosingBracket(tail.substring(from: remainingStringIndex), openingBracket: openingBracket, closingBracket: closingBracket)
 }
 
 func label(from firstLocation: SourceLocation, to lastLocation: SourceLocation) -> String {
 	let fileURL = firstLocation.fileURL
-	let resourceName = fileURL.deletingPathExtension!.lastPathComponent!
-	let resourceType = fileURL.pathExtension!
+	let resourceName = fileURL.deletingPathExtension().lastPathComponent
+	let resourceType = fileURL.pathExtension
 	guard let bundle = firstLocation.bundle else {
 		// Console
 		return "\(resourceName).\(resourceType):?"
 	}
 	let bundleName = (bundle.bundlePath as NSString).lastPathComponent
-	guard let file = bundle.pathForResource(resourceName, ofType: resourceType, inDirectory: "Sources") else {
+	guard let file = bundle.path(forResource: resourceName, ofType: resourceType, inDirectory: "Sources") else {
 		// File missing in the bundle
 		return "\(bundleName)/\(resourceName).\(resourceType)[!exist]:\(descriptionForInLineLocation(firstLocation, lastLocation: lastLocation)):?"
 	}
@@ -70,7 +75,8 @@ func label(from firstLocation: SourceLocation, to lastLocation: SourceLocation) 
 	let lineSuffix = line.substring(fromOffset: firstIndex)
 	let lengthInLineSuffix: Int = {
 		guard firstLocation.column != lastLocation.column else {
-			return indexOfClosingBracket(lineSuffix, openingBracket: "(", closingBracket: ")")
+			let indexOfClosingBracket = lineSuffix.rangeOfClosingBracket(")", openingBracket: "(")!.lowerBound
+			return lineSuffix.distance(from: lineSuffix.startIndex, to: indexOfClosingBracket)
 		}
 		return lastLocation.column - firstLocation.column - 3
 	}()
@@ -81,7 +87,8 @@ func label(from firstLocation: SourceLocation, to lastLocation: SourceLocation) 
 	let linePrefixReversed = String(line.substring(toOffset: firstIndex).characters.reversed())
 	let lengthInLinePrefixReversed: Int = {
 		guard firstLocation.column != lastLocation.column else {
-			return indexOfClosingBracket(linePrefixReversed, openingBracket: ")", closingBracket: "(")
+			let indexOfClosingBracket = linePrefixReversed.rangeOfClosingBracket("(", openingBracket: ")")!.lowerBound
+			return linePrefixReversed.distance(from: linePrefixReversed.startIndex, to: indexOfClosingBracket)
 		}
 		return 0
 	}()
@@ -107,7 +114,7 @@ func traceLabel(from location: SourceLocation, to lastLocation: SourceLocation) 
 	return "\(label(from: location, to: lastLocation))"
 }
 
-public typealias Logger = (date: Date, label: String, location: SourceLocation, message: String) -> ()
+public typealias Logger = ((date: Date, label: String, location: SourceLocation, message: String)) -> ()
 
 /// Loggers to be used with `trace`.
 public var loggers: [Logger] = [
@@ -135,7 +142,7 @@ var traceLockCountForFileAndFunction: [SourceFileAndFunction : Int] = [:]
 public class TraceLocker {
 	let sourceFileAndFunction: SourceFileAndFunction
 	public init(file: String = #file, function: String = #function) {
-		self.sourceFileAndFunction = SourceFileAndFunction(fileURL: NSURL(fileURLWithPath: file), function: function)
+		self.sourceFileAndFunction = SourceFileAndFunction(fileURL: URL(fileURLWithPath: file), function: function)
 		let oldValue = traceLockCountForFileAndFunction[self.sourceFileAndFunction] ?? 0
 		traceLockCountForFileAndFunction[self.sourceFileAndFunction] = oldValue + 1
 	}
@@ -148,7 +155,7 @@ public class TraceUnlocker {
 	let sourceFileAndFunction: SourceFileAndFunction
 	let unlockingWithNoLock: Bool
 	public init(file: String = #file, function: String = #function) {
-		self.sourceFileAndFunction = SourceFileAndFunction(fileURL: NSURL(fileURLWithPath: file), function: function)
+		self.sourceFileAndFunction = SourceFileAndFunction(fileURL: URL(fileURLWithPath: file), function: function)
 		let oldValue = traceLockCountForFileAndFunction[self.sourceFileAndFunction] ?? 0
 		let unlockingWithNoLock = oldValue == 0
 		if !unlockingWithNoLock {
@@ -177,7 +184,7 @@ public func enableTrace(file: String = #file, function: String = #function) -> T
 }
 
 func tracingShouldBeEnabledForLocation(_ location: SourceLocation) -> Bool {
-	guard !filesWithTracingDisabled.contains(location.fileURL.lastPathComponent!) else {
+	guard !filesWithTracingDisabled.contains(location.fileURL.lastPathComponent) else {
 		return false
 	}
 	guard 0 == (traceLockCountForFileAndFunction[location.fileAndFunction] ?? 0) else {
@@ -296,14 +303,14 @@ public func $<T>(_ value: T, file: String = #file, line: Int = #line, column: In
 /// - seealso: `$`.
 public prefix func •<T>(argument: @autoclosure () -> T) -> Void {
 }
-prefix operator • {}
+prefix operator •
 
-prefix operator « {}
+prefix operator «
 public prefix func «<T>(v: T) -> T {
 	return v
 }
 
-postfix operator » {}
+postfix operator »
 public postfix func »<T>(v: T) -> T {
 	return v
 }

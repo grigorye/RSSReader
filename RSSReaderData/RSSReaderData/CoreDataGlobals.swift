@@ -10,24 +10,24 @@ import GEBase
 import Foundation
 import CoreData
 
-public let (managedObjectContextError, saveQueueManagedObjectContext, optionalMainQueueManagedObjectContext, optionalBackgroundQueueManagedObjectContext, supplementaryObjects): (ErrorProtocol?, NSManagedObjectContext?, NSManagedObjectContext?, NSManagedObjectContext?, [AnyObject]) = {
+public let (managedObjectContextError, saveQueueManagedObjectContext, optionalMainQueueManagedObjectContext, optionalBackgroundQueueManagedObjectContext, supplementaryObjects): (Error?, NSManagedObjectContext?, NSManagedObjectContext?, NSManagedObjectContext?, [Any]) = {
 	do {
 		let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: NSClassFromString("RSSReaderData.Folder")!)])!
 		let psc = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
 		let fileManager = FileManager.default
-		let urls = fileManager.urlsForDirectory(.documentDirectory, inDomains: .userDomainMask)
+		let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
 		let documentsDirectoryURL = urls[0]
-		if !fileManager.fileExists(atPath: documentsDirectoryURL.path!) {
+		if !fileManager.fileExists(atPath: documentsDirectoryURL.path) {
 			try fileManager.createDirectory(at: documentsDirectoryURL, withIntermediateDirectories: true, attributes: nil)
 		}
-		let storeURL = try documentsDirectoryURL.appendingPathComponent("RSSReaderData.sqlite")
-		$(fileManager.fileExists(atPath: storeURL.path!))
+		let storeURL = documentsDirectoryURL.appendingPathComponent("RSSReaderData.sqlite")
+		$(fileManager.fileExists(atPath: storeURL.path))
 		if defaults.forceStoreRemoval {
 			let fileManager = FileManager.default
 			do {
 				try fileManager.removeItem(at: storeURL)
 			}
-			catch NSCocoaError.fileNoSuchFileError {
+			catch CocoaError.fileNoSuchFileError {
 			}
 		}
 		do {
@@ -36,8 +36,8 @@ public let (managedObjectContextError, saveQueueManagedObjectContext, optionalMa
 				NSInferMappingModelAutomaticallyOption: true
 			]
 			let persistentStore = try psc.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: options)
-		} catch let error as NSCocoaError {
-			switch error.rawValue {
+		} catch let error as CocoaError {
+			switch error.code.rawValue {
 			case NSMigrationMissingSourceModelError where UserDefaults().bool(forKey: "allowMissingSourceModelError"):
 			fallthrough
 			case NSPersistentStoreIncompatibleVersionHashError, NSMigrationError:
@@ -68,7 +68,7 @@ public let (managedObjectContextError, saveQueueManagedObjectContext, optionalMa
 				}
 			}
 		}()
-		var supplementaryObjects = [AnyObject]()
+		var supplementaryObjects = [Any]()
 		supplementaryObjects += [
 			ManagedObjectContextAutosaver(managedObjectContext: mainQueueManagedObjectContext, queue: nil),
 			ManagedObjectContextAutosaver(managedObjectContext: saveQueueManagedObjectContext, queue: nil)

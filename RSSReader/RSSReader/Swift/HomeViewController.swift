@@ -20,17 +20,17 @@ func configureFavoritesItemsListViewController(_ itemsListViewController: ItemsL
 }
 
 class HomeViewController: UITableViewController {
-	override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		switch $(segue.identifier!) {
 		case MainStoryboard.SegueIdentifiers.ShowHistory:
 			()
 		case MainStoryboard.SegueIdentifiers.ShowSubscriptions:
-			let foldersViewController = segue.destinationViewController as! FoldersListTableViewController
+			let foldersViewController = segue.destination as! FoldersListTableViewController
 			if let rootFolder = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: mainQueueManagedObjectContext) {
 				foldersViewController.rootFolder = rootFolder
 			}
 		case MainStoryboard.SegueIdentifiers.ShowFavorites:
-			let itemsListViewController = segue.destinationViewController as! ItemsListViewController
+			let itemsListViewController = segue.destination as! ItemsListViewController
 			configureFavoritesItemsListViewController(itemsListViewController)
 		default:
 			()

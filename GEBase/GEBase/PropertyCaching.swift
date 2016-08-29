@@ -49,7 +49,7 @@ private func dispatchSetter(p: IMP, _self: NSObject, _cmd: Selector, value: AnyO
 
 // MARK:-
 
-private func cachedGetterImp<T>(_ _self: PropertyCacheable, _cmd: Selector, propertyName: String, dispatch: (p: IMP, _self: NSObject, _cmd: Selector) -> T, oldImp: IMP) -> T {
+private func cachedGetterImp<T>(_ _self: PropertyCacheable, _cmd: Selector, propertyName: String, dispatch: ((p: IMP, _self: NSObject, _cmd: Selector)) -> T, oldImp: IMP) -> T {
 	let valuesCache = _self.actualizedValuesCache
 	if let cacheRecord = valuesCache?[propertyName] as! CacheRecord<T>? {
 		return cacheRecord.value
@@ -61,7 +61,7 @@ private func cachedGetterImp<T>(_ _self: PropertyCacheable, _cmd: Selector, prop
 	return value
 }
 
-private func cachedSetterImp<T>(_ _self: PropertyCacheable, _cmd: Selector, propertyName: String, value: T, dispatch: (p: IMP, _self: NSObject, _cmd: Selector, value: T) -> Void, oldImp: IMP) {
+private func cachedSetterImp<T>(_ _self: PropertyCacheable, _cmd: Selector, propertyName: String, value: T, dispatch: ((p: IMP, _self: NSObject, _cmd: Selector, value: T)) -> Void, oldImp: IMP) {
 	let valuesCache = _self.actualizedValuesCache
 	dispatch(p: oldImp, _self: _self as! NSObject, _cmd: _cmd, value: value)
 	if let valuesCache = valuesCache {

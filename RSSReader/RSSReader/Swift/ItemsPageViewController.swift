@@ -50,7 +50,7 @@ class ItemsPageViewController : UIPageViewController {
 		self.currentViewController = currentViewController
 	}
 	// MARK: -
-	var viewDidDisappearRetainedObjects = [AnyObject]()
+	var viewDidDisappearRetainedObjects = [Any]()
 	override func viewWillAppear(_ animated: Bool) {
 		blocksDelayedTillViewWillAppear.forEach {$0()}
 		blocksDelayedTillViewWillAppear = []
@@ -72,7 +72,7 @@ class ItemsPageViewController : UIPageViewController {
 			self.toolbarItems = self.currentViewController?.toolbarItems
 		}]
 	}
-	override func childViewControllerForStatusBarHidden() -> UIViewController? {
+	override var childViewControllerForStatusBarHidden: UIViewController? {
 		return self.currentViewController
 	}
 	override func viewDidAppear(_ animated: Bool) {

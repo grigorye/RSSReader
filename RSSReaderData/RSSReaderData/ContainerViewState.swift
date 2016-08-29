@@ -9,23 +9,23 @@
 import GEBase
 import CoreData.NSManagedObject
 
-public let sortDescriptorsForContainers = [SortDescriptor(key: #keyPath(Item.date), ascending: false)]
+public let sortDescriptorsForContainers = [NSSortDescriptor(key: #keyPath(Item.date), ascending: false)]
 public let inversedSortDescriptorsForContainers = inversedSortDescriptors(sortDescriptorsForContainers)
 
-func inversedSortDescriptors(_ sortDescriptors: [SortDescriptor]) -> [SortDescriptor] {
+func inversedSortDescriptors(_ sortDescriptors: [NSSortDescriptor]) -> [NSSortDescriptor] {
 	return sortDescriptors.map {
-		return SortDescriptor(key: $0.key, ascending: !$0.ascending)
+		return NSSortDescriptor(key: $0.key, ascending: !$0.ascending)
 	}
 }
 
 public class ContainerViewState: NSManagedObject {
 	typealias _Self = ContainerViewState
-	enum ValidationError: ErrorProtocol {
+	enum ValidationError: Error {
 		case NeitherLoadDateNorErrorIsSet
 	}
-	@NSManaged public var containerViewPredicate: Predicate
+	@NSManaged public var containerViewPredicate: NSPredicate
     @NSManaged public var continuation: String?
-    public var loadError: ErrorProtocol?
+    public var loadError: Error?
     @NSManaged public var loadDate: Date?
     @NSManaged public var loadCompleted: Bool
     @NSManaged public var container: Container?
@@ -36,7 +36,7 @@ public class ContainerViewState: NSManagedObject {
 			return nil
 		}
 		let fetchRequest = Item.fetchRequestForEntity() … {
-			$0.predicate = Predicate(format: "\(#keyPath(Item.loadDate)) == %@", argumentArray: [loadDate])
+			$0.predicate = NSPredicate(format: "\(#keyPath(Item.loadDate)) == %@", argumentArray: [loadDate])
 			$0.fetchLimit = 1
 			$0.sortDescriptors = inversedSortDescriptorsForContainers
 		}

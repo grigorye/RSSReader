@@ -35,7 +35,7 @@ class ItemTableViewCell : SystemLayoutSizeCachingTableViewCell, ItemTableViewCel
 			return
 		}
 		if let titleLabel = self.titleLabel {
-			let text = item.title ?? (item.id as NSString).lastPathComponent
+			let text = item.title /*?? (item.id as NSString).lastPathComponent*/
 			if text != titleLabel.text {
 				titleLabel.text = text
 			}
@@ -58,7 +58,7 @@ class ItemTableViewCell : SystemLayoutSizeCachingTableViewCell, ItemTableViewCel
 			if dateLabel.text != text {
 				dateLabel.text = text
 				if _0 {
-				dateLabel.textColor = item.markedAsRead ? nil : UIColor.red()
+				dateLabel.textColor = item.markedAsRead ? nil : UIColor.red
 				}
 			}
 		}

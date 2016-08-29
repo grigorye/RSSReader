@@ -8,7 +8,6 @@
 
 import GEBase
 import PromiseKit
-import Result
 import Foundation
 import CoreData
 
@@ -18,18 +17,18 @@ var itemsAreSortedByLoadDate: Bool {
 	return defaults.itemsAreSortedByLoadDate
 }
 
-public enum RSSSessionError: ErrorProtocol {
-	case authenticationFailed(underlyingError: ErrorProtocol)
-	case requestFailed(underlyingError: ErrorProtocol)
-	case jsonObjectIsNotDictionary(jsonObject: AnyObject)
+public enum RSSSessionError: Error {
+	case authenticationFailed(underlyingError: Error)
+	case requestFailed(underlyingError: Error)
+	case jsonObjectIsNotDictionary(jsonObject: Any)
 	case jsonMissingUserID(json: [String: AnyObject])
 	case jsonMissingUnreadCounts(json: [String: AnyObject])
 	case itemJsonMissingID(itemJson: [String: AnyObject])
 	case jsonMissingStreamPrefs(json: [String: AnyObject])
 	case unexpectedResponseTextForMarkAsRead(body: String)
-	case badResponseDataForMarkAsRead(data: NSData)
-	case pushTagsFailed(underlyingErrors: [ErrorProtocol])
-	case importFailed(underlyingError: ErrorProtocol, command: AbstractPersistentDataUpdateCommand)
+	case badResponseDataForMarkAsRead(data: Data)
+	case pushTagsFailed(underlyingErrors: [Error])
+	case importFailed(underlyingError: Error, command: AbstractPersistentDataUpdateCommand)
 }
 
 public class RSSSession: NSObject {
@@ -42,7 +41,6 @@ public class RSSSession: NSObject {
 }
 
 public extension RSSSession {
-	typealias Error = RSSSessionError
 	var authToken: String! {
 		get {
 			return defaults.authToken
@@ -55,16 +53,15 @@ public extension RSSSession {
 		return nil != authToken
 	}
 }
-public typealias ResultCompletionHandler<ResultType, ErrorType: ErrorProtocol> = (Result<ResultType, ErrorType>) -> Void
 
 extension RSSSession {
-	public typealias CommandCompletionHandler<T> = ResultCompletionHandler<T, Error>
+	public typealias CommandCompletionHandler<ResultType> = (Result<ResultType>) -> Void
 	// MARK: -
-	func performPersistentDataUpdateCommand<T: PersistentDataUpdateCommand>(_ command: T, completionHandler: (Result<T.ResultType, Error>) -> Void) {
+	func performPersistentDataUpdateCommand<T: PersistentDataUpdateCommand>(_ command: T, completionHandler: CommandCompletionHandler<T.ResultType>) {
 		$(command as AbstractPersistentDataUpdateCommand)
 		command.taskForSession(self) { data, httpResponse, error in
 			if let error = error {
-				completionHandler(.Failure(command.preprocessedRequestError(error)))
+				completionHandler(.rejected(command.preprocessedRequestError(error)))
 				return
 			}
 			command.push(data!, through: { importResultIntoManagedObjectContext in
@@ -72,9 +69,9 @@ extension RSSSession {
 					do {
 						let result = try importResultIntoManagedObjectContext(backgroundQueueManagedObjectContext)
 						try backgroundQueueManagedObjectContext.save()
-						completionHandler(.Success(result))
+						completionHandler(.fulfilled(result))
 					} catch {
-						completionHandler(.Failure(.importFailed(underlyingError: $(error), command: $(command))))
+						completionHandler(.rejected(RSSSessionError.importFailed(underlyingError: $(error), command: $(command))))
 					}
 				}
 			})
@@ -84,9 +81,9 @@ extension RSSSession {
 		return Promise { fulfill, reject in
 			self.performPersistentDataUpdateCommand(command) { result in
 				switch result {
-				case .Success(let value):
+				case .fulfilled(let value):
 					fulfill(value)
-				case .Failure(let error):
+				case .rejected(let error):
 					reject(error)
 				}
 			}
@@ -127,8 +124,8 @@ extension RSSSession {
 	/// MARK: -
 	func pushTags(from context: NSManagedObjectContext, completionHandler: CommandCompletionHandler<Void>) {
 		let dispatchGroup = DispatchGroup()
-		var errors = [ErrorProtocol]()
-		let completionQueue = DispatchQueue.global(attributes: .qosUserInteractive)
+		var errors = [Error]()
+		let completionQueue = DispatchQueue.global(qos: .userInteractive)
 		for excluded in [true, false] {
 			for category in try! Folder.allWithItems(toBeExcluded: excluded, in: context) {
 				let items = category.items(toBeExcluded: excluded)
@@ -136,7 +133,7 @@ extension RSSSession {
 				self.performPersistentDataUpdateCommand(PushTags(items: items, category: category, excluded: excluded)) {
 					result -> Void in
 					completionQueue.async {
-						if case let .Failure(error) = result {
+						if case let .rejected(error) = result {
 							errors.append(error)
 						}
 						dispatchGroup.leave()
@@ -144,13 +141,13 @@ extension RSSSession {
 				}
 			}
 		}
-		DispatchQueue.global(attributes: .qosUtility).async {
+		DispatchQueue.global(qos: .utility).async {
 			dispatchGroup.wait()
 			if 0 != errors.count {
-				completionHandler(.Failure(.pushTagsFailed(underlyingErrors: errors)))
+				completionHandler(.rejected(RSSSessionError.pushTagsFailed(underlyingErrors: errors)))
 				return
 			}
-			completionHandler(.Success())
+			completionHandler(.fulfilled())
 		}
 	}
 	public func pushTags(completionHandler: CommandCompletionHandler<Void>) {
@@ -163,9 +160,9 @@ extension RSSSession {
 		return Promise { fulfill, reject in
 			self.pushTags { result in
 				switch result {
-				case .Success(let value):
+				case .fulfilled(let value):
 					fulfill(value)
-				case .Failure(let error):
+				case .rejected(let error):
 					reject(error)
 				}
 			}

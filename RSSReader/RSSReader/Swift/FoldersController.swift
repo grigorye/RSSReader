@@ -51,14 +51,15 @@ extension FoldersUpdateState: CustomStringConvertible {
 	}
 }
 
-enum FoldersControllerError: ErrorProtocol {
-	case userInfoRetrieval(underlyingError: ErrorProtocol)
-	case pushTags(underlyingError: ErrorProtocol)
-	case pullTags(underlyingError: ErrorProtocol)
-	case subscriptionsUpdate(underlyingError: ErrorProtocol)
+enum FoldersControllerError: Error {
+	case userInfoRetrieval(underlyingError: Error)
+	case pushTags(underlyingError: Error)
+	case pullTags(underlyingError: Error)
+	case subscriptionsUpdate(underlyingError: Error)
 	case dataDoesNotMatchTextEncoding
-	case unreadCountsUpdate(underlyingError: ErrorProtocol)
-	case streamPreferencesUpdate(underlyingError: ErrorProtocol)
+	case unreadCountsUpdate(underlyingError: Error)
+	case streamPreferencesUpdate(underlyingError: Error)
+	case updateFoldersAuthenticated(underylingError: Error)
 }
 
 @objc protocol FoldersController {
@@ -76,7 +77,7 @@ extension FoldersController {
 			return FoldersUpdateState(rawValue: foldersUpdateStateRaw)!
 		}
 	}
-	final var foldersLastUpdateError: ErrorProtocol? {
+	final var foldersLastUpdateError: Error? {
 		set {
 			foldersLastUpdateErrorRaw = NSError(domain: "", code: 1, userInfo: ["swiftError": "\(newValue)"])
 		}
@@ -128,7 +129,7 @@ extension FoldersController {
 			self.foldersUpdateState = .completed
 			self.foldersLastUpdateDate = Date()
 		}.recover { error -> Void in
-			self.foldersLastUpdateError = error
+			self.foldersLastUpdateError = .updateFoldersAuthenticated(underylingError: error)
 			throw $(error)
 		}
 		return promise

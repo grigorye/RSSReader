@@ -12,8 +12,8 @@ import Foundation
 
 class ContainerTableViewController: UITableViewController {
 	dynamic var container: Container!
-	dynamic var predicateForItems: Predicate {
-		return container!.predicateForItems
+	dynamic var predicateForItems: NSPredicate? {
+		return container?.predicateForItems
 	}
 	// MARK: -
 	dynamic var itemsCount = 0

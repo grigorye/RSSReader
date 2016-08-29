@@ -1,19 +1,12 @@
+import struct Foundation.TimeInterval
 import Dispatch
-import Foundation.NSDate
 
 /**
- ```
- after(1).then {
-     //…
- }
- ```
-
- - Returns: A new promise that resolves after the specified duration.
- - Parameter duration: The duration in seconds to wait before this promise is resolve.
+ - Returns: A new promise that fulfills after the specified duration.
 */
-public func after(_ delay: TimeInterval) -> Promise<Void> {
+public func after(interval: TimeInterval) -> Promise<Void> {
     return Promise { fulfill, _ in
-        let when = DispatchTime.now() + delay
-        DispatchQueue.global().after(when: when, execute: fulfill)
+        let when = DispatchTime.now() + interval
+        DispatchQueue.global().asyncAfter(deadline: when, execute: fulfill)
     }
 }

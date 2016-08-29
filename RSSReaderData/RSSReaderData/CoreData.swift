@@ -32,7 +32,7 @@ extension Date {
 	}
 }
 extension Item : ManagedIdentifiable {
-	enum Error: ErrorProtocol {
+	enum ItemError: Error {
 		case CategoriesMissingOrInvalidInJson(json: [String: AnyObject])
 	}
 	public class func identifierKey() -> String {
@@ -41,7 +41,7 @@ extension Item : ManagedIdentifiable {
 	public class func entityName() -> String {
 		return "Item"
 	}
-	func importFromJson(_ jsonObject: AnyObject, subscription: Subscription? = nil) throws {
+	func importFromJson(_ jsonObject: Any, subscription: Subscription? = nil) throws {
 		let json = jsonObject as! [String: AnyObject]
 		let updatedDate: Date? = {
 			if let updatedTimeIntervalSince1970 = json["updated"] as! TimeInterval? {
@@ -69,7 +69,7 @@ extension Item : ManagedIdentifiable {
 		}
 		do {
 			guard let categoriesIDs = json["categories"] as? [String] else {
-				throw Error.CategoriesMissingOrInvalidInJson(json: json)
+				throw ItemError.CategoriesMissingOrInvalidInJson(json: json)
 			}
 			let insertedOrFetchedCategories = try categoriesIDs.map { (categoryID: String) -> Folder in
 				let folder = try insertedObjectUnlessFetchedWithID(Folder.self, id: categoryID, managedObjectContext: managedObjectContext)
@@ -87,10 +87,10 @@ extension Subscription {
 	override public class func entityName() -> String {
 		return "Subscription"
 	}
-	class func sortDescriptorsVariants() -> [[SortDescriptor]] {
-		return [[SortDescriptor(key: #keyPath(sortID), ascending: true)]]
+	class func sortDescriptorsVariants() -> [[NSSortDescriptor]] {
+		return [[NSSortDescriptor(key: #keyPath(sortID), ascending: true)]]
 	}
-	override func importFromJson(_ jsonObject: AnyObject) throws {
+	override func importFromJson(_ jsonObject: Any) throws {
 		try super.importFromJson(jsonObject)
 		let json = jsonObject as! [String: AnyObject]
 		self.title = json["title"] as! String
@@ -106,8 +106,8 @@ extension Subscription {
 		}
 	}
 }
-enum JsonImportError: ErrorProtocol {
-	case JsonObjectIsNotDictionary(jsonObject: AnyObject)
+enum JsonImportError: Error {
+	case JsonObjectIsNotDictionary(jsonObject: Any)
 	case MissingSortID(json: [String: AnyObject])
 	case SortIDIsNotHex(json: [String: AnyObject])
 	case SubscriptionOrderingMissingValue(json: [String: AnyObject])
@@ -121,7 +121,7 @@ extension Folder {
 	override public static func entityName() -> String {
 		return "Folder"
 	}
-	class func sortDescriptors() -> [[SortDescriptor]] {
-		return [[SortDescriptor(key: #keyPath(newestItemDate), ascending: false)]]
+	class func sortDescriptors() -> [[NSSortDescriptor]] {
+		return [[NSSortDescriptor(key: #keyPath(newestItemDate), ascending: false)]]
 	}
 }

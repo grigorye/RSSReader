@@ -23,7 +23,7 @@ public func URLQuerySuffixFromComponents(_ components: [String]) -> String {
 	}.prefix
 }
 
-public func filterObjectsByType<T>(_ objects: [AnyObject]) -> [T] {
+public func filterObjectsByType<T>(_ objects: [Any]) -> [T] {
 	let filteredObjects = objects.reduce([T]()) {
 		if let x = $($1) as? T {
 			return $0 + [x]
@@ -35,7 +35,7 @@ public func filterObjectsByType<T>(_ objects: [AnyObject]) -> [T] {
 	return filteredObjects
 }
 
-public func nilForNull(_ object: AnyObject) -> AnyObject? {
+public func nilForNull(_ object: Any) -> Any? {
 	if (object as! NSObject) == NSNull() {
 		return nil
 	}

@@ -32,7 +32,6 @@
 		C48F7A1F1C00971500CC6F74 /* ContainerViewState.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79D11C008E1D00CC6F74 /* ContainerViewState.swift */; };
 		C48F7A201C00971500CC6F74 /* MarkingAsRead.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79D31C008E3900CC6F74 /* MarkingAsRead.swift */; };
 		C48F7A211C00971500CC6F74 /* KVOCompliantUserDefaults+RSSReaderData.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79E41C008F1900CC6F74 /* KVOCompliantUserDefaults+RSSReaderData.swift */; };
-		C4AD5B281D27FD8B00358DEA /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4AD5B271D27FD8B00358DEA /* Result.framework */; };
 		C4AD5B3C1D2847E800358DEA /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4AD5B3B1D2847E800358DEA /* PromiseKit.framework */; };
 		C4B437371C00A75200A2F3BE /* CoreDataGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B437361C00A75200A2F3BE /* CoreDataGlobals.swift */; };
 		C4B437391C00A86000A2F3BE /* CoreDataGlobals.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4B437361C00A75200A2F3BE /* CoreDataGlobals.swift */; };
@@ -109,7 +108,6 @@
 		C48F79E41C008F1900CC6F74 /* KVOCompliantUserDefaults+RSSReaderData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KVOCompliantUserDefaults+RSSReaderData.swift"; sourceTree = "<group>"; };
 		C48F79FC1C008FEE00CC6F74 /* LoginAndPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAndPassword.swift; sourceTree = "<group>"; };
 		C492A4DA1CDFFA6100F8AD5F /* 1027.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 1027.xcdatamodel; sourceTree = "<group>"; };
-		C4AD5B271D27FD8B00358DEA /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4AD5B3B1D2847E800358DEA /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4B437361C00A75200A2F3BE /* CoreDataGlobals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataGlobals.swift; sourceTree = "<group>"; };
 		C4B4374E1C00F00700A2F3BE /* CoreDataFetchRequestsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataFetchRequestsTests.swift; sourceTree = "<group>"; };
@@ -124,7 +122,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4AD5B3C1D2847E800358DEA /* PromiseKit.framework in Frameworks */,
-				C4AD5B281D27FD8B00358DEA /* Result.framework in Frameworks */,
 				C424B8E31C6FC52D008AD647 /* GEBase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -144,7 +141,6 @@
 			isa = PBXGroup;
 			children = (
 				C4AD5B3B1D2847E800358DEA /* PromiseKit.framework */,
-				C4AD5B271D27FD8B00358DEA /* Result.framework */,
 				C424B8E21C6FC52D008AD647 /* GEBase.framework */,
 				C459879D1CDE0A8300B8E9E4 /* GEShared.xcconfig */,
 			);
