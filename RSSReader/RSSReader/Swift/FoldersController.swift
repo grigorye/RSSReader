@@ -88,7 +88,7 @@ extension FoldersController {
 	typealias Error = FoldersControllerError
 	final func updateFoldersAuthenticated() -> Promise<Void> {
 		let rssSession = RSSReader.rssSession!
-		let promise: Promise<Void> = firstly {
+		return firstly {
 			self.foldersLastUpdateError = nil
 			self.foldersUpdateState = .updatingUserInfo
 			return rssSession.updateUserInfo()
@@ -132,6 +132,5 @@ extension FoldersController {
 			self.foldersLastUpdateError = .updateFoldersAuthenticated(underylingError: error)
 			throw $(error)
 		}
-		return promise
 	}
 }
