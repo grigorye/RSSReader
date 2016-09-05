@@ -546,6 +546,10 @@ class ItemsListViewController: ContainerTableViewController {
 	deinit {
 		$(self)
 	}
+	override public class func initialize() {
+		super.initialize()
+		self.adjustForNilIndexPathPassedToModelIdentifierForElement()
+	}
 }
 
 extension ItemsListViewController: FrequencyAndWeightBasedTableRowHeightEstimatorDataSource {

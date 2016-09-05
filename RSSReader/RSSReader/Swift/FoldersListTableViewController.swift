@@ -295,6 +295,10 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 	deinit {
 		$(self)
 	}
+	override public class func initialize() {
+		super.initialize()
+		self.adjustForNilIndexPathPassedToModelIdentifierForElement()
+	}
 }
 
 extension FoldersListTableViewController {
