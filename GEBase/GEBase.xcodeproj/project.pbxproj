@@ -41,6 +41,7 @@
 		C4D6F41C1C73CD3500A7E2ED /* CoreDataCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D6F41B1C73CD3500A7E2ED /* CoreDataCaching.swift */; };
 		C4DB6A6C1D25C4E300E8516D /* GEBase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C41818601B6A65B100872EB3 /* GEBase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4DDBC841CE693690000588F /* FrequencyAndWeightBasedTableRowHeightEstimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DDBC831CE693690000588F /* FrequencyAndWeightBasedTableRowHeightEstimator.swift */; };
+		C4E15BC31D7D0EC80060A8C8 /* UIDataSourceModelAssociation+NilIndexPathInModelIdentifierForElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E15BC21D7D0EC80060A8C8 /* UIDataSourceModelAssociation+NilIndexPathInModelIdentifierForElement.swift */; };
 		C4EC2F8A1C7534030028C729 /* CoreDataCaching.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4D6F41B1C73CD3500A7E2ED /* CoreDataCaching.swift */; };
 		C4FEBAFD1BF9196E00A5709B /* Primitives.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41818A71B6A673F00872EB3 /* Primitives.swift */; };
 		C4FEBAFE1BF9196E00A5709B /* Globals.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41818A81B6A673F00872EB3 /* Globals.swift */; };
@@ -154,6 +155,7 @@
 		C4D6F4191C73CCC000A7E2ED /* Tracing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tracing.swift; sourceTree = "<group>"; };
 		C4D6F41B1C73CD3500A7E2ED /* CoreDataCaching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataCaching.swift; sourceTree = "<group>"; };
 		C4DDBC831CE693690000588F /* FrequencyAndWeightBasedTableRowHeightEstimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrequencyAndWeightBasedTableRowHeightEstimator.swift; sourceTree = "<group>"; };
+		C4E15BC21D7D0EC80060A8C8 /* UIDataSourceModelAssociation+NilIndexPathInModelIdentifierForElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDataSourceModelAssociation+NilIndexPathInModelIdentifierForElement.swift"; sourceTree = "<group>"; };
 		C4FEBB191BF91E6600A5709B /* KVOCompliantUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOCompliantUserDefaults.swift; sourceTree = "<group>"; };
 		C4FEBB1C1BF960A300A5709B /* NSBundleExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSBundleExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -227,6 +229,7 @@
 				C497008F1D21B17400E9B689 /* Sugar.swift */,
 				C40EA7281C6FCA2B002C6D9E /* Bridging-Header.h */,
 				C41818651B6A65B100872EB3 /* Info.plist */,
+				C4E15BC21D7D0EC80060A8C8 /* UIDataSourceModelAssociation+NilIndexPathInModelIdentifierForElement.swift */,
 			);
 			path = GEBase;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				C492A4D51CDFB78700F8AD5F /* SystemLayoutSizeCachingTableViewCell.swift in Sources */,
 				C4A6B8C81CB082F70053D44E /* AssociatedObjects.swift in Sources */,
 				C41818901B6A66AE00872EB3 /* Descriptions.swift in Sources */,
+				C4E15BC31D7D0EC80060A8C8 /* UIDataSourceModelAssociation+NilIndexPathInModelIdentifierForElement.swift in Sources */,
 				C4CB38861CDBA78D00562665 /* SourceLocation.swift in Sources */,
 				C41818931B6A66AE00872EB3 /* GenericExtensions.swift in Sources */,
 				C4FEBB1A1BF91E6600A5709B /* KVOCompliantUserDefaults.swift in Sources */,
