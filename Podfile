@@ -25,10 +25,20 @@ end
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
-      config.build_settings['CONFIGURATION_BUILD_DIR'] = '${PODS_CONFIGURATION_BUILD_DIR}'
-      config.build_settings['CODE_SIGNING_REQUIRED'] = 'NO'
-      config.build_settings['PROVISIONING_PROFILE_SPECIFIER'] = '465NA5BW7E/'
-      config.build_settings['SWIFT_VERSION'] = '3.0'
+    end
+    target.build_configurations.each do |configuration|
+      configuration.build_settings['CONFIGURATION_BUILD_DIR'] = '${PODS_CONFIGURATION_BUILD_DIR}'
+      configuration.build_settings['CODE_SIGNING_REQUIRED'] = 'NO'
+      configuration.build_settings['PROVISIONING_PROFILE_SPECIFIER'] = '465NA5BW7E/'
+      configuration.build_settings['SWIFT_VERSION'] = '3.0'
+      xcconfig_path = configuration.base_configuration_reference.real_path
+      xcconfig = Xcodeproj::Config.new(xcconfig_path).to_hash
+      xcconfig['FRAMEWORK_SEARCH_PATHS'] = '$(inherited)'
+      File.open(xcconfig_path, "w") { |file|
+        xcconfig.each do |key,value|
+          file.puts "#{key} = #{value}"
+        end
+      }
     end
   end
 end

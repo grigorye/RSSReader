@@ -231,6 +231,9 @@
         "PromiseKit/CorePromise": [
 
         ],
+        "PromiseKit/Foundation": [
+
+        ],
         "OMGHTTPURLRQ": [
           "~> 3.2"
         ]
