@@ -628,7 +628,12 @@ extension ItemsListViewController: UIDataSourceModelAssociation {
 		assert(managedObjectContext == mainQueueManagedObjectContext)
 		let objectID = managedObjectContext.persistentStoreCoordinator!.managedObjectID(forURIRepresentation: objectIDURL)!
 		let object = managedObjectContext.object(with: objectID) as! Item
-		let indexPath = fetchedResultsController.indexPath(forObject: object)!
+		guard let indexPath = fetchedResultsController.indexPath(forObject: object) else {
+			•(object)
+			•(fetchedResultsController.fetchRequest)
+			•(fetchedResultsController.fetchedObjects)
+			return nil
+		}
 		return $(indexPath)
 	}
 }
