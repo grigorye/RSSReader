@@ -227,7 +227,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 		$(buildAge)
 #if ANALYTICS_ENABLED
 		let versionIsClean = NSNotFound == version.rangeOfCharacter(from: NSCharacterSet.decimalDigits.inverted).location
-		if (versionIsClean) && $(defaults.analyticsEnabled) {
+		if $(versionIsClean) && $(defaults.analyticsEnabled) {
 #if CRASHLYTICS_ENABLED
 			Fabric.with([Crashlytics()])
 #endif
@@ -248,4 +248,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 		let libraryDirectory = libraryDirectoryURL.path
         $(libraryDirectory)
 	}
+	override public class func initialize() {
+		super.initialize()
+		_ = initializeLogs
+	}
+}
+
+extension AppDelegate {
+	static var initializeLogs: Void = {
+		loggers.append(crashlyticsLogger)
+	}()
 }
