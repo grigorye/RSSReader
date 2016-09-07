@@ -19,7 +19,7 @@ protocol PersistentDataUpdateCommand : AbstractPersistentDataUpdateCommand {
 	func preprocessedRequestError(_ error: Error) -> RSSSessionError
 	func validate(data: Data) throws
 	func push(_ data: Data, through: (@escaping (NSManagedObjectContext) throws -> ResultType) -> Void)
-	func taskForSession(_ session: RSSSession, completionHandler: RSSSessionTaskCompletionHandler) -> URLSessionTask
+	func taskForSession(_ session: RSSSession, completionHandler: @escaping RSSSessionTaskCompletionHandler) -> URLSessionTask
 }
 /// Default behaviour for `PersistentDataUpdateCommand`.
 extension PersistentDataUpdateCommand {
@@ -37,7 +37,7 @@ extension PersistentDataUpdateCommand {
 	}
 	func validate(data: Data) throws {
 	}
-	func taskForSession(_ session: RSSSession, completionHandler: RSSSessionTaskCompletionHandler) -> URLSessionTask {
+	func taskForSession(_ session: RSSSession, completionHandler: @escaping RSSSessionTaskCompletionHandler) -> URLSessionTask {
 		return session.dataTask(with: self.request, completionHandler: completionHandler)
 	}
 }
@@ -90,7 +90,7 @@ extension PersistentDataUpdateCommand where Self: SimpleDispatchingDataUpdateCom
 protocol AuthenticatedDataUpdateCommand {}
 /// Default behaviour for `AuthenticatedDataUpdateCommand`.
 extension PersistentDataUpdateCommand where Self: AuthenticatedDataUpdateCommand {
-	func taskForSession(_ session: RSSSession, completionHandler: RSSSessionTaskCompletionHandler) -> URLSessionTask {
+	func taskForSession(_ session: RSSSession, completionHandler: @escaping RSSSessionTaskCompletionHandler) -> URLSessionTask {
 		return session.authenticatedDataTask(with: self.request, completionHandler: completionHandler)
 	}
 }

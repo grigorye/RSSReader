@@ -27,7 +27,7 @@ public let (managedObjectContextError, saveQueueManagedObjectContext, optionalMa
 			do {
 				try fileManager.removeItem(at: storeURL)
 			}
-			catch CocoaError.fileNoSuchFileError {
+			catch CocoaError.fileNoSuchFile {
 			}
 		}
 		do {
