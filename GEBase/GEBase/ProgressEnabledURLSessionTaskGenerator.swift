@@ -18,7 +18,7 @@ public class ProgressEnabledURLSessionTaskGenerator: NSObject {
 	let session = URLSession(configuration: URLSessionConfiguration.default)
 	// MARK: -
 	public typealias HTTPDataTaskCompletionHandler = (Data?, HTTPURLResponse?, Error?) -> Void
-	public func dataTask(for request: URLRequest, completionHandler: HTTPDataTaskCompletionHandler) -> URLSessionDataTask {
+	public func dataTask(for request: URLRequest, completionHandler: @escaping HTTPDataTaskCompletionHandler) -> URLSessionDataTask {
 		let progress = Progress(totalUnitCount: 1)
 		progress.becomeCurrent(withPendingUnitCount: 1)
 		•(request)
@@ -48,7 +48,7 @@ public class ProgressEnabledURLSessionTaskGenerator: NSObject {
 		return sessionTask
 	}
 	public typealias TextTaskCompletionHandler = (String?, Error?) -> Void
-	public func textTask(for request: URLRequest, completionHandler: TextTaskCompletionHandler) -> URLSessionDataTask? {
+	public func textTask(for request: URLRequest, completionHandler: @escaping TextTaskCompletionHandler) -> URLSessionDataTask? {
 		enum TextTaskError: Error {
 			case DataDoesNotMatchTextEncoding(data: Data, encoding: String.Encoding)
 		}

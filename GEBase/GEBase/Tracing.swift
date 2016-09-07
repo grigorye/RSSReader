@@ -123,7 +123,7 @@ public var loggers: [Logger] = [
 
 func log(message: String, withLabel label: String, on date: Date, at location: SourceLocation) {
 	for logger in loggers {
-		logger(date: date, label: label, location: location, message: message)
+		logger(date, label, location, message)
 	}
 }
 
