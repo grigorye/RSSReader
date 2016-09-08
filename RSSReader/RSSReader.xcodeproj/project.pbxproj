@@ -703,7 +703,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -e";
-			shellScript = "if false\nthen\n\t\"${SRCROOT:?}\"/XcodeBuildPhases/IntegrateFabric\nfi\n\n";
+			shellScript = "if true\nthen\n\t\"${SRCROOT:?}\"/XcodeBuildPhases/IntegrateFabric\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
