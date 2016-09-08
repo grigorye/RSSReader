@@ -214,7 +214,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Package Application"
-               scriptText = "&quot;${GE_XCODE_BUILD_PHASES:?}/PackageApplication">
+               scriptText = "&quot;${GE_XCODE_BUILD_PHASES:?}&quot;/PackageApplication">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
@@ -230,7 +230,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Upload to Fabric"
-               scriptText = "&quot;${GE_XCODE_BUILD_PHASES:?}/UploadToFabric">
+               scriptText = "&quot;${GE_XCODE_BUILD_PHASES:?}&quot;/UploadToFabric">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
