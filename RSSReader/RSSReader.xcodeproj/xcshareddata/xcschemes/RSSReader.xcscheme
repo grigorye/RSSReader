@@ -5,25 +5,6 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
-      <PostActions>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
-               title = "Run Script"
-               scriptText = "echo foo&#10;if [ &quot;${action:?}&quot; == &quot;archive&quot; ]&#10;then&#10;    &quot;${GE_XCODE_BUILD_PHASES:?}&quot;/IntegrateAppsee&#10;    &quot;${GE_XCODE_BUILD_PHASES:?}&quot;/IntegrateFabric&#10;    &quot;${GE_XCODE_BUILD_PHASES:?}&quot;/UploadToFabric&#10;fi&#10;"
-               shellToInvoke = "/bin/sh -e">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "C4CDD39C1A5350B40087DD05"
-                     BuildableName = "RSSReader.app"
-                     BlueprintName = "RSSReader"
-                     ReferencedContainer = "container:RSSReader.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
-            </ActionContent>
-         </ExecutionAction>
-      </PostActions>
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
