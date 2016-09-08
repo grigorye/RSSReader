@@ -62,7 +62,7 @@
 		C474F09F1D80DDCC00CABEB9 /* Appsee.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474F09E1D80DDCC00CABEB9 /* Appsee.swift */; };
 		C474F0A11D80DF2900CABEB9 /* UXCam.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474F0A01D80DF2900CABEB9 /* UXCam.swift */; };
 		C474F0A31D80DFAD00CABEB9 /* Flurry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474F0A21D80DFAD00CABEB9 /* Flurry.swift */; };
-		C474F0A51D80E10A00CABEB9 /* Flurry_iOS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C474F0A41D80E10A00CABEB9 /* Flurry_iOS_SDK.framework */; };
+		C474F0A51D80E10A00CABEB9 /* Flurry_iOS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C474F0A41D80E10A00CABEB9 /* Flurry_iOS_SDK.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C474F0A81D80E65F00CABEB9 /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474F0A71D80E65F00CABEB9 /* LogViewController.swift */; };
 		C474F0AD1D80F59B00CABEB9 /* FileLogger.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C474F09C1D80DCBA00CABEB9 /* FileLogger.swift */; };
 		C474F0AE1D80F5A500CABEB9 /* Appsee.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C474F09E1D80DDCC00CABEB9 /* Appsee.swift */; };
