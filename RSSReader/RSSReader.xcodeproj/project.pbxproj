@@ -64,6 +64,12 @@
 		C474F0A31D80DFAD00CABEB9 /* Flurry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474F0A21D80DFAD00CABEB9 /* Flurry.swift */; };
 		C474F0A51D80E10A00CABEB9 /* Flurry_iOS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C474F0A41D80E10A00CABEB9 /* Flurry_iOS_SDK.framework */; };
 		C474F0A81D80E65F00CABEB9 /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474F0A71D80E65F00CABEB9 /* LogViewController.swift */; };
+		C474F0AD1D80F59B00CABEB9 /* FileLogger.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C474F09C1D80DCBA00CABEB9 /* FileLogger.swift */; };
+		C474F0AE1D80F5A500CABEB9 /* Appsee.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C474F09E1D80DDCC00CABEB9 /* Appsee.swift */; };
+		C474F0AF1D80F5A500CABEB9 /* UXCam.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C474F0A01D80DF2900CABEB9 /* UXCam.swift */; };
+		C474F0B01D80F5A500CABEB9 /* Flurry.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C474F0A21D80DFAD00CABEB9 /* Flurry.swift */; };
+		C474F0B11D80F5A500CABEB9 /* Crashlytics.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4792B071D80B222008770D2 /* Crashlytics.swift */; };
+		C474F0B21D80F5B100CABEB9 /* LogViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C474F0A71D80E65F00CABEB9 /* LogViewController.swift */; };
 		C4792B081D80B222008770D2 /* Crashlytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4792B071D80B222008770D2 /* Crashlytics.swift */; };
 		C48311531D30642B003D7A2B /* ContainerLoadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48311521D30642B003D7A2B /* ContainerLoadController.swift */; };
 		C48C5F971A87344000A1EA12 /* ItemsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */; };
@@ -135,6 +141,12 @@
 			dstPath = Sources;
 			dstSubfolderSpec = 7;
 			files = (
+				C474F0B21D80F5B100CABEB9 /* LogViewController.swift in Embed Sources */,
+				C474F0AE1D80F5A500CABEB9 /* Appsee.swift in Embed Sources */,
+				C474F0AF1D80F5A500CABEB9 /* UXCam.swift in Embed Sources */,
+				C474F0B01D80F5A500CABEB9 /* Flurry.swift in Embed Sources */,
+				C474F0B11D80F5A500CABEB9 /* Crashlytics.swift in Embed Sources */,
+				C474F0AD1D80F59B00CABEB9 /* FileLogger.swift in Embed Sources */,
 				C4FEBB261BF9742300A5709B /* UINavigationItem+MultipleButtonItemsCollections.swift in Embed Sources */,
 				C4FEBB231BF9712200A5709B /* KVOCompliantUserDefaults+RSSReader.swift in Embed Sources */,
 				C4FEBB0F1BF919EF00A5709B /* TableViewFetchedResultsControllerDelegate.swift in Embed Sources */,
@@ -234,6 +246,7 @@
 		C474F0A21D80DFAD00CABEB9 /* Flurry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Flurry.swift; path = Swift/Flurry.swift; sourceTree = "<group>"; };
 		C474F0A41D80E10A00CABEB9 /* Flurry_iOS_SDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Flurry_iOS_SDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C474F0A71D80E65F00CABEB9 /* LogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogViewController.swift; path = Swift/LogViewController.swift; sourceTree = "<group>"; };
+		C474F0AC1D80F48400CABEB9 /* VersionIsClean */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = VersionIsClean; sourceTree = "<group>"; };
 		C4792B071D80B222008770D2 /* Crashlytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Crashlytics.swift; path = Swift/Crashlytics.swift; sourceTree = "<group>"; };
 		C48311521D30642B003D7A2B /* ContainerLoadController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerLoadController.swift; path = Swift/ContainerLoadController.swift; sourceTree = "<group>"; };
 		C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ItemsPageViewController.swift; path = Swift/ItemsPageViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -372,6 +385,15 @@
 			path = RSSReaderUITests;
 			sourceTree = "<group>";
 		};
+		C474F0AB1D80F48400CABEB9 /* XcodeScripts */ = {
+			isa = PBXGroup;
+			children = (
+				C474F0AC1D80F48400CABEB9 /* VersionIsClean */,
+			);
+			name = XcodeScripts;
+			path = ../XcodeScripts;
+			sourceTree = "<group>";
+		};
 		C49540A21A57827300F56168 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -399,13 +421,13 @@
 				C42802681A5B47EA002474E1 /* FoldersListTableViewController.swift */,
 				C40A24FE1A672B2100B5D959 /* TableViewContainerCell.swift */,
 				C45BC3E91A8003F40008A5D1 /* HistoryViewController.swift */,
+				C474F0A71D80E65F00CABEB9 /* LogViewController.swift */,
 				C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */,
 				C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */,
 				C45ECD051A62054C00ADC113 /* SBConstants.swift */,
 				C4C422171A75E355008803A7 /* MainNavigationController.swift */,
 				C4C780121A7DEAAA009CB5FC /* UI Activities */,
 				CA2E0441FFA564885EE4A6C9 /* UITabBarController+CVKHiearachySearcher.swift */,
-				C474F0A71D80E65F00CABEB9 /* LogViewController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -429,6 +451,7 @@
 				C4CDD3B71A5350B50087DD05 /* RSSReaderTests */,
 				C44FCA5F1A8AF9CF00C91544 /* XcodeBotScripts */,
 				C40C6BFC1A73C78F00FAFA17 /* XcodeBuildPhases */,
+				C474F0AB1D80F48400CABEB9 /* XcodeScripts */,
 				C444F53D1B2E53F200A6E378 /* RSSReaderUITests */,
 				C424B8F91C6FC5E1008AD647 /* Frameworks */,
 				C4CDD39E1A5350B40087DD05 /* Products */,
@@ -656,7 +679,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -e";
-			shellScript = "if false\nthen\n    \"${SRCROOT:?}\"/XcodeBuildPhases/IntegrateAppsee\nfi\n";
+			shellScript = "\"${GE_XCODE_BUILD_PHASES:?}\"/IntegrateAppsee\n";
 			showEnvVarsInLog = 0;
 		};
 		C418B3281A593F4E002C0578 /* Embed Source Version into Bundle */ = {
@@ -671,7 +694,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -e";
-			shellScript = "\"${SRCROOT:?}\"/../XcodeBuildPhases/EmbedSourceVersionIntoBundle\n";
+			shellScript = "\"${GE_XCODE_BUILD_PHASES:?}\"/EmbedSourceVersionIntoBundle\n";
 			showEnvVarsInLog = 0;
 		};
 		C45ECD071A62070900ADC113 /* Regenerate SBConstants.swift */ = {
@@ -688,7 +711,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -e";
-			shellScript = "\"${SRCROOT:?}\"/../XcodeBuildPhases/RegenerateSBConstantsSwift";
+			shellScript = "\"${GE_XCODE_BUILD_PHASES:?}\"/RegenerateSBConstantsSwift";
 			showEnvVarsInLog = 0;
 		};
 		C4676E7F1A6DB0C900AE8BC2 /* Integrate Fabric */ = {
@@ -703,7 +726,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -e";
-			shellScript = "if true\nthen\n\t\"${SRCROOT:?}\"/XcodeBuildPhases/IntegrateFabric\nfi\n";
+			shellScript = "\"${GE_XCODE_BUILD_PHASES:?}\"/IntegrateFabric\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
