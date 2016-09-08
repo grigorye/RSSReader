@@ -10,5 +10,5 @@
 
 if [ "${CRASHLYTICS_ENABLED:?}" == "YES" ]
 then
-	./Fabric.framework/run "${XC_FABRIC_API_KEY:?}" "${XC_FABRIC_BUILD_SECRET:?}"
+	"${SRCROOT:?}"/../Pods/Fabric/run "${XC_FABRIC_API_KEY:?}" "${XC_FABRIC_BUILD_SECRET:?}"
 fi
