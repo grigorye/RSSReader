@@ -15,6 +15,23 @@ let defaults = KVOCompliantUserDefaults()
 
 let applicationDomain = "com.grigoryentin.RSSReader"
 
+let versionIsClean: Bool = {
+	let version = Bundle.main.infoDictionary!["CFBundleVersion"] as! NSString
+	$(version)
+	let buildDate = try! FileManager.default.attributesOfItem(atPath: Bundle.main.bundlePath)[FileAttributeKey.modificationDate] as! Date
+	let buildAge = Date().timeIntervalSince(buildDate)
+	$(buildAge)
+	return NSNotFound == version.rangeOfCharacter(from: NSCharacterSet.decimalDigits.inverted).location
+}()
+
+let analyticsEnabled: Bool = {
+#if ANALYTICS_ENABLED
+	return $(versionIsClean) && $(defaults.analyticsEnabled)
+#else
+	return false
+#endif
+}()
+
 var foldersController: FoldersController!
 
 let applicationDelegate = (UIApplication.shared.delegate as! AppDelegate)
