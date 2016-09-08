@@ -58,7 +58,13 @@
 		C46934DF1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46934DE1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift */; };
 		C46F04141C0A142000A970D7 /* Readability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46F04131C0A142000A970D7 /* Readability.swift */; };
 		C46FA8691AA56018004B5C45 /* UITableView+SnappingHeaderToTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46FA8681AA56018004B5C45 /* UITableView+SnappingHeaderToTop.swift */; };
-		C4792B081D80B222008770D2 /* CrashlyticsLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4792B071D80B222008770D2 /* CrashlyticsLogger.swift */; };
+		C474F09D1D80DCBA00CABEB9 /* FileLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474F09C1D80DCBA00CABEB9 /* FileLogger.swift */; };
+		C474F09F1D80DDCC00CABEB9 /* Appsee.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474F09E1D80DDCC00CABEB9 /* Appsee.swift */; };
+		C474F0A11D80DF2900CABEB9 /* UXCam.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474F0A01D80DF2900CABEB9 /* UXCam.swift */; };
+		C474F0A31D80DFAD00CABEB9 /* Flurry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474F0A21D80DFAD00CABEB9 /* Flurry.swift */; };
+		C474F0A51D80E10A00CABEB9 /* Flurry_iOS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C474F0A41D80E10A00CABEB9 /* Flurry_iOS_SDK.framework */; };
+		C474F0A81D80E65F00CABEB9 /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474F0A71D80E65F00CABEB9 /* LogViewController.swift */; };
+		C4792B081D80B222008770D2 /* Crashlytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4792B071D80B222008770D2 /* Crashlytics.swift */; };
 		C48311531D30642B003D7A2B /* ContainerLoadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48311521D30642B003D7A2B /* ContainerLoadController.swift */; };
 		C48C5F971A87344000A1EA12 /* ItemsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */; };
 		C492A4CE1CDEE9AB00F8AD5F /* ItemTableViewCell-0.xib in Resources */ = {isa = PBXBuildFile; fileRef = C492A4CA1CDEE9AB00F8AD5F /* ItemTableViewCell-0.xib */; };
@@ -222,7 +228,13 @@
 		C46934DE1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemsPageViewControllerDataSource.swift; path = Swift/ItemsPageViewControllerDataSource.swift; sourceTree = "<group>"; };
 		C46F04131C0A142000A970D7 /* Readability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Readability.swift; path = Swift/Readability.swift; sourceTree = "<group>"; };
 		C46FA8681AA56018004B5C45 /* UITableView+SnappingHeaderToTop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+SnappingHeaderToTop.swift"; path = "Swift/UITableView+SnappingHeaderToTop.swift"; sourceTree = "<group>"; };
-		C4792B071D80B222008770D2 /* CrashlyticsLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CrashlyticsLogger.swift; path = Swift/CrashlyticsLogger.swift; sourceTree = "<group>"; };
+		C474F09C1D80DCBA00CABEB9 /* FileLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileLogger.swift; path = Swift/FileLogger.swift; sourceTree = "<group>"; };
+		C474F09E1D80DDCC00CABEB9 /* Appsee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Appsee.swift; path = Swift/Appsee.swift; sourceTree = "<group>"; };
+		C474F0A01D80DF2900CABEB9 /* UXCam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UXCam.swift; path = Swift/UXCam.swift; sourceTree = "<group>"; };
+		C474F0A21D80DFAD00CABEB9 /* Flurry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Flurry.swift; path = Swift/Flurry.swift; sourceTree = "<group>"; };
+		C474F0A41D80E10A00CABEB9 /* Flurry_iOS_SDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Flurry_iOS_SDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C474F0A71D80E65F00CABEB9 /* LogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogViewController.swift; path = Swift/LogViewController.swift; sourceTree = "<group>"; };
+		C4792B071D80B222008770D2 /* Crashlytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Crashlytics.swift; path = Swift/Crashlytics.swift; sourceTree = "<group>"; };
 		C48311521D30642B003D7A2B /* ContainerLoadController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerLoadController.swift; path = Swift/ContainerLoadController.swift; sourceTree = "<group>"; };
 		C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ItemsPageViewController.swift; path = Swift/ItemsPageViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C4915FE31CE734A40063A734 /* RSSReader-app.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "RSSReader-app.xcconfig"; sourceTree = SOURCE_ROOT; };
@@ -293,6 +305,7 @@
 				C408F1841CE73FAE00DB943F /* GEBase.framework in Frameworks */,
 				C40EA7251C6FC8A9002C6D9E /* AFMInfoBanner.framework in Frameworks */,
 				C408F1B11CE7520700DB943F /* FBAllocationTracker.framework in Frameworks */,
+				C474F0A51D80E10A00CABEB9 /* Flurry_iOS_SDK.framework in Frameworks */,
 				C40EA7301C6FCC07002C6D9E /* CVKHierarchySearcher.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -335,6 +348,7 @@
 		C424B8F91C6FC5E1008AD647 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C474F0A41D80E10A00CABEB9 /* Flurry_iOS_SDK.framework */,
 				C4AD5B361D282F1800358DEA /* PromiseKit.framework */,
 				C408F1B61CE7520700DB943F /* FBRetainCycleDetector.framework */,
 				C408F1B31CE7520700DB943F /* FBMemoryProfiler.framework */,
@@ -391,6 +405,7 @@
 				C4C422171A75E355008803A7 /* MainNavigationController.swift */,
 				C4C780121A7DEAAA009CB5FC /* UI Activities */,
 				CA2E0441FFA564885EE4A6C9 /* UITabBarController+CVKHiearachySearcher.swift */,
+				C474F0A71D80E65F00CABEB9 /* LogViewController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -438,7 +453,11 @@
 				C41707CA1A56076A00AED81C /* Globals.swift */,
 				C495409A1A575C1900F56168 /* UserDefaults.swift */,
 				C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */,
-				C4792B071D80B222008770D2 /* CrashlyticsLogger.swift */,
+				C474F09E1D80DDCC00CABEB9 /* Appsee.swift */,
+				C474F0A01D80DF2900CABEB9 /* UXCam.swift */,
+				C474F0A21D80DFAD00CABEB9 /* Flurry.swift */,
+				C4792B071D80B222008770D2 /* Crashlytics.swift */,
+				C474F09C1D80DCBA00CABEB9 /* FileLogger.swift */,
 				C48311521D30642B003D7A2B /* ContainerLoadController.swift */,
 				C4C327F11AF30CB400119573 /* FoldersController.swift */,
 				C4EF270D1A8D353C000EBE63 /* UserMessages.swift */,
@@ -705,16 +724,18 @@
 				C46F04141C0A142000A970D7 /* Readability.swift in Sources */,
 				C4C780161A7DF1EC009CB5FC /* ApplicationActivities.swift in Sources */,
 				C49540A51A57906600F56168 /* ItemSummaryWebViewController.swift in Sources */,
+				C474F0A81D80E65F00CABEB9 /* LogViewController.swift in Sources */,
 				C4EA5C3C1CE930B200E395FE /* ContainerTableViewSectionHeaderView.swift in Sources */,
 				C4EA5C361CE91E8600E395FE /* ContainerTableViewController.swift in Sources */,
 				C4C327F21AF30CB400119573 /* FoldersController.swift in Sources */,
 				C4AD2ADB1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift in Sources */,
 				C48311531D30642B003D7A2B /* ContainerLoadController.swift in Sources */,
 				C4676E091A6A4D1F00AE8BC2 /* ItemTableViewCell.swift in Sources */,
-				C4792B081D80B222008770D2 /* CrashlyticsLogger.swift in Sources */,
+				C4792B081D80B222008770D2 /* Crashlytics.swift in Sources */,
 				C40A24FF1A672B2100B5D959 /* TableViewContainerCell.swift in Sources */,
 				C4FEBB221BF96E4200A5709B /* KVOCompliantUserDefaults+RSSReader.swift in Sources */,
 				C4EF270E1A8D353C000EBE63 /* UserMessages.swift in Sources */,
+				C474F09D1D80DCBA00CABEB9 /* FileLogger.swift in Sources */,
 				C41707CB1A56076A00AED81C /* Globals.swift in Sources */,
 				C495409B1A575C1900F56168 /* UserDefaults.swift in Sources */,
 				C49540A11A57825100F56168 /* ItemsListViewController.swift in Sources */,
@@ -722,16 +743,19 @@
 				C4FEBAF71BF807A600A5709B /* ContainedViewControllersAwareNavigationControllerDelegate.swift in Sources */,
 				C44B2F011AC0C881006A67F1 /* HomeViewController.swift in Sources */,
 				C45ECD061A62054C00ADC113 /* SBConstants.swift in Sources */,
+				C474F09F1D80DDCC00CABEB9 /* Appsee.swift in Sources */,
 				C42802691A5B47EA002474E1 /* FoldersListTableViewController.swift in Sources */,
 				C48C5F971A87344000A1EA12 /* ItemsPageViewController.swift in Sources */,
 				C4CDD3A31A5350B40087DD05 /* AppDelegate.swift in Sources */,
 				C4C0261F1B5281B7005452D1 /* TableViewFetchedResultsControllerDelegate.swift in Sources */,
 				C4C422181A75E355008803A7 /* MainNavigationController.swift in Sources */,
+				C474F0A11D80DF2900CABEB9 /* UXCam.swift in Sources */,
 				C4FEBB251BF9721500A5709B /* UINavigationItem+MultipleButtonItemsCollections.swift in Sources */,
 				C46FA8691AA56018004B5C45 /* UITableView+SnappingHeaderToTop.swift in Sources */,
 				C4C780141A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift in Sources */,
 				C4F575D01A797C7B00F12F20 /* AddToFavoritesActivity.swift in Sources */,
 				C4667F0D1CC80A050039C480 /* Appearance.swift in Sources */,
+				C474F0A31D80DFAD00CABEB9 /* Flurry.swift in Sources */,
 				C4F575D61A7988DB00F12F20 /* OpenWebPageActivity.swift in Sources */,
 				C46934DF1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift in Sources */,
 				C45BC3EA1A8003F40008A5D1 /* HistoryViewController.swift in Sources */,
