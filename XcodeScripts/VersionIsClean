@@ -1,0 +1,9 @@
+#!/bin/sh
+
+#  VersionIsClean
+#  RSSReader
+#
+#  Created by Grigory Entin on 08.09.16.
+#  Copyright © 2016 Grigory Entin. All rights reserved.
+
+test "z""$(git status -s)" == "z"
