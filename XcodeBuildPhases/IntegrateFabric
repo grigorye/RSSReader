@@ -10,3 +10,5 @@
 "${GE_XCODE_SCRIPTS:?}"/VersionIsClean || exit 0
 
 "${PODS_ROOT:?}"/Fabric/run "${XC_FABRIC_API_KEY:?}" "${XC_FABRIC_BUILD_SECRET:?}"
+
+find "${CONFIGURATION_BUILD_DIR:?}" -name "*.dSYM" | xargs -I {} "${PODS_ROOT:?}"/Crashlytics/iOS/Crashlytics.framework/uploadDSYM "${XC_FABRIC_API_KEY:?}" ios {}
