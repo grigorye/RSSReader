@@ -28,18 +28,9 @@ DEPENDENCIES:
   - FBMemoryProfiler
   - Flurry-iOS-SDK/FlurrySDK
   - HTMLReader
-  - PromiseKit/CorePromise (from `https://github.com/mxcl/PromiseKit`)
+  - PromiseKit/CorePromise
   - TUSafariActivity
   - UXCam
-
-EXTERNAL SOURCES:
-  PromiseKit:
-    :git: https://github.com/mxcl/PromiseKit
-
-CHECKOUT OPTIONS:
-  PromiseKit:
-    :commit: 5eb1ad5008f5b52beab30b5d5df7a083f2ad9711
-    :git: https://github.com/mxcl/PromiseKit
 
 SPEC CHECKSUMS:
   AFMInfoBanner: a7bcfd409faa624f043e604ae4fb789c84b22815
@@ -53,10 +44,10 @@ SPEC CHECKSUMS:
   FBRetainCycleDetector: f0c7b290bf48ae77f6ae060843ce34ae341781eb
   Flurry-iOS-SDK: 97bbeec09cca666c2f1772f6e161c4f8ccff611e
   HTMLReader: 9c9a018b11d7e9884a52ab97ce1bd23bdca7fddb
-  PromiseKit: 7b540d33b9ef6a5b644437a729559a71b1569e19
+  PromiseKit: 97edc7fb2fb7d2c68c8e09d1f79b3ab7bcb6b06a
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   UXCam: 3318abdb0b2b0d8dc6905579bb5a9ff16185c9a8
 
-PODFILE CHECKSUM: 84a7a731eab5984dff91b00b615e5c898777e1d2
+PODFILE CHECKSUM: 0b031d01258aa2bb1094329c14400000a54a72fc
 
 COCOAPODS: 1.0.1

@@ -13,13 +13,13 @@ target "iOS" do
 	pod 'Appsee'
 	pod 'Flurry-iOS-SDK/FlurrySDK'
 	pod 'FBMemoryProfiler'
-	pod 'PromiseKit/CorePromise', :git => 'https://github.com/mxcl/PromiseKit'
+	pod 'PromiseKit/CorePromise'
 end
 target "macOS" do
 	platform :osx, '10.11'
 	pod 'Crashlytics'
 	pod 'Fabric'
-	pod 'PromiseKit/CorePromise', :git => 'https://github.com/mxcl/PromiseKit'
+	pod 'PromiseKit/CorePromise'
 end
 
 post_install do |installer|
