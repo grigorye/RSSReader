@@ -3,15 +3,17 @@ use_frameworks!
 
 target "iOS" do
 	platform :ios, '8.0'
-	pod 'AFMInfoBanner'
-	pod 'UXCam'
+#	pod 'AFMInfoBanner'
+#	pod 'UXCam'
 	pod 'TUSafariActivity'
-	pod 'DZReadability'
-	pod 'HTMLReader', :inhibit_warnings => true
+#	pod 'DZReadability'
+#	pod 'HTMLReader'
+#	pod 'ReadabilityKit'
+#	pod 'Ji', :git => 'https://github.com/andykingway/Ji'
 	pod 'Crashlytics'
 	pod 'Fabric'
-	pod 'Appsee'
-	pod 'Flurry-iOS-SDK/FlurrySDK'
+#	pod 'Appsee'
+#	pod 'Flurry-iOS-SDK/FlurrySDK'
 	pod 'FBMemoryProfiler'
 	pod 'PromiseKit/CorePromise'
 end
