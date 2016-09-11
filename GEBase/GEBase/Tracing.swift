@@ -8,6 +8,18 @@
 
 import Foundation
 
+var traceLabelsEnabledEnforced: Bool?
+var traceEnabledEnforced: Bool?
+
+extension KVOCompliantUserDefaults {
+	var traceEnabled: Bool {
+		return traceEnabledEnforced ?? UserDefaults.standard.bool(forKey: "traceEnabled")
+	}
+	var traceLabelsEnabled: Bool {
+		return traceLabelsEnabledEnforced ?? UserDefaults.standard.bool(forKey: "traceLabelsEnabled")
+	}
+}
+
 extension String {
 	func substring(toOffset offset: Int) -> String {
 		return substring(to: index(startIndex, offsetBy: offset))
