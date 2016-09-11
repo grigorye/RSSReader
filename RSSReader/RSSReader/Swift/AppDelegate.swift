@@ -210,7 +210,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 			FBAllocationTrackerManager.shared()!.startTrackingAllocations()
 			FBAllocationTrackerManager.shared()!.enableGenerations()
 		}
-		RSSReader.foldersController = self
 		configureAppearance()
 		let fileManager = FileManager()
 		let libraryDirectoryURL = fileManager.urls(for: .libraryDirectory, in: .userDomainMask).last!
