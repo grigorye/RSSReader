@@ -116,7 +116,7 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 			throw $(authenticationError)
 		}.then {
 			self.authenticationState = .Succeeded
-			return RSSReader.foldersController.updateFoldersAuthenticated()
+			return self.foldersController.updateFoldersAuthenticated()
 		}.then { () -> Void in
 			if nil == self.rootFolder {
 				self.rootFolder = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: mainQueueManagedObjectContext)
