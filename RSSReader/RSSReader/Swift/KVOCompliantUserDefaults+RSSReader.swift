@@ -23,10 +23,8 @@ extension KVOCompliantUserDefaults {
 	@NSManaged var frequencyAndWeightBasedTableRowHeightEstimatorEnabled: Bool
 	@NSManaged var cellHeightCachingEnabled: Bool
 	//
-	@NSManaged var traceEnabled: Bool
-	@NSManaged var traceLabelsEnabled: Bool
-	@NSManaged var analyticsEnabled: Bool
 	@NSManaged var stateRestorationEnabled: Bool
+	//
 	@NSManaged var fetchResultsAnimationEnabled: Bool
 	@NSManaged var groupingTableUpdatesEnabled: Bool
 	@NSManaged var updateCellsInPlaceEnabled: Bool
