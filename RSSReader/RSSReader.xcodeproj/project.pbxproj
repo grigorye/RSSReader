@@ -71,6 +71,8 @@
 		C474F0B11D80F5A500CABEB9 /* Crashlytics.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4792B071D80B222008770D2 /* Crashlytics.swift */; };
 		C474F0B21D80F5B100CABEB9 /* LogViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C474F0A71D80E65F00CABEB9 /* LogViewController.swift */; };
 		C474F0BD1D85FD8E00CABEB9 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474F0BC1D85FD8E00CABEB9 /* Analytics.swift */; };
+		C474F0D11D8775F500CABEB9 /* SwiftMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C474F0D01D8775F500CABEB9 /* SwiftMessages.framework */; };
+		C474F0D21D8775F500CABEB9 /* SwiftMessages.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C474F0D01D8775F500CABEB9 /* SwiftMessages.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4792B081D80B222008770D2 /* Crashlytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4792B071D80B222008770D2 /* Crashlytics.swift */; };
 		C48311531D30642B003D7A2B /* ContainerLoadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48311521D30642B003D7A2B /* ContainerLoadController.swift */; };
 		C48C5F971A87344000A1EA12 /* ItemsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */; };
@@ -191,6 +193,7 @@
 				C408F1B51CE7520700DB943F /* FBMemoryProfiler.framework in Embed Frameworks */,
 				C4AD5B381D282F1800358DEA /* PromiseKit.framework in Embed Frameworks */,
 				C408F1851CE73FAE00DB943F /* GEBase.framework in Embed Frameworks */,
+				C474F0D21D8775F500CABEB9 /* SwiftMessages.framework in Embed Frameworks */,
 				C40EA7261C6FC8A9002C6D9E /* AFMInfoBanner.framework in Embed Frameworks */,
 				C408F1B21CE7520700DB943F /* FBAllocationTracker.framework in Embed Frameworks */,
 				C40EA7311C6FCC07002C6D9E /* CVKHierarchySearcher.framework in Embed Frameworks */,
@@ -249,6 +252,7 @@
 		C474F0A71D80E65F00CABEB9 /* LogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogViewController.swift; path = Swift/LogViewController.swift; sourceTree = "<group>"; };
 		C474F0AC1D80F48400CABEB9 /* VersionIsClean */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = VersionIsClean; sourceTree = "<group>"; };
 		C474F0BC1D85FD8E00CABEB9 /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Analytics.swift; path = Swift/Analytics.swift; sourceTree = "<group>"; };
+		C474F0D01D8775F500CABEB9 /* SwiftMessages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftMessages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4792B071D80B222008770D2 /* Crashlytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Crashlytics.swift; path = Swift/Crashlytics.swift; sourceTree = "<group>"; };
 		C48311521D30642B003D7A2B /* ContainerLoadController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerLoadController.swift; path = Swift/ContainerLoadController.swift; sourceTree = "<group>"; };
 		C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ItemsPageViewController.swift; path = Swift/ItemsPageViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -319,6 +323,7 @@
 				C4AD5B371D282F1800358DEA /* PromiseKit.framework in Frameworks */,
 				C408F1841CE73FAE00DB943F /* GEBase.framework in Frameworks */,
 				C40EA7251C6FC8A9002C6D9E /* AFMInfoBanner.framework in Frameworks */,
+				C474F0D11D8775F500CABEB9 /* SwiftMessages.framework in Frameworks */,
 				C408F1B11CE7520700DB943F /* FBAllocationTracker.framework in Frameworks */,
 				C474F0A51D80E10A00CABEB9 /* Flurry_iOS_SDK.framework in Frameworks */,
 				C40EA7301C6FCC07002C6D9E /* CVKHierarchySearcher.framework in Frameworks */,
@@ -363,6 +368,7 @@
 		C424B8F91C6FC5E1008AD647 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C474F0D01D8775F500CABEB9 /* SwiftMessages.framework */,
 				C474F0A41D80E10A00CABEB9 /* Flurry_iOS_SDK.framework */,
 				C4AD5B361D282F1800358DEA /* PromiseKit.framework */,
 				C408F1B61CE7520700DB943F /* FBRetainCycleDetector.framework */,
