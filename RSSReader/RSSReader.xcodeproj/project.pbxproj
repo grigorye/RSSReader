@@ -16,8 +16,6 @@
 		C408F1B71CE7520700DB943F /* FBRetainCycleDetector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C408F1B61CE7520700DB943F /* FBRetainCycleDetector.framework */; };
 		C408F1B81CE7520700DB943F /* FBRetainCycleDetector.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C408F1B61CE7520700DB943F /* FBRetainCycleDetector.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C40A24FF1A672B2100B5D959 /* TableViewContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A24FE1A672B2100B5D959 /* TableViewContainerCell.swift */; };
-		C40EA7301C6FCC07002C6D9E /* CVKHierarchySearcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C40EA72E1C6FCBED002C6D9E /* CVKHierarchySearcher.framework */; };
-		C40EA7311C6FCC07002C6D9E /* CVKHierarchySearcher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C40EA72E1C6FCBED002C6D9E /* CVKHierarchySearcher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C41707CB1A56076A00AED81C /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41707CA1A56076A00AED81C /* Globals.swift */; };
 		C41F05621AD0E2A100A659EC /* AppDelegate.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */; };
 		C41F05631AD0E3AB00A659EC /* UserMessages.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EF270D1A8D353C000EBE63 /* UserMessages.swift */; };
@@ -60,7 +58,6 @@
 		C474F09F1D80DDCC00CABEB9 /* Appsee.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474F09E1D80DDCC00CABEB9 /* Appsee.swift */; };
 		C474F0A11D80DF2900CABEB9 /* UXCam.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474F0A01D80DF2900CABEB9 /* UXCam.swift */; };
 		C474F0A31D80DFAD00CABEB9 /* Flurry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474F0A21D80DFAD00CABEB9 /* Flurry.swift */; };
-		C474F0A51D80E10A00CABEB9 /* Flurry_iOS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C474F0A41D80E10A00CABEB9 /* Flurry_iOS_SDK.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C474F0A81D80E65F00CABEB9 /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474F0A71D80E65F00CABEB9 /* LogViewController.swift */; };
 		C474F0AD1D80F59B00CABEB9 /* FileLogger.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C474F09C1D80DCBA00CABEB9 /* FileLogger.swift */; };
 		C474F0AE1D80F5A500CABEB9 /* Appsee.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C474F09E1D80DDCC00CABEB9 /* Appsee.swift */; };
@@ -194,7 +191,6 @@
 				C408F1851CE73FAE00DB943F /* GEBase.framework in Embed Frameworks */,
 				C474F0D21D8775F500CABEB9 /* SwiftMessages.framework in Embed Frameworks */,
 				C408F1B21CE7520700DB943F /* FBAllocationTracker.framework in Embed Frameworks */,
-				C40EA7311C6FCC07002C6D9E /* CVKHierarchySearcher.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -231,8 +227,6 @@
 		C40C6C001A73C78F00FAFA17 /* RegenerateSBConstantsSwift */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = RegenerateSBConstantsSwift; sourceTree = "<group>"; };
 		C40C6C011A73C80C00FAFA17 /* IntegrateFabric */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = IntegrateFabric; sourceTree = "<group>"; };
 		C40C6C051A74AB5E00FAFA17 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
-		C40EA71F1C6FC86F002C6D9E /* AFMInfoBanner.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFMInfoBanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C40EA72E1C6FCBED002C6D9E /* CVKHierarchySearcher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CVKHierarchySearcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C41707CA1A56076A00AED81C /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Globals.swift; path = Swift/Globals.swift; sourceTree = "<group>"; };
 		C424B8F01C6FC5C8008AD647 /* RSSReaderData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RSSReaderData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C424B8F31C6FC5CD008AD647 /* GEBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GEBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -257,7 +251,6 @@
 		C474F09E1D80DDCC00CABEB9 /* Appsee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Appsee.swift; path = Swift/Appsee.swift; sourceTree = "<group>"; };
 		C474F0A01D80DF2900CABEB9 /* UXCam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UXCam.swift; path = Swift/UXCam.swift; sourceTree = "<group>"; };
 		C474F0A21D80DFAD00CABEB9 /* Flurry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Flurry.swift; path = Swift/Flurry.swift; sourceTree = "<group>"; };
-		C474F0A41D80E10A00CABEB9 /* Flurry_iOS_SDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Flurry_iOS_SDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C474F0A71D80E65F00CABEB9 /* LogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogViewController.swift; path = Swift/LogViewController.swift; sourceTree = "<group>"; };
 		C474F0AC1D80F48400CABEB9 /* VersionIsClean */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = VersionIsClean; sourceTree = "<group>"; };
 		C474F0BC1D85FD8E00CABEB9 /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Analytics.swift; path = Swift/Analytics.swift; sourceTree = "<group>"; };
@@ -334,8 +327,6 @@
 				C408F1841CE73FAE00DB943F /* GEBase.framework in Frameworks */,
 				C474F0D11D8775F500CABEB9 /* SwiftMessages.framework in Frameworks */,
 				C408F1B11CE7520700DB943F /* FBAllocationTracker.framework in Frameworks */,
-				C474F0A51D80E10A00CABEB9 /* Flurry_iOS_SDK.framework in Frameworks */,
-				C40EA7301C6FCC07002C6D9E /* CVKHierarchySearcher.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,13 +370,10 @@
 			children = (
 				C4D436751D8777A3008C6386 /* SwiftMessages.bundle */,
 				C474F0D01D8775F500CABEB9 /* SwiftMessages.framework */,
-				C474F0A41D80E10A00CABEB9 /* Flurry_iOS_SDK.framework */,
 				C4AD5B361D282F1800358DEA /* PromiseKit.framework */,
 				C408F1B61CE7520700DB943F /* FBRetainCycleDetector.framework */,
 				C408F1B31CE7520700DB943F /* FBMemoryProfiler.framework */,
 				C408F1B01CE7520700DB943F /* FBAllocationTracker.framework */,
-				C40EA72E1C6FCBED002C6D9E /* CVKHierarchySearcher.framework */,
-				C40EA71F1C6FC86F002C6D9E /* AFMInfoBanner.framework */,
 				C424B8F31C6FC5CD008AD647 /* GEBase.framework */,
 				C424B8F01C6FC5C8008AD647 /* RSSReaderData.framework */,
 				C459879E1CDE0AAA00B8E9E4 /* GEShared.xcconfig */,
