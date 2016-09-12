@@ -6,20 +6,29 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
-import AFMInfoBanner
+import GEBase
+import SwiftMessages
 import UIKit
 import Foundation
 
 func presentErrorMessage(_ text: String) {
 #if true
-	AFMInfoBanner.showAndHide(withText: text, style: .error)
+	let view = MessageView.viewFromNib(layout: .CardView)…{
+		$0.configureTheme(.error)
+		$0.configureContent(body: text)
+	}
+	SwiftMessages.show(view: view)
 #else
 	print("Error: \(text)")
 #endif
 }
 func presentInfoMessage(_ text: String) {
 #if true
-	AFMInfoBanner.showAndHide(withText: text, style: .info)
+	let view = MessageView.viewFromNib(layout: .CardView)…{
+		$0.configureTheme(.info)
+		$0.configureContent(body: text)
+	}
+	SwiftMessages.show(view: view)
 #else
 	print("Info: \(text)")
 #endif
