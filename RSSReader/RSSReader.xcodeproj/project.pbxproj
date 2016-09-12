@@ -70,6 +70,7 @@
 		C474F0B01D80F5A500CABEB9 /* Flurry.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C474F0A21D80DFAD00CABEB9 /* Flurry.swift */; };
 		C474F0B11D80F5A500CABEB9 /* Crashlytics.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4792B071D80B222008770D2 /* Crashlytics.swift */; };
 		C474F0B21D80F5B100CABEB9 /* LogViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C474F0A71D80E65F00CABEB9 /* LogViewController.swift */; };
+		C474F0BD1D85FD8E00CABEB9 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474F0BC1D85FD8E00CABEB9 /* Analytics.swift */; };
 		C4792B081D80B222008770D2 /* Crashlytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4792B071D80B222008770D2 /* Crashlytics.swift */; };
 		C48311531D30642B003D7A2B /* ContainerLoadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48311521D30642B003D7A2B /* ContainerLoadController.swift */; };
 		C48C5F971A87344000A1EA12 /* ItemsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */; };
@@ -247,6 +248,7 @@
 		C474F0A41D80E10A00CABEB9 /* Flurry_iOS_SDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Flurry_iOS_SDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C474F0A71D80E65F00CABEB9 /* LogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogViewController.swift; path = Swift/LogViewController.swift; sourceTree = "<group>"; };
 		C474F0AC1D80F48400CABEB9 /* VersionIsClean */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = VersionIsClean; sourceTree = "<group>"; };
+		C474F0BC1D85FD8E00CABEB9 /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Analytics.swift; path = Swift/Analytics.swift; sourceTree = "<group>"; };
 		C4792B071D80B222008770D2 /* Crashlytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Crashlytics.swift; path = Swift/Crashlytics.swift; sourceTree = "<group>"; };
 		C48311521D30642B003D7A2B /* ContainerLoadController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerLoadController.swift; path = Swift/ContainerLoadController.swift; sourceTree = "<group>"; };
 		C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ItemsPageViewController.swift; path = Swift/ItemsPageViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -476,6 +478,7 @@
 				C41707CA1A56076A00AED81C /* Globals.swift */,
 				C495409A1A575C1900F56168 /* UserDefaults.swift */,
 				C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */,
+				C474F0BC1D85FD8E00CABEB9 /* Analytics.swift */,
 				C474F09E1D80DDCC00CABEB9 /* Appsee.swift */,
 				C474F0A01D80DF2900CABEB9 /* UXCam.swift */,
 				C474F0A21D80DFAD00CABEB9 /* Flurry.swift */,
@@ -762,6 +765,7 @@
 				C41707CB1A56076A00AED81C /* Globals.swift in Sources */,
 				C495409B1A575C1900F56168 /* UserDefaults.swift in Sources */,
 				C49540A11A57825100F56168 /* ItemsListViewController.swift in Sources */,
+				C474F0BD1D85FD8E00CABEB9 /* Analytics.swift in Sources */,
 				C4C780181A7DF2B0009CB5FC /* TypeFilteringActivity.swift in Sources */,
 				C4FEBAF71BF807A600A5709B /* ContainedViewControllersAwareNavigationControllerDelegate.swift in Sources */,
 				C44B2F011AC0C881006A67F1 /* HomeViewController.swift in Sources */,
