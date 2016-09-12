@@ -14,13 +14,12 @@ import CoreData
 
 class FoldersListTableViewController: ContainerTableViewController, UIDataSourceModelAssociation {
 	typealias _Self = FoldersListTableViewController
-	dynamic var rootFolder: Folder?
-	override var container: Container? {
+	dynamic var rootFolder: Folder? {
 		set {
-			fatalError()
+			container = newValue
 		}
 		get {
-			return rootFolder
+			return container as! Folder?
 		}
 	}
 	var childContainers: [Container]!
