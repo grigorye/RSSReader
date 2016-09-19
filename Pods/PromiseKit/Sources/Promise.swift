@@ -287,6 +287,7 @@ open class Promise<T> {
      - Parameter execute: The closure that executes when this promise resolves.
      - Returns: A new promise, resolved with this promise’s resolution.
      */
+    @discardableResult
     public func tap(on q: DispatchQueue = .default, execute body: @escaping (Result<T>) -> Void) -> Promise {
         state.always(on: q) { resolution in
             body(Result(resolution))
@@ -316,7 +317,7 @@ open class Promise<T> {
     @available(*, unavailable, renamed: "pending()")
     public class func `pendingPromise`() -> PendingTuple { fatalError() }
 
-    @available(*, unavailable, message: "deprecated: use then(on: DispatchQueue.global())")
+    @available(*, unavailable, message: "deprecated: use then(on: .global())")
     public func thenInBackground<U>(execute body: (T) throws -> U) -> Promise<U> { fatalError() }
 
     @available(*, unavailable, renamed: "catch")

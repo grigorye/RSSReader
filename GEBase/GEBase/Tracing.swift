@@ -8,6 +8,18 @@
 
 import Foundation
 
+var traceLabelsEnabledEnforced: Bool?
+var traceEnabledEnforced: Bool?
+
+extension KVOCompliantUserDefaults {
+	var traceEnabled: Bool {
+		return traceEnabledEnforced ?? UserDefaults.standard.bool(forKey: "traceEnabled")
+	}
+	var traceLabelsEnabled: Bool {
+		return traceLabelsEnabledEnforced ?? UserDefaults.standard.bool(forKey: "traceLabelsEnabled")
+	}
+}
+
 extension String {
 	func substring(toOffset offset: Int) -> String {
 		return substring(to: index(startIndex, offsetBy: offset))
@@ -123,7 +135,7 @@ public var loggers: [Logger] = [
 
 func log(message: String, withLabel label: String, on date: Date, at location: SourceLocation) {
 	for logger in loggers {
-		logger(date: date, label: label, location: location, message: message)
+		logger(date, label, location, message)
 	}
 }
 

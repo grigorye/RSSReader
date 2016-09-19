@@ -14,13 +14,12 @@ import CoreData
 
 class FoldersListTableViewController: ContainerTableViewController, UIDataSourceModelAssociation {
 	typealias _Self = FoldersListTableViewController
-	dynamic var rootFolder: Folder?
-	override var container: Container? {
+	dynamic var rootFolder: Folder? {
 		set {
-			fatalError()
+			container = newValue
 		}
 		get {
-			return rootFolder
+			return container as! Folder?
 		}
 	}
 	var childContainers: [Container]!
@@ -116,7 +115,7 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 			throw $(authenticationError)
 		}.then {
 			self.authenticationState = .Succeeded
-			return RSSReader.foldersController.updateFoldersAuthenticated()
+			return self.foldersController.updateFoldersAuthenticated()
 		}.then { () -> Void in
 			if nil == self.rootFolder {
 				self.rootFolder = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: mainQueueManagedObjectContext)
@@ -294,6 +293,10 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 	// MARK: -
 	deinit {
 		$(self)
+	}
+	override public class func initialize() {
+		super.initialize()
+		self.adjustForNilIndexPathPassedToModelIdentifierForElement()
 	}
 }
 

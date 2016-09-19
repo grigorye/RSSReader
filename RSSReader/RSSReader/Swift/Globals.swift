@@ -11,11 +11,7 @@ import GEBase
 import UIKit
 import CoreData
 
-let defaults = KVOCompliantUserDefaults()
-
 let applicationDomain = "com.grigoryentin.RSSReader"
-
-var foldersController: FoldersController!
 
 let applicationDelegate = (UIApplication.shared.delegate as! AppDelegate)
 
@@ -30,6 +26,7 @@ extension NSObject {
 		return applicationDelegate
 	}
 }
+
 var rssSession: RSSSession? {
 	get {
 		return applicationDelegate.internals.rssSession

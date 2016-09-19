@@ -8,19 +8,10 @@
 
 import RSSReaderData
 import GEBase
-import UIKit
-import CoreData
 import FBAllocationTracker
 import FBMemoryProfiler
-#if ANALYTICS_ENABLED
-#if CRASHLYTICS_ENABLED
-import Fabric
-import Crashlytics
-#endif
-#if APPSEE_ENABLED
-import Appsee
-#endif
-#endif
+import UIKit
+import CoreData
 
 class AppDelegateInternals {
 	var rssSession: RSSSession?
@@ -219,33 +210,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 			FBAllocationTrackerManager.shared()!.startTrackingAllocations()
 			FBAllocationTrackerManager.shared()!.enableGenerations()
 		}
-		RSSReader.foldersController = self
-		let version = Bundle.main.infoDictionary!["CFBundleVersion"] as! NSString
-		$(version)
-		let buildDate = try! FileManager.default.attributesOfItem(atPath: Bundle.main.bundlePath)[FileAttributeKey.modificationDate] as! Date
-		let buildAge = Date().timeIntervalSince(buildDate)
-		$(buildAge)
-#if ANALYTICS_ENABLED
-		let versionIsClean = NSNotFound == version.rangeOfCharacter(from: NSCharacterSet.decimalDigits.inverted).location
-		if (versionIsClean) && $(defaults.analyticsEnabled) {
-#if CRASHLYTICS_ENABLED
-			Fabric.with([Crashlytics()])
-#endif
-#if UXCAM_ENABLED
-			UXCam.startWithKey("0fc8e6e128fa538")
-#endif
-#if FLURRY_ENABLED
-			Flurry.startSession("TSPCHYJBMBGZZFM3SFDZ")
-#endif
-#if APPSEE_ENABLED
-			Appsee.start(NSBundle.mainBundle().infoDictionary!["appseeAPIKey"] as! String)
-#endif
-		}
-#endif
 		configureAppearance()
 		let fileManager = FileManager()
 		let libraryDirectoryURL = fileManager.urls(for: .libraryDirectory, in: .userDomainMask).last!
 		let libraryDirectory = libraryDirectoryURL.path
         $(libraryDirectory)
+	}
+	override public class func initialize() {
+		super.initialize()
+		_ = fileLoggerInitializer
+		if $(versionIsClean) {
+			_ = crashlyticsInitializer
+			_ = appseeInitializer
+			_ = uxcamInitializer
+			_ = flurryInitializer
+		}
 	}
 }

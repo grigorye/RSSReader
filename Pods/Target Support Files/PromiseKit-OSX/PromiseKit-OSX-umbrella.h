@@ -1,5 +1,6 @@
 #import <Cocoa/Cocoa.h>
 
+#import "AAA-CocoaPods-Hack.h"
 #import "AnyPromise.h"
 #import "PromiseKit.h"
 

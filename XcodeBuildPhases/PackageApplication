@@ -9,4 +9,4 @@
 app="${TARGET_BUILD_DIR:?}/${FULL_PRODUCT_NAME:?}"
 ipa="${TARGET_BUILD_DIR:?}/${PRODUCT_NAME:?}.ipa"
 
-/usr/bin/xcrun PackageApplication "${app:?}" -o "${ipa:?}"
+xcodebuild -exportArchive -archivePath "${ARCHIVE_PATH:?}" -exportPath "${ipa:?}"

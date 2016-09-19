@@ -57,7 +57,7 @@ public extension RSSSession {
 extension RSSSession {
 	public typealias CommandCompletionHandler<ResultType> = (Result<ResultType>) -> Void
 	// MARK: -
-	func performPersistentDataUpdateCommand<T: PersistentDataUpdateCommand>(_ command: T, completionHandler: CommandCompletionHandler<T.ResultType>) {
+	func performPersistentDataUpdateCommand<T: PersistentDataUpdateCommand>(_ command: T, completionHandler: @escaping CommandCompletionHandler<T.ResultType>) {
 		$(command as AbstractPersistentDataUpdateCommand)
 		command.taskForSession(self) { data, httpResponse, error in
 			if let error = error {
@@ -122,7 +122,7 @@ extension RSSSession {
 		return self.promise(for: StreamContents(excludedCategory: excludedCategory, container: container, continuation: continuation, count: count, loadDate: loadDate))
 	}
 	/// MARK: -
-	func pushTags(from context: NSManagedObjectContext, completionHandler: CommandCompletionHandler<Void>) {
+	func pushTags(from context: NSManagedObjectContext, completionHandler: @escaping CommandCompletionHandler<Void>) {
 		let dispatchGroup = DispatchGroup()
 		var errors = [Error]()
 		let completionQueue = DispatchQueue.global(qos: .userInteractive)
@@ -150,7 +150,7 @@ extension RSSSession {
 			completionHandler(.fulfilled())
 		}
 	}
-	public func pushTags(completionHandler: CommandCompletionHandler<Void>) {
+	public func pushTags(completionHandler: @escaping CommandCompletionHandler<Void>) {
 		let context = backgroundQueueManagedObjectContext
 		context.perform {
 			self.pushTags(from: context, completionHandler: completionHandler)

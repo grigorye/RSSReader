@@ -13,10 +13,10 @@ typealias RSSSessionTaskCompletionHandler = ProgressEnabledURLSessionTaskGenerat
 extension RSSSession {
 	typealias TaskCompletionHandler = RSSSessionTaskCompletionHandler
 	// MARK: -
-	func dataTask(with request: URLRequest, completionHandler: TaskCompletionHandler) -> URLSessionDataTask {
+	func dataTask(with request: URLRequest, completionHandler: @escaping TaskCompletionHandler) -> URLSessionDataTask {
 		return progressEnabledURLSessionTaskGenerator.dataTask(for: request, completionHandler: completionHandler)
 	}
-	func authenticatedDataTask(with request: URLRequest, completionHandler: TaskCompletionHandler) -> URLSessionDataTask {
+	func authenticatedDataTask(with request: URLRequest, completionHandler: @escaping TaskCompletionHandler) -> URLSessionDataTask {
 		precondition(nil != self.authToken)
 		let authenticatedRequest = request … { (x: inout URLRequest) in
 			x.addValue("GoogleLogin auth=\(self.authToken!)", forHTTPHeaderField: "Authorization")

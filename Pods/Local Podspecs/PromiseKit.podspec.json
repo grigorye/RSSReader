@@ -31,17 +31,18 @@
     {
       "name": "Accounts",
       "osx": {
-        "source_files": "Extensions/Accounts/Sources/*"
+        "source_files": "Extensions/Accounts/Sources/*",
+        "frameworks": "Accounts"
       },
       "ios": {
-        "source_files": "Extensions/Accounts/Sources/*"
+        "source_files": "Extensions/Accounts/Sources/*",
+        "frameworks": "Accounts"
       },
       "dependencies": {
         "PromiseKit/CorePromise": [
 
         ]
-      },
-      "frameworks": "Accounts"
+      }
     },
     {
       "name": "AddressBook",
@@ -62,7 +63,7 @@
         "frameworks": "AssetsLibrary"
       },
       "dependencies": {
-        "PromiseKit/UIKit": [
+        "PromiseKit/CorePromise": [
 
         ]
       }
@@ -94,31 +95,32 @@
     {
       "name": "CloudKit",
       "source_files": "Extensions/CloudKit/Sources/*",
+      "frameworks": "CloudKit",
       "dependencies": {
         "PromiseKit/CorePromise": [
 
         ]
-      },
-      "frameworks": "CloudKit",
-      "platforms": {
-        "ios": "8.0",
-        "osx": "10.10"
       }
     },
     {
       "name": "CoreBluetooth",
+      "tvos": {
+        "source_files": "Extensions/CoreBluetooth/Sources/*",
+        "frameworks": "CoreBluetooth"
+      },
       "osx": {
-        "source_files": "Extensions/CoreBluetooth/Sources/*"
+        "source_files": "Extensions/CoreBluetooth/Sources/*",
+        "frameworks": "CoreBluetooth"
       },
       "ios": {
-        "source_files": "Extensions/CoreBluetooth/Sources/*"
+        "source_files": "Extensions/CoreBluetooth/Sources/*",
+        "frameworks": "CoreBluetooth"
       },
       "dependencies": {
         "PromiseKit/CorePromise": [
 
         ]
-      },
-      "frameworks": "CoreBluetooth"
+      }
     },
     {
       "name": "CorePromise",
@@ -137,10 +139,12 @@
         "Sources/wrap.swift",
         "Sources/Zalgo.swift",
         "Sources/{after,AnyPromise,GlobalState,dispatch_promise,hang,join,PMKPromise,when}.m",
+        "Sources/AAA-CocoaPods-Hack.h",
         "Sources/AnyPromise.h",
         "Sources/PromiseKit.h"
       ],
       "public_header_files": [
+        "Sources/AAA-CocoaPods-Hack.h",
         "Sources/AnyPromise.h",
         "Sources/PromiseKit.h"
       ],
@@ -153,16 +157,9 @@
     },
     {
       "name": "CoreLocation",
-      "ios": {
-        "source_files": "Extensions/CoreLocation/Sources/*"
-      },
-      "osx": {
-        "source_files": "Extensions/CoreLocation/Sources/*"
-      },
+      "source_files": "Extensions/CoreLocation/Sources/*",
       "watchos": {
-        "source_files": [
-
-        ]
+        "source_files": "Extensions/CoreLocation/Sources/CLGeocoder*"
       },
       "dependencies": {
         "PromiseKit/CorePromise": [
@@ -173,6 +170,14 @@
     },
     {
       "name": "EventKit",
+      "watchos": {
+        "source_files": "Extensions/EventKit/Sources/*",
+        "frameworks": "EventKit"
+      },
+      "osx": {
+        "source_files": "Extensions/EventKit/Sources/*",
+        "frameworks": "EventKit"
+      },
       "ios": {
         "source_files": "Extensions/EventKit/Sources/*",
         "frameworks": "EventKit"
@@ -185,60 +190,48 @@
     },
     {
       "name": "Foundation",
-      "ios": {
-        "source_files": [
+      "source_files": [
 
-        ]
-      },
+      ],
       "osx": {
         "source_files": [
 
         ]
       },
-      "watchos": {
-        "source_files": [
-
-        ]
-      },
       "dependencies": {
         "PromiseKit/CorePromise": [
 
-        ]
-      },
-      "frameworks": "Foundation"
-    },
-    {
-      "name": "OMGHTTPURLRQ",
-      "source_files": "Extensions/OMGHTTPURLRQ/Sources/*",
-      "dependencies": {
-        "PromiseKit/CorePromise": [
-
-        ],
-        "OMGHTTPURLRQ": [
-          "~> 3.2"
         ]
       },
       "frameworks": "Foundation"
     },
     {
       "name": "MapKit",
-      "ios": {
-        "source_files": "Extensions/MapKit/Sources/*"
+      "tvos": {
+        "source_files": "Extensions/MapKit/Sources/*",
+        "frameworks": "MapKit"
       },
       "osx": {
-        "source_files": "Extensions/MapKit/Sources/*"
+        "source_files": "Extensions/MapKit/Sources/*",
+        "frameworks": "MapKit"
+      },
+      "ios": {
+        "source_files": "Extensions/MapKit/Sources/*",
+        "frameworks": "MapKit"
+      },
+      "platforms": {
+        "tvos": "9.2"
       },
       "dependencies": {
         "PromiseKit/CorePromise": [
 
         ]
-      },
-      "frameworks": "MapKit"
+      }
     },
     {
       "name": "MessageUI",
       "ios": {
-        "source_files": "Extensions/MessageUI/Sources/*",
+        "source_files": "Extensions/MessagesUI/Sources/*",
         "frameworks": "MessageUI"
       },
       "dependencies": {
@@ -248,10 +241,29 @@
       }
     },
     {
+      "name": "OMGHTTPURLRQ",
+      "source_files": "Extensions/OMGHTTPURLRQ/Sources/*",
+      "dependencies": {
+        "PromiseKit/Foundation": [
+
+        ],
+        "OMGHTTPURLRQ": [
+          "~> 3.2"
+        ]
+      }
+    },
+    {
       "name": "Photos",
+      "tvos": {
+        "source_files": "Extensions/Photos/Sources/*",
+        "frameworks": "Photos"
+      },
       "ios": {
         "source_files": "Extensions/Photos/Sources/*",
         "frameworks": "Photos"
+      },
+      "platforms": {
+        "tvos": "10.0"
       },
       "dependencies": {
         "PromiseKit/CorePromise": [
@@ -261,6 +273,10 @@
     },
     {
       "name": "QuartzCore",
+      "tvos": {
+        "source_files": "Extensions/QuartzCore/Sources/*",
+        "frameworks": "QuartzCore"
+      },
       "ios": {
         "source_files": "Extensions/QuartzCore/Sources/*",
         "frameworks": "QuartzCore"
@@ -278,59 +294,69 @@
     {
       "name": "Social",
       "ios": {
-        "source_files": "Extensions/Social/Sources/*"
+        "source_files": "Extensions/Social/Sources/*",
+        "frameworks": "Social"
       },
       "osx": {
         "source_files": [
 
-        ]
+        ],
+        "frameworks": "Social"
       },
       "dependencies": {
-        "PromiseKit/CorePromise": [
+        "PromiseKit/Foundation": [
 
         ]
-      },
-      "frameworks": "Social"
+      }
     },
     {
       "name": "StoreKit",
       "tvos": {
-        "source_files": "Extensions/StoreKit/Sources/*"
+        "source_files": "Extensions/StoreKit/Sources/*",
+        "frameworks": "StoreKit"
       },
       "osx": {
-        "source_files": "Extensions/StoreKit/Sources/*"
+        "source_files": "Extensions/StoreKit/Sources/*",
+        "frameworks": "StoreKit"
       },
       "ios": {
-        "source_files": "Extensions/StoreKit/Sources/*"
+        "source_files": "Extensions/StoreKit/Sources/*",
+        "frameworks": "StoreKit"
       },
       "dependencies": {
         "PromiseKit/CorePromise": [
 
         ]
-      },
-      "frameworks": "StoreKit"
+      }
     },
     {
       "name": "SystemConfiguration",
+      "tvos": {
+        "source_files": "Extensions/SystemConfiguration/Sources/*",
+        "frameworks": "SystemConfiguration"
+      },
       "osx": {
-        "source_files": "Extensions/SystemConfiguration/Sources/*"
+        "source_files": "Extensions/SystemConfiguration/Sources/*",
+        "frameworks": "SystemConfiguration"
       },
       "ios": {
-        "source_files": "Extensions/SystemConfiguration/Sources/*"
+        "source_files": "Extensions/SystemConfiguration/Sources/*",
+        "frameworks": "SystemConfiguration"
       },
       "dependencies": {
         "PromiseKit/CorePromise": [
 
         ]
-      },
-      "frameworks": "SystemConfiguration"
+      }
     },
     {
       "name": "UIKit",
+      "tvos": {
+        "source_files": "Extensions/UIKit/Sources/*",
+        "frameworks": "UIKit"
+      },
       "ios": {
-        "source_files": [
-
-        ],
+        "source_files": "Extensions/UIKit/Sources/*",
         "frameworks": "UIKit"
       },
       "dependencies": {
@@ -341,16 +367,18 @@
     },
     {
       "name": "WatchConnectivity",
-      "source_files": "Extensions/WatchConnectivity/Sources/*",
+      "watchos": {
+        "source_files": "Extensions/WatchConnectivity/Sources/*",
+        "frameworks": "WatchConnectivity"
+      },
+      "ios": {
+        "source_files": "Extensions/WatchConnectivity/Sources/*",
+        "frameworks": "WatchConnectivity"
+      },
       "dependencies": {
         "PromiseKit/CorePromise": [
 
         ]
-      },
-      "frameworks": "WatchConnectivity",
-      "platforms": {
-        "ios": "8.0",
-        "watchos": "2.0"
       }
     }
   ]

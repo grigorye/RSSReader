@@ -65,7 +65,7 @@ class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSObject, N
 			if defaults.updateCellsInPlaceEnabled {
 				if let cell = tableView.cellForRow(at: indexPath!) {
 					let indexPathForCell = tableView.indexPath(for: cell)!
-					updateCell(cell, atIndexPath: indexPathForCell)
+					updateCell(cell, indexPathForCell)
 				}
 			}
 			else {
