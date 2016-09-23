@@ -4,7 +4,7 @@ use_frameworks!
 target "iOS" do
 	platform :ios, '8.0'
 #	pod 'AFMInfoBanner'
-	pod 'SwiftMessages', :git => 'https://github.com/SwiftKickMobile/SwiftMessages', :branch => 'swift3'
+	pod 'SwiftMessages'
 #	pod 'UXCam'
 	pod 'TUSafariActivity'
 #	pod 'DZReadability'
