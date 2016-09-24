@@ -216,14 +216,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 		let libraryDirectory = libraryDirectoryURL.path
         $(libraryDirectory)
 	}
-	override public class func initialize() {
-		super.initialize()
-		_ = fileLoggerInitializer
+	static private let initializeOnce: Void = {
 		if $(versionIsClean) {
 			_ = crashlyticsInitializer
 			_ = appseeInitializer
 			_ = uxcamInitializer
 			_ = flurryInitializer
 		}
+	}()
+	override public class func initialize() {
+		super.initialize()
+		_ = initializeOnce
 	}
 }
