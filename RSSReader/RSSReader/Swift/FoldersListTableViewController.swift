@@ -294,9 +294,12 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 	deinit {
 		$(self)
 	}
+	static private let initializeOnce: Void = {
+		_Self.adjustForNilIndexPathPassedToModelIdentifierForElement()
+	}()
 	override public class func initialize() {
 		super.initialize()
-		self.adjustForNilIndexPathPassedToModelIdentifierForElement()
+		_ = initializeOnce
 	}
 }
 
