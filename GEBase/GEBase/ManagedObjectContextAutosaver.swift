@@ -17,7 +17,7 @@ public class ManagedObjectContextAutosaver: NSObject {
 	}
 	public init(managedObjectContext: NSManagedObjectContext, queue: OperationQueue?) {
 		observer = notificationCenter.addObserver(forName: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: managedObjectContext, queue: queue, using: { notification in
-			$(notification)
+			•(notification)
 			managedObjectContext.perform {
 				•(managedObjectContext)
 				if let updatedObjects = notification.userInfo?[NSUpdatedObjectsKey] as! Set<NSManagedObject>? {
