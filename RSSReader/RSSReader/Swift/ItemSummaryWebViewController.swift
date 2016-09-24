@@ -211,7 +211,7 @@ class ItemSummaryWebViewDelegate: NSObject, UIWebViewDelegate {
 	func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
 		if navigationType == .linkClicked {
 			let url = request.url!
-			UIApplication.shared.openURL(url)
+			UIApplication.shared.open(url, options: [:], completionHandler: nil)
 			return false
 		}
 		else {

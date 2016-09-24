@@ -11,7 +11,7 @@ import UIKit
 class OpenWebPageActivity : TypeFilteringActivity {
 	override func perform() {
 		let url = acceptedItems.last!
-		UIApplication.shared.openURL(url)
+		UIApplication.shared.open(url, options: [:], completionHandler: nil)
 	}
 	override var activityType: UIActivityType {
 		return UIActivityType(rawValue: "\(applicationDomain).openWebPage")
