@@ -41,7 +41,7 @@ extension Item {
 }
 
 class ItemsListViewController: ContainerTableViewController {
-	static let Self_ = ItemsListViewController.self
+	typealias _Self = ItemsListViewController
 	final var multipleSourcesEnabled = false
 	var showUnreadEnabled = true
 	class var keyPathsForValuesAffectingContainerViewState: Set<String> {
@@ -54,7 +54,7 @@ class ItemsListViewController: ContainerTableViewController {
 	dynamic var containerViewState: RSSReaderData.ContainerViewState? {
 		let containerViewState = (container!.viewStates.filter { $0.containerViewPredicate.isEqual(containerViewPredicate) }).onlyElement
 		self.containerViewStateRetained = containerViewState
-		return $(containerViewState)
+		return (containerViewState)
 	}
 	private var ongoingLoadDate: Date?
 	private var continuation: String? {
@@ -546,9 +546,13 @@ class ItemsListViewController: ContainerTableViewController {
 	deinit {
 		$(self)
 	}
+	// MARK: -
+	static private let initializeOnce: Void = {
+		_Self.adjustForNilIndexPathPassedToModelIdentifierForElement()
+	}()
 	override public class func initialize() {
 		super.initialize()
-		self.adjustForNilIndexPathPassedToModelIdentifierForElement()
+		_ = initializeOnce
 	}
 }
 
