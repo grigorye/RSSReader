@@ -61,11 +61,13 @@ public class ContainerViewState: NSManagedObject {
 	}
 	deinit {
 	}
-	static private var registerCachedPropertiesOnce = {
+	static private let initializeOnce: Void = {
+#if false
 		cachePropertyWithName(_Self.self, name: #keyPath(lastLoadedItem))
-	}
+#endif
+	}()
 	override public class func initialize() {
 		super.initialize()
-		_ = registerCachedPropertiesOnce
+		_ = initializeOnce
 	}
 }

@@ -47,15 +47,15 @@ public class Item : NSManagedObject {
 	@NSManaged public var subscription: Subscription
 	@NSManaged public var canonical: [[String : String]]?
 	
-	private static var registerCachedPropertiesOnce = {
-		cachePropertyWithName(_Self.self, name: #keyPath(markedAsRead))
-		cachePropertyWithName(_Self.self, name: #keyPath(markedAsFavorite))
-	}
+	static private let initializeOnce: Void = {
+		if _0 {
+			cachePropertyWithName(_Self.self, name: #keyPath(markedAsRead))
+			cachePropertyWithName(_Self.self, name: #keyPath(markedAsFavorite))
+		}
+	}()
 	override public class func initialize() {
 		super.initialize()
-		if _0 {
-			_ = registerCachedPropertiesOnce
-		}
+		_ = initializeOnce
 	}
 }
 
