@@ -85,6 +85,11 @@
 		C4AD5B371D282F1800358DEA /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4AD5B361D282F1800358DEA /* PromiseKit.framework */; };
 		C4AD5B381D282F1800358DEA /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4AD5B361D282F1800358DEA /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4C0261F1B5281B7005452D1 /* TableViewFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0261E1B5281B7005452D1 /* TableViewFetchedResultsControllerDelegate.swift */; };
+		C4C0941B1D99ED4A00D27162 /* ItemInListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0941A1D99ED4A00D27162 /* ItemInListView.swift */; };
+		C4C094211D9B277600D27162 /* ItemInListView.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4C0941A1D99ED4A00D27162 /* ItemInListView.swift */; };
+		C4C094221D9B277600D27162 /* ItemListViewLoading.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4F7DC3E1D97EBEF00275E4F /* ItemListViewLoading.swift */; };
+		C4C094231D9B277600D27162 /* ItemTableViewDelegate.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4F7DC3A1D97E93200275E4F /* ItemTableViewDelegate.swift */; };
+		C4C094241D9B277600D27162 /* ItemTableViewDataSource.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4F7DC3C1D97E9A800275E4F /* ItemTableViewDataSource.swift */; };
 		C4C327F21AF30CB400119573 /* FoldersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C327F11AF30CB400119573 /* FoldersController.swift */; };
 		C4C422181A75E355008803A7 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C422171A75E355008803A7 /* MainNavigationController.swift */; };
 		C4C780141A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C780131A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift */; };
@@ -106,6 +111,9 @@
 		C4F1118E1CB84F6D005C5A0F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4F111901CB84F6D005C5A0F /* Main.storyboard */; };
 		C4F575D01A797C7B00F12F20 /* AddToFavoritesActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F575CF1A797C7B00F12F20 /* AddToFavoritesActivity.swift */; };
 		C4F575D61A7988DB00F12F20 /* OpenWebPageActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F575D51A7988DB00F12F20 /* OpenWebPageActivity.swift */; };
+		C4F7DC3B1D97E93200275E4F /* ItemTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F7DC3A1D97E93200275E4F /* ItemTableViewDelegate.swift */; };
+		C4F7DC3D1D97E9A800275E4F /* ItemTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F7DC3C1D97E9A800275E4F /* ItemTableViewDataSource.swift */; };
+		C4F7DC3F1D97EBEF00275E4F /* ItemListViewLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F7DC3E1D97EBEF00275E4F /* ItemListViewLoading.swift */; };
 		C4FEBAF71BF807A600A5709B /* ContainedViewControllersAwareNavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FEBAF61BF807A600A5709B /* ContainedViewControllersAwareNavigationControllerDelegate.swift */; };
 		C4FEBB0C1BF919D500A5709B /* ContainedViewControllersAwareNavigationControllerDelegate.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4FEBAF61BF807A600A5709B /* ContainedViewControllersAwareNavigationControllerDelegate.swift */; };
 		C4FEBB0F1BF919EF00A5709B /* TableViewFetchedResultsControllerDelegate.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4C0261E1B5281B7005452D1 /* TableViewFetchedResultsControllerDelegate.swift */; };
@@ -140,6 +148,10 @@
 			dstPath = Sources;
 			dstSubfolderSpec = 7;
 			files = (
+				C4C094211D9B277600D27162 /* ItemInListView.swift in Embed Sources */,
+				C4C094221D9B277600D27162 /* ItemListViewLoading.swift in Embed Sources */,
+				C4C094231D9B277600D27162 /* ItemTableViewDelegate.swift in Embed Sources */,
+				C4C094241D9B277600D27162 /* ItemTableViewDataSource.swift in Embed Sources */,
 				C474F0B21D80F5B100CABEB9 /* LogViewController.swift in Embed Sources */,
 				C474F0AE1D80F5A500CABEB9 /* Appsee.swift in Embed Sources */,
 				C474F0AF1D80F5A500CABEB9 /* UXCam.swift in Embed Sources */,
@@ -271,6 +283,7 @@
 		C4AD2ADA1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemsPageViewControllerDelegate.swift; path = Swift/ItemsPageViewControllerDelegate.swift; sourceTree = "<group>"; };
 		C4AD5B361D282F1800358DEA /* PromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4C0261E1B5281B7005452D1 /* TableViewFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewFetchedResultsControllerDelegate.swift; path = Swift/TableViewFetchedResultsControllerDelegate.swift; sourceTree = "<group>"; };
+		C4C0941A1D99ED4A00D27162 /* ItemInListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemInListView.swift; path = Swift/ItemInListView.swift; sourceTree = "<group>"; };
 		C4C327F11AF30CB400119573 /* FoldersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FoldersController.swift; path = Swift/FoldersController.swift; sourceTree = "<group>"; };
 		C4C422171A75E355008803A7 /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainNavigationController.swift; path = Swift/MainNavigationController.swift; sourceTree = "<group>"; };
 		C4C780131A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MarkAllAsReadActivity.swift; path = Swift/MarkAllAsReadActivity.swift; sourceTree = "<group>"; };
@@ -302,6 +315,9 @@
 		C4F111921CB84FE1005C5A0F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		C4F575CF1A797C7B00F12F20 /* AddToFavoritesActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddToFavoritesActivity.swift; path = Swift/AddToFavoritesActivity.swift; sourceTree = "<group>"; };
 		C4F575D51A7988DB00F12F20 /* OpenWebPageActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OpenWebPageActivity.swift; path = Swift/OpenWebPageActivity.swift; sourceTree = "<group>"; };
+		C4F7DC3A1D97E93200275E4F /* ItemTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemTableViewDelegate.swift; path = Swift/ItemTableViewDelegate.swift; sourceTree = "<group>"; };
+		C4F7DC3C1D97E9A800275E4F /* ItemTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemTableViewDataSource.swift; path = Swift/ItemTableViewDataSource.swift; sourceTree = "<group>"; };
+		C4F7DC3E1D97EBEF00275E4F /* ItemListViewLoading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemListViewLoading.swift; path = Swift/ItemListViewLoading.swift; sourceTree = "<group>"; };
 		C4FEBAF61BF807A600A5709B /* ContainedViewControllersAwareNavigationControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainedViewControllersAwareNavigationControllerDelegate.swift; path = Swift/ContainedViewControllersAwareNavigationControllerDelegate.swift; sourceTree = "<group>"; };
 		C4FEBB211BF96E4200A5709B /* KVOCompliantUserDefaults+RSSReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "KVOCompliantUserDefaults+RSSReader.swift"; path = "Swift/KVOCompliantUserDefaults+RSSReader.swift"; sourceTree = "<group>"; };
 		C4FEBB241BF9721500A5709B /* UINavigationItem+MultipleButtonItemsCollections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UINavigationItem+MultipleButtonItemsCollections.swift"; path = "Swift/UINavigationItem+MultipleButtonItemsCollections.swift"; sourceTree = "<group>"; };
@@ -417,6 +433,10 @@
 				C492A4CC1CDEE9AB00F8AD5F /* ItemTableViewCell-2.xib */,
 				C492A4CD1CDEE9AB00F8AD5F /* ItemTableViewCell-3.xib */,
 				C49540A01A57825100F56168 /* ItemsListViewController.swift */,
+				C4C0941A1D99ED4A00D27162 /* ItemInListView.swift */,
+				C4F7DC3E1D97EBEF00275E4F /* ItemListViewLoading.swift */,
+				C4F7DC3A1D97E93200275E4F /* ItemTableViewDelegate.swift */,
+				C4F7DC3C1D97E9A800275E4F /* ItemTableViewDataSource.swift */,
 				C4EA5C351CE91E8600E395FE /* ContainerTableViewController.swift */,
 				C4EA5C371CE929D300E395FE /* ContainerTableViewSectionHeader.xib */,
 				C4EA5C3B1CE930B200E395FE /* ContainerTableViewSectionHeaderView.swift */,
@@ -763,6 +783,7 @@
 				C48311531D30642B003D7A2B /* ContainerLoadController.swift in Sources */,
 				C4676E091A6A4D1F00AE8BC2 /* ItemTableViewCell.swift in Sources */,
 				C4792B081D80B222008770D2 /* Crashlytics.swift in Sources */,
+				C4F7DC3F1D97EBEF00275E4F /* ItemListViewLoading.swift in Sources */,
 				C40A24FF1A672B2100B5D959 /* TableViewContainerCell.swift in Sources */,
 				C4FEBB221BF96E4200A5709B /* KVOCompliantUserDefaults+RSSReader.swift in Sources */,
 				C4EF270E1A8D353C000EBE63 /* UserMessages.swift in Sources */,
@@ -784,12 +805,15 @@
 				C474F0A11D80DF2900CABEB9 /* UXCam.swift in Sources */,
 				C4FEBB251BF9721500A5709B /* UINavigationItem+MultipleButtonItemsCollections.swift in Sources */,
 				C46FA8691AA56018004B5C45 /* UITableView+SnappingHeaderToTop.swift in Sources */,
+				C4F7DC3D1D97E9A800275E4F /* ItemTableViewDataSource.swift in Sources */,
 				C4C780141A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift in Sources */,
 				C4F575D01A797C7B00F12F20 /* AddToFavoritesActivity.swift in Sources */,
+				C4C0941B1D99ED4A00D27162 /* ItemInListView.swift in Sources */,
 				C4667F0D1CC80A050039C480 /* Appearance.swift in Sources */,
 				C474F0A31D80DFAD00CABEB9 /* Flurry.swift in Sources */,
 				C4F575D61A7988DB00F12F20 /* OpenWebPageActivity.swift in Sources */,
 				C46934DF1A5D291C00A0AEA2 /* ItemsPageViewControllerDataSource.swift in Sources */,
+				C4F7DC3B1D97E93200275E4F /* ItemTableViewDelegate.swift in Sources */,
 				C45BC3EA1A8003F40008A5D1 /* HistoryViewController.swift in Sources */,
 				CA2F924C7954C9EC08D55206 /* UITabBarController+CVKHiearachySearcher.swift in Sources */,
 			);
