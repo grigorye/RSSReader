@@ -100,7 +100,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 	var loginAndPassword: LoginAndPassword!
 	// MARK: -
 	@IBAction func openSettings(_ sender: AnyObject?) {
-		UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
+		let url = URL(string: UIApplicationOpenSettingsURLString)!
+		let application = UIApplication.shared
+		if #available(iOS 10.0, *) {
+			application.open(url, options: [:], completionHandler: nil)
+		} else {
+			application.openURL(url)
+		}
 	}
 	@IBAction func crash(_ sender: AnyObject?) {
 		fatalError()
