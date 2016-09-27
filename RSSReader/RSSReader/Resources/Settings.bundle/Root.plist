@@ -236,6 +236,16 @@
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
+			<false/>
+			<key>Key</key>
+			<string>fixedHeightItemRowsEnabled</string>
+			<key>Title</key>
+			<string>Fixed Height Item Rows</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
 			<true/>
 			<key>Key</key>
 			<string>frequencyAndWeightBasedTableRowHeightEstimatorEnabled</string>

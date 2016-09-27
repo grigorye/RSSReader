@@ -22,6 +22,7 @@ extension KVOCompliantUserDefaults {
 	@NSManaged var showUnreadMark: Bool
 	@NSManaged var frequencyAndWeightBasedTableRowHeightEstimatorEnabled: Bool
 	@NSManaged var cellHeightCachingEnabled: Bool
+	@NSManaged var fixedHeightItemRowsEnabled: Bool
 	//
 	@NSManaged var stateRestorationEnabled: Bool
 	//
