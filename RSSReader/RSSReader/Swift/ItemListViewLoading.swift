@@ -12,9 +12,6 @@ import PromiseKit
 import CoreData
 import Foundation
 
-protocol ItemListViewLoading {
-}
-
 extension ItemsListViewController {
 	override func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		if nil != rssSession && nil != view.superview && !refreshControl!.isRefreshing {
