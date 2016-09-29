@@ -30,7 +30,7 @@ class ItemsListViewController: ContainerTableViewController {
 	}
 	var loadInProgress = false
 	//
-	private var tableFooterView: UIView?
+	var tableFooterView: UIView?
 	private var indexPathForTappedAccessoryButton: IndexPath?
 	// MARK: -
 	private var loadedRightBarButtonItems: [UIBarButtonItem]!
@@ -49,57 +49,6 @@ class ItemsListViewController: ContainerTableViewController {
 		configureDataSource()
 		tableView.reloadData()
 		loadMoreIfNecessary()
-	}
-	@IBAction private func selectUnread(_ sender: AnyObject!) {
-		showUnreadOnly = true
-		reloadViewForNewConfiguration()
-	}
-	@IBAction private func unselectUnread(_ sender: AnyObject!) {
-		showUnreadOnly = false
-		reloadViewForNewConfiguration()
-	}
-	@IBAction private func refresh(_ sender: AnyObject!) {
-		guard let refreshControl = refreshControl else {
-			fatalError()
-		}
-		guard !(loadInProgress && $(nil == continuation)) else {
-			refreshControl.endRefreshing()
-			return
-		}
-		loadCompleted = false
-		continuation = nil
-		loadInProgress = false
-		loadError = nil
-		refreshControl.endRefreshing()
-		loadMore { loadDateDidChange in
-			if !loadDateDidChange {
-			}
-		}
-		UIView.animate(withDuration: 0.4) {
-			self.tableView.tableFooterView = self.tableFooterView
-		}
-	}
-	@IBAction private func markAllAsRead(_ sender: AnyObject!) {
-		let items = (container as! ItemsOwner).ownItems
-		for i in items {
-			i.markedAsRead = true
-		}
-		firstly {
-			rssSession!.markAllAsRead(container!)
-		}.then {
-			self.presentInfoMessage(NSLocalizedString("Marked all as read.", comment: ""))
-		}.catch { error in
-			self.presentErrorMessage(
-				String.localizedStringWithFormat(
-					NSLocalizedString("Failed to mark all as read. %@", comment: ""),
-					"\(error)"
-				)
-			)
-		}
-	}
-	@IBAction private func action(_ sender: AnyObject?) {
-		let activityViewController = UIActivityViewController(activityItems: [container!], applicationActivities: applicationActivities)
-		navigationController?.present(activityViewController, animated: true, completion: nil)
 	}
 	// MARK: -
 	func itemForIndexPath(_ indexPath: IndexPath!) -> Item! {
@@ -130,21 +79,7 @@ class ItemsListViewController: ContainerTableViewController {
 			abort()
 		}
 	}
-	private var blocksDelayedTillViewWillAppearOrStateRestoration = [Handler]()
-	// MARK: - State Preservation and Restoration
-	private enum Restorable: String {
-		case containerObjectID = "containerObjectID"
-	}
-	override func encodeRestorableState(with coder: NSCoder) {
-		super.encodeRestorableState(with: coder)
-		container?.encodeObjectIDWithCoder(coder, key: Restorable.containerObjectID.rawValue)
-	}
-	override func decodeRestorableState(with coder: NSCoder) {
-		super.decodeRestorableState(with: coder)
-		container = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.containerObjectID.rawValue, managedObjectContext: mainQueueManagedObjectContext) as! Container?
-		blocksDelayedTillViewWillAppearOrStateRestoration.forEach {$0()}
-		blocksDelayedTillViewWillAppearOrStateRestoration = []
-	}
+	var blocksDelayedTillViewWillAppearOrStateRestoration = [Handler]()
 	// MARK: -
 	private var blocksDelayedTillViewWillAppear = [Handler]()
 	// MARK: -
@@ -259,19 +194,94 @@ class ItemsListViewController: ContainerTableViewController {
 		_ = initializeOnce
 	}
 }
-
+//
+// MARK: - State Restoration
+//
+extension ItemsListViewController /* State Restoration */ {
+	private enum Restorable: String {
+		case containerObjectID = "containerObjectID"
+	}
+	override func encodeRestorableState(with coder: NSCoder) {
+		super.encodeRestorableState(with: coder)
+		container?.encodeObjectIDWithCoder(coder, key: Restorable.containerObjectID.rawValue)
+	}
+	override func decodeRestorableState(with coder: NSCoder) {
+		super.decodeRestorableState(with: coder)
+		container = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.containerObjectID.rawValue, managedObjectContext: mainQueueManagedObjectContext) as! Container?
+		blocksDelayedTillViewWillAppearOrStateRestoration.forEach {$0()}
+		blocksDelayedTillViewWillAppearOrStateRestoration = []
+	}
+}
+//
+// MARK: - Actions
+//
 extension ItemsListViewController {
-	// MARK: -
+	@IBAction private func selectUnread(_ sender: AnyObject!) {
+		showUnreadOnly = true
+		reloadViewForNewConfiguration()
+	}
+	@IBAction private func unselectUnread(_ sender: AnyObject!) {
+		showUnreadOnly = false
+		reloadViewForNewConfiguration()
+	}
+	@IBAction private func refresh(_ sender: AnyObject!) {
+		guard let refreshControl = refreshControl else {
+			fatalError()
+		}
+		guard !(loadInProgress && $(nil == continuation)) else {
+			refreshControl.endRefreshing()
+			return
+		}
+		loadCompleted = false
+		continuation = nil
+		loadInProgress = false
+		loadError = nil
+		refreshControl.endRefreshing()
+		loadMore { loadDateDidChange in
+			if !loadDateDidChange {
+			}
+		}
+		UIView.animate(withDuration: 0.4) {
+			self.tableView.tableFooterView = self.tableFooterView
+		}
+	}
+	@IBAction private func markAllAsRead(_ sender: AnyObject!) {
+		let items = (container as! ItemsOwner).ownItems
+		for i in items {
+			i.markedAsRead = true
+		}
+		firstly {
+			rssSession!.markAllAsRead(container!)
+		}.then {
+			self.presentInfoMessage(NSLocalizedString("Marked all as read.", comment: ""))
+		}.catch { error in
+			self.presentErrorMessage(
+				String.localizedStringWithFormat(
+					NSLocalizedString("Failed to mark all as read. %@", comment: ""),
+					"\(error)"
+				)
+			)
+		}
+	}
+	@IBAction private func action(_ sender: AnyObject?) {
+		let activityViewController = UIActivityViewController(activityItems: [container!], applicationActivities: applicationActivities)
+		navigationController?.present(activityViewController, animated: true, completion: nil)
+	}
+}
+//
+// MARK: - Scroll & Table View Delegate Additions
+//
+extension ItemsListViewController {
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		performSegue(withIdentifier: MainStoryboard.SegueIdentifiers.ShowListPages, sender: self)
 	}
-	// MARK: -
 	override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
 		tableView.snapHeaderToTop(animated: true)
 	}
 }
-
-
+//
+// MARK: - Presenting Messages
+//
 extension ItemsListViewController {
 	func presentMessage(_ text: String) {
 		statusLabel.text = text
