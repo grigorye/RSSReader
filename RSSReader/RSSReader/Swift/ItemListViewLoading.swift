@@ -36,7 +36,7 @@ extension ItemsListViewController {
 			#keyPath(containerViewPredicate)
 		]
 	}
-	private dynamic var containerViewState: RSSReaderData.ContainerViewState? {
+	private dynamic var containerViewState: ContainerViewState? {
 		let containerViewState = (container!.viewStates.filter { $0.containerViewPredicate.isEqual(containerViewPredicate) }).onlyElement
 		self.containerViewStateRetained = containerViewState
 		return (containerViewState)
@@ -91,7 +91,7 @@ extension ItemsListViewController {
 			}
 			let managedObjectContext = streamContentsResult.0
 			let containerViewState = containerViewStateObjectID?.object(in: managedObjectContext) ?? {
-				return (NSEntityDescription.insertNewObject(forEntityName: "ContainerViewState", into: managedObjectContext) as! RSSReaderData.ContainerViewState) … {
+				return (NSEntityDescription.insertNewObject(forEntityName: "ContainerViewState", into: managedObjectContext) as! ContainerViewState) … {
 					let container = containerObjectID.object(in: managedObjectContext)
 					$0.container = container
 					$0.containerViewPredicate = containerViewPredicate
