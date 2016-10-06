@@ -12,9 +12,12 @@ import PromiseKit
 import CoreData
 import Foundation
 
-class ContainerLoadController {
+class ContainerLoadController : NSObject {
 	dynamic var container: Container!
 	dynamic var unreadOnly = false
+	public var numberOfItemsToLoadLater = 100
+	public var numberOfItemsToLoadInitially = 500
+	//
 	class var keyPathsForValuesAffectingContainerViewState: Set<String> {
 		return [
 			#keyPath(container.viewStates),
@@ -28,30 +31,30 @@ class ContainerLoadController {
 		return $(containerViewState)
 	}
 	private var ongoingLoadDate: Date?
-	private var continuation: String? {
+	var continuation: String? {
 		set { containerViewState!.continuation = newValue }
 		get { return containerViewState?.continuation }
 	}
 	class var keyPathsForValuesAffectingLoadDate: Set<String> {
 		return [#keyPath(containerViewState.loadDate)]
 	}
-	private dynamic var loadDate: Date! {
+	dynamic var loadDate: Date! {
 		set { containerViewState!.loadDate = newValue! }
 		get { return containerViewState?.loadDate }
 	}
-	private var lastLoadedItem: Item? {
+	var lastLoadedItem: Item? {
 		return containerViewState?.lastLoadedItem
 	}
-	private var loadCompleted: Bool {
+	var loadCompleted: Bool {
 		set { containerViewState!.loadCompleted = newValue }
 		get { return containerViewState?.loadCompleted ?? false }
 	}
-	private var loadError: Error? {
+	var loadError: Error? {
 		set { containerViewState!.loadError = newValue }
 		get { return containerViewState?.loadError }
 	}
 	//
-	private var loadInProgress = false
+	var loadInProgress = false
 	private var nowDate: Date!
 	//
 	class var keyPathsForValuesAffectingContainerViewPredicate: Set<String> {
@@ -80,7 +83,7 @@ class ContainerLoadController {
 		let oldOngoingLoadDate = ongoingLoadDate!
 		loadInProgress = true
 		let excludedCategory: Folder? = unreadOnly ? Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: mainQueueManagedObjectContext) : nil
-		let numberOfItemsToLoad = 500
+		let numberOfItemsToLoad = (oldContinuation != nil) ? numberOfItemsToLoadLater : numberOfItemsToLoadInitially
 		let containerViewStateObjectID = typedObjectID(for: containerViewState)
 		let containerObjectID = typedObjectID(for: container)!
 		let containerViewPredicate = self.containerViewPredicate
