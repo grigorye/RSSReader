@@ -15,20 +15,20 @@ import CoreData
 class ItemsListViewController: ContainerTableViewController {
 	typealias _Self = ItemsListViewController
 	public var dataSource: ItemTableViewDataSource!
-	public var loadController: ContainerLoadController!
+	public lazy dynamic var loadController: ContainerLoadController! = {
+		let $ = ContainerLoadController() … {
+			$0.numberOfItemsToLoadInitially = defaults.numberOfItemsToLoadInitially
+			$0.numberOfItemsToLoadLater = defaults.numberOfItemsToLoadLater
+			$0.container = self.container
+			$0.unreadOnly = self.showUnreadOnly
+		}
+		return $
+	}()
 	final var multipleSourcesEnabled = false
 	var showUnreadEnabled = true
 	var systemLayoutSizeCachingDataSource = SystemLayoutSizeCachingTableViewCellDataSource(layoutSizeDefiningValueForCell: { guard $0.reuseIdentifier != "Item" else { return nil }; return $0.reuseIdentifier as NSString? }, cellShouldBeReusedWithoutLayout: {$0.reuseIdentifier != "Item"})
-	//
-	var containerViewStateRetained: RSSReaderData.ContainerViewState?
-	// MARK:- ItemListViewLoading
-	var ongoingLoadDate: Date?
 	// MARK:-
 	var showUnreadOnly = false
-	var containerViewPredicate: NSPredicate {
-		return dataSource.containerViewPredicate
-	}
-	var loadInProgress = false
 	//
 	var tableFooterView: UIView?
 	private var indexPathForTappedAccessoryButton: IndexPath?
@@ -46,6 +46,7 @@ class ItemsListViewController: ContainerTableViewController {
 	// MARK: -
 	func reloadViewForNewConfiguration() {
 		navigationItem.rightBarButtonItems = regeneratedRightBarButtonItems()
+		self.loadController = nil
 		configureDataSource()
 		tableView.reloadData()
 		loadMoreIfNecessary()
@@ -152,7 +153,7 @@ class ItemsListViewController: ContainerTableViewController {
 		}
 	}
 	func bindLoadDate() -> Handler {
-		let binding = KVOBinding(self•#keyPath(loadDate), options: [.new, .initial]) { change in
+		let binding = KVOBinding(self•#keyPath(loadController.loadDate), options: [.new, .initial]) { change in
 			•(self.toolbarItems!)
 			let newValue = change![NSKeyValueChangeKey.newKey]
 			if let loadDate = nilForNull(newValue!) as! Date? {
@@ -228,14 +229,12 @@ extension ItemsListViewController {
 		guard let refreshControl = refreshControl else {
 			fatalError()
 		}
-		guard !(loadInProgress && $(nil == continuation)) else {
+		guard !(loadController.loadInProgress && $(nil == loadController.continuation)) else {
 			refreshControl.endRefreshing()
 			return
 		}
-		loadCompleted = false
-		continuation = nil
-		loadInProgress = false
-		loadError = nil
+		self.loadController = nil
+		self.loadController!.loadCompleted = false
 		refreshControl.endRefreshing()
 		loadMore { loadDateDidChange in
 			if !loadDateDidChange {
