@@ -20,9 +20,10 @@ extension ItemsListViewController {
 	}
 }
 extension ItemsListViewController {
-	func loadMore(_ completionHandler: (Bool) -> Void) {
+	func loadMore(_ completionHandler: @escaping () -> Void) {
 		let loadController = self.loadController!
 		loadController.loadMore { [weak loadController] error in
+			completionHandler()
 			guard nil == error else {
 				let error = error!
 				self.presentErrorMessage(
@@ -77,8 +78,7 @@ extension ItemsListViewController {
 			}
 			return
 		}
-		loadMore { _ in
-		}
+		loadMore {}
 	}
 	func loadMoreIfNecessary() {
 		self.loadMoreIfNecessary(for: loadController.lastLoadedItem?.date)
