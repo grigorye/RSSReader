@@ -36,6 +36,8 @@
 		C4B437371C00A75200A2F3BE /* CoreDataGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B437361C00A75200A2F3BE /* CoreDataGlobals.swift */; };
 		C4B437391C00A86000A2F3BE /* CoreDataGlobals.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4B437361C00A75200A2F3BE /* CoreDataGlobals.swift */; };
 		C4B4374F1C00F00700A2F3BE /* CoreDataFetchRequestsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B4374E1C00F00700A2F3BE /* CoreDataFetchRequestsTests.swift */; };
+		C4BE5ADD1DA9742300E1734F /* ContainerLoadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BE5ADC1DA9742300E1734F /* ContainerLoadController.swift */; };
+		C4BE5ADE1DA9B53200E1734F /* ContainerLoadController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5ADC1DA9742300E1734F /* ContainerLoadController.swift */; };
 		C4DB6A701D2602B400E8516D /* RSSSessionTaskResultImporting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DB6A6F1D2602B400E8516D /* RSSSessionTaskResultImporting.swift */; };
 		C4DB6A721D26035F00E8516D /* RSSSessionTaskGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DB6A711D26035F00E8516D /* RSSSessionTaskGeneration.swift */; };
 		C4DB6A741D261AE400E8516D /* RSSSessionCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DB6A731D261AE400E8516D /* RSSSessionCommands.swift */; };
@@ -58,6 +60,7 @@
 			dstPath = Sources;
 			dstSubfolderSpec = 7;
 			files = (
+				C4BE5ADE1DA9B53200E1734F /* ContainerLoadController.swift in Embed Sources */,
 				C4B437391C00A86000A2F3BE /* CoreDataGlobals.swift in Embed Sources */,
 				C48F7A181C00971500CC6F74 /* LoginAndPassword.swift in Embed Sources */,
 				C48F7A191C00971500CC6F74 /* RSSSession.swift in Embed Sources */,
@@ -111,6 +114,7 @@
 		C4AD5B3B1D2847E800358DEA /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4B437361C00A75200A2F3BE /* CoreDataGlobals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataGlobals.swift; sourceTree = "<group>"; };
 		C4B4374E1C00F00700A2F3BE /* CoreDataFetchRequestsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataFetchRequestsTests.swift; sourceTree = "<group>"; };
+		C4BE5ADC1DA9742300E1734F /* ContainerLoadController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerLoadController.swift; sourceTree = "<group>"; };
 		C4DB6A6F1D2602B400E8516D /* RSSSessionTaskResultImporting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSSessionTaskResultImporting.swift; sourceTree = "<group>"; };
 		C4DB6A711D26035F00E8516D /* RSSSessionTaskGeneration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSSessionTaskGeneration.swift; sourceTree = "<group>"; };
 		C4DB6A731D261AE400E8516D /* RSSSessionCommands.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSSessionCommands.swift; sourceTree = "<group>"; };
@@ -169,6 +173,7 @@
 		C48F79A01C008D0D00CC6F74 /* RSSReaderData */ = {
 			isa = PBXGroup;
 			children = (
+				C4BE5ADC1DA9742300E1734F /* ContainerLoadController.swift */,
 				C4B437361C00A75200A2F3BE /* CoreDataGlobals.swift */,
 				C48F79FC1C008FEE00CC6F74 /* LoginAndPassword.swift */,
 				C48F79C51C008DDF00CC6F74 /* RSSSession.swift */,
@@ -328,6 +333,7 @@
 				C48F79CD1C008DF100CC6F74 /* Subscription.swift in Sources */,
 				C48F79E51C008F1900CC6F74 /* KVOCompliantUserDefaults+RSSReaderData.swift in Sources */,
 				C4B437371C00A75200A2F3BE /* CoreDataGlobals.swift in Sources */,
+				C4BE5ADD1DA9742300E1734F /* ContainerLoadController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

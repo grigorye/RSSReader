@@ -54,7 +54,6 @@
 		C474F0B21D80F5B100CABEB9 /* LogViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C474F0A71D80E65F00CABEB9 /* LogViewController.swift */; };
 		C474F0D11D8775F500CABEB9 /* SwiftMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C474F0D01D8775F500CABEB9 /* SwiftMessages.framework */; };
 		C474F0D21D8775F500CABEB9 /* SwiftMessages.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C474F0D01D8775F500CABEB9 /* SwiftMessages.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C48311531D30642B003D7A2B /* ContainerLoadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48311521D30642B003D7A2B /* ContainerLoadController.swift */; };
 		C48C5F971A87344000A1EA12 /* ItemsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */; };
 		C492A4CE1CDEE9AB00F8AD5F /* ItemTableViewCell-0.xib in Resources */ = {isa = PBXBuildFile; fileRef = C492A4CA1CDEE9AB00F8AD5F /* ItemTableViewCell-0.xib */; };
 		C492A4CF1CDEE9AB00F8AD5F /* ItemTableViewCell-1.xib in Resources */ = {isa = PBXBuildFile; fileRef = C492A4CB1CDEE9AB00F8AD5F /* ItemTableViewCell-1.xib */; };
@@ -71,7 +70,6 @@
 		C4AD5B381D282F1800358DEA /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4AD5B361D282F1800358DEA /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4BE5AAE1DA864FA00E1734F /* RSSReaderAppConfig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BE5AAD1DA864FA00E1734F /* RSSReaderAppConfig.framework */; };
 		C4BE5AAF1DA864FA00E1734F /* RSSReaderAppConfig.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4BE5AAD1DA864FA00E1734F /* RSSReaderAppConfig.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C4BE5ABD1DA86FA200E1734F /* ContainerLoadController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48311521D30642B003D7A2B /* ContainerLoadController.swift */; };
 		C4C0941B1D99ED4A00D27162 /* ItemInListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0941A1D99ED4A00D27162 /* ItemInListView.swift */; };
 		C4C094211D9B277600D27162 /* ItemInListView.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4C0941A1D99ED4A00D27162 /* ItemInListView.swift */; };
 		C4C094221D9B277600D27162 /* ItemListViewLoading.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4F7DC3E1D97EBEF00275E4F /* ItemListViewLoading.swift */; };
@@ -128,7 +126,6 @@
 			dstPath = Sources;
 			dstSubfolderSpec = 7;
 			files = (
-				C4BE5ABD1DA86FA200E1734F /* ContainerLoadController.swift in Embed Sources */,
 				C4C094211D9B277600D27162 /* ItemInListView.swift in Embed Sources */,
 				C4C094221D9B277600D27162 /* ItemListViewLoading.swift in Embed Sources */,
 				C4C094231D9B277600D27162 /* ItemTableViewDelegate.swift in Embed Sources */,
@@ -232,7 +229,6 @@
 		C474F0A71D80E65F00CABEB9 /* LogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogViewController.swift; path = Swift/LogViewController.swift; sourceTree = "<group>"; };
 		C474F0AC1D80F48400CABEB9 /* VersionIsClean */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = VersionIsClean; sourceTree = "<group>"; };
 		C474F0D01D8775F500CABEB9 /* SwiftMessages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftMessages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C48311521D30642B003D7A2B /* ContainerLoadController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerLoadController.swift; path = Swift/ContainerLoadController.swift; sourceTree = "<group>"; };
 		C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ItemsPageViewController.swift; path = Swift/ItemsPageViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C4915FE31CE734A40063A734 /* RSSReader-app.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "RSSReader-app.xcconfig"; sourceTree = SOURCE_ROOT; };
 		C492A4CA1CDEE9AB00F8AD5F /* ItemTableViewCell-0.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "ItemTableViewCell-0.xib"; path = "Resources/ItemTableViewCell-0.xib"; sourceTree = "<group>"; };
@@ -451,7 +447,6 @@
 				C41707CA1A56076A00AED81C /* Globals.swift */,
 				C495409A1A575C1900F56168 /* UserDefaults.swift */,
 				C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */,
-				C48311521D30642B003D7A2B /* ContainerLoadController.swift */,
 				C4C327F11AF30CB400119573 /* FoldersController.swift */,
 				C4EF270D1A8D353C000EBE63 /* UserMessages.swift */,
 				C46F04131C0A142000A970D7 /* Readability.swift */,
@@ -722,7 +717,6 @@
 				C4EA5C361CE91E8600E395FE /* ContainerTableViewController.swift in Sources */,
 				C4C327F21AF30CB400119573 /* FoldersController.swift in Sources */,
 				C4AD2ADB1A5DED8700B39AC9 /* ItemsPageViewControllerDelegate.swift in Sources */,
-				C48311531D30642B003D7A2B /* ContainerLoadController.swift in Sources */,
 				C4676E091A6A4D1F00AE8BC2 /* ItemTableViewCell.swift in Sources */,
 				C4F7DC3F1D97EBEF00275E4F /* ItemListViewLoading.swift in Sources */,
 				C40A24FF1A672B2100B5D959 /* TableViewContainerCell.swift in Sources */,
