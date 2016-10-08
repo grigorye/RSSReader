@@ -16,11 +16,9 @@ class ItemsListViewController: ContainerTableViewController {
 	typealias _Self = ItemsListViewController
 	public var dataSource: ItemTableViewDataSource!
 	public lazy dynamic var loadController: ContainerLoadController! = {
-		let $ = ContainerLoadController() … {
+		let $ = ContainerLoadController(session: rssSession!, container: self.container, unreadOnly: self.showUnreadOnly) … {
 			$0.numberOfItemsToLoadInitially = defaults.numberOfItemsToLoadInitially
 			$0.numberOfItemsToLoadLater = defaults.numberOfItemsToLoadLater
-			$0.container = self.container
-			$0.unreadOnly = self.showUnreadOnly
 		}
 		return $
 	}()
@@ -228,16 +226,12 @@ extension ItemsListViewController {
 		guard let refreshControl = refreshControl else {
 			fatalError()
 		}
-		guard !(loadController.loadInProgress && $(nil == loadController.continuation)) else {
-			refreshControl.endRefreshing()
+		guard !loadController.refreshing else {
 			return
 		}
-		self.loadController = nil
-		self.loadController!.loadCompleted = false
-		refreshControl.endRefreshing()
-		loadMore { loadDateDidChange in
-			if !loadDateDidChange {
-			}
+		loadController.reset()
+		loadMore {
+			refreshControl.endRefreshing()
 		}
 		UIView.animate(withDuration: 0.4) {
 			self.tableView.tableFooterView = self.tableFooterView
