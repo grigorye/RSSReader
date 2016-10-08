@@ -32,21 +32,20 @@ public class FetchedObjectBinding<T> : NSObject, NSFetchedResultsControllerDeleg
 }
 
 public class FetchedObjectCountBinding<T> : NSObject, NSFetchedResultsControllerDelegate where T: Managed, T: NSFetchRequestResult {
-	let countDidUpdate: Handler
-	func managedObjectContextObjectsDidChange() {
-		self.countDidUpdate()
-	}
-	var blocksScheduledForDeinit = [Handler]()
+	let countDidChange: Handler
 	//
+	var delayedForDeinit = [Handler]()
 	deinit {
-		for i in blocksScheduledForDeinit { i() }
+		delayedForDeinit.forEach {$0()}
+		delayedForDeinit = []
 	}
+	//
 	public init(managedObjectContext: NSManagedObjectContext, predicate: NSPredicate?, handler: @escaping (Int) -> Void) {
 		do {
 			let fetchRequest = T.fetchRequestForEntity() … {
 				$0.predicate = _0 ? nil : predicate
 			}
-			self.countDidUpdate = {
+			countDidChange = {
 				managedObjectContext.perform {
 					handler(try! managedObjectContext.count(for: fetchRequest))
 				}
@@ -57,12 +56,12 @@ public class FetchedObjectCountBinding<T> : NSObject, NSFetchedResultsController
 			let notificationCenter = NotificationCenter.default
 			let observer = notificationCenter.addObserver(forName: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: managedObjectContext, queue: nil) {
 				[weak self] _ in
-				self?.managedObjectContextObjectsDidChange()
+				self?.countDidChange()
 			}
-			self.blocksScheduledForDeinit += [{
+			delayedForDeinit += [{
 				notificationCenter.removeObserver(observer)
 			}]
 		}
-		self.countDidUpdate()
+		countDidChange()
 	}
 }
