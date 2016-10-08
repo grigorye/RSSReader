@@ -6,18 +6,18 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
-import RSSReaderData
 import GEBase
 import PromiseKit
 import CoreData
 import Foundation
 
-class ContainerLoadController : NSObject {
-	dynamic var container: Container!
-	dynamic var unreadOnly = false
+public class ContainerLoadController : NSObject {
+	let session: RSSSession
+	let container: Container
+	let unreadOnly: Bool
 	public var numberOfItemsToLoadLater = 100
 	public var numberOfItemsToLoadInitially = 500
-	//
+	// MARK: -
 	class var keyPathsForValuesAffectingContainerViewState: Set<String> {
 		return [
 			#keyPath(container.viewStates),
@@ -26,11 +26,10 @@ class ContainerLoadController : NSObject {
 	}
 	var containerViewStateRetained: ContainerViewState?
 	dynamic var containerViewState: ContainerViewState? {
-		let containerViewState = (container!.viewStates.filter { $0.containerViewPredicate.isEqual(containerViewPredicate) }).onlyElement
+		let containerViewState = (container.viewStates.filter { $0.containerViewPredicate.isEqual(containerViewPredicate) }).onlyElement
 		self.containerViewStateRetained = containerViewState
 		return $(containerViewState)
 	}
-	private var ongoingLoadDate: Date?
 	var continuation: String? {
 		set { containerViewState!.continuation = newValue }
 		get { return containerViewState?.continuation }
@@ -38,23 +37,24 @@ class ContainerLoadController : NSObject {
 	class var keyPathsForValuesAffectingLoadDate: Set<String> {
 		return [#keyPath(containerViewState.loadDate)]
 	}
-	dynamic var loadDate: Date! {
+	private (set) public dynamic var loadDate: Date! {
 		set { containerViewState!.loadDate = newValue! }
 		get { return containerViewState?.loadDate }
 	}
-	var lastLoadedItem: Item? {
+	public var lastLoadedItem: Item? {
 		return containerViewState?.lastLoadedItem
 	}
-	var loadCompleted: Bool {
+	private (set) public var loadCompleted: Bool {
 		set { containerViewState!.loadCompleted = newValue }
 		get { return containerViewState?.loadCompleted ?? false }
 	}
-	var loadError: Error? {
+	private (set) public var loadError: Error? {
 		set { containerViewState!.loadError = newValue }
 		get { return containerViewState?.loadError }
 	}
 	//
-	var loadInProgress = false
+	private var ongoingLoadDate: Date?
+	private (set) public var loadInProgress = false
 	private var nowDate: Date!
 	//
 	class var keyPathsForValuesAffectingContainerViewPredicate: Set<String> {
@@ -68,8 +68,19 @@ class ContainerLoadController : NSObject {
 			return NSPredicate(value: true)
 		}
 	}
-	//
-	func loadMore(_ completionHandler: @escaping (Error?) -> Void) {
+	// MARK: -
+	public var refreshing: Bool {
+		return loadInProgress && (nil == continuation)
+	}
+	public func reset() {
+		precondition(!loadInProgress)
+		self.continuation = nil
+		self.loadCompleted = false
+		self.lastLoadedItem = nil
+		self.loadError = nil
+	}
+	// MARK: -
+	public func loadMore(_ completionHandler: @escaping (Error?) -> Void) {
 		assert(!loadInProgress)
 		assert(!loadCompleted)
 		assert(nil == loadError)
@@ -88,7 +99,7 @@ class ContainerLoadController : NSObject {
 		let containerObjectID = typedObjectID(for: container)!
 		let containerViewPredicate = self.containerViewPredicate
 		firstly {
-			rssSession!.streamContents(container!, excludedCategory: excludedCategory, continuation: oldContinuation, count: numberOfItemsToLoad, loadDate: $(oldOngoingLoadDate))
+			session.streamContents(container, excludedCategory: excludedCategory, continuation: oldContinuation, count: numberOfItemsToLoad, loadDate: $(oldOngoingLoadDate))
 		}.then(on: zalgo) { streamContentsResult -> String? in
 			let ongoingLoadDate = $(self.ongoingLoadDate)
 			guard oldOngoingLoadDate == ongoingLoadDate else {
@@ -137,5 +148,11 @@ class ContainerLoadController : NSObject {
 			}
 			completionHandler(error)
 		}
+	}
+	public init(session: RSSSession, container: Container, unreadOnly: Bool = false) {
+		self.session = session
+		self.container = container
+		self.unreadOnly = unreadOnly
+		super.init()
 	}
 }
