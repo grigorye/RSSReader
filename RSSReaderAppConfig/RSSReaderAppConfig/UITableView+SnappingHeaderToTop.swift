@@ -9,7 +9,7 @@
 import UIKit.UITableView
 
 extension UITableView {
-	func snapHeaderToTop(animated: Bool) {
+	public func snapHeaderToTop(animated: Bool) {
 		if let tableHeaderView = tableHeaderView {
 			let insetAwareTableHeaderViewFrame = tableHeaderView.frame.offsetBy(dx: 0, dy: -contentInset.top)
 			if contentOffset.y < insetAwareTableHeaderViewFrame.maxY {

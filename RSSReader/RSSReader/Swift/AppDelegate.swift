@@ -6,10 +6,9 @@
 //  Copyright (c) 2014 Grigory Entin. All rights reserved.
 //
 
+import RSSReaderAppConfig
 import RSSReaderData
 import GEBase
-import FBAllocationTracker
-import FBMemoryProfiler
 import UIKit
 import CoreData
 
@@ -26,8 +25,8 @@ class AppDelegateInternals {
 }
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
-	var window: UIWindow?
+class AppDelegate: AppDelegateBase, FoldersController {
+	typealias _Self = AppDelegate
 	final var retainedObjects = [Any]()
 #if false
 	var foldersLastUpdateDate: NSDate?
@@ -99,19 +98,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 	}()
 	var loginAndPassword: LoginAndPassword!
 	// MARK: -
-	@IBAction func openSettings(_ sender: AnyObject?) {
-		let url = URL(string: UIApplicationOpenSettingsURLString)!
-		let application = UIApplication.shared
-		if #available(iOS 10.0, *) {
-			application.open(url, options: [:], completionHandler: nil)
-		} else {
-			application.openURL(url)
-		}
-	}
-	@IBAction func crash(_ sender: AnyObject?) {
-		fatalError()
-	}
-	// MARK: -
 	lazy var fetchedRootFolderBinding: FetchedObjectBinding<Folder> = FetchedObjectBinding<Folder>(managedObjectContext: mainQueueManagedObjectContext, predicate: Folder.predicateForFetchingFolderWithTagSuffix(rootTagSuffix)) { folders in
 		let foldersViewController = self.foldersViewController
 		foldersViewController.rootFolder = folders.last!
@@ -120,60 +106,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 		let foldersViewController = self.favoritesViewController
 		foldersViewController.container = folders.last!
 	}
-	// MARK: -
-	private let currentRestorationFormatVersion = Int32(1)
-	private enum Restorable: String {
-		case restorationFormatVersion
-	}
-	func application(_ application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
-		$(self)
-		coder.encode(currentRestorationFormatVersion, forKey: Restorable.restorationFormatVersion.rawValue)
-		return true
-	}
-	func application(_ application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
-		$(self)
-		let restorationFormatVersion = coder.decodeInt32(forKey: Restorable.restorationFormatVersion.rawValue)
-		if $(restorationFormatVersion) < currentRestorationFormatVersion {
-			return false
-		}
-		return $(defaults.stateRestorationEnabled)
-	}
 	//
 	func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]?) -> Bool {
 		$(self)
 		return true
 	}
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+	override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
 		filesWithTracingDisabled += [
 			"TableViewFetchedResultsControllerDelegate.swift",
 			"KVOCompliantUserDefaults.swift"
 		]
-		if _1 {
-			if defaults.memoryProfilingEnabled {
-				let memoryProfiler = FBMemoryProfiler()
-				memoryProfiler.enable()
-				retainedObjects += [memoryProfiler]
-			}
-		}
-		else {
-			var memoryProfiler: FBMemoryProfiler!
-			retainedObjects += [KVOBinding(defaults•#keyPath(KVOCompliantUserDefaults.memoryProfilingEnabled), options: .initial) { change in
-				if defaults.memoryProfilingEnabled {
-					guard (memoryProfiler == nil) else {
-						return
-					}
-					memoryProfiler = FBMemoryProfiler()
-					memoryProfiler.enable()
-				}
-				else {
-					guard (memoryProfiler != nil) else {
-						return
-					}
-					memoryProfiler.disable()
-					memoryProfiler = nil
-				}
-			}]
-		}
 		hideBarsOnSwipe = (nil == self.tabBarController) && defaults.hideBarsOnSwipe
 		guard nil == managedObjectContextError else {
 			$(managedObjectContextError)
@@ -210,28 +152,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FoldersController {
 	// MARK: -
 	override init() {
 		super.init()
-		let defaultsPlistURL = Bundle.main.url(forResource: "Settings", withExtension: "bundle")!.appendingPathComponent("Root.plist")
-		try! loadDefaultsFromSettingsPlistAtURL(defaultsPlistURL)
-		if defaults.memoryProfilingEnabled {
-			FBAllocationTrackerManager.shared()!.startTrackingAllocations()
-			FBAllocationTrackerManager.shared()!.enableGenerations()
-		}
 		configureAppearance()
-		let fileManager = FileManager()
-		let libraryDirectoryURL = fileManager.urls(for: .libraryDirectory, in: .userDomainMask).last!
-		let libraryDirectory = libraryDirectoryURL.path
-        $(libraryDirectory)
 	}
-	static private let initializeOnce: Void = {
-		if $(versionIsClean) {
-			_ = crashlyticsInitializer
-			_ = appseeInitializer
-			_ = uxcamInitializer
-			_ = flurryInitializer
+}
+
+// MARK: - State Restoration
+extension AppDelegate {
+	private static let currentRestorationFormatVersion = Int32(1)
+	private enum Restorable: String {
+		case restorationFormatVersion
+	}
+	func application(_ application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
+		$(self)
+		coder.encode(_Self.currentRestorationFormatVersion, forKey: Restorable.restorationFormatVersion.rawValue)
+		return true
+	}
+	func application(_ application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
+		$(self)
+		let restorationFormatVersion = coder.decodeInt32(forKey: Restorable.restorationFormatVersion.rawValue)
+		if $(restorationFormatVersion) < _Self.currentRestorationFormatVersion {
+			return false
 		}
-	}()
-	override public class func initialize() {
-		super.initialize()
-		_ = initializeOnce
+		return $(defaults.stateRestorationEnabled)
 	}
 }

@@ -8,7 +8,7 @@
 
 #if !ANALYTICS_ENABLED || !CRASHLYTICS_ENABLED
 
-let crashlyticsInitializer: Void = ()
+public let crashlyticsInitializer: Void = ()
 
 #else
 
@@ -22,7 +22,7 @@ func crashlyticsLogger(date: Date, label: String, location: SourceLocation, mess
 	CLSLogv("%@", getVaList([text]))
 }
 
-let crashlyticsInitializer: Void = {
+public let crashlyticsInitializer: Void = {
 	Fabric.with([Crashlytics()])
 	loggers.append(crashlyticsLogger)
 }()

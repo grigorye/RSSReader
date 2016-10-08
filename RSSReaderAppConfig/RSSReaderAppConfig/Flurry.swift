@@ -8,13 +8,13 @@
 
 #if !ANALYTICS_ENABLED || !FLURRY_ENABLED
 
-let flurryInitializer: Void = ()
+public let flurryInitializer: Void = ()
 
 #else
 
 import Foundation
 
-let flurryInitializer: Void = {
+public let flurryInitializer: Void = {
 	Flurry.startSession("TSPCHYJBMBGZZFM3SFDZ")
 }()
 

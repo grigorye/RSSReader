@@ -13,7 +13,7 @@ let fileManager = FileManager.default
 let logFileNameDateFormatter = DateFormatter() … {
 	$0.dateFormat = "yyyy-MM-dd-HHmmss"
 }
-let logFileURL: URL = {
+public let logFileURL: URL = {
 	let libraryDirectoryURL = try! fileManager.url(for: .libraryDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
 	let nameWithoutExtension = logFileNameDateFormatter.string(from: Date())
 	let name = "\(nameWithoutExtension).log"
