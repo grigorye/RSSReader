@@ -17,18 +17,19 @@ class ContainerTableViewController: UITableViewController {
 	}
 	// MARK: -
 	dynamic var itemsCount = 0
-	private var currentItemsCountFetchedObjectsBinding: FetchedObjectBinding<Item>?
+	private var currentItemsFetchedObjectCountBinding: FetchedObjectCountBinding<Item>?
 	func bindItemsCount() -> Handler {
 		let binding = KVOBinding(self•#keyPath(predicateForItems), options: [.initial, .new]) { _ in
 			let predicate = self.predicateForItems
-			let itemsCountFetchedObjectBinding = FetchedObjectBinding<Item>(managedObjectContext: mainQueueManagedObjectContext, predicate: predicate) { objects in
-				self.itemsCount = objects.count
+			let itemsFetchedObjectCountBinding = FetchedObjectCountBinding<Item>(managedObjectContext: mainQueueManagedObjectContext, predicate: predicate) {
+				count in
+				self.itemsCount = count
 			}
-			self.currentItemsCountFetchedObjectsBinding = itemsCountFetchedObjectBinding
+			self.currentItemsFetchedObjectCountBinding = itemsFetchedObjectCountBinding
 		}
 		return {
 			_ = binding
-			self.currentItemsCountFetchedObjectsBinding = nil
+			self.currentItemsFetchedObjectCountBinding = nil
 		}
 	}
 	// MARK: -
