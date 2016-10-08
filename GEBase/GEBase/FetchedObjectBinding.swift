@@ -9,7 +9,7 @@
 import CoreData
 
 public class FetchedObjectBinding<T> : NSObject, NSFetchedResultsControllerDelegate where T: DefaultSortable, T: Managed, T: NSFetchRequestResult {
-	var handler: ([T]) -> Void
+	let handler: ([T]) -> Void
 	let fetchedResultsController: NSFetchedResultsController<T>
 	public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		handler(controller.fetchedObjects! as! [T])
@@ -28,5 +28,41 @@ public class FetchedObjectBinding<T> : NSObject, NSFetchedResultsControllerDeleg
 		fetchedResultsController.delegate = self
 		try! fetchedResultsController.performFetch()
 		handler(fetchedResultsController.fetchedObjects!)
+	}
+}
+
+public class FetchedObjectCountBinding<T> : NSObject, NSFetchedResultsControllerDelegate where T: Managed, T: NSFetchRequestResult {
+	let countDidUpdate: Handler
+	func managedObjectContextObjectsDidChange() {
+		self.countDidUpdate()
+	}
+	var blocksScheduledForDeinit = [Handler]()
+	//
+	deinit {
+		for i in blocksScheduledForDeinit { i() }
+	}
+	public init(managedObjectContext: NSManagedObjectContext, predicate: NSPredicate?, handler: @escaping (Int) -> Void) {
+		do {
+			let fetchRequest = T.fetchRequestForEntity() … {
+				$0.predicate = _0 ? nil : predicate
+			}
+			self.countDidUpdate = {
+				managedObjectContext.perform {
+					handler(try! managedObjectContext.count(for: fetchRequest))
+				}
+			}
+		}
+		super.init()
+		do {
+			let notificationCenter = NotificationCenter.default
+			let observer = notificationCenter.addObserver(forName: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: managedObjectContext, queue: nil) {
+				[weak self] _ in
+				self?.managedObjectContextObjectsDidChange()
+			}
+			self.blocksScheduledForDeinit += [{
+				notificationCenter.removeObserver(observer)
+			}]
+		}
+		self.countDidUpdate()
 	}
 }
