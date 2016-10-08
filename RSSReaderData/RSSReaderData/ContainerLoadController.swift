@@ -42,7 +42,8 @@ public class ContainerLoadController : NSObject {
 		get { return containerViewState?.loadDate }
 	}
 	public var lastLoadedItem: Item? {
-		return containerViewState?.lastLoadedItem
+		set { containerViewState!.lastLoadedItem = newValue }
+		get { return containerViewState?.lastLoadedItem }
 	}
 	private (set) public var loadCompleted: Bool {
 		set { containerViewState!.loadCompleted = newValue }
