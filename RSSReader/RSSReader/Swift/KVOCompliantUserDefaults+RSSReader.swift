@@ -26,10 +26,6 @@ extension KVOCompliantUserDefaults {
 	//
 	@NSManaged var stateRestorationEnabled: Bool
 	//
-	@NSManaged var fetchResultsAnimationEnabled: Bool
-	@NSManaged var groupingTableUpdatesEnabled: Bool
-	@NSManaged var updateCellsInPlaceEnabled: Bool
-	@NSManaged var memoryProfilingEnabled: Bool
 	@NSManaged var pageViewsEnabled: Bool
 	@NSManaged var hideBarsOnSwipe: Bool
 	//
