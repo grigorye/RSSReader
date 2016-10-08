@@ -8,14 +8,14 @@
 
 #if !ANALYTICS_ENABLED || !UXCAM_ENABLED
 
-public let uxcamInitializer: Void = ()
+let uxcamInitializer: Void = ()
 
 #else
 
 import UXCam
 import Foundation
 
-public let uxcamInitializer: Void = {
+let uxcamInitializer: Void = {
 	UXCam.startWithKey("0fc8e6e128fa538")
 }()
 

@@ -8,14 +8,14 @@
 
 #if !ANALYTICS_ENABLED || !APPSEE_ENABLED
 
-public let appseeInitializer: Void = ()
+let appseeInitializer: Void = ()
 
 #else
 
 import Appsee
 import Foundation
 
-public let appseeInitializer: Void = {
+let appseeInitializer: Void = {
 	Appsee.start(NSBundle.mainBundle().infoDictionary!["appseeAPIKey"] as! String)
 }()
 
