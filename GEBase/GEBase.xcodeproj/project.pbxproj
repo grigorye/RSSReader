@@ -37,6 +37,11 @@
 		C4A6B8CA1CB089C80053D44E /* AssociatedObjects.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4A6B8C71CB082F70053D44E /* AssociatedObjects.swift */; };
 		C4A6B8CB1CB089C80053D44E /* PropertyCaching.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4A6B8C51CB03B8A0053D44E /* PropertyCaching.swift */; };
 		C4BB26B91CB0256500C7277A /* ObjectiveCBridging.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BB26B81CB0256500C7277A /* ObjectiveCBridging.swift */; };
+		C4BE5AAC1DA8610F00E1734F /* TableViewFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BE5AAB1DA8610F00E1734F /* TableViewFetchedResultsControllerDelegate.swift */; };
+		C4BE5AB31DA8669500E1734F /* TypeFilteringActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BE5AB21DA8669500E1734F /* TypeFilteringActivity.swift */; };
+		C4BE5ABE1DA86FB400E1734F /* TypeFilteringActivity.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5AB21DA8669500E1734F /* TypeFilteringActivity.swift */; };
+		C4BE5ABF1DA86FB500E1734F /* TableViewFetchedResultsControllerDelegate.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5AAB1DA8610F00E1734F /* TableViewFetchedResultsControllerDelegate.swift */; };
+		C4BE5ACC1DA8708A00E1734F /* AppVersion.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C474F0B61D85317C00CABEB9 /* AppVersion.swift */; };
 		C4CB38861CDBA78D00562665 /* SourceLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CB38851CDBA78D00562665 /* SourceLocation.swift */; };
 		C4D6F41A1C73CCC000A7E2ED /* Tracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D6F4191C73CCC000A7E2ED /* Tracing.swift */; };
 		C4D6F41C1C73CD3500A7E2ED /* CoreDataCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D6F41B1C73CD3500A7E2ED /* CoreDataCaching.swift */; };
@@ -99,6 +104,8 @@
 			dstPath = Sources;
 			dstSubfolderSpec = 7;
 			files = (
+				C4BE5ABE1DA86FB400E1734F /* TypeFilteringActivity.swift in Embed Sources */,
+				C4BE5ABF1DA86FB500E1734F /* TableViewFetchedResultsControllerDelegate.swift in Embed Sources */,
 				C4A6B8C91CB089C80053D44E /* ObjectiveCBridging.swift in Embed Sources */,
 				C4A6B8CA1CB089C80053D44E /* AssociatedObjects.swift in Embed Sources */,
 				C4A6B8CB1CB089C80053D44E /* PropertyCaching.swift in Embed Sources */,
@@ -106,6 +113,7 @@
 				C4FEBB1B1BF94CF800A5709B /* KVOCompliantUserDefaults.swift in Embed Sources */,
 				C4FEBAFD1BF9196E00A5709B /* Primitives.swift in Embed Sources */,
 				C4FEBAFE1BF9196E00A5709B /* Globals.swift in Embed Sources */,
+				C4BE5ACC1DA8708A00E1734F /* AppVersion.swift in Embed Sources */,
 				C4FEBAFF1BF9196E00A5709B /* Descriptions.swift in Embed Sources */,
 				C4FEBB001BF9196E00A5709B /* FetchedObjectBinding.swift in Embed Sources */,
 				C4FEBB011BF9196E00A5709B /* GenericCoreDataExtensions.swift in Embed Sources */,
@@ -153,6 +161,8 @@
 		C4A6B8C51CB03B8A0053D44E /* PropertyCaching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyCaching.swift; sourceTree = "<group>"; };
 		C4A6B8C71CB082F70053D44E /* AssociatedObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssociatedObjects.swift; sourceTree = "<group>"; };
 		C4BB26B81CB0256500C7277A /* ObjectiveCBridging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectiveCBridging.swift; sourceTree = "<group>"; };
+		C4BE5AAB1DA8610F00E1734F /* TableViewFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewFetchedResultsControllerDelegate.swift; sourceTree = "<group>"; };
+		C4BE5AB21DA8669500E1734F /* TypeFilteringActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeFilteringActivity.swift; sourceTree = "<group>"; };
 		C4CB38851CDBA78D00562665 /* SourceLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceLocation.swift; sourceTree = "<group>"; };
 		C4D6F4191C73CCC000A7E2ED /* Tracing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tracing.swift; sourceTree = "<group>"; };
 		C4D6F41B1C73CD3500A7E2ED /* CoreDataCaching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataCaching.swift; sourceTree = "<group>"; };
@@ -203,6 +213,8 @@
 		C41818621B6A65B100872EB3 /* GEBase */ = {
 			isa = PBXGroup;
 			children = (
+				C4BE5AB21DA8669500E1734F /* TypeFilteringActivity.swift */,
+				C4BE5AAB1DA8610F00E1734F /* TableViewFetchedResultsControllerDelegate.swift */,
 				C40457161D1DA840005B91DA /* ObjectAndKeyPath.swift */,
 				C41818A71B6A673F00872EB3 /* Primitives.swift */,
 				C4BB26B81CB0256500C7277A /* ObjectiveCBridging.swift */,
@@ -230,9 +242,9 @@
 				C4DDBC831CE693690000588F /* FrequencyAndWeightBasedTableRowHeightEstimator.swift */,
 				C492A4D41CDFB78700F8AD5F /* SystemLayoutSizeCachingTableViewCell.swift */,
 				C497008F1D21B17400E9B689 /* Sugar.swift */,
+				C4E15BC21D7D0EC80060A8C8 /* UIDataSourceModelAssociation+NilIndexPathInModelIdentifierForElement.swift */,
 				C40EA7281C6FCA2B002C6D9E /* Bridging-Header.h */,
 				C41818651B6A65B100872EB3 /* Info.plist */,
-				C4E15BC21D7D0EC80060A8C8 /* UIDataSourceModelAssociation+NilIndexPathInModelIdentifierForElement.swift */,
 			);
 			path = GEBase;
 			sourceTree = "<group>";
@@ -387,6 +399,7 @@
 				C4BB26B91CB0256500C7277A /* ObjectiveCBridging.swift in Sources */,
 				C41818921B6A66AE00872EB3 /* GenericCoreDataExtensions.swift in Sources */,
 				C4D6F41C1C73CD3500A7E2ED /* CoreDataCaching.swift in Sources */,
+				C4BE5AB31DA8669500E1734F /* TypeFilteringActivity.swift in Sources */,
 				C4D6F41A1C73CCC000A7E2ED /* Tracing.swift in Sources */,
 				C4DDBC841CE693690000588F /* FrequencyAndWeightBasedTableRowHeightEstimator.swift in Sources */,
 				C41818B11B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift in Sources */,
@@ -395,6 +408,7 @@
 				C41818901B6A66AE00872EB3 /* Descriptions.swift in Sources */,
 				C4E15BC31D7D0EC80060A8C8 /* UIDataSourceModelAssociation+NilIndexPathInModelIdentifierForElement.swift in Sources */,
 				C4CB38861CDBA78D00562665 /* SourceLocation.swift in Sources */,
+				C4BE5AAC1DA8610F00E1734F /* TableViewFetchedResultsControllerDelegate.swift in Sources */,
 				C41818931B6A66AE00872EB3 /* GenericExtensions.swift in Sources */,
 				C4FEBB1A1BF91E6600A5709B /* KVOCompliantUserDefaults.swift in Sources */,
 				C4667F0B1CC71F450039C480 /* UIFontExtensions.swift in Sources */,
@@ -426,45 +440,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C459879B1CDE087200B8E9E4 /* GEShared.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "-DGETypedKeyPaths";
-				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
-				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -474,39 +452,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C459879B1CDE087200B8E9E4 /* GEShared.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_SWIFT_FLAGS = "-DGETypedKeyPaths";
-				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -515,18 +462,14 @@
 		C41818751B6A65B100872EB3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_WARN_UNUSED_VALUE = NO;
 				INFOPLIST_FILE = GEBase/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.grigorye.GEBase;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(TARGET_NAME)/Bridging-Header.h";
 			};
 			name = Debug;
@@ -534,18 +477,14 @@
 		C41818761B6A65B100872EB3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_WARN_UNUSED_VALUE = NO;
 				INFOPLIST_FILE = GEBase/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.grigorye.GEBase;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(TARGET_NAME)/Bridging-Header.h";
 			};
 			name = Release;
