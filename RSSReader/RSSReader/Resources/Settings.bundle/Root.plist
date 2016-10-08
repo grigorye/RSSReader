@@ -294,6 +294,16 @@
 			<key>DefaultValue</key>
 			<true/>
 			<key>Key</key>
+			<string>showAllItemsCount</string>
+			<key>Title</key>
+			<string>Show All Items Count</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>Key</key>
 			<string>showUnreadMark</string>
 			<key>Title</key>
 			<string>Show Unread Mark</string>

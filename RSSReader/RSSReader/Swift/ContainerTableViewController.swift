@@ -10,6 +10,10 @@ import RSSReaderData
 import GEBase
 import Foundation
 
+extension KVOCompliantUserDefaults {
+	@NSManaged var showAllItemsCount: Bool
+}
+
 class ContainerTableViewController: UITableViewController {
 	dynamic var container: Container!
 	dynamic var predicateForItems: NSPredicate? {
@@ -42,7 +46,9 @@ class ContainerTableViewController: UITableViewController {
 	private var blocksDelayedTillViewDidDisappear = [Handler]()
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		blocksDelayedTillViewDidDisappear += [bindItemsCount()]
+		if defaults.showAllItemsCount {
+			blocksDelayedTillViewDidDisappear += [bindItemsCount()]
+		}
 	}
 	override func viewDidDisappear(_ animated: Bool) {
 		blocksDelayedTillViewDidDisappear.forEach {$0()}
