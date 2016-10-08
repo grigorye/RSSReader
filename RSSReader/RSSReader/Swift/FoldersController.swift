@@ -112,10 +112,8 @@ extension FoldersController {
 			let context = backgroundQueueManagedObjectContext
 			return Promise { fulfill, reject in
 				context.perform {
-					let containerLoadController = ContainerLoadController()…{
-						$0.container = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: context)
-						$0.unreadOnly = true
-					}
+					let container = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: context)!
+					let containerLoadController = ContainerLoadController(session: rssSession, container: container, unreadOnly: true)
 					containerLoadController.loadMore { error in
 						guard let error = error else {
 							fulfill()
