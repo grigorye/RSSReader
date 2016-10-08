@@ -31,7 +31,6 @@ class ItemsListViewController: ContainerTableViewController {
 	var showUnreadOnly = false
 	//
 	var tableFooterView: UIView?
-	private var indexPathForTappedAccessoryButton: IndexPath?
 	// MARK: -
 	private var loadedRightBarButtonItems: [UIBarButtonItem]!
 	@IBOutlet var statusLabel: UILabel!
