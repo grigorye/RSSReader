@@ -1,14 +1,19 @@
 //
 //  TableViewFetchedResultsControllerDelegate.swift
-//  RSSReader
+//  GEBase
 //
 //  Created by Grigory Entin on 12.07.15.
 //  Copyright © 2015 Grigory Entin. All rights reserved.
 //
 
-import GEBase
 import CoreData.NSFetchedResultsController
 import UIKit.UITableView
+
+extension KVOCompliantUserDefaults {
+	@NSManaged var fetchResultsAnimationEnabled: Bool
+	@NSManaged var groupingTableUpdatesEnabled: Bool
+	@NSManaged var updateCellsInPlaceEnabled: Bool
+}
 
 private var fetchResultsAnimationEnabled: Bool {
 	return defaults.fetchResultsAnimationEnabled
@@ -18,12 +23,12 @@ private var groupingTableUpdatesEnabled: Bool {
 	return defaults.groupingTableUpdatesEnabled
 }
 
-class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate {
+public class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate {
 	var tableView: UITableView
 	var updateCell: ((UITableViewCell, atIndexPath: IndexPath)) -> Void
 	var rowAnimation: UITableViewRowAnimation { return .automatic }
 	// MARK: -
-	func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+	public func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		$(controller)
 		let managedObjectContext = controller.managedObjectContext
 		assert(managedObjectContext.concurrencyType == .mainQueueConcurrencyType)
@@ -37,7 +42,7 @@ class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSObject, N
 			}
 		}
 	}
-	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+	public func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
 		$(controller)
 		$(stringFromFetchedResultsChangeType(type))
 		switch type {
@@ -49,7 +54,7 @@ class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSObject, N
 			abort()
 		}
 	}
-	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+	public func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
 		let tableView = self.tableView
 		$(tableView)
 		$(controller)
@@ -76,7 +81,7 @@ class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSObject, N
 			tableView.insertRows(at: [$(newIndexPath!)], with: rowAnimation)
 		}
 	}
-	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+	public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		$(controller)
 		if groupingTableUpdatesEnabled {
 			($(fetchResultsAnimationEnabled) ? invoke : UIView.performWithoutAnimation) {
@@ -85,7 +90,7 @@ class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSObject, N
 		}
 	}
 	// MARK: -
-	init(tableView: UITableView, updateCell: @escaping ((UITableViewCell, atIndexPath: IndexPath)) -> Void) {
+	public init(tableView: UITableView, updateCell: @escaping ((UITableViewCell, atIndexPath: IndexPath)) -> Void) {
 		self.tableView = tableView
 		self.updateCell = updateCell
 	}
