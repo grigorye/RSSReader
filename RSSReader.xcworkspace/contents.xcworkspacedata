@@ -14,6 +14,9 @@
          location = "group:RSSReaderData/RSSReaderData.xcodeproj">
       </FileRef>
       <FileRef
+         location = "group:RSSReaderAppConfig/RSSReaderAppConfig.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:GEBase/GEBase.xcodeproj">
       </FileRef>
       <FileRef
