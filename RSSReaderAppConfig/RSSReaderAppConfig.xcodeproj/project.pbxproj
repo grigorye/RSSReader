@@ -103,6 +103,7 @@
 		C4BE5AB71DA86D8D00E1734F /* FBAllocationTracker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBAllocationTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4BE5AB81DA86D8D00E1734F /* FBMemoryProfiler.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBMemoryProfiler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4BE5AB91DA86D8D00E1734F /* FBRetainCycleDetector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBRetainCycleDetector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4BE5ADB1DA8762D00E1734F /* RSSReader-app.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "RSSReader-app.xcconfig"; path = "../RSSReader/RSSReader-app.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +131,7 @@
 		C4BE5A721DA85DA100E1734F = {
 			isa = PBXGroup;
 			children = (
+				C4BE5ADB1DA8762D00E1734F /* RSSReader-app.xcconfig */,
 				C4BE5A7E1DA85DA100E1734F /* RSSReaderAppConfig */,
 				C4BE5A891DA85DA100E1734F /* RSSReaderAppConfigTests */,
 				C4BE5AAA1DA860C300E1734F /* GEShared.xcconfig */,
@@ -354,6 +356,7 @@
 		};
 		C4BE5A911DA85DA100E1734F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C4BE5ADB1DA8762D00E1734F /* RSSReader-app.xcconfig */;
 			buildSettings = {
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -393,6 +396,7 @@
 		};
 		C4BE5A951DA85DA100E1734F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C4BE5ADB1DA8762D00E1734F /* RSSReader-app.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = RSSReaderAppConfig/Info.plist;
