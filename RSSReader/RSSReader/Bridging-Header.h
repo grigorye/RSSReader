@@ -2,14 +2,6 @@
 //  Use this file to import your target's public headers that you would like to expose to Swift.
 //
 
-#if ANALYTICS_ENABLED
-#if UXCAM_ENABLED
-#import <UXCam/UXCam.h>
-#endif
-#if FLURRY_ENABLED
-#import <Flurry_iOS_SDK/Flurry.h>
-#endif
-#endif
 #if 0
 #import <AFMInfoBanner/AFMInfoBanner.h>
 #import <TUSafariActivity/TUSafariActivity.h>
@@ -17,5 +9,3 @@
 #if DZ_READABILITY_ENABLED
 #import <DZReadability/DZReadability.h>
 #endif
-#import <FBAllocationTracker/FBAllocationTracker.h>
-#import <FBMemoryProfiler/FBMemoryProfiler.h>
