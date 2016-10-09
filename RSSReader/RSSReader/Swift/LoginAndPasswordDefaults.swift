@@ -1,5 +1,5 @@
 //
-//  UserDefaults.swift
+//  LoginAndPasswordDefaults.swift
 //  RSSReader
 //
 //  Created by Grigory Entin on 03.01.15.
@@ -11,6 +11,9 @@ import GEBase
 import Foundation
 
 extension KVOCompliantUserDefaults {
+	@NSManaged var login: String!
+	@NSManaged var password: String!
+	//
 	var loginAndPassword: LoginAndPassword {
 		return LoginAndPassword(login: self.login, password: self.password)
 	}
