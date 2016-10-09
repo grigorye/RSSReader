@@ -35,6 +35,8 @@
 		C4BE5AD81DA8711C00E1734F /* UINavigationItem+MultipleButtonItemsCollections.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5AA31DA85E7500E1734F /* UINavigationItem+MultipleButtonItemsCollections.swift */; };
 		C4BE5AD91DA8711C00E1734F /* ContainedViewControllersAwareNavigationControllerDelegate.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5AA51DA85E7500E1734F /* ContainedViewControllersAwareNavigationControllerDelegate.swift */; };
 		C4BE5ADA1DA8712600E1734F /* RSSReaderAppConfigTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5A8A1DA85DA100E1734F /* RSSReaderAppConfigTests.swift */; };
+		C4BE5AE11DAA5AE000E1734F /* UserMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BE5ADF1DAA5AE000E1734F /* UserMessages.swift */; };
+		C4BE5AE21DAA5AE000E1734F /* Readability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BE5AE01DAA5AE000E1734F /* Readability.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +106,8 @@
 		C4BE5AB81DA86D8D00E1734F /* FBMemoryProfiler.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBMemoryProfiler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4BE5AB91DA86D8D00E1734F /* FBRetainCycleDetector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBRetainCycleDetector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4BE5ADB1DA8762D00E1734F /* RSSReader-app.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "RSSReader-app.xcconfig"; path = "../RSSReader/RSSReader-app.xcconfig"; sourceTree = "<group>"; };
+		C4BE5ADF1DAA5AE000E1734F /* UserMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMessages.swift; sourceTree = "<group>"; };
+		C4BE5AE01DAA5AE000E1734F /* Readability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Readability.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +156,8 @@
 		C4BE5A7E1DA85DA100E1734F /* RSSReaderAppConfig */ = {
 			isa = PBXGroup;
 			children = (
+				C4BE5ADF1DAA5AE000E1734F /* UserMessages.swift */,
+				C4BE5AE01DAA5AE000E1734F /* Readability.swift */,
 				C4BE5AB41DA868AD00E1734F /* AppDelegateBase.swift */,
 				C4BE5AB01DA8664600E1734F /* UITabBarController+CVKHiearachySearcher.swift */,
 				C4BE5A961DA85DE000E1734F /* Analytics.swift */,
@@ -305,9 +311,11 @@
 				C4BE5AB11DA8664600E1734F /* UITabBarController+CVKHiearachySearcher.swift in Sources */,
 				C4BE5AA71DA85E7500E1734F /* UINavigationItem+MultipleButtonItemsCollections.swift in Sources */,
 				C4BE5A9F1DA85E0600E1734F /* Crashlytics.swift in Sources */,
+				C4BE5AE21DAA5AE000E1734F /* Readability.swift in Sources */,
 				C4BE5A9B1DA85DE000E1734F /* Appsee.swift in Sources */,
 				C4BE5AA11DA85E2400E1734F /* FileLogger.swift in Sources */,
 				C4BE5AA61DA85E7500E1734F /* UITableView+SnappingHeaderToTop.swift in Sources */,
+				C4BE5AE11DAA5AE000E1734F /* UserMessages.swift in Sources */,
 				C4BE5AB51DA868AD00E1734F /* AppDelegateBase.swift in Sources */,
 				C4BE5A9C1DA85DE000E1734F /* UXCam.swift in Sources */,
 				C4BE5A9D1DA85DE000E1734F /* Flurry.swift in Sources */,
