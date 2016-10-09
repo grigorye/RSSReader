@@ -11,7 +11,7 @@ import SwiftMessages
 import UIKit
 import Foundation
 
-func presentErrorMessage(_ text: String) {
+public func presentErrorMessage(_ text: String) {
 #if true
 	let view = MessageView.viewFromNib(layout: .CardView)…{
 		$0.configureTheme(.error)
@@ -35,10 +35,10 @@ func presentInfoMessage(_ text: String) {
 }
 
 extension UIViewController {
-	func presentErrorMessage(_ text: String) {
-		RSSReader.presentErrorMessage(text)
+	open func presentErrorMessage(_ text: String) {
+		RSSReaderAppConfig.presentErrorMessage(text)
 	}
-	func presentInfoMessage(_ text: String) {
-		RSSReader.presentInfoMessage(text)
+	open func presentInfoMessage(_ text: String) {
+		RSSReaderAppConfig.presentInfoMessage(text)
 	}
 }

@@ -12,7 +12,7 @@ import DZReadability
 #endif
 import Foundation
 
-func retrieveReadableHTMLFromURL(_ url: URL, completionHandler: @escaping ((HTMLString: String?, error: Error?)) -> ()) {
+public func retrieveReadableHTMLFromURL(_ url: URL, completionHandler: @escaping ((HTMLString: String?, error: Error?)) -> ()) {
 	let completeWithError: (Error) -> () = { error in
 		completionHandler((HTMLString: nil, error: error))
 	}
