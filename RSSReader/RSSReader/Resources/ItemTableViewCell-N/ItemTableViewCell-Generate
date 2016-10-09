@@ -1,0 +1,12 @@
+#! /bin/sh -ex
+
+#  ItemTableViewCell-Generate
+#  RSSReader
+#
+#  Created by Grigory Entin on 09.10.16.
+#  Copyright © 2016 Grigory Entin. All rights reserved.
+
+for i in $(seq 0 3)
+do
+	sed 's/reuseIdentifier="Item"/reuseIdentifier="Item'-$i'"/' < ../ItemTableViewCell.xib > ItemTableViewCell-$i.xib
+done
