@@ -21,15 +21,15 @@ protocol ItemTableViewCellDataBinder {
 }
 
 class ItemTableViewCell : SystemLayoutSizeCachingTableViewCell, ItemTableViewCellDataBinder {
-	@IBOutlet var titleLabel: UILabel!
-	@IBOutlet var dateLabel: UILabel!
-	@IBOutlet var sourceLabel: UILabel!
-	@IBOutlet var readMarkLabel: UILabel!
-	@IBOutlet var favoriteMarkLabel: UILabel!
+	@IBOutlet final var titleLabel: UILabel!
+	@IBOutlet final var dateLabel: UILabel!
+	@IBOutlet final var sourceLabel: UILabel!
+	@IBOutlet final var readMarkLabel: UILabel!
+	@IBOutlet final var favoriteMarkLabel: UILabel!
 	
-	var itemObjectID: NSManagedObjectID!
+	final var itemObjectID: NSManagedObjectID!
 
-	func setData(_ data: (item: Item, container: Container, nowDate: Date)) {
+	final func setData(_ data: (item: Item, container: Container, nowDate: Date)) {
 		let item = data.item
 		let container = data.container
 		let nowDate = data.nowDate
