@@ -11,6 +11,11 @@ import GEBase
 import PromiseKit
 import Foundation
 
+extension KVOCompliantUserDefaults {
+	@NSManaged var foldersLastUpdateDate: Date!
+	@NSManaged var foldersLastUpdateErrorEncoded: Data!
+}
+
 enum FoldersUpdateState: Int {
 	case unknown
 	case completed

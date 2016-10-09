@@ -11,6 +11,13 @@ import GEBase
 import CoreData
 import UIKit
 
+extension KVOCompliantUserDefaults {
+	@NSManaged var frequencyAndWeightBasedTableRowHeightEstimatorEnabled: Bool
+	@NSManaged var cellHeightCachingEnabled: Bool
+	@NSManaged var fixedHeightItemRowsEnabled: Bool
+	@NSManaged var fetchBatchSize: Int
+}
+
 class ItemTableViewDataSource: NSObject {
 	let tableView: UITableView
 	let container: Container

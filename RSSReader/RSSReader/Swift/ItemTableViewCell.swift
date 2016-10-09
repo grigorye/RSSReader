@@ -11,6 +11,11 @@ import GEBase
 import CoreData.NSManagedObjectID
 import UIKit
 
+extension KVOCompliantUserDefaults {
+	@NSManaged var showDates: Bool
+	@NSManaged var showUnreadMark: Bool
+}
+
 protocol ItemTableViewCellDataBinder {
 	func setData(_ data: (item: Item, container: Container, nowDate: Date))
 }

@@ -12,6 +12,10 @@ import PromiseKit
 import UIKit
 import CoreData
 
+extension KVOCompliantUserDefaults {
+	@NSManaged var showUnreadOnly: Bool
+}
+
 class FoldersListTableViewController: ContainerTableViewController, UIDataSourceModelAssociation {
 	typealias _Self = FoldersListTableViewController
 	dynamic var rootFolder: Folder? {

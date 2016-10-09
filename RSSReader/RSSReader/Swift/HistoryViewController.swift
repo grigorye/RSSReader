@@ -11,6 +11,10 @@ import GEBase
 import UIKit.UITableViewController
 import CoreData.NSFetchedResultsController
 
+extension KVOCompliantUserDefaults {
+	@NSManaged var pageViewsEnabled: Bool
+}
+
 class HistoryViewController: UITableViewController {
 	typealias _Self = HistoryViewController
 	private var nowDate: Date!

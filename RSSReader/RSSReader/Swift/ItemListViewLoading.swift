@@ -12,6 +12,12 @@ import PromiseKit
 import CoreData
 import Foundation
 
+extension KVOCompliantUserDefaults {
+	@NSManaged var numberOfItemsToLoadPastVisible: Int
+	@NSManaged var numberOfItemsToLoadInitially: Int
+	@NSManaged var numberOfItemsToLoadLater: Int
+}
+
 extension ItemsListViewController {
 	override func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		if nil != rssSession && nil != view.superview && !refreshControl!.isRefreshing {

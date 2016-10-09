@@ -12,6 +12,10 @@ import GEBase
 import UIKit
 import CoreData
 
+extension KVOCompliantUserDefaults {
+	@NSManaged var hideBarsOnSwipe: Bool
+}
+
 class AppDelegateInternals {
 	var rssSession: RSSSession?
 	private let urlTaskGeneratorProgressKVOBinding: KVOBinding
@@ -154,6 +158,10 @@ class AppDelegate: AppDelegateBase, FoldersController {
 		super.init()
 		configureAppearance()
 	}
+}
+
+extension KVOCompliantUserDefaults {
+	@NSManaged var stateRestorationEnabled: Bool
 }
 
 // MARK: - State Restoration
