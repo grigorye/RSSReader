@@ -7,7 +7,7 @@
 //
 
 import GEBase
-import Foundation
+import UIKit
 
 extension ItemsListViewController {
 #if true

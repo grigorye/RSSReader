@@ -1,5 +1,5 @@
 //
-//  RSSContainerTableViewController.swift
+//  ContainerTableViewController.swift
 //  RSSReader
 //
 //  Created by Grigory Entin on 15/05/16.
@@ -8,7 +8,7 @@
 
 import RSSReaderData
 import GEBase
-import Foundation
+import UIKit
 
 extension KVOCompliantUserDefaults {
 	@NSManaged var showAllItemsCount: Bool

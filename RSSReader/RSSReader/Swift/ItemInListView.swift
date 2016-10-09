@@ -7,6 +7,7 @@
 //
 
 import RSSReaderData
+import Foundation
 
 extension Item {
 	class func keyPathsForValuesAffectingItemListSectionName() -> Set<String> {

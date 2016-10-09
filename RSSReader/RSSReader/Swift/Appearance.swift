@@ -6,7 +6,7 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class ItemCellSmallCapsLabel: UILabel {}
 class ItemCellSourceLabel: ItemCellSmallCapsLabel {}

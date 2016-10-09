@@ -9,7 +9,7 @@
 import RSSReaderData
 import GEBase
 import CoreData
-import Foundation
+import UIKit
 
 class ItemTableViewDataSource: NSObject {
 	let tableView: UITableView
