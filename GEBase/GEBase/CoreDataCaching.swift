@@ -17,7 +17,9 @@ private let notificationCenter = NotificationCenter.default
 extension NSManagedObjectContext {
 	var statefulValueCachesForObjectIDs: NSMutableDictionary! {
 		get {
-			return associatedObjectRegeneratedAsNecessary(obj: self, key: &statefulValueCachesForObjectIDsAssoc, type: NSMutableDictionary.self)
+			return associatedObjectRegeneratedAsNecessary(obj: self, key: &statefulValueCachesForObjectIDsAssoc) {
+				NSMutableDictionary()
+			}
 		}
 		set {
 			precondition(nil == newValue)
