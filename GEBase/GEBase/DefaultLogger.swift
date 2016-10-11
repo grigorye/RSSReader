@@ -7,6 +7,18 @@
 //
 
 import Foundation
+import os
+
+private var bundleLogAssoc: Void?
+
+@available(iOS 10.0, *)
+extension Bundle {
+	public var log: OSLog {
+		return associatedObjectRegeneratedAsNecessary(obj: self, key: &bundleLogAssoc) {
+			OSLog(subsystem: self.bundleIdentifier!, category: "default")
+		}
+	}
+}
 
 let dateFormatter = DateFormatter() … {
 	$0.dateFormat = "HH:mm.ss.SSS"
@@ -36,6 +48,11 @@ public func defaultLoggedTextWithThread(date: Date, label: String, location: Sou
 }
 
 func defaultLogger(date: Date, label: String, location: SourceLocation, message: String) {
+	if #available(iOS 10, *) {
+		let text = defaultLoggedText(date: date, label: label, location: location, message: message)
+		os_log("%{public}@", log: location.bundle!.log, (text as NSString))
+		return
+	}
 	if traceToNSLogEnabled {
 		let text = defaultLoggedText(date: date, label: label, location: location, message: message)
 		NSLog("%@", text)
