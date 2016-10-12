@@ -24,6 +24,11 @@
 		C4667F0B1CC71F450039C480 /* UIFontExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667F0A1CC71F450039C480 /* UIFontExtensions.swift */; };
 		C46C93F61C6FF77E007E4302 /* DefaultLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46C93F51C6FF77E007E4302 /* DefaultLogger.swift */; };
 		C474F0B71D85317C00CABEB9 /* AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474F0B61D85317C00CABEB9 /* AppVersion.swift */; };
+		C474F19A1DAEB98700F0E152 /* OSLogRDAR28599032.h in Headers */ = {isa = PBXBuildFile; fileRef = C474F1981DAEB98700F0E152 /* OSLogRDAR28599032.h */; };
+		C474F19B1DAEB98700F0E152 /* OSLogRDAR28599032.m in Sources */ = {isa = PBXBuildFile; fileRef = C474F1991DAEB98700F0E152 /* OSLogRDAR28599032.m */; };
+		C474F1A91DAEE1F800F0E152 /* OSActivitiesForSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = C474F1A71DAEE1F800F0E152 /* OSActivitiesForSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C474F1AA1DAEE1F800F0E152 /* OSActivitiesForSwift.m in Sources */ = {isa = PBXBuildFile; fileRef = C474F1A81DAEE1F800F0E152 /* OSActivitiesForSwift.m */; };
+		C474F1AC1DAEE26C00F0E152 /* OSActivitiesForSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474F1AB1DAEE26C00F0E152 /* OSActivitiesForSwift.swift */; };
 		C48D5DE31CE54BDC0078023A /* TableViewHeightBasedReusedCellGenerator.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C492A4D21CDFB2B900F8AD5F /* TableViewHeightBasedReusedCellGenerator.swift */; };
 		C48D5DE41CE54BDC0078023A /* SystemLayoutSizeCachingTableViewCell.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C492A4D41CDFB78700F8AD5F /* SystemLayoutSizeCachingTableViewCell.swift */; };
 		C492A4D31CDFB2B900F8AD5F /* TableViewHeightBasedReusedCellGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492A4D21CDFB2B900F8AD5F /* TableViewHeightBasedReusedCellGenerator.swift */; };
@@ -154,6 +159,11 @@
 		C4667F0A1CC71F450039C480 /* UIFontExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtensions.swift; sourceTree = "<group>"; };
 		C46C93F51C6FF77E007E4302 /* DefaultLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultLogger.swift; sourceTree = "<group>"; };
 		C474F0B61D85317C00CABEB9 /* AppVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersion.swift; sourceTree = "<group>"; };
+		C474F1981DAEB98700F0E152 /* OSLogRDAR28599032.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSLogRDAR28599032.h; sourceTree = "<group>"; };
+		C474F1991DAEB98700F0E152 /* OSLogRDAR28599032.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSLogRDAR28599032.m; sourceTree = "<group>"; };
+		C474F1A71DAEE1F800F0E152 /* OSActivitiesForSwift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSActivitiesForSwift.h; sourceTree = "<group>"; };
+		C474F1A81DAEE1F800F0E152 /* OSActivitiesForSwift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSActivitiesForSwift.m; sourceTree = "<group>"; };
+		C474F1AB1DAEE26C00F0E152 /* OSActivitiesForSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSActivitiesForSwift.swift; sourceTree = "<group>"; };
 		C492A4D21CDFB2B900F8AD5F /* TableViewHeightBasedReusedCellGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewHeightBasedReusedCellGenerator.swift; sourceTree = "<group>"; };
 		C492A4D41CDFB78700F8AD5F /* SystemLayoutSizeCachingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemLayoutSizeCachingTableViewCell.swift; sourceTree = "<group>"; };
 		C495D8981C02592100A7F7D5 /* GenericExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericExtensionsTests.swift; sourceTree = "<group>"; };
@@ -244,6 +254,11 @@
 				C497008F1D21B17400E9B689 /* Sugar.swift */,
 				C4E15BC21D7D0EC80060A8C8 /* UIDataSourceModelAssociation+NilIndexPathInModelIdentifierForElement.swift */,
 				C40EA7281C6FCA2B002C6D9E /* Bridging-Header.h */,
+				C474F1981DAEB98700F0E152 /* OSLogRDAR28599032.h */,
+				C474F1991DAEB98700F0E152 /* OSLogRDAR28599032.m */,
+				C474F1A71DAEE1F800F0E152 /* OSActivitiesForSwift.h */,
+				C474F1A81DAEE1F800F0E152 /* OSActivitiesForSwift.m */,
+				C474F1AB1DAEE26C00F0E152 /* OSActivitiesForSwift.swift */,
 				C41818651B6A65B100872EB3 /* Info.plist */,
 			);
 			path = GEBase;
@@ -273,6 +288,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C474F1A91DAEE1F800F0E152 /* OSActivitiesForSwift.h in Headers */,
+				C474F19A1DAEB98700F0E152 /* OSLogRDAR28599032.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,6 +401,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C474F19B1DAEB98700F0E152 /* OSLogRDAR28599032.m in Sources */,
 				C416F00D1CD1E8A90006F6A2 /* DefaultsInSettingsPlist.swift in Sources */,
 				C41818911B6A66AE00872EB3 /* FetchedObjectBinding.swift in Sources */,
 				C418189F1B6A66AE00872EB3 /* KVOBinding.swift in Sources */,
@@ -396,6 +414,7 @@
 				C41818941B6A66AE00872EB3 /* GenericURLSessionExtensions.swift in Sources */,
 				C4FEBB1D1BF960A300A5709B /* NSBundleExtensions.swift in Sources */,
 				C41818A51B6A66AE00872EB3 /* ProgressEnabledURLSessionTaskGenerator.swift in Sources */,
+				C474F1AC1DAEE26C00F0E152 /* OSActivitiesForSwift.swift in Sources */,
 				C4BB26B91CB0256500C7277A /* ObjectiveCBridging.swift in Sources */,
 				C41818921B6A66AE00872EB3 /* GenericCoreDataExtensions.swift in Sources */,
 				C4D6F41C1C73CD3500A7E2ED /* CoreDataCaching.swift in Sources */,
@@ -414,6 +433,7 @@
 				C4667F0B1CC71F450039C480 /* UIFontExtensions.swift in Sources */,
 				C4A6B8C61CB03B8A0053D44E /* PropertyCaching.swift in Sources */,
 				C46C93F61C6FF77E007E4302 /* DefaultLogger.swift in Sources */,
+				C474F1AA1DAEE1F800F0E152 /* OSActivitiesForSwift.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
