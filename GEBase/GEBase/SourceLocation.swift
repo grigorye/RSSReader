@@ -81,13 +81,15 @@ public struct SourceLocation {
 	let column: Int
 	let function: String
 	let bundle: Bundle?
-	public init(file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, bundle: Bundle? = Bundle.bundle(forStackFrameIndex: 2)) {
+	let dso: UnsafeRawPointer
+	public init(file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer, bundle: Bundle? = Bundle.bundle(forStackFrameIndex: 2)) {
 		precondition(file != "")
 		self.fileURL = URL(fileURLWithPath: file, isDirectory: false)
 		self.line = line
 		self.column = column
 		self.function = function
 		self.bundle = bundle
+		self.dso = dso
 	}
 }
 extension SourceLocation {
