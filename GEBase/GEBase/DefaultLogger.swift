@@ -50,7 +50,7 @@ public func defaultLoggedTextWithThread(date: Date, label: String, location: Sou
 func defaultLogger(date: Date, label: String, location: SourceLocation, message: String) {
 	if #available(iOS 10, *) {
 		let text = defaultLoggedText(date: date, label: label, location: location, message: message)
-		os_log("%{public}@", log: location.bundle!.log, (text as NSString))
+		rdar_os_log_with_type(location.dso, location.bundle!.log, .default, text)
 		return
 	}
 	if traceToNSLogEnabled {
