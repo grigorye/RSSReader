@@ -8,6 +8,7 @@
 
 import RSSReaderAppConfig
 import RSSReaderData
+import Loggy
 import GEBase
 import UIKit
 import CoreData
@@ -31,6 +32,7 @@ class AppDelegateInternals {
 @UIApplicationMain
 class AppDelegate: AppDelegateBase, FoldersController {
 	typealias _Self = AppDelegate
+	var launchingScope = Activity("Launching").enter()
 	final var retainedObjects = [Any]()
 #if false
 	var foldersLastUpdateDate: NSDate?
@@ -116,6 +118,7 @@ class AppDelegate: AppDelegateBase, FoldersController {
 		return true
 	}
 	override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+		launchingScope.leave()
 		filesWithTracingDisabled += [
 			"TableViewFetchedResultsControllerDelegate.swift",
 			"KVOCompliantUserDefaults.swift"
