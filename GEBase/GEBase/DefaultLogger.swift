@@ -24,6 +24,14 @@ let dateFormatter = DateFormatter() … {
 	$0.dateFormat = "HH:mm.ss.SSS"
 }
 
+enum DefaultLogKind: String {
+	case none, oslog, nslog, print
+}
+
+extension KVOCompliantUserDefaults {
+	@NSManaged var logKind: String?
+}
+
 private let traceToNSLogEnabled = false
 
 public func defaultLoggedText(date: Date, label: String, location: SourceLocation, message: String) -> String {
@@ -48,16 +56,16 @@ public func defaultLoggedTextWithThread(date: Date, label: String, location: Sou
 }
 
 func defaultLogger(date: Date, label: String, location: SourceLocation, message: String) {
-	if #available(iOS 10, *) {
+	guard let logKindInDefaults = defaults.logKind else { return }
+	switch DefaultLogKind(rawValue: logKindInDefaults)! {
+	case .none: ()
+	case .oslog:
 		let text = defaultLoggedText(date: date, label: label, location: location, message: message)
-		rdar_os_log_with_type(location.dso, location.bundle!.log, .default, text)
-		return
-	}
-	if traceToNSLogEnabled {
+		rdar_os_log_object_with_type(location.dso, location.bundle!.log, .default, text)
+	case .nslog:
 		let text = defaultLoggedText(date: date, label: label, location: location, message: message)
 		NSLog("%@", text)
-	}
-	else {
+	case .print:
 		let textWithTimestampAndThread = defaultLoggedTextWithTimestampAndThread(date: date, label: label, location: location, message: message)
 		print(textWithTimestampAndThread)
 	}
