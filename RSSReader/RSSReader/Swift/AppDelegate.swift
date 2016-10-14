@@ -168,7 +168,7 @@ extension KVOCompliantUserDefaults {
 
 // MARK: - State Restoration
 
-var restorationScope: Activity.Scope!
+private var appStateRestorationScope: Activity.Scope!
 
 extension AppDelegate {
 	private static let currentRestorationFormatVersion = Int32(1)
@@ -181,7 +181,7 @@ extension AppDelegate {
 		return true
 	}
 	func application(_ application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
-		restorationScope = Activity("State Restoration").enter()
+		appStateRestorationScope = Activity("State Restoration").enter()
 		$(self)
 		let restorationFormatVersion = coder.decodeInt32(forKey: Restorable.restorationFormatVersion.rawValue)
 		if $(restorationFormatVersion) < _Self.currentRestorationFormatVersion {
@@ -190,6 +190,6 @@ extension AppDelegate {
 		return $(defaults.stateRestorationEnabled)
 	}
 	func application(_ application: UIApplication, didDecodeRestorableStateWith coder: NSCoder) {
-		restorationScope.leave()
+		appStateRestorationScope.leave()
 	}
 }
