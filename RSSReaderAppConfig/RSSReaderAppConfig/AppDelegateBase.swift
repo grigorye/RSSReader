@@ -6,6 +6,7 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
+import Loggy
 import FBAllocationTracker
 import FBMemoryProfiler
 import GEBase
@@ -64,6 +65,7 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 	// MARK: -
 	public override init() {
 		super.init()
+		var scope = Activity("Basic Initialization").enter(); defer { scope.leave() }
 		let defaultsPlistURL = Bundle.main.url(forResource: "Settings", withExtension: "bundle")!.appendingPathComponent("Root.plist")
 		try! loadDefaultsFromSettingsPlistAtURL(defaultsPlistURL)
 		if defaults.memoryProfilingEnabled {
@@ -77,6 +79,7 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 	}
 	// MARK: -
 	static private let initializeOnce: Void = {
+		var scope = Activity("Initializing Analytics").enter(); defer { scope.leave() }
 		if $(versionIsClean) {
 			_ = crashlyticsInitializer
 			_ = appseeInitializer
