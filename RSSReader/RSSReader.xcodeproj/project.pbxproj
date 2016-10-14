@@ -52,6 +52,8 @@
 		C474F0B21D80F5B100CABEB9 /* LogViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C474F0A71D80E65F00CABEB9 /* LogViewController.swift */; };
 		C474F0D11D8775F500CABEB9 /* SwiftMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C474F0D01D8775F500CABEB9 /* SwiftMessages.framework */; };
 		C474F0D21D8775F500CABEB9 /* SwiftMessages.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C474F0D01D8775F500CABEB9 /* SwiftMessages.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C474F1C01DB041F100F0E152 /* Loggy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C474F1BF1DB041F100F0E152 /* Loggy.framework */; };
+		C474F1C11DB041F100F0E152 /* Loggy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C474F1BF1DB041F100F0E152 /* Loggy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C48C5F971A87344000A1EA12 /* ItemsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */; };
 		C495409B1A575C1900F56168 /* LoginAndPasswordDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495409A1A575C1900F56168 /* LoginAndPasswordDefaults.swift */; };
 		C49540A11A57825100F56168 /* ItemsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49540A01A57825100F56168 /* ItemsListViewController.swift */; };
@@ -156,6 +158,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				C474F1C11DB041F100F0E152 /* Loggy.framework in Embed Frameworks */,
 				C408F1B81CE7520700DB943F /* FBRetainCycleDetector.framework in Embed Frameworks */,
 				C424B8F21C6FC5C8008AD647 /* RSSReaderData.framework in Embed Frameworks */,
 				C4BE5AAF1DA864FA00E1734F /* RSSReaderAppConfig.framework in Embed Frameworks */,
@@ -221,6 +224,7 @@
 		C474F0A71D80E65F00CABEB9 /* LogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogViewController.swift; path = Swift/LogViewController.swift; sourceTree = "<group>"; };
 		C474F0AC1D80F48400CABEB9 /* VersionIsClean */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = VersionIsClean; sourceTree = "<group>"; };
 		C474F0D01D8775F500CABEB9 /* SwiftMessages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftMessages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C474F1BF1DB041F100F0E152 /* Loggy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Loggy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C48C5F961A87344000A1EA12 /* ItemsPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ItemsPageViewController.swift; path = Swift/ItemsPageViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C4915FE31CE734A40063A734 /* RSSReader-app.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "RSSReader-app.xcconfig"; sourceTree = SOURCE_ROOT; };
 		C495409A1A575C1900F56168 /* LoginAndPasswordDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginAndPasswordDefaults.swift; path = Swift/LoginAndPasswordDefaults.swift; sourceTree = "<group>"; };
@@ -283,6 +287,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C474F1C01DB041F100F0E152 /* Loggy.framework in Frameworks */,
 				C408F1B71CE7520700DB943F /* FBRetainCycleDetector.framework in Frameworks */,
 				C424B8F11C6FC5C8008AD647 /* RSSReaderData.framework in Frameworks */,
 				C4BE5AAE1DA864FA00E1734F /* RSSReaderAppConfig.framework in Frameworks */,
@@ -321,6 +326,7 @@
 		C424B8F91C6FC5E1008AD647 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C474F1BF1DB041F100F0E152 /* Loggy.framework */,
 				C4D436751D8777A3008C6386 /* SwiftMessages.bundle */,
 				C474F0D01D8775F500CABEB9 /* SwiftMessages.framework */,
 				C4AD5B361D282F1800358DEA /* PromiseKit.framework */,
