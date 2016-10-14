@@ -29,4 +29,7 @@
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:GitSubtrees/LogExperiment/LogExperiment.xcodeproj">
+   </FileRef>
 </Workspace>
