@@ -3,14 +3,4 @@
 //
 
 #import "OSLogRDAR28599032.h"
-#import "OSActivitiesForSwift.h"
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-int backtrace(void** array, int size);
-
-#ifdef __cplusplus
-}
-#endif
+#import <execinfo.h>
