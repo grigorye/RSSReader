@@ -109,6 +109,30 @@
 			<string>PSGroupSpecifier</string>
 		</dict>
 		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Logging Method</string>
+			<key>Key</key>
+			<string>logKind</string>
+			<key>DefaultValue</key>
+			<string>oslog</string>
+			<key>Titles</key>
+			<array>
+				<string>None</string>
+				<string>Unified Log</string>
+				<string>NSLog</string>
+				<string>Swift print</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<string>none</string>
+				<string>oslog</string>
+				<string>nslog</string>
+				<string>print</string>
+			</array>
+		</dict>
+		<dict>
 			<key>DefaultValue</key>
 			<false/>
 			<key>Key</key>
