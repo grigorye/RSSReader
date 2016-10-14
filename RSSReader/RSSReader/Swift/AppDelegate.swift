@@ -29,10 +29,8 @@ class AppDelegateInternals {
 	}
 }
 
-@UIApplicationMain
 class AppDelegate: AppDelegateBase, FoldersController {
 	typealias _Self = AppDelegate
-	var launchingScope = Activity("Launching").enter()
 	final var retainedObjects = [Any]()
 #if false
 	var foldersLastUpdateDate: NSDate?
@@ -118,7 +116,8 @@ class AppDelegate: AppDelegateBase, FoldersController {
 		return true
 	}
 	override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
-		launchingScope.leave()
+		defer { launchingScope.leave() }
+		var scope = Activity("Finishing Launching").enter(); defer { scope.leave() }
 		filesWithTracingDisabled += [
 			"TableViewFetchedResultsControllerDelegate.swift",
 			"KVOCompliantUserDefaults.swift"
@@ -168,6 +167,9 @@ extension KVOCompliantUserDefaults {
 }
 
 // MARK: - State Restoration
+
+var restorationScope: Activity.Scope!
+
 extension AppDelegate {
 	private static let currentRestorationFormatVersion = Int32(1)
 	private enum Restorable: String {
@@ -179,11 +181,15 @@ extension AppDelegate {
 		return true
 	}
 	func application(_ application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
+		restorationScope = Activity("State Restoration").enter()
 		$(self)
 		let restorationFormatVersion = coder.decodeInt32(forKey: Restorable.restorationFormatVersion.rawValue)
 		if $(restorationFormatVersion) < _Self.currentRestorationFormatVersion {
 			return false
 		}
 		return $(defaults.stateRestorationEnabled)
+	}
+	func application(_ application: UIApplication, didDecodeRestorableStateWith coder: NSCoder) {
+		restorationScope.leave()
 	}
 }
