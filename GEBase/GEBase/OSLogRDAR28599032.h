@@ -8,13 +8,11 @@
 
 #import <os/log.h>
 
-@class NSString;
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-void rdar_os_log_with_type(void const *dso, os_log_t log, os_log_type_t type, NSString * message);
+void rdar_os_log_object_with_type(void const *dso, os_log_t log, os_log_type_t type, id object);
 
 #ifdef __cplusplus
 }
