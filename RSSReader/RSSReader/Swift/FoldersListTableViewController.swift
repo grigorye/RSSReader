@@ -129,21 +129,8 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 		}.always {
 			self.refreshControl?.endRefreshing()
 		}.catch { updateError in
-			let presentedError: Error = {
-				switch $(updateError) {
-				case let foldersControllerError as FoldersControllerError:
-					switch foldersControllerError {
-					case .userInfoRetrieval(let underlyingError):
-						return underlyingError
-					default:
-						return foldersControllerError
-					}
-				default:
-					return updateError
-				}
-			}()
 			let errorTitle = NSLocalizedString("Refresh Failed", comment: "Title for alert on failed refresh")
-			let errorViewController = type(of: self).viewControllerToPresent(on: presentedError, title: errorTitle) {
+			let errorViewController = type(of: self).viewControllerToPresent(on: $(updateError), title: errorTitle) {
 				self.refresh(self)
 			}
 			self.present(errorViewController, animated: true, completion: nil)
@@ -244,7 +231,7 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 		return {_ = binding}
 	}
 	func bindFoldersUpdateState() -> Handler {
-		let binding = KVOBinding(self•#keyPath(foldersController.foldersUpdateStateRaw), options: .initial) { [unowned self] change in
+		let binding = KVOBinding(self•#keyPath(foldersController.foldersUpdateState), options: .initial) { [unowned self] change in
 			assert(Thread.isMainThread)
 			•(change)
 			let foldersUpdateState = self.foldersController.foldersUpdateState
