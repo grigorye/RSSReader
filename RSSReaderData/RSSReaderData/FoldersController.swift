@@ -1,22 +1,16 @@
 //
 //  FoldersController.swift
-//  RSSReader
+//  RSSReaderData
 //
 //  Created by Grigory Entin on 01.05.15.
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
-import RSSReaderData
 import GEBase
 import PromiseKit
 import Foundation
 
-extension KVOCompliantUserDefaults {
-	@NSManaged var foldersLastUpdateDate: Date!
-	@NSManaged var foldersLastUpdateErrorEncoded: Data!
-}
-
-enum FoldersUpdateState: Int {
+@objc public enum FoldersUpdateState: Int {
 	case unknown
 	case completed
 	case authenticating
@@ -30,7 +24,7 @@ enum FoldersUpdateState: Int {
 }
 
 extension FoldersUpdateState: CustomStringConvertible {
-	var description: String {
+	public var description: String {
 		switch self {
 		case .unknown:
 			return NSLocalizedString("Unknown", comment: "Folders Update State")
@@ -56,7 +50,7 @@ extension FoldersUpdateState: CustomStringConvertible {
 	}
 }
 
-enum FoldersControllerError: Error {
+public enum FoldersControllerError: Error {
 	case userInfoRetrieval(underlyingError: Error)
 	case pushTags(underlyingError: Error)
 	case pullTags(underlyingError: Error)
@@ -67,32 +61,17 @@ enum FoldersControllerError: Error {
 	case updateFoldersAuthenticated(underylingError: Error)
 }
 
-@objc protocol FoldersController {
+public protocol FoldersController : class {
 	var foldersLastUpdateDate: Date? { get set }
-	var foldersLastUpdateErrorRaw: NSError? { get set }
-	var foldersUpdateStateRaw: Int { get set }
+	var foldersLastUpdateError: FoldersControllerError? { get set }
+	var foldersUpdateState: FoldersUpdateState { get set }
+	var rssSession: RSSSession { get }
 }
 
-extension FoldersController {
-	final var foldersUpdateState: FoldersUpdateState {
-		set {
-			foldersUpdateStateRaw = newValue.rawValue
-		}
-		get {
-			return FoldersUpdateState(rawValue: foldersUpdateStateRaw)!
-		}
-	}
-	final var foldersLastUpdateError: Error? {
-		set {
-			foldersLastUpdateErrorRaw = NSError(domain: "", code: 1, userInfo: ["swiftError": "\(newValue)"])
-		}
-		get {
-			return nil
-		}
-	}
+public extension FoldersController {
 	typealias Error = FoldersControllerError
-	final func updateFoldersAuthenticated() -> Promise<Void> {
-		let rssSession = RSSReader.rssSession!
+	public final func updateFoldersAuthenticated() -> Promise<Void> {
+		let rssSession = self.rssSession
 		return firstly {
 			self.foldersLastUpdateError = nil
 			self.foldersUpdateState = .updatingUserInfo
