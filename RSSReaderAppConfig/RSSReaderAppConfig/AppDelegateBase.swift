@@ -21,16 +21,10 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 	final var retainedObjects = [Any]()
 	// MARK: -
 	@IBAction public func openSettings(_ sender: AnyObject?) {
-		let url = URL(string: UIApplicationOpenSettingsURLString)!
-		let application = UIApplication.shared
-		if #available(iOS 10.0, *) {
-			application.open(url, options: [:], completionHandler: nil)
-		} else {
-			application.openURL(url)
-		}
+		openSettingsApp()
 	}
-	@IBAction public func crash(_ sender: AnyObject?) {
-		fatalError()
+	@IBAction public func forceCrash(_ sender: AnyObject?) {
+		GEBase.forceCrash()
 	}
 	// MARK: -
 	open func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
