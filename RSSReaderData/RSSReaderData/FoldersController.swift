@@ -50,26 +50,14 @@ extension FoldersUpdateState: CustomStringConvertible {
 	}
 }
 
-public enum FoldersControllerError: Error {
-	case userInfoRetrieval(underlyingError: Error)
-	case pushTags(underlyingError: Error)
-	case pullTags(underlyingError: Error)
-	case subscriptionsUpdate(underlyingError: Error)
-	case dataDoesNotMatchTextEncoding
-	case unreadCountsUpdate(underlyingError: Error)
-	case streamPreferencesUpdate(underlyingError: Error)
-	case updateFoldersAuthenticated(underylingError: Error)
-}
-
 public protocol FoldersController : class {
 	var foldersLastUpdateDate: Date? { get set }
-	var foldersLastUpdateError: FoldersControllerError? { get set }
+	var foldersLastUpdateError: Error? { get set }
 	var foldersUpdateState: FoldersUpdateState { get set }
 	var rssSession: RSSSession { get }
 }
 
 public extension FoldersController {
-	typealias Error = FoldersControllerError
 	public final func updateFoldersAuthenticated() -> Promise<Void> {
 		let rssSession = self.rssSession
 		return firstly {
@@ -111,7 +99,7 @@ public extension FoldersController {
 			self.foldersUpdateState = .completed
 			self.foldersLastUpdateDate = Date()
 		}.recover { error -> Void in
-			self.foldersLastUpdateError = .updateFoldersAuthenticated(underylingError: error)
+			self.foldersLastUpdateError = error
 			throw $(error)
 		}
 	}
