@@ -30,7 +30,7 @@ class GlobalFoldersController : NSObject, FoldersController {
 		}
 	}
 	
-	final var foldersLastUpdateError: FoldersControllerError? {
+	final var foldersLastUpdateError: Error? {
 		get {
 			return UserDefaults.standard.decodeInGetter()
 		}
