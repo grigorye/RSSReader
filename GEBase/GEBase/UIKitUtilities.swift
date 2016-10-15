@@ -17,3 +17,7 @@ public func openSettingsApp() {
 		application.openURL(url)
 	}
 }
+
+public func forceCrash() {
+	fatalError()
+}
