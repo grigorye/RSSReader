@@ -94,7 +94,7 @@ public class ContainerLoadController : NSObject {
 		}
 		let oldOngoingLoadDate = ongoingLoadDate!
 		loadInProgress = true
-		let excludedCategory: Folder? = unreadOnly ? Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: mainQueueManagedObjectContext) : nil
+		let excludedCategory: Folder? = unreadOnly ? Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: container.managedObjectContext!) : nil
 		let numberOfItemsToLoad = (oldContinuation != nil) ? numberOfItemsToLoadLater : numberOfItemsToLoadInitially
 		let containerViewStateObjectID = typedObjectID(for: containerViewState)
 		let containerObjectID = typedObjectID(for: container)!
