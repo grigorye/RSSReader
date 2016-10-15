@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C424B8E31C6FC52D008AD647 /* GEBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C424B8E21C6FC52D008AD647 /* GEBase.framework */; };
+		C441F1851DB25ABD0060E692 /* FoldersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F1841DB25ABD0060E692 /* FoldersController.swift */; };
 		C48F79A91C008D0E00CC6F74 /* RSSReaderData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48F799E1C008D0D00CC6F74 /* RSSReaderData.framework */; };
 		C48F79AE1C008D0E00CC6F74 /* RSSReaderDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48F79AD1C008D0E00CC6F74 /* RSSReaderDataTests.swift */; };
 		C48F79C41C008DD300CC6F74 /* RSSSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48F79C31C008DD300CC6F74 /* RSSSessionTests.swift */; };
@@ -80,6 +81,7 @@
 
 /* Begin PBXFileReference section */
 		C424B8E21C6FC52D008AD647 /* GEBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GEBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C441F1841DB25ABD0060E692 /* FoldersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldersController.swift; sourceTree = "<group>"; };
 		C459879D1CDE0A8300B8E9E4 /* GEShared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = GEShared.xcconfig; path = ../XcodeConfiguration/GEShared.xcconfig; sourceTree = "<group>"; };
 		C48F799E1C008D0D00CC6F74 /* RSSReaderData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RSSReaderData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C48F79A31C008D0D00CC6F74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 		C48F79A01C008D0D00CC6F74 /* RSSReaderData */ = {
 			isa = PBXGroup;
 			children = (
+				C441F1841DB25ABD0060E692 /* FoldersController.swift */,
 				C4BE5ADC1DA9742300E1734F /* ContainerLoadController.swift */,
 				C4B437361C00A75200A2F3BE /* CoreDataGlobals.swift */,
 				C48F79FC1C008FEE00CC6F74 /* LoginAndPassword.swift */,
@@ -322,6 +325,7 @@
 				C48F79CC1C008DF100CC6F74 /* Container.swift in Sources */,
 				C48F79D21C008E1D00CC6F74 /* ContainerViewState.swift in Sources */,
 				C48F79C61C008DDF00CC6F74 /* RSSSession.swift in Sources */,
+				C441F1851DB25ABD0060E692 /* FoldersController.swift in Sources */,
 				C48F79CB1C008DF100CC6F74 /* Folder.swift in Sources */,
 				C48F79D01C008E0B00CC6F74 /* CoreData.swift in Sources */,
 				C4DB6A721D26035F00E8516D /* RSSSessionTaskGeneration.swift in Sources */,
