@@ -39,6 +39,14 @@ struct PropertyInfo {
 }
 
 extension PropertyInfo {
+	var valueTypeEncoded: String {
+		let type = attributesDictionary["T"]!
+		let valueTypeEncoded = String(type.utf8.prefix(1))!
+		return valueTypeEncoded
+	}
+}
+
+extension PropertyInfo {
 	init(property: objc_property_t) {
 		self.name = String(validatingUTF8: property_getName(property))!
 		self.attributes = String(validatingUTF8: property_getAttributes(property))!

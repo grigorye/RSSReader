@@ -171,13 +171,10 @@ public class KVOCompliantUserDefaults : NSObject {
 		let selName = NSStringFromSelector(sel)
 		if let propertyInfo = getterAndSetterMap[selName] {
 			•(propertyInfo)
-			let attributesDictionary = propertyInfo.attributesDictionary;
-			let type = attributesDictionary["T"]!
 			let isSetter = selName.hasSuffix(":")
-
-			let valueTypeEncoded = String(type.utf8.prefix(1))!
+			let valueTypeEncoded = propertyInfo.valueTypeEncoded
 			let methodIMP: IMP = {
-				switch (valueTypeEncoded) {
+				switch valueTypeEncoded {
 				case objcEncode_Bool, objcEncode_C99Bool:
 					return isSetter ? unsafeBitCast(setBoolValueIMP, to: IMP.self) : unsafeBitCast(boolValueIMP, to: IMP.self)
 				case objcEncode_Long, objcEncode_Int:
