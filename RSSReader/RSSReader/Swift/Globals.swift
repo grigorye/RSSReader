@@ -21,18 +21,21 @@ let userCachesDirectoryURL: URL = {
 	return $
 }()
 
+let globalFoldersController = GlobalFoldersController()
+
 extension NSObject {
-	var foldersController: FoldersController {
-		return applicationDelegate
+	@objc var foldersController: GlobalFoldersController {
+		return globalFoldersController
 	}
 }
 
+var sharedRSSAccount = SharedRSSAccount()
 var rssSession: RSSSession? {
 	get {
-		return applicationDelegate.internals.rssSession
+		return sharedRSSAccount.rssSession
 	}
 	set {
-		applicationDelegate.internals.rssSession = newValue
+		sharedRSSAccount.rssSession = newValue
 	}
 }
 
