@@ -101,6 +101,10 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "-resetDefaults YES"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "-memoryProfilingEnabled YES"
             isEnabled = "NO">
          </CommandLineArgument>
