@@ -6,10 +6,23 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
+import GEBase
 import Loggy
 import UIKit.UIApplication
 
 var launchingScope = Activity("Launching").enter()
+
+extension KVOCompliantUserDefaults {
+	@NSManaged var resetDefaults: Bool
+}
+if defaults.resetDefaults {
+	UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+}
+
+filesWithTracingDisabled += [
+	"TableViewFetchedResultsControllerDelegate.swift",
+	"KVOCompliantUserDefaults.swift"
+]
 
 UIApplicationMain(
 	CommandLine.argc,
