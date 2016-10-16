@@ -136,6 +136,16 @@
 			<key>DefaultValue</key>
 			<false/>
 			<key>Key</key>
+			<string>resetDefaults</string>
+			<key>Title</key>
+			<string>Reset Defaults</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>Key</key>
 			<string>forceStoreRemoval</string>
 			<key>Title</key>
 			<string>Erase All</string>
