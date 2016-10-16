@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		C424B8E31C6FC52D008AD647 /* GEBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C424B8E21C6FC52D008AD647 /* GEBase.framework */; };
 		C441F1851DB25ABD0060E692 /* FoldersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F1841DB25ABD0060E692 /* FoldersController.swift */; };
+		C441F19A1DB4343B0060E692 /* FoldersController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C441F1841DB25ABD0060E692 /* FoldersController.swift */; };
+		C441F19B1DB4344A0060E692 /* RSSSessionTaskGeneration.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4DB6A711D26035F00E8516D /* RSSSessionTaskGeneration.swift */; };
+		C441F19C1DB4344A0060E692 /* RSSSessionTaskResultImporting.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4DB6A6F1D2602B400E8516D /* RSSSessionTaskResultImporting.swift */; };
+		C441F19D1DB4344A0060E692 /* RSSSessionCommands.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4DB6A731D261AE400E8516D /* RSSSessionCommands.swift */; };
 		C48F79A91C008D0E00CC6F74 /* RSSReaderData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48F799E1C008D0D00CC6F74 /* RSSReaderData.framework */; };
 		C48F79AE1C008D0E00CC6F74 /* RSSReaderDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48F79AD1C008D0E00CC6F74 /* RSSReaderDataTests.swift */; };
 		C48F79C41C008DD300CC6F74 /* RSSSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48F79C31C008DD300CC6F74 /* RSSSessionTests.swift */; };
@@ -61,10 +65,14 @@
 			dstPath = Sources;
 			dstSubfolderSpec = 7;
 			files = (
+				C441F19A1DB4343B0060E692 /* FoldersController.swift in Embed Sources */,
 				C4BE5ADE1DA9B53200E1734F /* ContainerLoadController.swift in Embed Sources */,
 				C4B437391C00A86000A2F3BE /* CoreDataGlobals.swift in Embed Sources */,
 				C48F7A181C00971500CC6F74 /* LoginAndPassword.swift in Embed Sources */,
 				C48F7A191C00971500CC6F74 /* RSSSession.swift in Embed Sources */,
+				C441F19B1DB4344A0060E692 /* RSSSessionTaskGeneration.swift in Embed Sources */,
+				C441F19C1DB4344A0060E692 /* RSSSessionTaskResultImporting.swift in Embed Sources */,
+				C441F19D1DB4344A0060E692 /* RSSSessionCommands.swift in Embed Sources */,
 				C48F7A1A1C00971500CC6F74 /* Folder.swift in Embed Sources */,
 				C48F7A1B1C00971500CC6F74 /* Container.swift in Embed Sources */,
 				C48F7A1C1C00971500CC6F74 /* Subscription.swift in Embed Sources */,
