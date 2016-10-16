@@ -43,6 +43,11 @@
 		C441F17B1DB254260060E692 /* GlobalFoldersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F17A1DB254260060E692 /* GlobalFoldersController.swift */; };
 		C441F17F1DB258550060E692 /* SharedRSSAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F17E1DB258550060E692 /* SharedRSSAccount.swift */; };
 		C441F1871DB25D090060E692 /* GlobalStateRestoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F1861DB25D090060E692 /* GlobalStateRestoration.swift */; };
+		C441F1951DB434090060E692 /* GlobalFoldersController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C441F17A1DB254260060E692 /* GlobalFoldersController.swift */; };
+		C441F1961DB434090060E692 /* GlobalStateRestoration.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C441F1861DB25D090060E692 /* GlobalStateRestoration.swift */; };
+		C441F1971DB434090060E692 /* SharedRSSAccount.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C441F17E1DB258550060E692 /* SharedRSSAccount.swift */; };
+		C441F1981DB434090060E692 /* MainScene.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C441F1781DB24A1D0060E692 /* MainScene.swift */; };
+		C441F1991DB434230060E692 /* main.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C474F1CC1DB0657800F0E152 /* main.swift */; };
 		C444F53F1B2E53F200A6E378 /* RSSReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C444F53E1B2E53F200A6E378 /* RSSReaderUITests.swift */; };
 		C44B2F011AC0C881006A67F1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44B2F001AC0C881006A67F1 /* HomeViewController.swift */; };
 		C44D91641AAE73830053B9E6 /* ItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C44D91631AAE73830053B9E6 /* ItemTableViewCell.xib */; };
@@ -126,13 +131,18 @@
 			dstPath = Sources;
 			dstSubfolderSpec = 7;
 			files = (
+				C441F1991DB434230060E692 /* main.swift in Embed Sources */,
+				C441F1951DB434090060E692 /* GlobalFoldersController.swift in Embed Sources */,
+				C41F05721AD0E3AB00A659EC /* LoginAndPasswordDefaults.swift in Embed Sources */,
+				C441F1961DB434090060E692 /* GlobalStateRestoration.swift in Embed Sources */,
+				C441F1971DB434090060E692 /* SharedRSSAccount.swift in Embed Sources */,
+				C441F1981DB434090060E692 /* MainScene.swift in Embed Sources */,
 				C4C094211D9B277600D27162 /* ItemInListView.swift in Embed Sources */,
 				C4C094221D9B277600D27162 /* ItemListViewLoading.swift in Embed Sources */,
 				C4C094231D9B277600D27162 /* ItemTableViewDelegate.swift in Embed Sources */,
 				C4C094241D9B277600D27162 /* ItemTableViewDataSource.swift in Embed Sources */,
 				C474F0B21D80F5B100CABEB9 /* LogViewController.swift in Embed Sources */,
 				C41F056C1AD0E3AB00A659EC /* Globals.swift in Embed Sources */,
-				C41F05721AD0E3AB00A659EC /* LoginAndPasswordDefaults.swift in Embed Sources */,
 				C41F05761AD0E3AB00A659EC /* HomeViewController.swift in Embed Sources */,
 				C41F05771AD0E3AB00A659EC /* ItemTableViewCell.swift in Embed Sources */,
 				C41F05781AD0E3AB00A659EC /* ItemsListViewController.swift in Embed Sources */,
