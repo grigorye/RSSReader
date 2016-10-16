@@ -39,5 +39,5 @@ class GlobalFoldersController : NSObject, FoldersController {
 		}
 	}
 	
-	var foldersUpdateState: FoldersUpdateState = .completed
+	dynamic var foldersUpdateState: FoldersUpdateState = .completed
 }
