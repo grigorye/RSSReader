@@ -25,6 +25,17 @@
 		C441F1891DB2C9800060E692 /* EncodedUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F1881DB2C9800060E692 /* EncodedUserDefaults.swift */; };
 		C441F18B1DB2DEF50060E692 /* URLSessionTaskGeneratorErrorObjCBridgingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F18A1DB2DEF50060E692 /* URLSessionTaskGeneratorErrorObjCBridgingTests.swift */; };
 		C441F1931DB2FA2A0060E692 /* URLSessionTaskGeneratorErrorObjCBridging.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F1921DB2FA2A0060E692 /* URLSessionTaskGeneratorErrorObjCBridging.swift */; };
+		C441F1A01DB434770060E692 /* ObjectAndKeyPath.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C40457161D1DA840005B91DA /* ObjectAndKeyPath.swift */; };
+		C441F1A11DB434770060E692 /* UIFontExtensions.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4667F0A1CC71F450039C480 /* UIFontExtensions.swift */; };
+		C441F1A21DB434770060E692 /* Tracing.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4D6F4191C73CCC000A7E2ED /* Tracing.swift */; };
+		C441F1A31DB434770060E692 /* SourceLocation.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4CB38851CDBA78D00562665 /* SourceLocation.swift */; };
+		C441F1A41DB434770060E692 /* DefaultLogger.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C46C93F51C6FF77E007E4302 /* DefaultLogger.swift */; };
+		C441F1A51DB434770060E692 /* EncodedUserDefaults.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C441F1881DB2C9800060E692 /* EncodedUserDefaults.swift */; };
+		C441F1A61DB434770060E692 /* URLSessionTaskGeneratorErrorObjCBridging.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C441F1921DB2FA2A0060E692 /* URLSessionTaskGeneratorErrorObjCBridging.swift */; };
+		C441F1A71DB434770060E692 /* FrequencyAndWeightBasedTableRowHeightEstimator.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4DDBC831CE693690000588F /* FrequencyAndWeightBasedTableRowHeightEstimator.swift */; };
+		C441F1A81DB434770060E692 /* Sugar.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C497008F1D21B17400E9B689 /* Sugar.swift */; };
+		C441F1A91DB434770060E692 /* UIKitUtilities.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C441F1821DB259770060E692 /* UIKitUtilities.swift */; };
+		C441F1AA1DB434770060E692 /* UIDataSourceModelAssociation+NilIndexPathInModelIdentifierForElement.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4E15BC21D7D0EC80060A8C8 /* UIDataSourceModelAssociation+NilIndexPathInModelIdentifierForElement.swift */; };
 		C4667F0B1CC71F450039C480 /* UIFontExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667F0A1CC71F450039C480 /* UIFontExtensions.swift */; };
 		C46C93F61C6FF77E007E4302 /* DefaultLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46C93F51C6FF77E007E4302 /* DefaultLogger.swift */; };
 		C474F0B71D85317C00CABEB9 /* AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474F0B61D85317C00CABEB9 /* AppVersion.swift */; };
@@ -112,26 +123,37 @@
 			files = (
 				C4BE5ABE1DA86FB400E1734F /* TypeFilteringActivity.swift in Embed Sources */,
 				C4BE5ABF1DA86FB500E1734F /* TableViewFetchedResultsControllerDelegate.swift in Embed Sources */,
+				C441F1A01DB434770060E692 /* ObjectAndKeyPath.swift in Embed Sources */,
+				C4FEBAFD1BF9196E00A5709B /* Primitives.swift in Embed Sources */,
 				C4A6B8C91CB089C80053D44E /* ObjectiveCBridging.swift in Embed Sources */,
 				C4A6B8CA1CB089C80053D44E /* AssociatedObjects.swift in Embed Sources */,
-				C4A6B8CB1CB089C80053D44E /* PropertyCaching.swift in Embed Sources */,
-				C4FEBB1E1BF96B7800A5709B /* NSBundleExtensions.swift in Embed Sources */,
-				C4FEBB1B1BF94CF800A5709B /* KVOCompliantUserDefaults.swift in Embed Sources */,
-				C4FEBAFD1BF9196E00A5709B /* Primitives.swift in Embed Sources */,
 				C4FEBAFE1BF9196E00A5709B /* Globals.swift in Embed Sources */,
 				C4BE5ACC1DA8708A00E1734F /* AppVersion.swift in Embed Sources */,
 				C4FEBAFF1BF9196E00A5709B /* Descriptions.swift in Embed Sources */,
 				C4FEBB001BF9196E00A5709B /* FetchedObjectBinding.swift in Embed Sources */,
 				C4FEBB011BF9196E00A5709B /* GenericCoreDataExtensions.swift in Embed Sources */,
+				C4EC2F8A1C7534030028C729 /* CoreDataCaching.swift in Embed Sources */,
+				C4A6B8CB1CB089C80053D44E /* PropertyCaching.swift in Embed Sources */,
 				C4FEBB021BF9196E00A5709B /* GenericExtensions.swift in Embed Sources */,
+				C441F1A11DB434770060E692 /* UIFontExtensions.swift in Embed Sources */,
+				C441F1A21DB434770060E692 /* Tracing.swift in Embed Sources */,
+				C441F1A31DB434770060E692 /* SourceLocation.swift in Embed Sources */,
+				C441F1A41DB434770060E692 /* DefaultLogger.swift in Embed Sources */,
 				C4FEBB031BF9196E00A5709B /* GenericURLSessionExtensions.swift in Embed Sources */,
 				C4FEBB041BF9196E00A5709B /* ManagedObjectContextAutosaver.swift in Embed Sources */,
+				C4FEBB1E1BF96B7800A5709B /* NSBundleExtensions.swift in Embed Sources */,
 				C4FEBB071BF9196E00A5709B /* KVOBinding.swift in Embed Sources */,
-				C4EC2F8A1C7534030028C729 /* CoreDataCaching.swift in Embed Sources */,
+				C4FEBB1B1BF94CF800A5709B /* KVOCompliantUserDefaults.swift in Embed Sources */,
+				C441F1A51DB434770060E692 /* EncodedUserDefaults.swift in Embed Sources */,
 				C4FEBB0B1BF9196E00A5709B /* ProgressEnabledURLSessionTaskGenerator.swift in Embed Sources */,
+				C441F1A61DB434770060E692 /* URLSessionTaskGeneratorErrorObjCBridging.swift in Embed Sources */,
 				C416F00E1CD1FF820006F6A2 /* DefaultsInSettingsPlist.swift in Embed Sources */,
 				C48D5DE31CE54BDC0078023A /* TableViewHeightBasedReusedCellGenerator.swift in Embed Sources */,
+				C441F1A71DB434770060E692 /* FrequencyAndWeightBasedTableRowHeightEstimator.swift in Embed Sources */,
 				C48D5DE41CE54BDC0078023A /* SystemLayoutSizeCachingTableViewCell.swift in Embed Sources */,
+				C441F1A81DB434770060E692 /* Sugar.swift in Embed Sources */,
+				C441F1A91DB434770060E692 /* UIKitUtilities.swift in Embed Sources */,
+				C441F1AA1DB434770060E692 /* UIDataSourceModelAssociation+NilIndexPathInModelIdentifierForElement.swift in Embed Sources */,
 			);
 			name = "Embed Sources";
 			runOnlyForDeploymentPostprocessing = 0;
