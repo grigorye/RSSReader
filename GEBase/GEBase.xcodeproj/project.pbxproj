@@ -22,6 +22,9 @@
 		C41818AB1B6A673F00872EB3 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818A81B6A673F00872EB3 /* Globals.swift */; };
 		C41818B11B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818B01B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift */; };
 		C441F1831DB259770060E692 /* UIKitUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F1821DB259770060E692 /* UIKitUtilities.swift */; };
+		C441F1891DB2C9800060E692 /* EncodedUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F1881DB2C9800060E692 /* EncodedUserDefaults.swift */; };
+		C441F18B1DB2DEF50060E692 /* URLSessionTaskGeneratorErrorObjCBridgingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F18A1DB2DEF50060E692 /* URLSessionTaskGeneratorErrorObjCBridgingTests.swift */; };
+		C441F1931DB2FA2A0060E692 /* URLSessionTaskGeneratorErrorObjCBridging.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F1921DB2FA2A0060E692 /* URLSessionTaskGeneratorErrorObjCBridging.swift */; };
 		C4667F0B1CC71F450039C480 /* UIFontExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667F0A1CC71F450039C480 /* UIFontExtensions.swift */; };
 		C46C93F61C6FF77E007E4302 /* DefaultLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46C93F51C6FF77E007E4302 /* DefaultLogger.swift */; };
 		C474F0B71D85317C00CABEB9 /* AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474F0B61D85317C00CABEB9 /* AppVersion.swift */; };
@@ -154,6 +157,9 @@
 		C41818A81B6A673F00872EB3 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		C41818B01B6A6C6200872EB3 /* ManagedObjectContextAutosaver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectContextAutosaver.swift; sourceTree = "<group>"; };
 		C441F1821DB259770060E692 /* UIKitUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitUtilities.swift; sourceTree = "<group>"; };
+		C441F1881DB2C9800060E692 /* EncodedUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodedUserDefaults.swift; sourceTree = "<group>"; };
+		C441F18A1DB2DEF50060E692 /* URLSessionTaskGeneratorErrorObjCBridgingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionTaskGeneratorErrorObjCBridgingTests.swift; sourceTree = "<group>"; };
+		C441F1921DB2FA2A0060E692 /* URLSessionTaskGeneratorErrorObjCBridging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionTaskGeneratorErrorObjCBridging.swift; sourceTree = "<group>"; };
 		C459879B1CDE087200B8E9E4 /* GEShared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = GEShared.xcconfig; path = ../XcodeConfiguration/GEShared.xcconfig; sourceTree = "<group>"; };
 		C4667F0A1CC71F450039C480 /* UIFontExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtensions.swift; sourceTree = "<group>"; };
 		C46C93F51C6FF77E007E4302 /* DefaultLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultLogger.swift; sourceTree = "<group>"; };
@@ -244,7 +250,9 @@
 				C4FEBB1C1BF960A300A5709B /* NSBundleExtensions.swift */,
 				C41818891B6A66AE00872EB3 /* KVOBinding.swift */,
 				C4FEBB191BF91E6600A5709B /* KVOCompliantUserDefaults.swift */,
+				C441F1881DB2C9800060E692 /* EncodedUserDefaults.swift */,
 				C418188F1B6A66AE00872EB3 /* ProgressEnabledURLSessionTaskGenerator.swift */,
+				C441F1921DB2FA2A0060E692 /* URLSessionTaskGeneratorErrorObjCBridging.swift */,
 				C416F00C1CD1E8A90006F6A2 /* DefaultsInSettingsPlist.swift */,
 				C492A4D21CDFB2B900F8AD5F /* TableViewHeightBasedReusedCellGenerator.swift */,
 				C4DDBC831CE693690000588F /* FrequencyAndWeightBasedTableRowHeightEstimator.swift */,
@@ -262,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				C495D8981C02592100A7F7D5 /* GenericExtensionsTests.swift */,
+				C441F18A1DB2DEF50060E692 /* URLSessionTaskGeneratorErrorObjCBridgingTests.swift */,
 				C41818711B6A65B100872EB3 /* Info.plist */,
 			);
 			path = GEBaseTests;
@@ -407,8 +416,10 @@
 				C41818941B6A66AE00872EB3 /* GenericURLSessionExtensions.swift in Sources */,
 				C4FEBB1D1BF960A300A5709B /* NSBundleExtensions.swift in Sources */,
 				C41818A51B6A66AE00872EB3 /* ProgressEnabledURLSessionTaskGenerator.swift in Sources */,
+				C441F1891DB2C9800060E692 /* EncodedUserDefaults.swift in Sources */,
 				C4BB26B91CB0256500C7277A /* ObjectiveCBridging.swift in Sources */,
 				C41818921B6A66AE00872EB3 /* GenericCoreDataExtensions.swift in Sources */,
+				C441F1931DB2FA2A0060E692 /* URLSessionTaskGeneratorErrorObjCBridging.swift in Sources */,
 				C4D6F41C1C73CD3500A7E2ED /* CoreDataCaching.swift in Sources */,
 				C4BE5AB31DA8669500E1734F /* TypeFilteringActivity.swift in Sources */,
 				C441F1831DB259770060E692 /* UIKitUtilities.swift in Sources */,
@@ -433,6 +444,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C441F18B1DB2DEF50060E692 /* URLSessionTaskGeneratorErrorObjCBridgingTests.swift in Sources */,
 				C495D8991C02592100A7F7D5 /* GenericExtensionsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
