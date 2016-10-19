@@ -43,16 +43,16 @@ class ContainerTableViewController: UITableViewController {
 		return sectionHeaderView
 	}
 	// MARK: -
-	private var blocksDelayedTillViewDidDisappear = [Handler]()
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		if defaults.showAllItemsCount {
-			blocksDelayedTillViewDidDisappear += [bindItemsCount()]
+			delayedForViewDidDisappear += [bindItemsCount()]
 		}
 	}
+	private var delayedForViewDidDisappear = [Handler]()
 	override func viewDidDisappear(_ animated: Bool) {
-		blocksDelayedTillViewDidDisappear.forEach {$0()}
-		blocksDelayedTillViewDidDisappear = []
+		delayedForViewDidDisappear.forEach {$0()}
+		delayedForViewDidDisappear = []
 		super.viewDidDisappear(animated)
 	}
 	// MARK: -
