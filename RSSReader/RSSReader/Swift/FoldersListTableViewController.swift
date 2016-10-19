@@ -323,6 +323,9 @@ extension FoldersListTableViewController {
 		statusLabel.sizeToFit()
 		statusLabel.superview!.frame.size.width = statusLabel.bounds.width
 		statusBarButtonItem.width = (statusLabel.superview!.bounds.width)
+		let toolbarItems = self.toolbarItems
+		self.toolbarItems = self.toolbarItems?.filter { $0 != statusBarButtonItem }
+		self.toolbarItems = toolbarItems
 	}
 	override func presentErrorMessage(_ text: String) {
 		presentMessage(text)
