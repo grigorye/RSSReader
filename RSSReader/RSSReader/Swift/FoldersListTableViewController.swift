@@ -16,6 +16,31 @@ extension KVOCompliantUserDefaults {
 	@NSManaged var showUnreadOnly: Bool
 }
 
+extension FoldersUpdateState : CustomStringConvertible {
+	public var description: String {
+		switch self {
+		case .unknown:
+			return NSLocalizedString("Unknown", comment: "Folders Update State")
+		case .updatingUserInfo:
+			return NSLocalizedString("Updating User Info", comment: "Folders Update State")
+		case .pushingTags:
+			return NSLocalizedString("Pushing Tags", comment: "Folders Update State")
+		case .pullingTags:
+			return NSLocalizedString("Pulling Tags", comment: "Folders Update State")
+		case .updatingSubscriptions:
+			return NSLocalizedString("Updating Subscriptions", comment: "Folders Update State")
+		case .updatingUnreadCounts:
+			return NSLocalizedString("Updating Unread Counts", comment: "Folders Update State")
+		case .updatingStreamPreferences:
+			return NSLocalizedString("Updating Folder List", comment: "Folders Update State")
+		case .prefetching:
+			return NSLocalizedString("Prefetching", comment: "Folders Update State")
+		case .completed:
+			return NSLocalizedString("Completed", comment: "Folders Update State")
+		}
+	}
+}
+
 class FoldersListTableViewController: ContainerTableViewController, UIDataSourceModelAssociation {
 	typealias _Self = FoldersListTableViewController
 	dynamic var rootFolder: Folder? {
@@ -94,32 +119,14 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 		}()
 		return alertController
 	}
-	enum AuthenticationState {
-		case Unknown, InProgress, Succeeded, Failed(error: Error?)
-	}
-	var authenticationState: AuthenticationState = .Unknown {
-		didSet {
-			self.presentInfoMessage("Authentication\(self.authenticationState)")
-		}
-	}
 	@IBAction func refresh(_ sender: AnyObject!) {
-		guard let rssSession = rssSession else {
+		guard nil != rssSession else {
 			let message = NSLocalizedString("To sync you should be logged in.", comment: "")
 			presentErrorMessage(message)
 			return
 		}
-		firstly {
-			guard !rssSession.authenticated else {
-				return Promise(value: ())
-			}
-			self.authenticationState = .InProgress
-			return rssSession.authenticate()
-		}.recover { authenticationError -> Void in
-			self.authenticationState = .Failed(error: authenticationError)
-			throw $(authenticationError)
-		}.then {
-			self.authenticationState = .Succeeded
-			return self.foldersController.updateFoldersAuthenticated()
+		rssAccount.authenticate().then {
+			return self.foldersController.updateFolders()
 		}.then { () -> Void in
 			if nil == self.rootFolder {
 				self.rootFolder = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: mainQueueManagedObjectContext)
@@ -230,30 +237,46 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 		}
 		return {_ = binding}
 	}
-	func bindFoldersUpdateState() -> Handler {
-		let binding = KVOBinding(self•#keyPath(foldersController.foldersUpdateState), options: .initial) { [unowned self] change in
+	class var keyPathsForValuesAffectingRefreshStateDescription: Set<String> {
+		return [
+			#keyPath(rssAccount.authenticationStateRawValue),
+			#keyPath(foldersController.foldersUpdateState)
+		]
+	}
+	dynamic var refreshStateDescription: String {
+		switch rssAccount.authenticationStateRawValue {
+		case .Unknown:
+			return ""
+		case .InProgress:
+			return NSLocalizedString("Authenticating", comment: "")
+		case .Failed:
+			guard case .Failed(let error) = rssAccount.authenticationState else {
+				fatalError()
+			}
+			return "\(error.localizedDescription)"
+		case .Succeeded:
+			let foldersUpdateState = foldersController.foldersUpdateState
+			switch foldersUpdateState {
+			case .completed:
+				let foldersController = self.foldersController
+				if let foldersUpdateError = foldersController.foldersLastUpdateError {
+					return "\(foldersUpdateError)"
+				}
+				if let foldersLastUpdateDate = foldersController.foldersLastUpdateDate {
+					let loadAgo = loadAgoDateComponentsFormatter.string(from: foldersLastUpdateDate, to: Date())!
+					return String.localizedStringWithFormat(NSLocalizedString("Updated %@ ago", comment: ""), loadAgo)
+				}
+				return ""
+			default:
+				return "\(foldersUpdateState)"
+			}
+		}
+	}
+	func bindRefreshStateDescription() -> Handler {
+		let binding = KVOBinding(self•#keyPath(refreshStateDescription), options: .initial) { [unowned self] change in
 			assert(Thread.isMainThread)
 			•(change)
-			let foldersUpdateState = self.foldersController.foldersUpdateState
-			let message: String = {
-				switch foldersUpdateState {
-				case .completed:
-					let foldersController = self.foldersController
-					if let foldersUpdateError = foldersController.foldersLastUpdateError {
-						return "\(foldersUpdateError)"
-					}
-					else if let foldersLastUpdateDate = foldersController.foldersLastUpdateDate {
-						let loadAgo = loadAgoDateComponentsFormatter.string(from: foldersLastUpdateDate, to: Date())!
-						return String.localizedStringWithFormat(NSLocalizedString("Updated %@ ago", comment: ""), loadAgo)
-					}
-					else {
-						return ""
-					}
-				default:
-					return "\(foldersUpdateState)"
-				}
-			}()
-			self.presentInfoMessage(message)
+			self.presentInfoMessage(self.refreshStateDescription)
 		}
 		return {_ = binding}
 	}
@@ -266,19 +289,19 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 		}
 	}
 	// MARK: -
-	var blocksScheduledForViewWillAppear = [Handler]()
+	var delayedForViewWillAppear = [Handler]()
 	override func viewWillAppear(_ animated: Bool) {
-		blocksScheduledForViewWillAppear.forEach {$0()}
-		blocksScheduledForViewWillAppear = []
+		delayedForViewWillAppear.forEach {$0()}
+		delayedForViewWillAppear = []
 		super.viewWillAppear(animated)
-		blocksScheduledForViewDidDisappear += [bindChildContainers()]
-		blocksScheduledForViewDidDisappear += [bindFoldersUpdateState()]
-		blocksScheduledForViewDidDisappear += [bindCombinedTitle()]
+		delayedForViewDidDisappear += [bindChildContainers()]
+		delayedForViewDidDisappear += [bindRefreshStateDescription()]
+		delayedForViewDidDisappear += [bindCombinedTitle()]
 	}
-	var blocksScheduledForViewDidDisappear = [Handler]()
+	var delayedForViewDidDisappear = [Handler]()
 	override func viewDidDisappear(_ animated: Bool) {
-		blocksScheduledForViewDidDisappear.forEach {$0()}
-		blocksScheduledForViewDidDisappear = []
+		delayedForViewDidDisappear.forEach {$0()}
+		delayedForViewDidDisappear = []
 		super.viewDidDisappear(animated)
 	}
 	// MARK: -
