@@ -13,10 +13,6 @@ import CoreData
 
 let lastTagsFileURL = URL(fileURLWithPath: "\(NSTemporaryDirectory())/lastTags")
 
-var itemsAreSortedByLoadDate: Bool {
-	return defaults.itemsAreSortedByLoadDate
-}
-
 public enum RSSSessionError: Error {
 	case authenticationFailed(underlyingError: Error)
 	case requestFailed(underlyingError: Error)
@@ -38,6 +34,10 @@ public class RSSSession: NSObject {
 	public init(loginAndPassword: LoginAndPassword) {
 		self.loginAndPassword = loginAndPassword
 	}
+}
+
+extension KVOCompliantUserDefaults {
+	@NSManaged var authToken: String?
 }
 
 public extension RSSSession {
