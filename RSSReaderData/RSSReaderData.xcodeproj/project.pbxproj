@@ -25,7 +25,6 @@
 		C48F79D21C008E1D00CC6F74 /* ContainerViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48F79D11C008E1D00CC6F74 /* ContainerViewState.swift */; };
 		C48F79D41C008E3900CC6F74 /* MarkingAsRead.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48F79D31C008E3900CC6F74 /* MarkingAsRead.swift */; };
 		C48F79E31C008E6A00CC6F74 /* RSSReader.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C48F79D51C008E6A00CC6F74 /* RSSReader.xcdatamodeld */; };
-		C48F79E51C008F1900CC6F74 /* KVOCompliantUserDefaults+RSSReaderData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48F79E41C008F1900CC6F74 /* KVOCompliantUserDefaults+RSSReaderData.swift */; };
 		C48F79FD1C008FEE00CC6F74 /* LoginAndPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48F79FC1C008FEE00CC6F74 /* LoginAndPassword.swift */; };
 		C48F7A181C00971500CC6F74 /* LoginAndPassword.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79FC1C008FEE00CC6F74 /* LoginAndPassword.swift */; };
 		C48F7A191C00971500CC6F74 /* RSSSession.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79C51C008DDF00CC6F74 /* RSSSession.swift */; };
@@ -36,7 +35,6 @@
 		C48F7A1E1C00971500CC6F74 /* CoreData.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79CF1C008E0B00CC6F74 /* CoreData.swift */; };
 		C48F7A1F1C00971500CC6F74 /* ContainerViewState.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79D11C008E1D00CC6F74 /* ContainerViewState.swift */; };
 		C48F7A201C00971500CC6F74 /* MarkingAsRead.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79D31C008E3900CC6F74 /* MarkingAsRead.swift */; };
-		C48F7A211C00971500CC6F74 /* KVOCompliantUserDefaults+RSSReaderData.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79E41C008F1900CC6F74 /* KVOCompliantUserDefaults+RSSReaderData.swift */; };
 		C4AD5B3C1D2847E800358DEA /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4AD5B3B1D2847E800358DEA /* PromiseKit.framework */; };
 		C4B437371C00A75200A2F3BE /* CoreDataGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B437361C00A75200A2F3BE /* CoreDataGlobals.swift */; };
 		C4B437391C00A86000A2F3BE /* CoreDataGlobals.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4B437361C00A75200A2F3BE /* CoreDataGlobals.swift */; };
@@ -80,7 +78,6 @@
 				C48F7A1E1C00971500CC6F74 /* CoreData.swift in Embed Sources */,
 				C48F7A1F1C00971500CC6F74 /* ContainerViewState.swift in Embed Sources */,
 				C48F7A201C00971500CC6F74 /* MarkingAsRead.swift in Embed Sources */,
-				C48F7A211C00971500CC6F74 /* KVOCompliantUserDefaults+RSSReaderData.swift in Embed Sources */,
 			);
 			name = "Embed Sources";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -118,7 +115,6 @@
 		C48F79E01C008E6A00CC6F74 /* 81.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 81.xcdatamodel; sourceTree = "<group>"; };
 		C48F79E11C008E6A00CC6F74 /* 88.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 88.xcdatamodel; sourceTree = "<group>"; };
 		C48F79E21C008E6A00CC6F74 /* current.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = current.xcdatamodel; sourceTree = "<group>"; };
-		C48F79E41C008F1900CC6F74 /* KVOCompliantUserDefaults+RSSReaderData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KVOCompliantUserDefaults+RSSReaderData.swift"; sourceTree = "<group>"; };
 		C48F79FC1C008FEE00CC6F74 /* LoginAndPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAndPassword.swift; sourceTree = "<group>"; };
 		C492A4DA1CDFFA6100F8AD5F /* 1027.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 1027.xcdatamodel; sourceTree = "<group>"; };
 		C4AD5B3B1D2847E800358DEA /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -198,7 +194,6 @@
 				C48F79CF1C008E0B00CC6F74 /* CoreData.swift */,
 				C48F79D11C008E1D00CC6F74 /* ContainerViewState.swift */,
 				C48F79D31C008E3900CC6F74 /* MarkingAsRead.swift */,
-				C48F79E41C008F1900CC6F74 /* KVOCompliantUserDefaults+RSSReaderData.swift */,
 				C48F79D51C008E6A00CC6F74 /* RSSReader.xcdatamodeld */,
 				C48F79A31C008D0D00CC6F74 /* Info.plist */,
 			);
@@ -343,7 +338,6 @@
 				C48F79FD1C008FEE00CC6F74 /* LoginAndPassword.swift in Sources */,
 				C4DB6A741D261AE400E8516D /* RSSSessionCommands.swift in Sources */,
 				C48F79CD1C008DF100CC6F74 /* Subscription.swift in Sources */,
-				C48F79E51C008F1900CC6F74 /* KVOCompliantUserDefaults+RSSReaderData.swift in Sources */,
 				C4B437371C00A75200A2F3BE /* CoreDataGlobals.swift in Sources */,
 				C4BE5ADD1DA9742300E1734F /* ContainerLoadController.swift in Sources */,
 			);
