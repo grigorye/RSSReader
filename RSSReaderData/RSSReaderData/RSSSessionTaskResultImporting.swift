@@ -10,6 +10,9 @@ import GEBase
 import CoreData
 import Foundation
 
+extension KVOCompliantUserDefaults {
+	@NSManaged var batchSavingEnabled: Bool
+}
 private var batchSavingDisabled: Bool {
 	return !defaults.batchSavingEnabled
 }

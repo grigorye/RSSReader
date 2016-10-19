@@ -10,6 +10,12 @@ import GEBase
 import Foundation
 import CoreData
 
+extension KVOCompliantUserDefaults {
+	@NSManaged var coreDataCachingEnabled: Bool
+	@NSManaged var backgroundImportEnabled: Bool
+	@NSManaged var forceStoreRemoval: Bool
+}
+
 public let (managedObjectContextError, saveQueueManagedObjectContext, optionalMainQueueManagedObjectContext, optionalBackgroundQueueManagedObjectContext, supplementaryObjects): (Error?, NSManagedObjectContext?, NSManagedObjectContext?, NSManagedObjectContext?, [Any]) = {
 	do {
 		let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: NSClassFromString("RSSReaderData.Folder")!)])!
