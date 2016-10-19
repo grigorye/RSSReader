@@ -18,6 +18,10 @@ extension KVOCompliantUserDefaults {
 	@NSManaged var fetchBatchSize: Int
 }
 
+extension KVOCompliantUserDefaults {
+	@NSManaged public var itemsAreSortedByLoadDate: Bool
+}
+
 class ItemTableViewDataSource: NSObject {
 	let tableView: UITableView
 	let container: Container
