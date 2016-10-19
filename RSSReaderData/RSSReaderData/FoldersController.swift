@@ -13,7 +13,6 @@ import Foundation
 @objc public enum FoldersUpdateState: Int {
 	case unknown
 	case completed
-	case authenticating
 	case updatingUserInfo
 	case pushingTags
 	case pullingTags
@@ -21,33 +20,6 @@ import Foundation
 	case updatingUnreadCounts
 	case updatingStreamPreferences
 	case prefetching
-}
-
-extension FoldersUpdateState: CustomStringConvertible {
-	public var description: String {
-		switch self {
-		case .unknown:
-			return NSLocalizedString("Unknown", comment: "Folders Update State")
-		case .authenticating:
-			return NSLocalizedString("Authenticating", comment: "Folders Update State")
-		case .updatingUserInfo:
-			return NSLocalizedString("Updating User Info", comment: "Folders Update State")
-		case .pushingTags:
-			return NSLocalizedString("Pushing Tags", comment: "Folders Update State")
-		case .pullingTags:
-			return NSLocalizedString("Pulling Tags", comment: "Folders Update State")
-		case .updatingSubscriptions:
-			return NSLocalizedString("Updating Subscriptions", comment: "Folders Update State")
-		case .updatingUnreadCounts:
-			return NSLocalizedString("Updating Unread Counts", comment: "Folders Update State")
-		case .updatingStreamPreferences:
-			return NSLocalizedString("Updating Folder List", comment: "Folders Update State")
-		case .prefetching:
-			return NSLocalizedString("Prefetching", comment: "Folders Update State")
-		case .completed:
-			return NSLocalizedString("Completed", comment: "Folders Update State")
-		}
-	}
 }
 
 public protocol FoldersController : class {
@@ -58,8 +30,9 @@ public protocol FoldersController : class {
 }
 
 public extension FoldersController {
-	public final func updateFoldersAuthenticated() -> Promise<Void> {
+	public final func updateFolders() -> Promise<Void> {
 		let rssSession = self.rssSession
+		precondition(rssSession.authenticated)
 		return firstly {
 			self.foldersLastUpdateError = nil
 			self.foldersUpdateState = .updatingUserInfo
