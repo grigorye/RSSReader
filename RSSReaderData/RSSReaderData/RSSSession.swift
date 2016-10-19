@@ -32,6 +32,7 @@ public class RSSSession: NSObject {
 	let inoreaderAppKey = "r3O8gX6FPdFaOXE3x4HypYHO2LTCNuDS"
 	let loginAndPassword: LoginAndPassword
 	public init(loginAndPassword: LoginAndPassword) {
+		precondition(loginAndPassword.isValid())
 		self.loginAndPassword = loginAndPassword
 	}
 }
