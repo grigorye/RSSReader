@@ -34,10 +34,10 @@ public class FetchedObjectBinding<T> : NSObject, NSFetchedResultsControllerDeleg
 public class FetchedObjectCountBinding<T> : NSObject, NSFetchedResultsControllerDelegate where T: Managed, T: NSFetchRequestResult {
 	let countDidChange: Handler
 	//
-	var delayedForDeinit = [Handler]()
+	var scheduledForDeinit = [Handler]()
 	deinit {
-		delayedForDeinit.forEach {$0()}
-		delayedForDeinit = []
+		scheduledForDeinit.forEach {$0()}
+		scheduledForDeinit = []
 	}
 	//
 	public init(managedObjectContext: NSManagedObjectContext, predicate: NSPredicate?, handler: @escaping (Int) -> Void) {
@@ -58,7 +58,7 @@ public class FetchedObjectCountBinding<T> : NSObject, NSFetchedResultsController
 				[weak self] _ in
 				self?.countDidChange()
 			}
-			delayedForDeinit += [{
+			scheduledForDeinit += [{
 				notificationCenter.removeObserver(observer)
 			}]
 		}

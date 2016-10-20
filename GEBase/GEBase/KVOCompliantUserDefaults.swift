@@ -195,9 +195,9 @@ public class KVOCompliantUserDefaults : NSObject {
 		}
 		return super.resolveInstanceMethod(sel)
 	}
-	var blocksDelayedTillDealloc = [Handler]()
+	var scheduledForDeinit = [Handler]()
 	deinit {
-		blocksDelayedTillDealloc.forEach {$0()}
+		scheduledForDeinit.forEach {$0()}
 	}
 	
 	public override init () {
@@ -212,7 +212,7 @@ public class KVOCompliantUserDefaults : NSObject {
 				handlingNotification = false
 			}
 		}
-		self.blocksDelayedTillDealloc += [{
+		self.scheduledForDeinit += [{
 			notificationCenter.removeObserver(observer)
 		}]
 		self.synchronizeValues()
