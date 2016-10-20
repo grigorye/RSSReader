@@ -69,8 +69,8 @@ public extension FoldersController {
 				}
 			}
 		}.always {
-			self.foldersUpdateState = .completed
 			self.foldersLastUpdateDate = Date()
+			self.foldersUpdateState = .completed
 		}.recover { error -> Void in
 			self.foldersLastUpdateError = error
 			throw $(error)
