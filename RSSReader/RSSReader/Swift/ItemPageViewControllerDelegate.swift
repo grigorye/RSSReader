@@ -1,5 +1,5 @@
 //
-//  ItemsPageViewControllerDelegate.swift
+//  ItemPageViewControllerDelegate.swift
 //  RSSReader
 //
 //  Created by Grigory Entin on 08.01.15.
@@ -10,8 +10,8 @@ import RSSReaderData
 import GEBase
 import UIKit
 
-class ItemsPageViewControllerDelegate: NSObject, UIPageViewControllerDelegate {
-	@IBOutlet weak var pageViewController: ItemsPageViewController!
+class ItemPageViewControllerDelegate: NSObject, UIPageViewControllerDelegate {
+	@IBOutlet weak var pageViewController: ItemPageViewController!
 	// MARK:-
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
 		let pendingViewController = pendingViewControllers.first as! ItemSummaryWebViewController

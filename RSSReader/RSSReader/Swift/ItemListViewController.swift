@@ -1,5 +1,5 @@
 //
-//  ItemsListViewController.swift
+//  ItemListViewController.swift
 //  RSSReader
 //
 //  Created by Grigory Entin on 03.01.15.
@@ -12,8 +12,8 @@ import GEBase
 import UIKit
 import CoreData
 
-class ItemsListViewController: ContainerTableViewController {
-	typealias _Self = ItemsListViewController
+class ItemListViewController: ContainerTableViewController {
+	typealias _Self = ItemListViewController
 	public var dataSource: ItemTableViewDataSource!
 	public lazy dynamic var loadController: ContainerLoadController! = {
 		let $ = ContainerLoadController(session: rssSession!, container: self.container, unreadOnly: self.showUnreadOnly) … {
@@ -65,10 +65,10 @@ class ItemsListViewController: ContainerTableViewController {
 		switch segue.identifier! {
 		case MainStoryboard.SegueIdentifiers.ShowListPages:
 			let pageViewController = segue.destination as! UIPageViewController
-			let itemsPageViewControllerDataSource = (pageViewController.dataSource as! ItemsPageViewControllerDataSource) … {
+			let itemPageViewControllerDataSource = (pageViewController.dataSource as! ItemPageViewControllerDataSource) … {
 				$0.items = dataSource.fetchedObjects!
 			}
-			let initialViewController = itemsPageViewControllerDataSource.viewControllerForItem(selectedItem, storyboard: pageViewController.storyboard!)
+			let initialViewController = itemPageViewControllerDataSource.viewControllerForItem(selectedItem, storyboard: pageViewController.storyboard!)
 			if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
 				pageViewController.edgesForExtendedLayout = UIRectEdge()
 			}
@@ -195,7 +195,7 @@ class ItemsListViewController: ContainerTableViewController {
 //
 // MARK: - State Restoration
 //
-extension ItemsListViewController /* State Restoration */ {
+extension ItemListViewController /* State Restoration */ {
 	private enum Restorable: String {
 		case containerObjectID = "containerObjectID"
 	}
@@ -213,7 +213,7 @@ extension ItemsListViewController /* State Restoration */ {
 //
 // MARK: - Actions
 //
-extension ItemsListViewController {
+extension ItemListViewController {
 	@IBAction private func selectUnread(_ sender: AnyObject!) {
 		showUnreadOnly = true
 		reloadViewForNewConfiguration()
@@ -263,7 +263,7 @@ extension ItemsListViewController {
 //
 // MARK: - Scroll & Table View Delegate Additions
 //
-extension ItemsListViewController {
+extension ItemListViewController {
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		performSegue(withIdentifier: MainStoryboard.SegueIdentifiers.ShowListPages, sender: self)
 	}
@@ -274,7 +274,7 @@ extension ItemsListViewController {
 //
 // MARK: - Presenting Messages
 //
-extension ItemsListViewController {
+extension ItemListViewController {
 	func presentMessage(_ text: String) {
 		statusLabel.text = text
 		statusLabel.sizeToFit()

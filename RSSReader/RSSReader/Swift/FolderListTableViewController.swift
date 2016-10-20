@@ -1,5 +1,5 @@
 //
-//  FoldersListTableViewController.swift
+//  FolderListTableViewController.swift
 //  RSSReader
 //
 //  Created by Grigory Entin on 06.01.15.
@@ -41,8 +41,8 @@ extension FoldersUpdateState : CustomStringConvertible {
 	}
 }
 
-class FoldersListTableViewController: ContainerTableViewController, UIDataSourceModelAssociation {
-	typealias _Self = FoldersListTableViewController
+class FolderListTableViewController: ContainerTableViewController, UIDataSourceModelAssociation {
+	typealias _Self = FolderListTableViewController
 	dynamic var rootFolder: Folder? {
 		set {
 			container = newValue
@@ -156,19 +156,19 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		switch segue.identifier! {
 		case MainStoryboard.SegueIdentifiers.ShowFolder:
-			let foldersListTableViewController = segue.destination as! FoldersListTableViewController
+			let folderListTableViewController = segue.destination as! FolderListTableViewController
 			let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow!
 			let folder = childContainers[indexPathForSelectedRow.row] as! Folder
-			foldersListTableViewController.rootFolder = folder
+			folderListTableViewController.rootFolder = folder
 		case MainStoryboard.SegueIdentifiers.ShowSubscription:
-			let itemsListViewController = segue.destination as! ItemsListViewController
+			let itemListViewController = segue.destination as! ItemListViewController
 			let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow!
 			let subscription = childContainers[indexPathForSelectedRow.row] as! Subscription
-			itemsListViewController.container = subscription
+			itemListViewController.container = subscription
 		case MainStoryboard.SegueIdentifiers.ShowCombined:
-			let itemsListViewController = segue.destination as! ItemsListViewController
-			itemsListViewController.container = self.rootFolder
-			itemsListViewController.multipleSourcesEnabled = true
+			let itemListViewController = segue.destination as! ItemListViewController
+			itemListViewController.container = self.rootFolder
+			itemListViewController.multipleSourcesEnabled = true
 		default:
 			abort()
 		}
@@ -317,7 +317,7 @@ class FoldersListTableViewController: ContainerTableViewController, UIDataSource
 	}
 }
 
-extension FoldersListTableViewController {
+extension FolderListTableViewController {
 	func presentMessage(_ text: String) {
 		statusLabel.text = (text)
 		statusLabel.sizeToFit()

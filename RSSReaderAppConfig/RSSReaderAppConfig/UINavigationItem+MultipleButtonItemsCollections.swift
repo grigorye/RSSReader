@@ -1,5 +1,5 @@
 //
-//  UINavigationItem+MultipleButtonItemsCollections.swift
+//  UINavigationItem+MultipleButtonItemCollections.swift
 //  RSSReader
 //
 //  Created by Grigory Entin on 16/11/15.
@@ -9,7 +9,7 @@
 import UIKit
 
 extension UINavigationItem {
-	@IBOutlet var rightBarButtonItemsCollection: [UIBarButtonItem]? {
+	@IBOutlet var rightBarButtonItemCollection: [UIBarButtonItem]? {
 		get {
 			return self.rightBarButtonItems
 		}
@@ -17,7 +17,7 @@ extension UINavigationItem {
 			self.rightBarButtonItems = newValue?.sorted { $0.tag < $1.tag }
 		}
 	}
-	@IBOutlet var leftBarButtonItemsCollection: [UIBarButtonItem]? {
+	@IBOutlet var leftBarButtonItemCollection: [UIBarButtonItem]? {
 		get {
 			return self.leftBarButtonItems
 		}

@@ -1,5 +1,5 @@
 //
-//  ItemsPageViewController.swift
+//  ItemPageViewController.swift
 //  RSSReader
 //
 //  Created by Grigory Entin on 08.02.15.
@@ -10,7 +10,7 @@ import RSSReaderData
 import GEBase
 import UIKit
 
-class ItemsPageViewController : UIPageViewController {
+class ItemPageViewController : UIPageViewController {
 	var blocksDelayedTillViewWillAppear = [Handler]()
 	dynamic var currentViewController: UIViewController?
 	// MARK: - State Preservation and Restoration
@@ -20,7 +20,7 @@ class ItemsPageViewController : UIPageViewController {
 	}
 	override func decodeRestorableState(with coder: NSCoder) {
 		super.decodeRestorableState(with: coder)
-		let dataSource = self.dataSource as! ItemsPageViewControllerDataSource
+		let dataSource = self.dataSource as! ItemPageViewControllerDataSource
 		dataSource.decodeRestorableStateWithCoder(coder)
 		if _1 {
 			let viewControllers = coder.decodeObject(forKey: Restorable.viewControllers.rawValue) as! [UIViewController]
@@ -35,7 +35,7 @@ class ItemsPageViewController : UIPageViewController {
 	}
 	override func encodeRestorableState(with coder: NSCoder) {
 		super.encodeRestorableState(with: coder)
-		let dataSource = self.dataSource as! ItemsPageViewControllerDataSource
+		let dataSource = self.dataSource as! ItemPageViewControllerDataSource
 		dataSource.encodeRestorableStateWithCoder(coder)
 		if _1 {
 			coder.encode(viewControllers, forKey: Restorable.viewControllers.rawValue)

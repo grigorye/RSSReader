@@ -177,7 +177,7 @@ extension ItemTableViewDataSource: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDataSourcePrefetching
-extension ItemsListViewController: UITableViewDataSourcePrefetching {
+extension ItemListViewController: UITableViewDataSourcePrefetching {
 	func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
 		let objectIDs = $(indexPaths).map { dataSource.object(at: $0).objectID }
 		let fetchRequest = Item.fetchRequestForEntity() … {
@@ -189,7 +189,7 @@ extension ItemsListViewController: UITableViewDataSourcePrefetching {
 }
 
 // MARK: - UIDataSourceModelAssociation
-extension ItemsListViewController: UIDataSourceModelAssociation {
+extension ItemListViewController: UIDataSourceModelAssociation {
     func modelIdentifierForElement(at indexPath: IndexPath, in view: UIView) -> String? {
 		if let item = itemForIndexPath(indexPath) {
 			return item.objectID.uriRepresentation().absoluteString

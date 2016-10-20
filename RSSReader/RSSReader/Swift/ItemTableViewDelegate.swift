@@ -9,7 +9,7 @@
 import GEBase
 import UIKit
 
-extension ItemsListViewController {
+extension ItemListViewController {
 #if true
 	override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
 		guard !defaults.fixedHeightItemRowsEnabled else {

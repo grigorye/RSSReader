@@ -1,5 +1,5 @@
 //
-//  ItemsPageViewControllerDataSource.swift
+//  ItemPageViewControllerDataSource.swift
 //  RSSReader
 //
 //  Created by Grigory Entin on 07.01.15.
@@ -10,7 +10,7 @@ import RSSReaderData
 import GEBase
 import UIKit
 
-class ItemsPageViewControllerDataSource: NSObject, UIPageViewControllerDataSource {
+class ItemPageViewControllerDataSource: NSObject, UIPageViewControllerDataSource {
 	var items: [Item]!
 	func viewControllerForItem(_ item: Item, storyboard: UIStoryboard) -> UIViewController {
 		return (storyboard.instantiateViewController(withIdentifier: MainStoryboard.StoryboardIdentifiers.ItemSummaryWeb) as! ItemSummaryWebViewController) … {

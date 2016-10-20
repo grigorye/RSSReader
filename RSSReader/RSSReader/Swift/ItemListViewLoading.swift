@@ -18,14 +18,14 @@ extension KVOCompliantUserDefaults {
 	@NSManaged var numberOfItemsToLoadLater: Int
 }
 
-extension ItemsListViewController {
+extension ItemListViewController {
 	override func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		if nil != rssSession && nil != view.superview && !refreshControl!.isRefreshing {
 			loadMoreIfNecessary()
 		}
 	}
 }
-extension ItemsListViewController {
+extension ItemListViewController {
 	func loadMore(_ completionHandler: @escaping () -> Void) {
 		let loadController = self.loadController!
 		loadController.loadMore { [weak loadController] error in

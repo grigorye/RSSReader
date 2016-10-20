@@ -10,13 +10,13 @@ import RSSReaderData
 import GEBase
 import UIKit
 
-func configureFavoritesItemsListViewController(_ itemsListViewController: ItemsListViewController) {
-	itemsListViewController.title = NSLocalizedString("Favorites", comment: "")
+func configureFavoritesItemsListViewController(_ itemListViewController: ItemListViewController) {
+	itemListViewController.title = NSLocalizedString("Favorites", comment: "")
 	if let favoritesFolder = Folder.folderWithTagSuffix(favoriteTagSuffix, managedObjectContext: mainQueueManagedObjectContext) {
-		itemsListViewController.container = favoritesFolder
+		itemListViewController.container = favoritesFolder
 	}
-	itemsListViewController.showUnreadEnabled = false
-	itemsListViewController.multipleSourcesEnabled = true
+	itemListViewController.showUnreadEnabled = false
+	itemListViewController.multipleSourcesEnabled = true
 }
 
 class HomeViewController: UITableViewController {
@@ -25,13 +25,13 @@ class HomeViewController: UITableViewController {
 		case MainStoryboard.SegueIdentifiers.ShowHistory:
 			()
 		case MainStoryboard.SegueIdentifiers.ShowSubscriptions:
-			let foldersViewController = segue.destination as! FoldersListTableViewController
+			let foldersViewController = segue.destination as! FolderListTableViewController
 			if let rootFolder = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: mainQueueManagedObjectContext) {
 				foldersViewController.rootFolder = rootFolder
 			}
 		case MainStoryboard.SegueIdentifiers.ShowFavorites:
-			let itemsListViewController = segue.destination as! ItemsListViewController
-			configureFavoritesItemsListViewController(itemsListViewController)
+			let itemListViewController = segue.destination as! ItemListViewController
+			configureFavoritesItemsListViewController(itemListViewController)
 		default:
 			()
 		}

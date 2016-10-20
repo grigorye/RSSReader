@@ -84,10 +84,10 @@ class HistoryViewController: UITableViewController {
 		switch segue.identifier! {
 		case MainStoryboard.SegueIdentifiers.ShowHistoryPages:
 			let pageViewController = segue.destination as! UIPageViewController
-			let itemsPageViewControllerDataSource = (pageViewController.dataSource as! ItemsPageViewControllerDataSource) … {
+			let itemPageViewControllerDataSource = (pageViewController.dataSource as! ItemPageViewControllerDataSource) … {
 				$0.items = self.fetchedResultsController.fetchedObjects!
 			}
-			let initialViewController = itemsPageViewControllerDataSource.viewControllerForItem(self.selectedItem, storyboard: pageViewController.storyboard!)
+			let initialViewController = itemPageViewControllerDataSource.viewControllerForItem(self.selectedItem, storyboard: pageViewController.storyboard!)
 			if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
 				pageViewController.edgesForExtendedLayout = UIRectEdge()
 			}
