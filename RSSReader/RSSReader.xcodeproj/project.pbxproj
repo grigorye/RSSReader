@@ -403,7 +403,6 @@
 		C4BE5AE31DAA5BB000E1734F /* Miscellaneous */ = {
 			isa = PBXGroup;
 			children = (
-				C4915FE31CE734A40063A734 /* RSSReader-app.xcconfig */,
 				C474F1CC1DB0657800F0E152 /* main.swift */,
 				C4CDD3C41A5357B20087DD05 /* Settings.bundle */,
 				C40C6C051A74AB5E00FAFA17 /* Bridging-Header.h */,
@@ -532,6 +531,7 @@
 		C4CDD39F1A5350B40087DD05 /* RSSReader */ = {
 			isa = PBXGroup;
 			children = (
+				C4915FE31CE734A40063A734 /* RSSReader-app.xcconfig */,
 				C4BE5AE61DAA803800E1734F /* Globals */,
 				C49540A21A57827300F56168 /* UI */,
 				C4BE5AE31DAA5BB000E1734F /* Miscellaneous */,
