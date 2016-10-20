@@ -11,4 +11,4 @@
 
 "${PODS_ROOT:?}"/Fabric/run "${XC_FABRIC_API_KEY:?}" "${XC_FABRIC_BUILD_SECRET:?}"
 
-find "${CONFIGURATION_BUILD_DIR:?}" -name "*.dSYM" | xargs -I {} "${PODS_ROOT:?}"/../Tools/Crashlytics/uploadSymbols "${XC_FABRIC_API_KEY:?}" ios {}
+# find "${CONFIGURATION_BUILD_DIR:?}" -name "*.dSYM" | xargs -I {} "${PODS_ROOT:?}"/../Tools/Crashlytics/uploadSymbols "${XC_FABRIC_API_KEY:?}" ios {}
