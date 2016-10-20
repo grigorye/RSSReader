@@ -46,13 +46,13 @@ class ContainerTableViewController: UITableViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		if defaults.showAllItemsCount {
-			delayedForViewDidDisappear += [bindItemsCount()]
+			scheduledForViewDidDisappear += [bindItemsCount()]
 		}
 	}
-	private var delayedForViewDidDisappear = [Handler]()
+	private var scheduledForViewDidDisappear = [Handler]()
 	override func viewDidDisappear(_ animated: Bool) {
-		delayedForViewDidDisappear.forEach {$0()}
-		delayedForViewDidDisappear = []
+		scheduledForViewDidDisappear.forEach {$0()}
+		scheduledForViewDidDisappear = []
 		super.viewDidDisappear(animated)
 	}
 	// MARK: -

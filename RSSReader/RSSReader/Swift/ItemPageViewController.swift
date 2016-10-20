@@ -11,7 +11,7 @@ import GEBase
 import UIKit
 
 class ItemPageViewController : UIPageViewController {
-	var blocksDelayedTillViewWillAppear = [Handler]()
+	var scheduledForViewWillAppear = [Handler]()
 	dynamic var currentViewController: UIViewController?
 	// MARK: - State Preservation and Restoration
 	private enum Restorable: String {
@@ -26,7 +26,7 @@ class ItemPageViewController : UIPageViewController {
 			let viewControllers = coder.decodeObject(forKey: Restorable.viewControllers.rawValue) as! [UIViewController]
 			let currentViewControllerIndex = coder.decodeObject(forKey: Restorable.currentViewControllerIndex.rawValue) as! Int
 			self.currentViewController = viewControllers[currentViewControllerIndex]
-			blocksDelayedTillViewWillAppear += [{
+			scheduledForViewWillAppear += [{
 				self.setViewControllers(viewControllers, direction: .forward, animated: false) { completed in
 					$(completed)
 				}
@@ -52,8 +52,8 @@ class ItemPageViewController : UIPageViewController {
 	// MARK: -
 	var viewDidDisappearRetainedObjects = [Any]()
 	override func viewWillAppear(_ animated: Bool) {
-		blocksDelayedTillViewWillAppear.forEach {$0()}
-		blocksDelayedTillViewWillAppear = []
+		scheduledForViewWillAppear.forEach {$0()}
+		scheduledForViewWillAppear = []
 		super.viewWillAppear(animated)
 		
 		viewDidDisappearRetainedObjects += [KVOBinding(self•#keyPath(currentViewController.navigationItem.rightBarButtonItems), options: .initial) { change in

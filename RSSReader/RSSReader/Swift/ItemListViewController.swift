@@ -77,18 +77,18 @@ class ItemListViewController: ContainerTableViewController {
 			abort()
 		}
 	}
-	var blocksDelayedTillViewWillAppearOrStateRestoration = [Handler]()
+	var scheduledForViewWillAppearOrStateRestoration = [Handler]()
 	// MARK: -
-	private var blocksDelayedTillViewWillAppear = [Handler]()
+	private var scheduledForViewWillAppear = [Handler]()
 	// MARK: -
 	override func viewWillAppear(_ animated: Bool) {
 		$(self)
-		blocksDelayedTillViewWillAppearOrStateRestoration.forEach {$0()}
-		blocksDelayedTillViewWillAppearOrStateRestoration = []
-		blocksDelayedTillViewWillAppear.forEach {$0()}
-		blocksDelayedTillViewWillAppear = []
-		blocksDelayedTillViewDidDisappear += [self.bindLoadDate()]
-		blocksDelayedTillViewDidDisappear += [self.bindTitle()]
+		scheduledForViewWillAppearOrStateRestoration.forEach {$0()}
+		scheduledForViewWillAppearOrStateRestoration = []
+		scheduledForViewWillAppear.forEach {$0()}
+		scheduledForViewWillAppear = []
+		scheduledForViewDidDisappear += [self.bindLoadDate()]
+		scheduledForViewDidDisappear += [self.bindTitle()]
 		super.viewWillAppear(animated)
 	}
 	override func viewDidAppear(_ animated: Bool) {
@@ -96,10 +96,10 @@ class ItemListViewController: ContainerTableViewController {
 		super.viewDidAppear(animated)
 		loadMoreIfNecessary()
 	}
-	private var blocksDelayedTillViewDidDisappear = [Handler]()
+	private var scheduledForViewDidDisappear = [Handler]()
 	override func viewDidDisappear(_ animated: Bool) {
-		blocksDelayedTillViewDidDisappear.forEach {$0()}
-		blocksDelayedTillViewDidDisappear = []
+		scheduledForViewDidDisappear.forEach {$0()}
+		scheduledForViewDidDisappear = []
 		super.viewDidDisappear(animated)
 	}
 	// MARK: -
@@ -166,11 +166,11 @@ class ItemListViewController: ContainerTableViewController {
 	// MARK: -
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		blocksDelayedTillViewWillAppearOrStateRestoration += [{ [unowned self] in
+		scheduledForViewWillAppearOrStateRestoration += [{ [unowned self] in
 			self.configureDataSource()
 			self.configureRightBarButtonItems()
 		}]
-		blocksDelayedTillViewWillAppear += [{[unowned self] in self.configureTitleHeaderView()}]
+		scheduledForViewWillAppear += [{[unowned self] in self.configureTitleHeaderView()}]
 		tableFooterView = tableView.tableFooterView
 		if #available(iOS 10.0, *) {
 			tableView.prefetchDataSource = self
@@ -206,8 +206,8 @@ extension ItemListViewController /* State Restoration */ {
 	override func decodeRestorableState(with coder: NSCoder) {
 		super.decodeRestorableState(with: coder)
 		container = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.containerObjectID.rawValue, managedObjectContext: mainQueueManagedObjectContext) as! Container?
-		blocksDelayedTillViewWillAppearOrStateRestoration.forEach {$0()}
-		blocksDelayedTillViewWillAppearOrStateRestoration = []
+		scheduledForViewWillAppearOrStateRestoration.forEach {$0()}
+		scheduledForViewWillAppearOrStateRestoration = []
 	}
 }
 //

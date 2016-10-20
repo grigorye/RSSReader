@@ -289,19 +289,19 @@ class FolderListTableViewController: ContainerTableViewController, UIDataSourceM
 		}
 	}
 	// MARK: -
-	var delayedForViewWillAppear = [Handler]()
+	var scheduledForViewWillAppear = [Handler]()
 	override func viewWillAppear(_ animated: Bool) {
-		delayedForViewWillAppear.forEach {$0()}
-		delayedForViewWillAppear = []
+		scheduledForViewWillAppear.forEach {$0()}
+		scheduledForViewWillAppear = []
 		super.viewWillAppear(animated)
-		delayedForViewDidDisappear += [bindChildContainers()]
-		delayedForViewDidDisappear += [bindRefreshStateDescription()]
-		delayedForViewDidDisappear += [bindCombinedTitle()]
+		scheduledForViewDidDisappear += [bindChildContainers()]
+		scheduledForViewDidDisappear += [bindRefreshStateDescription()]
+		scheduledForViewDidDisappear += [bindCombinedTitle()]
 	}
-	var delayedForViewDidDisappear = [Handler]()
+	var scheduledForViewDidDisappear = [Handler]()
 	override func viewDidDisappear(_ animated: Bool) {
-		delayedForViewDidDisappear.forEach {$0()}
-		delayedForViewDidDisappear = []
+		scheduledForViewDidDisappear.forEach {$0()}
+		scheduledForViewDidDisappear = []
 		super.viewDidDisappear(animated)
 	}
 	// MARK: -

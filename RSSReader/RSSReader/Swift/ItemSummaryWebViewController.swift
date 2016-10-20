@@ -131,14 +131,14 @@ class ItemSummaryWebViewController: UIViewController {
 		}
 	}
 	// MARK: -
-	var blocksScheduledForViewWillAppear = [Handler]()
-	var blocksScheduledForViewWillDisappear = [Handler]()
+	var scheduledForViewWillAppear = [Handler]()
+	var scheduledForViewWillDisappear = [Handler]()
 	var itemMarkedAsReadKVOBinding: KVOBinding?
 	// MARK: -
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.savedToolbarItems = self.toolbarItems!
-		blocksScheduledForViewWillAppear += [{
+		scheduledForViewWillAppear += [{
 			do {
 				try self.loadHTMLString(self.summaryHTMLString, ignoringExisting: false)
 			}
@@ -159,8 +159,8 @@ class ItemSummaryWebViewController: UIViewController {
 	// MARK: -
 	var viewDidDisappearRetainedObjects = [Any]()
 	override func viewWillAppear(_ animated: Bool) {
-		blocksScheduledForViewWillAppear.forEach { $0() }
-		blocksScheduledForViewWillAppear = []
+		scheduledForViewWillAppear.forEach { $0() }
+		scheduledForViewWillAppear = []
 		viewDidDisappearRetainedObjects += [KVOBinding(self•#keyPath(item.markedAsFavorite), options: .initial) { [unowned self] change in
 			let excludedBarButtonItem = self.item.markedAsFavorite ? self.markAsFavoriteBarButtonItem : self.unmarkAsFavoriteBarButtonItem
 			let toolbarItems = self.savedToolbarItems.filter {
@@ -173,14 +173,14 @@ class ItemSummaryWebViewController: UIViewController {
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		self.managesBarVisiblity = true
-		blocksScheduledForViewWillDisappear += [{
+		scheduledForViewWillDisappear += [{
 			self.managesBarVisiblity = false
 		}]
 		self.markAsOpenAndReadTimer = Timer.scheduledTimer(timeInterval: markAsReadTimeInterval, target: self, selector: #selector(self.markAsOpenAndRead), userInfo: nil, repeats: false)
 	}
 	override func viewWillDisappear(_ animated: Bool) {
-		blocksScheduledForViewWillDisappear.forEach { $0() }
-		blocksScheduledForViewWillDisappear = []
+		scheduledForViewWillDisappear.forEach { $0() }
+		scheduledForViewWillDisappear = []
 		super.viewWillDisappear(animated)
 		self.markAsOpenAndReadTimer?.invalidate()
 	}
