@@ -64,7 +64,9 @@ func defaultLogger(date: Date, label: String?, location: SourceLocation, message
 	case .oslog:
 		let text = defaultLoggedText(date: date, label: label, location: location, message: message)
 		if #available(iOS 10.0, *) {
-			rdar_os_log_object_with_type(location.dso, location.bundle!.log, .default, text)
+			let dso = location.dso
+			let bundle = Bundle(for: dso)!
+			rdar_os_log_object_with_type(dso, bundle.log, .default, text)
 		} else {
 			fallthrough
 		}

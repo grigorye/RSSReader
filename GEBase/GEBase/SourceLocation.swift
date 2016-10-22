@@ -80,15 +80,13 @@ public struct SourceLocation {
 	let line: Int
 	let column: Int
 	let function: String
-	let bundle: Bundle?
 	let dso: UnsafeRawPointer
-	public init(file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer, bundle: Bundle? = Bundle.bundle(forStackFrameIndex: 2)) {
+	public init(file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer) {
 		precondition(file != "")
 		self.fileURL = URL(fileURLWithPath: file, isDirectory: false)
 		self.line = line
 		self.column = column
 		self.function = function
-		self.bundle = bundle
 		self.dso = dso
 	}
 }

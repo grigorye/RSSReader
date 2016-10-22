@@ -16,7 +16,7 @@ func label(from firstLocation: SourceLocation, to lastLocation: SourceLocation) 
 	let fileURL = firstLocation.fileURL
 	let resourceName = fileURL.deletingPathExtension().lastPathComponent
 	let resourceType = fileURL.pathExtension
-	guard let bundle = firstLocation.bundle else {
+	guard let bundle = Bundle(for: firstLocation.dso) else {
 		// Console
 		return "\(resourceName).\(resourceType):?"
 	}

@@ -145,44 +145,8 @@ func tracingShouldBeEnabledForLocation(_ location: SourceLocation) -> Bool {
 	return true
 }
 
-public struct Traceable<T> {
-	let value: T
-	let location: SourceLocation
-	init(value: T, location: SourceLocation = SourceLocation(file: #file, line: #line, column: #column, function: #function, dso: #dsohandle, bundle: Bundle.bundle(forStackFrameIndex: 2))) {
-		self.value = value
-		self.location = location
-	}
-	public func $(level: Int = defaultTraceLevel, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer) -> T {
-		if 1 == level || ((level == defaultTraceLevel) && defaultTracingEnabled && tracingShouldBeEnabledForLocation(self.location)) {
-			let column = column + ((level == defaultTraceLevel) ? 0 : -1)
-			trace(value, from: self.location, to: SourceLocation(file: file, line: line, column: column, function: function, dso: dso))
-		}
-		return value
-	}
-}
-
-public struct Labelable<T> {
-	let value: T
-	let location: SourceLocation
-	init(value: T, location: SourceLocation = SourceLocation(file: #file, line: #line, column: #column, function: #function, dso: #dsohandle)) {
-		self.value = value
-		self.location = location
-	}
-	public func $(file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer = #dsohandle) -> String {
-		return label(for: value, from: self.location, to: SourceLocation(file: file, line: line, column: column, function: function, dso: dso))
-	}
-}
-
-public func x$<T>(v: T, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer = #dsohandle, bundle: Bundle? = Bundle.bundle(forStackFrameIndex: 2)) -> Traceable<T> {
-	return Traceable(value: v, location: SourceLocation(file: file, line: line, column: column, function: function, dso: dso, bundle: bundle))
-}
-
-public func xL<T>(v: T, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer = #dsohandle, bundle: Bundle? = Bundle.bundle(forStackFrameIndex: 2)) -> Labelable<T> {
-	return Labelable(value: v, location: SourceLocation(file: file, line: line, column: column, function: function, dso: dso, bundle: bundle))
-}
-
 func trace<T>(_ v: T, file: String, line: Int, column: Int, function: String, dso: UnsafeRawPointer) {
-	let location = SourceLocation(file: file, line: line, column: column, function: function, dso: dso, bundle: Bundle.bundle(forStackFrameIndex: 3))
+	let location = SourceLocation(file: file, line: line, column: column, function: function, dso: dso)
 	trace(v, from: location, to: location)
 }
 
@@ -267,8 +231,8 @@ public postfix func »<T>(v: T) -> T {
 	return v
 }
 
-public func L<T>(_ v: T, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer = #dsohandle, bundle: Bundle? = Bundle.bundle(forStackFrameIndex: 2)) -> String {
-	let location = SourceLocation(file: file, line: line, column: column, function: function, dso: dso, bundle: bundle)
+public func L<T>(_ v: T, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer = #dsohandle) -> String {
+	let location = SourceLocation(file: file, line: line, column: column, function: function, dso: dso)
 	return label(for: v, from: location, to: location)
 }
 
