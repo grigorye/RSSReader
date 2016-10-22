@@ -34,13 +34,15 @@ extension KVOCompliantUserDefaults {
 
 private let traceToNSLogEnabled = false
 
-public func defaultLoggedText(date: Date, label: String, location: SourceLocation, message: String) -> String {
+public func defaultLoggedText(date: Date, label: String?, location: SourceLocation, message: String) -> String {
 	let locationDescription = "\(location.function), \(location.fileURL.lastPathComponent):\(location.line)"
-	let text = "\(locationDescription) ◾︎ \(label): \(message)"
-	return text
+	guard let label = label else {
+		return "\(locationDescription) ◾︎ \(message)"
+	}
+	return "\(locationDescription) ◾︎ \(label): \(message)"
 }
 
-public func defaultLoggedTextWithTimestampAndThread(date: Date, label: String, location: SourceLocation, message: String) -> String {
+public func defaultLoggedTextWithTimestampAndThread(date: Date, label: String?, location: SourceLocation, message: String) -> String {
 	let text = defaultLoggedText(date: date, label: label, location: location, message: message)
 	let dateDescription = dateFormatter.string(from: date)
 	let threadDescription = Thread.isMainThread ? "-" : "\(DispatchQueue.global().label)"
@@ -48,20 +50,24 @@ public func defaultLoggedTextWithTimestampAndThread(date: Date, label: String, l
 	return textWithTimestampAndThread
 }
 
-public func defaultLoggedTextWithThread(date: Date, label: String, location: SourceLocation, message: String) -> String {
+public func defaultLoggedTextWithThread(date: Date, label: String?, location: SourceLocation, message: String) -> String {
 	let text = defaultLoggedText(date: date, label: label, location: location, message: message)
 	let threadDescription = Thread.isMainThread ? "-" : "\(DispatchQueue.global().label)"
 	let textWithThread = "[\(threadDescription)] \(text)"
 	return textWithThread
 }
 
-func defaultLogger(date: Date, label: String, location: SourceLocation, message: String) {
+func defaultLogger(date: Date, label: String?, location: SourceLocation, message: String) {
 	guard let logKindInDefaults = defaults.logKind else { return }
 	switch DefaultLogKind(rawValue: logKindInDefaults)! {
 	case .none: ()
 	case .oslog:
 		let text = defaultLoggedText(date: date, label: label, location: location, message: message)
-		rdar_os_log_object_with_type(location.dso, location.bundle!.log, .default, text)
+		if #available(iOS 10.0, *) {
+			rdar_os_log_object_with_type(location.dso, location.bundle!.log, .default, text)
+		} else {
+			fallthrough
+		}
 	case .nslog:
 		let text = defaultLoggedText(date: date, label: label, location: location, message: message)
 		NSLog("%@", text)
