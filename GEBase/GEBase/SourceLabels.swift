@@ -14,6 +14,7 @@ func descriptionForInLineLocation(_ location: SourceLocation) -> String {
 
 func label(for location: SourceLocation) -> String {
 	let fileURL = location.fileURL
+	let fileName = fileURL.lastPathComponent
 	let resourceName = fileURL.deletingPathExtension().lastPathComponent
 	let resourceType = fileURL.pathExtension
 	guard let bundle = Bundle(for: location.dso) else {
@@ -23,11 +24,9 @@ func label(for location: SourceLocation) -> String {
 	let bundleName = (bundle.bundlePath as NSString).lastPathComponent
 	guard let file = bundle.path(forResource: resourceName, ofType: resourceType, inDirectory: "Sources") else {
 		// File missing in the bundle
-		return "\(bundleName)/\(resourceName).\(resourceType)[!exist]:\(descriptionForInLineLocation(location)):?"
+		return "\(bundleName)/\(fileName)[missing]:\(descriptionForInLineLocation(location)):?"
 	}
-	guard let fileContents = try? String(contentsOfFile: file, encoding: String.Encoding.utf8) else {
-		return "\(bundleName)/\(resourceName).\(resourceType)[!read]:\(descriptionForInLineLocation(location)):?"
-	}
+	let fileContents = try! String(contentsOfFile: file, encoding: String.Encoding.utf8)
 	let lines = fileContents.components(separatedBy: "\n")
 	let line = lines[location.line - 1]
 	let firstIndex: Int = {

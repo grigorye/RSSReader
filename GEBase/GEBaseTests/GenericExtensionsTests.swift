@@ -82,12 +82,23 @@ class TraceTests : TraceAndLabelTestsBase {
 	func testLabelWithMissingSource() {
 		traceLabelsEnabledEnforced = true
 		let s = "foo"
-		let sourceFilename = "Missing.swift"
+		let sourceFile = "/tmp/Missing.swift"
+		let sourceFilename = URL(fileURLWithPath: sourceFile).lastPathComponent
 		let cls = type(of: self)
 		let bundleFilename = Bundle(for: cls).bundleURL.lastPathComponent
 		let cln = #column - 1
-		let l = L(s, file: sourceFilename)
-		XCTAssertEqual(l, "\(bundleFilename)/\(sourceFilename)[!exist]:\(cln):?: foo")
+		let l = L(s, file: sourceFile)
+		XCTAssertEqual(l, "\(bundleFilename)/\(sourceFilename)[missing]:\(cln):?: foo")
+	}
+	func testLabelWithNoSource() {
+		traceLabelsEnabledEnforced = true
+		let s = "foo"
+		var v = "foo"
+		let sourceFilename = URL(fileURLWithPath: #file).lastPathComponent
+		withUnsafePointer(to: &v) { p in
+			let l = L(s, dso: p)
+			XCTAssertEqual(l, "\(sourceFilename):?: foo")
+		}
 	}
 	func testLabeledCompoundExpressions() {
 		let foo = "bar"
