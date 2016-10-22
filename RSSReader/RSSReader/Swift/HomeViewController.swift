@@ -10,7 +10,7 @@ import RSSReaderData
 import GEBase
 import UIKit
 
-func configureFavoritesItemsListViewController(_ itemListViewController: ItemListViewController) {
+func configureFavoritesItemListViewController(_ itemListViewController: ItemListViewController) {
 	itemListViewController.title = NSLocalizedString("Favorites", comment: "")
 	if let favoritesFolder = Folder.folderWithTagSuffix(favoriteTagSuffix, managedObjectContext: mainQueueManagedObjectContext) {
 		itemListViewController.container = favoritesFolder
@@ -31,7 +31,7 @@ class HomeViewController: UITableViewController {
 			}
 		case MainStoryboard.SegueIdentifiers.ShowFavorites:
 			let itemListViewController = segue.destination as! ItemListViewController
-			configureFavoritesItemsListViewController(itemListViewController)
+			configureFavoritesItemListViewController(itemListViewController)
 		default:
 			()
 		}
