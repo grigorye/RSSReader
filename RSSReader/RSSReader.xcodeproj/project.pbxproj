@@ -69,6 +69,12 @@
 		C49540A11A57825100F56168 /* ItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49540A01A57825100F56168 /* ItemListViewController.swift */; };
 		C49540A51A57906600F56168 /* ItemSummaryWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */; };
 		C49B127D1BF686D500EA5DE5 /* Debug.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C49B127C1BF686D500EA5DE5 /* Debug.storyboard */; };
+		C49FF1C71DBBAA9000A86CC0 /* GEUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1C61DBBAA9000A86CC0 /* GEUIKit.framework */; };
+		C49FF1C81DBBAA9000A86CC0 /* GEUIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1C61DBBAA9000A86CC0 /* GEUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C49FF1CA1DBBAA9000A86CC0 /* GECoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1C91DBBAA9000A86CC0 /* GECoreData.framework */; };
+		C49FF1CB1DBBAA9000A86CC0 /* GECoreData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1C91DBBAA9000A86CC0 /* GECoreData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C49FF1CD1DBBAA9000A86CC0 /* GEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1CC1DBBAA9000A86CC0 /* GEFoundation.framework */; };
+		C49FF1CE1DBBAA9000A86CC0 /* GEFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1CC1DBBAA9000A86CC0 /* GEFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4A1646A1CB8938C009D8B86 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4A1646C1CB8938C009D8B86 /* InfoPlist.strings */; };
 		C4AD2ADB1A5DED8700B39AC9 /* ItemPageViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD2ADA1A5DED8700B39AC9 /* ItemPageViewControllerDelegate.swift */; };
 		C4AD5B371D282F1800358DEA /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4AD5B361D282F1800358DEA /* PromiseKit.framework */; };
@@ -171,10 +177,13 @@
 			dstSubfolderSpec = 10;
 			files = (
 				C474F1C11DB041F100F0E152 /* Loggy.framework in Embed Frameworks */,
+				C49FF1CE1DBBAA9000A86CC0 /* GEFoundation.framework in Embed Frameworks */,
 				C408F1B81CE7520700DB943F /* FBRetainCycleDetector.framework in Embed Frameworks */,
+				C49FF1CB1DBBAA9000A86CC0 /* GECoreData.framework in Embed Frameworks */,
 				C424B8F21C6FC5C8008AD647 /* RSSReaderData.framework in Embed Frameworks */,
 				C4BE5AAF1DA864FA00E1734F /* RSSReaderAppConfig.framework in Embed Frameworks */,
 				C408F1B51CE7520700DB943F /* FBMemoryProfiler.framework in Embed Frameworks */,
+				C49FF1C81DBBAA9000A86CC0 /* GEUIKit.framework in Embed Frameworks */,
 				C4AD5B381D282F1800358DEA /* PromiseKit.framework in Embed Frameworks */,
 				C408F1851CE73FAE00DB943F /* GEBase.framework in Embed Frameworks */,
 				C474F0D21D8775F500CABEB9 /* SwiftMessages.framework in Embed Frameworks */,
@@ -248,6 +257,9 @@
 		C49540A01A57825100F56168 /* ItemListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ItemListViewController.swift; path = Swift/ItemListViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ItemSummaryWebViewController.swift; path = Swift/ItemSummaryWebViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C49B127C1BF686D500EA5DE5 /* Debug.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Debug.storyboard; path = Resources/Debug.storyboard; sourceTree = "<group>"; };
+		C49FF1C61DBBAA9000A86CC0 /* GEUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GEUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C49FF1C91DBBAA9000A86CC0 /* GECoreData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GECoreData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C49FF1CC1DBBAA9000A86CC0 /* GEFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GEFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4A164671CB89076009D8B86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		C4AD2ADA1A5DED8700B39AC9 /* ItemPageViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemPageViewControllerDelegate.swift; path = Swift/ItemPageViewControllerDelegate.swift; sourceTree = "<group>"; };
 		C4AD5B361D282F1800358DEA /* PromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -304,10 +316,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C474F1C01DB041F100F0E152 /* Loggy.framework in Frameworks */,
+				C49FF1CD1DBBAA9000A86CC0 /* GEFoundation.framework in Frameworks */,
 				C408F1B71CE7520700DB943F /* FBRetainCycleDetector.framework in Frameworks */,
+				C49FF1CA1DBBAA9000A86CC0 /* GECoreData.framework in Frameworks */,
 				C424B8F11C6FC5C8008AD647 /* RSSReaderData.framework in Frameworks */,
 				C4BE5AAE1DA864FA00E1734F /* RSSReaderAppConfig.framework in Frameworks */,
 				C408F1B41CE7520700DB943F /* FBMemoryProfiler.framework in Frameworks */,
+				C49FF1C71DBBAA9000A86CC0 /* GEUIKit.framework in Frameworks */,
 				C4AD5B371D282F1800358DEA /* PromiseKit.framework in Frameworks */,
 				C408F1841CE73FAE00DB943F /* GEBase.framework in Frameworks */,
 				C474F0D11D8775F500CABEB9 /* SwiftMessages.framework in Frameworks */,
@@ -350,6 +365,9 @@
 				C408F1B31CE7520700DB943F /* FBMemoryProfiler.framework */,
 				C408F1B01CE7520700DB943F /* FBAllocationTracker.framework */,
 				C424B8F31C6FC5CD008AD647 /* GEBase.framework */,
+				C49FF1CC1DBBAA9000A86CC0 /* GEFoundation.framework */,
+				C49FF1C91DBBAA9000A86CC0 /* GECoreData.framework */,
+				C49FF1C61DBBAA9000A86CC0 /* GEUIKit.framework */,
 				C424B8F01C6FC5C8008AD647 /* RSSReaderData.framework */,
 				C4BE5AAD1DA864FA00E1734F /* RSSReaderAppConfig.framework */,
 				C459879E1CDE0AAA00B8E9E4 /* GEShared.xcconfig */,

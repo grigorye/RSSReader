@@ -7,6 +7,7 @@
 //
 
 import RSSReaderData
+import GEUIKit
 import GEBase
 import UIKit.UITableViewController
 import CoreData.NSFetchedResultsController

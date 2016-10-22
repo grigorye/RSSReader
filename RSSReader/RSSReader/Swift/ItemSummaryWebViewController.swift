@@ -8,6 +8,7 @@
 
 import RSSReaderAppConfig
 import RSSReaderData
+import GEFoundation
 import GEBase
 import SafariServices
 import UIKit

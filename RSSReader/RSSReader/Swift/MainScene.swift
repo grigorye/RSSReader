@@ -7,6 +7,7 @@
 //
 
 import RSSReaderData
+import GECoreData
 import GEBase
 import UIKit
 
