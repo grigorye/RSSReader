@@ -23,7 +23,7 @@
 		C49FF0E61DBAF7D800A86CC0 /* NestedBrackets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF0E51DBAF7D800A86CC0 /* NestedBrackets.swift */; };
 		C49FF0E81DBAF80200A86CC0 /* NestedBracketsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF0E71DBAF80200A86CC0 /* NestedBracketsTests.swift */; };
 		C49FF0EA1DBAF94200A86CC0 /* SourceLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF0E91DBAF94200A86CC0 /* SourceLabels.swift */; };
-		C49FF19D1DBB9F3D00A86CC0 /* ObjectiveCBridging.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF19C1DBB9F3D00A86CC0 /* ObjectiveCBridging.swift */; };
+		C49FF19D1DBB9F3D00A86CC0 /* ObjCPropertyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF19C1DBB9F3D00A86CC0 /* ObjCPropertyInfo.swift */; };
 		C49FF1A51DBBA06200A86CC0 /* AssociatedObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF1A41DBBA06200A86CC0 /* AssociatedObjects.swift */; };
 		C4CB38861CDBA78D00562665 /* SourceLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CB38851CDBA78D00562665 /* SourceLocation.swift */; };
 		C4D6F41A1C73CCC000A7E2ED /* Tracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D6F4191C73CCC000A7E2ED /* Tracing.swift */; };
@@ -104,7 +104,7 @@
 		C49FF0E51DBAF7D800A86CC0 /* NestedBrackets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NestedBrackets.swift; sourceTree = "<group>"; };
 		C49FF0E71DBAF80200A86CC0 /* NestedBracketsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NestedBracketsTests.swift; path = GEBaseTests/NestedBracketsTests.swift; sourceTree = SOURCE_ROOT; };
 		C49FF0E91DBAF94200A86CC0 /* SourceLabels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceLabels.swift; sourceTree = "<group>"; };
-		C49FF19C1DBB9F3D00A86CC0 /* ObjectiveCBridging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectiveCBridging.swift; sourceTree = "<group>"; };
+		C49FF19C1DBB9F3D00A86CC0 /* ObjCPropertyInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjCPropertyInfo.swift; sourceTree = "<group>"; };
 		C49FF1A41DBBA06200A86CC0 /* AssociatedObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssociatedObjects.swift; sourceTree = "<group>"; };
 		C4CB38851CDBA78D00562665 /* SourceLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceLocation.swift; sourceTree = "<group>"; };
 		C4D6F4191C73CCC000A7E2ED /* Tracing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tracing.swift; sourceTree = "<group>"; };
@@ -154,7 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				C49FF1A41DBBA06200A86CC0 /* AssociatedObjects.swift */,
-				C49FF19C1DBB9F3D00A86CC0 /* ObjectiveCBridging.swift */,
+				C49FF19C1DBB9F3D00A86CC0 /* ObjCPropertyInfo.swift */,
 				C474F1C81DB0554B00F0E152 /* OSLogRDAR28599032.h */,
 				C474F1C91DB0554B00F0E152 /* OSLogRDAR28599032.m */,
 				C41818A71B6A673F00872EB3 /* Primitives.swift */,
@@ -314,7 +314,7 @@
 				C474F1CB1DB0554B00F0E152 /* OSLogRDAR28599032.m in Sources */,
 				C41818AA1B6A673F00872EB3 /* Primitives.swift in Sources */,
 				C49700901D21B17400E9B689 /* Sugar.swift in Sources */,
-				C49FF19D1DBB9F3D00A86CC0 /* ObjectiveCBridging.swift in Sources */,
+				C49FF19D1DBB9F3D00A86CC0 /* ObjCPropertyInfo.swift in Sources */,
 				C4FEBB1D1BF960A300A5709B /* BundleForSymbolAddress.swift in Sources */,
 				C49FF0E61DBAF7D800A86CC0 /* NestedBrackets.swift in Sources */,
 				C4D6F41A1C73CCC000A7E2ED /* Tracing.swift in Sources */,
