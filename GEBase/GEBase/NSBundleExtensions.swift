@@ -9,20 +9,13 @@
 import Foundation
 
 extension Bundle {
-	public static func bundle(forStackFrameIndex stackFrameIndex: Int) -> Bundle? {
-		precondition(0 <= stackFrameIndex)
-		let length = stackFrameIndex + 1
-		let addr = UnsafeMutablePointer<UnsafeMutableRawPointer?>.allocate(capacity: length)
-		let frames = Int(backtrace(addr, Int32(length)))
-		assert(stackFrameIndex < frames)
+	public convenience init?(for symbolAddr: UnsafeRawPointer) {
 		var info = Dl_info()
-		guard 0 != dladdr(addr[stackFrameIndex], &info) else {
+		guard 0 != dladdr(symbolAddr, &info) else {
 			return nil
 		}
 		let sharedObjectName = String(validatingUTF8: info.dli_fname)!
 		let bundleURL = URL(fileURLWithPath: sharedObjectName).deletingLastPathComponent()
-		let bundle = Bundle(url: bundleURL)!
-		addr.deallocate(capacity: length)
-		return bundle
+		self.init(url: bundleURL)
 	}
 }
