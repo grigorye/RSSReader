@@ -6,7 +6,10 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
+import GEBase
 import Foundation
+
+public let progressEnabledURLSessionTaskGenerator = ProgressEnabledURLSessionTaskGenerator()
 
 public enum URLSessionTaskGeneratorError: Error {
 	case UnexpectedHTTPResponseStatus(httpResponse: HTTPURLResponse)

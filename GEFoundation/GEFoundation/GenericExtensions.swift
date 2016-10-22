@@ -6,9 +6,8 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
+import GEBase
 import Foundation
-
-public typealias Handler = () -> Void
 
 public typealias Json = [String : AnyObject]
 
