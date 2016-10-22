@@ -13,6 +13,7 @@ class TraceAndLabelTestsBase: XCTestCase {
 	var blocksForTearDown = [Handler]()
 	// MARK:-
 	override func setUp() {
+		super.setUp()
 		let traceLabelsEnabledEnforcedOldValue = traceLabelsEnabledEnforced
 		blocksForTearDown += [{
 			traceLabelsEnabledEnforced = traceLabelsEnabledEnforcedOldValue
@@ -27,16 +28,17 @@ class TraceAndLabelTestsBase: XCTestCase {
 		}]
 	}
 	override func tearDown() {
-		for block in blocksForTearDown {
-			block()
-		}
+		blocksForTearDown.forEach {$0()}
+		blocksForTearDown = []
+		super.tearDown()
 	}
 }
 
-class TraceTests: TraceAndLabelTestsBase {
+class TraceTests : TraceAndLabelTestsBase {
 	let foo = "bar"
 	var tracedMessages = [(label: String?, location: SourceLocation, message: String)]()
 	override func setUp() {
+		super.setUp()
 		let oldLoggers = loggers
 		loggers.append({ date, label, location, message in
 			self.tracedMessages += [(label: label, location: location, message: message)]
@@ -45,6 +47,7 @@ class TraceTests: TraceAndLabelTestsBase {
 			loggers = oldLoggers
 		}]
 	}
+	// MARK: -
     func testTraceWithAllThingsDisabled() {
 		$(foo)
 		XCTAssertTrue(tracedMessages.isEmpty)
@@ -76,6 +79,16 @@ class TraceTests: TraceAndLabelTestsBase {
 		traceLabelsEnabledEnforced = false
 		XCTAssertEqual(L(foo), "bar")
     }
+	func testLabelWithMissingSource() {
+		traceLabelsEnabledEnforced = true
+		let s = "foo"
+		let sourceFilename = "Missing.swift"
+		let cls = type(of: self)
+		let bundleFilename = Bundle(for: cls).bundleURL.lastPathComponent
+		let cln = #column - 1
+		let l = L(s, file: sourceFilename)
+		XCTAssertEqual(l, "\(bundleFilename)/\(sourceFilename)[!exist]:\(cln):?: foo")
+	}
 	func testLabeledCompoundExpressions() {
 		let foo = "bar"
 		let optionalFoo = Optional("bar")
