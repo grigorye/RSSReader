@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C48CAA1C1DBC26F100D6F40E /* ObjCEncode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA1B1DBC26F100D6F40E /* ObjCEncode.swift */; };
 		C49FF1041DBB981300A86CC0 /* GEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF0FA1DBB981300A86CC0 /* GEFoundation.framework */; };
 		C49FF1091DBB981300A86CC0 /* GEFoundationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF1081DBB981300A86CC0 /* GEFoundationTests.swift */; };
 		C49FF1791DBB996D00A86CC0 /* GenericURLSessionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF1741DBB996D00A86CC0 /* GenericURLSessionExtensions.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C48CAA1B1DBC26F100D6F40E /* ObjCEncode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjCEncode.swift; sourceTree = "<group>"; };
 		C49FF0FA1DBB981300A86CC0 /* GEFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GEFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C49FF0FE1DBB981300A86CC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C49FF1031DBB981300A86CC0 /* GEFoundationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GEFoundationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +102,7 @@
 		C49FF0FC1DBB981300A86CC0 /* GEFoundation */ = {
 			isa = PBXGroup;
 			children = (
+				C48CAA1B1DBC26F100D6F40E /* ObjCEncode.swift */,
 				C49FF19E1DBB9FF400A86CC0 /* KVOBinding.swift */,
 				C49FF1A01DBBA01100A86CC0 /* ObjectAndKeyPath.swift */,
 				C49FF1821DBB99BE00A86CC0 /* PropertyCaching.swift */,
@@ -251,6 +254,7 @@
 				C49FF17C1DBB996D00A86CC0 /* URLSessionTaskGeneratorErrorObjCBridging.swift in Sources */,
 				C49FF1871DBB99FB00A86CC0 /* Descriptions.swift in Sources */,
 				C49FF1791DBB996D00A86CC0 /* GenericURLSessionExtensions.swift in Sources */,
+				C48CAA1C1DBC26F100D6F40E /* ObjCEncode.swift in Sources */,
 				C49FF19F1DBB9FF400A86CC0 /* KVOBinding.swift in Sources */,
 				C49FF1811DBB999E00A86CC0 /* GenericExtensions.swift in Sources */,
 				C49FF17B1DBB996D00A86CC0 /* ProgressEnabledURLSessionTaskGenerator.swift in Sources */,
