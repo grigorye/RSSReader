@@ -56,7 +56,7 @@ class TraceTests: TraceAndLabelTestsBase {
 		XCTAssertEqual(tracedMessages.map {$0.location.line}, [line])
 		XCTAssertEqual(tracedMessages.map {$0.location.fileURL}, [fileURL])
 		XCTAssertEqual(tracedMessages.map {$0.message}, ["bar"])
-		XCTAssertEqual(tracedMessages.map {$0.label}, ["[5-2]"])
+		XCTAssertEqual(tracedMessages.map {$0.label!}, ["[5-2]"])
 	}
 	func testWithTraceAndLabelsEnabled() {
 		traceEnabledEnforced = true
@@ -66,7 +66,7 @@ class TraceTests: TraceAndLabelTestsBase {
 		XCTAssertEqual(tracedMessages.map {$0.location.line}, [line])
 		XCTAssertEqual(tracedMessages.map {$0.location.fileURL}, [fileURL])
 		XCTAssertEqual(tracedMessages.map {$0.message}, ["bar"])
-		XCTAssertEqual(tracedMessages.map {$0.label}, ["foo"])
+		XCTAssertEqual(tracedMessages.map {$0.label!}, ["foo"])
 	}
 	// MARK: -
     func testLabeledString() {
