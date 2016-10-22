@@ -9,6 +9,9 @@
 import Foundation
 
 func descriptionForInLineLocation(_ firstLocation: SourceLocation, lastLocation: SourceLocation) -> String {
+	guard firstLocation.column != lastLocation.column else {
+		return "\(firstLocation.column)"
+	}
 	return "[\(firstLocation.column)-\(lastLocation.column - 3)]"
 }
 
