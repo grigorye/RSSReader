@@ -6,6 +6,7 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
+import GECoreData
 import GEBase
 import PromiseKit
 import CoreData

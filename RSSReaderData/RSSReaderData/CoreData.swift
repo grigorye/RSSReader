@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
+import GECoreData
 import GEBase
 import CoreData
 import Foundation

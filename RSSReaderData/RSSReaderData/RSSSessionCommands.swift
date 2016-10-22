@@ -6,6 +6,8 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
+import GECoreData
+import GEFoundation
 import GEBase
 import CoreData
 import Foundation
@@ -224,7 +226,7 @@ struct Authenticate : PersistentDataUpdateCommand, SimpleDispatchingDataUpdateCo
 	let loginAndPassword: LoginAndPassword
 	func preprocessed(_ error: Error) -> Error {
 		switch error {
-		case GEBase.URLSessionTaskGeneratorError.UnexpectedHTTPResponseStatus(let httpResponse):
+		case URLSessionTaskGeneratorError.UnexpectedHTTPResponseStatus(let httpResponse):
 			guard httpResponse.statusCode == 401 else {
 				return error
 			}
