@@ -28,7 +28,7 @@ let logFileHandle: FileHandle! = {
 	return try! FileHandle(forWritingTo: logFileURL)
 }()
 
-func fileLogger(date: Date, label: String, location: SourceLocation, message: String) {
+func fileLogger(date: Date, label: String?, location: SourceLocation, message: String) {
 	guard let logFileHandle = logFileHandle else {
 		return
 	}

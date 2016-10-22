@@ -17,7 +17,7 @@ import Fabric
 import Crashlytics
 import Foundation
 
-func crashlyticsLogger(date: Date, label: String, location: SourceLocation, message: String) {
+func crashlyticsLogger(date: Date, label: String?, location: SourceLocation, message: String) {
 	let text = defaultLoggedTextWithThread(date: date, label: label, location: location, message: message)
 	CLSLogv("%@", getVaList([text]))
 }
