@@ -1,5 +1,5 @@
 //
-//  NSBundleExtensions.swift
+//  BundleForSymbolAddress.swift
 //  GEBase
 //
 //  Created by Grigory Entin on 16/11/15.
