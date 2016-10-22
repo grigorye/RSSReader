@@ -35,7 +35,7 @@ class TraceAndLabelTestsBase: XCTestCase {
 
 class TraceTests: TraceAndLabelTestsBase {
 	let foo = "bar"
-	var tracedMessages = [(label: String, location: SourceLocation, message: String)]()
+	var tracedMessages = [(label: String?, location: SourceLocation, message: String)]()
 	override func setUp() {
 		let oldLoggers = loggers
 		loggers.append({ date, label, location, message in
@@ -49,7 +49,7 @@ class TraceTests: TraceAndLabelTestsBase {
 		$(foo)
 		XCTAssertTrue(tracedMessages.isEmpty)
 	}
-	func testTraceWithTraceEanbled() {
+	func testTraceWithTraceEnabled() {
 		traceEnabledEnforced = true
 		$(foo); let line = #line
 		let fileURL = URL(fileURLWithPath: #file)
@@ -86,7 +86,10 @@ class TraceTests: TraceAndLabelTestsBase {
 		XCTAssertEqual(L(optionalFoo!), "optionalFoo!: bar")
 		swiftHashColumnMatchesLastComponentInCompoundExpressions = false
 		XCTAssertEqual(L(String(foo.characters.reversed())), "String(foo.characters.reversed()): rab")
-		XCTAssertEqual(L("baz" + String(foo.characters.reversed())), "+ String(foo.characters.reversed()): bazrab")
-		XCTAssertEqual(L(optionalFoo!), "!: bar")
+		XCTAssertEqual(L("baz" + String(foo.characters.reversed())), "\"baz\" + String(foo.characters.reversed()): bazrab")
+		XCTAssertEqual(L(optionalFoo!), "optionalFoo!: bar")
+		let fileManager = FileManager.default
+		let storePath = "/tmp/xxx"
+		XCTAssertEqual(L(fileManager.fileExists(atPath: storePath)), "fileManager.fileExists(atPath: storePath): false")
 	}
 }
