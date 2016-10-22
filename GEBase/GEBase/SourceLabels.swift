@@ -8,44 +8,38 @@
 
 import Foundation
 
-func descriptionForInLineLocation(_ firstLocation: SourceLocation, lastLocation: SourceLocation) -> String {
-	guard firstLocation.column != lastLocation.column else {
-		return "\(firstLocation.column)"
-	}
-	return "[\(firstLocation.column)-\(lastLocation.column - 3)]"
+func descriptionForInLineLocation(_ location: SourceLocation) -> String {
+	return "\(location.column)"
 }
 
-func label(from firstLocation: SourceLocation, to lastLocation: SourceLocation) -> String {
-	let fileURL = firstLocation.fileURL
+func label(for location: SourceLocation) -> String {
+	let fileURL = location.fileURL
 	let resourceName = fileURL.deletingPathExtension().lastPathComponent
 	let resourceType = fileURL.pathExtension
-	guard let bundle = Bundle(for: firstLocation.dso) else {
+	guard let bundle = Bundle(for: location.dso) else {
 		// Console
 		return "\(resourceName).\(resourceType):?"
 	}
 	let bundleName = (bundle.bundlePath as NSString).lastPathComponent
 	guard let file = bundle.path(forResource: resourceName, ofType: resourceType, inDirectory: "Sources") else {
 		// File missing in the bundle
-		return "\(bundleName)/\(resourceName).\(resourceType)[!exist]:\(descriptionForInLineLocation(firstLocation, lastLocation: lastLocation)):?"
+		return "\(bundleName)/\(resourceName).\(resourceType)[!exist]:\(descriptionForInLineLocation(location)):?"
 	}
 	guard let fileContents = try? String(contentsOfFile: file, encoding: String.Encoding.utf8) else {
-		return "\(bundleName)/\(resourceName).\(resourceType)[!read]:\(descriptionForInLineLocation(firstLocation, lastLocation: lastLocation)):?"
+		return "\(bundleName)/\(resourceName).\(resourceType)[!read]:\(descriptionForInLineLocation(location)):?"
 	}
 	let lines = fileContents.components(separatedBy: "\n")
-	let line = lines[firstLocation.line - 1]
+	let line = lines[location.line - 1]
 	let firstIndex: Int = {
-		let prefix = line.substring(toOffset: firstLocation.column - 1)
+		let prefix = line.substring(toOffset: location.column - 1)
 		let prefixReversed = String(prefix.characters.reversed())
 		let indexOfOpeningBracketInPrefixReversed = prefixReversed.range(of: "(")!.lowerBound
-		return firstLocation.column - 1 - prefixReversed.distance(from: prefixReversed.startIndex, to: indexOfOpeningBracketInPrefixReversed)
+		return location.column - 1 - prefixReversed.distance(from: prefixReversed.startIndex, to: indexOfOpeningBracketInPrefixReversed)
 	}()
 	let lineSuffix = line.substring(fromOffset: firstIndex)
 	let lengthInLineSuffix: Int = {
-		guard firstLocation.column != lastLocation.column else {
-			let indexOfClosingBracket = lineSuffix.rangeOfClosingBracket(")", openingBracket: "(")!.lowerBound
-			return lineSuffix.distance(from: lineSuffix.startIndex, to: indexOfClosingBracket)
-		}
-		return lastLocation.column - firstLocation.column - 3
+		let indexOfClosingBracket = lineSuffix.rangeOfClosingBracket(")", openingBracket: "(")!.lowerBound
+		return lineSuffix.distance(from: lineSuffix.startIndex, to: indexOfClosingBracket)
 	}()
 	let suffix = lineSuffix.substring(toOffset: lengthInLineSuffix)
 	guard swiftHashColumnMatchesLastComponentInCompoundExpressions else {
@@ -53,11 +47,8 @@ func label(from firstLocation: SourceLocation, to lastLocation: SourceLocation) 
 	}
 	let linePrefixReversed = String(line.substring(toOffset: firstIndex).characters.reversed())
 	let lengthInLinePrefixReversed: Int = {
-		guard firstLocation.column != lastLocation.column else {
-			let indexOfClosingBracket = linePrefixReversed.rangeOfClosingBracket("(", openingBracket: ")")!.lowerBound
-			return linePrefixReversed.distance(from: linePrefixReversed.startIndex, to: indexOfClosingBracket)
-		}
-		return 0
+		let indexOfClosingBracket = linePrefixReversed.rangeOfClosingBracket("(", openingBracket: ")")!.lowerBound
+		return linePrefixReversed.distance(from: linePrefixReversed.startIndex, to: indexOfClosingBracket)
 	}()
 	let prefix = String(linePrefixReversed.substring(toOffset: lengthInLinePrefixReversed).characters.reversed())
 	let text = prefix + suffix
