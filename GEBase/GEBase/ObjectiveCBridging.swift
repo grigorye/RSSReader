@@ -8,7 +8,7 @@
 
 import Foundation
 
-func objCEncode<T>(_ type: T.Type) -> String {
+public func objCEncode<T>(_ type: T.Type) -> String {
 	switch type {
 	case is Int.Type:
 		return String(validatingUTF8: (1 as NSNumber).objCType)!
@@ -21,11 +21,11 @@ func objCEncode<T>(_ type: T.Type) -> String {
 	}
 }
 
-func objCDefaultSetterName(forPropertyName propertyName: String) -> String {
+public func objCDefaultSetterName(forPropertyName propertyName: String) -> String {
 	return "set\(propertyName.uppercased().characters.first!)\(propertyName.substring(from: propertyName.index(after: propertyName.startIndex))):"
 }
 
-func objCValue(forProperty property: objc_property_t, attributeName: String) -> String? {
+public func objCValue(forProperty property: objc_property_t, attributeName: String) -> String? {
 	let valueCString = property_copyAttributeValue(property, attributeName)!
 	let $ = String(validatingUTF8: valueCString)
 	free(valueCString)

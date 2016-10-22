@@ -8,7 +8,7 @@
 
 import Foundation
 
-func associatedObjectRegeneratedAsNecessary<T>(obj: AnyObject!, key: UnsafeRawPointer, generator: () -> T) -> T {
+public func associatedObjectRegeneratedAsNecessary<T>(obj: AnyObject!, key: UnsafeRawPointer, generator: () -> T) -> T {
 	•(NSValue(pointer: Unmanaged.passUnretained(obj).toOpaque()))
 	guard let existingObject = objc_getAssociatedObject(obj, key) as! T! else {
 		let newObject = generator()

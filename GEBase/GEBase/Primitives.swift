@@ -8,3 +8,7 @@
 
 public var _1 = true
 public var _0 = false
+
+public typealias Handler = () -> Void
+
+public let defaults = KVOCompliantUserDefaults()
