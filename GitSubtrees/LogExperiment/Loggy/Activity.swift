@@ -76,7 +76,9 @@ public struct Activity {
             let str = unsafeBitCast(buf.baseAddress!, to: UnsafePointer<Int8>.self)
             let flags = os_activity_flag_t(rawValue: options.rawValue)
             if #available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *) {
+#if false
                 assert(OS_ACTIVITY_OBJECT_API != 0)
+#endif
                 return _os_activity_create(dso, str, OS_ACTIVITY_CURRENT, flags)
             } else {
                 return LegacyActivityContext(dsoHandle: dso, description: str, flags: flags)
@@ -86,7 +88,9 @@ public struct Activity {
 
     private func active(execute body: @convention(block) () -> ()) {
         if #available(iOS 10.0, macOS 10.12, watchOS 3.0, tvOS 10.0, *) {
+#if false
             assert(OS_ACTIVITY_OBJECT_API != 0)
+#endif
             _os_activity_apply(opaque, body)
         } else {
             let context = opaque as! LegacyActivityContext
@@ -126,7 +130,9 @@ public struct Activity {
         /// Pops activity state to `self`.
         public mutating func leave() {
             if #available(iOS 10.0, macOS 10.12, watchOS 3.0, tvOS 10.0, *) {
+#if false
                 assert(OS_ACTIVITY_OBJECT_API != 0)
+#endif
                 _os_activity_scope_leave(&state)
             } else {
                 UnsafeRawPointer(bitPattern: Int(state.opaque.0)).map(Unmanaged<AnyObject>.fromOpaque)?.release()
@@ -147,7 +153,9 @@ public struct Activity {
     public func enter() -> Scope {
         var scope = Scope()
         if #available(iOS 10.0, macOS 10.12, watchOS 3.0, tvOS 10.0, *) {
+#if false
             assert(OS_ACTIVITY_OBJECT_API != 0)
+#endif
             _os_activity_scope_enter(opaque, &scope.state)
         } else {
             let context = opaque as! LegacyActivityContext
