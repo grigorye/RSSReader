@@ -42,73 +42,6 @@ func description<T>(of value: T) -> String {
 	return "\(value)"
 }
 
-func descriptionForInLineLocation(_ firstLocation: SourceLocation, lastLocation: SourceLocation) -> String {
-	return "[\(firstLocation.column)-\(lastLocation.column - 3)]"
-}
-
-extension String {
-	func rangeOfClosingBracket(_ closingBracket: String, openingBracket: String, range searchRange: Range<Index>? = nil) -> Range<String.CharacterView.Index>? {
-		guard let openingBracketRange = range(of: openingBracket, range: searchRange) else {
-			return range(of: closingBracket)
-		}
-		guard let closingBracketRange = range(of: closingBracket, range: searchRange) else {
-			return nil
-		}
-		guard openingBracketRange.lowerBound < closingBracketRange.lowerBound else {
-			return closingBracketRange
-		}
-		let upperBound = searchRange?.upperBound ?? self.characters.endIndex
-		let tailIndex = openingBracketRange.upperBound
-		let ignoredClosingBracketRange = rangeOfClosingBracket(closingBracket, openingBracket: openingBracket, range: tailIndex..<upperBound)!
-		let remainingStringIndex = ignoredClosingBracketRange.upperBound
-		return rangeOfClosingBracket(closingBracket, openingBracket: openingBracket, range: remainingStringIndex..<upperBound)
-	}
-}
-
-func label(from firstLocation: SourceLocation, to lastLocation: SourceLocation) -> String {
-	let fileURL = firstLocation.fileURL
-	let resourceName = fileURL.deletingPathExtension().lastPathComponent
-	let resourceType = fileURL.pathExtension
-	guard let bundle = firstLocation.bundle else {
-		// Console
-		return "\(resourceName).\(resourceType):?"
-	}
-	let bundleName = (bundle.bundlePath as NSString).lastPathComponent
-	guard let file = bundle.path(forResource: resourceName, ofType: resourceType, inDirectory: "Sources") else {
-		// File missing in the bundle
-		return "\(bundleName)/\(resourceName).\(resourceType)[!exist]:\(descriptionForInLineLocation(firstLocation, lastLocation: lastLocation)):?"
-	}
-	guard let fileContents = try? String(contentsOfFile: file, encoding: String.Encoding.utf8) else {
-		return "\(bundleName)/\(resourceName).\(resourceType)[!read]:\(descriptionForInLineLocation(firstLocation, lastLocation: lastLocation)):?"
-	}
-	let lines = fileContents.components(separatedBy: "\n")
-	let line = lines[firstLocation.line - 1]
-	let firstIndex = firstLocation.column - 1
-	let lineSuffix = line.substring(fromOffset: firstIndex)
-	let lengthInLineSuffix: Int = {
-		guard firstLocation.column != lastLocation.column else {
-			let indexOfClosingBracket = lineSuffix.rangeOfClosingBracket(")", openingBracket: "(")!.lowerBound
-			return lineSuffix.distance(from: lineSuffix.startIndex, to: indexOfClosingBracket)
-		}
-		return lastLocation.column - firstLocation.column - 3
-	}()
-	let suffix = lineSuffix.substring(toOffset: lengthInLineSuffix)
-	guard swiftHashColumnMatchesLastComponentInCompoundExpressions else {
-		return suffix
-	}
-	let linePrefixReversed = String(line.substring(toOffset: firstIndex).characters.reversed())
-	let lengthInLinePrefixReversed: Int = {
-		guard firstLocation.column != lastLocation.column else {
-			let indexOfClosingBracket = linePrefixReversed.rangeOfClosingBracket("(", openingBracket: ")")!.lowerBound
-			return linePrefixReversed.distance(from: linePrefixReversed.startIndex, to: indexOfClosingBracket)
-		}
-		return 0
-	}()
-	let prefix = String(linePrefixReversed.substring(toOffset: lengthInLinePrefixReversed).characters.reversed())
-	let text = prefix + suffix
-	return text
-}
-
 func labeled(_ string: String, from location: SourceLocation, to lastLocation: SourceLocation) -> String {
 	guard traceLabelsEnabled else {
 		return string
@@ -126,16 +59,23 @@ func traceLabel(from location: SourceLocation, to lastLocation: SourceLocation) 
 	return "\(label(from: location, to: lastLocation))"
 }
 
-public typealias Logger = ((date: Date, label: String, location: SourceLocation, message: String)) -> ()
+public typealias Logger = ((date: Date, label: String?, location: SourceLocation, message: String)) -> ()
 
 /// Loggers to be used with `trace`.
 public var loggers: [Logger] = [
 	defaultLogger
 ]
 
-func log(message: String, withLabel label: String, on date: Date, at location: SourceLocation) {
+func log(message: String, withLabel label: String?, on date: Date, at location: SourceLocation) {
 	for logger in loggers {
 		logger(date, label, location, message)
+	}
+}
+
+struct StringOutputStream : TextOutputStream {
+	var s = ""
+	mutating func write(_ string: String) {
+		s += string
 	}
 }
 
@@ -334,7 +274,17 @@ public func L<T>(_ v: T, file: String = #file, line: Int = #line, column: Int = 
 
 func trace<T>(_ value: T, from startLocation: SourceLocation, to endLocation: SourceLocation) {
 	if tracingShouldBeEnabledForLocation(startLocation) {
+#if true
 		trace(description(of: value), on: Date(), from: startLocation, to: endLocation)
+#else
+		guard tracingShouldBeEnabledForLocation(startLocation) else {
+			return
+		}
+		let label = traceLabel(from: startLocation, to: endLocation)
+		var ss = StringOutputStream()
+		dump(value, to: &ss, name: label)
+		log(message: "\n\(ss.s)", withLabel: nil, on: Date(), at: startLocation)
+#endif
 	}
 }
 
