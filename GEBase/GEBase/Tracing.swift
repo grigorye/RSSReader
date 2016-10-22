@@ -12,12 +12,8 @@ var traceLabelsEnabledEnforced: Bool?
 var traceEnabledEnforced: Bool?
 
 extension KVOCompliantUserDefaults {
-	var traceEnabled: Bool {
-		return traceEnabledEnforced ?? UserDefaults.standard.bool(forKey: "traceEnabled")
-	}
-	var traceLabelsEnabled: Bool {
-		return traceLabelsEnabledEnforced ?? UserDefaults.standard.bool(forKey: "traceLabelsEnabled")
-	}
+	@NSManaged var traceEnabled: Bool
+	@NSManaged var traceLabelsEnabled: Bool
 }
 
 extension String {
@@ -32,31 +28,31 @@ extension String {
 var swiftHashColumnMatchesLastComponentInCompoundExpressions = true
 
 var traceEnabled: Bool {
-	return defaults.traceEnabled
+	return traceEnabledEnforced ?? defaults.traceEnabled
 }
 var traceLabelsEnabled: Bool {
-	return defaults.traceLabelsEnabled
+	return traceLabelsEnabledEnforced ?? defaults.traceLabelsEnabled
 }
 
 func description<T>(of value: T) -> String {
 	return "\(value)"
 }
 
-func labeled(_ string: String, from location: SourceLocation, to lastLocation: SourceLocation) -> String {
+func labeled(_ string: String, at location: SourceLocation) -> String {
 	guard traceLabelsEnabled else {
 		return string
 	}
-	let locationLabel = label(from: location, to: lastLocation)
+	let locationLabel = label(for: location)
 	let labeledString = "\(locationLabel): \(string)"
 	return labeledString
 }
 
 /// Returns label used in `trace`.
-func traceLabel(from location: SourceLocation, to lastLocation: SourceLocation) -> String {
+func traceLabel(for location: SourceLocation) -> String {
 	guard traceLabelsEnabled else {
-		return descriptionForInLineLocation(location, lastLocation: lastLocation)
+		return descriptionForInLineLocation(location)
 	}
-	return "\(label(from: location, to: lastLocation))"
+	return "\(label(for: location))"
 }
 
 public typealias Logger = ((date: Date, label: String?, location: SourceLocation, message: String)) -> ()
@@ -79,8 +75,8 @@ struct StringOutputStream : TextOutputStream {
 	}
 }
 
-func trace(_ string: String, on date: Date, from location: SourceLocation, to lastLocation: SourceLocation) {
-	let label = traceLabel(from: location, to: lastLocation)
+func trace(_ string: String, on date: Date, at location: SourceLocation) {
+	let label = traceLabel(for: location)
 	log(message: string, withLabel: label, on: date, at: location)
 }
 
@@ -147,7 +143,7 @@ func tracingShouldBeEnabledForLocation(_ location: SourceLocation) -> Bool {
 
 func trace<T>(_ v: T, file: String, line: Int, column: Int, function: String, dso: UnsafeRawPointer) {
 	let location = SourceLocation(file: file, line: line, column: column, function: function, dso: dso)
-	trace(v, from: location, to: location)
+	trace(v, at: location)
 }
 
 /// Passes-through `value`, logging it as necessary with `loggers`.
@@ -221,37 +217,21 @@ public prefix func •<T>(argument: @autoclosure () -> T) -> Void {
 }
 prefix operator •
 
-prefix operator «
-public prefix func «<T>(v: T) -> T {
-	return v
-}
-
-postfix operator »
-public postfix func »<T>(v: T) -> T {
-	return v
-}
-
 public func L<T>(_ v: T, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer = #dsohandle) -> String {
 	let location = SourceLocation(file: file, line: line, column: column, function: function, dso: dso)
-	return label(for: v, from: location, to: location)
+	return labeled(description(of: v), at: location)
 }
 
-func trace<T>(_ value: T, from startLocation: SourceLocation, to endLocation: SourceLocation) {
-	if tracingShouldBeEnabledForLocation(startLocation) {
-#if true
-		trace(description(of: value), on: Date(), from: startLocation, to: endLocation)
-#else
-		guard tracingShouldBeEnabledForLocation(startLocation) else {
-			return
-		}
-		let label = traceLabel(from: startLocation, to: endLocation)
-		var ss = StringOutputStream()
-		dump(value, to: &ss, name: label)
-		log(message: "\n\(ss.s)", withLabel: nil, on: Date(), at: startLocation)
-#endif
+func trace<T>(_ value: T, at location: SourceLocation) {
+	guard tracingShouldBeEnabledForLocation(location) else {
+		return
 	}
-}
-
-func label<T>(for value: T, from startLocation: SourceLocation, to endLocation: SourceLocation) -> String {
-	return labeled(description(of: value), from: startLocation, to: endLocation)
+	guard _0 else {
+		trace(description(of: value), on: Date(), at: location)
+		return
+	}
+	let label = traceLabel(for: location)
+	var ss = StringOutputStream()
+	dump(value, to: &ss, name: label)
+	log(message: "\n\(ss.s)", withLabel: nil, on: Date(), at: location)
 }
