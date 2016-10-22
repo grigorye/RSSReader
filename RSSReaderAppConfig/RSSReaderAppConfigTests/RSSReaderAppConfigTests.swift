@@ -6,8 +6,8 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
+@testable import RSSReaderAppConfig
 import XCTest
-@testable import RSSReaderAppConfigTests
 
 class RSSReaderAppConfigTests: XCTestCase {
     

@@ -6,12 +6,13 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
-import Foundation
+import GEFoundation
 import GEBase
+import Foundation
 
 public let analyticsEnabled: Bool = {
 #if ANALYTICS_ENABLED
-	return $(GEBase.versionIsClean) && $(defaults.analyticsEnabled)
+	return $(versionIsClean) && $(defaults.analyticsEnabled)
 #else
 	return false
 #endif

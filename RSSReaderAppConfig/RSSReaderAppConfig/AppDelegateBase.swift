@@ -6,6 +6,9 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
+import GEUIKit
+import GEFoundation
+import GEBase
 import Loggy
 import FBAllocationTracker
 import FBMemoryProfiler
@@ -24,7 +27,7 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 		openSettingsApp()
 	}
 	@IBAction public func forceCrash(_ sender: AnyObject?) {
-		GEBase.forceCrash()
+		GEUIKit.forceCrash()
 	}
 	// MARK: -
 	open func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
