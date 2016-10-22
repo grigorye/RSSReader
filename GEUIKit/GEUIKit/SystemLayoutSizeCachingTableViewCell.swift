@@ -8,6 +8,7 @@
 
 #if os(iOS)
 
+import GEBase
 import Foundation
 import UIKit.UITableViewCell
 

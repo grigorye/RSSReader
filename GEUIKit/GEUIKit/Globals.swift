@@ -6,12 +6,10 @@
 //  Copyright © 2015 Grigory Entin. All rights reserved.
 //
 
+import GEFoundation
+import GEBase
 import UIKit
 import Foundation
-
-public let defaults = KVOCompliantUserDefaults()
-
-public let progressEnabledURLSessionTaskGenerator = ProgressEnabledURLSessionTaskGenerator()
 
 public let urlTaskGeneratorProgressBinding: AnyObject = {
 	let taskGenerator = progressEnabledURLSessionTaskGenerator

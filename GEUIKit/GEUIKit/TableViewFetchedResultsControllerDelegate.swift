@@ -6,6 +6,9 @@
 //  Copyright © 2015 Grigory Entin. All rights reserved.
 //
 
+import GECoreData
+import GEFoundation
+import GEBase
 import CoreData.NSFetchedResultsController
 import UIKit.UITableView
 
