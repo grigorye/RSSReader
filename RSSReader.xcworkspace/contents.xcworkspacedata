@@ -17,6 +17,15 @@
          location = "group:RSSReaderAppConfig/RSSReaderAppConfig.xcodeproj">
       </FileRef>
       <FileRef
+         location = "group:GEUIKit/GEUIKit.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:GECoreData/GECoreData.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:GEFoundation/GEFoundation.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:GEBase/GEBase.xcodeproj">
       </FileRef>
       <FileRef
