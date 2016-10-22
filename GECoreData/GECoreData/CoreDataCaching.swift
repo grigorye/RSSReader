@@ -6,6 +6,8 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
+import GEFoundation
+import GEBase
 import CoreData.NSManagedObjectContext
 import CoreData.NSManagedObject
 
