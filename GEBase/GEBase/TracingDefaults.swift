@@ -12,18 +12,12 @@ var traceLabelsEnabledEnforced: Bool?
 var traceEnabledEnforced: Bool?
 var dumpInTraceEnabledEnforced: Bool?
 
-private extension KVOCompliantUserDefaults {
-	@NSManaged var traceEnabled: Bool
-	@NSManaged var traceLabelsEnabled: Bool
-	@NSManaged var dumpInTraceEnabled: Bool
-}
-
 var traceEnabled: Bool {
-	return traceEnabledEnforced ?? defaults.traceEnabled
+	return traceEnabledEnforced ?? UserDefaults.standard.bool(forKey: "traceEnabled")
 }
 var traceLabelsEnabled: Bool {
-	return traceLabelsEnabledEnforced ?? defaults.traceLabelsEnabled
+	return traceLabelsEnabledEnforced ?? UserDefaults.standard.bool(forKey: "traceLabelsEnabled")
 }
 var dumpInTraceEnabled: Bool {
-	return dumpInTraceEnabledEnforced ?? defaults.dumpInTraceEnabled
+	return dumpInTraceEnabledEnforced ?? UserDefaults.standard.bool(forKey: "dumpInTraceEnabled")
 }
