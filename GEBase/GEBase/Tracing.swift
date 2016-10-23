@@ -44,7 +44,6 @@ public typealias Logger = ((date: Date, label: String?, location: SourceLocation
 
 /// Loggers to be used with `trace`.
 public var loggers: [Logger] = [
-	defaultLogger
 ]
 
 func log(message: String, withLabel label: String?, on date: Date, at location: SourceLocation) {
