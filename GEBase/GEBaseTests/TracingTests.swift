@@ -36,6 +36,7 @@ class TraceAndLabelTestsBase: XCTestCase {
 
 class TraceTests : TraceAndLabelTestsBase {
 	let foo = "bar"
+	let bar = "baz"
 	var tracedMessages = [(label: String?, location: SourceLocation, message: String)]()
 	override func setUp() {
 		super.setUp()
@@ -71,7 +72,61 @@ class TraceTests : TraceAndLabelTestsBase {
 		XCTAssertEqual(tracedMessages.map {$0.message}, ["bar"])
 		XCTAssertEqual(tracedMessages.map {$0.label!}, ["foo"])
 	}
-	// MARK: -
+	func testWithTraceAndLabelsEnabledAndDumpInTraceEnabled() {
+		traceEnabledEnforced = true
+		traceLabelsEnabledEnforced = true
+		dumpInTraceEnabledEnforced = true; defer { dumpInTraceEnabledEnforced = nil }
+		$(foo); let line = #line
+		let fileURL = URL(fileURLWithPath: #file)
+		XCTAssertEqual(tracedMessages.map {$0.location.line}, [line])
+		XCTAssertEqual(tracedMessages.map {$0.location.fileURL}, [fileURL])
+		XCTAssertEqual(tracedMessages.map {$0.message}, ["\n- foo: \"bar\"\n"])
+		XCTAssertEqual(tracedMessages.flatMap {$0.label}, [])
+	}
+	func testWithTraceLockAndTracingEnabled() {
+		traceEnabledEnforced = true
+		traceLabelsEnabledEnforced = true
+		let dt = disableTrace(); defer { _ = dt }
+		$(foo)
+		XCTAssertTrue(tracedMessages.isEmpty)
+	}
+	func testWithTraceLockAndTracingDisabled() {
+		let dt = disableTrace(); defer { _ = dt }
+		$(foo)
+		XCTAssertTrue(tracedMessages.isEmpty)
+	}
+	func testWithTraceUnlockAndTracingEnabled() {
+		traceEnabledEnforced = true
+		traceLabelsEnabledEnforced = true
+		let dt = disableTrace(); defer { _ = dt }
+		$(bar)
+		let et = enableTrace(); defer { _ = et }
+		$(foo); let line = #line
+		let fileURL = URL(fileURLWithPath: #file)
+		XCTAssertEqual(tracedMessages.map {$0.location.line}, [line])
+		XCTAssertEqual(tracedMessages.map {$0.location.fileURL}, [fileURL])
+		XCTAssertEqual(tracedMessages.map {$0.message}, ["bar"])
+		XCTAssertEqual(tracedMessages.map {$0.label!}, ["foo"])
+	}
+	func testWithTraceUnlockAndTracingDisabled() {
+		let dt = disableTrace(); defer { _ = dt }
+		$(foo)
+		XCTAssertTrue(tracedMessages.isEmpty)
+	}
+	func testWithDisabledFile() {
+		traceEnabledEnforced = true
+		traceLabelsEnabledEnforced = true
+		let oldFilesWithTracingDisabled = filesWithTracingDisabled
+		defer { filesWithTracingDisabled = oldFilesWithTracingDisabled }
+		filesWithTracingDisabled += [
+			URL(fileURLWithPath: #file).lastPathComponent
+		]
+		$(foo)
+		XCTAssertTrue(tracedMessages.isEmpty)
+	}
+}
+
+class LabelTests : TraceAndLabelTestsBase {
     func testLabeledString() {
 		let foo = "bar"
 		traceLabelsEnabledEnforced = true
