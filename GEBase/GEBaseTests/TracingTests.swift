@@ -12,7 +12,7 @@ import XCTest
 class TraceAndLabelTestsBase: XCTestCase {
 	let foo = "bar"
 	let bar = "baz"
-	var blocksForTearDown = [Handler]()
+	var blocksForTearDown = [() -> Void]()
 	// MARK:-
 	override func setUp() {
 		super.setUp()
