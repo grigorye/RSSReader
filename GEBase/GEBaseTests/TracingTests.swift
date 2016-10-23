@@ -10,6 +10,8 @@
 import XCTest
 
 class TraceAndLabelTestsBase: XCTestCase {
+	let foo = "bar"
+	let bar = "baz"
 	var blocksForTearDown = [Handler]()
 	// MARK:-
 	override func setUp() {
@@ -35,8 +37,6 @@ class TraceAndLabelTestsBase: XCTestCase {
 }
 
 class TraceTests : TraceAndLabelTestsBase {
-	let foo = "bar"
-	let bar = "baz"
 	var tracedMessages = [(label: String?, location: SourceLocation, message: String)]()
 	override func setUp() {
 		super.setUp()
@@ -50,8 +50,16 @@ class TraceTests : TraceAndLabelTestsBase {
 	}
 	// MARK: -
     func testTraceWithAllThingsDisabled() {
-		$(foo)
+		var evaluated = false
+		$({evaluated = true}())
 		XCTAssertTrue(tracedMessages.isEmpty)
+		XCTAssertTrue(evaluated)
+	}
+    func testNotraceWithAllThingsDisabled() {
+		var evaluated = false
+		•({evaluated = true}())
+		XCTAssertTrue(tracedMessages.isEmpty)
+		XCTAssertFalse(evaluated)
 	}
 	func testTraceWithTraceEnabled() {
 		traceEnabledEnforced = true
@@ -108,8 +116,21 @@ class TraceTests : TraceAndLabelTestsBase {
 		XCTAssertEqual(tracedMessages.map {$0.message}, ["bar"])
 		XCTAssertEqual(tracedMessages.map {$0.label!}, ["foo"])
 	}
+	func testWithTraceUnlockWithoutLockAndTracingEnabled() {
+		traceEnabledEnforced = true
+		traceLabelsEnabledEnforced = true
+		let et = enableTrace(); defer { _ = et }
+		$(foo); let line = #line
+		let fileURL = URL(fileURLWithPath: #file)
+		XCTAssertEqual(tracedMessages.map {$0.location.line}, [line])
+		XCTAssertEqual(tracedMessages.map {$0.location.fileURL}, [fileURL])
+		XCTAssertEqual(tracedMessages.map {$0.message}, ["bar"])
+		XCTAssertEqual(tracedMessages.map {$0.label!}, ["foo"])
+	}
 	func testWithTraceUnlockAndTracingDisabled() {
 		let dt = disableTrace(); defer { _ = dt }
+		$(bar)
+		let et = enableTrace(); defer { _ = et }
 		$(foo)
 		XCTAssertTrue(tracedMessages.isEmpty)
 	}
