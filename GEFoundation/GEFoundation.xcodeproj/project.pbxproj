@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C4270BF81DBD4FBD00FA3A0A /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BF71DBD4FBD00FA3A0A /* GETracing.framework */; };
 		C48CAA1C1DBC26F100D6F40E /* ObjCEncode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA1B1DBC26F100D6F40E /* ObjCEncode.swift */; };
 		C48CAA221DBD318700D6F40E /* KVOCompliantUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA211DBD318700D6F40E /* KVOCompliantUserDefaults.swift */; };
 		C48CAA241DBD319300D6F40E /* KVOCompliantUserDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA231DBD319300D6F40E /* KVOCompliantUserDefaultsTests.swift */; };
@@ -31,7 +32,6 @@
 		C49FF1871DBB99FB00A86CC0 /* Descriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF1861DBB99FB00A86CC0 /* Descriptions.swift */; };
 		C49FF18B1DBB9B0900A86CC0 /* URLSessionTaskGeneratorErrorObjCBridgingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF18A1DBB9B0900A86CC0 /* URLSessionTaskGeneratorErrorObjCBridgingTests.swift */; };
 		C49FF1931DBB9D4000A86CC0 /* GEShared.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C49FF1921DBB9D4000A86CC0 /* GEShared.xcconfig */; };
-		C49FF1971DBB9E6F00A86CC0 /* GEBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1961DBB9E6F00A86CC0 /* GEBase.framework */; };
 		C49FF19F1DBB9FF400A86CC0 /* KVOBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF19E1DBB9FF400A86CC0 /* KVOBinding.swift */; };
 		C49FF1A11DBBA01100A86CC0 /* ObjectAndKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF1A01DBBA01100A86CC0 /* ObjectAndKeyPath.swift */; };
 /* End PBXBuildFile section */
@@ -47,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C4270BF71DBD4FBD00FA3A0A /* GETracing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GETracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C48CAA1B1DBC26F100D6F40E /* ObjCEncode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjCEncode.swift; sourceTree = "<group>"; };
 		C48CAA211DBD318700D6F40E /* KVOCompliantUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOCompliantUserDefaults.swift; sourceTree = "<group>"; };
 		C48CAA231DBD319300D6F40E /* KVOCompliantUserDefaultsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOCompliantUserDefaultsTests.swift; sourceTree = "<group>"; };
@@ -74,7 +75,6 @@
 		C49FF1861DBB99FB00A86CC0 /* Descriptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Descriptions.swift; sourceTree = "<group>"; };
 		C49FF18A1DBB9B0900A86CC0 /* URLSessionTaskGeneratorErrorObjCBridgingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionTaskGeneratorErrorObjCBridgingTests.swift; sourceTree = "<group>"; };
 		C49FF1921DBB9D4000A86CC0 /* GEShared.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = GEShared.xcconfig; path = ../XcodeConfiguration/GEShared.xcconfig; sourceTree = "<group>"; };
-		C49FF1961DBB9E6F00A86CC0 /* GEBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GEBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C49FF19E1DBB9FF400A86CC0 /* KVOBinding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOBinding.swift; sourceTree = "<group>"; };
 		C49FF1A01DBBA01100A86CC0 /* ObjectAndKeyPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectAndKeyPath.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,7 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C49FF1971DBB9E6F00A86CC0 /* GEBase.framework in Frameworks */,
+				C4270BF81DBD4FBD00FA3A0A /* GETracing.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,7 +162,7 @@
 		C49FF1951DBB9E6E00A86CC0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C49FF1961DBB9E6F00A86CC0 /* GEBase.framework */,
+				C4270BF71DBD4FBD00FA3A0A /* GETracing.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

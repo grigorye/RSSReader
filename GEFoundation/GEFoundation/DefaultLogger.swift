@@ -6,7 +6,7 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
-import GEBase
+import GETracing
 import Foundation
 import os
 
@@ -58,7 +58,7 @@ public func defaultLoggedTextWithThread(date: Date, label: String?, location: So
 	return textWithThread
 }
 
-func defaultLogger(date: Date, label: String?, location: SourceLocation, message: String) {
+public func defaultLogger(date: Date, label: String?, location: SourceLocation, message: String) {
 	guard let defaultLogKind = defaults.defaultLogKind else { return }
 	switch DefaultLogKind(rawValue: defaultLogKind)! {
 	case .none: ()

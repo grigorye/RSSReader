@@ -6,7 +6,7 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
-import GEBase
+import GETracing
 import Foundation
 
 public let versionIsClean: Bool = {
