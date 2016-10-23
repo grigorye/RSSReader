@@ -9,7 +9,7 @@
 import RSSReaderAppConfig
 import RSSReaderData
 import Loggy
-import GEBase
+import GETracing
 import UIKit
 
 class AppDelegate: AppDelegateBase {

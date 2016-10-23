@@ -7,7 +7,7 @@
 //
 
 import GEUIKit
-import GEBase
+import GETracing
 import UIKit
 
 class OpenWebPageActivity : TypeFilteringActivity {

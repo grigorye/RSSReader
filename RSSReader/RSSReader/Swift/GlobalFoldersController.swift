@@ -8,7 +8,7 @@
 
 import RSSReaderData
 import GEFoundation
-import GEBase
+import GETracing
 import Foundation
 
 extension KVOCompliantUserDefaults {

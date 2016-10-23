@@ -7,7 +7,7 @@
 //
 
 import GEFoundation
-import GEBase
+import GETracing
 import UIKit
 
 extension ItemListViewController {

@@ -7,7 +7,7 @@
 //
 
 import GEFoundation
-import GEBase
+import GETracing
 import Loggy
 import UIKit.UIApplication
 
@@ -19,6 +19,10 @@ extension KVOCompliantUserDefaults {
 if defaults.resetDefaults {
 	UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
 }
+
+loggers += [
+	defaultLogger
+]
 
 filesWithTracingDisabled += [
 	"TableViewFetchedResultsControllerDelegate.swift",

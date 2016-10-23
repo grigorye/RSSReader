@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C408F1841CE73FAE00DB943F /* GEBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C424B8F31C6FC5CD008AD647 /* GEBase.framework */; };
-		C408F1851CE73FAE00DB943F /* GEBase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C424B8F31C6FC5CD008AD647 /* GEBase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C408F1B11CE7520700DB943F /* FBAllocationTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C408F1B01CE7520700DB943F /* FBAllocationTracker.framework */; };
 		C408F1B21CE7520700DB943F /* FBAllocationTracker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C408F1B01CE7520700DB943F /* FBAllocationTracker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C408F1B41CE7520700DB943F /* FBMemoryProfiler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C408F1B31CE7520700DB943F /* FBMemoryProfiler.framework */; };
@@ -38,6 +36,8 @@
 		C41F05861AD0E3AB00A659EC /* MarkAllAsReadActivity.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4C780131A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift */; };
 		C424B8F11C6FC5C8008AD647 /* RSSReaderData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C424B8F01C6FC5C8008AD647 /* RSSReaderData.framework */; };
 		C424B8F21C6FC5C8008AD647 /* RSSReaderData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C424B8F01C6FC5C8008AD647 /* RSSReaderData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C4270C001DBD502600FA3A0A /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BFF1DBD502600FA3A0A /* GETracing.framework */; };
+		C4270C011DBD502600FA3A0A /* GETracing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BFF1DBD502600FA3A0A /* GETracing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C42802691A5B47EA002474E1 /* FolderListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42802681A5B47EA002474E1 /* FolderListTableViewController.swift */; };
 		C441F1791DB24A1D0060E692 /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F1781DB24A1D0060E692 /* MainScene.swift */; };
 		C441F17B1DB254260060E692 /* GlobalFoldersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F17A1DB254260060E692 /* GlobalFoldersController.swift */; };
@@ -185,9 +185,9 @@
 				C408F1B51CE7520700DB943F /* FBMemoryProfiler.framework in Embed Frameworks */,
 				C49FF1C81DBBAA9000A86CC0 /* GEUIKit.framework in Embed Frameworks */,
 				C4AD5B381D282F1800358DEA /* PromiseKit.framework in Embed Frameworks */,
-				C408F1851CE73FAE00DB943F /* GEBase.framework in Embed Frameworks */,
 				C474F0D21D8775F500CABEB9 /* SwiftMessages.framework in Embed Frameworks */,
 				C408F1B21CE7520700DB943F /* FBAllocationTracker.framework in Embed Frameworks */,
+				C4270C011DBD502600FA3A0A /* GETracing.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,7 +226,7 @@
 		C40C6C051A74AB5E00FAFA17 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		C41707CA1A56076A00AED81C /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Globals.swift; path = Swift/Globals.swift; sourceTree = "<group>"; };
 		C424B8F01C6FC5C8008AD647 /* RSSReaderData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RSSReaderData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C424B8F31C6FC5CD008AD647 /* GEBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GEBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4270BFF1DBD502600FA3A0A /* GETracing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GETracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C42802681A5B47EA002474E1 /* FolderListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = FolderListTableViewController.swift; path = Swift/FolderListTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C441F1781DB24A1D0060E692 /* MainScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainScene.swift; path = Swift/MainScene.swift; sourceTree = "<group>"; };
 		C441F17A1DB254260060E692 /* GlobalFoldersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GlobalFoldersController.swift; path = Swift/GlobalFoldersController.swift; sourceTree = "<group>"; };
@@ -324,9 +324,9 @@
 				C408F1B41CE7520700DB943F /* FBMemoryProfiler.framework in Frameworks */,
 				C49FF1C71DBBAA9000A86CC0 /* GEUIKit.framework in Frameworks */,
 				C4AD5B371D282F1800358DEA /* PromiseKit.framework in Frameworks */,
-				C408F1841CE73FAE00DB943F /* GEBase.framework in Frameworks */,
 				C474F0D11D8775F500CABEB9 /* SwiftMessages.framework in Frameworks */,
 				C408F1B11CE7520700DB943F /* FBAllocationTracker.framework in Frameworks */,
+				C4270C001DBD502600FA3A0A /* GETracing.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +357,7 @@
 		C424B8F91C6FC5E1008AD647 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C4270BFF1DBD502600FA3A0A /* GETracing.framework */,
 				C474F1BF1DB041F100F0E152 /* Loggy.framework */,
 				C4D436751D8777A3008C6386 /* SwiftMessages.bundle */,
 				C474F0D01D8775F500CABEB9 /* SwiftMessages.framework */,
@@ -364,7 +365,6 @@
 				C408F1B61CE7520700DB943F /* FBRetainCycleDetector.framework */,
 				C408F1B31CE7520700DB943F /* FBMemoryProfiler.framework */,
 				C408F1B01CE7520700DB943F /* FBAllocationTracker.framework */,
-				C424B8F31C6FC5CD008AD647 /* GEBase.framework */,
 				C49FF1CC1DBBAA9000A86CC0 /* GEFoundation.framework */,
 				C49FF1C91DBBAA9000A86CC0 /* GECoreData.framework */,
 				C49FF1C61DBBAA9000A86CC0 /* GEUIKit.framework */,

@@ -8,7 +8,7 @@
 
 import RSSReaderData
 import GEUIKit
-import GEBase
+import GETracing
 import UIKit
 
 class MarkAllAsReadActivity : TypeFilteringActivity {

@@ -9,7 +9,7 @@
 import RSSReaderData
 import GEUIKit
 import GEFoundation
-import GEBase
+import GETracing
 import CoreData.NSManagedObjectID
 import UIKit
 

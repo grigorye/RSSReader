@@ -7,7 +7,7 @@
 //
 
 import RSSReaderData
-import GEBase
+import GETracing
 import UIKit
 
 func configureFavoritesItemListViewController(_ itemListViewController: ItemListViewController) {
