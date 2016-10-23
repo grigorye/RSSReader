@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C418186B1B6A65B100872EB3 /* GEBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C41818601B6A65B100872EB3 /* GEBase.framework */; };
+		C418186B1B6A65B100872EB3 /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C41818601B6A65B100872EB3 /* GETracing.framework */; };
 		C441F1A21DB434770060E692 /* Tracing.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4D6F4191C73CCC000A7E2ED /* Tracing.swift */; };
 		C441F1A31DB434770060E692 /* SourceLocation.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4CB38851CDBA78D00562665 /* SourceLocation.swift */; };
 		C48CAA181DBBE59000D6F40E /* BundleForSymbolAddressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA171DBBE59000D6F40E /* BundleForSymbolAddressTests.swift */; };
@@ -19,7 +19,7 @@
 		C49FF0EA1DBAF94200A86CC0 /* SourceLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF0E91DBAF94200A86CC0 /* SourceLabels.swift */; };
 		C4CB38861CDBA78D00562665 /* SourceLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CB38851CDBA78D00562665 /* SourceLocation.swift */; };
 		C4D6F41A1C73CCC000A7E2ED /* Tracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D6F4191C73CCC000A7E2ED /* Tracing.swift */; };
-		C4DB6A6C1D25C4E300E8516D /* GEBase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C41818601B6A65B100872EB3 /* GEBase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C4DB6A6C1D25C4E300E8516D /* GETracing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C41818601B6A65B100872EB3 /* GETracing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4FEBB1D1BF960A300A5709B /* BundleForSymbolAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FEBB1C1BF960A300A5709B /* BundleForSymbolAddress.swift */; };
 		C4FEBB1E1BF96B7800A5709B /* BundleForSymbolAddress.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4FEBB1C1BF960A300A5709B /* BundleForSymbolAddress.swift */; };
 /* End PBXBuildFile section */
@@ -52,7 +52,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C4DB6A6C1D25C4E300E8516D /* GEBase.framework in Embed Frameworks */,
+				C4DB6A6C1D25C4E300E8516D /* GETracing.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,16 +74,16 @@
 
 /* Begin PBXFileReference section */
 		C40EA7281C6FCA2B002C6D9E /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
-		C41818601B6A65B100872EB3 /* GEBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GEBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C41818601B6A65B100872EB3 /* GETracing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GETracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C41818651B6A65B100872EB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C418186A1B6A65B100872EB3 /* GEBaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GEBaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C418186A1B6A65B100872EB3 /* GETracingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GETracingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C41818711B6A65B100872EB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C459879B1CDE087200B8E9E4 /* GEShared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = GEShared.xcconfig; path = ../XcodeConfiguration/GEShared.xcconfig; sourceTree = "<group>"; };
 		C48CAA171DBBE59000D6F40E /* BundleForSymbolAddressTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleForSymbolAddressTests.swift; sourceTree = "<group>"; };
 		C48CAA1D1DBCC86700D6F40E /* TracingDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracingDefaults.swift; sourceTree = "<group>"; };
 		C495D8981C02592100A7F7D5 /* TracingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracingTests.swift; sourceTree = "<group>"; };
 		C49FF0E51DBAF7D800A86CC0 /* NestedBrackets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NestedBrackets.swift; sourceTree = "<group>"; };
-		C49FF0E71DBAF80200A86CC0 /* NestedBracketsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NestedBracketsTests.swift; path = GEBaseTests/NestedBracketsTests.swift; sourceTree = SOURCE_ROOT; };
+		C49FF0E71DBAF80200A86CC0 /* NestedBracketsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NestedBracketsTests.swift; sourceTree = "<group>"; };
 		C49FF0E91DBAF94200A86CC0 /* SourceLabels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceLabels.swift; sourceTree = "<group>"; };
 		C4CB38851CDBA78D00562665 /* SourceLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceLocation.swift; sourceTree = "<group>"; };
 		C4D6F4191C73CCC000A7E2ED /* Tracing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tracing.swift; sourceTree = "<group>"; };
@@ -102,7 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C418186B1B6A65B100872EB3 /* GEBase.framework in Frameworks */,
+				C418186B1B6A65B100872EB3 /* GETracing.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,8 +112,8 @@
 		C41818561B6A65B100872EB3 = {
 			isa = PBXGroup;
 			children = (
-				C41818621B6A65B100872EB3 /* GEBase */,
-				C418186E1B6A65B100872EB3 /* GEBaseTests */,
+				C41818621B6A65B100872EB3 /* GETracing */,
+				C418186E1B6A65B100872EB3 /* GETracingTests */,
 				C424B8DF1C6FC332008AD647 /* Frameworks */,
 				C41818611B6A65B100872EB3 /* Products */,
 			);
@@ -122,13 +122,13 @@
 		C41818611B6A65B100872EB3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C41818601B6A65B100872EB3 /* GEBase.framework */,
-				C418186A1B6A65B100872EB3 /* GEBaseTests.xctest */,
+				C41818601B6A65B100872EB3 /* GETracing.framework */,
+				C418186A1B6A65B100872EB3 /* GETracingTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C41818621B6A65B100872EB3 /* GEBase */ = {
+		C41818621B6A65B100872EB3 /* GETracing */ = {
 			isa = PBXGroup;
 			children = (
 				C4D6F4191C73CCC000A7E2ED /* Tracing.swift */,
@@ -140,10 +140,10 @@
 				C40EA7281C6FCA2B002C6D9E /* Bridging-Header.h */,
 				C41818651B6A65B100872EB3 /* Info.plist */,
 			);
-			path = GEBase;
+			path = GETracing;
 			sourceTree = "<group>";
 		};
-		C418186E1B6A65B100872EB3 /* GEBaseTests */ = {
+		C418186E1B6A65B100872EB3 /* GETracingTests */ = {
 			isa = PBXGroup;
 			children = (
 				C495D8981C02592100A7F7D5 /* TracingTests.swift */,
@@ -151,7 +151,7 @@
 				C48CAA171DBBE59000D6F40E /* BundleForSymbolAddressTests.swift */,
 				C41818711B6A65B100872EB3 /* Info.plist */,
 			);
-			path = GEBaseTests;
+			path = GETracingTests;
 			sourceTree = "<group>";
 		};
 		C424B8DF1C6FC332008AD647 /* Frameworks */ = {
@@ -175,9 +175,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		C418185F1B6A65B100872EB3 /* GEBase */ = {
+		C418185F1B6A65B100872EB3 /* GETracing */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C41818741B6A65B100872EB3 /* Build configuration list for PBXNativeTarget "GEBase" */;
+			buildConfigurationList = C41818741B6A65B100872EB3 /* Build configuration list for PBXNativeTarget "GETracing" */;
 			buildPhases = (
 				C418185B1B6A65B100872EB3 /* Sources */,
 				C418185C1B6A65B100872EB3 /* Frameworks */,
@@ -189,14 +189,14 @@
 			);
 			dependencies = (
 			);
-			name = GEBase;
+			name = GETracing;
 			productName = GEBase;
-			productReference = C41818601B6A65B100872EB3 /* GEBase.framework */;
+			productReference = C41818601B6A65B100872EB3 /* GETracing.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		C41818691B6A65B100872EB3 /* GEBaseTests */ = {
+		C41818691B6A65B100872EB3 /* GETracingTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C41818771B6A65B100872EB3 /* Build configuration list for PBXNativeTarget "GEBaseTests" */;
+			buildConfigurationList = C41818771B6A65B100872EB3 /* Build configuration list for PBXNativeTarget "GETracingTests" */;
 			buildPhases = (
 				C41818661B6A65B100872EB3 /* Sources */,
 				C41818671B6A65B100872EB3 /* Frameworks */,
@@ -209,9 +209,9 @@
 			dependencies = (
 				C418186D1B6A65B100872EB3 /* PBXTargetDependency */,
 			);
-			name = GEBaseTests;
+			name = GETracingTests;
 			productName = GEBaseTests;
-			productReference = C418186A1B6A65B100872EB3 /* GEBaseTests.xctest */;
+			productReference = C418186A1B6A65B100872EB3 /* GETracingTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -240,7 +240,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C418185A1B6A65B100872EB3 /* Build configuration list for PBXProject "GEBase" */;
+			buildConfigurationList = C418185A1B6A65B100872EB3 /* Build configuration list for PBXProject "GETracing" */;
 			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -252,8 +252,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C418185F1B6A65B100872EB3 /* GEBase */,
-				C41818691B6A65B100872EB3 /* GEBaseTests */,
+				C418185F1B6A65B100872EB3 /* GETracing */,
+				C41818691B6A65B100872EB3 /* GETracingTests */,
 			);
 		};
 /* End PBXProject section */
@@ -304,7 +304,7 @@
 /* Begin PBXTargetDependency section */
 		C418186D1B6A65B100872EB3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C418185F1B6A65B100872EB3 /* GEBase */;
+			target = C418185F1B6A65B100872EB3 /* GETracing */;
 			targetProxy = C418186C1B6A65B100872EB3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -340,9 +340,9 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = GEBase/Info.plist;
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.grigorye.GEBase;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.grigorye.$(TARGET_NAME)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(TARGET_NAME)/Bridging-Header.h";
 			};
@@ -355,9 +355,9 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = GEBase/Info.plist;
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.grigorye.GEBase;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.grigorye.$(TARGET_NAME)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(TARGET_NAME)/Bridging-Header.h";
 			};
@@ -367,7 +367,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = GEBaseTests/Info.plist;
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.grigoryentin.GEBaseTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -378,7 +378,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = GEBaseTests/Info.plist;
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.grigoryentin.GEBaseTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -388,7 +388,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C418185A1B6A65B100872EB3 /* Build configuration list for PBXProject "GEBase" */ = {
+		C418185A1B6A65B100872EB3 /* Build configuration list for PBXProject "GETracing" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C41818721B6A65B100872EB3 /* Debug */,
@@ -397,7 +397,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C41818741B6A65B100872EB3 /* Build configuration list for PBXNativeTarget "GEBase" */ = {
+		C41818741B6A65B100872EB3 /* Build configuration list for PBXNativeTarget "GETracing" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C41818751B6A65B100872EB3 /* Debug */,
@@ -406,7 +406,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C41818771B6A65B100872EB3 /* Build configuration list for PBXNativeTarget "GEBaseTests" */ = {
+		C41818771B6A65B100872EB3 /* Build configuration list for PBXNativeTarget "GETracingTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C41818781B6A65B100872EB3 /* Debug */,

@@ -6,7 +6,7 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
-@testable import GEBase
+@testable import GETracing
 import Foundation
 
 import XCTest

@@ -6,7 +6,7 @@
 //  Copyright © 2015 Grigory Entin. All rights reserved.
 //
 
-@testable import GEBase
+@testable import GETracing
 import XCTest
 
 class TraceAndLabelTestsBase: XCTestCase {
