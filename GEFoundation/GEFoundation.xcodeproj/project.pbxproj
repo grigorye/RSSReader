@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		C48CAA1C1DBC26F100D6F40E /* ObjCEncode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA1B1DBC26F100D6F40E /* ObjCEncode.swift */; };
+		C48CAA221DBD318700D6F40E /* KVOCompliantUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA211DBD318700D6F40E /* KVOCompliantUserDefaults.swift */; };
+		C48CAA241DBD319300D6F40E /* KVOCompliantUserDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA231DBD319300D6F40E /* KVOCompliantUserDefaultsTests.swift */; };
+		C48CAA261DBD33BE00D6F40E /* ObjCPropertyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA251DBD33BE00D6F40E /* ObjCPropertyInfo.swift */; };
+		C48CAA281DBD397100D6F40E /* DefaultLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA271DBD397100D6F40E /* DefaultLogger.swift */; };
+		C48CAA2A1DBD399100D6F40E /* AssociatedObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA291DBD399100D6F40E /* AssociatedObjects.swift */; };
+		C48CAA2D1DBD3A5000D6F40E /* OSLogRDAR28599032.h in Headers */ = {isa = PBXBuildFile; fileRef = C48CAA2B1DBD3A5000D6F40E /* OSLogRDAR28599032.h */; };
+		C48CAA2E1DBD3A5000D6F40E /* OSLogRDAR28599032.m in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA2C1DBD3A5000D6F40E /* OSLogRDAR28599032.m */; };
+		C48CAA301DBD3A8B00D6F40E /* Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = C48CAA2F1DBD3A8B00D6F40E /* Bridging-Header.h */; };
+		C48CAA321DBD3ABA00D6F40E /* Sugar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA311DBD3ABA00D6F40E /* Sugar.swift */; };
 		C49FF1041DBB981300A86CC0 /* GEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF0FA1DBB981300A86CC0 /* GEFoundation.framework */; };
 		C49FF1091DBB981300A86CC0 /* GEFoundationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF1081DBB981300A86CC0 /* GEFoundationTests.swift */; };
 		C49FF1791DBB996D00A86CC0 /* GenericURLSessionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF1741DBB996D00A86CC0 /* GenericURLSessionExtensions.swift */; };
@@ -38,6 +47,15 @@
 
 /* Begin PBXFileReference section */
 		C48CAA1B1DBC26F100D6F40E /* ObjCEncode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjCEncode.swift; sourceTree = "<group>"; };
+		C48CAA211DBD318700D6F40E /* KVOCompliantUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOCompliantUserDefaults.swift; sourceTree = "<group>"; };
+		C48CAA231DBD319300D6F40E /* KVOCompliantUserDefaultsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOCompliantUserDefaultsTests.swift; sourceTree = "<group>"; };
+		C48CAA251DBD33BE00D6F40E /* ObjCPropertyInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjCPropertyInfo.swift; sourceTree = "<group>"; };
+		C48CAA271DBD397100D6F40E /* DefaultLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultLogger.swift; sourceTree = "<group>"; };
+		C48CAA291DBD399100D6F40E /* AssociatedObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssociatedObjects.swift; sourceTree = "<group>"; };
+		C48CAA2B1DBD3A5000D6F40E /* OSLogRDAR28599032.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSLogRDAR28599032.h; sourceTree = "<group>"; };
+		C48CAA2C1DBD3A5000D6F40E /* OSLogRDAR28599032.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSLogRDAR28599032.m; sourceTree = "<group>"; };
+		C48CAA2F1DBD3A8B00D6F40E /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		C48CAA311DBD3ABA00D6F40E /* Sugar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sugar.swift; sourceTree = "<group>"; };
 		C49FF0FA1DBB981300A86CC0 /* GEFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GEFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C49FF0FE1DBB981300A86CC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C49FF1031DBB981300A86CC0 /* GEFoundationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GEFoundationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,6 +120,8 @@
 		C49FF0FC1DBB981300A86CC0 /* GEFoundation */ = {
 			isa = PBXGroup;
 			children = (
+				C48CAA251DBD33BE00D6F40E /* ObjCPropertyInfo.swift */,
+				C48CAA211DBD318700D6F40E /* KVOCompliantUserDefaults.swift */,
 				C48CAA1B1DBC26F100D6F40E /* ObjCEncode.swift */,
 				C49FF19E1DBB9FF400A86CC0 /* KVOBinding.swift */,
 				C49FF1A01DBBA01100A86CC0 /* ObjectAndKeyPath.swift */,
@@ -113,7 +133,13 @@
 				C49FF1761DBB996D00A86CC0 /* ProgressEnabledURLSessionTaskGenerator.swift */,
 				C49FF1771DBB996D00A86CC0 /* URLSessionTaskGeneratorErrorObjCBridging.swift */,
 				C49FF1781DBB996D00A86CC0 /* DefaultsInSettingsPlist.swift */,
+				C48CAA291DBD399100D6F40E /* AssociatedObjects.swift */,
 				C49FF1861DBB99FB00A86CC0 /* Descriptions.swift */,
+				C48CAA2B1DBD3A5000D6F40E /* OSLogRDAR28599032.h */,
+				C48CAA2C1DBD3A5000D6F40E /* OSLogRDAR28599032.m */,
+				C48CAA271DBD397100D6F40E /* DefaultLogger.swift */,
+				C48CAA311DBD3ABA00D6F40E /* Sugar.swift */,
+				C48CAA2F1DBD3A8B00D6F40E /* Bridging-Header.h */,
 				C49FF0FE1DBB981300A86CC0 /* Info.plist */,
 			);
 			path = GEFoundation;
@@ -122,6 +148,7 @@
 		C49FF1071DBB981300A86CC0 /* GEFoundationTests */ = {
 			isa = PBXGroup;
 			children = (
+				C48CAA231DBD319300D6F40E /* KVOCompliantUserDefaultsTests.swift */,
 				C49FF1081DBB981300A86CC0 /* GEFoundationTests.swift */,
 				C49FF18A1DBB9B0900A86CC0 /* URLSessionTaskGeneratorErrorObjCBridgingTests.swift */,
 				C49FF10A1DBB981300A86CC0 /* Info.plist */,
@@ -144,6 +171,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C48CAA2D1DBD3A5000D6F40E /* OSLogRDAR28599032.h in Headers */,
+				C48CAA301DBD3A8B00D6F40E /* Bridging-Header.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,11 +280,17 @@
 				C49FF17F1DBB998500A86CC0 /* AppVersion.swift in Sources */,
 				C49FF17D1DBB996D00A86CC0 /* DefaultsInSettingsPlist.swift in Sources */,
 				C49FF1831DBB99BE00A86CC0 /* PropertyCaching.swift in Sources */,
+				C48CAA261DBD33BE00D6F40E /* ObjCPropertyInfo.swift in Sources */,
+				C48CAA281DBD397100D6F40E /* DefaultLogger.swift in Sources */,
+				C48CAA2E1DBD3A5000D6F40E /* OSLogRDAR28599032.m in Sources */,
 				C49FF17C1DBB996D00A86CC0 /* URLSessionTaskGeneratorErrorObjCBridging.swift in Sources */,
 				C49FF1871DBB99FB00A86CC0 /* Descriptions.swift in Sources */,
 				C49FF1791DBB996D00A86CC0 /* GenericURLSessionExtensions.swift in Sources */,
+				C48CAA221DBD318700D6F40E /* KVOCompliantUserDefaults.swift in Sources */,
 				C48CAA1C1DBC26F100D6F40E /* ObjCEncode.swift in Sources */,
 				C49FF19F1DBB9FF400A86CC0 /* KVOBinding.swift in Sources */,
+				C48CAA2A1DBD399100D6F40E /* AssociatedObjects.swift in Sources */,
+				C48CAA321DBD3ABA00D6F40E /* Sugar.swift in Sources */,
 				C49FF1811DBB999E00A86CC0 /* GenericExtensions.swift in Sources */,
 				C49FF17B1DBB996D00A86CC0 /* ProgressEnabledURLSessionTaskGenerator.swift in Sources */,
 				C49FF17A1DBB996D00A86CC0 /* EncodedUserDefaults.swift in Sources */,
@@ -266,6 +301,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C48CAA241DBD319300D6F40E /* KVOCompliantUserDefaultsTests.swift in Sources */,
 				C49FF18B1DBB9B0900A86CC0 /* URLSessionTaskGeneratorErrorObjCBridgingTests.swift in Sources */,
 				C49FF1091DBB981300A86CC0 /* GEFoundationTests.swift in Sources */,
 			);
@@ -314,6 +350,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.grigorye.GEFoundation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(TARGET_NAME)/Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -328,6 +365,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.grigorye.GEFoundation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(TARGET_NAME)/Bridging-Header.h";
 			};
 			name = Release;
 		};
