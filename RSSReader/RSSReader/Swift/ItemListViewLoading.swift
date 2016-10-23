@@ -7,6 +7,7 @@
 //
 
 import RSSReaderData
+import GEFoundation
 import GEBase
 import PromiseKit
 import CoreData

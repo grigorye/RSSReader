@@ -6,8 +6,9 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
-import Loggy
+import GEFoundation
 import GEBase
+import Loggy
 import UIKit
 
 extension KVOCompliantUserDefaults {
