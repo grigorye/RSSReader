@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		C418186B1B6A65B100872EB3 /* GEBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C41818601B6A65B100872EB3 /* GEBase.framework */; };
-		C41818AA1B6A673F00872EB3 /* Primitives.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41818A71B6A673F00872EB3 /* Primitives.swift */; };
 		C441F1A21DB434770060E692 /* Tracing.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4D6F4191C73CCC000A7E2ED /* Tracing.swift */; };
 		C441F1A31DB434770060E692 /* SourceLocation.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4CB38851CDBA78D00562665 /* SourceLocation.swift */; };
 		C48CAA181DBBE59000D6F40E /* BundleForSymbolAddressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA171DBBE59000D6F40E /* BundleForSymbolAddressTests.swift */; };
@@ -21,7 +20,6 @@
 		C4CB38861CDBA78D00562665 /* SourceLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CB38851CDBA78D00562665 /* SourceLocation.swift */; };
 		C4D6F41A1C73CCC000A7E2ED /* Tracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D6F4191C73CCC000A7E2ED /* Tracing.swift */; };
 		C4DB6A6C1D25C4E300E8516D /* GEBase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C41818601B6A65B100872EB3 /* GEBase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C4FEBAFD1BF9196E00A5709B /* Primitives.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41818A71B6A673F00872EB3 /* Primitives.swift */; };
 		C4FEBB1D1BF960A300A5709B /* BundleForSymbolAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FEBB1C1BF960A300A5709B /* BundleForSymbolAddress.swift */; };
 		C4FEBB1E1BF96B7800A5709B /* BundleForSymbolAddress.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4FEBB1C1BF960A300A5709B /* BundleForSymbolAddress.swift */; };
 /* End PBXBuildFile section */
@@ -65,7 +63,6 @@
 			dstPath = Sources;
 			dstSubfolderSpec = 7;
 			files = (
-				C4FEBAFD1BF9196E00A5709B /* Primitives.swift in Embed Sources */,
 				C441F1A21DB434770060E692 /* Tracing.swift in Embed Sources */,
 				C441F1A31DB434770060E692 /* SourceLocation.swift in Embed Sources */,
 				C4FEBB1E1BF96B7800A5709B /* BundleForSymbolAddress.swift in Embed Sources */,
@@ -81,7 +78,6 @@
 		C41818651B6A65B100872EB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C418186A1B6A65B100872EB3 /* GEBaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GEBaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C41818711B6A65B100872EB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C41818A71B6A673F00872EB3 /* Primitives.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Primitives.swift; sourceTree = "<group>"; };
 		C459879B1CDE087200B8E9E4 /* GEShared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = GEShared.xcconfig; path = ../XcodeConfiguration/GEShared.xcconfig; sourceTree = "<group>"; };
 		C48CAA171DBBE59000D6F40E /* BundleForSymbolAddressTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleForSymbolAddressTests.swift; sourceTree = "<group>"; };
 		C48CAA1D1DBCC86700D6F40E /* TracingDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracingDefaults.swift; sourceTree = "<group>"; };
@@ -135,7 +131,6 @@
 		C41818621B6A65B100872EB3 /* GEBase */ = {
 			isa = PBXGroup;
 			children = (
-				C41818A71B6A673F00872EB3 /* Primitives.swift */,
 				C4D6F4191C73CCC000A7E2ED /* Tracing.swift */,
 				C48CAA1D1DBCC86700D6F40E /* TracingDefaults.swift */,
 				C49FF0E91DBAF94200A86CC0 /* SourceLabels.swift */,
@@ -285,7 +280,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C41818AA1B6A673F00872EB3 /* Primitives.swift in Sources */,
 				C4FEBB1D1BF960A300A5709B /* BundleForSymbolAddress.swift in Sources */,
 				C49FF0E61DBAF7D800A86CC0 /* NestedBrackets.swift in Sources */,
 				C4D6F41A1C73CCC000A7E2ED /* Tracing.swift in Sources */,
