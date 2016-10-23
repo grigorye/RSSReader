@@ -23,6 +23,7 @@ func == (lhs: SourceFileAndFunction, rhs: SourceFileAndFunction) -> Bool {
 
 // MARK: -
 
+#if false
 struct LocationInFunction {
 	let line: Int
 	let column: Int
@@ -72,15 +73,16 @@ extension FunctionSourceLocationRange {
 		return other < end
 	}
 }
+#endif
 
 // MARK: -
 
 public struct SourceLocation {
-	let fileURL: URL
-	let line: Int
-	let column: Int
-	let function: String
-	let dso: UnsafeRawPointer
+	public let fileURL: URL
+	public let line: Int
+	public let column: Int
+	public let function: String
+	public let dso: UnsafeRawPointer
 	public init(file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer) {
 		precondition(file != "")
 		self.fileURL = URL(fileURLWithPath: file, isDirectory: false)
@@ -94,7 +96,9 @@ extension SourceLocation {
 	var fileAndFunction: SourceFileAndFunction {
 		return SourceFileAndFunction(fileURL: fileURL, function: function)
 	}
+#if false
 	var locationInFunction: LocationInFunction {
 		return LocationInFunction(line: line, column: column)
 	}
+#endif
 }
