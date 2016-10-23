@@ -26,7 +26,7 @@
          location = "group:GEFoundation/GEFoundation.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:GEBase/GEBase.xcodeproj">
+         location = "group:GETracing/GETracing.xcodeproj">
       </FileRef>
       <FileRef
          location = "group:TestHostApp/TestHostApp.xcodeproj">
