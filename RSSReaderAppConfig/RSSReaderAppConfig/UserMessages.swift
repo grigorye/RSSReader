@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
+import GEFoundation
 import GEBase
 import SwiftMessages
 import UIKit
