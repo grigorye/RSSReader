@@ -8,14 +8,6 @@
 
 import Foundation
 
-var traceLabelsEnabledEnforced: Bool?
-var traceEnabledEnforced: Bool?
-
-extension KVOCompliantUserDefaults {
-	@NSManaged var traceEnabled: Bool
-	@NSManaged var traceLabelsEnabled: Bool
-}
-
 extension String {
 	func substring(toOffset offset: Int) -> String {
 		return substring(to: index(startIndex, offsetBy: offset))
@@ -26,13 +18,6 @@ extension String {
 }
 
 var swiftHashColumnMatchesLastComponentInCompoundExpressions = true
-
-var traceEnabled: Bool {
-	return traceEnabledEnforced ?? defaults.traceEnabled
-}
-var traceLabelsEnabled: Bool {
-	return traceLabelsEnabledEnforced ?? defaults.traceLabelsEnabled
-}
 
 func description<T>(of value: T) -> String {
 	return "\(value)"
@@ -226,7 +211,7 @@ func trace<T>(_ value: T, at location: SourceLocation) {
 	guard tracingShouldBeEnabledForLocation(location) else {
 		return
 	}
-	guard _0 else {
+	guard dumpInTraceEnabled else {
 		trace(description(of: value), on: Date(), at: location)
 		return
 	}
