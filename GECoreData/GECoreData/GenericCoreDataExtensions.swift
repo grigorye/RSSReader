@@ -7,7 +7,7 @@
 //
 
 import GEFoundation
-import GEBase
+import GETracing
 import CoreData
 
 enum GenericCoreDataExtensionsError: Error {

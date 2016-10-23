@@ -7,7 +7,7 @@
 //
 
 import GEFoundation
-import GEBase
+import GETracing
 import CoreData.NSManagedObjectContext
 import CoreData.NSManagedObject
 

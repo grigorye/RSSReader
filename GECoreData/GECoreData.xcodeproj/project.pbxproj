@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C4270BFA1DBD4FD300FA3A0A /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BF91DBD4FD300FA3A0A /* GETracing.framework */; };
 		C49FF15E1DBB98F100A86CC0 /* GECoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1541DBB98F100A86CC0 /* GECoreData.framework */; };
 		C49FF1631DBB98F100A86CC0 /* GECoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF1621DBB98F100A86CC0 /* GECoreDataTests.swift */; };
 		C49FF1711DBB993E00A86CC0 /* FetchedObjectBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF16E1DBB993E00A86CC0 /* FetchedObjectBinding.swift */; };
@@ -14,7 +15,6 @@
 		C49FF1731DBB993E00A86CC0 /* CoreDataCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF1701DBB993E00A86CC0 /* CoreDataCaching.swift */; };
 		C49FF1911DBB9C8700A86CC0 /* ManagedObjectContextAutosaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF1901DBB9C8700A86CC0 /* ManagedObjectContextAutosaver.swift */; };
 		C49FF1B71DBBA49A00A86CC0 /* GEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1B61DBBA49A00A86CC0 /* GEFoundation.framework */; };
-		C49FF1B91DBBA49F00A86CC0 /* GEBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1B81DBBA49F00A86CC0 /* GEBase.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C4270BF91DBD4FD300FA3A0A /* GETracing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GETracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C49FF1541DBB98F100A86CC0 /* GECoreData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GECoreData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C49FF1581DBB98F100A86CC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C49FF15D1DBB98F100A86CC0 /* GECoreDataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GECoreDataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,7 +40,6 @@
 		C49FF1901DBB9C8700A86CC0 /* ManagedObjectContextAutosaver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectContextAutosaver.swift; sourceTree = "<group>"; };
 		C49FF1941DBB9D4F00A86CC0 /* GEShared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = GEShared.xcconfig; path = ../XcodeConfiguration/GEShared.xcconfig; sourceTree = "<group>"; };
 		C49FF1B61DBBA49A00A86CC0 /* GEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GEFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C49FF1B81DBBA49F00A86CC0 /* GEBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GEBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,7 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C49FF1B91DBBA49F00A86CC0 /* GEBase.framework in Frameworks */,
+				C4270BFA1DBD4FD300FA3A0A /* GETracing.framework in Frameworks */,
 				C49FF1B71DBBA49A00A86CC0 /* GEFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -107,7 +107,7 @@
 		C49FF1A61DBBA11900A86CC0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C49FF1B81DBBA49F00A86CC0 /* GEBase.framework */,
+				C4270BF91DBD4FD300FA3A0A /* GETracing.framework */,
 				C49FF1B61DBBA49A00A86CC0 /* GEFoundation.framework */,
 			);
 			name = Frameworks;
