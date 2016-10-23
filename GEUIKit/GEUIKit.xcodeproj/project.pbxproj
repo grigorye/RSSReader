@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C4270BFC1DBD4FE900FA3A0A /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BFB1DBD4FE900FA3A0A /* GETracing.framework */; };
 		C49FF1281DBB985400A86CC0 /* GEUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF11E1DBB985400A86CC0 /* GEUIKit.framework */; };
 		C49FF12D1DBB985400A86CC0 /* GEUIKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF12C1DBB985400A86CC0 /* GEUIKitTests.swift */; };
 		C49FF1401DBB989000A86CC0 /* TypeFilteringActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF1381DBB989000A86CC0 /* TypeFilteringActivity.swift */; };
@@ -18,7 +19,6 @@
 		C49FF1461DBB989000A86CC0 /* UIKitUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF13E1DBB989000A86CC0 /* UIKitUtilities.swift */; };
 		C49FF1471DBB989000A86CC0 /* UIDataSourceModelAssociation+NilIndexPathInModelIdentifierForElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF13F1DBB989000A86CC0 /* UIDataSourceModelAssociation+NilIndexPathInModelIdentifierForElement.swift */; };
 		C49FF18F1DBB9C3200A86CC0 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF18E1DBB9C3200A86CC0 /* Globals.swift */; };
-		C49FF1C31DBBAA4B00A86CC0 /* GEBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1C01DBBAA4B00A86CC0 /* GEBase.framework */; };
 		C49FF1C41DBBAA4B00A86CC0 /* GECoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1C11DBBAA4B00A86CC0 /* GECoreData.framework */; };
 		C49FF1C51DBBAA4B00A86CC0 /* GEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1C21DBBAA4B00A86CC0 /* GEFoundation.framework */; };
 /* End PBXBuildFile section */
@@ -34,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C4270BFB1DBD4FE900FA3A0A /* GETracing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GETracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C49FF11E1DBB985400A86CC0 /* GEUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GEUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C49FF1221DBB985400A86CC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C49FF1271DBB985400A86CC0 /* GEUIKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GEUIKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,7 +50,6 @@
 		C49FF13F1DBB989000A86CC0 /* UIDataSourceModelAssociation+NilIndexPathInModelIdentifierForElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDataSourceModelAssociation+NilIndexPathInModelIdentifierForElement.swift"; sourceTree = "<group>"; };
 		C49FF1481DBB989F00A86CC0 /* GEShared.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = GEShared.xcconfig; path = ../XcodeConfiguration/GEShared.xcconfig; sourceTree = "<group>"; };
 		C49FF18E1DBB9C3200A86CC0 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
-		C49FF1C01DBBAA4B00A86CC0 /* GEBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GEBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C49FF1C11DBBAA4B00A86CC0 /* GECoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GECoreData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C49FF1C21DBBAA4B00A86CC0 /* GEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GEFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -59,7 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C49FF1C31DBBAA4B00A86CC0 /* GEBase.framework in Frameworks */,
+				C4270BFC1DBD4FE900FA3A0A /* GETracing.framework in Frameworks */,
 				C49FF1C41DBBAA4B00A86CC0 /* GECoreData.framework in Frameworks */,
 				C49FF1C51DBBAA4B00A86CC0 /* GEFoundation.framework in Frameworks */,
 			);
@@ -125,7 +125,7 @@
 		C49FF1AB1DBBA21400A86CC0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C49FF1C01DBBAA4B00A86CC0 /* GEBase.framework */,
+				C4270BFB1DBD4FE900FA3A0A /* GETracing.framework */,
 				C49FF1C11DBBAA4B00A86CC0 /* GECoreData.framework */,
 				C49FF1C21DBBAA4B00A86CC0 /* GEFoundation.framework */,
 			);

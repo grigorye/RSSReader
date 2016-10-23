@@ -8,7 +8,7 @@
 
 import GECoreData
 import GEFoundation
-import GEBase
+import GETracing
 import CoreData.NSFetchedResultsController
 import UIKit.UITableView
 

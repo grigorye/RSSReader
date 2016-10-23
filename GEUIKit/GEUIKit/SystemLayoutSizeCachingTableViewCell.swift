@@ -9,7 +9,7 @@
 #if os(iOS)
 
 import GEFoundation
-import GEBase
+import GETracing
 import Foundation
 import UIKit.UITableViewCell
 
