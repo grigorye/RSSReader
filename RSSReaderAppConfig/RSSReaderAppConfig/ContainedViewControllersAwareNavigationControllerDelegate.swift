@@ -6,7 +6,7 @@
 //  Copyright © 2015 Grigory Entin. All rights reserved.
 //
 
-import GEBase
+import GETracing
 import UIKit.UINavigationController
 
 class ContainedViewControllersAwareNavigationControllerDelegate: NSObject, UINavigationControllerDelegate {

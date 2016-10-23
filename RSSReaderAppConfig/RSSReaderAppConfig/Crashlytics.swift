@@ -13,7 +13,7 @@ let crashlyticsInitializer: Void = ()
 #else
 
 import GEFoundation
-import GEBase
+import GETracing
 import Fabric
 import Crashlytics
 import Foundation

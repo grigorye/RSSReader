@@ -7,7 +7,7 @@
 //
 
 import GEFoundation
-import GEBase
+import GETracing
 #if DZ_READABILITY_ENABLED
 import DZReadability
 #endif

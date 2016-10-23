@@ -7,7 +7,7 @@
 //
 
 import GEFoundation
-import GEBase
+import GETracing
 import Foundation
 
 public let analyticsEnabled: Bool = {

@@ -40,6 +40,7 @@
 		C4BE5ADA1DA8712600E1734F /* RSSReaderAppConfigTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5A8A1DA85DA100E1734F /* RSSReaderAppConfigTests.swift */; };
 		C4BE5AE11DAA5AE000E1734F /* UserMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BE5ADF1DAA5AE000E1734F /* UserMessages.swift */; };
 		C4BE5AE21DAA5AE000E1734F /* Readability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BE5AE01DAA5AE000E1734F /* Readability.swift */; };
+		C4F738971DBD73820092F1D8 /* GEUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1BA1DBBA6F000A86CC0 /* GEUIKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +134,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4BE5A861DA85DA100E1734F /* RSSReaderAppConfig.framework in Frameworks */,
+				C4F738971DBD73820092F1D8 /* GEUIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,7 +404,6 @@
 		C4BE5A941DA85DA100E1734F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = RSSReaderAppConfig/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.grigorye.RSSReaderAppConfigTests;
@@ -414,7 +415,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C4BE5ADB1DA8762D00E1734F /* RSSReader-app.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = RSSReaderAppConfig/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.grigorye.RSSReaderAppConfigTests;

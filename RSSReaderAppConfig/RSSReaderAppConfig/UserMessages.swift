@@ -7,7 +7,7 @@
 //
 
 import GEFoundation
-import GEBase
+import GETracing
 import SwiftMessages
 import UIKit
 import Foundation
