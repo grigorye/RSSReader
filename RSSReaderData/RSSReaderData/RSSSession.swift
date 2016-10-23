@@ -7,7 +7,7 @@
 //
 
 import GEFoundation
-import GEBase
+import GETracing
 import PromiseKit
 import Foundation
 import CoreData

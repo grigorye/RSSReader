@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C424B8E31C6FC52D008AD647 /* GEBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C424B8E21C6FC52D008AD647 /* GEBase.framework */; };
+		C4270BFE1DBD500D00FA3A0A /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BFD1DBD500D00FA3A0A /* GETracing.framework */; };
 		C441F1851DB25ABD0060E692 /* FoldersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F1841DB25ABD0060E692 /* FoldersController.swift */; };
 		C441F19A1DB4343B0060E692 /* FoldersController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C441F1841DB25ABD0060E692 /* FoldersController.swift */; };
 		C441F19B1DB4344A0060E692 /* RSSSessionTaskGeneration.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4DB6A711D26035F00E8516D /* RSSSessionTaskGeneration.swift */; };
@@ -15,7 +15,6 @@
 		C441F19D1DB4344A0060E692 /* RSSSessionCommands.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4DB6A731D261AE400E8516D /* RSSSessionCommands.swift */; };
 		C48CAA141DBBAD4E00D6F40E /* GECoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1BE1DBBA84000A86CC0 /* GECoreData.framework */; };
 		C48CAA151DBBAD5200D6F40E /* GEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1BC1DBBA83C00A86CC0 /* GEFoundation.framework */; };
-		C48CAA161DBBAD5200D6F40E /* GEBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C424B8E21C6FC52D008AD647 /* GEBase.framework */; };
 		C48F79A91C008D0E00CC6F74 /* RSSReaderData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48F799E1C008D0D00CC6F74 /* RSSReaderData.framework */; };
 		C48F79AE1C008D0E00CC6F74 /* RSSReaderDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48F79AD1C008D0E00CC6F74 /* RSSReaderDataTests.swift */; };
 		C48F79C41C008DD300CC6F74 /* RSSSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48F79C31C008DD300CC6F74 /* RSSSessionTests.swift */; };
@@ -42,7 +41,6 @@
 		C49FF1BF1DBBA84000A86CC0 /* GECoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1BE1DBBA84000A86CC0 /* GECoreData.framework */; };
 		C49FF1D01DBBACD200A86CC0 /* GECoreData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1BE1DBBA84000A86CC0 /* GECoreData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C49FF1D11DBBACD200A86CC0 /* GEFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1BC1DBBA83C00A86CC0 /* GEFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C49FF1D21DBBACD300A86CC0 /* GEBase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C424B8E21C6FC52D008AD647 /* GEBase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C49FF1D31DBBACD300A86CC0 /* RSSReaderData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C48F799E1C008D0D00CC6F74 /* RSSReaderData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4AD5B3C1D2847E800358DEA /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4AD5B3B1D2847E800358DEA /* PromiseKit.framework */; };
 		C4B437371C00A75200A2F3BE /* CoreDataGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B437361C00A75200A2F3BE /* CoreDataGlobals.swift */; };
@@ -99,7 +97,6 @@
 			files = (
 				C49FF1D01DBBACD200A86CC0 /* GECoreData.framework in Embed Frameworks */,
 				C49FF1D11DBBACD200A86CC0 /* GEFoundation.framework in Embed Frameworks */,
-				C49FF1D21DBBACD300A86CC0 /* GEBase.framework in Embed Frameworks */,
 				C49FF1D31DBBACD300A86CC0 /* RSSReaderData.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -108,7 +105,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C424B8E21C6FC52D008AD647 /* GEBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GEBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4270BFD1DBD500D00FA3A0A /* GETracing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GETracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C441F1841DB25ABD0060E692 /* FoldersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldersController.swift; sourceTree = "<group>"; };
 		C459879D1CDE0A8300B8E9E4 /* GEShared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = GEShared.xcconfig; path = ../XcodeConfiguration/GEShared.xcconfig; sourceTree = "<group>"; };
 		C48F799E1C008D0D00CC6F74 /* RSSReaderData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RSSReaderData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,9 +153,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4270BFE1DBD500D00FA3A0A /* GETracing.framework in Frameworks */,
 				C49FF1BF1DBBA84000A86CC0 /* GECoreData.framework in Frameworks */,
 				C49FF1BD1DBBA83C00A86CC0 /* GEFoundation.framework in Frameworks */,
-				C424B8E31C6FC52D008AD647 /* GEBase.framework in Frameworks */,
 				C4AD5B3C1D2847E800358DEA /* PromiseKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -170,7 +167,6 @@
 				C48F79A91C008D0E00CC6F74 /* RSSReaderData.framework in Frameworks */,
 				C48CAA141DBBAD4E00D6F40E /* GECoreData.framework in Frameworks */,
 				C48CAA151DBBAD5200D6F40E /* GEFoundation.framework in Frameworks */,
-				C48CAA161DBBAD5200D6F40E /* GEBase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,9 +176,9 @@
 		C424B8E41C6FC531008AD647 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C4270BFD1DBD500D00FA3A0A /* GETracing.framework */,
 				C49FF1BE1DBBA84000A86CC0 /* GECoreData.framework */,
 				C49FF1BC1DBBA83C00A86CC0 /* GEFoundation.framework */,
-				C424B8E21C6FC52D008AD647 /* GEBase.framework */,
 				C4AD5B3B1D2847E800358DEA /* PromiseKit.framework */,
 				C459879D1CDE0A8300B8E9E4 /* GEShared.xcconfig */,
 			);
