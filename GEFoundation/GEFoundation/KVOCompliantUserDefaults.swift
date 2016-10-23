@@ -6,7 +6,10 @@
 //  Copyright © 2015 Grigory Entin. All rights reserved.
 //
 
+import GEBase
 import Foundation
+
+public let defaults = KVOCompliantUserDefaults()
 
 private let objcEncode_Bool = String(validatingUTF8: NSNumber(value: true).objCType)!
 private let objcEncode_Int = "i"
@@ -151,50 +154,67 @@ public class KVOCompliantUserDefaults : NSObject {
 	func synchronizeValues() {
 		for (propertyName, propertyInfo) in _Self.propertyInfoMap {
 			let defaults = self.defaults
-			if (_Self.isDefaultName(propertyInfo.name)) {
-				let oldValue = values[propertyName]
-				let newValue = defaults.object(forKey: propertyName) as! NSObject?
-				if (oldValue == newValue) {
-				}
-				else if (true == (oldValue?.isEqual(newValue))) {
-				}
-				else {
-					self.willChangeValue(forKey: propertyName)
-					self.values[propertyName] = newValue
-					self.didChangeValue(forKey: propertyName)
-				}
+			guard _Self.isDefaultName(propertyInfo.name) else {
+				continue
 			}
+			let oldValue = values[propertyName]
+			let newValue = defaults.object(forKey: propertyName) as! NSObject?
+			guard oldValue != newValue else {
+				continue
+			}
+			guard true != (oldValue?.isEqual(newValue)) else {
+				continue
+			}
+			self.willChangeValue(forKey: propertyName)
+			self.values[propertyName] = newValue
+			self.didChangeValue(forKey: propertyName)
 		}
 	}
 
 	public override static func resolveInstanceMethod(_ sel: Selector) -> Bool {
 		let selName = NSStringFromSelector(sel)
-		if let propertyInfo = getterAndSetterMap[selName] {
-			•(propertyInfo)
-			let isSetter = selName.hasSuffix(":")
-			let valueTypeEncoded = propertyInfo.valueTypeEncoded
-			let methodIMP: IMP = {
-				switch valueTypeEncoded {
-				case objcEncode_Bool, objcEncode_C99Bool:
-					return isSetter ? unsafeBitCast(setBoolValueIMP, to: IMP.self) : unsafeBitCast(boolValueIMP, to: IMP.self)
-				case objcEncode_Long, objcEncode_Int:
-					return isSetter ? unsafeBitCast(setLongValueIMP, to: IMP.self) : unsafeBitCast(longValueIMP, to: IMP.self)
-				case objcEncode_LongLong:
-					return isSetter ? unsafeBitCast(setLongLongValueIMP, to: IMP.self) : unsafeBitCast(longLongValueIMP, to: IMP.self)
-				case objcEncode_AnyObject:
-					return isSetter ? unsafeBitCast(setObjectValueIMP, to: IMP.self) : unsafeBitCast(objectValueIMP, to: IMP.self)
-				default:
-					fatalError("\(L(valueTypeEncoded))")
-				}
-			}()
-			let types = isSetter ? "v@:\(valueTypeEncoded)" : "\(valueTypeEncoded)@:"
-			types.withCString { typesCString in
-				_ = class_addMethod(self, sel, unsafeBitCast(methodIMP, to: OpaquePointer.self), typesCString)
-			}
-			return true
+		guard let propertyInfo = getterAndSetterMap[selName] else {
+			return super.resolveInstanceMethod(sel)
 		}
-		return super.resolveInstanceMethod(sel)
+		•(propertyInfo)
+		let isSetter = selName.hasSuffix(":")
+		let valueTypeEncoded = propertyInfo.valueTypeEncoded
+		let methodIMP: IMP = {
+			switch valueTypeEncoded {
+			case objcEncode_Bool, objcEncode_C99Bool:
+				return isSetter ? unsafeBitCast(setBoolValueIMP, to: IMP.self) : unsafeBitCast(boolValueIMP, to: IMP.self)
+			case objcEncode_Long, objcEncode_Int:
+				return isSetter ? unsafeBitCast(setLongValueIMP, to: IMP.self) : unsafeBitCast(longValueIMP, to: IMP.self)
+			case objcEncode_LongLong:
+				return isSetter ? unsafeBitCast(setLongLongValueIMP, to: IMP.self) : unsafeBitCast(longLongValueIMP, to: IMP.self)
+			case objcEncode_AnyObject:
+				return isSetter ? unsafeBitCast(setObjectValueIMP, to: IMP.self) : unsafeBitCast(objectValueIMP, to: IMP.self)
+			default:
+				fatalError("\(L(valueTypeEncoded))")
+			}
+		}()
+		let types = isSetter ? "v@:\(valueTypeEncoded)" : "\(valueTypeEncoded)@:"
+		types.withCString { typesCString in
+			_ = class_addMethod(self, sel, unsafeBitCast(methodIMP, to: OpaquePointer.self), typesCString)
+		}
+		return true
 	}
+	
+	// MARK: -
+	
+	var handlingDidChangeNotification = false
+	
+	func defaultsDidChange(_ notification: Notification) {
+		guard !handlingDidChangeNotification else {
+			return
+		}
+		handlingDidChangeNotification = true; defer {handlingDidChangeNotification = false }
+		defaults.synchronize()
+		synchronizeValues()
+	}
+	
+	// MARK: -
+	
 	var scheduledForDeinit = [Handler]()
 	deinit {
 		scheduledForDeinit.forEach {$0()}
@@ -203,18 +223,12 @@ public class KVOCompliantUserDefaults : NSObject {
 	public override init () {
 		super.init()
 		let notificationCenter = NotificationCenter.default
-		var handlingNotification = false
 		let observer = notificationCenter.addObserver(forName: UserDefaults.didChangeNotification, object:nil, queue:nil) { [unowned self] notification in
-			if (!handlingNotification) {
-				handlingNotification = true
-				self.defaults.synchronize()
-				self.synchronizeValues()
-				handlingNotification = false
-			}
+			self.defaultsDidChange(notification)
 		}
-		self.scheduledForDeinit += [{
+		scheduledForDeinit += [{
 			notificationCenter.removeObserver(observer)
 		}]
-		self.synchronizeValues()
+		synchronizeValues()
 	}
 }

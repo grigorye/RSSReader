@@ -6,6 +6,7 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
+import GEBase
 import Foundation
 import os
 
@@ -29,7 +30,7 @@ enum DefaultLogKind: String {
 }
 
 extension KVOCompliantUserDefaults {
-	@NSManaged var logKind: String?
+	@NSManaged var defaultLogKind: String?
 }
 
 private let traceToNSLogEnabled = false
@@ -58,8 +59,8 @@ public func defaultLoggedTextWithThread(date: Date, label: String?, location: So
 }
 
 func defaultLogger(date: Date, label: String?, location: SourceLocation, message: String) {
-	guard let logKindInDefaults = defaults.logKind else { return }
-	switch DefaultLogKind(rawValue: logKindInDefaults)! {
+	guard let defaultLogKind = defaults.defaultLogKind else { return }
+	switch DefaultLogKind(rawValue: defaultLogKind)! {
 	case .none: ()
 	case .oslog:
 		let text = defaultLoggedText(date: date, label: label, location: location, message: message)
