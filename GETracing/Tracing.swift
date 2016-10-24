@@ -8,17 +8,6 @@
 
 import Foundation
 
-extension String {
-	func substring(toOffset offset: Int) -> String {
-		return substring(to: index(startIndex, offsetBy: offset))
-	}
-	func substring(fromOffset offset: Int) -> String {
-		return substring(from: index(startIndex, offsetBy: offset))
-	}
-}
-
-var swiftHashColumnMatchesLastComponentInCompoundExpressions = true
-
 func description<T>(of value: T) -> String {
 	return "\(value)"
 }
@@ -67,63 +56,6 @@ func trace(_ string: String, on date: Date, at location: SourceLocation) {
 private let defaultTraceLevel = 0x0badf00d
 private let defaultTracingEnabled = true
 
-public var filesWithTracingDisabled = [String]()
-
-var traceLockCountForFileAndFunction: [SourceFileAndFunction : Int] = [:]
-
-public class TraceLocker {
-	let sourceFileAndFunction: SourceFileAndFunction
-	public init(file: String = #file, function: String = #function) {
-		self.sourceFileAndFunction = SourceFileAndFunction(fileURL: URL(fileURLWithPath: file), function: function)
-		let oldValue = traceLockCountForFileAndFunction[self.sourceFileAndFunction] ?? 0
-		traceLockCountForFileAndFunction[self.sourceFileAndFunction] = oldValue + 1
-	}
-	deinit {
-		let oldValue = traceLockCountForFileAndFunction[self.sourceFileAndFunction]!
-		traceLockCountForFileAndFunction[self.sourceFileAndFunction] = oldValue - 1
-	}
-}
-public class TraceUnlocker {
-	let sourceFileAndFunction: SourceFileAndFunction
-	let unlockingWithNoLock: Bool
-	public init(file: String = #file, function: String = #function) {
-		self.sourceFileAndFunction = SourceFileAndFunction(fileURL: URL(fileURLWithPath: file), function: function)
-		let oldValue = traceLockCountForFileAndFunction[self.sourceFileAndFunction] ?? 0
-		let unlockingWithNoLock = oldValue == 0
-		if !unlockingWithNoLock {
-			traceLockCountForFileAndFunction[self.sourceFileAndFunction] = oldValue - 1
-		}
-		self.unlockingWithNoLock = unlockingWithNoLock
-	}
-	deinit {
-		if !self.unlockingWithNoLock {
-			let oldValue = traceLockCountForFileAndFunction[self.sourceFileAndFunction]!
-			traceLockCountForFileAndFunction[self.sourceFileAndFunction] = oldValue + 1
-		}
-	}
-}
-public func disableTrace(file: String = #file, function: String = #function) -> TraceLocker? {
-	guard traceEnabled else {
-		return nil
-	}
-	return TraceLocker(file: file, function: function)
-}
-public func enableTrace(file: String = #file, function: String = #function) -> TraceUnlocker? {
-	guard traceEnabled else {
-		return nil
-	}
-	return TraceUnlocker(file: file, function: function)
-}
-
-func tracingShouldBeEnabledForLocation(_ location: SourceLocation) -> Bool {
-	guard !filesWithTracingDisabled.contains(location.fileURL.lastPathComponent) else {
-		return false
-	}
-	guard 0 == (traceLockCountForFileAndFunction[location.fileAndFunction] ?? 0) else {
-		return false
-	}
-	return true
-}
 
 func trace<T>(_ v: T, file: String, line: Int, column: Int, function: String, dso: UnsafeRawPointer) {
 	let location = SourceLocation(file: file, line: line, column: column, function: function, dso: dso)
