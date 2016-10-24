@@ -8,6 +8,20 @@
 
 import Foundation
 
+var swiftHashColumnMatchesLastComponentInCompoundExpressions = true
+
+private extension String {
+
+	func substring(toOffset offset: Int) -> String {
+		return substring(to: index(startIndex, offsetBy: offset))
+	}
+	
+	func substring(fromOffset offset: Int) -> String {
+		return substring(from: index(startIndex, offsetBy: offset))
+	}
+	
+}
+
 func descriptionForInLineLocation(_ location: SourceLocation) -> String {
 	return "\(location.column)"
 }
