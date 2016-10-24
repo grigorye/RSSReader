@@ -53,10 +53,6 @@ func trace(_ string: String, on date: Date, at location: SourceLocation) {
 	log(message: string, withLabel: label, on: date, at: location)
 }
 
-private let defaultTraceLevel = 0x0badf00d
-private let defaultTracingEnabled = true
-
-
 func trace<T>(_ v: T, file: String, line: Int, column: Int, function: String, dso: UnsafeRawPointer) {
 	let location = SourceLocation(file: file, line: line, column: column, function: function, dso: dso)
 	trace(v, at: location)
