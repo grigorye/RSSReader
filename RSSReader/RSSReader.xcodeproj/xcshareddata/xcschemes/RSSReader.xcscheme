@@ -101,6 +101,10 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "-dumpInTraceEnabled YES"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "-resetDefaults YES"
             isEnabled = "NO">
          </CommandLineArgument>
@@ -129,7 +133,7 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-traceLabelsEnabled YES"
+            argument = "-sourceLabelsEnabled YES"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
