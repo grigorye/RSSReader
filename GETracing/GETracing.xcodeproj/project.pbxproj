@@ -12,7 +12,6 @@
 		C441F1A21DB434770060E692 /* Tracing.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4D6F4191C73CCC000A7E2ED /* Tracing.swift */; };
 		C441F1A31DB434770060E692 /* SourceLocation.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4CB38851CDBA78D00562665 /* SourceLocation.swift */; };
 		C48CAA181DBBE59000D6F40E /* BundleForSymbolAddressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA171DBBE59000D6F40E /* BundleForSymbolAddressTests.swift */; };
-		C48CAA1E1DBCC86700D6F40E /* TracingDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA1D1DBCC86700D6F40E /* TracingDefaults.swift */; };
 		C495D8991C02592100A7F7D5 /* TracingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495D8981C02592100A7F7D5 /* TracingTests.swift */; };
 		C495D89B1C025A0800A7F7D5 /* TracingTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C495D8981C02592100A7F7D5 /* TracingTests.swift */; };
 		C49FF0E61DBAF7D800A86CC0 /* NestedBrackets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF0E51DBAF7D800A86CC0 /* NestedBrackets.swift */; };
@@ -21,6 +20,9 @@
 		C4CB38861CDBA78D00562665 /* SourceLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CB38851CDBA78D00562665 /* SourceLocation.swift */; };
 		C4D6F41A1C73CCC000A7E2ED /* Tracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D6F4191C73CCC000A7E2ED /* Tracing.swift */; };
 		C4DB6A6C1D25C4E300E8516D /* GETracing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C41818601B6A65B100872EB3 /* GETracing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C4E5DB851DBEAD8900170422 /* Conveniences.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5DB841DBEAD8900170422 /* Conveniences.swift */; };
+		C4E5DB871DBEAFB900170422 /* Labeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5DB861DBEAFB900170422 /* Labeling.swift */; };
+		C4E5DB891DBEB01A00170422 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5DB881DBEB01A00170422 /* Logging.swift */; };
 		C4FEBB1D1BF960A300A5709B /* BundleForSymbolAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FEBB1C1BF960A300A5709B /* BundleForSymbolAddress.swift */; };
 		C4FEBB1E1BF96B7800A5709B /* BundleForSymbolAddress.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4FEBB1C1BF960A300A5709B /* BundleForSymbolAddress.swift */; };
 /* End PBXBuildFile section */
@@ -82,13 +84,15 @@
 		C41F404F1DBE94E3006EA6CD /* Conditionals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conditionals.swift; sourceTree = "<group>"; };
 		C459879B1CDE087200B8E9E4 /* GEShared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = GEShared.xcconfig; path = ../XcodeConfiguration/GEShared.xcconfig; sourceTree = "<group>"; };
 		C48CAA171DBBE59000D6F40E /* BundleForSymbolAddressTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleForSymbolAddressTests.swift; sourceTree = "<group>"; };
-		C48CAA1D1DBCC86700D6F40E /* TracingDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracingDefaults.swift; sourceTree = "<group>"; };
 		C495D8981C02592100A7F7D5 /* TracingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracingTests.swift; sourceTree = "<group>"; };
 		C49FF0E51DBAF7D800A86CC0 /* NestedBrackets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NestedBrackets.swift; sourceTree = "<group>"; };
 		C49FF0E71DBAF80200A86CC0 /* NestedBracketsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NestedBracketsTests.swift; sourceTree = "<group>"; };
 		C49FF0E91DBAF94200A86CC0 /* SourceLabels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceLabels.swift; sourceTree = "<group>"; };
 		C4CB38851CDBA78D00562665 /* SourceLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceLocation.swift; sourceTree = "<group>"; };
 		C4D6F4191C73CCC000A7E2ED /* Tracing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tracing.swift; sourceTree = "<group>"; };
+		C4E5DB841DBEAD8900170422 /* Conveniences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conveniences.swift; sourceTree = "<group>"; };
+		C4E5DB861DBEAFB900170422 /* Labeling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Labeling.swift; sourceTree = "<group>"; };
+		C4E5DB881DBEB01A00170422 /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		C4FEBB1C1BF960A300A5709B /* BundleForSymbolAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleForSymbolAddress.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -135,7 +139,9 @@
 			children = (
 				C41F404F1DBE94E3006EA6CD /* Conditionals.swift */,
 				C4D6F4191C73CCC000A7E2ED /* Tracing.swift */,
-				C48CAA1D1DBCC86700D6F40E /* TracingDefaults.swift */,
+				C4E5DB861DBEAFB900170422 /* Labeling.swift */,
+				C4E5DB841DBEAD8900170422 /* Conveniences.swift */,
+				C4E5DB881DBEB01A00170422 /* Logging.swift */,
 				C49FF0E91DBAF94200A86CC0 /* SourceLabels.swift */,
 				C49FF0E51DBAF7D800A86CC0 /* NestedBrackets.swift */,
 				C4CB38851CDBA78D00562665 /* SourceLocation.swift */,
@@ -284,11 +290,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4FEBB1D1BF960A300A5709B /* BundleForSymbolAddress.swift in Sources */,
+				C4E5DB891DBEB01A00170422 /* Logging.swift in Sources */,
 				C49FF0E61DBAF7D800A86CC0 /* NestedBrackets.swift in Sources */,
 				C4D6F41A1C73CCC000A7E2ED /* Tracing.swift in Sources */,
 				C4CB38861CDBA78D00562665 /* SourceLocation.swift in Sources */,
+				C4E5DB871DBEAFB900170422 /* Labeling.swift in Sources */,
 				C41F40501DBE94E3006EA6CD /* Conditionals.swift in Sources */,
-				C48CAA1E1DBCC86700D6F40E /* TracingDefaults.swift in Sources */,
+				C4E5DB851DBEAD8900170422 /* Conveniences.swift in Sources */,
 				C49FF0EA1DBAF94200A86CC0 /* SourceLabels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
