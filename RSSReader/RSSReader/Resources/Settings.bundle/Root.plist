@@ -16,6 +16,42 @@
 		</dict>
 		<dict>
 			<key>Title</key>
+			<string>First Aid</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>Key</key>
+			<string>resetDefaults</string>
+			<key>Title</key>
+			<string>Reset Defaults</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>Key</key>
+			<string>forceStoreRemoval</string>
+			<key>Title</key>
+			<string>Erase All</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>Key</key>
+			<string>stateRestorationEnabled</string>
+			<key>Title</key>
+			<string>State Restoration</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>Title</key>
 			<string></string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
@@ -114,7 +150,7 @@
 			<key>Title</key>
 			<string>Logging Method</string>
 			<key>Key</key>
-			<string>logKind</string>
+			<string>defaultLogKind</string>
 			<key>DefaultValue</key>
 			<string>oslog</string>
 			<key>Titles</key>
@@ -133,34 +169,14 @@
 			</array>
 		</dict>
 		<dict>
-			<key>DefaultValue</key>
-			<false/>
-			<key>Key</key>
-			<string>resetDefaults</string>
-			<key>Title</key>
-			<string>Reset Defaults</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
-		</dict>
-		<dict>
-			<key>DefaultValue</key>
-			<false/>
-			<key>Key</key>
-			<string>forceStoreRemoval</string>
 			<key>Title</key>
-			<string>Erase All</string>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-		</dict>
-		<dict>
-			<key>DefaultValue</key>
-			<true/>
+			<string>Dump in Trace</string>
 			<key>Key</key>
-			<string>stateRestorationEnabled</string>
-			<key>Title</key>
-			<string>State Restoration</string>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
+			<string>dumpInTraceEnabled</string>
+			<key>DefaultValue</key>
+			<string>oslog</string>
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
@@ -176,9 +192,9 @@
 			<key>DefaultValue</key>
 			<false/>
 			<key>Key</key>
-			<string>traceLabelsEnabled</string>
+			<string>sourceLabelsEnabled</string>
 			<key>Title</key>
-			<string>Trace Labels</string>
+			<string>Source Labels</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
