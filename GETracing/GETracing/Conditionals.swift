@@ -24,7 +24,7 @@ public func enableTrace(file: String = #file, function: String = #function) -> A
 	return TraceUnlocker(file: file, function: function)
 }
 
-func tracingShouldBeEnabledForLocation(_ location: SourceLocation) -> Bool {
+func tracingEnabled(for location: SourceLocation) -> Bool {
 	guard !filesWithTracingDisabled.contains(location.fileURL.lastPathComponent) else {
 		return false
 	}
