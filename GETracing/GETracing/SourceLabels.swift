@@ -23,10 +23,13 @@ private extension String {
 }
 
 func descriptionForInLineLocation(_ location: SourceLocation) -> String {
-	return "\(location.column)"
+	return ".\(location.column)"
 }
 
 func label(for location: SourceLocation) -> String {
+	guard sourceLabelsEnabled else {
+		return descriptionForInLineLocation(location)
+	}
 	let fileURL = location.fileURL
 	let fileName = fileURL.lastPathComponent
 	let resourceName = fileURL.deletingPathExtension().lastPathComponent
@@ -66,4 +69,10 @@ func label(for location: SourceLocation) -> String {
 	let prefix = String(linePrefixReversed.substring(toOffset: lengthInLinePrefixReversed).characters.reversed())
 	let text = prefix + suffix
 	return text
+}
+
+var sourceLabelsEnabledEnforced: Bool?
+
+var sourceLabelsEnabled: Bool {
+	return sourceLabelsEnabledEnforced ?? UserDefaults.standard.bool(forKey: "sourceLabelsEnabled")
 }
