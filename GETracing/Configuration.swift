@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// List of files that might be used for disabling tracing on file basis.
 public var filesWithTracingDisabled = [String]()
 
 public func disableTrace(file: String = #file, function: String = #function) -> Any? {
