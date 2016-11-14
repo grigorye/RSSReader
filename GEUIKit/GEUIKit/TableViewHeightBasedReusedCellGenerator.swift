@@ -17,14 +17,25 @@ public protocol TableViewHeightBasedReusedCellGeneratorDataSource : class {
 	func variableHeightForDataAtIndexPath(_ indexPath: IndexPath) -> CGFloat
 }
 
+/// This is an attempt to speed up scrolling by avoiding re-layouting of table view cells where height depends on a single parameter (typically height of a single subview), utilizing different cells for different heights.
 public struct TableViewHeightBasedReusedCellGenerator<DataSource: TableViewHeightBasedReusedCellGeneratorDataSource> {
 	public unowned let dataSource: DataSource
+	
+	/// Cell reuse identifier used as a fallback when the height information is not available.
 	public let heightAgnosticCellReuseIdentifier: String
+
 	public let reuseIdentifiersForHeightCachingCells: [String]
+	
 	// MARK: -
+	
+	/// Cached known heights as an array
 	var reusedHeights: [CGFloat] = []
+	/// Known heights as a set
 	var reusedHeightsSet: Set<CGFloat> = []
+	/// Map of known heights to cell hegihts
 	var variableHeightsForHeight: [CGFloat : CGFloat] = [:]
+	
+	/// Returns cell reuse identifier based on the variable height computed for index path.
 	public func reuseIdentifierForCellForRowAtIndexPath(_ indexPath: IndexPath) -> String {
 		guard dataSource.isReadyForMeasuringHeigthsForData() else {
 			return heightAgnosticCellReuseIdentifier
@@ -46,13 +57,16 @@ public struct TableViewHeightBasedReusedCellGenerator<DataSource: TableViewHeigh
 		}
 		return reuseIdentifiersForHeightCachingCells[indexInTopReused]
 	}
+	
 	public mutating func addRowHeight(_ height: CGFloat, forCell cell: UITableViewCell, atIndexPath indexPath: IndexPath) {
-		if !reusedHeightsSet.contains(height) {
-			reusedHeightsSet.insert(height)
-			reusedHeights += [height]
-			variableHeightsForHeight[height] = dataSource.variableHeight(forCell: cell)
-			(cell as! SystemLayoutSizeCachingTableViewCell).reused = true
+		guard !reusedHeightsSet.contains(height) else {
+			return
 		}
+		reusedHeightsSet.insert(height)
+		reusedHeights += [height]
+		let variableHeight = dataSource.variableHeight(forCell: cell)
+		variableHeightsForHeight[height] = variableHeight
+		(cell as! SystemLayoutSizeCachingTableViewCell).reused = true
 	}
 	public init(dataSource: DataSource, heightAgnosticCellReuseIdentifier: String, reuseIdentifiersForHeightCachingCells: [String]) {
 		self.dataSource = dataSource
