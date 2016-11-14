@@ -36,10 +36,12 @@ import Foundation
 /// - seealso: `loggers`.
 @discardableResult
 public func $<T>(_ value: T, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer = #dsohandle) -> T {
+#if GE_TRACE_ENABLED
 	if traceEnabled {
 		let location = SourceLocation(file: file, line: line, column: column, function: function, dso: dso)
 		trace(value, at: location)
 	}
+#endif
 	return value
 }
 

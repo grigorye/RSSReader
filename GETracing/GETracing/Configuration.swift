@@ -12,17 +12,25 @@ import Foundation
 public var filesWithTracingDisabled = [String]()
 
 public func disableTrace(file: String = #file, function: String = #function) -> Any? {
+#if GE_TRACE_ENABLED
+	return nil
+#else
 	guard traceEnabled else {
 		return nil
 	}
 	return TraceLocker(file: file, function: function)
+#endif
 }
 
 public func enableTrace(file: String = #file, function: String = #function) -> Any? {
+#if GE_TRACE_ENABLED
+	return nil
+#else
 	guard traceEnabled else {
 		return nil
 	}
 	return TraceUnlocker(file: file, function: function)
+#endif
 }
 
 func tracingEnabled(for location: SourceLocation) -> Bool {
