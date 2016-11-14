@@ -34,6 +34,7 @@ post_install do |installer|
       configuration.build_settings['CODE_SIGNING_REQUIRED'] = 'NO'
       configuration.build_settings['PROVISIONING_PROFILE_SPECIFIER'] = '465NA5BW7E/'
       configuration.build_settings['SWIFT_VERSION'] = '3.0'
+      configuration.build_settings['DEBUG_INFORMATION_FORMAT'] = 'dwarf-with-dsym'
       configuration.build_settings['ENABLE_BITCODE'] = 'NO'
       xcconfig_path = configuration.base_configuration_reference.real_path
       xcconfig = Xcodeproj::Config.new(xcconfig_path).to_hash
