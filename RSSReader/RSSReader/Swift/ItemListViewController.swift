@@ -26,7 +26,6 @@ class ItemListViewController: ContainerTableViewController {
 	}()
 	final var multipleSourcesEnabled = false
 	var showUnreadEnabled = true
-	var systemLayoutSizeCachingDataSource = SystemLayoutSizeCachingTableViewCellDataSource(layoutSizeDefiningValueForCell: { guard $0.reuseIdentifier != "Item" else { return nil }; return $0.reuseIdentifier as NSString? }, cellShouldBeReusedWithoutLayout: {$0.reuseIdentifier != "Item"})
 	// MARK:-
 	var showUnreadOnly = false
 	//
