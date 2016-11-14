@@ -8,6 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		C4270BF81DBD4FBD00FA3A0A /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BF71DBD4FBD00FA3A0A /* GETracing.framework */; };
+		C48635E41DD6B52600CA359B /* Primitives.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48CAA351DBD492E00D6F40E /* Primitives.swift */; };
+		C48635E51DD6B52600CA359B /* ObjCPropertyInfo.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48CAA251DBD33BE00D6F40E /* ObjCPropertyInfo.swift */; };
+		C48635E61DD6B52600CA359B /* KVOCompliantUserDefaults.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48CAA211DBD318700D6F40E /* KVOCompliantUserDefaults.swift */; };
+		C48635E71DD6B52600CA359B /* ObjCEncode.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48CAA1B1DBC26F100D6F40E /* ObjCEncode.swift */; };
+		C48635E81DD6B52600CA359B /* KVOBinding.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF19E1DBB9FF400A86CC0 /* KVOBinding.swift */; };
+		C48635E91DD6B52600CA359B /* ObjectAndKeyPath.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1A01DBBA01100A86CC0 /* ObjectAndKeyPath.swift */; };
+		C48635EA1DD6B52600CA359B /* PropertyCaching.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1821DBB99BE00A86CC0 /* PropertyCaching.swift */; };
+		C48635EB1DD6B52600CA359B /* GenericExtensions.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1801DBB999E00A86CC0 /* GenericExtensions.swift */; };
+		C48635EC1DD6B52600CA359B /* AppVersion.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF17E1DBB998500A86CC0 /* AppVersion.swift */; };
+		C48635ED1DD6B52600CA359B /* GenericURLSessionExtensions.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1741DBB996D00A86CC0 /* GenericURLSessionExtensions.swift */; };
+		C48635EE1DD6B52600CA359B /* EncodedUserDefaults.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1751DBB996D00A86CC0 /* EncodedUserDefaults.swift */; };
+		C48635EF1DD6B52600CA359B /* ProgressEnabledURLSessionTaskGenerator.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1761DBB996D00A86CC0 /* ProgressEnabledURLSessionTaskGenerator.swift */; };
+		C48635F01DD6B52600CA359B /* URLSessionTaskGeneratorErrorObjCBridging.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1771DBB996D00A86CC0 /* URLSessionTaskGeneratorErrorObjCBridging.swift */; };
+		C48635F11DD6B52600CA359B /* DefaultsInSettingsPlist.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1781DBB996D00A86CC0 /* DefaultsInSettingsPlist.swift */; };
+		C48635F21DD6B52600CA359B /* AssociatedObjects.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48CAA291DBD399100D6F40E /* AssociatedObjects.swift */; };
+		C48635F31DD6B52600CA359B /* Descriptions.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1861DBB99FB00A86CC0 /* Descriptions.swift */; };
+		C48635F41DD6B52600CA359B /* DefaultLogger.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48CAA271DBD397100D6F40E /* DefaultLogger.swift */; };
+		C48635F51DD6B52600CA359B /* Sugar.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48CAA311DBD3ABA00D6F40E /* Sugar.swift */; };
 		C48CAA1C1DBC26F100D6F40E /* ObjCEncode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA1B1DBC26F100D6F40E /* ObjCEncode.swift */; };
 		C48CAA221DBD318700D6F40E /* KVOCompliantUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA211DBD318700D6F40E /* KVOCompliantUserDefaults.swift */; };
 		C48CAA241DBD319300D6F40E /* KVOCompliantUserDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA231DBD319300D6F40E /* KVOCompliantUserDefaultsTests.swift */; };
@@ -45,6 +63,37 @@
 			remoteInfo = GEFoundation;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C48635E31DD6B4DF00CA359B /* Embed Sources */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Sources;
+			dstSubfolderSpec = 7;
+			files = (
+				C48635E41DD6B52600CA359B /* Primitives.swift in Embed Sources */,
+				C48635E51DD6B52600CA359B /* ObjCPropertyInfo.swift in Embed Sources */,
+				C48635E61DD6B52600CA359B /* KVOCompliantUserDefaults.swift in Embed Sources */,
+				C48635E71DD6B52600CA359B /* ObjCEncode.swift in Embed Sources */,
+				C48635E81DD6B52600CA359B /* KVOBinding.swift in Embed Sources */,
+				C48635E91DD6B52600CA359B /* ObjectAndKeyPath.swift in Embed Sources */,
+				C48635EA1DD6B52600CA359B /* PropertyCaching.swift in Embed Sources */,
+				C48635EB1DD6B52600CA359B /* GenericExtensions.swift in Embed Sources */,
+				C48635EC1DD6B52600CA359B /* AppVersion.swift in Embed Sources */,
+				C48635ED1DD6B52600CA359B /* GenericURLSessionExtensions.swift in Embed Sources */,
+				C48635EE1DD6B52600CA359B /* EncodedUserDefaults.swift in Embed Sources */,
+				C48635EF1DD6B52600CA359B /* ProgressEnabledURLSessionTaskGenerator.swift in Embed Sources */,
+				C48635F01DD6B52600CA359B /* URLSessionTaskGeneratorErrorObjCBridging.swift in Embed Sources */,
+				C48635F11DD6B52600CA359B /* DefaultsInSettingsPlist.swift in Embed Sources */,
+				C48635F21DD6B52600CA359B /* AssociatedObjects.swift in Embed Sources */,
+				C48635F31DD6B52600CA359B /* Descriptions.swift in Embed Sources */,
+				C48635F41DD6B52600CA359B /* DefaultLogger.swift in Embed Sources */,
+				C48635F51DD6B52600CA359B /* Sugar.swift in Embed Sources */,
+			);
+			name = "Embed Sources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C4270BF71DBD4FBD00FA3A0A /* GETracing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GETracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -190,6 +239,7 @@
 				C49FF0F61DBB981300A86CC0 /* Frameworks */,
 				C49FF0F71DBB981300A86CC0 /* Headers */,
 				C49FF0F81DBB981300A86CC0 /* Resources */,
+				C48635E31DD6B4DF00CA359B /* Embed Sources */,
 			);
 			buildRules = (
 			);
