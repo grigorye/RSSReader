@@ -8,24 +8,6 @@
 
 import Foundation
 
-var swiftHashColumnMatchesLastComponentInCompoundExpressions = true
-
-private extension String {
-
-	func substring(toOffset offset: Int) -> String {
-		return substring(to: index(startIndex, offsetBy: offset))
-	}
-	
-	func substring(fromOffset offset: Int) -> String {
-		return substring(from: index(startIndex, offsetBy: offset))
-	}
-	
-}
-
-func descriptionForInLineLocation(_ location: SourceLocation) -> String {
-	return ".\(location.column)"
-}
-
 func label(for location: SourceLocation) -> String {
 	guard sourceLabelsEnabled else {
 		return descriptionForInLineLocation(location)
@@ -71,8 +53,26 @@ func label(for location: SourceLocation) -> String {
 	return text
 }
 
+private func descriptionForInLineLocation(_ location: SourceLocation) -> String {
+	return ".\(location.column)"
+}
+
+private extension String {
+
+	func substring(toOffset offset: Int) -> String {
+		return substring(to: index(startIndex, offsetBy: offset))
+	}
+	
+	func substring(fromOffset offset: Int) -> String {
+		return substring(from: index(startIndex, offsetBy: offset))
+	}
+	
+}
+
+var swiftHashColumnMatchesLastComponentInCompoundExpressions = true
+
 var sourceLabelsEnabledEnforced: Bool?
 
-var sourceLabelsEnabled: Bool {
+private var sourceLabelsEnabled: Bool {
 	return sourceLabelsEnabledEnforced ?? UserDefaults.standard.bool(forKey: "sourceLabelsEnabled")
 }
