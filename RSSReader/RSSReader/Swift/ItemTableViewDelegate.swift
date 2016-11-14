@@ -30,7 +30,7 @@ extension ItemListViewController {
 		return 44
 	}
 #endif
-	override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+	override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 		guard !defaults.fixedHeightItemRowsEnabled else {
 			return
 		}
