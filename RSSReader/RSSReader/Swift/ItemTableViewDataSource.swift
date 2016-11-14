@@ -1,4 +1,4 @@
-//
+ //
 //  ItemTableViewDataSource.swift
 //  RSSReader
 //
@@ -25,6 +25,17 @@ extension KVOCompliantUserDefaults {
 }
 
 class ItemTableViewDataSource: NSObject {
+	var systemLayoutSizeCachingDataSource = SystemLayoutSizeCachingTableViewCellDataSource(
+		layoutSizeDefiningValueForCell: {
+			guard $0.reuseIdentifier != "Item" else {
+				return nil
+			}
+			return $0.reuseIdentifier as NSString?
+		},
+		cellShouldBeReusedWithoutLayout: {
+			return $0.reuseIdentifier != "Item"
+		}
+	)
 	let tableView: UITableView
 	let container: Container
 	let showUnreadOnly: Bool
@@ -61,11 +72,18 @@ class ItemTableViewDataSource: NSObject {
 				x += [self.container.predicateForItems]
 				x += [self.containerViewPredicate]
 			})
-#if false
-			$0.relationshipKeyPathsForPrefetching = [#keyPath(E.categories)]
+#if true
+			$0.relationshipKeyPathsForPrefetching = [
+				#keyPath(E.categories)
+			]
 #endif
 			$0.returnsObjectsAsFaults = false
 			$0.fetchBatchSize = defaults.fetchBatchSize
+#if false
+			$0.propertiesToFetch = [
+				#keyPath(E.titleData)
+			]
+#endif
 		}
 		return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainQueueManagedObjectContext, sectionNameKeyPath: !defaults.itemsAreSortedByLoadDate ? nil : #keyPath(Item.loadDate), cacheName: nil)…{
 			$0.delegate = self.fetchedResultsControllerDelegate
@@ -150,7 +168,7 @@ extension ItemTableViewDataSource: UITableViewDataSource {
 		let dt = disableTrace(); defer { _ = dt }
 		let reuseIdentifier = reusedCellGenerator?.reuseIdentifierForCellForRowAtIndexPath(indexPath) ?? "Item"
 		let cell = tableView.dequeueReusableCell(withIdentifier: $(reuseIdentifier), for: indexPath)
-#if false
+#if true
 		if nil != reusedCellGenerator {
 			(cell as! ItemTableViewCell).systemLayoutSizeCachingDataSource = systemLayoutSizeCachingDataSource
 		}
@@ -244,7 +262,9 @@ extension ItemTableViewDataSource : TableViewHeightBasedReusedCellGeneratorDataS
 			let viewWithVariableHeight = viewWithVariableHeightForCell(cell)
 			heightSampleLabel = NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: viewWithVariableHeight)) as! UILabel
 		}
-		reusedCellGenerator?.addRowHeight(rowHeight, forCell: cell, atIndexPath: indexPath)
+		if cell.reuseIdentifier! == reusedCellGenerator.heightAgnosticCellReuseIdentifier {
+			reusedCellGenerator?.addRowHeight(rowHeight, forCell: cell, atIndexPath: indexPath)
+		}
 		rowHeightEstimator?.addRowHeight(rowHeight, forIndexPath: indexPath)
 	}
 }
