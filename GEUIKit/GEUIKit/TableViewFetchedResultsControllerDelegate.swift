@@ -26,10 +26,18 @@ private var groupingTableUpdatesEnabled: Bool {
 	return defaults.groupingTableUpdatesEnabled
 }
 
+struct Counts {
+	var insertions: Int
+	var deletions: Int
+	var updates: Int
+}
+let zeroCounts = Counts(insertions: 0, deletions: 0, updates: 0)
+
 public class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate {
-	var tableView: UITableView
+	weak var tableView: UITableView?
 	var updateCell: ((UITableViewCell, atIndexPath: IndexPath)) -> Void
-	var rowAnimation: UITableViewRowAnimation { return .automatic }
+	let rowAnimation: UITableViewRowAnimation = .none
+	var counts = zeroCounts
 	// MARK: -
 	public func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		$(controller)
@@ -41,11 +49,17 @@ public class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSOb
 		•(managedObjectContext.insertedObjects)
 		if groupingTableUpdatesEnabled {
 			($(fetchResultsAnimationEnabled) ? invoke : UIView.performWithoutAnimation) {
-				$(self.tableView).beginUpdates()
+				guard let tableView = tableView else {
+					return
+				}
+				$(tableView).beginUpdates()
 			}
 		}
 	}
 	public func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+		guard let tableView = tableView else {
+			return
+		}
 		$(controller)
 		$(stringFromFetchedResultsChangeType(type))
 		switch type {
@@ -58,17 +72,22 @@ public class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSOb
 		}
 	}
 	public func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-		let tableView = self.tableView
+		guard let tableView = tableView else {
+			return
+		}
 		$(tableView)
 		$(controller)
 		$(stringFromFetchedResultsChangeType(type))
 		switch type {
 		case .insert:
+			counts.insertions += 1
 			$(tableView.numberOfRows(inSection: $(newIndexPath!).section))
 			tableView.insertRows(at: [newIndexPath!], with: rowAnimation)
 		case .delete:
+			counts.deletions += 1
 			tableView.deleteRows(at: [$(indexPath!)], with: rowAnimation)
 		case .update:
+			counts.updates += 1
 			$(tableView.numberOfRows(inSection: $(indexPath!).section))
 			if defaults.updateCellsInPlaceEnabled {
 				if let cell = tableView.cellForRow(at: indexPath!) {
@@ -86,9 +105,14 @@ public class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSOb
 	}
 	public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		$(controller)
+		$(counts)
+		counts = zeroCounts
 		if groupingTableUpdatesEnabled {
 			($(fetchResultsAnimationEnabled) ? invoke : UIView.performWithoutAnimation) {
-				$(self.tableView).endUpdates()
+				guard let tableView = tableView else {
+					return
+				}
+				$(tableView).endUpdates()
 			}
 		}
 	}
