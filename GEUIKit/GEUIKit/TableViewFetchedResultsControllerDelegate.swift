@@ -16,6 +16,7 @@ extension KVOCompliantUserDefaults {
 	@NSManaged var fetchResultsAnimationEnabled: Bool
 	@NSManaged var groupingTableUpdatesEnabled: Bool
 	@NSManaged var updateCellsInPlaceEnabled: Bool
+	@NSManaged var reloadDataForTableUpdatesEnabled: Bool
 }
 
 private var fetchResultsAnimationEnabled: Bool {
@@ -24,6 +25,9 @@ private var fetchResultsAnimationEnabled: Bool {
 
 private var groupingTableUpdatesEnabled: Bool {
 	return defaults.groupingTableUpdatesEnabled
+}
+private var reloadDataForTableUpdatesEnabled: Bool {
+	return defaults.reloadDataForTableUpdatesEnabled
 }
 
 struct Counts {
@@ -47,6 +51,10 @@ public class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSOb
 			((updatedObject).changedValues())
 		}
 		•(managedObjectContext.insertedObjects)
+		guard !reloadDataForTableUpdatesEnabled else {
+			tableView?.reloadData()
+			return
+		}
 		if groupingTableUpdatesEnabled {
 			($(fetchResultsAnimationEnabled) ? invoke : UIView.performWithoutAnimation) {
 				guard let tableView = tableView else {
@@ -57,6 +65,9 @@ public class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSOb
 		}
 	}
 	public func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+		guard !reloadDataForTableUpdatesEnabled else {
+			return
+		}
 		guard let tableView = tableView else {
 			return
 		}
@@ -72,6 +83,9 @@ public class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSOb
 		}
 	}
 	public func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+		guard !reloadDataForTableUpdatesEnabled else {
+			return
+		}
 		guard let tableView = tableView else {
 			return
 		}
@@ -104,6 +118,9 @@ public class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSOb
 		}
 	}
 	public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+		guard !reloadDataForTableUpdatesEnabled else {
+			return
+		}
 		$(controller)
 		$(counts)
 		counts = zeroCounts
