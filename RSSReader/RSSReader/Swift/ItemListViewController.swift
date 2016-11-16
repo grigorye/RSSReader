@@ -256,6 +256,9 @@ extension ItemListViewController {
 			)
 		}
 	}
+	@IBAction private func scrollToEnd(_ sender: AnyObject?) {
+		tableView.scrollToRow(at: IndexPath(row: tableView.numberOfRows(inSection: 0) - 1, section: 0), at: .bottom, animated: true)
+	}
 	@IBAction private func action(_ sender: AnyObject?) {
 		let activityViewController = UIActivityViewController(activityItems: [container!], applicationActivities: applicationActivities)
 		navigationController?.present(activityViewController, animated: true, completion: nil)
