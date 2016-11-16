@@ -25,7 +25,6 @@ loggers += [
 ]
 
 filesWithTracingDisabled += [
-	"TableViewFetchedResultsControllerDelegate.swift",
 	"KVOCompliantUserDefaults.swift"
 ]
 
