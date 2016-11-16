@@ -36,7 +36,7 @@ class ItemTableViewDataSource: NSObject {
 			return $0.reuseIdentifier != "Item"
 		}
 	)
-	let tableView: UITableView
+	weak var tableView: UITableView?
 	let container: Container
 	let showUnreadOnly: Bool
 	fileprivate let nowDate = { Date() }()
@@ -59,10 +59,11 @@ class ItemTableViewDataSource: NSObject {
 	}
 	// MARK: -
 	private lazy var fetchedResultsControllerDelegate: NSFetchedResultsControllerDelegate = {
+		let tableView = self.tableView!
 		let configureCell = { [unowned self] (cell: UITableViewCell, indexPath: IndexPath) -> Void in
 			self.configureCell(cell, atIndexPath: indexPath)
 		}
-		return TableViewFetchedResultsControllerDelegate(tableView: self.tableView, updateCell: configureCell)
+		return TableViewFetchedResultsControllerDelegate(tableView: tableView, updateCell: configureCell)
 	}()
 	lazy private dynamic var fetchedResultsController: NSFetchedResultsController<Item> = {
 		typealias E = Item
@@ -118,6 +119,7 @@ class ItemTableViewDataSource: NSObject {
 	fileprivate var reusedCellGenerator: TableViewHeightBasedReusedCellGenerator<ItemTableViewDataSource>!
 	//
 	func configureCellHeightCaching() {
+		guard let tableView = tableView else { return }
 		let reuseIdentifiersForHeightCachingCells = (0...3).map {"Item-\($0)"}
 		for (i, reuseIdentifier) in reuseIdentifiersForHeightCachingCells.enumerated() {
 			let cellNib = UINib(nibName: "ItemTableViewCell-\(i)", bundle: nil)
@@ -126,9 +128,14 @@ class ItemTableViewDataSource: NSObject {
 		reusedCellGenerator = TableViewHeightBasedReusedCellGenerator(dataSource: self, heightAgnosticCellReuseIdentifier: "Item", reuseIdentifiersForHeightCachingCells: reuseIdentifiersForHeightCachingCells)
 	}
 	func configureReusableCells() {
+		guard let tableView = tableView else { return }
 		guard !defaults.fixedHeightItemRowsEnabled else {
+#if false
 			let cellNib = UINib(nibName: "ItemSimpleTableViewCell", bundle: nil)
 			tableView.register(cellNib, forCellReuseIdentifier: "Item")
+#else
+			tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Item")
+#endif
 			return
 		}
 		if defaults.cellHeightCachingEnabled {
@@ -151,7 +158,10 @@ class ItemTableViewDataSource: NSObject {
 extension ItemTableViewDataSource: UITableViewDataSource {
 	func configureCell(_ cell: UITableViewCell, atIndexPath indexPath: IndexPath) {
 		let item = object(at: (indexPath))
-		let cellDataBinder = cell as! ItemTableViewCellDataBinder
+		guard let cellDataBinder = cell as? ItemTableViewCellDataBinder else {
+			cell.textLabel!.text = item.objectID.description
+			return
+		}
 		cellDataBinder.setData((item: item, container: self.container, nowDate: nowDate))
 	}
 	// MARK: - 
@@ -169,8 +179,8 @@ extension ItemTableViewDataSource: UITableViewDataSource {
 		let reuseIdentifier = reusedCellGenerator?.reuseIdentifierForCellForRowAtIndexPath(indexPath) ?? "Item"
 		let cell = tableView.dequeueReusableCell(withIdentifier: $(reuseIdentifier), for: indexPath)
 #if true
-		if nil != reusedCellGenerator {
-			(cell as! ItemTableViewCell).systemLayoutSizeCachingDataSource = systemLayoutSizeCachingDataSource
+		if let cell = cell as? ItemTableViewCell, nil != reusedCellGenerator {
+			cell.systemLayoutSizeCachingDataSource = systemLayoutSizeCachingDataSource
 		}
 #endif
 		configureCell(cell, atIndexPath: $(indexPath))
