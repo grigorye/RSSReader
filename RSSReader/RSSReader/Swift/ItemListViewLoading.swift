@@ -54,7 +54,9 @@ extension ItemListViewController {
 				}
 				return
 			}
-			self.loadMoreIfNecessary()
+			DispatchQueue.main.async { [weak self] in
+				self?.loadMoreIfNecessary()
+			}
 		}
 	}
 	private func shouldLoadMore(for lastLoadedItemDate: Date?) -> Bool {
@@ -79,7 +81,7 @@ extension ItemListViewController {
 		return !(((lastLoadedItemDate).compare((barrierItem.date))) == .orderedAscending)
 	}
 	private func loadMoreIfNecessary(for lastLoadedItemDate: Date?) {
-		guard shouldLoadMore(for: lastLoadedItemDate) else {
+		guard $(shouldLoadMore(for: $(lastLoadedItemDate))) else {
 			if (loadController.loadCompleted) {
 				tableView.tableFooterView = nil
 			}
