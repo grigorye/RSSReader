@@ -97,8 +97,32 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
+            argument = "-traceEnabled YES"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-reloadDataForTableUpdatesEnabled YES"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "-allowMissingSourceModelError YES"
             isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-fixedHeightItemRowsEnabled YES"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-frequencyAndWeightBasedTableRowHeightEstimatorEnabled NO"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-fetchResultsAnimationEnabled YES"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-updateCellsInPlaceEnabled YES"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-dumpInTraceEnabled YES"
@@ -134,10 +158,6 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-sourceLabelsEnabled YES"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "-traceEnabled YES"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
