@@ -15,8 +15,8 @@ import Foundation
 extension KVOCompliantUserDefaults {
 	@NSManaged var batchSavingEnabled: Bool
 }
-private var batchSavingDisabled: Bool {
-	return !defaults.batchSavingEnabled
+private var batchSavingEnabled: Bool {
+	return defaults.batchSavingEnabled
 }
 
 func itemsImportedFromStreamJson(_ json: Json, loadDate: Date, container: Container, excludedCategory: Folder?, managedObjectContext: NSManagedObjectContext) throws -> [Item] {
@@ -24,7 +24,7 @@ func itemsImportedFromStreamJson(_ json: Json, loadDate: Date, container: Contai
 	let items = try importItemsFromJson(json, type: Item.self, elementName: "items", managedObjectContext: managedObjectContext) { (item, itemJson) in
 		try item.importFromJson(itemJson, subscription: subscription)
 		item.loadDate = loadDate
-		if batchSavingDisabled {
+		if !batchSavingEnabled {
 			try managedObjectContext.save()
 		}
 	}
@@ -46,10 +46,7 @@ func itemsImportedFromStreamJson(_ json: Json, loadDate: Date, container: Contai
 			item.categories.formUnion([excludedCategory])
 		}
 	}
-	if !batchSavingDisabled {
-		try managedObjectContext.save()
-	}
-	else {
+	if !batchSavingEnabled {
 		assert(!managedObjectContext.hasChanges)
 	}
 	return items
