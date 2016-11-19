@@ -101,6 +101,22 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "-obtainPermanentObjectIDsForRSSData YES"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-resetBackgroundQueueMOCAfterSavingRSSData YES"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-batchSavingEnabled NO"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-savingDisabled YES"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "-reloadDataForTableUpdatesEnabled YES"
             isEnabled = "NO">
          </CommandLineArgument>
@@ -182,6 +198,11 @@
             key = "OS_ACTIVITY_MODE"
             value = "debug"
             isEnabled = "NO">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "DYLD_PRINT_STATISTICS_DETAILS"
+            value = "1"
+            isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
       <AdditionalOptions>
