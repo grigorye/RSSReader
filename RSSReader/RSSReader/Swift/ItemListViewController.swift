@@ -14,6 +14,10 @@ import PromiseKit
 import UIKit
 import CoreData
 
+extension KVOCompliantUserDefaults {
+	@NSManaged var itemPrefetchingEnabled: Bool
+}
+
 class ItemListViewController: ContainerTableViewController {
 	typealias _Self = ItemListViewController
 	public var dataSource: ItemTableViewDataSource!
@@ -173,7 +177,7 @@ class ItemListViewController: ContainerTableViewController {
 		}]
 		scheduledForViewWillAppear += [{[unowned self] in self.configureTitleHeaderView()}]
 		tableFooterView = tableView.tableFooterView
-		if #available(iOS 10.0, *) {
+		if defaults.itemPrefetchingEnabled, #available(iOS 10.0, *) {
 			tableView.prefetchDataSource = self
 		}
 		if defaults.fixedHeightItemRowsEnabled {
