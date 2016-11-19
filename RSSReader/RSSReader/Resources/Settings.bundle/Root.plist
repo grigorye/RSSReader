@@ -371,6 +371,12 @@
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
 		<dict>
+			<key>Title</key>
+			<string>Loading</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
 			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
@@ -477,6 +483,16 @@
 				<integer>90</integer>
 				<integer>100</integer>
 			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Load Items till Last</string>
+			<key>Key</key>
+			<string>loadItemsTillLast</string>
+			<key>DefaultValue</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>Type</key>
