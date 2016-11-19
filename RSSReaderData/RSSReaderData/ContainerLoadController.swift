@@ -20,18 +20,9 @@ public class ContainerLoadController : NSObject {
 	public var numberOfItemsToLoadLater = 100
 	public var numberOfItemsToLoadInitially = 500
 	// MARK: -
-	class var keyPathsForValuesAffectingContainerViewState: Set<String> {
-		return [
-			#keyPath(container.viewStates),
-			#keyPath(containerViewPredicate)
-		]
-	}
-	var containerViewStateRetained: ContainerViewState?
-	dynamic var containerViewState: ContainerViewState? {
-		let containerViewState = (container.viewStates.filter { $0.containerViewPredicate.isEqual(containerViewPredicate) }).onlyElement
-		self.containerViewStateRetained = containerViewState
-		return $(containerViewState)
-	}
+	lazy var containerViewState: ContainerViewState? = {
+		(self.container.viewStates.filter { $0.containerViewPredicate.isEqual(self.containerViewPredicate) }).onlyElement
+	}()
 	var continuation: String? {
 		set { containerViewState!.continuation = newValue }
 		get { return containerViewState?.continuation }
@@ -60,17 +51,14 @@ public class ContainerLoadController : NSObject {
 	private (set) public var loadInProgress = false
 	private var nowDate: Date!
 	//
-	class var keyPathsForValuesAffectingContainerViewPredicate: Set<String> {
-		return [#keyPath(unreadOnly)]
-	}
-	@objc private var containerViewPredicate: NSPredicate {
-		if unreadOnly {
+	private lazy var containerViewPredicate: NSPredicate = {
+		if self.unreadOnly {
 			return NSPredicate(format: "SUBQUERY(\(#keyPath(Item.categories)), $x, $x.\(#keyPath(Folder.streamID)) ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
 		}
 		else {
 			return NSPredicate(value: true)
 		}
-	}
+	}()
 	// MARK: -
 	public var refreshing: Bool {
 		return loadInProgress && (nil == continuation)
@@ -102,7 +90,12 @@ public class ContainerLoadController : NSObject {
 		let containerObjectID = typedObjectID(for: container)!
 		let containerViewPredicate = self.containerViewPredicate
 		firstly {
-			session.streamContents(container, excludedCategory: excludedCategory, continuation: oldContinuation, count: numberOfItemsToLoad, loadDate: $(oldOngoingLoadDate))
+			guard !session.authenticated else {
+				return Promise(value: ())
+			}
+			return session.authenticate()
+		}.then {
+			self.session.streamContents(self.container, excludedCategory: excludedCategory, continuation: oldContinuation, count: numberOfItemsToLoad, loadDate: $(oldOngoingLoadDate))
 		}.then(on: zalgo) { streamContentsResult -> String? in
 			let ongoingLoadDate = $(self.ongoingLoadDate)
 			guard oldOngoingLoadDate == ongoingLoadDate else {
