@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C404E12F1DDD391100408A14 /* Globals.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF18E1DBB9C3200A86CC0 /* Globals.swift */; };
+		C404E1301DDD391100408A14 /* TypeFilteringActivity.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1381DBB989000A86CC0 /* TypeFilteringActivity.swift */; };
+		C404E1311DDD391100408A14 /* TableViewFetchedResultsControllerDelegate.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1391DBB989000A86CC0 /* TableViewFetchedResultsControllerDelegate.swift */; };
+		C404E1321DDD391100408A14 /* UIFontExtensions.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF13A1DBB989000A86CC0 /* UIFontExtensions.swift */; };
+		C404E1331DDD391100408A14 /* TableViewHeightBasedReusedCellGenerator.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF13B1DBB989000A86CC0 /* TableViewHeightBasedReusedCellGenerator.swift */; };
+		C404E1341DDD391100408A14 /* FrequencyAndWeightBasedTableRowHeightEstimator.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF13C1DBB989000A86CC0 /* FrequencyAndWeightBasedTableRowHeightEstimator.swift */; };
+		C404E1351DDD391100408A14 /* SystemLayoutSizeCachingTableViewCell.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF13D1DBB989000A86CC0 /* SystemLayoutSizeCachingTableViewCell.swift */; };
+		C404E1361DDD391100408A14 /* UIKitUtilities.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF13E1DBB989000A86CC0 /* UIKitUtilities.swift */; };
+		C404E1371DDD391100408A14 /* UIDataSourceModelAssociation+NilIndexPathInModelIdentifierForElement.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF13F1DBB989000A86CC0 /* UIDataSourceModelAssociation+NilIndexPathInModelIdentifierForElement.swift */; };
 		C4270BFC1DBD4FE900FA3A0A /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BFB1DBD4FE900FA3A0A /* GETracing.framework */; };
 		C49FF1281DBB985400A86CC0 /* GEUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF11E1DBB985400A86CC0 /* GEUIKit.framework */; };
 		C49FF12D1DBB985400A86CC0 /* GEUIKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF12C1DBB985400A86CC0 /* GEUIKitTests.swift */; };
@@ -32,6 +41,28 @@
 			remoteInfo = GEUIKit;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C404E12E1DDD38EA00408A14 /* Embed Sources */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Sources;
+			dstSubfolderSpec = 7;
+			files = (
+				C404E12F1DDD391100408A14 /* Globals.swift in Embed Sources */,
+				C404E1301DDD391100408A14 /* TypeFilteringActivity.swift in Embed Sources */,
+				C404E1311DDD391100408A14 /* TableViewFetchedResultsControllerDelegate.swift in Embed Sources */,
+				C404E1321DDD391100408A14 /* UIFontExtensions.swift in Embed Sources */,
+				C404E1331DDD391100408A14 /* TableViewHeightBasedReusedCellGenerator.swift in Embed Sources */,
+				C404E1341DDD391100408A14 /* FrequencyAndWeightBasedTableRowHeightEstimator.swift in Embed Sources */,
+				C404E1351DDD391100408A14 /* SystemLayoutSizeCachingTableViewCell.swift in Embed Sources */,
+				C404E1361DDD391100408A14 /* UIKitUtilities.swift in Embed Sources */,
+				C404E1371DDD391100408A14 /* UIDataSourceModelAssociation+NilIndexPathInModelIdentifierForElement.swift in Embed Sources */,
+			);
+			name = "Embed Sources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C4270BFB1DBD4FE900FA3A0A /* GETracing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GETracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,6 +184,7 @@
 				C49FF11A1DBB985400A86CC0 /* Frameworks */,
 				C49FF11B1DBB985400A86CC0 /* Headers */,
 				C49FF11C1DBB985400A86CC0 /* Resources */,
+				C404E12E1DDD38EA00408A14 /* Embed Sources */,
 			);
 			buildRules = (
 			);
