@@ -11,7 +11,7 @@ import GETracing
 import UIKit
 
 extension ItemListViewController {
-#if true
+#if !RSS_READER_ITEM_ROW_HEIGHT_ESTIMATION_DISABLED
 	override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
 		guard !defaults.fixedHeightItemRowsEnabled else {
 			return 44
