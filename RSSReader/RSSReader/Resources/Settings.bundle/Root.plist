@@ -209,6 +209,12 @@
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
 		<dict>
+			<key>Title</key>
+			<string>Tables</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
 			<key>DefaultValue</key>
 			<false/>
 			<key>Key</key>
@@ -240,6 +246,22 @@
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
+			<false/>
+			<key>Key</key>
+			<string>suppressInPlaceCellUpdates</string>
+			<key>Title</key>
+			<string>Suppress In Place Cell Updates</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>Saving and Importing</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
 			<true/>
 			<key>Key</key>
 			<string>batchSavingEnabled</string>
@@ -255,16 +277,6 @@
 			<string>backgroundImportEnabled</string>
 			<key>Title</key>
 			<string>Background Import</string>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-		</dict>
-		<dict>
-			<key>DefaultValue</key>
-			<true/>
-			<key>Key</key>
-			<string>coreDataCachingEnabled</string>
-			<key>Title</key>
-			<string>Core Data Caching</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
@@ -495,6 +507,12 @@
 			<integer>0</integer>
 		</dict>
 		<dict>
+			<key>Title</key>
+			<string>Core Data</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
 			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
@@ -529,6 +547,16 @@
 				<integer>90</integer>
 				<integer>100</integer>
 			</array>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>Key</key>
+			<string>coreDataCachingEnabled</string>
+			<key>Title</key>
+			<string>Core Data Caching</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
 		</dict>
 	</array>
 	<key>StringsTable</key>
