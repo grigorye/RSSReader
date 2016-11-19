@@ -17,6 +17,7 @@ extension KVOCompliantUserDefaults {
 	@NSManaged var groupingTableUpdatesEnabled: Bool
 	@NSManaged var updateCellsInPlaceEnabled: Bool
 	@NSManaged var reloadDataForTableUpdatesEnabled: Bool
+	@NSManaged var suppressInPlaceCellUpdates: Bool
 }
 
 private var fetchResultsAnimationEnabled: Bool {
@@ -104,7 +105,7 @@ public class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSOb
 			counts.updates += 1
 			$(tableView.numberOfRows(inSection: $(indexPath!).section))
 			if defaults.updateCellsInPlaceEnabled {
-				if let cell = tableView.cellForRow(at: indexPath!) {
+				if !defaults.suppressInPlaceCellUpdates, let cell = tableView.cellForRow(at: indexPath!) {
 					let indexPathForCell = tableView.indexPath(for: cell)!
 					updateCell(cell, indexPathForCell)
 				}
