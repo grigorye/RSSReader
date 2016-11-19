@@ -159,7 +159,7 @@ extension ItemTableViewDataSource: UITableViewDataSource {
 	func configureCell(_ cell: UITableViewCell, atIndexPath indexPath: IndexPath) {
 		let item = object(at: (indexPath))
 		guard let cellDataBinder = cell as? ItemTableViewCellDataBinder else {
-			cell.textLabel!.text = item.objectID.description
+			cell.textLabel!.text = item.objectID.uriRepresentation().lastPathComponent
 			return
 		}
 		cellDataBinder.setData((item: item, container: self.container, nowDate: nowDate))
