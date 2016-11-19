@@ -17,6 +17,7 @@ extension KVOCompliantUserDefaults {
 	@NSManaged var numberOfItemsToLoadPastVisible: Int
 	@NSManaged var numberOfItemsToLoadInitially: Int
 	@NSManaged var numberOfItemsToLoadLater: Int
+	@NSManaged var loadItemsUntilLast: Bool
 }
 
 extension ItemListViewController {
@@ -64,6 +65,9 @@ extension ItemListViewController {
 			return false
 		}
 		guard let lastLoadedItemDate = lastLoadedItemDate else {
+			return true
+		}
+		guard defaults.loadItemsUntilLast else {
 			return true
 		}
 		guard let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows else {
