@@ -56,6 +56,11 @@ public extension RSSSession {
 	}
 }
 
+extension KVOCompliantUserDefaults {
+	@NSManaged var obtainPermanentObjectIDsForRSSData: Bool
+	@NSManaged var resetBackgroundQueueMOCAfterSavingRSSData: Bool
+}
+
 extension RSSSession {
 	public typealias CommandCompletionHandler<ResultType> = (Result<ResultType>) -> Void
 	// MARK: -
@@ -70,8 +75,17 @@ extension RSSSession {
 				backgroundQueueManagedObjectContext.perform {
 					do {
 						let result = try importResultIntoManagedObjectContext(backgroundQueueManagedObjectContext)
+						if defaults.obtainPermanentObjectIDsForRSSData {
+							let insertedObjects = backgroundQueueManagedObjectContext.insertedObjects
+							if 0 < insertedObjects.count {
+								try backgroundQueueManagedObjectContext.obtainPermanentIDs(for: Array(insertedObjects))
+							}
+						}
 						try backgroundQueueManagedObjectContext.save()
 						completionHandler(.fulfilled(result))
+						if defaults.resetBackgroundQueueMOCAfterSavingRSSData {
+							backgroundQueueManagedObjectContext.reset()
+						}
 					} catch {
 						completionHandler(.rejected(RSSSessionError.importFailed(underlyingError: $(error), command: $(command))))
 					}
