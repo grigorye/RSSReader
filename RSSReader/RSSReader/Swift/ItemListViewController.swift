@@ -238,9 +238,7 @@ extension ItemListViewController {
 		loadMore {
 			refreshControl.endRefreshing()
 		}
-		UIView.animate(withDuration: 0.4) {
-			self.tableView.tableFooterView = self.tableFooterView
-		}
+		didStartLoad()
 	}
 	@IBAction private func markAllAsRead(_ sender: AnyObject!) {
 		let items = (container as! ItemsOwner).ownItems
