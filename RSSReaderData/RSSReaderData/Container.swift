@@ -11,13 +11,55 @@ import GEFoundation
 import GETracing
 import CoreData
 
-public class Container : NSManagedObject {
+protocol Validating {
+	static var errorDomain: String { get }
+	associatedtype ValidationError: RawRepresentable
+}
+
+extension Validating {
+	func validationError(_ code: ValidationError, userInfo: [AnyHashable : Any]?) -> NSError {
+		return NSError(domain: Self.errorDomain, code: code.rawValue as! Int, userInfo: userInfo)
+	}
+}
+
+public class Container : NSManagedObject, Validating {
+
     @NSManaged public var streamID: String
     @NSManaged public var unreadCount: Int32
     @NSManaged var newestItemDate: Date
     @NSManaged var sortID: Int32
 	@NSManaged public var parentFolder: Folder?
 	@NSManaged public var viewStates: Set<ContainerViewState>
+	
+	static let errorDomain = "RSSReaderData.Container"
+	enum ValidationError: Int {
+		case viewStatePredicatesAreNonUnique
+	}
+	
+	func validateForUpdateOrInsert() throws {
+		let countedPredicates = NSCountedSet()…{
+			for state in viewStates {
+				$0.add(state.containerViewPredicate)
+			}
+		}
+		for predicate in countedPredicates.allObjects as! [NSPredicate] {
+			if 1 < countedPredicates.count(for: predicate) {
+				let viewStatesWithNonUniqueContainerViewPredicate = viewStates.filter { $0.containerViewPredicate == predicate }
+				throw validationError(.viewStatePredicatesAreNonUnique, userInfo: [
+					"viewStatesWithNonUniqueContainerViewPredicate": viewStatesWithNonUniqueContainerViewPredicate.map { $0.objectID }
+				])
+			}
+		}
+	}
+	
+	public override func validateForUpdate() throws {
+		try super.validateForUpdate()
+		try validateForUpdateOrInsert()
+	}
+	public override func validateForInsert() throws {
+		try super.validateForInsert()
+		try validateForUpdateOrInsert()
+	}
 }
 
 @objc public protocol Titled {
