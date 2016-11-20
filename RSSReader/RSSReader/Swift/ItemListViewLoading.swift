@@ -18,6 +18,7 @@ extension KVOCompliantUserDefaults {
 	@NSManaged var numberOfItemsToLoadInitially: Int
 	@NSManaged var numberOfItemsToLoadLater: Int
 	@NSManaged var loadItemsUntilLast: Bool
+	@NSManaged var progressIndicatorInFooterEnabled: Bool
 }
 
 extension ItemListViewController {
@@ -28,6 +29,26 @@ extension ItemListViewController {
 	}
 }
 extension ItemListViewController {
+
+	func didStartLoad() {
+		guard defaults.progressIndicatorInFooterEnabled else {
+			return
+		}
+		UIView.animate(withDuration: 0.4) {
+			self.tableView.tableFooterView = self.tableFooterView
+		}
+	}
+	func didCompleteLoad() {
+		guard defaults.progressIndicatorInFooterEnabled else {
+			return
+		}
+		UIView.animate(withDuration: 0.4) {
+			self.tableView.tableFooterView = nil
+		}
+	}
+	
+	///
+	
 	func loadMore(_ completionHandler: @escaping () -> Void) {
 		let loadController = self.loadController!
 		loadController.loadMore { [weak loadController] error in
@@ -50,9 +71,7 @@ extension ItemListViewController {
 				assert(nil != self.dataSource.indexPath(forObject: lastLoadedItem))
 			}
 			guard !loadController.loadCompleted else {
-				UIView.animate(withDuration: 0.4) {
-					self.tableView.tableFooterView = nil
-				}
+				self.didCompleteLoad()
 				return
 			}
 			DispatchQueue.main.async { [weak self] in
@@ -67,7 +86,7 @@ extension ItemListViewController {
 		guard let lastLoadedItemDate = lastLoadedItemDate else {
 			return true
 		}
-		guard defaults.loadItemsUntilLast else {
+		guard !defaults.loadItemsUntilLast else {
 			return true
 		}
 		guard let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows else {
@@ -86,8 +105,8 @@ extension ItemListViewController {
 	}
 	private func loadMoreIfNecessary(for lastLoadedItemDate: Date?) {
 		guard $(shouldLoadMore(for: $(lastLoadedItemDate))) else {
-			if (loadController.loadCompleted) {
-				tableView.tableFooterView = nil
+			if loadController.loadCompleted {
+				didCompleteLoad()
 			}
 			return
 		}
