@@ -35,13 +35,13 @@ class MainScene : NSObject {
 		return tabBarController.viewControllers![0] as! UINavigationController
 	}()
 	
-	lazy var foldersViewController: FolderListTableViewController = {
-		return self.foldersNavigationController.viewControllers.first as! FolderListTableViewController
+	lazy var foldersViewController: FoldersViewController = {
+		return self.foldersNavigationController.viewControllers.first as! FoldersViewController
 	}()
 	
-	lazy var favoritesViewController: ItemListViewController = {
-		let $ = (self.tabBarController.viewControllers![1] as! UINavigationController).viewControllers.first as! ItemListViewController
-		configureFavoritesItemListViewController($)
+	lazy var favoritesViewController: ItemsViewController = {
+		let $ = (self.tabBarController.viewControllers![1] as! UINavigationController).viewControllers.first as! ItemsViewController
+		configureItemsViewControllerForFavorites($)
 		return $
 	}()
 	
