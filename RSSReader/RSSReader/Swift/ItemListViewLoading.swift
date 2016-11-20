@@ -21,14 +21,14 @@ extension KVOCompliantUserDefaults {
 	@NSManaged var progressIndicatorInFooterEnabled: Bool
 }
 
-extension ItemListViewController {
+extension ItemsViewController {
 	override func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		if nil != rssSession && nil != view.superview && !refreshControl!.isRefreshing {
 			loadMoreIfNecessary()
 		}
 	}
 }
-extension ItemListViewController {
+extension ItemsViewController {
 
 	func didStartLoad() {
 		guard defaults.progressIndicatorInFooterEnabled else {
