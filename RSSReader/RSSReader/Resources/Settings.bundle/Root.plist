@@ -510,9 +510,9 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Load Items till Last</string>
+			<string>Load Items Until Last</string>
 			<key>Key</key>
-			<string>loadItemsTillLast</string>
+			<string>loadItemsUntilLast</string>
 			<key>DefaultValue</key>
 			<integer>0</integer>
 		</dict>
