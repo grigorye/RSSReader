@@ -20,9 +20,16 @@ public class ContainerLoadController : NSObject {
 	public var numberOfItemsToLoadLater = 100
 	public var numberOfItemsToLoadInitially = 500
 	// MARK: -
-	lazy var containerViewState: ContainerViewState? = {
-		(self.container.viewStates.filter { $0.containerViewPredicate.isEqual(self.containerViewPredicate) }).onlyElement
-	}()
+	var containerViewStateSaved: ContainerViewState?
+	var containerViewState: ContainerViewState? {
+		return containerViewStateSaved ?? {
+			guard let updatedContainerViewState = (self.container.viewStates.filter { $0.containerViewPredicate == self.containerViewPredicate }).onlyElement else {
+				return nil
+			}
+			containerViewStateSaved = updatedContainerViewState
+			return containerViewStateSaved
+		}()
+	}
 	var continuation: String? {
 		set { containerViewState!.continuation = newValue }
 		get { return containerViewState?.continuation }
@@ -84,18 +91,28 @@ public class ContainerLoadController : NSObject {
 		}
 		let oldOngoingLoadDate = ongoingLoadDate!
 		loadInProgress = true
-		let excludedCategory: Folder? = unreadOnly ? Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: container.managedObjectContext!) : nil
+		let context = container.managedObjectContext!
+		let excludedCategory: Folder? = unreadOnly ? Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: context) : nil
 		let numberOfItemsToLoad = (oldContinuation != nil) ? numberOfItemsToLoadLater : numberOfItemsToLoadInitially
 		let containerViewStateObjectID = typedObjectID(for: containerViewState)
 		let containerObjectID = typedObjectID(for: container)!
 		let containerViewPredicate = self.containerViewPredicate
+		let session = self.session
 		firstly {
 			guard !session.authenticated else {
 				return Promise(value: ())
 			}
 			return session.authenticate()
-		}.then {
-			self.session.streamContents(self.container, excludedCategory: excludedCategory, continuation: oldContinuation, count: numberOfItemsToLoad, loadDate: $(oldOngoingLoadDate))
+		}.then { () -> Promise<StreamContents.ResultType> in
+			return Promise { fulfill, reject in
+				context.perform {
+					session.streamContents(self.container, excludedCategory: excludedCategory, continuation: oldContinuation, count: numberOfItemsToLoad, loadDate: $(oldOngoingLoadDate)).then(on: zalgo) { streamContentsResult -> () in
+						fulfill(streamContentsResult)
+					}.catch { error in
+						reject(error)
+					}
+				}
+			}
 		}.then(on: zalgo) { streamContentsResult -> String? in
 			let ongoingLoadDate = $(self.ongoingLoadDate)
 			guard oldOngoingLoadDate == ongoingLoadDate else {
