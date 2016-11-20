@@ -1,5 +1,5 @@
 //
-//  ItemListViewController.swift
+//  ItemsViewController.swift
 //  RSSReader
 //
 //  Created by Grigory Entin on 03.01.15.
@@ -18,8 +18,8 @@ extension KVOCompliantUserDefaults {
 	@NSManaged var itemPrefetchingEnabled: Bool
 }
 
-class ItemListViewController: ContainerTableViewController {
-	typealias _Self = ItemListViewController
+class ItemsViewController : ContainerViewController {
+	typealias _Self = ItemsViewController
 	public var dataSource: ItemTableViewDataSource!
 	public lazy dynamic var loadController: ContainerLoadController! = {
 		let $ = ContainerLoadController(session: rssSession!, container: self.container, unreadOnly: self.showUnreadOnly) … {
@@ -200,7 +200,7 @@ class ItemListViewController: ContainerTableViewController {
 //
 // MARK: - State Restoration
 //
-extension ItemListViewController /* State Restoration */ {
+extension ItemsViewController /* State Restoration */ {
 	private enum Restorable: String {
 		case containerObjectID = "containerObjectID"
 	}
@@ -218,7 +218,7 @@ extension ItemListViewController /* State Restoration */ {
 //
 // MARK: - Actions
 //
-extension ItemListViewController {
+extension ItemsViewController {
 	@IBAction private func selectUnread(_ sender: AnyObject!) {
 		showUnreadOnly = true
 		reloadViewForNewConfiguration()
@@ -269,7 +269,7 @@ extension ItemListViewController {
 //
 // MARK: - Scroll & Table View Delegate Additions
 //
-extension ItemListViewController {
+extension ItemsViewController {
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		performSegue(withIdentifier: MainStoryboard.SegueIdentifiers.ShowListPages, sender: self)
 	}
@@ -280,7 +280,7 @@ extension ItemListViewController {
 //
 // MARK: - Presenting Messages
 //
-extension ItemListViewController {
+extension ItemsViewController {
 	func presentMessage(_ text: String) {
 		statusLabel.text = text
 		statusLabel.sizeToFit()
