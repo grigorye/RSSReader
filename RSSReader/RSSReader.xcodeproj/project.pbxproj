@@ -20,11 +20,11 @@
 		C41F05721AD0E3AB00A659EC /* LoginAndPasswordDefaults.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C495409A1A575C1900F56168 /* LoginAndPasswordDefaults.swift */; };
 		C41F05761AD0E3AB00A659EC /* HomeViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C44B2F001AC0C881006A67F1 /* HomeViewController.swift */; };
 		C41F05771AD0E3AB00A659EC /* ItemTableViewCell.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4676E081A6A4D1F00AE8BC2 /* ItemTableViewCell.swift */; };
-		C41F05781AD0E3AB00A659EC /* ItemListViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49540A01A57825100F56168 /* ItemListViewController.swift */; };
+		C41F05781AD0E3AB00A659EC /* ItemsViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49540A01A57825100F56168 /* ItemsViewController.swift */; };
 		C41F05791AD0E3AB00A659EC /* ItemPageViewControllerDataSource.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C46934DE1A5D291C00A0AEA2 /* ItemPageViewControllerDataSource.swift */; };
 		C41F057A1AD0E3AB00A659EC /* ItemPageViewControllerDelegate.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4AD2ADA1A5DED8700B39AC9 /* ItemPageViewControllerDelegate.swift */; };
 		C41F057B1AD0E3AB00A659EC /* ItemPageViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48C5F961A87344000A1EA12 /* ItemPageViewController.swift */; };
-		C41F057C1AD0E3AB00A659EC /* FolderListTableViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C42802681A5B47EA002474E1 /* FolderListTableViewController.swift */; };
+		C41F057C1AD0E3AB00A659EC /* FoldersViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C42802681A5B47EA002474E1 /* FoldersViewController.swift */; };
 		C41F057D1AD0E3AB00A659EC /* TableViewContainerCell.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C40A24FE1A672B2100B5D959 /* TableViewContainerCell.swift */; };
 		C41F057E1AD0E3AB00A659EC /* HistoryViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C45BC3E91A8003F40008A5D1 /* HistoryViewController.swift */; };
 		C41F057F1AD0E3AB00A659EC /* ItemSummaryWebViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */; };
@@ -38,7 +38,7 @@
 		C424B8F21C6FC5C8008AD647 /* RSSReaderData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C424B8F01C6FC5C8008AD647 /* RSSReaderData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4270C001DBD502600FA3A0A /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BFF1DBD502600FA3A0A /* GETracing.framework */; };
 		C4270C011DBD502600FA3A0A /* GETracing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BFF1DBD502600FA3A0A /* GETracing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C42802691A5B47EA002474E1 /* FolderListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42802681A5B47EA002474E1 /* FolderListTableViewController.swift */; };
+		C42802691A5B47EA002474E1 /* FoldersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42802681A5B47EA002474E1 /* FoldersViewController.swift */; };
 		C441F1791DB24A1D0060E692 /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F1781DB24A1D0060E692 /* MainScene.swift */; };
 		C441F17B1DB254260060E692 /* GlobalFoldersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F17A1DB254260060E692 /* GlobalFoldersController.swift */; };
 		C441F17F1DB258550060E692 /* SharedRSSAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F17E1DB258550060E692 /* SharedRSSAccount.swift */; };
@@ -66,7 +66,7 @@
 		C474F1CD1DB0657800F0E152 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474F1CC1DB0657800F0E152 /* main.swift */; };
 		C48C5F971A87344000A1EA12 /* ItemPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48C5F961A87344000A1EA12 /* ItemPageViewController.swift */; };
 		C495409B1A575C1900F56168 /* LoginAndPasswordDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495409A1A575C1900F56168 /* LoginAndPasswordDefaults.swift */; };
-		C49540A11A57825100F56168 /* ItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49540A01A57825100F56168 /* ItemListViewController.swift */; };
+		C49540A11A57825100F56168 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49540A01A57825100F56168 /* ItemsViewController.swift */; };
 		C49540A51A57906600F56168 /* ItemSummaryWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */; };
 		C49B127D1BF686D500EA5DE5 /* Debug.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C49B127C1BF686D500EA5DE5 /* Debug.storyboard */; };
 		C49FF1C71DBBAA9000A86CC0 /* GEUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1C61DBBAA9000A86CC0 /* GEUIKit.framework */; };
@@ -100,7 +100,7 @@
 		C4CE35441CB8988F001712C8 /* RSSReaderTests-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4CE35461CB8988F001712C8 /* RSSReaderTests-InfoPlist.strings */; };
 		C4CE35491CB89890001712C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4CE354B1CB89890001712C8 /* InfoPlist.strings */; };
 		C4D436761D8777A3008C6386 /* SwiftMessages.bundle in Embed PlugIns */ = {isa = PBXBuildFile; fileRef = C4D436751D8777A3008C6386 /* SwiftMessages.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C4EA5C361CE91E8600E395FE /* ContainerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5C351CE91E8600E395FE /* ContainerTableViewController.swift */; };
+		C4EA5C361CE91E8600E395FE /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5C351CE91E8600E395FE /* ContainerViewController.swift */; };
 		C4EA5C381CE929D300E395FE /* ContainerTableViewSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4EA5C371CE929D300E395FE /* ContainerTableViewSectionHeader.xib */; };
 		C4EA5C3C1CE930B200E395FE /* ContainerTableViewSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5C3B1CE930B200E395FE /* ContainerTableViewSectionHeaderView.swift */; };
 		C4EA6B301CB895EF00FCDAA5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4EA6B2E1CB895EF00FCDAA5 /* Localizable.strings */; };
@@ -151,11 +151,11 @@
 				C41F056C1AD0E3AB00A659EC /* Globals.swift in Embed Sources */,
 				C41F05761AD0E3AB00A659EC /* HomeViewController.swift in Embed Sources */,
 				C41F05771AD0E3AB00A659EC /* ItemTableViewCell.swift in Embed Sources */,
-				C41F05781AD0E3AB00A659EC /* ItemListViewController.swift in Embed Sources */,
+				C41F05781AD0E3AB00A659EC /* ItemsViewController.swift in Embed Sources */,
 				C41F05791AD0E3AB00A659EC /* ItemPageViewControllerDataSource.swift in Embed Sources */,
 				C41F057A1AD0E3AB00A659EC /* ItemPageViewControllerDelegate.swift in Embed Sources */,
 				C41F057B1AD0E3AB00A659EC /* ItemPageViewController.swift in Embed Sources */,
-				C41F057C1AD0E3AB00A659EC /* FolderListTableViewController.swift in Embed Sources */,
+				C41F057C1AD0E3AB00A659EC /* FoldersViewController.swift in Embed Sources */,
 				C41F057D1AD0E3AB00A659EC /* TableViewContainerCell.swift in Embed Sources */,
 				C41F057E1AD0E3AB00A659EC /* HistoryViewController.swift in Embed Sources */,
 				C41F057F1AD0E3AB00A659EC /* ItemSummaryWebViewController.swift in Embed Sources */,
@@ -227,7 +227,7 @@
 		C41707CA1A56076A00AED81C /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Globals.swift; path = Swift/Globals.swift; sourceTree = "<group>"; };
 		C424B8F01C6FC5C8008AD647 /* RSSReaderData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RSSReaderData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4270BFF1DBD502600FA3A0A /* GETracing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GETracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C42802681A5B47EA002474E1 /* FolderListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = FolderListTableViewController.swift; path = Swift/FolderListTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		C42802681A5B47EA002474E1 /* FoldersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = FoldersViewController.swift; path = Swift/FoldersViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C441F1781DB24A1D0060E692 /* MainScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainScene.swift; path = Swift/MainScene.swift; sourceTree = "<group>"; };
 		C441F17A1DB254260060E692 /* GlobalFoldersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GlobalFoldersController.swift; path = Swift/GlobalFoldersController.swift; sourceTree = "<group>"; };
 		C441F17E1DB258550060E692 /* SharedRSSAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SharedRSSAccount.swift; path = Swift/SharedRSSAccount.swift; sourceTree = "<group>"; };
@@ -254,7 +254,7 @@
 		C48C5F961A87344000A1EA12 /* ItemPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ItemPageViewController.swift; path = Swift/ItemPageViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C4915FE31CE734A40063A734 /* RSSReader-app.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "RSSReader-app.xcconfig"; sourceTree = SOURCE_ROOT; };
 		C495409A1A575C1900F56168 /* LoginAndPasswordDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginAndPasswordDefaults.swift; path = Swift/LoginAndPasswordDefaults.swift; sourceTree = "<group>"; };
-		C49540A01A57825100F56168 /* ItemListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ItemListViewController.swift; path = Swift/ItemListViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		C49540A01A57825100F56168 /* ItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ItemsViewController.swift; path = Swift/ItemsViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ItemSummaryWebViewController.swift; path = Swift/ItemSummaryWebViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C49B127C1BF686D500EA5DE5 /* Debug.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Debug.storyboard; path = Resources/Debug.storyboard; sourceTree = "<group>"; };
 		C49FF1C61DBBAA9000A86CC0 /* GEUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GEUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -287,7 +287,7 @@
 		C4CE354D1CB89C28001712C8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C4D436751D8777A3008C6386 /* SwiftMessages.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = SwiftMessages.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4D56A2A1A7C33C0007BE398 /* PackageApplication */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = PackageApplication; sourceTree = "<group>"; };
-		C4EA5C351CE91E8600E395FE /* ContainerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerTableViewController.swift; path = Swift/ContainerTableViewController.swift; sourceTree = "<group>"; };
+		C4EA5C351CE91E8600E395FE /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerViewController.swift; path = Swift/ContainerViewController.swift; sourceTree = "<group>"; };
 		C4EA5C371CE929D300E395FE /* ContainerTableViewSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ContainerTableViewSectionHeader.xib; path = Resources/ContainerTableViewSectionHeader.xib; sourceTree = "<group>"; };
 		C4EA5C3B1CE930B200E395FE /* ContainerTableViewSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerTableViewSectionHeaderView.swift; path = Swift/ContainerTableViewSectionHeaderView.swift; sourceTree = "<group>"; };
 		C4EA6B2F1CB895EF00FCDAA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Localizable/Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -406,7 +406,7 @@
 				C4BE5AE71DAA941A00E1734F /* ItemList */,
 				C4BE5AE81DAA944A00E1734F /* Container */,
 				C4BE5AE91DAA945800E1734F /* ItemPageView */,
-				C42802681A5B47EA002474E1 /* FolderListTableViewController.swift */,
+				C42802681A5B47EA002474E1 /* FoldersViewController.swift */,
 				C45BC3E91A8003F40008A5D1 /* HistoryViewController.swift */,
 				C474F0A71D80E65F00CABEB9 /* LogViewController.swift */,
 				C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */,
@@ -470,7 +470,7 @@
 				C44D916C1AAE773B0053B9E6 /* ItemSimpleTableViewCell.xib */,
 				C4676E081A6A4D1F00AE8BC2 /* ItemTableViewCell.swift */,
 				C4BE5AE51DAA66D400E1734F /* ItemTableViewCell-xibs */,
-				C49540A01A57825100F56168 /* ItemListViewController.swift */,
+				C49540A01A57825100F56168 /* ItemsViewController.swift */,
 				C4C0941A1D99ED4A00D27162 /* ItemInListView.swift */,
 				C4F7DC3E1D97EBEF00275E4F /* ItemListViewLoading.swift */,
 				C4F7DC3A1D97E93200275E4F /* ItemTableViewDelegate.swift */,
@@ -482,7 +482,7 @@
 		C4BE5AE81DAA944A00E1734F /* Container */ = {
 			isa = PBXGroup;
 			children = (
-				C4EA5C351CE91E8600E395FE /* ContainerTableViewController.swift */,
+				C4EA5C351CE91E8600E395FE /* ContainerViewController.swift */,
 				C4EA5C371CE929D300E395FE /* ContainerTableViewSectionHeader.xib */,
 				C4EA5C3B1CE930B200E395FE /* ContainerTableViewSectionHeaderView.swift */,
 				C40A24FE1A672B2100B5D959 /* TableViewContainerCell.swift */,
@@ -813,7 +813,7 @@
 				C441F1871DB25D090060E692 /* GlobalStateRestoration.swift in Sources */,
 				C474F0A81D80E65F00CABEB9 /* LogViewController.swift in Sources */,
 				C4EA5C3C1CE930B200E395FE /* ContainerTableViewSectionHeaderView.swift in Sources */,
-				C4EA5C361CE91E8600E395FE /* ContainerTableViewController.swift in Sources */,
+				C4EA5C361CE91E8600E395FE /* ContainerViewController.swift in Sources */,
 				C4AD2ADB1A5DED8700B39AC9 /* ItemPageViewControllerDelegate.swift in Sources */,
 				C4676E091A6A4D1F00AE8BC2 /* ItemTableViewCell.swift in Sources */,
 				C474F1CD1DB0657800F0E152 /* main.swift in Sources */,
@@ -821,10 +821,10 @@
 				C40A24FF1A672B2100B5D959 /* TableViewContainerCell.swift in Sources */,
 				C41707CB1A56076A00AED81C /* Globals.swift in Sources */,
 				C495409B1A575C1900F56168 /* LoginAndPasswordDefaults.swift in Sources */,
-				C49540A11A57825100F56168 /* ItemListViewController.swift in Sources */,
+				C49540A11A57825100F56168 /* ItemsViewController.swift in Sources */,
 				C44B2F011AC0C881006A67F1 /* HomeViewController.swift in Sources */,
 				C45ECD061A62054C00ADC113 /* SBConstants.swift in Sources */,
-				C42802691A5B47EA002474E1 /* FolderListTableViewController.swift in Sources */,
+				C42802691A5B47EA002474E1 /* FoldersViewController.swift in Sources */,
 				C48C5F971A87344000A1EA12 /* ItemPageViewController.swift in Sources */,
 				C4CDD3A31A5350B40087DD05 /* AppDelegate.swift in Sources */,
 				C4C422181A75E355008803A7 /* MainNavigationController.swift in Sources */,
