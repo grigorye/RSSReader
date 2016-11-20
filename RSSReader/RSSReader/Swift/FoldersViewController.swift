@@ -42,8 +42,8 @@ extension FoldersUpdateState : CustomStringConvertible {
 	}
 }
 
-class FolderListTableViewController: ContainerTableViewController, UIDataSourceModelAssociation {
-	typealias _Self = FolderListTableViewController
+class FoldersViewController: ContainerViewController, UIDataSourceModelAssociation {
+	typealias _Self = FoldersViewController
 	dynamic var rootFolder: Folder? {
 		set {
 			container = newValue
@@ -157,19 +157,19 @@ class FolderListTableViewController: ContainerTableViewController, UIDataSourceM
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		switch segue.identifier! {
 		case MainStoryboard.SegueIdentifiers.ShowFolder:
-			let folderListTableViewController = segue.destination as! FolderListTableViewController
+			let foldersViewController = segue.destination as! FoldersViewController
 			let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow!
 			let folder = childContainers[indexPathForSelectedRow.row] as! Folder
-			folderListTableViewController.rootFolder = folder
+			foldersViewController.rootFolder = folder
 		case MainStoryboard.SegueIdentifiers.ShowSubscription:
-			let itemListViewController = segue.destination as! ItemListViewController
+			let itemsViewController = segue.destination as! ItemsViewController
 			let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow!
 			let subscription = childContainers[indexPathForSelectedRow.row] as! Subscription
-			itemListViewController.container = subscription
+			itemsViewController.container = subscription
 		case MainStoryboard.SegueIdentifiers.ShowCombined:
-			let itemListViewController = segue.destination as! ItemListViewController
-			itemListViewController.container = self.rootFolder
-			itemListViewController.multipleSourcesEnabled = true
+			let itemsViewController = segue.destination as! ItemsViewController
+			itemsViewController.container = self.rootFolder
+			itemsViewController.multipleSourcesEnabled = true
 		default:
 			abort()
 		}
@@ -318,7 +318,7 @@ class FolderListTableViewController: ContainerTableViewController, UIDataSourceM
 	}
 }
 
-extension FolderListTableViewController {
+extension FoldersViewController {
 	func presentMessage(_ text: String) {
 		statusLabel.text = (text)
 		statusLabel.sizeToFit()
