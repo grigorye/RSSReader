@@ -1,5 +1,5 @@
 //
-//  ContainerTableViewController.swift
+//  ContainerViewController.swift
 //  RSSReader
 //
 //  Created by Grigory Entin on 15/05/16.
@@ -16,7 +16,7 @@ extension KVOCompliantUserDefaults {
 	@NSManaged var showAllItemsCount: Bool
 }
 
-class ContainerTableViewController: UITableViewController {
+class ContainerViewController: UITableViewController {
 	dynamic var container: Container!
 	dynamic var predicateForItems: NSPredicate? {
 		return container?.predicateForItems
