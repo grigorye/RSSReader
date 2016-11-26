@@ -8,49 +8,63 @@
 
 import Foundation
 
-func label(for location: SourceLocation) -> String {
+func sourceExtractedInfo(for location: SourceLocation) -> SourceExtractedInfo {
 	guard sourceLabelsEnabled else {
-		return descriptionForInLineLocation(location)
+		return SourceExtractedInfo(label: descriptionForInLineLocation(location))
 	}
 	let fileURL = location.fileURL
 	let fileName = fileURL.lastPathComponent
 	let resourceName = fileURL.deletingPathExtension().lastPathComponent
 	let resourceType = fileURL.pathExtension
-	guard let bundle = Bundle(for: location.dso) else {
-		// Console
-		return "\(resourceName).\(resourceType):?"
-	}
-	let bundleName = (bundle.bundlePath as NSString).lastPathComponent
-	guard let file = bundle.path(forResource: resourceName, ofType: resourceType, inDirectory: "Sources") else {
-		// File missing in the bundle
-		return "\(bundleName)/\(fileName)[missing]:\(descriptionForInLineLocation(location)):?"
+	var file: String
+	switch location.moduleReference {
+	case let .dso(dso):
+		guard let bundle = Bundle(for: dso) else {
+			// Console
+			return SourceExtractedInfo(label: "\(resourceName).\(resourceType):?")
+		}
+		let bundleName = (bundle.bundlePath as NSString).lastPathComponent
+		guard let fileInBundle = bundle.path(forResource: resourceName, ofType: resourceType, inDirectory: "Sources") else {
+			// File missing in the bundle
+			return SourceExtractedInfo(label: "\(bundleName)/\(fileName)[missing]:\(descriptionForInLineLocation(location)):?")
+		}
+		file = fileInBundle
+	case .playground:
+		file = fileURL.path
 	}
 	let fileContents = try! String(contentsOfFile: file, encoding: String.Encoding.utf8)
-	let lines = fileContents.components(separatedBy: "\n")
+	let rawLines = fileContents.components(separatedBy: "\n")
+	let (lines, playgroundName): ([String], String?) = {
+		guard case .playground = location.moduleReference else {
+			return (rawLines, nil)
+		}
+		var i = rawLines.startIndex
+		let regularExpression = try! NSRegularExpression(pattern: "#sourceLocation\\(file: \"(.*)\", line: 1\\)")
+		for line in rawLines {
+			if let match = regularExpression.firstMatch(in: line, range: NSRange(location: 0, length: line.characters.count)) {
+				let s = rawLines[(i + 1)..<rawLines.endIndex]
+				let playgroundName = (line as NSString).substring(with: match.rangeAt(1)) as String
+				return (Array(s), playgroundName)
+			}
+			i = rawLines.index(after: i)
+		}
+		fatalError()
+	}()
 	let line = lines[location.line - 1]
-	let firstIndex: Int = {
-		let prefix = line.substring(toOffset: location.column - 1)
+	let distanceToExpr: Int = {
+		guard swiftHashColumnMatchesLastComponentInCompoundExpressions else {
+			return location.column
+		}
+		let columnIndex = location.column - 1
+		let prefix = line.substring(toOffset: columnIndex)
 		let prefixReversed = String(prefix.characters.reversed())
-		let indexOfOpeningBracketInPrefixReversed = prefixReversed.range(of: "(")!.lowerBound
-		return location.column - 1 - prefixReversed.distance(from: prefixReversed.startIndex, to: indexOfOpeningBracketInPrefixReversed)
+		let indexOfOpeningBracketInPrefixReversed = prefixReversed.range(of: "($")!.lowerBound
+		return columnIndex - prefixReversed.distance(from: prefixReversed.startIndex, to: indexOfOpeningBracketInPrefixReversed)
 	}()
-	let lineSuffix = line.substring(fromOffset: firstIndex)
-	let lengthInLineSuffix: Int = {
-		let indexOfClosingBracket = lineSuffix.rangeOfClosingBracket(")", openingBracket: "(")!.lowerBound
-		return lineSuffix.distance(from: lineSuffix.startIndex, to: indexOfClosingBracket)
-	}()
-	let suffix = lineSuffix.substring(toOffset: lengthInLineSuffix)
-	guard swiftHashColumnMatchesLastComponentInCompoundExpressions else {
-		return suffix
-	}
-	let linePrefixReversed = String(line.substring(toOffset: firstIndex).characters.reversed())
-	let lengthInLinePrefixReversed: Int = {
-		let indexOfClosingBracket = linePrefixReversed.rangeOfClosingBracket("(", openingBracket: ")")!.lowerBound
-		return linePrefixReversed.distance(from: linePrefixReversed.startIndex, to: indexOfClosingBracket)
-	}()
-	let prefix = String(linePrefixReversed.substring(toOffset: lengthInLinePrefixReversed).characters.reversed())
-	let text = prefix + suffix
-	return text
+	let lineTail = line.substring(fromOffset: distanceToExpr)
+	let indexOfClosingBracketInTail = lineTail.rangeOfClosingBracket(")", openingBracket: "(")!.lowerBound
+	let label = lineTail.substring(to: indexOfClosingBracketInTail)
+	return SourceExtractedInfo(label: label, playgroundName: playgroundName)
 }
 
 private func descriptionForInLineLocation(_ location: SourceLocation) -> String {
@@ -69,9 +83,9 @@ private extension String {
 	
 }
 
-var swiftHashColumnMatchesLastComponentInCompoundExpressions = true
+public var swiftHashColumnMatchesLastComponentInCompoundExpressions = true
 
-var sourceLabelsEnabledEnforced: Bool?
+public var sourceLabelsEnabledEnforced: Bool?
 
 private var sourceLabelsEnabled: Bool {
 	return sourceLabelsEnabledEnforced ?? UserDefaults.standard.bool(forKey: "sourceLabelsEnabled")
