@@ -22,9 +22,9 @@ public func description<T>(of value: T) -> String {
 }
 
 public func L<T>(_ value: T, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer = #dsohandle) -> String {
-	let location = SourceLocation(file: file, line: line, column: column, function: function, dso: dso)
-	let label = GETracing.label(for: location)
-	let labeled = "\(label): \(descriptionImp(of: value))"
+	let location = SourceLocation(file: file, line: line, column: column, function: function, moduleReference: .dso(dso))
+	let sourceExtractedInfo = GETracing.sourceExtractedInfo(for: location)
+	let labeled = "\(sourceExtractedInfo.label): \(descriptionImp(of: value))"
 	return labeled
 }
 
