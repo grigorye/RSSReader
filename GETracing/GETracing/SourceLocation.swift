@@ -78,18 +78,22 @@ extension FunctionSourceLocationRange {
 // MARK: -
 
 public struct SourceLocation {
+	public enum ModuleReference {
+		case dso(UnsafeRawPointer)
+		case playground
+	}
 	public let fileURL: URL
 	public let line: Int
 	public let column: Int
 	public let function: String
-	public let dso: UnsafeRawPointer
-	public init(file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer) {
+	public let moduleReference: ModuleReference
+	public init(file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, moduleReference: ModuleReference) {
 		precondition(file != "")
 		self.fileURL = URL(fileURLWithPath: file, isDirectory: false)
 		self.line = line
 		self.column = column
 		self.function = function
-		self.dso = dso
+		self.moduleReference = moduleReference
 	}
 }
 extension SourceLocation {
