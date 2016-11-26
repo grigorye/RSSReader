@@ -15,7 +15,17 @@ extension Bundle {
 			return nil
 		}
 		let sharedObjectName = String(validatingUTF8: info.dli_fname)!
-		let bundleURL = URL(fileURLWithPath: sharedObjectName).deletingLastPathComponent()
+		let bundleURL: URL = {
+			let sharedObjectURL = URL(fileURLWithPath: sharedObjectName)
+			if #available(iOS 9, macOS 11, *) {
+				return sharedObjectURL.deletingLastPathComponent()
+			}
+			if #available(macOS 10, *) {
+				return sharedObjectURL.deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+			}
+			fatalError()
+		}()
+				
 		self.init(url: bundleURL)
 	}
 }
