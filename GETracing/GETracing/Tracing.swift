@@ -36,23 +36,24 @@ import Foundation
 /// - seealso: `loggers`.
 @discardableResult
 public func $<T>(_ value: T, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer = #dsohandle) -> T {
-#if GE_TRACE_ENABLED
-	if traceEnabled {
-		let location = SourceLocation(file: file, line: line, column: column, function: function, dso: dso)
-		trace(value, at: location)
-	}
-#endif
+	traceAsNecessary(value, file: file, line: line, column: column, function: function, moduleReference: .dso(dso))
 	return value
 }
 
-func trace<T>(_ value: T, at location: SourceLocation) {
+public func traceAsNecessary<T>(_ value: T, file: String, line: Int, column: Int, function: String, moduleReference: SourceLocation.ModuleReference) {
+#if GE_TRACE_ENABLED
+	guard traceEnabled else {
+		return
+	}
+	let location = SourceLocation(file: file, line: line, column: column, function: function, moduleReference: moduleReference)
 	guard tracingEnabled(for: location) else {
 		return
 	}
 	log(value, on: Date(), at: location)
+#endif
 }
 
-var traceEnabledEnforced: Bool?
+public var traceEnabledEnforced: Bool?
 
 var traceEnabled: Bool {
 	return traceEnabledEnforced ?? UserDefaults.standard.bool(forKey: "traceEnabled")
