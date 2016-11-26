@@ -12,7 +12,7 @@ import Foundation
 public var filesWithTracingDisabled = [String]()
 
 public func disableTrace(file: String = #file, function: String = #function) -> Any? {
-#if GE_TRACE_ENABLED
+#if !GE_TRACE_ENABLED
 	return nil
 #else
 	guard traceEnabled else {
@@ -23,7 +23,7 @@ public func disableTrace(file: String = #file, function: String = #function) -> 
 }
 
 public func enableTrace(file: String = #file, function: String = #function) -> Any? {
-#if GE_TRACE_ENABLED
+#if !GE_TRACE_ENABLED
 	return nil
 #else
 	guard traceEnabled else {
