@@ -31,13 +31,14 @@ enum DefaultLogKind: String {
 
 extension KVOCompliantUserDefaults {
 	@NSManaged var defaultLogKind: String?
+	@NSManaged var defaultLogPrintTimestamps: Bool
 }
 
 private let traceToNSLogEnabled = false
 
 public func defaultLoggedText(for record: LogRecord) -> String {
 	let location = record.location
-	let locationDescription = "\(location.function), \(location.fileURL.lastPathComponent):\(location.line)"
+	let locationDescription = "\(location.function), \(record.playgroundName ?? location.fileURL.lastPathComponent):\(location.line)"
 	guard let label = record.label else {
 		return "\(locationDescription) ◾︎ \(record.message)"
 	}
@@ -65,8 +66,7 @@ public func defaultLogger(record: LogRecord) {
 	case .none: ()
 	case .oslog:
 		let text = defaultLoggedText(for: record)
-		if #available(iOS 10.0, *) {
-			let dso = record.location.dso
+		if #available(iOS 10.0, *), case .dso(let dso) = record.location.moduleReference {
 			let bundle = Bundle(for: dso)!
 			rdar_os_log_object_with_type(dso, bundle.log, .default, text)
 		} else {
@@ -76,7 +76,8 @@ public func defaultLogger(record: LogRecord) {
 		let text = defaultLoggedText(for: record)
 		NSLog("%@", text)
 	case .print:
-		let textWithTimestampAndThread = defaultLoggedTextWithTimestampAndThread(for: record)
+		let textGenerator = defaults.defaultLogPrintTimestamps ? defaultLoggedTextWithTimestampAndThread(for:) : defaultLoggedTextWithThread(for:)
+		let textWithTimestampAndThread = textGenerator(record)
 		print(textWithTimestampAndThread)
 	}
 }
