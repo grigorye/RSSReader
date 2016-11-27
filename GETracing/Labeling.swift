@@ -21,9 +21,10 @@ public func description<T>(of value: T) -> String {
 	return "\(value)"
 }
 
-public func L<T>(_ value: T, file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer = #dsohandle) -> String {
+public func L<T>(file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer = #dsohandle, _ valueClosure: @autoclosure () -> T) -> String {
+	let value = valueClosure()
 	let location = SourceLocation(file: file, line: line, column: column, function: function, moduleReference: .dso(dso))
-	let sourceExtractedInfo = GETracing.sourceExtractedInfo(for: location)
+	let sourceExtractedInfo = GETracing.sourceExtractedInfo(for: location, traceFunctionName: "L")
 	let labeled = "\(sourceExtractedInfo.label): \(descriptionImp(of: value))"
 	return labeled
 }
