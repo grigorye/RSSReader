@@ -41,11 +41,11 @@ public typealias Logger = (LogRecord) -> ()
 public var loggers: [Logger] = [
 ]
 
-func log<T>(_ value: T, on date: Date, at location: SourceLocation) {
+func log<T>(_ value: T, on date: Date, at location: SourceLocation, traceFunctionName: String) {
 	guard 0 < loggers.count else {
 		return
 	}
-	let sourceExtractedInfo = GETracing.sourceExtractedInfo(for: location)
+	let sourceExtractedInfo = GETracing.sourceExtractedInfo(for: location, traceFunctionName: traceFunctionName)
 	let message = descriptionImp(of: value)
 	let record = LogRecord(message: message, sourceExtractedInfo: sourceExtractedInfo, date: date, location: location)
 	for logger in loggers {
