@@ -78,7 +78,7 @@ public func $<T>(file: String = #file, line: Int = #line, column: Int = #column,
 	return value
 }
 
-discardableResult
+@discardableResult
 public func z$<T>(file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer = #dsohandle, _ valueClosure: @autoclosure () -> T) -> T {
 	let value = valueClosure()
 	traceAsNecessary(value, file: file, line: line, column: column, function: function, moduleReference: .dso(dso), traceFunctionName: "z$")
