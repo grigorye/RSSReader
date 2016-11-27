@@ -8,7 +8,7 @@
 
 import Foundation
 
-func sourceExtractedInfo(for location: SourceLocation) -> SourceExtractedInfo {
+func sourceExtractedInfo(for location: SourceLocation, traceFunctionName: String) -> SourceExtractedInfo {
 	guard sourceLabelsEnabled else {
 		return SourceExtractedInfo(label: descriptionForInLineLocation(location))
 	}
@@ -51,24 +51,27 @@ func sourceExtractedInfo(for location: SourceLocation) -> SourceExtractedInfo {
 		fatalError()
 	}()
 	let line = lines[location.line - 1]
-	let distanceToExpr: Int = {
-		guard swiftHashColumnMatchesLastComponentInCompoundExpressions else {
+	let closure = sourceLabelClosuresEnabled
+	let adjustedColumn: Int = {
+		guard !closure else {
 			return location.column
 		}
-		let columnIndex = location.column - 1
-		let prefix = line.substring(toOffset: columnIndex)
+		let columnIndex = line.index(line.startIndex, offsetBy: location.column - (closure ? 0 : 1))
+		let prefix = line.substring(to: columnIndex)
 		let prefixReversed = String(prefix.characters.reversed())
-		let indexOfOpeningBracketInPrefixReversed = prefixReversed.range(of: "($")!.lowerBound
-		return columnIndex - prefixReversed.distance(from: prefixReversed.startIndex, to: indexOfOpeningBracketInPrefixReversed)
+		let indexOfOpeningBracketInPrefixReversed = prefixReversed.rangeOfClosingBracket("(", openingBracket: ")", followedBy: "$\(traceFunctionName.characters.reversed())")!.lowerBound
+		return location.column - prefixReversed.distance(from: prefixReversed.startIndex, to: indexOfOpeningBracketInPrefixReversed)
 	}()
-	let lineTail = line.substring(fromOffset: distanceToExpr)
-	let indexOfClosingBracketInTail = lineTail.rangeOfClosingBracket(")", openingBracket: "(")!.lowerBound
+	let columnIndex = line.index(line.startIndex, offsetBy: adjustedColumn - (closure ? 0 : 1))
+	let lineTail = line.substring(from: columnIndex)
+	let (openingBracket, closingBracket) = closure ? ("{", "}") : ("(", ")")
+	let indexOfClosingBracketInTail = lineTail.rangeOfClosingBracket(closingBracket, openingBracket: openingBracket)!.lowerBound
 	let label = lineTail.substring(to: indexOfClosingBracketInTail)
 	return SourceExtractedInfo(label: label, playgroundName: playgroundName)
 }
 
 private func descriptionForInLineLocation(_ location: SourceLocation) -> String {
-	return ".\(location.column)"
+	return ".\(location.column + (sourceLabelClosuresEnabled ? 1 : 0))"
 }
 
 private extension String {
@@ -83,9 +86,8 @@ private extension String {
 	
 }
 
-public var swiftHashColumnMatchesLastComponentInCompoundExpressions = true
-
 public var sourceLabelsEnabledEnforced: Bool?
+public var sourceLabelClosuresEnabled = false
 
 private var sourceLabelsEnabled: Bool {
 	return sourceLabelsEnabledEnforced ?? UserDefaults.standard.bool(forKey: "sourceLabelsEnabled")
