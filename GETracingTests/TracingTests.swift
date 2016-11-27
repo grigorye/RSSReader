@@ -24,10 +24,6 @@ class TraceAndLabelTestsBase: XCTestCase {
 		blocksForTearDown += [{
 			traceEnabledEnforced = traceEnabledEnforcedOldValue
 		}]
-		let swiftHashColumnMatchesLastComponentInCompoundExpressionsOldValue = swiftHashColumnMatchesLastComponentInCompoundExpressions
-		blocksForTearDown += [{
-			swiftHashColumnMatchesLastComponentInCompoundExpressions = swiftHashColumnMatchesLastComponentInCompoundExpressionsOldValue
-		}]
 	}
 	override func tearDown() {
 		blocksForTearDown.forEach {$0()}
@@ -46,6 +42,11 @@ class TraceTests : TraceAndLabelTestsBase {
 		})
 		blocksForTearDown += [{
 			loggers = oldLoggers
+		}]
+		let oldSourceLabelClosuresEnabled = sourceLabelClosuresEnabled
+		sourceLabelClosuresEnabled = false
+		blocksForTearDown += [{
+			sourceLabelClosuresEnabled = oldSourceLabelClosuresEnabled
 		}]
 	}
 	// MARK: -
@@ -87,40 +88,25 @@ class TraceTests : TraceAndLabelTestsBase {
 	func testComplexNestedWithTraceEnabled() {
 		traceEnabledEnforced = true
 		let innerColumn =       #column
-		let column =  #column
-		let badColumn =              #column
+		let column =                 #column
 		let value = $("xxx" + $(foo) + "baz"); let line = #line
 		let fileURL = URL(fileURLWithPath: #file)
 		XCTAssertEqual(value, "xxx" + foo + "baz")
 		XCTAssertEqual(tracedRecords.map {$0.location.line}, [line, line])
 		XCTAssertEqual(tracedRecords.map {$0.location.fileURL}, [fileURL, fileURL])
 		XCTAssertEqual(tracedRecords.map {$0.message}, [foo, "xxx" + foo + "baz"])
-		let outerColumn = true ? badColumn : column
-		XCTAssertEqual(tracedRecords.map {$0.label!}, [".\(innerColumn)", ".\(outerColumn)"])
+		XCTAssertEqual(tracedRecords.map {$0.label!}, [".\(innerColumn)", ".\(column)"])
 	}
 	func testComplexWithTraceEnabled() {
 		traceEnabledEnforced = true
-		let column =  #column
-		let badColumn =           #column
+		let column =              #column
 		let value = $("xxx" + foo + "baz"); let line = #line
 		let fileURL = URL(fileURLWithPath: #file)
 		XCTAssertEqual(value, "xxx" + foo + "baz")
 		XCTAssertEqual(tracedRecords.map {$0.location.line}, [line])
 		XCTAssertEqual(tracedRecords.map {$0.location.fileURL}, [fileURL])
 		XCTAssertEqual(tracedRecords.map {$0.message}, ["xxx" + foo + "baz"])
-		let outerColumn = swiftHashColumnMatchesLastComponentInCompoundExpressions ? badColumn : column
-		XCTAssertEqual(tracedRecords.map {$0.label!}, [".\(outerColumn)"])
-	}
-	func testComplexWithTraceAndLabelsEnabled() {
-		traceEnabledEnforced = true
-		sourceLabelsEnabledEnforced = true
-		let value = $("xxx" + (foo) + "baz"); let line = #line
-		let fileURL = URL(fileURLWithPath: #file)
-		XCTAssertEqual(value, "xxx" + (foo) + "baz")
-		XCTAssertEqual(tracedRecords.map {$0.location.line}, [line])
-		XCTAssertEqual(tracedRecords.map {$0.location.fileURL}, [fileURL])
-		XCTAssertEqual(tracedRecords.map {$0.message}, ["xxx" + foo + "baz"])
-		XCTAssertEqual(tracedRecords.map {$0.label!}, ["\"xxx\" + (foo) + \"baz\""])
+		XCTAssertEqual(tracedRecords.map {$0.label!}, [".\(column)"])
 	}
 	func testWithTraceAndLabelsEnabled() {
 		traceEnabledEnforced = true
@@ -135,15 +121,61 @@ class TraceTests : TraceAndLabelTestsBase {
 	func testNestedWithTraceAndLabelsEnabled() {
 		traceEnabledEnforced = true
 		sourceLabelsEnabledEnforced = true
-		let value = $($(foo)); let line = #line
+		let value = $($(foo) + "baz"); let line = #line
 		let fileURL = URL(fileURLWithPath: #file)
-		XCTAssertEqual(value, foo)
+		XCTAssertEqual(value, foo + "baz")
 		XCTAssertEqual(tracedRecords.map {$0.location.line}, [line, line])
 		XCTAssertEqual(tracedRecords.map {$0.location.fileURL}, [fileURL, fileURL])
-		XCTAssertEqual(tracedRecords.map {$0.message}, ["bar", "bar"])
-		XCTAssertEqual(tracedRecords.map {$0.label!}, ["foo", "$(foo)"])
+		XCTAssertEqual(tracedRecords.map {$0.message}, ["bar", "barbaz"])
+		XCTAssertEqual(tracedRecords.map {$0.label!}, ["foo", "$(foo) + \"baz\""])
 	}
-	func testTraceWithTraceAndLabelsEnabledAndDumpInTraceEnabled() {
+	func testComplexWithTraceAndLabelsEnabled() {
+		traceEnabledEnforced = true
+		sourceLabelsEnabledEnforced = true
+		let value = $("xxx" + (foo) + "baz"); let line = #line
+		let fileURL = URL(fileURLWithPath: #file)
+		XCTAssertEqual(value, "xxx" + (foo) + "baz")
+		XCTAssertEqual(tracedRecords.map {$0.location.line}, [line])
+		XCTAssertEqual(tracedRecords.map {$0.location.fileURL}, [fileURL])
+		XCTAssertEqual(tracedRecords.map {$0.message}, ["xxx" + foo + "baz"])
+		XCTAssertEqual(tracedRecords.map {$0.label!}, ["\"xxx\" + (foo) + \"baz\""])
+	}
+	func testComplexWithAutoclosuresTraceAndLabelsEnabled() {
+		traceEnabledEnforced = true
+		sourceLabelsEnabledEnforced = true
+		sourceLabelClosuresEnabled = false
+		let value = z$("xxx" + (foo) + "baz"); let line = #line
+		let fileURL = URL(fileURLWithPath: #file)
+		XCTAssertEqual(value, "xxx" + (foo) + "baz")
+		XCTAssertEqual(tracedRecords.map {$0.location.line}, [line])
+		XCTAssertEqual(tracedRecords.map {$0.location.fileURL}, [fileURL])
+		XCTAssertEqual(tracedRecords.map {$0.message}, ["xxx" + foo + "baz"])
+		XCTAssertEqual(tracedRecords.map {$0.label!}, ["\"xxx\" + (foo) + \"baz\""])
+	}
+	func testZeroWithTraceAndLabelsEnabled() {
+		traceEnabledEnforced = true
+		sourceLabelsEnabledEnforced = true
+		let value = $(0); let line = #line
+		let fileURL = URL(fileURLWithPath: #file)
+		XCTAssertEqual(value, 0)
+		XCTAssertEqual(tracedRecords.map {$0.location.line}, [line])
+		XCTAssertEqual(tracedRecords.map {$0.location.fileURL}, [fileURL])
+		XCTAssertEqual(tracedRecords.map {$0.message}, ["0"])
+		XCTAssertEqual(tracedRecords.map {$0.label!}, ["0"])
+	}
+	func testZeroWithAutoclosureTraceAndLabelsEnabled() {
+		traceEnabledEnforced = true
+		sourceLabelsEnabledEnforced = true
+		sourceLabelClosuresEnabled = false
+		let value = z$(0); let line = #line
+		let fileURL = URL(fileURLWithPath: #file)
+		XCTAssertEqual(value, 0)
+		XCTAssertEqual(tracedRecords.map {$0.location.line}, [line])
+		XCTAssertEqual(tracedRecords.map {$0.location.fileURL}, [fileURL])
+		XCTAssertEqual(tracedRecords.map {$0.message}, ["0"])
+		XCTAssertEqual(tracedRecords.map {$0.label!}, ["0"])
+	}
+	func testWithTraceAndLabelsEnabledAndDumpInTraceEnabled() {
 		traceEnabledEnforced = true
 		sourceLabelsEnabledEnforced = true
 		dumpInTraceEnabledEnforced = true; defer { dumpInTraceEnabledEnforced = nil }
@@ -211,9 +243,17 @@ class TraceTests : TraceAndLabelTestsBase {
 }
 
 class LabelTests : TraceAndLabelTestsBase {
+	override func setUp() {
+		super.setUp()
+		let oldSourceLabelsEnabledEnforced = sourceLabelsEnabledEnforced
+		sourceLabelsEnabledEnforced = true
+		blocksForTearDown += [{
+			sourceLabelsEnabledEnforced = oldSourceLabelsEnabledEnforced
+		}]
+	}
+	// MARK: -
     func testLabeledString() {
 		let foo = "bar"
-		sourceLabelsEnabledEnforced = true
 		XCTAssertEqual(L(foo), "foo: bar")
 		sourceLabelsEnabledEnforced = false
 		let cln = #column
@@ -222,7 +262,6 @@ class LabelTests : TraceAndLabelTestsBase {
     }
     func testNestedLabeledString() {
 		let foo = "bar"
-		sourceLabelsEnabledEnforced = true
 		XCTAssertEqual(L(L(foo)), "L(foo): foo: bar")
 		sourceLabelsEnabledEnforced = false
 		let cln = #column
@@ -231,37 +270,29 @@ class LabelTests : TraceAndLabelTestsBase {
 		XCTAssertEqual(l, ".\(cln): .\(cln_2): bar")
     }
 	func testLabelWithMissingSource() {
-		sourceLabelsEnabledEnforced = true
 		let s = "foo"
 		let sourceFile = "/tmp/Missing.swift"
 		let sourceFilename = URL(fileURLWithPath: sourceFile).lastPathComponent
 		let cls = type(of: self)
 		let bundleFilename = Bundle(for: cls).bundleURL.lastPathComponent
 		let cln = #column - 1
-		let l = L(s, file: sourceFile)
+		let l = L(file: sourceFile, s)
 		XCTAssertEqual(l, "\(bundleFilename)/\(sourceFilename)[missing]:.\(cln):?: foo")
 	}
 	func testLabelWithNoSource() {
-		sourceLabelsEnabledEnforced = true
 		let s = "foo"
 		var v = "foo"
 		let sourceFilename = URL(fileURLWithPath: #file).lastPathComponent
 		withUnsafePointer(to: &v) { p in
-			let l = L(s, dso: p)
+			let l = L(dso: p, s)
 			XCTAssertEqual(l, "\(sourceFilename):?: foo")
 		}
 	}
 	func testLabeledCompoundExpressions() {
 		let foo = "bar"
 		let optionalFoo = Optional("bar")
-		swiftHashColumnMatchesLastComponentInCompoundExpressions = true
-		sourceLabelsEnabledEnforced = true
-		XCTAssertEqual(L(String(foo.characters.reversed())), "String(foo.characters.reversed()): rab")
 		XCTAssertEqual(L("baz" + String(foo.characters.reversed())), "\"baz\" + String(foo.characters.reversed()): bazrab")
-		XCTAssertEqual(L(optionalFoo!), "optionalFoo!: bar")
-		swiftHashColumnMatchesLastComponentInCompoundExpressions = false
 		XCTAssertEqual(L(String(foo.characters.reversed())), "String(foo.characters.reversed()): rab")
-		XCTAssertEqual(L("baz" + String(foo.characters.reversed())), "\"baz\" + String(foo.characters.reversed()): bazrab")
 		XCTAssertEqual(L(optionalFoo!), "optionalFoo!: bar")
 		let fileManager = FileManager.default
 		let storePath = "/tmp/xxx"
