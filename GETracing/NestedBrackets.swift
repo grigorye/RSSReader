@@ -19,7 +19,7 @@ extension String {
 		}
 		if openingBracketRange.lowerBound > closingBracketRange.lowerBound {
 			if let followedBy = followedBy {
-				if substring(from: closingBracketRange.lowerBound).hasPrefix(followedBy) {
+				if substring(from: closingBracketRange.upperBound).hasPrefix(followedBy) {
 					return closingBracketRange
 				}
 			}
