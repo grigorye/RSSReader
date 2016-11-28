@@ -14,6 +14,7 @@ import CoreData
 
 public class Item : NSManagedObject {
 	typealias _Self = Item
+	@NSManaged public var json: [String : Any]
     @NSManaged public var id: String
 	@NSManaged public var date: Date
 	@NSManaged public var author: String
@@ -22,10 +23,12 @@ public class Item : NSManagedObject {
 	@NSManaged public var loadDate: Date
 	@NSManaged public var lastOpenedDate: Date?
     @NSManaged public var titleData: NSData
+	@NSManaged public var titleUnoptimized: String
     public var title: String {
 		set {
 			let bytes = Array(newValue.utf16)
 			titleData = NSData(bytes: bytes, length: bytes.count * MemoryLayout<unichar>.stride)
+			titleUnoptimized = newValue
 		}
 		get {
 			let data = titleData
@@ -33,10 +36,12 @@ public class Item : NSManagedObject {
 		}
 	}
     @NSManaged public var summaryData: NSData
+    @NSManaged public var summaryUnoptimized: String
     public var summary: String? {
 		set {
 			let bytes = Array(newValue!.utf16)
 			summaryData = NSData(bytes: bytes, length: bytes.count * MemoryLayout<unichar>.stride)
+			summaryUnoptimized = newValue!
 		}
 		get {
 			let data = summaryData
