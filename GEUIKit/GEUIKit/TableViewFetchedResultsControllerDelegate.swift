@@ -31,18 +31,18 @@ private var reloadDataForTableUpdatesEnabled: Bool {
 	return defaults.reloadDataForTableUpdatesEnabled
 }
 
-struct Counts {
+private struct Counts {
 	var insertions: Int
 	var deletions: Int
 	var updates: Int
 }
-let zeroCounts = Counts(insertions: 0, deletions: 0, updates: 0)
+private let zeroCounts = Counts(insertions: 0, deletions: 0, updates: 0)
 
 public class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate {
 	weak var tableView: UITableView?
 	var updateCell: ((UITableViewCell, atIndexPath: IndexPath)) -> Void
 	let rowAnimation: UITableViewRowAnimation = .none
-	var counts = zeroCounts
+	private var counts = zeroCounts
 	// MARK: -
 	public func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		$(controller)
