@@ -7,6 +7,7 @@
 //
 
 import GETracing
+import GEFoundation
 import PromiseKit
 import Foundation
 
@@ -27,6 +28,10 @@ public protocol FoldersController : class {
 	var foldersLastUpdateError: Error? { get set }
 	var foldersUpdateState: FoldersUpdateState { get set }
 	var rssSession: RSSSession { get }
+}
+
+extension KVOCompliantUserDefaults {
+	@NSManaged var streamPrefetchingEnabled: Bool
 }
 
 public extension FoldersController {
@@ -53,6 +58,9 @@ public extension FoldersController {
 			self.foldersUpdateState = .updatingStreamPreferences
 			return rssSession.updateStreamPreferences()
 		}.then {
+			guard defaults.streamPrefetchingEnabled else {
+				return Promise(value: ())
+			}
 			self.foldersUpdateState = .prefetching
 			let context = backgroundQueueManagedObjectContext
 			return Promise { fulfill, reject in
