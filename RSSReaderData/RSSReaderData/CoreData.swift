@@ -67,6 +67,7 @@ extension Item : ManagedIdentifiable {
 			let subscription = try subscription ?? insertedObjectUnlessFetchedWithID(Subscription.self, id: streamID, managedObjectContext: managedObjectContext)
 			self.subscription = subscription
 			self.canonical = json["canonical"] as! [[String : String]]?
+			self.json = json
 		}
 		do {
 			guard let categoriesIDs = json["categories"] as? [String] else {
