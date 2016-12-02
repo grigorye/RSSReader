@@ -120,7 +120,7 @@ class ItemTableViewDataSource: NSObject {
 	//
 	func configureCellHeightCaching() {
 		guard let tableView = tableView else { return }
-		let reuseIdentifiersForHeightCachingCells = (0...3).map {"Item-\($0)"}
+		let reuseIdentifiersForHeightCachingCells = (0...6).map {"Item-\($0)"}
 		for (i, reuseIdentifier) in reuseIdentifiersForHeightCachingCells.enumerated() {
 			let cellNib = UINib(nibName: "ItemTableViewCell-\(i)", bundle: nil)
 			tableView.register(cellNib, forCellReuseIdentifier: reuseIdentifier)
@@ -184,7 +184,7 @@ extension ItemTableViewDataSource: UITableViewDataSource {
 		}
 #endif
 		configureCell(cell, atIndexPath: $(indexPath))
-		return cell
+		return $(cell)
 	}
 	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		precondition(tableView == self.tableView)
