@@ -14,20 +14,38 @@ import CoreData
 import Foundation
 
 extension KVOCompliantUserDefaults {
+
 	@NSManaged var numberOfItemsToLoadPastVisible: Int
 	@NSManaged var numberOfItemsToLoadInitially: Int
 	@NSManaged var numberOfItemsToLoadLater: Int
 	@NSManaged var loadItemsUntilLast: Bool
 	@NSManaged var progressIndicatorInFooterEnabled: Bool
+	@NSManaged var loadOnScrollDisabled: Bool
+
 }
 
 extension ItemsViewController {
+
 	override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-		if nil != rssSession && nil != view.superview && !refreshControl!.isRefreshing {
+		{
+			guard !defaults.loadOnScrollDisabled else {
+				return
+			}
+			guard nil != rssSession else {
+				return
+			}
+			guard nil != view.superview else {
+				return
+			}
+			guard !refreshControl!.isRefreshing else {
+				return
+			}
 			loadMoreIfNecessary()
-		}
+		}()
 	}
+
 }
+
 extension ItemsViewController {
 
 	func didStartLoad() {
@@ -38,6 +56,7 @@ extension ItemsViewController {
 			self.tableView.tableFooterView = self.tableFooterView
 		}
 	}
+	
 	func didCompleteLoad() {
 		guard defaults.progressIndicatorInFooterEnabled else {
 			return
@@ -79,6 +98,7 @@ extension ItemsViewController {
 			}
 		}
 	}
+	
 	private func shouldLoadMore(for lastLoadedItemDate: Date?) -> Bool {
 		guard !(loadController.loadInProgress || loadController.loadCompleted || loadController.loadError != nil) else {
 			return false
@@ -103,6 +123,7 @@ extension ItemsViewController {
 		let barrierItem = dataSource.object(at: barrierIndexPath)
 		return !(((lastLoadedItemDate).compare((barrierItem.date))) == .orderedAscending)
 	}
+	
 	private func loadMoreIfNecessary(for lastLoadedItemDate: Date?) {
 		guard $(shouldLoadMore(for: $(lastLoadedItemDate))) else {
 			if loadController.loadCompleted {
@@ -112,6 +133,7 @@ extension ItemsViewController {
 		}
 		loadMore {}
 	}
+	
 	func loadMoreIfNecessary() {
 		self.loadMoreIfNecessary(for: loadController.lastLoadedItem?.date)
 	}
