@@ -19,6 +19,12 @@ extension KVOCompliantUserDefaults {
 }
 
 class ItemsViewController : ContainerViewController {
+
+	lazy var prototypeCell: ItemTableViewCell = {
+		let nib = UINib(nibName: "ItemTableViewCell", bundle: Bundle(for: type(of: self)))
+		return nib.instantiate(withOwner: nil)[0] as! ItemTableViewCell
+	}()
+
 	typealias _Self = ItemsViewController
 	public var dataSource: ItemTableViewDataSource!
 	public lazy dynamic var loadController: ContainerLoadController! = {
@@ -183,6 +189,10 @@ class ItemsViewController : ContainerViewController {
 		if defaults.fixedHeightItemRowsEnabled {
 			tableView.rowHeight = 44
 		}
+		else {
+			tableView.estimatedRowHeight = 44
+			tableView.rowHeight = UITableViewAutomaticDimension
+		}
 	}
 	// MARK: -
 	deinit {
@@ -260,6 +270,9 @@ extension ItemsViewController {
 	}
 	@IBAction private func scrollToEnd(_ sender: AnyObject?) {
 		tableView.scrollToRow(at: IndexPath(row: tableView.numberOfRows(inSection: 0) - 1, section: 0), at: .bottom, animated: true)
+	}
+	@IBAction private func scrollToBeginning(_ sender: AnyObject?) {
+		tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .bottom, animated: true)
 	}
 	@IBAction private func action(_ sender: AnyObject?) {
 		let activityViewController = UIActivityViewController(activityItems: [container!], applicationActivities: applicationActivities)
