@@ -39,6 +39,9 @@
 		C4270C001DBD502600FA3A0A /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BFF1DBD502600FA3A0A /* GETracing.framework */; };
 		C4270C011DBD502600FA3A0A /* GETracing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BFF1DBD502600FA3A0A /* GETracing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C42802691A5B47EA002474E1 /* FoldersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42802681A5B47EA002474E1 /* FoldersViewController.swift */; };
+		C43CD1CB1DEE70D200189379 /* ItemTableViewCell-4.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43CD1C81DEE70D200189379 /* ItemTableViewCell-4.xib */; };
+		C43CD1CC1DEE70D200189379 /* ItemTableViewCell-5.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43CD1C91DEE70D200189379 /* ItemTableViewCell-5.xib */; };
+		C43CD1CD1DEE70D200189379 /* ItemTableViewCell-6.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43CD1CA1DEE70D200189379 /* ItemTableViewCell-6.xib */; };
 		C441F1791DB24A1D0060E692 /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F1781DB24A1D0060E692 /* MainScene.swift */; };
 		C441F17B1DB254260060E692 /* GlobalFoldersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F17A1DB254260060E692 /* GlobalFoldersController.swift */; };
 		C441F17F1DB258550060E692 /* SharedRSSAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F17E1DB258550060E692 /* SharedRSSAccount.swift */; };
@@ -228,6 +231,9 @@
 		C424B8F01C6FC5C8008AD647 /* RSSReaderData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RSSReaderData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4270BFF1DBD502600FA3A0A /* GETracing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GETracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C42802681A5B47EA002474E1 /* FoldersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = FoldersViewController.swift; path = Swift/FoldersViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		C43CD1C81DEE70D200189379 /* ItemTableViewCell-4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemTableViewCell-4.xib"; sourceTree = "<group>"; };
+		C43CD1C91DEE70D200189379 /* ItemTableViewCell-5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemTableViewCell-5.xib"; sourceTree = "<group>"; };
+		C43CD1CA1DEE70D200189379 /* ItemTableViewCell-6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemTableViewCell-6.xib"; sourceTree = "<group>"; };
 		C441F1781DB24A1D0060E692 /* MainScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainScene.swift; path = Swift/MainScene.swift; sourceTree = "<group>"; };
 		C441F17A1DB254260060E692 /* GlobalFoldersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GlobalFoldersController.swift; path = Swift/GlobalFoldersController.swift; sourceTree = "<group>"; };
 		C441F17E1DB258550060E692 /* SharedRSSAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SharedRSSAccount.swift; path = Swift/SharedRSSAccount.swift; sourceTree = "<group>"; };
@@ -507,6 +513,9 @@
 				C4BE5AEF1DAA986A00E1734F /* ItemTableViewCell-1.xib */,
 				C4BE5AF01DAA986A00E1734F /* ItemTableViewCell-2.xib */,
 				C4BE5AF11DAA986A00E1734F /* ItemTableViewCell-3.xib */,
+				C43CD1C81DEE70D200189379 /* ItemTableViewCell-4.xib */,
+				C43CD1C91DEE70D200189379 /* ItemTableViewCell-5.xib */,
+				C43CD1CA1DEE70D200189379 /* ItemTableViewCell-6.xib */,
 				C4BE5AF21DAA986A00E1734F /* ItemTableViewCell-Generate */,
 			);
 			name = "ItemTableViewCell-N";
@@ -706,12 +715,15 @@
 				C4EA6B301CB895EF00FCDAA5 /* Localizable.strings in Resources */,
 				C44D91641AAE73830053B9E6 /* ItemTableViewCell.xib in Resources */,
 				C4F1118B1CB84F66005C5A0F /* LaunchScreen.xib in Resources */,
+				C43CD1CD1DEE70D200189379 /* ItemTableViewCell-6.xib in Resources */,
+				C43CD1CC1DEE70D200189379 /* ItemTableViewCell-5.xib in Resources */,
 				C4BE5AF61DAA986A00E1734F /* ItemTableViewCell-3.xib in Resources */,
 				C4CDD3AC1A5350B50087DD05 /* Images.xcassets in Resources */,
 				C4F1118E1CB84F6D005C5A0F /* Main.storyboard in Resources */,
 				C49B127D1BF686D500EA5DE5 /* Debug.storyboard in Resources */,
 				C44D916D1AAE773B0053B9E6 /* ItemSimpleTableViewCell.xib in Resources */,
 				C4A1646A1CB8938C009D8B86 /* InfoPlist.strings in Resources */,
+				C43CD1CB1DEE70D200189379 /* ItemTableViewCell-4.xib in Resources */,
 				C4BE5AF41DAA986A00E1734F /* ItemTableViewCell-1.xib in Resources */,
 				C4EA5C381CE929D300E395FE /* ContainerTableViewSectionHeader.xib in Resources */,
 				C4BE5AF31DAA986A00E1734F /* ItemTableViewCell-0.xib in Resources */,
