@@ -209,6 +209,7 @@ extension ItemTableViewDataSource: UITableViewDataSource {
 // MARK: - UITableViewDataSourcePrefetching
 extension ItemsViewController: UITableViewDataSourcePrefetching {
 	func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+		let dt = disableTrace(); defer { _ = dt }
 		let objectIDs = $(indexPaths).map { dataSource.object(at: $0).objectID }
 		let fetchRequest = Item.fetchRequestForEntity() … {
 			$0.predicate = NSPredicate(format: "self in %@", objectIDs)
