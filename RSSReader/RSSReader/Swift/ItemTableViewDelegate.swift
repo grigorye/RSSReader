@@ -10,9 +10,14 @@ import GEFoundation
 import GETracing
 import UIKit
 
+var estimateCount = 0
 extension ItemsViewController {
-#if !RSS_READER_ITEM_ROW_HEIGHT_ESTIMATION_DISABLED
+#if false
 	override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+		$(indexPath)
+		estimateCount += 1
+		return 44
+#if false
 		guard !defaults.fixedHeightItemRowsEnabled else {
 			return 44
 		}
@@ -23,14 +28,24 @@ extension ItemsViewController {
 			return UITableViewAutomaticDimension
 		}
 		return estimatedHeight
+#endif
 	}
 #endif
-#if false
+#if true
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return 44
+		let dt = disableTrace(); defer { _ = dt }
+		$(indexPath)
+		let dataSource = tableView.dataSource as! ItemTableViewDataSource
+		let item = dataSource.object(at: indexPath)
+		prototypeCell.setData((item: item, container: dataSource.container, nowDate: Date()))
+		let systemLayoutSize = prototypeCell.systemLayoutSizeFitting(tableView.bounds.size)
+		return systemLayoutSize.height
 	}
 #endif
 	override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+		guard defaults.frequencyAndWeightBasedTableRowHeightEstimatorEnabled else {
+			return
+		}
 		guard !defaults.fixedHeightItemRowsEnabled else {
 			return
 		}
