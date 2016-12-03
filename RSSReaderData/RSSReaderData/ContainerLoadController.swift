@@ -21,7 +21,10 @@ public class ContainerLoadController : NSObject {
 	public var numberOfItemsToLoadInitially = 500
 	// MARK: -
 	var containerViewStateSaved: ContainerViewState?
-	var containerViewState: ContainerViewState? {
+	class var keyPathsForValuesAffectingContainerViewState: Set<String> {
+		return [#keyPath(container.viewStates)]
+	}
+	dynamic var containerViewState: ContainerViewState? {
 		return containerViewStateSaved ?? {
 			guard let updatedContainerViewState = (self.container.viewStates.filter { $0.containerViewPredicate == self.containerViewPredicate }).onlyElement else {
 				return nil
@@ -38,8 +41,8 @@ public class ContainerLoadController : NSObject {
 		return [#keyPath(containerViewState.loadDate)]
 	}
 	private (set) public dynamic var loadDate: Date! {
-		set { containerViewState!.loadDate = newValue! }
-		get { return containerViewState?.loadDate }
+		set { $(containerViewState!).loadDate = newValue! }
+		get { return $(containerViewState)?.loadDate }
 	}
 	public var lastLoadedItem: Item? {
 		set { containerViewState!.lastLoadedItem = newValue }
