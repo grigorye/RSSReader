@@ -8,6 +8,7 @@
 
 #if os(iOS)
 
+import GETracing
 import Foundation
 import UIKit
 
@@ -50,12 +51,15 @@ public struct TableViewHeightBasedReusedCellGenerator<DataSource: TableViewHeigh
 			return nil
 		}()
 		guard let height = heightX else {
+			$(variableHeight)
 			return heightAgnosticCellReuseIdentifier
 		}
-		guard let indexInTopReused = reusedHeights.prefix(reuseIdentifiersForHeightCachingCells.count).index(of: height) else {
+		
+		let indexInReusedHeights = reusedHeights.index(of: height)!
+		guard indexInReusedHeights < reuseIdentifiersForHeightCachingCells.count else {
 			return heightAgnosticCellReuseIdentifier
 		}
-		return reuseIdentifiersForHeightCachingCells[indexInTopReused]
+		return reuseIdentifiersForHeightCachingCells[indexInReusedHeights]
 	}
 	
 	public mutating func addRowHeight(_ height: CGFloat, forCell cell: UITableViewCell, atIndexPath indexPath: IndexPath) {
