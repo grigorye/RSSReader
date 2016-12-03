@@ -24,6 +24,11 @@ extension RSSSession {
 			x.addValue(self.inoreaderAppID, forHTTPHeaderField: "AppId")
 			x.addValue(self.inoreaderAppKey, forHTTPHeaderField: "AppKey")
 		}
-		return self.dataTask(with: authenticatedRequest, completionHandler: completionHandler)
+		return self.dataTask(with: authenticatedRequest) { data, response, error in
+			if case let URLSessionTaskGeneratorError.UnexpectedHTTPResponseStatus(httpResponse)? = error, httpResponse.statusCode == 401 {
+				self.authToken = nil
+			}
+			completionHandler(data, response, error)
+		}
 	}
 }
