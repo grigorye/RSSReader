@@ -309,8 +309,9 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 	deinit {
 		$(self)
 	}
-	static private let initializeOnce: Void = {
+	static private let initializeOnce: Ignored = {
 		_Self.adjustForNilIndexPathPassedToModelIdentifierForElement()
+		return Ignored()
 	}()
 	override public class func initialize() {
 		super.initialize()
