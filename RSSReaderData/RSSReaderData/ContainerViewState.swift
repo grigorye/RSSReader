@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
+import GEFoundation
 import GETracing
 import CoreData.NSManagedObject
 
@@ -61,10 +62,11 @@ public class ContainerViewState: NSManagedObject {
 	}
 	deinit {
 	}
-	static private let initializeOnce: Void = {
+	static private let initializeOnce: Ignored = {
 #if false
 		cachePropertyWithName(_Self.self, name: #keyPath(lastLoadedItem))
 #endif
+		return Ignored()
 	}()
 	override public class func initialize() {
 		super.initialize()

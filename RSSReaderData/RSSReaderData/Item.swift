@@ -54,11 +54,12 @@ public class Item : NSManagedObject {
 	@NSManaged public var subscription: Subscription
 	@NSManaged public var canonical: [[String : String]]?
 	
-	static private let initializeOnce: Void = {
+	static private let initializeOnce: Ignored = {
 		if _0 {
 			cachePropertyWithName(_Self.self, name: #keyPath(markedAsRead))
 			cachePropertyWithName(_Self.self, name: #keyPath(markedAsFavorite))
 		}
+		return Ignored()
 	}()
 	override public class func initialize() {
 		super.initialize()
