@@ -46,14 +46,20 @@ extension ItemsViewController {
 
 }
 
-extension ItemsViewController {
+protocol ItemsViewControllerLoadingImp {
+
+	var tableFooterViewOnLoading: UIView! { get }
+
+}
+
+extension ItemsViewController : ItemsViewControllerLoadingImp {
 
 	func didStartLoad() {
 		guard defaults.progressIndicatorInFooterEnabled else {
 			return
 		}
 		UIView.animate(withDuration: 0.4) {
-			self.tableView.tableFooterView = self.tableFooterView
+			self.tableView.tableFooterView = self.tableFooterViewOnLoading
 		}
 	}
 	
