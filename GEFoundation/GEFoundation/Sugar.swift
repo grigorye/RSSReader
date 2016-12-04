@@ -23,3 +23,14 @@ public func …<T: Any>(value: T, initialize: (inout T) throws -> Void) rethrows
 	try initialize(&valueCopy)
 	return valueCopy
 }
+
+/**
+    Substitute for `Void` in `static let initializeOnce: Void = {...}`.
+	
+	`Void` breaks LLDB interactions when `initializeOnce` is visible as below:
+
+        (lldb) p tableView.estimatedRowHeight
+        error: Couldn't materialize: couldn't get the value of initializeOnce: extracting data from value failed
+        error: errored out in DoExecute, couldn't PrepareToExecuteJITExpression
+*/
+public typealias Ignored = Int
