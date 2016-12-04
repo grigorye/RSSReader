@@ -75,7 +75,7 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
         $(libraryDirectory)
 	}
 	// MARK: -
-	static private let initializeOnce: Void = {
+	static private let initializeOnce: Ignored = {
 		var scope = Activity("Initializing Analytics").enter(); defer { scope.leave() }
 		if $(versionIsClean) {
 			_ = crashlyticsInitializer
@@ -83,6 +83,7 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 			_ = uxcamInitializer
 			_ = flurryInitializer
 		}
+		return Ignored()
 	}()
 	override open class func initialize() {
 		super.initialize()
