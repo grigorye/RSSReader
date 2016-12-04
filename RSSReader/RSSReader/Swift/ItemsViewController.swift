@@ -38,8 +38,11 @@ class ItemsViewController : ContainerViewController {
 	var showUnreadEnabled = true
 	// MARK:-
 	var showUnreadOnly = false
-	//
-	var tableFooterView: UIView?
+	
+	// MARK: - ItemsViewControllerLoadingImp
+	
+	var tableFooterViewOnLoading: UIView!
+	
 	// MARK: -
 	private var loadedRightBarButtonItems: [UIBarButtonItem]!
 	@IBOutlet var statusLabel: UILabel!
@@ -114,7 +117,7 @@ class ItemsViewController : ContainerViewController {
 		super.viewDidDisappear(animated)
 	}
 	// MARK: -
-	func configureDataSource() {
+	private func configureDataSource() {
 		let dataSource = ItemTableViewDataSource(tableView: tableView, container: container, showUnreadOnly: showUnreadOnly)
 		tableView.dataSource = dataSource
 		self.dataSource = dataSource
@@ -175,32 +178,46 @@ class ItemsViewController : ContainerViewController {
 		return {_ = binding}
 	}
 	// MARK: -
+	func configureTableViewRowHeight() {
+		assert(0 < tableView.estimatedRowHeight)
+		assert(tableView.rowHeight == UITableViewAutomaticDimension)
+		
+		if defaults.fixedHeightItemRowsEnabled {
+			tableView.rowHeight = 44
+		}
+	}
+	func configureTableViewPrefetching() {
+		guard defaults.itemPrefetchingEnabled, #available(iOS 10.0, *) else {
+			return
+		}
+		tableView.prefetchDataSource = self
+	}
+	func configureLoading() {
+		self.tableFooterViewOnLoading = tableView.tableFooterView
+	}
+	// MARK: -
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		self.configureTableViewRowHeight()
+		self.configureTableViewPrefetching()
+		self.configureLoading()
+
 		scheduledForViewWillAppearOrStateRestoration += [{ [unowned self] in
 			self.configureDataSource()
 			self.configureRightBarButtonItems()
 		}]
+		
 		scheduledForViewWillAppear += [{[unowned self] in self.configureTitleHeaderView()}]
-		tableFooterView = tableView.tableFooterView
-		if defaults.itemPrefetchingEnabled, #available(iOS 10.0, *) {
-			tableView.prefetchDataSource = self
-		}
-		if defaults.fixedHeightItemRowsEnabled {
-			tableView.rowHeight = 44
-		}
-		else {
-			tableView.estimatedRowHeight = 44
-			tableView.rowHeight = UITableViewAutomaticDimension
-		}
 	}
 	// MARK: -
 	deinit {
 		$(self)
 	}
 	// MARK: -
-	static private let initializeOnce: Void = {
+	static private let initializeOnce: Ignored = {
 		_Self.adjustForNilIndexPathPassedToModelIdentifierForElement()
+		return Ignored()
 	}()
 	override public class func initialize() {
 		super.initialize()
