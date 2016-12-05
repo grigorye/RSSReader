@@ -160,7 +160,7 @@ class ItemSummaryWebViewController: UIViewController {
 	// MARK: -
 	var viewDidDisappearRetainedObjects = [Any]()
 	override func viewWillAppear(_ animated: Bool) {
-		scheduledForViewWillAppear.forEach { $0() }
+		scheduledForViewWillAppear.forEach {$0()}
 		scheduledForViewWillAppear = []
 		viewDidDisappearRetainedObjects += [KVOBinding(self•#keyPath(item.markedAsFavorite), options: .initial) { [unowned self] change in
 			let excludedBarButtonItem = self.item.markedAsFavorite ? self.markAsFavoriteBarButtonItem : self.unmarkAsFavoriteBarButtonItem
@@ -180,7 +180,7 @@ class ItemSummaryWebViewController: UIViewController {
 		self.markAsOpenAndReadTimer = Timer.scheduledTimer(timeInterval: markAsReadTimeInterval, target: self, selector: #selector(self.markAsOpenAndRead), userInfo: nil, repeats: false)
 	}
 	override func viewWillDisappear(_ animated: Bool) {
-		scheduledForViewWillDisappear.forEach { $0() }
+		scheduledForViewWillDisappear.forEach {$0()}
 		scheduledForViewWillDisappear = []
 		super.viewWillDisappear(animated)
 		self.markAsOpenAndReadTimer?.invalidate()
