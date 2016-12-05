@@ -28,6 +28,8 @@ filesWithTracingDisabled += [
 	"KVOCompliantUserDefaults.swift"
 ]
 
+$(CommandLine.arguments)
+
 UIApplicationMain(
 	CommandLine.argc,
 	UnsafeMutableRawPointer(CommandLine.unsafeArgv)
