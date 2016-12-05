@@ -19,16 +19,16 @@ class ItemTableView : UITableView {
 
 	override func accessibilityElement(at index: Int) -> Any? {
 		guard !defaults.itemListAccessibilityDisabled else {
-			return super.accessibilityElement(at: index)
+			return nil
 		}
-		return nil
+		return super.accessibilityElement(at: index)
 	}
 	
 	override func accessibilityElementCount() -> Int {
 		guard !defaults.itemListAccessibilityDisabled else {
-			return super.accessibilityElementCount()
+			return 0
 		}
-		return 0
+		return super.accessibilityElementCount()
 	}
 	
 }
