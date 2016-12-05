@@ -53,7 +53,6 @@ class ItemListScrollingTests: XCTestCase {
         continueAfterFailure = false
 		
         app.launch()
-		print(app.debugDescription)
     }
 	
 	var blocksForTearDown = [Handler]()
