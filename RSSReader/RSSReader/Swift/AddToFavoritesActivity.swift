@@ -7,8 +7,8 @@
 //
 
 import RSSReaderData
-import GEUIKit
-import GETracing
+import class GEUIKit.TypeFilteringActivity
+import class GEUIKit.TypeBasedActivityItemsFilter
 import UIKit
 
 class AddToFavoritesActivity : TypeFilteringActivity  {

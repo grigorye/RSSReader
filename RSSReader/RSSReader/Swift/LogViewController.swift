@@ -7,7 +7,6 @@
 //
 
 import RSSReaderAppConfig
-import GETracing
 import UIKit.UIViewController
 
 class LogViewController: UIViewController {

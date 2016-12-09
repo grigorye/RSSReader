@@ -9,10 +9,9 @@
 import RSSReaderAppConfig
 import RSSReaderData
 import Loggy
-import GETracing
 import UIKit
 
-class AppDelegate: AppDelegateBase {
+class AppDelegate : AppDelegateBase {
 	lazy var mainScene: AnyObject = { MainScene(window: self.window!) }()
 	//
 	func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]?) -> Bool {

@@ -6,8 +6,8 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
-import GEFoundation
-import GETracing
+import func GEFoundation.defaultLogger
+import var GETracing.loggers
 import Loggy
 import UIKit.UIApplication
 
@@ -22,10 +22,6 @@ if defaults.resetDefaults {
 
 loggers += [
 	defaultLogger
-]
-
-filesWithTracingDisabled += [
-	"KVOCompliantUserDefaults.swift"
 ]
 
 $(CommandLine.arguments)

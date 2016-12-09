@@ -7,9 +7,12 @@
 //
 
 import RSSReaderData
-import GEUIKit
-import GEFoundation
-import GETracing
+import protocol GEUIKit.TableViewHeightBasedReusedCellGeneratorDataSource
+import protocol GEUIKit.FrequencyAndWeightBasedTableRowHeightEstimatorDataSource
+import struct GEUIKit.FrequencyAndWeightBasedTableRowHeightEstimator
+import struct GEUIKit.TableViewHeightBasedReusedCellGenerator
+import class GEUIKit.SystemLayoutSizeCachingTableViewCellDataSource
+import class GEUIKit.TableViewFetchedResultsControllerDelegate
 import CoreData
 import UIKit
 

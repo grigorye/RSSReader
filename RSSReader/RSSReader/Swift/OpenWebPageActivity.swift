@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
-import GEUIKit
-import GETracing
+import class GEUIKit.TypeFilteringActivity
+import class GEUIKit.TypeBasedActivityItemsFilter
 import UIKit
 
 class OpenWebPageActivity : TypeFilteringActivity {

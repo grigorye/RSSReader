@@ -7,7 +7,6 @@
 //
 
 import RSSReaderData
-import GETracing
 import UIKit
 
 class ItemPageViewControllerDelegate: NSObject, UIPageViewControllerDelegate {

@@ -7,9 +7,7 @@
 //
 
 import RSSReaderData
-import GEUIKit
-import GEFoundation
-import GETracing
+import class GEUIKit.TableViewFetchedResultsControllerDelegate
 import UIKit.UITableViewController
 import CoreData.NSFetchedResultsController
 

@@ -6,7 +6,6 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
-import GEFoundation
 import UIKit
 
 extension KVOCompliantUserDefaults {

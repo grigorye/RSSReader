@@ -7,9 +7,7 @@
 //
 
 import RSSReaderData
-import GEUIKit
-import GEFoundation
-import GETracing
+import class GEUIKit.SystemLayoutSizeCachingTableViewCell
 import CoreData.NSManagedObjectID
 import UIKit
 
