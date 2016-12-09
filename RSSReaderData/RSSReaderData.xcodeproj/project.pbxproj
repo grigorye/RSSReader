@@ -51,6 +51,9 @@
 		C4DB6A701D2602B400E8516D /* RSSSessionTaskResultImporting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DB6A6F1D2602B400E8516D /* RSSSessionTaskResultImporting.swift */; };
 		C4DB6A721D26035F00E8516D /* RSSSessionTaskGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DB6A711D26035F00E8516D /* RSSSessionTaskGeneration.swift */; };
 		C4DB6A741D261AE400E8516D /* RSSSessionCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DB6A731D261AE400E8516D /* RSSSessionCommands.swift */; };
+		C4EB28031DFA387600BF0843 /* ModuleExports-GECoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB28021DFA387500BF0843 /* ModuleExports-GECoreData.swift */; };
+		C4EB28061DFA389300BF0843 /* ModuleExports-GETracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB28041DFA389300BF0843 /* ModuleExports-GETracing.swift */; };
+		C4EB28071DFA389300BF0843 /* ModuleExports-GEFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB28051DFA389300BF0843 /* ModuleExports-GEFoundation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +149,9 @@
 		C4DB6A6F1D2602B400E8516D /* RSSSessionTaskResultImporting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSSessionTaskResultImporting.swift; sourceTree = "<group>"; };
 		C4DB6A711D26035F00E8516D /* RSSSessionTaskGeneration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSSessionTaskGeneration.swift; sourceTree = "<group>"; };
 		C4DB6A731D261AE400E8516D /* RSSSessionCommands.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSSessionCommands.swift; sourceTree = "<group>"; };
+		C4EB28021DFA387500BF0843 /* ModuleExports-GECoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GECoreData.swift"; path = "../GECoreData/GECoreData/ModuleExports-GECoreData.swift"; sourceTree = SOURCE_ROOT; };
+		C4EB28041DFA389300BF0843 /* ModuleExports-GETracing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GETracing.swift"; path = "../GETracing/GETracing/ModuleExports-GETracing.swift"; sourceTree = SOURCE_ROOT; };
+		C4EB28051DFA389300BF0843 /* ModuleExports-GEFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GEFoundation.swift"; path = "../GEFoundation/GEFoundation/ModuleExports-GEFoundation.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +230,9 @@
 				C48F79D31C008E3900CC6F74 /* MarkingAsRead.swift */,
 				C48F79D51C008E6A00CC6F74 /* RSSReader.xcdatamodeld */,
 				C48F79A31C008D0D00CC6F74 /* Info.plist */,
+				C4EB28021DFA387500BF0843 /* ModuleExports-GECoreData.swift */,
+				C4EB28041DFA389300BF0843 /* ModuleExports-GETracing.swift */,
+				C4EB28051DFA389300BF0843 /* ModuleExports-GEFoundation.swift */,
 			);
 			path = RSSReaderData;
 			sourceTree = "<group>";
@@ -353,11 +362,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4EB28031DFA387600BF0843 /* ModuleExports-GECoreData.swift in Sources */,
 				C48F79E31C008E6A00CC6F74 /* RSSReader.xcdatamodeld in Sources */,
+				C4EB28061DFA389300BF0843 /* ModuleExports-GETracing.swift in Sources */,
 				C48F79CC1C008DF100CC6F74 /* Container.swift in Sources */,
 				C48F79D21C008E1D00CC6F74 /* ContainerViewState.swift in Sources */,
 				C48F79C61C008DDF00CC6F74 /* RSSSession.swift in Sources */,
 				C441F1851DB25ABD0060E692 /* FoldersController.swift in Sources */,
+				C4EB28071DFA389300BF0843 /* ModuleExports-GEFoundation.swift in Sources */,
 				C48F79CB1C008DF100CC6F74 /* Folder.swift in Sources */,
 				C48F79D01C008E0B00CC6F74 /* CoreData.swift in Sources */,
 				C4DB6A721D26035F00E8516D /* RSSSessionTaskGeneration.swift in Sources */,
