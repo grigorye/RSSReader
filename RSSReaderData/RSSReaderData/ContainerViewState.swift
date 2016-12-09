@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
-import GEFoundation
-import GETracing
 import CoreData.NSManagedObject
 
 public let sortDescriptorsForContainers = [NSSortDescriptor(key: #keyPath(Item.date), ascending: false)]

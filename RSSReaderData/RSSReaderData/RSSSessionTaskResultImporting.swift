@@ -7,8 +7,7 @@
 //
 
 import GECoreData
-import GEFoundation
-import GETracing
+import typealias GEFoundation.Json
 import CoreData
 import Foundation
 

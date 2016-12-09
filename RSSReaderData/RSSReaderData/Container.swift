@@ -7,8 +7,6 @@
 //
 
 import GECoreData
-import GEFoundation
-import GETracing
 import CoreData
 
 protocol Validating {

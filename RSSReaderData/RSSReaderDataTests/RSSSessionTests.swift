@@ -7,7 +7,6 @@
 //
 
 @testable import RSSReaderData
-import GETracing
 import XCTest
 
 class RSSSessionTests: XCTestCase {

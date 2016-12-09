@@ -6,9 +6,7 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
-import GECoreData
-import GEFoundation
-import GETracing
+import func GEFoundation.URLQuerySuffixFromComponents
 import CoreData
 import Foundation
 

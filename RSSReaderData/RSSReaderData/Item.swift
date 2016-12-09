@@ -6,9 +6,7 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
-import GECoreData
-import GEFoundation
-import GETracing
+import func GEFoundation.cachePropertyWithName
 import Foundation
 import CoreData
 

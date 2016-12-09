@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
-import GEFoundation
-import GETracing
 import PromiseKit
 import Foundation
 import CoreData

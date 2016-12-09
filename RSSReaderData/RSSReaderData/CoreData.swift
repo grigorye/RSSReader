@@ -7,7 +7,6 @@
 //
 
 import GECoreData
-import GETracing
 import CoreData
 import Foundation
 

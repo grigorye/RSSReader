@@ -6,9 +6,6 @@
 //  Copyright © 2015 Grigory Entin. All rights reserved.
 //
 
-import GECoreData
-import GEFoundation
-import GETracing
 import Foundation
 import CoreData
 
@@ -77,7 +74,7 @@ public let (managedObjectContextError, saveQueueManagedObjectContext): (Error?, 
 }()
 
 private var mainQueueMOCAutosaver: ManagedObjectContextAutosaver?
-public let mainQueueManagedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType) … {
+public let mainQueueManagedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)…{
 	$0.name = "main"
 	$0.parent = saveQueueManagedObjectContext
 	if !defaults.savingDisabled {
