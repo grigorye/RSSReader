@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
-import GEFoundation
-import GETracing
 import CoreData
 
 public class FetchedObjectBinding<T> : NSObject, NSFetchedResultsControllerDelegate where T: DefaultSortable, T: Managed, T: NSFetchRequestResult {

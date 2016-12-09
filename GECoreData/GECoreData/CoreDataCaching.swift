@@ -6,8 +6,8 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
-import GEFoundation
-import GETracing
+import protocol GEFoundation.PropertyCacheable
+import func GEFoundation.associatedObjectRegeneratedAsNecessary
 import CoreData.NSManagedObjectContext
 import CoreData.NSManagedObject
 
