@@ -6,8 +6,6 @@
 //  Copyright © 2015 Grigory Entin. All rights reserved.
 //
 
-import GEFoundation
-import GETracing
 #if DZ_READABILITY_ENABLED
 import DZReadability
 #endif

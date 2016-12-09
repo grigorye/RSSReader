@@ -12,16 +12,17 @@ let crashlyticsInitializer: Void = ()
 
 #else
 
-import GEFoundation
-import GETracing
-import Fabric
+import struct GETracing.LogRecord
+import func GEFoundation.defaultLoggedTextWithThread
 import Crashlytics
-import Foundation
 
 func crashlyticsLogger(record: LogRecord) {
 	let text = defaultLoggedTextWithThread(for: record)
 	CLSLogv("%@", getVaList([text]))
 }
+
+import var GETracing.loggers
+import Fabric
 
 let crashlyticsInitializer: Void = {
 	Fabric.with([Crashlytics()])

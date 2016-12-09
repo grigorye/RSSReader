@@ -6,13 +6,13 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
-import GEUIKit
-import GEFoundation
-import GETracing
+import func GEUIKit.openSettingsApp
+import func GEUIKit.forceCrash
+import func GEFoundation.loadDefaultsFromSettingsPlistAtURL
+import var GEFoundation.versionIsClean
 import Loggy
 import FBAllocationTracker
 import FBMemoryProfiler
-import GETracing
 import UIKit
 
 extension KVOCompliantUserDefaults {

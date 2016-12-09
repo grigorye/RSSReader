@@ -6,8 +6,7 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
-import GEFoundation
-import GETracing
+import typealias GETracing.LogRecord
 import Foundation
 
 let fileManager = FileManager.default
@@ -31,6 +30,8 @@ let logFileHandle: FileHandle! = {
 	return try! FileHandle(forWritingTo: logFileURL)
 }()
 
+import func GEFoundation.defaultLoggedTextWithTimestampAndThread
+
 func fileLogger(record: LogRecord) {
 	guard let logFileHandle = logFileHandle else {
 		return
@@ -39,6 +40,8 @@ func fileLogger(record: LogRecord) {
 	let data = text.data(using: .utf8)!
 	logFileHandle.write(data)
 }
+
+import var GETracing.loggers
 
 let fileLoggerInitializer: Void = {
 	$(logFileURL)
