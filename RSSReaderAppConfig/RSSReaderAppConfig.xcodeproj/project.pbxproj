@@ -40,6 +40,8 @@
 		C4BE5ADA1DA8712600E1734F /* RSSReaderAppConfigTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5A8A1DA85DA100E1734F /* RSSReaderAppConfigTests.swift */; };
 		C4BE5AE11DAA5AE000E1734F /* UserMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BE5ADF1DAA5AE000E1734F /* UserMessages.swift */; };
 		C4BE5AE21DAA5AE000E1734F /* Readability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BE5AE01DAA5AE000E1734F /* Readability.swift */; };
+		C4EB27FD1DFA35A400BF0843 /* ModuleExports-GETracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27FB1DFA35A400BF0843 /* ModuleExports-GETracing.swift */; };
+		C4EB27FE1DFA35A400BF0843 /* ModuleExports-GEFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27FC1DFA35A400BF0843 /* ModuleExports-GEFoundation.swift */; };
 		C4F738971DBD73820092F1D8 /* GEUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1BA1DBBA6F000A86CC0 /* GEUIKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +117,8 @@
 		C4BE5ADB1DA8762D00E1734F /* RSSReader-app.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "RSSReader-app.xcconfig"; path = "../RSSReader/RSSReader-app.xcconfig"; sourceTree = "<group>"; };
 		C4BE5ADF1DAA5AE000E1734F /* UserMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMessages.swift; sourceTree = "<group>"; };
 		C4BE5AE01DAA5AE000E1734F /* Readability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Readability.swift; sourceTree = "<group>"; };
+		C4EB27FB1DFA35A400BF0843 /* ModuleExports-GETracing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GETracing.swift"; path = "../GETracing/GETracing/ModuleExports-GETracing.swift"; sourceTree = SOURCE_ROOT; };
+		C4EB27FC1DFA35A400BF0843 /* ModuleExports-GEFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GEFoundation.swift"; path = "../GEFoundation/GEFoundation/ModuleExports-GEFoundation.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +183,8 @@
 				C4BE5AA31DA85E7500E1734F /* UINavigationItem+MultipleButtonItemsCollections.swift */,
 				C4BE5AA51DA85E7500E1734F /* ContainedViewControllersAwareNavigationControllerDelegate.swift */,
 				C4BE5A801DA85DA100E1734F /* Info.plist */,
+				C4EB27FB1DFA35A400BF0843 /* ModuleExports-GETracing.swift */,
+				C4EB27FC1DFA35A400BF0843 /* ModuleExports-GEFoundation.swift */,
 			);
 			path = RSSReaderAppConfig;
 			sourceTree = "<group>";
@@ -318,12 +324,14 @@
 			files = (
 				C4BE5AA91DA85E7500E1734F /* ContainedViewControllersAwareNavigationControllerDelegate.swift in Sources */,
 				C4BE5A9A1DA85DE000E1734F /* Analytics.swift in Sources */,
+				C4EB27FE1DFA35A400BF0843 /* ModuleExports-GEFoundation.swift in Sources */,
 				C4BE5AB11DA8664600E1734F /* UITabBarController+CVKHiearachySearcher.swift in Sources */,
 				C4BE5AA71DA85E7500E1734F /* UINavigationItem+MultipleButtonItemsCollections.swift in Sources */,
 				C4BE5A9F1DA85E0600E1734F /* Crashlytics.swift in Sources */,
 				C4BE5AE21DAA5AE000E1734F /* Readability.swift in Sources */,
 				C4BE5A9B1DA85DE000E1734F /* Appsee.swift in Sources */,
 				C4BE5AA11DA85E2400E1734F /* FileLogger.swift in Sources */,
+				C4EB27FD1DFA35A400BF0843 /* ModuleExports-GETracing.swift in Sources */,
 				C4BE5AA61DA85E7500E1734F /* UITableView+SnappingHeaderToTop.swift in Sources */,
 				C4BE5AE11DAA5AE000E1734F /* UserMessages.swift in Sources */,
 				C4BE5AB51DA868AD00E1734F /* AppDelegateBase.swift in Sources */,
