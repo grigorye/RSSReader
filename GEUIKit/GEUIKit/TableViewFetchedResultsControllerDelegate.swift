@@ -6,9 +6,7 @@
 //  Copyright © 2015 Grigory Entin. All rights reserved.
 //
 
-import GECoreData
-import GEFoundation
-import GETracing
+import func GECoreData.stringFromFetchedResultsChangeType
 import CoreData.NSFetchedResultsController
 import UIKit.UITableView
 

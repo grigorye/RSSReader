@@ -8,7 +8,6 @@
 
 #if os(iOS)
 
-import GETracing
 import Foundation
 import UIKit
 

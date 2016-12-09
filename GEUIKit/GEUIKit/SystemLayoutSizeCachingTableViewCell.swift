@@ -8,8 +8,6 @@
 
 #if os(iOS)
 
-import GEFoundation
-import GETracing
 import Foundation
 import UIKit.UITableViewCell
 
