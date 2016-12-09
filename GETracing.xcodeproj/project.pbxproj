@@ -93,6 +93,7 @@
 		C4E5DB841DBEAD8900170422 /* Conveniences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conveniences.swift; sourceTree = "<group>"; };
 		C4E5DB861DBEAFB900170422 /* Labeling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Labeling.swift; sourceTree = "<group>"; };
 		C4E5DB881DBEB01A00170422 /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
+		C4EB27E81DFA30D100BF0843 /* ModuleExports-GETracing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ModuleExports-GETracing.swift"; sourceTree = "<group>"; };
 		C4FEBB1C1BF960A300A5709B /* BundleForSymbolAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleForSymbolAddress.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,6 +149,7 @@
 				C4FEBB1C1BF960A300A5709B /* BundleForSymbolAddress.swift */,
 				C40EA7281C6FCA2B002C6D9E /* Bridging-Header.h */,
 				C41818651B6A65B100872EB3 /* Info.plist */,
+				C4EB27E81DFA30D100BF0843 /* ModuleExports-GETracing.swift */,
 			);
 			path = GETracing;
 			sourceTree = "<group>";
