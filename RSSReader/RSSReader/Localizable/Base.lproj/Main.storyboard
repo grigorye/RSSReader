@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kPx-QE-mCE">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11761" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WZP-Ap-ZYg">
+    <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,40 +27,12 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zFv-LP-vEt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="lhp-L4-Vf7" customClass="ContainedViewControllersAwareNavigationControllerDelegate" customModule="RSSReaderAppConfig"/>
             </objects>
-            <point key="canvasLocation" x="1588" y="-310"/>
+            <point key="canvasLocation" x="2409" y="-944"/>
         </scene>
         <!--Item List-->
         <scene sceneID="koH-zh-gho">
             <objects>
-                <tableViewController restorationIdentifier="ItemList" id="3bj-4R-y2f" userLabel="Item List" customClass="ItemsViewController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ItemTable" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="miw-d9-dd2" customClass="ItemTableView" customModule="RSSReader" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="EWs-Zr-aQI">
-                            <rect key="frame" x="0.0" y="64" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="wdZ-Mg-Hxi">
-                                    <rect key="frame" x="177.5" y="12" width="20" height="20"/>
-                                </activityIndicatorView>
-                            </subviews>
-                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="centerX" secondItem="wdZ-Mg-Hxi" secondAttribute="centerX" id="0Gq-Vm-W3Y"/>
-                                <constraint firstAttribute="centerY" secondItem="wdZ-Mg-Hxi" secondAttribute="centerY" id="efg-8v-YXk"/>
-                            </constraints>
-                        </view>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="estimatedRowHeight">
-                                <integer key="value" value="44"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                        <connections>
-                            <outlet property="dataSource" destination="3bj-4R-y2f" id="7tV-0j-7j6"/>
-                            <outlet property="delegate" destination="3bj-4R-y2f" id="19f-tM-vXl"/>
-                        </connections>
-                    </tableView>
+                <viewController restorationIdentifier="ItemList" id="3bj-4R-y2f" userLabel="Item List" customClass="ItemsViewController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems>
                         <barButtonItem title="BEG" id="vVv-px-o6a">
                             <userDefinedRuntimeAttributes>
@@ -81,7 +53,7 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="lch-OH-fYf"/>
                         <barButtonItem style="plain" id="oV4-UX-7T3" userLabel="Status">
                             <view key="customView" contentMode="scaleToFill" id="xe1-cP-Lvh">
-                                <rect key="frame" x="121" y="6" width="133" height="33"/>
+                                <rect key="frame" x="114" y="5.5" width="133" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bC2-zF-sCe">
@@ -111,7 +83,7 @@
                         <rightBarButtonItems>
                             <barButtonItem id="oay-ah-Cmq" userLabel="Filter Unread">
                                 <view key="customView" contentMode="scaleToFill" horizontalHuggingPriority="1000" id="Scz-fI-oxT">
-                                    <rect key="frame" x="226" y="5" width="133" height="33"/>
+                                    <rect key="frame" x="171" y="5" width="133" height="33"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y2K-Hr-675">
@@ -139,7 +111,7 @@
                             </barButtonItem>
                             <barButtonItem id="pWh-vF-c3Z" userLabel="Unfilter Unread">
                                 <view key="customView" contentMode="scaleToFill" horizontalHuggingPriority="1000" id="TEN-hJ-7sJ">
-                                    <rect key="frame" x="85" y="5" width="133" height="33"/>
+                                    <rect key="frame" x="30" y="5" width="133" height="33"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Fg-wk-by1">
@@ -169,25 +141,18 @@
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
-                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="h0A-Kc-KSk">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <connections>
-                            <action selector="refresh:" destination="3bj-4R-y2f" eventType="valueChanged" id="O4D-jz-jmg"/>
-                        </connections>
-                    </refreshControl>
                     <connections>
                         <outlet property="filterUnreadBarButtonItem" destination="oay-ah-Cmq" id="vZE-Ry-RVV"/>
                         <outlet property="statusBarButtonItem" destination="oV4-UX-7T3" id="qSB-1W-aPY"/>
                         <outlet property="statusLabel" destination="bC2-zF-sCe" id="XFM-sU-qk8"/>
                         <outlet property="unfilterUnreadBarButtonItem" destination="pWh-vF-c3Z" id="ffJ-zv-ht1"/>
-                        <segue destination="Wtn-2N-ccu" kind="show" identifier="showListPages" id="w0U-iJ-oAk"/>
+                        <segue destination="VQ0-zs-W8t" kind="showDetail" identifier="showListPages" id="w0U-iJ-oAk"/>
                         <segue destination="CEh-Po-b2S" kind="show" identifier="showListArticle" id="8Da-vm-piJ"/>
                     </connections>
-                </tableViewController>
+                </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nPg-NE-vWc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2340" y="602"/>
+            <point key="canvasLocation" x="2411" y="601"/>
         </scene>
         <!--Item Summary Web-->
         <scene sceneID="gVa-UT-Hal">
@@ -198,11 +163,11 @@
                         <viewControllerLayoutGuide type="bottom" id="dc0-h6-4ma"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bP8-F3-sZ0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" restorationIdentifier="WebView" translatesAutoresizingMaskIntoConstraints="NO" id="Cfj-LN-1bT">
-                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="372"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                 <connections>
@@ -262,14 +227,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IO5-uj-102" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="5Zp-Sc-Uhi" customClass="ItemSummaryWebViewDelegate" customModule="RSSReader" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="3824" y="602"/>
+            <point key="canvasLocation" x="3422" y="1430"/>
         </scene>
         <!--History List-->
         <scene sceneID="rdd-u3-Zc4">
             <objects>
                 <tableViewController restorationIdentifier="HistoryList" id="uqs-fG-LUI" userLabel="History List" customClass="HistoryViewController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="qfj-2U-o4N">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <userDefinedRuntimeAttributes>
@@ -285,12 +250,12 @@
                     <navigationItem key="navigationItem" title="History" id="Qyl-H4-2jl"/>
                     <connections>
                         <segue destination="CEh-Po-b2S" kind="show" identifier="showHistoryArticle" id="cJW-gk-KPb"/>
-                        <segue destination="Wtn-2N-ccu" kind="show" identifier="showHistoryPages" id="asX-LX-8NF"/>
+                        <segue destination="VQ0-zs-W8t" kind="showDetail" identifier="showHistoryPages" action="showViewController:sender:" id="asX-LX-8NF"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cMx-U7-ZHF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3424" y="-310"/>
+            <point key="canvasLocation" x="4425" y="-313"/>
         </scene>
         <!--Item Pages-->
         <scene sceneID="eCl-5V-8Pg">
@@ -318,33 +283,33 @@
                 </customObject>
                 <customObject id="Zh2-SY-7Jj" customClass="ItemPageViewControllerDataSource" customModule="RSSReader" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="3080" y="602"/>
+            <point key="canvasLocation" x="4425" y="601"/>
         </scene>
         <!--Folders-->
         <scene sceneID="oZL-j3-px6">
             <objects>
                 <tableViewController restorationIdentifier="Folders" id="daS-hT-cbp" userLabel="Folders" customClass="FoldersViewController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Folders" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Vqj-W7-YGa">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Folder" textLabel="Fgt-yI-K6M" detailTextLabel="AWh-VL-I4Q" style="IBUITableViewCellStyleValue1" id="WHP-Qn-lRn" customClass="TableViewContainerCell" customModule="RSSReader" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="22" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WHP-Qn-lRn" id="Av4-oV-meI">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Fgt-yI-K6M">
-                                            <rect key="frame" x="15" y="11" width="34" height="21"/>
+                                            <rect key="frame" x="15" y="12" width="33.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AWh-VL-I4Q">
-                                            <rect key="frame" x="305" y="15" width="35" height="16"/>
+                                            <rect key="frame" x="250" y="16" width="35" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                             <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -357,21 +322,21 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Subscription" textLabel="3T5-yD-fXA" detailTextLabel="8iu-NQ-WRU" style="IBUITableViewCellStyleValue1" id="xyv-Ly-14P" customClass="TableViewContainerCell" customModule="RSSReader" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="66" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xyv-Ly-14P" id="2g3-tA-iQO">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title•" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3T5-yD-fXA">
-                                            <rect key="frame" x="15" y="11" width="42" height="21"/>
+                                            <rect key="frame" x="15" y="12" width="41.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail•" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8iu-NQ-WRU">
-                                            <rect key="frame" x="298" y="15" width="42" height="16"/>
+                                            <rect key="frame" x="243.5" y="16" width="41.5" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                             <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -393,7 +358,7 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="K4p-y4-0fs"/>
                         <barButtonItem style="plain" id="lrQ-OK-B2T" userLabel="Status">
                             <view key="customView" contentMode="scaleToFill" id="Ouj-jh-zog">
-                                <rect key="frame" x="121" y="5.5" width="133" height="33"/>
+                                <rect key="frame" x="93" y="5.5" width="133" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wVV-rV-Zb5">
@@ -456,21 +421,21 @@
             <objects>
                 <tableViewController restorationIdentifier="Home" id="7OC-Am-sLl" customClass="HomeViewController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="03L-n6-ApN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections>
                             <tableViewSection id="lb5-Ub-Jw3">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="814-LB-d0O" style="IBUITableViewCellStyleDefault" id="Lrm-j1-pWr">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lrm-j1-pWr" id="9Mz-OG-0Wn">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subscriptions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="814-LB-d0O">
-                                                    <rect key="frame" x="15" y="0.0" width="325" height="43"/>
+                                                    <rect key="frame" x="15" y="0.0" width="270" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="Subscriptions-AI"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -484,14 +449,14 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="W01-H4-Bt3" style="IBUITableViewCellStyleDefault" id="EIs-vJ-gxa">
-                                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="44" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EIs-vJ-gxa" id="VXn-eK-SFx">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Favorites" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="W01-H4-Bt3">
-                                                    <rect key="frame" x="15" y="0.0" width="325" height="43"/>
+                                                    <rect key="frame" x="15" y="0.0" width="270" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="Favorites-AI"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -505,14 +470,14 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="1II-N6-C0V" style="IBUITableViewCellStyleDefault" id="GRf-8i-CsM">
-                                        <rect key="frame" x="0.0" y="88" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="88" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GRf-8i-CsM" id="Ifl-YI-sCO">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="History" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1II-N6-C0V">
-                                                    <rect key="frame" x="15" y="0.0" width="325" height="43"/>
+                                                    <rect key="frame" x="15" y="0.0" width="270" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <accessibility key="accessibilityConfiguration" identifier="History-AI"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -526,14 +491,14 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="qOu-K3-OJ2" style="IBUITableViewCellStyleDefault" id="4Ed-Aw-H23">
-                                        <rect key="frame" x="0.0" y="132" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="132" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Ed-Aw-H23" id="aqH-mg-7cY">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Debug" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qOu-K3-OJ2">
-                                                    <rect key="frame" x="15" y="0.0" width="325" height="43"/>
+                                                    <rect key="frame" x="15" y="0.0" width="270" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -565,7 +530,20 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oN9-Qd-U6o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2340" y="-310"/>
+            <point key="canvasLocation" x="3422" y="-313"/>
+        </scene>
+        <!--Split View Controller-->
+        <scene sceneID="Buf-IE-3wC">
+            <objects>
+                <splitViewController id="WZP-Ap-ZYg" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="kPx-QE-mCE" kind="relationship" relationship="masterViewController" id="Nrh-ow-dps"/>
+                        <segue destination="YsB-1A-9aT" kind="relationship" relationship="detailViewController" id="y9K-SZ-pJ9"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qFT-98-8YB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-15" y="-1460"/>
         </scene>
         <!--Main Tab Bar-->
         <scene sceneID="Mo6-GE-ndI">
@@ -644,7 +622,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t3D-R1-auU" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="X8F-nX-8zv" customClass="ContainedViewControllersAwareNavigationControllerDelegate" customModule="RSSReaderAppConfig"/>
             </objects>
-            <point key="canvasLocation" x="3424" y="-1460"/>
+            <point key="canvasLocation" x="3422" y="-1460"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JQu-I0-c0C">
@@ -657,7 +635,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="CiM-lR-cyW">
-                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="436" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
@@ -668,7 +646,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Mq-2k-B3X" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="8w6-v6-DNF" customClass="ContainedViewControllersAwareNavigationControllerDelegate" customModule="RSSReaderAppConfig"/>
             </objects>
-            <point key="canvasLocation" x="2340" y="-1044"/>
+            <point key="canvasLocation" x="1586" y="-311"/>
         </scene>
         <!--Debug-->
         <scene sceneID="KBZ-r1-sGW">
@@ -679,7 +657,35 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ic7-cw-w2w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2796" y="-1388"/>
+            <point key="canvasLocation" x="2883" y="-1046"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="b3T-QS-7fw">
+            <objects>
+                <viewController id="abl-xW-w22" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Bsb-aE-kJX"/>
+                        <viewControllerLayoutGuide type="bottom" id="lme-0B-P7n"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hGs-0x-Ali">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nothing" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R8d-6D-TsI">
+                                <rect key="frame" x="16" y="230" width="288" height="21"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="oQm-TO-gTR"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sg4-oA-h4P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-15" y="601"/>
         </scene>
         <!--Debug-->
         <scene sceneID="sMW-KR-SLn">
@@ -701,6 +707,50 @@
             </objects>
             <point key="canvasLocation" x="2412" y="-2088"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="tqN-tm-b6t">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="VQ0-zs-W8t" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="R0o-xq-YYU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="DQG-9Q-uSv">
+                        <rect key="frame" x="0.0" y="436" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="Wtn-2N-ccu" kind="relationship" relationship="rootViewController" id="tmf-I2-g3y"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DWg-NL-aGy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3422" y="600"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="LdI-UN-0fh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YsB-1A-9aT" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2nd-e3-K0X">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="jzf-TU-MiX">
+                        <rect key="frame" x="0.0" y="436" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="abl-xW-w22" kind="relationship" relationship="rootViewController" id="NCj-9B-JyG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iL5-FJ-2ze" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-15.199999999999999" y="-311.69415292353824"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Box" width="25" height="25"/>
@@ -709,11 +759,11 @@
         <image name="Unstar" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="w0U-iJ-oAk"/>
-        <segue reference="cdM-xC-qIu"/>
-        <segue reference="FhY-D2-pL1"/>
+        <segue reference="asX-LX-8NF"/>
         <segue reference="IQP-ep-vtz"/>
-        <segue reference="8Da-vm-piJ"/>
-        <segue reference="GuL-K5-Dyj"/>
+        <segue reference="FhY-D2-pL1"/>
+        <segue reference="EUy-Yi-gV8"/>
+        <segue reference="51W-HV-eUd"/>
+        <segue reference="cJW-gk-KPb"/>
     </inferredMetricsTieBreakers>
 </document>
