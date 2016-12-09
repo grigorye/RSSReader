@@ -7,9 +7,6 @@
 //
 
 import RSSReaderData
-import GEUIKit
-import GEFoundation
-import GETracing
 import PromiseKit
 import UIKit
 import CoreData
@@ -20,12 +17,13 @@ extension KVOCompliantUserDefaults {
 
 class ItemsViewController : ContainerViewController {
 
+	typealias _Self = ItemsViewController
+
 	lazy var prototypeCell: ItemTableViewCell = {
 		let nib = UINib(nibName: "ItemTableViewCell", bundle: Bundle(for: type(of: self)))
 		return nib.instantiate(withOwner: nil)[0] as! ItemTableViewCell
 	}()
 
-	typealias _Self = ItemsViewController
 	public var dataSource: ItemTableViewDataSource!
 	public lazy dynamic var loadController: ContainerLoadController! = {
 		let $ = ContainerLoadController(session: rssSession!, container: self.container, unreadOnly: self.showUnreadOnly) … {
@@ -78,15 +76,20 @@ class ItemsViewController : ContainerViewController {
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		switch segue.identifier! {
 		case MainStoryboard.SegueIdentifiers.ShowListPages:
-			let pageViewController = segue.destination as! UIPageViewController
+			let pageViewController = segue.destination as? UIPageViewController ?? segue.destination.childViewControllers.last as! UIPageViewController
 			let itemPageViewControllerDataSource = (pageViewController.dataSource as! ItemPageViewControllerDataSource) … {
 				$0.items = dataSource.fetchedObjects!
 			}
-			let initialViewController = itemPageViewControllerDataSource.viewControllerForItem(selectedItem, storyboard: pageViewController.storyboard!)
-			if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
-				pageViewController.edgesForExtendedLayout = UIRectEdge()
+			pageViewController … {
+				if floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1 {
+					$0.edgesForExtendedLayout = UIRectEdge()
+				}
+				let initialViewController = itemPageViewControllerDataSource.viewControllerForItem(selectedItem, storyboard: $0.storyboard!)
+				$0.setViewControllers([initialViewController], direction: .forward, animated: false, completion: nil)
+				$0.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
+				$0.navigationItem.leftItemsSupplementBackButton = true
 			}
-			pageViewController.setViewControllers([initialViewController], direction: .forward, animated: false, completion: nil)
+
 		default:
 			abort()
 		}
@@ -179,12 +182,13 @@ class ItemsViewController : ContainerViewController {
 	}
 	// MARK: -
 	func configureTableViewRowHeight() {
-		assert(0 < tableView.estimatedRowHeight)
-		assert(tableView.rowHeight == UITableViewAutomaticDimension)
-		
-		if defaults.fixedHeightItemRowsEnabled {
-			tableView.rowHeight = 44
-		}
+		tableView.estimatedRowHeight = 44
+		tableView.rowHeight = {
+			guard !defaults.fixedHeightItemRowsEnabled else {
+				return 44
+			}
+			return UITableViewAutomaticDimension
+		}()
 	}
 	func configureTableViewPrefetching() {
 		guard defaults.itemPrefetchingEnabled, #available(iOS 10.0, *) else {
@@ -193,7 +197,12 @@ class ItemsViewController : ContainerViewController {
 		tableView.prefetchDataSource = self
 	}
 	func configureLoading() {
+		let tableFooterView = UINib(nibName: "ItemTableViewFooter", bundle: Bundle(for: type(of: self))).instantiate(withOwner: self, options: nil).first! as! UIView
+		tableView.tableFooterView = tableFooterView
 		self.tableFooterViewOnLoading = tableView.tableFooterView
+		self.refreshControl = UIRefreshControl() … {
+			$0.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+		}
 	}
 	// MARK: -
 	override func viewDidLoad() {
@@ -254,7 +263,7 @@ extension ItemsViewController {
 		showUnreadOnly = false
 		reloadViewForNewConfiguration()
 	}
-	@IBAction private func refresh(_ sender: AnyObject!) {
+	@IBAction fileprivate func refresh(_ sender: AnyObject!) {
 		guard let refreshControl = refreshControl else {
 			fatalError()
 		}
