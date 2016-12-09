@@ -111,6 +111,9 @@
 		C4EA5C381CE929D300E395FE /* ContainerTableViewSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4EA5C371CE929D300E395FE /* ContainerTableViewSectionHeader.xib */; };
 		C4EA5C3C1CE930B200E395FE /* ContainerTableViewSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5C3B1CE930B200E395FE /* ContainerTableViewSectionHeaderView.swift */; };
 		C4EA6B301CB895EF00FCDAA5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4EA6B2E1CB895EF00FCDAA5 /* Localizable.strings */; };
+		C4EB27EC1DFA31ED00BF0843 /* ModuleExports-GETracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27EB1DFA31ED00BF0843 /* ModuleExports-GETracing.swift */; };
+		C4EB27EE1DFA328900BF0843 /* ModuleExports-GEFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27ED1DFA328900BF0843 /* ModuleExports-GEFoundation.swift */; };
+		C4EB28091DFA399E00BF0843 /* ModuleExports-GECoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB28081DFA399E00BF0843 /* ModuleExports-GECoreData.swift */; };
 		C4F1118B1CB84F66005C5A0F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4F1118D1CB84F66005C5A0F /* LaunchScreen.xib */; };
 		C4F1118E1CB84F6D005C5A0F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4F111901CB84F6D005C5A0F /* Main.storyboard */; };
 		C4F575D01A797C7B00F12F20 /* AddToFavoritesActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F575CF1A797C7B00F12F20 /* AddToFavoritesActivity.swift */; };
@@ -315,6 +318,9 @@
 		C4EA5C3B1CE930B200E395FE /* ContainerTableViewSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerTableViewSectionHeaderView.swift; path = Swift/ContainerTableViewSectionHeaderView.swift; sourceTree = "<group>"; };
 		C4EA6B2F1CB895EF00FCDAA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Localizable/Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C4EA6B311CB895F500FCDAA5 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = Localizable/ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C4EB27EB1DFA31ED00BF0843 /* ModuleExports-GETracing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GETracing.swift"; path = "../GETracing/GETracing/ModuleExports-GETracing.swift"; sourceTree = SOURCE_ROOT; };
+		C4EB27ED1DFA328900BF0843 /* ModuleExports-GEFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GEFoundation.swift"; path = "../GEFoundation/GEFoundation/ModuleExports-GEFoundation.swift"; sourceTree = SOURCE_ROOT; };
+		C4EB28081DFA399E00BF0843 /* ModuleExports-GECoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GECoreData.swift"; path = "../GECoreData/GECoreData/ModuleExports-GECoreData.swift"; sourceTree = SOURCE_ROOT; };
 		C4F1118C1CB84F66005C5A0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		C4F1118F1CB84F6D005C5A0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C4F111911CB84FE1005C5A0F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -449,6 +455,9 @@
 				C4CDD3C41A5357B20087DD05 /* Settings.bundle */,
 				C40C6C051A74AB5E00FAFA17 /* Bridging-Header.h */,
 				C4A164671CB89076009D8B86 /* Info.plist */,
+				C4EB28081DFA399E00BF0843 /* ModuleExports-GECoreData.swift */,
+				C4EB27ED1DFA328900BF0843 /* ModuleExports-GEFoundation.swift */,
+				C4EB27EB1DFA31ED00BF0843 /* ModuleExports-GETracing.swift */,
 				C4EA6B2E1CB895EF00FCDAA5 /* Localizable.strings */,
 				C4A1646C1CB8938C009D8B86 /* InfoPlist.strings */,
 			);
@@ -855,6 +864,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4EB28091DFA399E00BF0843 /* ModuleExports-GECoreData.swift in Sources */,
 				C441F1791DB24A1D0060E692 /* MainScene.swift in Sources */,
 				C4C780161A7DF1EC009CB5FC /* ApplicationActivities.swift in Sources */,
 				C49540A51A57906600F56168 /* ItemSummaryWebViewController.swift in Sources */,
@@ -877,10 +887,12 @@
 				C48C5F971A87344000A1EA12 /* ItemPageViewController.swift in Sources */,
 				C4CDD3A31A5350B40087DD05 /* AppDelegate.swift in Sources */,
 				C4C422181A75E355008803A7 /* MainNavigationController.swift in Sources */,
+				C4EB27EC1DFA31ED00BF0843 /* ModuleExports-GETracing.swift in Sources */,
 				C4F7DC3D1D97E9A800275E4F /* ItemTableViewDataSource.swift in Sources */,
 				C441F17B1DB254260060E692 /* GlobalFoldersController.swift in Sources */,
 				C4C780141A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift in Sources */,
 				C4F575D01A797C7B00F12F20 /* AddToFavoritesActivity.swift in Sources */,
+				C4EB27EE1DFA328900BF0843 /* ModuleExports-GEFoundation.swift in Sources */,
 				C4C0941B1D99ED4A00D27162 /* ItemInListView.swift in Sources */,
 				C441F17F1DB258550060E692 /* SharedRSSAccount.swift in Sources */,
 				C4667F0D1CC80A050039C480 /* Appearance.swift in Sources */,
