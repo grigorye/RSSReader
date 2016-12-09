@@ -13,15 +13,24 @@ import Foundation
 //
 
 infix operator …
+
 @discardableResult
-public func …<T: AnyObject>(obj: T, initialize: (T) throws -> Void) rethrows -> T {
+public func with<T: AnyObject>(_ obj: T, _ initialize: (T) throws -> Void) rethrows -> T {
 	try initialize(obj)
 	return obj
 }
-public func …<T: Any>(value: T, initialize: (inout T) throws -> Void) rethrows -> T {
+public func with<T: Any>(_ value: T, _ initialize: (inout T) throws -> Void) rethrows -> T {
 	var valueCopy = value
 	try initialize(&valueCopy)
 	return valueCopy
+}
+
+@discardableResult
+public func …<T: Any>(value: T, initialize: (inout T) throws -> Void) rethrows -> T {
+	return try with(value, initialize)
+}
+public func …<T: AnyObject>(obj: T, initialize: (T) throws -> Void) rethrows -> T {
+	return try with(obj, initialize)
 }
 
 /**

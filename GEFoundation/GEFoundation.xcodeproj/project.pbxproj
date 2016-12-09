@@ -52,6 +52,8 @@
 		C49FF1931DBB9D4000A86CC0 /* GEShared.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C49FF1921DBB9D4000A86CC0 /* GEShared.xcconfig */; };
 		C49FF19F1DBB9FF400A86CC0 /* KVOBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF19E1DBB9FF400A86CC0 /* KVOBinding.swift */; };
 		C49FF1A11DBBA01100A86CC0 /* ObjectAndKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF1A01DBBA01100A86CC0 /* ObjectAndKeyPath.swift */; };
+		C4EB27F11DFA32D900BF0843 /* ModuleExports-GETracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27F01DFA32D900BF0843 /* ModuleExports-GETracing.swift */; };
+		C4EB27F21DFA32F300BF0843 /* ModuleExports-GEFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27EF1DFA32C900BF0843 /* ModuleExports-GEFoundation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +128,8 @@
 		C49FF1921DBB9D4000A86CC0 /* GEShared.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = GEShared.xcconfig; path = ../XcodeConfiguration/GEShared.xcconfig; sourceTree = "<group>"; };
 		C49FF19E1DBB9FF400A86CC0 /* KVOBinding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOBinding.swift; sourceTree = "<group>"; };
 		C49FF1A01DBBA01100A86CC0 /* ObjectAndKeyPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectAndKeyPath.swift; sourceTree = "<group>"; };
+		C4EB27EF1DFA32C900BF0843 /* ModuleExports-GEFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ModuleExports-GEFoundation.swift"; sourceTree = "<group>"; };
+		C4EB27F01DFA32D900BF0843 /* ModuleExports-GETracing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GETracing.swift"; path = "../GETracing/GETracing/ModuleExports-GETracing.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +197,8 @@
 				C48CAA311DBD3ABA00D6F40E /* Sugar.swift */,
 				C48CAA2F1DBD3A8B00D6F40E /* Bridging-Header.h */,
 				C49FF0FE1DBB981300A86CC0 /* Info.plist */,
+				C4EB27EF1DFA32C900BF0843 /* ModuleExports-GEFoundation.swift */,
+				C4EB27F01DFA32D900BF0843 /* ModuleExports-GETracing.swift */,
 			);
 			path = GEFoundation;
 			sourceTree = "<group>";
@@ -341,6 +347,7 @@
 				C49FF1871DBB99FB00A86CC0 /* Descriptions.swift in Sources */,
 				C49FF1791DBB996D00A86CC0 /* GenericURLSessionExtensions.swift in Sources */,
 				C48CAA221DBD318700D6F40E /* KVOCompliantUserDefaults.swift in Sources */,
+				C4EB27F11DFA32D900BF0843 /* ModuleExports-GETracing.swift in Sources */,
 				C48CAA1C1DBC26F100D6F40E /* ObjCEncode.swift in Sources */,
 				C49FF19F1DBB9FF400A86CC0 /* KVOBinding.swift in Sources */,
 				C48CAA2A1DBD399100D6F40E /* AssociatedObjects.swift in Sources */,
@@ -355,6 +362,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4EB27F21DFA32F300BF0843 /* ModuleExports-GEFoundation.swift in Sources */,
 				C48CAA241DBD319300D6F40E /* KVOCompliantUserDefaultsTests.swift in Sources */,
 				C49FF18B1DBB9B0900A86CC0 /* URLSessionTaskGeneratorErrorObjCBridgingTests.swift in Sources */,
 				C49FF1091DBB981300A86CC0 /* GEFoundationTests.swift in Sources */,

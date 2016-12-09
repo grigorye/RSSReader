@@ -13,7 +13,11 @@ public struct ObjectAndKeyPath {
 	public let keyPath: String
 }
 
+public func objectAndKeyPath(_ object: NSObject, _ keyPath: String) -> ObjectAndKeyPath {
+	return ObjectAndKeyPath(object: object, keyPath: keyPath)
+}
+
 infix operator •
 public func •(object: NSObject, keyPath: String) -> ObjectAndKeyPath {
-	return ObjectAndKeyPath(object: object, keyPath: keyPath)
+	return objectAndKeyPath(object, keyPath)
 }
