@@ -7,18 +7,39 @@
 //
 
 import RSSReaderData
-import GECoreData
-import GEFoundation
-import GETracing
 import UIKit
 
 extension KVOCompliantUserDefaults {
 	@NSManaged var hideBarsOnSwipe: Bool
 }
 
+extension MainScene : UISplitViewControllerDelegate {
+
+	func splitViewController(_ splitViewController: UISplitViewController, showDetail vc: UIViewController, sender: Any?) -> Bool {
+		guard $(splitViewController.isCollapsed) else {
+			return false
+		}
+		let masterNavigationController = splitViewController.viewControllers.first as! UINavigationController
+		let secondaryNavigationController = vc as! UINavigationController
+		masterNavigationController.show(secondaryNavigationController.topViewController!, sender: sender)
+		return true
+	}
+
+	func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
+		return true
+	}
+
+}
+
 class MainScene : NSObject {
 
 	var window: UIWindow
+
+	lazy var splitViewController: UISplitViewController! = {
+		return (self.window.rootViewController! as? UISplitViewController) … {
+			$0?.delegate = self
+		}
+	}()
 	
 	lazy var tabBarController: UITabBarController! = {
 		return self.window.rootViewController! as? UITabBarController
@@ -40,9 +61,9 @@ class MainScene : NSObject {
 	}()
 	
 	lazy var favoritesViewController: ItemsViewController = {
-		let $ = (self.tabBarController.viewControllers![1] as! UINavigationController).viewControllers.first as! ItemsViewController
-		configureItemsViewControllerForFavorites($)
-		return $
+		return ((self.tabBarController.viewControllers![1] as! UINavigationController).viewControllers.first as! ItemsViewController) … {
+			configureItemsViewControllerForFavorites($0)
+		}
 	}()
 	
 	// MARK: -
@@ -72,6 +93,10 @@ class MainScene : NSObject {
 				let title = NSLocalizedString("Favorites", comment: "");
 				return UIBarButtonItem(title: title, style: .plain, target: nil, action: nil)
 			}()
+		}
+		if let splitViewController = self.splitViewController {
+			let navigationController = splitViewController.viewControllers.last as! UINavigationController
+			navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
 		}
 	}
 }
