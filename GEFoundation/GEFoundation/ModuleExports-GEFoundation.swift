@@ -23,6 +23,7 @@ internal func …<T: Any>(value: T, initialize: (inout T) throws -> Void) rethro
 
 typealias KVOCompliantUserDefaults = GEFoundation.KVOCompliantUserDefaults
 typealias ProgressEnabledURLSessionTaskGenerator = GEFoundation.ProgressEnabledURLSessionTaskGenerator
+typealias URLSessionTaskGeneratorError = GEFoundation.URLSessionTaskGeneratorError
 
 typealias Ignored = GEFoundation.Ignored
 typealias Handler = GEFoundation.Handler
