@@ -6,7 +6,6 @@
 //  Copyright © 2015 Grigory Entin. All rights reserved.
 //
 
-import GETracing
 import Foundation
 
 public let defaults = KVOCompliantUserDefaults()

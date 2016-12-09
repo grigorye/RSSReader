@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
-import GETracing
 import Foundation
 
 public typealias Json = [String : AnyObject]

@@ -6,7 +6,6 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
-import GETracing
 import Foundation
 
 public func loadDefaultsFromSettingsPlistAtURL(_ url: URL) throws {

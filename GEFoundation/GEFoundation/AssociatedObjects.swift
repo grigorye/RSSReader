@@ -6,7 +6,6 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
-import GETracing
 import Foundation
 
 public func associatedObjectRegeneratedAsNecessary<T>(obj: AnyObject!, key: UnsafeRawPointer, generator: () -> T) -> T {
