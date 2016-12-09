@@ -30,6 +30,8 @@
 		C49FF18F1DBB9C3200A86CC0 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF18E1DBB9C3200A86CC0 /* Globals.swift */; };
 		C49FF1C41DBBAA4B00A86CC0 /* GECoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1C11DBBAA4B00A86CC0 /* GECoreData.framework */; };
 		C49FF1C51DBBAA4B00A86CC0 /* GEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1C21DBBAA4B00A86CC0 /* GEFoundation.framework */; };
+		C4EB27F51DFA334D00BF0843 /* ModuleExports-GETracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27F31DFA334D00BF0843 /* ModuleExports-GETracing.swift */; };
+		C4EB27F61DFA334D00BF0843 /* ModuleExports-GEFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27F41DFA334D00BF0843 /* ModuleExports-GEFoundation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +85,8 @@
 		C49FF18E1DBB9C3200A86CC0 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		C49FF1C11DBBAA4B00A86CC0 /* GECoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GECoreData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C49FF1C21DBBAA4B00A86CC0 /* GEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GEFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4EB27F31DFA334D00BF0843 /* ModuleExports-GETracing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GETracing.swift"; path = "../GETracing/GETracing/ModuleExports-GETracing.swift"; sourceTree = SOURCE_ROOT; };
+		C4EB27F41DFA334D00BF0843 /* ModuleExports-GEFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GEFoundation.swift"; path = "../GEFoundation/GEFoundation/ModuleExports-GEFoundation.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +144,8 @@
 				C49FF13E1DBB989000A86CC0 /* UIKitUtilities.swift */,
 				C49FF13F1DBB989000A86CC0 /* UIDataSourceModelAssociation+NilIndexPathInModelIdentifierForElement.swift */,
 				C49FF1221DBB985400A86CC0 /* Info.plist */,
+				C4EB27F41DFA334D00BF0843 /* ModuleExports-GEFoundation.swift */,
+				C4EB27F31DFA334D00BF0843 /* ModuleExports-GETracing.swift */,
 			);
 			path = GEUIKit;
 			sourceTree = "<group>";
@@ -275,7 +281,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C49FF1401DBB989000A86CC0 /* TypeFilteringActivity.swift in Sources */,
+				C4EB27F61DFA334D00BF0843 /* ModuleExports-GEFoundation.swift in Sources */,
 				C49FF1411DBB989000A86CC0 /* TableViewFetchedResultsControllerDelegate.swift in Sources */,
+				C4EB27F51DFA334D00BF0843 /* ModuleExports-GETracing.swift in Sources */,
 				C49FF1431DBB989000A86CC0 /* TableViewHeightBasedReusedCellGenerator.swift in Sources */,
 				C49FF1471DBB989000A86CC0 /* UIDataSourceModelAssociation+NilIndexPathInModelIdentifierForElement.swift in Sources */,
 				C49FF1451DBB989000A86CC0 /* SystemLayoutSizeCachingTableViewCell.swift in Sources */,
