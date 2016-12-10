@@ -10,6 +10,7 @@ import func GEUIKit.openSettingsApp
 import func GEUIKit.forceCrash
 import func GEFoundation.loadDefaultsFromSettingsPlistAtURL
 import var GEFoundation.versionIsClean
+import var GEFoundation.buildAge
 import Loggy
 import FBAllocationTracker
 import FBMemoryProfiler
@@ -77,6 +78,7 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 	// MARK: -
 	static private let initializeOnce: Ignored = {
 		var scope = Activity("Initializing Analytics").enter(); defer { scope.leave() }
+		$(buildAge)
 		if $(versionIsClean) {
 			_ = crashlyticsInitializer
 			_ = appseeInitializer
