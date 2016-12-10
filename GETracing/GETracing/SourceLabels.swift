@@ -59,7 +59,8 @@ func sourceExtractedInfo(for location: SourceLocation, traceFunctionName: String
 		let columnIndex = line.index(line.startIndex, offsetBy: location.column - (closure ? 0 : 1))
 		let prefix = line.substring(to: columnIndex)
 		let prefixReversed = String(prefix.characters.reversed())
-		let rangeOfClosingBracket = prefixReversed.rangeOfClosingBracket("(", openingBracket: ")", followedBy: "\(traceFunctionName.characters.reversed())")!
+		let traceFunctionNameReversed = String(traceFunctionName.characters.reversed())
+		let rangeOfClosingBracket = prefixReversed.rangeOfClosingBracket("(", openingBracket: ")", followedBy: traceFunctionNameReversed)!
 		let indexOfOpeningBracketInPrefixReversed = rangeOfClosingBracket.lowerBound
 		return location.column - prefixReversed.distance(from: prefixReversed.startIndex, to: indexOfOpeningBracketInPrefixReversed)
 	}()
