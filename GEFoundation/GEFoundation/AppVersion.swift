@@ -8,11 +8,13 @@
 
 import Foundation
 
-public let versionIsClean: Bool = {
-	let version = Bundle.main.infoDictionary!["CFBundleVersion"] as! NSString
-	$(version)
+public let buildAge: TimeInterval = {
 	let buildDate = try! FileManager.default.attributesOfItem(atPath: Bundle.main.bundlePath)[FileAttributeKey.modificationDate] as! Date
-	let buildAge = Date().timeIntervalSince(buildDate)
-	$(buildAge)
-	return NSNotFound == version.rangeOfCharacter(from: NSCharacterSet.decimalDigits.inverted).location
+	return Date().timeIntervalSince(buildDate)
+}()
+
+public let versionIsClean: Bool = {
+	let version = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
+	$(version)
+	return nil != version.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted)
 }()
