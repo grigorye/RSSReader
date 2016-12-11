@@ -8,7 +8,7 @@
 
 import protocol Foundation.RecoverableError
 
-public struct RecoveryOptionDescriptor {
+public struct RecoveryOption {
 
 	public let title: String
 
@@ -21,20 +21,20 @@ public struct RecoveryOptionDescriptor {
 	
 }
 
-public protocol RecoverableErrorWithDescriptors : RecoverableError {
+public protocol RecoverableError : Foundation.RecoverableError {
 
-	var recoveryOptionDescriptors: [RecoveryOptionDescriptor] { get }
+	var recoveryOptions: [RecoveryOption] { get }
 	
 }
 
-public extension RecoverableErrorWithDescriptors {
+public extension RecoverableError {
 
 	public var recoveryOptions: [String] {
-		return recoveryOptionDescriptors.map { $0.title }
+		return recoveryOptions.map { $0.title }
 	}
 	
 	public func attemptRecovery(optionIndex recoveryOptionIndex: Int) -> Bool {
-		return recoveryOptionDescriptors[recoveryOptionIndex].handler()
+		return recoveryOptions[recoveryOptionIndex].handler()
 	}
 	
 }
