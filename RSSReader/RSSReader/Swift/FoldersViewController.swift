@@ -106,9 +106,9 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 	@IBAction func refresh(_ sender: AnyObject!) {
 		firstly {
 			guard nil != rssSession else {
-				return Promise(value: ())
+				throw NotLoggedIn()
 			}
-			throw NotLoggedIn()
+			return Promise(value: ())
 		}.then {
 			return self.rssAccount.authenticate()
 		}.then {
