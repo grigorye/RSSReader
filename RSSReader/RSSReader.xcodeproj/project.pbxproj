@@ -68,8 +68,8 @@
 		C474F1C01DB041F100F0E152 /* Loggy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C474F1BF1DB041F100F0E152 /* Loggy.framework */; };
 		C474F1C11DB041F100F0E152 /* Loggy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C474F1BF1DB041F100F0E152 /* Loggy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C474F1CD1DB0657800F0E152 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474F1CC1DB0657800F0E152 /* main.swift */; };
-		C4816E2E1DF612E400DDACA7 /* GETracing.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C4270BFF1DBD502600FA3A0A /* GETracing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C4816E361DF612E400DDACA7 /* GEFoundation.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C49FF1CC1DBBAA9000A86CC0 /* GEFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C4816E2E1DF612E400DDACA7 /* GETracing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BFF1DBD502600FA3A0A /* GETracing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C4816E361DF612E400DDACA7 /* GEFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1CC1DBBAA9000A86CC0 /* GEFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C48C5F971A87344000A1EA12 /* ItemPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48C5F961A87344000A1EA12 /* ItemPageViewController.swift */; };
 		C495409B1A575C1900F56168 /* LoginAndPasswordDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495409A1A575C1900F56168 /* LoginAndPasswordDefaults.swift */; };
 		C49540A11A57825100F56168 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49540A01A57825100F56168 /* ItemsViewController.swift */; };
@@ -203,15 +203,16 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C4816E2B1DF612A800DDACA7 /* CopyFiles */ = {
+		C4816E2B1DF612A800DDACA7 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C4816E2E1DF612E400DDACA7 /* GETracing.framework in CopyFiles */,
-				C4816E361DF612E400DDACA7 /* GEFoundation.framework in CopyFiles */,
+				C4816E2E1DF612E400DDACA7 /* GETracing.framework in Embed Frameworks */,
+				C4816E361DF612E400DDACA7 /* GEFoundation.framework in Embed Frameworks */,
 			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		C4D436771D8777A3008C6386 /* Embed PlugIns */ = {
@@ -625,7 +626,7 @@
 				C444F5381B2E53F200A6E378 /* Sources */,
 				C444F5391B2E53F200A6E378 /* Frameworks */,
 				C444F53A1B2E53F200A6E378 /* Resources */,
-				C4816E2B1DF612A800DDACA7 /* CopyFiles */,
+				C4816E2B1DF612A800DDACA7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
