@@ -7,6 +7,7 @@
 //
 
 import RSSReaderData
+import GEUIKit
 import PromiseKit
 import UIKit
 import CoreData
@@ -286,12 +287,7 @@ extension ItemsViewController {
 		}.then {
 			self.presentInfoMessage(NSLocalizedString("Marked all as read.", comment: ""))
 		}.catch { error in
-			self.presentErrorMessage(
-				String.localizedStringWithFormat(
-					NSLocalizedString("Failed to mark all as read. %@", comment: ""),
-					"\(error)"
-				)
-			)
+			self.present(error)
 		}
 	}
 	@IBAction private func scrollToEnd(_ sender: AnyObject?) {
