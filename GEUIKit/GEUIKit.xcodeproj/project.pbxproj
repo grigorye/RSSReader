@@ -31,7 +31,6 @@
 		C49FF1C41DBBAA4B00A86CC0 /* GECoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1C11DBBAA4B00A86CC0 /* GECoreData.framework */; };
 		C49FF1C51DBBAA4B00A86CC0 /* GEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1C21DBBAA4B00A86CC0 /* GEFoundation.framework */; };
 		C4A8B8441DFC525900BEACFE /* ErrorPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A8B8431DFC525900BEACFE /* ErrorPresentation.swift */; };
-		C4A8B8481DFC53BE00BEACFE /* SWErrorRecovery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4A8B8471DFC53BE00BEACFE /* SWErrorRecovery.framework */; };
 		C4EB27F51DFA334D00BF0843 /* ModuleExports-GETracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27F31DFA334D00BF0843 /* ModuleExports-GETracing.swift */; };
 		C4EB27F61DFA334D00BF0843 /* ModuleExports-GEFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27F41DFA334D00BF0843 /* ModuleExports-GEFoundation.swift */; };
 /* End PBXBuildFile section */
@@ -88,7 +87,6 @@
 		C49FF1C11DBBAA4B00A86CC0 /* GECoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GECoreData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C49FF1C21DBBAA4B00A86CC0 /* GEFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GEFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4A8B8431DFC525900BEACFE /* ErrorPresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorPresentation.swift; sourceTree = "<group>"; };
-		C4A8B8471DFC53BE00BEACFE /* SWErrorRecovery.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SWErrorRecovery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4EB27F31DFA334D00BF0843 /* ModuleExports-GETracing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GETracing.swift"; path = "../GETracing/GETracing/ModuleExports-GETracing.swift"; sourceTree = SOURCE_ROOT; };
 		C4EB27F41DFA334D00BF0843 /* ModuleExports-GEFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GEFoundation.swift"; path = "../GEFoundation/GEFoundation/ModuleExports-GEFoundation.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -98,7 +96,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C4A8B8481DFC53BE00BEACFE /* SWErrorRecovery.framework in Frameworks */,
 				C4270BFC1DBD4FE900FA3A0A /* GETracing.framework in Frameworks */,
 				C49FF1C41DBBAA4B00A86CC0 /* GECoreData.framework in Frameworks */,
 				C49FF1C51DBBAA4B00A86CC0 /* GEFoundation.framework in Frameworks */,
@@ -168,7 +165,6 @@
 		C49FF1AB1DBBA21400A86CC0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C4A8B8471DFC53BE00BEACFE /* SWErrorRecovery.framework */,
 				C4270BFB1DBD4FE900FA3A0A /* GETracing.framework */,
 				C49FF1C11DBBAA4B00A86CC0 /* GECoreData.framework */,
 				C49FF1C21DBBAA4B00A86CC0 /* GEFoundation.framework */,
