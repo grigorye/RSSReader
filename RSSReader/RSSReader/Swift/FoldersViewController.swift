@@ -7,12 +7,30 @@
 //
 
 import RSSReaderData
+import func GEUIKit.openSettingsApp
+import protocol GEFoundation.RecoverableError
+import struct GEFoundation.RecoveryOption
 import PromiseKit
 import UIKit
 import CoreData
 
 extension KVOCompliantUserDefaults {
 	@NSManaged var showUnreadOnly: Bool
+}
+
+class NotLoggedIn : RecoverableError, LocalizedError {
+	var recoveryOptions: [RecoveryOption] = [
+		RecoveryOption(title: NSLocalizedString("Open Settings", comment: "")) {
+			openSettingsApp()
+			return true
+		},
+		RecoveryOption(title: NSLocalizedString("Cancel", comment: "")) {
+			return false
+		}
+	]
+	var errorDescription: String? = NSLocalizedString("Could not proceed as account information is missing.", comment: "")
+	var failureReason: String? = NSLocalizedString("You are not logged in.", comment: "")
+	var recoverySuggestion: String? = NSLocalizedString("To enable login, open this app's settings and fill \"Login and Password\".", comment: "")
 }
 
 extension FoldersUpdateState : CustomStringConvertible {
@@ -84,47 +102,16 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 		refreshControl?.beginRefreshing()
 		self.refresh(refreshControl)
 	}
-	static func viewControllerToPresent(on error: Error, title: String, retryAction: @escaping () -> Void) -> UIViewController {
-		let alertController: UIAlertController = {
-			let message: String = {
-				let localizedDescription: String = {
-					switch error {
-					case RSSReaderData.RSSSessionError.authenticationFailed:
-						return NSLocalizedString("Authentication Failed", comment: "Error description for authentication failure")
-					default:
-						return (error as NSError).localizedDescription
-					}
-				}()
-				if let localizedRecoverySuggestion = (error as NSError).localizedRecoverySuggestion {
-					return String.localizedStringWithFormat(NSLocalizedString("%@ %@", comment: "Error message"), localizedDescription, localizedRecoverySuggestion)
-				}
-				else {
-					return localizedDescription
-				}
-			}()
-			let $ = UIAlertController(title: title, message: message, preferredStyle: .alert) … {
-				let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel action title for alert on error"), style: .default) { action in
-					return
-				}
-				let retryAlertAction = UIAlertAction(title: NSLocalizedString("Retry", comment: "Proceed action title for alert on error"), style: .default) { action in
-					retryAction()
-					return
-				}
-				$0.addAction(cancelAction)
-				$0.addAction(retryAlertAction)
-				$0.preferredAction = retryAlertAction
-			}
-			return $
-		}()
-		return alertController
-	}
+
 	@IBAction func refresh(_ sender: AnyObject!) {
-		guard nil != rssSession else {
-			let message = NSLocalizedString("To sync you should be logged in.", comment: "")
-			presentErrorMessage(message)
-			return
-		}
-		rssAccount.authenticate().then {
+		firstly {
+			guard nil != rssSession else {
+				return Promise(value: ())
+			}
+			throw NotLoggedIn()
+		}.then {
+			return self.rssAccount.authenticate()
+		}.then {
 			return self.foldersController.updateFolders()
 		}.then { () -> Void in
 			if nil == self.rootFolder {
@@ -135,13 +122,11 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 		}.always {
 			self.refreshControl?.endRefreshing()
 		}.catch { updateError in
-			let errorTitle = NSLocalizedString("Refresh Failed", comment: "Title for alert on failed refresh")
-			let errorViewController = type(of: self).viewControllerToPresent(on: $(updateError), title: errorTitle) {
-				self.refresh(self)
-			}
-			self.present(errorViewController, animated: true, completion: nil)
+			let title = NSLocalizedString("Refresh Failed", comment: "Title for alert on failed refresh")
+			self.present(updateError, customTitle: title)
 		}
 	}
+	
 	// MARK: -
 	private func configureCell(_ cell: UITableViewCell, forFolder folder: Folder) {
 		(cell as! TableViewContainerCell).setFromContainer(folder)
