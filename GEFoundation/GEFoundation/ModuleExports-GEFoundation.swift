@@ -21,6 +21,21 @@ internal func …<T: Any>(value: T, initialize: (inout T) throws -> Void) rethro
 
 // MARK: -
 
+import struct Foundation.URLRequest
+
+extension URLRequest {
+	static func …(x: URLRequest, _ modify: (inout URLRequest) throws -> Void) rethrows -> URLRequest {
+		return try with(x, modify)
+	}
+}
+extension Array {
+	static func …(x: Array, _ modify: (inout Array) throws -> Void) rethrows -> Array {
+		return try with(x, modify)
+	}
+}
+
+// MARK: -
+
 typealias KVOCompliantUserDefaults = GEFoundation.KVOCompliantUserDefaults
 typealias ProgressEnabledURLSessionTaskGenerator = GEFoundation.ProgressEnabledURLSessionTaskGenerator
 typealias URLSessionTaskGeneratorError = GEFoundation.URLSessionTaskGeneratorError
