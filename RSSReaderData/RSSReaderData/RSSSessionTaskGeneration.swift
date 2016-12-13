@@ -17,10 +17,10 @@ extension RSSSession {
 	}
 	func authenticatedDataTask(with request: URLRequest, completionHandler: @escaping TaskCompletionHandler) -> URLSessionDataTask {
 		precondition(nil != self.authToken)
-		let authenticatedRequest = request … { (x: inout URLRequest) in
-			x.addValue("GoogleLogin auth=\(self.authToken!)", forHTTPHeaderField: "Authorization")
-			x.addValue(self.inoreaderAppID, forHTTPHeaderField: "AppId")
-			x.addValue(self.inoreaderAppKey, forHTTPHeaderField: "AppKey")
+		let authenticatedRequest = request … {
+			$0.addValue("GoogleLogin auth=\(self.authToken!)", forHTTPHeaderField: "Authorization")
+			$0.addValue(self.inoreaderAppID, forHTTPHeaderField: "AppId")
+			$0.addValue(self.inoreaderAppKey, forHTTPHeaderField: "AppKey")
 		}
 		return self.dataTask(with: authenticatedRequest) { data, response, error in
 			if case let URLSessionTaskGeneratorError.UnexpectedHTTPResponseStatus(httpResponse)? = error, httpResponse.statusCode == 401 {
