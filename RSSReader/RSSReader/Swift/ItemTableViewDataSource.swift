@@ -72,9 +72,9 @@ class ItemTableViewDataSource: NSObject {
 		typealias E = Item
 		let fetchRequest = E.fetchRequestForEntity() … {
 			$0.sortDescriptors = sortDescriptorsForContainers
-			$0.predicate = NSCompoundPredicate(andPredicateWithSubpredicates:[NSPredicate]() … { (x: inout [NSPredicate]) in
-				x += [self.container.predicateForItems]
-				x += [self.containerViewPredicate]
+			$0.predicate = NSCompoundPredicate(andPredicateWithSubpredicates:[NSPredicate]() … {
+				$0 += [self.container.predicateForItems]
+				$0 += [self.containerViewPredicate]
 			})
 #if true
 			$0.relationshipKeyPathsForPrefetching = [
