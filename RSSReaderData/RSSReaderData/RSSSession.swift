@@ -13,6 +13,7 @@ import CoreData
 let lastTagsFileURL = URL(fileURLWithPath: "\(NSTemporaryDirectory())/lastTags")
 
 public enum RSSSessionError: Error {
+	case unused
 	case authenticationFailed(underlyingError: Error)
 	case requestFailed(underlyingError: Error)
 	case jsonObjectIsNotDictionary(jsonObject: Any)
@@ -51,6 +52,32 @@ public extension RSSSession {
 	}
 	var authenticated: Bool {
 		return nil != authToken
+	}
+
+	static func setErrorUserInfoValueProvider() {
+		NSError.setUserInfoValueProvider(forDomain: (RSSSessionError.unused as NSError).domain) { error, key in
+			switch error {
+			case RSSSessionError.requestFailed(let underlyingError):
+				return (underlyingError as NSError).userInfo[key]
+			case RSSSessionError.authenticationFailed(_):
+				if key == NSLocalizedDescriptionKey {
+					return NSLocalizedString("Authentication Failed", comment: "Error description for authentication failure")
+				}
+				return nil
+			default:
+				return nil
+			}
+		}
+	}
+	
+	static private let initializeOnce: Ignored = {
+		setErrorUserInfoValueProvider()
+		return Ignored()
+	}()
+
+	override public class func initialize() {
+		super.initialize()
+		_ = initializeOnce
 	}
 }
 
