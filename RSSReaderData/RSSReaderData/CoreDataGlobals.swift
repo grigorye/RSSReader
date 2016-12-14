@@ -115,13 +115,49 @@ public func performBackgroundMOCTask(_ task: @escaping (NSManagedObjectContext) 
 }
 
 @available (iOS 10.0, *)
-public let persistentContainer = NSPersistentContainer(name: "RSSReader", managedObjectModel: managedObjectModel) … {
-	$0.loadPersistentStores { description, error in
-		$(description)
-		$(error)
-	}
+let persistentContainer = NSPersistentContainer(name: "RSSReader", managedObjectModel: managedObjectModel) … {
 	$0.viewContext … {
 		$0.name = "view"
 		$0.automaticallyMergesChangesFromParent = true
 	}
+	()
+}
+
+@available (iOS 10.0, *)
+struct LoadPersistentStoresError : Error {
+	let errorsAndDescriptions: [(Error, NSPersistentStoreDescription)]
+}
+
+@available (iOS 10.0, *)
+extension NSPersistentContainer {
+	func loadPersistentStoresAndWait(completionHandler: @escaping (Error?) -> Void) {
+		var descriptionsToComplete = persistentContainer.persistentStoreDescriptions.count
+		var errorsAndDescriptions = [(Error, NSPersistentStoreDescription)]()
+		let completionQueue = DispatchQueue(label: "loadPersistentStoresCompletion")
+		loadPersistentStores { (description, error) in
+			$(description)
+			completionQueue.async {
+				if let error = error {
+					errorsAndDescriptions += [(error, description)]
+				}
+				descriptionsToComplete -= 1
+				guard 0 == descriptionsToComplete else {
+					return
+				}
+				guard 0 == errorsAndDescriptions.count else {
+					completionHandler(LoadPersistentStoresError(errorsAndDescriptions: errorsAndDescriptions))
+					return
+				}
+				completionHandler(nil)
+			}
+		}
+	}
+}
+
+public func loadPersistentStores(completionHandler: @escaping (Error?) -> ()) {
+	guard #available(iOS 10.0, *) else {
+		completionHandler(managedObjectContextError)
+		return
+	}
+	persistentContainer.loadPersistentStoresAndWait(completionHandler: completionHandler)
 }
