@@ -14,7 +14,7 @@ extension URLSession {
 		return self.dataTask(with: $(request)) { data, response, error in
 			progress.becomeCurrent(withPendingUnitCount: 1)
 			progress.resignCurrent()
-			completionHandler?(data, $(response), error)
+			completionHandler?(data, $(response), $(error))
 		}
 	}
 }
