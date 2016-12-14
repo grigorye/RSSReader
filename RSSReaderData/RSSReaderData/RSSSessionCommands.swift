@@ -195,14 +195,14 @@ public struct StreamContents : PersistentDataUpdateCommand, AuthenticatedDataUpd
 	public typealias ResultType = (NSManagedObjectContext, (continuation: String?, items: [Item]))
 	let excludedCategory: Folder?, container: Container, continuation: String?, count: Int, loadDate: Date
 	var requestRelativeString: String {
-		let querySuffix = URLQuerySuffixFromComponents([String]() … { (x: inout [String]) in
+		let querySuffix = URLQuerySuffixFromComponents([String]() … {
 			if let continuation = continuation {
-				x += ["c=\($(continuation))"]
+				$0 += ["c=\($(continuation))"]
 			}
 			if let excludedCategory = excludedCategory {
-				x += ["xt=\($(excludedCategory.streamID))"]
+				$0 += ["xt=\($(excludedCategory.streamID))"]
 			}
-			x += ["n=\(count)"]
+			$0 += ["n=\(count)"]
 		})
 		let streamIDPercentEncoded = container.streamID.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.alphanumerics)!
 		return "/reader/api/0/stream/contents/\(streamIDPercentEncoded)\(querySuffix)"
@@ -235,9 +235,9 @@ struct Authenticate : PersistentDataUpdateCommand, SimpleDispatchingDataUpdateCo
 	}
 	var request: URLRequest {
 		let url = URL(string: "/accounts/ClientLogin", relativeTo: baseURL)!
-		let request = URLRequest(url: url) … { (x: inout URLRequest) in
-			x.httpMethod = "POST"
-			x.httpBody = {
+		let request = URLRequest(url: url) … {
+			$0.httpMethod = "POST"
+			$0.httpBody = {
 				let allowedCharacters = NSCharacterSet.alphanumerics
 				let loginEncoded = self.loginAndPassword.login?.addingPercentEncoding(withAllowedCharacters: allowedCharacters)
 				let passwordEncoded = self.loginAndPassword.password?.addingPercentEncoding(withAllowedCharacters: allowedCharacters)
