@@ -16,8 +16,9 @@ extension KVOCompliantUserDefaults {
 	@NSManaged var savingDisabled: Bool
 }
 
+let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: NSClassFromString("RSSReaderData.Folder")!)])!
+
 private func regeneratedPSC() throws -> NSPersistentStoreCoordinator {
-	let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: NSClassFromString("RSSReaderData.Folder")!)])!
 	let psc = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
 	let fileManager = FileManager.default
 	let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
@@ -57,7 +58,7 @@ private func regeneratedPSC() throws -> NSPersistentStoreCoordinator {
 }
 
 private var saveQueueMOCAutosaver: ManagedObjectContextAutosaver?
-public let (managedObjectContextError, saveQueueManagedObjectContext): (Error?, NSManagedObjectContext?) = {
+private let (managedObjectContextError, saveQueueManagedObjectContext): (Error?, NSManagedObjectContext?) = {
 	do {
 		let saveQueueManagedObjectContext = try NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType) … {
 			$0.name = "save"
@@ -74,7 +75,7 @@ public let (managedObjectContextError, saveQueueManagedObjectContext): (Error?, 
 }()
 
 private var mainQueueMOCAutosaver: ManagedObjectContextAutosaver?
-public let mainQueueManagedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)…{
+let persistentMainQueueManagedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)…{
 	$0.name = "main"
 	$0.parent = saveQueueManagedObjectContext
 	if !defaults.savingDisabled {
@@ -82,7 +83,14 @@ public let mainQueueManagedObjectContext = NSManagedObjectContext(concurrencyTyp
 	}
 }
 
-public let backgroundQueueManagedObjectContext: NSManagedObjectContext = {
+public var mainQueueManagedObjectContext: NSManagedObjectContext {
+	guard #available(iOS 10.0, *) else {
+		return persistentMainQueueManagedObjectContext
+	}
+	return persistentContainer.viewContext
+}
+
+let persistentBackgroundQueueManagedObjectContext: NSManagedObjectContext = {
 	guard defaults.backgroundImportEnabled else {
 		return mainQueueManagedObjectContext
 	}
@@ -94,3 +102,26 @@ public let backgroundQueueManagedObjectContext: NSManagedObjectContext = {
 		}
 	}
 }()
+
+public func performBackgroundMOCTask(_ task: @escaping (NSManagedObjectContext) -> Void) { guard #available(iOS 10.0, *) else {
+		return persistentBackgroundQueueManagedObjectContext.perform {
+			task(persistentBackgroundQueueManagedObjectContext)
+		}
+	}
+	return persistentContainer.performBackgroundTask { context in
+		context.name = "background"
+		task(context)
+	}
+}
+
+@available (iOS 10.0, *)
+public let persistentContainer = NSPersistentContainer(name: "RSSReader", managedObjectModel: managedObjectModel) … {
+	$0.loadPersistentStores { description, error in
+		$(description)
+		$(error)
+	}
+	$0.viewContext … {
+		$0.name = "view"
+		$0.automaticallyMergesChangesFromParent = true
+	}
+}
