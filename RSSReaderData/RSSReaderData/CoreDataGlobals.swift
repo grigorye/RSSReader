@@ -85,7 +85,7 @@ let persistentMainQueueManagedObjectContext = NSManagedObjectContext(concurrency
 }
 
 public var mainQueueManagedObjectContext: NSManagedObjectContext {
-	guard #available(iOS 10.0, *) else {
+	guard #available(iOS 10.0, *), defaults.persistentContainerEnabled else {
 		return persistentMainQueueManagedObjectContext
 	}
 	return persistentContainer.viewContext
@@ -104,7 +104,7 @@ let persistentBackgroundQueueManagedObjectContext: NSManagedObjectContext = {
 	}
 }()
 
-public func performBackgroundMOCTask(_ task: @escaping (NSManagedObjectContext) -> Void) { guard #available(iOS 10.0, *) else {
+public func performBackgroundMOCTask(_ task: @escaping (NSManagedObjectContext) -> Void) { guard #available(iOS 10.0, *), defaults.persistentContainerEnabled else {
 		return persistentBackgroundQueueManagedObjectContext.perform {
 			task(persistentBackgroundQueueManagedObjectContext)
 		}
