@@ -76,11 +76,11 @@ func containersImportedFromUnreadCountsData(_ data: Data, managedObjectContext: 
 		let container: Container = try {
 			if itemID.hasPrefix("feed/http") {
 				let type = Subscription.self
-				return try insertedObjectUnlessFetchedWithID(type, id: itemID, managedObjectContext: backgroundQueueManagedObjectContext)
+				return try insertedObjectUnlessFetchedWithID(type, id: itemID, managedObjectContext: managedObjectContext)
 			}
 			else {
 				let type = Folder.self
-				return try insertedObjectUnlessFetchedWithID(type, id: itemID, managedObjectContext: backgroundQueueManagedObjectContext)
+				return try insertedObjectUnlessFetchedWithID(type, id: itemID, managedObjectContext: managedObjectContext)
 			}
 		}()
 		container.importFromUnreadCountJson(itemJson)
@@ -102,8 +102,8 @@ func readFolderImportedFromUserInfoData(_ data: Data, managedObjectContext: NSMa
 }
 
 func tagsImportedFromJsonData(_ data: Data, managedObjectContext: NSManagedObjectContext) throws -> [Folder] {
-	let tags = try importItemsFromJsonData(data, type: Folder.self, elementName: "tags", managedObjectContext: (backgroundQueueManagedObjectContext)) { (tag, json) in
-		assert(tag.managedObjectContext == backgroundQueueManagedObjectContext)
+	let tags = try importItemsFromJsonData(data, type: Folder.self, elementName: "tags", managedObjectContext: (managedObjectContext)) { (tag, json) in
+		assert(tag.managedObjectContext == managedObjectContext)
 		if _1 {
 			try tag.importFromJson(json)
 		}
@@ -119,11 +119,11 @@ func streamPreferencesImportedFromJsonData(_ data: Data, managedObjectContext: N
 	guard let streamprefsJson: AnyObject = json["streamprefs"] else {
 		throw RSSSessionError.jsonMissingStreamPrefs(json: json)
 	}
-	try Container.importStreamPreferencesJson(streamprefsJson, managedObjectContext: backgroundQueueManagedObjectContext)
+	try Container.importStreamPreferencesJson(streamprefsJson, managedObjectContext: managedObjectContext)
 }
 
 func importedSubscriptionsFromJsonData(_ data: Data, managedObjectContext: NSManagedObjectContext) throws -> [Subscription] {
-	let subscriptions = try importItemsFromJsonData(data, type: Subscription.self, elementName: "subscriptions", managedObjectContext: backgroundQueueManagedObjectContext) { (subscription, json) in
+	let subscriptions = try importItemsFromJsonData(data, type: Subscription.self, elementName: "subscriptions", managedObjectContext: managedObjectContext) { (subscription, json) in
 		try subscription.importFromJson(json)
 	}
 	return subscriptions

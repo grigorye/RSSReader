@@ -106,7 +106,7 @@ protocol MostCommonDataUpdateCommand : RelativeStringBasedDataUpdateCommand, Sim
 struct UpdateSubscriptions : PersistentDataUpdateCommand, MostCommonDataUpdateCommand {
 	let requestRelativeString = "/reader/api/0/subscription/list"
 	func importResult(_ data: Data, into managedObjectContext: NSManagedObjectContext) throws {
-		let subscriptions = try importedSubscriptionsFromJsonData(data, managedObjectContext: backgroundQueueManagedObjectContext)
+		let subscriptions = try importedSubscriptionsFromJsonData(data, managedObjectContext: managedObjectContext)
 		•(subscriptions)
 	}
 }
@@ -114,7 +114,7 @@ struct UpdateSubscriptions : PersistentDataUpdateCommand, MostCommonDataUpdateCo
 struct UpdateUserInfo : PersistentDataUpdateCommand, MostCommonDataUpdateCommand, AuthenticatedDataUpdateCommand {
 	let requestRelativeString = "/reader/api/0/user-info"
 	func importResult(_ data: Data, into managedObjectContext: NSManagedObjectContext) throws {
-		let readFolder = try readFolderImportedFromUserInfoData(data, managedObjectContext: backgroundQueueManagedObjectContext)
+		let readFolder = try readFolderImportedFromUserInfoData(data, managedObjectContext: managedObjectContext)
 		•(readFolder)
 	}
 }
@@ -122,7 +122,7 @@ struct UpdateUserInfo : PersistentDataUpdateCommand, MostCommonDataUpdateCommand
 struct UpdateUnreadCounts : PersistentDataUpdateCommand, MostCommonDataUpdateCommand {
 	let requestRelativeString = "/reader/api/0/unread-count"
 	func importResult(_ data: Data, into managedObjectContext: NSManagedObjectContext) throws {
-		let containers = try containersImportedFromUnreadCountsData(data, managedObjectContext: backgroundQueueManagedObjectContext)
+		let containers = try containersImportedFromUnreadCountsData(data, managedObjectContext: managedObjectContext)
 		•(containers)
 	}
 }
@@ -131,7 +131,7 @@ struct PullTags : PersistentDataUpdateCommand, MostCommonDataUpdateCommand {
 	let requestRelativeString = "/reader/api/0/tag/list"
 	func importResult(_ data: Data, into managedObjectContext: NSManagedObjectContext) throws {
 		try! data.write(to: lastTagsFileURL, options: .atomic)
-		let tags = try tagsImportedFromJsonData(data, managedObjectContext: backgroundQueueManagedObjectContext)
+		let tags = try tagsImportedFromJsonData(data, managedObjectContext: managedObjectContext)
 		•(tags)
 	}
 }
@@ -140,7 +140,7 @@ struct UpdateStreamPreferences : PersistentDataUpdateCommand, MostCommonDataUpda
 	let requestRelativeString = "/reader/api/0/preference/stream/list"
 	func importResult(_ data: Data, into managedObjectContext: NSManagedObjectContext) throws {
 		try! data.write(to: lastTagsFileURL, options: .atomic)
-		let streamPreferences: () = try streamPreferencesImportedFromJsonData(data, managedObjectContext: backgroundQueueManagedObjectContext)
+		let streamPreferences: () = try streamPreferencesImportedFromJsonData(data, managedObjectContext: managedObjectContext)
 		•(streamPreferences)
 	}
 }
