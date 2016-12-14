@@ -21,10 +21,19 @@ class AppDelegate : AppDelegateBase {
 	override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
 		defer { launchingScope.leave() }
 		var scope = Activity("Finishing Launching").enter(); defer { scope.leave() }
-		guard nil == managedObjectContextError else {
-			$(managedObjectContextError)
-			presentErrorMessage(NSLocalizedString("Something went wrong.", comment: ""))
-			return false
+		do {
+			var scope = Activity("Loading Persistent Stores").enter()
+			loadPersistentStores { error in
+				guard let loadPersistentStoresError = error else {
+					scope.leave()
+					return
+				}
+				DispatchQueue.main.async {
+					$(loadPersistentStoresError)
+					presentErrorMessage(NSLocalizedString("Something went wrong.", comment: ""))
+					scope.leave()
+				}
+			}
 		}
 		_ = mainScene
 		_ = rssSession
