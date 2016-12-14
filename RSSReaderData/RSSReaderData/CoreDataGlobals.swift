@@ -14,6 +14,7 @@ extension KVOCompliantUserDefaults {
 	@NSManaged var backgroundImportEnabled: Bool
 	@NSManaged var forceStoreRemoval: Bool
 	@NSManaged var savingDisabled: Bool
+	@NSManaged var persistentContainerEnabled: Bool
 }
 
 let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: NSClassFromString("RSSReaderData.Folder")!)])!
@@ -155,7 +156,7 @@ extension NSPersistentContainer {
 }
 
 public func loadPersistentStores(completionHandler: @escaping (Error?) -> ()) {
-	guard #available(iOS 10.0, *) else {
+	guard #available(iOS 10.0, *), defaults.persistentContainerEnabled else {
 		completionHandler(managedObjectContextError)
 		return
 	}
