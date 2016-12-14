@@ -10,13 +10,23 @@ import GEFoundation
 
 infix operator …
 
+#if false
+internal func …<T>(value: T, initialize: (inout T) throws -> Void) rethrows -> T {
+	return try with(value, initialize)
+}
+#endif
+
 @discardableResult
 internal func …<T: AnyObject>(obj: T, initialize: (T) throws -> Void) rethrows -> T {
 	return try with(obj, initialize)
 }
 
-internal func …<T: Any>(value: T, initialize: (inout T) throws -> Void) rethrows -> T {
-	return try with(value, initialize)
+@discardableResult
+internal func …<T: AnyObject>(obj: T?, initialize: (T?) throws -> Void) rethrows -> T? {
+	guard let obj = obj else {
+		return nil
+	}
+	return try with(obj, initialize)
 }
 
 // MARK: -
