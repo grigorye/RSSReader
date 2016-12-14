@@ -97,19 +97,19 @@ extension RSSSession {
 				return
 			}
 			command.push(data!, through: { importResultIntoManagedObjectContext in
-				backgroundQueueManagedObjectContext.perform {
+				performBackgroundMOCTask { managedObjectContext in
 					do {
-						let result = try importResultIntoManagedObjectContext(backgroundQueueManagedObjectContext)
+						let result = try importResultIntoManagedObjectContext(managedObjectContext)
 						if defaults.obtainPermanentObjectIDsForRSSData {
-							let insertedObjects = backgroundQueueManagedObjectContext.insertedObjects
+							let insertedObjects = managedObjectContext.insertedObjects
 							if 0 < insertedObjects.count {
-								try backgroundQueueManagedObjectContext.obtainPermanentIDs(for: Array(insertedObjects))
+								try managedObjectContext.obtainPermanentIDs(for: Array(insertedObjects))
 							}
 						}
-						try backgroundQueueManagedObjectContext.save()
+						try managedObjectContext.save()
 						completionHandler(.fulfilled(result))
 						if defaults.resetBackgroundQueueMOCAfterSavingRSSData {
-							backgroundQueueManagedObjectContext.reset()
+							managedObjectContext.reset()
 						}
 					} catch {
 						completionHandler(.rejected(RSSSessionError.importFailed(underlyingError: $(error), command: $(command))))
@@ -192,9 +192,8 @@ extension RSSSession {
 		}
 	}
 	public func pushTags(completionHandler: @escaping CommandCompletionHandler<Void>) {
-		let context = backgroundQueueManagedObjectContext
-		context.perform {
-			self.pushTags(from: context, completionHandler: completionHandler)
+		performBackgroundMOCTask { managedObjectContext in
+			self.pushTags(from: managedObjectContext, completionHandler: completionHandler)
 		}
 	}
 	public func pushTags() -> Promise<Void> {
