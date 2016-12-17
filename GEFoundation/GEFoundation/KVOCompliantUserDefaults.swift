@@ -214,9 +214,9 @@ public class KVOCompliantUserDefaults : NSObject {
 	
 	// MARK: -
 	
-	var scheduledForDeinit = [Handler]()
+	var scheduledForDeinit = ScheduledHandlers()
 	deinit {
-		scheduledForDeinit.forEach {$0()}
+		scheduledForDeinit.perform()
 	}
 	
 	public override init () {
