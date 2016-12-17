@@ -131,6 +131,7 @@ struct LoadPersistentStoresError : Error {
 
 @available (iOS 10.0, *)
 extension NSPersistentContainer {
+
 	func loadPersistentStoresAndWait(completionHandler: @escaping (Error?) -> Void) {
 		var descriptionsToComplete = persistentContainer.persistentStoreDescriptions.count
 		var errorsAndDescriptions = [(Error, NSPersistentStoreDescription)]()
@@ -153,6 +154,22 @@ extension NSPersistentContainer {
 			}
 		}
 	}
+	
+}
+
+extension NSManagedObjectContext {
+
+	func removeAllObjects(for entities: [NSEntityDescription]) throws {
+		for entity in entities {
+			let fetchRequest = NSFetchRequest<NSFetchRequestResult>() … {
+				$0.entity = entity
+				$0.includesSubentities = false
+			}
+			let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+			try execute(deleteRequest)
+		}
+	}
+	
 }
 
 public func loadPersistentStores(completionHandler: @escaping (Error?) -> ()) {
@@ -160,5 +177,20 @@ public func loadPersistentStores(completionHandler: @escaping (Error?) -> ()) {
 		completionHandler(managedObjectContextError)
 		return
 	}
-	persistentContainer.loadPersistentStoresAndWait(completionHandler: completionHandler)
+	persistentContainer.loadPersistentStoresAndWait { error in
+		guard nil == error else {
+			completionHandler(error!)
+			return
+		}
+		guard !defaults.forceStoreRemoval else {
+			let context = persistentContainer.viewContext
+			context.perform {
+				try! context.removeAllObjects(for: persistentContainer.managedObjectModel.entities)
+				try! context.save()
+				completionHandler(nil)
+			}
+			return
+		}
+		completionHandler(nil)
+	}
 }
