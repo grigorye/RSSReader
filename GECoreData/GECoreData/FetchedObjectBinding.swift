@@ -34,10 +34,9 @@ public class FetchedObjectBinding<T> : NSObject, NSFetchedResultsControllerDeleg
 public class FetchedObjectCountBinding<T> : NSObject, NSFetchedResultsControllerDelegate where T: Managed, T: NSFetchRequestResult {
 	let countDidChange: Handler
 	//
-	var scheduledForDeinit = [Handler]()
+	var scheduledForDeinit = ScheduledHandlers()
 	deinit {
-		scheduledForDeinit.forEach {$0()}
-		scheduledForDeinit = []
+		scheduledForDeinit.perform()
 	}
 	//
 	public init(managedObjectContext: NSManagedObjectContext, predicate: NSPredicate?, handler: @escaping (Int) -> Void) {
