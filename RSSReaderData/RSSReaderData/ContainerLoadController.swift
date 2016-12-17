@@ -32,7 +32,7 @@ public class ContainerLoadController : NSObject {
 	// MARK: -
 	
 	public func bind() {
-		scheduledForUnbind.append(self.bindContainerViewState())
+		scheduledForUnbind += [self.bindContainerViewState()]
 	}
 	var scheduledForUnbind = ScheduledHandlers()
 	public func unbind() {
