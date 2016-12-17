@@ -52,6 +52,7 @@ typealias URLSessionTaskGeneratorError = GEFoundation.URLSessionTaskGeneratorErr
 
 typealias Ignored = GEFoundation.Ignored
 typealias Handler = GEFoundation.Handler
+typealias ScheduledHandlers = GEFoundation.ScheduledHandlers
 typealias KVOBinding = GEFoundation.KVOBinding
 
 var defaults: KVOCompliantUserDefaults {
@@ -81,4 +82,8 @@ internal func filterObjectsByType<T>(_ objects: [Any]) -> [T] {
 
 internal func invoke(handler: Handler) {
 	return GEFoundation.invoke(handler: handler)
+}
+
+internal func += (handlers: ScheduledHandlers, _ extraHandlers: [Handler]) {
+	handlers += extraHandlers
 }
