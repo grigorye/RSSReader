@@ -16,20 +16,31 @@ public class ContainerLoadController : NSObject {
 	let unreadOnly: Bool
 	public var numberOfItemsToLoadLater = 100
 	public var numberOfItemsToLoadInitially = 500
+	
 	// MARK: -
-	var containerViewStateSaved: ContainerViewState?
-	class var keyPathsForValuesAffectingContainerViewState: Set<String> {
-		return [#keyPath(container.viewStates)]
+	
+	dynamic var containerViewState: ContainerViewState?
+	func bindContainerViewState() -> Handler {
+		let binding = KVOBinding(self•#keyPath(container.viewStates), options: [.initial]) { [unowned self] _ in
+			self.containerViewState = self.container.viewStates.filter {
+				$0.containerViewPredicate == self.containerViewPredicate
+			}.onlyElement
+		}
+		return { _ = binding }
 	}
-	dynamic var containerViewState: ContainerViewState? {
-		return containerViewStateSaved ?? {
-			guard let updatedContainerViewState = (self.container.viewStates.filter { $0.containerViewPredicate == self.containerViewPredicate }).onlyElement else {
-				return nil
-			}
-			containerViewStateSaved = updatedContainerViewState
-			return containerViewStateSaved
-		}()
+
+	// MARK: -
+	
+	public func bind() {
+		scheduledForUnbind.append(self.bindContainerViewState())
 	}
+	var scheduledForUnbind = ScheduledHandlers()
+	public func unbind() {
+		scheduledForUnbind.perform()
+	}
+
+	// MARK: -
+	
 	var continuation: String? {
 		set { containerViewState!.continuation = newValue }
 		get { return containerViewState?.continuation }
@@ -167,5 +178,8 @@ public class ContainerLoadController : NSObject {
 		self.container = container
 		self.unreadOnly = unreadOnly
 		super.init()
+	}
+	deinit {
+		$(self)
 	}
 }
