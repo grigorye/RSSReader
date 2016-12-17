@@ -26,13 +26,19 @@ class ItemsViewController : ContainerViewController {
 	}()
 
 	public var dataSource: ItemTableViewDataSource!
-	public lazy dynamic var loadController: ContainerLoadController! = {
+	public dynamic var loadController: ContainerLoadController!
+	func bindLoadController() -> Handler {
 		let $ = ContainerLoadController(session: rssSession!, container: self.container, unreadOnly: self.showUnreadOnly) … {
 			$0.numberOfItemsToLoadInitially = defaults.numberOfItemsToLoadInitially
 			$0.numberOfItemsToLoadLater = defaults.numberOfItemsToLoadLater
 		}
-		return $
-	}()
+		self.loadController = $
+		self.loadController.bind()
+		return {
+			self.loadController.unbind()
+			self.loadController = nil
+		}
+	}
 	final var multipleSourcesEnabled = false
 	var showUnreadEnabled = true
 	// MARK:-
@@ -95,17 +101,18 @@ class ItemsViewController : ContainerViewController {
 			abort()
 		}
 	}
-	var scheduledForViewWillAppearOrStateRestoration = [Handler]()
+	var scheduledForViewWillAppearOrStateRestoration = ScheduledHandlers()
 	// MARK: -
-	private var scheduledForViewWillAppear = [Handler]()
+	private var scheduledForViewWillAppear = ScheduledHandlers()
 	// MARK: -
 	override func viewWillAppear(_ animated: Bool) {
 		$(self)
-		scheduledForViewWillAppearOrStateRestoration.forEach {$0()}
-		scheduledForViewWillAppearOrStateRestoration = []
-		scheduledForViewWillAppear.forEach {$0()}
-		scheduledForViewWillAppear = []
+		scheduledForViewWillAppearOrStateRestoration.perform()
+		scheduledForViewWillAppear.perform()
+		scheduledForViewDidDisappear += [self.bindLoadController()]
+#if true
 		scheduledForViewDidDisappear += [self.bindLoadDate()]
+#endif
 		scheduledForViewDidDisappear += [self.bindTitle()]
 		super.viewWillAppear(animated)
 	}
@@ -114,10 +121,9 @@ class ItemsViewController : ContainerViewController {
 		super.viewDidAppear(animated)
 		loadMoreIfNecessary()
 	}
-	private var scheduledForViewDidDisappear = [Handler]()
+	private var scheduledForViewDidDisappear = ScheduledHandlers()
 	override func viewDidDisappear(_ animated: Bool) {
-		scheduledForViewDidDisappear.forEach {$0()}
-		scheduledForViewDidDisappear = []
+		scheduledForViewDidDisappear.perform()
 		super.viewDidDisappear(animated)
 	}
 	// MARK: -
@@ -168,10 +174,9 @@ class ItemsViewController : ContainerViewController {
 		}
 	}
 	func bindLoadDate() -> Handler {
-		let binding = KVOBinding(self•#keyPath(loadController.loadDate), options: [.new, .initial]) { change in
+		let binding = KVOBinding(self•#keyPath(loadController.loadDate), options: [.initial]) { change in
 			•(self.toolbarItems!)
-			let newValue = change![NSKeyValueChangeKey.newKey]
-			if let loadDate = nilForNull(newValue!) as! Date? {
+			if let loadDate = self.loadController.loadDate {
 				let loadAgo = loadAgoDateComponentsFormatter.string(from: loadDate, to: Date())
 				self.presentInfoMessage(String.localizedStringWithFormat(NSLocalizedString("Updated %@ ago", comment: ""), loadAgo!))
 			}
@@ -217,8 +222,10 @@ class ItemsViewController : ContainerViewController {
 			self.configureDataSource()
 			self.configureRightBarButtonItems()
 		}]
-		
-		scheduledForViewWillAppear += [{[unowned self] in self.configureTitleHeaderView()}]
+
+		scheduledForViewWillAppear += [{ [unowned self] in
+			self.configureTitleHeaderView()
+		}]
 	}
 	// MARK: -
 	deinit {
@@ -248,8 +255,7 @@ extension ItemsViewController /* State Restoration */ {
 	override func decodeRestorableState(with coder: NSCoder) {
 		super.decodeRestorableState(with: coder)
 		container = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.containerObjectID.rawValue, managedObjectContext: mainQueueManagedObjectContext) as! Container?
-		scheduledForViewWillAppearOrStateRestoration.forEach {$0()}
-		scheduledForViewWillAppearOrStateRestoration = []
+		scheduledForViewWillAppearOrStateRestoration.perform()
 	}
 }
 //
