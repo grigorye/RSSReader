@@ -27,11 +27,14 @@ public struct ScheduledHandlers {
 		performAndDropEachReversed(&handlers)
 	}
 	
+	public mutating func append(contentsOf extraHandlers: [Handler]) {
+		handlers.append(contentsOf: extraHandlers)
+	}
+	
+	public static func +=(_ handlers: inout ScheduledHandlers, extraHandlers: [Handler]) {
+		handlers.append(contentsOf: extraHandlers)
+	}
+
 	public init() {}
 	
 }
-
-public func += (handlers: ScheduledHandlers, _ extraHandlers: [Handler]) {
-	handlers += extraHandlers
-}
-

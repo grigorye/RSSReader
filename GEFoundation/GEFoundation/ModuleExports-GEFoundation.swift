@@ -84,6 +84,6 @@ internal func invoke(handler: Handler) {
 	return GEFoundation.invoke(handler: handler)
 }
 
-internal func += (handlers: ScheduledHandlers, _ extraHandlers: [Handler]) {
-	handlers += extraHandlers
+internal func += (handlers: inout ScheduledHandlers, _ extraHandlers: [Handler]) {
+	handlers.append(contentsOf: extraHandlers)
 }
