@@ -130,8 +130,6 @@ class ItemSummaryWebViewController: UIViewController {
 		}
 	}
 	// MARK: -
-	var scheduledForViewWillAppear = [Handler]()
-	var scheduledForViewWillDisappear = [Handler]()
 	var itemMarkedAsReadKVOBinding: KVOBinding?
 	// MARK: -
 	override func viewDidLoad() {
@@ -157,9 +155,9 @@ class ItemSummaryWebViewController: UIViewController {
 	}
 	// MARK: -
 	var viewDidDisappearRetainedObjects = [Any]()
+	var scheduledForViewWillAppear = ScheduledHandlers()
 	override func viewWillAppear(_ animated: Bool) {
-		scheduledForViewWillAppear.forEach {$0()}
-		scheduledForViewWillAppear = []
+		scheduledForViewWillAppear.perform()
 		viewDidDisappearRetainedObjects += [KVOBinding(self•#keyPath(item.markedAsFavorite), options: .initial) { [unowned self] change in
 			let excludedBarButtonItem = self.item.markedAsFavorite ? self.markAsFavoriteBarButtonItem : self.unmarkAsFavoriteBarButtonItem
 			let toolbarItems = self.savedToolbarItems.filter {
@@ -177,9 +175,9 @@ class ItemSummaryWebViewController: UIViewController {
 		}]
 		self.markAsOpenAndReadTimer = Timer.scheduledTimer(timeInterval: markAsReadTimeInterval, target: self, selector: #selector(self.markAsOpenAndRead), userInfo: nil, repeats: false)
 	}
+	var scheduledForViewWillDisappear = ScheduledHandlers()
 	override func viewWillDisappear(_ animated: Bool) {
-		scheduledForViewWillDisappear.forEach {$0()}
-		scheduledForViewWillDisappear = []
+		scheduledForViewWillDisappear.perform()
 		super.viewWillDisappear(animated)
 		self.markAsOpenAndReadTimer?.invalidate()
 	}
@@ -207,7 +205,6 @@ class ItemSummaryWebViewController: UIViewController {
 }
 
 class ItemSummaryWebViewDelegate: NSObject, UIWebViewDelegate {
-	var blocksScheduledOnWebViewDidFinishLoad = [Handler]()
 	func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
 		if navigationType == .linkClicked {
 			let url = request.url!

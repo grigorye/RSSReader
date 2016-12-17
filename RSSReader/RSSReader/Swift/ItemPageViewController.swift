@@ -10,7 +10,6 @@ import RSSReaderData
 import UIKit
 
 class ItemPageViewController : UIPageViewController {
-	var scheduledForViewWillAppear = [Handler]()
 	dynamic var currentViewController: UIViewController?
 	// MARK: - State Preservation and Restoration
 	private enum Restorable: String {
@@ -50,9 +49,9 @@ class ItemPageViewController : UIPageViewController {
 	}
 	// MARK: -
 	var viewDidDisappearRetainedObjects = [Any]()
+	var scheduledForViewWillAppear = ScheduledHandlers()
 	override func viewWillAppear(_ animated: Bool) {
-		scheduledForViewWillAppear.forEach {$0()}
-		scheduledForViewWillAppear = []
+		scheduledForViewWillAppear.perform()
 		super.viewWillAppear(animated)
 		
 		viewDidDisappearRetainedObjects += [KVOBinding(self•#keyPath(currentViewController.navigationItem.rightBarButtonItems), options: .initial) { change in

@@ -273,19 +273,17 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 		}
 	}
 	// MARK: -
-	var scheduledForViewWillAppear = [Handler]()
+	var scheduledForViewWillAppear = ScheduledHandlers()
 	override func viewWillAppear(_ animated: Bool) {
-		scheduledForViewWillAppear.forEach {$0()}
-		scheduledForViewWillAppear = []
+		scheduledForViewWillAppear.perform()
 		super.viewWillAppear(animated)
 		scheduledForViewDidDisappear += [bindChildContainers()]
 		scheduledForViewDidDisappear += [bindRefreshStateDescription()]
 		scheduledForViewDidDisappear += [bindCombinedTitle()]
 	}
-	var scheduledForViewDidDisappear = [Handler]()
+	var scheduledForViewDidDisappear = ScheduledHandlers()
 	override func viewDidDisappear(_ animated: Bool) {
-		scheduledForViewDidDisappear.forEach {$0()}
-		scheduledForViewDidDisappear = []
+		scheduledForViewDidDisappear.perform()
 		super.viewDidDisappear(animated)
 	}
 	// MARK: -

@@ -48,10 +48,9 @@ class ContainerViewController: UITableViewController {
 			scheduledForViewDidDisappear += [bindItemsCount()]
 		}
 	}
-	private var scheduledForViewDidDisappear = [Handler]()
+	private var scheduledForViewDidDisappear = ScheduledHandlers()
 	override func viewDidDisappear(_ animated: Bool) {
-		scheduledForViewDidDisappear.forEach {$0()}
-		scheduledForViewDidDisappear = []
+		scheduledForViewDidDisappear.perform ()
 		super.viewDidDisappear(animated)
 	}
 	// MARK: -
