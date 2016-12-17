@@ -36,8 +36,11 @@ class MainScene : NSObject {
 	var window: UIWindow
 
 	lazy var splitViewController: UISplitViewController! = {
-		return (self.window.rootViewController! as? UISplitViewController) … {
-			$0?.delegate = self
+		guard let splitViewController = self.window.rootViewController! as? UISplitViewController else {
+			return nil
+		}
+		return splitViewController … {
+			$0.delegate = self
 		}
 	}()
 	
