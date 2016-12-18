@@ -12,7 +12,7 @@ import CoreData
 
 public class Item : NSManagedObject {
 	typealias _Self = Item
-	@NSManaged public var json: [String : Any]
+	@NSManaged public var json: [String : Any]!
     @NSManaged public var id: String
 	@NSManaged public var date: Date
 	@NSManaged public var author: String
