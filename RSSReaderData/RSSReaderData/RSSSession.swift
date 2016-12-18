@@ -106,7 +106,9 @@ extension RSSSession {
 								try managedObjectContext.obtainPermanentIDs(for: Array(insertedObjects))
 							}
 						}
-						try managedObjectContext.save()
+						if managedObjectContext.hasChanges {
+							try managedObjectContext.save()
+						}
 						completionHandler(.fulfilled(result))
 						if defaults.resetBackgroundQueueMOCAfterSavingRSSData {
 							managedObjectContext.reset()
