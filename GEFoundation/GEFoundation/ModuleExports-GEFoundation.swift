@@ -54,6 +54,7 @@ typealias Ignored = GEFoundation.Ignored
 typealias Handler = GEFoundation.Handler
 typealias ScheduledHandlers = GEFoundation.ScheduledHandlers
 typealias KVOBinding = GEFoundation.KVOBinding
+typealias Json = GEFoundation.Json
 
 var defaults: KVOCompliantUserDefaults {
 	return GEFoundation.defaults
