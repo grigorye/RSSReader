@@ -27,16 +27,16 @@ class ItemTableViewCell : SystemLayoutSizeCachingTableViewCell, ItemTableViewCel
 	@IBOutlet final var readMarkLabel: UILabel!
 	@IBOutlet final var favoriteMarkLabel: UILabel!
 	
-	final var itemObjectID: NSManagedObjectID!
+	final var item: Item!
 
 	final func setData(_ data: (item: Item, container: Container, nowDate: Date)) {
 		let item = data.item
 		let container = data.container
 		let nowDate = data.nowDate
 		defer {
-			self.itemObjectID = item.objectID
+			self.item = item
 		}
-		guard self.itemObjectID != item.objectID else {
+		guard self.item != item else {
 			return
 		}
 		if let titleLabel = self.titleLabel {
