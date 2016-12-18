@@ -20,9 +20,19 @@ private var batchSavingEnabled: Bool {
 
 func itemsImportedFromStreamJson(_ json: Json, loadDate: Date, container: Container, excludedCategory: Folder?, managedObjectContext: NSManagedObjectContext) throws -> [Item] {
 	let subscription = container as? Subscription
+	let itemJsons = json["items"] as! [Json]
+	let categoryIDs = Array(try itemJsons.reduce(Set<String>()) {
+		guard let categoryIDs = $1["categories"] as? [String] else {
+			throw Item.ItemError.CategoriesMissingOrInvalidInJson(json: json)
+		}
+		return $0.union(categoryIDs)
+	})
+	let categories: [Folder] = try insertedObjectsUnlessFetchedWithID(Folder.self, ids: Array(categoryIDs), managedObjectContext: managedObjectContext)
+	let categoriesByID: [String : Folder] = categories.reduce([:]) {
+		var acc = $0; acc[$1.streamID] = $1; return acc
+	}
 	let items = try importItemsFromJson(json, type: Item.self, elementName: "items", managedObjectContext: managedObjectContext) { (item, itemJson) in
-		try item.importFromJson(itemJson, subscription: subscription)
-		item.loadDate = loadDate
+		try item.importFromJson(itemJson, subscription: subscription, categoriesByID: categoriesByID)
 		if !batchSavingEnabled {
 			try managedObjectContext.save()
 		}
