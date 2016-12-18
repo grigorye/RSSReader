@@ -89,7 +89,7 @@ class ItemTableViewDataSource: NSObject {
 			]
 #endif
 		}
-		return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainQueueManagedObjectContext, sectionNameKeyPath: !defaults.itemsAreSortedByLoadDate ? nil : #keyPath(Item.loadDate), cacheName: nil)…{
+		return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: mainQueueManagedObjectContext, sectionNameKeyPath: !defaults.itemsAreSortedByLoadDate ? nil : #keyPath(Item.date), cacheName: nil)…{
 			$0.delegate = self.fetchedResultsControllerDelegate
 		}
 	}()
