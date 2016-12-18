@@ -79,7 +79,9 @@ class ItemsViewController : ContainerViewController {
 	private var selectedItem: Item {
 		return itemForIndexPath(tableView.indexPathForSelectedRow!)
 	}
+	
 	// MARK: -
+	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		switch segue.identifier! {
 		case MainStoryboard.SegueIdentifiers.ShowListPages:
@@ -101,32 +103,57 @@ class ItemsViewController : ContainerViewController {
 			abort()
 		}
 	}
+	
+	// MARK: -
+	
 	var scheduledForViewWillAppearOrStateRestoration = ScheduledHandlers()
+	
 	// MARK: -
-	private var scheduledForViewWillAppear = ScheduledHandlers()
+	
+	private var visibleStateReasoner = ViewControllerVisibleStateReasoner()
+	
 	// MARK: -
+	
 	override func viewWillAppear(_ animated: Bool) {
-		$(self)
 		scheduledForViewWillAppearOrStateRestoration.perform()
 		scheduledForViewWillAppear.perform()
+		
+		super.viewWillAppear(animated)
+		visibleStateReasoner.viewWillAppear()
+		
+		guard !visibleStateReasoner.appeared else {
+			return
+		}
+		
 		scheduledForViewDidDisappear += [self.bindLoadController()]
 #if true
 		scheduledForViewDidDisappear += [self.bindLoadDate()]
 #endif
 		scheduledForViewDidDisappear += [self.bindTitle()]
-		super.viewWillAppear(animated)
 	}
+	private var scheduledForViewWillAppear = ScheduledHandlers()
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		visibleStateReasoner.viewWillDisappear()
+	}
+	
 	override func viewDidAppear(_ animated: Bool) {
-		$(self)
 		super.viewDidAppear(animated)
+		visibleStateReasoner.viewDidAppear()
+		
 		loadMoreIfNecessary()
 	}
-	private var scheduledForViewDidDisappear = ScheduledHandlers()
+
 	override func viewDidDisappear(_ animated: Bool) {
 		scheduledForViewDidDisappear.perform()
 		super.viewDidDisappear(animated)
+		visibleStateReasoner.viewDidDisappear()
 	}
+	var scheduledForViewDidDisappear = ScheduledHandlers()
+	
 	// MARK: -
+	
 	private func configureDataSource() {
 		let dataSource = ItemTableViewDataSource(tableView: tableView, container: container, showUnreadOnly: showUnreadOnly)
 		tableView.dataSource = dataSource
