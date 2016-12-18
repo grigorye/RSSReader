@@ -18,7 +18,6 @@ public class Item : NSManagedObject {
 	@NSManaged public var author: String
 	@NSManaged public var updatedDate: Date?
 	@NSManaged public var pendingUpdateDate: Date?
-	@NSManaged public var loadDate: Date
 	@NSManaged public var lastOpenedDate: Date?
     @NSManaged public var titleData: NSData
 	@NSManaged public var titleUnoptimized: String
