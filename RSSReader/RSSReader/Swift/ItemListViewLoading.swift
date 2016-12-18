@@ -90,9 +90,11 @@ extension ItemsViewController : ItemsViewControllerLoadingImp {
 			guard let loadController = loadController else {
 				return
 			}
+#if false
 			if let lastLoadedItem = loadController.lastLoadedItem {
 				assert(nil != self.dataSource.indexPath(forObject: lastLoadedItem))
 			}
+#endif
 			guard !loadController.loadCompleted else {
 				self.didCompleteLoad()
 				return
@@ -104,6 +106,9 @@ extension ItemsViewController : ItemsViewControllerLoadingImp {
 	}
 	
 	private func shouldLoadMore(for lastLoadedItemDate: Date?) -> Bool {
+		guard let loadController = loadController else {
+			return false
+		}
 		guard !(loadController.loadInProgress || loadController.loadCompleted || loadController.loadError != nil) else {
 			return false
 		}
@@ -139,6 +144,6 @@ extension ItemsViewController : ItemsViewControllerLoadingImp {
 	}
 	
 	func loadMoreIfNecessary() {
-		self.loadMoreIfNecessary(for: loadController.lastLoadedItem?.date)
+		self.loadMoreIfNecessary(for: loadController.lastLoadedItemDate)
 	}
 }
