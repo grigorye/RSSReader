@@ -50,6 +50,16 @@ func objectFetchedWithPredicate<T: Managed> (_ cls: T.Type, predicate: NSPredica
 	return object
 }
 
+func objectsFetchedWithPredicate<T: Managed> (_ cls: T.Type, predicate: NSPredicate, managedObjectContext: NSManagedObjectContext) -> [T] where T: NSManagedObject, T: NSFetchRequestResult {
+	let request: NSFetchRequest<T> = {
+		let $ = T.fetchRequestForEntity()
+		$.predicate = predicate
+		return $
+	}()
+	let objects = try! managedObjectContext.fetch(request)
+	return objects
+}
+
 func insertedObjectUnlessFetchedWithPredicate<T: Managed>(_ cls: T.Type, predicate: NSPredicate, managedObjectContext: NSManagedObjectContext, newObjectInitializationHandler: (T) -> Void) throws -> T where T: NSManagedObject, T: NSFetchRequestResult {
 	let entityName = cls.entityName()
 	if let existingObject = objectFetchedWithPredicate(cls, predicate: predicate, managedObjectContext: managedObjectContext) {
@@ -68,18 +78,42 @@ public func insertedObjectUnlessFetchedWithID<T: NSManagedObject>(_ cls: T.Type,
 		(newObject as NSManagedObject).setValue(id, forKey:identifierKey)
 	}
 }
+
+public func insertedObjectsUnlessFetchedWithID<T: NSManagedObject>(_ cls: T.Type, ids: [String], managedObjectContext: NSManagedObjectContext) throws -> [T] where T: ManagedIdentifiable, T: NSFetchRequestResult {
+	let identifierKey = cls.identifierKey()
+	let predicate = NSPredicate(format: "%K in %@", argumentArray: [identifierKey, ids])
+	let existingObjects = objectsFetchedWithPredicate(cls, predicate: predicate, managedObjectContext: managedObjectContext)
+	let existingIDs = existingObjects.map { $0.value(forKey: identifierKey)! as! String }
+	let newIDs = ids.filter { !existingIDs.contains($0) }
+	let entityName = cls.entityName()
+	let newObjects: [T] = newIDs.map {
+		let newObject = NSEntityDescription.insertNewObject(forEntityName: entityName, into: managedObjectContext) as! T
+		(newObject as NSManagedObject).setValue($0, forKey:identifierKey)
+		return newObject
+	}
+	let objects = [T]() … {
+		$0.append(contentsOf: existingObjects)
+		$0.append(contentsOf: newObjects)
+	}
+	return objects
+}
+
 public func importItemsFromJson<T: ManagedIdentifiable>(_ json: [String : AnyObject], type: T.Type, elementName: String, managedObjectContext: NSManagedObjectContext, importFromJson: (T, [String: AnyObject]) throws -> Void) throws -> [T] where T: NSManagedObject, T: NSFetchRequestResult {
-	var items = [T]()
-	guard let itemJsons = json[elementName] as? [[String : AnyObject]] else {
+	guard let itemJsons = json[elementName] as? [Json] else {
 		throw GenericCoreDataExtensionsError.ElementNotFoundOrInvalidInJson(json: json, elementName: elementName)
 	}
-	for itemJson in itemJsons {
+	let itemJsonsByIDs: [String : Json] = try itemJsons.map { (itemJson: Json) -> (String, Json) in
 		guard let itemID = itemJson["id"] as? String else {
 			throw GenericCoreDataExtensionsError.ElementNotFoundOrInvalidInJson(json: json, elementName: "id")
 		}
-		let item = try insertedObjectUnlessFetchedWithID(type, id: itemID, managedObjectContext: managedObjectContext)
+		return (itemID, itemJson)
+	}.reduce([String : Json]()) { var acc = $0; acc[$1.0] = $1.1; return acc }
+	let itemIDs: [String] = Array(itemJsonsByIDs.keys)
+	let items = try insertedObjectsUnlessFetchedWithID(type, ids: itemIDs, managedObjectContext: managedObjectContext)
+	let itemIDKey = type.identifierKey() as String
+	for item in items {
+		let itemJson = itemJsonsByIDs[item.value(forKey: itemIDKey) as! String]!
 		try importFromJson(item, itemJson)
-		items += [item]
 	}
 	return items
 }
