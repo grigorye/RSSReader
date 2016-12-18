@@ -12,11 +12,9 @@ import Foundation
 public let rootTagSuffix = "state/com.google/root"
 public let readTagSuffix = "state/com.google/read"
 public let favoriteTagSuffix = "state/com.google/starred"
-public let canonicalReadTag = "user/-/state/com.google/read"
-public let canonicalFavoriteTag = "user/-/state/com.google/starred"
 
-let markedAsReadCategory = Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: mainQueueManagedObjectContext)!
-let markedAsFavoriteCategory = Folder.folderWithTagSuffix(favoriteTagSuffix, managedObjectContext: mainQueueManagedObjectContext)!
+let markedAsReadCategory = $(Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: mainQueueManagedObjectContext)!)
+let markedAsFavoriteCategory = $(Folder.folderWithTagSuffix(favoriteTagSuffix, managedObjectContext: mainQueueManagedObjectContext)!)
 
 extension Folder {
 	public static func predicateForFetchingFolderWithTagSuffix(_ tagSuffix: String) -> NSPredicate {
