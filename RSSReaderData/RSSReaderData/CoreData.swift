@@ -42,18 +42,31 @@ extension Item : ManagedIdentifiable {
 		return "Item"
 	}
 	func importFromJson(_ jsonObject: Any, subscription: Subscription? = nil, categoriesByID: [String : Folder]) throws {
-		let json = jsonObject as! [String: AnyObject]
+		let json = jsonObject as! Json
+		// Track changes in the categories (not reflected in the update date).
+		do {
+			let categoryIDs: [String] = json["categories"] as! [String]
+			let shouldUpdateCategories: Bool = {
+				guard let json = self.json else {
+					return true
+				}
+				let oldCategoryIDs = json["categories"] as! [String]
+				return oldCategoryIDs != categoryIDs
+			}()
+			if shouldUpdateCategories {
+				let categories = Set(categoryIDs.map { return categoriesByID[$0]! })
+				self.categories = categories
+			}
+		}
+		let managedObjectContext = self.managedObjectContext!
 		let updatedDate: Date? = {
 			if let updatedTimeIntervalSince1970 = json["updated"] as! TimeInterval? {
 				return Date(timeIntervalSince1970: updatedTimeIntervalSince1970)
 			}
 			return nil
 		}()
-		let managedObjectContext = self.managedObjectContext!
 		guard (nil == updatedDate) || (updatedDate != self.updatedDate) else {
 			•(self)
-			let categoryIDs = json["categories"] as! [String]
-			assert(Set(self.categories.map { $0.streamID }) == Set(categoryIDs))
 			return
 		}
 		let date = Date(timestampUsec: json["timestampUsec"] as! String)
@@ -69,12 +82,6 @@ extension Item : ManagedIdentifiable {
 		self.subscription = subscription
 		self.canonical = json["canonical"] as! [[String : String]]?
 		self.json = json
-
-		let categoryIDs = json["categories"] as! [String]
-		let categories = Set(categoryIDs.map { return categoriesByID[$0]! })
-		if self.categories != categories {
-			self.categories = categories
-		}
 	}
 }
 
