@@ -29,22 +29,7 @@ public class ContainerViewState: NSManagedObject {
     @NSManaged public var loadCompleted: Bool
     @NSManaged public var container: Container?
 
-#if false
-	@objc dynamic public var lastLoadedItem: Item? {
-		guard let loadDate = self.loadDate else {
-			return nil
-		}
-		let fetchRequest = Item.fetchRequestForEntity() … {
-			$0.predicate = NSPredicate(format: "\(#keyPath(Item.loadDate)) == %@", argumentArray: [loadDate])
-			$0.fetchLimit = 1
-			$0.sortDescriptors = inversedSortDescriptorsForContainers
-		}
-		let item = try! self.managedObjectContext!.fetch(fetchRequest).onlyElement
-		return (item)
-	}
-#else
-	@NSManaged public var lastLoadedItem: Item?
-#endif
+	@NSManaged public var lastLoadedItemDate: Date?
 	func validateForUpdateOrInsert() throws {
 		if nil == self.loadDate && nil == self.loadError {
 			throw ValidationError.NeitherLoadDateNorErrorIsSet
