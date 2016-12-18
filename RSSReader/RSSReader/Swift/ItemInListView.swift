@@ -11,7 +11,7 @@ import Foundation
 
 extension Item {
 	class func keyPathsForValuesAffectingItemListSectionName() -> Set<String> {
-		return [#keyPath(date), #keyPath(loadDate)]
+		return [#keyPath(date)]
 	}
 	func itemsListSectionName() -> String {
 		let timeInterval = date.timeIntervalSince(date)
