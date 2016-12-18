@@ -52,9 +52,9 @@ public class ContainerLoadController : NSObject {
 		set { $(containerViewState!).loadDate = newValue! }
 		get { return $(containerViewState)?.loadDate }
 	}
-	public var lastLoadedItem: Item? {
-		set { containerViewState!.lastLoadedItem = newValue }
-		get { return containerViewState?.lastLoadedItem }
+	public var lastLoadedItemDate: Date? {
+		set { containerViewState!.lastLoadedItemDate = newValue }
+		get { return containerViewState?.lastLoadedItemDate }
 	}
 	private (set) public var loadCompleted: Bool {
 		set { containerViewState!.loadCompleted = newValue }
@@ -85,7 +85,7 @@ public class ContainerLoadController : NSObject {
 		precondition(!loadInProgress)
 		self.continuation = nil
 		self.loadCompleted = false
-		self.lastLoadedItem = nil
+		self.lastLoadedItemDate = nil
 		self.loadError = nil
 	}
 	// MARK: -
@@ -103,7 +103,7 @@ public class ContainerLoadController : NSObject {
 		let oldOngoingLoadDate = ongoingLoadDate!
 		loadInProgress = true
 		let context = container.managedObjectContext!
-		let excludedCategory: Folder? = unreadOnly ? Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: context) : nil
+		let excludedCategory: Folder? = unreadOnly ? $(Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: context)) : nil
 		let numberOfItemsToLoad = (oldContinuation != nil) ? numberOfItemsToLoadLater : numberOfItemsToLoadInitially
 		let containerViewStateObjectID = typedObjectID(for: containerViewState)
 		let containerObjectID = typedObjectID(for: container)!
@@ -148,11 +148,13 @@ public class ContainerLoadController : NSObject {
 			let continuation = streamContentsResult.1.continuation
 			containerViewState … {
 				$0.continuation = continuation
-				$0.lastLoadedItem = lastLoadedItem
+				$0.lastLoadedItemDate = lastLoadedItem?.date
 			}
 			if let lastLoadedItem = lastLoadedItem {
 				assert(containerViewPredicate.evaluate(with: lastLoadedItem))
 			}
+			$(managedObjectContext.insertedObjects.map { $0.objectID });
+			$(managedObjectContext.updatedObjects.map { $0.objectID });
 			try managedObjectContext.save()
 			return continuation
 		}.then { continuation -> Void in
