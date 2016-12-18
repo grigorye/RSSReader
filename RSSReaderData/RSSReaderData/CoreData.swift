@@ -32,7 +32,7 @@ extension Date {
 	}
 }
 extension Item : ManagedIdentifiable {
-	enum ItemError: Error {
+	public enum ItemError: Error {
 		case CategoriesMissingOrInvalidInJson(json: [String: AnyObject])
 	}
 	public class func identifierKey() -> String {
@@ -41,7 +41,7 @@ extension Item : ManagedIdentifiable {
 	public class func entityName() -> String {
 		return "Item"
 	}
-	func importFromJson(_ jsonObject: Any, subscription: Subscription? = nil) throws {
+	func importFromJson(_ jsonObject: Any, subscription: Subscription? = nil, categoriesByID: [String : Folder]) throws {
 		let json = jsonObject as! [String: AnyObject]
 		let updatedDate: Date? = {
 			if let updatedTimeIntervalSince1970 = json["updated"] as! TimeInterval? {
@@ -50,36 +50,30 @@ extension Item : ManagedIdentifiable {
 			return nil
 		}()
 		let managedObjectContext = self.managedObjectContext!
-		if nil != updatedDate && (updatedDate == self.updatedDate) {
+		guard (nil == updatedDate) || (updatedDate != self.updatedDate) else {
 			•(self)
+			let categoryIDs = json["categories"] as! [String]
+			assert(Set(self.categories.map { $0.streamID }) == Set(categoryIDs))
+			return
 		}
-		else {
-			let date = Date(timestampUsec: json["timestampUsec"] as! String)
-			self.updatedDate = updatedDate
-			self.date = date
-			self.title = json["title"] as! String
-			self.author = json["author"] as! String
-			let summary = (json["summary"] as! [String: AnyObject])["content"] as! String?
-			self.summary = summary
-			let streamID = (json["origin"] as? NSDictionary)?["streamId"] as! String
-			assert(nil == subscription || streamID == subscription?.streamID)
-			let subscription = try subscription ?? insertedObjectUnlessFetchedWithID(Subscription.self, id: streamID, managedObjectContext: managedObjectContext)
-			self.subscription = subscription
-			self.canonical = json["canonical"] as! [[String : String]]?
-			self.json = json
-		}
-		do {
-			guard let categoriesIDs = json["categories"] as? [String] else {
-				throw ItemError.CategoriesMissingOrInvalidInJson(json: json)
-			}
-			let insertedOrFetchedCategories = try categoriesIDs.map { (categoryID: String) -> Folder in
-				let folder = try insertedObjectUnlessFetchedWithID(Folder.self, id: categoryID, managedObjectContext: managedObjectContext)
-				return folder
-			}
-			let categories = Set(insertedOrFetchedCategories)
-			if self.categories != categories {
-				self.categories = categories
-			}
+		let date = Date(timestampUsec: json["timestampUsec"] as! String)
+		self.updatedDate = updatedDate
+		self.date = date
+		self.title = json["title"] as! String
+		self.author = json["author"] as! String
+		let summary = (json["summary"] as! [String: AnyObject])["content"] as! String?
+		self.summary = summary
+		let streamID = (json["origin"] as? NSDictionary)?["streamId"] as! String
+		assert(nil == subscription || streamID == subscription?.streamID)
+		let subscription = try subscription ?? insertedObjectUnlessFetchedWithID(Subscription.self, id: streamID, managedObjectContext: managedObjectContext)
+		self.subscription = subscription
+		self.canonical = json["canonical"] as! [[String : String]]?
+		self.json = json
+
+		let categoryIDs = json["categories"] as! [String]
+		let categories = Set(categoryIDs.map { return categoriesByID[$0]! })
+		if self.categories != categories {
+			self.categories = categories
 		}
 	}
 }
