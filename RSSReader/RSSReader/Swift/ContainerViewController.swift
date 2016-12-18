@@ -44,6 +44,7 @@ class ContainerViewController: UITableViewController {
 	// MARK: -
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
+		$(container)
 		if defaults.showAllItemsCount {
 			scheduledForViewDidDisappear += [bindItemsCount()]
 		}

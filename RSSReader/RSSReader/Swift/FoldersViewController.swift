@@ -115,7 +115,7 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 			return self.foldersController.updateFolders()
 		}.then { () -> Void in
 			if nil == self.rootFolder {
-				self.rootFolder = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: mainQueueManagedObjectContext)
+				self.rootFolder = $(Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: mainQueueManagedObjectContext))
 				assert(nil != self.rootFolder)
 			}
 			self.tableView.reloadData()
