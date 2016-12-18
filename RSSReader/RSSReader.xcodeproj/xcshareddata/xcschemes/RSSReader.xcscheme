@@ -202,7 +202,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-stateRestorationEnabled NO"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-sourceLabelsEnabled YES"
