@@ -16,6 +16,7 @@ extension KVOCompliantUserDefaults {
 	@NSManaged var updateCellsInPlaceEnabled: Bool
 	@NSManaged var reloadDataForTableUpdatesEnabled: Bool
 	@NSManaged var suppressInPlaceCellUpdates: Bool
+	@NSManaged var fetchResultsDebugEnabled: Bool
 }
 
 private var fetchResultsAnimationEnabled: Bool {
@@ -44,12 +45,14 @@ public class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSOb
 	// MARK: -
 	public func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		$(controller)
-		let managedObjectContext = controller.managedObjectContext
-		assert(managedObjectContext.concurrencyType == .mainQueueConcurrencyType)
-		for updatedObject in managedObjectContext.updatedObjects {
-			((updatedObject).changedValues())
+		if defaults.fetchResultsDebugEnabled  {
+			let managedObjectContext = controller.managedObjectContext
+			assert(managedObjectContext.concurrencyType == .mainQueueConcurrencyType)
+			for updatedObject in managedObjectContext.updatedObjects {
+				((updatedObject).changedValues())
+			}
+			•(managedObjectContext.insertedObjects)
 		}
-		•(managedObjectContext.insertedObjects)
 		guard !reloadDataForTableUpdatesEnabled else {
 			tableView?.reloadData()
 			return
@@ -94,14 +97,18 @@ public class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSOb
 		switch type {
 		case .insert:
 			counts.insertions += 1
-			$(tableView.numberOfRows(inSection: $(newIndexPath!).section))
+			if defaults.fetchResultsDebugEnabled{
+				$(tableView.numberOfRows(inSection: $(newIndexPath!).section))
+			}
 			tableView.insertRows(at: [newIndexPath!], with: rowAnimation)
 		case .delete:
 			counts.deletions += 1
 			tableView.deleteRows(at: [$(indexPath!)], with: rowAnimation)
 		case .update:
 			counts.updates += 1
-			$(tableView.numberOfRows(inSection: $(indexPath!).section))
+			if defaults.fetchResultsDebugEnabled {
+				$(tableView.numberOfRows(inSection: $(indexPath!).section))
+			}
 			if defaults.updateCellsInPlaceEnabled {
 				if !defaults.suppressInPlaceCellUpdates, let cell = tableView.cellForRow(at: indexPath!) {
 					let indexPathForCell = tableView.indexPath(for: cell)!
