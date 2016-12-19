@@ -10,11 +10,14 @@ import Foundation
 import CoreData
 
 extension KVOCompliantUserDefaults {
+
 	@NSManaged var coreDataCachingEnabled: Bool
 	@NSManaged var backgroundImportEnabled: Bool
 	@NSManaged var forceStoreRemoval: Bool
 	@NSManaged var savingDisabled: Bool
 	@NSManaged var persistentContainerEnabled: Bool
+	@NSManaged var multipleBackgroundContextsEnabled: Bool
+
 }
 
 let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: NSClassFromString("RSSReaderData.Folder")!)])!
@@ -91,22 +94,28 @@ public var mainQueueManagedObjectContext: NSManagedObjectContext {
 	return persistentContainer.viewContext
 }
 
-let persistentBackgroundQueueManagedObjectContext: NSManagedObjectContext = {
+let backgroundQueueManagedObjectContext: NSManagedObjectContext = {
 	guard defaults.backgroundImportEnabled else {
 		return mainQueueManagedObjectContext
 	}
-	return NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType) … {
-		$0.name = "background"
-		$0.parent = mainQueueManagedObjectContext
-		if defaults.coreDataCachingEnabled {
-			$0.cachingEnabled = true
+	guard #available(iOS 10.0, *), defaults.persistentContainerEnabled else {
+		return NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType) … {
+			$0.name = "background"
+			$0.parent = mainQueueManagedObjectContext
+			if defaults.coreDataCachingEnabled {
+				$0.cachingEnabled = true
+			}
 		}
+	}
+	return persistentContainer.newBackgroundContext() … {
+		$0.name = "background"
 	}
 }()
 
-public func performBackgroundMOCTask(_ task: @escaping (NSManagedObjectContext) -> Void) { guard #available(iOS 10.0, *), defaults.persistentContainerEnabled else {
-		return persistentBackgroundQueueManagedObjectContext.perform {
-			task(persistentBackgroundQueueManagedObjectContext)
+public func performBackgroundMOCTask(_ task: @escaping (NSManagedObjectContext) -> Void) {
+	guard #available(iOS 10.0, *), defaults.persistentContainerEnabled, defaults.multipleBackgroundContextsEnabled else {
+		return backgroundQueueManagedObjectContext.perform {
+			task(backgroundQueueManagedObjectContext)
 		}
 	}
 	return persistentContainer.performBackgroundTask { context in
