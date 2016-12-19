@@ -25,21 +25,19 @@ extension KVOCompliantUserDefaults {
 extension ItemsViewController {
 
 	override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-		{
-			guard !defaults.loadOnScrollDisabled else {
-				return
-			}
-			guard nil != rssSession else {
-				return
-			}
-			guard nil != view.superview else {
-				return
-			}
-			guard !refreshControl!.isRefreshing else {
-				return
-			}
-			loadMoreIfNecessary()
-		}()
+		guard !defaults.loadOnScrollDisabled else {
+			return
+		}
+		guard nil != rssSession else {
+			return
+		}
+		guard nil != view.superview else {
+			return
+		}
+		guard !refreshControl!.isRefreshing else {
+			return
+		}
+		loadMoreIfNecessary()
 	}
 
 }
@@ -105,14 +103,14 @@ extension ItemsViewController : ItemsViewControllerLoadingImp {
 		}
 	}
 	
-	private func shouldLoadMore(for lastLoadedItemDate: Date?) -> Bool {
+	private func shouldLoadMore() -> Bool {
 		guard let loadController = loadController else {
 			return false
 		}
 		guard !(loadController.loadInProgress || loadController.loadCompleted || loadController.loadError != nil) else {
 			return false
 		}
-		guard let lastLoadedItemDate = lastLoadedItemDate else {
+		guard let lastLoadedItemDate = loadController.lastLoadedItemDate else {
 			return true
 		}
 		guard !defaults.loadItemsUntilLast else {
@@ -133,17 +131,10 @@ extension ItemsViewController : ItemsViewControllerLoadingImp {
 		return !(((lastLoadedItemDate).compare((barrierItem.date))) == .orderedAscending)
 	}
 	
-	private func loadMoreIfNecessary(for lastLoadedItemDate: Date?) {
-		guard $(shouldLoadMore(for: $(lastLoadedItemDate))) else {
-			if loadController.loadCompleted {
-				didCompleteLoad()
-			}
+	public func loadMoreIfNecessary() {
+		guard $(shouldLoadMore()) else {
 			return
 		}
 		loadMore {}
-	}
-	
-	func loadMoreIfNecessary() {
-		self.loadMoreIfNecessary(for: loadController.lastLoadedItemDate)
 	}
 }
