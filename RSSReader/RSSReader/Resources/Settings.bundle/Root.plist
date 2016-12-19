@@ -140,9 +140,19 @@
 		</dict>
 		<dict>
 			<key>Title</key>
-			<string>Debugging</string>
+			<string>Tracing</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>Key</key>
+			<string>traceEnabled</string>
+			<key>Title</key>
+			<string>Tracing</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -182,21 +192,17 @@
 			<key>DefaultValue</key>
 			<false/>
 			<key>Key</key>
-			<string>traceEnabled</string>
-			<key>Title</key>
-			<string>Tracing</string>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-		</dict>
-		<dict>
-			<key>DefaultValue</key>
-			<false/>
-			<key>Key</key>
 			<string>sourceLabelsEnabled</string>
 			<key>Title</key>
 			<string>Source Labels</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>Debugging</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
@@ -575,6 +581,16 @@
 			<string>persistentContainerEnabled</string>
 			<key>Title</key>
 			<string>Persistent Container</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>Key</key>
+			<string>multipleBackgroundContextsEnabled</string>
+			<key>Title</key>
+			<string>Multiple Background Contexts</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
