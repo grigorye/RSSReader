@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16C67" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16C67" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CategoryItem" representedClassName=".CategoryItem" syncable="YES">
+        <relationship name="category" maxCount="1" deletionRule="No Action" destinationEntity="Folder" syncable="YES"/>
+        <relationship name="item" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="categoryItems" inverseEntity="Item" syncable="YES"/>
+    </entity>
     <entity name="Container" representedClassName=".Container" isAbstract="YES" syncable="YES">
         <attribute name="newestItemDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="sortID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
@@ -24,7 +28,7 @@
     </entity>
     <entity name="Folder" representedClassName=".Folder" parentEntity="Container" syncable="YES">
         <relationship name="childContainers" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Container" inverseName="parentFolder" inverseEntity="Container" syncable="YES"/>
-        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="categories" inverseEntity="Item" syncable="YES"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" syncable="YES"/>
         <relationship name="itemsToBeExcluded" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="categoriesToBeExcluded" inverseEntity="Item" syncable="YES"/>
         <relationship name="itemsToBeIncluded" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="categoriesToBeIncluded" inverseEntity="Item" syncable="YES"/>
         <relationship name="subscriptions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Subscription" inverseName="categories" inverseEntity="Subscription" syncable="YES"/>
@@ -42,9 +46,9 @@
         <attribute name="titleData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="titleUnoptimized" attributeType="String" syncable="YES"/>
         <attribute name="updatedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Folder" inverseName="items" inverseEntity="Folder" syncable="YES"/>
         <relationship name="categoriesToBeExcluded" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Folder" inverseName="itemsToBeExcluded" inverseEntity="Folder" syncable="YES"/>
         <relationship name="categoriesToBeIncluded" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Folder" inverseName="itemsToBeIncluded" inverseEntity="Folder" syncable="YES"/>
+        <relationship name="categoryItems" toMany="YES" deletionRule="Nullify" destinationEntity="CategoryItem" inverseName="item" inverseEntity="CategoryItem" syncable="YES"/>
         <relationship name="subscription" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Subscription" inverseName="items" inverseEntity="Subscription" syncable="YES"/>
     </entity>
     <entity name="Subscription" representedClassName=".Subscription" parentEntity="Container" syncable="YES">
@@ -57,6 +61,7 @@
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Item" inverseName="subscription" inverseEntity="Item" syncable="YES"/>
     </entity>
     <elements>
+        <element name="CategoryItem" positionX="-54" positionY="135" width="128" height="75"/>
         <element name="Container" positionX="-63" positionY="18" width="128" height="135"/>
         <element name="ContainerViewState" positionX="-54" positionY="81" width="128" height="150"/>
         <element name="Folder" positionX="-54" positionY="72" width="128" height="120"/>

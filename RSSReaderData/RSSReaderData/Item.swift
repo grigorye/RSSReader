@@ -45,7 +45,7 @@ public class Item : NSManagedObject {
 			return String(utf16CodeUnitsNoCopy: unsafeBitCast(data.bytes, to: UnsafePointer<unichar>.self), count: data.length / MemoryLayout<unichar>.stride, freeWhenDone: false)
 		}
 	}
-	@NSManaged public var categories: Set<Folder>
+	@NSManaged public var categoryItems: Set<CategoryItem>
 	@NSManaged public var categoriesToBeExcluded: Set<Folder>
 	@NSManaged public var categoriesToBeIncluded: Set<Folder>
 	@NSManaged public var subscription: Subscription
