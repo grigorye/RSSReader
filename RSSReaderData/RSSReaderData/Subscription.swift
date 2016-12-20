@@ -15,14 +15,7 @@ public class Subscription: Container, Titled {
     @NSManaged public var iconURL: NSURL?
     @NSManaged public var url: NSURL?
 	@NSManaged var categories: Set<Folder>
-	@NSManaged var items: Set<Item>
 	public var visibleTitle: String? {
 		return title
-	}
-}
-
-extension Subscription: ItemsOwner {
-	public var ownItems: Set<Item> {
-		return items
 	}
 }

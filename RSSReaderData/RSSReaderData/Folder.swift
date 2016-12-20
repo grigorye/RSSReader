@@ -11,7 +11,6 @@ import CoreData
 public class Folder : Container {
 	typealias _Self = Folder
 	@NSManaged public var childContainers: NSOrderedSet
-	@NSManaged var items: Set<Item>
 	@NSManaged var itemsToBeExcluded: Set<Item>
 	@NSManaged var itemsToBeIncluded: Set<Item>
 }
@@ -43,11 +42,5 @@ extension Folder {
 extension Folder : Titled {
 	final public var visibleTitle: String? {
 		return (streamID as NSString).lastPathComponent
-	}
-}
-
-extension Folder : ItemsOwner {
-	public var ownItems: Set<Item> {
-		return self.items
 	}
 }
