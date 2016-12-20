@@ -43,6 +43,11 @@ extension Array {
 		return try with(x, modify)
 	}
 }
+extension Set {
+	static func …(x: Set, _ modify: (inout Set) throws -> Void) rethrows -> Set {
+		return try with(x, modify)
+	}
+}
 
 // MARK: -
 
