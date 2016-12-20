@@ -47,7 +47,7 @@ class ItemTableViewDataSource: NSObject {
 	var cachedVariableHeights: [NSManagedObjectID : CGFloat] = [:]
 	lazy var containerViewPredicate: NSPredicate = {
 		if self.showUnreadOnly {
-			return NSPredicate(format: "SUBQUERY(\(#keyPath(Item.categories)), $x, $x.\(#keyPath(Folder.streamID)) ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
+			return NSPredicate(format: "SUBQUERY(\(#keyPath(Item.categoryItems.category)), $x, $x.\(#keyPath(Folder.streamID)) ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
 		}
 		else {
 			return NSPredicate(value: true)
@@ -78,7 +78,7 @@ class ItemTableViewDataSource: NSObject {
 			})
 #if true
 			$0.relationshipKeyPathsForPrefetching = [
-				#keyPath(E.categories)
+				#keyPath(E.categoryItems.category)
 			]
 #endif
 			$0.returnsObjectsAsFaults = false
