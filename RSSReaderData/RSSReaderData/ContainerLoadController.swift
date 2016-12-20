@@ -71,7 +71,7 @@ public class ContainerLoadController : NSObject {
 	//
 	private lazy var containerViewPredicate: NSPredicate = {
 		if self.unreadOnly {
-			return NSPredicate(format: "SUBQUERY(\(#keyPath(Item.categories)), $x, $x.\(#keyPath(Folder.streamID)) ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
+			return NSPredicate(format: "SUBQUERY(\(#keyPath(Item.categoryItems.category)), $x, $x.\(#keyPath(Folder.streamID)) ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
 		}
 		else {
 			return NSPredicate(value: true)

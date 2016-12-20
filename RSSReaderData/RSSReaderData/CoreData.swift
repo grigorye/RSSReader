@@ -41,6 +41,29 @@ extension Item : ManagedIdentifiable {
 	public class func entityName() -> String {
 		return "Item"
 	}
+	var categories: Set<Folder> {
+		set {
+			let oldValue = categories
+			let categoryItemsForDeletion = categoryItems.filter { !newValue.contains($0.category) }
+			let insertedCategories = newValue … {
+				$0.subtract(oldValue)
+				()
+			}
+			for categoryItem in categoryItemsForDeletion {
+				managedObjectContext!.delete(categoryItem)
+			}
+			for category in insertedCategories {
+				let categoryItem = (NSEntityDescription.insertNewObject(forEntityName: CategoryItem.entityName(), into: managedObjectContext!) as! CategoryItem)
+				categoryItem … {
+					$0.item = self
+					$0.category = category
+				}
+			}
+		}
+		get {
+			return Set(categoryItems.map { $0.category })
+		}
+	}
 	func importFromJson(_ jsonObject: Any, subscription: Subscription? = nil, categoriesByID: [String : Folder]) throws {
 		let json = jsonObject as! Json
 		// Track changes in the categories (not reflected in the update date).

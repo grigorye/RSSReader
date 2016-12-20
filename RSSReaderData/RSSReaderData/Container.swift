@@ -87,7 +87,7 @@ extension Container {
 		case let category where category.streamID.hasSuffix(rootTagSuffix):
 			return NSPredicate(value: true)
 		default:
-			return NSPredicate(format: "(\(#keyPath(Item.categories)) CONTAINS %@)", argumentArray: [self])
+			return NSPredicate(format: "(\(#keyPath(Item.categoryItems.category)) CONTAINS %@)", argumentArray: [self])
 		}
 	}
 	public var ownItems: [Item] {
