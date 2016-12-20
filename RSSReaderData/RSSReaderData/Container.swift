@@ -64,10 +64,6 @@ public class Container : NSManagedObject, Validating {
 	var visibleTitle: String? { get }
 }
 
-@objc public protocol ItemsOwner {
-	var ownItems: Set<Item> { get }
-}
-
 extension Container : DefaultSortable {
 	public class func defaultSortDescriptor() -> NSSortDescriptor {
 		return NSSortDescriptor(key: #keyPath(streamID), ascending: true)
@@ -93,6 +89,12 @@ extension Container {
 		default:
 			return NSPredicate(format: "(\(#keyPath(Item.categories)) CONTAINS %@)", argumentArray: [self])
 		}
+	}
+	public var ownItems: [Item] {
+		let fetchRequest = Item.fetchRequestForEntity() … {
+			$0.predicate = predicateForItems
+		}
+		return try! self.managedObjectContext!.fetch(fetchRequest) as [Item]
 	}
 }
 
