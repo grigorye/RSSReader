@@ -14,7 +14,7 @@ import UIKit
 class MarkAllAsReadActivity : TypeFilteringActivity {
 	override func perform() {
 		let folder = acceptedItems.last!
-		let items = (folder as! ItemsOwner).ownItems
+		let items = folder.ownItems
 		for i in items {
 			i.markedAsRead = true
 		}

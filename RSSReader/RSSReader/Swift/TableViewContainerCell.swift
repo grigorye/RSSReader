@@ -22,20 +22,9 @@ class TableViewContainerCell : UITableViewCell {
 				guard defaults.showOwnItemsCount else {
 					return nullableUnreadCountText ?? ""
 				}
-				let nullableOwnItemsCountText: String? = {
-					guard let itemsOwner = container as? ItemsOwner else {
-						return nil
-					}
-					return "[\(itemsOwner.ownItems.count)]"
-				}()
-				guard let unreadCountText = nullableUnreadCountText, let ownItemsCountText = nullableOwnItemsCountText else {
-					guard let unreadCountText = nullableUnreadCountText else {
-						guard let ownItemsCountText = nullableOwnItemsCountText else {
-							return ""
-						}
-						return ownItemsCountText
-					}
-					return unreadCountText
+				let ownItemsCountText = "[\(container.ownItems.count)]"
+				guard let unreadCountText = nullableUnreadCountText else {
+					return ownItemsCountText
 				}
 				return ownItemsCountText + " " + unreadCountText
 			}()

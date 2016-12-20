@@ -311,7 +311,7 @@ extension ItemsViewController {
 		didStartLoad()
 	}
 	@IBAction private func markAllAsRead(_ sender: AnyObject!) {
-		let items = (container as! ItemsOwner).ownItems
+		let items = container.ownItems
 		for i in items {
 			i.markedAsRead = true
 		}
