@@ -97,7 +97,19 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
+            argument = "-forceStoreRemoval YES"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-multipleBackgroundContextsEnabled YES"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "-traceEnabled YES"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-showOwnItemsCount YES"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -119,10 +131,6 @@
          <CommandLineArgument
             argument = "-defaultLogKind print"
             isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "-forceStoreRemoval YES"
-            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-loadItemsUntilLast YES"
