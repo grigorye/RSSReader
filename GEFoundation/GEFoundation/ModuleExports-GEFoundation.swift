@@ -48,6 +48,11 @@ extension Set {
 		return try with(x, modify)
 	}
 }
+extension ScheduledHandlers {
+	static func …(x: ScheduledHandlers, _ modify: (inout ScheduledHandlers	) throws -> Void) rethrows -> ScheduledHandlers {
+		return try with(x, modify)
+	}
+}
 
 // MARK: -
 
