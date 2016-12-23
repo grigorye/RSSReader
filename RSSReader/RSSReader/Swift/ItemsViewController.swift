@@ -114,6 +114,18 @@ class ItemsViewController : ContainerViewController {
 	
 	// MARK: -
 	
+	func bind() -> Handler {
+		let scheduledForUnbind = ScheduledHandlers() … {
+			$0 += [self.bindLoadController()]
+			$0 += [self.bindLoadDate()]
+			$0 += [self.bindTitle()]
+			()
+		}
+		return { scheduledForUnbind.perform() }
+	}
+	
+	// MARK: -
+
 	override func viewWillAppear(_ animated: Bool) {
 		scheduledForViewWillAppearOrStateRestoration.perform()
 		scheduledForViewWillAppear.perform()
@@ -125,11 +137,7 @@ class ItemsViewController : ContainerViewController {
 			return
 		}
 		
-		scheduledForViewDidDisappear += [self.bindLoadController()]
-#if true
-		scheduledForViewDidDisappear += [self.bindLoadDate()]
-#endif
-		scheduledForViewDidDisappear += [self.bindTitle()]
+		scheduledForViewDidDisappear += [self.bind()]
 	}
 	private var scheduledForViewWillAppear = ScheduledHandlers()
 	
