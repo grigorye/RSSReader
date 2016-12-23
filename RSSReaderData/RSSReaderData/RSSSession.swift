@@ -55,7 +55,8 @@ public extension RSSSession {
 	}
 
 	static func setErrorUserInfoValueProvider() {
-		NSError.setUserInfoValueProvider(forDomain: (RSSSessionError.unused as NSError).domain) { error, key in
+		let errorDomain = (RSSSessionError.unused as NSError).domain
+		NSError.setUserInfoValueProvider(forDomain: $(errorDomain)) { error, key in
 			switch error {
 			case RSSSessionError.requestFailed(let underlyingError):
 				return (underlyingError as NSError).userInfo[key]
