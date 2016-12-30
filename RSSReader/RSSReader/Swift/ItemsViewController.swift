@@ -115,7 +115,7 @@ class ItemsViewController : ContainerViewController {
 	// MARK: -
 	
 	func bind() -> Handler {
-		let scheduledForUnbind = ScheduledHandlers() … {
+		var scheduledForUnbind = ScheduledHandlers() … {
 			$0 += [self.bindLoadController()]
 			$0 += [self.bindLoadDate()]
 			$0 += [self.bindTitle()]
