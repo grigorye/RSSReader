@@ -100,6 +100,7 @@
 		C4C422181A75E355008803A7 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C422171A75E355008803A7 /* MainNavigationController.swift */; };
 		C4C780141A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C780131A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift */; };
 		C4C780161A7DF1EC009CB5FC /* ApplicationActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C780151A7DF1EC009CB5FC /* ApplicationActivities.swift */; };
+		C4CB4B9C1E2A449F00C601BF /* ODUIThreadGuard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CB4B9B1E2A449F00C601BF /* ODUIThreadGuard.swift */; };
 		C4CDD3A31A5350B40087DD05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */; };
 		C4CDD3AC1A5350B50087DD05 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4CDD3AB1A5350B50087DD05 /* Images.xcassets */; };
 		C4CDD3C51A5357B20087DD05 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C4CDD3C41A5357B20087DD05 /* Settings.bundle */; };
@@ -301,6 +302,7 @@
 		C4C422171A75E355008803A7 /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainNavigationController.swift; path = Swift/MainNavigationController.swift; sourceTree = "<group>"; };
 		C4C780131A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MarkAllAsReadActivity.swift; path = Swift/MarkAllAsReadActivity.swift; sourceTree = "<group>"; };
 		C4C780151A7DF1EC009CB5FC /* ApplicationActivities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationActivities.swift; path = Swift/ApplicationActivities.swift; sourceTree = "<group>"; };
+		C4CB4B9B1E2A449F00C601BF /* ODUIThreadGuard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ODUIThreadGuard.swift; path = ../GitSubtrees/ODUIThreadGuard/ODUIThreadGuard/ODUIThreadGuard.swift; sourceTree = "<group>"; };
 		C4CD8B551CC1FD3100A59696 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C4CDD39D1A5350B40087DD05 /* RSSReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = AppDelegate.swift; path = Swift/AppDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -565,6 +567,14 @@
 			name = "UI Activities";
 			sourceTree = "<group>";
 		};
+		C4CB4B9D1E2A44BB00C601BF /* Framework Sources */ = {
+			isa = PBXGroup;
+			children = (
+				C4CB4B9B1E2A449F00C601BF /* ODUIThreadGuard.swift */,
+			);
+			name = "Framework Sources";
+			sourceTree = "<group>";
+		};
 		C4CDD3941A5350B40087DD05 = {
 			isa = PBXGroup;
 			children = (
@@ -572,6 +582,7 @@
 				C4CDD3B71A5350B50087DD05 /* RSSReaderTests */,
 				C4BE5AE41DAA5C5400E1734F /* Xcode */,
 				C444F53D1B2E53F200A6E378 /* RSSReaderUITests */,
+				C4CB4B9D1E2A44BB00C601BF /* Framework Sources */,
 				C4CDD39E1A5350B40087DD05 /* Products */,
 				C424B8F91C6FC5E1008AD647 /* Frameworks */,
 			);
@@ -902,6 +913,7 @@
 				C441F17F1DB258550060E692 /* SharedRSSAccount.swift in Sources */,
 				C4667F0D1CC80A050039C480 /* Appearance.swift in Sources */,
 				C4F575D61A7988DB00F12F20 /* OpenWebPageActivity.swift in Sources */,
+				C4CB4B9C1E2A449F00C601BF /* ODUIThreadGuard.swift in Sources */,
 				C46934DF1A5D291C00A0AEA2 /* ItemPageViewControllerDataSource.swift in Sources */,
 				C4F7DC3B1D97E93200275E4F /* ItemTableViewDelegate.swift in Sources */,
 				C45BC3EA1A8003F40008A5D1 /* HistoryViewController.swift in Sources */,
