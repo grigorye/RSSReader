@@ -21,17 +21,17 @@ public struct SourceExtractedInfo {
 
 public struct LogRecord {
 	public let message: String
-	public let sourceExtractedInfo: SourceExtractedInfo
+	public let sourceExtractedInfo: SourceExtractedInfo?
 	public let date: Date
-	public let location: SourceLocation
+	public let location: SourceLocation?
 }
 
 extension LogRecord {
-	public var label: String! {
-		return self.sourceExtractedInfo.label
+	public var label: String? {
+		return self.sourceExtractedInfo?.label
 	}
 	public var playgroundName: String? {
-		return self.sourceExtractedInfo.playgroundName
+		return self.sourceExtractedInfo?.playgroundName
 	}
 }
 
@@ -41,14 +41,23 @@ public typealias Logger = (LogRecord) -> ()
 public var loggers: [Logger] = [
 ]
 
-func log<T>(_ value: T, on date: Date, at location: SourceLocation, traceFunctionName: String) {
+public func log(_ record: LogRecord) {
+	for logger in loggers {
+		logger(record)
+	}
+}
+
+public func log<T>(_ value: T, on date: Date, at location: SourceLocation, traceFunctionName: String) {
 	guard 0 < loggers.count else {
 		return
 	}
 	let sourceExtractedInfo = GETracing.sourceExtractedInfo(for: location, traceFunctionName: traceFunctionName)
 	let message = descriptionImp(of: value)
 	let record = LogRecord(message: message, sourceExtractedInfo: sourceExtractedInfo, date: date, location: location)
-	for logger in loggers {
-		logger(record)
-	}
+	log(record)
+}
+
+public func logWithNoSourceOrLabel(_ message: String) {
+	let record = LogRecord(message: message, sourceExtractedInfo: nil, date: Date(), location: nil)
+	log(record)
 }
