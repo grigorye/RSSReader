@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		C441F19E1DB4345F0060E692 /* UserMessages.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5ADF1DAA5AE000E1734F /* UserMessages.swift */; };
 		C441F19F1DB4345F0060E692 /* Readability.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5AE01DAA5AE000E1734F /* Readability.swift */; };
+		C4595E0C1E2E444F0004D68D /* Mixpanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4595E0B1E2E444F0004D68D /* Mixpanel.framework */; };
+		C492B5301E2E3E2D0072D2D9 /* Mixpanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492B52F1E2E3E2D0072D2D9 /* Mixpanel.swift */; };
 		C49FF1BB1DBBA6F000A86CC0 /* GEUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1BA1DBBA6F000A86CC0 /* GEUIKit.framework */; };
 		C4BE5A861DA85DA100E1734F /* RSSReaderAppConfig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BE5A7C1DA85DA100E1734F /* RSSReaderAppConfig.framework */; };
 		C4BE5A8B1DA85DA100E1734F /* RSSReaderAppConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BE5A8A1DA85DA100E1734F /* RSSReaderAppConfigTests.swift */; };
@@ -93,6 +95,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C4595E0B1E2E444F0004D68D /* Mixpanel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mixpanel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C492B52F1E2E3E2D0072D2D9 /* Mixpanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mixpanel.swift; sourceTree = "<group>"; };
 		C49FF1BA1DBBA6F000A86CC0 /* GEUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GEUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4BE5A7C1DA85DA100E1734F /* RSSReaderAppConfig.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RSSReaderAppConfig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4BE5A801DA85DA100E1734F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -126,6 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4595E0C1E2E444F0004D68D /* Mixpanel.framework in Frameworks */,
 				C49FF1BB1DBBA6F000A86CC0 /* GEUIKit.framework in Frameworks */,
 				C4BE5ABA1DA86D8D00E1734F /* FBAllocationTracker.framework in Frameworks */,
 				C4BE5ABB1DA86D8D00E1734F /* FBMemoryProfiler.framework in Frameworks */,
@@ -177,6 +182,7 @@
 				C4BE5A971DA85DE000E1734F /* Appsee.swift */,
 				C4BE5A981DA85DE000E1734F /* UXCam.swift */,
 				C4BE5A991DA85DE000E1734F /* Flurry.swift */,
+				C492B52F1E2E3E2D0072D2D9 /* Mixpanel.swift */,
 				C4BE5A9E1DA85E0600E1734F /* Crashlytics.swift */,
 				C4BE5AA01DA85E2400E1734F /* FileLogger.swift */,
 				C4BE5AA21DA85E7500E1734F /* UITableView+SnappingHeaderToTop.swift */,
@@ -201,6 +207,7 @@
 		C4BE5AB61DA86D8D00E1734F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C4595E0B1E2E444F0004D68D /* Mixpanel.framework */,
 				C49FF1BA1DBBA6F000A86CC0 /* GEUIKit.framework */,
 				C4BE5AB71DA86D8D00E1734F /* FBAllocationTracker.framework */,
 				C4BE5AB81DA86D8D00E1734F /* FBMemoryProfiler.framework */,
@@ -329,6 +336,7 @@
 				C4BE5AA71DA85E7500E1734F /* UINavigationItem+MultipleButtonItemsCollections.swift in Sources */,
 				C4BE5A9F1DA85E0600E1734F /* Crashlytics.swift in Sources */,
 				C4BE5AE21DAA5AE000E1734F /* Readability.swift in Sources */,
+				C492B5301E2E3E2D0072D2D9 /* Mixpanel.swift in Sources */,
 				C4BE5A9B1DA85DE000E1734F /* Appsee.swift in Sources */,
 				C4BE5AA11DA85E2400E1734F /* FileLogger.swift in Sources */,
 				C4EB27FD1DFA35A400BF0843 /* ModuleExports-GETracing.swift in Sources */,
@@ -397,6 +405,7 @@
 		};
 		C4BE5A921DA85DA100E1734F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C4BE5ADB1DA8762D00E1734F /* RSSReader-app.xcconfig */;
 			buildSettings = {
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -421,7 +430,6 @@
 		};
 		C4BE5A951DA85DA100E1734F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C4BE5ADB1DA8762D00E1734F /* RSSReader-app.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = RSSReaderAppConfig/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
