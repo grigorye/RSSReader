@@ -10,6 +10,7 @@
 		C441F19E1DB4345F0060E692 /* UserMessages.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5ADF1DAA5AE000E1734F /* UserMessages.swift */; };
 		C441F19F1DB4345F0060E692 /* Readability.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5AE01DAA5AE000E1734F /* Readability.swift */; };
 		C4595E0C1E2E444F0004D68D /* Mixpanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4595E0B1E2E444F0004D68D /* Mixpanel.framework */; };
+		C45C54A11E2E58630039D16C /* Optimizely.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45C54A01E2E58630039D16C /* Optimizely.swift */; };
 		C492B5301E2E3E2D0072D2D9 /* Mixpanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492B52F1E2E3E2D0072D2D9 /* Mixpanel.swift */; };
 		C49FF1BB1DBBA6F000A86CC0 /* GEUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1BA1DBBA6F000A86CC0 /* GEUIKit.framework */; };
 		C4BE5A861DA85DA100E1734F /* RSSReaderAppConfig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BE5A7C1DA85DA100E1734F /* RSSReaderAppConfig.framework */; };
@@ -96,6 +97,7 @@
 
 /* Begin PBXFileReference section */
 		C4595E0B1E2E444F0004D68D /* Mixpanel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mixpanel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C45C54A01E2E58630039D16C /* Optimizely.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Optimizely.swift; sourceTree = "<group>"; };
 		C492B52F1E2E3E2D0072D2D9 /* Mixpanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mixpanel.swift; sourceTree = "<group>"; };
 		C49FF1BA1DBBA6F000A86CC0 /* GEUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GEUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4BE5A7C1DA85DA100E1734F /* RSSReaderAppConfig.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RSSReaderAppConfig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,6 +185,7 @@
 				C4BE5A981DA85DE000E1734F /* UXCam.swift */,
 				C4BE5A991DA85DE000E1734F /* Flurry.swift */,
 				C492B52F1E2E3E2D0072D2D9 /* Mixpanel.swift */,
+				C45C54A01E2E58630039D16C /* Optimizely.swift */,
 				C4BE5A9E1DA85E0600E1734F /* Crashlytics.swift */,
 				C4BE5AA01DA85E2400E1734F /* FileLogger.swift */,
 				C4BE5AA21DA85E7500E1734F /* UITableView+SnappingHeaderToTop.swift */,
@@ -345,6 +348,7 @@
 				C4BE5AB51DA868AD00E1734F /* AppDelegateBase.swift in Sources */,
 				C4BE5A9C1DA85DE000E1734F /* UXCam.swift in Sources */,
 				C4BE5A9D1DA85DE000E1734F /* Flurry.swift in Sources */,
+				C45C54A11E2E58630039D16C /* Optimizely.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

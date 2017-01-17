@@ -59,6 +59,8 @@
 		C45BC3EA1A8003F40008A5D1 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45BC3E91A8003F40008A5D1 /* HistoryViewController.swift */; };
 		C45C549E1E2E4B550039D16C /* Mixpanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C45C549D1E2E4B550039D16C /* Mixpanel.framework */; };
 		C45C549F1E2E4B550039D16C /* Mixpanel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C45C549D1E2E4B550039D16C /* Mixpanel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C45C54A31E2E5BB20039D16C /* Optimizely.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C45C54A21E2E5BB20039D16C /* Optimizely.framework */; };
+		C45C54A41E2E5BB20039D16C /* Optimizely.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C45C54A21E2E5BB20039D16C /* Optimizely.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C45ECD061A62054C00ADC113 /* SBConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45ECD051A62054C00ADC113 /* SBConstants.swift */; };
 		C4667F0D1CC80A050039C480 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667F0C1CC80A050039C480 /* Appearance.swift */; };
 		C4676E091A6A4D1F00AE8BC2 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4676E081A6A4D1F00AE8BC2 /* ItemTableViewCell.swift */; };
@@ -202,6 +204,7 @@
 				C474F0D21D8775F500CABEB9 /* SwiftMessages.framework in Embed Frameworks */,
 				C408F1B21CE7520700DB943F /* FBAllocationTracker.framework in Embed Frameworks */,
 				C45C549F1E2E4B550039D16C /* Mixpanel.framework in Embed Frameworks */,
+				C45C54A41E2E5BB20039D16C /* Optimizely.framework in Embed Frameworks */,
 				C4270C011DBD502600FA3A0A /* GETracing.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -274,6 +277,7 @@
 		C459879E1CDE0AAA00B8E9E4 /* GEShared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = GEShared.xcconfig; path = ../XcodeConfiguration/GEShared.xcconfig; sourceTree = "<group>"; };
 		C45BC3E91A8003F40008A5D1 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = HistoryViewController.swift; path = Swift/HistoryViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C45C549D1E2E4B550039D16C /* Mixpanel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Mixpanel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C45C54A21E2E5BB20039D16C /* Optimizely.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Optimizely.framework; path = "../Pods/Optimizely-iOS-SDK/Optimizely.framework"; sourceTree = "<group>"; };
 		C45ECD051A62054C00ADC113 /* SBConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SBConstants.swift; path = Swift/SBConstants.swift; sourceTree = "<group>"; };
 		C4667F0C1CC80A050039C480 /* Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Appearance.swift; path = Swift/Appearance.swift; sourceTree = "<group>"; };
 		C4676E081A6A4D1F00AE8BC2 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemTableViewCell.swift; path = Swift/ItemTableViewCell.swift; sourceTree = "<group>"; };
@@ -365,6 +369,7 @@
 				C474F0D11D8775F500CABEB9 /* SwiftMessages.framework in Frameworks */,
 				C408F1B11CE7520700DB943F /* FBAllocationTracker.framework in Frameworks */,
 				C45C549E1E2E4B550039D16C /* Mixpanel.framework in Frameworks */,
+				C45C54A31E2E5BB20039D16C /* Optimizely.framework in Frameworks */,
 				C4270C001DBD502600FA3A0A /* GETracing.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,6 +401,7 @@
 		C424B8F91C6FC5E1008AD647 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C45C54A21E2E5BB20039D16C /* Optimizely.framework */,
 				C45C549D1E2E4B550039D16C /* Mixpanel.framework */,
 				C474F1BF1DB041F100F0E152 /* Loggy.framework */,
 				C4D436751D8777A3008C6386 /* SwiftMessages.bundle */,

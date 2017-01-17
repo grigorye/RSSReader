@@ -59,6 +59,9 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 				}
 			}]
 		}
+		if $(versionIsClean) {
+			launchOptimizely(launchOptions: launchOptions)
+		}
 		return true
 	}
 	// MARK: -
