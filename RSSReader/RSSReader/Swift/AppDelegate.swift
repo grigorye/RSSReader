@@ -21,6 +21,9 @@ class AppDelegate : AppDelegateBase {
 	override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
 		defer { launchingScope.leave() }
 		var scope = Activity("Finishing Launching").enter(); defer { scope.leave() }
+		guard super.application(application, didFinishLaunchingWithOptions: launchOptions) else {
+			return false
+		}
 		do {
 			var scope = Activity("Loading Persistent Stores").enter()
 			loadPersistentStores { error in
