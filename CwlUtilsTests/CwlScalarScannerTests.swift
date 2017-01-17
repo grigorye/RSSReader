@@ -72,7 +72,26 @@ class ScalarScannerTests: XCTestCase {
 			XCTFail()
 		}
 	}
-	
+    
+    func testReadUntilSet() {
+        do {
+            var sc = ScalarScanner(scalars: "uvwxyz . ABCD_*".unicodeScalars)
+            let s1 = try sc.readUntil(set: Set(" .".unicodeScalars.sorted()))
+            XCTAssertEqual(s1, "uvwxyz")
+            let s2 = try sc.readUntil(set: Set(" .".unicodeScalars.sorted()))
+            XCTAssertEqual(s2, "")
+            let s3 = try sc.readUntil(set: Set("_%^&*".unicodeScalars.sorted()))
+            XCTAssertEqual(s3, " . ABCD")
+            let _ = try sc.readUntil(set: Set("ab".unicodeScalars.sorted()))
+            XCTFail()
+        } catch ScalarScannerError.searchFailed(let wanted, let after) {
+            XCTAssert(wanted == "One of: [\"a\", \"b\"]")
+            XCTAssert(after == 13)
+        } catch {
+            XCTFail()
+        }
+    }
+    
 	func testReadUntilString() {
 		do {
 			var sc = ScalarScanner(scalars: "uvwxyz".unicodeScalars)
@@ -118,8 +137,24 @@ class ScalarScannerTests: XCTestCase {
 			XCTFail()
 		}
 	}
-	
-	func testReadWhileTrue() {
+    
+    func testSkipUntilSet() {
+        do {
+            var sc = ScalarScanner(scalars: "uvwxyz . ABCD_*".unicodeScalars)
+            try sc.skipUntil(set: Set(" .".unicodeScalars.sorted()))
+            try sc.skipUntil(set: Set(" .".unicodeScalars.sorted()))
+            try sc.skipUntil(set: Set("_%^&*".unicodeScalars.sorted()))
+            try sc.skipUntil(set: Set("ab".unicodeScalars.sorted()))
+            XCTFail()
+        } catch ScalarScannerError.searchFailed(let wanted, let after) {
+            XCTAssert(wanted == "One of: [\"a\", \"b\"]")
+            XCTAssert(after == 13)
+        } catch {
+            XCTFail()
+        }
+    }
+    
+    func testReadWhileTrue() {
 		var sc = ScalarScanner(scalars: "xyz".unicodeScalars)
 		let value = sc.readWhile { $0 < "z" }
 		XCTAssert(value == "xy")
