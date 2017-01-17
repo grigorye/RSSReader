@@ -325,6 +325,10 @@ limitations under the License.
    See the License for the specific language governing permissions and
    limitations under the License.
 
+## Optimizely-iOS-SDK
+
+See http://developers.optimizely.com/ios/terms
+
 ## PromiseKit
 
 Copyright 2016, Max Howell; mxcl@me.com

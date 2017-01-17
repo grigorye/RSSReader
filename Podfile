@@ -18,6 +18,7 @@ target "iOS" do
 	pod 'FBMemoryProfiler'
 	pod 'PromiseKit/CorePromise'
 	pod 'Mixpanel-swift'
+	pod 'Optimizely-iOS-SDK'
 end
 target "macOS" do
 	platform :osx, '10.11'
