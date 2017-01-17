@@ -17,6 +17,7 @@ target "iOS" do
 #	pod 'Flurry-iOS-SDK/FlurrySDK'
 	pod 'FBMemoryProfiler'
 	pod 'PromiseKit/CorePromise'
+	pod 'Mixpanel-swift'
 end
 target "macOS" do
 	platform :osx, '10.11'
