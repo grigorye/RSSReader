@@ -1,0 +1,6 @@
+#! /bin/sh -e
+
+wd=$(dirname "$0")
+pushd "${wd:?}" > /dev/null
+git rev-list --abbrev-commit HEAD | wc -l | sed 's/^[[:space:]]*//'
+popd > /dev/null
