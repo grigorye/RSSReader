@@ -222,15 +222,15 @@ public struct StreamContents : PersistentDataUpdateCommand, AuthenticatedDataUpd
 struct Authenticate : PersistentDataUpdateCommand, SimpleDispatchingDataUpdateCommand {
 	typealias ResultType = String
 	let loginAndPassword: LoginAndPassword
-	func preprocessed(_ error: Error) -> Error {
+	func preprocessedRequestError(_ error: Error) -> RSSSessionError {
 		switch error {
 		case URLSessionTaskGeneratorError.UnexpectedHTTPResponseStatus(let httpResponse):
 			guard httpResponse.statusCode == 401 else {
-				return error
+				return .requestFailed(underlyingError: error)
 			}
-			return RSSSessionError.authenticationFailed(underlyingError: error)
+			return .authenticationFailed(underlyingError: error)
 		default:
-			return error
+			return .requestFailed(underlyingError: error)
 		}
 	}
 	var request: URLRequest {
