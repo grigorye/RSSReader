@@ -86,6 +86,7 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 			_ = appseeInitializer
 			_ = uxcamInitializer
 			_ = flurryInitializer
+			_ = mixpanelInitializer
 		}
 		return Ignored()
 	}()
