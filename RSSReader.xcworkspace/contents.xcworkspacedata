@@ -38,13 +38,6 @@
    <Group
       location = "container:"
       name = "Third Parties">
-      <Group
-         location = "container:"
-         name = "Static Framework Wrappers">
-         <FileRef
-            location = "group:StaticFrameworkWrappers/Optimizely/Optimizely.xcodeproj">
-         </FileRef>
-      </Group>
       <FileRef
          location = "group:Pods/Pods.xcodeproj">
       </FileRef>
