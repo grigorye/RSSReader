@@ -43,7 +43,7 @@
 		C4BE5ADA1DA8712600E1734F /* RSSReaderAppConfigTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5A8A1DA85DA100E1734F /* RSSReaderAppConfigTests.swift */; };
 		C4BE5AE11DAA5AE000E1734F /* UserMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BE5ADF1DAA5AE000E1734F /* UserMessages.swift */; };
 		C4BE5AE21DAA5AE000E1734F /* Readability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BE5AE01DAA5AE000E1734F /* Readability.swift */; };
-		C4C4E1AF1E2E7D9700167102 /* Optimizely.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4C4E1AE1E2E7D9700167102 /* Optimizely.framework */; };
+		C4CB79191E3173AE00F89794 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4CB79181E3173AE00F89794 /* GoogleToolboxForMac.framework */; };
 		C4EB27FD1DFA35A400BF0843 /* ModuleExports-GETracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27FB1DFA35A400BF0843 /* ModuleExports-GETracing.swift */; };
 		C4EB27FE1DFA35A400BF0843 /* ModuleExports-GEFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27FC1DFA35A400BF0843 /* ModuleExports-GEFoundation.swift */; };
 		C4F738971DBD73820092F1D8 /* GEUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1BA1DBBA6F000A86CC0 /* GEUIKit.framework */; };
@@ -125,7 +125,7 @@
 		C4BE5ADF1DAA5AE000E1734F /* UserMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMessages.swift; sourceTree = "<group>"; };
 		C4BE5AE01DAA5AE000E1734F /* Readability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Readability.swift; sourceTree = "<group>"; };
 		C4C1CE3A1E30BFCD00A2767B /* RSSReaderAppConfig-release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "RSSReaderAppConfig-release.xcconfig"; path = "RSSReaderAppConfig/RSSReaderAppConfig-release.xcconfig"; sourceTree = "<group>"; };
-		C4C4E1AE1E2E7D9700167102 /* Optimizely.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Optimizely.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4CB79181E3173AE00F89794 /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4EB27FB1DFA35A400BF0843 /* ModuleExports-GETracing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GETracing.swift"; path = "../GETracing/GETracing/ModuleExports-GETracing.swift"; sourceTree = SOURCE_ROOT; };
 		C4EB27FC1DFA35A400BF0843 /* ModuleExports-GEFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GEFoundation.swift"; path = "../GEFoundation/GEFoundation/ModuleExports-GEFoundation.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -135,7 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C4C4E1AF1E2E7D9700167102 /* Optimizely.framework in Frameworks */,
+				C4CB79191E3173AE00F89794 /* GoogleToolboxForMac.framework in Frameworks */,
 				C4595E0C1E2E444F0004D68D /* Mixpanel.framework in Frameworks */,
 				C49FF1BB1DBBA6F000A86CC0 /* GEUIKit.framework in Frameworks */,
 				C4BE5ABA1DA86D8D00E1734F /* FBAllocationTracker.framework in Frameworks */,
@@ -213,7 +213,7 @@
 		C4BE5AB61DA86D8D00E1734F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C4C4E1AE1E2E7D9700167102 /* Optimizely.framework */,
+				C4CB79181E3173AE00F89794 /* GoogleToolboxForMac.framework */,
 				C4595E0B1E2E444F0004D68D /* Mixpanel.framework */,
 				C49FF1BA1DBBA6F000A86CC0 /* GEUIKit.framework */,
 				C4BE5AB71DA86D8D00E1734F /* FBAllocationTracker.framework */,
