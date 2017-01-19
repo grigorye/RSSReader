@@ -12,6 +12,7 @@ import func GEFoundation.loadDefaultsFromSettingsPlistAtURL
 import var GEFoundation.versionIsClean
 import var GEFoundation.buildAge
 import var GEFoundation.nslogRedirectorInitializer
+import FirebaseCore
 import Loggy
 import FBAllocationTracker
 import FBMemoryProfiler
@@ -61,6 +62,7 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 		}
 		if $(versionIsClean) {
 			launchOptimizely(launchOptions: launchOptions)
+			FIRApp.configure()
 		}
 		return true
 	}
