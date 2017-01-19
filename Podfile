@@ -20,7 +20,6 @@ target "iOS" do
 	pod 'Mixpanel-swift'
 	pod 'Optimizely-iOS-SDK'
 	pod 'Firebase/Core'
-	pod 'GoogleToolboxForMac'
 end
 target "macOS" do
 	platform :osx, '10.11'
@@ -40,14 +39,6 @@ post_install do |installer|
       configuration.build_settings['ENABLE_BITCODE'] = 'NO'
       xcconfig_path = configuration.base_configuration_reference.real_path
       xcconfig = Xcodeproj::Config.new(xcconfig_path).to_hash
-      other_ldflags = xcconfig['OTHER_LDFLAGS']
-      puts xcconfig_path
-      if other_ldflags.present?
-      	puts "old:", other_ldflags
-      	other_ldflags = other_ldflags.gsub(/ -framework "GoogleToolboxForMac"/, "")
-        xcconfig['OTHER_LDFLAGS'] = other_ldflags
-        puts "updated:", other_ldflags
-      end
       File.open(xcconfig_path, "w") { |file|
         xcconfig.each do |key,value|
           file.puts "#{key} = #{value}"

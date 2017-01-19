@@ -23,89 +23,9 @@ PODS:
   - GoogleInterchangeUtilities (1.2.2):
     - GoogleSymbolUtilities (~> 1.1)
   - GoogleSymbolUtilities (1.1.2)
-  - GoogleToolboxForMac (2.1.0):
-    - GoogleToolboxForMac/AddressBook (= 2.1.0)
-    - GoogleToolboxForMac/Core (= 2.1.0)
-    - GoogleToolboxForMac/DebugUtils (= 2.1.0)
-    - GoogleToolboxForMac/Defines (= 2.1.0)
-    - GoogleToolboxForMac/GeometryUtils (= 2.1.0)
-    - GoogleToolboxForMac/iPhone (= 2.1.0)
-    - GoogleToolboxForMac/KVO (= 2.1.0)
-    - GoogleToolboxForMac/Logger (= 2.1.0)
-    - GoogleToolboxForMac/NSData+zlib (= 2.1.0)
-    - GoogleToolboxForMac/NSDictionary+URLArguments (= 2.1.0)
-    - GoogleToolboxForMac/NSFileHandle+UniqueName (= 2.1.0)
-    - GoogleToolboxForMac/NSScanner+JSON (= 2.1.0)
-    - GoogleToolboxForMac/NSString+HTML (= 2.1.0)
-    - GoogleToolboxForMac/NSString+URLArguments (= 2.1.0)
-    - GoogleToolboxForMac/NSString+XML (= 2.1.0)
-    - GoogleToolboxForMac/NSThread+Blocks (= 2.1.0)
-    - GoogleToolboxForMac/Regex (= 2.1.0)
-    - GoogleToolboxForMac/RoundedRectPath (= 2.1.0)
-    - GoogleToolboxForMac/StackTrace (= 2.1.0)
-    - GoogleToolboxForMac/StringEncoding (= 2.1.0)
-    - GoogleToolboxForMac/SystemVersion (= 2.1.0)
-    - GoogleToolboxForMac/UIFont+LineHeight (= 2.1.0)
-    - GoogleToolboxForMac/UnitTesting (= 2.1.0)
-    - GoogleToolboxForMac/UnitTestingAppLib (= 2.1.0)
-    - GoogleToolboxForMac/URLBuilder (= 2.1.0)
-  - GoogleToolboxForMac/AddressBook (2.1.0):
-    - GoogleToolboxForMac/Core (= 2.1.0)
-    - GoogleToolboxForMac/Defines (= 2.1.0)
-  - GoogleToolboxForMac/Core (2.1.0):
-    - GoogleToolboxForMac/Defines (= 2.1.0)
-  - GoogleToolboxForMac/DebugUtils (2.1.0):
-    - GoogleToolboxForMac/Defines (= 2.1.0)
-  - GoogleToolboxForMac/Defines (2.1.0)
-  - GoogleToolboxForMac/GeometryUtils (2.1.0):
-    - GoogleToolboxForMac/Defines (= 2.1.0)
-  - GoogleToolboxForMac/iPhone (2.1.0):
-    - GoogleToolboxForMac/Defines (= 2.1.0)
-  - GoogleToolboxForMac/KVO (2.1.0):
-    - GoogleToolboxForMac/Core (= 2.1.0)
-    - GoogleToolboxForMac/DebugUtils (= 2.1.0)
-  - GoogleToolboxForMac/Logger (2.1.0):
-    - GoogleToolboxForMac/Defines (= 2.1.0)
-  - GoogleToolboxForMac/NSData+zlib (2.1.0):
-    - GoogleToolboxForMac/Defines (= 2.1.0)
-  - GoogleToolboxForMac/NSDictionary+URLArguments (2.1.0):
-    - GoogleToolboxForMac/DebugUtils (= 2.1.0)
-    - GoogleToolboxForMac/Defines (= 2.1.0)
-    - GoogleToolboxForMac/NSString+URLArguments (= 2.1.0)
-  - GoogleToolboxForMac/NSFileHandle+UniqueName (2.1.0):
-    - GoogleToolboxForMac/Defines (= 2.1.0)
-  - GoogleToolboxForMac/NSScanner+JSON (2.1.0):
-    - GoogleToolboxForMac/Defines (= 2.1.0)
-  - GoogleToolboxForMac/NSString+HTML (2.1.0):
-    - GoogleToolboxForMac/Core (= 2.1.0)
-  - GoogleToolboxForMac/NSString+URLArguments (2.1.0)
-  - GoogleToolboxForMac/NSString+XML (2.1.0):
-    - GoogleToolboxForMac/Defines (= 2.1.0)
-  - GoogleToolboxForMac/NSThread+Blocks (2.1.0):
-    - GoogleToolboxForMac/Defines (= 2.1.0)
-  - GoogleToolboxForMac/Regex (2.1.0):
-    - GoogleToolboxForMac/Defines (= 2.1.0)
-  - GoogleToolboxForMac/RoundedRectPath (2.1.0):
-    - GoogleToolboxForMac/Defines (= 2.1.0)
-  - GoogleToolboxForMac/StackTrace (2.1.0):
-    - GoogleToolboxForMac/Defines (= 2.1.0)
-  - GoogleToolboxForMac/StringEncoding (2.1.0):
-    - GoogleToolboxForMac/Defines (= 2.1.0)
-  - GoogleToolboxForMac/SystemVersion (2.1.0):
-    - GoogleToolboxForMac/Defines (= 2.1.0)
-  - GoogleToolboxForMac/UIFont+LineHeight (2.1.0)
-  - GoogleToolboxForMac/UnitTesting (2.1.0):
-    - GoogleToolboxForMac/Defines (= 2.1.0)
-    - GoogleToolboxForMac/Regex (= 2.1.0)
-    - GoogleToolboxForMac/SystemVersion (= 2.1.0)
-  - GoogleToolboxForMac/UnitTestingAppLib (2.1.0):
-    - GoogleToolboxForMac/Defines (= 2.1.0)
-    - GoogleToolboxForMac/UnitTesting (= 2.1.0)
-  - GoogleToolboxForMac/URLBuilder (2.1.0):
-    - GoogleToolboxForMac/Core (= 2.1.0)
-    - GoogleToolboxForMac/Defines (= 2.1.0)
-    - GoogleToolboxForMac/NSDictionary+URLArguments (= 2.1.0)
-    - GoogleToolboxForMac/NSString+URLArguments (= 2.1.0)
+  - GoogleToolboxForMac/Defines (2.1.1)
+  - GoogleToolboxForMac/NSData+zlib (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
   - Mixpanel-swift (2.1.1)
   - Optimizely-iOS-SDK (1.7.0)
   - PromiseKit/CorePromise (4.1.0)
@@ -116,7 +36,6 @@ DEPENDENCIES:
   - Fabric
   - FBMemoryProfiler
   - Firebase/Core
-  - GoogleToolboxForMac
   - Mixpanel-swift
   - Optimizely-iOS-SDK
   - PromiseKit/CorePromise
@@ -134,12 +53,12 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
   GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
   GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
-  GoogleToolboxForMac: 2b2596cbb7186865e98cadf2b1e262d851c2b168
+  GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   Mixpanel-swift: 49966d4beec714aee3a026d39085b62b26eca081
   Optimizely-iOS-SDK: e406016e617f84e823227c52131341dc20721319
   PromiseKit: c98453ff78544c0ad5bb0ea980782e6875f47978
   SwiftMessages: 1216ea6bdf8d92ff0f6f98a23e5442711b1e71ac
 
-PODFILE CHECKSUM: cca2312faa0c52590188b3564805ca32e282b8a2
+PODFILE CHECKSUM: 07da5a0613810e3444e7bff1403d5c6ec6950fdd
 
 COCOAPODS: 1.1.1
