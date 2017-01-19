@@ -101,7 +101,6 @@
 		C4C094231D9B277600D27162 /* ItemTableViewDelegate.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4F7DC3A1D97E93200275E4F /* ItemTableViewDelegate.swift */; };
 		C4C094241D9B277600D27162 /* ItemTableViewDataSource.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4F7DC3C1D97E9A800275E4F /* ItemTableViewDataSource.swift */; };
 		C4C422181A75E355008803A7 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C422171A75E355008803A7 /* MainNavigationController.swift */; };
-		C4C4E1B21E2E7EF800167102 /* Optimizely.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4C4E1B01E2E7EF800167102 /* Optimizely.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4C780141A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C780131A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift */; };
 		C4C780161A7DF1EC009CB5FC /* ApplicationActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C780151A7DF1EC009CB5FC /* ApplicationActivities.swift */; };
 		C4CB4B9C1E2A449F00C601BF /* ODUIThreadGuard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CB4B9B1E2A449F00C601BF /* ODUIThreadGuard.swift */; };
@@ -204,7 +203,6 @@
 				C474F0D21D8775F500CABEB9 /* SwiftMessages.framework in Embed Frameworks */,
 				C408F1B21CE7520700DB943F /* FBAllocationTracker.framework in Embed Frameworks */,
 				C45C549F1E2E4B550039D16C /* Mixpanel.framework in Embed Frameworks */,
-				C4C4E1B21E2E7EF800167102 /* Optimizely.framework in Embed Frameworks */,
 				C4270C011DBD502600FA3A0A /* GETracing.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
