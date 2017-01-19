@@ -100,6 +100,7 @@
 		C4595E0B1E2E444F0004D68D /* Mixpanel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mixpanel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C45C54A01E2E58630039D16C /* Optimizely.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Optimizely.swift; sourceTree = "<group>"; };
 		C492B52F1E2E3E2D0072D2D9 /* Mixpanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mixpanel.swift; sourceTree = "<group>"; };
+		C49A79FE1E301EB600DE3702 /* RSSReaderAppConfig-debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "RSSReaderAppConfig-debug.xcconfig"; path = "RSSReaderAppConfig/RSSReaderAppConfig-debug.xcconfig"; sourceTree = "<group>"; };
 		C49FF1BA1DBBA6F000A86CC0 /* GEUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GEUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4BE5A7C1DA85DA100E1734F /* RSSReaderAppConfig.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RSSReaderAppConfig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4BE5A801DA85DA100E1734F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -121,9 +122,9 @@
 		C4BE5AB71DA86D8D00E1734F /* FBAllocationTracker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBAllocationTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4BE5AB81DA86D8D00E1734F /* FBMemoryProfiler.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBMemoryProfiler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4BE5AB91DA86D8D00E1734F /* FBRetainCycleDetector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBRetainCycleDetector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C4BE5ADB1DA8762D00E1734F /* RSSReader-app.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "RSSReader-app.xcconfig"; path = "../RSSReader/RSSReader-app.xcconfig"; sourceTree = "<group>"; };
 		C4BE5ADF1DAA5AE000E1734F /* UserMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMessages.swift; sourceTree = "<group>"; };
 		C4BE5AE01DAA5AE000E1734F /* Readability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Readability.swift; sourceTree = "<group>"; };
+		C4C1CE3A1E30BFCD00A2767B /* RSSReaderAppConfig-release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "RSSReaderAppConfig-release.xcconfig"; path = "RSSReaderAppConfig/RSSReaderAppConfig-release.xcconfig"; sourceTree = "<group>"; };
 		C4C4E1AE1E2E7D9700167102 /* Optimizely.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Optimizely.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4EB27FB1DFA35A400BF0843 /* ModuleExports-GETracing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GETracing.swift"; path = "../GETracing/GETracing/ModuleExports-GETracing.swift"; sourceTree = SOURCE_ROOT; };
 		C4EB27FC1DFA35A400BF0843 /* ModuleExports-GEFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GEFoundation.swift"; path = "../GEFoundation/GEFoundation/ModuleExports-GEFoundation.swift"; sourceTree = SOURCE_ROOT; };
@@ -158,10 +159,9 @@
 		C4BE5A721DA85DA100E1734F = {
 			isa = PBXGroup;
 			children = (
-				C4BE5ADB1DA8762D00E1734F /* RSSReader-app.xcconfig */,
+				C4C1CE3B1E30BFDD00A2767B /* XCConfig */,
 				C4BE5A7E1DA85DA100E1734F /* RSSReaderAppConfig */,
 				C4BE5A891DA85DA100E1734F /* RSSReaderAppConfigTests */,
-				C4BE5AAA1DA860C300E1734F /* GEShared.xcconfig */,
 				C4BE5A7D1DA85DA100E1734F /* Products */,
 				C4BE5AB61DA86D8D00E1734F /* Frameworks */,
 			);
@@ -221,6 +221,16 @@
 				C4BE5AB91DA86D8D00E1734F /* FBRetainCycleDetector.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C4C1CE3B1E30BFDD00A2767B /* XCConfig */ = {
+			isa = PBXGroup;
+			children = (
+				C4C1CE3A1E30BFCD00A2767B /* RSSReaderAppConfig-release.xcconfig */,
+				C49A79FE1E301EB600DE3702 /* RSSReaderAppConfig-debug.xcconfig */,
+				C4BE5AAA1DA860C300E1734F /* GEShared.xcconfig */,
+			);
+			name = XCConfig;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -398,12 +408,16 @@
 		};
 		C4BE5A911DA85DA100E1734F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C4BE5ADB1DA8762D00E1734F /* RSSReader-app.xcconfig */;
+			baseConfigurationReference = C49A79FE1E301EB600DE3702 /* RSSReaderAppConfig-debug.xcconfig */;
 			buildSettings = {
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(GE_EXTRA_FRAMEWORK_SEARCH_PATHS)",
+				);
 				INFOPLIST_FILE = RSSReaderAppConfig/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.grigorye.RSSReaderAppConfig;
@@ -413,12 +427,16 @@
 		};
 		C4BE5A921DA85DA100E1734F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C4BE5ADB1DA8762D00E1734F /* RSSReader-app.xcconfig */;
+			baseConfigurationReference = C4C1CE3A1E30BFCD00A2767B /* RSSReaderAppConfig-release.xcconfig */;
 			buildSettings = {
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(GE_EXTRA_FRAMEWORK_SEARCH_PATHS)",
+				);
 				INFOPLIST_FILE = RSSReaderAppConfig/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.grigorye.RSSReaderAppConfig;
