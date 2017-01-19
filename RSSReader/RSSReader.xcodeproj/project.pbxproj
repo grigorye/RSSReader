@@ -103,7 +103,8 @@
 		C4C422181A75E355008803A7 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C422171A75E355008803A7 /* MainNavigationController.swift */; };
 		C4C780141A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C780131A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift */; };
 		C4C780161A7DF1EC009CB5FC /* ApplicationActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C780151A7DF1EC009CB5FC /* ApplicationActivities.swift */; };
-		C4CB4B9C1E2A449F00C601BF /* ODUIThreadGuard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CB4B9B1E2A449F00C601BF /* ODUIThreadGuard.swift */; };
+		C4CB791B1E3173E700F89794 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4CB791A1E3173E700F89794 /* GoogleToolboxForMac.framework */; };
+		C4CB791C1E3173E700F89794 /* GoogleToolboxForMac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4CB791A1E3173E700F89794 /* GoogleToolboxForMac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4CDD3A31A5350B40087DD05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */; };
 		C4CDD3AC1A5350B50087DD05 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4CDD3AB1A5350B50087DD05 /* Images.xcassets */; };
 		C4CDD3C51A5357B20087DD05 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C4CDD3C41A5357B20087DD05 /* Settings.bundle */; };
@@ -198,6 +199,7 @@
 				C424B8F21C6FC5C8008AD647 /* RSSReaderData.framework in Embed Frameworks */,
 				C4BE5AAF1DA864FA00E1734F /* RSSReaderAppConfig.framework in Embed Frameworks */,
 				C408F1B51CE7520700DB943F /* FBMemoryProfiler.framework in Embed Frameworks */,
+				C4CB791C1E3173E700F89794 /* GoogleToolboxForMac.framework in Embed Frameworks */,
 				C49FF1C81DBBAA9000A86CC0 /* GEUIKit.framework in Embed Frameworks */,
 				C4AD5B381D282F1800358DEA /* PromiseKit.framework in Embed Frameworks */,
 				C474F0D21D8775F500CABEB9 /* SwiftMessages.framework in Embed Frameworks */,
@@ -310,6 +312,7 @@
 		C4C780131A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MarkAllAsReadActivity.swift; path = Swift/MarkAllAsReadActivity.swift; sourceTree = "<group>"; };
 		C4C780151A7DF1EC009CB5FC /* ApplicationActivities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationActivities.swift; path = Swift/ApplicationActivities.swift; sourceTree = "<group>"; };
 		C4CB4B9B1E2A449F00C601BF /* ODUIThreadGuard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ODUIThreadGuard.swift; path = ../GitSubtrees/ODUIThreadGuard/ODUIThreadGuard/ODUIThreadGuard.swift; sourceTree = "<group>"; };
+		C4CB791A1E3173E700F89794 /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4CD8B551CC1FD3100A59696 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C4CDD39D1A5350B40087DD05 /* RSSReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = AppDelegate.swift; path = Swift/AppDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -363,6 +366,7 @@
 				C424B8F11C6FC5C8008AD647 /* RSSReaderData.framework in Frameworks */,
 				C4BE5AAE1DA864FA00E1734F /* RSSReaderAppConfig.framework in Frameworks */,
 				C408F1B41CE7520700DB943F /* FBMemoryProfiler.framework in Frameworks */,
+				C4CB791B1E3173E700F89794 /* GoogleToolboxForMac.framework in Frameworks */,
 				C49FF1C71DBBAA9000A86CC0 /* GEUIKit.framework in Frameworks */,
 				C4AD5B371D282F1800358DEA /* PromiseKit.framework in Frameworks */,
 				C474F0D11D8775F500CABEB9 /* SwiftMessages.framework in Frameworks */,
@@ -399,6 +403,7 @@
 		C424B8F91C6FC5E1008AD647 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C4CB791A1E3173E700F89794 /* GoogleToolboxForMac.framework */,
 				C4C4E1B01E2E7EF800167102 /* Optimizely.framework */,
 				C45C549D1E2E4B550039D16C /* Mixpanel.framework */,
 				C474F1BF1DB041F100F0E152 /* Loggy.framework */,
@@ -925,7 +930,6 @@
 				C441F17F1DB258550060E692 /* SharedRSSAccount.swift in Sources */,
 				C4667F0D1CC80A050039C480 /* Appearance.swift in Sources */,
 				C4F575D61A7988DB00F12F20 /* OpenWebPageActivity.swift in Sources */,
-				C4CB4B9C1E2A449F00C601BF /* ODUIThreadGuard.swift in Sources */,
 				C46934DF1A5D291C00A0AEA2 /* ItemPageViewControllerDataSource.swift in Sources */,
 				C4F7DC3B1D97E93200275E4F /* ItemTableViewDelegate.swift in Sources */,
 				C45BC3EA1A8003F40008A5D1 /* HistoryViewController.swift in Sources */,
