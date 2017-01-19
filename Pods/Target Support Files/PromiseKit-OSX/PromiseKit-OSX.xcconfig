@@ -9,4 +9,3 @@ PODS_ROOT = ${SRCROOT}
 PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.${PRODUCT_NAME:rfc1034identifier}
 SKIP_INSTALL = YES
 OTHER_LDFLAGS = -framework "Foundation"
-FRAMEWORK_SEARCH_PATHS = $(inherited)
