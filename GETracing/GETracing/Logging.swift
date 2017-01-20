@@ -23,7 +23,7 @@ public struct LogRecord {
 	public let message: String
 	public let sourceExtractedInfo: SourceExtractedInfo?
 	public let date: Date
-	public let location: SourceLocation?
+	public let location: SourceLocation!
 }
 
 extension LogRecord {
