@@ -37,6 +37,7 @@ post_install do |installer|
       configuration.build_settings['SWIFT_VERSION'] = '3.0'
       configuration.build_settings['DEBUG_INFORMATION_FORMAT'] = 'dwarf-with-dsym'
       configuration.build_settings['ENABLE_BITCODE'] = 'NO'
+      configuration.build_settings['ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES'] = 'NO'
       xcconfig_path = configuration.base_configuration_reference.real_path
       xcconfig = Xcodeproj::Config.new(xcconfig_path).to_hash
       File.open(xcconfig_path, "w") { |file|
