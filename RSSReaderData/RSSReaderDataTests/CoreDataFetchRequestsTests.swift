@@ -16,6 +16,7 @@ class CoreDataFetchRequestsTests: XCTestCase {
 	// MARK: -
     override func setUp() {
     	let authenticateDidComplete = self.expectation(description: "authenticateDidComplete")
+		defaults.forceStoreRemoval = true
 		firstly {
 			return rssSession.authenticate()
 		}.then {
