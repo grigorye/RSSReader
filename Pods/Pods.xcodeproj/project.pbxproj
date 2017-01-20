@@ -536,7 +536,6 @@
 		6D3B2D6AFD5337FBB3948564EFDEBA83 /* Crashlytics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Crashlytics.h; path = iOS/Crashlytics.framework/Headers/Crashlytics.h; sourceTree = "<group>"; };
 		6DA13C8D65F89D9730435DDE6C3E1BCC /* AnyPromise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnyPromise.swift; path = Sources/AnyPromise.swift; sourceTree = "<group>"; };
 		6DBA2EE0D8CB572D22B5E5DA450782C7 /* Pods-iOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iOS-acknowledgements.plist"; sourceTree = "<group>"; };
-		6E0047CEA39CE4A7F28EC5E3F4AD4FE8 /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCore.framework; path = Frameworks/frameworks/FirebaseCore.framework; sourceTree = "<group>"; };
 		6E325A1F113B559E09E547D44EFFC831 /* UIViewController+Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+Utils.swift"; path = "SwiftMessages/UIViewController+Utils.swift"; sourceTree = "<group>"; };
 		6F669F0F75664BFAF93C82B6E49AF07B /* Error.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Error.swift; path = Sources/Error.swift; sourceTree = "<group>"; };
 		6F8343C3AD0EE44980C96387CAA26C14 /* FBAllocationTracker-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FBAllocationTracker-umbrella.h"; sourceTree = "<group>"; };
@@ -591,6 +590,7 @@
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		93AC93438CF1037DC9CE7AEEC795EDB6 /* Mixpanel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Mixpanel.swift; path = Mixpanel/Mixpanel.swift; sourceTree = "<group>"; };
 		93F73708016D27C27E5272917D2355D3 /* ObjectSerializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ObjectSerializer.swift; path = Mixpanel/ObjectSerializer.swift; sourceTree = "<group>"; };
+		97B5F54D605B7E704688DEE785D58F52 /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCore.framework; path = Frameworks/FirebaseCore.framework; sourceTree = "<group>"; };
 		99567DD3414A8F5F1C97B8F377AC7C7E /* WebSocket.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebSocket.swift; path = Mixpanel/WebSocket.swift; sourceTree = "<group>"; };
 		999A838CE8EE3BA32C7D54B0D74A8FC4 /* SwiftMessages-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftMessages-umbrella.h"; sourceTree = "<group>"; };
 		99F31F64CAA651AD02795D1C2062EE8F /* CLSStackFrame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSStackFrame.h; path = iOS/Crashlytics.framework/Headers/CLSStackFrame.h; sourceTree = "<group>"; };
@@ -1236,6 +1236,14 @@
 			path = Firebase;
 			sourceTree = "<group>";
 		};
+		A290AF0CF396973F65DB0655C69BDDAF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				97B5F54D605B7E704688DEE785D58F52 /* FirebaseCore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A5B8A0EA07ED85DE90107B8F1FA07CF6 /* FBMemoryProfiler */ = {
 			isa = PBXGroup;
 			children = (
@@ -1301,7 +1309,7 @@
 		AB822D88DDA04723982D9A5454237A2A /* FirebaseCore */ = {
 			isa = PBXGroup;
 			children = (
-				F03F349D51FFF56D5B93C8C5E6CC4FA0 /* Frameworks */,
+				A290AF0CF396973F65DB0655C69BDDAF /* Frameworks */,
 			);
 			name = FirebaseCore;
 			path = FirebaseCore;
@@ -1561,14 +1569,6 @@
 				2074F125BCEBBF73CCF71D26CBBA2AFA /* TakeoverNotificationViewController~iphoneportrait.xib */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		F03F349D51FFF56D5B93C8C5E6CC4FA0 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				6E0047CEA39CE4A7F28EC5E3F4AD4FE8 /* FirebaseCore.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		F412CF0EAA9FE9C04FCD6D933BAF9893 /* Core */ = {
