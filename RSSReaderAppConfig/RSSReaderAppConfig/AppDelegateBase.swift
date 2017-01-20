@@ -22,6 +22,11 @@ extension KVOCompliantUserDefaults {
 	@NSManaged public var memoryProfilingEnabled: Bool
 }
 
+let analyticsShouldBeEnabled: Bool = {
+	let mainBundleURL = Bundle.main.bundleURL
+	return $(versionIsClean) && !$(mainBundleURL).lastPathComponent.hasPrefix("Test")
+}()
+
 open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 	public var window: UIWindow?
 	final var retainedObjects = [Any]()
@@ -60,7 +65,7 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 				}
 			}]
 		}
-		if $(versionIsClean) {
+		if $(analyticsShouldBeEnabled) {
 			launchOptimizely(launchOptions: launchOptions)
 			FIRApp.configure()
 		}
@@ -86,7 +91,7 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 		var scope = Activity("Initializing Analytics").enter(); defer { scope.leave() }
 		_ = nslogRedirectorInitializer
 		$(buildAge)
-		if $(versionIsClean) {
+		if $(analyticsShouldBeEnabled) {
 			_ = crashlyticsInitializer
 			_ = appseeInitializer
 			_ = uxcamInitializer
