@@ -11,8 +11,23 @@ import XCTest
 import CoreData
 import PromiseKit
 
-class CoreDataFetchRequestsTests: XCTestCase {
-	let rssSession = RSSSession(loginAndPassword: LoginAndPassword(login: "cake218@icloud.com", password: "7L3-Skb-nJ2-Dh2"))
+
+class CoreDataFetchRequestsTests : XCTestCase {
+
+	typealias _Self = CoreDataFetchRequestsTests
+	
+	static let loginAndPassword: LoginAndPassword = try! {
+		let bundle = Bundle(for: _Self.self)
+		let plistURL = bundle.url(forResource: "RSSReaderDataTests-Secrets", withExtension: "plist")!
+		let plistData = try Data(contentsOf: plistURL)
+		let plist = try! PropertyListSerialization.propertyList(from: plistData, options: [], format: nil) as! [String : String]
+		let login = plist["login"]
+		let password = plist["password"]
+		return LoginAndPassword(login: login, password: password)
+	}()
+	
+	let rssSession = RSSSession(loginAndPassword: _Self.loginAndPassword)
+	
 	// MARK: -
     override func setUp() {
     	let authenticateDidComplete = self.expectation(description: "authenticateDidComplete")
@@ -49,7 +64,6 @@ class CoreDataFetchRequestsTests: XCTestCase {
 	}
     func testPullTagsFromLastData() {
 		$(mainQueueManagedObjectContext.persistentStoreCoordinator)
-		_ = try! Data(contentsOf: lastTagsFileURL)
     	let pullTagsComplete = self.expectation(description: "pullTagsComplete")
 		firstly {
 			return rssSession.pullTags()
