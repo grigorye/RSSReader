@@ -130,7 +130,6 @@ struct UpdateUnreadCounts : PersistentDataUpdateCommand, MostCommonDataUpdateCom
 struct PullTags : PersistentDataUpdateCommand, MostCommonDataUpdateCommand {
 	let requestRelativeString = "/reader/api/0/tag/list"
 	func importResult(_ data: Data, into managedObjectContext: NSManagedObjectContext) throws {
-		try! data.write(to: lastTagsFileURL, options: .atomic)
 		let tags = try tagsImportedFromJsonData(data, managedObjectContext: managedObjectContext)
 		•(tags)
 	}
@@ -139,7 +138,6 @@ struct PullTags : PersistentDataUpdateCommand, MostCommonDataUpdateCommand {
 struct UpdateStreamPreferences : PersistentDataUpdateCommand, MostCommonDataUpdateCommand {
 	let requestRelativeString = "/reader/api/0/preference/stream/list"
 	func importResult(_ data: Data, into managedObjectContext: NSManagedObjectContext) throws {
-		try! data.write(to: lastTagsFileURL, options: .atomic)
 		let streamPreferences: () = try streamPreferencesImportedFromJsonData(data, managedObjectContext: managedObjectContext)
 		•(streamPreferences)
 	}
@@ -208,7 +206,6 @@ public struct StreamContents : PersistentDataUpdateCommand, AuthenticatedDataUpd
 		return "/reader/api/0/stream/contents/\(streamIDPercentEncoded)\(querySuffix)"
 	}
 	func push(_ data: Data, through: (@escaping (NSManagedObjectContext) throws -> ResultType) -> Void) {
-		try! data.write(to: lastTagsFileURL, options: .atomic)
 		let excludedCategoryObjectID = typedObjectID(for: excludedCategory)
 		let containerObjectID = typedObjectID(for: container)
 		through { managedObjectContext in
