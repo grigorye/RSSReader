@@ -33,6 +33,24 @@ class NotLoggedIn : RecoverableError, LocalizedError {
 	var recoverySuggestion: String? = NSLocalizedString("To enable login, open this app's settings and fill \"Login and Password\".", comment: "")
 }
 
+class AuthenticationFailed : RecoverableError, LocalizedError {
+
+	var recoveryOptions: [RecoveryOption] = [
+		RecoveryOption(title: NSLocalizedString("Open Settings", comment: "")) {
+			openSettingsApp()
+			return true
+		},
+		RecoveryOption(title: NSLocalizedString("Cancel", comment: "")) {
+			return false
+		}
+	]
+	
+	var errorDescription: String? = NSLocalizedString("Could not proceed as username or password is invalid.", comment: "")
+	var failureReason: String? = NSLocalizedString("You are not logged in.", comment: "")
+	var recoverySuggestion: String? = NSLocalizedString("To adjust the username or password, open this app's settings and edit \"Login and Password\".", comment: "")
+	
+}
+
 extension FoldersUpdateState : CustomStringConvertible {
 	public var description: String {
 		switch self {
@@ -122,8 +140,14 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 		}.always {
 			self.refreshControl?.endRefreshing()
 		}.catch { updateError in
-			let title = NSLocalizedString("Refresh Failed", comment: "Title for alert on failed refresh")
-			self.present(updateError, customTitle: title)
+			switch updateError {
+			case RSSSessionError.authenticationFailed(_):
+				let adjustedError = AuthenticationFailed()
+				self.present(adjustedError)
+			default:
+				let title = NSLocalizedString("Refresh Failed", comment: "Title for alert on failed refresh")
+				self.present(updateError, customTitle: title)
+			}
 		}
 	}
 	

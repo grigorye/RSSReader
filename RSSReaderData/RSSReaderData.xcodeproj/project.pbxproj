@@ -48,6 +48,7 @@
 		C4B4374F1C00F00700A2F3BE /* CoreDataFetchRequestsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B4374E1C00F00700A2F3BE /* CoreDataFetchRequestsTests.swift */; };
 		C4BE5ADD1DA9742300E1734F /* ContainerLoadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BE5ADC1DA9742300E1734F /* ContainerLoadController.swift */; };
 		C4BE5ADE1DA9B53200E1734F /* ContainerLoadController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5ADC1DA9742300E1734F /* ContainerLoadController.swift */; };
+		C4CB791F1E32D1F200F89794 /* RSSReaderDataTests-Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4CB791E1E32D1F200F89794 /* RSSReaderDataTests-Secrets.plist */; };
 		C4DB6A701D2602B400E8516D /* RSSSessionTaskResultImporting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DB6A6F1D2602B400E8516D /* RSSSessionTaskResultImporting.swift */; };
 		C4DB6A721D26035F00E8516D /* RSSSessionTaskGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DB6A711D26035F00E8516D /* RSSSessionTaskGeneration.swift */; };
 		C4DB6A741D261AE400E8516D /* RSSSessionCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DB6A731D261AE400E8516D /* RSSSessionCommands.swift */; };
@@ -147,6 +148,7 @@
 		C4B437361C00A75200A2F3BE /* CoreDataGlobals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataGlobals.swift; sourceTree = "<group>"; };
 		C4B4374E1C00F00700A2F3BE /* CoreDataFetchRequestsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataFetchRequestsTests.swift; sourceTree = "<group>"; };
 		C4BE5ADC1DA9742300E1734F /* ContainerLoadController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerLoadController.swift; sourceTree = "<group>"; };
+		C4CB791E1E32D1F200F89794 /* RSSReaderDataTests-Secrets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "RSSReaderDataTests-Secrets.plist"; sourceTree = "<group>"; };
 		C4DB6A6F1D2602B400E8516D /* RSSSessionTaskResultImporting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSSessionTaskResultImporting.swift; sourceTree = "<group>"; };
 		C4DB6A711D26035F00E8516D /* RSSSessionTaskGeneration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSSessionTaskGeneration.swift; sourceTree = "<group>"; };
 		C4DB6A731D261AE400E8516D /* RSSSessionCommands.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSSessionCommands.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				C48F79C31C008DD300CC6F74 /* RSSSessionTests.swift */,
 				C48F79AD1C008D0E00CC6F74 /* RSSReaderDataTests.swift */,
 				C48F79AF1C008D0E00CC6F74 /* Info.plist */,
+				C4CB791E1E32D1F200F89794 /* RSSReaderDataTests-Secrets.plist */,
 			);
 			path = RSSReaderDataTests;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4CB791F1E32D1F200F89794 /* RSSReaderDataTests-Secrets.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

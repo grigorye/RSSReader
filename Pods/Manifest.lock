@@ -7,17 +7,40 @@ PODS:
     - FBAllocationTracker (~> 0.1)
     - FBRetainCycleDetector (~> 0.1)
   - FBRetainCycleDetector (0.1.3)
+  - Firebase/Core (3.11.1):
+    - FirebaseAnalytics (= 3.6.0)
+    - FirebaseCore (= 3.4.7)
+  - FirebaseAnalytics (3.6.0):
+    - FirebaseCore (~> 3.4)
+    - FirebaseInstanceID (~> 1.0)
+    - GoogleInterchangeUtilities (~> 1.2)
+    - GoogleSymbolUtilities (~> 1.1)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseCore (3.4.7):
+    - GoogleInterchangeUtilities (~> 1.2)
+    - GoogleSymbolUtilities (~> 1.1)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseInstanceID (1.0.8)
+  - GoogleInterchangeUtilities (1.2.2):
+    - GoogleSymbolUtilities (~> 1.1)
+  - GoogleSymbolUtilities (1.1.2)
+  - GoogleToolboxForMac/Defines (2.1.1)
+  - GoogleToolboxForMac/NSData+zlib (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
+  - Mixpanel-swift (2.1.2)
+  - Optimizely-iOS-SDK (1.7.0)
   - PromiseKit/CorePromise (4.1.3)
-  - SwiftMessages (3.1.3)
-  - TUSafariActivity (1.0.4)
+  - SwiftMessages (3.1.4)
 
 DEPENDENCIES:
   - Crashlytics
   - Fabric
   - FBMemoryProfiler
+  - Firebase/Core
+  - Mixpanel-swift
+  - Optimizely-iOS-SDK
   - PromiseKit/CorePromise
   - SwiftMessages
-  - TUSafariActivity
 
 SPEC CHECKSUMS:
   Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
@@ -25,10 +48,18 @@ SPEC CHECKSUMS:
   FBAllocationTracker: dfdca3f71aceca6a85e95e3c6ec76a9785eba0f1
   FBMemoryProfiler: 623fc5f8a61f7d02ec75c87e3b97c90f621d8b02
   FBRetainCycleDetector: f0c7b290bf48ae77f6ae060843ce34ae341781eb
+  Firebase: 53b2343db1ebfa3eb16bdb4318b8bb65360b2220
+  FirebaseAnalytics: 9c67af0ebeb8d2146c9b4ea2616439affa947b58
+  FirebaseCore: 46afaf2c2e0419ea7d3acfb08cf26a461a75fe85
+  FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
+  GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
+  GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
+  GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
+  Mixpanel-swift: e6234affa94d14f76c856f301693dc43cae5dcb0
+  Optimizely-iOS-SDK: e406016e617f84e823227c52131341dc20721319
   PromiseKit: 56baec63efa89210c023260879435a5a6b3bff00
-  SwiftMessages: 9d03bb95d394ac60f9c20335e2305dfea9cac70a
-  TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
+  SwiftMessages: '08386e74abe1b32fa8ac2075edb4043c56db709d'
 
-PODFILE CHECKSUM: a7baf5d550febeb7f36cbf5a0e5d73e52efbb3c6
+PODFILE CHECKSUM: 1c812d2cc07e275783646246718bf7201e48d50e
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.1

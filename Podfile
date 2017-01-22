@@ -6,7 +6,7 @@ target "iOS" do
 #	pod 'AFMInfoBanner'
 	pod 'SwiftMessages'
 #	pod 'UXCam'
-	pod 'TUSafariActivity'
+#	pod 'TUSafariActivity'
 #	pod 'DZReadability'
 #	pod 'HTMLReader'
 #	pod 'ReadabilityKit'
@@ -17,6 +17,9 @@ target "iOS" do
 #	pod 'Flurry-iOS-SDK/FlurrySDK'
 	pod 'FBMemoryProfiler'
 	pod 'PromiseKit/CorePromise'
+	pod 'Mixpanel-swift'
+	pod 'Optimizely-iOS-SDK'
+	pod 'Firebase/Core'
 end
 target "macOS" do
 	platform :osx, '10.11'
@@ -27,8 +30,6 @@ end
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|
-    target.build_configurations.each do |config|
-    end
     target.build_configurations.each do |configuration|
       configuration.build_settings['CONFIGURATION_BUILD_DIR'] = '${PODS_CONFIGURATION_BUILD_DIR}'
       configuration.build_settings['CODE_SIGNING_REQUIRED'] = 'NO'
@@ -36,9 +37,9 @@ post_install do |installer|
       configuration.build_settings['SWIFT_VERSION'] = '3.0'
       configuration.build_settings['DEBUG_INFORMATION_FORMAT'] = 'dwarf-with-dsym'
       configuration.build_settings['ENABLE_BITCODE'] = 'NO'
+      configuration.build_settings['ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES'] = 'NO'
       xcconfig_path = configuration.base_configuration_reference.real_path
       xcconfig = Xcodeproj::Config.new(xcconfig_path).to_hash
-      xcconfig['FRAMEWORK_SEARCH_PATHS'] = '$(inherited)'
       File.open(xcconfig_path, "w") { |file|
         xcconfig.each do |key,value|
           file.puts "#{key} = #{value}"

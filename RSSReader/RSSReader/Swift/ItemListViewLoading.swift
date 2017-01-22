@@ -54,9 +54,7 @@ extension ItemsViewController : ItemsViewControllerLoadingImp {
 		guard defaults.progressIndicatorInFooterEnabled else {
 			return
 		}
-		UIView.animate(withDuration: 0.4) {
-			self.tableView.tableFooterView = self.tableFooterViewOnLoading
-		}
+		self.tableView.tableFooterView = self.tableFooterViewOnLoading!
 	}
 	
 	func didCompleteLoad() {
@@ -72,6 +70,7 @@ extension ItemsViewController : ItemsViewControllerLoadingImp {
 	
 	func loadMore(_ completionHandler: @escaping () -> Void) {
 		let loadController = self.loadController!
+		$(didStartLoad())
 		loadController.loadMore { [weak loadController] error in
 			completionHandler()
 			guard nil == error else {
@@ -94,7 +93,7 @@ extension ItemsViewController : ItemsViewControllerLoadingImp {
 			}
 #endif
 			guard !loadController.loadCompleted else {
-				self.didCompleteLoad()
+				$(self.didCompleteLoad())
 				return
 			}
 			DispatchQueue.main.async { [weak self] in

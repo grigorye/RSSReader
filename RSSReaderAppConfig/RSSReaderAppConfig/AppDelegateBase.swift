@@ -11,6 +11,8 @@ import func GEUIKit.forceCrash
 import func GEFoundation.loadDefaultsFromSettingsPlistAtURL
 import var GEFoundation.versionIsClean
 import var GEFoundation.buildAge
+import var GEFoundation.nslogRedirectorInitializer
+import FirebaseCore
 import Loggy
 import FBAllocationTracker
 import FBMemoryProfiler
@@ -19,6 +21,11 @@ import UIKit
 extension KVOCompliantUserDefaults {
 	@NSManaged public var memoryProfilingEnabled: Bool
 }
+
+let analyticsShouldBeEnabled: Bool = {
+	let mainBundleURL = Bundle.main.bundleURL
+	return $(versionIsClean) && !$(mainBundleURL).lastPathComponent.hasPrefix("Test")
+}()
 
 open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 	public var window: UIWindow?
@@ -58,6 +65,10 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 				}
 			}]
 		}
+		if $(analyticsShouldBeEnabled) {
+			launchOptimizely(launchOptions: launchOptions)
+			FIRApp.configure()
+		}
 		return true
 	}
 	// MARK: -
@@ -78,12 +89,14 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 	// MARK: -
 	static private let initializeOnce: Ignored = {
 		var scope = Activity("Initializing Analytics").enter(); defer { scope.leave() }
+		_ = nslogRedirectorInitializer
 		$(buildAge)
-		if $(versionIsClean) {
+		if $(analyticsShouldBeEnabled) {
 			_ = crashlyticsInitializer
 			_ = appseeInitializer
 			_ = uxcamInitializer
 			_ = flurryInitializer
+			_ = mixpanelInitializer
 		}
 		return Ignored()
 	}()

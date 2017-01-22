@@ -10,8 +10,6 @@ import PromiseKit
 import Foundation
 import CoreData
 
-let lastTagsFileURL = URL(fileURLWithPath: "\(NSTemporaryDirectory())/lastTags")
-
 public enum RSSSessionError: Error {
 	case unused
 	case authenticationFailed(underlyingError: Error)

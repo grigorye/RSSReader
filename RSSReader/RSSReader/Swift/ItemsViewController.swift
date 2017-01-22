@@ -241,6 +241,7 @@ class ItemsViewController : ContainerViewController {
 		let tableFooterView = UINib(nibName: "ItemTableViewFooter", bundle: Bundle(for: type(of: self))).instantiate(withOwner: self, options: nil).first! as! UIView
 		tableView.tableFooterView = tableFooterView
 		self.tableFooterViewOnLoading = tableView.tableFooterView
+		tableView.tableFooterView = nil
 		self.refreshControl = UIRefreshControl() … {
 			$0.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
 		}
@@ -316,7 +317,6 @@ extension ItemsViewController {
 		loadMore {
 			refreshControl.endRefreshing()
 		}
-		didStartLoad()
 	}
 	@IBAction private func markAllAsRead(_ sender: AnyObject!) {
 		let items = container.ownItems

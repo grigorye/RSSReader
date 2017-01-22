@@ -35,10 +35,14 @@
    <FileRef
       location = "group:Podfile">
    </FileRef>
-   <FileRef
-      location = "group:Pods/Pods.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:GitSubtrees/LogExperiment/LogExperiment.xcodeproj">
-   </FileRef>
+   <Group
+      location = "container:"
+      name = "Third Parties">
+      <FileRef
+         location = "group:Pods/Pods.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:GitSubtrees/LogExperiment/LogExperiment.xcodeproj">
+      </FileRef>
+   </Group>
 </Workspace>

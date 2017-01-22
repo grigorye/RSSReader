@@ -51,6 +51,7 @@
 		C49FF1931DBB9D4000A86CC0 /* GEShared.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C49FF1921DBB9D4000A86CC0 /* GEShared.xcconfig */; };
 		C49FF19F1DBB9FF400A86CC0 /* KVOBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF19E1DBB9FF400A86CC0 /* KVOBinding.swift */; };
 		C49FF1A11DBBA01100A86CC0 /* ObjectAndKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF1A01DBBA01100A86CC0 /* ObjectAndKeyPath.swift */; };
+		C4CB4BA51E2A560000C601BF /* NSLogRedirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CB4BA41E2A560000C601BF /* NSLogRedirector.swift */; };
 		C4EB27F11DFA32D900BF0843 /* ModuleExports-GETracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27F01DFA32D900BF0843 /* ModuleExports-GETracing.swift */; };
 		C4EB27F21DFA32F300BF0843 /* ModuleExports-GEFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27EF1DFA32C900BF0843 /* ModuleExports-GEFoundation.swift */; };
 /* End PBXBuildFile section */
@@ -126,6 +127,7 @@
 		C49FF1921DBB9D4000A86CC0 /* GEShared.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = GEShared.xcconfig; path = ../XcodeConfiguration/GEShared.xcconfig; sourceTree = "<group>"; };
 		C49FF19E1DBB9FF400A86CC0 /* KVOBinding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOBinding.swift; sourceTree = "<group>"; };
 		C49FF1A01DBBA01100A86CC0 /* ObjectAndKeyPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectAndKeyPath.swift; sourceTree = "<group>"; };
+		C4CB4BA41E2A560000C601BF /* NSLogRedirector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLogRedirector.swift; sourceTree = "<group>"; };
 		C4EB27EF1DFA32C900BF0843 /* ModuleExports-GEFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ModuleExports-GEFoundation.swift"; sourceTree = "<group>"; };
 		C4EB27F01DFA32D900BF0843 /* ModuleExports-GETracing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GETracing.swift"; path = "../GETracing/GETracing/ModuleExports-GETracing.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -191,6 +193,7 @@
 				C408C6621DFC9C5C00AAA8FF /* ErrorRecovery.swift */,
 				C48CAA2B1DBD3A5000D6F40E /* OSLogRDAR28599032.h */,
 				C48CAA2C1DBD3A5000D6F40E /* OSLogRDAR28599032.m */,
+				C4CB4BA41E2A560000C601BF /* NSLogRedirector.swift */,
 				C48CAA271DBD397100D6F40E /* DefaultLogger.swift */,
 				C48CAA311DBD3ABA00D6F40E /* Sugar.swift */,
 				C48CAA2F1DBD3A8B00D6F40E /* Bridging-Header.h */,
@@ -335,6 +338,7 @@
 			files = (
 				C49FF1A11DBBA01100A86CC0 /* ObjectAndKeyPath.swift in Sources */,
 				C49FF17F1DBB998500A86CC0 /* AppVersion.swift in Sources */,
+				C4CB4BA51E2A560000C601BF /* NSLogRedirector.swift in Sources */,
 				C49FF17D1DBB996D00A86CC0 /* DefaultsInSettingsPlist.swift in Sources */,
 				C49FF1831DBB99BE00A86CC0 /* PropertyCaching.swift in Sources */,
 				C48CAA261DBD33BE00D6F40E /* ObjCPropertyInfo.swift in Sources */,

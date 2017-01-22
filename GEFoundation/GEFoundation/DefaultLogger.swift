@@ -37,7 +37,9 @@ extension KVOCompliantUserDefaults {
 private let traceToNSLogEnabled = false
 
 public func defaultLoggedText(for record: LogRecord) -> String {
-	let location = record.location
+	guard let location = record.location else {
+		return "◾︎ \(record.message)"
+	}
 	let locationDescription = "\(location.function), \(record.playgroundName ?? location.fileURL.lastPathComponent):\(location.line)"
 	guard let label = record.label else {
 		return "\(locationDescription) ◾︎ \(record.message)"
@@ -66,7 +68,7 @@ public func defaultLogger(record: LogRecord) {
 	case .none: ()
 	case .oslog:
 		let text = defaultLoggedText(for: record)
-		if #available(iOS 10.0, *), case .dso(let dso) = record.location.moduleReference {
+		if #available(iOS 10.0, *), let location = record.location, case .dso(let dso) = location.moduleReference {
 			let bundle = Bundle(for: dso)!
 			rdar_os_log_object_with_type(dso, bundle.log, .default, text)
 		} else {

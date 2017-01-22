@@ -42,7 +42,7 @@ extension NSError {
 		switch (localizedFailureReason, localizedRecoverySuggestion) {
 		case (let localizedFailureReason?, let localizedRecoverySuggestion?):
 			return String.localizedStringWithFormat(
-				NSLocalizedString("%@ %@ %@", comment: "Format for error message with both failure reason and recovery suggestion"),
+				NSLocalizedString("%@ %@", comment: "Format for error message with both failure reason and recovery suggestion"),
 				localizedFailureReason,
 				localizedRecoverySuggestion
 			)
