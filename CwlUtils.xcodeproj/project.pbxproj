@@ -3,590 +3,742 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 47;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C91A74281D9685620031DB57 /* CwlDeque.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E7F0261D93F49E0039680B /* CwlDeque.swift */; };
-		C926A17D1DBB1C5300E4D6D0 /* CwlCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C926A17C1DBB1C5300E4D6D0 /* CwlCollection.swift */; };
-		C926A17E1DBB1C5300E4D6D0 /* CwlCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C926A17C1DBB1C5300E4D6D0 /* CwlCollection.swift */; };
-		C926A1801DBB1CB500E4D6D0 /* CwlCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C926A17F1DBB1CB500E4D6D0 /* CwlCollectionTests.swift */; };
-		C926A1811DBB1CB500E4D6D0 /* CwlCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C926A17F1DBB1CB500E4D6D0 /* CwlCollectionTests.swift */; };
-		C93AF1661DED38BD00C10CD4 /* CwlUnanticipatedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E6C58F1CBE0455007B3F24 /* CwlUnanticipatedError.swift */; };
-		C93AF16F1DED38BE00C10CD4 /* CwlUnanticipatedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E6C58F1CBE0455007B3F24 /* CwlUnanticipatedError.swift */; };
-		C93B5BB51CED95A5002D91D1 /* mt19937-64.c in Sources */ = {isa = PBXBuildFile; fileRef = C93B5BB41CED95A5002D91D1 /* mt19937-64.c */; };
-		C93B5BB61CED95A5002D91D1 /* mt19937-64.c in Sources */ = {isa = PBXBuildFile; fileRef = C93B5BB41CED95A5002D91D1 /* mt19937-64.c */; };
-		C93CFB471DB08216008858ED /* CwlExec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93CFB461DB08216008858ED /* CwlExec.swift */; };
-		C93CFB481DB08216008858ED /* CwlExec.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93CFB461DB08216008858ED /* CwlExec.swift */; };
-		C93CFB4B1DB08EB6008858ED /* CwlExecTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93CFB4A1DB08EB6008858ED /* CwlExecTests.swift */; };
-		C93CFB4C1DB08EB6008858ED /* CwlExecTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93CFB4A1DB08EB6008858ED /* CwlExecTests.swift */; };
-		C93E18171C8166470009A053 /* CwlUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = C93E18161C8166470009A053 /* CwlUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C93E181E1C8166470009A053 /* CwlUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C93E18131C8166470009A053 /* CwlUtils.framework */; };
-		C93E183C1C81674F0009A053 /* CwlUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C93E18321C81674F0009A053 /* CwlUtils.framework */; };
-		C93E184B1C8172C30009A053 /* CwlUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = C93E18161C8166470009A053 /* CwlUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C93E18501C81794B0009A053 /* CwlStackFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93E184E1C81794B0009A053 /* CwlStackFrame.swift */; };
-		C93E18511C8179530009A053 /* CwlStackFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93E184E1C81794B0009A053 /* CwlStackFrame.swift */; };
-		C93E185B1C8179B80009A053 /* CwlStackFrameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93E18591C8179B40009A053 /* CwlStackFrameTests.swift */; };
-		C93E185C1C8179B90009A053 /* CwlStackFrameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93E18591C8179B40009A053 /* CwlStackFrameTests.swift */; };
-		C93E18601C81BE120009A053 /* CwlFrameAddress.c in Sources */ = {isa = PBXBuildFile; fileRef = C93E185E1C81BE120009A053 /* CwlFrameAddress.c */; };
-		C93E18611C81BE120009A053 /* CwlFrameAddress.c in Sources */ = {isa = PBXBuildFile; fileRef = C93E185E1C81BE120009A053 /* CwlFrameAddress.c */; };
-		C93E18621C81BE120009A053 /* CwlFrameAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = C93E185F1C81BE120009A053 /* CwlFrameAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C93E18631C81BE120009A053 /* CwlFrameAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = C93E185F1C81BE120009A053 /* CwlFrameAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C93E18651C81EFD40009A053 /* CwlAddressInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93E18641C81EFD40009A053 /* CwlAddressInfo.swift */; };
-		C93E18661C81EFD40009A053 /* CwlAddressInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93E18641C81EFD40009A053 /* CwlAddressInfo.swift */; };
-		C93E18681C82B6480009A053 /* CwlAddressInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93E18671C82B6480009A053 /* CwlAddressInfoTests.swift */; };
-		C93E18691C82B6480009A053 /* CwlAddressInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93E18671C82B6480009A053 /* CwlAddressInfoTests.swift */; };
-		C95416BB1D4B76AC00C30D49 /* CwlDispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95416BA1D4B76AC00C30D49 /* CwlDispatch.swift */; };
-		C95416BC1D4B76AC00C30D49 /* CwlDispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95416BA1D4B76AC00C30D49 /* CwlDispatch.swift */; };
-		C9716DEC1D4CDF9E00E90C18 /* CwlDispatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9716DEB1D4CDF9E00E90C18 /* CwlDispatchTests.swift */; };
-		C9716DED1D4CDF9E00E90C18 /* CwlDispatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9716DEB1D4CDF9E00E90C18 /* CwlDispatchTests.swift */; };
-		C977AA5D1CEC0D0900FC748D /* CwlRandomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C977AA5C1CEC0D0900FC748D /* CwlRandomTests.swift */; };
-		C977AA5E1CEC0D0900FC748D /* CwlRandomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C977AA5C1CEC0D0900FC748D /* CwlRandomTests.swift */; };
-		C99AD64A1DCEA1EC00B9E235 /* CwlDeferredWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99AD6491DCEA1EC00B9E235 /* CwlDeferredWork.swift */; };
-		C99AD64B1DCEA1EC00B9E235 /* CwlDeferredWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99AD6491DCEA1EC00B9E235 /* CwlDeferredWork.swift */; };
-		C99AD64F1DCEA32800B9E235 /* CwlWrappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99AD64E1DCEA32800B9E235 /* CwlWrappers.swift */; };
-		C99AD6501DCEA32800B9E235 /* CwlWrappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99AD64E1DCEA32800B9E235 /* CwlWrappers.swift */; };
-		C99AD6521DCEAF6000B9E235 /* CwlWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99AD6511DCEAF6000B9E235 /* CwlWrapperTests.swift */; };
-		C99AD6531DCEAF6000B9E235 /* CwlWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99AD6511DCEAF6000B9E235 /* CwlWrapperTests.swift */; };
-		C99AD6741DCEB44B00B9E235 /* CwlPreconditionTesting.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C99AD6641DCEB07600B9E235 /* CwlPreconditionTesting.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C99AD6761DCEB4A100B9E235 /* CwlDeferredWorkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99AD6751DCEB4A100B9E235 /* CwlDeferredWorkTests.swift */; };
-		C99AD6771DCEB4A100B9E235 /* CwlDeferredWorkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99AD6751DCEB4A100B9E235 /* CwlDeferredWorkTests.swift */; };
-		C99AD6801DCEC20F00B9E235 /* CwlKeyValueObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99AD67F1DCEC20F00B9E235 /* CwlKeyValueObserver.swift */; };
-		C99AD6811DCEC20F00B9E235 /* CwlKeyValueObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99AD67F1DCEC20F00B9E235 /* CwlKeyValueObserver.swift */; };
-		C99AD68B1DCEC21C00B9E235 /* CwlKeyValueObserverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99AD68A1DCEC21C00B9E235 /* CwlKeyValueObserverTests.swift */; };
-		C99AD68C1DCEC21C00B9E235 /* CwlKeyValueObserverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99AD68A1DCEC21C00B9E235 /* CwlKeyValueObserverTests.swift */; };
-		C9A6311F1DCF5E45001B43D4 /* CwlPreconditionTesting.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C99AD6601DCEB07600B9E235 /* CwlPreconditionTesting.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C9B3EF9A1D6F14B80058AE5E /* CwlResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B3EF991D6F14B80058AE5E /* CwlResult.swift */; };
-		C9B3EF9B1D6F14B80058AE5E /* CwlResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B3EF991D6F14B80058AE5E /* CwlResult.swift */; };
-		C9B3EF9D1D6F14F40058AE5E /* CwlResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B3EF9C1D6F14F40058AE5E /* CwlResultTests.swift */; };
-		C9B3EF9E1D6F14F40058AE5E /* CwlResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B3EF9C1D6F14F40058AE5E /* CwlResultTests.swift */; };
-		C9B7C4D11DB852A20093C97A /* CwlDebugContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B7C4D01DB852A20093C97A /* CwlDebugContext.swift */; };
-		C9B7C4D21DB852A20093C97A /* CwlDebugContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B7C4D01DB852A20093C97A /* CwlDebugContext.swift */; };
-		C9B7C4D41DB852C10093C97A /* CwlDebugContextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B7C4D31DB852C10093C97A /* CwlDebugContextTests.swift */; };
-		C9B7C4D51DB852C10093C97A /* CwlDebugContextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B7C4D31DB852C10093C97A /* CwlDebugContextTests.swift */; };
-		C9C9AAEF1C8E7FB60019A126 /* CwlSysctl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9AAEE1C8E7FB60019A126 /* CwlSysctl.swift */; };
-		C9C9AAF01C8E7FB60019A126 /* CwlSysctl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9AAEE1C8E7FB60019A126 /* CwlSysctl.swift */; };
-		C9C9AAF21C8E7FD00019A126 /* CwlSysctlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9AAF11C8E7FD00019A126 /* CwlSysctlTests.swift */; };
-		C9C9AAF31C8E7FD00019A126 /* CwlSysctlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9AAF11C8E7FD00019A126 /* CwlSysctlTests.swift */; };
-		C9D2EAAD1D8AFF7300D25919 /* CwlRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B6655E1CEAD9080006B927 /* CwlRandom.swift */; };
-		C9E055451CD8B42D001658AB /* CwlScalarScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E055441CD8B42D001658AB /* CwlScalarScanner.swift */; };
-		C9E055461CD8B42D001658AB /* CwlScalarScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E055441CD8B42D001658AB /* CwlScalarScanner.swift */; };
-		C9E055481CD8B44C001658AB /* CwlScalarScannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E055471CD8B44C001658AB /* CwlScalarScannerTests.swift */; };
-		C9E055491CD8B44C001658AB /* CwlScalarScannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E055471CD8B44C001658AB /* CwlScalarScannerTests.swift */; };
-		C9E6C5931CBE0467007B3F24 /* CwlUnanticipatedErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E6C5911CBE045F007B3F24 /* CwlUnanticipatedErrorTests.swift */; };
-		C9E6C5941CBE0468007B3F24 /* CwlUnanticipatedErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E6C5911CBE045F007B3F24 /* CwlUnanticipatedErrorTests.swift */; };
-		C9E6C60C1CBF6D03007B3F24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E6C60B1CBF6D03007B3F24 /* AppDelegate.swift */; };
-		C9E6C60E1CBF6D03007B3F24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9E6C60D1CBF6D03007B3F24 /* Assets.xcassets */; };
-		C9E6C6111CBF6D03007B3F24 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9E6C60F1CBF6D03007B3F24 /* MainMenu.xib */; };
-		C9E6C61C1CBF6D03007B3F24 /* CwlUtils_macOSHarnessUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E6C61B1CBF6D03007B3F24 /* CwlUtils_macOSHarnessUITests.swift */; };
-		C9E7F0281D93F49E0039680B /* CwlDeque.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E7F0261D93F49E0039680B /* CwlDeque.swift */; };
-		C9E7F02A1D93F4C10039680B /* CwlDequeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E7F0291D93F4C10039680B /* CwlDequeTests.swift */; };
-		C9E7F02B1D93F4C10039680B /* CwlDequeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E7F0291D93F4C10039680B /* CwlDequeTests.swift */; };
-		C9F193C71D0296E400EAC5BE /* CwlMutexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F193C61D0296E400EAC5BE /* CwlMutexTests.swift */; };
-		C9F193C81D0296E400EAC5BE /* CwlMutexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F193C61D0296E400EAC5BE /* CwlMutexTests.swift */; };
-		C9F193CD1D02970200EAC5BE /* CwlMutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F193CC1D02970200EAC5BE /* CwlMutex.swift */; };
-		C9F193CE1D02970200EAC5BE /* CwlMutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F193CC1D02970200EAC5BE /* CwlMutex.swift */; };
-		C9F1BAA81CC5024300A255E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F1BAA71CC5024300A255E9 /* AppDelegate.swift */; };
-		C9F1BAAA1CC5024300A255E9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F1BAA91CC5024300A255E9 /* ViewController.swift */; };
-		C9F1BAAD1CC5024300A255E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9F1BAAB1CC5024300A255E9 /* Main.storyboard */; };
-		C9F1BAAF1CC5024300A255E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9F1BAAE1CC5024300A255E9 /* Assets.xcassets */; };
-		C9F1BAB21CC5024300A255E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9F1BAB01CC5024300A255E9 /* LaunchScreen.storyboard */; };
-		C9F1BABD1CC5024300A255E9 /* CwlUtils_iOSHarnessUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F1BABC1CC5024300A255E9 /* CwlUtils_iOSHarnessUITests.swift */; };
-		C9F1BACE1CC5097F00A255E9 /* CwlUtils.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C93E18131C8166470009A053 /* CwlUtils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C9F1BAD11CC5108600A255E9 /* CwlUtils.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C93E18321C81674F0009A053 /* CwlUtils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C9F3E3371CAA254A006728F7 /* CwlOnDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F3E3361CAA254A006728F7 /* CwlOnDelete.swift */; };
-		C9F3E3381CAA254A006728F7 /* CwlOnDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F3E3361CAA254A006728F7 /* CwlOnDelete.swift */; };
-		C9F3E3401CAA269C006728F7 /* CwlOnDeleteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F3E33F1CAA269C006728F7 /* CwlOnDeleteTests.swift */; };
-		C9F3E3411CAA269C006728F7 /* CwlOnDeleteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F3E33F1CAA269C006728F7 /* CwlOnDeleteTests.swift */; };
-		C9FB03061CF4289C00AD7E79 /* CwlRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B6655E1CEAD9080006B927 /* CwlRandom.swift */; };
-		C9FD68981CF022530087ACC6 /* xoroshiro128plus.c in Sources */ = {isa = PBXBuildFile; fileRef = C9FD68971CF022530087ACC6 /* xoroshiro128plus.c */; };
-		C9FD68991CF022530087ACC6 /* xoroshiro128plus.c in Sources */ = {isa = PBXBuildFile; fileRef = C9FD68971CF022530087ACC6 /* xoroshiro128plus.c */; };
+		C95A772A1E4187E600659DBD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95A77291E4187E600659DBD /* AppDelegate.swift */; };
+		C95A772C1E4187E600659DBD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95A772B1E4187E600659DBD /* ViewController.swift */; };
+		C95A772E1E4187E600659DBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C95A772D1E4187E600659DBD /* Assets.xcassets */; };
+		C95A77311E4187E600659DBD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C95A772F1E4187E600659DBD /* Main.storyboard */; };
+		C95A773C1E4187E700659DBD /* CwlUtils_macOSTestAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95A773B1E4187E700659DBD /* CwlUtils_macOSTestAppUITests.swift */; };
+		C95A774B1E4187FB00659DBD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95A774A1E4187FB00659DBD /* AppDelegate.swift */; };
+		C95A774D1E4187FB00659DBD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95A774C1E4187FB00659DBD /* ViewController.swift */; };
+		C95A77501E4187FB00659DBD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C95A774E1E4187FB00659DBD /* Main.storyboard */; };
+		C95A77521E4187FB00659DBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C95A77511E4187FB00659DBD /* Assets.xcassets */; };
+		C95A77551E4187FB00659DBD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C95A77531E4187FB00659DBD /* LaunchScreen.storyboard */; };
+		C95A77601E4187FB00659DBD /* CwlUtils_iOSTestAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95A775F1E4187FB00659DBD /* CwlUtils_iOSTestAppUITests.swift */; };
+		C95A77701E418F3600659DBD /* CwlUtils.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = OBJ_84 /* CwlUtils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C95A77721E418F4C00659DBD /* CwlUtils.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C95BDEB61E41688B00AAA64B /* CwlUtils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C95BDE841E40B66400AAA64B /* CwlUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = C95BDE821E40B64700AAA64B /* CwlUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C95BDE851E40B66400AAA64B /* CwlFrameAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = OBJ_36 /* CwlFrameAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C95BDE861E40B67100AAA64B /* CwlFrameAddress.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_34 /* CwlFrameAddress.c */; };
+		C95BDE8A1E40B6F600AAA64B /* mach_exc.defs in Sources */ = {isa = PBXBuildFile; fileRef = C95BDE891E40B6F600AAA64B /* mach_exc.defs */; settings = {ATTRIBUTES = (Server, ); }; };
+		C95BDE8B1E40B71800AAA64B /* CwlMachBadInstructionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_60 /* CwlMachBadInstructionHandler.m */; };
+		C95BDE8C1E40B71800AAA64B /* CwlBadInstructionException.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_67 /* CwlBadInstructionException.swift */; };
+		C95BDE8D1E40B71800AAA64B /* CwlCatchBadInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_68 /* CwlCatchBadInstruction.swift */; };
+		C95BDE8E1E40B71800AAA64B /* CwlDarwinDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_69 /* CwlDarwinDefinitions.swift */; };
+		C95BDE8F1E40B71800AAA64B /* CwlCatchException.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_72 /* CwlCatchException.swift */; };
+		C95BDE901E40B71800AAA64B /* CwlCatchException.m in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_74 /* CwlCatchException.m */; };
+		C95BDE9D1E41688B00AAA64B /* CwlAddressInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* CwlAddressInfo.swift */; };
+		C95BDE9E1E41688B00AAA64B /* CwlCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* CwlCollection.swift */; };
+		C95BDE9F1E41688B00AAA64B /* CwlDebugContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* CwlDebugContext.swift */; };
+		C95BDEA01E41688B00AAA64B /* CwlDeferredWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* CwlDeferredWork.swift */; };
+		C95BDEA11E41688B00AAA64B /* CwlDeque.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* CwlDeque.swift */; };
+		C95BDEA21E41688B00AAA64B /* CwlDispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* CwlDispatch.swift */; };
+		C95BDEA31E41688B00AAA64B /* CwlExec.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* CwlExec.swift */; };
+		C95BDEA41E41688B00AAA64B /* CwlKeyValueObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* CwlKeyValueObserver.swift */; };
+		C95BDEA51E41688B00AAA64B /* CwlMutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* CwlMutex.swift */; };
+		C95BDEA61E41688B00AAA64B /* CwlOnDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* CwlOnDelete.swift */; };
+		C95BDEA71E41688B00AAA64B /* CwlRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* CwlRandom.swift */; };
+		C95BDEA81E41688B00AAA64B /* CwlResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* CwlResult.swift */; };
+		C95BDEA91E41688B00AAA64B /* CwlScalarScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* CwlScalarScanner.swift */; };
+		C95BDEAA1E41688B00AAA64B /* CwlStackFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* CwlStackFrame.swift */; };
+		C95BDEAB1E41688B00AAA64B /* CwlSysctl.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* CwlSysctl.swift */; };
+		C95BDEAC1E41688B00AAA64B /* CwlUnanticipatedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_31 /* CwlUnanticipatedError.swift */; };
+		C95BDEAD1E41688B00AAA64B /* CwlWrappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_32 /* CwlWrappers.swift */; };
+		C95BDEAE1E41688B00AAA64B /* CwlFrameAddress.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_34 /* CwlFrameAddress.c */; };
+		C95BDEB11E41688B00AAA64B /* CwlFrameAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = OBJ_36 /* CwlFrameAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C95BDEB21E41688B00AAA64B /* CwlUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = C95BDE821E40B64700AAA64B /* CwlUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C95BDEBC1E4168B800AAA64B /* CwlAddressInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_40 /* CwlAddressInfoTests.swift */; };
+		C95BDEBD1E4168B800AAA64B /* CwlCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_41 /* CwlCollectionTests.swift */; };
+		C95BDEBF1E4168B800AAA64B /* CwlDebugContextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_42 /* CwlDebugContextTests.swift */; };
+		C95BDEC01E4168B800AAA64B /* CwlDeferredWorkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_43 /* CwlDeferredWorkTests.swift */; };
+		C95BDEC11E4168B800AAA64B /* CwlDequeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_44 /* CwlDequeTests.swift */; };
+		C95BDEC21E4168B800AAA64B /* CwlDispatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_45 /* CwlDispatchTests.swift */; };
+		C95BDEC31E4168B800AAA64B /* CwlExecTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_46 /* CwlExecTests.swift */; };
+		C95BDEC41E4168B800AAA64B /* CwlBadInstructionException.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_67 /* CwlBadInstructionException.swift */; };
+		C95BDEC51E4168B800AAA64B /* CwlCatchException.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_72 /* CwlCatchException.swift */; };
+		C95BDEC61E4168B800AAA64B /* CwlMachBadInstructionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_60 /* CwlMachBadInstructionHandler.m */; };
+		C95BDEC71E4168B800AAA64B /* CwlKeyValueObserverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_47 /* CwlKeyValueObserverTests.swift */; };
+		C95BDEC81E4168B800AAA64B /* CwlMutexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_48 /* CwlMutexTests.swift */; };
+		C95BDEC91E4168B800AAA64B /* CwlDarwinDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_69 /* CwlDarwinDefinitions.swift */; };
+		C95BDECA1E4168B800AAA64B /* CwlOnDeleteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_49 /* CwlOnDeleteTests.swift */; };
+		C95BDECB1E4168B800AAA64B /* CwlRandomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_50 /* CwlRandomTests.swift */; };
+		C95BDECC1E4168B800AAA64B /* CwlResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_51 /* CwlResultTests.swift */; };
+		C95BDECE1E4168B800AAA64B /* CwlScalarScannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_52 /* CwlScalarScannerTests.swift */; };
+		C95BDECF1E4168B800AAA64B /* CwlStackFrameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_53 /* CwlStackFrameTests.swift */; };
+		C95BDED01E4168B800AAA64B /* CwlCatchBadInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_68 /* CwlCatchBadInstruction.swift */; };
+		C95BDED11E4168B800AAA64B /* CwlSysctlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_54 /* CwlSysctlTests.swift */; };
+		C95BDED21E4168B800AAA64B /* CwlCatchException.m in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_74 /* CwlCatchException.m */; };
+		C95BDED31E4168B800AAA64B /* mach_exc.defs in Sources */ = {isa = PBXBuildFile; fileRef = C95BDE891E40B6F600AAA64B /* mach_exc.defs */; settings = {ATTRIBUTES = (Server, ); }; };
+		C95BDED41E4168B800AAA64B /* CwlUnanticipatedErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_55 /* CwlUnanticipatedErrorTests.swift */; };
+		C95BDED51E4168B800AAA64B /* CwlWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_56 /* CwlWrapperTests.swift */; };
+		C9DD3DA91E41E26600E23B15 /* CwlUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95BDEB61E41688B00AAA64B /* CwlUtils.framework */; };
+		C9EE87C81E4171FD00A7408F /* mt19937-64.c in Sources */ = {isa = PBXBuildFile; fileRef = C9EE87C61E4171FD00A7408F /* mt19937-64.c */; };
+		C9EE87C91E4171FD00A7408F /* mt19937-64.c in Sources */ = {isa = PBXBuildFile; fileRef = C9EE87C61E4171FD00A7408F /* mt19937-64.c */; };
+		C9EE87CA1E4171FD00A7408F /* xoroshiro128plus.c in Sources */ = {isa = PBXBuildFile; fileRef = C9EE87C71E4171FD00A7408F /* xoroshiro128plus.c */; };
+		C9EE87CB1E4171FD00A7408F /* xoroshiro128plus.c in Sources */ = {isa = PBXBuildFile; fileRef = C9EE87C71E4171FD00A7408F /* xoroshiro128plus.c */; };
+		OBJ_154 /* CwlAddressInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* CwlAddressInfo.swift */; };
+		OBJ_155 /* CwlCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* CwlCollection.swift */; };
+		OBJ_156 /* CwlDebugContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* CwlDebugContext.swift */; };
+		OBJ_157 /* CwlDeferredWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* CwlDeferredWork.swift */; };
+		OBJ_158 /* CwlDeque.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* CwlDeque.swift */; };
+		OBJ_159 /* CwlDispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* CwlDispatch.swift */; };
+		OBJ_160 /* CwlExec.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* CwlExec.swift */; };
+		OBJ_161 /* CwlKeyValueObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* CwlKeyValueObserver.swift */; };
+		OBJ_162 /* CwlMutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* CwlMutex.swift */; };
+		OBJ_163 /* CwlOnDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* CwlOnDelete.swift */; };
+		OBJ_164 /* CwlRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* CwlRandom.swift */; };
+		OBJ_165 /* CwlResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* CwlResult.swift */; };
+		OBJ_166 /* CwlScalarScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* CwlScalarScanner.swift */; };
+		OBJ_167 /* CwlStackFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* CwlStackFrame.swift */; };
+		OBJ_168 /* CwlSysctl.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* CwlSysctl.swift */; };
+		OBJ_169 /* CwlUnanticipatedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_31 /* CwlUnanticipatedError.swift */; };
+		OBJ_170 /* CwlWrappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_32 /* CwlWrappers.swift */; };
+		OBJ_203 /* CwlAddressInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_40 /* CwlAddressInfoTests.swift */; };
+		OBJ_204 /* CwlCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_41 /* CwlCollectionTests.swift */; };
+		OBJ_205 /* CwlDebugContextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_42 /* CwlDebugContextTests.swift */; };
+		OBJ_206 /* CwlDeferredWorkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_43 /* CwlDeferredWorkTests.swift */; };
+		OBJ_207 /* CwlDequeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_44 /* CwlDequeTests.swift */; };
+		OBJ_208 /* CwlDispatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_45 /* CwlDispatchTests.swift */; };
+		OBJ_209 /* CwlExecTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_46 /* CwlExecTests.swift */; };
+		OBJ_210 /* CwlKeyValueObserverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_47 /* CwlKeyValueObserverTests.swift */; };
+		OBJ_211 /* CwlMutexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_48 /* CwlMutexTests.swift */; };
+		OBJ_212 /* CwlOnDeleteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_49 /* CwlOnDeleteTests.swift */; };
+		OBJ_213 /* CwlRandomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_50 /* CwlRandomTests.swift */; };
+		OBJ_214 /* CwlResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_51 /* CwlResultTests.swift */; };
+		OBJ_215 /* CwlScalarScannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_52 /* CwlScalarScannerTests.swift */; };
+		OBJ_216 /* CwlStackFrameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_53 /* CwlStackFrameTests.swift */; };
+		OBJ_217 /* CwlSysctlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_54 /* CwlSysctlTests.swift */; };
+		OBJ_218 /* CwlUnanticipatedErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_55 /* CwlUnanticipatedErrorTests.swift */; };
+		OBJ_219 /* CwlWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_56 /* CwlWrapperTests.swift */; };
+		OBJ_226 /* CwlUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_84 /* CwlUtils.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C923AFD21E0246A5004784AA /* PBXContainerItemProxy */ = {
+		C95A77381E4187E700659DBD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C99AD6541DCEB07600B9E235 /* CwlPreconditionTesting.xcodeproj */;
+			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C98707751C3F886F009B413A;
-			remoteInfo = CwlPreconditionTesting_macOS;
+			remoteGlobalIDString = C95A77261E4187E600659DBD;
+			remoteInfo = CwlUtils_macOSTestApp;
 		};
-		C923AFDC1E0246C0004784AA /* PBXContainerItemProxy */ = {
+		C95A775C1E4187FB00659DBD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C99AD6541DCEB07600B9E235 /* CwlPreconditionTesting.xcodeproj */;
+			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C9604C7F1C40DD9A001A7517;
-			remoteInfo = CwlPreconditionTesting_iOS;
+			remoteGlobalIDString = C95A77471E4187FB00659DBD;
+			remoteInfo = CwlUtils_iOSTestApp;
 		};
-		C93E181F1C8166470009A053 /* PBXContainerItemProxy */ = {
+		C95A77691E418E3600659DBD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C93E180A1C8166470009A053 /* Project object */;
+			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C93E18121C8166470009A053;
-			remoteInfo = CwlUtils;
+			remoteGlobalIDString = OBJ_149;
+			remoteInfo = CwlUtils_macOS;
 		};
-		C93E183D1C81674F0009A053 /* PBXContainerItemProxy */ = {
+		C95A776B1E418E3C00659DBD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C93E180A1C8166470009A053 /* Project object */;
+			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C93E18311C81674F0009A053;
+			remoteGlobalIDString = C95BDE9A1E41688B00AAA64B;
 			remoteInfo = CwlUtils_iOS;
 		};
-		C99AD65F1DCEB07600B9E235 /* PBXContainerItemProxy */ = {
+		C95BDE811E40B23F00AAA64B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C99AD6541DCEB07600B9E235 /* CwlPreconditionTesting.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C98707761C3F886F009B413A;
-			remoteInfo = CwlPreconditionTesting_macOS;
-		};
-		C99AD6611DCEB07600B9E235 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C99AD6541DCEB07600B9E235 /* CwlPreconditionTesting.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C98707801C3F886F009B413A;
-			remoteInfo = CwlPreconditionTesting_macOSTests;
-		};
-		C99AD6631DCEB07600B9E235 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C99AD6541DCEB07600B9E235 /* CwlPreconditionTesting.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C9604C801C40DD9A001A7517;
-			remoteInfo = CwlPreconditionTesting_iOS;
-		};
-		C99AD6651DCEB07600B9E235 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C99AD6541DCEB07600B9E235 /* CwlPreconditionTesting.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C9604C891C40DD9A001A7517;
-			remoteInfo = CwlPreconditionTesting_iOSTests;
-		};
-		C99AD6671DCEB07600B9E235 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C99AD6541DCEB07600B9E235 /* CwlPreconditionTesting.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C92A97D91C68A4F3008905C2;
-			remoteInfo = CwlPreconditionTesting_POSIX;
-		};
-		C99AD6691DCEB07600B9E235 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C99AD6541DCEB07600B9E235 /* CwlPreconditionTesting.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C92A97E61C68A515008905C2;
-			remoteInfo = CwlPreconditionTesting_POSIXTests;
-		};
-		C99AD66B1DCEB07600B9E235 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C99AD6541DCEB07600B9E235 /* CwlPreconditionTesting.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 96ACCC591C6E8BBE00FE0B1B;
-			remoteInfo = CwlPreconditionTesting_tvOS;
-		};
-		C99AD66D1DCEB07600B9E235 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C99AD6541DCEB07600B9E235 /* CwlPreconditionTesting.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 96ACCC481C6E8A7C00FE0B1B;
-			remoteInfo = CwlPreconditionTesting_tvOSTests;
-		};
-		C9E6C6181CBF6D03007B3F24 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C93E180A1C8166470009A053 /* Project object */;
+			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C9E6C6081CBF6D03007B3F24;
-			remoteInfo = CwlUtils_macOSHarness;
+			remoteGlobalIDString = OBJ_149;
+			remoteInfo = CwlUtils;
 		};
-		C9F1BAB91CC5024300A255E9 /* PBXContainerItemProxy */ = {
+		C9EE87C11E4171D400A7408F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C93E180A1C8166470009A053 /* Project object */;
+			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C9F1BAA41CC5024300A255E9;
-			remoteInfo = CwlUtils_iOSHarness;
+			remoteGlobalIDString = C95BDE9A1E41688B00AAA64B;
+			remoteInfo = CwlUtils_iOS;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		C99AD6711DCEB0E100B9E235 /* CopyFiles */ = {
+		C95A776E1E418EB600659DBD /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C9A6311F1DCF5E45001B43D4 /* CwlPreconditionTesting.framework in CopyFiles */,
+				C95A77701E418F3600659DBD /* CwlUtils.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C99AD6731DCEB43F00B9E235 /* CopyFiles */ = {
+		C95A77711E418F4300659DBD /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C99AD6741DCEB44B00B9E235 /* CwlPreconditionTesting.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C9F1BACB1CC5094D00A255E9 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				C9F1BAD11CC5108600A255E9 /* CwlUtils.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C9F1BACD1CC5097100A255E9 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				C9F1BACE1CC5097F00A255E9 /* CwlUtils.framework in CopyFiles */,
+				C95A77721E418F4C00659DBD /* CwlUtils.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C926A17C1DBB1C5300E4D6D0 /* CwlCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CwlCollection.swift; path = CwlUtils/CwlCollection.swift; sourceTree = SOURCE_ROOT; };
-		C926A17F1DBB1CB500E4D6D0 /* CwlCollectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlCollectionTests.swift; sourceTree = "<group>"; };
-		C93B5BB41CED95A5002D91D1 /* mt19937-64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "mt19937-64.c"; sourceTree = "<group>"; };
-		C93B5BB71CED95C5002D91D1 /* CwlUtilsTests-BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CwlUtilsTests-BridgingHeader.h"; sourceTree = "<group>"; };
-		C93CFB461DB08216008858ED /* CwlExec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlExec.swift; sourceTree = "<group>"; };
-		C93CFB4A1DB08EB6008858ED /* CwlExecTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlExecTests.swift; sourceTree = "<group>"; };
-		C93E18131C8166470009A053 /* CwlUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CwlUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C93E18161C8166470009A053 /* CwlUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CwlUtils.h; sourceTree = "<group>"; };
-		C93E18181C8166470009A053 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C93E181D1C8166470009A053 /* CwlUtils_macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CwlUtils_macOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C93E18241C8166470009A053 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C93E18321C81674F0009A053 /* CwlUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CwlUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C93E183B1C81674F0009A053 /* CwlUtils_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CwlUtils_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C93E184E1C81794B0009A053 /* CwlStackFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlStackFrame.swift; sourceTree = "<group>"; };
-		C93E18591C8179B40009A053 /* CwlStackFrameTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlStackFrameTests.swift; sourceTree = "<group>"; };
-		C93E185E1C81BE120009A053 /* CwlFrameAddress.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CwlFrameAddress.c; sourceTree = "<group>"; };
-		C93E185F1C81BE120009A053 /* CwlFrameAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CwlFrameAddress.h; sourceTree = "<group>"; };
-		C93E18641C81EFD40009A053 /* CwlAddressInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlAddressInfo.swift; sourceTree = "<group>"; };
-		C93E18671C82B6480009A053 /* CwlAddressInfoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlAddressInfoTests.swift; sourceTree = "<group>"; };
-		C95416BA1D4B76AC00C30D49 /* CwlDispatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlDispatch.swift; sourceTree = "<group>"; };
-		C9716DEB1D4CDF9E00E90C18 /* CwlDispatchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlDispatchTests.swift; sourceTree = "<group>"; };
-		C977AA5C1CEC0D0900FC748D /* CwlRandomTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlRandomTests.swift; sourceTree = "<group>"; };
-		C99AD6491DCEA1EC00B9E235 /* CwlDeferredWork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlDeferredWork.swift; sourceTree = "<group>"; };
-		C99AD64E1DCEA32800B9E235 /* CwlWrappers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlWrappers.swift; sourceTree = "<group>"; };
-		C99AD6511DCEAF6000B9E235 /* CwlWrapperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlWrapperTests.swift; sourceTree = "<group>"; };
-		C99AD6541DCEB07600B9E235 /* CwlPreconditionTesting.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CwlPreconditionTesting.xcodeproj; path = CwlPreconditionTesting/CwlPreconditionTesting.xcodeproj; sourceTree = SOURCE_ROOT; };
-		C99AD6751DCEB4A100B9E235 /* CwlDeferredWorkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlDeferredWorkTests.swift; sourceTree = "<group>"; };
-		C99AD67F1DCEC20F00B9E235 /* CwlKeyValueObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlKeyValueObserver.swift; sourceTree = "<group>"; };
-		C99AD68A1DCEC21C00B9E235 /* CwlKeyValueObserverTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlKeyValueObserverTests.swift; sourceTree = "<group>"; };
-		C9AC2C881D1287FE0034650A /* CwlRandomPerformanceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlRandomPerformanceTests.swift; sourceTree = "<group>"; };
-		C9AC2C8E1D128B560034650A /* CwlMutexPerformanceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlMutexPerformanceTests.swift; sourceTree = "<group>"; };
-		C9B3EF991D6F14B80058AE5E /* CwlResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlResult.swift; sourceTree = "<group>"; };
-		C9B3EF9C1D6F14F40058AE5E /* CwlResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlResultTests.swift; sourceTree = "<group>"; };
-		C9B6655E1CEAD9080006B927 /* CwlRandom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlRandom.swift; sourceTree = "<group>"; };
-		C9B7C4D01DB852A20093C97A /* CwlDebugContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlDebugContext.swift; sourceTree = "<group>"; };
-		C9B7C4D31DB852C10093C97A /* CwlDebugContextTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlDebugContextTests.swift; sourceTree = "<group>"; };
-		C9C9AAEE1C8E7FB60019A126 /* CwlSysctl.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 3; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CwlSysctl.swift; sourceTree = "<group>"; tabWidth = 3; usesTabs = 1; };
-		C9C9AAF11C8E7FD00019A126 /* CwlSysctlTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlSysctlTests.swift; sourceTree = "<group>"; };
-		C9E055441CD8B42D001658AB /* CwlScalarScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlScalarScanner.swift; sourceTree = "<group>"; };
-		C9E055471CD8B44C001658AB /* CwlScalarScannerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 2; path = CwlScalarScannerTests.swift; sourceTree = "<group>"; };
-		C9E6C58F1CBE0455007B3F24 /* CwlUnanticipatedError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlUnanticipatedError.swift; sourceTree = "<group>"; };
-		C9E6C5911CBE045F007B3F24 /* CwlUnanticipatedErrorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlUnanticipatedErrorTests.swift; sourceTree = "<group>"; };
-		C9E6C6091CBF6D03007B3F24 /* CwlUtils_macOSHarness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CwlUtils_macOSHarness.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C9E6C60B1CBF6D03007B3F24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C9E6C60D1CBF6D03007B3F24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C9E6C6101CBF6D03007B3F24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		C9E6C6121CBF6D03007B3F24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C9E6C6171CBF6D03007B3F24 /* CwlUtils_macOSHarnessUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CwlUtils_macOSHarnessUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C9E6C61B1CBF6D03007B3F24 /* CwlUtils_macOSHarnessUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlUtils_macOSHarnessUITests.swift; sourceTree = "<group>"; };
-		C9E6C61D1CBF6D03007B3F24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C9E7F0261D93F49E0039680B /* CwlDeque.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlDeque.swift; sourceTree = "<group>"; };
-		C9E7F0291D93F4C10039680B /* CwlDequeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlDequeTests.swift; sourceTree = "<group>"; };
-		C9F193C61D0296E400EAC5BE /* CwlMutexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlMutexTests.swift; sourceTree = "<group>"; };
-		C9F193CC1D02970200EAC5BE /* CwlMutex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlMutex.swift; sourceTree = "<group>"; };
-		C9F1BAA51CC5024300A255E9 /* CwlUtils_iOSHarness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CwlUtils_iOSHarness.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C9F1BAA71CC5024300A255E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C9F1BAA91CC5024300A255E9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		C9F1BAAC1CC5024300A255E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		C9F1BAAE1CC5024300A255E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C9F1BAB11CC5024300A255E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		C9F1BAB31CC5024300A255E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C9F1BAB81CC5024300A255E9 /* CwlUtils_iOSHarnessUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CwlUtils_iOSHarnessUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C9F1BABC1CC5024300A255E9 /* CwlUtils_iOSHarnessUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlUtils_iOSHarnessUITests.swift; sourceTree = "<group>"; };
-		C9F1BABE1CC5024300A255E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C9F3E3361CAA254A006728F7 /* CwlOnDelete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlOnDelete.swift; sourceTree = "<group>"; };
-		C9F3E33F1CAA269C006728F7 /* CwlOnDeleteTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlOnDeleteTests.swift; sourceTree = "<group>"; };
-		C9FD68971CF022530087ACC6 /* xoroshiro128plus.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xoroshiro128plus.c; sourceTree = "<group>"; };
+		C95A77271E4187E600659DBD /* CwlUtils_macOSTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CwlUtils_macOSTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C95A77291E4187E600659DBD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C95A772B1E4187E600659DBD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C95A772D1E4187E600659DBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C95A77301E4187E600659DBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C95A77321E4187E600659DBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C95A77371E4187E700659DBD /* CwlUtils_macOSTestAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CwlUtils_macOSTestAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C95A773B1E4187E700659DBD /* CwlUtils_macOSTestAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlUtils_macOSTestAppUITests.swift; sourceTree = "<group>"; };
+		C95A773D1E4187E700659DBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C95A77481E4187FB00659DBD /* CwlUtils_iOSTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CwlUtils_iOSTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C95A774A1E4187FB00659DBD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C95A774C1E4187FB00659DBD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C95A774F1E4187FB00659DBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C95A77511E4187FB00659DBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C95A77541E4187FB00659DBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C95A77561E4187FB00659DBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C95A775B1E4187FB00659DBD /* CwlUtils_iOSTestAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CwlUtils_iOSTestAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C95A775F1E4187FB00659DBD /* CwlUtils_iOSTestAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlUtils_iOSTestAppUITests.swift; sourceTree = "<group>"; };
+		C95A77611E4187FB00659DBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C95BDE821E40B64700AAA64B /* CwlUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CwlUtils.h; sourceTree = "<group>"; };
+		C95BDE891E40B6F600AAA64B /* mach_exc.defs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.mig; name = mach_exc.defs; path = usr/include/mach/mach_exc.defs; sourceTree = SDKROOT; };
+		C95BDE921E40B7D800AAA64B /* CwlDequePerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlDequePerformanceTests.swift; sourceTree = "<group>"; };
+		C95BDE931E40B7D800AAA64B /* CwlMutexPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlMutexPerformanceTests.swift; sourceTree = "<group>"; };
+		C95BDE941E40B7D800AAA64B /* CwlRandomPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlRandomPerformanceTests.swift; sourceTree = "<group>"; };
+		C95BDEB61E41688B00AAA64B /* CwlUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CwlUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C95BDEDB1E4168B800AAA64B /* CwlUtils_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CwlUtils_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9DD3D3B1E41A7D400E23B15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9DD3D3D1E41A94100E23B15 /* CwlUtilsTests-BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CwlUtilsTests-BridgingHeader.h"; sourceTree = "<group>"; };
+		C9DD3D3E1E41A94100E23B15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9EE87C51E4171FD00A7408F /* ReferenceRandomGenerators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferenceRandomGenerators.h; sourceTree = "<group>"; };
+		C9EE87C61E4171FD00A7408F /* mt19937-64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "mt19937-64.c"; sourceTree = "<group>"; };
+		C9EE87C71E4171FD00A7408F /* xoroshiro128plus.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xoroshiro128plus.c; sourceTree = "<group>"; };
+		OBJ_16 /* CwlAddressInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlAddressInfo.swift; sourceTree = "<group>"; };
+		OBJ_17 /* CwlCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlCollection.swift; sourceTree = "<group>"; };
+		OBJ_18 /* CwlDebugContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlDebugContext.swift; sourceTree = "<group>"; };
+		OBJ_19 /* CwlDeferredWork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlDeferredWork.swift; sourceTree = "<group>"; };
+		OBJ_20 /* CwlDeque.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlDeque.swift; sourceTree = "<group>"; };
+		OBJ_21 /* CwlDispatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlDispatch.swift; sourceTree = "<group>"; };
+		OBJ_22 /* CwlExec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlExec.swift; sourceTree = "<group>"; };
+		OBJ_23 /* CwlKeyValueObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlKeyValueObserver.swift; sourceTree = "<group>"; };
+		OBJ_24 /* CwlMutex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlMutex.swift; sourceTree = "<group>"; };
+		OBJ_25 /* CwlOnDelete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlOnDelete.swift; sourceTree = "<group>"; };
+		OBJ_26 /* CwlRandom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlRandom.swift; sourceTree = "<group>"; };
+		OBJ_27 /* CwlResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlResult.swift; sourceTree = "<group>"; };
+		OBJ_28 /* CwlScalarScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlScalarScanner.swift; sourceTree = "<group>"; };
+		OBJ_29 /* CwlStackFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlStackFrame.swift; sourceTree = "<group>"; };
+		OBJ_30 /* CwlSysctl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlSysctl.swift; sourceTree = "<group>"; };
+		OBJ_31 /* CwlUnanticipatedError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlUnanticipatedError.swift; sourceTree = "<group>"; };
+		OBJ_32 /* CwlWrappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlWrappers.swift; sourceTree = "<group>"; };
+		OBJ_34 /* CwlFrameAddress.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = CwlFrameAddress.c; sourceTree = "<group>"; };
+		OBJ_36 /* CwlFrameAddress.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CwlFrameAddress.h; sourceTree = "<group>"; };
+		OBJ_40 /* CwlAddressInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlAddressInfoTests.swift; sourceTree = "<group>"; };
+		OBJ_41 /* CwlCollectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlCollectionTests.swift; sourceTree = "<group>"; };
+		OBJ_42 /* CwlDebugContextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlDebugContextTests.swift; sourceTree = "<group>"; };
+		OBJ_43 /* CwlDeferredWorkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlDeferredWorkTests.swift; sourceTree = "<group>"; };
+		OBJ_44 /* CwlDequeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlDequeTests.swift; sourceTree = "<group>"; };
+		OBJ_45 /* CwlDispatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlDispatchTests.swift; sourceTree = "<group>"; };
+		OBJ_46 /* CwlExecTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlExecTests.swift; sourceTree = "<group>"; };
+		OBJ_47 /* CwlKeyValueObserverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlKeyValueObserverTests.swift; sourceTree = "<group>"; };
+		OBJ_48 /* CwlMutexTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlMutexTests.swift; sourceTree = "<group>"; };
+		OBJ_49 /* CwlOnDeleteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlOnDeleteTests.swift; sourceTree = "<group>"; };
+		OBJ_50 /* CwlRandomTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlRandomTests.swift; sourceTree = "<group>"; };
+		OBJ_51 /* CwlResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlResultTests.swift; sourceTree = "<group>"; };
+		OBJ_52 /* CwlScalarScannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlScalarScannerTests.swift; sourceTree = "<group>"; };
+		OBJ_53 /* CwlStackFrameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlStackFrameTests.swift; sourceTree = "<group>"; };
+		OBJ_54 /* CwlSysctlTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlSysctlTests.swift; sourceTree = "<group>"; };
+		OBJ_55 /* CwlUnanticipatedErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlUnanticipatedErrorTests.swift; sourceTree = "<group>"; };
+		OBJ_56 /* CwlWrapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlWrapperTests.swift; sourceTree = "<group>"; };
+		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		OBJ_60 /* CwlMachBadInstructionHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CwlMachBadInstructionHandler.m; sourceTree = "<group>"; };
+		OBJ_61 /* mach_excServer.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = mach_excServer.c; sourceTree = "<group>"; };
+		OBJ_63 /* CwlMachBadInstructionHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CwlMachBadInstructionHandler.h; sourceTree = "<group>"; };
+		OBJ_64 /* mach_excServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mach_excServer.h; sourceTree = "<group>"; };
+		OBJ_67 /* CwlBadInstructionException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlBadInstructionException.swift; sourceTree = "<group>"; };
+		OBJ_68 /* CwlCatchBadInstruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlCatchBadInstruction.swift; sourceTree = "<group>"; };
+		OBJ_69 /* CwlDarwinDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlDarwinDefinitions.swift; sourceTree = "<group>"; };
+		OBJ_72 /* CwlCatchException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlCatchException.swift; sourceTree = "<group>"; };
+		OBJ_74 /* CwlCatchException.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CwlCatchException.m; sourceTree = "<group>"; };
+		OBJ_76 /* CwlCatchException.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CwlCatchException.h; sourceTree = "<group>"; };
+		OBJ_84 /* CwlUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CwlUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_86 /* CwlUtils_macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = CwlUtils_macOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C93E180F1C8166470009A053 /* Frameworks */ = {
+		C95A77241E4187E600659DBD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C93E181A1C8166470009A053 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C93E181E1C8166470009A053 /* CwlUtils.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C93E182E1C81674F0009A053 /* Frameworks */ = {
+		C95A77341E4187E700659DBD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C93E18381C81674F0009A053 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C93E183C1C81674F0009A053 /* CwlUtils.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C9E6C6061CBF6D03007B3F24 /* Frameworks */ = {
+		C95A77451E4187FB00659DBD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C9E6C6141CBF6D03007B3F24 /* Frameworks */ = {
+		C95A77581E4187FB00659DBD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C9F1BAA21CC5024300A255E9 /* Frameworks */ = {
+		C95BDEAF1E41688B00AAA64B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 0;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C9F1BAB51CC5024300A255E9 /* Frameworks */ = {
+		C95BDED61E4168B800AAA64B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 0;
 			files = (
+				C9DD3DA91E41E26600E23B15 /* CwlUtils.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_171 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_220 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_226 /* CwlUtils.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C93E18091C8166470009A053 = {
+		C95A77281E4187E600659DBD /* CwlUtils_macOSTestApp */ = {
 			isa = PBXGroup;
 			children = (
-				C93E18151C8166470009A053 /* CwlUtils */,
-				C93E18211C8166470009A053 /* CwlUtilsTests */,
-				C9E6C60A1CBF6D03007B3F24 /* CwlUtils_macOSHarness */,
-				C9E6C61A1CBF6D03007B3F24 /* CwlUtils_macOSHarnessUITests */,
-				C9F1BAA61CC5024300A255E9 /* CwlUtils_iOSHarness */,
-				C9F1BABB1CC5024300A255E9 /* CwlUtils_iOSHarnessUITests */,
-				C93E18141C8166470009A053 /* Products */,
+				C95A77291E4187E600659DBD /* AppDelegate.swift */,
+				C95A772B1E4187E600659DBD /* ViewController.swift */,
+				C95A772D1E4187E600659DBD /* Assets.xcassets */,
+				C95A772F1E4187E600659DBD /* Main.storyboard */,
+				C95A77321E4187E600659DBD /* Info.plist */,
+			);
+			name = CwlUtils_macOSTestApp;
+			path = Tests/CwlUtils_macOSTestApp;
+			sourceTree = "<group>";
+		};
+		C95A773A1E4187E700659DBD /* CwlUtils_macOSTestAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C95A773B1E4187E700659DBD /* CwlUtils_macOSTestAppUITests.swift */,
+				C95A773D1E4187E700659DBD /* Info.plist */,
+			);
+			name = CwlUtils_macOSTestAppUITests;
+			path = Tests/CwlUtils_macOSTestAppUITests;
+			sourceTree = "<group>";
+		};
+		C95A77491E4187FB00659DBD /* CwlUtils_iOSTestApp */ = {
+			isa = PBXGroup;
+			children = (
+				C95A774A1E4187FB00659DBD /* AppDelegate.swift */,
+				C95A774C1E4187FB00659DBD /* ViewController.swift */,
+				C95A774E1E4187FB00659DBD /* Main.storyboard */,
+				C95A77511E4187FB00659DBD /* Assets.xcassets */,
+				C95A77531E4187FB00659DBD /* LaunchScreen.storyboard */,
+				C95A77561E4187FB00659DBD /* Info.plist */,
+			);
+			name = CwlUtils_iOSTestApp;
+			path = Tests/CwlUtils_iOSTestApp;
+			sourceTree = "<group>";
+		};
+		C95A775E1E4187FB00659DBD /* CwlUtils_iOSTestAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C95A775F1E4187FB00659DBD /* CwlUtils_iOSTestAppUITests.swift */,
+				C95A77611E4187FB00659DBD /* Info.plist */,
+			);
+			name = CwlUtils_iOSTestAppUITests;
+			path = Tests/CwlUtils_iOSTestAppUITests;
+			sourceTree = "<group>";
+		};
+		C95BDE911E40B7D800AAA64B /* CwlUtilsPerformanceTests */ = {
+			isa = PBXGroup;
+			children = (
+				C95BDE921E40B7D800AAA64B /* CwlDequePerformanceTests.swift */,
+				C95BDE931E40B7D800AAA64B /* CwlMutexPerformanceTests.swift */,
+				C95BDE941E40B7D800AAA64B /* CwlRandomPerformanceTests.swift */,
+			);
+			name = CwlUtilsPerformanceTests;
+			path = Tests/CwlUtilsPerformanceTests;
+			sourceTree = "<group>";
+		};
+		C9EE87C31E4171FD00A7408F /* ReferenceRandomGenerators */ = {
+			isa = PBXGroup;
+			children = (
+				C9EE87C41E4171FD00A7408F /* include */,
+				C9EE87C61E4171FD00A7408F /* mt19937-64.c */,
+				C9EE87C71E4171FD00A7408F /* xoroshiro128plus.c */,
+			);
+			name = ReferenceRandomGenerators;
+			path = Sources/ReferenceRandomGenerators;
+			sourceTree = "<group>";
+		};
+		C9EE87C41E4171FD00A7408F /* include */ = {
+			isa = PBXGroup;
+			children = (
+				C9EE87C51E4171FD00A7408F /* ReferenceRandomGenerators.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		OBJ_15 /* CwlUtils */ = {
+			isa = PBXGroup;
+			children = (
+				C95BDE821E40B64700AAA64B /* CwlUtils.h */,
+				C9DD3D3B1E41A7D400E23B15 /* Info.plist */,
+				OBJ_16 /* CwlAddressInfo.swift */,
+				OBJ_17 /* CwlCollection.swift */,
+				OBJ_18 /* CwlDebugContext.swift */,
+				OBJ_19 /* CwlDeferredWork.swift */,
+				OBJ_20 /* CwlDeque.swift */,
+				OBJ_21 /* CwlDispatch.swift */,
+				OBJ_22 /* CwlExec.swift */,
+				OBJ_23 /* CwlKeyValueObserver.swift */,
+				OBJ_24 /* CwlMutex.swift */,
+				OBJ_25 /* CwlOnDelete.swift */,
+				OBJ_26 /* CwlRandom.swift */,
+				OBJ_27 /* CwlResult.swift */,
+				OBJ_28 /* CwlScalarScanner.swift */,
+				OBJ_29 /* CwlStackFrame.swift */,
+				OBJ_30 /* CwlSysctl.swift */,
+				OBJ_31 /* CwlUnanticipatedError.swift */,
+				OBJ_32 /* CwlWrappers.swift */,
+			);
+			name = CwlUtils;
+			path = Sources/CwlUtils;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_33 /* CwlFrameAddress */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_34 /* CwlFrameAddress.c */,
+				OBJ_35 /* include */,
+			);
+			name = CwlFrameAddress;
+			path = Sources/CwlFrameAddress;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_35 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_36 /* CwlFrameAddress.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		OBJ_38 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_39 /* CwlUtilsTests */,
+				C95BDE911E40B7D800AAA64B /* CwlUtilsPerformanceTests */,
+				C95A77281E4187E600659DBD /* CwlUtils_macOSTestApp */,
+				C95A773A1E4187E700659DBD /* CwlUtils_macOSTestAppUITests */,
+				C95A77491E4187FB00659DBD /* CwlUtils_iOSTestApp */,
+				C95A775E1E4187FB00659DBD /* CwlUtils_iOSTestAppUITests */,
+			);
+			name = Tests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_39 /* CwlUtilsTests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_40 /* CwlAddressInfoTests.swift */,
+				OBJ_41 /* CwlCollectionTests.swift */,
+				OBJ_42 /* CwlDebugContextTests.swift */,
+				OBJ_43 /* CwlDeferredWorkTests.swift */,
+				OBJ_44 /* CwlDequeTests.swift */,
+				OBJ_45 /* CwlDispatchTests.swift */,
+				OBJ_46 /* CwlExecTests.swift */,
+				OBJ_47 /* CwlKeyValueObserverTests.swift */,
+				OBJ_48 /* CwlMutexTests.swift */,
+				OBJ_49 /* CwlOnDeleteTests.swift */,
+				OBJ_50 /* CwlRandomTests.swift */,
+				OBJ_51 /* CwlResultTests.swift */,
+				OBJ_52 /* CwlScalarScannerTests.swift */,
+				OBJ_53 /* CwlStackFrameTests.swift */,
+				OBJ_54 /* CwlSysctlTests.swift */,
+				OBJ_55 /* CwlUnanticipatedErrorTests.swift */,
+				OBJ_56 /* CwlWrapperTests.swift */,
+				C9DD3D3D1E41A94100E23B15 /* CwlUtilsTests-BridgingHeader.h */,
+				C9DD3D3E1E41A94100E23B15 /* Info.plist */,
+			);
+			name = CwlUtilsTests;
+			path = Tests/CwlUtilsTests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_5 = {
+			isa = PBXGroup;
+			children = (
+				OBJ_6 /* Package.swift */,
+				OBJ_7 /* Sources */,
+				OBJ_38 /* Tests */,
+				OBJ_57 /* Dependencies */,
+				OBJ_78 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		C93E18141C8166470009A053 /* Products */ = {
+		OBJ_57 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				C93E18131C8166470009A053 /* CwlUtils.framework */,
-				C93E181D1C8166470009A053 /* CwlUtils_macOSTests.xctest */,
-				C93E18321C81674F0009A053 /* CwlUtils.framework */,
-				C93E183B1C81674F0009A053 /* CwlUtils_iOSTests.xctest */,
-				C9E6C6091CBF6D03007B3F24 /* CwlUtils_macOSHarness.app */,
-				C9E6C6171CBF6D03007B3F24 /* CwlUtils_macOSHarnessUITests.xctest */,
-				C9F1BAA51CC5024300A255E9 /* CwlUtils_iOSHarness.app */,
-				C9F1BAB81CC5024300A255E9 /* CwlUtils_iOSHarnessUITests.xctest */,
+				OBJ_59 /* CwlMachBadInstructionHandler */,
+				OBJ_66 /* CwlPreconditionTesting */,
+				OBJ_71 /* CwlCatchException */,
+				OBJ_73 /* CwlCatchExceptionSupport */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		OBJ_59 /* CwlMachBadInstructionHandler */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_60 /* CwlMachBadInstructionHandler.m */,
+				OBJ_61 /* mach_excServer.c */,
+				C95BDE891E40B6F600AAA64B /* mach_exc.defs */,
+				OBJ_62 /* include */,
+			);
+			name = CwlMachBadInstructionHandler;
+			path = .build/cwl_symlinks/CwlPreconditionTesting/Sources/CwlMachBadInstructionHandler;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_62 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_63 /* CwlMachBadInstructionHandler.h */,
+				OBJ_64 /* mach_excServer.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		OBJ_66 /* CwlPreconditionTesting */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_67 /* CwlBadInstructionException.swift */,
+				OBJ_68 /* CwlCatchBadInstruction.swift */,
+				OBJ_69 /* CwlDarwinDefinitions.swift */,
+			);
+			name = CwlPreconditionTesting;
+			path = .build/cwl_symlinks/CwlPreconditionTesting/Sources/CwlPreconditionTesting;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_7 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_15 /* CwlUtils */,
+				OBJ_33 /* CwlFrameAddress */,
+				C9EE87C31E4171FD00A7408F /* ReferenceRandomGenerators */,
+			);
+			name = Sources;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_71 /* CwlCatchException */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_72 /* CwlCatchException.swift */,
+			);
+			name = CwlCatchException;
+			path = .build/cwl_symlinks/CwlCatchException/Sources/CwlCatchException;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_73 /* CwlCatchExceptionSupport */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_74 /* CwlCatchException.m */,
+				OBJ_75 /* include */,
+			);
+			name = CwlCatchExceptionSupport;
+			path = .build/cwl_symlinks/CwlCatchException/Sources/CwlCatchExceptionSupport;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_75 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_76 /* CwlCatchException.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		OBJ_78 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_84 /* CwlUtils.framework */,
+				OBJ_86 /* CwlUtils_macOSTests.xctest */,
+				C95BDEB61E41688B00AAA64B /* CwlUtils.framework */,
+				C95BDEDB1E4168B800AAA64B /* CwlUtils_iOSTests.xctest */,
+				C95A77271E4187E600659DBD /* CwlUtils_macOSTestApp.app */,
+				C95A77371E4187E700659DBD /* CwlUtils_macOSTestAppUITests.xctest */,
+				C95A77481E4187FB00659DBD /* CwlUtils_iOSTestApp.app */,
+				C95A775B1E4187FB00659DBD /* CwlUtils_iOSTestAppUITests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		C93E18151C8166470009A053 /* CwlUtils */ = {
-			isa = PBXGroup;
-			children = (
-				C93E18571C8179720009A053 /* Supporting Files */,
-				C93E18641C81EFD40009A053 /* CwlAddressInfo.swift */,
-				C926A17C1DBB1C5300E4D6D0 /* CwlCollection.swift */,
-				C9B7C4D01DB852A20093C97A /* CwlDebugContext.swift */,
-				C99AD6491DCEA1EC00B9E235 /* CwlDeferredWork.swift */,
-				C9E7F0261D93F49E0039680B /* CwlDeque.swift */,
-				C95416BA1D4B76AC00C30D49 /* CwlDispatch.swift */,
-				C93CFB461DB08216008858ED /* CwlExec.swift */,
-				C93E185E1C81BE120009A053 /* CwlFrameAddress.c */,
-				C93E185F1C81BE120009A053 /* CwlFrameAddress.h */,
-				C99AD67F1DCEC20F00B9E235 /* CwlKeyValueObserver.swift */,
-				C9F193CC1D02970200EAC5BE /* CwlMutex.swift */,
-				C9F3E3361CAA254A006728F7 /* CwlOnDelete.swift */,
-				C9B6655E1CEAD9080006B927 /* CwlRandom.swift */,
-				C9B3EF991D6F14B80058AE5E /* CwlResult.swift */,
-				C9E055441CD8B42D001658AB /* CwlScalarScanner.swift */,
-				C93E184E1C81794B0009A053 /* CwlStackFrame.swift */,
-				C9C9AAEE1C8E7FB60019A126 /* CwlSysctl.swift */,
-				C9E6C58F1CBE0455007B3F24 /* CwlUnanticipatedError.swift */,
-				C99AD64E1DCEA32800B9E235 /* CwlWrappers.swift */,
-			);
-			path = CwlUtils;
-			sourceTree = "<group>";
-		};
-		C93E18211C8166470009A053 /* CwlUtilsTests */ = {
-			isa = PBXGroup;
-			children = (
-				C99AD6541DCEB07600B9E235 /* CwlPreconditionTesting.xcodeproj */,
-				C93E185D1C8179C40009A053 /* Supporting Files */,
-				C93E18671C82B6480009A053 /* CwlAddressInfoTests.swift */,
-				C926A17F1DBB1CB500E4D6D0 /* CwlCollectionTests.swift */,
-				C9B7C4D31DB852C10093C97A /* CwlDebugContextTests.swift */,
-				C99AD6751DCEB4A100B9E235 /* CwlDeferredWorkTests.swift */,
-				C9E7F0291D93F4C10039680B /* CwlDequeTests.swift */,
-				C9716DEB1D4CDF9E00E90C18 /* CwlDispatchTests.swift */,
-				C93CFB4A1DB08EB6008858ED /* CwlExecTests.swift */,
-				C99AD68A1DCEC21C00B9E235 /* CwlKeyValueObserverTests.swift */,
-				C9F193C61D0296E400EAC5BE /* CwlMutexTests.swift */,
-				C9F3E33F1CAA269C006728F7 /* CwlOnDeleteTests.swift */,
-				C977AA5C1CEC0D0900FC748D /* CwlRandomTests.swift */,
-				C9B3EF9C1D6F14F40058AE5E /* CwlResultTests.swift */,
-				C9E055471CD8B44C001658AB /* CwlScalarScannerTests.swift */,
-				C93E18591C8179B40009A053 /* CwlStackFrameTests.swift */,
-				C9C9AAF11C8E7FD00019A126 /* CwlSysctlTests.swift */,
-				C9E6C5911CBE045F007B3F24 /* CwlUnanticipatedErrorTests.swift */,
-				C99AD6511DCEAF6000B9E235 /* CwlWrapperTests.swift */,
-				C9AC2C8A1D1288600034650A /* PerformanceTests */,
-				C9FB03081CF42A9D00AD7E79 /* Reference Random Generators */,
-			);
-			path = CwlUtilsTests;
-			sourceTree = "<group>";
-		};
-		C93E18571C8179720009A053 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				C93E18161C8166470009A053 /* CwlUtils.h */,
-				C93E18181C8166470009A053 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		C93E185D1C8179C40009A053 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				C93B5BB71CED95C5002D91D1 /* CwlUtilsTests-BridgingHeader.h */,
-				C93E18241C8166470009A053 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		C99AD6551DCEB07600B9E235 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				C99AD6601DCEB07600B9E235 /* CwlPreconditionTesting.framework */,
-				C99AD6621DCEB07600B9E235 /* CwlPreconditionTesting_macOSTests.xctest */,
-				C99AD6641DCEB07600B9E235 /* CwlPreconditionTesting.framework */,
-				C99AD6661DCEB07600B9E235 /* CwlPreconditionTesting_iOSTests.xctest */,
-				C99AD6681DCEB07600B9E235 /* CwlPreconditionTesting.framework */,
-				C99AD66A1DCEB07600B9E235 /* CwlPreconditionTesting_POSIXTests.xctest */,
-				C99AD66C1DCEB07600B9E235 /* CwlPreconditionTesting.framework */,
-				C99AD66E1DCEB07600B9E235 /* CwlPreconditionTesting_tvOSTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		C9AC2C8A1D1288600034650A /* PerformanceTests */ = {
-			isa = PBXGroup;
-			children = (
-				C9AC2C8E1D128B560034650A /* CwlMutexPerformanceTests.swift */,
-				C9AC2C881D1287FE0034650A /* CwlRandomPerformanceTests.swift */,
-			);
-			name = PerformanceTests;
-			sourceTree = "<group>";
-		};
-		C9E6C60A1CBF6D03007B3F24 /* CwlUtils_macOSHarness */ = {
-			isa = PBXGroup;
-			children = (
-				C9E6C60B1CBF6D03007B3F24 /* AppDelegate.swift */,
-				C9E6C60D1CBF6D03007B3F24 /* Assets.xcassets */,
-				C9E6C60F1CBF6D03007B3F24 /* MainMenu.xib */,
-				C9E6C6121CBF6D03007B3F24 /* Info.plist */,
-			);
-			path = CwlUtils_macOSHarness;
-			sourceTree = "<group>";
-		};
-		C9E6C61A1CBF6D03007B3F24 /* CwlUtils_macOSHarnessUITests */ = {
-			isa = PBXGroup;
-			children = (
-				C9E6C61B1CBF6D03007B3F24 /* CwlUtils_macOSHarnessUITests.swift */,
-				C9E6C61D1CBF6D03007B3F24 /* Info.plist */,
-			);
-			path = CwlUtils_macOSHarnessUITests;
-			sourceTree = "<group>";
-		};
-		C9F1BAA61CC5024300A255E9 /* CwlUtils_iOSHarness */ = {
-			isa = PBXGroup;
-			children = (
-				C9F1BAA71CC5024300A255E9 /* AppDelegate.swift */,
-				C9F1BAA91CC5024300A255E9 /* ViewController.swift */,
-				C9F1BAAB1CC5024300A255E9 /* Main.storyboard */,
-				C9F1BAAE1CC5024300A255E9 /* Assets.xcassets */,
-				C9F1BAB01CC5024300A255E9 /* LaunchScreen.storyboard */,
-				C9F1BAB31CC5024300A255E9 /* Info.plist */,
-			);
-			path = CwlUtils_iOSHarness;
-			sourceTree = "<group>";
-		};
-		C9F1BABB1CC5024300A255E9 /* CwlUtils_iOSHarnessUITests */ = {
-			isa = PBXGroup;
-			children = (
-				C9F1BABC1CC5024300A255E9 /* CwlUtils_iOSHarnessUITests.swift */,
-				C9F1BABE1CC5024300A255E9 /* Info.plist */,
-			);
-			path = CwlUtils_iOSHarnessUITests;
-			sourceTree = "<group>";
-		};
-		C9FB03081CF42A9D00AD7E79 /* Reference Random Generators */ = {
-			isa = PBXGroup;
-			children = (
-				C93B5BB41CED95A5002D91D1 /* mt19937-64.c */,
-				C9FD68971CF022530087ACC6 /* xoroshiro128plus.c */,
-			);
-			name = "Reference Random Generators";
-			sourceTree = "<group>";
+			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		C93E18101C8166470009A053 /* Headers */ = {
+		C95BDE831E40B65F00AAA64B /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C93E18621C81BE120009A053 /* CwlFrameAddress.h in Headers */,
-				C93E18171C8166470009A053 /* CwlUtils.h in Headers */,
+				C95BDE851E40B66400AAA64B /* CwlFrameAddress.h in Headers */,
+				C95BDE841E40B66400AAA64B /* CwlUtils.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C93E182F1C81674F0009A053 /* Headers */ = {
+		C95BDEB01E41688B00AAA64B /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C93E18631C81BE120009A053 /* CwlFrameAddress.h in Headers */,
-				C93E184B1C8172C30009A053 /* CwlUtils.h in Headers */,
+				C95BDEB11E41688B00AAA64B /* CwlFrameAddress.h in Headers */,
+				C95BDEB21E41688B00AAA64B /* CwlUtils.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		C93E18121C8166470009A053 /* CwlUtils_macOS */ = {
+		C95A77261E4187E600659DBD /* CwlUtils_macOSTestApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C93E18271C8166470009A053 /* Build configuration list for PBXNativeTarget "CwlUtils_macOS" */;
+			buildConfigurationList = C95A773E1E4187E700659DBD /* Build configuration list for PBXNativeTarget "CwlUtils_macOSTestApp" */;
 			buildPhases = (
-				C93E180E1C8166470009A053 /* Sources */,
-				C93E180F1C8166470009A053 /* Frameworks */,
-				C93E18101C8166470009A053 /* Headers */,
-				C93E18111C8166470009A053 /* Resources */,
+				C95A77231E4187E600659DBD /* Sources */,
+				C95A77241E4187E600659DBD /* Frameworks */,
+				C95A77251E4187E600659DBD /* Resources */,
+				C95A776E1E418EB600659DBD /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C95A776A1E418E3600659DBD /* PBXTargetDependency */,
+			);
+			name = CwlUtils_macOSTestApp;
+			productName = CwlUtils_macOSTestApp;
+			productReference = C95A77271E4187E600659DBD /* CwlUtils_macOSTestApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C95A77361E4187E700659DBD /* CwlUtils_macOSTestAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C95A77411E4187E700659DBD /* Build configuration list for PBXNativeTarget "CwlUtils_macOSTestAppUITests" */;
+			buildPhases = (
+				C95A77331E4187E700659DBD /* Sources */,
+				C95A77341E4187E700659DBD /* Frameworks */,
+				C95A77351E4187E700659DBD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C95A77391E4187E700659DBD /* PBXTargetDependency */,
+			);
+			name = CwlUtils_macOSTestAppUITests;
+			productName = CwlUtils_macOSTestAppUITests;
+			productReference = C95A77371E4187E700659DBD /* CwlUtils_macOSTestAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		C95A77471E4187FB00659DBD /* CwlUtils_iOSTestApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C95A77621E4187FB00659DBD /* Build configuration list for PBXNativeTarget "CwlUtils_iOSTestApp" */;
+			buildPhases = (
+				C95A77441E4187FB00659DBD /* Sources */,
+				C95A77451E4187FB00659DBD /* Frameworks */,
+				C95A77461E4187FB00659DBD /* Resources */,
+				C95A77711E418F4300659DBD /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C95A776C1E418E3C00659DBD /* PBXTargetDependency */,
+			);
+			name = CwlUtils_iOSTestApp;
+			productName = CwlUtils_iOSTestApp;
+			productReference = C95A77481E4187FB00659DBD /* CwlUtils_iOSTestApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C95A775A1E4187FB00659DBD /* CwlUtils_iOSTestAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C95A77651E4187FB00659DBD /* Build configuration list for PBXNativeTarget "CwlUtils_iOSTestAppUITests" */;
+			buildPhases = (
+				C95A77571E4187FB00659DBD /* Sources */,
+				C95A77581E4187FB00659DBD /* Frameworks */,
+				C95A77591E4187FB00659DBD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C95A775D1E4187FB00659DBD /* PBXTargetDependency */,
+			);
+			name = CwlUtils_iOSTestAppUITests;
+			productName = CwlUtils_iOSTestAppUITests;
+			productReference = C95A775B1E4187FB00659DBD /* CwlUtils_iOSTestAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		C95BDE9A1E41688B00AAA64B /* CwlUtils_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C95BDEB31E41688B00AAA64B /* Build configuration list for PBXNativeTarget "CwlUtils_iOS" */;
+			buildPhases = (
+				C95BDE9B1E41688B00AAA64B /* ShellScript */,
+				C95BDE9C1E41688B00AAA64B /* Sources */,
+				C95BDEAF1E41688B00AAA64B /* Frameworks */,
+				C95BDEB01E41688B00AAA64B /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CwlUtils_iOS;
+			productName = CwlUtils;
+			productReference = C95BDEB61E41688B00AAA64B /* CwlUtils.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C95BDEB81E4168B800AAA64B /* CwlUtils_iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C95BDED81E4168B800AAA64B /* Build configuration list for PBXNativeTarget "CwlUtils_iOSTests" */;
+			buildPhases = (
+				C95BDEBB1E4168B800AAA64B /* Sources */,
+				C95BDED61E4168B800AAA64B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C9EE87C21E4171D400A7408F /* PBXTargetDependency */,
+			);
+			name = CwlUtils_iOSTests;
+			productName = CwlUtilsTests;
+			productReference = C95BDEDB1E4168B800AAA64B /* CwlUtils_iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		OBJ_149 /* CwlUtils_macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_150 /* Build configuration list for PBXNativeTarget "CwlUtils_macOS" */;
+			buildPhases = (
+				C95BDE991E40D12800AAA64B /* ShellScript */,
+				OBJ_153 /* Sources */,
+				OBJ_171 /* Frameworks */,
+				C95BDE831E40B65F00AAA64B /* Headers */,
 			);
 			buildRules = (
 			);
@@ -594,323 +746,112 @@
 			);
 			name = CwlUtils_macOS;
 			productName = CwlUtils;
-			productReference = C93E18131C8166470009A053 /* CwlUtils.framework */;
+			productReference = OBJ_84 /* CwlUtils.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		C93E181C1C8166470009A053 /* CwlUtils_macOSTests */ = {
+		OBJ_198 /* CwlUtils_macOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C93E182A1C8166470009A053 /* Build configuration list for PBXNativeTarget "CwlUtils_macOSTests" */;
+			buildConfigurationList = OBJ_199 /* Build configuration list for PBXNativeTarget "CwlUtils_macOSTests" */;
 			buildPhases = (
-				C93E18191C8166470009A053 /* Sources */,
-				C93E181A1C8166470009A053 /* Frameworks */,
-				C93E181B1C8166470009A053 /* Resources */,
-				C99AD6711DCEB0E100B9E235 /* CopyFiles */,
+				OBJ_202 /* Sources */,
+				OBJ_220 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C923AFD31E0246A5004784AA /* PBXTargetDependency */,
-				C93E18201C8166470009A053 /* PBXTargetDependency */,
+				OBJ_232 /* PBXTargetDependency */,
 			);
 			name = CwlUtils_macOSTests;
 			productName = CwlUtilsTests;
-			productReference = C93E181D1C8166470009A053 /* CwlUtils_macOSTests.xctest */;
+			productReference = OBJ_86 /* CwlUtils_macOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		C93E18311C81674F0009A053 /* CwlUtils_iOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C93E18431C81674F0009A053 /* Build configuration list for PBXNativeTarget "CwlUtils_iOS" */;
-			buildPhases = (
-				C93E182D1C81674F0009A053 /* Sources */,
-				C93E182E1C81674F0009A053 /* Frameworks */,
-				C93E182F1C81674F0009A053 /* Headers */,
-				C93E18301C81674F0009A053 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = CwlUtils_iOS;
-			productName = CwlUtils_iOS;
-			productReference = C93E18321C81674F0009A053 /* CwlUtils.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		C93E183A1C81674F0009A053 /* CwlUtils_iOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C93E18461C81674F0009A053 /* Build configuration list for PBXNativeTarget "CwlUtils_iOSTests" */;
-			buildPhases = (
-				C93E18371C81674F0009A053 /* Sources */,
-				C93E18381C81674F0009A053 /* Frameworks */,
-				C93E18391C81674F0009A053 /* Resources */,
-				C99AD6731DCEB43F00B9E235 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C923AFDD1E0246C0004784AA /* PBXTargetDependency */,
-				C93E183E1C81674F0009A053 /* PBXTargetDependency */,
-			);
-			name = CwlUtils_iOSTests;
-			productName = CwlUtils_iOSTests;
-			productReference = C93E183B1C81674F0009A053 /* CwlUtils_iOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		C9E6C6081CBF6D03007B3F24 /* CwlUtils_macOSHarness */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C9E6C61E1CBF6D03007B3F24 /* Build configuration list for PBXNativeTarget "CwlUtils_macOSHarness" */;
-			buildPhases = (
-				C9E6C6051CBF6D03007B3F24 /* Sources */,
-				C9E6C6061CBF6D03007B3F24 /* Frameworks */,
-				C9E6C6071CBF6D03007B3F24 /* Resources */,
-				C9F1BACD1CC5097100A255E9 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = CwlUtils_macOSHarness;
-			productName = CwlUtils_macOSHarness;
-			productReference = C9E6C6091CBF6D03007B3F24 /* CwlUtils_macOSHarness.app */;
-			productType = "com.apple.product-type.application";
-		};
-		C9E6C6161CBF6D03007B3F24 /* CwlUtils_macOSHarnessUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C9E6C6211CBF6D03007B3F24 /* Build configuration list for PBXNativeTarget "CwlUtils_macOSHarnessUITests" */;
-			buildPhases = (
-				C9E6C6131CBF6D03007B3F24 /* Sources */,
-				C9E6C6141CBF6D03007B3F24 /* Frameworks */,
-				C9E6C6151CBF6D03007B3F24 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C9E6C6191CBF6D03007B3F24 /* PBXTargetDependency */,
-			);
-			name = CwlUtils_macOSHarnessUITests;
-			productName = CwlUtils_macOSHarnessUITests;
-			productReference = C9E6C6171CBF6D03007B3F24 /* CwlUtils_macOSHarnessUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		C9F1BAA41CC5024300A255E9 /* CwlUtils_iOSHarness */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C9F1BAC31CC5024300A255E9 /* Build configuration list for PBXNativeTarget "CwlUtils_iOSHarness" */;
-			buildPhases = (
-				C9F1BAA11CC5024300A255E9 /* Sources */,
-				C9F1BAA21CC5024300A255E9 /* Frameworks */,
-				C9F1BAA31CC5024300A255E9 /* Resources */,
-				C9F1BACB1CC5094D00A255E9 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = CwlUtils_iOSHarness;
-			productName = CwlUtils_iOSHarness;
-			productReference = C9F1BAA51CC5024300A255E9 /* CwlUtils_iOSHarness.app */;
-			productType = "com.apple.product-type.application";
-		};
-		C9F1BAB71CC5024300A255E9 /* CwlUtils_iOSHarnessUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C9F1BAC41CC5024300A255E9 /* Build configuration list for PBXNativeTarget "CwlUtils_iOSHarnessUITests" */;
-			buildPhases = (
-				C9F1BAB41CC5024300A255E9 /* Sources */,
-				C9F1BAB51CC5024300A255E9 /* Frameworks */,
-				C9F1BAB61CC5024300A255E9 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C9F1BABA1CC5024300A255E9 /* PBXTargetDependency */,
-			);
-			name = CwlUtils_iOSHarnessUITests;
-			productName = CwlUtils_iOSHarnessUITests;
-			productReference = C9F1BAB81CC5024300A255E9 /* CwlUtils_iOSHarnessUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		C93E180A1C8166470009A053 /* Project object */ = {
+		OBJ_1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0810;
-				ORGANIZATIONNAME = "Matt Gallagher ( http://cocoawithlove.com )";
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 9999;
 				TargetAttributes = {
-					C93E18121C8166470009A053 = {
-						CreatedOnToolsVersion = 7.2.1;
+					C95A77261E4187E600659DBD = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = S7YQ892G6G;
+						ProvisioningStyle = Automatic;
 					};
-					C93E181C1C8166470009A053 = {
-						CreatedOnToolsVersion = 7.2.1;
+					C95A77361E4187E700659DBD = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = S7YQ892G6G;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C95A77261E4187E600659DBD;
 					};
-					C93E18311C81674F0009A053 = {
-						CreatedOnToolsVersion = 7.2.1;
+					C95A77471E4187FB00659DBD = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = S7YQ892G6G;
+						ProvisioningStyle = Automatic;
 					};
-					C93E183A1C81674F0009A053 = {
-						CreatedOnToolsVersion = 7.2.1;
-					};
-					C9E6C6081CBF6D03007B3F24 = {
-						CreatedOnToolsVersion = 7.3;
-					};
-					C9E6C6161CBF6D03007B3F24 = {
-						CreatedOnToolsVersion = 7.3;
-						TestTargetID = C9E6C6081CBF6D03007B3F24;
-					};
-					C9F1BAA41CC5024300A255E9 = {
-						CreatedOnToolsVersion = 7.3;
-					};
-					C9F1BAB71CC5024300A255E9 = {
-						CreatedOnToolsVersion = 7.3;
-						TestTargetID = C9F1BAA41CC5024300A255E9;
+					C95A775A1E4187FB00659DBD = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = S7YQ892G6G;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C95A77471E4187FB00659DBD;
 					};
 				};
 			};
-			buildConfigurationList = C93E180D1C8166470009A053 /* Build configuration list for PBXProject "CwlUtils" */;
-			compatibilityVersion = "Xcode 6.3";
+			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "CwlUtils" */;
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = C93E18091C8166470009A053;
-			productRefGroup = C93E18141C8166470009A053 /* Products */;
+			mainGroup = OBJ_5;
+			productRefGroup = OBJ_78 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = C99AD6551DCEB07600B9E235 /* Products */;
-					ProjectRef = C99AD6541DCEB07600B9E235 /* CwlPreconditionTesting.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
-				C93E18121C8166470009A053 /* CwlUtils_macOS */,
-				C93E181C1C8166470009A053 /* CwlUtils_macOSTests */,
-				C93E18311C81674F0009A053 /* CwlUtils_iOS */,
-				C93E183A1C81674F0009A053 /* CwlUtils_iOSTests */,
-				C9E6C6081CBF6D03007B3F24 /* CwlUtils_macOSHarness */,
-				C9E6C6161CBF6D03007B3F24 /* CwlUtils_macOSHarnessUITests */,
-				C9F1BAA41CC5024300A255E9 /* CwlUtils_iOSHarness */,
-				C9F1BAB71CC5024300A255E9 /* CwlUtils_iOSHarnessUITests */,
+				OBJ_149 /* CwlUtils_macOS */,
+				OBJ_198 /* CwlUtils_macOSTests */,
+				C95BDE9A1E41688B00AAA64B /* CwlUtils_iOS */,
+				C95BDEB81E4168B800AAA64B /* CwlUtils_iOSTests */,
+				C95A77261E4187E600659DBD /* CwlUtils_macOSTestApp */,
+				C95A77361E4187E700659DBD /* CwlUtils_macOSTestAppUITests */,
+				C95A77471E4187FB00659DBD /* CwlUtils_iOSTestApp */,
+				C95A775A1E4187FB00659DBD /* CwlUtils_iOSTestAppUITests */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXReferenceProxy section */
-		C99AD6601DCEB07600B9E235 /* CwlPreconditionTesting.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = CwlPreconditionTesting.framework;
-			remoteRef = C99AD65F1DCEB07600B9E235 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C99AD6621DCEB07600B9E235 /* CwlPreconditionTesting_macOSTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = CwlPreconditionTesting_macOSTests.xctest;
-			remoteRef = C99AD6611DCEB07600B9E235 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C99AD6641DCEB07600B9E235 /* CwlPreconditionTesting.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = CwlPreconditionTesting.framework;
-			remoteRef = C99AD6631DCEB07600B9E235 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C99AD6661DCEB07600B9E235 /* CwlPreconditionTesting_iOSTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = CwlPreconditionTesting_iOSTests.xctest;
-			remoteRef = C99AD6651DCEB07600B9E235 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C99AD6681DCEB07600B9E235 /* CwlPreconditionTesting.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = CwlPreconditionTesting.framework;
-			remoteRef = C99AD6671DCEB07600B9E235 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C99AD66A1DCEB07600B9E235 /* CwlPreconditionTesting_POSIXTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = CwlPreconditionTesting_POSIXTests.xctest;
-			remoteRef = C99AD6691DCEB07600B9E235 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C99AD66C1DCEB07600B9E235 /* CwlPreconditionTesting.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = CwlPreconditionTesting.framework;
-			remoteRef = C99AD66B1DCEB07600B9E235 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		C99AD66E1DCEB07600B9E235 /* CwlPreconditionTesting_tvOSTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = CwlPreconditionTesting_tvOSTests.xctest;
-			remoteRef = C99AD66D1DCEB07600B9E235 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
-
 /* Begin PBXResourcesBuildPhase section */
-		C93E18111C8166470009A053 /* Resources */ = {
+		C95A77251E4187E600659DBD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C95A772E1E4187E600659DBD /* Assets.xcassets in Resources */,
+				C95A77311E4187E600659DBD /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C95A77351E4187E700659DBD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C93E181B1C8166470009A053 /* Resources */ = {
+		C95A77461E4187FB00659DBD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C95A77551E4187FB00659DBD /* LaunchScreen.storyboard in Resources */,
+				C95A77521E4187FB00659DBD /* Assets.xcassets in Resources */,
+				C95A77501E4187FB00659DBD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C93E18301C81674F0009A053 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C93E18391C81674F0009A053 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C9E6C6071CBF6D03007B3F24 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C9E6C60E1CBF6D03007B3F24 /* Assets.xcassets in Resources */,
-				C9E6C6111CBF6D03007B3F24 /* MainMenu.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C9E6C6151CBF6D03007B3F24 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C9F1BAA31CC5024300A255E9 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C9F1BAB21CC5024300A255E9 /* LaunchScreen.storyboard in Resources */,
-				C9F1BAAF1CC5024300A255E9 /* Assets.xcassets in Resources */,
-				C9F1BAAD1CC5024300A255E9 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C9F1BAB61CC5024300A255E9 /* Resources */ = {
+		C95A77591E4187FB00659DBD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -919,198 +860,248 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C95BDE991E40D12800AAA64B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Package.swift",
+			);
+			outputPaths = (
+				"$(SRCROOT)/.build/cwl_symlinks/CwlPreconditionTesting",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/usr/bin/xcrun --sdk macosx swift";
+			shellScript = "//\n//  CwlPackageFetch.swift\n//  CwlPackageFetch\n//\n//  Created by Matt Gallagher on 2017/01/31.\n//  Copyright © 2017 Matt Gallagher ( http://cocoawithlove.com ). All rights reserved.\n//\n//  Permission to use, copy, modify, and/or distribute this software for any\n//  purpose with or without fee is hereby granted, provided that the above\n//  copyright notice and this permission notice appear in all copies.\n//\n//  THE SOFTWARE IS PROVIDED \"AS IS\" AND THE AUTHOR DISCLAIMS ALL WARRANTIES\n//  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF\n//  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY\n//  SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES\n//  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN\n//  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR\n//  IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.\n//\n\nimport Foundation\n\n/// Launch a process and run to completion, returning the standard out on success.\nfunc launch(_ command: String, _ arguments: [String], directory: String? = nil) -> String? {\n\tlet proc = Process()\n\tproc.launchPath = command\n\tproc.arguments = arguments\n\t_ = directory.map { proc.currentDirectoryPath = $0 }\n\tlet pipe = Pipe()\n\tproc.standardOutput = pipe\n\tproc.launch()\n\tlet result = String(data: pipe.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)!\n\tproc.waitUntilExit()\n\treturn proc.terminationStatus != 0 ? nil : result\n}\n\nlet srcRoot = ProcessInfo.processInfo.environment[\"SRCROOT\"]!\n\n// STEP 1: use `swift package fetch` to get all dependencies\nprint(launch(\"/usr/bin/swift\", [\"package\", \"fetch\"], directory: srcRoot)!)\n\n// Create a symlink only if it is not already present and pointing to the destination\nlet symlinksPath = \"\\(srcRoot)/.build/cwl_symlinks\"\nfunc createSymlink(srcRoot: String, name: String, destination: String) throws {\n\tlet location = \"\\(symlinksPath)/\\(name)\"\n\tlet link = \"../../\\(destination)\"\n\tif (try? FileManager.default.destinationOfSymbolicLink(atPath: location)) != link {\n\t\t_ = try? FileManager.default.removeItem(atPath: location)\n\t\ttry FileManager.default.createSymbolicLink(atPath: location, withDestinationPath:\n\t\t\tlink)\n\t\tprint(\"Created symbolic link: \\(location) -> \\(link)\")\n\t}\n}\n\n// Recursively parse the dependency graph JSON, creating symlinks in our own location\nfunc createSymlinks(srcRoot: String, description: Dictionary<String, Any>, topLevelPath: String) throws {\n\tguard let dependencies = description[\"dependencies\"] as? [Dictionary<String, Any>] else { return }\n\tfor dependency in dependencies {\n\t\tlet path = dependency[\"path\"] as! String\n\t\tlet relativePath = path.substring(from: path.range(of: topLevelPath)!.upperBound)\n\t\tlet name = dependency[\"name\"] as! String\n\t\ttry createSymlink(srcRoot: srcRoot, name: name, destination: relativePath)\n\t\ttry createSymlinks(srcRoot: srcRoot, description: dependency, topLevelPath: topLevelPath)\n\t}\n}\n\n// STEP 2: create symlinks from fetched locations to somewhere stable\nlet descriptionString = launch(\"/usr/bin/swift\", [\"package\", \"show-dependencies\", \"--format\", \"json\"], directory: srcRoot)!\nlet descriptionData = descriptionString.data(using: .utf8)!\nlet description = try JSONSerialization.jsonObject(with: descriptionData, options: []) as! Dictionary<String, Any>\nlet topLevelPath = (description[\"path\"] as! String) + \"/\"\ndo {\n   try FileManager.default.createDirectory(atPath: symlinksPath, withIntermediateDirectories: true, attributes: nil)\n\ttry createSymlinks(srcRoot: srcRoot, description: description, topLevelPath: topLevelPath)\n\tprint(\"Complete.\")\n} catch {\n\tprint(error)\n}\n";
+			showEnvVarsInLog = 0;
+		};
+		C95BDE9B1E41688B00AAA64B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Package.swift",
+			);
+			outputPaths = (
+				"$(SRCROOT)/.build/cwl_symlinks/CwlPreconditionTesting",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/usr/bin/xcrun --sdk macosx swift";
+			shellScript = "//\n//  CwlPackageFetch.swift\n//  CwlPackageFetch\n//\n//  Created by Matt Gallagher on 2017/01/31.\n//  Copyright © 2017 Matt Gallagher ( http://cocoawithlove.com ). All rights reserved.\n//\n//  Permission to use, copy, modify, and/or distribute this software for any\n//  purpose with or without fee is hereby granted, provided that the above\n//  copyright notice and this permission notice appear in all copies.\n//\n//  THE SOFTWARE IS PROVIDED \"AS IS\" AND THE AUTHOR DISCLAIMS ALL WARRANTIES\n//  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF\n//  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY\n//  SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES\n//  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN\n//  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR\n//  IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.\n//\n\nimport Foundation\n\n/// Launch a process and run to completion, returning the standard out on success.\nfunc launch(_ command: String, _ arguments: [String], directory: String? = nil) -> String? {\n\tlet proc = Process()\n\tproc.launchPath = command\n\tproc.arguments = arguments\n\t_ = directory.map { proc.currentDirectoryPath = $0 }\n\tlet pipe = Pipe()\n\tproc.standardOutput = pipe\n\tproc.launch()\n\tlet result = String(data: pipe.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)!\n\tproc.waitUntilExit()\n\treturn proc.terminationStatus != 0 ? nil : result\n}\n\nlet srcRoot = ProcessInfo.processInfo.environment[\"SRCROOT\"]!\n\n// STEP 1: use `swift package fetch` to get all dependencies\nprint(launch(\"/usr/bin/swift\", [\"package\", \"fetch\"], directory: srcRoot)!)\n\n// Create a symlink only if it is not already present and pointing to the destination\nlet symlinksPath = \"\\(srcRoot)/.build/cwl_symlinks\"\nfunc createSymlink(srcRoot: String, name: String, destination: String) throws {\n\tlet location = \"\\(symlinksPath)/\\(name)\"\n\tlet link = \"../../\\(destination)\"\n\tif (try? FileManager.default.destinationOfSymbolicLink(atPath: location)) != link {\n\t\t_ = try? FileManager.default.removeItem(atPath: location)\n\t\ttry FileManager.default.createSymbolicLink(atPath: location, withDestinationPath:\n\t\t\tlink)\n\t\tprint(\"Created symbolic link: \\(location) -> \\(link)\")\n\t}\n}\n\n// Recursively parse the dependency graph JSON, creating symlinks in our own location\nfunc createSymlinks(srcRoot: String, description: Dictionary<String, Any>, topLevelPath: String) throws {\n\tguard let dependencies = description[\"dependencies\"] as? [Dictionary<String, Any>] else { return }\n\tfor dependency in dependencies {\n\t\tlet path = dependency[\"path\"] as! String\n\t\tlet relativePath = path.substring(from: path.range(of: topLevelPath)!.upperBound)\n\t\tlet name = dependency[\"name\"] as! String\n\t\ttry createSymlink(srcRoot: srcRoot, name: name, destination: relativePath)\n\t\ttry createSymlinks(srcRoot: srcRoot, description: dependency, topLevelPath: topLevelPath)\n\t}\n}\n\n// STEP 2: create symlinks from fetched locations to somewhere stable\nlet descriptionString = launch(\"/usr/bin/swift\", [\"package\", \"show-dependencies\", \"--format\", \"json\"], directory: srcRoot)!\nlet descriptionData = descriptionString.data(using: .utf8)!\nlet description = try JSONSerialization.jsonObject(with: descriptionData, options: []) as! Dictionary<String, Any>\nlet topLevelPath = (description[\"path\"] as! String) + \"/\"\ndo {\n   try FileManager.default.createDirectory(atPath: symlinksPath, withIntermediateDirectories: true, attributes: nil)\n\ttry createSymlinks(srcRoot: srcRoot, description: description, topLevelPath: topLevelPath)\n\tprint(\"Complete.\")\n} catch {\n\tprint(error)\n}\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		C93E180E1C8166470009A053 /* Sources */ = {
+		C95A77231E4187E600659DBD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9E055451CD8B42D001658AB /* CwlScalarScanner.swift in Sources */,
-				C9B7C4D11DB852A20093C97A /* CwlDebugContext.swift in Sources */,
-				C93CFB471DB08216008858ED /* CwlExec.swift in Sources */,
-				C9F3E3371CAA254A006728F7 /* CwlOnDelete.swift in Sources */,
-				C95416BB1D4B76AC00C30D49 /* CwlDispatch.swift in Sources */,
-				C9D2EAAD1D8AFF7300D25919 /* CwlRandom.swift in Sources */,
-				C93E18651C81EFD40009A053 /* CwlAddressInfo.swift in Sources */,
-				C9C9AAEF1C8E7FB60019A126 /* CwlSysctl.swift in Sources */,
-				C91A74281D9685620031DB57 /* CwlDeque.swift in Sources */,
-				C99AD6801DCEC20F00B9E235 /* CwlKeyValueObserver.swift in Sources */,
-				C99AD64A1DCEA1EC00B9E235 /* CwlDeferredWork.swift in Sources */,
-				C99AD64F1DCEA32800B9E235 /* CwlWrappers.swift in Sources */,
-				C93E18601C81BE120009A053 /* CwlFrameAddress.c in Sources */,
-				C926A17D1DBB1C5300E4D6D0 /* CwlCollection.swift in Sources */,
-				C93E18501C81794B0009A053 /* CwlStackFrame.swift in Sources */,
-				C93AF16F1DED38BE00C10CD4 /* CwlUnanticipatedError.swift in Sources */,
-				C9F193CD1D02970200EAC5BE /* CwlMutex.swift in Sources */,
-				C9B3EF9A1D6F14B80058AE5E /* CwlResult.swift in Sources */,
+				C95A772C1E4187E600659DBD /* ViewController.swift in Sources */,
+				C95A772A1E4187E600659DBD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C93E18191C8166470009A053 /* Sources */ = {
+		C95A77331E4187E700659DBD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C93E185B1C8179B80009A053 /* CwlStackFrameTests.swift in Sources */,
-				C9F3E3401CAA269C006728F7 /* CwlOnDeleteTests.swift in Sources */,
-				C93E18681C82B6480009A053 /* CwlAddressInfoTests.swift in Sources */,
-				C9E7F02A1D93F4C10039680B /* CwlDequeTests.swift in Sources */,
-				C9F193C71D0296E400EAC5BE /* CwlMutexTests.swift in Sources */,
-				C93CFB4B1DB08EB6008858ED /* CwlExecTests.swift in Sources */,
-				C93B5BB51CED95A5002D91D1 /* mt19937-64.c in Sources */,
-				C9B3EF9D1D6F14F40058AE5E /* CwlResultTests.swift in Sources */,
-				C9E055481CD8B44C001658AB /* CwlScalarScannerTests.swift in Sources */,
-				C9B7C4D41DB852C10093C97A /* CwlDebugContextTests.swift in Sources */,
-				C99AD68B1DCEC21C00B9E235 /* CwlKeyValueObserverTests.swift in Sources */,
-				C99AD6521DCEAF6000B9E235 /* CwlWrapperTests.swift in Sources */,
-				C977AA5D1CEC0D0900FC748D /* CwlRandomTests.swift in Sources */,
-				C9C9AAF21C8E7FD00019A126 /* CwlSysctlTests.swift in Sources */,
-				C9FD68981CF022530087ACC6 /* xoroshiro128plus.c in Sources */,
-				C99AD6761DCEB4A100B9E235 /* CwlDeferredWorkTests.swift in Sources */,
-				C9716DEC1D4CDF9E00E90C18 /* CwlDispatchTests.swift in Sources */,
-				C9E6C5931CBE0467007B3F24 /* CwlUnanticipatedErrorTests.swift in Sources */,
-				C926A1801DBB1CB500E4D6D0 /* CwlCollectionTests.swift in Sources */,
+				C95A773C1E4187E700659DBD /* CwlUtils_macOSTestAppUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C93E182D1C81674F0009A053 /* Sources */ = {
+		C95A77441E4187FB00659DBD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9E055461CD8B42D001658AB /* CwlScalarScanner.swift in Sources */,
-				C9B7C4D21DB852A20093C97A /* CwlDebugContext.swift in Sources */,
-				C93CFB481DB08216008858ED /* CwlExec.swift in Sources */,
-				C9FB03061CF4289C00AD7E79 /* CwlRandom.swift in Sources */,
-				C9F3E3381CAA254A006728F7 /* CwlOnDelete.swift in Sources */,
-				C95416BC1D4B76AC00C30D49 /* CwlDispatch.swift in Sources */,
-				C93E18661C81EFD40009A053 /* CwlAddressInfo.swift in Sources */,
-				C9C9AAF01C8E7FB60019A126 /* CwlSysctl.swift in Sources */,
-				C9E7F0281D93F49E0039680B /* CwlDeque.swift in Sources */,
-				C99AD6811DCEC20F00B9E235 /* CwlKeyValueObserver.swift in Sources */,
-				C99AD64B1DCEA1EC00B9E235 /* CwlDeferredWork.swift in Sources */,
-				C99AD6501DCEA32800B9E235 /* CwlWrappers.swift in Sources */,
-				C93E18511C8179530009A053 /* CwlStackFrame.swift in Sources */,
-				C926A17E1DBB1C5300E4D6D0 /* CwlCollection.swift in Sources */,
-				C93E18611C81BE120009A053 /* CwlFrameAddress.c in Sources */,
-				C93AF1661DED38BD00C10CD4 /* CwlUnanticipatedError.swift in Sources */,
-				C9F193CE1D02970200EAC5BE /* CwlMutex.swift in Sources */,
-				C9B3EF9B1D6F14B80058AE5E /* CwlResult.swift in Sources */,
+				C95A774D1E4187FB00659DBD /* ViewController.swift in Sources */,
+				C95A774B1E4187FB00659DBD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C93E18371C81674F0009A053 /* Sources */ = {
+		C95A77571E4187FB00659DBD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C93E185C1C8179B90009A053 /* CwlStackFrameTests.swift in Sources */,
-				C9F3E3411CAA269C006728F7 /* CwlOnDeleteTests.swift in Sources */,
-				C93E18691C82B6480009A053 /* CwlAddressInfoTests.swift in Sources */,
-				C9E7F02B1D93F4C10039680B /* CwlDequeTests.swift in Sources */,
-				C9B3EF9E1D6F14F40058AE5E /* CwlResultTests.swift in Sources */,
-				C93CFB4C1DB08EB6008858ED /* CwlExecTests.swift in Sources */,
-				C9716DED1D4CDF9E00E90C18 /* CwlDispatchTests.swift in Sources */,
-				C9F193C81D0296E400EAC5BE /* CwlMutexTests.swift in Sources */,
-				C93B5BB61CED95A5002D91D1 /* mt19937-64.c in Sources */,
-				C9B7C4D51DB852C10093C97A /* CwlDebugContextTests.swift in Sources */,
-				C99AD68C1DCEC21C00B9E235 /* CwlKeyValueObserverTests.swift in Sources */,
-				C99AD6531DCEAF6000B9E235 /* CwlWrapperTests.swift in Sources */,
-				C9E055491CD8B44C001658AB /* CwlScalarScannerTests.swift in Sources */,
-				C977AA5E1CEC0D0900FC748D /* CwlRandomTests.swift in Sources */,
-				C9C9AAF31C8E7FD00019A126 /* CwlSysctlTests.swift in Sources */,
-				C99AD6771DCEB4A100B9E235 /* CwlDeferredWorkTests.swift in Sources */,
-				C9FD68991CF022530087ACC6 /* xoroshiro128plus.c in Sources */,
-				C9E6C5941CBE0468007B3F24 /* CwlUnanticipatedErrorTests.swift in Sources */,
-				C926A1811DBB1CB500E4D6D0 /* CwlCollectionTests.swift in Sources */,
+				C95A77601E4187FB00659DBD /* CwlUtils_iOSTestAppUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C9E6C6051CBF6D03007B3F24 /* Sources */ = {
+		C95BDE9C1E41688B00AAA64B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 0;
 			files = (
-				C9E6C60C1CBF6D03007B3F24 /* AppDelegate.swift in Sources */,
+				C95BDE9D1E41688B00AAA64B /* CwlAddressInfo.swift in Sources */,
+				C95BDE9E1E41688B00AAA64B /* CwlCollection.swift in Sources */,
+				C95BDE9F1E41688B00AAA64B /* CwlDebugContext.swift in Sources */,
+				C95BDEA01E41688B00AAA64B /* CwlDeferredWork.swift in Sources */,
+				C95BDEA11E41688B00AAA64B /* CwlDeque.swift in Sources */,
+				C95BDEA21E41688B00AAA64B /* CwlDispatch.swift in Sources */,
+				C95BDEA31E41688B00AAA64B /* CwlExec.swift in Sources */,
+				C95BDEA41E41688B00AAA64B /* CwlKeyValueObserver.swift in Sources */,
+				C95BDEA51E41688B00AAA64B /* CwlMutex.swift in Sources */,
+				C95BDEA61E41688B00AAA64B /* CwlOnDelete.swift in Sources */,
+				C95BDEA71E41688B00AAA64B /* CwlRandom.swift in Sources */,
+				C95BDEA81E41688B00AAA64B /* CwlResult.swift in Sources */,
+				C95BDEA91E41688B00AAA64B /* CwlScalarScanner.swift in Sources */,
+				C95BDEAA1E41688B00AAA64B /* CwlStackFrame.swift in Sources */,
+				C95BDEAB1E41688B00AAA64B /* CwlSysctl.swift in Sources */,
+				C95BDEAC1E41688B00AAA64B /* CwlUnanticipatedError.swift in Sources */,
+				C95BDEAD1E41688B00AAA64B /* CwlWrappers.swift in Sources */,
+				C95BDEAE1E41688B00AAA64B /* CwlFrameAddress.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C9E6C6131CBF6D03007B3F24 /* Sources */ = {
+		C95BDEBB1E4168B800AAA64B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 0;
 			files = (
-				C9E6C61C1CBF6D03007B3F24 /* CwlUtils_macOSHarnessUITests.swift in Sources */,
+				C95BDEBC1E4168B800AAA64B /* CwlAddressInfoTests.swift in Sources */,
+				C95BDEBD1E4168B800AAA64B /* CwlCollectionTests.swift in Sources */,
+				C95BDEBF1E4168B800AAA64B /* CwlDebugContextTests.swift in Sources */,
+				C95BDEC01E4168B800AAA64B /* CwlDeferredWorkTests.swift in Sources */,
+				C95BDEC11E4168B800AAA64B /* CwlDequeTests.swift in Sources */,
+				C95BDEC21E4168B800AAA64B /* CwlDispatchTests.swift in Sources */,
+				C95BDEC31E4168B800AAA64B /* CwlExecTests.swift in Sources */,
+				C9EE87C91E4171FD00A7408F /* mt19937-64.c in Sources */,
+				C95BDEC41E4168B800AAA64B /* CwlBadInstructionException.swift in Sources */,
+				C95BDEC51E4168B800AAA64B /* CwlCatchException.swift in Sources */,
+				C95BDEC61E4168B800AAA64B /* CwlMachBadInstructionHandler.m in Sources */,
+				C95BDEC71E4168B800AAA64B /* CwlKeyValueObserverTests.swift in Sources */,
+				C95BDEC81E4168B800AAA64B /* CwlMutexTests.swift in Sources */,
+				C95BDEC91E4168B800AAA64B /* CwlDarwinDefinitions.swift in Sources */,
+				C95BDECA1E4168B800AAA64B /* CwlOnDeleteTests.swift in Sources */,
+				C95BDECB1E4168B800AAA64B /* CwlRandomTests.swift in Sources */,
+				C95BDECC1E4168B800AAA64B /* CwlResultTests.swift in Sources */,
+				C9EE87CB1E4171FD00A7408F /* xoroshiro128plus.c in Sources */,
+				C95BDECE1E4168B800AAA64B /* CwlScalarScannerTests.swift in Sources */,
+				C95BDECF1E4168B800AAA64B /* CwlStackFrameTests.swift in Sources */,
+				C95BDED01E4168B800AAA64B /* CwlCatchBadInstruction.swift in Sources */,
+				C95BDED11E4168B800AAA64B /* CwlSysctlTests.swift in Sources */,
+				C95BDED21E4168B800AAA64B /* CwlCatchException.m in Sources */,
+				C95BDED31E4168B800AAA64B /* mach_exc.defs in Sources */,
+				C95BDED41E4168B800AAA64B /* CwlUnanticipatedErrorTests.swift in Sources */,
+				C95BDED51E4168B800AAA64B /* CwlWrapperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C9F1BAA11CC5024300A255E9 /* Sources */ = {
+		OBJ_153 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 0;
 			files = (
-				C9F1BAAA1CC5024300A255E9 /* ViewController.swift in Sources */,
-				C9F1BAA81CC5024300A255E9 /* AppDelegate.swift in Sources */,
+				OBJ_154 /* CwlAddressInfo.swift in Sources */,
+				OBJ_155 /* CwlCollection.swift in Sources */,
+				OBJ_156 /* CwlDebugContext.swift in Sources */,
+				OBJ_157 /* CwlDeferredWork.swift in Sources */,
+				OBJ_158 /* CwlDeque.swift in Sources */,
+				OBJ_159 /* CwlDispatch.swift in Sources */,
+				OBJ_160 /* CwlExec.swift in Sources */,
+				OBJ_161 /* CwlKeyValueObserver.swift in Sources */,
+				OBJ_162 /* CwlMutex.swift in Sources */,
+				OBJ_163 /* CwlOnDelete.swift in Sources */,
+				OBJ_164 /* CwlRandom.swift in Sources */,
+				OBJ_165 /* CwlResult.swift in Sources */,
+				OBJ_166 /* CwlScalarScanner.swift in Sources */,
+				OBJ_167 /* CwlStackFrame.swift in Sources */,
+				OBJ_168 /* CwlSysctl.swift in Sources */,
+				OBJ_169 /* CwlUnanticipatedError.swift in Sources */,
+				OBJ_170 /* CwlWrappers.swift in Sources */,
+				C95BDE861E40B67100AAA64B /* CwlFrameAddress.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C9F1BAB41CC5024300A255E9 /* Sources */ = {
+		OBJ_202 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 0;
 			files = (
-				C9F1BABD1CC5024300A255E9 /* CwlUtils_iOSHarnessUITests.swift in Sources */,
+				OBJ_203 /* CwlAddressInfoTests.swift in Sources */,
+				OBJ_204 /* CwlCollectionTests.swift in Sources */,
+				OBJ_205 /* CwlDebugContextTests.swift in Sources */,
+				OBJ_206 /* CwlDeferredWorkTests.swift in Sources */,
+				OBJ_207 /* CwlDequeTests.swift in Sources */,
+				OBJ_208 /* CwlDispatchTests.swift in Sources */,
+				OBJ_209 /* CwlExecTests.swift in Sources */,
+				C9EE87C81E4171FD00A7408F /* mt19937-64.c in Sources */,
+				C95BDE8C1E40B71800AAA64B /* CwlBadInstructionException.swift in Sources */,
+				C95BDE8F1E40B71800AAA64B /* CwlCatchException.swift in Sources */,
+				C95BDE8B1E40B71800AAA64B /* CwlMachBadInstructionHandler.m in Sources */,
+				OBJ_210 /* CwlKeyValueObserverTests.swift in Sources */,
+				OBJ_211 /* CwlMutexTests.swift in Sources */,
+				C95BDE8E1E40B71800AAA64B /* CwlDarwinDefinitions.swift in Sources */,
+				OBJ_212 /* CwlOnDeleteTests.swift in Sources */,
+				OBJ_213 /* CwlRandomTests.swift in Sources */,
+				OBJ_214 /* CwlResultTests.swift in Sources */,
+				C9EE87CA1E4171FD00A7408F /* xoroshiro128plus.c in Sources */,
+				OBJ_215 /* CwlScalarScannerTests.swift in Sources */,
+				OBJ_216 /* CwlStackFrameTests.swift in Sources */,
+				C95BDE8D1E40B71800AAA64B /* CwlCatchBadInstruction.swift in Sources */,
+				OBJ_217 /* CwlSysctlTests.swift in Sources */,
+				C95BDE901E40B71800AAA64B /* CwlCatchException.m in Sources */,
+				C95BDE8A1E40B6F600AAA64B /* mach_exc.defs in Sources */,
+				OBJ_218 /* CwlUnanticipatedErrorTests.swift in Sources */,
+				OBJ_219 /* CwlWrapperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C923AFD31E0246A5004784AA /* PBXTargetDependency */ = {
+		C95A77391E4187E700659DBD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = CwlPreconditionTesting_macOS;
-			targetProxy = C923AFD21E0246A5004784AA /* PBXContainerItemProxy */;
+			target = C95A77261E4187E600659DBD /* CwlUtils_macOSTestApp */;
+			targetProxy = C95A77381E4187E700659DBD /* PBXContainerItemProxy */;
 		};
-		C923AFDD1E0246C0004784AA /* PBXTargetDependency */ = {
+		C95A775D1E4187FB00659DBD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = CwlPreconditionTesting_iOS;
-			targetProxy = C923AFDC1E0246C0004784AA /* PBXContainerItemProxy */;
+			target = C95A77471E4187FB00659DBD /* CwlUtils_iOSTestApp */;
+			targetProxy = C95A775C1E4187FB00659DBD /* PBXContainerItemProxy */;
 		};
-		C93E18201C8166470009A053 /* PBXTargetDependency */ = {
+		C95A776A1E418E3600659DBD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C93E18121C8166470009A053 /* CwlUtils_macOS */;
-			targetProxy = C93E181F1C8166470009A053 /* PBXContainerItemProxy */;
+			target = OBJ_149 /* CwlUtils_macOS */;
+			targetProxy = C95A77691E418E3600659DBD /* PBXContainerItemProxy */;
 		};
-		C93E183E1C81674F0009A053 /* PBXTargetDependency */ = {
+		C95A776C1E418E3C00659DBD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C93E18311C81674F0009A053 /* CwlUtils_iOS */;
-			targetProxy = C93E183D1C81674F0009A053 /* PBXContainerItemProxy */;
+			target = C95BDE9A1E41688B00AAA64B /* CwlUtils_iOS */;
+			targetProxy = C95A776B1E418E3C00659DBD /* PBXContainerItemProxy */;
 		};
-		C9E6C6191CBF6D03007B3F24 /* PBXTargetDependency */ = {
+		C9EE87C21E4171D400A7408F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C9E6C6081CBF6D03007B3F24 /* CwlUtils_macOSHarness */;
-			targetProxy = C9E6C6181CBF6D03007B3F24 /* PBXContainerItemProxy */;
+			target = C95BDE9A1E41688B00AAA64B /* CwlUtils_iOS */;
+			targetProxy = C9EE87C11E4171D400A7408F /* PBXContainerItemProxy */;
 		};
-		C9F1BABA1CC5024300A255E9 /* PBXTargetDependency */ = {
+		OBJ_232 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C9F1BAA41CC5024300A255E9 /* CwlUtils_iOSHarness */;
-			targetProxy = C9F1BAB91CC5024300A255E9 /* PBXContainerItemProxy */;
+			target = OBJ_149 /* CwlUtils_macOS */;
+			targetProxy = C95BDE811E40B23F00AAA64B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		C9E6C60F1CBF6D03007B3F24 /* MainMenu.xib */ = {
+		C95A772F1E4187E600659DBD /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C9E6C6101CBF6D03007B3F24 /* Base */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-		C9F1BAAB1CC5024300A255E9 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C9F1BAAC1CC5024300A255E9 /* Base */,
+				C95A77301E4187E600659DBD /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		C9F1BAB01CC5024300A255E9 /* LaunchScreen.storyboard */ = {
+		C95A774E1E4187FB00659DBD /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C9F1BAB11CC5024300A255E9 /* Base */,
+				C95A774F1E4187FB00659DBD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C95A77531E4187FB00659DBD /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C95A77541E4187FB00659DBD /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1118,63 +1109,388 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		C93E18251C8166470009A053 /* Debug */ = {
+		C95A773F1E4187E700659DBD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = S7YQ892G6G;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				INFOPLIST_FILE = Tests/CwlUtils_macOSTestApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_SWIFT_FLAGS = "-DDEBUG";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoawithlove.CwlUtils-macOSTestApp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 3.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		C93E18261C8166470009A053 /* Release */ = {
+		C95A77401E4187E700659DBD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = S7YQ892G6G;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				INFOPLIST_FILE = Tests/CwlUtils_macOSTestApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoawithlove.CwlUtils-macOSTestApp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		C95A77421E4187E700659DBD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = S7YQ892G6G;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Tests/CwlUtilsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoawithlove.CwlUtils-macOSTestAppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = CwlUtils_macOSTestApp;
+			};
+			name = Debug;
+		};
+		C95A77431E4187E700659DBD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = S7YQ892G6G;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				INFOPLIST_FILE = Tests/CwlUtilsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoawithlove.CwlUtils-macOSTestAppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = CwlUtils_macOSTestApp;
+			};
+			name = Release;
+		};
+		C95A77631E4187FB00659DBD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = S7YQ892G6G;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Tests/CwlUtils_iOSTestApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoawithlove.CwlUtils-iOSTestApp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C95A77641E4187FB00659DBD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = S7YQ892G6G;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				INFOPLIST_FILE = Tests/CwlUtils_iOSTestApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoawithlove.CwlUtils-iOSTestApp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C95A77661E4187FB00659DBD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = S7YQ892G6G;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Tests/CwlUtilsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoawithlove.CwlUtils-iOSTestAppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = CwlUtils_iOSTestApp;
+			};
+			name = Debug;
+		};
+		C95A77671E4187FB00659DBD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = S7YQ892G6G;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				INFOPLIST_FILE = Tests/CwlUtilsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoawithlove.CwlUtils-iOSTestAppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = CwlUtils_iOSTestApp;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C95BDEB41E41688B00AAA64B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_TESTABILITY = YES;
+				INFOPLIST_FILE = Sources/CwlUtils/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoawithlove.CwlUtils-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGET_NAME = CwlUtils;
+			};
+			name = Debug;
+		};
+		C95BDEB51E41688B00AAA64B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_TESTABILITY = NO;
+				INFOPLIST_FILE = Sources/CwlUtils/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoawithlove.CwlUtils-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGET_NAME = CwlUtils;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C95BDED91E4168B800AAA64B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = Tests/CwlUtilsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoawithlove.CwlUtils-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Tests/CwlUtilsTests/CwlUtilsTests-BridgingHeader.h";
+			};
+			name = Debug;
+		};
+		C95BDEDA1E4168B800AAA64B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = Tests/CwlUtilsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoawithlove.CwlUtils-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Tests/CwlUtilsTests/CwlUtilsTests-BridgingHeader.h";
+			};
+			name = Release;
+		};
+		OBJ_151 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_TESTABILITY = YES;
+				INFOPLIST_FILE = Sources/CwlUtils/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoawithlove.CwlUtils-macOS";
+				PRODUCT_NAME = CwlUtils;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		OBJ_152 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_TESTABILITY = NO;
+				INFOPLIST_FILE = Sources/CwlUtils/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoawithlove.CwlUtils-macOS";
+				PRODUCT_NAME = CwlUtils;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		OBJ_200 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = Tests/CwlUtilsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "Tests/CwlUtilsTests/CwlUtilsTests-BridgingHeader.h";
+			};
+			name = Debug;
+		};
+		OBJ_201 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = Tests/CwlUtilsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "Tests/CwlUtilsTests/CwlUtilsTests-BridgingHeader.h";
+			};
+			name = Release;
+		};
+		OBJ_3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -1187,374 +1503,147 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_NS_ASSERTIONS = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = macosx;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DDEBUG";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		OBJ_4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		C93E18281C8166470009A053 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = CwlUtils/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cocoawithlove.CwlUtils;
-				PRODUCT_NAME = CwlUtils;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		C93E18291C8166470009A053 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = CwlUtils/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cocoawithlove.CwlUtils;
-				PRODUCT_NAME = CwlUtils;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		C93E182B1C8166470009A053 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = CwlUtilsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cocoawithlove.CwlUtilsTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "CwlUtilsTests/CwlUtilsTests-BridgingHeader.h";
-			};
-			name = Debug;
-		};
-		C93E182C1C8166470009A053 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = CwlUtilsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cocoawithlove.CwlUtilsTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "CwlUtilsTests/CwlUtilsTests-BridgingHeader.h";
-			};
-			name = Release;
-		};
-		C93E18441C81674F0009A053 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = CwlUtils/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoawithlove.CwlUtils-iOS";
-				PRODUCT_NAME = CwlUtils;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		C93E18451C81674F0009A053 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = CwlUtils/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoawithlove.CwlUtils-iOS";
-				PRODUCT_NAME = CwlUtils;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		C93E18471C81674F0009A053 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = CwlUtilsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoawithlove.CwlUtils-iOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "CwlUtilsTests/CwlUtilsTests-BridgingHeader.h";
-			};
-			name = Debug;
-		};
-		C93E18481C81674F0009A053 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = CwlUtilsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoawithlove.CwlUtils-iOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "CwlUtilsTests/CwlUtilsTests-BridgingHeader.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		C9E6C61F1CBF6D03007B3F24 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = CwlUtils_macOSHarness/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoawithlove.CwlUtils-macOSHarness";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		C9E6C6201CBF6D03007B3F24 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = CwlUtils_macOSHarness/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoawithlove.CwlUtils-macOSHarness";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		C9E6C6221CBF6D03007B3F24 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = CwlUtils_macOSHarnessUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoawithlove.CwlUtils-macOSHarnessUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = CwlUtils_macOSHarness;
-			};
-			name = Debug;
-		};
-		C9E6C6231CBF6D03007B3F24 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = CwlUtils_macOSHarnessUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoawithlove.CwlUtils-macOSHarnessUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = CwlUtils_macOSHarness;
-			};
-			name = Release;
-		};
-		C9F1BABF1CC5024300A255E9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ANALYZER_NONNULL = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = CwlUtils_iOSHarness/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoawithlove.CwlUtils-iOSHarness";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		C9F1BAC01CC5024300A255E9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ANALYZER_NONNULL = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = CwlUtils_iOSHarness/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoawithlove.CwlUtils-iOSHarness";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		C9F1BAC11CC5024300A255E9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = CwlUtils_iOSHarnessUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoawithlove.CwlUtils-iOSHarnessUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				TEST_TARGET_NAME = CwlUtils_iOSHarness;
-			};
-			name = Debug;
-		};
-		C9F1BAC21CC5024300A255E9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = CwlUtils_iOSHarnessUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cocoawithlove.CwlUtils-iOSHarnessUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				TEST_TARGET_NAME = CwlUtils_iOSHarness;
-				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C93E180D1C8166470009A053 /* Build configuration list for PBXProject "CwlUtils" */ = {
+		C95A773E1E4187E700659DBD /* Build configuration list for PBXNativeTarget "CwlUtils_macOSTestApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C93E18251C8166470009A053 /* Debug */,
-				C93E18261C8166470009A053 /* Release */,
+				C95A773F1E4187E700659DBD /* Debug */,
+				C95A77401E4187E700659DBD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
-		C93E18271C8166470009A053 /* Build configuration list for PBXNativeTarget "CwlUtils_macOS" */ = {
+		C95A77411E4187E700659DBD /* Build configuration list for PBXNativeTarget "CwlUtils_macOSTestAppUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C93E18281C8166470009A053 /* Debug */,
-				C93E18291C8166470009A053 /* Release */,
+				C95A77421E4187E700659DBD /* Debug */,
+				C95A77431E4187E700659DBD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
-		C93E182A1C8166470009A053 /* Build configuration list for PBXNativeTarget "CwlUtils_macOSTests" */ = {
+		C95A77621E4187FB00659DBD /* Build configuration list for PBXNativeTarget "CwlUtils_iOSTestApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C93E182B1C8166470009A053 /* Debug */,
-				C93E182C1C8166470009A053 /* Release */,
+				C95A77631E4187FB00659DBD /* Debug */,
+				C95A77641E4187FB00659DBD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
-		C93E18431C81674F0009A053 /* Build configuration list for PBXNativeTarget "CwlUtils_iOS" */ = {
+		C95A77651E4187FB00659DBD /* Build configuration list for PBXNativeTarget "CwlUtils_iOSTestAppUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C93E18441C81674F0009A053 /* Debug */,
-				C93E18451C81674F0009A053 /* Release */,
+				C95A77661E4187FB00659DBD /* Debug */,
+				C95A77671E4187FB00659DBD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
-		C93E18461C81674F0009A053 /* Build configuration list for PBXNativeTarget "CwlUtils_iOSTests" */ = {
+		C95BDEB31E41688B00AAA64B /* Build configuration list for PBXNativeTarget "CwlUtils_iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C93E18471C81674F0009A053 /* Debug */,
-				C93E18481C81674F0009A053 /* Release */,
+				C95BDEB41E41688B00AAA64B /* Debug */,
+				C95BDEB51E41688B00AAA64B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
-		C9E6C61E1CBF6D03007B3F24 /* Build configuration list for PBXNativeTarget "CwlUtils_macOSHarness" */ = {
+		C95BDED81E4168B800AAA64B /* Build configuration list for PBXNativeTarget "CwlUtils_iOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C9E6C61F1CBF6D03007B3F24 /* Debug */,
-				C9E6C6201CBF6D03007B3F24 /* Release */,
+				C95BDED91E4168B800AAA64B /* Debug */,
+				C95BDEDA1E4168B800AAA64B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
-		C9E6C6211CBF6D03007B3F24 /* Build configuration list for PBXNativeTarget "CwlUtils_macOSHarnessUITests" */ = {
+		OBJ_150 /* Build configuration list for PBXNativeTarget "CwlUtils_macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C9E6C6221CBF6D03007B3F24 /* Debug */,
-				C9E6C6231CBF6D03007B3F24 /* Release */,
+				OBJ_151 /* Debug */,
+				OBJ_152 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
-		C9F1BAC31CC5024300A255E9 /* Build configuration list for PBXNativeTarget "CwlUtils_iOSHarness" */ = {
+		OBJ_199 /* Build configuration list for PBXNativeTarget "CwlUtils_macOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C9F1BABF1CC5024300A255E9 /* Debug */,
-				C9F1BAC01CC5024300A255E9 /* Release */,
+				OBJ_200 /* Debug */,
+				OBJ_201 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
-		C9F1BAC41CC5024300A255E9 /* Build configuration list for PBXNativeTarget "CwlUtils_iOSHarnessUITests" */ = {
+		OBJ_2 /* Build configuration list for PBXProject "CwlUtils" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C9F1BAC11CC5024300A255E9 /* Debug */,
-				C9F1BAC21CC5024300A255E9 /* Release */,
+				OBJ_3 /* Debug */,
+				OBJ_4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = C93E180A1C8166470009A053 /* Project object */;
+	rootObject = OBJ_1 /* Project object */;
 }
