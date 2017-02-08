@@ -425,9 +425,6 @@ public struct MersenneTwister: RandomWordGenerator {
 		return random64()
 	}
 	
-	private mutating func twist() {
-	}
-	
 	public mutating func random64() -> UInt64 {
 		if index == MersenneTwister.stateCount {
 			// Really dirty leaking of unsafe pointer outside its closure to ensure inlining in Swift 3 preview 1
