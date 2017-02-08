@@ -116,7 +116,7 @@ unsigned long long genrand64_int64(struct mt19937_64* context)
 {
     size_t i;
     size_t j;
-    unsigned long long x;
+    unsigned long long result;
 
     if (context->mti >= NN) {/* generate NN words at one time */
 		size_t mid = NN / 2;
@@ -144,15 +144,15 @@ unsigned long long genrand64_int64(struct mt19937_64* context)
 		context->mti = 0;
     }
 	
-    x = context->mt[context->mti];
+    result = context->mt[context->mti];
     context->mti = context->mti + 1;
 
-    x ^= (x >> 29) & 0x5555555555555555ULL;
-    x ^= (x << 17) & 0x71D67FFFEDA60000ULL;
-    x ^= (x << 37) & 0xFFF7EEE000000000ULL;
-    x ^= (x >> 43);
+    result ^= (result >> 29) & 0x5555555555555555ULL;
+    result ^= (result << 17) & 0x71D67FFFEDA60000ULL;
+    result ^= (result << 37) & 0xFFF7EEE000000000ULL;
+    result ^= (result >> 43);
 
-    return x;
+    return result;
 }
 
 /* generates a random number on [0, 2^63-1]-interval */
