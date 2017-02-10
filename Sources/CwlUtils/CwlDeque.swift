@@ -348,8 +348,13 @@ public struct Deque<T>: RandomAccessCollection, RangeReplaceableCollection, Expr
 			}
 			
 			if info.inserted > 0 {
-				// Insert the new subrange
-				newBuffer.unsafeElements.advanced(by: info.start).initialize(from: newElements)
+				#if swift(>=3.1)
+					let umbp = UnsafeMutableBufferPointer(start: newBuffer.unsafeElements.advanced(by: info.start), count: info.inserted)
+					_ = umbp.initialize(from: newElements)
+				#else
+					// Insert the new subrange
+					newBuffer.unsafeElements.advanced(by: info.start).initialize(from: newElements)
+				#endif
 			}
 			
 			buffer = newBuffer
