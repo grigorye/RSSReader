@@ -191,7 +191,7 @@
 					};
 					DB8873FA1D806685008FF01B = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = H3Q4W24HH5;
+						DevelopmentTeam = 465NA5BW7E;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -436,7 +436,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = H3Q4W24HH5;
+				DEVELOPMENT_TEAM = 465NA5BW7E;
 				INFOPLIST_FILE = LogExperiment/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -451,7 +451,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = H3Q4W24HH5;
+				DEVELOPMENT_TEAM = 465NA5BW7E;
 				INFOPLIST_FILE = LogExperiment/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
