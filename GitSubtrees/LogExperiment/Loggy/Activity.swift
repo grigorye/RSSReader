@@ -215,9 +215,9 @@ public struct Activity {
         description.withUTF8Buffer { (buf: UnsafeBufferPointer<UInt8>) in
             let str = unsafeBitCast(buf.baseAddress!, to: UnsafePointer<Int8>.self)
             if #available(iOS 10.0, macOS 10.12, watchOS 3.0, tvOS 10.0, *) {
-                _os_activity_label_useraction(UnsafeMutableRawPointer(mutating: dso), str)
+                _os_activity_label_useraction(UnsafeMutableRawPointer(mutating: dso!), str)
             } else {
-                _os_activity_set_breadcrumb(UnsafeMutableRawPointer(mutating: dso), str)
+                _os_activity_set_breadcrumb(UnsafeMutableRawPointer(mutating: dso!), str)
             }
         }
     }
