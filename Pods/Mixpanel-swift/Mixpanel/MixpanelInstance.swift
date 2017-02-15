@@ -41,6 +41,9 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate {
     /// distinctId string that uniquely identifies the current user.
     open var distinctId = ""
 
+    /// alias string that uniquely identifies the current user.
+    open var alias: String? = nil
+
     /// Accessor to the Mixpanel People API object.
     open var people: People!
 
@@ -85,12 +88,9 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate {
     /// The base URL used for Mixpanel API requests.
     /// Useful if you need to proxy Mixpanel requests. Defaults to
     /// https://api.mixpanel.com.
-    open var serverURL: String {
-        set {
-            BasePath.MixpanelAPI = newValue
-        }
-        get {
-            return BasePath.MixpanelAPI
+    open var serverURL = BasePath.DefaultMixpanelAPI {
+        didSet {
+            BasePath.namedBasePaths[name] = serverURL
         }
     }
 
@@ -126,6 +126,9 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate {
         }
     }
 
+    /// A unique identifier for this MixpanelInstance
+    open let name: String
+
     #if os(iOS)
     /// Controls whether to enable the visual editor for codeless on mixpanel.com
     /// You will be unable to edit codeless events with this disabled, however previously
@@ -133,6 +136,7 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate {
     open var enableVisualEditorForCodeless: Bool {
         set {
             decideInstance.enableVisualEditorForCodeless = newValue
+            decideInstance.gestureRecognizer?.isEnabled = newValue
             if !newValue {
                 decideInstance.webSocketWrapper?.close()
             }
@@ -197,14 +201,19 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate {
     var timedEvents = InternalProperties()
     var serialQueue: DispatchQueue!
     var taskId = UIBackgroundTaskInvalid
-    let flushInstance = Flush()
+    let flushInstance: Flush
     let trackInstance: Track
-    let decideInstance = Decide()
+    let decideInstance: Decide
 
-    init(apiToken: String?, launchOptions: [UIApplicationLaunchOptionsKey : Any]?, flushInterval: Double) {
+    init(apiToken: String?, launchOptions: [UIApplicationLaunchOptionsKey : Any]?, flushInterval: Double, name: String) {
         if let apiToken = apiToken, !apiToken.isEmpty {
             self.apiToken = apiToken
         }
+
+        self.name = name
+
+        flushInstance = Flush(basePathIdentifier: name)
+        decideInstance = Decide(basePathIdentifier: name)
 
         trackInstance = Track(apiToken: self.apiToken)
         flushInstance.delegate = self
@@ -416,15 +425,17 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate {
 
     func initializeGestureRecognizer() {
         DispatchQueue.main.async {
-            let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.connectGestureRecognized(gesture:)))
-            gestureRecognizer.minimumPressDuration = 3
-            gestureRecognizer.cancelsTouchesInView = false
+            self.decideInstance.gestureRecognizer = UILongPressGestureRecognizer(target: self,
+                                                                                 action: #selector(self.connectGestureRecognized(gesture:)))
+            self.decideInstance.gestureRecognizer?.minimumPressDuration = 3
+            self.decideInstance.gestureRecognizer?.cancelsTouchesInView = false
             #if (arch(i386) || arch(x86_64)) && os(iOS)
-                gestureRecognizer.numberOfTouchesRequired = 2
+                self.decideInstance.gestureRecognizer?.numberOfTouchesRequired = 2
             #else
-                gestureRecognizer.numberOfTouchesRequired = 4
+                self.decideInstance.gestureRecognizer?.numberOfTouchesRequired = 4
             #endif
-            UIApplication.shared.keyWindow?.addGestureRecognizer(gestureRecognizer)
+            self.decideInstance.gestureRecognizer?.isEnabled = self.enableVisualEditorForCodeless
+            UIApplication.shared.keyWindow?.addGestureRecognizer(self.decideInstance.gestureRecognizer!)
         }
     }
 
@@ -470,11 +481,18 @@ extension MixpanelInstance {
         }
 
         serialQueue.async() {
-            self.distinctId = distinctId
-            self.people.distinctId = distinctId
+            // identify only changes the distinct id if it doesn't match either the existing or the alias;
+            // if it's new, blow away the alias as well.
+            if distinctId != self.alias {
+                if distinctId != self.distinctId {
+                    self.alias = nil
+                    self.distinctId = distinctId
+                }
+                self.people.distinctId = distinctId
+            }
             if !self.people.unidentifiedQueue.isEmpty {
                 for var r in self.people.unidentifiedQueue {
-                    r["$distinct_id"] = distinctId
+                    r["$distinct_id"] = self.distinctId
                     self.people.peopleQueue.append(r)
                 }
                 self.people.unidentifiedQueue.removeAll()
@@ -515,10 +533,17 @@ extension MixpanelInstance {
             return
         }
 
-        let properties = ["distinct_id": distinctId, "alias": alias]
-        track(event: "$create_alias",
-              properties: properties)
-        flush()
+        if alias != distinctId {
+            serialQueue.async() {
+                self.alias = alias
+                self.archiveProperties()
+            }
+            let properties = ["distinct_id": distinctId, "alias": alias]
+            track(event: "$create_alias", properties: properties)
+            flush()
+        } else {
+            Logger.error(message: "alias: \(alias) matches distinctId: \(distinctId) - skipping api call.")
+        }
     }
 
     /**
@@ -532,6 +557,7 @@ extension MixpanelInstance {
             self.eventsQueue = Queue()
             self.timedEvents = InternalProperties()
             self.people.distinctId = nil
+            self.alias = nil
             self.people.peopleQueue = Queue()
             self.people.unidentifiedQueue = Queue()
             self.decideInstance.notificationsInstance.shownNotifications = Set()
@@ -561,6 +587,7 @@ extension MixpanelInstance {
         let properties = ArchivedProperties(superProperties: superProperties,
                                             timedEvents: timedEvents,
                                             distinctId: distinctId,
+                                            alias: alias,
                                             peopleDistinctId: people.distinctId,
                                             peopleUnidentifiedQueue: people.unidentifiedQueue,
                                             shownNotifications: decideInstance.notificationsInstance.shownNotifications)
@@ -578,6 +605,7 @@ extension MixpanelInstance {
          superProperties,
          timedEvents,
          distinctId,
+         alias,
          people.distinctId,
          people.unidentifiedQueue,
          decideInstance.notificationsInstance.shownNotifications,
@@ -593,6 +621,7 @@ extension MixpanelInstance {
         let properties = ArchivedProperties(superProperties: superProperties,
                                             timedEvents: timedEvents,
                                             distinctId: distinctId,
+                                            alias: alias,
                                             peopleDistinctId: people.distinctId,
                                             peopleUnidentifiedQueue: people.unidentifiedQueue,
                                             shownNotifications: decideInstance.notificationsInstance.shownNotifications)
@@ -603,7 +632,7 @@ extension MixpanelInstance {
         let defaultsKey = "trackedKey"
         if !UserDefaults.standard.bool(forKey: defaultsKey) {
             serialQueue.async() {
-                Network.trackIntegration(apiToken: self.apiToken) {
+                Network.trackIntegration(apiToken: self.apiToken, serverURL: BasePath.DefaultMixpanelAPI) {
                     (success) in
                     if success {
                         UserDefaults.standard.set(true, forKey: defaultsKey)

@@ -25,12 +25,13 @@ struct DecideResponse {
 
 class Decide {
 
-    var decideRequest = DecideRequest()
+    let decideRequest: DecideRequest
     var decideFetched = false
     var notificationsInstance = InAppNotifications()
     var codelessInstance = Codeless()
     var ABTestingInstance = ABTesting()
     var webSocketWrapper: WebSocketWrapper?
+    var gestureRecognizer: UILongPressGestureRecognizer?
 
     var inAppDelegate: InAppNotificationsDelegate? {
         set {
@@ -43,6 +44,10 @@ class Decide {
     var enableVisualEditorForCodeless = true
 
     let switchboardURL = "wss://switchboard.mixpanel.com"
+
+    required init(basePathIdentifier: String) {
+        self.decideRequest = DecideRequest(basePathIdentifier: basePathIdentifier)
+    }
 
     func checkDecide(forceFetch: Bool = false,
                      distinctId: String,
@@ -62,8 +67,14 @@ class Decide {
                 var parsedNotifications = [InAppNotification]()
                 if let rawNotifications = result["notifications"] as? [[String: Any]] {
                     for rawNotif in rawNotifications {
-                        if let notification = InAppNotification(JSONObject: rawNotif) {
-                            parsedNotifications.append(notification)
+                        if let notificationType = rawNotif["type"] as? String {
+                            if notificationType == InAppType.takeover.rawValue,
+                                let notification = TakeoverNotification(JSONObject: rawNotif) {
+                                parsedNotifications.append(notification)
+                            } else if notificationType == InAppType.mini.rawValue,
+                                let notification = MiniNotification(JSONObject: rawNotif) {
+                                parsedNotifications.append(notification)
+                            }
                         }
                     }
                 } else {
