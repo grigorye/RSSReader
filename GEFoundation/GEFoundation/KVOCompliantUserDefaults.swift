@@ -194,7 +194,7 @@ public class KVOCompliantUserDefaults : NSObject {
 		}()
 		let types = isSetter ? "v@:\(valueTypeEncoded)" : "\(valueTypeEncoded)@:"
 		types.withCString { typesCString in
-			_ = class_addMethod(self, sel, unsafeBitCast(methodIMP, to: OpaquePointer.self), typesCString)
+			_ = class_addMethod(self, sel, methodIMP, typesCString)
 		}
 		return true
 	}
