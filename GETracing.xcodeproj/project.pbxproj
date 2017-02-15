@@ -76,7 +76,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C40EA7281C6FCA2B002C6D9E /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		C41818601B6A65B100872EB3 /* GETracing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GETracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C41818651B6A65B100872EB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C418186A1B6A65B100872EB3 /* GETracingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GETracingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,7 +146,6 @@
 				C49FF0E51DBAF7D800A86CC0 /* NestedBrackets.swift */,
 				C4CB38851CDBA78D00562665 /* SourceLocation.swift */,
 				C4FEBB1C1BF960A300A5709B /* BundleForSymbolAddress.swift */,
-				C40EA7281C6FCA2B002C6D9E /* Bridging-Header.h */,
 				C41818651B6A65B100872EB3 /* Info.plist */,
 				C4EB27E81DFA30D100BF0843 /* ModuleExports-GETracing.swift */,
 			);
@@ -357,7 +355,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.grigorye.$(TARGET_NAME)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(TARGET_NAME)/Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -373,7 +370,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.grigorye.$(TARGET_NAME)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(TARGET_NAME)/Bridging-Header.h";
 			};
 			name = Release;
 		};
