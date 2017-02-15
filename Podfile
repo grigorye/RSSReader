@@ -40,6 +40,16 @@ post_install do |installer|
       configuration.build_settings['ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES'] = 'NO'
       xcconfig_path = configuration.base_configuration_reference.real_path
       xcconfig = Xcodeproj::Config.new(xcconfig_path).to_hash
+      
+      #
+      # Remove framework search paths not existing when building (dynamic) frameworks
+      #
+      frameworkSearchPaths = xcconfig['FRAMEWORK_SEARCH_PATHS']
+      if frameworkSearchPaths != nil
+        frameworkSearchPaths = frameworkSearchPaths.gsub(/"\$PODS_CONFIGURATION_BUILD_DIR\/[a-zA-Z0-9_-]+"( |$)/, '')
+        xcconfig['FRAMEWORK_SEARCH_PATHS'] = frameworkSearchPaths
+      end
+      
       File.open(xcconfig_path, "w") { |file|
         xcconfig.each do |key,value|
           file.puts "#{key} = #{value}"
