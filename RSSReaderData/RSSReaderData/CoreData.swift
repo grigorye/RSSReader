@@ -45,20 +45,31 @@ extension Item : ManagedIdentifiable {
 		set {
 			let oldValue = categories
 			let categoryItemsForDeletion = categoryItems.filter { !newValue.contains($0.category) }
-			let insertedCategories = newValue … {
-				$0.subtract(oldValue)
-				()
+			let insertedCategories = newValue.subtracting(oldValue)
+			
+			let managedObjectContext = self.managedObjectContext!
+			
+			do {
+				for categoryItem in categoryItemsForDeletion {
+					managedObjectContext.delete(categoryItem)
+				}
+				// Maintain inverse relationship manually, to ensure the postcondition.
+				self.categoryItems.subtract(categoryItemsForDeletion)
 			}
-			for categoryItem in categoryItemsForDeletion {
-				managedObjectContext!.delete(categoryItem)
-			}
-			for category in insertedCategories {
-				let categoryItem = (NSEntityDescription.insertNewObject(forEntityName: CategoryItem.entityName(), into: managedObjectContext!) as! CategoryItem)
-				categoryItem … {
-					$0.item = self
-					$0.category = category
+			
+			do {
+				for category in insertedCategories {
+					let categoryItem = (NSEntityDescription.insertNewObject(forEntityName: CategoryItem.entityName(), into: managedObjectContext) as! CategoryItem) … {
+						$0.item = self
+						$0.category = category
+					}
+					// Maintain inverse relationship manually, to ensure the postcondition.
+					categoryItems.insert(categoryItem)
 				}
 			}
+			
+			assert(Set(categoryItems.map { $0.item }) == Set([self]))
+			assert(newValue == self.categories)
 		}
 		get {
 			return Set(categoryItems.map { $0.category })
