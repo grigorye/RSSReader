@@ -263,7 +263,7 @@
 		C441F1781DB24A1D0060E692 /* MainScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainScene.swift; path = Swift/MainScene.swift; sourceTree = "<group>"; };
 		C441F17A1DB254260060E692 /* GlobalFoldersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GlobalFoldersController.swift; path = Swift/GlobalFoldersController.swift; sourceTree = "<group>"; };
 		C441F17E1DB258550060E692 /* SharedRSSAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SharedRSSAccount.swift; path = Swift/SharedRSSAccount.swift; sourceTree = "<group>"; };
-		C441F1861DB25D090060E692 /* GlobalStateRestoration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalStateRestoration.swift; sourceTree = "<group>"; };
+		C441F1861DB25D090060E692 /* GlobalStateRestoration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GlobalStateRestoration.swift; path = Swift/GlobalStateRestoration.swift; sourceTree = "<group>"; };
 		C444F53C1B2E53F200A6E378 /* RSSReaderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RSSReaderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C444F53E1B2E53F200A6E378 /* RSSReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSReaderUITests.swift; sourceTree = "<group>"; };
 		C444F5401B2E53F200A6E378 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
