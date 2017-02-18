@@ -84,7 +84,7 @@ class ItemsViewController : ContainerViewController {
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		switch segue.identifier! {
-		case MainStoryboard.SegueIdentifiers.ShowListPages:
+		case R.segue.itemsViewController.showListPages.identifier:
 			let pageViewController = segue.destination as? UIPageViewController ?? segue.destination.childViewControllers.last as! UIPageViewController
 			let itemPageViewControllerDataSource = (pageViewController.dataSource as! ItemPageViewControllerDataSource) … {
 				$0.items = dataSource.fetchedObjects!
@@ -93,7 +93,7 @@ class ItemsViewController : ContainerViewController {
 				if floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1 {
 					$0.edgesForExtendedLayout = UIRectEdge()
 				}
-				let initialViewController = itemPageViewControllerDataSource.viewControllerForItem(selectedItem, storyboard: $0.storyboard!)
+				let initialViewController = itemPageViewControllerDataSource.viewControllerForItem(selectedItem)
 				$0.setViewControllers([initialViewController], direction: .forward, animated: false, completion: nil)
 				$0.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
 				$0.navigationItem.leftItemsSupplementBackButton = true
@@ -347,7 +347,7 @@ extension ItemsViewController {
 //
 extension ItemsViewController {
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		performSegue(withIdentifier: MainStoryboard.SegueIdentifiers.ShowListPages, sender: self)
+		performSegue(withIdentifier: R.segue.itemsViewController.showListPages, sender: self)
 	}
 	override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
 		tableView.snapHeaderToTop(animated: true)

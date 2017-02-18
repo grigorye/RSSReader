@@ -58,10 +58,10 @@ class HistoryViewController: UITableViewController {
 	// MARK: -
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if defaults.pageViewsEnabled {
-			self.performSegue(withIdentifier: MainStoryboard.SegueIdentifiers.ShowHistoryPages, sender: self)
+			self.performSegue(withIdentifier: R.segue.historyViewController.showHistoryPages, sender: self)
 		}
 		else {
-			self.performSegue(withIdentifier: MainStoryboard.SegueIdentifiers.ShowHistoryArticle, sender: self)
+			self.performSegue(withIdentifier: R.segue.historyViewController.showHistoryArticle, sender: self)
 		}
 	}
 	// MARK: -
@@ -75,24 +75,24 @@ class HistoryViewController: UITableViewController {
 		return fetchedResultsController.sections![section].name
 	}
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "Item", for: indexPath)
+		let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.item, for: indexPath)!
 		self.configureCell(cell, atIndexPath: indexPath)
 		return cell
 	}
 	// MARK: -
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		switch segue.identifier! {
-		case MainStoryboard.SegueIdentifiers.ShowHistoryPages:
+		case R.segue.historyViewController.showHistoryPages.identifier:
 			let pageViewController = segue.destination as! UIPageViewController
 			let itemPageViewControllerDataSource = (pageViewController.dataSource as! ItemPageViewControllerDataSource) … {
 				$0.items = self.fetchedResultsController.fetchedObjects!
 			}
-			let initialViewController = itemPageViewControllerDataSource.viewControllerForItem(self.selectedItem, storyboard: pageViewController.storyboard!)
+			let initialViewController = itemPageViewControllerDataSource.viewControllerForItem(self.selectedItem)
 			if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
 				pageViewController.edgesForExtendedLayout = UIRectEdge()
 			}
 			pageViewController.setViewControllers([initialViewController], direction: .forward, animated: false, completion: nil)
-		case MainStoryboard.SegueIdentifiers.ShowHistoryArticle:
+		case R.segue.historyViewController.showHistoryArticle.identifier:
 			let itemViewController = segue.destination as! ItemSummaryWebViewController
 			itemViewController.item = selectedItem
 			$(segue)
@@ -107,8 +107,7 @@ class HistoryViewController: UITableViewController {
 	}
     override func viewDidLoad() {
         super.viewDidLoad()
-		let cellNib = UINib(nibName: "ItemTableViewCell", bundle: nil)
-		tableView.register(cellNib, forCellReuseIdentifier: "Item")
+		tableView.register(R.nib.itemTableViewCell)
 		try! fetchedResultsController.performFetch()
     }
 	// MARK: -

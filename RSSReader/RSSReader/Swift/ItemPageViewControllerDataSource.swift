@@ -11,8 +11,8 @@ import UIKit
 
 class ItemPageViewControllerDataSource: NSObject, UIPageViewControllerDataSource {
 	var items: [Item]!
-	func viewControllerForItem(_ item: Item, storyboard: UIStoryboard) -> UIViewController {
-		return (storyboard.instantiateViewController(withIdentifier: MainStoryboard.StoryboardIdentifiers.ItemSummaryWeb) as! ItemSummaryWebViewController) … {
+	func viewControllerForItem(_ item: Item) -> UIViewController {
+		return R.storyboard.main.itemSummaryWeb()! … {
 			$0.item = item
 		}
 	}
@@ -31,7 +31,7 @@ class ItemPageViewControllerDataSource: NSObject, UIPageViewControllerDataSource
 			}
 		}()
 		if let itemBefore = itemBefore {
-			return viewControllerForItem(itemBefore, storyboard: viewController.storyboard!)
+			return viewControllerForItem(itemBefore)
 		}
 		else {
 			return nil
@@ -51,7 +51,7 @@ class ItemPageViewControllerDataSource: NSObject, UIPageViewControllerDataSource
 			}
 		}()
 		if let itemAfter = itemAfter {
-			return viewControllerForItem(itemAfter, storyboard: viewController.storyboard!)
+			return viewControllerForItem(itemAfter)
 		}
 		else {
 			return nil

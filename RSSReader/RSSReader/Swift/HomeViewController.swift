@@ -21,14 +21,14 @@ func configureItemsViewControllerForFavorites(_ itemsViewController: ItemsViewCo
 class HomeViewController: UITableViewController {
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		switch $(segue.identifier!) {
-		case MainStoryboard.SegueIdentifiers.ShowHistory:
+		case R.segue.homeViewController.showHistory.identifier:
 			()
-		case MainStoryboard.SegueIdentifiers.ShowSubscriptions:
+		case R.segue.homeViewController.showSubscriptions.identifier:
 			let foldersViewController = segue.destination as! FoldersViewController
 			if let rootFolder = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: mainQueueManagedObjectContext) {
 				foldersViewController.rootFolder = rootFolder
 			}
-		case MainStoryboard.SegueIdentifiers.ShowFavorites:
+		case R.segue.homeViewController.showFavorites.identifier:
 			let itemsViewController = segue.destination as! ItemsViewController
 			configureItemsViewControllerForFavorites(itemsViewController)
 		default:

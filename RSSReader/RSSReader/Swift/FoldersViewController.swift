@@ -163,17 +163,17 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 	// MARK: -
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		switch segue.identifier! {
-		case MainStoryboard.SegueIdentifiers.ShowFolder:
+		case R.segue.foldersViewController.showFolder.identifier:
 			let foldersViewController = segue.destination as! FoldersViewController
 			let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow!
 			let folder = childContainers[indexPathForSelectedRow.row] as! Folder
 			foldersViewController.rootFolder = folder
-		case MainStoryboard.SegueIdentifiers.ShowSubscription:
+		case R.segue.foldersViewController.showSubscription.identifier:
 			let itemsViewController = segue.destination as! ItemsViewController
 			let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow!
 			let subscription = childContainers[indexPathForSelectedRow.row] as! Subscription
 			itemsViewController.container = subscription
-		case MainStoryboard.SegueIdentifiers.ShowCombined:
+		case R.segue.foldersViewController.showCombined.identifier:
 			let itemsViewController = segue.destination as! ItemsViewController
 			itemsViewController.container = self.rootFolder
 			itemsViewController.multipleSourcesEnabled = true
@@ -210,11 +210,11 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 		let childContainer = childContainers[indexPath.row]
 		switch childContainer {
 		case let subscription as Subscription:
-			let cell = tableView.dequeueReusableCell(withIdentifier: MainStoryboard.ReuseIdentifiers.Subscription, for: indexPath)
+			let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.subscription, for: indexPath)!
 			self.configureCell(cell, forSubscription: subscription)
 			return cell
 		case let folder as Folder:
-			let cell = tableView.dequeueReusableCell(withIdentifier: MainStoryboard.ReuseIdentifiers.Folder, for: indexPath)
+			let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.folder, for: indexPath)!
 			self.configureCell(cell, forFolder: folder)
 			return cell
 		default:
