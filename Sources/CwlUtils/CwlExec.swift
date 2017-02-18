@@ -411,9 +411,9 @@ public enum Exec: ExecutionContext {
 		switch self {
 		case .custom(let c): c.invokeAndWait(execute)
 		case .main where Thread.isMainThread: execute()
-		case .main: DispatchQueue.main.async(execute: execute)
+		case .main: DispatchQueue.main.sync(execute: execute)
 		case .mainAsync where Thread.isMainThread: execute()
-		case .mainAsync: DispatchQueue.main.async(execute: execute)
+		case .mainAsync: DispatchQueue.main.sync(execute: execute)
 		case .direct: fallthrough
 		case .interactive: fallthrough
 		case .user: fallthrough

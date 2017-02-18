@@ -55,6 +55,20 @@ class ExecTests: XCTestCase {
 		let e3 = expectation(description: "Block not invoked")
 		Exec.default.invoke {
 			XCTAssert(Exec.main.type.isImmediate == false)
+
+			let lock = DispatchQueue(label: "")
+			var x = false
+			lock.sync {
+				Exec.main.invoke {
+					lock.sync {	x = true }
+				}
+				XCTAssert(!x, "Block should not yet run")
+			}
+
+			var y = false
+			Exec.main.invokeAndWait { y = true }
+			XCTAssert(y, "Block ran")
+
 			e3.fulfill()
 		}
 		
@@ -96,6 +110,19 @@ class ExecTests: XCTestCase {
 		
 		let e5 = expectation(description: "Block not invoked")
 		Exec.default.invoke {
+			let lock = DispatchQueue(label: "")
+			var x = false
+			lock.sync {
+				Exec.mainAsync.invoke {
+					lock.sync {	x = true }
+				}
+			}
+			XCTAssert(!x, "Block should not yet run")
+
+			var y = false
+			Exec.mainAsync.invokeAndWait { y = true }
+			XCTAssert(y, "Block ran")
+
 			Exec.mainAsync.invokeAndWait {
 				e5.fulfill()
 			}
