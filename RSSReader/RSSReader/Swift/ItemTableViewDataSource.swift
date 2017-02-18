@@ -134,7 +134,7 @@ class ItemTableViewDataSource: NSObject {
 		guard let tableView = tableView else { return }
 		guard !defaults.fixedHeightItemRowsEnabled else {
 #if false
-			let cellNib = UINib(nibName: "ItemSimpleTableViewCell", bundle: nil)
+			let cellNib = R.nib.itemSimpleTableViewCell()
 			tableView.register(cellNib, forCellReuseIdentifier: "Item")
 #else
 			tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Item")
@@ -144,8 +144,7 @@ class ItemTableViewDataSource: NSObject {
 		if defaults.cellHeightCachingEnabled {
 			configureCellHeightCaching()
 		}
-		let cellNib = UINib(nibName: "ItemTableViewCell", bundle: nil)
-		tableView.register(cellNib, forCellReuseIdentifier: "Item")
+		tableView.register(R.nib.itemTableViewCell)
 	}
 	// MARK: -
 	init(tableView: UITableView, container: Container, showUnreadOnly: Bool) {

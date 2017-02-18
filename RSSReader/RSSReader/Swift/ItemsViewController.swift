@@ -20,10 +20,7 @@ class ItemsViewController : ContainerViewController {
 
 	typealias _Self = ItemsViewController
 
-	lazy var prototypeCell: ItemTableViewCell = {
-		let nib = UINib(nibName: "ItemTableViewCell", bundle: Bundle(for: type(of: self)))
-		return nib.instantiate(withOwner: nil)[0] as! ItemTableViewCell
-	}()
+	lazy var prototypeCell = R.nib.itemTableViewCell.firstView(owner: nil)!
 
 	public var dataSource: ItemTableViewDataSource!
 	public dynamic var loadController: ContainerLoadController!
@@ -238,7 +235,7 @@ class ItemsViewController : ContainerViewController {
 		tableView.prefetchDataSource = self
 	}
 	func configureLoading() {
-		let tableFooterView = UINib(nibName: "ItemTableViewFooter", bundle: Bundle(for: type(of: self))).instantiate(withOwner: self, options: nil).first! as! UIView
+		let tableFooterView = R.nib.itemTableViewFooter.firstView(owner: self)
 		tableView.tableFooterView = tableFooterView
 		self.tableFooterViewOnLoading = tableView.tableFooterView
 		tableView.tableFooterView = nil

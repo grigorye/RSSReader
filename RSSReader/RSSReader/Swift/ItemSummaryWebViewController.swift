@@ -31,8 +31,7 @@ class ItemSummaryWebViewController: UIViewController {
 	}
 	// MARK:-
 	var summaryHTMLString: String {
-		let bundle = Bundle.main
-		let htmlTemplateURL = bundle.url(forResource: "ItemSummaryTemplate", withExtension: "html")!
+		let htmlTemplateURL = R.file.itemSummaryTemplateHtml.url()!
 		let htmlTemplate = try! NSString(contentsOf: htmlTemplateURL, encoding: String.Encoding.utf8.rawValue)
 		let htmlString =
 			htmlTemplate
