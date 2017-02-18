@@ -23,6 +23,9 @@ PODS:
   - Mixpanel-swift (2.1.3)
   - Optimizely-iOS-SDK (1.7.0)
   - PromiseKit/CorePromise (4.1.7)
+  - R.swift (3.2.0):
+    - R.swift.Library (~> 3.0.2)
+  - R.swift.Library (3.0.2)
   - SwiftMessages (3.1.5)
 
 DEPENDENCIES:
@@ -33,6 +36,7 @@ DEPENDENCIES:
   - Mixpanel-swift
   - Optimizely-iOS-SDK
   - PromiseKit/CorePromise
+  - R.swift
   - SwiftMessages
 
 SPEC CHECKSUMS:
@@ -49,8 +53,10 @@ SPEC CHECKSUMS:
   Mixpanel-swift: a50fe20def8fc2ea0f2c912772ad835bd8524dae
   Optimizely-iOS-SDK: e406016e617f84e823227c52131341dc20721319
   PromiseKit: 779f2e41faf62d854e7593026ddbcb0bb5c5002d
+  R.swift: 207a372a2b5977caef440c696a368009460641d1
+  R.swift.Library: fbdec16c9802ad104fc1ba53415dc190e6ec5c73
   SwiftMessages: bb85d7c30e85256f9367214b0907e1f409e1870a
 
-PODFILE CHECKSUM: d52b33c7baec037185c35fe7fb8245bb70d07129
+PODFILE CHECKSUM: 92f876bff8811a2cb9523dc136b32ded3c6ff8d4
 
 COCOAPODS: 1.2.0

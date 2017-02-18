@@ -20,6 +20,7 @@ target "iOS" do
 	pod 'Mixpanel-swift'
 	pod 'Optimizely-iOS-SDK'
 	pod 'Firebase/Core'
+	pod 'R.swift'
 end
 target "macOS" do
 	platform :osx, '10.11'
