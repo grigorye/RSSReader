@@ -47,7 +47,7 @@ post_install do |installer|
       #
       frameworkSearchPaths = xcconfig['FRAMEWORK_SEARCH_PATHS']
       if frameworkSearchPaths != nil
-        frameworkSearchPaths = frameworkSearchPaths.gsub(/"\$PODS_CONFIGURATION_BUILD_DIR\/[a-zA-Z0-9_-]+"( |$)/, '')
+        frameworkSearchPaths = frameworkSearchPaths.gsub(/"\$PODS_CONFIGURATION_BUILD_DIR\/[.a-zA-Z0-9_-]+"( |$)/, '')
         xcconfig['FRAMEWORK_SEARCH_PATHS'] = frameworkSearchPaths
       end
       

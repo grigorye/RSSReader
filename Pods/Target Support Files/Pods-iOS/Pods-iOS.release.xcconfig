@@ -1,5 +1,5 @@
 EMBEDDED_CONTENT_CONTAINS_SWIFT = YES
-FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/R.swift.Library" "${PODS_ROOT}/Crashlytics/iOS" "${PODS_ROOT}/Fabric/iOS" "${PODS_ROOT}/FirebaseAnalytics/Frameworks" "${PODS_ROOT}/FirebaseCore/Frameworks" "${PODS_ROOT}/FirebaseInstanceID/Frameworks" "${PODS_ROOT}/Optimizely-iOS-SDK"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Crashlytics/iOS" "${PODS_ROOT}/Fabric/iOS" "${PODS_ROOT}/FirebaseAnalytics/Frameworks" "${PODS_ROOT}/FirebaseCore/Frameworks" "${PODS_ROOT}/FirebaseInstanceID/Frameworks" "${PODS_ROOT}/Optimizely-iOS-SDK"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = $(inherited) ${PODS_ROOT}/Firebase/Core/Sources $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Crashlytics" "${PODS_ROOT}/Headers/Public/Fabric" "${PODS_ROOT}/Headers/Public/Firebase" "${PODS_ROOT}/Headers/Public/FirebaseAnalytics" "${PODS_ROOT}/Headers/Public/FirebaseCore" "${PODS_ROOT}/Headers/Public/FirebaseInstanceID" "${PODS_ROOT}/Headers/Public/Optimizely-iOS-SDK" "${PODS_ROOT}/Headers/Public/R.swift"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
