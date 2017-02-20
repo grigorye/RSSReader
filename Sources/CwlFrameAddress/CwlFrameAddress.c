@@ -18,9 +18,13 @@
 //  IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 //
 
+#if !OMIT_STACK_FRAME
+
 #include "CwlFrameAddress.h"
 
 uintptr_t frame_address()
 {
 	return (uintptr_t)__builtin_frame_address(1);
 }
+
+#endif

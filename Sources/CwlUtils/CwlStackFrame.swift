@@ -24,6 +24,8 @@ import Darwin
 import CwlFrameAddress
 #endif
 
+#if !OMIT_STACK_FRAME
+
 /// A utility class for walking through stack frames.
 public struct StackFrame {
 	/// The underlying data of the struct is a basic UInt. A value of 0 represents an invalid frame.
@@ -126,3 +128,4 @@ private func isAligned(_ address: UInt) -> Bool {
 	return (address & ISALIGNED_MASK) == ISALIGNED_RESULT
 }
 
+#endif

@@ -23,6 +23,8 @@
 #ifndef CwlFrameAddress_h
 #define CwlFrameAddress_h
 
+#if !OMIT_STACK_FRAME
 uintptr_t frame_address();
+#endif
 
 #endif /* CwlFrameAddress_h */

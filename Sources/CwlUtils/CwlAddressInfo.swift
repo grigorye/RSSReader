@@ -20,6 +20,8 @@
 
 import Foundation
 
+#if !OMIT_STACK_FRAME
+
 /// A wrapper around dl_info, used for symbolicating instruction addresses.
 public struct AddressInfo {
 	private let info: dl_info
@@ -98,3 +100,5 @@ public func symbolsForCallStack(addresses: [UInt]) -> [String] {
 		return AddressInfo(address: address).formattedDescription(index: index)
 	}
 }
+
+#endif
