@@ -7,6 +7,7 @@
 //
 
 import GEFoundation
+import Foundation.NSObject
 
 infix operator …
 
