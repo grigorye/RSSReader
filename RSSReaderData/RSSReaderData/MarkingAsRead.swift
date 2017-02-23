@@ -89,7 +89,7 @@ public extension Item {
 			if ((newValue && oldValue) || (!newValue && !oldValue)) {
 			}
 			else {
-				let unreadCountDelta = newValue ? -1 : 1
+				let unreadCountDelta = (newValue ? -1 : 1) as Int32
 				self.subscription.unreadCount += unreadCountDelta
 				for category in self.categories {
 					category.unreadCount += unreadCountDelta

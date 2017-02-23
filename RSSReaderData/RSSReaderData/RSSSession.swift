@@ -30,6 +30,7 @@ public class RSSSession: NSObject {
 	let inoreaderAppKey = "r3O8gX6FPdFaOXE3x4HypYHO2LTCNuDS"
 	let loginAndPassword: LoginAndPassword
 	public init(loginAndPassword: LoginAndPassword) {
+		_ = RSSSession.initializeOnce
 		precondition(loginAndPassword.isValid())
 		self.loginAndPassword = loginAndPassword
 	}
@@ -69,15 +70,10 @@ public extension RSSSession {
 		}
 	}
 	
-	static private let initializeOnce: Ignored = {
+	static fileprivate let initializeOnce: Ignored = {
 		setErrorUserInfoValueProvider()
 		return Ignored()
 	}()
-
-	override public class func initialize() {
-		super.initialize()
-		_ = initializeOnce
-	}
 }
 
 extension KVOCompliantUserDefaults {

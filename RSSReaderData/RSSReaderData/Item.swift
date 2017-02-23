@@ -29,7 +29,7 @@ public class Item : NSManagedObject {
 		}
 		get {
 			let data = titleData
-			return String(utf16CodeUnitsNoCopy: unsafeBitCast(data.bytes, to: UnsafePointer<unichar>.self), count: data.length / MemoryLayout<unichar>.stride, freeWhenDone: false)
+			return String(utf16CodeUnitsNoCopy: data.bytes.assumingMemoryBound(to: unichar.self), count: data.length / MemoryLayout<unichar>.stride, freeWhenDone: false)
 		}
 	}
     @NSManaged public var summaryData: NSData
@@ -42,7 +42,7 @@ public class Item : NSManagedObject {
 		}
 		get {
 			let data = summaryData
-			return String(utf16CodeUnitsNoCopy: unsafeBitCast(data.bytes, to: UnsafePointer<unichar>.self), count: data.length / MemoryLayout<unichar>.stride, freeWhenDone: false)
+			return String(utf16CodeUnitsNoCopy: data.bytes.assumingMemoryBound(to: unichar.self), count: data.length / MemoryLayout<unichar>.stride, freeWhenDone: false)
 		}
 	}
 	@NSManaged public var categoryItems: Set<CategoryItem>
@@ -58,9 +58,9 @@ public class Item : NSManagedObject {
 		}
 		return Ignored()
 	}()
-	override public class func initialize() {
-		super.initialize()
-		_ = initializeOnce
+	public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+		_ = Item.initializeOnce
+		super.init(entity: entity, insertInto: context)
 	}
 }
 

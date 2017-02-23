@@ -51,8 +51,8 @@ public class ContainerViewState: NSManagedObject {
 #endif
 		return Ignored()
 	}()
-	override public class func initialize() {
-		super.initialize()
-		_ = initializeOnce
+	public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+		_ = ContainerViewState.initializeOnce
+		super.init(entity: entity, insertInto: context)
 	}
 }
