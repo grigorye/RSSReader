@@ -1,5 +1,5 @@
 PODS:
-  - Crashlytics (3.8.3):
+  - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
   - Fabric (1.6.11)
   - FBAllocationTracker (0.1.5)
@@ -7,14 +7,14 @@ PODS:
     - FBAllocationTracker (~> 0.1)
     - FBRetainCycleDetector (~> 0.1)
   - FBRetainCycleDetector (0.1.3)
-  - Firebase/Core (3.13.0):
+  - Firebase/Core (3.14.0):
     - FirebaseAnalytics (= 3.7.0)
-    - FirebaseCore (= 3.5.0)
+    - FirebaseCore (= 3.5.1)
   - FirebaseAnalytics (3.7.0):
     - FirebaseCore (~> 3.5)
     - FirebaseInstanceID (~> 1.0)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseCore (3.5.0):
+  - FirebaseCore (3.5.1):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
   - FirebaseInstanceID (1.0.9)
   - GoogleToolboxForMac/Defines (2.1.1)
@@ -40,14 +40,14 @@ DEPENDENCIES:
   - SwiftMessages
 
 SPEC CHECKSUMS:
-  Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
+  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   FBAllocationTracker: dfdca3f71aceca6a85e95e3c6ec76a9785eba0f1
   FBMemoryProfiler: 623fc5f8a61f7d02ec75c87e3b97c90f621d8b02
   FBRetainCycleDetector: f0c7b290bf48ae77f6ae060843ce34ae341781eb
-  Firebase: 5bc34d7b5ff5792e3386c8b28dc6265deeab0da4
+  Firebase: 85a581fb04e44f63ae9f4fbc8d6dabf4a4c18653
   FirebaseAnalytics: 0d1b7d81d5021155be37702a94ba1ec16d45365d
-  FirebaseCore: 1c0a13bf59bb95cdd19577252499f0ec6a03e999
+  FirebaseCore: 225d40532489835a034b8f4e2c9c87fbf4f615a2
   FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   Mixpanel-swift: a50fe20def8fc2ea0f2c912772ad835bd8524dae
