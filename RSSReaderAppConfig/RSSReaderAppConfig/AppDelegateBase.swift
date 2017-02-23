@@ -73,6 +73,7 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 	}
 	// MARK: -
 	public override init() {
+		_ = AppDelegateBase.initializeOnce
 		super.init()
 		var scope = Activity("Basic Initialization").enter(); defer { scope.leave() }
 		let defaultsPlistURL = Bundle.main.url(forResource: "Settings", withExtension: "bundle")!.appendingPathComponent("Root.plist")
@@ -100,8 +101,4 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 		}
 		return Ignored()
 	}()
-	override open class func initialize() {
-		super.initialize()
-		_ = initializeOnce
-	}
 }
