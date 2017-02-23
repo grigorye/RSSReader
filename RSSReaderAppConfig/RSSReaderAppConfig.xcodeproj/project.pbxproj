@@ -47,6 +47,7 @@
 		C4CB79231E3398B600F89794 /* SwiftMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4CB79221E3398B600F89794 /* SwiftMessages.framework */; };
 		C4DA682D1E550A4B004615A0 /* Loggy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4DA682C1E550A4B004615A0 /* Loggy.framework */; };
 		C4DA68321E58BDC4004615A0 /* Rswift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4DA68311E58BDC4004615A0 /* Rswift.framework */; };
+		C4E4D6351E5FA48C007E0E39 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4E4D6341E5FA48C007E0E39 /* PromiseKit.framework */; };
 		C4EB27FD1DFA35A400BF0843 /* ModuleExports-GETracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27FB1DFA35A400BF0843 /* ModuleExports-GETracing.swift */; };
 		C4EB27FE1DFA35A400BF0843 /* ModuleExports-GEFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27FC1DFA35A400BF0843 /* ModuleExports-GEFoundation.swift */; };
 		C4F738971DBD73820092F1D8 /* GEUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1BA1DBBA6F000A86CC0 /* GEUIKit.framework */; };
@@ -132,6 +133,7 @@
 		C4CB79221E3398B600F89794 /* SwiftMessages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftMessages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4DA682C1E550A4B004615A0 /* Loggy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Loggy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4DA68311E58BDC4004615A0 /* Rswift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Rswift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4E4D6341E5FA48C007E0E39 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4EB27FB1DFA35A400BF0843 /* ModuleExports-GETracing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GETracing.swift"; path = "../GETracing/GETracing/ModuleExports-GETracing.swift"; sourceTree = SOURCE_ROOT; };
 		C4EB27FC1DFA35A400BF0843 /* ModuleExports-GEFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GEFoundation.swift"; path = "../GEFoundation/GEFoundation/ModuleExports-GEFoundation.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -141,6 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4E4D6351E5FA48C007E0E39 /* PromiseKit.framework in Frameworks */,
 				C4DA68321E58BDC4004615A0 /* Rswift.framework in Frameworks */,
 				C4CB79231E3398B600F89794 /* SwiftMessages.framework in Frameworks */,
 				C4CB79191E3173AE00F89794 /* GoogleToolboxForMac.framework in Frameworks */,
@@ -222,6 +225,7 @@
 		C4BE5AB61DA86D8D00E1734F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C4E4D6341E5FA48C007E0E39 /* PromiseKit.framework */,
 				C4DA68311E58BDC4004615A0 /* Rswift.framework */,
 				C4DA682C1E550A4B004615A0 /* Loggy.framework */,
 				C4CB79221E3398B600F89794 /* SwiftMessages.framework */,
