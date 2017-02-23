@@ -77,8 +77,7 @@ extension ItemsViewController : ItemsViewControllerLoadingImp {
 				let error = error!
 				self.presentErrorMessage(
 					String.localizedStringWithFormat(
-						"%@ %@",
-						NSLocalizedString("Failed to load more.", comment: ""),
+						NSLocalizedString("Failed to load more. %@", comment: ""),
 						(error as NSError).localizedDescription
 					)
 				)
