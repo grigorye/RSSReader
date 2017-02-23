@@ -269,9 +269,9 @@ class ItemsViewController : ContainerViewController {
 		_Self.adjustForNilIndexPathPassedToModelIdentifierForElement()
 		return Ignored()
 	}()
-	override public class func initialize() {
-		super.initialize()
-		_ = initializeOnce
+	required init?(coder aDecoder: NSCoder) {
+		_ = ItemsViewController.initializeOnce
+		super.init(coder: aDecoder)
 	}
 }
 //

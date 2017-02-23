@@ -318,9 +318,9 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 		_Self.adjustForNilIndexPathPassedToModelIdentifierForElement()
 		return Ignored()
 	}()
-	override public class func initialize() {
-		super.initialize()
-		_ = initializeOnce
+	required init?(coder aDecoder: NSCoder) {
+		_ = FoldersViewController.initializeOnce
+		super.init(coder: aDecoder)
 	}
 }
 
