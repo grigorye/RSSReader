@@ -39,7 +39,7 @@ private let zeroCounts = Counts(insertions: 0, deletions: 0, updates: 0)
 
 public class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate {
 	weak var tableView: UITableView?
-	var updateCell: ((UITableViewCell, atIndexPath: IndexPath)) -> Void
+	var updateCell: (UITableViewCell, IndexPath) -> Void
 	let rowAnimation: UITableViewRowAnimation = .none
 	private var counts = zeroCounts
 	// MARK: -
