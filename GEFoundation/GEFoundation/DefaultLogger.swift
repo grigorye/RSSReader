@@ -62,6 +62,11 @@ public func defaultLoggedTextWithThread(for record: LogRecord) -> String {
 	return textWithThread
 }
 
+// void rdar_os_log_object_with_type(void const *dso, os_log_t log, os_log_type_t type, id object);
+
+@available(iOS 10.0, macOS 10.12, watchOS 3.0, tvOS 10.0, *)
+@_silgen_name("rdar_os_log_object_with_type") private func rdar_os_log_object_with_type(_ dso: UnsafeRawPointer?, _ log: OSLog, _ type: OSLogType, _ object: AnyObject)
+
 public func defaultLogger(record: LogRecord) {
 	guard let defaultLogKind = defaults.defaultLogKind else { return }
 	switch DefaultLogKind(rawValue: defaultLogKind)! {
@@ -70,7 +75,7 @@ public func defaultLogger(record: LogRecord) {
 		let text = defaultLoggedText(for: record)
 		if #available(iOS 10.0, *), let location = record.location, case .dso(let dso) = location.moduleReference {
 			let bundle = Bundle(for: dso)!
-			rdar_os_log_object_with_type(dso, bundle.log, .default, text)
+			rdar_os_log_object_with_type(dso, bundle.log, .default, text as NSString)
 		} else {
 			fallthrough
 		}

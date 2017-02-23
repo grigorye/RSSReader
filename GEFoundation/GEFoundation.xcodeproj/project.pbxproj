@@ -34,7 +34,6 @@
 		C48CAA2A1DBD399100D6F40E /* AssociatedObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA291DBD399100D6F40E /* AssociatedObjects.swift */; };
 		C48CAA2D1DBD3A5000D6F40E /* OSLogRDAR28599032.h in Headers */ = {isa = PBXBuildFile; fileRef = C48CAA2B1DBD3A5000D6F40E /* OSLogRDAR28599032.h */; };
 		C48CAA2E1DBD3A5000D6F40E /* OSLogRDAR28599032.m in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA2C1DBD3A5000D6F40E /* OSLogRDAR28599032.m */; };
-		C48CAA301DBD3A8B00D6F40E /* Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = C48CAA2F1DBD3A8B00D6F40E /* Bridging-Header.h */; };
 		C48CAA321DBD3ABA00D6F40E /* Sugar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA311DBD3ABA00D6F40E /* Sugar.swift */; };
 		C48CAA361DBD492E00D6F40E /* Primitives.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA351DBD492E00D6F40E /* Primitives.swift */; };
 		C49FF1041DBB981300A86CC0 /* GEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF0FA1DBB981300A86CC0 /* GEFoundation.framework */; };
@@ -107,7 +106,6 @@
 		C48CAA291DBD399100D6F40E /* AssociatedObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssociatedObjects.swift; sourceTree = "<group>"; };
 		C48CAA2B1DBD3A5000D6F40E /* OSLogRDAR28599032.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSLogRDAR28599032.h; sourceTree = "<group>"; };
 		C48CAA2C1DBD3A5000D6F40E /* OSLogRDAR28599032.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSLogRDAR28599032.m; sourceTree = "<group>"; };
-		C48CAA2F1DBD3A8B00D6F40E /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		C48CAA311DBD3ABA00D6F40E /* Sugar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sugar.swift; sourceTree = "<group>"; };
 		C48CAA351DBD492E00D6F40E /* Primitives.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Primitives.swift; sourceTree = "<group>"; };
 		C49FF0FA1DBB981300A86CC0 /* GEFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GEFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,7 +194,6 @@
 				C4CB4BA41E2A560000C601BF /* NSLogRedirector.swift */,
 				C48CAA271DBD397100D6F40E /* DefaultLogger.swift */,
 				C48CAA311DBD3ABA00D6F40E /* Sugar.swift */,
-				C48CAA2F1DBD3A8B00D6F40E /* Bridging-Header.h */,
 				C49FF0FE1DBB981300A86CC0 /* Info.plist */,
 				C4EB27EF1DFA32C900BF0843 /* ModuleExports-GEFoundation.swift */,
 				C4EB27F01DFA32D900BF0843 /* ModuleExports-GETracing.swift */,
@@ -231,7 +228,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C48CAA2D1DBD3A5000D6F40E /* OSLogRDAR28599032.h in Headers */,
-				C48CAA301DBD3A8B00D6F40E /* Bridging-Header.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,7 +410,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.grigorye.GEFoundation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(TARGET_NAME)/Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -429,7 +424,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.grigorye.GEFoundation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(TARGET_NAME)/Bridging-Header.h";
 			};
 			name = Release;
 		};
