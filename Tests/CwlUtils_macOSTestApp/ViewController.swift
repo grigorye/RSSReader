@@ -27,6 +27,8 @@ func showAlert(error: Error) {
 
 class ViewController: NSViewController {
 
+	let b = NSButton()
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
