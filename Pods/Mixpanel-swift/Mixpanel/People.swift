@@ -24,6 +24,7 @@ open class People {
     var peopleQueue = Queue()
     var unidentifiedQueue = Queue()
     var distinctId: String? = nil
+    var delegate: FlushDelegate?
 
     init(apiToken: String, serialQueue: DispatchQueue) {
         self.apiToken = apiToken
@@ -65,6 +66,10 @@ open class People {
             }
             Persistence.archivePeople(self.peopleQueue, token: self.apiToken)
         }
+
+        #if APP_EXTENSION
+        delegate?.flush(completion: nil)
+        #endif // APP_EXTENSION
     }
 
     func addPeopleObject(_ r: InternalProperties) {
@@ -79,7 +84,7 @@ open class People {
     }
 
     private func deviceTokenDataToString(_ deviceToken: Data) -> String {
-        let tokenChars = unsafeBitCast((deviceToken as NSData).bytes, to: UnsafePointer<CChar>.self)
+        let tokenChars = (deviceToken as NSData).bytes.assumingMemoryBound(to: CChar.self)
         var tokenString = ""
 
         for i in 0..<deviceToken.count {

@@ -49,7 +49,7 @@ class Presenter: NSObject, UIGestureRecognizerDelegate {
     let config: SwiftMessages.Config
     let view: UIView
     weak var delegate: PresenterDelegate?
-    let maskingView = PassthroughView()
+    let maskingView = MaskingView()
     var presentationContext = PresentationContext.viewController(Weak<UIViewController>(value: nil))
     let panRecognizer: UIPanGestureRecognizer
     var translationConstraint: NSLayoutConstraint! = nil
@@ -74,15 +74,34 @@ class Presenter: NSObject, UIGestureRecognizerDelegate {
         let duration: TimeInterval?
         switch self.config.duration {
         case .automatic:
-            duration = 2.0
+            duration = 2
         case .seconds(let seconds):
             duration = seconds
-        case .forever:
+        case .forever, .indefinite:
             duration = nil
         }
         return duration
     }
-    
+
+    var showDate: Date?
+
+    private var interactivelyHidden = false;
+
+    var delayShow: TimeInterval? {
+        if case .indefinite(let opts) = config.duration { return opts.delay }
+        return nil
+    }
+
+    /// Returns the required delay for hiding based on time shown
+    var delayHide: TimeInterval? {
+        if interactivelyHidden { return 0 }
+        if case .indefinite(let opts) = config.duration, let showDate = showDate {
+            let timeIntervalShown = -showDate.timeIntervalSinceNow
+            return max(0, opts.minimum - timeIntervalShown)
+        }
+        return nil
+    }
+
     func show(completion: @escaping (_ completed: Bool) -> Void) throws {
         try presentationContext = getPresentationContext()
         install()
@@ -90,9 +109,26 @@ class Presenter: NSObject, UIGestureRecognizerDelegate {
         showAnimation() { completed in
             completion(completed)
             if completed {
+                if self.config.dimMode.modal {
+                    self.showAccessibilityFocus()
+                } else {
+                    self.showAccessibilityAnnouncement()
+                }
                 self.config.eventListeners.forEach { $0(.didShow) }
             }
         }
+    }
+
+    private func showAccessibilityAnnouncement() {
+        guard let accessibleMessage = view as? AccessibleMessage,
+            let message = accessibleMessage.accessibilityMessage else { return }
+        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, message)
+    }
+
+    private func showAccessibilityFocus() {
+        guard let accessibleMessage = view as? AccessibleMessage,
+            let focus = accessibleMessage.accessibilityElement ?? accessibleMessage.additonalAccessibilityElements?.first else { return }
+        UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, focus)
     }
     
     func getPresentationContext() throws -> PresentationContext {
@@ -128,7 +164,7 @@ class Presenter: NSObject, UIGestureRecognizerDelegate {
     func install() {
         guard let containerView = presentationContext.viewValue() else { return }
         if let windowViewController = presentationContext.viewControllerValue() as? WindowViewController {
-            windowViewController.install(becomeKey: config.becomeKeyWindow)
+            windowViewController.install(becomeKey: becomeKeyWindow)
         }
         do {
             maskingView.translatesAutoresizingMaskIntoConstraints = false
@@ -188,32 +224,70 @@ class Presenter: NSObject, UIGestureRecognizerDelegate {
         if config.interactiveHide {
             view.addGestureRecognizer(panRecognizer)
         }
-        do {
-            
-            func setupInteractive(_ interactive: Bool) {
-                if interactive {
-                    maskingView.tappedHander = { [weak self] in
-                        guard let strongSelf = self else { return }
-                        self?.delegate?.hide(presenter: strongSelf)
-                    }
-                } else {
-                    // There's no action to take, but the presence of
-                    // a tap handler prevents interaction with underlying views.
-                    maskingView.tappedHander = { }
-                }
+        installInteractive()
+        installAccessibility()
+    }
+
+    private func installInteractive() {
+        guard config.dimMode.modal else { return }
+        if config.dimMode.interactive {
+            maskingView.tappedHander = { [weak self] in
+                guard let strongSelf = self else { return }
+                strongSelf.interactivelyHidden = true
+                strongSelf.delegate?.hide(presenter: strongSelf)
             }
-            
-            switch config.dimMode {
-            case .none:
-                break
-            case .gray(let interactive):
-                setupInteractive(interactive)
-            case .color(_, let interactive):
-                setupInteractive(interactive)
-            }
+        } else {
+            // There's no action to take, but the presence of
+            // a tap handler prevents interaction with underlying views.
+            maskingView.tappedHander = { }
         }
     }
-    
+
+    func installAccessibility() {
+        var elements: [NSObject] = []
+        if let accessibleMessage = view as? AccessibleMessage {
+            if let message = accessibleMessage.accessibilityMessage {
+                let element = accessibleMessage.accessibilityElement ?? view
+                element.isAccessibilityElement = true
+                if element.accessibilityLabel == nil {
+                    element.accessibilityLabel = message
+                }
+                elements.append(element)
+            }
+            if let additional = accessibleMessage.additonalAccessibilityElements {
+                elements += additional
+            }
+        }
+        if config.dimMode.interactive {
+            let dismissView = UIView(frame: maskingView.bounds)
+            dismissView.translatesAutoresizingMaskIntoConstraints = true
+            dismissView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            maskingView.addSubview(dismissView)
+            maskingView.sendSubview(toBack: dismissView)
+            dismissView.isUserInteractionEnabled = false
+            dismissView.isAccessibilityElement = true
+            dismissView.accessibilityLabel = config.dimModeAccessibilityLabel
+            dismissView.accessibilityTraits = UIAccessibilityTraitButton
+            elements.append(dismissView)
+        }
+        if config.dimMode.modal {
+            maskingView.accessibilityViewIsModal = true
+        }
+        maskingView.accessibleElements = elements
+    }
+
+    private var becomeKeyWindow: Bool {
+        if config.becomeKeyWindow == .some(true) { return true }
+        switch config.dimMode {
+        case .gray, .color:
+            // Should become key window in modal presentation style
+            // for proper VoiceOver handling.
+            return true
+        case .none:
+            return false
+        }
+    }
+
     private func viewInterferesWithStatusBar(_ view: UIView) -> Bool {
         guard let window = view.window else { return false }
         let statusBarFrame = UIApplication.shared.statusBarFrame
@@ -277,7 +351,10 @@ class Presenter: NSObject, UIGestureRecognizerDelegate {
         }
     }
 
+    var isHiding = false
+
     func hide(completion: @escaping (_ completed: Bool) -> Void) {
+        isHiding = true
         self.config.eventListeners.forEach { $0(.willHide) }
         switch config.presentationStyle {
         case .top, .bottom:
@@ -311,7 +388,7 @@ class Presenter: NSObject, UIGestureRecognizerDelegate {
 //                completion(completed: completed)
 //            })
         }
-        
+
         func undim() {
             UIView.animate(withDuration: 0.2, animations: {
                 self.maskingView.backgroundColor = UIColor.clear
@@ -373,6 +450,7 @@ class Presenter: NSObject, UIGestureRecognizerDelegate {
             panTranslationY = translation.y
         case .ended, .cancelled:
             if closeSpeed > 750.0 || closePercent > 0.33 {
+                interactivelyHidden = true
                 delegate?.hide(presenter: self)
             } else {
                 closing = false
