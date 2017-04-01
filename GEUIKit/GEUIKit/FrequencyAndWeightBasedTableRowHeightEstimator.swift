@@ -13,7 +13,8 @@ import UIKit
 
 public protocol FrequencyAndWeightBasedTableRowHeightEstimatorDataSource : class {
 	associatedtype Weight: Hashable
-	func weightForHeightDefiningValue(atIndexPath indexPath: IndexPath) -> Weight
+	func weightForHeightDefiningValue(at indexPath: IndexPath) -> Weight
+	func weightForHeightDefiningValue(for cell: UITableViewCell) -> Weight
 }
 
 public struct FrequencyAndWeightBasedTableRowHeightEstimator<DataSource: FrequencyAndWeightBasedTableRowHeightEstimatorDataSource> {
@@ -32,8 +33,8 @@ public struct FrequencyAndWeightBasedTableRowHeightEstimator<DataSource: Frequen
 		}
 		return heightAndMaximumFrequency.0
 	}
-	public mutating func addRowHeight(_ height: CGFloat, forIndexPath indexPath: IndexPath) {
-		let weight = dataSource.weightForHeightDefiningValue(atIndexPath: indexPath)
+	public mutating func addRowHeight(_ height: CGFloat, for cell: UITableViewCell) {
+		let weight = dataSource.weightForHeightDefiningValue(for: cell)
 		var frequencyForHeights = frequencyForHeightsByHeightDefiningValueWeight[weight] ?? [:]
 		frequencyForHeights[height] = (frequencyForHeights[height] ?? 0) + 1
 		frequencyForHeightsByHeightDefiningValueWeight[weight] = frequencyForHeights
