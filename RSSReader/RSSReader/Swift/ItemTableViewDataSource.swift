@@ -288,7 +288,7 @@ extension ItemTableViewDataSource: FrequencyAndWeightBasedTableRowHeightEstimato
 		let length = item.title.utf16.count
 		return length
 	}
-	func weightForHeightDefiningValue(atIndexPath indexPath: IndexPath) -> Int {
+	func weightForHeightDefiningValue(at indexPath: IndexPath) -> Int {
 		let item = object(at: indexPath)
 		return weight(for: item)
 	}
