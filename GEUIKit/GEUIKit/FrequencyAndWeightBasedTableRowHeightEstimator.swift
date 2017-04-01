@@ -25,7 +25,7 @@ public struct FrequencyAndWeightBasedTableRowHeightEstimator<DataSource: Frequen
 		guard 0 < frequencyForHeightsByHeightDefiningValueWeight.count else {
 			return nil
 		}
-		let weight = dataSource.weightForHeightDefiningValue(atIndexPath: indexPath)
+		let weight = dataSource.weightForHeightDefiningValue(at: indexPath)
 		let frequencyForHeights = frequencyForHeightsByHeightDefiningValueWeight[weight] ?? [:]
 		let heightAndMaximumFrequency = frequencyForHeights.reduce((0, 0)) {$0.1 > $1.1 ? $0 : $1}
 		guard 0 < heightAndMaximumFrequency.1 else {
