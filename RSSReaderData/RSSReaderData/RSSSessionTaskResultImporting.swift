@@ -18,7 +18,7 @@ private var batchSavingEnabled: Bool {
 	return defaults.batchSavingEnabled
 }
 
-func itemsImportedFromStreamJson(_ json: Json, loadDate: Date, container: Container, excludedCategory: Folder?, managedObjectContext: NSManagedObjectContext) throws -> [Item] {
+func itemsImportedFromStreamJson(_ json: Json, loadDate: Date, container: Container, excludedCategory: Folder?, managedObjectContext: NSManagedObjectContext) throws -> (new: [Item], existing: [Item]) {
 	let subscription = container as? Subscription
 	let itemJsons = json["items"] as! [Json]
 	let categoryIDs = Array(try itemJsons.reduce(Set<String>()) {
@@ -27,24 +27,24 @@ func itemsImportedFromStreamJson(_ json: Json, loadDate: Date, container: Contai
 		}
 		return $0.union(categoryIDs)
 	})
-	let categories: [Folder] = try insertedObjectsUnlessFetchedWithID(Folder.self, ids: Array(categoryIDs), managedObjectContext: managedObjectContext)
+	let (newCategories, existingCategories): ([Folder], [Folder]) = try insertedObjectsUnlessFetchedWithID(Folder.self, ids: Array(categoryIDs), managedObjectContext: managedObjectContext)
+	let categories = newCategories + existingCategories
 	let categoriesByID: [String : Folder] = categories.reduce([:]) {
 		var acc = $0; acc[$1.streamID] = $1; return acc
 	}
-	let items = try importItemsFromJson(json, type: Item.self, elementName: "items", managedObjectContext: managedObjectContext) { (item, itemJson) in
+	let (newItems, existingItems) = try importItemsFromJson(json, type: Item.self, elementName: "items", managedObjectContext: managedObjectContext) { (item, itemJson) in
 		try item.importFromJson(itemJson, subscription: subscription, categoriesByID: categoriesByID)
 		if !batchSavingEnabled {
 			try managedObjectContext.save()
 		}
 	}
-	if let excludedCategory = excludedCategory {
-		let lastItem = items.last
+	if let excludedCategory = excludedCategory, let lastExistingItem = existingItems.last {
 		let fetchRequest = Item.fetchRequestForEntity() … {
+			typealias E = Item
 			$0.predicate = NSPredicate(
-				format: "(loadDate != %@) && (date < %@) && (subscription == %@) && SUBQUERY(\(#keyPath(Item.categories)), $x, $x.\(#keyPath(Folder.streamID)) ENDSWITH %@).@count == 0",
+				format: "(\(#keyPath(E.date)) < %@) && (\(#keyPath(E.subscription)) == %@) && SUBQUERY(\(#keyPath(E.categories)), $x, $x.\(#keyPath(Folder.streamID)) ENDSWITH %@).@count == 0",
 				argumentArray: [
-					loadDate,
-					lastItem?.date ?? NSDate.distantFuture,
+					lastExistingItem.date,
 					container,
 					excludedCategory.streamID
 				]
@@ -58,10 +58,10 @@ func itemsImportedFromStreamJson(_ json: Json, loadDate: Date, container: Contai
 	if !batchSavingEnabled {
 		assert(!managedObjectContext.hasChanges)
 	}
-	return items
+	return (new: newItems, existing: existingItems)
 }
 
-func continuationAndItemsImportedFromStreamData(_ data: Data, loadDate: Date, container: Container, excludedCategory: Folder?, managedObjectContext: NSManagedObjectContext) throws -> (continuation: String?, items: [Item]) {
+func continuationAndItemsImportedFromStreamData(_ data: Data, loadDate: Date, container: Container, excludedCategory: Folder?, managedObjectContext: NSManagedObjectContext) throws -> (continuation: String?, (new: [Item], existing: [Item])) {
 	let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions())
 	guard let json = jsonObject as? Json else {
 		throw RSSSessionError.jsonObjectIsNotDictionary(jsonObject: jsonObject)
@@ -111,7 +111,7 @@ func readFolderImportedFromUserInfoData(_ data: Data, managedObjectContext: NSMa
 	return try insertedObjectUnlessFetchedWithID(Folder.self, id: id, managedObjectContext: managedObjectContext)
 }
 
-func tagsImportedFromJsonData(_ data: Data, managedObjectContext: NSManagedObjectContext) throws -> [Folder] {
+func tagsImportedFromJsonData(_ data: Data, managedObjectContext: NSManagedObjectContext) throws -> (new: [Folder], existing: [Folder]) {
 	let tags = try importItemsFromJsonData(data, type: Folder.self, elementName: "tags", managedObjectContext: (managedObjectContext)) { (tag, json) in
 		assert(tag.managedObjectContext == managedObjectContext)
 		if _1 {
@@ -132,7 +132,7 @@ func streamPreferencesImportedFromJsonData(_ data: Data, managedObjectContext: N
 	try Container.importStreamPreferencesJson(streamprefsJson, managedObjectContext: managedObjectContext)
 }
 
-func importedSubscriptionsFromJsonData(_ data: Data, managedObjectContext: NSManagedObjectContext) throws -> [Subscription] {
+func importedSubscriptionsFromJsonData(_ data: Data, managedObjectContext: NSManagedObjectContext) throws -> (new: [Subscription], existing: [Subscription]) {
 	let subscriptions = try importItemsFromJsonData(data, type: Subscription.self, elementName: "subscriptions", managedObjectContext: managedObjectContext) { (subscription, json) in
 		try subscription.importFromJson(json)
 	}
