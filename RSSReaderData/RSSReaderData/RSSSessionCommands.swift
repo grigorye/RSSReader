@@ -54,9 +54,10 @@ extension PersistentDataUpdateCommand where Self: RelativeStringBasedDataUpdateC
 	var httpMethod: String? { return "GET" }
 	var request: URLRequest {
 		let url = URL(string: requestRelativeString, relativeTo: baseURL)!
-		var $ = URLRequest(url: url)
-		$.httpMethod = self.httpMethod
-		return $
+		return URLRequest(url: url) … {
+			$0.httpMethod = self.httpMethod
+			()
+		}
 	}
 }
 
