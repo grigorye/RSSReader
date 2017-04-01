@@ -35,12 +35,10 @@ public protocol ManagedIdentifiable: Managed, Identifiable {
 }
 
 func objectFetchedWithPredicate<T: Managed> (_ cls: T.Type, predicate: NSPredicate, managedObjectContext: NSManagedObjectContext) -> T? where T: NSManagedObject, T: NSFetchRequestResult {
-	let request: NSFetchRequest<T> = {
-		let $ = T.fetchRequestForEntity()
-		$.predicate = predicate
-		$.fetchLimit = 1
-		return $
-	}()
+	let request = T.fetchRequestForEntity() … {
+		$0.predicate = predicate
+		$0.fetchLimit = 1
+	}
 	let objects = try! managedObjectContext.fetch(request)
 	let object = objects.last
 	if let object = object {
