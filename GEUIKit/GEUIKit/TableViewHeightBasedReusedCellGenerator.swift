@@ -61,7 +61,7 @@ public struct TableViewHeightBasedReusedCellGenerator<DataSource: TableViewHeigh
 		return reuseIdentifiersForHeightCachingCells[indexInReusedHeights]
 	}
 	
-	public mutating func addRowHeight(_ height: CGFloat, forCell cell: UITableViewCell, atIndexPath indexPath: IndexPath) {
+	public mutating func addRowHeight(_ height: CGFloat, for cell: UITableViewCell) {
 		guard !reusedHeightsSet.contains(height) else {
 			return
 		}
