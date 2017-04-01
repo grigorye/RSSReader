@@ -42,7 +42,7 @@ func itemsImportedFromStreamJson(_ json: Json, loadDate: Date, container: Contai
 		let fetchRequest = Item.fetchRequestForEntity() … {
 			typealias E = Item
 			$0.predicate = NSPredicate(
-				format: "(\(#keyPath(E.date)) < %@) && (\(#keyPath(E.subscription)) == %@) && SUBQUERY(\(#keyPath(E.categories)), $x, $x.\(#keyPath(Folder.streamID)) ENDSWITH %@).@count == 0",
+				format: "(\(#keyPath(E.date)) < %@) && (\(#keyPath(E.subscription)) == %@) && SUBQUERY(\(#keyPath(E.categoryItems.category)), $x, $x.\(#keyPath(Folder.streamID)) ENDSWITH %@).@count == 0",
 				argumentArray: [
 					lastExistingItem.date,
 					container,
