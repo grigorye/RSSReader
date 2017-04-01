@@ -48,6 +48,7 @@ extension ItemsViewController {
 			return
 		}
 		let rowHeight = tableView.rectForRow(at: indexPath).height
-		dataSource.addRowHeight(rowHeight, for: cell, at: indexPath)
+		dataSource.addRowHeight(rowHeight, for: cell)
 	}
+	
 }

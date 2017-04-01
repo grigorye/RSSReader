@@ -270,23 +270,30 @@ extension ItemTableViewDataSource : TableViewHeightBasedReusedCellGeneratorDataS
 		cachedVariableHeights[cacheKey] = height
 		return height
 	}
-	func addRowHeight(_ rowHeight: CGFloat, for cell: UITableViewCell, at indexPath: IndexPath) {
+	func addRowHeight(_ rowHeight: CGFloat, for cell: UITableViewCell) {
 		if nil == heightSampleLabel {
 			let viewWithVariableHeight = viewWithVariableHeightForCell(cell)
 			heightSampleLabel = NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: viewWithVariableHeight)) as! UILabel
 		}
 		if cell.reuseIdentifier! == reusedCellGenerator.heightAgnosticCellReuseIdentifier {
-			reusedCellGenerator?.addRowHeight(rowHeight, forCell: cell, atIndexPath: indexPath)
+			reusedCellGenerator?.addRowHeight(rowHeight, for: cell)
 		}
-		rowHeightEstimator?.addRowHeight(rowHeight, forIndexPath: indexPath)
+		rowHeightEstimator?.addRowHeight(rowHeight, for: cell)
 	}
 }
 
 // MARK: - FrequencyAndWeightBasedTableRowHeightEstimatorDataSource
 extension ItemTableViewDataSource: FrequencyAndWeightBasedTableRowHeightEstimatorDataSource {
-	func weightForHeightDefiningValue(atIndexPath indexPath: IndexPath) -> Int {
-		let item = object(at: indexPath)
+	private func weight(for item: Item) -> Int {
 		let length = item.title.utf16.count
 		return length
+	}
+	func weightForHeightDefiningValue(atIndexPath indexPath: IndexPath) -> Int {
+		let item = object(at: indexPath)
+		return weight(for: item)
+	}
+	func weightForHeightDefiningValue(for cell: UITableViewCell) -> Int {
+		let item = (cell as! ItemTableViewCell).item!
+		return weight(for: item)
 	}
 }
