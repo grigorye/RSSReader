@@ -25,11 +25,11 @@ class ItemsViewController : ContainerViewController {
 	public var dataSource: ItemTableViewDataSource!
 	public dynamic var loadController: ContainerLoadController!
 	func bindLoadController() -> Handler {
-		let $ = ContainerLoadController(session: rssSession!, container: self.container, unreadOnly: self.showUnreadOnly) … {
+		let loadController = ContainerLoadController(session: rssSession!, container: self.container, unreadOnly: self.showUnreadOnly) … {
 			$0.numberOfItemsToLoadInitially = defaults.numberOfItemsToLoadInitially
 			$0.numberOfItemsToLoadLater = defaults.numberOfItemsToLoadLater
 		}
-		self.loadController = $
+		self.loadController = loadController
 		self.loadController.bind()
 		return {
 			self.loadController.unbind()
@@ -59,7 +59,9 @@ class ItemsViewController : ContainerViewController {
 	// MARK: -
 	func reloadViewForNewConfiguration() {
 		navigationItem.rightBarButtonItems = regeneratedRightBarButtonItems()
+		self.unbind()
 		self.loadController = nil
+		self.bind()
 		configureDataSource()
 		tableView.reloadData()
 		loadMoreIfNecessary()
@@ -111,14 +113,19 @@ class ItemsViewController : ContainerViewController {
 	
 	// MARK: -
 	
-	func bind() -> Handler {
-		var scheduledForUnbind = ScheduledHandlers() … {
+	var scheduledForUnbind = ScheduledHandlers()
+	
+	func bind() {
+		precondition(!scheduledForUnbind.hasHandlers)
+		scheduledForUnbind = ScheduledHandlers() … {
 			$0 += [self.bindLoadController()]
 			$0 += [self.bindLoadDate()]
 			$0 += [self.bindTitle()]
-			()
 		}
-		return { scheduledForUnbind.perform() }
+	}
+	
+	func unbind() {
+		scheduledForUnbind.perform()
 	}
 	
 	// MARK: -
@@ -134,7 +141,8 @@ class ItemsViewController : ContainerViewController {
 			return
 		}
 		
-		scheduledForViewDidDisappear += [self.bind()]
+		self.bind()
+		scheduledForViewDidDisappear += [{self.unbind()}]
 	}
 	private var scheduledForViewWillAppear = ScheduledHandlers()
 	
