@@ -191,7 +191,7 @@ struct PushTags : PersistentDataUpdateCommand, MostCommonDataUpdateCommand {
 }
 
 public struct StreamContents : PersistentDataUpdateCommand, AuthenticatedDataUpdateCommand, RelativeStringBasedDataUpdateCommand  {
-	public typealias ResultType = (NSManagedObjectContext, (continuation: String?, items: [Item]))
+	public typealias ResultType = (NSManagedObjectContext, (continuation: String?, items: (new: [Item], existing: [Item])))
 	let excludedCategory: Folder?, container: Container, continuation: String?, count: Int, loadDate: Date
 	var requestRelativeString: String {
 		let querySuffix = URLQuerySuffixFromComponents([String]() … {
