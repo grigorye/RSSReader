@@ -21,7 +21,11 @@ private func performAndDropEachReversed(_ array: inout [Handler]) {
 
 public struct ScheduledHandlers {
 
-	var handlers = [Handler]()
+	private var handlers = [Handler]()
+	
+	public var hasHandlers: Bool {
+		return 0 < handlers.count
+	}
 	
 	public mutating func perform() {
 		performAndDropEachReversed(&handlers)
