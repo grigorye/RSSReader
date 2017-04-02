@@ -2,6 +2,8 @@ fastlane_version "2.23.0"
 
 default_platform :ios
 
+skip_docs
+
 platform :ios do
 
   product_name = "RSSReader"
