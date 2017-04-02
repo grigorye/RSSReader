@@ -21,12 +21,17 @@ func crashlyticsLogger(record: LogRecord) {
 	CLSLogv("%@", getVaList([text]))
 }
 
+func crashlyticsErrorTracker(error: Error) {
+	Crashlytics.sharedInstance().recordError(error)
+}
+	
 import var GETracing.loggers
 import Fabric
 
 let crashlyticsInitializer: Void = {
 	Fabric.with([Crashlytics()])
 	loggers.append(crashlyticsLogger)
+	errorTrackers.append(crashlyticsErrorTracker)
 }()
 
 #endif
