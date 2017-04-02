@@ -208,3 +208,24 @@ public func loadPersistentStores(completionHandler: @escaping (Error?) -> ()) {
 		completionHandler(nil)
 	}
 }
+
+public func erasePersistentStores() throws {
+	guard #available(iOS 10.0, *), defaults.persistentContainerEnabled else {
+		assert(false)
+		return
+	}
+	for storeDescription in persistentContainer.persistentStoreDescriptions {
+		let fileManager = FileManager()
+		// ".RSSReader.sqlite.migrationdestination_41b5a6b5c6e848c462a8480cd24caef3"
+		// ".RSSReader.sqlite.migrationdestination_41b5a6b5c6e848c462a8480cd24caef3-shm"
+		// ".RSSReader.sqlite.migrationdestination_41b5a6b5c6e848c462a8480cd24caef3-wal"
+		// "RSSReader.sqlite"
+		// "RSSReader.sqlite-shm"
+		// "RSSReader.sqlite-wal"
+		let storeBasenameURL = storeDescription.url!.deletingPathExtension()
+		for pathExtension in ["sqlite", "sqlite-shm", "sqlite-wal"] {
+			let storeFileURL = storeBasenameURL.appendingPathExtension(pathExtension)
+			try fileManager.removeItem(at: storeFileURL)
+		}
+	}
+}
