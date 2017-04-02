@@ -18,6 +18,8 @@ import FBAllocationTracker
 import FBMemoryProfiler
 import UIKit
 
+let triggeredError = NSError(domain: "com.grigorye.triggered", code: 1)
+
 extension KVOCompliantUserDefaults {
 	@NSManaged public var memoryProfilingEnabled: Bool
 }
@@ -36,6 +38,9 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 	}
 	@IBAction public func forceCrash(_ sender: AnyObject?) {
 		GEUIKit.forceCrash()
+	}
+	@IBAction public func triggerError(_ sender: AnyObject?) {
+		trackError(triggeredError)
 	}
 	// MARK: -
 	open func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
