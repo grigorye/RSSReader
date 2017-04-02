@@ -20,3 +20,15 @@ public let analyticsEnabled: Bool = {
 extension KVOCompliantUserDefaults {
 	@NSManaged var analyticsEnabled: Bool
 }
+
+private func defaultErrorTracker(error: Error) {
+	_ = $(error)
+}
+
+var errorTrackers: [(Error) -> ()] = [defaultErrorTracker]
+
+public func trackError(_ error: Error) {
+	for errorTracker in errorTrackers {
+		errorTracker(error)
+	}
+}
