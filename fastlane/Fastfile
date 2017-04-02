@@ -23,7 +23,6 @@ platform :ios do
       output_name: versioned_product_name,
       archive_path: archive_path,
       configuration: "Release",
-      clean: true,
       export_method: export_method,
       buildlog_path: build_dir
     )
