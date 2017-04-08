@@ -22,14 +22,6 @@ internal func …<T: AnyObject>(obj: T, initialize: (T) throws -> Void) rethrows
 	return try with(obj, initialize)
 }
 
-@discardableResult
-internal func …<T: AnyObject>(obj: T?, initialize: (T?) throws -> Void) rethrows -> T? {
-	guard let obj = obj else {
-		return nil
-	}
-	return try with(obj, initialize)
-}
-
 // MARK: -
 
 import struct Foundation.URLRequest
