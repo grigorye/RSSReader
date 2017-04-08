@@ -1,0 +1,486 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C408C6631DFC9C5C00AAA8FF /* ErrorRecovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C408C6621DFC9C5C00AAA8FF /* ErrorRecovery.swift */; };
+		C4270BF81DBD4FBD00FA3A0A /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BF71DBD4FBD00FA3A0A /* GETracing.framework */; };
+		C48635E41DD6B52600CA359B /* Primitives.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48CAA351DBD492E00D6F40E /* Primitives.swift */; };
+		C48635E51DD6B52600CA359B /* ObjCPropertyInfo.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48CAA251DBD33BE00D6F40E /* ObjCPropertyInfo.swift */; };
+		C48635E61DD6B52600CA359B /* KVOCompliantUserDefaults.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48CAA211DBD318700D6F40E /* KVOCompliantUserDefaults.swift */; };
+		C48635E71DD6B52600CA359B /* ObjCEncode.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48CAA1B1DBC26F100D6F40E /* ObjCEncode.swift */; };
+		C48635E81DD6B52600CA359B /* KVOBinding.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF19E1DBB9FF400A86CC0 /* KVOBinding.swift */; };
+		C48635E91DD6B52600CA359B /* ObjectAndKeyPath.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1A01DBBA01100A86CC0 /* ObjectAndKeyPath.swift */; };
+		C48635EA1DD6B52600CA359B /* PropertyCaching.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1821DBB99BE00A86CC0 /* PropertyCaching.swift */; };
+		C48635EB1DD6B52600CA359B /* GenericExtensions.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1801DBB999E00A86CC0 /* GenericExtensions.swift */; };
+		C48635EC1DD6B52600CA359B /* AppVersion.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF17E1DBB998500A86CC0 /* AppVersion.swift */; };
+		C48635ED1DD6B52600CA359B /* GenericURLSessionExtensions.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1741DBB996D00A86CC0 /* GenericURLSessionExtensions.swift */; };
+		C48635EE1DD6B52600CA359B /* EncodedUserDefaults.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1751DBB996D00A86CC0 /* EncodedUserDefaults.swift */; };
+		C48635EF1DD6B52600CA359B /* ProgressEnabledURLSessionTaskGenerator.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1761DBB996D00A86CC0 /* ProgressEnabledURLSessionTaskGenerator.swift */; };
+		C48635F01DD6B52600CA359B /* URLSessionTaskGeneratorErrorObjCBridging.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1771DBB996D00A86CC0 /* URLSessionTaskGeneratorErrorObjCBridging.swift */; };
+		C48635F11DD6B52600CA359B /* DefaultsInSettingsPlist.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1781DBB996D00A86CC0 /* DefaultsInSettingsPlist.swift */; };
+		C48635F21DD6B52600CA359B /* AssociatedObjects.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48CAA291DBD399100D6F40E /* AssociatedObjects.swift */; };
+		C48635F41DD6B52600CA359B /* DefaultLogger.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48CAA271DBD397100D6F40E /* DefaultLogger.swift */; };
+		C48635F51DD6B52600CA359B /* Sugar.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48CAA311DBD3ABA00D6F40E /* Sugar.swift */; };
+		C48CAA1C1DBC26F100D6F40E /* ObjCEncode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA1B1DBC26F100D6F40E /* ObjCEncode.swift */; };
+		C48CAA221DBD318700D6F40E /* KVOCompliantUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA211DBD318700D6F40E /* KVOCompliantUserDefaults.swift */; };
+		C48CAA241DBD319300D6F40E /* KVOCompliantUserDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA231DBD319300D6F40E /* KVOCompliantUserDefaultsTests.swift */; };
+		C48CAA261DBD33BE00D6F40E /* ObjCPropertyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA251DBD33BE00D6F40E /* ObjCPropertyInfo.swift */; };
+		C48CAA281DBD397100D6F40E /* DefaultLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA271DBD397100D6F40E /* DefaultLogger.swift */; };
+		C48CAA2A1DBD399100D6F40E /* AssociatedObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA291DBD399100D6F40E /* AssociatedObjects.swift */; };
+		C48CAA2D1DBD3A5000D6F40E /* OSLogRDAR28599032.h in Headers */ = {isa = PBXBuildFile; fileRef = C48CAA2B1DBD3A5000D6F40E /* OSLogRDAR28599032.h */; };
+		C48CAA2E1DBD3A5000D6F40E /* OSLogRDAR28599032.m in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA2C1DBD3A5000D6F40E /* OSLogRDAR28599032.m */; };
+		C48CAA321DBD3ABA00D6F40E /* Sugar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA311DBD3ABA00D6F40E /* Sugar.swift */; };
+		C48CAA361DBD492E00D6F40E /* Primitives.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA351DBD492E00D6F40E /* Primitives.swift */; };
+		C49FF1041DBB981300A86CC0 /* GEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF0FA1DBB981300A86CC0 /* GEFoundation.framework */; };
+		C49FF1091DBB981300A86CC0 /* GEFoundationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF1081DBB981300A86CC0 /* GEFoundationTests.swift */; };
+		C49FF1791DBB996D00A86CC0 /* GenericURLSessionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF1741DBB996D00A86CC0 /* GenericURLSessionExtensions.swift */; };
+		C49FF17A1DBB996D00A86CC0 /* EncodedUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF1751DBB996D00A86CC0 /* EncodedUserDefaults.swift */; };
+		C49FF17B1DBB996D00A86CC0 /* ProgressEnabledURLSessionTaskGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF1761DBB996D00A86CC0 /* ProgressEnabledURLSessionTaskGenerator.swift */; };
+		C49FF17C1DBB996D00A86CC0 /* URLSessionTaskGeneratorErrorObjCBridging.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF1771DBB996D00A86CC0 /* URLSessionTaskGeneratorErrorObjCBridging.swift */; };
+		C49FF17D1DBB996D00A86CC0 /* DefaultsInSettingsPlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF1781DBB996D00A86CC0 /* DefaultsInSettingsPlist.swift */; };
+		C49FF17F1DBB998500A86CC0 /* AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF17E1DBB998500A86CC0 /* AppVersion.swift */; };
+		C49FF1811DBB999E00A86CC0 /* GenericExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF1801DBB999E00A86CC0 /* GenericExtensions.swift */; };
+		C49FF1831DBB99BE00A86CC0 /* PropertyCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF1821DBB99BE00A86CC0 /* PropertyCaching.swift */; };
+		C49FF18B1DBB9B0900A86CC0 /* URLSessionTaskGeneratorErrorObjCBridgingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF18A1DBB9B0900A86CC0 /* URLSessionTaskGeneratorErrorObjCBridgingTests.swift */; };
+		C49FF1931DBB9D4000A86CC0 /* GEShared.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C49FF1921DBB9D4000A86CC0 /* GEShared.xcconfig */; };
+		C49FF19F1DBB9FF400A86CC0 /* KVOBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF19E1DBB9FF400A86CC0 /* KVOBinding.swift */; };
+		C49FF1A11DBBA01100A86CC0 /* ObjectAndKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF1A01DBBA01100A86CC0 /* ObjectAndKeyPath.swift */; };
+		C4CB4BA51E2A560000C601BF /* NSLogRedirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CB4BA41E2A560000C601BF /* NSLogRedirector.swift */; };
+		C4EB27F11DFA32D900BF0843 /* ModuleExports-GETracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27F01DFA32D900BF0843 /* ModuleExports-GETracing.swift */; };
+		C4EB27F21DFA32F300BF0843 /* ModuleExports-GEFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27EF1DFA32C900BF0843 /* ModuleExports-GEFoundation.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C49FF1051DBB981300A86CC0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C49FF0F11DBB981300A86CC0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C49FF0F91DBB981300A86CC0;
+			remoteInfo = GEFoundation;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C48635E31DD6B4DF00CA359B /* Embed Sources */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Sources;
+			dstSubfolderSpec = 7;
+			files = (
+				C48635E41DD6B52600CA359B /* Primitives.swift in Embed Sources */,
+				C48635E51DD6B52600CA359B /* ObjCPropertyInfo.swift in Embed Sources */,
+				C48635E61DD6B52600CA359B /* KVOCompliantUserDefaults.swift in Embed Sources */,
+				C48635E71DD6B52600CA359B /* ObjCEncode.swift in Embed Sources */,
+				C48635E81DD6B52600CA359B /* KVOBinding.swift in Embed Sources */,
+				C48635E91DD6B52600CA359B /* ObjectAndKeyPath.swift in Embed Sources */,
+				C48635EA1DD6B52600CA359B /* PropertyCaching.swift in Embed Sources */,
+				C48635EB1DD6B52600CA359B /* GenericExtensions.swift in Embed Sources */,
+				C48635EC1DD6B52600CA359B /* AppVersion.swift in Embed Sources */,
+				C48635ED1DD6B52600CA359B /* GenericURLSessionExtensions.swift in Embed Sources */,
+				C48635EE1DD6B52600CA359B /* EncodedUserDefaults.swift in Embed Sources */,
+				C48635EF1DD6B52600CA359B /* ProgressEnabledURLSessionTaskGenerator.swift in Embed Sources */,
+				C48635F01DD6B52600CA359B /* URLSessionTaskGeneratorErrorObjCBridging.swift in Embed Sources */,
+				C48635F11DD6B52600CA359B /* DefaultsInSettingsPlist.swift in Embed Sources */,
+				C48635F21DD6B52600CA359B /* AssociatedObjects.swift in Embed Sources */,
+				C48635F41DD6B52600CA359B /* DefaultLogger.swift in Embed Sources */,
+				C48635F51DD6B52600CA359B /* Sugar.swift in Embed Sources */,
+			);
+			name = "Embed Sources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		C408C6621DFC9C5C00AAA8FF /* ErrorRecovery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorRecovery.swift; sourceTree = "<group>"; };
+		C4270BF71DBD4FBD00FA3A0A /* GETracing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GETracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C48CAA1B1DBC26F100D6F40E /* ObjCEncode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjCEncode.swift; sourceTree = "<group>"; };
+		C48CAA211DBD318700D6F40E /* KVOCompliantUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOCompliantUserDefaults.swift; sourceTree = "<group>"; };
+		C48CAA231DBD319300D6F40E /* KVOCompliantUserDefaultsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOCompliantUserDefaultsTests.swift; sourceTree = "<group>"; };
+		C48CAA251DBD33BE00D6F40E /* ObjCPropertyInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjCPropertyInfo.swift; sourceTree = "<group>"; };
+		C48CAA271DBD397100D6F40E /* DefaultLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultLogger.swift; sourceTree = "<group>"; };
+		C48CAA291DBD399100D6F40E /* AssociatedObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssociatedObjects.swift; sourceTree = "<group>"; };
+		C48CAA2B1DBD3A5000D6F40E /* OSLogRDAR28599032.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSLogRDAR28599032.h; sourceTree = "<group>"; };
+		C48CAA2C1DBD3A5000D6F40E /* OSLogRDAR28599032.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSLogRDAR28599032.m; sourceTree = "<group>"; };
+		C48CAA311DBD3ABA00D6F40E /* Sugar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sugar.swift; sourceTree = "<group>"; };
+		C48CAA351DBD492E00D6F40E /* Primitives.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Primitives.swift; sourceTree = "<group>"; };
+		C49FF0FA1DBB981300A86CC0 /* GEFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GEFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C49FF0FE1DBB981300A86CC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C49FF1031DBB981300A86CC0 /* GEFoundationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GEFoundationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C49FF1081DBB981300A86CC0 /* GEFoundationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GEFoundationTests.swift; sourceTree = "<group>"; };
+		C49FF10A1DBB981300A86CC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C49FF1741DBB996D00A86CC0 /* GenericURLSessionExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericURLSessionExtensions.swift; sourceTree = "<group>"; };
+		C49FF1751DBB996D00A86CC0 /* EncodedUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodedUserDefaults.swift; sourceTree = "<group>"; };
+		C49FF1761DBB996D00A86CC0 /* ProgressEnabledURLSessionTaskGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressEnabledURLSessionTaskGenerator.swift; sourceTree = "<group>"; };
+		C49FF1771DBB996D00A86CC0 /* URLSessionTaskGeneratorErrorObjCBridging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionTaskGeneratorErrorObjCBridging.swift; sourceTree = "<group>"; };
+		C49FF1781DBB996D00A86CC0 /* DefaultsInSettingsPlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsInSettingsPlist.swift; sourceTree = "<group>"; };
+		C49FF17E1DBB998500A86CC0 /* AppVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersion.swift; sourceTree = "<group>"; };
+		C49FF1801DBB999E00A86CC0 /* GenericExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericExtensions.swift; sourceTree = "<group>"; };
+		C49FF1821DBB99BE00A86CC0 /* PropertyCaching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyCaching.swift; sourceTree = "<group>"; };
+		C49FF18A1DBB9B0900A86CC0 /* URLSessionTaskGeneratorErrorObjCBridgingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionTaskGeneratorErrorObjCBridgingTests.swift; sourceTree = "<group>"; };
+		C49FF1921DBB9D4000A86CC0 /* GEShared.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = GEShared.xcconfig; path = ../XcodeConfiguration/GEShared.xcconfig; sourceTree = "<group>"; };
+		C49FF19E1DBB9FF400A86CC0 /* KVOBinding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOBinding.swift; sourceTree = "<group>"; };
+		C49FF1A01DBBA01100A86CC0 /* ObjectAndKeyPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectAndKeyPath.swift; sourceTree = "<group>"; };
+		C4CB4BA41E2A560000C601BF /* NSLogRedirector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLogRedirector.swift; sourceTree = "<group>"; };
+		C4EB27EF1DFA32C900BF0843 /* ModuleExports-GEFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ModuleExports-GEFoundation.swift"; sourceTree = "<group>"; };
+		C4EB27F01DFA32D900BF0843 /* ModuleExports-GETracing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GETracing.swift"; path = "../GETracing/GETracing/ModuleExports-GETracing.swift"; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C49FF0F61DBB981300A86CC0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4270BF81DBD4FBD00FA3A0A /* GETracing.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C49FF1001DBB981300A86CC0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C49FF1041DBB981300A86CC0 /* GEFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C49FF0F01DBB981300A86CC0 = {
+			isa = PBXGroup;
+			children = (
+				C49FF1921DBB9D4000A86CC0 /* GEShared.xcconfig */,
+				C49FF0FC1DBB981300A86CC0 /* GEFoundation */,
+				C49FF1071DBB981300A86CC0 /* GEFoundationTests */,
+				C49FF0FB1DBB981300A86CC0 /* Products */,
+				C49FF1951DBB9E6E00A86CC0 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		C49FF0FB1DBB981300A86CC0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C49FF0FA1DBB981300A86CC0 /* GEFoundation.framework */,
+				C49FF1031DBB981300A86CC0 /* GEFoundationTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C49FF0FC1DBB981300A86CC0 /* GEFoundation */ = {
+			isa = PBXGroup;
+			children = (
+				C48CAA351DBD492E00D6F40E /* Primitives.swift */,
+				C48CAA251DBD33BE00D6F40E /* ObjCPropertyInfo.swift */,
+				C48CAA211DBD318700D6F40E /* KVOCompliantUserDefaults.swift */,
+				C48CAA1B1DBC26F100D6F40E /* ObjCEncode.swift */,
+				C49FF19E1DBB9FF400A86CC0 /* KVOBinding.swift */,
+				C49FF1A01DBBA01100A86CC0 /* ObjectAndKeyPath.swift */,
+				C49FF1821DBB99BE00A86CC0 /* PropertyCaching.swift */,
+				C49FF1801DBB999E00A86CC0 /* GenericExtensions.swift */,
+				C49FF17E1DBB998500A86CC0 /* AppVersion.swift */,
+				C49FF1741DBB996D00A86CC0 /* GenericURLSessionExtensions.swift */,
+				C49FF1751DBB996D00A86CC0 /* EncodedUserDefaults.swift */,
+				C49FF1761DBB996D00A86CC0 /* ProgressEnabledURLSessionTaskGenerator.swift */,
+				C49FF1771DBB996D00A86CC0 /* URLSessionTaskGeneratorErrorObjCBridging.swift */,
+				C49FF1781DBB996D00A86CC0 /* DefaultsInSettingsPlist.swift */,
+				C48CAA291DBD399100D6F40E /* AssociatedObjects.swift */,
+				C408C6621DFC9C5C00AAA8FF /* ErrorRecovery.swift */,
+				C48CAA2B1DBD3A5000D6F40E /* OSLogRDAR28599032.h */,
+				C48CAA2C1DBD3A5000D6F40E /* OSLogRDAR28599032.m */,
+				C4CB4BA41E2A560000C601BF /* NSLogRedirector.swift */,
+				C48CAA271DBD397100D6F40E /* DefaultLogger.swift */,
+				C48CAA311DBD3ABA00D6F40E /* Sugar.swift */,
+				C49FF0FE1DBB981300A86CC0 /* Info.plist */,
+				C4EB27EF1DFA32C900BF0843 /* ModuleExports-GEFoundation.swift */,
+				C4EB27F01DFA32D900BF0843 /* ModuleExports-GETracing.swift */,
+			);
+			path = GEFoundation;
+			sourceTree = "<group>";
+		};
+		C49FF1071DBB981300A86CC0 /* GEFoundationTests */ = {
+			isa = PBXGroup;
+			children = (
+				C48CAA231DBD319300D6F40E /* KVOCompliantUserDefaultsTests.swift */,
+				C49FF1081DBB981300A86CC0 /* GEFoundationTests.swift */,
+				C49FF18A1DBB9B0900A86CC0 /* URLSessionTaskGeneratorErrorObjCBridgingTests.swift */,
+				C49FF10A1DBB981300A86CC0 /* Info.plist */,
+			);
+			path = GEFoundationTests;
+			sourceTree = "<group>";
+		};
+		C49FF1951DBB9E6E00A86CC0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C4270BF71DBD4FBD00FA3A0A /* GETracing.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		C49FF0F71DBB981300A86CC0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C48CAA2D1DBD3A5000D6F40E /* OSLogRDAR28599032.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		C49FF0F91DBB981300A86CC0 /* GEFoundation */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C49FF10E1DBB981300A86CC0 /* Build configuration list for PBXNativeTarget "GEFoundation" */;
+			buildPhases = (
+				C49FF0F51DBB981300A86CC0 /* Sources */,
+				C49FF0F61DBB981300A86CC0 /* Frameworks */,
+				C49FF0F71DBB981300A86CC0 /* Headers */,
+				C49FF0F81DBB981300A86CC0 /* Resources */,
+				C48635E31DD6B4DF00CA359B /* Embed Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GEFoundation;
+			productName = GEFoundation;
+			productReference = C49FF0FA1DBB981300A86CC0 /* GEFoundation.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C49FF1021DBB981300A86CC0 /* GEFoundationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C49FF1111DBB981300A86CC0 /* Build configuration list for PBXNativeTarget "GEFoundationTests" */;
+			buildPhases = (
+				C49FF0FF1DBB981300A86CC0 /* Sources */,
+				C49FF1001DBB981300A86CC0 /* Frameworks */,
+				C49FF1011DBB981300A86CC0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C49FF1061DBB981300A86CC0 /* PBXTargetDependency */,
+			);
+			name = GEFoundationTests;
+			productName = GEFoundationTests;
+			productReference = C49FF1031DBB981300A86CC0 /* GEFoundationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C49FF0F11DBB981300A86CC0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0810;
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = "Grigory Entin";
+				TargetAttributes = {
+					C49FF0F91DBB981300A86CC0 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 465NA5BW7E;
+						ProvisioningStyle = Automatic;
+					};
+					C49FF1021DBB981300A86CC0 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = C49FF0F41DBB981300A86CC0 /* Build configuration list for PBXProject "GEFoundation" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C49FF0F01DBB981300A86CC0;
+			productRefGroup = C49FF0FB1DBB981300A86CC0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C49FF0F91DBB981300A86CC0 /* GEFoundation */,
+				C49FF1021DBB981300A86CC0 /* GEFoundationTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C49FF0F81DBB981300A86CC0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C49FF1011DBB981300A86CC0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C49FF1931DBB9D4000A86CC0 /* GEShared.xcconfig in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C49FF0F51DBB981300A86CC0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C49FF1A11DBBA01100A86CC0 /* ObjectAndKeyPath.swift in Sources */,
+				C49FF17F1DBB998500A86CC0 /* AppVersion.swift in Sources */,
+				C4CB4BA51E2A560000C601BF /* NSLogRedirector.swift in Sources */,
+				C49FF17D1DBB996D00A86CC0 /* DefaultsInSettingsPlist.swift in Sources */,
+				C49FF1831DBB99BE00A86CC0 /* PropertyCaching.swift in Sources */,
+				C48CAA261DBD33BE00D6F40E /* ObjCPropertyInfo.swift in Sources */,
+				C48CAA361DBD492E00D6F40E /* Primitives.swift in Sources */,
+				C48CAA281DBD397100D6F40E /* DefaultLogger.swift in Sources */,
+				C48CAA2E1DBD3A5000D6F40E /* OSLogRDAR28599032.m in Sources */,
+				C49FF17C1DBB996D00A86CC0 /* URLSessionTaskGeneratorErrorObjCBridging.swift in Sources */,
+				C49FF1791DBB996D00A86CC0 /* GenericURLSessionExtensions.swift in Sources */,
+				C48CAA221DBD318700D6F40E /* KVOCompliantUserDefaults.swift in Sources */,
+				C4EB27F11DFA32D900BF0843 /* ModuleExports-GETracing.swift in Sources */,
+				C48CAA1C1DBC26F100D6F40E /* ObjCEncode.swift in Sources */,
+				C49FF19F1DBB9FF400A86CC0 /* KVOBinding.swift in Sources */,
+				C48CAA2A1DBD399100D6F40E /* AssociatedObjects.swift in Sources */,
+				C48CAA321DBD3ABA00D6F40E /* Sugar.swift in Sources */,
+				C49FF1811DBB999E00A86CC0 /* GenericExtensions.swift in Sources */,
+				C49FF17B1DBB996D00A86CC0 /* ProgressEnabledURLSessionTaskGenerator.swift in Sources */,
+				C49FF17A1DBB996D00A86CC0 /* EncodedUserDefaults.swift in Sources */,
+				C408C6631DFC9C5C00AAA8FF /* ErrorRecovery.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C49FF0FF1DBB981300A86CC0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4EB27F21DFA32F300BF0843 /* ModuleExports-GEFoundation.swift in Sources */,
+				C48CAA241DBD319300D6F40E /* KVOCompliantUserDefaultsTests.swift in Sources */,
+				C49FF18B1DBB9B0900A86CC0 /* URLSessionTaskGeneratorErrorObjCBridgingTests.swift in Sources */,
+				C49FF1091DBB981300A86CC0 /* GEFoundationTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C49FF1061DBB981300A86CC0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C49FF0F91DBB981300A86CC0 /* GEFoundation */;
+			targetProxy = C49FF1051DBB981300A86CC0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		C49FF10C1DBB981300A86CC0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C49FF1921DBB9D4000A86CC0 /* GEShared.xcconfig */;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				ONLY_ACTIVE_ARCH = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C49FF10D1DBB981300A86CC0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C49FF1921DBB9D4000A86CC0 /* GEShared.xcconfig */;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		C49FF10F1DBB981300A86CC0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 465NA5BW7E;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = GEFoundation/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.grigorye.GEFoundation;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C49FF1101DBB981300A86CC0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 465NA5BW7E;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = GEFoundation/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.grigorye.GEFoundation;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		C49FF1121DBB981300A86CC0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = GEFoundationTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.grigorye.GEFoundationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C49FF1131DBB981300A86CC0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = GEFoundationTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.grigorye.GEFoundationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C49FF0F41DBB981300A86CC0 /* Build configuration list for PBXProject "GEFoundation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C49FF10C1DBB981300A86CC0 /* Debug */,
+				C49FF10D1DBB981300A86CC0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C49FF10E1DBB981300A86CC0 /* Build configuration list for PBXNativeTarget "GEFoundation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C49FF10F1DBB981300A86CC0 /* Debug */,
+				C49FF1101DBB981300A86CC0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C49FF1111DBB981300A86CC0 /* Build configuration list for PBXNativeTarget "GEFoundationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C49FF1121DBB981300A86CC0 /* Debug */,
+				C49FF1131DBB981300A86CC0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C49FF0F11DBB981300A86CC0 /* Project object */;
+}
