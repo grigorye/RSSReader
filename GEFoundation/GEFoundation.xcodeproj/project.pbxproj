@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		C408C6631DFC9C5C00AAA8FF /* ErrorRecovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C408C6621DFC9C5C00AAA8FF /* ErrorRecovery.swift */; };
 		C4270BF81DBD4FBD00FA3A0A /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BF71DBD4FBD00FA3A0A /* GETracing.framework */; };
+		C445385E1E9AEA11009E68EB /* Flattenable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C445385D1E9AEA10009E68EB /* Flattenable.swift */; };
+		C44538601E9AF095009E68EB /* FlattenableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C445385F1E9AF095009E68EB /* FlattenableTests.swift */; };
 		C48635E41DD6B52600CA359B /* Primitives.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48CAA351DBD492E00D6F40E /* Primitives.swift */; };
 		C48635E51DD6B52600CA359B /* ObjCPropertyInfo.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48CAA251DBD33BE00D6F40E /* ObjCPropertyInfo.swift */; };
 		C48635E61DD6B52600CA359B /* KVOCompliantUserDefaults.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48CAA211DBD318700D6F40E /* KVOCompliantUserDefaults.swift */; };
@@ -98,6 +100,8 @@
 /* Begin PBXFileReference section */
 		C408C6621DFC9C5C00AAA8FF /* ErrorRecovery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorRecovery.swift; sourceTree = "<group>"; };
 		C4270BF71DBD4FBD00FA3A0A /* GETracing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GETracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C445385D1E9AEA10009E68EB /* Flattenable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flattenable.swift; sourceTree = "<group>"; };
+		C445385F1E9AF095009E68EB /* FlattenableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlattenableTests.swift; sourceTree = "<group>"; };
 		C48CAA1B1DBC26F100D6F40E /* ObjCEncode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjCEncode.swift; sourceTree = "<group>"; };
 		C48CAA211DBD318700D6F40E /* KVOCompliantUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOCompliantUserDefaults.swift; sourceTree = "<group>"; };
 		C48CAA231DBD319300D6F40E /* KVOCompliantUserDefaultsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOCompliantUserDefaultsTests.swift; sourceTree = "<group>"; };
@@ -173,6 +177,7 @@
 		C49FF0FC1DBB981300A86CC0 /* GEFoundation */ = {
 			isa = PBXGroup;
 			children = (
+				C445385D1E9AEA10009E68EB /* Flattenable.swift */,
 				C48CAA351DBD492E00D6F40E /* Primitives.swift */,
 				C48CAA251DBD33BE00D6F40E /* ObjCPropertyInfo.swift */,
 				C48CAA211DBD318700D6F40E /* KVOCompliantUserDefaults.swift */,
@@ -208,6 +213,7 @@
 				C49FF1081DBB981300A86CC0 /* GEFoundationTests.swift */,
 				C49FF18A1DBB9B0900A86CC0 /* URLSessionTaskGeneratorErrorObjCBridgingTests.swift */,
 				C49FF10A1DBB981300A86CC0 /* Info.plist */,
+				C445385F1E9AF095009E68EB /* FlattenableTests.swift */,
 			);
 			path = GEFoundationTests;
 			sourceTree = "<group>";
@@ -288,6 +294,7 @@
 					};
 					C49FF1021DBB981300A86CC0 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 465NA5BW7E;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -347,6 +354,7 @@
 				C48CAA221DBD318700D6F40E /* KVOCompliantUserDefaults.swift in Sources */,
 				C4EB27F11DFA32D900BF0843 /* ModuleExports-GETracing.swift in Sources */,
 				C48CAA1C1DBC26F100D6F40E /* ObjCEncode.swift in Sources */,
+				C445385E1E9AEA11009E68EB /* Flattenable.swift in Sources */,
 				C49FF19F1DBB9FF400A86CC0 /* KVOBinding.swift in Sources */,
 				C48CAA2A1DBD399100D6F40E /* AssociatedObjects.swift in Sources */,
 				C48CAA321DBD3ABA00D6F40E /* Sugar.swift in Sources */,
@@ -362,6 +370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4EB27F21DFA32F300BF0843 /* ModuleExports-GEFoundation.swift in Sources */,
+				C44538601E9AF095009E68EB /* FlattenableTests.swift in Sources */,
 				C48CAA241DBD319300D6F40E /* KVOCompliantUserDefaultsTests.swift in Sources */,
 				C49FF18B1DBB9B0900A86CC0 /* URLSessionTaskGeneratorErrorObjCBridgingTests.swift in Sources */,
 				C49FF1091DBB981300A86CC0 /* GEFoundationTests.swift in Sources */,
@@ -433,20 +442,26 @@
 		C49FF1121DBB981300A86CC0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 465NA5BW7E;
 				INFOPLIST_FILE = GEFoundationTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.grigorye.GEFoundationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
 		C49FF1131DBB981300A86CC0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 465NA5BW7E;
 				INFOPLIST_FILE = GEFoundationTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.grigorye.GEFoundationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
