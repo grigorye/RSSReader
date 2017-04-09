@@ -30,6 +30,10 @@ public struct ScheduledHandlers {
 	public mutating func perform() {
 		performAndDropEachReversed(&handlers)
 	}
+
+	public mutating func append(_ handler: @escaping Handler) {
+		append(contentsOf: [handler])
+	}
 	
 	public mutating func append(contentsOf extraHandlers: [Handler]) {
 		handlers.append(contentsOf: extraHandlers)
