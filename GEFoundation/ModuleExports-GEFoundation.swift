@@ -11,7 +11,7 @@ import Foundation.NSObject
 
 infix operator …
 
-#if false
+#if true
 internal func …<T>(value: T, initialize: (inout T) throws -> Void) rethrows -> T {
 	return try with(value, initialize)
 }
