@@ -49,7 +49,7 @@ extension ScheduledHandlers {
 
 // MARK: -
 
-typealias KVOCompliantUserDefaults = GEFoundation.KVOCompliantUserDefaults
+typealias TypedUserDefaults = GEFoundation.TypedUserDefaults
 typealias ProgressEnabledURLSessionTaskGenerator = GEFoundation.ProgressEnabledURLSessionTaskGenerator
 typealias URLSessionTaskGeneratorError = GEFoundation.URLSessionTaskGeneratorError
 
@@ -58,10 +58,6 @@ typealias Handler = GEFoundation.Handler
 typealias ScheduledHandlers = GEFoundation.ScheduledHandlers
 typealias KVOBinding = GEFoundation.KVOBinding
 typealias Json = GEFoundation.Json
-
-var defaults: KVOCompliantUserDefaults {
-	return GEFoundation.defaults
-}
 
 var _1: Bool { return GEFoundation._1 }
 var _0: Bool { return GEFoundation._0 }
