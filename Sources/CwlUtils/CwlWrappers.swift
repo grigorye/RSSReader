@@ -34,9 +34,6 @@ public final class MutableBox<T> {
 	public init(_ t: T) {
 		value = t
 	}
-	public func mutate(_ f: (inout T) throws -> Void) rethrows {
-		try f(&value)
-	}
 }
 
 // A class wrapper around a type (usually a value type) so changes to it can be shared in a thread-safe manner (usually as an ad hoc communication channel).
