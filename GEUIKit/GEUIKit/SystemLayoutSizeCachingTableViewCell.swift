@@ -41,7 +41,7 @@ public class SystemLayoutSizeCachingTableViewCellDataSource {
 	}
 }
 
-public extension KVOCompliantUserDefaults {
+public extension TypedUserDefaults {
 	@NSManaged public var cellSystemLayoutSizeCachingEnabled: Bool
 }
 

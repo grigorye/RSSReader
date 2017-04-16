@@ -10,7 +10,7 @@ import func GECoreData.stringFromFetchedResultsChangeType
 import CoreData.NSFetchedResultsController
 import UIKit.UITableView
 
-extension KVOCompliantUserDefaults {
+extension TypedUserDefaults {
 	@NSManaged var fetchResultsAnimationEnabled: Bool
 	@NSManaged var groupingTableUpdatesEnabled: Bool
 	@NSManaged var updateCellsInPlaceEnabled: Bool
