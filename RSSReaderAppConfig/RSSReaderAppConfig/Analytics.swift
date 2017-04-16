@@ -17,7 +17,7 @@ public let analyticsEnabled: Bool = {
 #endif
 }()
 
-extension KVOCompliantUserDefaults {
+extension TypedUserDefaults {
 	@NSManaged var analyticsEnabled: Bool
 }
 

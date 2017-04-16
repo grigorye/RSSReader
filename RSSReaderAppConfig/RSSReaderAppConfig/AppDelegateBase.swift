@@ -20,7 +20,7 @@ import UIKit
 
 let triggeredError = NSError(domain: "com.grigorye.triggered", code: 1)
 
-extension KVOCompliantUserDefaults {
+extension TypedUserDefaults {
 	@NSManaged public var memoryProfilingEnabled: Bool
 }
 
@@ -53,7 +53,7 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 		}
 		else {
 			var memoryProfiler: FBMemoryProfiler!
-			retainedObjects += [KVOBinding(defaults•#keyPath(KVOCompliantUserDefaults.memoryProfilingEnabled), options: .initial) { change in
+			retainedObjects += [KVOBinding(defaults•#keyPath(TypedUserDefaults.memoryProfilingEnabled), options: .initial) { change in
 				if defaults.memoryProfilingEnabled {
 					guard nil == memoryProfiler else {
 						return
