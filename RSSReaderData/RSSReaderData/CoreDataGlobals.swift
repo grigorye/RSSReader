@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-extension KVOCompliantUserDefaults {
+extension TypedUserDefaults {
 
 	@NSManaged var coreDataCachingEnabled: Bool
 	@NSManaged var backgroundImportEnabled: Bool

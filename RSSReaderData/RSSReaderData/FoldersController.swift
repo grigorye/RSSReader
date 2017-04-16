@@ -28,7 +28,7 @@ public protocol FoldersController : class {
 	var rssSession: RSSSession { get }
 }
 
-extension KVOCompliantUserDefaults {
+extension TypedUserDefaults {
 	@NSManaged var streamPrefetchingEnabled: Bool
 }
 

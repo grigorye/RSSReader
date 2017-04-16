@@ -36,7 +36,7 @@ public class RSSSession: NSObject {
 	}
 }
 
-extension KVOCompliantUserDefaults {
+extension TypedUserDefaults {
 	@NSManaged var authToken: String?
 }
 
@@ -76,7 +76,7 @@ public extension RSSSession {
 	}()
 }
 
-extension KVOCompliantUserDefaults {
+extension TypedUserDefaults {
 	@NSManaged var obtainPermanentObjectIDsForRSSData: Bool
 	@NSManaged var resetBackgroundQueueMOCAfterSavingRSSData: Bool
 }

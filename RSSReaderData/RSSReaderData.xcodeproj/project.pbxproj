@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C4270BFE1DBD500D00FA3A0A /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BFD1DBD500D00FA3A0A /* GETracing.framework */; };
+		C4290F8A1EA3223300CAD5AE /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4290F891EA3223300CAD5AE /* Globals.swift */; };
 		C441F1851DB25ABD0060E692 /* FoldersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F1841DB25ABD0060E692 /* FoldersController.swift */; };
 		C441F19A1DB4343B0060E692 /* FoldersController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C441F1841DB25ABD0060E692 /* FoldersController.swift */; };
 		C441F19B1DB4344A0060E692 /* RSSSessionTaskGeneration.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4DB6A711D26035F00E8516D /* RSSSessionTaskGeneration.swift */; };
@@ -111,6 +112,7 @@
 
 /* Begin PBXFileReference section */
 		C4270BFD1DBD500D00FA3A0A /* GETracing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GETracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4290F891EA3223300CAD5AE /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		C441F1841DB25ABD0060E692 /* FoldersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldersController.swift; sourceTree = "<group>"; };
 		C459879D1CDE0A8300B8E9E4 /* GEShared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = GEShared.xcconfig; path = ../XcodeConfiguration/GEShared.xcconfig; sourceTree = "<group>"; };
 		C48F799E1C008D0D00CC6F74 /* RSSReaderData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RSSReaderData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -233,6 +235,7 @@
 				C48F79CF1C008E0B00CC6F74 /* CoreData.swift */,
 				C48F79D11C008E1D00CC6F74 /* ContainerViewState.swift */,
 				C48F79D31C008E3900CC6F74 /* MarkingAsRead.swift */,
+				C4290F891EA3223300CAD5AE /* Globals.swift */,
 				C48F79D51C008E6A00CC6F74 /* RSSReader.xcdatamodeld */,
 				C48F79A31C008D0D00CC6F74 /* Info.plist */,
 				C4EB28021DFA387500BF0843 /* ModuleExports-GECoreData.swift */,
@@ -374,6 +377,7 @@
 				C4EB28061DFA389300BF0843 /* ModuleExports-GETracing.swift in Sources */,
 				C48F79CC1C008DF100CC6F74 /* Container.swift in Sources */,
 				C48F79D21C008E1D00CC6F74 /* ContainerViewState.swift in Sources */,
+				C4290F8A1EA3223300CAD5AE /* Globals.swift in Sources */,
 				C48F79C61C008DDF00CC6F74 /* RSSSession.swift in Sources */,
 				C441F1851DB25ABD0060E692 /* FoldersController.swift in Sources */,
 				C4EB28071DFA389300BF0843 /* ModuleExports-GEFoundation.swift in Sources */,

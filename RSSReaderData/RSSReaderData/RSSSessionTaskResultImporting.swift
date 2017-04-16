@@ -11,7 +11,7 @@ import typealias GEFoundation.Json
 import CoreData
 import Foundation
 
-extension KVOCompliantUserDefaults {
+extension TypedUserDefaults {
 	@NSManaged var batchSavingEnabled: Bool
 }
 private var batchSavingEnabled: Bool {
