@@ -132,16 +132,21 @@ extension ExecutionContext {
 extension DispatchSource: Cancellable {
 }
 
-/// An `ExecutionContext` implementation around a DispatchQueue.
-public struct CustomDispatchQueue: ExecutionContext {
+@available(*, deprecated, message:"Use DispatchQueueContext instead")
+public typealias CustomDispatchQueue = DispatchQueueContext
+
+/// Combines a `DispatchQueue` and an `ExecutionType` to create an `ExecutionContext`.
+public struct DispatchQueueContext: ExecutionContext {
+	/// The underlying DispatchQueue
 	public let queue: DispatchQueue
+
+	/// A description about how functions will be invoked on an execution context.
+	public let type: ExecutionType
+
 	public init(sync: Bool = true, concurrent: Bool = false, qos: DispatchQoS = .default) {
 		self.type = sync ? .mutex : (concurrent ? .concurrentAsync : .serialAsync)
 		queue = DispatchQueue(label: "", qos: qos, attributes: concurrent ? DispatchQueue.Attributes.concurrent : DispatchQueue.Attributes(), autoreleaseFrequency: .inherit, target: nil)
 	}
-
-	/// A description about how functions will be invoked on an execution context.
-	public let type: ExecutionType
 
 	/// Run `execute` normally on the execution context
 	public func invoke(_ execute: @escaping () -> Void) {
@@ -435,12 +440,12 @@ public enum Exec: ExecutionContext {
 	
 	/// Constructs an `Exec.custom` wrapping a synchronous `DispatchQueue`
 	public static func syncQueue() -> Exec {
-		return Exec.custom(CustomDispatchQueue())
+		return Exec.custom(DispatchQueueContext())
 	}
 	
 	/// Constructs an `Exec.custom` wrapping a synchronous `DispatchQueue` with a `DispatchSpecificKey` set for the queue (so that it can be identified when active).
 	public static func syncQueueWithSpecificKey() -> (Exec, DispatchSpecificKey<()>) {
-		let cdq = CustomDispatchQueue()
+		let cdq = DispatchQueueContext()
 		let specificKey = DispatchSpecificKey<()>()
 		cdq.queue.setSpecific(key: specificKey, value: ())
 		return (Exec.custom(cdq), specificKey)
@@ -448,12 +453,12 @@ public enum Exec: ExecutionContext {
 	
 	/// Constructs an `Exec.custom` wrapping an asynchronous `DispatchQueue`
 	public static func asyncQueue(qos: DispatchQoS = .default) -> Exec {
-		return Exec.custom(CustomDispatchQueue(sync: false, qos: qos))
+		return Exec.custom(DispatchQueueContext(sync: false, qos: qos))
 	}
 	
 	/// Constructs an `Exec.custom` wrapping an asynchronous `DispatchQueue` with a `DispatchSpecificKey` set for the queue (so that it can be identified when active).
 	public static func asyncQueueWithSpecificKey(qos: DispatchQoS = .default) -> (Exec, DispatchSpecificKey<()>) {
-		let cdq = CustomDispatchQueue(sync: false, qos: qos)
+		let cdq = DispatchQueueContext(sync: false, qos: qos)
 		let specificKey = DispatchSpecificKey<()>()
 		cdq.queue.setSpecific(key: specificKey, value: ())
 		return (Exec.custom(cdq), specificKey)
