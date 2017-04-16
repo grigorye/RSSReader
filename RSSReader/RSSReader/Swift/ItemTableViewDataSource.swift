@@ -16,14 +16,14 @@ import class GEUIKit.TableViewFetchedResultsControllerDelegate
 import CoreData
 import UIKit
 
-extension KVOCompliantUserDefaults {
+extension TypedUserDefaults {
 	@NSManaged var frequencyAndWeightBasedTableRowHeightEstimatorEnabled: Bool
 	@NSManaged var cellHeightCachingEnabled: Bool
 	@NSManaged var fixedHeightItemRowsEnabled: Bool
 	@NSManaged var fetchBatchSize: Int
 }
 
-extension KVOCompliantUserDefaults {
+extension TypedUserDefaults {
 	@NSManaged public var itemsAreSortedByLoadDate: Bool
 }
 

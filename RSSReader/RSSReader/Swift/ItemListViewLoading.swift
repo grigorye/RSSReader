@@ -11,7 +11,7 @@ import PromiseKit
 import CoreData
 import Foundation
 
-extension KVOCompliantUserDefaults {
+extension TypedUserDefaults {
 
 	@NSManaged var numberOfItemsToLoadPastVisible: Int
 	@NSManaged var numberOfItemsToLoadInitially: Int

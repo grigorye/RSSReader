@@ -11,7 +11,7 @@ import class GEUIKit.TableViewFetchedResultsControllerDelegate
 import UIKit.UITableViewController
 import CoreData.NSFetchedResultsController
 
-extension KVOCompliantUserDefaults {
+extension TypedUserDefaults {
 	@NSManaged var pageViewsEnabled: Bool
 }
 

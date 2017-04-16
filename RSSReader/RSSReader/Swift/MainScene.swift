@@ -9,7 +9,7 @@
 import RSSReaderData
 import UIKit
 
-extension KVOCompliantUserDefaults {
+extension TypedUserDefaults {
 	@NSManaged var hideBarsOnSwipe: Bool
 }
 

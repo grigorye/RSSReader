@@ -14,7 +14,7 @@ import PromiseKit
 import UIKit
 import CoreData
 
-extension KVOCompliantUserDefaults {
+extension TypedUserDefaults {
 	@NSManaged var showUnreadOnly: Bool
 }
 
@@ -87,7 +87,7 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 		}
 	}
 	var childContainers: [Container]!
-	dynamic let defaults = KVOCompliantUserDefaults()
+	dynamic let defaults = TypedUserDefaults()
 	//
 	class var keyPathsForValuesAffectingShowUnreadOnly: Set<String> {
 		return [#keyPath(defaults.showUnreadOnly)]

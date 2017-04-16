@@ -13,7 +13,7 @@ import UIKit.UIApplication
 
 var launchingScope = Activity("Launching").enter()
 
-extension KVOCompliantUserDefaults {
+extension TypedUserDefaults {
 	@NSManaged var resetDefaults: Bool
 }
 if defaults.resetDefaults {

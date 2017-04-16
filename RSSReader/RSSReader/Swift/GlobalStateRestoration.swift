@@ -9,7 +9,7 @@
 import Loggy
 import UIKit
 
-extension KVOCompliantUserDefaults {
+extension TypedUserDefaults {
 	@NSManaged var stateRestorationEnabled: Bool
 }
 

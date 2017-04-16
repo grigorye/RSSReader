@@ -11,7 +11,7 @@ import class GEUIKit.SystemLayoutSizeCachingTableViewCell
 import CoreData.NSManagedObjectID
 import UIKit
 
-extension KVOCompliantUserDefaults {
+extension TypedUserDefaults {
 	@NSManaged var showDates: Bool
 	@NSManaged var showUnreadMark: Bool
 }

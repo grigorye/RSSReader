@@ -9,7 +9,7 @@
 import RSSReaderData
 import Foundation
 
-extension KVOCompliantUserDefaults {
+extension TypedUserDefaults {
 	@NSManaged var foldersLastUpdateDate: Date!
 	@NSManaged var foldersLastUpdateErrorEncoded: Data?
 }

@@ -12,7 +12,7 @@ import PromiseKit
 import UIKit
 import CoreData
 
-extension KVOCompliantUserDefaults {
+extension TypedUserDefaults {
 	@NSManaged var itemPrefetchingEnabled: Bool
 }
 

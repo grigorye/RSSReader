@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension KVOCompliantUserDefaults {
+extension TypedUserDefaults {
 
 	@NSManaged var itemListAccessibilityDisabled: Bool
 
