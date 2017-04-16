@@ -82,7 +82,11 @@ public extension DispatchTime {
 
 public extension DispatchTimeInterval {
 	public static func fromSeconds(_ seconds: Double) -> DispatchTimeInterval {
-		return .nanoseconds(Int(seconds * Double(NSEC_PER_SEC)))
+		if MemoryLayout<Int>.size < 8 {
+			return .milliseconds(Int(seconds * Double(NSEC_PER_SEC / NSEC_PER_MSEC)))
+		} else {
+			return .nanoseconds(Int(seconds * Double(NSEC_PER_SEC)))
+		}
 	}
 
 	public func toSeconds() -> Double {
@@ -94,12 +98,12 @@ public extension DispatchTimeInterval {
 		}
 	}
 
-	public func toNanoseconds() -> Int {
+	public func toNanoseconds() -> Int64 {
 		switch self {
-		case .seconds(let t): return Int(NSEC_PER_SEC) * t
-		case .milliseconds(let t): return Int(NSEC_PER_MSEC) * t
-		case .microseconds(let t): return Int(NSEC_PER_USEC) * t
-		case .nanoseconds(let t): return t
+		case .seconds(let t): return Int64(NSEC_PER_SEC) * Int64(t)
+		case .milliseconds(let t): return Int64(NSEC_PER_MSEC) * Int64(t)
+		case .microseconds(let t): return Int64(NSEC_PER_USEC) * Int64(t)
+		case .nanoseconds(let t): return Int64(t)
 		}
 	}
 }

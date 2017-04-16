@@ -171,7 +171,7 @@ public class DebugContextCoordinator {
 	}
 	
 	// Fundamental method for scheduling a block on the coordinator for later invocation.
-	func schedule(block: @escaping () -> Void, thread: DebugContextThread, timeInterval interval: Int, repeats: Bool) -> DebugContextTimer {
+	func schedule(block: @escaping () -> Void, thread: DebugContextThread, timeInterval interval: Int64, repeats: Bool) -> DebugContextTimer {
 		let i = interval > 0 ? UInt64(interval) : 0 as UInt64
 		let debugContextTimer = DebugContextTimer(thread: thread, rescheduleInterval: repeats ? i : nil, coordinator: self)
 		getOrCreateQueue(forName: thread).schedule(pending: PendingBlock(time: internalTime + i, timer: debugContextTimer, block: block))
