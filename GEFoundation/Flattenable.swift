@@ -17,7 +17,7 @@ import Foundation
 extension NSObject: Flattenable {
 	
 	public func flattenWithPrefix(_ prefix: String?) -> [String : Any] {
-		return [prefix! : "\(self)"]
+		return [prefix! : self]
 	}
 	
 }

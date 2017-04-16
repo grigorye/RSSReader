@@ -29,7 +29,7 @@ enum DefaultLogKind: String {
 	case none, oslog, nslog, print
 }
 
-extension KVOCompliantUserDefaults {
+extension TypedUserDefaults {
 	@NSManaged var defaultLogKind: String?
 	@NSManaged var defaultLogPrintTimestamps: Bool
 }

@@ -1,14 +1,15 @@
 //
-//  KVOCompliantUserDefaults.swift
+//  TypedUserDefaults.swift
 //  GEBase
 //
 //  Created by Grigory Entin on 15/11/15.
 //  Copyright © 2015 Grigory Entin. All rights reserved.
 //
 
+import UIKit
 import Foundation
 
-public let defaults = KVOCompliantUserDefaults()
+public let defaults = TypedUserDefaults()!
 
 private let objcEncode_Bool = String(validatingUTF8: NSNumber(value: true).objCType)!
 private let objcEncode_Int = "i"
@@ -19,95 +20,55 @@ private let objcEncode_AnyObject = "@"
 
 // MARK: -
 
-typealias _Self = KVOCompliantUserDefaults
+typealias _Self = TypedUserDefaults
 
 private let objectValueIMP: @convention(c) (_Self, Selector) -> AnyObject? = { _self, _cmd in
 	let propertyName = NSStringFromSelector(_cmd)
-	let value = _self.values[propertyName]
+	let value = _self.defaults.object(forKey: propertyName) as AnyObject?
 	•(propertyName)
 	return (value)
 }
 private let setObjectValueIMP: @convention(c) (_Self, Selector, NSObject?) -> Void = { _self, _cmd, value in
 	let defaultName = _Self.defaultNameForSelector(_cmd)
 	_self.defaults.set(value, forKey:(defaultName))
-	_self.values[defaultName] = value
 }
 private let boolValueIMP: @convention(c) (_Self, Selector) -> Bool = { _self, _cmd in
 	let propertyName = NSStringFromSelector(_cmd)
-	let valueObject = _self.values[propertyName]
-	let value: Bool = {
-		switch valueObject {
-		case let numberValue as NSNumber:
-			return numberValue.boolValue
-		case let stringValue as NSString:
-			return stringValue.boolValue
-		case nil:
-			return false
-		default:
-			abort()
-		}
-	}()
+	let value = _self.defaults.bool(forKey: propertyName)
 	•(propertyName)
 	return (value)
 }
 private let longValueIMP: @convention(c) (_Self, Selector) -> CLong = { _self, _cmd in
 	let propertyName = NSStringFromSelector(_cmd)
-	let valueObject = _self.values[propertyName]
-	let value: Int = {
-		switch valueObject {
-		case let numberValue as NSNumber:
-			return numberValue.intValue
-		case let stringValue as NSString:
-			return stringValue.integerValue
-		case nil:
-			return 0
-		default:
-			abort()
-		}
-	}()
+	let value = _self.defaults.integer(forKey: propertyName)
 	•(propertyName)
 	return (value)
 }
 private let longLongValueIMP: @convention(c) (_Self, Selector) -> CLongLong = { _self, _cmd in
 	let propertyName = NSStringFromSelector(_cmd)
-	let valueObject = _self.values[propertyName]
-	let value: CLongLong = {
-		switch valueObject {
-		case let numberValue as NSNumber:
-			return numberValue.int64Value
-		case let stringValue as NSString:
-			return stringValue.longLongValue
-		case nil:
-			return 0
-		default:
-			abort()
-		}
-	}()
+	let value = _self.defaults.integer(forKey: propertyName)
 	•(propertyName)
-	return (value)
+	return CLongLong(value)
 }
 
 private let setBoolValueIMP: @convention(c) (_Self, Selector, Bool) -> Void = { _self, _cmd, value in
 	let propertyName = NSStringFromSelector(_cmd)
 	$(propertyName)
 	_self.defaults.set(value, forKey: propertyName)
-	_self.values[propertyName] = NSNumber(value: value)
 }
 private let setLongValueIMP: @convention(c) (_Self, Selector, CLong) -> Void = { _self, _cmd, value in
 	let propertyName = NSStringFromSelector(_cmd)
 	$(propertyName)
 	_self.defaults.set(value, forKey: propertyName)
-	_self.values[propertyName] = NSNumber(value: value)
 }
 private let setLongLongValueIMP: @convention(c) (_Self, Selector, CLongLong) -> Void = { _self, _cmd, value in
 	let propertyName = NSStringFromSelector(_cmd)
 	$(propertyName)
 	_self.defaults.set(Int(value), forKey: propertyName)
-	_self.values[propertyName] = NSNumber(value: value)
 }
 
-extension KVOCompliantUserDefaults {
-	typealias _Self = KVOCompliantUserDefaults
+extension TypedUserDefaults {
+	typealias _Self = TypedUserDefaults
 
 	static func defaultNameForSelector(_ sel: Selector) -> String {
 		let selName = NSStringFromSelector(sel)
@@ -123,12 +84,15 @@ extension KVOCompliantUserDefaults {
 		var propertyInfoMap = [String : PropertyInfo]()
 		var getterAndSetterMap = [String : PropertyInfo]()
 		var propertyCount = UInt32(0)
-		let propertyList = class_copyPropertyList(KVOCompliantUserDefaults.self, &propertyCount)!
+		let propertyList = class_copyPropertyList(_Self.self, &propertyCount)!
 		for i in 0..<Int(propertyCount) {
 			let property = propertyList[i]!
 			let propertyInfo = PropertyInfo(property: property)
 			let attributesDictionary = propertyInfo.attributesDictionary
 			let propertyName = propertyInfo.name
+			guard isDefaultName(propertyName) else {
+				continue
+			}
 			let customSetterName = attributesDictionary["S"]
 			let customGetterName = attributesDictionary["G"]
 			let defaultGetterName = propertyName
@@ -142,35 +106,27 @@ extension KVOCompliantUserDefaults {
 	}()
 
 	static func isDefaultName(_ name: String) -> Bool {
-		return !["values", "defaults"].contains(name)
+		return ![#keyPath(defaults)].contains(name)
 	}
 }
 
-public class KVOCompliantUserDefaults : NSObject {
-	var values = [String : NSObject]()
-	let defaults = UserDefaults.standard
+public class TypedUserDefaults : NSObject {
 
-	func synchronizeValues() {
-		for (propertyName, propertyInfo) in _Self.propertyInfoMap {
-			let defaults = self.defaults
-			guard _Self.isDefaultName(propertyInfo.name) else {
-				continue
-			}
-			let oldValue = values[propertyName]
-			let newValue = defaults.object(forKey: propertyName) as! NSObject?
-			guard oldValue != newValue else {
-				continue
-			}
-			guard true != (oldValue?.isEqual(newValue)) else {
-				continue
-			}
-			self.willChangeValue(forKey: propertyName)
-			self.values[propertyName] = newValue
-			self.didChangeValue(forKey: propertyName)
+	var defaults: UserDefaults
+	
+	override public class func keyPathsForValuesAffectingValue(forKey key: String) -> Set<String> {
+		var keyPaths = super.keyPathsForValuesAffectingValue(forKey: key)
+		guard nil != getterAndSetterMap[key] else {
+			return keyPaths
 		}
+		keyPaths.insert(#keyPath(defaults) + "." + key)
+		return keyPaths
 	}
-
+	
 	public override static func resolveInstanceMethod(_ sel: Selector) -> Bool {
+		guard !super.resolveClassMethod(sel) else {
+			return true
+		}
 		let selName = NSStringFromSelector(sel)
 		guard let propertyInfo = getterAndSetterMap[selName] else {
 			return super.resolveInstanceMethod(sel)
@@ -199,35 +155,15 @@ public class KVOCompliantUserDefaults : NSObject {
 		return true
 	}
 	
-	// MARK: -
-	
-	var handlingDidChangeNotification = false
-	
-	func defaultsDidChange(_ notification: Notification) {
-		guard !handlingDidChangeNotification else {
-			return
+	public init?(suiteName: String? = nil) {
+		guard let defaults = UserDefaults(suiteName: suiteName) else {
+			return nil
 		}
-		handlingDidChangeNotification = true; defer {handlingDidChangeNotification = false }
-		defaults.synchronize()
-		synchronizeValues()
-	}
-	
-	// MARK: -
-	
-	var scheduledForDeinit = ScheduledHandlers()
-	deinit {
-		scheduledForDeinit.perform()
-	}
-	
-	public override init () {
+		self.defaults = defaults
 		super.init()
-		let notificationCenter = NotificationCenter.default
-		let observer = notificationCenter.addObserver(forName: UserDefaults.didChangeNotification, object:nil, queue:nil) { [unowned self] notification in
-			self.defaultsDidChange(notification)
-		}
-		scheduledForDeinit += [{
-			notificationCenter.removeObserver(observer)
-		}]
-		synchronizeValues()
+	}
+	
+	override public convenience init() {
+		self.init(suiteName: nil)!
 	}
 }
