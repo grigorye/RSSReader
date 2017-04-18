@@ -58,18 +58,6 @@ public enum ExecutionType {
 	}
 }
 
-/// This protocol exists to provide lifetime to asynchronous an ongoing tasks. Typically, this protocol is implemented by a `class` (so that releasing the type releases the underlying resource) but it may also be implemented by a `struct` which itself contains a `class` whose lifetime controls the underlying resource.
-///
-/// The pattern offered by this protocol is a rejection of patterns where an asynchronous or ongoing task is created without returning any lifetime object. In my opinion, such lifetime-less patterns are problematic since they fail to tie the lifetime of the asynchronous task to the context where the result is required. This failure to tie task to result context requires:
-///	* vigilance to remember to check for the context on completion
-///   * knowledge of the context to check if the task is still relevant
-///   * overuse of resources by cancelled or unwanted tasks that continue to completion before checking if they're still needed
-/// all of which are bad. Far better to return a lifetime object for *all* asynchronous or ongoing tasks.
-public protocol Cancellable: class {
-	/// Immediately cancel
-	func cancel()
-}
-
 /// An abstraction of common execution context concepts
 public protocol ExecutionContext {
 	/// A description about how functions will be invoked on an execution context.
