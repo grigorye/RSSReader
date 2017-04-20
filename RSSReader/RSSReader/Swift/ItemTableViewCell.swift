@@ -28,6 +28,7 @@ class ItemTableViewCell : SystemLayoutSizeCachingTableViewCell, ItemTableViewCel
 	@IBOutlet final var favoriteMarkLabel: UILabel!
 	
 	final var item: Item!
+	final var itemPendingUpdateDate: Date?
 
 	final func setData(_ data: (item: Item, container: Container, nowDate: Date)) {
 		let item = data.item
@@ -35,8 +36,9 @@ class ItemTableViewCell : SystemLayoutSizeCachingTableViewCell, ItemTableViewCel
 		let nowDate = data.nowDate
 		defer {
 			self.item = item
+			self.itemPendingUpdateDate = item.pendingUpdateDate
 		}
-		guard self.item != item else {
+		guard (self.item != item) || (self.itemPendingUpdateDate != item.pendingUpdateDate) else {
 			return
 		}
 		if let titleLabel = self.titleLabel {
