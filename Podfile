@@ -39,6 +39,7 @@ post_install do |installer|
       configuration.build_settings['DEBUG_INFORMATION_FORMAT'] = 'dwarf-with-dsym'
       configuration.build_settings['ENABLE_BITCODE'] = 'NO'
       configuration.build_settings['ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES'] = 'NO'
+      configuration.build_settings['CLANG_WARN_DOCUMENTATION_COMMENTS'] = 'NO'
       xcconfig_path = configuration.base_configuration_reference.real_path
       xcconfig = Xcodeproj::Config.new(xcconfig_path).to_hash
       
