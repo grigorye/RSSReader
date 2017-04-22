@@ -7,5 +7,6 @@ OTHER_CFLAGS = $(inherited) -iquote "$PODS_CONFIGURATION_BUILD_DIR/FBAllocationT
 OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
 PODS_BUILD_DIR = $BUILD_DIR
 PODS_CONFIGURATION_BUILD_DIR = $PODS_BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
 PODS_ROOT = ${SRCROOT}/Pods
 OTHER_LDFLAGS = $(inherited) -ObjC -l"c++" -l"icucore" -l"sqlite3" -l"z" -framework "AudioToolbox" -framework "CFNetwork" -framework "Crashlytics" -framework "FBAllocationTracker" -framework "FBMemoryProfiler" -framework "FBRetainCycleDetector" -framework "Fabric" -framework "FirebaseAnalytics" -framework "FirebaseCore" -framework "FirebaseInstanceID" -framework "Foundation" -framework "GoogleToolboxForMac" -framework "Mixpanel" -framework "MobileCoreServices" -framework "Optimizely" -framework "PromiseKit" -framework "Rswift" -framework "Security" -framework "StoreKit" -framework "SwiftMessages" -framework "SystemConfiguration" -framework "UIKit"
