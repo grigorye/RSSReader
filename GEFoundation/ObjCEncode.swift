@@ -8,6 +8,15 @@
 
 import Foundation
 
+enum ObjCEncode : String {
+	case Bool = "c"
+	case Int = "i"
+	case Long = "l"
+	case LongLong = "q"
+	case C99Bool = "B"
+	case AnyObject = "@"
+}
+
 public func objCEncode<T>(_ type: T.Type) -> String {
 	switch type {
 	case is Int.Type:
