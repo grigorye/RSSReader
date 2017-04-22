@@ -13,14 +13,27 @@ import XCTest
 
 extension TypedUserDefaults {
 	@NSManaged var testInt: Int
+	@NSManaged var testString: String?
 }
+
 class KVOCompliantUserDefaultsTests : XCTestCase {
+	
 	func testDeinit() {
 		_ = TypedUserDefaults()
 	}
+	
 	func testChangeToSameValue() {
 		let d = TypedUserDefaults()
 		d.testInt = 0
 		d.testInt = 0
 	}
+	
+	func testNil() {
+		let d = TypedUserDefaults()
+		d.testString = "foo"
+		XCTAssertEqual("foo", d.testString)
+		d.testString = nil
+		XCTAssertEqual(nil, d.testString)
+	}
+	
 }

@@ -6,19 +6,7 @@
 //  Copyright © 2015 Grigory Entin. All rights reserved.
 //
 
-import UIKit
 import Foundation
-
-public let defaults = TypedUserDefaults()!
-
-private let objcEncode_Bool = String(validatingUTF8: NSNumber(value: true).objCType)!
-private let objcEncode_Int = "i"
-private let objcEncode_Long = "l"
-private let objcEncode_LongLong = "q"
-private let objcEncode_C99Bool = "B"
-private let objcEncode_AnyObject = "@"
-
-// MARK: -
 
 typealias _Self = TypedUserDefaults
 
@@ -30,7 +18,7 @@ private let objectValueIMP: @convention(c) (_Self, Selector) -> AnyObject? = { _
 }
 private let setObjectValueIMP: @convention(c) (_Self, Selector, NSObject?) -> Void = { _self, _cmd, value in
 	let defaultName = _Self.defaultNameForSelector(_cmd)
-	_self.defaults.set(value, forKey:(defaultName))
+	_self.suiteDefaults.set(value, forKey:(defaultName))
 }
 private let boolValueIMP: @convention(c) (_Self, Selector) -> Bool = { _self, _cmd in
 	let propertyName = NSStringFromSelector(_cmd)
@@ -54,17 +42,17 @@ private let longLongValueIMP: @convention(c) (_Self, Selector) -> CLongLong = { 
 private let setBoolValueIMP: @convention(c) (_Self, Selector, Bool) -> Void = { _self, _cmd, value in
 	let propertyName = NSStringFromSelector(_cmd)
 	$(propertyName)
-	_self.defaults.set(value, forKey: propertyName)
+	_self.suiteDefaults.set(value, forKey: propertyName)
 }
 private let setLongValueIMP: @convention(c) (_Self, Selector, CLong) -> Void = { _self, _cmd, value in
 	let propertyName = NSStringFromSelector(_cmd)
 	$(propertyName)
-	_self.defaults.set(value, forKey: propertyName)
+	_self.suiteDefaults.set(value, forKey: propertyName)
 }
 private let setLongLongValueIMP: @convention(c) (_Self, Selector, CLongLong) -> Void = { _self, _cmd, value in
 	let propertyName = NSStringFromSelector(_cmd)
 	$(propertyName)
-	_self.defaults.set(Int(value), forKey: propertyName)
+	_self.suiteDefaults.set(Int(value), forKey: propertyName)
 }
 
 extension TypedUserDefaults {
@@ -112,7 +100,8 @@ extension TypedUserDefaults {
 
 public class TypedUserDefaults : NSObject {
 
-	var defaults: UserDefaults
+	let defaults: UserDefaults
+	let suiteDefaults: UserDefaults
 	
 	override public class func keyPathsForValuesAffectingValue(forKey key: String) -> Set<String> {
 		var keyPaths = super.keyPathsForValuesAffectingValue(forKey: key)
@@ -135,17 +124,15 @@ public class TypedUserDefaults : NSObject {
 		let isSetter = selName.hasSuffix(":")
 		let valueTypeEncoded = propertyInfo.valueTypeEncoded
 		let methodIMP: IMP = {
-			switch valueTypeEncoded {
-			case objcEncode_Bool, objcEncode_C99Bool:
+			switch ObjCEncode(rawValue: valueTypeEncoded)! {
+			case .Bool, .C99Bool:
 				return isSetter ? unsafeBitCast(setBoolValueIMP, to: IMP.self) : unsafeBitCast(boolValueIMP, to: IMP.self)
-			case objcEncode_Long, objcEncode_Int:
+			case .Long, .Int:
 				return isSetter ? unsafeBitCast(setLongValueIMP, to: IMP.self) : unsafeBitCast(longValueIMP, to: IMP.self)
-			case objcEncode_LongLong:
+			case .LongLong:
 				return isSetter ? unsafeBitCast(setLongLongValueIMP, to: IMP.self) : unsafeBitCast(longLongValueIMP, to: IMP.self)
-			case objcEncode_AnyObject:
+			case .AnyObject:
 				return isSetter ? unsafeBitCast(setObjectValueIMP, to: IMP.self) : unsafeBitCast(objectValueIMP, to: IMP.self)
-			default:
-				fatalError("\(L(valueTypeEncoded))")
 			}
 		}()
 		let types = isSetter ? "v@:\(valueTypeEncoded)" : "\(valueTypeEncoded)@:"
@@ -156,10 +143,16 @@ public class TypedUserDefaults : NSObject {
 	}
 	
 	public init?(suiteName: String? = nil) {
-		guard let defaults = UserDefaults(suiteName: suiteName) else {
+		guard let suiteDefaults = UserDefaults(suiteName: suiteName) else {
 			return nil
 		}
-		self.defaults = defaults
+		self.suiteDefaults = suiteDefaults
+		self.defaults = UserDefaults() … {
+			guard let suiteName = suiteName else {
+				return
+			}
+			$0.addSuite(named: suiteName)
+		}
 		super.init()
 	}
 	
