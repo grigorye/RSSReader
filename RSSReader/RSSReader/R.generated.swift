@@ -391,12 +391,12 @@ struct R: Rswift.Validatable {
     struct launchScreen {
       /// ru translation: NFeeds
       /// 
-      /// Locales: ru
-      static let kIdC2RCXText = Rswift.StringResource(key: "kId-c2-rCX.text", tableName: "LaunchScreen", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// Locales: ru, ru
+      static let kIdC2RCXText = Rswift.StringResource(key: "kId-c2-rCX.text", tableName: "LaunchScreen", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
       
       /// ru translation: NFeeds
       /// 
-      /// Locales: ru
+      /// Locales: ru, ru
       static func kIdC2RCXText(_: Void = ()) -> String {
         return NSLocalizedString("kId-c2-rCX.text", tableName: "LaunchScreen", bundle: R.hostingBundle, comment: "")
       }
@@ -404,16 +404,28 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 29 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 37 localization keys.
     struct localizable {
       /// ru translation: Все отмечено как прочитанное.
       /// 
       /// Locales: ru
       static let markedAllAsRead = Rswift.StringResource(key: "Marked all as read.", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// ru translation: Вы не подключены к аккаунту.
+      /// 
+      /// Locales: ru
+      static let youAreNotLoggedIn = Rswift.StringResource(key: "You are not logged in.", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// ru translation: Для подключения аккаунта воспользуйтесь настройками программы.
+      /// 
+      /// Locales: ru
+      static let toEnableLoginOpenThisAppSSettingsAndFillLoginAndPassword = Rswift.StringResource(key: "To enable login, open this app's settings and fill \"Login and Password\".", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: Для синхронизации нужно зарегистрироваться.
       /// 
       /// Locales: ru
       static let toSyncYouShouldBeLoggedIn = Rswift.StringResource(key: "To sync you should be logged in.", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// ru translation: Для того, чтобы изменить имя пользователя или пароль, воспользуйтесь  настройками программы.
+      /// 
+      /// Locales: ru
+      static let toAdjustTheUsernameOrPasswordOpenThisAppSSettingsAndEditLoginAndPassword = Rswift.StringResource(key: "To adjust the username or password, open this app's settings and edit \"Login and Password\".", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: Добавить в избранное
       /// 
       /// Locales: ru
@@ -426,10 +438,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: ru
       static let favorites = Rswift.StringResource(key: "Favorites", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
-      /// ru translation: Не удалось загрузить еще.
-      /// 
-      /// Locales: ru
-      static let failedToLoadMore = Rswift.StringResource(key: "Failed to load more.", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: Не удалось отметить все как прочитанное. %@
       /// 
       /// Locales: ru
@@ -442,6 +450,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: ru
       static let unableToLoadSummary = Rswift.StringResource(key: "Unable to load summary", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// ru translation: Невозможно продолжить, т.к. имя пользователя или пароль не верны.
+      /// 
+      /// Locales: ru
+      static let couldNotProceedAsUsernameOrPasswordIsInvalid = Rswift.StringResource(key: "Could not proceed as username or password is invalid.", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// ru translation: Невозможно продолжить, т.к. отсутствует информация об аккаунте.
+      /// 
+      /// Locales: ru
+      static let couldNotProceedAsAccountInformationIsMissing = Rswift.StringResource(key: "Could not proceed as account information is missing.", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: Неизвестно
       /// 
       /// Locales: ru
@@ -478,6 +494,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: ru
       static let openInSafari = Rswift.StringResource(key: "Open in Safari", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// ru translation: Открыть настройки
+      /// 
+      /// Locales: ru
+      static let openSettings = Rswift.StringResource(key: "Open Settings", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: Отменить
       /// 
       /// Locales: ru
@@ -514,6 +534,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: ru
       static let authenticationFailed = Rswift.StringResource(key: "Authentication Failed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// ru translation: Сбой загрузки. %@
+      /// 
+      /// Locales: ru
+      static let failedToLoadMore = Rswift.StringResource(key: "Failed to load more. %@", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: Только что
       /// 
       /// Locales: ru
@@ -522,6 +546,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: ru
       static let somethingWentWrong = Rswift.StringResource(key: "Something went wrong.", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// ru translation: Что-то пошло не так. Загруженные данные будут удалены.
+      /// 
+      /// Locales: ru
+      static let somethingWentWrongOfflineDataHasBeenErased = Rswift.StringResource(key: "Something went wrong. Offline data has been erased.", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// ru translation: Что-то пошло не так. Загруженные данные могут быть недоступны. Переустановите программу чтобы избежать проблем в будущем.
+      /// 
+      /// Locales: ru
+      static let somethingWentWrongOfflineDataMightBeUnavailablePleaseReInstallTheApplicationToAvoidFurtherProblems = Rswift.StringResource(key: "Something went wrong. Offline data might be unavailable. Please re-install the application to avoid further problems.", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       
       /// ru translation: Все отмечено как прочитанное.
       /// 
@@ -530,11 +562,32 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Marked all as read.", bundle: R.hostingBundle, comment: "")
       }
       
+      /// ru translation: Вы не подключены к аккаунту.
+      /// 
+      /// Locales: ru
+      static func youAreNotLoggedIn(_: Void = ()) -> String {
+        return NSLocalizedString("You are not logged in.", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// ru translation: Для подключения аккаунта воспользуйтесь настройками программы.
+      /// 
+      /// Locales: ru
+      static func toEnableLoginOpenThisAppSSettingsAndFillLoginAndPassword(_: Void = ()) -> String {
+        return NSLocalizedString("To enable login, open this app's settings and fill \"Login and Password\".", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// ru translation: Для синхронизации нужно зарегистрироваться.
       /// 
       /// Locales: ru
       static func toSyncYouShouldBeLoggedIn(_: Void = ()) -> String {
         return NSLocalizedString("To sync you should be logged in.", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// ru translation: Для того, чтобы изменить имя пользователя или пароль, воспользуйтесь  настройками программы.
+      /// 
+      /// Locales: ru
+      static func toAdjustTheUsernameOrPasswordOpenThisAppSSettingsAndEditLoginAndPassword(_: Void = ()) -> String {
+        return NSLocalizedString("To adjust the username or password, open this app's settings and edit \"Login and Password\".", bundle: R.hostingBundle, comment: "")
       }
       
       /// ru translation: Добавить в избранное
@@ -558,13 +611,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Favorites", bundle: R.hostingBundle, comment: "")
       }
       
-      /// ru translation: Не удалось загрузить еще.
-      /// 
-      /// Locales: ru
-      static func failedToLoadMore(_: Void = ()) -> String {
-        return NSLocalizedString("Failed to load more.", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// ru translation: Не удалось отметить все как прочитанное. %@
       /// 
       /// Locales: ru
@@ -584,6 +630,20 @@ struct R: Rswift.Validatable {
       /// Locales: ru
       static func unableToLoadSummary(_: Void = ()) -> String {
         return NSLocalizedString("Unable to load summary", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// ru translation: Невозможно продолжить, т.к. имя пользователя или пароль не верны.
+      /// 
+      /// Locales: ru
+      static func couldNotProceedAsUsernameOrPasswordIsInvalid(_: Void = ()) -> String {
+        return NSLocalizedString("Could not proceed as username or password is invalid.", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// ru translation: Невозможно продолжить, т.к. отсутствует информация об аккаунте.
+      /// 
+      /// Locales: ru
+      static func couldNotProceedAsAccountInformationIsMissing(_: Void = ()) -> String {
+        return NSLocalizedString("Could not proceed as account information is missing.", bundle: R.hostingBundle, comment: "")
       }
       
       /// ru translation: Неизвестно
@@ -649,6 +709,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Open in Safari", bundle: R.hostingBundle, comment: "")
       }
       
+      /// ru translation: Открыть настройки
+      /// 
+      /// Locales: ru
+      static func openSettings(_: Void = ()) -> String {
+        return NSLocalizedString("Open Settings", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// ru translation: Отменить
       /// 
       /// Locales: ru
@@ -712,6 +779,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Authentication Failed", bundle: R.hostingBundle, comment: "")
       }
       
+      /// ru translation: Сбой загрузки. %@
+      /// 
+      /// Locales: ru
+      static func failedToLoadMore(_ value1: String) -> String {
+        return String(format: NSLocalizedString("Failed to load more. %@", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
+      }
+      
       /// ru translation: Только что
       /// 
       /// Locales: ru
@@ -726,272 +800,330 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Something went wrong.", bundle: R.hostingBundle, comment: "")
       }
       
+      /// ru translation: Что-то пошло не так. Загруженные данные будут удалены.
+      /// 
+      /// Locales: ru
+      static func somethingWentWrongOfflineDataHasBeenErased(_: Void = ()) -> String {
+        return NSLocalizedString("Something went wrong. Offline data has been erased.", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// ru translation: Что-то пошло не так. Загруженные данные могут быть недоступны. Переустановите программу чтобы избежать проблем в будущем.
+      /// 
+      /// Locales: ru
+      static func somethingWentWrongOfflineDataMightBeUnavailablePleaseReInstallTheApplicationToAvoidFurtherProblems(_: Void = ()) -> String {
+        return NSLocalizedString("Something went wrong. Offline data might be unavailable. Please re-install the application to avoid further problems.", bundle: R.hostingBundle, comment: "")
+      }
+      
       fileprivate init() {}
     }
     
-    /// This `R.string.main` struct is generated, and contains static references to 24 localization keys.
+    /// This `R.string.main` struct is generated, and contains static references to 28 localization keys.
     struct main {
-      /// ru translation: Detail•
+      /// ru translation:  
       /// 
       /// Locales: ru
-      static let aWhVLI4QText = Rswift.StringResource(key: "AWh-VL-I4Q.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
-      /// ru translation: Detail•
+      static let pG2FU3i2Title = Rswift.StringResource(key: "pG2-fU-3i2.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// ru translation: BEG
       /// 
       /// Locales: ru
-      static let iuNQWRUText = Rswift.StringResource(key: "8iu-NQ-WRU.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      static let vVvPxO6aTitle = Rswift.StringResource(key: "vVv-px-o6a.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// ru translation: Detail•
+      /// 
+      /// Locales: ru, ru
+      static let aWhVLI4QText = Rswift.StringResource(key: "AWh-VL-I4Q.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
+      /// ru translation: Detail•
+      /// 
+      /// Locales: ru, ru
+      static let iuNQWRUText = Rswift.StringResource(key: "8iu-NQ-WRU.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
       /// ru translation: E
       /// 
+      /// Locales: ru, ru
+      static let frRCQJf5Title = Rswift.StringResource(key: "frR-cQ-Jf5.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
+      /// ru translation: END
+      /// 
       /// Locales: ru
-      static let frRCQJf5Title = Rswift.StringResource(key: "frR-cQ-Jf5.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      static let i8SXQLSdTitle = Rswift.StringResource(key: "i8S-xQ-lSd.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: Item
       /// 
-      /// Locales: ru
-      static let eDc3UE5bTitle = Rswift.StringResource(key: "eDc-3U-E5b.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// Locales: ru, ru
+      static let eDc3UE5bTitle = Rswift.StringResource(key: "eDc-3U-E5b.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
       /// ru translation: Label
       /// 
-      /// Locales: ru
-      static let bC2ZFSCeText = Rswift.StringResource(key: "bC2-zF-sCe.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// Locales: ru, ru
+      static let bC2ZFSCeText = Rswift.StringResource(key: "bC2-zF-sCe.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
       /// ru translation: Label
       /// 
-      /// Locales: ru
-      static let wVVRVZb5Text = Rswift.StringResource(key: "wVV-rV-Zb5.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// Locales: ru, ru
+      static let wVVRVZb5Text = Rswift.StringResource(key: "wVV-rV-Zb5.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
       /// ru translation: MAR
       /// 
-      /// Locales: ru
-      static let fEaK8CQPTitle = Rswift.StringResource(key: "FEa-k8-cQP.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// Locales: ru, ru
+      static let fEaK8CQPTitle = Rswift.StringResource(key: "FEa-k8-cQP.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
       /// ru translation: R
       /// 
-      /// Locales: ru
-      static let gnUABLLMTitle = Rswift.StringResource(key: "gnU-AB-lLM.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// Locales: ru, ru
+      static let gnUABLLMTitle = Rswift.StringResource(key: "gnU-AB-lLM.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
       /// ru translation: Title
       /// 
-      /// Locales: ru
-      static let fgtYIK6MText = Rswift.StringResource(key: "Fgt-yI-K6M.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// Locales: ru, ru
+      static let fgtYIK6MText = Rswift.StringResource(key: "Fgt-yI-K6M.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
       /// ru translation: Title•
       /// 
-      /// Locales: ru
-      static let t5YDFXAText = Rswift.StringResource(key: "3T5-yD-fXA.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// Locales: ru, ru
+      static let t5YDFXAText = Rswift.StringResource(key: "3T5-yD-fXA.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
       /// ru translation: U
       /// 
-      /// Locales: ru
-      static let fgWkBy1NormalTitle = Rswift.StringResource(key: "1Fg-wk-by1.normalTitle", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// Locales: ru, ru
+      static let fgWkBy1NormalTitle = Rswift.StringResource(key: "1Fg-wk-by1.normalTitle", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
       /// ru translation: U
       /// 
-      /// Locales: ru
-      static let y2KHr675NormalTitle = Rswift.StringResource(key: "Y2K-Hr-675.normalTitle", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// Locales: ru, ru
+      static let y2KHr675NormalTitle = Rswift.StringResource(key: "Y2K-Hr-675.normalTitle", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
       /// ru translation: Всё вместе
       /// 
-      /// Locales: ru
-      static let zU6A2UhTTitle = Rswift.StringResource(key: "ZU6-a2-UhT.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// Locales: ru, ru
+      static let zU6A2UhTTitle = Rswift.StringResource(key: "ZU6-a2-UhT.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
       /// ru translation: Главное
       /// 
-      /// Locales: ru
-      static let oXAIBjhTitle = Rswift.StringResource(key: "3oX-aI-Bjh.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// Locales: ru, ru
+      static let oXAIBjhTitle = Rswift.StringResource(key: "3oX-aI-Bjh.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
       /// ru translation: Избранное
       /// 
-      /// Locales: ru
-      static let w01H4Bt3Text = Rswift.StringResource(key: "W01-H4-Bt3.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// Locales: ru, ru
+      static let w01H4Bt3Text = Rswift.StringResource(key: "W01-H4-Bt3.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
       /// ru translation: История
       /// 
-      /// Locales: ru
-      static let iIN6C0VText = Rswift.StringResource(key: "1II-N6-C0V.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// Locales: ru, ru
+      static let iIN6C0VText = Rswift.StringResource(key: "1II-N6-C0V.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
       /// ru translation: История
       /// 
-      /// Locales: ru
-      static let qylH42jlTitle = Rswift.StringResource(key: "Qyl-H4-2jl.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// Locales: ru, ru
+      static let qylH42jlTitle = Rswift.StringResource(key: "Qyl-H4-2jl.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
       /// ru translation: Настройки
       /// 
-      /// Locales: ru
-      static let aGKDDEHCTitle = Rswift.StringResource(key: "aGK-dD-eHC.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// Locales: ru, ru
+      static let aGKDDEHCTitle = Rswift.StringResource(key: "aGK-dD-eHC.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
       /// ru translation: Настройки
       /// 
+      /// Locales: ru, ru
+      static let z7VW6NdyTitle = Rswift.StringResource(key: "Z7V-w6-ndy.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
+      /// ru translation: Ничего
+      /// 
       /// Locales: ru
-      static let z7VW6NdyTitle = Rswift.StringResource(key: "Z7V-w6-ndy.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      static let r8d6DTsIText = Rswift.StringResource(key: "R8d-6D-TsI.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: Обновить все
       /// 
-      /// Locales: ru
-      static let u5iX6HdRTitle = Rswift.StringResource(key: "U5i-x6-HdR.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// Locales: ru, ru
+      static let u5iX6HdRTitle = Rswift.StringResource(key: "U5i-x6-HdR.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
       /// ru translation: Подписки
       /// 
-      /// Locales: ru
-      static let lBD0OText = Rswift.StringResource(key: "814-LB-d0O.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// Locales: ru, ru
+      static let lBD0OText = Rswift.StringResource(key: "814-LB-d0O.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
       /// ru translation: Подписки
       /// 
-      /// Locales: ru
-      static let rhVDz5gATitle = Rswift.StringResource(key: "RhV-dz-5gA.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// Locales: ru, ru
+      static let rhVDz5gATitle = Rswift.StringResource(key: "RhV-dz-5gA.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
       /// ru translation: Разработчик
       /// 
-      /// Locales: ru
-      static let aAAMh8VkTitle = Rswift.StringResource(key: "AAA-Mh-8Vk.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// Locales: ru, ru
+      static let aAAMh8VkTitle = Rswift.StringResource(key: "AAA-Mh-8Vk.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
       /// ru translation: Разработчик
       /// 
+      /// Locales: ru, ru
+      static let qOuK3OJ2Text = Rswift.StringResource(key: "qOu-K3-OJ2.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
+      
+      /// ru translation:  
+      /// 
       /// Locales: ru
-      static let qOuK3OJ2Text = Rswift.StringResource(key: "qOu-K3-OJ2.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      static func pG2FU3i2Title(_: Void = ()) -> String {
+        return NSLocalizedString("pG2-fU-3i2.title", tableName: "Main", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// ru translation: BEG
+      /// 
+      /// Locales: ru
+      static func vVvPxO6aTitle(_: Void = ()) -> String {
+        return NSLocalizedString("vVv-px-o6a.title", tableName: "Main", bundle: R.hostingBundle, comment: "")
+      }
       
       /// ru translation: Detail•
       /// 
-      /// Locales: ru
+      /// Locales: ru, ru
       static func aWhVLI4QText(_: Void = ()) -> String {
         return NSLocalizedString("AWh-VL-I4Q.text", tableName: "Main", bundle: R.hostingBundle, comment: "")
       }
       
       /// ru translation: Detail•
       /// 
-      /// Locales: ru
+      /// Locales: ru, ru
       static func iuNQWRUText(_: Void = ()) -> String {
         return NSLocalizedString("8iu-NQ-WRU.text", tableName: "Main", bundle: R.hostingBundle, comment: "")
       }
       
       /// ru translation: E
       /// 
-      /// Locales: ru
+      /// Locales: ru, ru
       static func frRCQJf5Title(_: Void = ()) -> String {
         return NSLocalizedString("frR-cQ-Jf5.title", tableName: "Main", bundle: R.hostingBundle, comment: "")
       }
       
-      /// ru translation: Item
+      /// ru translation: END
       /// 
       /// Locales: ru
+      static func i8SXQLSdTitle(_: Void = ()) -> String {
+        return NSLocalizedString("i8S-xQ-lSd.title", tableName: "Main", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// ru translation: Item
+      /// 
+      /// Locales: ru, ru
       static func eDc3UE5bTitle(_: Void = ()) -> String {
         return NSLocalizedString("eDc-3U-E5b.title", tableName: "Main", bundle: R.hostingBundle, comment: "")
       }
       
       /// ru translation: Label
       /// 
-      /// Locales: ru
+      /// Locales: ru, ru
       static func bC2ZFSCeText(_: Void = ()) -> String {
         return NSLocalizedString("bC2-zF-sCe.text", tableName: "Main", bundle: R.hostingBundle, comment: "")
       }
       
       /// ru translation: Label
       /// 
-      /// Locales: ru
+      /// Locales: ru, ru
       static func wVVRVZb5Text(_: Void = ()) -> String {
         return NSLocalizedString("wVV-rV-Zb5.text", tableName: "Main", bundle: R.hostingBundle, comment: "")
       }
       
       /// ru translation: MAR
       /// 
-      /// Locales: ru
+      /// Locales: ru, ru
       static func fEaK8CQPTitle(_: Void = ()) -> String {
         return NSLocalizedString("FEa-k8-cQP.title", tableName: "Main", bundle: R.hostingBundle, comment: "")
       }
       
       /// ru translation: R
       /// 
-      /// Locales: ru
+      /// Locales: ru, ru
       static func gnUABLLMTitle(_: Void = ()) -> String {
         return NSLocalizedString("gnU-AB-lLM.title", tableName: "Main", bundle: R.hostingBundle, comment: "")
       }
       
       /// ru translation: Title
       /// 
-      /// Locales: ru
+      /// Locales: ru, ru
       static func fgtYIK6MText(_: Void = ()) -> String {
         return NSLocalizedString("Fgt-yI-K6M.text", tableName: "Main", bundle: R.hostingBundle, comment: "")
       }
       
       /// ru translation: Title•
       /// 
-      /// Locales: ru
+      /// Locales: ru, ru
       static func t5YDFXAText(_: Void = ()) -> String {
         return NSLocalizedString("3T5-yD-fXA.text", tableName: "Main", bundle: R.hostingBundle, comment: "")
       }
       
       /// ru translation: U
       /// 
-      /// Locales: ru
+      /// Locales: ru, ru
       static func fgWkBy1NormalTitle(_: Void = ()) -> String {
         return NSLocalizedString("1Fg-wk-by1.normalTitle", tableName: "Main", bundle: R.hostingBundle, comment: "")
       }
       
       /// ru translation: U
       /// 
-      /// Locales: ru
+      /// Locales: ru, ru
       static func y2KHr675NormalTitle(_: Void = ()) -> String {
         return NSLocalizedString("Y2K-Hr-675.normalTitle", tableName: "Main", bundle: R.hostingBundle, comment: "")
       }
       
       /// ru translation: Всё вместе
       /// 
-      /// Locales: ru
+      /// Locales: ru, ru
       static func zU6A2UhTTitle(_: Void = ()) -> String {
         return NSLocalizedString("ZU6-a2-UhT.title", tableName: "Main", bundle: R.hostingBundle, comment: "")
       }
       
       /// ru translation: Главное
       /// 
-      /// Locales: ru
+      /// Locales: ru, ru
       static func oXAIBjhTitle(_: Void = ()) -> String {
         return NSLocalizedString("3oX-aI-Bjh.title", tableName: "Main", bundle: R.hostingBundle, comment: "")
       }
       
       /// ru translation: Избранное
       /// 
-      /// Locales: ru
+      /// Locales: ru, ru
       static func w01H4Bt3Text(_: Void = ()) -> String {
         return NSLocalizedString("W01-H4-Bt3.text", tableName: "Main", bundle: R.hostingBundle, comment: "")
       }
       
       /// ru translation: История
       /// 
-      /// Locales: ru
+      /// Locales: ru, ru
       static func iIN6C0VText(_: Void = ()) -> String {
         return NSLocalizedString("1II-N6-C0V.text", tableName: "Main", bundle: R.hostingBundle, comment: "")
       }
       
       /// ru translation: История
       /// 
-      /// Locales: ru
+      /// Locales: ru, ru
       static func qylH42jlTitle(_: Void = ()) -> String {
         return NSLocalizedString("Qyl-H4-2jl.title", tableName: "Main", bundle: R.hostingBundle, comment: "")
       }
       
       /// ru translation: Настройки
       /// 
-      /// Locales: ru
+      /// Locales: ru, ru
       static func aGKDDEHCTitle(_: Void = ()) -> String {
         return NSLocalizedString("aGK-dD-eHC.title", tableName: "Main", bundle: R.hostingBundle, comment: "")
       }
       
       /// ru translation: Настройки
       /// 
-      /// Locales: ru
+      /// Locales: ru, ru
       static func z7VW6NdyTitle(_: Void = ()) -> String {
         return NSLocalizedString("Z7V-w6-ndy.title", tableName: "Main", bundle: R.hostingBundle, comment: "")
       }
       
-      /// ru translation: Обновить все
+      /// ru translation: Ничего
       /// 
       /// Locales: ru
+      static func r8d6DTsIText(_: Void = ()) -> String {
+        return NSLocalizedString("R8d-6D-TsI.text", tableName: "Main", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// ru translation: Обновить все
+      /// 
+      /// Locales: ru, ru
       static func u5iX6HdRTitle(_: Void = ()) -> String {
         return NSLocalizedString("U5i-x6-HdR.title", tableName: "Main", bundle: R.hostingBundle, comment: "")
       }
       
       /// ru translation: Подписки
       /// 
-      /// Locales: ru
+      /// Locales: ru, ru
       static func lBD0OText(_: Void = ()) -> String {
         return NSLocalizedString("814-LB-d0O.text", tableName: "Main", bundle: R.hostingBundle, comment: "")
       }
       
       /// ru translation: Подписки
       /// 
-      /// Locales: ru
+      /// Locales: ru, ru
       static func rhVDz5gATitle(_: Void = ()) -> String {
         return NSLocalizedString("RhV-dz-5gA.title", tableName: "Main", bundle: R.hostingBundle, comment: "")
       }
       
       /// ru translation: Разработчик
       /// 
-      /// Locales: ru
+      /// Locales: ru, ru
       static func aAAMh8VkTitle(_: Void = ()) -> String {
         return NSLocalizedString("AAA-Mh-8Vk.title", tableName: "Main", bundle: R.hostingBundle, comment: "")
       }
       
       /// ru translation: Разработчик
       /// 
-      /// Locales: ru
+      /// Locales: ru, ru
       static func qOuK3OJ2Text(_: Void = ()) -> String {
         return NSLocalizedString("qOu-K3-OJ2.text", tableName: "Main", bundle: R.hostingBundle, comment: "")
       }

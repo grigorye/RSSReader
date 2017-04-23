@@ -71,6 +71,8 @@
 		C474F1CD1DB0657800F0E152 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474F1CC1DB0657800F0E152 /* main.swift */; };
 		C4816E2E1DF612E400DDACA7 /* GETracing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BFF1DBD502600FA3A0A /* GETracing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4816E361DF612E400DDACA7 /* GEFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1CC1DBBAA9000A86CC0 /* GEFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C4874A091EAD657B00629990 /* Main.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4874A0B1EAD657B00629990 /* Main.strings */; };
+		C4874A0E1EAD657C00629990 /* LaunchScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4874A101EAD657C00629990 /* LaunchScreen.strings */; };
 		C48C5F971A87344000A1EA12 /* ItemPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48C5F961A87344000A1EA12 /* ItemPageViewController.swift */; };
 		C495409B1A575C1900F56168 /* LoginAndPasswordDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495409A1A575C1900F56168 /* LoginAndPasswordDefaults.swift */; };
 		C49540A11A57825100F56168 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49540A01A57825100F56168 /* ItemsViewController.swift */; };
@@ -287,6 +289,8 @@
 		C474F0D01D8775F500CABEB9 /* SwiftMessages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftMessages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C474F1BF1DB041F100F0E152 /* Loggy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Loggy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C474F1CC1DB0657800F0E152 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = main.swift; path = Swift/main.swift; sourceTree = "<group>"; };
+		C4874A0A1EAD657B00629990 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		C4874A0F1EAD657C00629990 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		C48C5F961A87344000A1EA12 /* ItemPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ItemPageViewController.swift; path = Swift/ItemPageViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C4915FE31CE734A40063A734 /* RSSReader-app.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "RSSReader-app.xcconfig"; sourceTree = SOURCE_ROOT; };
 		C495409A1A575C1900F56168 /* LoginAndPasswordDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginAndPasswordDefaults.swift; path = Swift/LoginAndPasswordDefaults.swift; sourceTree = "<group>"; };
@@ -333,7 +337,6 @@
 		C4EA5C351CE91E8600E395FE /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerViewController.swift; path = Swift/ContainerViewController.swift; sourceTree = "<group>"; };
 		C4EA5C371CE929D300E395FE /* ContainerTableViewSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ContainerTableViewSectionHeader.xib; path = Resources/ContainerTableViewSectionHeader.xib; sourceTree = "<group>"; };
 		C4EA5C3B1CE930B200E395FE /* ContainerTableViewSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerTableViewSectionHeaderView.swift; path = Swift/ContainerTableViewSectionHeaderView.swift; sourceTree = "<group>"; };
-		C4EA6B2F1CB895EF00FCDAA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Localizable/Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C4EA6B311CB895F500FCDAA5 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = Localizable/ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C4EB27EB1DFA31ED00BF0843 /* ModuleExports-GETracing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GETracing.swift"; path = "../GETracing/GETracing/ModuleExports-GETracing.swift"; sourceTree = SOURCE_ROOT; };
 		C4EB27ED1DFA328900BF0843 /* ModuleExports-GEFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GEFoundation.swift"; path = "../GEFoundation/GEFoundation/ModuleExports-GEFoundation.swift"; sourceTree = SOURCE_ROOT; };
@@ -474,6 +477,8 @@
 		C4BE5AE31DAA5BB000E1734F /* Miscellaneous */ = {
 			isa = PBXGroup;
 			children = (
+				C4874A101EAD657C00629990 /* LaunchScreen.strings */,
+				C4874A0B1EAD657B00629990 /* Main.strings */,
 				C431B4F71E8FEC7200D67D5A /* TunaXcodePlugIn.swift */,
 				C4DA68351E58C542004615A0 /* R.generated.swift */,
 				C474F1CC1DB0657800F0E152 /* main.swift */,
@@ -777,6 +782,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4CDE1911A5A06A600F16A2E /* ItemSummaryTemplate.html in Resources */,
+				C4874A0E1EAD657C00629990 /* LaunchScreen.strings in Resources */,
 				C4CDD3C51A5357B20087DD05 /* Settings.bundle in Resources */,
 				C4EA6B301CB895EF00FCDAA5 /* Localizable.strings in Resources */,
 				C44D91641AAE73830053B9E6 /* ItemTableViewCell.xib in Resources */,
@@ -794,6 +800,7 @@
 				C4BE5AF41DAA986A00E1734F /* ItemTableViewCell-1.xib in Resources */,
 				C4EA5C381CE929D300E395FE /* ContainerTableViewSectionHeader.xib in Resources */,
 				C49A79FC1E2FFDFC00DE3702 /* GoogleService-Info.plist in Resources */,
+				C4874A091EAD657B00629990 /* Main.strings in Resources */,
 				C4BE5AF31DAA986A00E1734F /* ItemTableViewCell-0.xib in Resources */,
 				C4BE5AF51DAA986A00E1734F /* ItemTableViewCell-2.xib in Resources */,
 			);
@@ -963,6 +970,24 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		C4874A0B1EAD657B00629990 /* Main.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C4874A0A1EAD657B00629990 /* ru */,
+			);
+			name = Main.strings;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C4874A101EAD657C00629990 /* LaunchScreen.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C4874A0F1EAD657C00629990 /* ru */,
+			);
+			name = LaunchScreen.strings;
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		C4A1646C1CB8938C009D8B86 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -993,7 +1018,6 @@
 		C4EA6B2E1CB895EF00FCDAA5 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C4EA6B2F1CB895EF00FCDAA5 /* Base */,
 				C4EA6B311CB895F500FCDAA5 /* ru */,
 			);
 			name = Localizable.strings;

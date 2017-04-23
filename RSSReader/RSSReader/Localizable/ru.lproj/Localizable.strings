@@ -1,26 +1,29 @@
-/* Error message */
-"%@ %@" = "%1$@ %2$@";
-
 /* No comment provided by engineer. */
 "%@ ago" = "Обновлено %@ назад";
 
 /* No comment provided by engineer. */
 "Add to Favorites" = "Добавить в избранное";
 
-/* Folders Update State */
+/* No comment provided by engineer. */
 "Authenticating" = "Подключение";
 
-/* Error description for authentication failure */
+/* No comment provided by engineer. */
 "Authentication Failed" = "Сбой авторизации";
 
-/* Cancel action title for alert on error */
+/* No comment provided by engineer. */
 "Cancel" = "Отменить";
 
 /* Folders Update State */
 "Completed" = "Завершено";
 
 /* No comment provided by engineer. */
-"Failed to load more." = "Не удалось загрузить еще.";
+"Could not proceed as account information is missing." = "Невозможно продолжить, т.к. отсутствует информация об аккаунте.";
+
+/* No comment provided by engineer. */
+"Could not proceed as username or password is invalid." = "Невозможно продолжить, т.к. имя пользователя или пароль не верны.";
+
+/* No comment provided by engineer. */
+"Failed to load more. %@" = "Сбой загрузки. %@";
 
 /* No comment provided by engineer. */
 "Failed to mark all as read. %@" = "Не удалось отметить все как прочитанное. %@";
@@ -41,6 +44,9 @@
 "Not updated before" = "Никогда не обновлялось";
 
 /* No comment provided by engineer. */
+"Open Settings" = "Открыть настройки";
+
+/* No comment provided by engineer. */
 "Open in Safari" = "Открыть в Safari";
 
 /* Folders Update State */
@@ -55,11 +61,23 @@
 /* Title for alert on failed refresh */
 "Refresh Failed" = "Ошибка обновления";
 
-/* Proceed action title for alert on error */
+/* No comment provided by engineer. */
 "Retry" = "Повторить";
 
 /* No comment provided by engineer. */
 "Something went wrong." = "Что-то пошло не так.";
+
+/* No comment provided by engineer. */
+"Something went wrong. Offline data has been erased." = "Что-то пошло не так. Загруженные данные будут удалены.";
+
+/* No comment provided by engineer. */
+"Something went wrong. Offline data might be unavailable. Please re-install the application to avoid further problems." = "Что-то пошло не так. Загруженные данные могут быть недоступны. Переустановите программу чтобы избежать проблем в будущем.";
+
+/* No comment provided by engineer. */
+"To adjust the username or password, open this app's settings and edit \"Login and Password\"." = "Для того, чтобы изменить имя пользователя или пароль, воспользуйтесь  настройками программы.";
+
+/* No comment provided by engineer. */
+"To enable login, open this app's settings and fill \"Login and Password\"." = "Для подключения аккаунта воспользуйтесь настройками программы.";
 
 /* No comment provided by engineer. */
 "To sync you should be logged in." = "Для синхронизации нужно зарегистрироваться.";
@@ -87,4 +105,7 @@
 
 /* Folders Update State */
 "Updating User Info" = "Обновление персональных настроек";
+
+/* No comment provided by engineer. */
+"You are not logged in." = "Вы не подключены к аккаунту.";
 
