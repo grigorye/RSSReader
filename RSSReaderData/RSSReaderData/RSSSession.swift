@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
+import class GEFoundation.ProgressEnabledURLSessionTaskGenerator
 import PromiseKit
 import Foundation
 import CoreData
@@ -25,15 +26,25 @@ public enum RSSSessionError: Error {
 	case importFailed(underlyingError: Error, command: AbstractPersistentDataUpdateCommand)
 }
 
+extension ProgressEnabledURLSessionTaskGenerator: RSSSessionDataTaskGenerator {
+}
+
 public class RSSSession: NSObject {
+	
 	let inoreaderAppID = "1000001375"
 	let inoreaderAppKey = "r3O8gX6FPdFaOXE3x4HypYHO2LTCNuDS"
 	let loginAndPassword: LoginAndPassword
-	public init(loginAndPassword: LoginAndPassword) {
+	
+	let dataTaskGenerator: RSSSessionDataTaskGenerator
+	
+	public init(loginAndPassword: LoginAndPassword, dataTaskGenerator: RSSSessionDataTaskGenerator = progressEnabledURLSessionTaskGenerator) {
 		_ = RSSSession.initializeOnce
 		precondition(loginAndPassword.isValid())
+		self.dataTaskGenerator = dataTaskGenerator
 		self.loginAndPassword = loginAndPassword
+		super.init()
 	}
+	
 }
 
 extension TypedUserDefaults {
