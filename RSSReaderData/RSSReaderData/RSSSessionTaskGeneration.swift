@@ -8,13 +8,23 @@
 
 import Foundation
 
-typealias RSSSessionTaskCompletionHandler = ProgressEnabledURLSessionTaskGenerator.HTTPDataTaskCompletionHandler
+public protocol RSSSessionDataTaskGenerator {
+
+	typealias DataTaskCompletionHandler = (Data?, HTTPURLResponse?, Error?) -> Void
+
+	func dataTask(for request: URLRequest, completionHandler: @escaping DataTaskCompletionHandler) -> URLSessionDataTask
+	
+}
+
 extension RSSSession {
-	typealias TaskCompletionHandler = RSSSessionTaskCompletionHandler
+	
+	typealias TaskCompletionHandler = RSSSessionDataTaskGenerator.DataTaskCompletionHandler
+	
 	// MARK: -
 	func dataTask(with request: URLRequest, completionHandler: @escaping TaskCompletionHandler) -> URLSessionDataTask {
-		return progressEnabledURLSessionTaskGenerator.dataTask(for: request, completionHandler: completionHandler)
+		return dataTaskGenerator.dataTask(for: request, completionHandler: completionHandler)
 	}
+	
 	func authenticatedDataTask(with request: URLRequest, completionHandler: @escaping TaskCompletionHandler) -> URLSessionDataTask {
 		precondition(nil != self.authToken)
 		let authenticatedRequest = request … {
@@ -29,4 +39,5 @@ extension RSSSession {
 			completionHandler(data, response, error)
 		}
 	}
+	
 }
