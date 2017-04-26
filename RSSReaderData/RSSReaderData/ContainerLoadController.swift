@@ -143,8 +143,8 @@ public class ContainerLoadController : NSObject {
 			else {
 				assert(containerViewState.loadDate == ongoingLoadDate)
 			}
-			let newAndExistingItems = streamContentsResult.1.items
-			let items = newAndExistingItems.new + newAndExistingItems.existing
+			let (existingItems, newItems) = streamContentsResult.1.items
+			let items = existingItems + newItems
 			let lastLoadedItem = items.last
 			let continuation = streamContentsResult.1.continuation
 			containerViewState … {
