@@ -19,8 +19,9 @@ protocol PersistentDataUpdateCommand : AbstractPersistentDataUpdateCommand {
 	func preprocessedRequestError(_ error: Error) -> RSSSessionError
 	func validate(data: Data) throws
 	func push(_ data: Data, through: (@escaping (NSManagedObjectContext) throws -> ResultType) -> Void)
-	func taskForSession(_ session: RSSSession, completionHandler: @escaping RSSSessionTaskCompletionHandler) -> URLSessionTask
+	func taskForSession(_ session: RSSSession, completionHandler: @escaping RSSSession.TaskCompletionHandler) -> URLSessionTask
 }
+
 /// Default behaviour for `PersistentDataUpdateCommand`.
 extension PersistentDataUpdateCommand {
 	var baseURL: URL {
@@ -37,7 +38,7 @@ extension PersistentDataUpdateCommand {
 	}
 	func validate(data: Data) throws {
 	}
-	func taskForSession(_ session: RSSSession, completionHandler: @escaping RSSSessionTaskCompletionHandler) -> URLSessionTask {
+	func taskForSession(_ session: RSSSession, completionHandler: @escaping RSSSession.TaskCompletionHandler) -> URLSessionTask {
 		return session.dataTask(with: self.request, completionHandler: completionHandler)
 	}
 }
@@ -91,7 +92,7 @@ extension PersistentDataUpdateCommand where Self: SimpleDispatchingDataUpdateCom
 protocol AuthenticatedDataUpdateCommand {}
 /// Default behaviour for `AuthenticatedDataUpdateCommand`.
 extension PersistentDataUpdateCommand where Self: AuthenticatedDataUpdateCommand {
-	func taskForSession(_ session: RSSSession, completionHandler: @escaping RSSSessionTaskCompletionHandler) -> URLSessionTask {
+	func taskForSession(_ session: RSSSession, completionHandler: @escaping RSSSession.TaskCompletionHandler) -> URLSessionTask {
 		return session.authenticatedDataTask(with: self.request, completionHandler: completionHandler)
 	}
 }
@@ -191,7 +192,7 @@ struct PushTags : PersistentDataUpdateCommand, MostCommonDataUpdateCommand {
 }
 
 public struct StreamContents : PersistentDataUpdateCommand, AuthenticatedDataUpdateCommand, RelativeStringBasedDataUpdateCommand  {
-	public typealias ResultType = (NSManagedObjectContext, (continuation: String?, items: (new: [Item], existing: [Item])))
+	public typealias ResultType = (NSManagedObjectContext, (continuation: String?, items: (existing: [Item], new: [Item])))
 	let excludedCategory: Folder?, container: Container, continuation: String?, count: Int, loadDate: Date
 	var requestRelativeString: String {
 		let querySuffix = URLQuerySuffixFromComponents([String]() … {
