@@ -77,7 +77,7 @@ public func insertedObjectUnlessFetchedWithID<T: NSManagedObject>(_ cls: T.Type,
 	}
 }
 
-public func insertedObjectsUnlessFetchedWithID<T: NSManagedObject>(_ cls: T.Type, ids: [String], managedObjectContext: NSManagedObjectContext) throws -> (new: [T], existing: [T]) where T: ManagedIdentifiable, T: NSFetchRequestResult {
+public func insertedObjectsUnlessFetchedWithID<T: NSManagedObject>(_ cls: T.Type, ids: [String], managedObjectContext: NSManagedObjectContext) throws -> (existing: [T], new: [T]) where T: ManagedIdentifiable, T: NSFetchRequestResult {
 	let identifierKey = cls.identifierKey()
 	let predicate = NSPredicate(format: "%K in %@", argumentArray: [identifierKey, ids])
 	let existingObjects = objectsFetchedWithPredicate(cls, predicate: predicate, managedObjectContext: managedObjectContext)
@@ -89,10 +89,10 @@ public func insertedObjectsUnlessFetchedWithID<T: NSManagedObject>(_ cls: T.Type
 		(newObject as NSManagedObject).setValue($0, forKey:identifierKey)
 		return newObject
 	}
-	return (new: newObjects, existing: existingObjects)
+	return (existing: existingObjects, new: newObjects)
 }
 
-public func importItemsFromJson<T: ManagedIdentifiable>(_ json: [String : AnyObject], type: T.Type, elementName: String, managedObjectContext: NSManagedObjectContext, importFromJson: (T, [String: AnyObject]) throws -> Void) throws -> (new: [T], existing: [T]) where T: NSManagedObject, T: NSFetchRequestResult {
+public func importItemsFromJson<T: ManagedIdentifiable>(_ json: [String : AnyObject], type: T.Type, elementName: String, managedObjectContext: NSManagedObjectContext, importFromJson: (T, [String: AnyObject]) throws -> Void) throws -> (existing: [T], new: [T]) where T: NSManagedObject, T: NSFetchRequestResult {
 	guard let itemJsons = json[elementName] as? [Json] else {
 		throw GenericCoreDataExtensionsError.ElementNotFoundOrInvalidInJson(json: json, elementName: elementName)
 	}
@@ -103,16 +103,16 @@ public func importItemsFromJson<T: ManagedIdentifiable>(_ json: [String : AnyObj
 		return (itemID, itemJson)
 	}.reduce([String : Json]()) { var acc = $0; acc[$1.0] = $1.1; return acc }
 	let itemIDs: [String] = Array(itemJsonsByIDs.keys)
-	let (newItems, existingItems) = try insertedObjectsUnlessFetchedWithID(type, ids: itemIDs, managedObjectContext: managedObjectContext)
+	let (existingItems, newItems) = try insertedObjectsUnlessFetchedWithID(type, ids: itemIDs, managedObjectContext: managedObjectContext)
 	let itemIDKey = type.identifierKey() as String
 	for item in newItems + existingItems {
 		let itemJson = itemJsonsByIDs[item.value(forKey: itemIDKey) as! String]!
 		try importFromJson(item, itemJson)
 	}
-	return (new: newItems, existing: existingItems)
+	return (existing: existingItems, new: newItems)
 }
 
-public func importItemsFromJsonData<T: ManagedIdentifiable>(_ data: Data, type: T.Type, elementName: String, managedObjectContext: NSManagedObjectContext, importFromJson: (T, [String: AnyObject]) throws -> Void) throws -> (new: [T], existing: [T]) where T: NSManagedObject, T: NSFetchRequestResult {
+public func importItemsFromJsonData<T: ManagedIdentifiable>(_ data: Data, type: T.Type, elementName: String, managedObjectContext: NSManagedObjectContext, importFromJson: (T, [String: AnyObject]) throws -> Void) throws -> (existing: [T], new: [T]) where T: NSManagedObject, T: NSFetchRequestResult {
 	let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions())
 	guard let json = jsonObject as? [String : AnyObject] else {
 		throw GenericCoreDataExtensionsError.JsonObjectIsNotDictionary(jsonObject: jsonObject)
