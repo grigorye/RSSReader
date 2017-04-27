@@ -71,8 +71,8 @@ public extension Item {
 		}
 		else {
 			categories.remove(category)
-			categoriesToBeExcluded.remove(category)
-			categoriesToBeIncluded.insert(category)
+			categoriesToBeExcluded.insert(category)
+			categoriesToBeIncluded.remove(category)
 		}
 		self.pendingUpdateDate = Date()
 	}
