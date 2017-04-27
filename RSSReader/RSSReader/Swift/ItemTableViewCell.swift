@@ -24,7 +24,7 @@ class ItemTableViewCell : SystemLayoutSizeCachingTableViewCell, ItemTableViewCel
 	@IBOutlet final var titleLabel: UILabel!
 	@IBOutlet final var dateLabel: UILabel!
 	@IBOutlet final var sourceLabel: UILabel!
-	@IBOutlet final var readMarkLabel: UILabel!
+	@IBOutlet final var readMarkView: UIView!
 	@IBOutlet final var favoriteMarkLabel: UILabel!
 	
 	final var item: Item!
@@ -69,10 +69,10 @@ class ItemTableViewCell : SystemLayoutSizeCachingTableViewCell, ItemTableViewCel
 				}
 			}
 		}
-		if let readMarkLabel = self.readMarkLabel, defaults.showUnreadMark {
+		if let readMarkView = self.readMarkView, defaults.showUnreadMark {
 			let alpha = CGFloat(item.markedAsRead ? 0 : 1)
-			if readMarkLabel.alpha != alpha {
-				readMarkLabel.alpha = alpha
+			if readMarkView.alpha != alpha {
+				readMarkView.alpha = alpha
 			}
 		}
 		if let favoriteMarkLabel = self.favoriteMarkLabel {
