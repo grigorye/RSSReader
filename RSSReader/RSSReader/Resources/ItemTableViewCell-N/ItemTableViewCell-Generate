@@ -6,7 +6,8 @@
 #  Created by Grigory Entin on 09.10.16.
 #  Copyright © 2016 Grigory Entin. All rights reserved.
 
+wd=$(dirname "$0")
 for i in $(seq 0 6)
 do
-	sed 's/reuseIdentifier="Item"/reuseIdentifier="Item'-$i'"/' < ../ItemTableViewCell.xib > ItemTableViewCell-$i.xib
+	sed 's/reuseIdentifier="Item"/reuseIdentifier="Item'-$i'"/' < "${wd:?}"/../ItemTableViewCell.xib > "${wd:?}"/ItemTableViewCell-$i.xib
 done
