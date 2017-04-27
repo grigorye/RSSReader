@@ -13,6 +13,7 @@ class ItemCellSourceLabel: ItemCellSmallCapsLabel {}
 class ItemCellDateLabel: ItemCellSmallCapsLabel {}
 class ItemCellFavoriteMarkLabel: ItemCellSmallCapsLabel {}
 class ItemCellReadMarkLabel: UILabel {}
+class ItemCellReadMarkBar: UIView {}
 class ItemCellTitleLabel: UILabel {}
 
 func configureAppearance() {
@@ -25,5 +26,9 @@ func configureAppearance() {
 	do {
 		let label = ItemCellReadMarkLabel.appearance()
 		label.textColor = UIView().tintColor
+	}
+	do {
+		let bar = ItemCellReadMarkBar.appearance()
+		bar.backgroundColor = UIView().tintColor
 	}
 }
