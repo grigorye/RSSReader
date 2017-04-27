@@ -130,6 +130,7 @@ extension ItemsViewController : ItemsViewControllerLoadingImp {
 	}
 	
 	public func loadMoreIfNecessary() {
+		let dt = disableTrace(); defer { _ = dt }
 		guard $(shouldLoadMore()) else {
 			return
 		}
