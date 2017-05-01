@@ -13,7 +13,15 @@ import UIKit
 import CoreData
 
 extension TypedUserDefaults {
+	
 	@NSManaged var itemPrefetchingEnabled: Bool
+	
+}
+
+extension TypedUserDefaults {
+	
+	@NSManaged var begEndBarButtonItemsEnabled: Bool
+	
 }
 
 class ItemsViewController : ContainerViewController {
@@ -51,14 +59,39 @@ class ItemsViewController : ContainerViewController {
 	@IBOutlet var statusBarButtonItem: UIBarButtonItem!
 	@IBOutlet private var filterUnreadBarButtonItem: UIBarButtonItem!
 	@IBOutlet private var unfilterUnreadBarButtonItem: UIBarButtonItem!
+	
 	private func regeneratedRightBarButtonItems() -> [UIBarButtonItem] {
 		let excludedItems = showUnreadEnabled ? [(showUnreadOnly ?  filterUnreadBarButtonItem : unfilterUnreadBarButtonItem)!] : [filterUnreadBarButtonItem!, unfilterUnreadBarButtonItem!]
-		let $ = loadedRightBarButtonItems.filter { nil == excludedItems.index(of: $0) }
+		var $ = loadedRightBarButtonItems!
+		$ = $.filter { nil == excludedItems.index(of: $0) }
 		return $
 	}
+	
+	// MARK: -
+
+	private var loadedToolbarItems: [UIBarButtonItem]!
+	
+	@IBOutlet private var toBeginningBarButtonItem: UIBarButtonItem!
+	@IBOutlet private var toEndBarButtonItem: UIBarButtonItem!
+	
+	var begEndBarButtonItems: [UIBarButtonItem] {
+		return [toBeginningBarButtonItem, toEndBarButtonItem]
+	}
+	private func regeneratedToolbarItems() -> [UIBarButtonItem] {
+		var $ = loadedToolbarItems!
+		$ = $.filter {
+			guard !defaults.begEndBarButtonItemsEnabled else {
+				return true
+			}
+			return !begEndBarButtonItems.contains($0)
+		}
+		return $
+	}
+
 	// MARK: -
 	func reloadViewForNewConfiguration() {
 		navigationItem.rightBarButtonItems = regeneratedRightBarButtonItems()
+		toolbarItems = regeneratedToolbarItems()
 		self.unbind()
 		self.loadController = nil
 		self.bind()
@@ -180,6 +213,12 @@ class ItemsViewController : ContainerViewController {
 			}
 		}
 	}
+	
+	func configureToolbarItems() {
+		loadedToolbarItems = toolbarItems
+		toolbarItems = regeneratedToolbarItems()
+	}
+	
 	func configureRightBarButtonItems() {
 		for item in [unfilterUnreadBarButtonItem, filterUnreadBarButtonItem] {
 			if let customView = item?.customView {
@@ -262,6 +301,7 @@ class ItemsViewController : ContainerViewController {
 		scheduledForViewWillAppearOrStateRestoration += [{ [unowned self] in
 			self.configureDataSource()
 			self.configureRightBarButtonItems()
+			self.configureToolbarItems()
 		}]
 
 		scheduledForViewWillAppear += [{ [unowned self] in

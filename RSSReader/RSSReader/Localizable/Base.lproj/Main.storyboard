@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WZP-Ap-ZYg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WZP-Ap-ZYg">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -145,6 +145,8 @@
                         <outlet property="filterUnreadBarButtonItem" destination="oay-ah-Cmq" id="vZE-Ry-RVV"/>
                         <outlet property="statusBarButtonItem" destination="oV4-UX-7T3" id="qSB-1W-aPY"/>
                         <outlet property="statusLabel" destination="bC2-zF-sCe" id="XFM-sU-qk8"/>
+                        <outlet property="toBeginningBarButtonItem" destination="vVv-px-o6a" id="ZWR-fh-2ER"/>
+                        <outlet property="toEndBarButtonItem" destination="i8S-xQ-lSd" id="rM1-y4-yhq"/>
                         <outlet property="unfilterUnreadBarButtonItem" destination="pWh-vF-c3Z" id="ffJ-zv-ht1"/>
                         <segue destination="VQ0-zs-W8t" kind="showDetail" identifier="showListPages" id="w0U-iJ-oAk"/>
                         <segue destination="CEh-Po-b2S" kind="show" identifier="showListArticle" id="8Da-vm-piJ"/>
