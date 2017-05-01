@@ -9,9 +9,17 @@
 import UIKit
 
 var estimateCount = 0
+
+extension TypedUserDefaults {
+
+	@NSManaged var prototypeBasedCellHeightEnabled: Bool
+
+}
+
 extension ItemsViewController {
 #if false
 	override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+		let dt = disableTrace(); defer { _ = dt }
 		$(indexPath)
 		estimateCount += 1
 		return 44
@@ -29,8 +37,10 @@ extension ItemsViewController {
 #endif
 	}
 #endif
-#if true
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		guard defaults.prototypeBasedCellHeightEnabled else {
+			return UITableViewAutomaticDimension
+		}
 		let dt = disableTrace(); defer { _ = dt }
 		$(indexPath)
 		let dataSource = tableView.dataSource as! ItemTableViewDataSource
@@ -39,7 +49,7 @@ extension ItemsViewController {
 		let systemLayoutSize = prototypeCell.systemLayoutSizeFitting(tableView.bounds.size)
 		return systemLayoutSize.height
 	}
-#endif
+	
 	override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 		guard defaults.frequencyAndWeightBasedTableRowHeightEstimatorEnabled else {
 			return
