@@ -10,8 +10,8 @@
 #endif
 #endif
 
-#import "AAA-CocoaPods-Hack.h"
 #import "AnyPromise.h"
+#import "fwd.h"
 #import "PromiseKit.h"
 
 FOUNDATION_EXPORT double PromiseKitVersionNumber;
