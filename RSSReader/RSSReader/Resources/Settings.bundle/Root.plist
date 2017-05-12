@@ -16,42 +16,6 @@
 		</dict>
 		<dict>
 			<key>Title</key>
-			<string>First Aid</string>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-		</dict>
-		<dict>
-			<key>DefaultValue</key>
-			<false/>
-			<key>Key</key>
-			<string>resetDefaults</string>
-			<key>Title</key>
-			<string>Reset Defaults</string>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-		</dict>
-		<dict>
-			<key>DefaultValue</key>
-			<false/>
-			<key>Key</key>
-			<string>forceStoreRemoval</string>
-			<key>Title</key>
-			<string>Erase All</string>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-		</dict>
-		<dict>
-			<key>DefaultValue</key>
-			<true/>
-			<key>Key</key>
-			<string>stateRestorationEnabled</string>
-			<key>Title</key>
-			<string>State Restoration</string>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-		</dict>
-		<dict>
-			<key>Title</key>
 			<string>Account (Inoreader.com)</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
@@ -94,7 +58,7 @@
 		</dict>
 		<dict>
 			<key>Title</key>
-			<string></string>
+			<string>General</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
@@ -107,6 +71,72 @@
 			<string>Show Unread Only</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Zoom</string>
+			<key>Key</key>
+			<string>zoom</string>
+			<key>DefaultValue</key>
+			<integer>1</integer>
+			<key>Titles</key>
+			<array>
+				<string>100%</string>
+				<string>120%</string>
+				<string>150%</string>
+				<string>200%</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<integer>1</integer>
+				<real>1.2</real>
+				<real>1.5</real>
+				<integer>2</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>First Aid</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>Key</key>
+			<string>resetDefaults</string>
+			<key>Title</key>
+			<string>Reset Defaults</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>Key</key>
+			<string>forceStoreRemoval</string>
+			<key>Title</key>
+			<string>Erase All</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>Key</key>
+			<string>stateRestorationEnabled</string>
+			<key>Title</key>
+			<string>State Restoration</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string></string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
 		</dict>
 		<dict>
 			<key>DefaultValue</key>

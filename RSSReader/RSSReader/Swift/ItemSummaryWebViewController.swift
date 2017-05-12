@@ -16,6 +16,10 @@ var hideBarsOnSwipe = false
 
 let markAsReadTimeInterval = TimeInterval(1)
 
+extension TypedUserDefaults {
+	@NSManaged var zoom: Float
+}
+
 class ItemSummaryWebViewController: UIViewController {
 	@IBOutlet var webView: UIWebView!
 	var savedToolbarItems: [UIBarButtonItem]!
@@ -35,6 +39,7 @@ class ItemSummaryWebViewController: UIViewController {
 		let htmlTemplate = try! NSString(contentsOf: htmlTemplateURL, encoding: String.Encoding.utf8.rawValue)
 		let htmlString =
 			htmlTemplate
+				.replacingOccurrences(of: "$$Zoom$$", with: "\(defaults.zoom)")
 				.replacingOccurrences(of: "$$Summary$$", with: item.summary!)
 				.replacingOccurrences(of: "$$Title$$", with: item.title)
 		return htmlString
