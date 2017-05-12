@@ -15,6 +15,7 @@ enum ObjCEncode : String {
 	case LongLong = "q"
 	case C99Bool = "B"
 	case AnyObject = "@"
+	case Float = "f"
 }
 
 public func objCEncode<T>(_ type: T.Type) -> String {
