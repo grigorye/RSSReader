@@ -20,8 +20,8 @@
 #ifndef CwlUtilsTests_BridgingHeader_h
 #define CwlUtilsTests_BridgingHeader_h
 
+#import <CwlPreconditionTesting/CwlPreconditionTesting.h>
+
 #import "ReferenceRandomGenerators.h"
-#import "CwlCatchException.h"
-#import "CwlMachBadInstructionHandler.h"
 
 #endif
