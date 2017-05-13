@@ -3,7 +3,7 @@ import PackageDescription
 let package = Package(
 	name: "CwlUtils",
 	targets: [
-		Target(name: "CwlUtils", dependencies: ["CwlFrameAddress"]),
+		Target(name: "CwlUtils", dependencies: ["CwlFrameAddress", "ReferenceRandomGenerators"]),
 		Target(name: "CwlFrameAddress"),
 		Target(name: "ReferenceRandomGenerators")
 	],
