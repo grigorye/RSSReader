@@ -96,9 +96,9 @@ public func callingFunctionIdentifier(skipCount: UInt = 0) -> String {
 /// - parameter addresses: an array of memory addresses, generally as produced by `callStackReturnAddresses`
 /// - returns: an array of formatted, symbolicated stack frame descriptions.
 public func symbolsForCallStack(addresses: [UInt]) -> [String] {
-	return addresses.enumerated().map { (index: Int, address: UInt) -> String in
-		return AddressInfo(address: address).formattedDescription(index: index)
-	}
+	return Array(addresses.enumerated().map { tuple -> String in
+		return AddressInfo(address: tuple.element).formattedDescription(index: tuple.offset)
+	})
 }
 
 #endif

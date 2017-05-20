@@ -48,7 +48,7 @@ class PthreadTests: XCTestCase {
 		}
 		
 		let e4 = expectation(description: "Block4 not invoked")
-		let r = mutex1.sync { n -> Int in
+		let r = mutex1.sync { () -> Int in
 			e4.fulfill()
 			let reenter: Void? = mutex1.trySync() {
 				XCTFail()

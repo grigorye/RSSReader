@@ -26,9 +26,14 @@ class AddressInfoTests: XCTestCase {
 	func testCallingFunctionIdentifier() {
 		let name = callingFunctionIdentifier()
 		
+		print(name)
+		
 		// Only test the suffix since the module name varies.
-		// The two options tested here are the pre-Swift 2.2 and the post-Swift 2.2 mangled names.
-		XCTAssert(name.hasSuffix("16AddressInfoTests29testCallingFunctionIdentifierfS0_FT_T_") || name.hasSuffix("16AddressInfoTests29testCallingFunctionIdentifierfT_T_"))
+		// The two options tested here are the pre-Swift 2.2, the post-Swift 2.2 through Swift 3.1 and the Swift 4 mangled names.
+		XCTAssert(
+			name.hasSuffix("16AddressInfoTests29testCallingFunctionIdentifierfS0_FT_T_") ||
+			name.hasSuffix("16AddressInfoTests29testCallingFunctionIdentifierfT_T_") ||
+			name.hasSuffix("16AddressInfoTestsC29testCallingFunctionIdentifieryyF"))
 	}
 	
 	func testSymbolsForCallStackAddresses() {

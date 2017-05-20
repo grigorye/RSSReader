@@ -23,10 +23,10 @@ import XCTest
 import CwlUtils
 
 class TestObservable: NSObject {
-	dynamic var someProperty: String
-	dynamic var unrelatedProperty: NSNumber
-	dynamic weak var weakProperty: TestObservable?
-	dynamic var chainedObservable: TestObservable?
+	@objc dynamic var someProperty: String
+	@objc dynamic var unrelatedProperty: NSNumber
+	@objc dynamic weak var weakProperty: TestObservable?
+	@objc dynamic var chainedObservable: TestObservable?
 	
 	init(value: String) {
 		someProperty = value
@@ -45,7 +45,7 @@ class KeyValueObserverTests: XCTestCase {
 		
 		if let to1 = testObservable1 {
 			kvo = KeyValueObserver(source: to1, keyPath: #keyPath(TestObservable.someProperty), options: NSKeyValueObservingOptions.new) { (change: [NSKeyValueChangeKey: Any], reason: KeyValueObserver.CallbackReason) -> Void in
-				results.append(change[NSKeyValueChangeKey.newKey] as? String, reason)
+				results.append((change[NSKeyValueChangeKey.newKey] as? String, reason))
 			}
 		}
 		
@@ -75,7 +75,7 @@ class KeyValueObserverTests: XCTestCase {
 		var results: [(String?, KeyValueObserver.CallbackReason)] = Array()
 		let testObservable = TestObservable(value: "empty")
 		let kvo = KeyValueObserver(source: testObservable, keyPath: #keyPath(TestObservable.someProperty)) { (change: [NSKeyValueChangeKey: Any], reason: KeyValueObserver.CallbackReason) -> Void in
-				results.append(change[NSKeyValueChangeKey.newKey] as? String, reason)
+				results.append((change[NSKeyValueChangeKey.newKey] as? String, reason))
 		}
 		
 		testObservable.someProperty = "one"
@@ -99,7 +99,7 @@ class KeyValueObserverTests: XCTestCase {
 			to2.chainedObservable = to3
 			to1.chainedObservable = to2
 			kvo = KeyValueObserver(source: to1, keyPath: "chainedObservable.chainedObservable.someProperty", options: NSKeyValueObservingOptions.new) { (change: [NSKeyValueChangeKey: Any], reason: KeyValueObserver.CallbackReason) -> Void in
-				results.append(change[NSKeyValueChangeKey.newKey] as? String, reason)
+				results.append((change[NSKeyValueChangeKey.newKey] as? String, reason))
 			}
 		}
 		

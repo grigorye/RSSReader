@@ -41,7 +41,7 @@ public enum ScalarScannerError: Error {
 /// A structure for traversing a `String.UnicodeScalarView`.
 ///
 /// **UNICODE WARNING**: this struct ignores all Unicode combining rules and parses each scalar individually. The rules for parsing must allow combined characters to be parsed separately or better yet, forbid combining characters at critical parse locations. If your data structure does not include these types of rule then you should be iterating over the `Character` elements in a `String` rather than using this struct.
-public struct ScalarScanner<C: Collection> where C.Iterator.Element == UnicodeScalar, C.Index: Comparable {
+public struct ScalarScanner<C: Collection> where C.Iterator.Element == UnicodeScalar {
 	/// The underlying storage
 	public let scalars: C
 	
