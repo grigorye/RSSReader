@@ -32,6 +32,47 @@ class DeferredWorkTests: XCTestCase {
 		dw.runWork()
 	}
 
+	func testDeferredWorkDoubleRun() {
+		let dw = DeferredWork()
+		dw.runWork()
+		
+		let e = catchBadInstruction {
+			dw.runWork()
+		}
+		XCTAssert(e != nil)
+	}
+
+	func testDeferredWorkAppendRun() {
+		var a = false
+		var b = false
+		var c = false
+		var dw = DeferredWork { a = true }
+		let dw2 = DeferredWork { b = true }
+		
+		dw.append(dw2)
+		dw.runWork()
+		
+		XCTAssert(a == true && b == true)
+
+		let dw3 = DeferredWork { c = true }
+		
+		let e1 = catchBadInstruction {
+			dw.append(dw3)
+		}
+		XCTAssert(e1 != nil)
+		XCTAssert(c == false)
+
+		let e2 = catchBadInstruction {
+			var x = false
+			dw.append {
+				XCTFail()
+				x = true
+				withExtendedLifetime(x) {}
+			}
+		}
+		XCTAssert(e2 != nil)
+	}
+
 	func testDeferredWorkClosureOnConstruction() {
 		var reachedPoint1 = false
 		let dw = DeferredWork { reachedPoint1 = true }

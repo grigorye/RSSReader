@@ -56,7 +56,7 @@ public struct DeferredWork {
 	
 	public mutating func append(_ other: DeferredWork) {
 #if DEBUG
-		precondition(!invokeCheck.isValid, "Work appended to an already cancelled/invoked DeferredWork")
+		precondition(invokeCheck.isValid && other.invokeCheck.isValid, "Work appended to an already cancelled/invoked DeferredWork")
 		other.invokeCheck.invalidate()
 #endif
 		switch other.work {
@@ -78,6 +78,9 @@ public struct DeferredWork {
 	}
 	
 	public mutating func append(_ additionalWork: @escaping () -> Void) {
+#if DEBUG
+		precondition(invokeCheck.isValid, "Work appended to an already cancelled/invoked DeferredWork")
+#endif
 		switch work {
 		case .none: work = .single(additionalWork)
 		case .single(let existing): work = .multiple([existing, additionalWork])
@@ -90,7 +93,7 @@ public struct DeferredWork {
 	
 	public func runWork() {
 #if DEBUG
-		precondition(!invokeCheck.isValid, "Work run multiple times")
+		precondition(invokeCheck.isValid, "Work run multiple times")
 		invokeCheck.invalidate()
 #endif
 		switch work {
