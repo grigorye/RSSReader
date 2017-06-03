@@ -20,22 +20,26 @@
 
 import Swift
 
-public final class OnDelete {
+public final class OnDelete: Cancellable {
 	var block: (() -> Void)?
 	
 	public init(_ b: @escaping () -> Void) {
 		block = b
 	}
 	
-	public func cancel() {
+	public func invalidate() {
 		block = nil
 	}
 	
-	public var isCancelled: Bool {
-		return block == nil
+	public func cancel() {
+		block?()
+	}
+	
+	public var isValid: Bool {
+		return block != nil
 	}
 	
 	deinit {
-		block?()
+		cancel()
 	}
 }

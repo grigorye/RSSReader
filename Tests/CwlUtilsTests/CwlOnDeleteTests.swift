@@ -36,8 +36,21 @@ class OnDeleteTests: XCTestCase {
 		do {
 			let o = OnDelete { y = true }
 			XCTAssert(y == false)
-			o.cancel()
+
+			XCTAssert(o.isValid == true)
+
+			o.invalidate()
+			
+			XCTAssert(o.isValid == false)
 		}
 		XCTAssert(y == false)
+		
+		var z = false
+		do {
+			let o = OnDelete { z = true }
+			XCTAssert(z == false)
+			o.cancel()
+		}
+		XCTAssert(z == true)
 	}
 }
