@@ -91,7 +91,7 @@ public struct DeferredWork {
 		}
 	}
 	
-	public func runWork() {
+	public mutating func runWork() {
 #if DEBUG
 		precondition(invokeCheck.isValid, "Work run multiple times")
 		invokeCheck.invalidate()
@@ -104,5 +104,6 @@ public struct DeferredWork {
 				w()
 			}
 		}
+		work = .none
 	}
 }
