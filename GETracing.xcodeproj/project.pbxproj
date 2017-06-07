@@ -237,7 +237,7 @@
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = 465NA5BW7E;
 						DevelopmentTeamName = "Grigorii Entin";
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					C41818691B6A65B100872EB3 = {
