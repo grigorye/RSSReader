@@ -8,9 +8,9 @@
 
 import Foundation
 
-/// When it replaces `$` used without passing-through the logged value, disables logging and supresses evaluation of `argument`.
+/// When it replaces `x$` used without passing-through the logged value, disables logging and supresses evaluation of `argument`.
 ///
-/// Consider Baz.swift that uses `$` for logging value of `cos(foo)` and `foo`:
+/// Consider Baz.swift that uses `x$` for logging value of `cos(foo)` and `foo`:
 /// ````
 /// func sinPi() -> Float {
 ///     let foo = Float.pi
@@ -27,7 +27,7 @@ import Foundation
 /// ````
 /// •(cos(foo))
 /// ````
-/// , hence replacing `$` with `•`, leaving the possibility to enable logging again just by replacing `•` with `$`.
+/// , hence replacing `x$` with `•`, leaving the possibility to enable logging again just by replacing `•` with x$.
 ///
 /// Not adding `•` above would result in a compiler warning about unused value as well as wasting cpu on no-effect invocation.
 ///
@@ -39,8 +39,8 @@ import Foundation
 /// ````
 /// let bar = sin((foo))
 /// ````
-/// , ommitting `$`, leaving the possibility to enable logging again just by adding back `$`.
-/// - seealso: `$`.
+/// , ommitting `x$`, leaving the possibility to enable logging again just by adding back x$.
+/// - seealso: `x$`.
 public prefix func •<T>(argument: @autoclosure () -> T) -> Void {
 }
 prefix operator •
@@ -59,7 +59,7 @@ prefix operator •
 /// ````
 /// func sinPi() -> Float {
 ///     let foo = Float.pi
-///     $(cos(foo))
+///     x$(cos(foo))
 ///     let bar = sin($(foo))
 ///     return bar
 /// }
@@ -72,7 +72,7 @@ prefix operator •
 /// - seealso: `•`.
 /// - seealso: `loggers`.
 @discardableResult
-public func $<T>(file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer = #dsohandle, _ valueClosure: @autoclosure () -> T) -> T {
+public func x$<T>(file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer = #dsohandle, _ valueClosure: @autoclosure () -> T) -> T {
 	let value = valueClosure()
 	traceAsNecessary(value, file: file, line: line, column: column, function: function, moduleReference: .dso(dso), traceFunctionName: "$")
 	return value
