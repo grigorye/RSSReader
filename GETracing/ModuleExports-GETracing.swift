@@ -16,12 +16,12 @@ internal var moduleTracingEnabled: Bool = {
 }()
 
 @discardableResult
-internal func $<T>(file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer = #dsohandle, _ valueClosure: @autoclosure () -> T) -> T
+internal func x$<T>(file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer = #dsohandle, _ valueClosure: @autoclosure () -> T) -> T
 {
 	guard moduleTracingEnabled else {
 		return valueClosure()
 	}
-	return GETracing.$(file: file, line: line, column: column, function: function, dso: dso, valueClosure)
+	return GETracing.x$(file: file, line: line, column: column, function: function, dso: dso, valueClosure)
 }
 
 internal prefix func •<T>(argument: @autoclosure () -> T) {
