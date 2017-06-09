@@ -10,7 +10,7 @@
 #import <Foundation/NSString.h>
 
 #define os_log_with_type_and_dso(dso, log, type, format, ...) __extension__({ \
-    if (os_log_type_enabled(log, type)) { \
+	if (os_log_type_enabled(log, type)) { \
         _Pragma("clang diagnostic push") \
         _Pragma("clang diagnostic ignored \"-Wvla\"") \
         OS_LOG_FORMAT_ERRORS \
@@ -18,7 +18,7 @@
         uint8_t _os_log_buf[__builtin_os_log_format_buffer_size(format, ##__VA_ARGS__)]; \
         _os_log_impl(dso, log, type, __format, (uint8_t *) __builtin_os_log_format(_os_log_buf, format, ##__VA_ARGS__), (unsigned int) sizeof(_os_log_buf)); \
         _Pragma("clang diagnostic pop") \
-    } \
+	} \
 })
 
 void rdar_os_log_object_with_type(void const *dso, os_log_t log, os_log_type_t type, id object) {

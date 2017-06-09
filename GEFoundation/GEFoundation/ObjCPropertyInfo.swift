@@ -29,19 +29,19 @@ extension PropertyInfo {
 extension PropertyInfo {
 	init(property: objc_property_t) {
 		self.name = String(validatingUTF8: property_getName(property))!
-		self.attributes = String(validatingUTF8: property_getAttributes(property))!
+		self.attributes = String(validatingUTF8: property_getAttributes(property)!)!
 		self.attributesDictionary = {
 			var attributesCount = UInt32(0)
 			let attributesList = property_copyAttributeList(property, &attributesCount)!
-			var $ = [String : String]()
+			var x = [String : String]()
 			for i in 0..<Int(attributesCount) {
 				let attribute = attributesList[i]
 				let attributeName = String(validatingUTF8: attribute.name)!
 				let attributeValue = String(validatingUTF8: attribute.value)!
-				$[attributeName] = attributeValue
+				x[attributeName] = attributeValue
 			}
 			free(attributesList)
-			return $
+			return x
 		}()
 	}
 }

@@ -56,7 +56,6 @@ typealias URLSessionTaskGeneratorError = GEFoundation.URLSessionTaskGeneratorErr
 typealias Ignored = GEFoundation.Ignored
 typealias Handler = GEFoundation.Handler
 typealias ScheduledHandlers = GEFoundation.ScheduledHandlers
-typealias KVOBinding = GEFoundation.KVOBinding
 typealias Json = GEFoundation.Json
 
 var _1: Bool { return GEFoundation._1 }
@@ -64,12 +63,6 @@ var _0: Bool { return GEFoundation._0 }
 
 var progressEnabledURLSessionTaskGenerator: ProgressEnabledURLSessionTaskGenerator {
 	return GEFoundation.progressEnabledURLSessionTaskGenerator
-}
-
-infix operator •
-
-internal func •(object: NSObject, keyPath: String) -> ObjectAndKeyPath {
-	return GEFoundation.objectAndKeyPath(object, keyPath)
 }
 
 internal func nilForNull(_ object: Any) -> Any? {

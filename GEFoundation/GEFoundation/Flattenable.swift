@@ -25,15 +25,15 @@ extension NSObject: Flattenable {
 extension NSDictionary {
 	
 	public override func flattenWithPrefix(_ prefix: String?) -> [String : Any] {
-		return [:] … {
-			for (key, value) in self {
-				let subprefix = (prefix?.appending(".") ?? "") + "\(key)"
-				let flattenableValue = value as! Flattenable
-				for (subkey, subvalue) in flattenableValue.flattenWithPrefix(subprefix) {
-					$0[subkey] = subvalue
-				}
+		var x = [String : Any]()
+		for (key, value) in self {
+			let subprefix = (prefix?.appending(".") ?? "") + "\(key)"
+			let flattenableValue = value as! Flattenable
+			for (subkey, subvalue) in flattenableValue.flattenWithPrefix(subprefix) {
+				x[subkey] = subvalue
 			}
 		}
+		return x
 	}
 	
 }
@@ -41,15 +41,15 @@ extension NSDictionary {
 extension NSArray {
 	
 	public override func flattenWithPrefix(_ prefix: String?) -> [String : Any] {
-		return [:] … {
-			for (i, value) in self.enumerated() {
-				let subprefix = (prefix?.appending(".") ?? "") + "\(i)"
-				let flattenableValue = value as! Flattenable
-				for (subkey, subvalue) in flattenableValue.flattenWithPrefix(subprefix) {
-					$0[subkey] = subvalue
-				}
+		var x = [String : Any]()
+		for (i, value) in self.enumerated() {
+			let subprefix = (prefix?.appending(".") ?? "") + "\(i)"
+			let flattenableValue = value as! Flattenable
+			for (subkey, subvalue) in flattenableValue.flattenWithPrefix(subprefix) {
+				x[subkey] = subvalue
 			}
 		}
+		return x
 	}
 	
 }

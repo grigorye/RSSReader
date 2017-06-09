@@ -124,21 +124,21 @@ public func cachePropertyWithName(_ cls: AnyClass!, name propertyName: String) {
 	do {
 		let getterName = objCValue(forProperty: property, attributeName: "G") ?? propertyName
 		let getterSel = NSSelectorFromString(getterName)
-		let getterMethod = class_getInstanceMethod($(cls), getterSel)
-		let getterTypeEncoding = String(validatingUTF8: method_getTypeEncoding(getterMethod))!
-		let oldGetterImp = method_getImplementation(getterMethod)!
+		let getterMethod = class_getInstanceMethod(x$(cls), getterSel)
+		let getterTypeEncoding = String(validatingUTF8: method_getTypeEncoding(getterMethod!)!)!
+		let oldGetterImp = method_getImplementation(getterMethod!)
 		let cachedGetterImp = cachedGetterImpForPropertyTypeEncoding(propertyTypeEncoding, sel: getterSel, propertyName: propertyName, oldImp: oldGetterImp)
-		let oldGetterImpAfterReplacingMethod = class_replaceMethod(cls, $(getterSel), $(cachedGetterImp), getterTypeEncoding)
+		let oldGetterImpAfterReplacingMethod = class_replaceMethod(cls, x$(getterSel), x$(cachedGetterImp), getterTypeEncoding)
 		assert(oldGetterImp == oldGetterImpAfterReplacingMethod)
 	}
 	if nil == objCValue(forProperty: property, attributeName: "R") {
 		let setterName = objCValue(forProperty: property, attributeName: "S") ?? objCDefaultSetterName(forPropertyName: propertyName)
 		let setterSel = NSSelectorFromString(setterName)
-		let setterMethod = class_getInstanceMethod($(cls), setterSel)
-		let setterTypeEncoding = String(validatingUTF8: method_getTypeEncoding(setterMethod))!
-		let oldSetterImp = method_getImplementation(setterMethod)!
+		let setterMethod = class_getInstanceMethod(x$(cls), setterSel)
+		let setterTypeEncoding = String(validatingUTF8: method_getTypeEncoding(setterMethod!)!)!
+		let oldSetterImp = method_getImplementation(setterMethod!)
 		let cachedSetterImp = cachedSetterImpForPropertyTypeEncoding(propertyTypeEncoding, sel: setterSel, propertyName: propertyName, oldImp: oldSetterImp)
-		let oldSetterImpAfterReplacingMethod = class_replaceMethod(cls, $(setterSel), $(cachedSetterImp), setterTypeEncoding)
+		let oldSetterImpAfterReplacingMethod = class_replaceMethod(cls, x$(setterSel), x$(cachedSetterImp), setterTypeEncoding)
 		assert(oldSetterImp == oldSetterImpAfterReplacingMethod)
 	}
 }
