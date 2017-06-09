@@ -34,12 +34,12 @@ public func …<T: AnyObject>(obj: T, initialize: (T) throws -> Void) rethrows -
 }
 
 /**
-    Substitute for `Void` in `static let initializeOnce: Void = {...}`.
+	Substitute for `Void` in `static let initializeOnce: Void = {...}`.
 	
 	`Void` breaks LLDB interactions when `initializeOnce` is visible as below:
 
-        (lldb) p tableView.estimatedRowHeight
-        error: Couldn't materialize: couldn't get the value of initializeOnce: extracting data from value failed
-        error: errored out in DoExecute, couldn't PrepareToExecuteJITExpression
+		(lldb) p tableView.estimatedRowHeight
+		error: Couldn't materialize: couldn't get the value of initializeOnce: extracting data from value failed
+		error: errored out in DoExecute, couldn't PrepareToExecuteJITExpression
 */
 public typealias Ignored = Int

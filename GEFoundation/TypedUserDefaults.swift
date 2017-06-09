@@ -41,17 +41,17 @@ private let longLongValueIMP: @convention(c) (_Self, Selector) -> CLongLong = { 
 
 private let setBoolValueIMP: @convention(c) (_Self, Selector, Bool) -> Void = { _self, _cmd, value in
 	let propertyName = NSStringFromSelector(_cmd)
-	$(propertyName)
+	x$(propertyName)
 	_self.suiteDefaults.set(value, forKey: propertyName)
 }
 private let setLongValueIMP: @convention(c) (_Self, Selector, CLong) -> Void = { _self, _cmd, value in
 	let propertyName = NSStringFromSelector(_cmd)
-	$(propertyName)
+	x$(propertyName)
 	_self.suiteDefaults.set(value, forKey: propertyName)
 }
 private let setLongLongValueIMP: @convention(c) (_Self, Selector, CLongLong) -> Void = { _self, _cmd, value in
 	let propertyName = NSStringFromSelector(_cmd)
-	$(propertyName)
+	x$(propertyName)
 	_self.suiteDefaults.set(Int(value), forKey: propertyName)
 }
 
@@ -74,7 +74,7 @@ extension TypedUserDefaults {
 		var propertyCount = UInt32(0)
 		let propertyList = class_copyPropertyList(_Self.self, &propertyCount)!
 		for i in 0..<Int(propertyCount) {
-			let property = propertyList[i]!
+			let property = propertyList[i]
 			let propertyInfo = PropertyInfo(property: property)
 			let attributesDictionary = propertyInfo.attributesDictionary
 			let propertyName = propertyInfo.name
@@ -100,7 +100,7 @@ extension TypedUserDefaults {
 
 public class TypedUserDefaults : NSObject {
 
-	let defaults: UserDefaults
+	@objc let defaults: UserDefaults
 	let suiteDefaults: UserDefaults
 	
 	override public class func keyPathsForValuesAffectingValue(forKey key: String) -> Set<String> {

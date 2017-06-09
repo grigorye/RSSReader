@@ -15,6 +15,6 @@ public let buildAge: TimeInterval = {
 
 public let versionIsClean: Bool = {
 	let version = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
-	$(version)
+	x$(version)
 	return nil == version.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted)
 }()

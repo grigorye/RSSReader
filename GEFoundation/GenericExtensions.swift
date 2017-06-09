@@ -23,7 +23,7 @@ public func URLQuerySuffixFromComponents(_ components: [String]) -> String {
 
 public func filterObjectsByType<T>(_ objects: [Any]) -> [T] {
 	let filteredObjects = objects.reduce([T]()) {
-		if let x = $($1) as? T {
+		if let x = x$($1) as? T {
 			return $0 + [x]
 		}
 		else {

@@ -32,7 +32,7 @@ public func objCEncode<T>(_ type: T.Type) -> String {
 
 public func objCValue(forProperty property: objc_property_t, attributeName: String) -> String? {
 	let valueCString = property_copyAttributeValue(property, attributeName)!
-	let $ = String(validatingUTF8: valueCString)
+	let x = String(validatingUTF8: valueCString)
 	free(valueCString)
-	return $;
+	return x
 }

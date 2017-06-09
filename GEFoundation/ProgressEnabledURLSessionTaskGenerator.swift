@@ -16,15 +16,15 @@ public enum URLSessionTaskGeneratorError: Error {
 
 public class ProgressEnabledURLSessionTaskGenerator: NSObject {
 	let dispatchQueue = DispatchQueue.main
-	public dynamic var progresses = [Progress]()
+	@objc public dynamic var progresses = [Progress]()
 	let session = URLSession(configuration: URLSessionConfiguration.default)
 	// MARK: -
 	public typealias HTTPDataTaskCompletionHandler = (Data?, HTTPURLResponse?, Error?) -> Void
 	public func dataTask(for request: URLRequest, completionHandler: @escaping HTTPDataTaskCompletionHandler) -> URLSessionDataTask {
 		let progress = Progress(totalUnitCount: 1)
 		progress.becomeCurrent(withPendingUnitCount: 1)
-		$(request)
-		$(request.allHTTPHeaderFields)
+		x$(request)
+		x$(request.allHTTPHeaderFields)
 		let sessionTask = session.progressEnabledDataTask(with: request) { data, response, error in
 			self.dispatchQueue.async {
 				self.progresses.remove(at: self.progresses.index(of: progress)!)
@@ -38,7 +38,7 @@ public class ProgressEnabledURLSessionTaskGenerator: NSObject {
 				guard httpResponse.statusCode == 200 else {
 					if let data = data {
 						let httpStatusResponseBody = String(data: data, encoding: .utf8)
-						$(httpStatusResponseBody)
+						x$(httpStatusResponseBody)
 					}
 					throw URLSessionTaskGeneratorError.UnexpectedHTTPResponseStatus(httpResponse: httpResponse)
 				}
@@ -78,7 +78,7 @@ public class ProgressEnabledURLSessionTaskGenerator: NSObject {
 				}
 				completionHandler(text, nil)
 			} catch {
-				completionHandler(nil, $(error))
+				completionHandler(nil, x$(error))
 			}
 		}
 	}
