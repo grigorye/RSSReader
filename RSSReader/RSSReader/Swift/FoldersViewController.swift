@@ -89,14 +89,14 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 	var childContainers: [Container]!
 	@objc dynamic let defaults = TypedUserDefaults()
 	//
-	class var keyPathsForValuesAffectingShowUnreadOnly: Set<String> {
+	@objc class var keyPathsForValuesAffectingShowUnreadOnly: Set<String> {
 		return [#keyPath(defaults.showUnreadOnly)]
 	}
 	@objc private dynamic var showUnreadOnly: Bool {
 		return defaults.showUnreadOnly
 	}
 	//
-	class var keyPathsForValuesAffectingRegeneratedChildContainers: Set<String> {
+	@objc class var keyPathsForValuesAffectingRegeneratedChildContainers: Set<String> {
 		return [#keyPath(rootFolder.childContainers), #keyPath(showUnreadOnly)]
 	}
 	@objc private dynamic var regeneratedChildContainers: [Container] {
@@ -245,7 +245,7 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 		}
 		return {_ = binding}
 	}
-	class var keyPathsForValuesAffectingRefreshStateDescription: Set<String> {
+	@objc class var keyPathsForValuesAffectingRefreshStateDescription: Set<String> {
 		return [
 			#keyPath(rssAccount.authenticationStateRawValue),
 			#keyPath(foldersController.foldersUpdateState)

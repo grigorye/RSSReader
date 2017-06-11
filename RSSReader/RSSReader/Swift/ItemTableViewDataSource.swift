@@ -54,7 +54,7 @@ class ItemTableViewDataSource: NSObject {
 		}
 	}()
 	// MARK: -
-	private class var keyPathsForValuesAffectingPredicateForItems: Set<String> {
+	@objc class var keyPathsForValuesAffectingPredicateForItems: Set<String> {
 		return [#keyPath(fetchedResultsController)]
 	}
 	@objc private dynamic var predicateForItems: NSPredicate {

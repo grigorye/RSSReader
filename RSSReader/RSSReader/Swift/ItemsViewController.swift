@@ -232,7 +232,7 @@ class ItemsViewController : ContainerViewController {
 		navigationItem.rightBarButtonItems = regeneratedRightBarButtonItems()
 	}
 	// MARK: -
-	class var keyPathsForValuesAffectingTitleText: Set<String> {
+	@objc class var keyPathsForValuesAffectingTitleText: Set<String> {
 		return [#keyPath(itemsCount)]
 	}
 	@objc dynamic var titleText: String {

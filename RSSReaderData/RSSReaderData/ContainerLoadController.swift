@@ -45,7 +45,7 @@ public class ContainerLoadController : NSObject {
 		set { containerViewState!.continuation = newValue }
 		get { return containerViewState?.continuation }
 	}
-	class var keyPathsForValuesAffectingLoadDate: Set<String> {
+	@objc class var keyPathsForValuesAffectingLoadDate: Set<String> {
 		return [#keyPath(containerViewState.loadDate)]
 	}
 	@objc private (set) public dynamic var loadDate: Date! {
