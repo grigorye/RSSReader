@@ -62,7 +62,7 @@ private let setLongLongValueIMP: @convention(c) (_Self, Selector, CLongLong) -> 
 }
 private let setFloatValueIMP: @convention(c) (_Self, Selector, CFloat) -> Void = { _self, _cmd, value in
 	let propertyName = NSStringFromSelector(_cmd)
-	$(propertyName)
+	x$(propertyName)
 	_self.suiteDefaults.set(value, forKey: propertyName)
 }
 
