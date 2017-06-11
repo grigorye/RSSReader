@@ -32,6 +32,8 @@ LD_RUNPATH_SEARCH_PATHS[sdk=iphoneos*] = $(inherited) @executable_path/Framework
 LD_RUNPATH_SEARCH_PATHS[sdk=iphonesimulator*] = $(inherited) @executable_path/Frameworks @loader_path/Frameworks
 LD_RUNPATH_SEARCH_PATHS[sdk=macosx*] = @loader_path/../Frameworks @executable_path/../Frameworks
 
+ALWAYS_SEARCH_USER_PATHS = NO
+
 SWIFT_OPTIMIZATION_LEVEL__CONFIGURATION__Debug = -Onone
 SWIFT_OPTIMIZATION_LEVEL__CONFIGURATION__Release = -Owholemodule
 SWIFT_OPTIMIZATION_LEVEL = $(SWIFT_OPTIMIZATION_LEVEL__CONFIGURATION__$(CONFIGURATION))
