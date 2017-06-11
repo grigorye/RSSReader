@@ -34,10 +34,10 @@ func presentInfoMessage(_ text: String) {
 }
 
 extension UIViewController {
-	open func presentErrorMessage(_ text: String) {
+	@objc open func presentErrorMessage(_ text: String) {
 		RSSReaderAppConfig.presentErrorMessage(text)
 	}
-	open func presentInfoMessage(_ text: String) {
+	@objc open func presentInfoMessage(_ text: String) {
 		RSSReaderAppConfig.presentInfoMessage(text)
 	}
 }

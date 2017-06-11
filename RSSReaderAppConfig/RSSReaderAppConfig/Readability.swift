@@ -17,7 +17,7 @@ public func retrieveReadableHTMLFromURL(_ url: URL, completionHandler: @escaping
 	}
 	let dataTask = progressEnabledURLSessionTaskGenerator.textTask(for: URLRequest(url: url)) { text, error in
 		guard let HTMLString = text, nil == error else {
-			completeWithError($(error!))
+			completeWithError(x$(error!))
 			return
 		}
 #if !DZ_READABILITY_ENABLED
@@ -26,7 +26,7 @@ public func retrieveReadableHTMLFromURL(_ url: URL, completionHandler: @escaping
 		DispatchQueue.main.async {
 			let readability = DZReadability(URL: url, rawDocumentContent: text, options: nil) { sender, content, error in
 				if let error = error {
-					completeWithError($(error))
+					completeWithError(x$(error))
 					return
 				}
 				completionHandler(HTMLString: content, error: nil)

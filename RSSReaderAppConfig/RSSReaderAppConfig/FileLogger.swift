@@ -18,8 +18,8 @@ public let logFileURL: URL = {
 	let libraryDirectoryURL = try! fileManager.url(for: .libraryDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
 	let nameWithoutExtension = logFileNameDateFormatter.string(from: Date())
 	let name = "\(nameWithoutExtension).log"
-	let $ = libraryDirectoryURL.appendingPathComponent("Logs").appendingPathComponent(Bundle.main.bundleIdentifier!).appendingPathComponent(name)
-	return $
+	let x = libraryDirectoryURL.appendingPathComponent("Logs").appendingPathComponent(Bundle.main.bundleIdentifier!).appendingPathComponent(name)
+	return x
 }()
 
 let logFileHandle: FileHandle! = {
@@ -44,6 +44,6 @@ func fileLogger(record: LogRecord) {
 import var GETracing.loggers
 
 let fileLoggerInitializer: Void = {
-	$(logFileURL)
+	x$(logFileURL)
 	loggers += [fileLogger]
 }()

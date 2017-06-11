@@ -11,7 +11,7 @@ import Foundation
 
 public let analyticsEnabled: Bool = {
 #if ANALYTICS_ENABLED
-	return $(versionIsClean) && $(defaults.analyticsEnabled)
+	return x$(versionIsClean) && x$(defaults.analyticsEnabled)
 #else
 	return false
 #endif
@@ -22,7 +22,7 @@ extension TypedUserDefaults {
 }
 
 private func defaultErrorTracker(error: Error) {
-	_ = $(error)
+	_ = x$(error)
 }
 
 var errorTrackers: [(Error) -> ()] = [defaultErrorTracker]

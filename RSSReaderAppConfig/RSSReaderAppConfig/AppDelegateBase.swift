@@ -26,7 +26,7 @@ extension TypedUserDefaults {
 
 let analyticsShouldBeEnabled: Bool = {
 	let mainBundleURL = Bundle.main.bundleURL
-	return $(versionIsClean) && !$(mainBundleURL).lastPathComponent.hasPrefix("Test")
+	return x$(versionIsClean) && !x$(mainBundleURL).lastPathComponent.hasPrefix("Test")
 }()
 
 open class AppDelegateBase : UIResponder, UIApplicationDelegate {
@@ -53,7 +53,7 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 		}
 		else {
 			var memoryProfiler: FBMemoryProfiler!
-			retainedObjects += [KVOBinding(defaults•#keyPath(TypedUserDefaults.memoryProfilingEnabled), options: .initial) { change in
+			retainedObjects += [defaults.observe(\.memoryProfilingEnabled, options: .initial) { (_, _) in
 				if defaults.memoryProfilingEnabled {
 					guard nil == memoryProfiler else {
 						return
@@ -70,9 +70,9 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 				}
 			}]
 		}
-		if $(analyticsShouldBeEnabled) {
+		if x$(analyticsShouldBeEnabled) {
 			launchOptimizely(launchOptions: launchOptions)
-			FIRApp.configure()
+			FirebaseApp.configure()
 		}
 		return true
 	}
@@ -90,14 +90,14 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 		let fileManager = FileManager()
 		let libraryDirectoryURL = fileManager.urls(for: .libraryDirectory, in: .userDomainMask).last!
 		let libraryDirectory = libraryDirectoryURL.path
-        $(libraryDirectory)
+        x$(libraryDirectory)
 	}
 	// MARK: -
 	static private let initializeOnce: Ignored = {
 		var scope = Activity("Initializing Analytics").enter(); defer { scope.leave() }
 		_ = nslogRedirectorInitializer
-		$(buildAge)
-		if $(analyticsShouldBeEnabled) {
+		x$(buildAge)
+		if x$(analyticsShouldBeEnabled) {
 			_ = crashlyticsInitializer
 			_ = appseeInitializer
 			_ = uxcamInitializer
