@@ -39,12 +39,12 @@ private let zeroCounts = Counts(insertions: 0, deletions: 0, updates: 0)
 
 public class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate {
 	weak var tableView: UITableView?
-	var updateCell: (UITableViewCell, IndexPath) -> Void
+	var updateCell: (UITableViewCell, _ atIndexPath: IndexPath) -> Void
 	let rowAnimation: UITableViewRowAnimation = .none
 	private var counts = zeroCounts
 	// MARK: -
 	public func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-		$(controller)
+		x$(controller)
 		if defaults.fetchResultsDebugEnabled  {
 			let managedObjectContext = controller.managedObjectContext
 			assert(managedObjectContext.concurrencyType == .mainQueueConcurrencyType)
@@ -58,11 +58,11 @@ public class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSOb
 			return
 		}
 		if groupingTableUpdatesEnabled {
-			($(fetchResultsAnimationEnabled) ? invoke : UIView.performWithoutAnimation) {
+			(x$(fetchResultsAnimationEnabled) ? invoke : UIView.performWithoutAnimation) {
 				guard let tableView = tableView else {
 					return
 				}
-				$(tableView).beginUpdates()
+				x$(tableView).beginUpdates()
 			}
 		}
 	}
@@ -73,8 +73,8 @@ public class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSOb
 		guard let tableView = tableView else {
 			return
 		}
-		$(controller)
-		$(stringFromFetchedResultsChangeType(type))
+		x$(controller)
+		x$(stringFromFetchedResultsChangeType(type))
 		switch type {
 		case .insert:
 			tableView.insertSections(IndexSet(integer: sectionIndex), with: rowAnimation)
@@ -91,23 +91,23 @@ public class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSOb
 		guard let tableView = tableView else {
 			return
 		}
-		$(tableView)
-		$(controller)
-		$(stringFromFetchedResultsChangeType(type))
+		x$(tableView)
+		x$(controller)
+		x$(stringFromFetchedResultsChangeType(type))
 		switch type {
 		case .insert:
 			counts.insertions += 1
 			if defaults.fetchResultsDebugEnabled{
-				$(tableView.numberOfRows(inSection: $(newIndexPath!).section))
+				x$(tableView.numberOfRows(inSection: x$(newIndexPath!).section))
 			}
 			tableView.insertRows(at: [newIndexPath!], with: rowAnimation)
 		case .delete:
 			counts.deletions += 1
-			tableView.deleteRows(at: [$(indexPath!)], with: rowAnimation)
+			tableView.deleteRows(at: [x$(indexPath!)], with: rowAnimation)
 		case .update:
 			counts.updates += 1
 			if defaults.fetchResultsDebugEnabled {
-				$(tableView.numberOfRows(inSection: $(indexPath!).section))
+				x$(tableView.numberOfRows(inSection: x$(indexPath!).section))
 			}
 			if defaults.updateCellsInPlaceEnabled {
 				if !defaults.suppressInPlaceCellUpdates, let cell = tableView.cellForRow(at: indexPath!) {
@@ -119,28 +119,28 @@ public class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSOb
 				tableView.reloadRows(at: [indexPath!], with: rowAnimation)
 			}
 		case .move:
-			tableView.deleteRows(at: [$(indexPath!)], with: rowAnimation)
-			tableView.insertRows(at: [$(newIndexPath!)], with: rowAnimation)
+			tableView.deleteRows(at: [x$(indexPath!)], with: rowAnimation)
+			tableView.insertRows(at: [x$(newIndexPath!)], with: rowAnimation)
 		}
 	}
 	public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 		guard !reloadDataForTableUpdatesEnabled else {
 			return
 		}
-		$(controller)
-		$(counts)
+		x$(controller)
+		x$(counts)
 		counts = zeroCounts
 		if groupingTableUpdatesEnabled {
-			($(fetchResultsAnimationEnabled) ? invoke : UIView.performWithoutAnimation) {
+			(x$(fetchResultsAnimationEnabled) ? invoke : UIView.performWithoutAnimation) {
 				guard let tableView = tableView else {
 					return
 				}
-				$(tableView).endUpdates()
+				x$(tableView).endUpdates()
 			}
 		}
 	}
 	// MARK: -
-	public init(tableView: UITableView, updateCell: @escaping ((UITableViewCell, atIndexPath: IndexPath)) -> Void) {
+	public init(tableView: UITableView, updateCell: @escaping (UITableViewCell, _ atIndexPath: IndexPath) -> Void) {
 		self.tableView = tableView
 		self.updateCell = updateCell
 	}

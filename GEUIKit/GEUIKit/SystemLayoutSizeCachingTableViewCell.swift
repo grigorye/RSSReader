@@ -75,7 +75,7 @@ open class SystemLayoutSizeCachingTableViewCell: UITableViewCell {
 	open override func layoutSubviews() {
 		layoutSubviewsInvocationsCount += 1
 		let dt = disableTrace(); defer { _ = dt }
-		$(layoutSubviewsInvocationsCount)
+		x$(layoutSubviewsInvocationsCount)
 		guard let systemLayoutSizeCachingDataSource = systemLayoutSizeCachingDataSource else {
 			super.layoutSubviews()
 			return
@@ -92,12 +92,12 @@ open class SystemLayoutSizeCachingTableViewCell: UITableViewCell {
 	}
 	
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-		super.init(style: style, reuseIdentifier: $(reuseIdentifier))
+		super.init(style: style, reuseIdentifier: x$(reuseIdentifier))
 	}
 	required public init?(coder aDecoder: NSCoder) {
 		let dt = disableTrace(); defer { _ = dt }
 		super.init(coder: aDecoder)
-		$(reuseIdentifier!)
+		x$(reuseIdentifier!)
 	}
 }
 

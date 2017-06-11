@@ -72,7 +72,7 @@ extension UIAlertController {
 			for (optionIndex, recoveryOption) in recoveryOptions.enumerated() {
 				addAction(UIAlertAction(title: recoveryOption, style: .default) { _ in
 					let sel = #selector(NSObject.attemptRecovery(fromError:optionIndex:))
-					let method = class_getInstanceMethod(type(of: recoveryAttempter), sel)
+					let method = class_getInstanceMethod(type(of: recoveryAttempter), sel)!
 					typealias AttemptRecoveryFromErrorOptionIndexIMP = @convention(c) (AnyObject?, Selector, AnyObject?, Int) -> Void
 					let imp = unsafeBitCast(method_getImplementation(method), to: AttemptRecoveryFromErrorOptionIndexIMP.self)
 					imp(recoveryAttempter, sel, error, optionIndex)

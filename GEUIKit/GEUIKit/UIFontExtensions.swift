@@ -13,13 +13,13 @@ import UIKit.UIFont
 // Source: http://stackoverflow.com/questions/12941984/typesetting-a-font-in-small-caps-on-ios
 extension UIFont {
 	public class func smallCapsFontOfSize(_ size: CGFloat, withName name: String) -> UIFont {
-		let fontFeatureSettings = [[
-			UIFontFeatureTypeIdentifierKey: kLowerCaseType,
-			UIFontFeatureSelectorIdentifierKey: kLowerCaseSmallCapsSelector
+		let fontFeatureSettings: [[UIFontDescriptor.FeatureKey : Any]] = [[
+			.featureIdentifier: kLowerCaseType,
+			.typeIdentifier: kLowerCaseSmallCapsSelector
 		]]
-		let fontAttributes: [String : Any] = [
-			UIFontDescriptorFeatureSettingsAttribute: fontFeatureSettings,
-			UIFontDescriptorNameAttribute: name
+		let fontAttributes: [UIFontDescriptor.AttributeName : Any] = [
+			.featureSettings: fontFeatureSettings,
+			.name: name
 		]
 		let fontDescriptor = UIFontDescriptor(fontAttributes: fontAttributes)
 		let font = UIFont(descriptor: fontDescriptor, size: size)

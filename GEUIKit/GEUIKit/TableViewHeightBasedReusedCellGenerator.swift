@@ -50,7 +50,7 @@ public struct TableViewHeightBasedReusedCellGenerator<DataSource: TableViewHeigh
 			return nil
 		}()
 		guard let height = heightX else {
-			$(variableHeight)
+			x$(variableHeight)
 			return heightAgnosticCellReuseIdentifier
 		}
 		
