@@ -78,7 +78,7 @@ extension FoldersUpdateState : CustomStringConvertible {
 
 class FoldersViewController: ContainerViewController, UIDataSourceModelAssociation {
 	typealias _Self = FoldersViewController
-	dynamic var rootFolder: Folder? {
+	@objc dynamic var rootFolder: Folder? {
 		set {
 			container = newValue
 		}
@@ -87,19 +87,19 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 		}
 	}
 	var childContainers: [Container]!
-	dynamic let defaults = TypedUserDefaults()
+	@objc dynamic let defaults = TypedUserDefaults()
 	//
 	class var keyPathsForValuesAffectingShowUnreadOnly: Set<String> {
 		return [#keyPath(defaults.showUnreadOnly)]
 	}
-	private dynamic var showUnreadOnly: Bool {
+	@objc private dynamic var showUnreadOnly: Bool {
 		return defaults.showUnreadOnly
 	}
 	//
 	class var keyPathsForValuesAffectingRegeneratedChildContainers: Set<String> {
 		return [#keyPath(rootFolder.childContainers), #keyPath(showUnreadOnly)]
 	}
-	private dynamic var regeneratedChildContainers: [Container] {
+	@objc private dynamic var regeneratedChildContainers: [Container] {
 		let regeneratedChildContainers: [Container] = {
 			if let rootFolder = self.rootFolder {
 				return (rootFolder.childContainers.array as! [Container]).filter { self.showUnreadOnly ? $0.unreadCount > 0 : true }
@@ -122,18 +122,18 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 	}
 
 	@IBAction func refresh(_ sender: AnyObject!) {
-		firstly {
+		firstly { () -> Promise<Void> in
 			guard nil != rssSession else {
 				throw NotLoggedIn()
 			}
 			return Promise(value: ())
-		}.then {
+		}.then { (_) -> Promise<Void> in
 			return self.rssAccount.authenticate()
-		}.then {
+		}.then { (_) -> Promise<Void> in
 			return self.foldersController.updateFolders()
-		}.then { () -> Void in
+		}.then { (_) -> Void in
 			if nil == self.rootFolder {
-				self.rootFolder = $(Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: mainQueueManagedObjectContext))
+				self.rootFolder = x$(Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: mainQueueManagedObjectContext))
 				assert(nil != self.rootFolder)
 			}
 			self.tableView.reloadData()
@@ -190,11 +190,11 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 		let objectIDURL = URL(string: identifier)!
 		if let row = (childContainers.map { return $0.objectID.uriRepresentation().absoluteString }).index(where: { $0 == identifier }) {
 			let indexPath = IndexPath(row: row, section: 0)
-			return $(indexPath)
+			return x$(indexPath)
 		}
 		else {
 			let missingObjectIDURL = objectIDURL
-			$(missingObjectIDURL)
+			x$(missingObjectIDURL)
 			return nil
 		}
 	}
@@ -238,8 +238,8 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 	}
 	// MARK: -
 	func bindChildContainers() -> Handler {
-		let binding = KVOBinding(self•#keyPath(regeneratedChildContainers), options: .initial) { [unowned self] change in
-			$(change!)
+		let binding = self.observe(\.regeneratedChildContainers, options: .initial) { [unowned self] (_, change) in
+			x$(change)
 			self.childContainers = self.regeneratedChildContainers
 			self.tableView.reloadData()
 		}
@@ -251,7 +251,7 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 			#keyPath(foldersController.foldersUpdateState)
 		]
 	}
-	dynamic var refreshStateDescription: String {
+	@objc dynamic var refreshStateDescription: String {
 		switch rssAccount.authenticationStateRawValue {
 		case .Unknown:
 			return ""
@@ -281,7 +281,7 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 		}
 	}
 	func bindRefreshStateDescription() -> Handler {
-		let binding = KVOBinding(self•#keyPath(refreshStateDescription), options: .initial) { [unowned self] change in
+		let binding = self.observe(\.refreshStateDescription, options: .initial) { [unowned self] (_, change) in
 			assert(Thread.isMainThread)
 			•(change)
 			self.presentInfoMessage(self.refreshStateDescription)
@@ -289,7 +289,7 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 		return {_ = binding}
 	}
 	func bindCombinedTitle() -> Handler {
-		let binding = KVOBinding(self•#keyPath(itemsCount), options: [.initial]) { _ in
+		let binding = self.observe(\.itemsCount, options: [.initial]) { (_, _) in
 			self.combinedBarButtonItem.title = "\(self.itemsCount)"
 		}
 		return {
@@ -312,7 +312,7 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 	}
 	// MARK: -
 	deinit {
-		$(self)
+		x$(self)
 	}
 	static private let initializeOnce: Ignored = {
 		_Self.adjustForNilIndexPathPassedToModelIdentifierForElement()

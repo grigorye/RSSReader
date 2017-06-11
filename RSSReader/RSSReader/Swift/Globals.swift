@@ -18,8 +18,8 @@ let applicationDelegate = (UIApplication.shared.delegate as! AppDelegate)
 
 let userCachesDirectoryURL: URL = {
 	let fileManager = FileManager.default
-	let $ = try! fileManager.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-	return $
+	let x = try! fileManager.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+	return x
 }()
 
 private let globalFoldersController = GlobalFoldersController()

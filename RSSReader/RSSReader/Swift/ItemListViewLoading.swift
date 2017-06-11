@@ -70,7 +70,7 @@ extension ItemsViewController : ItemsViewControllerLoadingImp {
 	
 	func loadMore(_ completionHandler: @escaping () -> Void) {
 		let loadController = self.loadController!
-		$(didStartLoad())
+		x$(didStartLoad())
 		loadController.loadMore { [weak loadController] error in
 			completionHandler()
 			guard nil == error else {
@@ -92,7 +92,7 @@ extension ItemsViewController : ItemsViewControllerLoadingImp {
 			}
 #endif
 			guard !loadController.loadCompleted else {
-				$(self.didCompleteLoad())
+				x$(self.didCompleteLoad())
 				return
 			}
 			DispatchQueue.main.async { [weak self] in
@@ -131,7 +131,7 @@ extension ItemsViewController : ItemsViewControllerLoadingImp {
 	
 	public func loadMoreIfNecessary() {
 		let dt = disableTrace(); defer { _ = dt }
-		guard $(shouldLoadMore()) else {
+		guard x$(shouldLoadMore()) else {
 			return
 		}
 		loadMore {}

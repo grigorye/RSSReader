@@ -28,9 +28,9 @@ class HistoryViewController: UITableViewController {
 		let configureCell = { [unowned self] cell, indexPath in
 			self.configureCell(cell, atIndexPath: indexPath)
 		}
-		let $ = TableViewFetchedResultsControllerDelegate(tableView: self.tableView, updateCell: configureCell)
-		objc_setAssociatedObject(fetchedResultsController, &fetchedResultsControllerDelegateAOKey, $, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-		fetchedResultsController.delegate = $
+		let fetchedResultsControllerDelegate = TableViewFetchedResultsControllerDelegate(tableView: self.tableView, updateCell: configureCell)
+		objc_setAssociatedObject(fetchedResultsController, &fetchedResultsControllerDelegateAOKey, fetchedResultsControllerDelegate, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+		fetchedResultsController.delegate = fetchedResultsControllerDelegate
 		return fetchedResultsController
 	}()
 	// MARK: -
@@ -95,7 +95,7 @@ class HistoryViewController: UITableViewController {
 		case R.segue.historyViewController.showHistoryArticle.identifier:
 			let itemViewController = segue.destination as! ItemSummaryWebViewController
 			itemViewController.item = selectedItem
-			$(segue)
+			x$(segue)
 		default:
 			abort()
 		}
@@ -112,6 +112,6 @@ class HistoryViewController: UITableViewController {
     }
 	// MARK: -
 	deinit {
-		$(self)
+		x$(self)
 	}
 }

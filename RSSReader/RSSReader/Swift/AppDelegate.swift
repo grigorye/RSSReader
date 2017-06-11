@@ -15,7 +15,7 @@ class AppDelegate : AppDelegateBase {
 	lazy var mainScene: AnyObject = { MainScene(window: self.window!) }()
 	//
 	func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]?) -> Bool {
-		$(self)
+		x$(self)
 		return true
 	}
 	func loadPersistentStoresInteractively(completion: @escaping (Error?) -> ()) {
@@ -25,9 +25,9 @@ class AppDelegate : AppDelegateBase {
 				scope.leave()
 				return
 			}
-			trackError($(loadPersistentStoresError))
+			trackError(x$(loadPersistentStoresError))
 			DispatchQueue.main.async {
-				$(loadPersistentStoresError)
+				x$(loadPersistentStoresError)
 				self.loadPersistentStoresAfterRemovalInteractively(completion: completion)
 				scope.leave()
 			}
@@ -49,7 +49,7 @@ class AppDelegate : AppDelegateBase {
 					presentErrorMessage(NSLocalizedString("Something went wrong. Offline data has been erased.", comment: ""))
 					return
 				}
-				$(loadPersistentStoresError)
+				x$(loadPersistentStoresError)
 				presentErrorMessage(NSLocalizedString("Something went wrong. Offline data might be unavailable. Please re-install the application to avoid further problems.", comment: ""))
 			}
 		}
@@ -63,7 +63,7 @@ class AppDelegate : AppDelegateBase {
 		}
 		do {
 			loadPersistentStoresInteractively { error in
-				_ = $(error)
+				_ = x$(error)
 			}
 		}
 		_ = mainScene

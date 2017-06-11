@@ -20,7 +20,7 @@ extension ItemsViewController {
 #if false
 	override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
 		let dt = disableTrace(); defer { _ = dt }
-		$(indexPath)
+		x$(indexPath)
 		estimateCount += 1
 		return 44
 #if false
@@ -42,7 +42,7 @@ extension ItemsViewController {
 			return UITableViewAutomaticDimension
 		}
 		let dt = disableTrace(); defer { _ = dt }
-		$(indexPath)
+		x$(indexPath)
 		let dataSource = tableView.dataSource as! ItemTableViewDataSource
 		let item = dataSource.object(at: indexPath)
 		prototypeCell.setData((item: item, container: dataSource.container, nowDate: Date()))

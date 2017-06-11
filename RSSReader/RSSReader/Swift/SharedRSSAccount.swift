@@ -16,7 +16,7 @@ class SharedRSSAccount : NSObject {
 	var loginAndPassword: LoginAndPassword!
 	lazy var loginAndPasswordBinding: AnyObject = {
 		let update = {
-			self.loginAndPassword = $(defaults.loginAndPassword)
+			self.loginAndPassword = x$(defaults.loginAndPassword)
 			guard let loginAndPassword = self.loginAndPassword, loginAndPassword.isValid() else {
 				self.session = nil
 				return
@@ -53,7 +53,7 @@ class SharedRSSAccount : NSObject {
 			self.authenticationStateRawValue = self.authenticationState.rawValue
 		}
 	}
-	dynamic var authenticationStateRawValue: AuthenticationState.RawValue = .Unknown
+	@objc dynamic var authenticationStateRawValue: AuthenticationState.RawValue = .Unknown
 	override init() {
 		super.init()
 		_ = loginAndPasswordBinding
@@ -72,8 +72,8 @@ extension SharedRSSAccount {
 			return rssSession.authenticate()
 		}.recover { authenticationError -> Void in
 			self.authenticationState = .Failed(error: authenticationError)
-			throw $(authenticationError)
-		}.then {
+			throw x$(authenticationError)
+		}.then { _ in
 			self.authenticationState = .Succeeded
 		}
 	}

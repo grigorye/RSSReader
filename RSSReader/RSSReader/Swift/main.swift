@@ -24,7 +24,7 @@ loggers += [
 	defaultLogger
 ]
 
-$(CommandLine.arguments)
+x$(CommandLine.arguments)
 
 UIApplicationMain(
 	CommandLine.argc,

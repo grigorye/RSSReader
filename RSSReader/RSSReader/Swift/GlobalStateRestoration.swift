@@ -23,18 +23,18 @@ extension AppDelegate {
 		case restorationFormatVersion
 	}
 	func application(_ application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
-		$(self)
+		x$(self)
 		coder.encode(currentRestorationFormatVersion, forKey: Restorable.restorationFormatVersion.rawValue)
 		return true
 	}
 	func application(_ application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
 		activityScope = activity.enter()
-		$(self)
+		x$(self)
 		let restorationFormatVersion = coder.decodeInt32(forKey: Restorable.restorationFormatVersion.rawValue)
-		if $(restorationFormatVersion) < currentRestorationFormatVersion {
+		if x$(restorationFormatVersion) < currentRestorationFormatVersion {
 			return false
 		}
-		return $(defaults.stateRestorationEnabled)
+		return x$(defaults.stateRestorationEnabled)
 	}
 	func application(_ application: UIApplication, didDecodeRestorableStateWith coder: NSCoder) {
 		activityScope.leave()

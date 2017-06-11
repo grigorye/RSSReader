@@ -20,7 +20,7 @@ func configureItemsViewControllerForFavorites(_ itemsViewController: ItemsViewCo
 
 class HomeViewController: UITableViewController {
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		switch $(segue.identifier!) {
+		switch x$(segue.identifier!) {
 		case R.segue.homeViewController.showHistory.identifier:
 			()
 		case R.segue.homeViewController.showSubscriptions.identifier:

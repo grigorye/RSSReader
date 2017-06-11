@@ -19,7 +19,7 @@ class MarkAllAsReadActivity : TypeFilteringActivity {
 			i.markedAsRead = true
 		}
 		rssSession!.markAllAsRead(folder).catch { error in
-			$(error)
+			x$(error)
 		}
 	}
 	override var activityType: UIActivityType {
@@ -40,7 +40,7 @@ class MarkAllAsReadActivity : TypeFilteringActivity {
 	var acceptedItems: [FilteredItem] {
 		return itemsFilter.acceptedItems
 	}
-	init(_: Void) {
+	init() {
 		super.init(untypedItemsFilter: self.itemsFilter)
 	}
 }

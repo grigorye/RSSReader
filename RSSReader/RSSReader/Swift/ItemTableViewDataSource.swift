@@ -57,7 +57,7 @@ class ItemTableViewDataSource: NSObject {
 	private class var keyPathsForValuesAffectingPredicateForItems: Set<String> {
 		return [#keyPath(fetchedResultsController)]
 	}
-	private dynamic var predicateForItems: NSPredicate {
+	@objc private dynamic var predicateForItems: NSPredicate {
 		return fetchedResultsController.fetchRequest.predicate!
 	}
 	// MARK: -
@@ -68,7 +68,7 @@ class ItemTableViewDataSource: NSObject {
 		}
 		return TableViewFetchedResultsControllerDelegate(tableView: tableView, updateCell: configureCell)
 	}()
-	lazy private dynamic var fetchedResultsController: NSFetchedResultsController<Item> = {
+	@objc lazy private dynamic var fetchedResultsController: NSFetchedResultsController<Item> = {
 		typealias E = Item
 		let fetchRequest = E.fetchRequestForEntity() … {
 			$0.sortDescriptors = sortDescriptorsForContainers
@@ -173,20 +173,20 @@ extension ItemTableViewDataSource: UITableViewDataSource {
 	}
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		let dt = disableTrace(); defer { _ = dt }
-		let numberOfRows = $(numberOfObjects(inSection: section))
-		return $(numberOfRows)
+		let numberOfRows = x$(numberOfObjects(inSection: section))
+		return x$(numberOfRows)
 	}
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let dt = disableTrace(); defer { _ = dt }
 		let reuseIdentifier = reusedCellGenerator?.reuseIdentifierForCellForRowAtIndexPath(indexPath) ?? "Item"
-		let cell = tableView.dequeueReusableCell(withIdentifier: $(reuseIdentifier), for: indexPath)
+		let cell = tableView.dequeueReusableCell(withIdentifier: x$(reuseIdentifier), for: indexPath)
 #if true
 		if let cell = cell as? ItemTableViewCell, nil != reusedCellGenerator {
 			cell.systemLayoutSizeCachingDataSource = systemLayoutSizeCachingDataSource
 		}
 #endif
-		configureCell(cell, atIndexPath: $(indexPath))
-		return $(cell)
+		configureCell(cell, atIndexPath: x$(indexPath))
+		return x$(cell)
 	}
 	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		precondition(tableView == self.tableView)
@@ -212,7 +212,7 @@ extension ItemTableViewDataSource: UITableViewDataSource {
 extension ItemsViewController: UITableViewDataSourcePrefetching {
 	func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
 		let dt = disableTrace(); defer { _ = dt }
-		let objectIDs = $(indexPaths).map { dataSource.object(at: $0).objectID }
+		let objectIDs = x$(indexPaths).map { dataSource.object(at: $0).objectID }
 		let fetchRequest = Item.fetchRequestForEntity() … {
 			$0.predicate = NSPredicate(format: "self in %@", objectIDs)
 			$0.returnsObjectsAsFaults = false
@@ -229,7 +229,7 @@ extension ItemsViewController: UIDataSourceModelAssociation {
 		}
 		else {
 			let invalidModelIdentifier = ""
-			return $(invalidModelIdentifier)
+			return x$(invalidModelIdentifier)
 		}
 	}
     func indexPathForElement(withModelIdentifier identifier: String, in view: UIView) -> IndexPath? {
@@ -238,11 +238,11 @@ extension ItemsViewController: UIDataSourceModelAssociation {
 		let objectID = managedObjectContext.persistentStoreCoordinator!.managedObjectID(forURIRepresentation: objectIDURL)!
 		let object = managedObjectContext.object(with: objectID) as! Item
 		guard let indexPath = dataSource.indexPath(forObject: object) else {
-			$(object)
-			$($(dataSource).fetchedObjects)
+			x$(object)
+			x$(x$(dataSource).fetchedObjects)
 			return nil
 		}
-		return $(indexPath)
+		return x$(indexPath)
 	}
 }
 

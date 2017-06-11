@@ -14,15 +14,15 @@ extension TypedUserDefaults {
 }
 
 class ContainerViewController: UITableViewController {
-	dynamic var container: Container!
-	dynamic var predicateForItems: NSPredicate? {
+	@objc dynamic var container: Container!
+	@objc dynamic var predicateForItems: NSPredicate? {
 		return container?.predicateForItems
 	}
 	// MARK: -
-	dynamic var itemsCount = 0
+	@objc dynamic var itemsCount = 0
 	private var currentItemsFetchedObjectCountBinding: FetchedObjectCountBinding<Item>?
 	func bindItemsCount() -> Handler {
-		let binding = KVOBinding(self•#keyPath(predicateForItems), options: [.initial, .new]) { _ in
+		let binding = self.observe(\.predicateForItems, options: [.initial, .new]) { (_, _) in
 			let predicate = self.predicateForItems
 			let itemsFetchedObjectCountBinding = FetchedObjectCountBinding<Item>(managedObjectContext: mainQueueManagedObjectContext, predicate: predicate) {
 				count in
@@ -44,7 +44,7 @@ class ContainerViewController: UITableViewController {
 	// MARK: -
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		$(container)
+		x$(container)
 		if defaults.showAllItemsCount {
 			scheduledForViewDidDisappear += [bindItemsCount()]
 		}

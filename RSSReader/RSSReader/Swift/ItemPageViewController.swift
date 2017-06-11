@@ -10,7 +10,7 @@ import RSSReaderData
 import UIKit
 
 class ItemPageViewController : UIPageViewController {
-	dynamic var currentViewController: UIViewController?
+	@objc dynamic var currentViewController: UIViewController!
 	// MARK: - State Preservation and Restoration
 	private enum Restorable: String {
 		case viewControllers = "viewControllers"
@@ -26,7 +26,7 @@ class ItemPageViewController : UIPageViewController {
 			self.currentViewController = viewControllers[currentViewControllerIndex]
 			scheduledForViewWillAppear += [{
 				self.setViewControllers(viewControllers, direction: .forward, animated: false) { completed in
-					$(completed)
+					x$(completed)
 				}
 			}]
 		}
@@ -54,11 +54,11 @@ class ItemPageViewController : UIPageViewController {
 		scheduledForViewWillAppear.perform()
 		super.viewWillAppear(animated)
 		
-		viewDidDisappearRetainedObjects += [KVOBinding(self•#keyPath(currentViewController.navigationItem.rightBarButtonItems), options: .initial) { change in
+		viewDidDisappearRetainedObjects += [self.observe(\.currentViewController.navigationItem.rightBarButtonItems, options: .initial) { (_, _) in
 			self.navigationItem.rightBarButtonItems = self.currentViewController!.navigationItem.rightBarButtonItems
 		}]
 		if hideBarsOnSwipe {
-			viewDidDisappearRetainedObjects += [KVOBinding(self•#keyPath(currentViewController), options: .initial) { change in
+			viewDidDisappearRetainedObjects += [self.observe(\.currentViewController, options: .initial) { (_, _) in
 				if let webView = self.currentViewController?.view.subviews.first as? UIWebView {
 					let barHideOnSwipeGestureRecognizer = self.navigationController!.barHideOnSwipeGestureRecognizer
 					let scrollView = webView.scrollView
@@ -66,7 +66,7 @@ class ItemPageViewController : UIPageViewController {
 				}
 			}]
 		}
-		viewDidDisappearRetainedObjects += [KVOBinding(self•#keyPath(currentViewController.toolbarItems), options: .initial) { change in
+		viewDidDisappearRetainedObjects += [self.observe(\.currentViewController.toolbarItems, options: .initial) { (_, _) in
 			self.toolbarItems = self.currentViewController?.toolbarItems
 		}]
 	}

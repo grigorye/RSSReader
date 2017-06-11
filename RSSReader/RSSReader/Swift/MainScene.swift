@@ -16,7 +16,7 @@ extension TypedUserDefaults {
 extension MainScene : UISplitViewControllerDelegate {
 
 	func splitViewController(_ splitViewController: UISplitViewController, showDetail vc: UIViewController, sender: Any?) -> Bool {
-		guard $(splitViewController.isCollapsed) else {
+		guard x$(splitViewController.isCollapsed) else {
 			return false
 		}
 		let masterNavigationController = splitViewController.viewControllers.first as! UINavigationController

@@ -25,9 +25,9 @@ class ItemSummaryWebViewController: UIViewController {
 	var savedToolbarItems: [UIBarButtonItem]!
 	@IBOutlet var markAsFavoriteBarButtonItem: UIBarButtonItem!
 	@IBOutlet var unmarkAsFavoriteBarButtonItem: UIBarButtonItem!
-	dynamic var item: Item!
+	@objc dynamic var item: Item!
 	var markAsOpenAndReadTimer: Timer?
-	func markAsOpenAndRead() {
+	@objc func markAsOpenAndRead() {
 		item.lastOpenedDate = Date()
 		if !item.markedAsRead {
 			item.markedAsRead = true
@@ -114,10 +114,11 @@ class ItemSummaryWebViewController: UIViewController {
 		let item = self.item!
 		let href = item.canonical!.first!["href"]!
 		let url = URL(string: href)!
-		retrieveReadableHTMLFromURL(url) { HTMLString, error in
+		retrieveReadableHTMLFromURL(url) { (arg) in
+			let (HTMLString, error) = arg
 			DispatchQueue.main.async {
 				guard let HTMLString = HTMLString, nil == error else {
-					$(error)
+					x$(error)
 					let message = NSLocalizedString("Unable to expand", comment: "")
 					self.presentErrorMessage(message)
 					return
@@ -126,7 +127,7 @@ class ItemSummaryWebViewController: UIViewController {
 					try self.loadHTMLString(HTMLString, ignoringExisting: true)
 				}
 				catch {
-					$(error)
+					x$(error)
 					let message = NSLocalizedString("Unable to expand", comment: "")
 					self.presentErrorMessage(message)
 				}
@@ -134,7 +135,7 @@ class ItemSummaryWebViewController: UIViewController {
 		}
 	}
 	// MARK: -
-	var itemMarkedAsReadKVOBinding: KVOBinding?
+	var itemMarkedAsReadKVOBinding: Any?
 	// MARK: -
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -153,7 +154,7 @@ class ItemSummaryWebViewController: UIViewController {
 		willSet {
 			precondition(newValue != managesBarVisiblity)
 			if hideBarsOnSwipe {
-				$(self).navigationController?.hidesBarsOnSwipe = $(newValue)
+				x$(self).navigationController?.hidesBarsOnSwipe = x$(newValue)
 			}
 		}
 	}
@@ -162,7 +163,7 @@ class ItemSummaryWebViewController: UIViewController {
 	var scheduledForViewWillAppear = ScheduledHandlers()
 	override func viewWillAppear(_ animated: Bool) {
 		scheduledForViewWillAppear.perform()
-		viewDidDisappearRetainedObjects += [KVOBinding(self•#keyPath(item.markedAsFavorite), options: .initial) { [unowned self] change in
+		viewDidDisappearRetainedObjects += [self.observe(\.item.markedAsFavorite, options: .initial) { [unowned self] (_, _) in
 			let excludedBarButtonItem = self.item.markedAsFavorite ? self.markAsFavoriteBarButtonItem : self.unmarkAsFavoriteBarButtonItem
 			let toolbarItems = self.savedToolbarItems.filter {
 				return $0 != excludedBarButtonItem
@@ -225,9 +226,9 @@ class ItemSummaryWebViewDelegate: NSObject, UIWebViewDelegate {
 		}
 	}
 	func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
-		$(error)
+		x$(error)
 	}
 	func webViewDidFinishLoad(_ webView: UIWebView) {
-		$(webView)
+		x$(webView)
 	}
 }

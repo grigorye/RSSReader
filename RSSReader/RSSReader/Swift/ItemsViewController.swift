@@ -31,7 +31,7 @@ class ItemsViewController : ContainerViewController {
 	lazy var prototypeCell = R.nib.itemTableViewCell.firstView(owner: nil)!
 
 	public var dataSource: ItemTableViewDataSource!
-	public dynamic var loadController: ContainerLoadController!
+	@objc public dynamic var loadController: ContainerLoadController!
 	func bindLoadController() -> Handler {
 		let loadController = ContainerLoadController(session: rssSession!, container: self.container, unreadOnly: self.showUnreadOnly) … {
 			$0.numberOfItemsToLoadInitially = defaults.numberOfItemsToLoadInitially
@@ -62,9 +62,8 @@ class ItemsViewController : ContainerViewController {
 	
 	private func regeneratedRightBarButtonItems() -> [UIBarButtonItem] {
 		let excludedItems = showUnreadEnabled ? [(showUnreadOnly ?  filterUnreadBarButtonItem : unfilterUnreadBarButtonItem)!] : [filterUnreadBarButtonItem!, unfilterUnreadBarButtonItem!]
-		var $ = loadedRightBarButtonItems!
-		$ = $.filter { nil == excludedItems.index(of: $0) }
-		return $
+		let x = loadedRightBarButtonItems!.filter { nil == excludedItems.index(of: $0) }
+		return x
 	}
 	
 	// MARK: -
@@ -78,14 +77,13 @@ class ItemsViewController : ContainerViewController {
 		return [toBeginningBarButtonItem, toEndBarButtonItem]
 	}
 	private func regeneratedToolbarItems() -> [UIBarButtonItem] {
-		var $ = loadedToolbarItems!
-		$ = $.filter {
+		let x = loadedToolbarItems!.filter {
 			guard !defaults.begEndBarButtonItemsEnabled else {
 				return true
 			}
 			return !begEndBarButtonItems.contains($0)
 		}
-		return $
+		return x
 	}
 
 	// MARK: -
@@ -225,11 +223,7 @@ class ItemsViewController : ContainerViewController {
 				customView.layoutIfNeeded()
 				customView.sizeToFit()
 				let button = customView.subviews.first as! UIButton
-				customView.bounds = {
-					var $ = customView.bounds
-					$.size.width = button.bounds.width
-					return $
-				}()
+				customView.bounds.size.width = button.bounds.width
 				button.frame.origin.x = 0
 				item?.width = customView.bounds.width
 			}
@@ -241,11 +235,11 @@ class ItemsViewController : ContainerViewController {
 	class var keyPathsForValuesAffectingTitleText: Set<String> {
 		return [#keyPath(itemsCount)]
 	}
-	dynamic var titleText: String {
+	@objc dynamic var titleText: String {
 		return "\(itemsCount)"
 	}
 	func bindTitle() -> Handler {
-		let binding = KVOBinding(self•#keyPath(titleText), options: [.initial]) { _ in
+		let binding = self.observe(\.titleText, options: [.initial]) { (_, _) in
 			self.navigationItem.title = self.titleText
 		}
 		return {
@@ -253,7 +247,7 @@ class ItemsViewController : ContainerViewController {
 		}
 	}
 	func bindLoadDate() -> Handler {
-		let binding = KVOBinding(self•#keyPath(loadController.loadDate), options: [.initial]) { change in
+		let binding = self.observe(\.loadController.loadDate, options: [.initial]) { (_, _) in
 			•(self.toolbarItems!)
 			if let loadDate = self.loadController.loadDate {
 				let loadAgo = loadAgoDateComponentsFormatter.string(from: loadDate, to: Date())
@@ -310,7 +304,7 @@ class ItemsViewController : ContainerViewController {
 	}
 	// MARK: -
 	deinit {
-		$(self)
+		x$(self)
 	}
 	// MARK: -
 	static private let initializeOnce: Ignored = {
@@ -368,9 +362,9 @@ extension ItemsViewController {
 		for i in items {
 			i.markedAsRead = true
 		}
-		firstly {
+		firstly { () -> Promise<Void> in
 			rssSession!.markAllAsRead(container!)
-		}.then {
+		}.then { (_) -> Void in
 			self.presentInfoMessage(NSLocalizedString("Marked all as read.", comment: ""))
 		}.catch { error in
 			self.present(error)

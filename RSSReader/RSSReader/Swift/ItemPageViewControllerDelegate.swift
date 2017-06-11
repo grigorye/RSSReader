@@ -21,7 +21,7 @@ class ItemPageViewControllerDelegate: NSObject, UIPageViewControllerDelegate {
 		}
 	}
 	func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-		$(completed)
+		x$(completed)
 		let currentViewController = pageViewController.viewControllers!.first as! ItemSummaryWebViewController
 		if let webView = currentViewController.view.subviews.first as? UIWebView {
 			webView.scrollView.flashScrollIndicators()

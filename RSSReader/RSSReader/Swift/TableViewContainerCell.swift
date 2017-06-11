@@ -14,9 +14,9 @@ extension TypedUserDefaults {
 }
 
 class TableViewContainerCell : UITableViewCell {
-	var unreadCountKVOBinding: KVOBinding!
+	var unreadCountKVOBinding: Any!
 	func setFromContainer(_ container: Container) {
-		self.unreadCountKVOBinding = KVOBinding(container•#keyPath(Container.unreadCount), options: .initial) {[unowned self] change in
+		self.unreadCountKVOBinding = container.observe(\.unreadCount, options: .initial) {[unowned self] (_, _) in
 			let labelText: String = {
 				let nullableUnreadCountText: String? = (0 < container.unreadCount) ? "\(container.unreadCount)" : nil
 				guard defaults.showOwnItemsCount else {
