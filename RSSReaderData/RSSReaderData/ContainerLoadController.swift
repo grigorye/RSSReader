@@ -12,16 +12,16 @@ import Foundation
 
 public class ContainerLoadController : NSObject {
 	let session: RSSSession
-	let container: Container
+	@objc let container: Container
 	let unreadOnly: Bool
 	public var numberOfItemsToLoadLater = 100
 	public var numberOfItemsToLoadInitially = 500
 	
 	// MARK: -
 	
-	dynamic var containerViewState: ContainerViewState?
+	@objc dynamic var containerViewState: ContainerViewState?
 	func bindContainerViewState() -> Handler {
-		let binding = KVOBinding(self•#keyPath(container.viewStates), options: [.initial]) { [unowned self] _ in
+		let binding = self.observe(\.container.viewStates, options: [.initial]) { [unowned self] (_, _) in
 			self.containerViewState = self.container.viewStates.filter {
 				$0.containerViewPredicate == self.containerViewPredicate
 			}.onlyElement
@@ -48,9 +48,9 @@ public class ContainerLoadController : NSObject {
 	class var keyPathsForValuesAffectingLoadDate: Set<String> {
 		return [#keyPath(containerViewState.loadDate)]
 	}
-	private (set) public dynamic var loadDate: Date! {
-		set { $(containerViewState!).loadDate = newValue! }
-		get { return $(containerViewState)?.loadDate }
+	@objc private (set) public dynamic var loadDate: Date! {
+		set { x$(containerViewState!).loadDate = newValue! }
+		get { return x$(containerViewState)?.loadDate }
 	}
 	public var lastLoadedItemDate: Date? {
 		set { containerViewState!.lastLoadedItemDate = newValue }
@@ -103,21 +103,21 @@ public class ContainerLoadController : NSObject {
 		let oldOngoingLoadDate = ongoingLoadDate!
 		loadInProgress = true
 		let context = container.managedObjectContext!
-		let excludedCategory: Folder? = unreadOnly ? $(Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: context)) : nil
+		let excludedCategory: Folder? = unreadOnly ? x$(Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: context)) : nil
 		let numberOfItemsToLoad = (oldContinuation != nil) ? numberOfItemsToLoadLater : numberOfItemsToLoadInitially
 		let containerViewStateObjectID = typedObjectID(for: containerViewState)
 		let containerObjectID = typedObjectID(for: container)!
 		let containerViewPredicate = self.containerViewPredicate
 		let session = self.session
-		firstly {
+		firstly { () -> Promise<()> in
 			guard !session.authenticated else {
 				return Promise(value: ())
 			}
 			return session.authenticate()
-		}.then { () -> Promise<StreamContents.ResultType> in
+		}.then { (_) -> Promise<StreamContents.ResultType> in
 			return Promise { fulfill, reject in
 				context.perform {
-					session.streamContents(self.container, excludedCategory: excludedCategory, continuation: oldContinuation, count: numberOfItemsToLoad, loadDate: $(oldOngoingLoadDate)).then(on: zalgo) { streamContentsResult -> () in
+					session.streamContents(self.container, excludedCategory: excludedCategory, continuation: oldContinuation, count: numberOfItemsToLoad, loadDate: x$(oldOngoingLoadDate)).then(on: zalgo) { streamContentsResult -> () in
 						fulfill(streamContentsResult)
 					}.catch { error in
 						reject(error)
@@ -125,7 +125,7 @@ public class ContainerLoadController : NSObject {
 				}
 			}
 		}.then(on: zalgo) { streamContentsResult -> String? in
-			let ongoingLoadDate = $(self.ongoingLoadDate)
+			let ongoingLoadDate = x$(self.ongoingLoadDate)
 			guard oldOngoingLoadDate == ongoingLoadDate else {
 				throw NSError.cancelledError()
 			}
@@ -154,8 +154,8 @@ public class ContainerLoadController : NSObject {
 			if let lastLoadedItem = lastLoadedItem {
 				assert(containerViewPredicate.evaluate(with: lastLoadedItem))
 			}
-			$(managedObjectContext.insertedObjects.map { $0.objectID });
-			$(managedObjectContext.updatedObjects.map { $0.objectID });
+			x$(managedObjectContext.insertedObjects.map { $0.objectID });
+			x$(managedObjectContext.updatedObjects.map { $0.objectID });
 			try managedObjectContext.save()
 			return continuation
 		}.then { continuation -> Void in
@@ -167,7 +167,7 @@ public class ContainerLoadController : NSObject {
 				return
 			}
 			self.loadInProgress = false
-		}.then {
+		}.then { (_) in
 			completionHandler(nil)
 		}.catch { error -> Void in
 			guard oldOngoingLoadDate == self.ongoingLoadDate else {
@@ -183,6 +183,6 @@ public class ContainerLoadController : NSObject {
 		super.init()
 	}
 	deinit {
-		$(self)
+		x$(self)
 	}
 }

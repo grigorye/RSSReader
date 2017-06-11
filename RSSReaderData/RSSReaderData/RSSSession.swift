@@ -66,7 +66,7 @@ public extension RSSSession {
 
 	static func setErrorUserInfoValueProvider() {
 		let errorDomain = (RSSSessionError.unused as NSError).domain
-		NSError.setUserInfoValueProvider(forDomain: $(errorDomain)) { error, key in
+		NSError.setUserInfoValueProvider(forDomain: x$(errorDomain)) { error, key in
 			switch error {
 			case RSSSessionError.requestFailed(let underlyingError):
 				return (underlyingError as NSError).userInfo[key]
@@ -96,7 +96,7 @@ extension RSSSession {
 	public typealias CommandCompletionHandler<ResultType> = (Result<ResultType>) -> Void
 	// MARK: -
 	func performPersistentDataUpdateCommand<T: PersistentDataUpdateCommand>(_ command: T, completionHandler: @escaping CommandCompletionHandler<T.ResultType>) {
-		$(command as AbstractPersistentDataUpdateCommand)
+		x$(command as AbstractPersistentDataUpdateCommand)
 		command.taskForSession(self) { data, httpResponse, error in
 			if let error = error {
 				completionHandler(.rejected(command.preprocessedRequestError(error)))
@@ -120,7 +120,7 @@ extension RSSSession {
 							managedObjectContext.reset()
 						}
 					} catch {
-						completionHandler(.rejected(RSSSessionError.importFailed(underlyingError: $(error), command: $(command))))
+						completionHandler(.rejected(RSSSessionError.importFailed(underlyingError: x$(error), command: x$(command))))
 					}
 				}
 			})
@@ -196,7 +196,7 @@ extension RSSSession {
 				completionHandler(.rejected(RSSSessionError.pushTagsFailed(underlyingErrors: errors)))
 				return
 			}
-			completionHandler(.fulfilled())
+			completionHandler(.fulfilled(()))
 		}
 	}
 	public func pushTags(completionHandler: @escaping CommandCompletionHandler<Void>) {

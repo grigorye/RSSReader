@@ -31,7 +31,7 @@ private func regeneratedPSC() throws -> NSPersistentStoreCoordinator {
 		try fileManager.createDirectory(at: documentsDirectoryURL, withIntermediateDirectories: true, attributes: nil)
 	}
 	let storeURL = documentsDirectoryURL.appendingPathComponent("RSSReaderData.sqlite")
-	$(fileManager.fileExists(atPath: storeURL.path))
+	x$(fileManager.fileExists(atPath: storeURL.path))
 	if defaults.forceStoreRemoval {
 		let fileManager = FileManager.default
 		do {
@@ -144,14 +144,14 @@ extension NSPersistentContainer {
 	func loadPersistentStoresAndWait(completionHandler: @escaping (Error?) -> Void) {
 		if defaults.forceStoreRemoval {
 			for storeDescription in persistentContainer.persistentStoreDescriptions {
-				$(storeDescription.url)
+				x$(storeDescription.url)
 			}
 		}
 		var descriptionsToComplete = persistentContainer.persistentStoreDescriptions.count
 		var errorsAndDescriptions = [(Error, NSPersistentStoreDescription)]()
 		let completionQueue = DispatchQueue(label: "loadPersistentStoresCompletion")
 		loadPersistentStores { (description, error) in
-			$(description)
+			x$(description)
 			completionQueue.async {
 				if let error = error {
 					errorsAndDescriptions += [(error, description)]

@@ -74,7 +74,7 @@ extension Container: ManagedIdentifiable {
 	public class func identifierKey() -> String {
 		return #keyPath(streamID)
 	}
-	public class func entityName() -> String {
+	@objc public class func entityName() -> String {
 		return "Container"
 	}
 }
@@ -99,7 +99,7 @@ extension Container {
 }
 
 extension Container {
-	func importFromJson(_ jsonObject: Any) throws {
+	@objc func importFromJson(_ jsonObject: Any) throws {
 		let sortID: Int32 = try {
 			guard let json = jsonObject as? [String: AnyObject] else {
 				throw JsonImportError.JsonObjectIsNotDictionary(jsonObject: jsonObject)
@@ -156,7 +156,7 @@ extension Container {
 				while sliceIndex != value.endIndex {
 					let nextSliceIndex = value.index(sliceIndex, offsetBy: 8)
 					let range = sliceIndex..<nextSliceIndex
-					let sortIDString = value[range]
+					let sortIDString = String(value[range])
 					var sortIDUnsigned : UInt32 = 0
 					guard Scanner(string: sortIDString).scanHexInt32(&sortIDUnsigned) else {
 						throw JsonImportError.SortIDInPrefsValueIsNotHex(prefs: prefs, value: value)

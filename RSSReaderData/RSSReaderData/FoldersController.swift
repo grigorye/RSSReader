@@ -33,29 +33,29 @@ extension TypedUserDefaults {
 }
 
 public extension FoldersController {
-	public final func updateFolders() -> Promise<Void> {
+	public func updateFolders() -> Promise<Void> {
 		let rssSession = self.rssSession
 		precondition(rssSession.authenticated)
-		return firstly {
+		return firstly { () -> Promise<Void> in
 			self.foldersLastUpdateError = nil
 			self.foldersUpdateState = .updatingUserInfo
 			return rssSession.updateUserInfo()
-		}.then {
+		}.then { (_) -> Promise<Void> in
 			self.foldersUpdateState = .pushingTags
 			return rssSession.pushTags()
-		}.then {
+		}.then { (_) -> Promise<Void> in
 			self.foldersUpdateState = .pullingTags
 			return rssSession.pullTags()
-		}.then {
+		}.then { (_) -> Promise<Void> in
 			self.foldersUpdateState = .updatingSubscriptions
 			return rssSession.updateSubscriptions()
-		}.then {
+		}.then { (_) -> Promise<Void> in
 			self.foldersUpdateState = .updatingUnreadCounts
 			return rssSession.updateUnreadCounts()
-		}.then {
+		}.then { (_) -> Promise<Void> in
 			self.foldersUpdateState = .updatingStreamPreferences
 			return rssSession.updateStreamPreferences()
-		}.then {
+		}.then { (_) -> Promise<Void> in
 			guard defaults.streamPrefetchingEnabled else {
 				return Promise(value: ())
 			}
@@ -66,19 +66,19 @@ public extension FoldersController {
 					let containerLoadController = ContainerLoadController(session: rssSession, container: container, unreadOnly: true)
 					containerLoadController.loadMore { error in
 						guard let error = error else {
-							fulfill()
+							fulfill(())
 							return
 						}
 						reject(error)
 					}
 				}
 			}
-		}.always {
+		}.always { () -> () in
 			self.foldersLastUpdateDate = Date()
 			self.foldersUpdateState = .completed
-		}.recover { error -> Void in
+		}.recover { (error) -> Void in
 			self.foldersLastUpdateError = error
-			throw $(error)
+			throw x$(error)
 		}
 	}
 }

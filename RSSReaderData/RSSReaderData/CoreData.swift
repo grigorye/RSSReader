@@ -38,7 +38,7 @@ extension Item : ManagedIdentifiable {
 	public class func identifierKey() -> String {
 		return #keyPath(id)
 	}
-	public class func entityName() -> String {
+	@objc public class func entityName() -> String {
 		return "Item"
 	}
 	var categories: Set<Folder> {

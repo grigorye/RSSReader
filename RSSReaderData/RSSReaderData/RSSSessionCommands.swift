@@ -197,10 +197,10 @@ public struct StreamContents : PersistentDataUpdateCommand, AuthenticatedDataUpd
 	var requestRelativeString: String {
 		let querySuffix = URLQuerySuffixFromComponents([String]() … {
 			if let continuation = continuation {
-				$0 += ["c=\($(continuation))"]
+				$0 += ["c=\(x$(continuation))"]
 			}
 			if let excludedCategory = excludedCategory {
-				$0 += ["xt=\($(excludedCategory.streamID))"]
+				$0 += ["xt=\(x$(excludedCategory.streamID))"]
 			}
 			$0 += ["n=\(count)"]
 		})

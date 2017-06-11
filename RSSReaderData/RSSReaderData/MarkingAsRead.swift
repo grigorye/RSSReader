@@ -14,10 +14,10 @@ public let readTagSuffix = "state/com.google/read"
 public let favoriteTagSuffix = "state/com.google/starred"
 
 let markedAsReadCategory = {
-	$(Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: mainQueueManagedObjectContext)!)
+	x$(Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: mainQueueManagedObjectContext)!)
 }()
 let markedAsFavoriteCategory = {
-	$(Folder.folderWithTagSuffix(favoriteTagSuffix, managedObjectContext: mainQueueManagedObjectContext)!)
+	x$(Folder.folderWithTagSuffix(favoriteTagSuffix, managedObjectContext: mainQueueManagedObjectContext)!)
 }()
 
 extension Folder {
@@ -45,8 +45,8 @@ public extension Item {
 		return matchingCategories.onlyElement
 	}
 	func includedInCategoryWithTagSuffix(_ tagSuffix: String) -> Bool {
-		let $ = nil != self.categoryForTagSuffix(tagSuffix)
-		return $
+		let x = nil != self.categoryForTagSuffix(tagSuffix)
+		return x
 	}
 	func setIncludedInCategoryWithTagSuffix(_ tagSuffix: String, newValue: Bool) {
 		let oldValue = includedInCategoryWithTagSuffix(tagSuffix)
@@ -76,7 +76,7 @@ public extension Item {
 		}
 		self.pendingUpdateDate = Date()
 	}
-	dynamic var markedAsFavorite: Bool {
+	@objc dynamic var markedAsFavorite: Bool {
 		get {
 			return categories.contains(markedAsFavoriteCategory)
 		}
@@ -84,7 +84,7 @@ public extension Item {
 			self.set(included: newValue, in: markedAsFavoriteCategory)
 		}
 	}
-	public var markedAsRead: Bool {
+	@objc public var markedAsRead: Bool {
 		get {
 			return categories.contains(markedAsReadCategory)
 		}
