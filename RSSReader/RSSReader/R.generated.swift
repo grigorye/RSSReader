@@ -381,7 +381,7 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: Base, ru
       static func cFBundleDisplayName(_: Void = ()) -> String {
-        return NSLocalizedString("CFBundleDisplayName", tableName: "InfoPlist", bundle: R.hostingBundle, comment: "")
+        return NSLocalizedString("CFBundleDisplayName", tableName: "InfoPlist", bundle: R.hostingBundle, value: "NFeeds", comment: "")
       }
       
       fileprivate init() {}
