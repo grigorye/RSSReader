@@ -8,7 +8,7 @@
 
 import CoreData
 
-public class FetchedObjectBinding<T> : NSObject, NSFetchedResultsControllerDelegate where T: DefaultSortable, T: Managed, T: NSFetchRequestResult {
+public class FetchedObjectBinding<T> : NSObject, NSFetchedResultsControllerDelegate where T: DefaultSortable, T: Managed {
 	let handler: ([T]) -> Void
 	let fetchedResultsController: NSFetchedResultsController<T>
 	public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
@@ -21,8 +21,8 @@ public class FetchedObjectBinding<T> : NSObject, NSFetchedResultsControllerDeleg
 				$0.predicate = _0 ? nil : predicate
 				$0.sortDescriptors = [T.defaultSortDescriptor()]
 			}
-			let $ = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-			return $
+			let x = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+			return x
 		}()
 		super.init()
 		fetchedResultsController.delegate = self
@@ -31,7 +31,7 @@ public class FetchedObjectBinding<T> : NSObject, NSFetchedResultsControllerDeleg
 	}
 }
 
-public class FetchedObjectCountBinding<T> : NSObject, NSFetchedResultsControllerDelegate where T: Managed, T: NSFetchRequestResult {
+public class FetchedObjectCountBinding<T> : NSObject, NSFetchedResultsControllerDelegate where T: Managed {
 	let countDidChange: Handler
 	//
 	var scheduledForDeinit = ScheduledHandlers()

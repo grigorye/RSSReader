@@ -34,7 +34,7 @@ public protocol Identifiable {
 public protocol ManagedIdentifiable: Managed, Identifiable {
 }
 
-func objectFetchedWithPredicate<T: Managed> (_ cls: T.Type, predicate: NSPredicate, managedObjectContext: NSManagedObjectContext) -> T? where T: NSManagedObject, T: NSFetchRequestResult {
+func objectFetchedWithPredicate<T: Managed> (_ cls: T.Type, predicate: NSPredicate, managedObjectContext: NSManagedObjectContext) -> T? where T: NSManagedObject {
 	let request = T.fetchRequestForEntity() … {
 		$0.predicate = predicate
 		$0.fetchLimit = 1
@@ -48,17 +48,15 @@ func objectFetchedWithPredicate<T: Managed> (_ cls: T.Type, predicate: NSPredica
 	return object
 }
 
-func objectsFetchedWithPredicate<T: Managed> (_ cls: T.Type, predicate: NSPredicate, managedObjectContext: NSManagedObjectContext) -> [T] where T: NSManagedObject, T: NSFetchRequestResult {
-	let request: NSFetchRequest<T> = {
-		let $ = T.fetchRequestForEntity()
-		$.predicate = predicate
-		return $
-	}()
+func objectsFetchedWithPredicate<T: Managed> (_ cls: T.Type, predicate: NSPredicate, managedObjectContext: NSManagedObjectContext) -> [T] where T: NSManagedObject {
+	let request: NSFetchRequest<T> = T.fetchRequestForEntity() … {
+		$0.predicate = predicate
+	}
 	let objects = try! managedObjectContext.fetch(request)
 	return objects
 }
 
-func insertedObjectUnlessFetchedWithPredicate<T: Managed>(_ cls: T.Type, predicate: NSPredicate, managedObjectContext: NSManagedObjectContext, newObjectInitializationHandler: (T) -> Void) throws -> T where T: NSManagedObject, T: NSFetchRequestResult {
+func insertedObjectUnlessFetchedWithPredicate<T: Managed>(_ cls: T.Type, predicate: NSPredicate, managedObjectContext: NSManagedObjectContext, newObjectInitializationHandler: (T) -> Void) throws -> T where T: NSManagedObject {
 	let entityName = cls.entityName()
 	if let existingObject = objectFetchedWithPredicate(cls, predicate: predicate, managedObjectContext: managedObjectContext) {
 		return existingObject
@@ -69,7 +67,7 @@ func insertedObjectUnlessFetchedWithPredicate<T: Managed>(_ cls: T.Type, predica
 		return newObject
 	}
 }
-public func insertedObjectUnlessFetchedWithID<T: NSManagedObject>(_ cls: T.Type, id: String, managedObjectContext: NSManagedObjectContext) throws -> T where T: ManagedIdentifiable, T: NSFetchRequestResult {
+public func insertedObjectUnlessFetchedWithID<T: NSManagedObject>(_ cls: T.Type, id: String, managedObjectContext: NSManagedObjectContext) throws -> T where T: ManagedIdentifiable {
 	let identifierKey = cls.identifierKey()
 	let predicate = NSPredicate(format: "%K == %@", argumentArray: [identifierKey, id])
 	return try insertedObjectUnlessFetchedWithPredicate(cls, predicate: predicate, managedObjectContext: managedObjectContext) { newObject in
@@ -77,7 +75,7 @@ public func insertedObjectUnlessFetchedWithID<T: NSManagedObject>(_ cls: T.Type,
 	}
 }
 
-public func insertedObjectsUnlessFetchedWithID<T: NSManagedObject>(_ cls: T.Type, ids: [String], managedObjectContext: NSManagedObjectContext) throws -> (existing: [T], new: [T]) where T: ManagedIdentifiable, T: NSFetchRequestResult {
+public func insertedObjectsUnlessFetchedWithID<T: NSManagedObject>(_ cls: T.Type, ids: [String], managedObjectContext: NSManagedObjectContext) throws -> (existing: [T], new: [T]) where T: ManagedIdentifiable {
 	let identifierKey = cls.identifierKey()
 	let predicate = NSPredicate(format: "%K in %@", argumentArray: [identifierKey, ids])
 	let existingObjects = objectsFetchedWithPredicate(cls, predicate: predicate, managedObjectContext: managedObjectContext)
@@ -92,7 +90,7 @@ public func insertedObjectsUnlessFetchedWithID<T: NSManagedObject>(_ cls: T.Type
 	return (existing: existingObjects, new: newObjects)
 }
 
-public func importItemsFromJson<T: ManagedIdentifiable>(_ json: [String : AnyObject], type: T.Type, elementName: String, managedObjectContext: NSManagedObjectContext, importFromJson: (T, [String: AnyObject]) throws -> Void) throws -> (existing: [T], new: [T]) where T: NSManagedObject, T: NSFetchRequestResult {
+public func importItemsFromJson<T: ManagedIdentifiable>(_ json: [String : AnyObject], type: T.Type, elementName: String, managedObjectContext: NSManagedObjectContext, importFromJson: (T, [String: AnyObject]) throws -> Void) throws -> (existing: [T], new: [T]) where T: NSManagedObject {
 	guard let itemJsons = json[elementName] as? [Json] else {
 		throw GenericCoreDataExtensionsError.ElementNotFoundOrInvalidInJson(json: json, elementName: elementName)
 	}
@@ -112,7 +110,7 @@ public func importItemsFromJson<T: ManagedIdentifiable>(_ json: [String : AnyObj
 	return (existing: existingItems, new: newItems)
 }
 
-public func importItemsFromJsonData<T: ManagedIdentifiable>(_ data: Data, type: T.Type, elementName: String, managedObjectContext: NSManagedObjectContext, importFromJson: (T, [String: AnyObject]) throws -> Void) throws -> (existing: [T], new: [T]) where T: NSManagedObject, T: NSFetchRequestResult {
+public func importItemsFromJsonData<T: ManagedIdentifiable>(_ data: Data, type: T.Type, elementName: String, managedObjectContext: NSManagedObjectContext, importFromJson: (T, [String: AnyObject]) throws -> Void) throws -> (existing: [T], new: [T]) where T: NSManagedObject {
 	let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions())
 	guard let json = jsonObject as? [String : AnyObject] else {
 		throw GenericCoreDataExtensionsError.JsonObjectIsNotDictionary(jsonObject: jsonObject)
@@ -133,11 +131,11 @@ extension NSManagedObjectContext {
                 return managedObjectContext.object(with: objectID)
             }
 			else {
-				$(objectIDURL)
+				x$(objectIDURL)
 			}
         }
         else {
-			$(key)
+			x$(key)
 		}
 		return nil
 	}
