@@ -28,12 +28,12 @@ import CwlPreconditionTesting
 
 class DeferredWorkTests: XCTestCase {
 	func testDeferredWork() {
-		let dw = DeferredWork()
+		var dw = DeferredWork()
 		dw.runWork()
 	}
 
 	func testDeferredWorkDoubleRun() {
-		let dw = DeferredWork()
+		var dw = DeferredWork()
 		dw.runWork()
 		
 		let e = catchBadInstruction {
@@ -75,7 +75,7 @@ class DeferredWorkTests: XCTestCase {
 
 	func testDeferredWorkClosureOnConstruction() {
 		var reachedPoint1 = false
-		let dw = DeferredWork { reachedPoint1 = true }
+		var dw = DeferredWork { reachedPoint1 = true }
 		XCTAssert(!reachedPoint1)
 		dw.runWork()
 		XCTAssert(reachedPoint1)

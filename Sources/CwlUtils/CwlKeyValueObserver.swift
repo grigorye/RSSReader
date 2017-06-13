@@ -101,7 +101,7 @@ public class KeyValueObserver: NSObject {
 			if let propertyName = keyPath.cString(using: String.Encoding.utf8) {
 				let property = class_getProperty(type(of: source), propertyName)
 				// Look for both the "id" and "weak" attributes.
-				if property != nil, let attributes = String(validatingUTF8: property_getAttributes(property))?.components(separatedBy: ","), attributes.filter({ $0.hasPrefix("T@") || $0 == "W" }).count == 2 {
+				if let prop = property, let attributes = property_getAttributes(prop), let attrsString = String(validatingUTF8: attributes)?.components(separatedBy: ","), attrsString.filter({ $0.hasPrefix("T@") || $0 == "W" }).count == 2 {
 					p = "self"
 				}
 			}
