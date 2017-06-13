@@ -21,10 +21,7 @@
 import Foundation
 import XCTest
 import CwlUtils
-
-#if SWIFT_PACKAGE
 import CwlPreconditionTesting
-#endif
 
 class DeferredWorkTests: XCTestCase {
 	func testDeferredWork() {
