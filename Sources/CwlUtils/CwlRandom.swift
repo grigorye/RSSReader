@@ -427,27 +427,26 @@ public struct MersenneTwister: RandomWordGenerator {
 	
 	public mutating func random64() -> UInt64 {
 		if index == MersenneTwister.stateCount {
-			// Really dirty leaking of unsafe pointer outside its closure to ensure inlining in Swift 3 preview 1
-			let state = withUnsafeMutablePointer(to: &state_internal) { $0.withMemoryRebound(to: UInt64.self, capacity: MersenneTwister.stateCount) { $0 } }
-
-			let n = MersenneTwister.stateCount
-			let m = n / 2
-			let a: UInt64 = 0xB5026F5AA96619E9
-			let lowerMask: UInt64 = (1 << 31) - 1
-			let upperMask: UInt64 = ~lowerMask
-			var (i, j, stateM) = (0, m, state[m])
-			repeat {
-				let x1 = (state[i] & upperMask) | (state[i &+ 1] & lowerMask)
-				state[i] = state[i &+ m] ^ (x1 >> 1) ^ ((state[i &+ 1] & 1) &* a)
-				let x2 = (state[j] & upperMask) | (state[j &+ 1] & lowerMask)
-				state[j] = state[j &- m] ^ (x2 >> 1) ^ ((state[j &+ 1] & 1) &* a)
-				(i, j) = (i &+ 1, j &+ 1)
-			} while i != m &- 1
-
-			let x3 = (state[m &- 1] & upperMask) | (stateM & lowerMask)
-			state[m &- 1] = state[n &- 1] ^ (x3 >> 1) ^ ((stateM & 1) &* a)
-			let x4 = (state[n &- 1] & upperMask) | (state[0] & lowerMask)
-			state[n &- 1] = state[m &- 1] ^ (x4 >> 1) ^ ((state[0] & 1) &* a)
+			withUnsafeMutablePointer(to: &state_internal) { $0.withMemoryRebound(to: UInt64.self, capacity: MersenneTwister.stateCount) { state in
+				let n = MersenneTwister.stateCount
+				let m = n / 2
+				let a: UInt64 = 0xB5026F5AA96619E9
+				let lowerMask: UInt64 = (1 << 31) - 1
+				let upperMask: UInt64 = ~lowerMask
+				var (i, j, stateM) = (0, m, state[m])
+				repeat {
+					let x1 = (state[i] & upperMask) | (state[i &+ 1] & lowerMask)
+					state[i] = state[i &+ m] ^ (x1 >> 1) ^ ((state[i &+ 1] & 1) &* a)
+					let x2 = (state[j] & upperMask) | (state[j &+ 1] & lowerMask)
+					state[j] = state[j &- m] ^ (x2 >> 1) ^ ((state[j &+ 1] & 1) &* a)
+					(i, j) = (i &+ 1, j &+ 1)
+				} while i != m &- 1
+				
+				let x3 = (state[m &- 1] & upperMask) | (stateM & lowerMask)
+				state[m &- 1] = state[n &- 1] ^ (x3 >> 1) ^ ((stateM & 1) &* a)
+				let x4 = (state[n &- 1] & upperMask) | (state[0] & lowerMask)
+				state[n &- 1] = state[m &- 1] ^ (x4 >> 1) ^ ((state[0] & 1) &* a)
+			} }
 			
 			index = 0
 		}
