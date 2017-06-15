@@ -1,16 +1,25 @@
-// swift-tools-version:4.0
 import PackageDescription
 
 let package = Package(
 	name: "CwlUtils",
-	products: [.library(name: "CwlUtils", targets: ["CwlUtils", "CwlFrameAddress"])],
-	dependencies: [
-		.package(url: "/Users/matt/Projects/CwlPreconditionTesting", .revision("daa6e033b8106bed90fed2558e7586675ff63288")),
-	],
 	targets: [
-		.target(name: "ReferenceRandomGenerators"),
-		.target(name: "CwlFrameAddress"),
-		.target(name: "CwlUtils", dependencies: ["CwlFrameAddress"]),
-		.testTarget(name: "CwlUtilsTests", dependencies: ["CwlUtils", "CwlFrameAddress", "ReferenceRandomGenerators", "CwlPreconditionTesting"]),
+		Target(name: "CwlUtils", dependencies: ["CwlFrameAddress", "ReferenceRandomGenerators"]),
+		Target(name: "CwlFrameAddress"),
+		Target(name: "ReferenceRandomGenerators")
+	],
+	dependencies: [
+		.Package(url: "https://github.com/mattgallagher/CwlPreconditionTesting.git", majorVersion: 1),
+	],
+	exclude: [
+		"LICENSE.txt",
+		"Sources/CwlUtils.h",
+		"Sources/CwlUtils_iOSHarness",
+		"Sources/CwlUtils_macOSHarness",
+		"Tests/CwlUtilsTests-BridgingHeader.h",
+		"Tests/CwlUtils_macOSTestApp",
+		"Tests/CwlUtils_macOSTestAppUITests",
+		"Tests/CwlUtils_iOSTestApp",
+		"Tests/CwlUtils_iOSTestAppUITests",
+		"Tests/CwlUtilsPerformanceTests"
 	]
 )
