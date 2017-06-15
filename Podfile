@@ -33,8 +33,8 @@ post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |configuration|
       configuration.build_settings['CONFIGURATION_BUILD_DIR'] = '${PODS_CONFIGURATION_BUILD_DIR}'
-      configuration.build_settings['CODE_SIGNING_REQUIRED'] = 'NO'
-      configuration.build_settings['PROVISIONING_PROFILE_SPECIFIER'] = '465NA5BW7E/'
+#      configuration.build_settings['CODE_SIGNING_REQUIRED'] = 'NO'
+#      configuration.build_settings['PROVISIONING_PROFILE_SPECIFIER'] = 'T6B3YCL946/'
       configuration.build_settings['SWIFT_VERSION'] = '3.0'
       configuration.build_settings['DEBUG_INFORMATION_FORMAT'] = 'dwarf-with-dsym'
       configuration.build_settings['ENABLE_BITCODE'] = 'NO'
