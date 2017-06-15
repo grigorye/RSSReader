@@ -110,8 +110,13 @@ public class UnanticipatedErrorRecoveryAttempter: NSObject {
 		switch optionIndex {
 		case copyDetailsButtonIndex:
 		#if os(macOS)
-			NSPasteboard.general.clearContents()
-			NSPasteboard.general.setString(extendedErrorInformation(error as NSError), forType:NSPasteboard.PasteboardType.string)
+			#if swift(>=4)
+				NSPasteboard.general.clearContents()
+				NSPasteboard.general.setString(extendedErrorInformation(error as NSError), forType:NSPasteboard.PasteboardType.string)
+			#else
+				NSPasteboard.general().clearContents()
+				NSPasteboard.general().setString(extendedErrorInformation(error as NSError), forType:NSPasteboardTypeString)
+			#endif
 		#elseif os(iOS)
 			UIPasteboard.general.string = extendedErrorInformation(error as NSError)
 		#endif
