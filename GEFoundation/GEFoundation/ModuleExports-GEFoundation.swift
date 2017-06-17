@@ -50,7 +50,7 @@ extension ScheduledHandlers {
 // MARK: -
 
 typealias TypedUserDefaults = GEFoundation.TypedUserDefaults
-typealias ProgressEnabledURLSessionTaskGenerator = GEFoundation.ProgressEnabledURLSessionTaskGenerator
+public typealias ProgressEnabledURLSessionTaskGenerator = GEFoundation.ProgressEnabledURLSessionTaskGenerator
 typealias URLSessionTaskGeneratorError = GEFoundation.URLSessionTaskGeneratorError
 
 typealias Ignored = GEFoundation.Ignored
@@ -61,7 +61,7 @@ typealias Json = GEFoundation.Json
 var _1: Bool { return GEFoundation._1 }
 var _0: Bool { return GEFoundation._0 }
 
-var progressEnabledURLSessionTaskGenerator: ProgressEnabledURLSessionTaskGenerator {
+public var progressEnabledURLSessionTaskGenerator: ProgressEnabledURLSessionTaskGenerator {
 	return GEFoundation.progressEnabledURLSessionTaskGenerator
 }
 
