@@ -21,7 +21,7 @@ PODS:
   - GoogleToolboxForMac/Defines (2.1.1)
   - GoogleToolboxForMac/NSData+zlib (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
-  - Mixpanel-swift (2.1.6)
+  - Mixpanel-swift (2.1.7)
   - Optimizely-iOS-SDK (1.7.0)
   - PromiseKit/CorePromise (4.2.2)
   - R.swift (3.3.0):
@@ -51,7 +51,7 @@ SPEC CHECKSUMS:
   FirebaseCore: 1a8bf6c795ad07d2918278657954ffd2552e9c17
   FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
-  Mixpanel-swift: 5e7ed752055d70253f3bf5d7804634ad85d050ea
+  Mixpanel-swift: 8c88926fe32a9373eed3ce46d13b24eb6d7f5876
   Optimizely-iOS-SDK: e406016e617f84e823227c52131341dc20721319
   PromiseKit: 00e8886881f151c7e573d06b437915b0bb2970ec
   R.swift: bde9704d50ff36820f49e266bc88ef545e1e9b36

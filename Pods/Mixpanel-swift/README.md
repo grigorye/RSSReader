@@ -9,7 +9,7 @@
 [![CocoaPods Compatible](http://img.shields.io/cocoapods/v/Mixpanel-swift.svg)](https://mixpanel.com)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/Carthage/Carthage)
 [![Apache License](http://img.shields.io/cocoapods/l/Mixpanel-swift.svg)](https://mixpanel.com)
-
+[![Documentation](https://mixpanel.github.io/mixpanel-swift/badge.svg)](https://mixpanel.github.io/mixpanel-swift)
 # Table of Contents
 
 <!-- MarkdownTOC -->
@@ -54,13 +54,9 @@ Our Swift library fully supports all of the Mixpanel features, and has full pari
 Mixpanel supports `CocoaPods` for easy installation.
 To Install, see our **[swift integration guide »](https://mixpanel.com/help/reference/swift)**
 
-For iOS, tvOS, and macOS integrations:
+For iOS, tvOS, macOS, and App Extension integrations:
 
 `pod 'Mixpanel-swift'`
-
-For App Extension integrations (you may need both the above *and* this):
-
-`pod 'Mixpanel-swift-appex'`
 
 <a name="carthage"></a>
 ## Carthage
