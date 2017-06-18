@@ -4,16 +4,17 @@ A collection of utilities written as part of articles on [Cocoa with Love](https
 
 ## Related articles
 
-* [Better stack traces in Swift](https://cocoawithlove.com/blog/2016/02/28/stack-traces-in-swift.html)
-* [Gathering system information in Swift with sysctl](https://www.cocoawithlove.com/blog/2016/03/08/swift-wrapper-for-sysctl.html)
-* [Presenting unanticipated errors to users](https://www.cocoawithlove.com/blog/2016/04/14/error-recovery-attempter.html)
-* [Random number generators in Swift](https://www.cocoawithlove.com/blog/2016/05/19/random-numbers.html)
-* [Mutexes and closure capture in Swift](https://www.cocoawithlove.com/blog/2016/06/02/threads-and-mutexes.html)
-* [Design patterns for safe timer usage](https://www.cocoawithlove.com/blog/2016/07/30/timer-problems.html)
-* [Values and errors, part 1: 'Result' in Swift](https://www.cocoawithlove.com/blog/2016/08/21/result-types-part-one.html)
-* [Optimizing a copy-on-write double-ended queue in Swift](https://www.cocoawithlove.com/blog/2016/09/22/deque.html)
-* [Specifying function execution contexts](https://www.cocoawithlove.com/blog/specifying-execution-contexts.html)
-* [Testing actions over time](https://www.cocoawithlove.com/blog/testing-actions-over-time.html)
+* [CwlStackFrame.swift](https://github.com/mattgallagher/CwlUtils/blob/master/Sources/CwlUtils/CwlStackFrame.swift) from [Better stack traces in Swift](https://cocoawithlove.com/blog/2016/02/28/stack-traces-in-swift.html)
+* [CwlSysctl.swift](https://github.com/mattgallagher/CwlUtils/blob/master/Sources/CwlUtils/CwlSysctl.swift) from [Gathering system information in Swift with sysctl](https://www.cocoawithlove.com/blog/2016/03/08/swift-wrapper-for-sysctl.html)
+* [CwlUnanticipatedError.swift](https://github.com/mattgallagher/CwlUtils/blob/master/Sources/CwlUtils/CwlUnanticipatedError.swift) from [Presenting unanticipated errors to users](https://www.cocoawithlove.com/blog/2016/04/14/error-recovery-attempter.html)
+* [CwlScalarScanner.swift](https://github.com/mattgallagher/CwlUtils/blob/master/Sources/CwlUtils/CwlScalarScanner.swift) from [Swift name demangling: C++ vs Swift for parsing](https://www.cocoawithlove.com/blog/2016/05/01/swift-name-demangling.html)
+* [CwlRandom.swift](https://github.com/mattgallagher/CwlUtils/blob/master/Sources/CwlUtils/CwlRandom.swift) from [Random number generators in Swift](https://www.cocoawithlove.com/blog/2016/05/19/random-numbers.html)
+* [CwlMutex.swift](https://github.com/mattgallagher/CwlUtils/blob/master/Sources/CwlUtils/CwlMutex.swift) from [Mutexes and closure capture in Swift](https://www.cocoawithlove.com/blog/2016/06/02/threads-and-mutexes.html)
+* [CwlDispatch.swift](https://github.com/mattgallagher/CwlUtils/blob/master/Sources/CwlUtils/CwlDispatch.swift) from [Design patterns for safe timer usage](https://www.cocoawithlove.com/blog/2016/07/30/timer-problems.html)
+* [CwlResult.swift](https://github.com/mattgallagher/CwlUtils/blob/master/Sources/CwlUtils/CwlResult.swift) from [Values and errors, part 1: 'Result' in Swift](https://www.cocoawithlove.com/blog/2016/08/21/result-types-part-one.html)
+* [CwlDeque.swift](https://github.com/mattgallagher/CwlUtils/blob/master/Sources/CwlUtils/CwlDeque.swift) from [Optimizing a copy-on-write double-ended queue in Swift](https://www.cocoawithlove.com/blog/2016/09/22/deque.html)
+* [CwlExec.swift](https://github.com/mattgallagher/CwlUtils/blob/master/Sources/CwlUtils/CwlExec.swift) from [Specifying function execution contexts](https://www.cocoawithlove.com/blog/specifying-execution-contexts.html)
+* [CwlDebugContext.swift](https://github.com/mattgallagher/CwlUtils/blob/master/Sources/CwlUtils/CwlDebugContext.swift) from [Testing actions over time](https://www.cocoawithlove.com/blog/testing-actions-over-time.html)
 
 ## Adding to your project
 
@@ -25,7 +26,7 @@ Minimum requirements are iOS 8 (simulator-only) or macOS 10.10.
 
 1. In a subdirectory of your project's directory, run `git clone https://github.com/mattgallagher/CwlUtils.git`
 2. Drag the "CwlUtils.xcodeproj" file from the Finder into your own project's file tree in Xcode
-3. Add the "CwlUtils.framework" to the "Copy Files (Frameworks)" build phases of any target that you want to include this module.
+3. Add the "CwlUtils.framework" from the "Products" folder of the CwlUtils project's file tree to the "Copy Files (Frameworks)" build phases of any target that you want to include this module.
 
 That third step is a little tricky if you're unfamiliar with Xcode but it involves:
 
