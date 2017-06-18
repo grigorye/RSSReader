@@ -2,7 +2,9 @@
 
 A collection of utilities written as part of articles on [Cocoa with Love](https://cocoawithlove.com)
 
-## Related articles
+## Included functionality
+
+The following features are included in the library.
 
 * [CwlStackFrame.swift](https://github.com/mattgallagher/CwlUtils/blob/master/Sources/CwlUtils/CwlStackFrame.swift) from [Better stack traces in Swift](https://cocoawithlove.com/blog/2016/02/28/stack-traces-in-swift.html)
 * [CwlSysctl.swift](https://github.com/mattgallagher/CwlUtils/blob/master/Sources/CwlUtils/CwlSysctl.swift) from [Gathering system information in Swift with sysctl](https://www.cocoawithlove.com/blog/2016/03/08/swift-wrapper-for-sysctl.html)
