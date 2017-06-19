@@ -819,9 +819,9 @@
 			targets = (
 				C945D7B71E5033C6009AFB8E /* FetchDependencies */,
 				C997C3741EC7400500F67C3B /* CwlPreconditionTesting_macOS */,
+				C997C37D1EC7406100F67C3B /* CwlPreconditionTesting_iOS */,
 				OBJ_149 /* CwlUtils_macOS */,
 				OBJ_198 /* CwlUtils_macOSTests */,
-				C997C37D1EC7406100F67C3B /* CwlPreconditionTesting_iOS */,
 				C95BDE9A1E41688B00AAA64B /* CwlUtils_iOS */,
 				C95BDEB81E4168B800AAA64B /* CwlUtils_iOSTests */,
 				C95A77261E4187E600659DBD /* CwlUtils_macOSTestApp */,
@@ -898,7 +898,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ $CARTHAGE == \"YES\" ]; then exit; fi\n/usr/bin/xcodebuild -project \"$OBJROOT/cwl_symlinks/CwlPreconditionTesting/CwlPreconditionTesting.xcodeproj\" -target CwlPreconditionTesting_macOS -sdk \"$SDKROOT\" -configuration \"$CONFIGURATION\" $ACTION SRCROOT=\"$SRCROOT\" SYMROOT=\"$SYMROOT\" OBJROOT=\"$OBJROOT\" ARCHS=\"$ARCHS\" ONLY_ACTIVE_ARCH=\"$ONLY_ACTIVE_ARCH\" BITCODE_GENERATION_MODE=\"$BITCODE_GENERATION_MODE\"";
+			shellScript = "/usr/bin/xcodebuild -project \"$OBJROOT/cwl_symlinks/CwlPreconditionTesting/CwlPreconditionTesting.xcodeproj\" -target CwlPreconditionTesting_macOS -sdk \"$SDKROOT\" -configuration \"$CONFIGURATION\" $ACTION SRCROOT=\"$SRCROOT\" SYMROOT=\"$SYMROOT\" OBJROOT=\"$OBJROOT\" ARCHS=\"$ARCHS\" ONLY_ACTIVE_ARCH=\"$ONLY_ACTIVE_ARCH\" BITCODE_GENERATION_MODE=\"$BITCODE_GENERATION_MODE\"";
 		};
 		C997C3851EC7407E00F67C3B /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -906,7 +906,7 @@
 			files = (
 			);
 			inputPaths = (
-				"$(OBJROOT)/workspace-state.json",
+				"$(OBJROOT)/checkouts",
 			);
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/CwlCatchException.framework",
@@ -914,7 +914,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ $CARTHAGE == \"YES\" ]; then exit; fi\n/usr/bin/xcodebuild -project \"$OBJROOT/cwl_symlinks/CwlPreconditionTesting/CwlPreconditionTesting.xcodeproj\" -target CwlPreconditionTesting_iOS -sdk \"$SDKROOT\" -configuration \"$CONFIGURATION\" $ACTION SRCROOT=\"$SRCROOT\" SYMROOT=\"$SYMROOT\" OBJROOT=\"$OBJROOT\" ARCHS=\"$ARCHS\" ONLY_ACTIVE_ARCH=\"$ONLY_ACTIVE_ARCH\" BITCODE_GENERATION_MODE=\"$BITCODE_GENERATION_MODE\"";
+			shellScript = "/usr/bin/xcodebuild -project \"$OBJROOT/cwl_symlinks/CwlPreconditionTesting/CwlPreconditionTesting.xcodeproj\" -target CwlPreconditionTesting_iOS -sdk \"$SDKROOT\" -configuration \"$CONFIGURATION\" $ACTION SRCROOT=\"$SRCROOT\" SYMROOT=\"$SYMROOT\" OBJROOT=\"$OBJROOT\" ARCHS=\"$ARCHS\" ONLY_ACTIVE_ARCH=\"$ONLY_ACTIVE_ARCH\" BITCODE_GENERATION_MODE=\"$BITCODE_GENERATION_MODE\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
