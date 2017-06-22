@@ -37,7 +37,7 @@ public struct DeferredWork {
 	
 	var work: PossibleWork
 
-#if DEBUG
+#if CHECK_DEFERRED_WORK
 	let invokeCheck: OnDelete = { () -> OnDelete in
 		var sourceStack = callStackReturnAddresses(skip: 2)
 		return OnDelete {
@@ -55,7 +55,7 @@ public struct DeferredWork {
 	}
 	
 	public mutating func append(_ other: DeferredWork) {
-#if DEBUG
+#if CHECK_DEFERRED_WORK
 		precondition(invokeCheck.isValid && other.invokeCheck.isValid, "Work appended to an already cancelled/invoked DeferredWork")
 		other.invokeCheck.invalidate()
 #endif
@@ -78,7 +78,7 @@ public struct DeferredWork {
 	}
 	
 	public mutating func append(_ additionalWork: @escaping () -> Void) {
-#if DEBUG
+#if CHECK_DEFERRED_WORK
 		precondition(invokeCheck.isValid, "Work appended to an already cancelled/invoked DeferredWork")
 #endif
 		switch work {
@@ -92,7 +92,7 @@ public struct DeferredWork {
 	}
 	
 	public mutating func runWork() {
-#if DEBUG
+#if CHECK_DEFERRED_WORK
 		precondition(invokeCheck.isValid, "Work run multiple times")
 		invokeCheck.invalidate()
 #endif
