@@ -54,8 +54,8 @@ class GetLineIterator: Sequence, IteratorProtocol {
 enum ProcessingError: Error {
 	case fileNotFound(String)
 	case couldntOpenFile(String)
-	case cantCreateOutputFile
-	case unknownAuthorship
+	case cantCreateOutputFile(String)
+	case unknownAuthorship(String)
 	case noInput
 }
 
@@ -75,7 +75,7 @@ func appendFile(_ filePath: String, output: FileHandle, wantInternal: Bool) thro
 			if line.hasPrefix("//") {
 				if lineCount == 6 {
 					if authorPattern.firstMatch(in: line, range: NSMakeRange(0, line.characters.count)) == nil {
-						throw ProcessingError.unknownAuthorship
+						throw ProcessingError.unknownAuthorship(filePath)
 					}
 				}
 				continue
@@ -102,7 +102,7 @@ do {
 	let wantInternal = ProcessInfo.processInfo.arguments[1] == "internal"
 	
 	let outputPath = ProcessInfo.processInfo.arguments[2]
-	guard FileManager.default.createFile(atPath: outputPath, contents: nil, attributes: nil) else { throw ProcessingError.cantCreateOutputFile }
+	guard FileManager.default.createFile(atPath: outputPath, contents: nil, attributes: nil) else { throw ProcessingError.cantCreateOutputFile(outputPath) }
 	let output = try FileHandle(forWritingTo: URL(fileURLWithPath: outputPath))
 	
 	var insertedFileCount = 0
