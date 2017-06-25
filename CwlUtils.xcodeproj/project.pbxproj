@@ -397,7 +397,8 @@
 			children = (
 				C90509391EFE1F5A00E95E92 /* main.swift */,
 			);
-			path = CwlUtilsConcat;
+			name = CwlUtilsConcat;
+			path = Sources/CwlUtilsConcat;
 			sourceTree = "<group>";
 		};
 		C95A77281E4187E600659DBD /* CwlUtils_macOSTestApp */ = {
