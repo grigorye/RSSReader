@@ -112,6 +112,7 @@ do {
 	var flag = Flag.none
 	var message = ""
 	var commonString = nil as String?
+	var useCommonString = false
 	for arg in ProcessInfo.processInfo.arguments[3..<ProcessInfo.processInfo.arguments.count] {
 		switch arg {
 		case "-x": flag = .exclude; continue
@@ -149,6 +150,9 @@ do {
 		
 		if let cs = commonString {
 			commonString = String(zip(cs.characters, appendedPath.characters).prefix { $0.0 == $0.1 }.map { $0.0 })
+			if commonString != arg {
+				useCommonString = true
+			}
 		} else {
 			commonString = appendedPath
 		}
@@ -193,7 +197,7 @@ do {
 		switch include {
 		case .text: continue
 		case .filePath(let filePath):
-			let minusCommon = String(filePath.characters.dropFirst(commonCount))
+			let minusCommon = useCommonString ? String(filePath.characters.dropFirst(commonCount)) : NSString(string: filePath).lastPathComponent
 			output.write("//    \(minusCommon)\n")
 		}
 	}
