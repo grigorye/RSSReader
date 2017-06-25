@@ -5,6 +5,7 @@ let package = Package(
 	targets: [
 		Target(name: "CwlUtils", dependencies: ["CwlFrameAddress", "ReferenceRandomGenerators"]),
 		Target(name: "CwlFrameAddress"),
+		Target(name: "CwlUtilsConcat"),
 		Target(name: "ReferenceRandomGenerators")
 	],
 	dependencies: [

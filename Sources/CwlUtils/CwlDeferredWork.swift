@@ -18,6 +18,8 @@
 //  IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 //
 
+import Foundation
+
 // This type is designed for guarding against mutex re-entrancy by following two simple rules:
 //
 //  1. No user "work" (functions or closures) should be invoked inside a private mutex
