@@ -8,6 +8,14 @@
 
 import Foundation
 
+extension String {
+	
+	func substring(with range: NSRange) -> String {
+		return (self as NSString).substring(with: range) as String
+	}
+	
+}
+
 func sourceExtractedInfo(for location: SourceLocation, traceFunctionName: String) -> SourceExtractedInfo {
 	guard sourceLabelsEnabled else {
 		return SourceExtractedInfo(label: descriptionForInLineLocation(location))
@@ -43,7 +51,7 @@ func sourceExtractedInfo(for location: SourceLocation, traceFunctionName: String
 		for line in rawLines {
 			if let match = regularExpression.firstMatch(in: line, range: NSRange(location: 0, length: line.characters.count)) {
 				let s = rawLines[(i + 1)..<rawLines.endIndex]
-				let playgroundName = (line as NSString).substring(with: match.rangeAt(1)) as String
+				let playgroundName = line.substring(with: match.range(at: 1))
 				return (Array(s), playgroundName)
 			}
 			i = rawLines.index(after: i)
