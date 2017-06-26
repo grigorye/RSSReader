@@ -11,7 +11,7 @@ import os.activity
 private let os_activity_create: @convention(c) (UnsafeRawPointer?, UnsafePointer<Int8>?, AnyObject?, os_activity_flag_t) -> AnyObject = DynamicLibrary.default.symbol(named: "_os_activity_create")
 
 @available(iOS 10.0, macOS 10.12, watchOS 3.0, tvOS 10.0, *)
-private let os_activity_apply: @convention(c) (AnyObject, (Void) -> ()) -> () = DynamicLibrary.default.symbol(named: "os_activity_apply")
+private let os_activity_apply: @convention(c) (AnyObject, () -> ()) -> () = DynamicLibrary.default.symbol(named: "os_activity_apply")
 
 @available(iOS 10.0, macOS 10.12, watchOS 3.0, tvOS 10.0, *)
 private let os_activity_scope_enter: @convention(c) (AnyObject, UnsafeMutablePointer<os_activity_scope_state_s>) -> () = DynamicLibrary.default.symbol(named: "os_activity_scope_enter")
@@ -63,7 +63,7 @@ public struct Activity {
         }
     }
 
-    private func withActive(execute body: (Void) -> ()) {
+    private func withActive(execute body: () -> ()) {
         assert(OS_ACTIVITY_OBJECT_API != 0)
         os_activity_apply(opaque, body)
     }
