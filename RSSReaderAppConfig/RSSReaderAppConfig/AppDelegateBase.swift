@@ -11,7 +11,9 @@ import func GEUIKit.forceCrash
 import func GEFoundation.loadDefaultsFromSettingsPlistAtURL
 import var GEFoundation.versionIsClean
 import var GEFoundation.buildAge
+#if DEBUG
 import var GEFoundation.nslogRedirectorInitializer
+#endif
 import FirebaseCore
 import Loggy
 import FBAllocationTracker
@@ -95,7 +97,9 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 	// MARK: -
 	static private let initializeOnce: Ignored = {
 		var scope = Activity("Initializing Analytics").enter(); defer { scope.leave() }
-		_ = nslogRedirectorInitializer
+		#if DEBUG
+			_ = nslogRedirectorInitializer
+		#endif
 		x$(buildAge)
 		if x$(analyticsShouldBeEnabled) {
 			_ = crashlyticsInitializer
