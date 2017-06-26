@@ -11,6 +11,7 @@ import Foundation
 
 // https://support.apple.com/kb/TA45403?locale=en_US&viewlocale=en_US
 
+#if DEBUG
 typealias LogCStringF = @convention(c) (_ message: UnsafeMutableRawPointer, _ length: CUnsignedInt, _ banner: CBool) -> Void
 
 @available(iOS 9.0, macOS 10.12, watchOS 3.0, tvOS 10.0, *)
@@ -24,3 +25,4 @@ let logCString: LogCStringF = { messageBytes, length, banner in
 public let nslogRedirectorInitializer: Void = {
 	NSSetLogCStringFunction(logCString)
 }()
+#endif
