@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 47;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -131,6 +131,7 @@
 		C4F7DC3B1D97E93200275E4F /* ItemTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F7DC3A1D97E93200275E4F /* ItemTableViewDelegate.swift */; };
 		C4F7DC3D1D97E9A800275E4F /* ItemTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F7DC3C1D97E9A800275E4F /* ItemTableViewDataSource.swift */; };
 		C4F7DC3F1D97EBEF00275E4F /* ItemListViewLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F7DC3E1D97EBEF00275E4F /* ItemListViewLoading.swift */; };
+		C4F8ED9D1F01BEBB002E0124 /* ContainerViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EA5C351CE91E8600E395FE /* ContainerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +158,7 @@
 			dstPath = Sources;
 			dstSubfolderSpec = 7;
 			files = (
+				C4F8ED9D1F01BEBB002E0124 /* ContainerViewController.swift in Embed Sources */,
 				C441F1991DB434230060E692 /* main.swift in Embed Sources */,
 				C441F1951DB434090060E692 /* GlobalFoldersController.swift in Embed Sources */,
 				C41F05721AD0E3AB00A659EC /* LoginAndPasswordDefaults.swift in Embed Sources */,
@@ -750,7 +752,7 @@
 				};
 			};
 			buildConfigurationList = C4CDD3981A5350B40087DD05 /* Build configuration list for PBXProject "RSSReader" */;
-			compatibilityVersion = "Xcode 6.3";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
