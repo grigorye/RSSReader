@@ -522,7 +522,7 @@ class Service {
    let context: Exec
 	
    // Construction of the Service lets us specify the underlying service
-   init(context: Exec = .default, connect: @escaping ConnectionFunction = NetworkService.init) {
+   init(context: Exec = .global, connect: @escaping ConnectionFunction = NetworkService.init) {
       self.underlyingConnect = connect
 		self.context = context.serialized()
    }

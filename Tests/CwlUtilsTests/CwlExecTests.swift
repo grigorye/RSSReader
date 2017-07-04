@@ -53,7 +53,7 @@ class ExecTests: XCTestCase {
 		XCTAssert(Exec.main.type.isImmediate == true)
 		
 		let e3 = expectation(description: "Block not invoked")
-		Exec.default.invoke {
+		Exec.global.invoke {
 			XCTAssert(Exec.main.type.isImmediate == false)
 
 			let lock = DispatchQueue(label: "")
@@ -109,7 +109,7 @@ class ExecTests: XCTestCase {
 		XCTAssert(run2 == true)
 		
 		let e5 = expectation(description: "Block not invoked")
-		Exec.default.invoke {
+		Exec.global.invoke {
 			let lock = DispatchQueue(label: "")
 			var x = false
 			lock.sync {
@@ -203,7 +203,7 @@ class ExecTests: XCTestCase {
 	}
 	
 	func testGlobal() {
-		let variants: [Exec] = [.interactive, .user, .default, .utility, .background]
+		let variants: [Exec] = [.interactive, .user, .global, .utility, .background]
 		let expectations1: [XCTestExpectation] = variants.map({ v in self.expectation(description: "Block \(v), 1 not invoked") })
 		let expectations2: [XCTestExpectation] = variants.map({ v in self.expectation(description: "Block \(v), 2 not invoked") })
 		for (i, variant) in variants.enumerated() {
