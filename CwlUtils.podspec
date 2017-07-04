@@ -1,15 +1,18 @@
 Pod::Spec.new do |s|
   s.name          = "CwlUtils"
-  s.version       = "1.0.2"
-  s.summary       = "A Swift framework for reactive programming."
+  s.version       = "1.1.0"
+  
+  s.summary       = "A collection of Swift utilities as documented on cocoawithlove.com"
   s.description   = <<-DESC
-    A collection of Swift utilities as documented on cocoawithlove.com
+    Stack traces, system information with sysctl, presentation of unanticipated errors, random number generators, mutexes, dispatch timers, a Result type, copy-on-write double-ended queue, function execution contexts, testing actions over time. See [Cocoa with Love](https://cocoawithlove.com) for more.
   DESC
   s.homepage      = "https://github.com/mattgallagher/CwlUtils"
   s.license       = { :type => "ISC", :file => "LICENSE.txt" }
   s.author        = "Matt Gallagher"
-  s.ios.deployment_target = "9.0"
-  s.osx.deployment_target = "10.12"
+  
+  s.ios.deployment_target = "8.0"
+  s.osx.deployment_target = "10.10"
+  
   s.source        = { :git => "https://github.com/mattgallagher/CwlUtils.git", :tag => "#{s.version}" }
-  s.source_files  = "Sources/**/*.{swift,h,c}"
+  s.source_files  = "Sources/CwlUtils/*.{swift,h}", "Sources/CwlFrameAddress/**/*.{c,h}"
 end

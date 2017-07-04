@@ -41,7 +41,7 @@ class DebugContextTests: XCTestCase {
 		coordinator.direct.invokeAsync {
 			checkpoint = true
 			
-			XCTAssert(coordinator.currentThread == .default)
+			XCTAssert(coordinator.currentThread == .global)
 			XCTAssert(coordinator.currentTime == 0)
 		}
 		XCTAssert(!checkpoint)
@@ -69,13 +69,13 @@ class DebugContextTests: XCTestCase {
 		let timer1 = coordinator.direct.singleTimer(interval: .seconds(10), leeway: .seconds(0)) {
 			checkpoint1 = true
 			
-			XCTAssert(coordinator.currentThread == .default)
+			XCTAssert(coordinator.currentThread == .global)
 			XCTAssert(coordinator.currentTime == 10_000_000_000)
 
 			timer2 = coordinator.direct.singleTimer(interval: .seconds(10), leeway: .seconds(0)) {
 				checkpoint2 = true
 				
-				XCTAssert(coordinator.currentThread == .default)
+				XCTAssert(coordinator.currentThread == .global)
 				XCTAssert(coordinator.currentTime == 20_000_000_000)
 			}
 			XCTAssert(!checkpoint2)
@@ -101,7 +101,7 @@ class DebugContextTests: XCTestCase {
 			checkpoint1 = true
 			
 			XCTAssert(p == 23)
-			XCTAssert(coordinator.currentThread == .default)
+			XCTAssert(coordinator.currentThread == .global)
 			XCTAssert(coordinator.currentTime == 10_000_000_000)
 		}
 		XCTAssert(!checkpoint1)
@@ -221,10 +221,10 @@ class DebugContextTests: XCTestCase {
 	func testDefaultInvoke() {
 		let coordinator1 = DebugContextCoordinator()
 		var checkpoint1 = false
-		coordinator1.default.invoke {
+		coordinator1.global.invoke {
 			checkpoint1 = true
 			
-			XCTAssert(coordinator1.currentThread == .default)
+			XCTAssert(coordinator1.currentThread == .global)
 			XCTAssert(coordinator1.currentTime == 0)
 		}
 		XCTAssert(!checkpoint1)
@@ -312,10 +312,10 @@ class DebugContextTests: XCTestCase {
 	func testDefaultInvokeAsync() {
 		let coordinator1 = DebugContextCoordinator()
 		var checkpoint1 = false
-		coordinator1.default.invokeAsync {
+		coordinator1.global.invokeAsync {
 			checkpoint1 = true
 			
-			XCTAssert(coordinator1.currentThread == .default)
+			XCTAssert(coordinator1.currentThread == .global)
 			XCTAssert(coordinator1.currentTime == 0)
 		}
 		XCTAssert(!checkpoint1)
@@ -398,10 +398,10 @@ class DebugContextTests: XCTestCase {
 	func testDefaultInvokeAndWait() {
 		let coordinator1 = DebugContextCoordinator()
 		var checkpoint1 = false
-		coordinator1.default.invokeAndWait {
+		coordinator1.global.invokeAndWait {
 			checkpoint1 = true
 			
-			XCTAssert(coordinator1.currentThread == .default)
+			XCTAssert(coordinator1.currentThread == .global)
 			XCTAssert(coordinator1.currentTime == 0)
 		}
 		XCTAssert(checkpoint1)
@@ -446,7 +446,7 @@ class DebugContextTests: XCTestCase {
 
 		// Test the success case
 		var result: Result<String>? = nil
-		let service = Service(context: coordinator.default, connect: StringService.withDelay(2.0))
+		let service = Service(context: coordinator.global, connect: StringService.withDelay(2.0))
 		service.connect(timeout: 10) { r in
 			result = r
 		}
@@ -461,7 +461,7 @@ class DebugContextTests: XCTestCase {
 		let coordinator = DebugContextCoordinator()
 		// Test the service released case
 		do {
-			let service = Service(context: coordinator.default, connect: StringService.withDelay(2.0))
+			let service = Service(context: coordinator.global, connect: StringService.withDelay(2.0))
 			service.connect(timeout: 10) { r in
 				XCTFail()
 			}
@@ -522,7 +522,7 @@ class Service {
    let context: Exec
 	
    // Construction of the Service lets us specify the underlying service
-   init(context: Exec = .default, connect: @escaping ConnectionFunction = NetworkService.init) {
+   init(context: Exec = .global, connect: @escaping ConnectionFunction = NetworkService.init) {
       self.underlyingConnect = connect
 		self.context = context.serialized()
    }

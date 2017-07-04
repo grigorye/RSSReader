@@ -59,7 +59,7 @@ class MutexPerformanceTests: XCTestCase {
 		}
 	}
 	
-	func testDispatchCurriedPerformance() {
+	func testDispatchCurriedSelfMethodPerformance() {
 		let queue = DispatchQueue(label: "")
 		measure { () -> Void in
 			let test = TestClass()
@@ -141,7 +141,7 @@ class MutexPerformanceTests: XCTestCase {
 		measure { () -> Void in
 			var total = 0
 			for _ in 0..<iterations {
-				mutex.fastsync { t in
+				mutex.fastsync {
 					total += 1
 				}
 			}
@@ -183,6 +183,20 @@ class MutexPerformanceTests: XCTestCase {
 				OSSpinLockLock(&lock)
 				total += 1
 				OSSpinLockUnlock(&lock)
+			}
+			XCTAssert(total == iterations)
+		}
+	}
+	
+	@available(OSX 10.12, *)
+	func testUnfairLockPerformance() {
+		var lock = os_unfair_lock()
+		measure { () -> Void in
+			var total = 0
+			for _ in 0..<iterations {
+				os_unfair_lock_lock(&lock)
+				total += 1
+				os_unfair_lock_unlock(&lock)
 			}
 			XCTAssert(total == iterations)
 		}

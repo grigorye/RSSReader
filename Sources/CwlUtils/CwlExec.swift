@@ -327,10 +327,10 @@ public enum Exec: ExecutionContext {
 	/// Invoked directly from the caller's context
 	case direct
 	
-	/// Invoked on the main thread, directly if the current thread is the main thread, otherwise asynchronously
+	/// Invoked on the main thread, directly if the current thread is the main thread, otherwise asynchronously (unless invokeAndWait is used)
 	case main
 	
-	/// Invoked on the main thread, always asynchronously
+	/// Invoked on the main thread, always asynchronously (unless invokeAndWait is used)
 	case mainAsync
 	
 	/// Invoked asynchronously in the global queue with QOS_CLASS_USER_INTERACTIVE priority
@@ -340,7 +340,7 @@ public enum Exec: ExecutionContext {
 	case user
 
 	/// Invoked asynchronously in the global queue with QOS_CLASS_DEFAULT priority
-	case `default`
+	case global
 
 	/// Invoked asynchronously in the global queue with QOS_CLASS_UTILITY priority
 	case utility
@@ -359,7 +359,7 @@ public enum Exec: ExecutionContext {
 		case .custom: return DispatchQueue.global()
 		case .interactive: return DispatchQueue.global(qos: .userInteractive)
 		case .user: return DispatchQueue.global(qos: .userInitiated)
-		case .default: return DispatchQueue.global()
+		case .global: return DispatchQueue.global()
 		case .utility: return DispatchQueue.global(qos: .utility)
 		case .background: return DispatchQueue.global(qos: .background)
 		}
@@ -375,7 +375,7 @@ public enum Exec: ExecutionContext {
 		case .custom(let c): return c.type
 		case .interactive: return .concurrentAsync
 		case .user: return .concurrentAsync
-		case .default: return .concurrentAsync
+		case .global: return .concurrentAsync
 		case .utility: return .concurrentAsync
 		case .background: return .concurrentAsync
 		}
@@ -410,7 +410,7 @@ public enum Exec: ExecutionContext {
 		case .direct: fallthrough
 		case .interactive: fallthrough
 		case .user: fallthrough
-		case .default: fallthrough
+		case .global: fallthrough
 		case .utility: fallthrough
 		case .background:
 			// For all other cases, assume the queue isn't actually required (and was only provided for asynchronous behavior). Just invoke the provided function directly.

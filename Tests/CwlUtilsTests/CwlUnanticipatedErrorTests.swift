@@ -77,7 +77,12 @@ class UnanticipatedErrorTests: XCTestCase {
 #else
 	
 	func pasteboardBackup() -> [NSPasteboardItem] {
-		return NSPasteboard.general().pasteboardItems?.map { item in
+		#if swift(>=4)
+			let general = NSPasteboard.general
+		#else
+			let general = NSPasteboard.general()
+		#endif
+		return general.pasteboardItems?.map { item in
 			let backupItem = NSPasteboardItem()
 			for type in item.types {
 				if let data = (item.data(forType: type) as NSData?)?.copy() as? Data {
@@ -89,12 +94,21 @@ class UnanticipatedErrorTests: XCTestCase {
 	}
 	
 	func restorePasteboard(_ items: [NSPasteboardItem]) {
-		NSPasteboard.general().clearContents()
-		NSPasteboard.general().writeObjects(items)
+		#if swift(>=4)
+			let general = NSPasteboard.general
+		#else
+			let general = NSPasteboard.general()
+		#endif
+		general.clearContents()
+		general.writeObjects(items)
 	}
 	
 	func pasteboardString() -> String? {
-		return NSPasteboard.general().string(forType: NSPasteboardTypeString)
+		#if swift(>=4)
+			return NSPasteboard.general.string(forType: NSPasteboard.PasteboardType.string)
+		#else
+			return NSPasteboard.general().string(forType: NSPasteboardTypeString)
+		#endif
 	}
 	
 #endif

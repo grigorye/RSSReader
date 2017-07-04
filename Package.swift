@@ -5,10 +5,11 @@ let package = Package(
 	targets: [
 		Target(name: "CwlUtils", dependencies: ["CwlFrameAddress", "ReferenceRandomGenerators"]),
 		Target(name: "CwlFrameAddress"),
+		Target(name: "CwlUtilsConcat"),
 		Target(name: "ReferenceRandomGenerators")
 	],
 	dependencies: [
-		.Package(url: "https://github.com/mattgallagher/CwlPreconditionTesting.git", Version(1, 1, 0, prereleaseIdentifiers: ["beta", "1"])),
+		.Package(url: "https://github.com/mattgallagher/CwlPreconditionTesting.git", Version(1, 1, 0, prereleaseIdentifiers: ["beta", "5"])),
 	],
 	exclude: [
 		"LICENSE.txt",

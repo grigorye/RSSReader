@@ -24,12 +24,12 @@ import Foundation
 ///
 /// - unspecified: used when a initial DebugContextThread is not specified on startup (not used otherwise)
 /// - main: used by `main` and `mainAsync` contexts
-/// - `default`: used for a concurrent queues and for timers on direct
+/// - `global`: used for a concurrent queues and for timers on direct
 /// - custom: any custom queue
 public enum DebugContextThread: Hashable {
 	case unspecified
 	case main
-	case `default`
+	case global
 	case custom(String)
 
 	/// Convenience test to determine if an `Exec` instance wraps a `DebugContext` identifying `self` as its `thread`.
@@ -47,7 +47,7 @@ public enum DebugContextThread: Hashable {
 		switch self {
 		case .unspecified: return Int(0).hashValue
 		case .main: return Int(1).hashValue
-		case .default: return Int(2).hashValue
+		case .global: return Int(2).hashValue
 		case .custom(let s): return Int(3).hashValue ^ s.hashValue
 		}
 	}
@@ -64,7 +64,7 @@ public func ==(left: DebugContextThread, right: DebugContextThread) -> Bool {
 	case (.custom(let l), .custom(let r)) where l == r: return true
 	case (.unspecified, .unspecified): return true
 	case (.main, .main): return true
-	case (.default, .default): return true
+	case (.global, .global): return true
 	default: return false
 	}
 }
@@ -90,7 +90,7 @@ public class DebugContextCoordinator {
 	
 	/// Implementation mimicking Exec.direct but returning an Exec.custom(DebugContext)
 	public var direct: Exec {
-		return .custom(DebugContext(type: .immediate, thread: .default, coordinator: self))
+		return .custom(DebugContext(type: .immediate, thread: .global, coordinator: self))
 	}
 	
 	/// Implementation mimicking Exec.main but returning an Exec.custom(DebugContext)
@@ -104,8 +104,8 @@ public class DebugContextCoordinator {
 	}
 	
 	/// Implementation mimicking Exec.default but returning an Exec.custom(DebugContext)
-	public var `default`: Exec {
-		return .custom(DebugContext(type: .concurrentAsync, thread: .default, coordinator: self))
+	public var global: Exec {
+		return .custom(DebugContext(type: .concurrentAsync, thread: .global, coordinator: self))
 	}
 	
 	/// Implementation mimicking Exec.syncQueue but returning an Exec.custom(DebugContext)

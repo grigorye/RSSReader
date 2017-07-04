@@ -26,7 +26,7 @@ class StackFrameTests: XCTestCase {
 	func testCallStackReturnAddresses() {
 		var a = callStackReturnAddresses()
 		a.remove(at: 0)
-		var b = Thread.callStackReturnAddresses.map { UInt($0) }
+		var b = Thread.callStackReturnAddresses.map { $0.uintValue }
 		b.remove(at: 0)
 		XCTAssert(a == b)
 		
