@@ -20,25 +20,48 @@ The following features are included in the library.
 
 ## Adding to your project
 
-This project can be used by manual inclusion in your projects or through any of the Swift Package Manager, CocoaPods or Carthage.
+This project can be included in your projects in a number of different ways:
+   
+   * [Manually included framework](#manual-framework-inclusion)
+   * [Statically included files](#statically-included-files)
+   * [Swift Package Manager](#swift-package-manager)
+   * [CocoaPods](#cocoapods)
+   * [Carthage](#carthage)
 
-Minimum requirements are iOS 8 (simulator-only) or macOS 10.10.
+The standard restrictions for each of these approaches apply so you'll need to pick an approach based on your situation and preferences.
 
-### Manual inclusion
+Minimum requirements are iOS 8 or macOS 10.10.
+
+## Manual inclusion
 
 1. In a subdirectory of your project's directory, run `git clone https://github.com/mattgallagher/CwlUtils.git`
-2. Drag the "CwlUtils.xcodeproj" file from the Finder into your own project's file tree in Xcode
-3. Add the "CwlUtils.framework" from the "Products" folder of the CwlUtils project's file tree to the "Copy Files (Frameworks)" build phases of any target that you want to include this module.
+2. Drag the "CwlUtils.xcodeproj" file from the Finder to somewhere your in own project's file tree in Xcode
+3. Drag the "CwlUtils.framework" from the "Products" folder of the "CwlSignal" project to the "Copy Files (Frameworks)" build phases of any target that you want to include this module.
 
 That third step is a little tricky if you're unfamiliar with Xcode but it involves:
 
 1. click on your project in the file tree
-2. click on the target to whih you want to add this module
+2. click on the target to which you want to add this module
 3. select the "Build Phases" tab
 4. if you don't already have a "Copy File" build phase with a "Destination: Frameworks", add one using the "+" button in the top left of the tab
-5. click the "+" within the "Copy File (Frameworks)" phase and from the list that appears, select the "CwlUtils.framework" (if there are multiple frameworks with the same name, look for the one that appears *above* the corresponding macOS or iOS CwlUtils testing target).
+5. click the "+" within the "Copy File (Frameworks)" phase and from the list that appears, select the "CwlUtils.framework". There will probably be two frameworks with the same name – macOS and iOS versions – so look for the "CwlUtils.framework" that appears immediately *above* the corresponding macOS or iOS CwlUtils testing target
 
-### Swift Package Manager
+## Statically included files
+
+This approach generates a concatenated files named CwlUtils.swift that can simply be added to another project (no dynamic frameworks, libraries or other settings required).
+
+> This approach will omit the CwlStackFrame.swift, CwlAddressInfo.swift, CwlUnanticipatedError.swift and CwlFrameAddress.c files (since they cannot be included via a single-file approach). If you need these files, please use one of the other inclusion strategies.
+
+1. Get the latest version of CwlUtils by running `git clone https://github.com/mattgallagher/CwlUtils.git` on the command-line.
+2. Open the CwlUtils.xcodeproj in Xcode and select the CwlCwlUtilsConcat scheme with a destination of "My Mac" (choose from the Scheme popup in the toolbar or from the "Product" &rarr; "Scheme" and "Product" &rarr; "Destination" menus in the menubar.
+3. Build the scheme (Command-B or "Product" &rarr; "Build")
+4. Open the "Products" folder by right-clicking (or Control-click) on the "Products" folder in the project's file tree in Xcode and select "Show in Finder" and open the "Debug" folder in the "Products" folder that this reveals.
+
+Inside a folder located "Concat_internal" should the file "CwlUtils_internal.swift". You can copy this file and include it in any of your own projects, like any other file.
+
+A folder named "Concat_public" should also be present. This version is almost identical to the "Concat_internal" version except that where the "Concat_internal" version strips `public` and `open` specifiers, the "Concat_public" version leaves these in-place. This allows the "Concat_public" version to be use in the "Sources" folder of Swift playgrounds or otherwise used where the features need to be exported from a module.
+
+## Swift Package Manager
 
 Add the following to the `dependencies` array in your "Package.swift" file:
 
@@ -48,13 +71,13 @@ Or, if you're using the `swift-tools-version:4.0` package manager, add the follo
 
     .package(url: "https://github.com/mattgallagher/CwlUtils.git", majorVersion: 1)
 
-### CocoaPods
+## CocoaPods
 
 Add the following to your target in your "Podfile":
 
     pod 'CwlUtils', :git => 'https://github.com/mattgallagher/CwlUtils.git'
 
-### Carthage
+## Carthage
 
 Add the following line to your Cartfile:
 
