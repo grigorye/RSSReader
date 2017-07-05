@@ -969,8 +969,8 @@
 				"$(OBJROOT)/dependencies-state.json",
 			);
 			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/CwlCatchException.framework",
-				"$(BUILT_PRODUCTS_DIR)/CwlPreconditionTesting.framework",
+				"$(BUILT_PRODUCTS_DIR)/CwlCatchException.framework/CwlCatchException",
+				"$(BUILT_PRODUCTS_DIR)/CwlPreconditionTesting.framework/CwlPreconditionTesting",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -985,8 +985,8 @@
 				"$(OBJROOT)/dependencies-state.json",
 			);
 			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/CwlCatchException.framework",
-				"$(BUILT_PRODUCTS_DIR)/CwlPreconditionTesting.framework",
+				"$(BUILT_PRODUCTS_DIR)/CwlCatchException.framework/Versions/A/CwlCatchException",
+				"$(BUILT_PRODUCTS_DIR)/CwlPreconditionTesting.framework/Versions/A/CwlPreconditionTesting",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
