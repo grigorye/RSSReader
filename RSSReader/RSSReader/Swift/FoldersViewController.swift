@@ -70,8 +70,8 @@ extension FoldersUpdateState : CustomStringConvertible {
 			return NSLocalizedString("Updating Folder List", comment: "Folders Update State")
 		case .prefetching:
 			return NSLocalizedString("Prefetching", comment: "Folders Update State")
-		case .completed:
-			return NSLocalizedString("Completed", comment: "Folders Update State")
+		case .ended:
+			return NSLocalizedString("Update Ended", comment: "Folders Update State")
 		}
 	}
 }
@@ -122,32 +122,14 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 	}
 
 	@IBAction func refresh(_ sender: AnyObject!) {
-		firstly { () -> Promise<Void> in
-			guard nil != rssSession else {
-				throw NotLoggedIn()
+		refreshController.refreshSubscriptions { (error) in
+			defer {
+				self.refreshControl?.endRefreshing()
 			}
-			return Promise(value: ())
-		}.then { (_) -> Promise<Void> in
-			return self.rssAccount.authenticate()
-		}.then { (_) -> Promise<Void> in
-			return self.foldersController.updateFolders()
-		}.then { (_) -> Void in
 			if nil == self.rootFolder {
-				self.rootFolder = x$(Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: mainQueueManagedObjectContext))
-				assert(nil != self.rootFolder)
+				self.rootFolder = RSSReader.rootFolder()!
 			}
 			self.tableView.reloadData()
-		}.always {
-			self.refreshControl?.endRefreshing()
-		}.catch { updateError in
-			switch updateError {
-			case RSSSessionError.authenticationFailed(_):
-				let adjustedError = AuthenticationFailed()
-				self.present(adjustedError)
-			default:
-				let title = NSLocalizedString("Refresh Failed", comment: "Title for alert on failed refresh")
-				self.present(updateError, customTitle: title)
-			}
 		}
 	}
 	
@@ -245,49 +227,7 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 		}
 		return {_ = binding}
 	}
-	@objc class var keyPathsForValuesAffectingRefreshStateDescription: Set<String> {
-		return [
-			#keyPath(rssAccount.authenticationStateRawValue),
-			#keyPath(foldersController.foldersUpdateState)
-		]
-	}
-	@objc dynamic var refreshStateDescription: String {
-		switch rssAccount.authenticationStateRawValue {
-		case .Unknown:
-			return ""
-		case .InProgress:
-			return NSLocalizedString("Authenticating", comment: "")
-		case .Failed:
-			guard case .Failed(let error) = rssAccount.authenticationState else {
-				fatalError()
-			}
-			return "\(error.localizedDescription)"
-		case .Succeeded:
-			let foldersUpdateState = foldersController.foldersUpdateState
-			switch foldersUpdateState {
-			case .completed:
-				let foldersController = self.foldersController
-				if let foldersUpdateError = foldersController.foldersLastUpdateError {
-					return "\(foldersUpdateError)"
-				}
-				if let foldersLastUpdateDate = foldersController.foldersLastUpdateDate {
-					let loadAgo = loadAgoDateComponentsFormatter.string(from: foldersLastUpdateDate, to: Date())!
-					return String.localizedStringWithFormat(NSLocalizedString("Updated %@ ago", comment: ""), loadAgo)
-				}
-				return ""
-			default:
-				return "\(foldersUpdateState)"
-			}
-		}
-	}
-	func bindRefreshStateDescription() -> Handler {
-		let binding = self.observe(\.refreshStateDescription, options: .initial) { [unowned self] (_, change) in
-			assert(Thread.isMainThread)
-			•(change)
-			self.presentInfoMessage(self.refreshStateDescription)
-		}
-		return {_ = binding}
-	}
+	
 	func bindCombinedTitle() -> Handler {
 		let binding = self.observe(\.itemsCount, options: [.initial]) { (_, _) in
 			self.combinedBarButtonItem.title = "\(self.itemsCount)"
@@ -296,13 +236,21 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 			_ = binding
 		}
 	}
+	func bindTrackRefreshState() -> Handler {
+		let refreshingStateTracker = RefreshingStateTracker { (message) in
+			self.presentInfoMessage(message)
+		}
+		return {
+			_ = refreshingStateTracker
+		}
+	}
 	// MARK: -
 	var scheduledForViewWillAppear = ScheduledHandlers()
 	override func viewWillAppear(_ animated: Bool) {
 		scheduledForViewWillAppear.perform()
 		super.viewWillAppear(animated)
 		scheduledForViewDidDisappear += [bindChildContainers()]
-		scheduledForViewDidDisappear += [bindRefreshStateDescription()]
+		scheduledForViewDidDisappear += [bindTrackRefreshState()]
 		scheduledForViewDidDisappear += [bindCombinedTitle()]
 	}
 	var scheduledForViewDidDisappear = ScheduledHandlers()
@@ -324,20 +272,3 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 	}
 }
 
-extension FoldersViewController {
-	func presentMessage(_ text: String) {
-		statusLabel.text = (text)
-		statusLabel.sizeToFit()
-		statusLabel.superview!.frame.size.width = statusLabel.bounds.width
-		statusBarButtonItem.width = (statusLabel.superview!.bounds.width)
-		let toolbarItems = self.toolbarItems
-		self.toolbarItems = self.toolbarItems?.filter { $0 != statusBarButtonItem }
-		self.toolbarItems = toolbarItems
-	}
-	override func presentErrorMessage(_ text: String) {
-		presentMessage(text)
-	}
-	override func presentInfoMessage(_ text: String) {
-		presentMessage(text)
-	}
-}
