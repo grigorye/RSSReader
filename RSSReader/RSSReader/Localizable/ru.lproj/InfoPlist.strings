@@ -1,8 +1,9 @@
 /* (No Commment) */
-"CFBundleDisplayName" = "Новости";
+"CFBundleDisplayName" = "NFeeds
+";
 
 /* (No Commment) */
-"CFBundleName" = "Новости";
+"CFBundleName" = "NFeeds";
 
 /* (No Commment) */
 "CFBundleShortVersionString" = "0.1.1";
