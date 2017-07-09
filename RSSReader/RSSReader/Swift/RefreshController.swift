@@ -22,8 +22,8 @@ class RefreshController: NSObject {
 	func refreshSubscriptions(complete: @escaping (Error?) -> ()) {
 		assert(!refreshingSubscriptions)
 		refreshingSubscriptions = true
-		let rssAccount = sharedRSSAccount
-		let foldersController = globalFoldersController
+		let rssAccount = self.rssAccount
+		let foldersController = self.foldersController
 		firstly { () -> Promise<Void> in
 			guard nil != rssSession else {
 				throw NotLoggedIn()
