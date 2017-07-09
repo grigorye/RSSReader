@@ -11,7 +11,7 @@ import Foundation
 
 @objc public enum FoldersUpdateState: Int {
 	case unknown
-	case completed
+	case ended
 	case updatingUserInfo
 	case pushingTags
 	case pullingTags
@@ -73,12 +73,13 @@ public extension FoldersController {
 					}
 				}
 			}
-		}.always { () -> () in
+		}.then { (_) -> () in
 			self.foldersLastUpdateDate = Date()
-			self.foldersUpdateState = .completed
 		}.recover { (error) -> Void in
 			self.foldersLastUpdateError = error
 			throw x$(error)
+		}.always { () -> () in
+			self.foldersUpdateState = .ended
 		}
 	}
 }
