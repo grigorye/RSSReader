@@ -97,7 +97,7 @@ extension RSSSession {
 	// MARK: -
 	func performPersistentDataUpdateCommand<T: PersistentDataUpdateCommand>(_ command: T, completionHandler: @escaping CommandCompletionHandler<T.ResultType>) {
 		x$(command as AbstractPersistentDataUpdateCommand)
-		command.taskForSession(self) { data, httpResponse, error in
+		let task = command.taskForSession(self) { data, httpResponse, error in
 			if let error = error {
 				completionHandler(.rejected(command.preprocessedRequestError(error)))
 				return
@@ -124,7 +124,8 @@ extension RSSSession {
 					}
 				}
 			})
-		}.resume()
+		}
+		task.resume()
 	}
 	func promise<T: PersistentDataUpdateCommand>(for command: T) -> Promise<T.ResultType> {
 		return Promise { fulfill, reject in
