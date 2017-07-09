@@ -73,14 +73,8 @@ extension ItemsViewController : ItemsViewControllerLoadingImp {
 		x$(didStartLoad())
 		loadController.loadMore { [weak loadController] error in
 			completionHandler()
-			guard nil == error else {
-				let error = error!
-				self.presentErrorMessage(
-					String.localizedStringWithFormat(
-						NSLocalizedString("Failed to load more. %@", comment: ""),
-						(error as NSError).localizedDescription
-					)
-				)
+			if let error = error {
+				self.track(.failedToLoadMore(due: error))
 				return
 			}
 			guard let loadController = loadController else {

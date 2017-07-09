@@ -117,19 +117,19 @@ class ItemSummaryWebViewController: UIViewController {
 		retrieveReadableHTMLFromURL(url) { (arg) in
 			let (HTMLString, error) = arg
 			DispatchQueue.main.async {
-				guard let HTMLString = HTMLString, nil == error else {
-					x$(error)
-					let message = NSLocalizedString("Unable to expand", comment: "")
-					self.presentErrorMessage(message)
+				if let error = error {
+					self.track(.unableToExpand(due: x$(error)))
+					return
+				}
+				guard let HTMLString = HTMLString else {
+					assert(false)
 					return
 				}
 				do {
 					try self.loadHTMLString(HTMLString, ignoringExisting: true)
 				}
 				catch {
-					x$(error)
-					let message = NSLocalizedString("Unable to expand", comment: "")
-					self.presentErrorMessage(message)
+					self.track(.unableToExpand(due: x$(error)))
 				}
 			}
 		}
@@ -145,7 +145,7 @@ class ItemSummaryWebViewController: UIViewController {
 				try self.loadHTMLString(self.summaryHTMLString, ignoringExisting: false)
 			}
 			catch {
-				self.presentErrorMessage(NSLocalizedString("Unable to load summary", comment: ""))
+				self.track(.unableToLoadSummary(due: x$(error)))
 			}
 		}]
 	}

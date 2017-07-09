@@ -250,11 +250,10 @@ class ItemsViewController : ContainerViewController {
 		let binding = self.observe(\.loadController.loadDate, options: [.initial]) { (_, _) in
 			•(self.toolbarItems!)
 			if let loadDate = self.loadController.loadDate {
-				let loadAgo = loadAgoDateComponentsFormatter.string(from: loadDate, to: Date())
-				self.presentInfoMessage(String.localizedStringWithFormat(NSLocalizedString("Updated %@ ago", comment: ""), loadAgo!))
+				self.track(.updated(at: loadDate))
 			}
 			else {
-				self.presentInfoMessage(NSLocalizedString("Not updated before", comment: ""))
+				self.track(.notUpdatedBefore)
 			}
 		}
 		return {_ = binding}
@@ -365,7 +364,7 @@ extension ItemsViewController {
 		firstly { () -> Promise<Void> in
 			rssSession!.markAllAsRead(container!)
 		}.then { (_) -> Void in
-			self.presentInfoMessage(NSLocalizedString("Marked all as read.", comment: ""))
+			self.track(.markedAllAsRead)
 		}.catch { error in
 			self.present(error)
 		}
@@ -390,23 +389,6 @@ extension ItemsViewController {
 	}
 	override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
 		tableView.snapHeaderToTop(animated: true)
-	}
-}
-//
-// MARK: - Presenting Messages
-//
-extension ItemsViewController {
-	func presentMessage(_ text: String) {
-		statusLabel.text = text
-		statusLabel.sizeToFit()
-		statusLabel.superview!.frame.size.width = statusLabel.bounds.width
-		statusBarButtonItem.width = (statusLabel.superview!.bounds.width)
-	}
-	override func presentErrorMessage(_ text: String) {
-		presentMessage(text)
-	}
-	override func presentInfoMessage(_ text: String) {
-		presentMessage(text)
 	}
 }
 
