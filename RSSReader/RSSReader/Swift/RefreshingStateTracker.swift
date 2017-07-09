@@ -20,8 +20,9 @@ class RefreshingStateTracker: NSObject {
 		]
 	}
 	
-	@objc dynamic var refreshStateD: NSObject {
+	@objc dynamic var refreshStateD: NSObject? {
 		assert(false)
+		return nil
 	}
 	
 	enum RefreshState {
