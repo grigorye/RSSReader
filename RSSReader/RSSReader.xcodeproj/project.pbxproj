@@ -40,6 +40,13 @@
 		C42802691A5B47EA002474E1 /* FoldersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42802681A5B47EA002474E1 /* FoldersViewController.swift */; };
 		C42BA28B1DF4DB9B00213D70 /* ItemTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42BA28A1DF4DB9B00213D70 /* ItemTableView.swift */; };
 		C431B4F81E8FEC7200D67D5A /* TunaXcodePlugIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = C431B4F71E8FEC7200D67D5A /* TunaXcodePlugIn.swift */; };
+		C43657571F05CDEF00B904A2 /* UserEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43657561F05CDEF00B904A2 /* UserEvents.swift */; };
+		C43657591F05D0DD00B904A2 /* UserVisibleErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43657581F05D0DD00B904A2 /* UserVisibleErrors.swift */; };
+		C436575A1F07522A00B904A2 /* UserEvents.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C43657561F05CDEF00B904A2 /* UserEvents.swift */; };
+		C436575B1F07522A00B904A2 /* UserVisibleErrors.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C43657581F05D0DD00B904A2 /* UserVisibleErrors.swift */; };
+		C436575D1F07597600B904A2 /* RefreshController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C436575C1F07597600B904A2 /* RefreshController.swift */; };
+		C436575F1F08987300B904A2 /* RefreshingStateTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C436575E1F08987300B904A2 /* RefreshingStateTracker.swift */; };
+		C43657601F0AEF4B00B904A2 /* RefreshingStateTracker.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C436575E1F08987300B904A2 /* RefreshingStateTracker.swift */; };
 		C43CD1CB1DEE70D200189379 /* ItemTableViewCell-4.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43CD1C81DEE70D200189379 /* ItemTableViewCell-4.xib */; };
 		C43CD1CC1DEE70D200189379 /* ItemTableViewCell-5.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43CD1C91DEE70D200189379 /* ItemTableViewCell-5.xib */; };
 		C43CD1CD1DEE70D200189379 /* ItemTableViewCell-6.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43CD1CA1DEE70D200189379 /* ItemTableViewCell-6.xib */; };
@@ -158,6 +165,9 @@
 			dstPath = Sources;
 			dstSubfolderSpec = 7;
 			files = (
+				C43657601F0AEF4B00B904A2 /* RefreshingStateTracker.swift in Embed Sources */,
+				C436575A1F07522A00B904A2 /* UserEvents.swift in Embed Sources */,
+				C436575B1F07522A00B904A2 /* UserVisibleErrors.swift in Embed Sources */,
 				C4F8ED9D1F01BEBB002E0124 /* ContainerViewController.swift in Embed Sources */,
 				C441F1991DB434230060E692 /* main.swift in Embed Sources */,
 				C441F1951DB434090060E692 /* GlobalFoldersController.swift in Embed Sources */,
@@ -265,6 +275,10 @@
 		C42802681A5B47EA002474E1 /* FoldersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = FoldersViewController.swift; path = Swift/FoldersViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C42BA28A1DF4DB9B00213D70 /* ItemTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemTableView.swift; path = Swift/ItemTableView.swift; sourceTree = "<group>"; };
 		C431B4F71E8FEC7200D67D5A /* TunaXcodePlugIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TunaXcodePlugIn.swift; path = ../../XcodeSupport/TunaXcodePlugIn.swift; sourceTree = "<group>"; };
+		C43657561F05CDEF00B904A2 /* UserEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserEvents.swift; path = Swift/UserEvents.swift; sourceTree = "<group>"; };
+		C43657581F05D0DD00B904A2 /* UserVisibleErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserVisibleErrors.swift; path = Swift/UserVisibleErrors.swift; sourceTree = "<group>"; };
+		C436575C1F07597600B904A2 /* RefreshController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RefreshController.swift; path = Swift/RefreshController.swift; sourceTree = "<group>"; };
+		C436575E1F08987300B904A2 /* RefreshingStateTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RefreshingStateTracker.swift; path = Swift/RefreshingStateTracker.swift; sourceTree = "<group>"; };
 		C43CD1C81DEE70D200189379 /* ItemTableViewCell-4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemTableViewCell-4.xib"; sourceTree = "<group>"; };
 		C43CD1C91DEE70D200189379 /* ItemTableViewCell-5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemTableViewCell-5.xib"; sourceTree = "<group>"; };
 		C43CD1CA1DEE70D200189379 /* ItemTableViewCell-6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemTableViewCell-6.xib"; sourceTree = "<group>"; };
@@ -462,10 +476,13 @@
 				C4CDD3AB1A5350B50087DD05 /* Images.xcassets */,
 				C49B127C1BF686D500EA5DE5 /* Debug.storyboard */,
 				C44B2F001AC0C881006A67F1 /* HomeViewController.swift */,
+				C43657561F05CDEF00B904A2 /* UserEvents.swift */,
+				C43657581F05D0DD00B904A2 /* UserVisibleErrors.swift */,
 				C4BE5AE71DAA941A00E1734F /* ItemList */,
 				C4BE5AE81DAA944A00E1734F /* Container */,
 				C4BE5AE91DAA945800E1734F /* ItemPageView */,
 				C42802681A5B47EA002474E1 /* FoldersViewController.swift */,
+				C436575E1F08987300B904A2 /* RefreshingStateTracker.swift */,
 				C45BC3E91A8003F40008A5D1 /* HistoryViewController.swift */,
 				C474F0A71D80E65F00CABEB9 /* LogViewController.swift */,
 				C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */,
@@ -525,6 +542,7 @@
 				C441F1861DB25D090060E692 /* GlobalStateRestoration.swift */,
 				C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */,
 				C441F17E1DB258550060E692 /* SharedRSSAccount.swift */,
+				C436575C1F07597600B904A2 /* RefreshController.swift */,
 				C441F1781DB24A1D0060E692 /* MainScene.swift */,
 			);
 			name = Globals;
@@ -914,6 +932,8 @@
 				C431B4F81E8FEC7200D67D5A /* TunaXcodePlugIn.swift in Sources */,
 				C4EB28091DFA399E00BF0843 /* ModuleExports-GECoreData.swift in Sources */,
 				C441F1791DB24A1D0060E692 /* MainScene.swift in Sources */,
+				C436575D1F07597600B904A2 /* RefreshController.swift in Sources */,
+				C43657571F05CDEF00B904A2 /* UserEvents.swift in Sources */,
 				C4C780161A7DF1EC009CB5FC /* ApplicationActivities.swift in Sources */,
 				C49540A51A57906600F56168 /* ItemSummaryWebViewController.swift in Sources */,
 				C441F1871DB25D090060E692 /* GlobalStateRestoration.swift in Sources */,
@@ -931,6 +951,7 @@
 				C42BA28B1DF4DB9B00213D70 /* ItemTableView.swift in Sources */,
 				C44B2F011AC0C881006A67F1 /* HomeViewController.swift in Sources */,
 				C42802691A5B47EA002474E1 /* FoldersViewController.swift in Sources */,
+				C43657591F05D0DD00B904A2 /* UserVisibleErrors.swift in Sources */,
 				C48C5F971A87344000A1EA12 /* ItemPageViewController.swift in Sources */,
 				C4CDD3A31A5350B40087DD05 /* AppDelegate.swift in Sources */,
 				C4C422181A75E355008803A7 /* MainNavigationController.swift in Sources */,
@@ -946,6 +967,7 @@
 				C4667F0D1CC80A050039C480 /* Appearance.swift in Sources */,
 				C4F575D61A7988DB00F12F20 /* OpenWebPageActivity.swift in Sources */,
 				C46934DF1A5D291C00A0AEA2 /* ItemPageViewControllerDataSource.swift in Sources */,
+				C436575F1F08987300B904A2 /* RefreshingStateTracker.swift in Sources */,
 				C4F7DC3B1D97E93200275E4F /* ItemTableViewDelegate.swift in Sources */,
 				C45BC3EA1A8003F40008A5D1 /* HistoryViewController.swift in Sources */,
 			);
