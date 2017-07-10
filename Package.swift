@@ -12,11 +12,8 @@ let package = Package(
 		.Package(url: "https://github.com/mattgallagher/CwlPreconditionTesting.git", Version(1, 1, 0, prereleaseIdentifiers: ["beta", "6"])),
 	],
 	exclude: [
-		"LICENSE.txt",
-		"Sources/CwlUtils.h",
 		"Sources/CwlUtils_iOSHarness",
 		"Sources/CwlUtils_macOSHarness",
-		"Tests/CwlUtilsTests-BridgingHeader.h",
 		"Tests/CwlUtils_macOSTestApp",
 		"Tests/CwlUtils_macOSTestAppUITests",
 		"Tests/CwlUtils_iOSTestApp",
