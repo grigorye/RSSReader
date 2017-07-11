@@ -246,8 +246,16 @@ class ItemsViewController : ContainerViewController {
 			_ = binding
 		}
 	}
+	@objc class var keyPathsForValuesAffectingLoadDate: Set<String> {
+		return [#keyPath(loadController.loadDate)]
+	}
+	@objc dynamic var loadDate: Date {
+		get {
+			return loadController.loadDate
+		}
+	}
 	func bindLoadDate() -> Handler {
-		let binding = self.observe(\.loadController.loadDate, options: [.initial]) { (_, _) in
+		let binding = observe(\.loadDate, options: [.initial]) { (_, _) in
 			•(self.toolbarItems!)
 			if let loadDate = self.loadController.loadDate {
 				self.track(.updated(at: loadDate))

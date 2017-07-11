@@ -15,6 +15,8 @@ extension TypedUserDefaults {
 	@NSManaged var pageViewsEnabled: Bool
 }
 
+private var fetchedResultsControllerDelegateAOKey: Void?
+
 class HistoryViewController: UITableViewController {
 	typealias _Self = HistoryViewController
 	private var nowDate: Date!
@@ -22,7 +24,6 @@ class HistoryViewController: UITableViewController {
 		$0.sortDescriptors = [NSSortDescriptor(key: #keyPath(Item.lastOpenedDate), ascending: false)]
 		$0.predicate = NSPredicate(format: "\(#keyPath(Item.lastOpenedDate)) != nil", argumentArray: [])
 	}
-	static var fetchedResultsControllerDelegateAOKey: Void?
 	lazy var fetchedResultsController: NSFetchedResultsController<Item> = {
 		let fetchedResultsController = NSFetchedResultsController(fetchRequest: _Self.fetchRequest, managedObjectContext: mainQueueManagedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
 		let configureCell = { [unowned self] cell, indexPath in
