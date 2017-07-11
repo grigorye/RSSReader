@@ -15,7 +15,7 @@ protocol Validating {
 }
 
 extension Validating {
-	func validationError(_ code: ValidationError, userInfo: [AnyHashable : Any]?) -> NSError {
+	func validationError(_ code: ValidationError, userInfo: [String : Any]?) -> NSError {
 		return NSError(domain: Self.errorDomain, code: code.rawValue as! Int, userInfo: userInfo)
 	}
 }
