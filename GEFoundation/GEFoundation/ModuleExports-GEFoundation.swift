@@ -9,13 +9,15 @@
 import GEFoundation
 import Foundation.NSObject
 
-infix operator …
+infix operator ≈
 
 #if true
-internal func …<T>(value: T, initialize: (inout T) throws -> Void) rethrows -> T {
+internal func ≈<T>(value: T, initialize: (inout T) throws -> Void) rethrows -> T {
 	return try with(value, initialize)
 }
 #endif
+
+infix operator …
 
 @discardableResult
 internal func …<T: AnyObject>(obj: T, initialize: (T) throws -> Void) rethrows -> T {
