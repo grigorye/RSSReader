@@ -37,7 +37,7 @@ public extension DispatchSource {
 		result.resume()
 		return result
 	}
-
+	
 	// An overload of timer that immediately sets the handler and schedules the timer
 	public class func repeatingTimer(interval: DispatchTimeInterval, leeway: DispatchTimeInterval = .nanoseconds(0), queue: DispatchQueue = DispatchQueue.global(), handler: @escaping () -> Void) -> DispatchSourceTimer {
 		let result = DispatchSource.makeTimerSource(queue: queue)
@@ -88,22 +88,42 @@ public extension DispatchTimeInterval {
 			return .nanoseconds(Int(seconds * Double(NSEC_PER_SEC)))
 		}
 	}
-
+	
 	public func toSeconds() -> Double {
-		switch self {
-		case .seconds(let t): return Double(t)
-		case .milliseconds(let t): return (1.0 / Double(NSEC_PER_MSEC)) * Double(t)
-		case .microseconds(let t): return (1.0 / Double(NSEC_PER_USEC)) * Double(t)
-		case .nanoseconds(let t): return (1.0 / Double(NSEC_PER_SEC)) * Double(t)
-		}
+		#if swift (>=3.2)
+			switch self {
+			case .seconds(let t): return Double(t)
+			case .milliseconds(let t): return (1.0 / Double(NSEC_PER_MSEC)) * Double(t)
+			case .microseconds(let t): return (1.0 / Double(NSEC_PER_USEC)) * Double(t)
+			case .nanoseconds(let t): return (1.0 / Double(NSEC_PER_SEC)) * Double(t)
+			case .never: return Double.infinity
+			}
+		#else
+			switch self {
+			case .seconds(let t): return Double(t)
+			case .milliseconds(let t): return (1.0 / Double(NSEC_PER_MSEC)) * Double(t)
+			case .microseconds(let t): return (1.0 / Double(NSEC_PER_USEC)) * Double(t)
+			case .nanoseconds(let t): return (1.0 / Double(NSEC_PER_SEC)) * Double(t)
+			}
+		#endif
 	}
-
+	
 	public func toNanoseconds() -> Int64 {
-		switch self {
-		case .seconds(let t): return Int64(NSEC_PER_SEC) * Int64(t)
-		case .milliseconds(let t): return Int64(NSEC_PER_MSEC) * Int64(t)
-		case .microseconds(let t): return Int64(NSEC_PER_USEC) * Int64(t)
-		case .nanoseconds(let t): return Int64(t)
-		}
+		#if swift (>=3.2)
+			switch self {
+			case .seconds(let t): return Int64(NSEC_PER_SEC) * Int64(t)
+			case .milliseconds(let t): return Int64(NSEC_PER_MSEC) * Int64(t)
+			case .microseconds(let t): return Int64(NSEC_PER_USEC) * Int64(t)
+			case .nanoseconds(let t): return Int64(t)
+			case .never: return Int64.max
+			}
+		#else
+			switch self {
+			case .seconds(let t): return Int64(NSEC_PER_SEC) * Int64(t)
+			case .milliseconds(let t): return Int64(NSEC_PER_MSEC) * Int64(t)
+			case .microseconds(let t): return Int64(NSEC_PER_USEC) * Int64(t)
+			case .nanoseconds(let t): return Int64(t)
+			}
+		#endif
 	}
 }
