@@ -95,6 +95,7 @@ public extension DispatchTimeInterval {
 		case .milliseconds(let t): return (1.0 / Double(NSEC_PER_MSEC)) * Double(t)
 		case .microseconds(let t): return (1.0 / Double(NSEC_PER_USEC)) * Double(t)
 		case .nanoseconds(let t): return (1.0 / Double(NSEC_PER_SEC)) * Double(t)
+		case .never: return Double.infinity
 		}
 	}
 
@@ -104,6 +105,7 @@ public extension DispatchTimeInterval {
 		case .milliseconds(let t): return Int64(NSEC_PER_MSEC) * Int64(t)
 		case .microseconds(let t): return Int64(NSEC_PER_USEC) * Int64(t)
 		case .nanoseconds(let t): return Int64(t)
+		case .never: return Double.infinity
 		}
 	}
 }
