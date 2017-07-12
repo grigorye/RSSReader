@@ -132,7 +132,9 @@ public class DebugContextCoordinator {
 			}
 		}
 		if stopRequested {
-			queues = [:]
+			// Since releasing `queues` will likely cause the release of closures and items held by the queue, which might lead to nested calls to remove items from `queues` violating ownership rules...
+			// We copy queues to a non-shared stack location, clear `queues` and *then* release the contents.
+			withExtendedLifetime(queues) { queues = [:] }
 		}
 	}
 	
@@ -146,7 +148,9 @@ public class DebugContextCoordinator {
 			_ = runTask(threadIndex: threadIndex, time: time)
 		}
 		if stopRequested {
-			queues = [:]
+			// Since releasing `queues` will likely cause the release of closures and items held by the queue, which might lead to nested calls to remove items from `queues` violating ownership rules...
+			// We copy queues to a non-shared stack location, clear `queues` and *then* release the contents.
+			withExtendedLifetime(queues) { queues = [:] }
 		}
 	}
 	
@@ -158,7 +162,10 @@ public class DebugContextCoordinator {
 	/// Discards all scheduled actions and resets time to 1. Useful if the `DebugContextCoordinator` is to be reused.
 	public func reset() {
 		internalTime = 1
-		queues = [:]
+		
+		// Since releasing `queues` will likely cause the release of closures and items held by the queue, which might lead to nested calls to remove items from `queues` violating ownership rules...
+		// We copy queues to a non-shared stack location, clear `queues` and *then* release the contents.
+		withExtendedLifetime(queues) { queues = [:] }
 	}
 	
 	func getOrCreateQueue(forName: DebugContextThread) -> DebugContextQueue {
@@ -166,7 +173,11 @@ public class DebugContextCoordinator {
 			return t
 		}
 		let t = DebugContextQueue()
-		queues[forName] = t
+
+		// Since releasing `queues` will likely cause the release of closures and items held by the queue, which might lead to nested calls to remove items from `queues` violating ownership rules...
+		// We copy queues to a non-shared stack location, clear `queues` and *then* release the contents.
+		withExtendedLifetime(queues[forName]) { queues[forName] = t }
+
 		return t
 	}
 	
