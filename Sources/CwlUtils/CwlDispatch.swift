@@ -25,7 +25,11 @@ public extension DispatchSource {
 	public class func singleTimer(interval: DispatchTimeInterval, leeway: DispatchTimeInterval = .nanoseconds(0), queue: DispatchQueue, handler: @escaping () -> Void) -> DispatchSourceTimer {
 		let result = DispatchSource.makeTimerSource(queue: queue)
 		result.setEventHandler(handler: handler)
-		result.scheduleOneshot(deadline: DispatchTime.now() + interval, leeway: leeway)
+		#if swift(>=4)
+			result.schedule(deadline: DispatchTime.now() + interval, leeway: leeway)
+		#else
+			result.scheduleOneshot(deadline: DispatchTime.now() + interval, leeway: leeway)
+		#endif
 		result.resume()
 		return result
 	}
@@ -42,7 +46,11 @@ public extension DispatchSource {
 	public class func repeatingTimer(interval: DispatchTimeInterval, leeway: DispatchTimeInterval = .nanoseconds(0), queue: DispatchQueue = DispatchQueue.global(), handler: @escaping () -> Void) -> DispatchSourceTimer {
 		let result = DispatchSource.makeTimerSource(queue: queue)
 		result.setEventHandler(handler: handler)
-		result.scheduleRepeating(deadline: DispatchTime.now() + interval, interval: interval, leeway: leeway)
+		#if swift(>=4)
+			result.schedule(deadline: DispatchTime.now() + interval, repeating: interval, leeway: leeway)
+		#else
+			result.scheduleRepeating(deadline: DispatchTime.now() + interval, interval: interval, leeway: leeway)
+		#endif
 		result.resume()
 		return result
 	}
@@ -61,7 +69,11 @@ public extension DispatchSourceTimer {
 	public func scheduleOneshot<T>(parameter: T, interval: DispatchTimeInterval, leeway: DispatchTimeInterval = .nanoseconds(0), handler: @escaping (T) -> Void) {
 		suspend()
 		setEventHandler { handler(parameter) }
-		scheduleOneshot(deadline: DispatchTime.now() + interval, leeway: leeway)
+		#if swift(>=4)
+			schedule(deadline: DispatchTime.now() + interval, leeway: leeway)
+		#else
+			scheduleOneshot(deadline: DispatchTime.now() + interval, leeway: leeway)
+		#endif
 		resume()
 	}
 	
@@ -69,7 +81,11 @@ public extension DispatchSourceTimer {
 	public func scheduleRepeating<T>(parameter: T, interval: DispatchTimeInterval, leeway: DispatchTimeInterval = .nanoseconds(0), handler: @escaping (T) -> Void) {
 		suspend()
 		setEventHandler { handler(parameter) }
-		scheduleRepeating(deadline: DispatchTime.now() + interval, interval: interval, leeway: leeway)
+		#if swift(>=4)
+			schedule(deadline: DispatchTime.now() + interval, repeating: interval, leeway: leeway)
+		#else
+			scheduleRepeating(deadline: DispatchTime.now() + interval, interval: interval, leeway: leeway)
+		#endif
 		resume()
 	}
 }
