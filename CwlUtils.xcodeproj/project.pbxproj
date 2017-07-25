@@ -969,12 +969,11 @@
 				"$(OBJROOT)/dependencies-state.json",
 			);
 			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/CwlCatchException.framework/CwlCatchException",
 				"$(BUILT_PRODUCTS_DIR)/CwlPreconditionTesting.framework/CwlPreconditionTesting",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ $CARTHAGE == \"YES\" ]; then\n  exit\nfi\n\"$DEVELOPER_BIN_DIR/xcodebuild\" -project \"$OBJROOT/cwl_symlinks/CwlPreconditionTesting/CwlPreconditionTesting.xcodeproj\" -target CwlPreconditionTesting_iOS -sdk \"$SDKROOT\" -configuration \"$CONFIGURATION\" $ACTION SRCROOT=\"$SRCROOT\" SYMROOT=\"$SYMROOT\" OBJROOT=\"$OBJROOT\" ARCHS=\"$ARCHS\" ONLY_ACTIVE_ARCH=\"$ONLY_ACTIVE_ARCH\" BITCODE_GENERATION_MODE=\"$BITCODE_GENERATION_MODE\"";
+			shellScript = "if [ \"$CARTHAGE\" == \"YES\" ]; then\n  exit\nfi\n\"$DEVELOPER_BIN_DIR/xcodebuild\" -project \"$OBJROOT/cwl_symlinks/CwlPreconditionTesting/CwlPreconditionTesting.xcodeproj\" -target CwlPreconditionTesting_iOS -sdk \"$SDKROOT\" -configuration \"$CONFIGURATION\" $ACTION SRCROOT=\"$SRCROOT\" SYMROOT=\"$SYMROOT\" OBJROOT=\"$OBJROOT\" ARCHS=\"$ARCHS\" ONLY_ACTIVE_ARCH=\"$ONLY_ACTIVE_ARCH\" BITCODE_GENERATION_MODE=\"$BITCODE_GENERATION_MODE\" MODULE_CACHE_DIR=\"$MODULE_CACHE_DIR\" DSTROOT=\"$DSTROOT\" CACHE_ROOT=\"$CACHE_ROOT\"";
 		};
 		C93520BB1F0B7FAA0038F4E0 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -985,12 +984,11 @@
 				"$(OBJROOT)/dependencies-state.json",
 			);
 			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/CwlCatchException.framework/Versions/A/CwlCatchException",
 				"$(BUILT_PRODUCTS_DIR)/CwlPreconditionTesting.framework/Versions/A/CwlPreconditionTesting",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ $CARTHAGE == \"YES\" ]; then\n  exit\nfi\n\"$DEVELOPER_BIN_DIR/xcodebuild\" -project \"$OBJROOT/cwl_symlinks/CwlPreconditionTesting/CwlPreconditionTesting.xcodeproj\" -target CwlPreconditionTesting_macOS -sdk \"$SDKROOT\" -configuration \"$CONFIGURATION\" $ACTION SRCROOT=\"$SRCROOT\" SYMROOT=\"$SYMROOT\" OBJROOT=\"$OBJROOT\" ARCHS=\"$ARCHS\" ONLY_ACTIVE_ARCH=\"$ONLY_ACTIVE_ARCH\" BITCODE_GENERATION_MODE=\"$BITCODE_GENERATION_MODE\"";
+			shellScript = "if [ \"$CARTHAGE\" == \"YES\" ]; then\n  exit\nfi\n\"$DEVELOPER_BIN_DIR/xcodebuild\" -project \"$OBJROOT/cwl_symlinks/CwlPreconditionTesting/CwlPreconditionTesting.xcodeproj\" -target CwlPreconditionTesting_macOS -sdk \"$SDKROOT\" -configuration \"$CONFIGURATION\" $ACTION SRCROOT=\"$SRCROOT\" SYMROOT=\"$SYMROOT\" OBJROOT=\"$OBJROOT\" ARCHS=\"$ARCHS\" ONLY_ACTIVE_ARCH=\"$ONLY_ACTIVE_ARCH\" BITCODE_GENERATION_MODE=\"$BITCODE_GENERATION_MODE\" MODULE_CACHE_DIR=\"$MODULE_CACHE_DIR\" DSTROOT=\"$DSTROOT\" CACHE_ROOT=\"$CACHE_ROOT\"";
 		};
 		C945D7BB1E5033E3009AFB8E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
