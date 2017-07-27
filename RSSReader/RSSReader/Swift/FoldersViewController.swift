@@ -240,7 +240,9 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 		let refreshingStateTracker = RefreshingStateTracker { (message) in
 			self.presentInfoMessage(message)
 		}
+		let unbind = refreshingStateTracker.bind()
 		return {
+			unbind()
 			_ = refreshingStateTracker
 		}
 	}
