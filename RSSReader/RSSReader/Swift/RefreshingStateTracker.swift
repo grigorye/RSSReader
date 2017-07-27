@@ -61,7 +61,7 @@ class RefreshingStateTracker: NSObject {
 		}
 	}
 	
-	func bindTrackRefreshState() -> Handler {
+	public func bind() -> Handler {
 		let binding = self.observe(\.refreshStateD, options: .initial) { [unowned self] (_, change) in
 			assert(Thread.isMainThread)
 			•(change)
@@ -72,16 +72,9 @@ class RefreshingStateTracker: NSObject {
 		}
 	}
 	
-	var refreshStateTrackingBinding: Handler!
-	
-	deinit {
-		x$(self)
-	}
-	
 	init(presentInfoMessage: @escaping (String) -> ()) {
 		self.presentInfoMessage = presentInfoMessage
 		super.init()
-		refreshStateTrackingBinding = bindTrackRefreshState()
 	}
 	
 }
