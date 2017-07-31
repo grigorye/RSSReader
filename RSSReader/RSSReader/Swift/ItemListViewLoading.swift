@@ -99,7 +99,10 @@ extension ItemsViewController : ItemsViewControllerLoadingImp {
 		guard let loadController = loadController else {
 			return false
 		}
-		guard !(loadController.loadInProgress || loadController.loadCompleted || loadController.loadError != nil) else {
+		guard nil == loadController.loadInProgress else {
+			return false
+		}
+		guard !(loadController.loadCompleted || loadController.loadError != nil) else {
 			return false
 		}
 		guard let lastLoadedItemDate = loadController.lastLoadedItemDate else {
