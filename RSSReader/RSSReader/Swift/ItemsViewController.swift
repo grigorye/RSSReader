@@ -359,7 +359,8 @@ extension ItemsViewController {
 		guard !loadController.refreshing else {
 			return
 		}
-		loadController.reset()
+		self.unbind()
+		self.bind()
 		loadMore {
 			refreshControl.endRefreshing()
 		}
