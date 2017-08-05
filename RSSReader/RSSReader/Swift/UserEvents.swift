@@ -96,5 +96,17 @@ extension FoldersViewController {
 	internal func presentInfoMessage(_ text: String) {
 		presentMessage(text)
 	}
+}
+
+extension FoldersViewController {
 	
+	enum UserVisibleEvent {
+		case secondRefreshIgnored()
+		case refreshInitiated()
+		case refreshCompleted()
+	}
+	
+	func track(_ event: UserVisibleEvent) {
+		x$(event)
+	}
 }
