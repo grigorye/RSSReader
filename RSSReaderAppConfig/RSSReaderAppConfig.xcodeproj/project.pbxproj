@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A121756B1F35C1BB00B46D3F /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A121756A1F35C1BA00B46D3F /* nanopb.framework */; };
 		C4290F8C1EA3226B00CAD5AE /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4290F8B1EA3226B00CAD5AE /* Globals.swift */; };
 		C441F19E1DB4345F0060E692 /* UserMessages.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5ADF1DAA5AE000E1734F /* UserMessages.swift */; };
 		C441F19F1DB4345F0060E692 /* Readability.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5AE01DAA5AE000E1734F /* Readability.swift */; };
@@ -102,6 +103,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A121756A1F35C1BA00B46D3F /* nanopb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = nanopb.framework; path = "/Users/gentin/Workbench/RSSReader/Pods/../build/Debug-iphoneos/nanopb.framework"; sourceTree = "<absolute>"; };
 		C4290F8B1EA3226B00CAD5AE /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		C4595E0B1E2E444F0004D68D /* Mixpanel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mixpanel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C45C54A01E2E58630039D16C /* Optimizely.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Optimizely.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A121756B1F35C1BB00B46D3F /* nanopb.framework in Frameworks */,
 				C4E4D6351E5FA48C007E0E39 /* PromiseKit.framework in Frameworks */,
 				C4DA68321E58BDC4004615A0 /* Rswift.framework in Frameworks */,
 				C4CB79231E3398B600F89794 /* SwiftMessages.framework in Frameworks */,
@@ -228,6 +231,7 @@
 		C4BE5AB61DA86D8D00E1734F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A121756A1F35C1BA00B46D3F /* nanopb.framework */,
 				C4E4D6341E5FA48C007E0E39 /* PromiseKit.framework */,
 				C4DA68311E58BDC4004615A0 /* Rswift.framework */,
 				C4DA682C1E550A4B004615A0 /* Loggy.framework */,
