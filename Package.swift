@@ -9,7 +9,7 @@ let package = Package(
 		Target(name: "ReferenceRandomGenerators")
 	],
 	dependencies: [
-		.Package(url: "https://github.com/mattgallagher/CwlPreconditionTesting.git", Version(1, 1, 0, prereleaseIdentifiers: ["beta", "10"])),
+		.Package(url: "https://github.com/mattgallagher/CwlPreconditionTesting.git", Version(1, 1, 0, prereleaseIdentifiers: ["beta", "11"])),
 	],
 	exclude: [
 		"Sources/CwlUtils_iOSHarness",
