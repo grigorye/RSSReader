@@ -866,6 +866,7 @@
 					C945D7B71E5033C6009AFB8E = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = S7YQ892G6G;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					C95A77261E4187E600659DBD = {
@@ -889,6 +890,12 @@
 						DevelopmentTeam = S7YQ892G6G;
 						ProvisioningStyle = Automatic;
 						TestTargetID = C95A77471E4187FB00659DBD;
+					};
+					OBJ_149 = {
+						LastSwiftMigration = 0900;
+					};
+					OBJ_198 = {
+						LastSwiftMigration = 0900;
 					};
 				};
 			};
