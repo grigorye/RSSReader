@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A16F5C241F48BF7E00639275 /* ObjCPropertyInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16F5C231F48BF7E00639275 /* ObjCPropertyInfoTests.swift */; };
 		C408C6631DFC9C5C00AAA8FF /* ErrorRecovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C408C6621DFC9C5C00AAA8FF /* ErrorRecovery.swift */; };
 		C4270BF81DBD4FBD00FA3A0A /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BF71DBD4FBD00FA3A0A /* GETracing.framework */; };
 		C445385E1E9AEA11009E68EB /* Flattenable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C445385D1E9AEA10009E68EB /* Flattenable.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A16F5C231F48BF7E00639275 /* ObjCPropertyInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjCPropertyInfoTests.swift; sourceTree = "<group>"; };
 		C408C6621DFC9C5C00AAA8FF /* ErrorRecovery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorRecovery.swift; sourceTree = "<group>"; };
 		C4270BF71DBD4FBD00FA3A0A /* GETracing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GETracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C445385D1E9AEA10009E68EB /* Flattenable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flattenable.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				C49FF18A1DBB9B0900A86CC0 /* URLSessionTaskGeneratorErrorObjCBridgingTests.swift */,
 				C49FF10A1DBB981300A86CC0 /* Info.plist */,
 				C445385F1E9AF095009E68EB /* FlattenableTests.swift */,
+				A16F5C231F48BF7E00639275 /* ObjCPropertyInfoTests.swift */,
 			);
 			path = GEFoundationTests;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				C44538601E9AF095009E68EB /* FlattenableTests.swift in Sources */,
 				C48CAA241DBD319300D6F40E /* TypedUserDefaultsTests.swift in Sources */,
 				C49FF18B1DBB9B0900A86CC0 /* URLSessionTaskGeneratorErrorObjCBridgingTests.swift in Sources */,
+				A16F5C241F48BF7E00639275 /* ObjCPropertyInfoTests.swift in Sources */,
 				C49FF1091DBB981300A86CC0 /* GEFoundationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
