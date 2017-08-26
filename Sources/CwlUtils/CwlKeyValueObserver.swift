@@ -25,13 +25,15 @@ import Foundation
 ///	2. you get a `CallbackReason` for each change which includes `valueChanged`, `pathChanged`, `sourceDeleted`.
 ///	3. observation is automatically cancelled if you release the KeyValueObserver or the source is released
 ///
+/// While Swift 4 offers an `observe(...) -> NSKeyValueObservation` function which avoids the need for (1), this wrapper continues to offer an advantage on points (2) and (3).
+///
 /// A majority of the complexity in this class comes from the fact that we turn key-value observing on keyPaths into a series of chained KeyValueObservers that we manage ourselves. This gives us more information when things change but we're re-implementing a number of things that Cococa key-value observing normally gives us for free. Generally in this class, anything involving the `tailPath` is managing observations of the path.
 ///
 /// THREAD SAFETY:
 /// This class is memory safe even when observations are triggered concurrently from different threads.
 /// Do note though that while all changes are registered under the mutex, callbacks are invoked *outside* the mutex, so it is possible for callbacks to be invoked in a different order than the internal synchronized order.
 /// In general, this shouldn't be a problem (since key-value observing is not itself synchronized so there *isn't* an authoritative ordering). However, this may cause unexpected behavior if you invoke `cancel` on this class. If you `cancel` the `KeyValueObserver` while it is concurrently processing changes on another thread, this might result in callback invocations occurring *after* the call to `cancel`. This will only happen if the changes associated with those callbacks were received *before* the `cancel` - it's just the callback that's getting invoked later.
-public class KeyValueObserver: NSObject {
+public class KeyValueObserver: NSObject, Cancellable {
 	public typealias Callback = (_ change: [NSKeyValueChangeKey: Any], _ reason: CallbackReason) -> Void
 
 	// This is the user-supplied callback function

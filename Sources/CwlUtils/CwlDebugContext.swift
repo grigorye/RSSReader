@@ -123,7 +123,7 @@ public class DebugContextCoordinator {
 	/// Performs all scheduled actions in a serial loop.
 	///
 	/// - parameter stoppingAfter: If nil, loop will continue until `stop` invoked or until no actions remain. If non-nil, loop will abort after an action matching Cancellable is completed.
-	public func runScheduledTasks(stoppingAfter: Cancellable? = nil) {
+	public func runScheduledTasks(stoppingAfter: (AnyObject & Cancellable)? = nil) {
 		stopRequested = false
 		currentThread = .unspecified
 		while !stopRequested, let nextTimer = runNextTask() {

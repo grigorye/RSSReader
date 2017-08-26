@@ -20,24 +20,42 @@
 
 import Foundation
 
-/// This protocol exists to provide lifetime to asynchronous an ongoing tasks. Typically, this protocol is implemented by a `class` (so that releasing the type releases the underlying resource) but it may also be implemented by a `struct` which itself contains a `class` whose lifetime controls the underlying resource.
+/// This protocol exists to provide lifetime and termination capabilities to asynchronous an ongoing tasks (an implementation of the "Disposable" pattern).
 ///
-/// The pattern offered by this protocol is a rejection of patterns where an asynchronous or ongoing task is created without returning any lifetime object. In my opinion, such lifetime-less patterns are problematic since they fail to tie the lifetime of the asynchronous task to the context where the result is required. This failure to tie task to result context requires:
-///	* vigilance to remember to check for the context on completion
-///   * knowledge of the context to check if the task is still relevant
-///   * overuse of resources by cancelled or unwanted tasks that continue to completion before checking if they're still needed
-/// all of which are bad. Far better to return a lifetime object for *all* asynchronous or ongoing tasks.
-public protocol Cancellable: class {
-	/// Immediately cancel
+/// Implementation of this protocol implies that an instance manages an underlying resource that will be set to en "end-of-life" state when the instances falls out of scope. The `cancel` function can be invoked to force this "end-of-life" state *without* falling out of scope.
+///
+/// This protocol implies a behavior that is *not* enforced by the interface. Namely: deallocating a `Cancellable` should have the same effect as calling `cancel` (although `cancel` need not be invoked on dealloc). Usually, this requirement is ensured by `cancel` in the `deinit` method, however, directly invoking `cancel` on dealloc is not required by this protocol, merely the transition to "end-of-life" state. Specifically, `struct` implementations of this protocol will usually contain a `class` instance that will apply the `cancel` behavior when deallocated.
+///
+/// An additional expectation is that calling `cancel` multiple times be "safe" and generally idempotent (the second call should be a no-op).
+public protocol Cancellable {
+	/// Immediately set the resource managed by this instance to an "end-of-life" state.
 	func cancel()
 }
 
-/// A simple class for aggregating a number of Cancellable instances into a single Cancellable.
-public class ArrayOfCancellables: Cancellable {
-	public init(cancellables: [Cancellable]) {
-		self.cancellables = cancellables
-	}
-	private let cancellables: [Cancellable]
+/// A simple array, aggregating a number of Cancellable instances into a single Cancellable.
+/// Once conditional conformances are available in Swift (possibly in Swift 4.1 at this stage) this could be replaced with `extension Array: Cancellable where Element: Cancellable`.
+public struct ArrayOfCancellables: Cancellable, RangeReplaceableCollection {
+	// Novel members of this type
+	private var cancellables: [Cancellable]
 	public func cancel() { cancellables.forEach { $0.cancel() } }
+
+	// Boilerplate RangeReplaceableCollection members:
+	public typealias Iterator = IndexingIterator<Array<Cancellable>>
+	public init<S>(_ elements: S) where S : Sequence, Iterator.Element == S.Iterator.Element {
+		self.cancellables = Array(elements)
+	}
+	public init() {
+		self.cancellables = []
+	}
+	public func makeIterator() -> IndexingIterator<Array<Cancellable>> {
+		return cancellables.makeIterator()
+	}
+	public mutating func replaceSubrange<C>(_ subrange: Range<Int>, with newElements: C) where C : Collection, C.Iterator.Element == Cancellable {
+		cancellables.replaceSubrange(subrange, with: newElements)
+	}
+	public var startIndex: Int { return cancellables.startIndex }
+	public var endIndex: Int { return cancellables.endIndex }
+	public subscript(_ i: Int) -> Iterator.Element { return cancellables[i] }
+	public func index(after i: Int) -> Int { return cancellables.index(after: i) }
 }
 
