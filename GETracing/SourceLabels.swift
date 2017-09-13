@@ -65,7 +65,7 @@ func sourceExtractedInfo(for location: SourceLocation, traceFunctionName: String
 			return location.column
 		}
 		let columnIndex = line.index(line.startIndex, offsetBy: location.column - (closure ? 0 : 1))
-		let prefix = line.substring(to: columnIndex)
+		let prefix = line[..<columnIndex]
 		let prefixReversed = String(prefix.characters.reversed())
 		let traceFunctionNameReversed = String(traceFunctionName.characters.reversed())
 		let rangeOfClosingBracket = prefixReversed.rangeOfClosingBracket("(", openingBracket: ")", followedBy: traceFunctionNameReversed)!
@@ -73,10 +73,10 @@ func sourceExtractedInfo(for location: SourceLocation, traceFunctionName: String
 		return location.column - prefixReversed.distance(from: prefixReversed.startIndex, to: indexOfOpeningBracketInPrefixReversed)
 	}()
 	let columnIndex = line.index(line.startIndex, offsetBy: adjustedColumn - (closure ? 0 : 1))
-	let lineTail = line.substring(from: columnIndex)
+	let lineTail = String(line[columnIndex...])
 	let (openingBracket, closingBracket) = closure ? ("{", "}") : ("(", ")")
 	let indexOfClosingBracketInTail = lineTail.rangeOfClosingBracket(closingBracket, openingBracket: openingBracket)!.lowerBound
-	let label = lineTail.substring(to: indexOfClosingBracketInTail)
+	let label = String(lineTail[..<indexOfClosingBracketInTail])
 	return SourceExtractedInfo(label: label, playgroundName: playgroundName)
 }
 
@@ -84,17 +84,6 @@ private func descriptionForInLineLocation(_ location: SourceLocation) -> String 
 	return ".\(location.column + (sourceLabelClosuresEnabled ? 1 : 0))"
 }
 
-private extension String {
-
-	func substring(toOffset offset: Int) -> String {
-		return substring(to: index(startIndex, offsetBy: offset))
-	}
-	
-	func substring(fromOffset offset: Int) -> String {
-		return substring(from: index(startIndex, offsetBy: offset))
-	}
-	
-}
 
 public var sourceLabelsEnabledEnforced: Bool?
 public var sourceLabelClosuresEnabled = false
