@@ -334,7 +334,7 @@ public struct DebugContext: ExecutionContext {
 	
 	/// Run `execute` asynchronously on the execution context
 	public func invokeAsync(_ execute: @escaping () -> Void) {
-		_ = coordinator?.schedule(block: execute, thread: thread, timeInterval: 0, repeats: false)
+		_ = coordinator?.schedule(block: execute, thread: thread, timeInterval: 1, repeats: false)
 	}
 	
 	/// Run `execute` on the execution context but don't return from this function until the provided function is complete.
@@ -349,7 +349,7 @@ public struct DebugContext: ExecutionContext {
 		case .immediate, .conditionallyAsync(false):
 			execute()
 		default:
-			c.runScheduledTasks(stoppingAfter: c.schedule(block: execute, thread: thread, timeInterval: 0, repeats: false))
+			c.runScheduledTasks(stoppingAfter: c.schedule(block: execute, thread: thread, timeInterval: 1, repeats: false))
 		}
 	}
 
