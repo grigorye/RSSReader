@@ -14,7 +14,9 @@ import var GEFoundation.buildAge
 #if DEBUG
 import var GEFoundation.nslogRedirectorInitializer
 #endif
+#if ANALYTICS_ENABLED
 import FirebaseCore
+#endif
 import Loggy
 import FBAllocationTracker
 import FBMemoryProfiler
@@ -72,10 +74,12 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 				}
 			}]
 		}
+		#if false
 		if x$(analyticsShouldBeEnabled) {
 			launchOptimizely(launchOptions: launchOptions)
 			FirebaseApp.configure()
 		}
+		#endif
 		return true
 	}
 	// MARK: -
