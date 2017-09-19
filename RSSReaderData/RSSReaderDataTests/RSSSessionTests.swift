@@ -24,7 +24,7 @@ class RSSSessionTests: XCTestCase {
     func testExample() {
 		let loginAndPassword = LoginAndPassword(login: "x", password: "y")
 		let session = RSSSession(loginAndPassword: loginAndPassword)
-		$(session)
+		x$(session)
     }
     
     func testPerformanceExample() {

@@ -40,7 +40,7 @@ class CoreDataFetchRequestsTests : XCTestCase {
 			XCTFail("error: \(error)")
 		}
 		self.waitForExpectations(timeout: 5) { error in
-			$(error)
+			x$(error)
 		}
         super.setUp()
     }
@@ -49,7 +49,7 @@ class CoreDataFetchRequestsTests : XCTestCase {
     }
 	// MARK: -
     func testPullTags() {
-		$(mainQueueManagedObjectContext.persistentStoreCoordinator)
+		x$(mainQueueManagedObjectContext.persistentStoreCoordinator)
     	let pullTagsComplete = self.expectation(description: "pullTagsComplete")
 		firstly {
 			return rssSession.pullTags()
@@ -59,11 +59,11 @@ class CoreDataFetchRequestsTests : XCTestCase {
 			XCTFail("error: \(error)")
 		}
 		self.waitForExpectations(timeout: 5) { error in
-			$(error)
+			x$(error)
 		}
 	}
     func testPullTagsFromLastData() {
-		$(mainQueueManagedObjectContext.persistentStoreCoordinator)
+		x$(mainQueueManagedObjectContext.persistentStoreCoordinator)
     	let pullTagsComplete = self.expectation(description: "pullTagsComplete")
 		firstly {
 			return rssSession.pullTags()
@@ -73,7 +73,7 @@ class CoreDataFetchRequestsTests : XCTestCase {
 			XCTFail("error: \(error)")
 		}
 		self.waitForExpectations(timeout: 5) { error in
-			$(error)
+			x$(error)
 		}
 		RunLoop.current.run(until: Date(timeIntervalSinceNow: 5))
 	}
@@ -122,7 +122,7 @@ class CoreDataFetchRequestsTests : XCTestCase {
 		}
 		RunLoop.current.run(until: Date(timeIntervalSinceNow: 5))
 		self.waitForExpectations(timeout: 5) { error in
-			$(error)
+			x$(error)
 		}
 	}
 	func testFetchRequestInPerformBlockInBackgroundQueueContextWithAccessFetchedResultInPerformBlockAndWait() {
@@ -142,7 +142,7 @@ class CoreDataFetchRequestsTests : XCTestCase {
 		}
 		RunLoop.current.run(until: Date(timeIntervalSinceNow: 5))
 		self.waitForExpectations(timeout: 5) { error in
-			$(error)
+			x$(error)
 		}
 	}
 	func testFetchRequestInPerformBlockInMainQueueContext() {
