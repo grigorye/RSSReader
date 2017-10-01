@@ -97,6 +97,7 @@ public final class PThreadMutex: RawMutex {
 		guard pthread_mutex_init(&unsafeMutex, &attr) == 0 else {
 			preconditionFailure()
 		}
+		pthread_mutexattr_destroy(&attr)
 	}
 	
 	deinit {
