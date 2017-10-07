@@ -18,10 +18,10 @@
 //  IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 //
 
-import Foundation
-
 #if os(Linux)
-import Dispatch
+	import Glibc
+#else
+	import Darwin
 #endif
 
 /// A basic mutex protocol that requires nothing more than "performing work inside the mutex".
