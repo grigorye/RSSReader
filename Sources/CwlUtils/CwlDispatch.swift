@@ -109,16 +109,16 @@ public extension DispatchTimeInterval {
 		#if swift (>=3.2)
 			switch self {
 			case .seconds(let t): return Double(t)
-			case .milliseconds(let t): return (1.0 / Double(NSEC_PER_MSEC)) * Double(t)
-			case .microseconds(let t): return (1.0 / Double(NSEC_PER_USEC)) * Double(t)
+			case .milliseconds(let t): return (Double(NSEC_PER_MSEC) / Double(NSEC_PER_SEC)) * Double(t)
+			case .microseconds(let t): return (Double(NSEC_PER_USEC) / Double(NSEC_PER_SEC)) * Double(t)
 			case .nanoseconds(let t): return (1.0 / Double(NSEC_PER_SEC)) * Double(t)
 			case .never: return Double.infinity
 			}
 		#else
 			switch self {
 			case .seconds(let t): return Double(t)
-			case .milliseconds(let t): return (1.0 / Double(NSEC_PER_MSEC)) * Double(t)
-			case .microseconds(let t): return (1.0 / Double(NSEC_PER_USEC)) * Double(t)
+			case .milliseconds(let t): return (Double(NSEC_PER_MSEC) / Double(NSEC_PER_SEC)) * Double(t)
+			case .microseconds(let t): return (Double(NSEC_PER_USEC) / Double(NSEC_PER_SEC)) * Double(t)
 			case .nanoseconds(let t): return (1.0 / Double(NSEC_PER_SEC)) * Double(t)
 			}
 		#endif

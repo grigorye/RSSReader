@@ -160,4 +160,32 @@ class DispatchTests: XCTestCase {
 		waitForExpectations(timeout: 1e2, handler: nil)
 		withExtendedLifetime(timer) {}
 	}
+	
+	func testToSeconds() {
+		let s = DispatchTimeInterval.seconds(1).toSeconds()
+		XCTAssert(s > 0.99999999 && s < 1.00000001)
+		
+		let m = DispatchTimeInterval.milliseconds(1).toSeconds()
+		XCTAssert(m > 0.99999999e-3 && m < 1.00000001e-3)
+		
+		let u = DispatchTimeInterval.microseconds(1).toSeconds()
+		XCTAssert(u > 0.99999999e-6 && u < 1.00000001e-6)
+		
+		let n = DispatchTimeInterval.nanoseconds(1).toSeconds()
+		XCTAssert(n > 0.99999999e-9 && n < 1.00000001e-9)
+	}
+	
+	func testToNanoseconds() {
+		let s = DispatchTimeInterval.seconds(1).toNanoseconds()
+		XCTAssert(s == Int64(1e9))
+		
+		let m = DispatchTimeInterval.milliseconds(1).toNanoseconds()
+		XCTAssert(m == Int64(1e6))
+		
+		let u = DispatchTimeInterval.microseconds(1).toNanoseconds()
+		XCTAssert(u == Int64(1e3))
+		
+		let n = DispatchTimeInterval.nanoseconds(1).toNanoseconds()
+		XCTAssert(n == Int64(1))
+	}
 }
