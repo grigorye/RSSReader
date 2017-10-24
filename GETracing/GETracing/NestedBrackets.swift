@@ -10,7 +10,7 @@ import Foundation
 
 extension String {
 	/// Returns the range of the first occurence of a given closing bracket that is not paired with a given opening bracket.
-	public func rangeOfClosingBracket(_ closingBracket: String, openingBracket: String, followedBy: String? = nil, range searchRange: Range<Index>? = nil) -> Range<String.CharacterView.Index>? {
+	public func rangeOfClosingBracket(_ closingBracket: String, openingBracket: String, followedBy: String? = nil, range searchRange: Range<Index>? = nil) -> Range<String.Index>? {
 		guard let openingBracketRange = range(of: openingBracket, range: searchRange) else {
 			return range(of: closingBracket, range: searchRange)
 		}
@@ -27,7 +27,7 @@ extension String {
 				return closingBracketRange
 			}
 		}
-		let upperBound = searchRange?.upperBound ?? self.characters.endIndex
+		let upperBound = searchRange?.upperBound ?? self.endIndex
 		let tailIndex = openingBracketRange.upperBound
 		let ignoredClosingBracketRange = rangeOfClosingBracket(closingBracket, openingBracket: openingBracket, range: tailIndex..<upperBound)!
 		let remainingStringIndex = ignoredClosingBracketRange.upperBound
