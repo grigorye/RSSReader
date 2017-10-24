@@ -49,7 +49,7 @@ func sourceExtractedInfo(for location: SourceLocation, traceFunctionName: String
 		var i = rawLines.startIndex
 		let regularExpression = try! NSRegularExpression(pattern: "#sourceLocation\\(file: \"(.*)\", line: 1\\)")
 		for line in rawLines {
-			if let match = regularExpression.firstMatch(in: line, range: NSRange(location: 0, length: line.characters.count)) {
+			if let match = regularExpression.firstMatch(in: line, range: NSRange(location: 0, length: line.count)) {
 				let s = rawLines[(i + 1)..<rawLines.endIndex]
 				let playgroundName = line.substring(with: match.range(at: 1))
 				return (Array(s), playgroundName)
@@ -66,8 +66,8 @@ func sourceExtractedInfo(for location: SourceLocation, traceFunctionName: String
 		}
 		let columnIndex = line.index(line.startIndex, offsetBy: location.column - (closure ? 0 : 1))
 		let prefix = line[..<columnIndex]
-		let prefixReversed = String(prefix.characters.reversed())
-		let traceFunctionNameReversed = String(traceFunctionName.characters.reversed())
+		let prefixReversed = String(prefix.reversed())
+		let traceFunctionNameReversed = String(traceFunctionName.reversed())
 		let rangeOfClosingBracket = prefixReversed.rangeOfClosingBracket("(", openingBracket: ")", followedBy: traceFunctionNameReversed)!
 		let indexOfOpeningBracketInPrefixReversed = rangeOfClosingBracket.lowerBound
 		return location.column - prefixReversed.distance(from: prefixReversed.startIndex, to: indexOfOpeningBracketInPrefixReversed)
