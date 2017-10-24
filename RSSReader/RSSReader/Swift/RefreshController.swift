@@ -33,8 +33,10 @@ class RefreshController: NSObject {
 			return rssAccount.authenticate()
 		}.then { (_) -> Promise<Void> in
 			return foldersController.updateFolders()
-		}.then { (_) -> Void in
+		}.always {
 			self.refreshingSubscriptions = false
+		}.then {
+			complete(nil)
 		}.catch { updateError in
 			switch updateError {
 			case RSSSessionError.authenticationFailed(_):
@@ -47,6 +49,7 @@ class RefreshController: NSObject {
 				self.present(error, customTitle: title)
 				#endif
 			}
+			complete(self.refreshingSubscriptionsError)
 			return
 		}
 	}
