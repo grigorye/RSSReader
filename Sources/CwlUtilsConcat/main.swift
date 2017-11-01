@@ -149,7 +149,7 @@ do {
 		}
 		
 		if let cs = commonString {
-			commonString = String(zip(cs, appendedPath.characters).prefix { $0.0 == $0.1 }.map { $0.0 })
+			commonString = String(zip(cs, appendedPath).prefix { $0.0 == $0.1 }.map { $0.0 })
 			if commonString != arg {
 				useCommonString = true
 			}
