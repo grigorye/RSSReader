@@ -42,7 +42,7 @@ class DebugContextTests: XCTestCase {
 			checkpoint = true
 			
 			XCTAssert(coordinator.currentThread == .global)
-			XCTAssert(coordinator.currentTime == 0)
+			XCTAssert(coordinator.currentTime == 1)
 		}
 		XCTAssert(!checkpoint)
 		coordinator.runScheduledTasks()
@@ -179,7 +179,7 @@ class DebugContextTests: XCTestCase {
 	} 
 	
 	func testMainInvoke() {
-		let coordinator1 = DebugContextCoordinator()
+		let coordinator1 = DebugContextCoordinator(initialThread: .main)
 		var checkpoint1 = false
 		coordinator1.main.invoke {
 			checkpoint1 = true
@@ -187,7 +187,7 @@ class DebugContextTests: XCTestCase {
 			XCTAssert(coordinator1.currentThread == .main)
 			XCTAssert(coordinator1.currentTime == 0)
 		}
-		XCTAssert(!checkpoint1)
+		XCTAssert(checkpoint1)
 		coordinator1.runScheduledTasks()
 		XCTAssert(checkpoint1)
 
@@ -197,7 +197,7 @@ class DebugContextTests: XCTestCase {
 			checkpoint2 = true
 			
 			XCTAssert(coordinator2.currentThread == .main)
-			XCTAssert(coordinator2.currentTime == 0)
+			XCTAssert(coordinator2.currentTime == 1)
 		}
 		XCTAssert(!checkpoint2)
 		coordinator2.runScheduledTasks()
@@ -205,13 +205,13 @@ class DebugContextTests: XCTestCase {
 	}
 	
 	func testMainAsyncInvoke() {
-		let coordinator1 = DebugContextCoordinator()
+		let coordinator1 = DebugContextCoordinator(initialThread: .main)
 		var checkpoint1 = false
 		coordinator1.mainAsync.invoke {
 			checkpoint1 = true
 			
 			XCTAssert(coordinator1.currentThread == .main)
-			XCTAssert(coordinator1.currentTime == 0)
+			XCTAssert(coordinator1.currentTime == 1)
 		}
 		XCTAssert(!checkpoint1)
 		coordinator1.runScheduledTasks()
@@ -225,7 +225,7 @@ class DebugContextTests: XCTestCase {
 			checkpoint1 = true
 			
 			XCTAssert(coordinator1.currentThread == .global)
-			XCTAssert(coordinator1.currentTime == 0)
+			XCTAssert(coordinator1.currentTime == 1)
 		}
 		XCTAssert(!checkpoint1)
 		coordinator1.runScheduledTasks()
@@ -259,7 +259,7 @@ class DebugContextTests: XCTestCase {
 				checkpoint1 = true
 				
 				XCTAssert(coordinator1.currentThread.matches(ec))
-				XCTAssert(coordinator1.currentTime == 0)
+				XCTAssert(coordinator1.currentTime == 1)
 			}
 			XCTAssert(!checkpoint1)
 			coordinator1.runScheduledTasks()
@@ -276,7 +276,7 @@ class DebugContextTests: XCTestCase {
 			checkpoint1 = true
 			
 			XCTAssert(coordinator1.currentThread == .main)
-			XCTAssert(coordinator1.currentTime == 0)
+			XCTAssert(coordinator1.currentTime == 1)
 		}
 		XCTAssert(!checkpoint1)
 		coordinator1.runScheduledTasks()
@@ -288,7 +288,7 @@ class DebugContextTests: XCTestCase {
 			checkpoint2 = true
 			
 			XCTAssert(coordinator2.currentThread == .main)
-			XCTAssert(coordinator2.currentTime == 0)
+			XCTAssert(coordinator2.currentTime == 1)
 		}
 		XCTAssert(!checkpoint2)
 		coordinator2.runScheduledTasks()
@@ -302,7 +302,7 @@ class DebugContextTests: XCTestCase {
 			checkpoint1 = true
 			
 			XCTAssert(coordinator1.currentThread == .main)
-			XCTAssert(coordinator1.currentTime == 0)
+			XCTAssert(coordinator1.currentTime == 1)
 		}
 		XCTAssert(!checkpoint1)
 		coordinator1.runScheduledTasks()
@@ -316,7 +316,7 @@ class DebugContextTests: XCTestCase {
 			checkpoint1 = true
 			
 			XCTAssert(coordinator1.currentThread == .global)
-			XCTAssert(coordinator1.currentTime == 0)
+			XCTAssert(coordinator1.currentTime == 1)
 		}
 		XCTAssert(!checkpoint1)
 		coordinator1.runScheduledTasks()
@@ -332,7 +332,7 @@ class DebugContextTests: XCTestCase {
 				checkpoint1 = true
 				
 				XCTAssert(coordinator1.currentThread.matches(ec))
-				XCTAssert(coordinator1.currentTime == 0)
+				XCTAssert(coordinator1.currentTime == 1)
 			}
 			XCTAssert(!checkpoint1)
 			coordinator1.runScheduledTasks()
@@ -351,7 +351,7 @@ class DebugContextTests: XCTestCase {
 				checkpoint1 = true
 				
 				XCTAssert(coordinator1.currentThread.matches(ec))
-				XCTAssert(coordinator1.currentTime == 0)
+				XCTAssert(coordinator1.currentTime == 1)
 			}
 			XCTAssert(!checkpoint1)
 			coordinator1.runScheduledTasks()
@@ -368,7 +368,7 @@ class DebugContextTests: XCTestCase {
 			checkpoint1 = true
 			
 			XCTAssert(coordinator1.currentThread == .main)
-			XCTAssert(coordinator1.currentTime == 0)
+			XCTAssert(coordinator1.currentTime == 1)
 		}
 		XCTAssert(checkpoint1)
 
@@ -378,7 +378,7 @@ class DebugContextTests: XCTestCase {
 			checkpoint2 = true
 			
 			XCTAssert(coordinator2.currentThread == .main)
-			XCTAssert(coordinator2.currentTime == 0)
+			XCTAssert(coordinator2.currentTime == 1)
 		}
 		XCTAssert(checkpoint2)
 	}
@@ -390,7 +390,7 @@ class DebugContextTests: XCTestCase {
 			checkpoint1 = true
 			
 			XCTAssert(coordinator1.currentThread == .main)
-			XCTAssert(coordinator1.currentTime == 0)
+			XCTAssert(coordinator1.currentTime == 1)
 		}
 		XCTAssert(checkpoint1)
 	}
@@ -402,7 +402,7 @@ class DebugContextTests: XCTestCase {
 			checkpoint1 = true
 			
 			XCTAssert(coordinator1.currentThread == .global)
-			XCTAssert(coordinator1.currentTime == 0)
+			XCTAssert(coordinator1.currentTime == 1)
 		}
 		XCTAssert(checkpoint1)
 	}
@@ -433,7 +433,7 @@ class DebugContextTests: XCTestCase {
 				checkpoint1 = true
 				
 				XCTAssert(coordinator1.currentThread.matches(ec))
-				XCTAssert(coordinator1.currentTime == 0)
+				XCTAssert(coordinator1.currentTime == 1)
 			}
 			XCTAssert(checkpoint1)
 		} else {

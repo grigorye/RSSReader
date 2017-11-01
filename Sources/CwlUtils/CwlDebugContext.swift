@@ -88,6 +88,11 @@ public class DebugContextCoordinator {
 		currentThread = .unspecified
 	}
 	
+	/// Constructs an empty instance
+	public init(initialThread: DebugContextThread) {
+		self.currentThread = initialThread
+	}
+	
 	/// Implementation mimicking Exec.direct but returning an Exec.custom(DebugContext)
 	public var direct: Exec {
 		return .custom(DebugContext(type: .immediate, thread: .global, coordinator: self))
