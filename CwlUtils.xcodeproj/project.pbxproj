@@ -846,6 +846,7 @@
 					C90509361EFE1F5A00E95E92 = {
 						CreatedOnToolsVersion = 9.0;
 						DevelopmentTeam = S7YQ892G6G;
+						LastSwiftMigration = 0910;
 					};
 					C93520721F0B7E810038F4E0 = {
 						CreatedOnToolsVersion = 9.0;
@@ -2026,7 +2027,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG CHECK_DEFERRED_WORK";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -2068,7 +2069,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
