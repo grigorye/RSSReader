@@ -61,7 +61,7 @@ enum ProcessingError: Error {
 
 let publicAndOpenPattern = try! NSRegularExpression(pattern: "(^|\t|[^,] )(public |open )", options: [])
 func stripPublicAndOpen(_ line: String) -> String {
-	return publicAndOpenPattern.stringByReplacingMatches(in:line, range: NSMakeRange(0, line.characters.count), withTemplate: "$1")
+	return publicAndOpenPattern.stringByReplacingMatches(in:line, range: NSMakeRange(0, line.count), withTemplate: "$1")
 }
 
 let authorPattern = try! NSRegularExpression(pattern: "^//  Copyright © .... Matt Gallagher.*\\. All rights reserved\\.$", options: [])
@@ -74,7 +74,7 @@ func appendFile(_ filePath: String, output: FileHandle, wantInternal: Bool) thro
 		if initialHeaderBlock {
 			if line.hasPrefix("//") {
 				if lineCount == 6 {
-					if authorPattern.firstMatch(in: line, range: NSMakeRange(0, line.characters.count)) == nil {
+					if authorPattern.firstMatch(in: line, range: NSMakeRange(0, line.count)) == nil {
 						throw ProcessingError.unknownAuthorship(filePath)
 					}
 				}
@@ -159,7 +159,7 @@ do {
 	}
 	
 	guard let cs = commonString else { throw ProcessingError.noInput }
-	let commonCount = cs.characters.count
+	let commonCount = cs.count
 	
 	for (dirPath, index) in srcDirs {
 		guard let enumerator = FileManager.default.enumerator(at: URL(fileURLWithPath: dirPath), includingPropertiesForKeys: []) else { throw ProcessingError.fileNotFound(dirPath) }
@@ -197,7 +197,7 @@ do {
 		switch include {
 		case .text: continue
 		case .filePath(let filePath):
-			let minusCommon = useCommonString ? String(filePath.characters.dropFirst(commonCount)) : NSString(string: filePath).lastPathComponent
+			let minusCommon = useCommonString ? String(filePath.dropFirst(commonCount)) : NSString(string: filePath).lastPathComponent
 			output.write("//    \(minusCommon)\n")
 		}
 	}
