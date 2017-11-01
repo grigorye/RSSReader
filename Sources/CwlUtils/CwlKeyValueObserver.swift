@@ -94,7 +94,7 @@ public class KeyValueObserver: NSObject, Cancellable {
 		// Set the key and tailPath based on whether we detected multiple path components
 		if let r = range {
 			#if swift(>=4)
-				self.key = String(keyPath[...r.lowerBound])
+				self.key = String(keyPath[..<r.lowerBound])
 				self.tailPath = String(keyPath[keyPath.index(after: r.lowerBound)...])
 			#else
 				self.key = keyPath.substring(to: r.lowerBound)

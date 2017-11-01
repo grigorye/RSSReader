@@ -30,7 +30,7 @@ public extension Error {
 	public func withUnanticipatedErrorRecoveryAttempter(file: String = #file, line: Int = #line) -> NSError {
 		// We want to preserve the "userInfo" dictionary, so we avoid "self as NSError" if we can (since it creates a new NSError that doesn't preserve the userInfo). Instead, we cast *via* NSObject.
 		let e = self as NSError
-		var userInfo: [AnyHashable: Any] = e.userInfo
+		var userInfo: [String: Any] = e.userInfo
 		
 		// Move any existing NSLocalizedRecoverySuggestionErrorKey to a new key (we want to replace it but don't want to lose potentially useful information)
 		if let previousSuggestion = userInfo[NSLocalizedRecoverySuggestionErrorKey] {
