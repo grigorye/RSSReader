@@ -87,7 +87,7 @@ class DebugContextTests: XCTestCase {
 		withExtendedLifetime(timer1) {}
 		withExtendedLifetime(timer2) {}
 
-		let timer3 = coordinator.direct.singleTimer(interval: .seconds(10), leeway: .seconds(0)) {
+		var timer3 = coordinator.direct.singleTimer(interval: .seconds(10), leeway: .seconds(0)) {
 			XCTFail()
 		}
 		timer3.cancel()
@@ -576,7 +576,7 @@ enum ServiceError: Error {
 // Used as a drop-in replacement for NetworkService to illustrate dependency injection.
 class StringService: Cancellable {
 	static let value = "Here's a string"
-	let timer: Cancellable
+	var timer: Cancellable
 	init(delay seconds: Double, context: Exec, handler: @escaping (Result<String>) -> ()) {
 		timer = context.singleTimer(interval: DispatchTimeInterval.fromSeconds(seconds)) {
 			handler(.success(StringService.value))
@@ -595,7 +595,7 @@ class StringService: Cancellable {
 // Dummy network service used to fulfill interface requirements. Obviously, doesn't really connect to the network but you could imagine something that fetches an HTTP resource.
 class NetworkService: Cancellable {
 	static let value = "Not really a network service"
-	let timer: Cancellable
+	var timer: Cancellable
 	init(context: Exec, handler: @escaping (Result<String>) -> ()) {
 		timer = context.singleTimer(interval: DispatchTimeInterval.fromSeconds(5.0)) {
 			handler(.success(StringService.value))
