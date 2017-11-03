@@ -27,17 +27,22 @@ import Foundation
 /// This protocol implies a behavior that is *not* enforced by the interface. Namely: deallocating a `Cancellable` should have the same effect as calling `cancel` (although `cancel` need not be invoked on dealloc). Usually, this requirement is ensured by `cancel` in the `deinit` method, however, directly invoking `cancel` on dealloc is not required by this protocol, merely the transition to "end-of-life" state. Specifically, `struct` implementations of this protocol will usually contain a `class` instance that will apply the `cancel` behavior when deallocated.
 ///
 /// An additional expectation is that calling `cancel` multiple times be "safe" and generally idempotent (the second call should be a no-op).
+/// An additional expectation is that calling `cancel` multiple times be "safe" and generally idempotent (the second call should be a no-op).
 public protocol Cancellable {
-	/// Immediately set the resource managed by this instance to an "end-of-life" state.
-	func cancel()
+    /// Immediately set the resource managed by this instance to an "end-of-life" state.
+    mutating func cancel()
 }
 
 /// A simple array, aggregating a number of Cancellable instances into a single Cancellable.
 /// Once conditional conformances are available in Swift (possibly in Swift 4.1 at this stage) this could be replaced with `extension Array: Cancellable where Element: Cancellable`.
 public struct ArrayOfCancellables: Cancellable, RangeReplaceableCollection {
-	// Novel members of this type
-	private var cancellables: [Cancellable]
-	public func cancel() { cancellables.forEach { $0.cancel() } }
+    // Novel members of this type
+    private var cancellables: [Cancellable]
+    public mutating func cancel() {
+        for i in cancellables.indices {
+            cancellables[i].cancel()
+        }
+    }
 
 	// Boilerplate RangeReplaceableCollection members:
 	public typealias Iterator = IndexingIterator<Array<Cancellable>>
@@ -59,3 +64,13 @@ public struct ArrayOfCancellables: Cancellable, RangeReplaceableCollection {
 	public func index(after i: Int) -> Int { return cancellables.index(after: i) }
 }
 
+/// Wraps an arbitrary value in an optional and offers Cancellable conformance. This lets any type participate in simple ownership scenarios or breakable reference counted loops without needing to implement per-type Cancellable conformance. The `cancel` simply nils the optional.
+public struct CancellableValue<T>: Cancellable {
+    public var value: T?
+    public init(_ value: T) {
+        self.value = value
+    }
+    public mutating func cancel() {
+        self.value = nil
+    }
+}
