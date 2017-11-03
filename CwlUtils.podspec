@@ -11,6 +11,7 @@ Pod::Spec.new do |s|
   s.author        = "Matt Gallagher"
   
   s.ios.deployment_target = "8.0"
+  s.tvos.deployment_target = "9.0"
   s.osx.deployment_target = "10.10"
   
   s.source        = { :git => "https://github.com/mattgallagher/CwlUtils.git", :tag => "#{s.version}" }

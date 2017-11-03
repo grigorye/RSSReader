@@ -123,7 +123,7 @@ public final class PThreadMutex: RawMutex {
 
 /// A basic wrapper around `os_unfair_lock` (a non-FIFO, high performance lock that offers safety against priority inversion). This type is a "class" type to prevent accidental copying of the `os_unfair_lock`.
 /// NOTE: due to the behavior of the lock (non-FIFO) a single thread might drop and reacquire the lock without giving waiting threads a chance to resume (leading to potential starvation of waiters). For this reason, it is only recommended in situations where contention is expected to be rare or the interaction between contenders is otherwise known.
-@available(OSX 10.12, iOS 10, *)
+@available(OSX 10.12, iOS 10, tvOS 10, *)
 public final class UnfairLock: RawMutex {
 	public typealias MutexPrimitive = os_unfair_lock
 	
