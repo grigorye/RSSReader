@@ -9,7 +9,7 @@
 import Foundation
 
 public func objCDefaultSetterName(forPropertyName propertyName: String) -> String {
-	return "set\(propertyName.uppercased().characters.first!)\(propertyName[propertyName.index(after: propertyName.startIndex)...]):"
+	return "set\(propertyName.uppercased().first!)\(propertyName[propertyName.index(after: propertyName.startIndex)...]):"
 }
 
 struct PropertyInfo {
