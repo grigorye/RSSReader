@@ -147,7 +147,7 @@ extension Container {
 				•(value)
 				let folder = try insertedObjectUnlessFetchedWithID(Folder.self, id: folderID, managedObjectContext: managedObjectContext)
 				assert(folder.streamID == folderID)
-				let characterCountInValue = value.characters.count
+				let characterCountInValue = value.count
 				guard characterCountInValue % 8 == 0 else {
 					throw JsonImportError.PrefsValueLengthIsNotFactorOf8(prefs: prefs)
 				}

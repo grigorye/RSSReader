@@ -141,8 +141,8 @@ func importedSubscriptionsFromJsonData(_ data: Data, managedObjectContext: NSMan
 func authTokenImportedFromJsonData(_ data: Data) throws -> String {
 	let body = String(data: data, encoding: String.Encoding.utf8)!
 	let authLocationIndex = body.range(of: "Auth=")!.upperBound
-	let authTail = body.substring(from: authLocationIndex)
+	let authTail = body[authLocationIndex...]
 	let lastIndexInAuthTail = authTail.range(of: "\n")!.lowerBound
-	let authToken = authTail.substring(to: lastIndexInAuthTail)
-	return authToken
+	let authToken = authTail[..<lastIndexInAuthTail]
+	return String(authToken)
 }
