@@ -11,7 +11,6 @@
 		C4290F8C1EA3226B00CAD5AE /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4290F8B1EA3226B00CAD5AE /* Globals.swift */; };
 		C441F19E1DB4345F0060E692 /* UserMessages.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5ADF1DAA5AE000E1734F /* UserMessages.swift */; };
 		C441F19F1DB4345F0060E692 /* Readability.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5AE01DAA5AE000E1734F /* Readability.swift */; };
-		C4595E0C1E2E444F0004D68D /* Mixpanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4595E0B1E2E444F0004D68D /* Mixpanel.framework */; };
 		C45C54A11E2E58630039D16C /* Optimizely.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45C54A01E2E58630039D16C /* Optimizely.swift */; };
 		C492B5301E2E3E2D0072D2D9 /* Mixpanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492B52F1E2E3E2D0072D2D9 /* Mixpanel.swift */; };
 		C49FF1BB1DBBA6F000A86CC0 /* GEUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1BA1DBBA6F000A86CC0 /* GEUIKit.framework */; };
@@ -45,7 +44,6 @@
 		C4BE5ADA1DA8712600E1734F /* RSSReaderAppConfigTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5A8A1DA85DA100E1734F /* RSSReaderAppConfigTests.swift */; };
 		C4BE5AE11DAA5AE000E1734F /* UserMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BE5ADF1DAA5AE000E1734F /* UserMessages.swift */; };
 		C4BE5AE21DAA5AE000E1734F /* Readability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BE5AE01DAA5AE000E1734F /* Readability.swift */; };
-		C4CB79191E3173AE00F89794 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4CB79181E3173AE00F89794 /* GoogleToolboxForMac.framework */; };
 		C4CB79231E3398B600F89794 /* SwiftMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4CB79221E3398B600F89794 /* SwiftMessages.framework */; };
 		C4DA682D1E550A4B004615A0 /* Loggy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4DA682C1E550A4B004615A0 /* Loggy.framework */; };
 		C4DA68321E58BDC4004615A0 /* Rswift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4DA68311E58BDC4004615A0 /* Rswift.framework */; };
@@ -151,8 +149,6 @@
 				C4E4D6351E5FA48C007E0E39 /* PromiseKit.framework in Frameworks */,
 				C4DA68321E58BDC4004615A0 /* Rswift.framework in Frameworks */,
 				C4CB79231E3398B600F89794 /* SwiftMessages.framework in Frameworks */,
-				C4CB79191E3173AE00F89794 /* GoogleToolboxForMac.framework in Frameworks */,
-				C4595E0C1E2E444F0004D68D /* Mixpanel.framework in Frameworks */,
 				C49FF1BB1DBBA6F000A86CC0 /* GEUIKit.framework in Frameworks */,
 				C4BE5ABA1DA86D8D00E1734F /* FBAllocationTracker.framework in Frameworks */,
 				C4DA682D1E550A4B004615A0 /* Loggy.framework in Frameworks */,
