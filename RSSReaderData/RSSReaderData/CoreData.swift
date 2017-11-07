@@ -59,7 +59,7 @@ extension Item : ManagedIdentifiable {
 			
 			do {
 				for category in insertedCategories {
-					let categoryItem = (NSEntityDescription.insertNewObject(forEntityName: CategoryItem.entityName(), into: managedObjectContext) as! CategoryItem) … {
+					let categoryItem = CategoryItem(context: managedObjectContext) … {
 						$0.item = self
 						$0.category = category
 					}
