@@ -141,7 +141,7 @@ extension RSSSession {
 	}
 	// MARK: -
 	public func authenticate() -> Promise<Void> {
-		return self.promise(for: Authenticate(loginAndPassword: loginAndPassword)).then {
+		return self.promise(for: Authenticate(loginAndPassword: x$(loginAndPassword))).then {
 			authToken in
 			self.authToken = authToken
 		}
