@@ -30,19 +30,21 @@ class CoreDataFetchRequestsTests : XCTestCase {
 	
 	// MARK: -
     override func setUp() {
-    	let authenticateDidComplete = self.expectation(description: "authenticateDidComplete")
+		super.setUp()
+		x$(self)
+		let authenticateDidComplete = self.expectation(description: "authenticateDidComplete")
 		defaults.forceStoreRemoval = true
 		firstly {
 			return rssSession.authenticate()
 		}.then {
 			authenticateDidComplete.fulfill()
 		}.catch { error in
+			authenticateDidComplete.fulfill()
 			XCTFail("error: \(error)")
 		}
-		self.waitForExpectations(timeout: 5) { error in
+		self.waitForExpectations(timeout: 10) { error in
 			x$(error)
 		}
-        super.setUp()
     }
     override func tearDown() {
         super.tearDown()
