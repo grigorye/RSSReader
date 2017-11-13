@@ -327,6 +327,7 @@
 					};
 					C48F79A71C008D0E00CC6F74 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 465NA5BW7E;
 						LastSwiftMigration = 0800;
 					};
 				};
@@ -471,6 +472,7 @@
 		C48F79B61C008D0E00CC6F74 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 465NA5BW7E;
 				INFOPLIST_FILE = RSSReaderDataTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.grigoryentin.RSSReaderDataTests;
@@ -481,6 +483,7 @@
 		C48F79B71C008D0E00CC6F74 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 465NA5BW7E;
 				INFOPLIST_FILE = RSSReaderDataTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.grigoryentin.RSSReaderDataTests;
