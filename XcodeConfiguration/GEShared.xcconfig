@@ -8,7 +8,7 @@
 
 #include "GEShared-SDKRoot.xcconfig"
 
-IPHONEOS_DEPLOYMENT_TARGET = 9.3
+IPHONEOS_DEPLOYMENT_TARGET = 10.0
 
 ONLY_ACTIVE_ARCH__CONFIGURATION__Debug = YES
 ONLY_ACTIVE_ARCH__CONFIGURATION__Release = NO
@@ -24,9 +24,9 @@ ENABLE_TESTABILITY__CONFIGURATION__Debug = YES
 ENABLE_TESTABILITY__CONFIGURATION__Release = NO
 ENABLE_TESTABILITY = $(ENABLE_TESTABILITY__CONFIGURATION__$(CONFIGURATION))
 
-TEST_HOST[sdk=iphoneos*] = $(BUILT_PRODUCTS_DIR)/TestHostApp-iOS.app/TestHostApp-iOS
-TEST_HOST[sdk=iphonesimulator*] = $(BUILT_PRODUCTS_DIR)/TestHostApp-iOS.app/TestHostApp-iOS
-TEST_HOST[sdk=macosx*] = $(BUILT_PRODUCTS_DIR)/TestHostApp-macOS.app/Contents/MacOS/TestHostApp-macOS
+TEST_HOST[sdk=iphoneos*] = $(BUILT_PRODUCTS_DIR)/TestHost-iOS.app/TestHost-iOS
+TEST_HOST[sdk=iphonesimulator*] = $(BUILT_PRODUCTS_DIR)/TestHost-iOS.app/TestHost-iOS
+TEST_HOST[sdk=macosx*] = $(BUILT_PRODUCTS_DIR)/TestHost-macOS.app/Contents/MacOS/TestHost-macOS
 
 LD_RUNPATH_SEARCH_PATHS[sdk=iphoneos*] = $(inherited) @executable_path/Frameworks @loader_path/Frameworks
 LD_RUNPATH_SEARCH_PATHS[sdk=iphonesimulator*] = $(inherited) @executable_path/Frameworks @loader_path/Frameworks
