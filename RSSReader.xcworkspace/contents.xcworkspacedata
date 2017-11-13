@@ -11,10 +11,10 @@
          location = "group:RSSReader/RSSReader.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:RSSReaderData/RSSReaderData.xcodeproj">
+         location = "group:RSSReaderAppConfig/RSSReaderAppConfig.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:RSSReaderAppConfig/RSSReaderAppConfig.xcodeproj">
+         location = "group:RSSReaderData/RSSReaderData.xcodeproj">
       </FileRef>
       <FileRef
          location = "group:GEUIKit/GEUIKit.xcodeproj">
