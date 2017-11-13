@@ -10,10 +10,29 @@ import PromiseKit
 import CoreData
 import Foundation
 
+public class LoadInProgress : NSObject {
+	
+	/// Acts like the session identifier, in cases when load is obsoletted by another load. Load date of the first chunk.
+	let loadDate: Date
+	
+	let promise: Promise<Void>
+	let reject: (Error) -> Void
+	
+	init(loadDate: Date, promise: Promise<Void>, reject: @escaping (Error) -> Void) {
+		self.loadDate = loadDate
+		self.promise = promise
+		self.reject = reject
+		super.init()
+	}
+}
+
+///
 public class ContainerLoadController : NSObject {
+	
 	let session: RSSSession
 	@objc let container: Container
 	let unreadOnly: Bool
+	
 	public var numberOfItemsToLoadLater = 100
 	public var numberOfItemsToLoadInitially = 500
 	
@@ -29,6 +48,10 @@ public class ContainerLoadController : NSObject {
 		return { _ = binding }
 	}
 
+	// MARK: -
+	
+	public var loadInProgress: LoadInProgress?
+	
 	// MARK: -
 	
 	public func bind() {
@@ -49,7 +72,7 @@ public class ContainerLoadController : NSObject {
 		return [#keyPath(containerViewState.loadDate)]
 	}
 	@objc private (set) public dynamic var loadDate: Date! {
-		set { x$(containerViewState!).loadDate = newValue! }
+		set { x$(containerViewState!).loadDate = x$(newValue!) }
 		get { return x$(containerViewState)?.loadDate }
 	}
 	public var lastLoadedItemDate: Date? {
@@ -64,9 +87,6 @@ public class ContainerLoadController : NSObject {
 		set { containerViewState!.loadError = newValue }
 		get { return containerViewState?.loadError }
 	}
-	//
-	private var ongoingLoadDate: Date?
-	private (set) public var loadInProgress = false
 	private var nowDate: Date!
 	//
 	private lazy var containerViewPredicate: NSPredicate = {
@@ -78,104 +98,183 @@ public class ContainerLoadController : NSObject {
 		}
 	}()
 	// MARK: -
+	#if false
 	public var refreshing: Bool {
-		return loadInProgress && (nil == continuation)
+		guard nil != loadInProgress else {
+			return false
+		}
+		return (nil == continuation)
 	}
-	public func reset() {
-		precondition(!loadInProgress)
+	#endif
+
+	public func clear() {
 		self.continuation = nil
 		self.loadCompleted = false
 		self.lastLoadedItemDate = nil
 		self.loadError = nil
 	}
+	
+	private var excludedCategory: Folder? {
+		return unreadOnly ? x$(Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: context)) : nil
+	}
+	
+	private var context: NSManagedObjectContext {
+		return container.managedObjectContext!
+	}
+	
+	private var numberOfItemsToLoad: Int {
+		if continuation != nil {
+			return numberOfItemsToLoadLater
+		} else {
+			return numberOfItemsToLoadInitially
+		}
+	}
+	
 	// MARK: -
-	public func loadMore(_ completionHandler: @escaping (Error?) -> Void) {
-		assert(!loadInProgress)
+
+	/// Schedules asynchronous load of next portion of the data, returning cancellation closure. Should not be invoked without cancelling any loads in progress.
+	public func loadMore(_ completionHandler: @escaping (Error?) -> Void) -> () -> Void {
+		
+		assert(Thread.isMainThread)
+		assert(nil == self.loadInProgress)
 		assert(!loadCompleted)
 		assert(nil == loadError)
-		let oldContinuation = self.continuation
-		if nil == oldContinuation {
-			ongoingLoadDate = Date()
-		}
-		else if nil == ongoingLoadDate {
-			ongoingLoadDate = loadDate
-		}
-		let oldOngoingLoadDate = ongoingLoadDate!
-		loadInProgress = true
-		let context = container.managedObjectContext!
-		let excludedCategory: Folder? = unreadOnly ? x$(Folder.folderWithTagSuffix(readTagSuffix, managedObjectContext: context)) : nil
-		let numberOfItemsToLoad = (oldContinuation != nil) ? numberOfItemsToLoadLater : numberOfItemsToLoadInitially
+		
+		let continuation = self.continuation
+		
+		let loadDate: Date = {
+			guard nil != continuation else {
+				return Date()
+			}
+			return self.loadDate
+		}()
+		
+		let (promise, _, reject) = Promise<Void>.pending()
+		let loadInProgress = LoadInProgress(loadDate: loadDate, promise: promise, reject: reject)
+		
 		let containerViewStateObjectID = typedObjectID(for: containerViewState)
 		let containerObjectID = typedObjectID(for: container)!
-		let containerViewPredicate = self.containerViewPredicate
+		
 		let session = self.session
-		firstly { () -> Promise<()> in
-			guard !session.authenticated else {
+		let containerViewPredicate = self.containerViewPredicate
+		let context = self.context
+		let excludedCategory = self.excludedCategory
+		let numberOfItemsToLoad = self.numberOfItemsToLoad
+		
+		let chainPromise = firstly { () -> Promise<()> in
+			
+			guard !x$(session.authenticated) else {
 				return Promise(value: ())
 			}
-			return session.authenticate()
+			
+			return x$(session.authenticate())
+			
 		}.then { (_) -> Promise<StreamContents.ResultType> in
+			
 			return Promise { fulfill, reject in
+				
+				x$(fulfill)
+				
 				context.perform {
-					session.streamContents(self.container, excludedCategory: excludedCategory, continuation: oldContinuation, count: numberOfItemsToLoad, loadDate: x$(oldOngoingLoadDate)).then(on: zalgo) { streamContentsResult -> () in
-						fulfill(streamContentsResult)
+					
+					let streamContents = session.streamContents(self.container, excludedCategory: excludedCategory, continuation: continuation, count: numberOfItemsToLoad, loadDate: x$(loadInProgress.loadDate))
+					
+					streamContents.then(on: zalgo) { streamContentsResult -> () in
+						
+						x$(fulfill(streamContentsResult))
+						
 					}.catch { error in
-						reject(error)
+						
+						x$(reject(error))
 					}
 				}
 			}
+			
 		}.then(on: zalgo) { streamContentsResult -> String? in
-			let ongoingLoadDate = x$(self.ongoingLoadDate)
-			guard oldOngoingLoadDate == ongoingLoadDate else {
+			
+			guard loadInProgress.loadDate == x$(self.loadInProgress?.loadDate) else {
+				
+				/// Bail out if the load is no longer current
 				throw NSError.cancelledError()
 			}
+			
 			let managedObjectContext = streamContentsResult.0
 			let containerViewState = containerViewStateObjectID?.object(in: managedObjectContext) ?? {
-				return (NSEntityDescription.insertNewObject(forEntityName: "ContainerViewState", into: managedObjectContext) as! ContainerViewState) … {
+				
+				return ContainerViewState(context: managedObjectContext) … {
 					let container = containerObjectID.object(in: managedObjectContext)
 					$0.container = container
 					$0.containerViewPredicate = containerViewPredicate
 				}
 			}()
-			if nil == oldContinuation {
-				containerViewState.loadDate = ongoingLoadDate
+			
+			if nil == continuation {
+				// Make it new load date if the load of first chunk succeeded.
+				self.loadDate = loadInProgress.loadDate
 			}
 			else {
-				assert(containerViewState.loadDate == ongoingLoadDate)
+				assert(self.loadDate == loadInProgress.loadDate)
 			}
+			
 			let (existingItems, newItems) = streamContentsResult.1.items
 			let items = existingItems + newItems
 			let lastLoadedItem = items.last
 			let continuation = streamContentsResult.1.continuation
+			
 			containerViewState … {
 				$0.continuation = continuation
 				$0.lastLoadedItemDate = lastLoadedItem?.date
 			}
+			
 			if let lastLoadedItem = lastLoadedItem {
 				assert(containerViewPredicate.evaluate(with: lastLoadedItem))
 			}
+			
 			x$(managedObjectContext.insertedObjects.map { $0.objectID });
 			x$(managedObjectContext.updatedObjects.map { $0.objectID });
+			
 			try managedObjectContext.save()
+			
 			return continuation
+			
 		}.then { continuation -> Void in
-			if nil == continuation {
+			
+			if nil == x$(continuation) {
 				self.loadCompleted = true
 			}
+			
 		}.always { () -> Void in
-			guard oldOngoingLoadDate == self.ongoingLoadDate else {
+			
+			guard loadInProgress.loadDate == x$(self.loadInProgress?.loadDate) else {
 				return
 			}
-			self.loadInProgress = false
+			
+			self.loadInProgress = nil
+			
 		}.then { (_) in
-			completionHandler(nil)
+			
+			x$(completionHandler(nil))
+			
 		}.catch { error -> Void in
-			guard oldOngoingLoadDate == self.ongoingLoadDate else {
+			
+			x$(error)
+			
+			guard loadInProgress.loadDate == x$(self.loadInProgress?.loadDate) else {
+				
+				// Ignore errors from no longer current load.
 				return
 			}
+			
 			completionHandler(error)
 		}
+		
+		_ = when(resolved: loadInProgress.promise, chainPromise).value
+		
+		return {
+			loadInProgress.reject(x$(NSError.cancelledError()))
+		}
 	}
+	
 	public init(session: RSSSession, container: Container, unreadOnly: Bool = false) {
 		self.session = session
 		self.container = container
