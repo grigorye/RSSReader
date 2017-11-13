@@ -356,9 +356,11 @@ extension ItemsViewController {
 		guard let refreshControl = refreshControl else {
 			fatalError()
 		}
-		guard !loadController.refreshing else {
+		#if false
+		guard !loadController.loadInProgress else {
 			return
 		}
+		#endif
 		self.unbind()
 		self.bind()
 		loadMore {
