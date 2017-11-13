@@ -21,13 +21,13 @@
 
 /* Begin PBXFileReference section */
 		C49FF0EB1DBAFCDB00A86CC0 /* GEShared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = GEShared.xcconfig; path = ../XcodeConfiguration/GEShared.xcconfig; sourceTree = "<group>"; };
-		C4C150681DECF43400534E44 /* TestHostApp-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TestHostApp-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4C150681DECF43400534E44 /* TestHost-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TestHost-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4C1506A1DECF43400534E44 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4C1506C1DECF43400534E44 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C4C1506E1DECF43400534E44 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C4C150711DECF43400534E44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C4C150731DECF43400534E44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C4F507161B5B9AC8002D9B02 /* TestHostApp-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TestHostApp-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4F507161B5B9AC8002D9B02 /* TestHost-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TestHost-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4F507191B5B9AC8002D9B02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4F5071B1B5B9AC8002D9B02 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		C4F5071D1B5B9AC8002D9B02 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -80,8 +80,8 @@
 		C4F507171B5B9AC8002D9B02 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C4F507161B5B9AC8002D9B02 /* TestHostApp-iOS.app */,
-				C4C150681DECF43400534E44 /* TestHostApp-macOS.app */,
+				C4F507161B5B9AC8002D9B02 /* TestHost-iOS.app */,
+				C4C150681DECF43400534E44 /* TestHost-macOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -103,9 +103,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C4C150671DECF43400534E44 /* TestHostApp-macOS */ = {
+		C4C150671DECF43400534E44 /* TestHost-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C4C150741DECF43400534E44 /* Build configuration list for PBXNativeTarget "TestHostApp-macOS" */;
+			buildConfigurationList = C4C150741DECF43400534E44 /* Build configuration list for PBXNativeTarget "TestHost-macOS" */;
 			buildPhases = (
 				C4C150641DECF43400534E44 /* Sources */,
 				C4C150651DECF43400534E44 /* Frameworks */,
@@ -115,14 +115,14 @@
 			);
 			dependencies = (
 			);
-			name = "TestHostApp-macOS";
+			name = "TestHost-macOS";
 			productName = "TestHostApp-macOS";
-			productReference = C4C150681DECF43400534E44 /* TestHostApp-macOS.app */;
+			productReference = C4C150681DECF43400534E44 /* TestHost-macOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C4F507151B5B9AC8002D9B02 /* TestHostApp-iOS */ = {
+		C4F507151B5B9AC8002D9B02 /* TestHost-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C4F5072A1B5B9AC8002D9B02 /* Build configuration list for PBXNativeTarget "TestHostApp-iOS" */;
+			buildConfigurationList = C4F5072A1B5B9AC8002D9B02 /* Build configuration list for PBXNativeTarget "TestHost-iOS" */;
 			buildPhases = (
 				C4F507121B5B9AC8002D9B02 /* Sources */,
 				C4F507131B5B9AC8002D9B02 /* Frameworks */,
@@ -132,9 +132,9 @@
 			);
 			dependencies = (
 			);
-			name = "TestHostApp-iOS";
+			name = "TestHost-iOS";
 			productName = TestHostApp;
-			productReference = C4F507161B5B9AC8002D9B02 /* TestHostApp-iOS.app */;
+			productReference = C4F507161B5B9AC8002D9B02 /* TestHost-iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -149,7 +149,7 @@
 				TargetAttributes = {
 					C4C150671DECF43400534E44 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 898SX5RV3X;
+						DevelopmentTeam = 465NA5BW7E;
 						ProvisioningStyle = Automatic;
 					};
 					C4F507151B5B9AC8002D9B02 = {
@@ -173,8 +173,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C4F507151B5B9AC8002D9B02 /* TestHostApp-iOS */,
-				C4C150671DECF43400534E44 /* TestHostApp-macOS */,
+				C4F507151B5B9AC8002D9B02 /* TestHost-iOS */,
+				C4C150671DECF43400534E44 /* TestHost-macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -273,9 +273,10 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 898SX5RV3X;
+				DEVELOPMENT_TEAM = 465NA5BW7E;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -296,6 +297,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.grigorye.TestHostApp-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -325,9 +327,10 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 898SX5RV3X;
+				DEVELOPMENT_TEAM = 465NA5BW7E;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -344,6 +347,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.grigorye.TestHostApp-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
@@ -410,7 +414,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C4C150741DECF43400534E44 /* Build configuration list for PBXNativeTarget "TestHostApp-macOS" */ = {
+		C4C150741DECF43400534E44 /* Build configuration list for PBXNativeTarget "TestHost-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C4C150751DECF43400534E44 /* Debug */,
@@ -428,7 +432,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C4F5072A1B5B9AC8002D9B02 /* Build configuration list for PBXNativeTarget "TestHostApp-iOS" */ = {
+		C4F5072A1B5B9AC8002D9B02 /* Build configuration list for PBXNativeTarget "TestHost-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C4F5072B1B5B9AC8002D9B02 /* Debug */,
