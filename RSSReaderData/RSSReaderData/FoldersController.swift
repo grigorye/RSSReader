@@ -64,13 +64,14 @@ public extension FoldersController {
 				performBackgroundMOCTask { managedObjectContext in
 					let container = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: managedObjectContext)!
 					let containerLoadController = ContainerLoadController(session: rssSession, container: container, unreadOnly: true)
-					containerLoadController.loadMore { error in
+					let loadCancellation = containerLoadController.loadMore { error in
 						guard let error = error else {
 							fulfill(())
 							return
 						}
 						reject(error)
 					}
+					_ = x$(loadCancellation)
 				}
 			}
 		}.then { (_) -> () in

@@ -71,7 +71,7 @@ extension ItemsViewController : ItemsViewControllerLoadingImp {
 	func loadMore(_ completionHandler: @escaping () -> Void) {
 		let loadController = self.loadController!
 		x$(didStartLoad())
-		loadController.loadMore { [weak loadController] error in
+		_ = loadController.loadMore { [weak loadController] error in
 			completionHandler()
 			if let error = error {
 				self.track(.failedToLoadMore(due: error))
