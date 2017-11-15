@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.color` struct is generated, and contains static references to 0 color palettes.
+  /// This `R.color` struct is generated, and contains static references to 0 colors.
   struct color {
     fileprivate init() {}
   }
@@ -375,12 +375,12 @@ struct R: Rswift.Validatable {
       /// Base translation: NFeeds
       /// 
       /// Locales: Base, ru
-      static let cFBundleDisplayName = Rswift.StringResource(key: "CFBundleDisplayName", tableName: "InfoPlist", bundle: R.hostingBundle, locales: ["Base", "ru"], comment: nil)
+      static let cfBundleDisplayName = Rswift.StringResource(key: "CFBundleDisplayName", tableName: "InfoPlist", bundle: R.hostingBundle, locales: ["Base", "ru"], comment: nil)
       
       /// Base translation: NFeeds
       /// 
       /// Locales: Base, ru
-      static func cFBundleDisplayName(_: Void = ()) -> String {
+      static func cfBundleDisplayName(_: Void = ()) -> String {
         return NSLocalizedString("CFBundleDisplayName", tableName: "InfoPlist", bundle: R.hostingBundle, value: "NFeeds", comment: "")
       }
       
@@ -882,7 +882,7 @@ struct R: Rswift.Validatable {
       /// ru translation: Всё вместе
       /// 
       /// Locales: ru, ru
-      static let zU6A2UhTTitle = Rswift.StringResource(key: "ZU6-a2-UhT.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
+      static let zu6A2UhTTitle = Rswift.StringResource(key: "ZU6-a2-UhT.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
       /// ru translation: Главное
       /// 
       /// Locales: ru, ru
@@ -894,7 +894,7 @@ struct R: Rswift.Validatable {
       /// ru translation: История
       /// 
       /// Locales: ru, ru
-      static let iIN6C0VText = Rswift.StringResource(key: "1II-N6-C0V.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
+      static let iin6C0VText = Rswift.StringResource(key: "1II-N6-C0V.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
       /// ru translation: История
       /// 
       /// Locales: ru, ru
@@ -918,7 +918,7 @@ struct R: Rswift.Validatable {
       /// ru translation: Подписки
       /// 
       /// Locales: ru, ru
-      static let lBD0OText = Rswift.StringResource(key: "814-LB-d0O.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
+      static let lbd0OText = Rswift.StringResource(key: "814-LB-d0O.text", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
       /// ru translation: Подписки
       /// 
       /// Locales: ru, ru
@@ -926,7 +926,7 @@ struct R: Rswift.Validatable {
       /// ru translation: Разработчик
       /// 
       /// Locales: ru, ru
-      static let aAAMh8VkTitle = Rswift.StringResource(key: "AAA-Mh-8Vk.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
+      static let aaaMh8VkTitle = Rswift.StringResource(key: "AAA-Mh-8Vk.title", tableName: "Main", bundle: R.hostingBundle, locales: ["ru", "ru"], comment: nil)
       /// ru translation: Разработчик
       /// 
       /// Locales: ru, ru
@@ -1040,7 +1040,7 @@ struct R: Rswift.Validatable {
       /// ru translation: Всё вместе
       /// 
       /// Locales: ru, ru
-      static func zU6A2UhTTitle(_: Void = ()) -> String {
+      static func zu6A2UhTTitle(_: Void = ()) -> String {
         return NSLocalizedString("ZU6-a2-UhT.title", tableName: "Main", bundle: R.hostingBundle, comment: "")
       }
       
@@ -1061,7 +1061,7 @@ struct R: Rswift.Validatable {
       /// ru translation: История
       /// 
       /// Locales: ru, ru
-      static func iIN6C0VText(_: Void = ()) -> String {
+      static func iin6C0VText(_: Void = ()) -> String {
         return NSLocalizedString("1II-N6-C0V.text", tableName: "Main", bundle: R.hostingBundle, comment: "")
       }
       
@@ -1103,7 +1103,7 @@ struct R: Rswift.Validatable {
       /// ru translation: Подписки
       /// 
       /// Locales: ru, ru
-      static func lBD0OText(_: Void = ()) -> String {
+      static func lbd0OText(_: Void = ()) -> String {
         return NSLocalizedString("814-LB-d0O.text", tableName: "Main", bundle: R.hostingBundle, comment: "")
       }
       
@@ -1117,7 +1117,7 @@ struct R: Rswift.Validatable {
       /// ru translation: Разработчик
       /// 
       /// Locales: ru, ru
-      static func aAAMh8VkTitle(_: Void = ()) -> String {
+      static func aaaMh8VkTitle(_: Void = ()) -> String {
         return NSLocalizedString("AAA-Mh-8Vk.title", tableName: "Main", bundle: R.hostingBundle, comment: "")
       }
       
