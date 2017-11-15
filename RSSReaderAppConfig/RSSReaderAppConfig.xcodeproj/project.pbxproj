@@ -10,8 +10,6 @@
 		C428E49D1FBC07B200DA2FFA /* Watchdog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C428E49E1FBC07B200DA2FFA /* Watchdog.framework */; };
 		C428E4A01FBC097E00DA2FFA /* Watchdog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C428E49F1FBC097E00DA2FFA /* Watchdog.swift */; };
 		C4290F8C1EA3226B00CAD5AE /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4290F8B1EA3226B00CAD5AE /* Globals.swift */; };
-		C441F19E1DB4345F0060E692 /* UserMessages.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5ADF1DAA5AE000E1734F /* UserMessages.swift */; };
-		C441F19F1DB4345F0060E692 /* Readability.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5AE01DAA5AE000E1734F /* Readability.swift */; };
 		C45C54A11E2E58630039D16C /* Optimizely.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45C54A01E2E58630039D16C /* Optimizely.swift */; };
 		C492B5301E2E3E2D0072D2D9 /* Mixpanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492B52F1E2E3E2D0072D2D9 /* Mixpanel.swift */; };
 		C49FF1BB1DBBA6F000A86CC0 /* GEUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1BA1DBBA6F000A86CC0 /* GEUIKit.framework */; };
@@ -31,17 +29,6 @@
 		C4BE5ABA1DA86D8D00E1734F /* FBAllocationTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BE5AB71DA86D8D00E1734F /* FBAllocationTracker.framework */; };
 		C4BE5ABB1DA86D8D00E1734F /* FBMemoryProfiler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BE5AB81DA86D8D00E1734F /* FBMemoryProfiler.framework */; };
 		C4BE5ABC1DA86D8D00E1734F /* FBRetainCycleDetector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BE5AB91DA86D8D00E1734F /* FBRetainCycleDetector.framework */; };
-		C4BE5ACF1DA8711C00E1734F /* AppDelegateBase.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5AB41DA868AD00E1734F /* AppDelegateBase.swift */; };
-		C4BE5AD01DA8711C00E1734F /* UITabBarController+CVKHiearachySearcher.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5AB01DA8664600E1734F /* UITabBarController+CVKHiearachySearcher.swift */; };
-		C4BE5AD11DA8711C00E1734F /* Analytics.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5A961DA85DE000E1734F /* Analytics.swift */; };
-		C4BE5AD21DA8711C00E1734F /* Appsee.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5A971DA85DE000E1734F /* Appsee.swift */; };
-		C4BE5AD31DA8711C00E1734F /* UXCam.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5A981DA85DE000E1734F /* UXCam.swift */; };
-		C4BE5AD41DA8711C00E1734F /* Flurry.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5A991DA85DE000E1734F /* Flurry.swift */; };
-		C4BE5AD51DA8711C00E1734F /* Crashlytics.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5A9E1DA85E0600E1734F /* Crashlytics.swift */; };
-		C4BE5AD61DA8711C00E1734F /* FileLogger.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5AA01DA85E2400E1734F /* FileLogger.swift */; };
-		C4BE5AD71DA8711C00E1734F /* UITableView+SnappingHeaderToTop.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5AA21DA85E7500E1734F /* UITableView+SnappingHeaderToTop.swift */; };
-		C4BE5AD81DA8711C00E1734F /* UINavigationItem+MultipleButtonItemsCollections.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5AA31DA85E7500E1734F /* UINavigationItem+MultipleButtonItemsCollections.swift */; };
-		C4BE5AD91DA8711C00E1734F /* ContainedViewControllersAwareNavigationControllerDelegate.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5AA51DA85E7500E1734F /* ContainedViewControllersAwareNavigationControllerDelegate.swift */; };
 		C4BE5ADA1DA8712600E1734F /* RSSReaderAppConfigTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5A8A1DA85DA100E1734F /* RSSReaderAppConfigTests.swift */; };
 		C4BE5AE11DAA5AE000E1734F /* UserMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BE5ADF1DAA5AE000E1734F /* UserMessages.swift */; };
 		C4BE5AE21DAA5AE000E1734F /* Readability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BE5AE01DAA5AE000E1734F /* Readability.swift */; };
@@ -72,29 +59,6 @@
 			dstSubfolderSpec = 7;
 			files = (
 				C4BE5ADA1DA8712600E1734F /* RSSReaderAppConfigTests.swift in Embed Sources */,
-			);
-			name = "Embed Sources";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C4BE5ACE1DA8710B00E1734F /* Embed Sources */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = Sources;
-			dstSubfolderSpec = 7;
-			files = (
-				C441F19E1DB4345F0060E692 /* UserMessages.swift in Embed Sources */,
-				C441F19F1DB4345F0060E692 /* Readability.swift in Embed Sources */,
-				C4BE5ACF1DA8711C00E1734F /* AppDelegateBase.swift in Embed Sources */,
-				C4BE5AD01DA8711C00E1734F /* UITabBarController+CVKHiearachySearcher.swift in Embed Sources */,
-				C4BE5AD11DA8711C00E1734F /* Analytics.swift in Embed Sources */,
-				C4BE5AD21DA8711C00E1734F /* Appsee.swift in Embed Sources */,
-				C4BE5AD31DA8711C00E1734F /* UXCam.swift in Embed Sources */,
-				C4BE5AD41DA8711C00E1734F /* Flurry.swift in Embed Sources */,
-				C4BE5AD51DA8711C00E1734F /* Crashlytics.swift in Embed Sources */,
-				C4BE5AD61DA8711C00E1734F /* FileLogger.swift in Embed Sources */,
-				C4BE5AD71DA8711C00E1734F /* UITableView+SnappingHeaderToTop.swift in Embed Sources */,
-				C4BE5AD81DA8711C00E1734F /* UINavigationItem+MultipleButtonItemsCollections.swift in Embed Sources */,
-				C4BE5AD91DA8711C00E1734F /* ContainedViewControllersAwareNavigationControllerDelegate.swift in Embed Sources */,
 			);
 			name = "Embed Sources";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,7 +240,7 @@
 				C4BE5A781DA85DA100E1734F /* Frameworks */,
 				C4BE5A791DA85DA100E1734F /* Headers */,
 				C4BE5A7A1DA85DA100E1734F /* Resources */,
-				C4BE5ACE1DA8710B00E1734F /* Embed Sources */,
+				C4EDE1F41FBC252700BB7F55 /* Embed Sources */,
 			);
 			buildRules = (
 			);
@@ -362,6 +326,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C4EDE1F41FBC252700BB7F55 /* Embed Sources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Sources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/bin/sh -e";
+			shellScript = "\"${GE_XCODE_BUILD_PHASES:?}\"/EmbedSourcesIntoBundle\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C4BE5A771DA85DA100E1734F /* Sources */ = {
