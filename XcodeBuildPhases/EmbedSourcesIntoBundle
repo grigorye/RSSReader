@@ -1,0 +1,12 @@
+#! /bin/sh -xe
+
+bn=$(basename "$0")
+wd=$(dirname "$0")
+
+tmpdir=$(mktemp -d /tmp/"${bn:?}".XXXXX)
+
+sourcesList="${tmpdir:?}"/Sources.list
+
+"${wd:?}"/../XcodeSupport/ListXcodeProjectTargetSources "${PROJECT_FILE_PATH:?}" "${TARGET_NAME:?}" > "${sourcesList:?}"
+
+rsync -urtlv --delete --files-from="${sourcesList:?}" --no-relative / "${TARGET_BUILD_DIR:?}/${FULL_PRODUCT_NAME:?}/Sources/"

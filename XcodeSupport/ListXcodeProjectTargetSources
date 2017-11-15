@@ -1,0 +1,3 @@
+#! /bin/sh -xe
+
+~/homebrew/bin/ruby "${0}".rb "${@}"
