@@ -12,7 +12,7 @@ import Foundation
 
 public func presentErrorMessage(_ text: String, underlyingError error: Error? = nil) {
 #if true
-	let view = MessageView.viewFromNib(layout: .CardView)…{
+	let view = MessageView.viewFromNib(layout: .cardView)…{
 		$0.configureTheme(.error)
 		$0.configureContent(body: text)
 	}
@@ -24,7 +24,7 @@ public func presentErrorMessage(_ text: String, underlyingError error: Error? = 
 
 func presentInfoMessage(_ text: String) {
 #if true
-	let view = MessageView.viewFromNib(layout: .CardView)…{
+	let view = MessageView.viewFromNib(layout: .cardView)…{
 		$0.configureTheme(.info)
 		$0.configureContent(body: text)
 	}
