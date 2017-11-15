@@ -103,6 +103,7 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 		var scope = Activity("Initializing Analytics").enter(); defer { scope.leave() }
 		#if DEBUG
 			_ = nslogRedirectorInitializer
+			_ = watchdogInitializer
 		#endif
 		x$(buildAge)
 		if x$(analyticsShouldBeEnabled) {
