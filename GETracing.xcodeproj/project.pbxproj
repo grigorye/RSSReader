@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		C418186B1B6A65B100872EB3 /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C41818601B6A65B100872EB3 /* GETracing.framework */; };
 		C41F40501DBE94E3006EA6CD /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41F404F1DBE94E3006EA6CD /* Configuration.swift */; };
-		C441F1A21DB434770060E692 /* Tracing.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4D6F4191C73CCC000A7E2ED /* Tracing.swift */; };
-		C441F1A31DB434770060E692 /* SourceLocation.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4CB38851CDBA78D00562665 /* SourceLocation.swift */; };
 		C48CAA181DBBE59000D6F40E /* BundleForSymbolAddressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA171DBBE59000D6F40E /* BundleForSymbolAddressTests.swift */; };
 		C495D8991C02592100A7F7D5 /* TracingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495D8981C02592100A7F7D5 /* TracingTests.swift */; };
 		C495D89B1C025A0800A7F7D5 /* TracingTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C495D8981C02592100A7F7D5 /* TracingTests.swift */; };
@@ -24,7 +22,6 @@
 		C4E5DB871DBEAFB900170422 /* Labeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5DB861DBEAFB900170422 /* Labeling.swift */; };
 		C4E5DB891DBEB01A00170422 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5DB881DBEB01A00170422 /* Logging.swift */; };
 		C4FEBB1D1BF960A300A5709B /* BundleForSymbolAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FEBB1C1BF960A300A5709B /* BundleForSymbolAddress.swift */; };
-		C4FEBB1E1BF96B7800A5709B /* BundleForSymbolAddress.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4FEBB1C1BF960A300A5709B /* BundleForSymbolAddress.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,19 +55,6 @@
 				C4DB6A6C1D25C4E300E8516D /* GETracing.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C4FEBAFA1BF9190A00A5709B /* Embed Sources */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = Sources;
-			dstSubfolderSpec = 7;
-			files = (
-				C441F1A21DB434770060E692 /* Tracing.swift in Embed Sources */,
-				C441F1A31DB434770060E692 /* SourceLocation.swift in Embed Sources */,
-				C4FEBB1E1BF96B7800A5709B /* BundleForSymbolAddress.swift in Embed Sources */,
-			);
-			name = "Embed Sources";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -192,7 +176,7 @@
 				C418185C1B6A65B100872EB3 /* Frameworks */,
 				C418185D1B6A65B100872EB3 /* Headers */,
 				C418185E1B6A65B100872EB3 /* Resources */,
-				C4FEBAFA1BF9190A00A5709B /* Embed Sources */,
+				C4EDE1F91FBC25D000BB7F55 /* Embed Sources */,
 			);
 			buildRules = (
 			);
@@ -283,6 +267,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C4EDE1F91FBC25D000BB7F55 /* Embed Sources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Sources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/bin/sh -e";
+			shellScript = "\"${GE_XCODE_BUILD_PHASES:?}\"/EmbedSourcesIntoBundle\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C418185B1B6A65B100872EB3 /* Sources */ = {
