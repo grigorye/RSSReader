@@ -31,29 +31,29 @@ class SharedRSSAccount : NSObject {
 		}
 	}()
 	enum AuthenticationState {
-		case Unknown, InProgress, Succeeded, Failed(error: Error)
+		case unknown, inProgress, succeeded, failed(error: Error)
 		@objc enum RawValue : Int {
-			case Unknown, InProgress, Succeeded, Failed
+			case unknown, inProgress, succeeded, failed
 		}
 		var rawValue: RawValue {
 			switch self {
-			case .Unknown:
-				return .Unknown
-			case .InProgress:
-				return .InProgress
-			case .Succeeded:
-				return .Succeeded
-			case .Failed(error: _):
-				return .Failed
+			case .unknown:
+				return .unknown
+			case .inProgress:
+				return .inProgress
+			case .succeeded:
+				return .succeeded
+			case .failed(error: _):
+				return .failed
 			}
 		}
 	}
-	var authenticationState: AuthenticationState = .Unknown {
+	var authenticationState: AuthenticationState = .unknown {
 		didSet {
 			self.authenticationStateRawValue = self.authenticationState.rawValue
 		}
 	}
-	@objc dynamic var authenticationStateRawValue: AuthenticationState.RawValue = .Unknown
+	@objc dynamic var authenticationStateRawValue: AuthenticationState.RawValue = .unknown
 	override init() {
 		super.init()
 		_ = loginAndPasswordBinding
@@ -68,13 +68,13 @@ extension SharedRSSAccount {
 			guard !rssSession.authenticated else {
 				return Promise(value: ())
 			}
-			self.authenticationState = .InProgress
+			self.authenticationState = .inProgress
 			return rssSession.authenticate()
 		}.recover { authenticationError -> Void in
-			self.authenticationState = .Failed(error: authenticationError)
+			self.authenticationState = .failed(error: authenticationError)
 			throw x$(authenticationError)
 		}.then { _ in
-			self.authenticationState = .Succeeded
+			self.authenticationState = .succeeded
 		}
 	}
 

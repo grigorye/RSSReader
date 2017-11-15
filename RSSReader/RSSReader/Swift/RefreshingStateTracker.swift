@@ -36,16 +36,16 @@ class RefreshingStateTracker: NSObject {
 	
 	var refreshState: RefreshState {
 		switch rssAccount.authenticationStateRawValue {
-		case .Unknown:
+		case .unknown:
 			return .unknown
-		case .InProgress:
+		case .inProgress:
 			return .authenticating
-		case .Failed:
-			guard case .Failed(let error) = rssAccount.authenticationState else {
+		case .failed:
+			guard case .failed(let error) = rssAccount.authenticationState else {
 				fatalError()
 			}
 			return .failedToAuthenticate(due: error)
-		case .Succeeded:
+		case .succeeded:
 			let foldersUpdateState = foldersController.foldersUpdateState
 			switch foldersUpdateState {
 			case .ended:
