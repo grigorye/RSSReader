@@ -8,10 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		C4270BFA1DBD4FD300FA3A0A /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BF91DBD4FD300FA3A0A /* GETracing.framework */; };
-		C48635F81DD6B55A00CA359B /* ManagedObjectContextAutosaver.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1901DBB9C8700A86CC0 /* ManagedObjectContextAutosaver.swift */; };
-		C48635F91DD6B55A00CA359B /* FetchedObjectBinding.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF16E1DBB993E00A86CC0 /* FetchedObjectBinding.swift */; };
-		C48635FA1DD6B55A00CA359B /* GenericCoreDataExtensions.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF16F1DBB993E00A86CC0 /* GenericCoreDataExtensions.swift */; };
-		C48635FB1DD6B55A00CA359B /* CoreDataCaching.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1701DBB993E00A86CC0 /* CoreDataCaching.swift */; };
 		C49FF15E1DBB98F100A86CC0 /* GECoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1541DBB98F100A86CC0 /* GECoreData.framework */; };
 		C49FF1631DBB98F100A86CC0 /* GECoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF1621DBB98F100A86CC0 /* GECoreDataTests.swift */; };
 		C49FF1711DBB993E00A86CC0 /* FetchedObjectBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF16E1DBB993E00A86CC0 /* FetchedObjectBinding.swift */; };
@@ -33,23 +29,6 @@
 			remoteInfo = GECoreData;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		C48635F71DD6B54100CA359B /* Embed Sources */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = Sources;
-			dstSubfolderSpec = 7;
-			files = (
-				C48635F81DD6B55A00CA359B /* ManagedObjectContextAutosaver.swift in Embed Sources */,
-				C48635F91DD6B55A00CA359B /* FetchedObjectBinding.swift in Embed Sources */,
-				C48635FA1DD6B55A00CA359B /* GenericCoreDataExtensions.swift in Embed Sources */,
-				C48635FB1DD6B55A00CA359B /* CoreDataCaching.swift in Embed Sources */,
-			);
-			name = "Embed Sources";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C4270BF91DBD4FD300FA3A0A /* GETracing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GETracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,7 +143,7 @@
 				C49FF1501DBB98F100A86CC0 /* Frameworks */,
 				C49FF1511DBB98F100A86CC0 /* Headers */,
 				C49FF1521DBB98F100A86CC0 /* Resources */,
-				C48635F71DD6B54100CA359B /* Embed Sources */,
+				C4EDE1F71FBC257C00BB7F55 /* Embed Sources */,
 			);
 			buildRules = (
 			);
@@ -249,6 +228,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C4EDE1F71FBC257C00BB7F55 /* Embed Sources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Sources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/bin/sh -e";
+			shellScript = "\"${GE_XCODE_BUILD_PHASES:?}\"/EmbedSourcesIntoBundle\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C49FF14F1DBB98F100A86CC0 /* Sources */ = {
