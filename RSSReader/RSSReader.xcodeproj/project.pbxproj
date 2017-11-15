@@ -6,6 +6,20 @@
 	objectVersion = 48;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		C4EDE1FA1FBCF0AD00BB7F55 /* Lint */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = C4EDE1FB1FBCF0AD00BB7F55 /* Build configuration list for PBXAggregateTarget "Lint" */;
+			buildPhases = (
+				C4EDE1FE1FBCF0B500BB7F55 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Lint;
+			productName = Lint;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		C408F1B11CE7520700DB943F /* FBAllocationTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C408F1B01CE7520700DB943F /* FBAllocationTracker.framework */; };
 		C408F1B21CE7520700DB943F /* FBAllocationTracker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C408F1B01CE7520700DB943F /* FBAllocationTracker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -686,6 +700,10 @@
 						LastSwiftMigration = 0800;
 						TestTargetID = C4CDD39C1A5350B40087DD05;
 					};
+					C4EDE1FA1FBCF0AD00BB7F55 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = C4CDD3981A5350B40087DD05 /* Build configuration list for PBXProject "RSSReader" */;
@@ -705,6 +723,7 @@
 				C4CDD39C1A5350B40087DD05 /* RSSReader */,
 				C4CDD3B31A5350B50087DD05 /* RSSReaderTests */,
 				C444F53B1B2E53F200A6E378 /* RSSReaderUITests */,
+				C4EDE1FA1FBCF0AD00BB7F55 /* Lint */,
 			);
 		};
 /* End PBXProject section */
@@ -844,6 +863,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -xe";
 			shellScript = "\"${GE_XCODE_BUILD_PHASES:?}\"/EmbedSourcesIntoBundle\n";
+		};
+		C4EDE1FE1FBCF0B500BB7F55 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "~/homebrew/bin/swiftlint";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1146,6 +1179,24 @@
 			};
 			name = Release;
 		};
+		C4EDE1FC1FBCF0AD00BB7F55 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 465NA5BW7E;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C4EDE1FD1FBCF0AD00BB7F55 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 465NA5BW7E;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1181,6 +1232,15 @@
 			buildConfigurations = (
 				C4CDD3C21A5350B50087DD05 /* Debug */,
 				C4CDD3C31A5350B50087DD05 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C4EDE1FB1FBCF0AD00BB7F55 /* Build configuration list for PBXAggregateTarget "Lint" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4EDE1FC1FBCF0AD00BB7F55 /* Debug */,
+				C4EDE1FD1FBCF0AD00BB7F55 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

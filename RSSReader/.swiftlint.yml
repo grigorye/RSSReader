@@ -1,0 +1,29 @@
+disabled_rules:
+  - force_cast
+  - force_try
+  - type_name
+  - unused_closure_parameter
+  - discarded_notification_center_observer
+  - colon
+  - trailing_whitespace
+  - opening_brace
+  - mark
+  - void_return
+  - statement_position
+  - unused_optional_binding
+  - weak_delegate
+  - cyclomatic_complexity
+  - large_tuple
+  - redundant_string_enum_value
+  - implicit_getter
+  - nesting
+excluded:
+  - Pods
+  - RSSReader/R.generated.swift
+line_length: 250
+identifier_name:
+  min_length: 2
+  max_length: 60
+  excluded:
+    - keyPathsForValues
+file_length: 500
