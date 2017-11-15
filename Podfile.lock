@@ -1,17 +1,17 @@
 PODS:
-  - Crashlytics (3.8.5):
-    - Fabric (~> 1.6.3)
-  - Fabric (1.6.12)
+  - Crashlytics (3.9.3):
+    - Fabric (~> 1.7.2)
+  - Fabric (1.7.2)
   - FBAllocationTracker (0.1.5)
   - FBMemoryProfiler (0.1.3):
     - FBAllocationTracker (~> 0.1)
     - FBRetainCycleDetector (~> 0.1)
   - FBRetainCycleDetector (0.1.3)
-  - PromiseKit/CorePromise (4.2.2)
-  - R.swift (3.3.0):
-    - R.swift.Library (~> 3.0.2)
-  - R.swift.Library (3.0.2)
-  - SwiftMessages (3.4.0)
+  - PromiseKit/CorePromise (4.5.0)
+  - R.swift (4.0.0):
+    - R.swift.Library (~> 4.0.0)
+  - R.swift.Library (4.0.0)
+  - SwiftMessages (4.0.0)
   - Watchdog (3.0)
 
 DEPENDENCIES:
@@ -24,15 +24,15 @@ DEPENDENCIES:
   - Watchdog
 
 SPEC CHECKSUMS:
-  Crashlytics: dfbae35ef22ca189240d230ad501feea4ee85d2d
-  Fabric: f050464eac45a2ce5a8e6e6a07e977c0df32fe28
+  Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
+  Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
   FBAllocationTracker: dfdca3f71aceca6a85e95e3c6ec76a9785eba0f1
   FBMemoryProfiler: 623fc5f8a61f7d02ec75c87e3b97c90f621d8b02
   FBRetainCycleDetector: f0c7b290bf48ae77f6ae060843ce34ae341781eb
-  PromiseKit: 00e8886881f151c7e573d06b437915b0bb2970ec
-  R.swift: bde9704d50ff36820f49e266bc88ef545e1e9b36
-  R.swift.Library: fbdec16c9802ad104fc1ba53415dc190e6ec5c73
-  SwiftMessages: e20aa1557fde1525ea369361bec4943cc0d08e7c
+  PromiseKit: 9c1d9f6d7b65e3951a90bea7f407c56972be5d8e
+  R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
+  R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
+  SwiftMessages: cd565e0e7d095584be1770c012c6b5be4183b5ee
   Watchdog: 141185b6b3a332a9f5721ea42dfa9681cf2d7c6b
 
 PODFILE CHECKSUM: c2d29fa7f3de6f8b55953700e90b0b619e572f37
