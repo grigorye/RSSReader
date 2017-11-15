@@ -93,7 +93,7 @@ class MainScene : NSObject {
 			_ = self.fetchedFavoritesFolderBinding
 			foldersViewController.hidesBottomBarWhenPushed = false
 			favoritesViewController.navigationItem.backBarButtonItem = {
-				let title = NSLocalizedString("Favorites", comment: "");
+				let title = NSLocalizedString("Favorites", comment: "")
 				return UIBarButtonItem(title: title, style: .plain, target: nil, action: nil)
 			}()
 		}

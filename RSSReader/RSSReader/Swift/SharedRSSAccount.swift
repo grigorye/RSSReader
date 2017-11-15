@@ -24,7 +24,7 @@ class SharedRSSAccount : NSObject {
 			self.session = RSSSession(loginAndPassword: loginAndPassword)
 		}
 		update()
-		return NotificationCenter.default.addObserver(forName: UserDefaults.didChangeNotification, object:nil, queue:nil) { [unowned self] notification in
+		return NotificationCenter.default.addObserver(forName: UserDefaults.didChangeNotification, object: nil, queue: nil) { [unowned self] notification in
 			if defaults.loginAndPassword != self.loginAndPassword {
 				update()
 			}

@@ -1,4 +1,4 @@
- //
+//
 //  ItemTableViewDataSource.swift
 //  RSSReader
 //
@@ -48,8 +48,7 @@ class ItemTableViewDataSource: NSObject {
 	lazy var containerViewPredicate: NSPredicate = {
 		if self.showUnreadOnly {
 			return NSPredicate(format: "SUBQUERY(\(#keyPath(Item.categoryItems.category)), $x, $x.\(#keyPath(Folder.streamID)) ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
-		}
-		else {
+		} else {
 			return NSPredicate(value: true)
 		}
 	}()
@@ -199,8 +198,7 @@ extension ItemTableViewDataSource: UITableViewDataSource {
 			if let loadDate = dateForDisplay {
 				let loadAgo = loadAgoLongDateComponentsFormatter.string(from: loadDate, to: nowDate)
 				return String.localizedStringWithFormat(NSLocalizedString("%@ ago", comment: ""), loadAgo!)
-			}
-			else {
+			} else {
 				return NSLocalizedString("Just now", comment: "")
 			}
 		}()

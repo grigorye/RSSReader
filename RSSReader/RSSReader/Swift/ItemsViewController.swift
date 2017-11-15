@@ -402,4 +402,3 @@ extension ItemsViewController {
 		tableView.snapHeaderToTop(animated: true)
 	}
 }
-

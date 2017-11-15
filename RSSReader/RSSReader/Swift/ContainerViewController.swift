@@ -24,8 +24,7 @@ class ContainerViewController: UITableViewController {
 	func bindItemsCount() -> Handler {
 		let binding = self.observe(\.predicateForItems, options: [.initial, .new]) { (_, _) in
 			let predicate = self.predicateForItems
-			let itemsFetchedObjectCountBinding = FetchedObjectCountBinding<Item>(managedObjectContext: mainQueueManagedObjectContext, predicate: predicate) {
-				count in
+			let itemsFetchedObjectCountBinding = FetchedObjectCountBinding<Item>(managedObjectContext: mainQueueManagedObjectContext, predicate: predicate) { count in
 				self.itemsCount = count
 			}
 			self.currentItemsFetchedObjectCountBinding = itemsFetchedObjectCountBinding

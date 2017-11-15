@@ -84,4 +84,3 @@ class ItemPageViewController : UIPageViewController {
 		super.viewDidDisappear(animated)
 	}
 }
-

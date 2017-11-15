@@ -89,7 +89,7 @@ class HistoryViewController: UITableViewController {
 				$0.items = self.fetchedResultsController.fetchedObjects!
 			}
 			let initialViewController = itemPageViewControllerDataSource.viewControllerForItem(self.selectedItem)
-			if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
+			if floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1 {
 				pageViewController.edgesForExtendedLayout = UIRectEdge()
 			}
 			pageViewController.setViewControllers([initialViewController], direction: .forward, animated: false, completion: nil)

@@ -279,4 +279,3 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 		super.init(coder: aDecoder)
 	}
 }
-
