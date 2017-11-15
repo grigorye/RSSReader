@@ -627,7 +627,7 @@
 				C40C6BF81A73017B00FAFA17 /* Integrate Appsee */,
 				C424B8E81C6FC557008AD647 /* Embed Frameworks */,
 				C4D436771D8777A3008C6386 /* Embed PlugIns */,
-				C4EDE1F11FBC1DBB00BB7F55 /* Embed Sources into Bundle */,
+				C4EDE1F11FBC1DBB00BB7F55 /* Embed Sources */,
 			);
 			buildRules = (
 			);
@@ -831,14 +831,14 @@
 			shellPath = "/bin/sh -e";
 			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"/RSSReader\n";
 		};
-		C4EDE1F11FBC1DBB00BB7F55 /* Embed Sources into Bundle */ = {
+		C4EDE1F11FBC1DBB00BB7F55 /* Embed Sources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Sources into Bundle";
+			name = "Embed Sources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
