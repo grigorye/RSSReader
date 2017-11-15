@@ -30,7 +30,7 @@
 		1756AF9DDD89C8A8F7D3401BC7AB3CB4 /* fishhook.h in Headers */ = {isa = PBXBuildFile; fileRef = A157EE0329D427884CC089004F9D4A4D /* fishhook.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		18EDE4E43A42DC664E0EFDCD37E2DA7A /* FBAllocationTrackerFunctors.h in Headers */ = {isa = PBXBuildFile; fileRef = C2C50F2F2FD01EF0856B2B350898BF04 /* FBAllocationTrackerFunctors.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		192EB596D498D2F568ABC5682940B8EF /* FBObjectiveCGraphElement.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2DD7BBD2F86A640926ED2E281062E268 /* FBObjectiveCGraphElement.mm */; };
-		196EF7C2DFAE4AB6CC3E193734D1AA07 /* PromiseKit-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F7DB107A1F94FA178A6C93A4D285C59 /* PromiseKit-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		196EF7C2DFAE4AB6CC3E193734D1AA07 /* PromiseKit-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 05B2E1C2A894CC01EBB8AD3B355ED2A5 /* PromiseKit-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A36C1BFE3FE766D9FEAB36CF7336124 /* NibResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89765A43C07B28998D278B53A220E3FB /* NibResource.swift */; };
 		1C6313BCC2B92685A0F75EC25ACBA2BB /* PhysicsPanHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC76D2831C5D0FA8694DB9139856A631 /* PhysicsPanHandler.swift */; };
 		1D94BD0B559E5105BAF2CCF9FB0F358E /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86404DED4DA4B31BA4B1D68C302790CF /* CardView.xib */; };
@@ -85,7 +85,7 @@
 		52C8F03649597F73630072347A1AB0C9 /* UIFont+FontResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C6B01EF5C8A3212F789900CF4C41FD /* UIFont+FontResource.swift */; };
 		52E536A1B35AF8AEF2D037DF0AB02E3E /* FBMemoryProfilerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 29531A8B3637CCA809740CB0F0A9E9BB /* FBMemoryProfilerViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		53C16E35F8DC230AB14A02B0E1EDEC78 /* FBMemoryProfilerFloatingButtonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F60C66588D5CFAD33344CD5218CD9BF /* FBMemoryProfilerFloatingButtonController.m */; };
-		55BD908513B57226AC9DFF8F6BC3DBCE /* PromiseKit-macOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB148BB5A2E2FA2F2CED503999CE041 /* PromiseKit-macOS-dummy.m */; };
+		55BD908513B57226AC9DFF8F6BC3DBCE /* PromiseKit-macOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F0552137EDB706480917AF631813D04 /* PromiseKit-macOS-dummy.m */; };
 		566AB77CCEFD35662D2FA8F24011EDC7 /* FBAssociationManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = D1AA1F09C297EF55F92311AAE4BBF4F2 /* FBAssociationManager.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		57A504BF96C44DF0728921C5CA607618 /* FBMemoryProfilerDeviceUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = BA66111FA15CA3967486EA0BFFC1ED2D /* FBMemoryProfilerDeviceUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		58CFD866678DBB78F432424657071306 /* TopBottomAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48DCCAC74DADE140625F46E426B37D7 /* TopBottomAnimation.swift */; };
@@ -94,7 +94,7 @@
 		5DD7D8C8E69E6FFB14860B2ADFD717F3 /* StoryboardResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90C1F0BA0E1803FA6853A3BF07CB9F2 /* StoryboardResource.swift */; };
 		5EC632BC315AF7A89349709FF3584A49 /* PromiseKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A103B78353A4EABA97962C1B58DD6A7B /* PromiseKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5EFE6111B7A63CCDA906E85D6B8FAAF2 /* join.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11979B2F6A9796B20105A44CCD4E45BB /* join.swift */; };
-		5F2D4316726E1EBF30435B6D47C667BE /* SwiftMessages.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5BDC985E7051AB3BBB33F209D9991017 /* SwiftMessages.bundle */; };
+		5F2D4316726E1EBF30435B6D47C667BE /* SwiftMessages.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5181AE8CE1562F2042A91D633F999235 /* SwiftMessages.bundle */; };
 		60B817411FBB53828A8EC33D2423CFDE /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F421BB0FAC90758510F47A3E5FC7795 /* Error.swift */; };
 		62D7FEE019897A10D994C6440F89B3B2 /* hang.m in Sources */ = {isa = PBXBuildFile; fileRef = A5838E63C05E79AB7189CC9B9AC6A34A /* hang.m */; };
 		664E56F3717530C7B0DED048A59CBA49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1568F1A76C09CB7B6F5A9984C0E255 /* Foundation.framework */; };
@@ -155,7 +155,7 @@
 		A51926F018A23CCE29A513A640BA93D1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED8694E791000E18EB8284D9836B3298 /* Images.xcassets */; };
 		A55108E9EE21C3E10081739995B0B69F /* UINib+NibResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197811E75692C12B7784F3EFFB1400D5 /* UINib+NibResource.swift */; };
 		A813DDA2C51453649EA5B9808ADC9713 /* CenterAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F0DF2927D862A31BFC56C3E04B1774 /* CenterAnimation.swift */; };
-		A87656545578FE7C63C0331D29449A75 /* PromiseKit-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1002365B84E0A73BF111B96B82401E /* PromiseKit-iOS-dummy.m */; };
+		A87656545578FE7C63C0331D29449A75 /* PromiseKit-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BDDB7355BB62CBB8A1DE5CA5AFBA778E /* PromiseKit-iOS-dummy.m */; };
 		A90B4AC2734D49D96358C208028E40A0 /* FBStructEncodingParser.mm in Sources */ = {isa = PBXBuildFile; fileRef = C53F7603238922F722237B37CBF6E66F /* FBStructEncodingParser.mm */; };
 		A9AA2EF298DA83A2478986C4088DE4AC /* FBMemoryProfilerContainerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EA52DFAEE1BC683B642C1E47660FBD1F /* FBMemoryProfilerContainerViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AA3B67006DB069E77DB391844DB76B79 /* FBMemoryProfilerTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = B8C348371E85354D634C87C675DD25FE /* FBMemoryProfilerTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -167,7 +167,7 @@
 		B046E109CDE52EA047AAFB2C5BA548D5 /* Promise+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA9B695A786DAAEC14DA0806369CB93 /* Promise+Properties.swift */; };
 		B1290FD0F4B7A74269DC4B914ED82745 /* after.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869502F9D53C2DE1CE40E8B9C57574C8 /* after.swift */; };
 		B2283FAD9148793A06838A3BCD0C6A94 /* FBStandardGraphEdgeFilters.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7D9097DD36B339BFE483E97DC37DD44A /* FBStandardGraphEdgeFilters.mm */; };
-		B278A7002389B3C2C009AC233CE82B78 /* PromiseKit-macOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8AD0E57AEAFF7F1690EFF75337726A15 /* PromiseKit-macOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B278A7002389B3C2C009AC233CE82B78 /* PromiseKit-macOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F580C6C6736ECE7FF934652FA09CC0A0 /* PromiseKit-macOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B2C7EEF62FCD8B899F2ACAE4CC894E3E /* FBMemoryProfiler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 85561316C500445E8A182E08CCEF0AC7 /* FBMemoryProfiler.mm */; };
 		B3EBB56EF2832830C66D481C745E6883 /* FBAllocationTrackerNSZombieSupport.mm in Sources */ = {isa = PBXBuildFile; fileRef = A9D2A356F658109AB647DA92CFD81CDD /* FBAllocationTrackerNSZombieSupport.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B469EA3CD0855076762673D1BACC3E5F /* ColorResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E0F3191E309FF6B6B1230F960F1388 /* ColorResource.swift */; };
@@ -331,13 +331,13 @@
 		019CE2526886504B4A16B319C50454C4 /* FBMemoryProfilerMathUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBMemoryProfilerMathUtils.m; path = FBMemoryProfiler/Utils/FBMemoryProfilerMathUtils.m; sourceTree = "<group>"; };
 		01ECE9F96BA0347D75021E1F31E19FC1 /* FBBlockStrongLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBBlockStrongLayout.h; path = FBRetainCycleDetector/Layout/Blocks/FBBlockStrongLayout.h; sourceTree = "<group>"; };
 		028C8FBFBEAE987A17F769451589CC52 /* Bundle+FileResource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Bundle+FileResource.swift"; path = "Library/Foundation/Bundle+FileResource.swift"; sourceTree = "<group>"; };
-		039B624C669DB74225148429C0E61F5B /* FBRetainCycleDetector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FBRetainCycleDetector.framework; path = FBRetainCycleDetector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		05B2E1C2A894CC01EBB8AD3B355ED2A5 /* PromiseKit-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PromiseKit-iOS-umbrella.h"; sourceTree = "<group>"; };
 		05B88F78F3AA1D0E9E4F280ACBE066ED /* NSObject+FBAllocationTracker.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = "NSObject+FBAllocationTracker.mm"; path = "FBAllocationTracker/NSObject+FBAllocationTracker.mm"; sourceTree = "<group>"; };
 		06ACF10310135C3015466E17C3B18AB2 /* FBObjectInStructReference.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBObjectInStructReference.m; path = FBRetainCycleDetector/Layout/Classes/Reference/FBObjectInStructReference.m; sourceTree = "<group>"; };
-		06BFEEC8970299E9FF3CEEAF7F9C6339 /* PromiseKit-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "PromiseKit-iOS.modulemap"; sourceTree = "<group>"; };
 		09146B00195A174363DC802E90F35CFE /* FBMemoryProfilerOptions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBMemoryProfilerOptions.h; path = FBMemoryProfiler/Options/FBMemoryProfilerOptions.h; sourceTree = "<group>"; };
 		09564C6655289EEED06A06EE4C30F9D0 /* FBMemoryProfilerFloatingButtonController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBMemoryProfilerFloatingButtonController.h; path = FBMemoryProfiler/Controllers/FBMemoryProfilerFloatingButtonController.h; sourceTree = "<group>"; };
 		0AE4ADB6B84EA74397D85369F1A2EDFF /* after.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = after.m; path = Sources/after.m; sourceTree = "<group>"; };
+		0AFF510EDDAD58A054230C616E17DD75 /* PromiseKit-macOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "PromiseKit-macOS.xcconfig"; path = "../PromiseKit-macOS/PromiseKit-macOS.xcconfig"; sourceTree = "<group>"; };
 		0C5FD5C9CF16BAE6467CE6B50750281F /* SwiftMessages.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftMessages.xcconfig; sourceTree = "<group>"; };
 		0D85A056D5832ECDBEB553D80330AF0A /* MessageView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = MessageView.xib; path = SwiftMessages/Resources/MessageView.xib; sourceTree = "<group>"; };
 		0EE8B2AD1EF12CCF99186418F5DBFAF8 /* FBAllocationTrackerSummary.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBAllocationTrackerSummary.m; path = FBAllocationTracker/FBAllocationTrackerSummary.m; sourceTree = "<group>"; };
@@ -348,19 +348,20 @@
 		11979B2F6A9796B20105A44CCD4E45BB /* join.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = join.swift; path = Sources/join.swift; sourceTree = "<group>"; };
 		11D926CDB6163988BC24A9E04C58A990 /* FBAssociationManager+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBAssociationManager+Internal.h"; path = "FBRetainCycleDetector/Associations/Internal/FBAssociationManager+Internal.h"; sourceTree = "<group>"; };
 		1325620C62F36E8E28EEEB30F1FDACF4 /* FBObjectiveCObject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBObjectiveCObject.h; path = FBRetainCycleDetector/Graph/FBObjectiveCObject.h; sourceTree = "<group>"; };
-		1418C96C81096024CF0AE5E4DEFE2944 /* SwiftMessages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftMessages.framework; path = SwiftMessages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		14D02E0AAE62F46B4DE6D8DF45F9C968 /* SwiftMessages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftMessages.framework; path = SwiftMessages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		18A953B2CEDA6ECF9120CE42007D1B27 /* FBMemoryProfilerGenerationsSectionHeaderView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBMemoryProfilerGenerationsSectionHeaderView.h; path = FBMemoryProfiler/Views/FBMemoryProfilerGenerationsSectionHeaderView.h; sourceTree = "<group>"; };
 		18D3FE2CE05D9C53AB007A847B1C6A5F /* FBAllocationTrackerGeneration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBAllocationTrackerGeneration.h; path = FBAllocationTracker/Generations/FBAllocationTrackerGeneration.h; sourceTree = "<group>"; };
 		197811E75692C12B7784F3EFFB1400D5 /* UINib+NibResource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UINib+NibResource.swift"; path = "Library/UIKit/UINib+NibResource.swift"; sourceTree = "<group>"; };
 		198D94FE8A7048BE603C9F80968D073E /* FBMemoryProfilerTextField.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBMemoryProfilerTextField.m; path = FBMemoryProfiler/UI/FBMemoryProfilerTextField.m; sourceTree = "<group>"; };
-		19E29366938C606795AB4DE0D44DD225 /* CLSReport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSReport.h; path = iOS/Crashlytics.framework/Headers/CLSReport.h; sourceTree = "<group>"; };
 		1AAF661E06C82B20F86CD67B71871150 /* FBAllocationTrackerManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBAllocationTrackerManager.h; path = FBAllocationTracker/FBAllocationTrackerManager.h; sourceTree = "<group>"; };
 		1AD41C1D63F7E1BA3F4B041D60D286A8 /* Pods-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-iOS-dummy.m"; sourceTree = "<group>"; };
+		1B1DF26C4AF7D926F3BFF7E0CE748599 /* FBAllocationTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FBAllocationTracker.framework; path = FBAllocationTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B483738C819800DD17F2F2CA078C19C /* FBSingleRetainCycleViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSingleRetainCycleViewController.h; path = FBMemoryProfiler/RetainCycles/FBSingleRetainCycleViewController.h; sourceTree = "<group>"; };
+		1CB91396C966D6F35CEBCEE3D9C32283 /* CLSAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSAttributes.h; path = iOS/Crashlytics.framework/Headers/CLSAttributes.h; sourceTree = "<group>"; };
 		1CCDE11E7F3A508F8FAB8E3CB54E0BE5 /* Fabric.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Fabric.h; path = iOS/Fabric.framework/Headers/Fabric.h; sourceTree = "<group>"; };
 		1D901EE8E5A0D041064926226AB5DF92 /* FBAllocationTracker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBAllocationTracker.h; path = FBAllocationTracker/FBAllocationTracker.h; sourceTree = "<group>"; };
+		1EE245C025E2632CA5ABFF63E40EFD6A /* Pods_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_iOS.framework; path = "Pods-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F7C413EAF9018742F0881F573BC4741 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1FE84A2CCB3913E71468E6B6CD7136D9 /* CLSStackFrame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSStackFrame.h; path = iOS/Crashlytics.framework/Headers/CLSStackFrame.h; sourceTree = "<group>"; };
 		20A2AEB139D959A397ED0F71CA508263 /* Core+Migration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Core+Migration.swift"; path = "Library/Core/Core+Migration.swift"; sourceTree = "<group>"; };
 		217C6ABA3E4DA935D76D8B8900B3D9D4 /* R.swift.Library-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "R.swift.Library-umbrella.h"; sourceTree = "<group>"; };
 		236F26A5C80B45F50A91BD8E15F5A09E /* Pods-macOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-macOS-dummy.m"; sourceTree = "<group>"; };
@@ -368,13 +369,11 @@
 		23D2BAB70AD17782DBDE8589B95FF888 /* FBClassStrongLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBClassStrongLayout.h; path = FBRetainCycleDetector/Layout/Classes/FBClassStrongLayout.h; sourceTree = "<group>"; };
 		25006C74D26B1F2A8785803540D6B6A6 /* UIStoryboard+StoryboardViewControllerResource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIStoryboard+StoryboardViewControllerResource.swift"; path = "Library/UIKit/UIStoryboard+StoryboardViewControllerResource.swift"; sourceTree = "<group>"; };
 		251A694809B92A927268BB7FC0C89DDE /* FBMemoryProfilerWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBMemoryProfilerWindow.h; path = FBMemoryProfiler/Window/FBMemoryProfilerWindow.h; sourceTree = "<group>"; };
-		25295DE941924AC478765A2A90F78A40 /* ANSCompatibility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ANSCompatibility.h; path = OSX/Crashlytics.framework/Versions/A/Headers/ANSCompatibility.h; sourceTree = "<group>"; };
 		28815A699F2F555FF88D673F72268C9F /* FBRetainCycleUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBRetainCycleUtils.h; path = FBRetainCycleDetector/FBRetainCycleUtils.h; sourceTree = "<group>"; };
 		292E273A1EB55B2B7B6D59F0802AD4BB /* StoryboardViewControllerResource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StoryboardViewControllerResource.swift; path = Library/Core/StoryboardViewControllerResource.swift; sourceTree = "<group>"; };
 		29531A8B3637CCA809740CB0F0A9E9BB /* FBMemoryProfilerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBMemoryProfilerViewController.h; path = FBMemoryProfiler/Controllers/FBMemoryProfilerViewController.h; sourceTree = "<group>"; };
 		296308EE3E9CF75167676D00072F980C /* FBObjectiveCGraphElement+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBObjectiveCGraphElement+Internal.h"; path = "FBRetainCycleDetector/Graph/Internal/FBObjectiveCGraphElement+Internal.h"; sourceTree = "<group>"; };
 		2AC3DDB13FF6A319860C636848EE0A2F /* Data+FileResource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Data+FileResource.swift"; path = "Library/Foundation/Data+FileResource.swift"; sourceTree = "<group>"; };
-		2C4C4323C8DBDDAF212437031D1C352B /* Pods_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_iOS.framework; path = "Pods-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C597977AA40E09B3082814D46F12AD2 /* FBMemoryProfilerOptions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBMemoryProfilerOptions.m; path = FBMemoryProfiler/Options/FBMemoryProfilerOptions.m; sourceTree = "<group>"; };
 		2C84D190C9F08B8D2B2AB0CF3A28B319 /* FBMemoryProfiler-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FBMemoryProfiler-umbrella.h"; sourceTree = "<group>"; };
 		2D6E988A3D4B79450A043E535D212D17 /* FBMemoryProfilerWindowTouchesHandling.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBMemoryProfilerWindowTouchesHandling.h; path = FBMemoryProfiler/Window/FBMemoryProfilerWindowTouchesHandling.h; sourceTree = "<group>"; };
@@ -383,16 +382,13 @@
 		2E9E7F7D06B73996BF71B7774F2D0CE5 /* FBAllocationTracker-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FBAllocationTracker-prefix.pch"; sourceTree = "<group>"; };
 		2F2DB7C719DDE381BC3C3ABE0DD15533 /* SwiftMessages.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SwiftMessages.modulemap; sourceTree = "<group>"; };
 		2F523520F80D3C36E35F0E4AB5649456 /* FBMemoryProfiler.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = FBMemoryProfiler.modulemap; sourceTree = "<group>"; };
-		3030C2FF10945D44AAAB54F22069C4A3 /* PromiseKit-macOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; name = "PromiseKit-macOS.modulemap"; path = "../PromiseKit-macOS/PromiseKit-macOS.modulemap"; sourceTree = "<group>"; };
 		30A0694C5858868D54A4AF9FD61BB9CB /* wrap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = wrap.swift; path = Sources/wrap.swift; sourceTree = "<group>"; };
-		311C6A1BCE5F70C77CFB34EAE978580B /* ANSCompatibility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ANSCompatibility.h; path = iOS/Crashlytics.framework/Headers/ANSCompatibility.h; sourceTree = "<group>"; };
 		31A999893300411A26645BB71695B7FA /* Identifiable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Identifiable.swift; path = SwiftMessages/Identifiable.swift; sourceTree = "<group>"; };
+		31CC241205B2C7EEB1382BD6E6E35A26 /* PromiseKit-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "PromiseKit-iOS.modulemap"; sourceTree = "<group>"; };
 		32BB507B17FA5438656AE5EA0AD01BEE /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = iOS/Fabric.framework; sourceTree = "<group>"; };
-		34FA428D9417BDFEC96234EDFB2D164E /* PromiseKit-iOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "PromiseKit-iOS.xcconfig"; sourceTree = "<group>"; };
-		36E5FE4FD61E5E18D735B19A64CB5EE1 /* FBMemoryProfiler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FBMemoryProfiler.framework; path = FBMemoryProfiler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		36E273AD19AEA59F2A8FD5B399E18B03 /* Pods_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_macOS.framework; path = "Pods-macOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37BC517A78A49E67245F76E6DF356334 /* UIStoryboard+StoryboardResource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIStoryboard+StoryboardResource.swift"; path = "Library/UIKit/UIStoryboard+StoryboardResource.swift"; sourceTree = "<group>"; };
 		37C72AD5FA9862BDAF6D011416D139C9 /* FBBlockStrongLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBBlockStrongLayout.m; path = FBRetainCycleDetector/Layout/Blocks/FBBlockStrongLayout.m; sourceTree = "<group>"; };
-		3812DD43354757FF0DCE2B43B3728202 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../PromiseKit-macOS/Info.plist"; sourceTree = "<group>"; };
 		39103EE7F037C53356AD6D34233D2111 /* FBMemoryProfilerDataSource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBMemoryProfilerDataSource.h; path = FBMemoryProfiler/Controllers/FBMemoryProfilerDataSource.h; sourceTree = "<group>"; };
 		391FD25635986BC8690FB3E57B229F70 /* FBRetainCycleAnalysisCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBRetainCycleAnalysisCache.m; path = FBMemoryProfiler/RetainCycles/FBRetainCycleAnalysisCache.m; sourceTree = "<group>"; };
 		39BE854044A76D56D1450FCF802CAA2A /* FBObjectiveCNSCFTimer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBObjectiveCNSCFTimer.h; path = FBRetainCycleDetector/Graph/Specialization/FBObjectiveCNSCFTimer.h; sourceTree = "<group>"; };
@@ -400,15 +396,14 @@
 		3C8B34C122583598B2A0A6F1E22B0584 /* Foundation+Migration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Foundation+Migration.swift"; path = "Library/Foundation/Foundation+Migration.swift"; sourceTree = "<group>"; };
 		3CE94ABBF359EB9E9FEB4AA158FA8E17 /* FBMemoryProfilerGenerationsSectionHeaderView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBMemoryProfilerGenerationsSectionHeaderView.m; path = FBMemoryProfiler/Views/FBMemoryProfilerGenerationsSectionHeaderView.m; sourceTree = "<group>"; };
 		3ECB0ABB515908A4649150EA27D6687D /* FBClassStrongLayoutHelpers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBClassStrongLayoutHelpers.h; path = FBRetainCycleDetector/Layout/Classes/FBClassStrongLayoutHelpers.h; sourceTree = "<group>"; };
+		401257F92B13970087E0698D57B6F541 /* ANSCompatibility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ANSCompatibility.h; path = iOS/Crashlytics.framework/Headers/ANSCompatibility.h; sourceTree = "<group>"; };
 		40276339E776877EE0E64CC1C34CE12A /* FBMemoryProfilerPluggable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBMemoryProfilerPluggable.h; path = FBMemoryProfiler/Options/FBMemoryProfilerPluggable.h; sourceTree = "<group>"; };
-		4237097E187B74CA72E3C9C323DE3687 /* FBAllocationTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FBAllocationTracker.framework; path = FBAllocationTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43CBF2D16E6213C730509358DDDFCE1E /* ANSCompatibility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ANSCompatibility.h; path = OSX/Crashlytics.framework/Versions/A/Headers/ANSCompatibility.h; sourceTree = "<group>"; };
 		467BD3FE24FDE09DDB13B9B70C9F0CD1 /* Pods-macOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-macOS-resources.sh"; sourceTree = "<group>"; };
 		475C248FA56FF7E9E487EB2BD42AE5CE /* FBAssociationManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBAssociationManager.h; path = FBRetainCycleDetector/Associations/FBAssociationManager.h; sourceTree = "<group>"; };
 		4890D28A6747DEA94A505B7114DA5F73 /* UIViewController+NibResource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+NibResource.swift"; path = "Library/UIKit/UIViewController+NibResource.swift"; sourceTree = "<group>"; };
-		48DEB8E24F684715471FB243AD18FE23 /* PromiseKit-macOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "PromiseKit-macOS.xcconfig"; path = "../PromiseKit-macOS/PromiseKit-macOS.xcconfig"; sourceTree = "<group>"; };
 		492A04970D75B056DE8EFEABBBA0D096 /* FBRetainCycleDetector-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FBRetainCycleDetector-dummy.m"; sourceTree = "<group>"; };
 		49CE08EE771506CB9E473FB57F652FA9 /* FBAllocationTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FBAllocationTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		49F2F9711C4C233CBF6305772C8F3F30 /* CLSLogging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSLogging.h; path = iOS/Crashlytics.framework/Headers/CLSLogging.h; sourceTree = "<group>"; };
 		4B405E8CAC275A47CBB7BC526D8048F0 /* Pods-macOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-macOS-frameworks.sh"; sourceTree = "<group>"; };
 		4B9258D1A62C763472C4DBD496F54B18 /* FBRetainCycleDetector.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = FBRetainCycleDetector.modulemap; sourceTree = "<group>"; };
 		4D7CC6428F45A7225034741CA82BFD10 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = OSX/Fabric.framework; sourceTree = "<group>"; };
@@ -416,66 +411,64 @@
 		4F3202A8CBFCBACBE29976799F4DB839 /* FBRetainCycleDetector-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FBRetainCycleDetector-prefix.pch"; sourceTree = "<group>"; };
 		50841373B1AEF3CA277F69AC7A39CE75 /* FABAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FABAttributes.h; path = OSX/Fabric.framework/Versions/A/Headers/FABAttributes.h; sourceTree = "<group>"; };
 		5129D9489BC7566C545EE9A898293C57 /* FBRetainCycleDetector.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = FBRetainCycleDetector.mm; path = FBRetainCycleDetector/Detector/FBRetainCycleDetector.mm; sourceTree = "<group>"; };
+		5181AE8CE1562F2042A91D633F999235 /* SwiftMessages.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = SwiftMessages.bundle; path = SwiftMessages.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		518651E4AF733C46CAB53FEDEE106FF4 /* R.swift.Library.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = R.swift.Library.modulemap; sourceTree = "<group>"; };
+		51A8D3E3078F07F1AAEA96CC09123509 /* CLSLogging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSLogging.h; path = OSX/Crashlytics.framework/Versions/A/Headers/CLSLogging.h; sourceTree = "<group>"; };
 		51E0F3191E309FF6B6B1230F960F1388 /* ColorResource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorResource.swift; path = Library/Core/ColorResource.swift; sourceTree = "<group>"; };
+		52D38C6D39391392C7EA06DBDAC26FE8 /* CLSLogging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSLogging.h; path = iOS/Crashlytics.framework/Headers/CLSLogging.h; sourceTree = "<group>"; };
 		538036F9FB32171FB55D4F95B2F0E57E /* FBMemoryProfiler.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBMemoryProfiler.xcconfig; sourceTree = "<group>"; };
 		542F52C63E906F2D642A4117FB8A5452 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5530D6F3CE13114C7285480AD4A537D7 /* when.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = when.swift; path = Sources/when.swift; sourceTree = "<group>"; };
 		578C754B1D6CCD9B8F2EA195BF0D7416 /* Array+Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Array+Utils.swift"; path = "SwiftMessages/Array+Utils.swift"; sourceTree = "<group>"; };
+		58E38D3F10C52069DCAA938BA09F7A55 /* CLSReport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSReport.h; path = iOS/Crashlytics.framework/Headers/CLSReport.h; sourceTree = "<group>"; };
 		5A5373019296741F820B465AAB757D38 /* FBMemoryProfilerMovableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBMemoryProfilerMovableViewController.h; path = FBMemoryProfiler/Window/FBMemoryProfilerMovableViewController.h; sourceTree = "<group>"; };
 		5B7402D6EE41484B945B488062F7194E /* Promise+AnyPromise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Promise+AnyPromise.swift"; path = "Sources/Promise+AnyPromise.swift"; sourceTree = "<group>"; };
-		5BB148BB5A2E2FA2F2CED503999CE041 /* PromiseKit-macOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "PromiseKit-macOS-dummy.m"; path = "../PromiseKit-macOS/PromiseKit-macOS-dummy.m"; sourceTree = "<group>"; };
-		5BDC985E7051AB3BBB33F209D9991017 /* SwiftMessages.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = SwiftMessages.bundle; path = SwiftMessages.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C17F203A2C562600683F3F11B8A78CA /* Struct.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Struct.h; path = FBRetainCycleDetector/Layout/Classes/Parser/Struct.h; sourceTree = "<group>"; };
 		5C461F5A902842206D15B820B641CA1A /* FBStructEncodingParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBStructEncodingParser.h; path = FBRetainCycleDetector/Layout/Classes/Parser/FBStructEncodingParser.h; sourceTree = "<group>"; };
 		5E0BEBB7A6EF36E2C8B4FA4478D342A6 /* Pods-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-macOS.release.xcconfig"; sourceTree = "<group>"; };
 		5F42199EA71E354B6B1C29BCB6DFE9DC /* FBMemoryProfiler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBMemoryProfiler.h; path = FBMemoryProfiler/FBMemoryProfiler.h; sourceTree = "<group>"; };
 		5F5E506B68E70D0CD3C6A40A8F01EAE7 /* FBObjectInStructReference.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBObjectInStructReference.h; path = FBRetainCycleDetector/Layout/Classes/Reference/FBObjectInStructReference.h; sourceTree = "<group>"; };
+		6077260C2CB9A85CC0F543B749A89E57 /* PromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PromiseKit.framework; path = "PromiseKit-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		609CE62DD7EB651EDD1926113CBCADD7 /* Weak.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Weak.swift; path = SwiftMessages/Weak.swift; sourceTree = "<group>"; };
 		615B65EFC0FE1E7346EDD180F0AE142B /* ImageResource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageResource.swift; path = Library/Core/ImageResource.swift; sourceTree = "<group>"; };
 		6249E318802D03C851BE4FAD9D0FAE84 /* Zalgo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Zalgo.swift; path = Sources/Zalgo.swift; sourceTree = "<group>"; };
 		62F0478B024D9DD3475C80399C7636F8 /* FBAllocationTrackerNSZombieSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBAllocationTrackerNSZombieSupport.h; path = FBAllocationTracker/Generations/FBAllocationTrackerNSZombieSupport.h; sourceTree = "<group>"; };
 		62FFF82007AA370178E21A6A56BFCF34 /* StoryboardSegueIdentifierProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StoryboardSegueIdentifierProtocol.swift; path = Library/Core/StoryboardSegueIdentifierProtocol.swift; sourceTree = "<group>"; };
+		631CA5CA60FE570647C86E1BC3A7F7F2 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = OSX/Crashlytics.framework; sourceTree = "<group>"; };
 		638997001E55D6E272F76F88B7DD442F /* Pods-macOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-macOS-umbrella.h"; sourceTree = "<group>"; };
+		639F244CCFF735277A0806EA2137ABB9 /* PromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PromiseKit.framework; path = "PromiseKit-macOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65576C8918487F1F2CD4122A799C3922 /* fishhook.c */ = {isa = PBXFileReference; includeInIndex = 1; name = fishhook.c; path = fishhook/fishhook.c; sourceTree = "<group>"; };
+		6560CB45D80B4466B7CEADD7DFFAFDE4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../PromiseKit-macOS/Info.plist"; sourceTree = "<group>"; };
 		66F8ED8192FED914A7C2F3E247129800 /* ResourceBundle-SwiftMessages-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-SwiftMessages-Info.plist"; sourceTree = "<group>"; };
 		684888AFEA863B94157A7DF6F35B57B9 /* FBMemoryProfilerDeviceUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBMemoryProfilerDeviceUtils.m; path = FBMemoryProfiler/Utils/FBMemoryProfilerDeviceUtils.m; sourceTree = "<group>"; };
 		69D8CA908A62D7DC15A67E7FAA5C0FAE /* Pods-iOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-iOS-acknowledgements.markdown"; sourceTree = "<group>"; };
-		6A064ACA71A7F9BE98E9D199460D1F17 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = iOS/Crashlytics.framework; sourceTree = "<group>"; };
 		6C194FE8815E3102781B3B59FA0D5739 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6CAAF203CE8AA121DF1B1CFF01B9997E /* ColorResource+UIKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ColorResource+UIKit.swift"; path = "Library/UIKit/ColorResource+UIKit.swift"; sourceTree = "<group>"; };
+		6D21B634DD63414AB82C2A3D2F51B952 /* FBMemoryProfiler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FBMemoryProfiler.framework; path = FBMemoryProfiler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D58983769197593666BA3361C7B5446 /* FBAllocationTracker.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBAllocationTracker.xcconfig; sourceTree = "<group>"; };
 		6DBA2EE0D8CB572D22B5E5DA450782C7 /* Pods-iOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iOS-acknowledgements.plist"; sourceTree = "<group>"; };
-		7022C2791EB47C125AEF4C60F17258DE /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		738C51B00D69C54117163240F88189E5 /* FBAllocationTrackerHelpers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBAllocationTrackerHelpers.h; path = FBAllocationTracker/FBAllocationTrackerHelpers.h; sourceTree = "<group>"; };
 		73CAE5DF3E360FFB69CBCB62A093E90F /* Theme.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Theme.swift; path = SwiftMessages/Theme.swift; sourceTree = "<group>"; };
 		741D14D82CE1B06952E4AA5ED9141E91 /* FBRetainCycleDetector.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBRetainCycleDetector.xcconfig; sourceTree = "<group>"; };
 		7597F7B54B7A35D1A753067B3D82501B /* Presenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Presenter.swift; path = SwiftMessages/Presenter.swift; sourceTree = "<group>"; };
 		77F4870D75FFC5B6C5EC8067B3331B19 /* FBAllocationTrackerDefines.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBAllocationTrackerDefines.h; path = FBAllocationTracker/FBAllocationTrackerDefines.h; sourceTree = "<group>"; };
-		7956C003ABE93276B9FFF7BA4A247E8B /* CLSStackFrame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSStackFrame.h; path = OSX/Crashlytics.framework/Versions/A/Headers/CLSStackFrame.h; sourceTree = "<group>"; };
+		79B90B2B5EC0B39B9C6B588C7B33EBC6 /* Answers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Answers.h; path = iOS/Crashlytics.framework/Headers/Answers.h; sourceTree = "<group>"; };
 		79C6B01EF5C8A3212F789900CF4C41FD /* UIFont+FontResource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIFont+FontResource.swift"; path = "Library/UIKit/UIFont+FontResource.swift"; sourceTree = "<group>"; };
 		7A430AAB4060713EFE11E5E5F53E7D7E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		7C3F00F7BD69E149464C867677BF490F /* MarginAdjustable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MarginAdjustable.swift; path = SwiftMessages/MarginAdjustable.swift; sourceTree = "<group>"; };
-		7CAB1C6530EC56D179803F0B6752D8E6 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = OSX/Crashlytics.framework; sourceTree = "<group>"; };
-		7D08B49BB9EB0CE6AFC31D1E8AC1DBAF /* CLSAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSAttributes.h; path = iOS/Crashlytics.framework/Headers/CLSAttributes.h; sourceTree = "<group>"; };
 		7D9097DD36B339BFE483E97DC37DD44A /* FBStandardGraphEdgeFilters.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = FBStandardGraphEdgeFilters.mm; path = FBRetainCycleDetector/Filtering/FBStandardGraphEdgeFilters.mm; sourceTree = "<group>"; };
+		7F0552137EDB706480917AF631813D04 /* PromiseKit-macOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "PromiseKit-macOS-dummy.m"; path = "../PromiseKit-macOS/PromiseKit-macOS-dummy.m"; sourceTree = "<group>"; };
 		7F421BB0FAC90758510F47A3E5FC7795 /* Error.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Error.swift; path = Sources/Error.swift; sourceTree = "<group>"; };
-		7F7DB107A1F94FA178A6C93A4D285C59 /* PromiseKit-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PromiseKit-iOS-umbrella.h"; sourceTree = "<group>"; };
 		80454C88565936CEE7D8CC6EF6B23F81 /* FBObjectiveCGraphElement.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBObjectiveCGraphElement.h; path = FBRetainCycleDetector/Graph/FBObjectiveCGraphElement.h; sourceTree = "<group>"; };
 		80AD03ADA8341BED82688F851CB27AE7 /* Pods-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		836B674C7134ABEFCC9D40B8D8244F8F /* Pods-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		84F8E3FC4995FD0E3598A104FF297DDC /* CLSLogging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSLogging.h; path = OSX/Crashlytics.framework/Versions/A/Headers/CLSLogging.h; sourceTree = "<group>"; };
 		85561316C500445E8A182E08CCEF0AC7 /* FBMemoryProfiler.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = FBMemoryProfiler.mm; path = FBMemoryProfiler/FBMemoryProfiler.mm; sourceTree = "<group>"; };
 		86404DED4DA4B31BA4B1D68C302790CF /* CardView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = CardView.xib; path = SwiftMessages/Resources/CardView.xib; sourceTree = "<group>"; };
 		8679990CE0FA42C62886C0E56DCFCEE2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		869502F9D53C2DE1CE40E8B9C57574C8 /* after.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = after.swift; path = Sources/after.swift; sourceTree = "<group>"; };
 		89765A43C07B28998D278B53A220E3FB /* NibResource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NibResource.swift; path = Library/Core/NibResource.swift; sourceTree = "<group>"; };
 		8AA9B695A786DAAEC14DA0806369CB93 /* Promise+Properties.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Promise+Properties.swift"; path = "Sources/Promise+Properties.swift"; sourceTree = "<group>"; };
-		8AD0E57AEAFF7F1690EFF75337726A15 /* PromiseKit-macOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "PromiseKit-macOS-umbrella.h"; path = "../PromiseKit-macOS/PromiseKit-macOS-umbrella.h"; sourceTree = "<group>"; };
-		8B8B6D6454DC7AA268D0271ECDEDC940 /* PromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PromiseKit.framework; path = "PromiseKit-macOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BA0A0DE728DB9B6CAD33FB8E21F8A40 /* FBRetainCycleDetector-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FBRetainCycleDetector-umbrella.h"; sourceTree = "<group>"; };
-		8E33563B934E1A4EFAB50BB3987484FA /* Rswift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Rswift.framework; path = R.swift.Library.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8E6D0A119B2ECCE6F67E912CD2AD8A5C /* PromiseKit-macOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "PromiseKit-macOS-prefix.pch"; path = "../PromiseKit-macOS/PromiseKit-macOS-prefix.pch"; sourceTree = "<group>"; };
 		8E79D71F201DD43D5376CE38F93CC504 /* FBMemoryProfilerWindow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBMemoryProfilerWindow.m; path = FBMemoryProfiler/Window/FBMemoryProfilerWindow.m; sourceTree = "<group>"; };
 		8F60C66588D5CFAD33344CD5218CD9BF /* FBMemoryProfilerFloatingButtonController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBMemoryProfilerFloatingButtonController.m; path = FBMemoryProfiler/Controllers/FBMemoryProfilerFloatingButtonController.m; sourceTree = "<group>"; };
 		8FF74ACAC2786A2D0FBCBF42E6999E9F /* FBObjectiveCNSCFTimer.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = FBObjectiveCNSCFTimer.mm; path = FBRetainCycleDetector/Graph/Specialization/FBObjectiveCNSCFTimer.mm; sourceTree = "<group>"; };
@@ -484,7 +477,6 @@
 		91641E7CF3526247F7EBC427C5FBD2C0 /* FBMemoryProfilerView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBMemoryProfilerView.h; path = FBMemoryProfiler/Views/FBMemoryProfilerView.h; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		93B3B7D633675F8CFCE1D2EA862823A1 /* FBClassStrongLayout.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = FBClassStrongLayout.mm; path = FBRetainCycleDetector/Layout/Classes/FBClassStrongLayout.mm; sourceTree = "<group>"; };
-		97A079066A6ED862B2814AA23E27D949 /* Answers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Answers.h; path = iOS/Crashlytics.framework/Headers/Answers.h; sourceTree = "<group>"; };
 		97C81207A46A7FC180F8A853EBC34C75 /* Type.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Type.h; path = FBRetainCycleDetector/Layout/Classes/Parser/Type.h; sourceTree = "<group>"; };
 		980A6830CB6DC5D145FDDAE7F166B064 /* SwiftMessages.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftMessages.swift; path = SwiftMessages/SwiftMessages.swift; sourceTree = "<group>"; };
 		9814616D51AC817F692D277299D39DDE /* BackgroundViewable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BackgroundViewable.swift; path = SwiftMessages/BackgroundViewable.swift; sourceTree = "<group>"; };
@@ -496,31 +488,37 @@
 		9D6A06F8EDFF45F6DA9628BA5997CDC6 /* FBRetainCyclePresenter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBRetainCyclePresenter.h; path = FBMemoryProfiler/RetainCycles/FBRetainCyclePresenter.h; sourceTree = "<group>"; };
 		9D7483907D2BEBE778B2CEC81EEBA755 /* FBMemoryProfilerSectionHeaderDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBMemoryProfilerSectionHeaderDelegate.h; path = FBMemoryProfiler/Controllers/FBMemoryProfilerSectionHeaderDelegate.h; sourceTree = "<group>"; };
 		9EBAD5B7046B12975312740349AB163C /* TabView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = TabView.xib; path = SwiftMessages/Resources/TabView.xib; sourceTree = "<group>"; };
-		9F1002365B84E0A73BF111B96B82401E /* PromiseKit-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PromiseKit-iOS-dummy.m"; sourceTree = "<group>"; };
+		9FF98BDA338C896731ACE43936D4FDBD /* Crashlytics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Crashlytics.h; path = OSX/Crashlytics.framework/Versions/A/Headers/Crashlytics.h; sourceTree = "<group>"; };
 		A103B78353A4EABA97962C1B58DD6A7B /* PromiseKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PromiseKit.h; path = Sources/PromiseKit.h; sourceTree = "<group>"; };
 		A157EE0329D427884CC089004F9D4A4D /* fishhook.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = fishhook.h; path = fishhook/fishhook.h; sourceTree = "<group>"; };
 		A16CE73CA4DD627A83EDFF030C71D400 /* SwiftMessages-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftMessages-umbrella.h"; sourceTree = "<group>"; };
+		A4F958EF0DFAB2CC2BA2C027833A7C34 /* CLSStackFrame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSStackFrame.h; path = iOS/Crashlytics.framework/Headers/CLSStackFrame.h; sourceTree = "<group>"; };
 		A5838E63C05E79AB7189CC9B9AC6A34A /* hang.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = hang.m; path = Sources/hang.m; sourceTree = "<group>"; };
 		A5E44B546B37DD619D93F5B7AFCED982 /* FBBlockInterface.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBBlockInterface.h; path = FBRetainCycleDetector/Layout/Blocks/FBBlockInterface.h; sourceTree = "<group>"; };
 		A67F621F1D1B3435A6F69721A55B0F6A /* FBAllocationTracker.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = FBAllocationTracker.modulemap; sourceTree = "<group>"; };
 		A69D915085C3B2A4C5A5555C68A70C32 /* NibResource+UIKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NibResource+UIKit.swift"; path = "Library/UIKit/NibResource+UIKit.swift"; sourceTree = "<group>"; };
+		A773B472B6AFF5934C38CC6D377C4DD0 /* CLSReport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSReport.h; path = OSX/Crashlytics.framework/Versions/A/Headers/CLSReport.h; sourceTree = "<group>"; };
 		A79B681E560939BDD9383E40D83E9923 /* FBMemoryProfilerView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBMemoryProfilerView.m; path = FBMemoryProfiler/Views/FBMemoryProfilerView.m; sourceTree = "<group>"; };
 		A7C9712541FF6AC3B45E22A8846D7329 /* StoryboardResourceWithInitialController+UIKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "StoryboardResourceWithInitialController+UIKit.swift"; path = "Library/UIKit/StoryboardResourceWithInitialController+UIKit.swift"; sourceTree = "<group>"; };
-		A9368DAB8D85E7441B86A9B12C06FCFA /* Pods_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_macOS.framework; path = "Pods-macOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8CA244E34D5124D8C61F416CD364CA9 /* PromiseKit-macOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "PromiseKit-macOS-prefix.pch"; path = "../PromiseKit-macOS/PromiseKit-macOS-prefix.pch"; sourceTree = "<group>"; };
 		A950F4ED52C284773947243AC3D5391E /* Pods-macOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-macOS-acknowledgements.plist"; sourceTree = "<group>"; };
 		A9D2A356F658109AB647DA92CFD81CDD /* FBAllocationTrackerNSZombieSupport.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = FBAllocationTrackerNSZombieSupport.mm; path = FBAllocationTracker/Generations/FBAllocationTrackerNSZombieSupport.mm; sourceTree = "<group>"; };
 		AA4ADE354519C7652859B60780CA3BD0 /* FBAllocationTrackerGenerationManager.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = FBAllocationTrackerGenerationManager.mm; path = FBAllocationTracker/Generations/FBAllocationTrackerGenerationManager.mm; sourceTree = "<group>"; };
 		AA658EEE2DCF446CEC5B4B6DAB4AB7A1 /* UICollectionView+ReuseIdentifierProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UICollectionView+ReuseIdentifierProtocol.swift"; path = "Library/UIKit/UICollectionView+ReuseIdentifierProtocol.swift"; sourceTree = "<group>"; };
 		AB579D1B405FFD480175AE63C8391ABE /* FBBlockStrongRelationDetector.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBBlockStrongRelationDetector.m; path = FBRetainCycleDetector/Layout/Blocks/FBBlockStrongRelationDetector.m; sourceTree = "<group>"; };
+		AC272F21A407DA9515234B0895B9F051 /* Rswift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Rswift.framework; path = R.swift.Library.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC68E733E3DC05BC18EE258824F82ED8 /* PromiseKit-macOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; name = "PromiseKit-macOS.modulemap"; path = "../PromiseKit-macOS/PromiseKit-macOS.modulemap"; sourceTree = "<group>"; };
 		AC76D2831C5D0FA8694DB9139856A631 /* PhysicsPanHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PhysicsPanHandler.swift; path = SwiftMessages/PhysicsPanHandler.swift; sourceTree = "<group>"; };
 		AFA75E9F1E7FF625F9DC4147F4AA0FF9 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B03BC918D7813A2A8153EF878F2C2C5B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B226916E5F32B9B4CA4D9DF8042549D8 /* Crashlytics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Crashlytics.h; path = iOS/Crashlytics.framework/Headers/Crashlytics.h; sourceTree = "<group>"; };
 		B339F2733AEA9C5814DCA6154A11FE2A /* Pods-macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-macOS.debug.xcconfig"; sourceTree = "<group>"; };
 		B35FCC7A989047ED4279CC5C14742789 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B41436D60E5EAE3676A76264BA2FBA6F /* MaskingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MaskingView.swift; path = SwiftMessages/MaskingView.swift; sourceTree = "<group>"; };
 		B42EE8462631AF28120A818B9429E542 /* ReuseIdentifierProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReuseIdentifierProtocol.swift; path = Library/Core/ReuseIdentifierProtocol.swift; sourceTree = "<group>"; };
-		B4E92AF174B4BECC83A7C47384E0EA29 /* PromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PromiseKit.framework; path = "PromiseKit-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5C4908181BB1E3452D9F8495FC18434 /* FBMemoryProfilerViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBMemoryProfilerViewController.m; path = FBMemoryProfiler/Controllers/FBMemoryProfilerViewController.m; sourceTree = "<group>"; };
 		B62CEDC4D980C1102835C0BC949FAF99 /* race.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = race.swift; path = Sources/race.swift; sourceTree = "<group>"; };
+		B670F881C968AB10417E30E7C4488C35 /* PromiseKit-iOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PromiseKit-iOS-prefix.pch"; sourceTree = "<group>"; };
 		B6D8E900A9BFE800BAC353F38A1CFE8D /* AccessibleMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AccessibleMessage.swift; path = SwiftMessages/AccessibleMessage.swift; sourceTree = "<group>"; };
 		B795487FE8B1F48CEE71A886FCC15B44 /* Identifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Identifier.swift; path = Library/Core/Identifier.swift; sourceTree = "<group>"; };
 		B8C348371E85354D634C87C675DD25FE /* FBMemoryProfilerTextField.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBMemoryProfilerTextField.h; path = FBMemoryProfiler/UI/FBMemoryProfilerTextField.h; sourceTree = "<group>"; };
@@ -532,11 +530,15 @@
 		BB5A96CF3D37F9D7C146E21D5B53C7F0 /* FBAllocationTracker-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FBAllocationTracker-umbrella.h"; sourceTree = "<group>"; };
 		BC8E2F203B29A9B05842F2799DDD4EB1 /* FBObjectGraphConfiguration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBObjectGraphConfiguration.m; path = FBRetainCycleDetector/Graph/FBObjectGraphConfiguration.m; sourceTree = "<group>"; };
 		BCCA3929BA279D70945555A5A6820124 /* R.swift.Library.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = R.swift.Library.xcconfig; sourceTree = "<group>"; };
+		BCCC8EA09C51FE3A853F125172844457 /* FBRetainCycleDetector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FBRetainCycleDetector.framework; path = FBRetainCycleDetector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD64AAD945EA144AB8F9157187A7C2EF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		BDDB7355BB62CBB8A1DE5CA5AFBA778E /* PromiseKit-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PromiseKit-iOS-dummy.m"; sourceTree = "<group>"; };
 		BF1568F1A76C09CB7B6F5A9984C0E255 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		BFF58D0F6606C4261C9442E6A34B942E /* FBRetainCycleUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBRetainCycleUtils.m; path = FBRetainCycleDetector/FBRetainCycleUtils.m; sourceTree = "<group>"; };
 		C0D81D6DA95BE57F1375C91C514485C4 /* FBAllocationTrackerGeneration.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = FBAllocationTrackerGeneration.mm; path = FBAllocationTracker/Generations/FBAllocationTrackerGeneration.mm; sourceTree = "<group>"; };
+		C1A1EB7867ABECF3C86F886740F77EAB /* CLSStackFrame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSStackFrame.h; path = OSX/Crashlytics.framework/Versions/A/Headers/CLSStackFrame.h; sourceTree = "<group>"; };
 		C1B9FB63E9F2B7FA9259AE71E6F15733 /* TypedStoryboardSegueInfo+UIStoryboardSegue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "TypedStoryboardSegueInfo+UIStoryboardSegue.swift"; path = "Library/UIKit/TypedStoryboardSegueInfo+UIStoryboardSegue.swift"; sourceTree = "<group>"; };
+		C1F0E8CF253B070822539AE9B1AFA8EC /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = iOS/Crashlytics.framework; sourceTree = "<group>"; };
 		C21DB425B9F7F0BCE82A370D69434C9E /* NSObject+FBAllocationTracker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+FBAllocationTracker.h"; path = "FBAllocationTracker/NSObject+FBAllocationTracker.h"; sourceTree = "<group>"; };
 		C2C50F2F2FD01EF0856B2B350898BF04 /* FBAllocationTrackerFunctors.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBAllocationTrackerFunctors.h; path = FBAllocationTracker/FBAllocationTrackerFunctors.h; sourceTree = "<group>"; };
 		C2F4276EC91D60D53C669B3F9B4B6832 /* Pods-macOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-macOS-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -545,10 +547,7 @@
 		C735A511B11AB8324FA1CA077BF7F5DD /* fwd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = fwd.h; path = Sources/fwd.h; sourceTree = "<group>"; };
 		CA5CE4C8CDB818D4CB8FB0818C872F16 /* FBMemoryProfilerSegmentedControl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBMemoryProfilerSegmentedControl.h; path = FBMemoryProfiler/UI/FBMemoryProfilerSegmentedControl.h; sourceTree = "<group>"; };
 		CBC4BC1C994A07886C48AC466E227403 /* Pods-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-iOS-umbrella.h"; sourceTree = "<group>"; };
-		CBE51D561BABD7CF52E3F1725BA84BDE /* Crashlytics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Crashlytics.h; path = OSX/Crashlytics.framework/Versions/A/Headers/Crashlytics.h; sourceTree = "<group>"; };
-		CC08012C7C6BA8F05694791241CB5318 /* Answers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Answers.h; path = OSX/Crashlytics.framework/Versions/A/Headers/Answers.h; sourceTree = "<group>"; };
 		D001E3A1ED42802412748FEA800C0D52 /* join.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = join.m; path = Sources/join.m; sourceTree = "<group>"; };
-		D0142E94990183C5FC614279CD4316FF /* Crashlytics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Crashlytics.h; path = iOS/Crashlytics.framework/Headers/Crashlytics.h; sourceTree = "<group>"; };
 		D1073555DB8576AABDEF8DDBD56181AF /* Struct.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = Struct.mm; path = FBRetainCycleDetector/Layout/Classes/Parser/Struct.mm; sourceTree = "<group>"; };
 		D1AA1F09C297EF55F92311AAE4BBF4F2 /* FBAssociationManager.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = FBAssociationManager.mm; path = FBRetainCycleDetector/Associations/FBAssociationManager.mm; sourceTree = "<group>"; };
 		D22ECFF1C1CA365F9381D1C2B0091F9D /* FBMemoryProfilerDataSource.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBMemoryProfilerDataSource.m; path = FBMemoryProfiler/Controllers/FBMemoryProfilerDataSource.m; sourceTree = "<group>"; };
@@ -557,7 +556,6 @@
 		D473C291A4489048EE6DE2688220817A /* UIViewController+StoryboardSegueIdentifierProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+StoryboardSegueIdentifierProtocol.swift"; path = "Library/UIKit/UIViewController+StoryboardSegueIdentifierProtocol.swift"; sourceTree = "<group>"; };
 		D48DCCAC74DADE140625F46E426B37D7 /* TopBottomAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TopBottomAnimation.swift; path = SwiftMessages/TopBottomAnimation.swift; sourceTree = "<group>"; };
 		D5758C309FFD37D1A4728ED91784CA85 /* SwiftMessages-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftMessages-prefix.pch"; sourceTree = "<group>"; };
-		D63A38380E33CBC2A180B35D00961C48 /* PromiseKit-iOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PromiseKit-iOS-prefix.pch"; sourceTree = "<group>"; };
 		D689579D58B6792B13E2FA928FFCB72B /* FBObjectiveCBlock.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBObjectiveCBlock.m; path = FBRetainCycleDetector/Graph/FBObjectiveCBlock.m; sourceTree = "<group>"; };
 		D73806CA1B1E67E3826EBF70DB723568 /* Animator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Animator.swift; path = SwiftMessages/Animator.swift; sourceTree = "<group>"; };
 		D83456EDC1ED5189FF270B4EF0F62A05 /* FBAllocationTrackerSummary.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBAllocationTrackerSummary.h; path = FBAllocationTracker/FBAllocationTrackerSummary.h; sourceTree = "<group>"; };
@@ -580,11 +578,11 @@
 		E2E696BB0ED5B7A47A04EF0AB153C198 /* Pods-macOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-macOS.modulemap"; sourceTree = "<group>"; };
 		E3D285C9EFAAF2C4533348D658134D27 /* when.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = when.m; path = Sources/when.m; sourceTree = "<group>"; };
 		E3E5FC9A8EFE5B0B3D3349DBD66587BC /* FontResource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontResource.swift; path = Library/Core/FontResource.swift; sourceTree = "<group>"; };
+		E56D0C001B4AFC24404B34043C8E090C /* CLSAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSAttributes.h; path = OSX/Crashlytics.framework/Versions/A/Headers/CLSAttributes.h; sourceTree = "<group>"; };
 		E5F9658BB151388615E7881230E569E7 /* FBMemoryProfiler-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FBMemoryProfiler-prefix.pch"; sourceTree = "<group>"; };
 		E62A4D38AB0942E102330F84CEABCA69 /* FABAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FABAttributes.h; path = iOS/Fabric.framework/Headers/FABAttributes.h; sourceTree = "<group>"; };
 		E6D97911CFB147D05FBDF6DA73F1F6AB /* StringResource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StringResource.swift; path = Library/Core/StringResource.swift; sourceTree = "<group>"; };
 		E809876F499B86FBD73E05FB919A69BE /* Pods-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-iOS.modulemap"; sourceTree = "<group>"; };
-		E8147245D6EB6D98DBE278E2BC89F5F4 /* CLSAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSAttributes.h; path = OSX/Crashlytics.framework/Versions/A/Headers/CLSAttributes.h; sourceTree = "<group>"; };
 		E8D9A6CD16FECFD11E5F035A51AB292C /* FBObjectiveCBlock.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBObjectiveCBlock.h; path = FBRetainCycleDetector/Graph/FBObjectiveCBlock.h; sourceTree = "<group>"; };
 		EA4CAABD85EFD1B75AA3FADA77A6FD74 /* FBMemoryProfilerContainerViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBMemoryProfilerContainerViewController.m; path = FBMemoryProfiler/Window/FBMemoryProfilerContainerViewController.m; sourceTree = "<group>"; };
 		EA52DFAEE1BC683B642C1E47660FBD1F /* FBMemoryProfilerContainerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBMemoryProfilerContainerViewController.h; path = FBMemoryProfiler/Window/FBMemoryProfilerContainerViewController.h; sourceTree = "<group>"; };
@@ -593,6 +591,7 @@
 		EBEF3A5AEA12DFBFA1B9F46E2028C0CD /* dispatch_promise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = dispatch_promise.m; path = Sources/dispatch_promise.m; sourceTree = "<group>"; };
 		ECAA8E24F79F240FBF805084D2CABD2D /* UIImage+ImageResource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImage+ImageResource.swift"; path = "Library/UIKit/UIImage+ImageResource.swift"; sourceTree = "<group>"; };
 		ED8694E791000E18EB8284D9836B3298 /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SwiftMessages/Resources/Images.xcassets; sourceTree = "<group>"; };
+		EE34C7431AFBC7FE79F4FD564AB7D353 /* PromiseKit-iOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "PromiseKit-iOS.xcconfig"; sourceTree = "<group>"; };
 		EE758AF299BB90A8A24AC3231C20DF9B /* FBMemoryProfilerPresentationModeDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBMemoryProfilerPresentationModeDelegate.h; path = FBMemoryProfiler/FBMemoryProfilerPresentationModeDelegate.h; sourceTree = "<group>"; };
 		EEBCE3D31164182A5D17F4C608BC808F /* AnyPromise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnyPromise.swift; path = Sources/AnyPromise.swift; sourceTree = "<group>"; };
 		EF6CF94FEFE723100A5521388F515B58 /* FBAllocationTrackerImpl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBAllocationTrackerImpl.h; path = FBAllocationTracker/FBAllocationTrackerImpl.h; sourceTree = "<group>"; };
@@ -601,12 +600,13 @@
 		F2ACE44AD3C24401750149214466E33F /* FBSingleRetainCycleViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSingleRetainCycleViewController.m; path = FBMemoryProfiler/RetainCycles/FBSingleRetainCycleViewController.m; sourceTree = "<group>"; };
 		F2B9092B985F85BED3CF1B928758164D /* GlobalState.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GlobalState.m; path = Sources/GlobalState.m; sourceTree = "<group>"; };
 		F2D1B220A556BE88AC9DA5F4063DC30C /* MessageViewIOS8.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = MessageViewIOS8.xib; path = SwiftMessages/Resources/MessageViewIOS8.xib; sourceTree = "<group>"; };
+		F300C715E5A116C473828AA835BA380D /* Answers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Answers.h; path = OSX/Crashlytics.framework/Versions/A/Headers/Answers.h; sourceTree = "<group>"; };
 		F3402B7E9093D2443A283C83FFE188D4 /* FBRetainCyclePresenter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBRetainCyclePresenter.m; path = FBMemoryProfiler/RetainCycles/FBRetainCyclePresenter.m; sourceTree = "<group>"; };
 		F38996B7A42CF969FC12B57D0FFEA2FD /* FBObjectReference.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBObjectReference.h; path = FBRetainCycleDetector/Layout/Classes/Reference/FBObjectReference.h; sourceTree = "<group>"; };
 		F5012AC49DDED66F9BABDAC74BBB70CE /* FBBlockStrongRelationDetector.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBBlockStrongRelationDetector.h; path = FBRetainCycleDetector/Layout/Blocks/FBBlockStrongRelationDetector.h; sourceTree = "<group>"; };
 		F55E4631BB74E7DBFC65EE9AC9B43EFC /* FBMemoryProfilerPresenting.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBMemoryProfilerPresenting.h; path = FBMemoryProfiler/Controllers/FBMemoryProfilerPresenting.h; sourceTree = "<group>"; };
+		F580C6C6736ECE7FF934652FA09CC0A0 /* PromiseKit-macOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "PromiseKit-macOS-umbrella.h"; path = "../PromiseKit-macOS/PromiseKit-macOS-umbrella.h"; sourceTree = "<group>"; };
 		F5DC7AE033CD2D4CA0E0A51BB56067E9 /* FBNodeEnumerator.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = FBNodeEnumerator.mm; path = FBRetainCycleDetector/Detector/FBNodeEnumerator.mm; sourceTree = "<group>"; };
-		F5FC92D4C672E2B703CA771DC6CCA380 /* CLSReport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSReport.h; path = OSX/Crashlytics.framework/Versions/A/Headers/CLSReport.h; sourceTree = "<group>"; };
 		F90C1F0BA0E1803FA6853A3BF07CB9F2 /* StoryboardResource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StoryboardResource.swift; path = Library/Core/StoryboardResource.swift; sourceTree = "<group>"; };
 		FA457635D42AD20AE605E7C511C8F646 /* Validatable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validatable.swift; path = Library/Core/Validatable.swift; sourceTree = "<group>"; };
 		FAA432F65ED0E5A831974D2DD69A3E18 /* CenteredView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = CenteredView.xib; path = SwiftMessages/Resources/CenteredView.xib; sourceTree = "<group>"; };
@@ -750,6 +750,26 @@
 			path = SwiftMessages;
 			sourceTree = "<group>";
 		};
+		0F846C60BC288813BFFED69C85F68781 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				B03BC918D7813A2A8153EF878F2C2C5B /* Info.plist */,
+				6560CB45D80B4466B7CEADD7DFFAFDE4 /* Info.plist */,
+				31CC241205B2C7EEB1382BD6E6E35A26 /* PromiseKit-iOS.modulemap */,
+				EE34C7431AFBC7FE79F4FD564AB7D353 /* PromiseKit-iOS.xcconfig */,
+				BDDB7355BB62CBB8A1DE5CA5AFBA778E /* PromiseKit-iOS-dummy.m */,
+				B670F881C968AB10417E30E7C4488C35 /* PromiseKit-iOS-prefix.pch */,
+				05B2E1C2A894CC01EBB8AD3B355ED2A5 /* PromiseKit-iOS-umbrella.h */,
+				AC68E733E3DC05BC18EE258824F82ED8 /* PromiseKit-macOS.modulemap */,
+				0AFF510EDDAD58A054230C616E17DD75 /* PromiseKit-macOS.xcconfig */,
+				7F0552137EDB706480917AF631813D04 /* PromiseKit-macOS-dummy.m */,
+				A8CA244E34D5124D8C61F416CD364CA9 /* PromiseKit-macOS-prefix.pch */,
+				F580C6C6736ECE7FF934652FA09CC0A0 /* PromiseKit-macOS-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/PromiseKit-iOS";
+			sourceTree = "<group>";
+		};
 		11344BEA43037D1EEA04806CF4927258 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -838,49 +858,6 @@
 			path = FBRetainCycleDetector;
 			sourceTree = "<group>";
 		};
-		2418C9BB8E63A8150C001777B06973CE /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				3812DD43354757FF0DCE2B43B3728202 /* Info.plist */,
-				7022C2791EB47C125AEF4C60F17258DE /* Info.plist */,
-				06BFEEC8970299E9FF3CEEAF7F9C6339 /* PromiseKit-iOS.modulemap */,
-				34FA428D9417BDFEC96234EDFB2D164E /* PromiseKit-iOS.xcconfig */,
-				9F1002365B84E0A73BF111B96B82401E /* PromiseKit-iOS-dummy.m */,
-				D63A38380E33CBC2A180B35D00961C48 /* PromiseKit-iOS-prefix.pch */,
-				7F7DB107A1F94FA178A6C93A4D285C59 /* PromiseKit-iOS-umbrella.h */,
-				3030C2FF10945D44AAAB54F22069C4A3 /* PromiseKit-macOS.modulemap */,
-				48DEB8E24F684715471FB243AD18FE23 /* PromiseKit-macOS.xcconfig */,
-				5BB148BB5A2E2FA2F2CED503999CE041 /* PromiseKit-macOS-dummy.m */,
-				8E6D0A119B2ECCE6F67E912CD2AD8A5C /* PromiseKit-macOS-prefix.pch */,
-				8AD0E57AEAFF7F1690EFF75337726A15 /* PromiseKit-macOS-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/PromiseKit-iOS";
-			sourceTree = "<group>";
-		};
-		2AC363CC6F3053C641AB2CBE6378EB16 /* Crashlytics */ = {
-			isa = PBXGroup;
-			children = (
-				311C6A1BCE5F70C77CFB34EAE978580B /* ANSCompatibility.h */,
-				25295DE941924AC478765A2A90F78A40 /* ANSCompatibility.h */,
-				CC08012C7C6BA8F05694791241CB5318 /* Answers.h */,
-				97A079066A6ED862B2814AA23E27D949 /* Answers.h */,
-				7D08B49BB9EB0CE6AFC31D1E8AC1DBAF /* CLSAttributes.h */,
-				E8147245D6EB6D98DBE278E2BC89F5F4 /* CLSAttributes.h */,
-				49F2F9711C4C233CBF6305772C8F3F30 /* CLSLogging.h */,
-				84F8E3FC4995FD0E3598A104FF297DDC /* CLSLogging.h */,
-				19E29366938C606795AB4DE0D44DD225 /* CLSReport.h */,
-				F5FC92D4C672E2B703CA771DC6CCA380 /* CLSReport.h */,
-				1FE84A2CCB3913E71468E6B6CD7136D9 /* CLSStackFrame.h */,
-				7956C003ABE93276B9FFF7BA4A247E8B /* CLSStackFrame.h */,
-				D0142E94990183C5FC614279CD4316FF /* Crashlytics.h */,
-				CBE51D561BABD7CF52E3F1725BA84BDE /* Crashlytics.h */,
-				C0BBC78658046EE11CE8ACE5FF9AA7FB /* Frameworks */,
-			);
-			name = Crashlytics;
-			path = Crashlytics;
-			sourceTree = "<group>";
-		};
 		5EB238B370FC9339F892B5C0E0580789 /* FBMemoryProfiler */ = {
 			isa = PBXGroup;
 			children = (
@@ -931,7 +908,7 @@
 		6013FD885B8D5575A1E2D26D7D3A078D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2AC363CC6F3053C641AB2CBE6378EB16 /* Crashlytics */,
+				BF6D31469EF2673297AA050E59BBD705 /* Crashlytics */,
 				84685B57B1F548FB9D1648653BD5BBB2 /* Fabric */,
 				A169B0D47C0235B431C98999CC7BC9E4 /* FBAllocationTracker */,
 				5EB238B370FC9339F892B5C0E0580789 /* FBMemoryProfiler */,
@@ -950,6 +927,15 @@
 			);
 			name = R.swift;
 			path = R.swift;
+			sourceTree = "<group>";
+		};
+		6970399B49F42E77FEF4976F8B7C11F3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C1F0E8CF253B070822539AE9B1AFA8EC /* Crashlytics.framework */,
+				631CA5CA60FE570647C86E1BC3A7F7F2 /* Crashlytics.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		6FE3055969B0F522D2F0001EF9CEE812 /* Support Files */ = {
@@ -979,23 +965,6 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/SwiftMessages";
-			sourceTree = "<group>";
-		};
-		760C4B31FCAC6451CC3A69FADD561062 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4237097E187B74CA72E3C9C323DE3687 /* FBAllocationTracker.framework */,
-				36E5FE4FD61E5E18D735B19A64CB5EE1 /* FBMemoryProfiler.framework */,
-				039B624C669DB74225148429C0E61F5B /* FBRetainCycleDetector.framework */,
-				2C4C4323C8DBDDAF212437031D1C352B /* Pods_iOS.framework */,
-				A9368DAB8D85E7441B86A9B12C06FCFA /* Pods_macOS.framework */,
-				B4E92AF174B4BECC83A7C47384E0EA29 /* PromiseKit.framework */,
-				8B8B6D6454DC7AA268D0271ECDEDC940 /* PromiseKit.framework */,
-				8E33563B934E1A4EFAB50BB3987484FA /* Rswift.framework */,
-				5BDC985E7051AB3BBB33F209D9991017 /* SwiftMessages.bundle */,
-				1418C96C81096024CF0AE5E4DEFE2944 /* SwiftMessages.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		775CA2845A87CB4DE2E2A10CD6A7DD9A /* Support Files */ = {
@@ -1028,7 +997,7 @@
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				11C13F6B454297776747A8DFBA0EE353 /* Frameworks */,
 				6013FD885B8D5575A1E2D26D7D3A078D /* Pods */,
-				760C4B31FCAC6451CC3A69FADD561062 /* Products */,
+				E8A82F0D86861675EBC6CBB91BE10599 /* Products */,
 				11344BEA43037D1EEA04806CF4927258 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
@@ -1196,13 +1165,27 @@
 			path = "Target Support Files/Pods-iOS";
 			sourceTree = "<group>";
 		};
-		C0BBC78658046EE11CE8ACE5FF9AA7FB /* Frameworks */ = {
+		BF6D31469EF2673297AA050E59BBD705 /* Crashlytics */ = {
 			isa = PBXGroup;
 			children = (
-				6A064ACA71A7F9BE98E9D199460D1F17 /* Crashlytics.framework */,
-				7CAB1C6530EC56D179803F0B6752D8E6 /* Crashlytics.framework */,
+				401257F92B13970087E0698D57B6F541 /* ANSCompatibility.h */,
+				43CBF2D16E6213C730509358DDDFCE1E /* ANSCompatibility.h */,
+				79B90B2B5EC0B39B9C6B588C7B33EBC6 /* Answers.h */,
+				F300C715E5A116C473828AA835BA380D /* Answers.h */,
+				1CB91396C966D6F35CEBCEE3D9C32283 /* CLSAttributes.h */,
+				E56D0C001B4AFC24404B34043C8E090C /* CLSAttributes.h */,
+				52D38C6D39391392C7EA06DBDAC26FE8 /* CLSLogging.h */,
+				51A8D3E3078F07F1AAEA96CC09123509 /* CLSLogging.h */,
+				58E38D3F10C52069DCAA938BA09F7A55 /* CLSReport.h */,
+				A773B472B6AFF5934C38CC6D377C4DD0 /* CLSReport.h */,
+				A4F958EF0DFAB2CC2BA2C027833A7C34 /* CLSStackFrame.h */,
+				C1A1EB7867ABECF3C86F886740F77EAB /* CLSStackFrame.h */,
+				B226916E5F32B9B4CA4D9DF8042549D8 /* Crashlytics.h */,
+				9FF98BDA338C896731ACE43936D4FDBD /* Crashlytics.h */,
+				6970399B49F42E77FEF4976F8B7C11F3 /* Frameworks */,
 			);
-			name = Frameworks;
+			name = Crashlytics;
+			path = Crashlytics;
 			sourceTree = "<group>";
 		};
 		D3962E4A5ECF125626E9BB925AADE7B2 /* Support Files */ = {
@@ -1223,10 +1206,27 @@
 			isa = PBXGroup;
 			children = (
 				840F59CE60F30D480E565C9EBED53F48 /* CorePromise */,
-				2418C9BB8E63A8150C001777B06973CE /* Support Files */,
+				0F846C60BC288813BFFED69C85F68781 /* Support Files */,
 			);
 			name = PromiseKit;
 			path = PromiseKit;
+			sourceTree = "<group>";
+		};
+		E8A82F0D86861675EBC6CBB91BE10599 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1B1DF26C4AF7D926F3BFF7E0CE748599 /* FBAllocationTracker.framework */,
+				6D21B634DD63414AB82C2A3D2F51B952 /* FBMemoryProfiler.framework */,
+				BCCC8EA09C51FE3A853F125172844457 /* FBRetainCycleDetector.framework */,
+				1EE245C025E2632CA5ABFF63E40EFD6A /* Pods_iOS.framework */,
+				36E273AD19AEA59F2A8FD5B399E18B03 /* Pods_macOS.framework */,
+				639F244CCFF735277A0806EA2137ABB9 /* PromiseKit.framework */,
+				6077260C2CB9A85CC0F543B749A89E57 /* PromiseKit.framework */,
+				AC272F21A407DA9515234B0895B9F051 /* Rswift.framework */,
+				5181AE8CE1562F2042A91D633F999235 /* SwiftMessages.bundle */,
+				14D02E0AAE62F46B4DE6D8DF45F9C968 /* SwiftMessages.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1387,7 +1387,7 @@
 			);
 			name = "Pods-macOS";
 			productName = "Pods-macOS";
-			productReference = A9368DAB8D85E7441B86A9B12C06FCFA /* Pods_macOS.framework */;
+			productReference = 36E273AD19AEA59F2A8FD5B399E18B03 /* Pods_macOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		131981766F2F9BAF0702F862C451AE39 /* FBMemoryProfiler */ = {
@@ -1406,7 +1406,7 @@
 			);
 			name = FBMemoryProfiler;
 			productName = FBMemoryProfiler;
-			productReference = 36E5FE4FD61E5E18D735B19A64CB5EE1 /* FBMemoryProfiler.framework */;
+			productReference = 6D21B634DD63414AB82C2A3D2F51B952 /* FBMemoryProfiler.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		292DE480667389C452E3DC987EED54A6 /* Pods-iOS */ = {
@@ -1429,7 +1429,7 @@
 			);
 			name = "Pods-iOS";
 			productName = "Pods-iOS";
-			productReference = 2C4C4323C8DBDDAF212437031D1C352B /* Pods_iOS.framework */;
+			productReference = 1EE245C025E2632CA5ABFF63E40EFD6A /* Pods_iOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		2D3437B21C0C9FA1B3E47D28DC5AD882 /* R.swift.Library */ = {
@@ -1446,7 +1446,7 @@
 			);
 			name = R.swift.Library;
 			productName = R.swift.Library;
-			productReference = 8E33563B934E1A4EFAB50BB3987484FA /* Rswift.framework */;
+			productReference = AC272F21A407DA9515234B0895B9F051 /* Rswift.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		96FA318FE407CED536C33675E9933E88 /* PromiseKit-iOS */ = {
@@ -1463,7 +1463,7 @@
 			);
 			name = "PromiseKit-iOS";
 			productName = "PromiseKit-iOS";
-			productReference = B4E92AF174B4BECC83A7C47384E0EA29 /* PromiseKit.framework */;
+			productReference = 6077260C2CB9A85CC0F543B749A89E57 /* PromiseKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		97675741C59C51E45C6237DB2DFDD7D5 /* SwiftMessages */ = {
@@ -1482,7 +1482,7 @@
 			);
 			name = SwiftMessages;
 			productName = SwiftMessages;
-			productReference = 1418C96C81096024CF0AE5E4DEFE2944 /* SwiftMessages.framework */;
+			productReference = 14D02E0AAE62F46B4DE6D8DF45F9C968 /* SwiftMessages.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		9F41BCC58DF9E382F7D943061E6C097F /* PromiseKit-macOS */ = {
@@ -1499,7 +1499,7 @@
 			);
 			name = "PromiseKit-macOS";
 			productName = "PromiseKit-macOS";
-			productReference = 8B8B6D6454DC7AA268D0271ECDEDC940 /* PromiseKit.framework */;
+			productReference = 639F244CCFF735277A0806EA2137ABB9 /* PromiseKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		B37B4DFB076D254F62C50A56A96130CB /* FBRetainCycleDetector */ = {
@@ -1516,7 +1516,7 @@
 			);
 			name = FBRetainCycleDetector;
 			productName = FBRetainCycleDetector;
-			productReference = 039B624C669DB74225148429C0E61F5B /* FBRetainCycleDetector.framework */;
+			productReference = BCCC8EA09C51FE3A853F125172844457 /* FBRetainCycleDetector.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		C34C11083B98E06F16A638EE1DE47AD6 /* FBAllocationTracker */ = {
@@ -1533,7 +1533,7 @@
 			);
 			name = FBAllocationTracker;
 			productName = FBAllocationTracker;
-			productReference = 4237097E187B74CA72E3C9C323DE3687 /* FBAllocationTracker.framework */;
+			productReference = 1B1DF26C4AF7D926F3BFF7E0CE748599 /* FBAllocationTracker.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		C71BB8D6F8A0D7CE898CA61C1BA7BE0C /* SwiftMessages-SwiftMessages */ = {
@@ -1550,7 +1550,7 @@
 			);
 			name = "SwiftMessages-SwiftMessages";
 			productName = "SwiftMessages-SwiftMessages";
-			productReference = 5BDC985E7051AB3BBB33F209D9991017 /* SwiftMessages.bundle */;
+			productReference = 5181AE8CE1562F2042A91D633F999235 /* SwiftMessages.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -1570,7 +1570,7 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 760C4B31FCAC6451CC3A69FADD561062 /* Products */;
+			productRefGroup = E8A82F0D86861675EBC6CBB91BE10599 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -2466,7 +2466,7 @@
 		};
 		CF5A3B05752CD33A81442811CCF161FF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 34FA428D9417BDFEC96234EDFB2D164E /* PromiseKit-iOS.xcconfig */;
+			baseConfigurationReference = EE34C7431AFBC7FE79F4FD564AB7D353 /* PromiseKit-iOS.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
@@ -2505,7 +2505,7 @@
 		};
 		DF3A9A6D59539015E78D8A8730CAFB37 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 34FA428D9417BDFEC96234EDFB2D164E /* PromiseKit-iOS.xcconfig */;
+			baseConfigurationReference = EE34C7431AFBC7FE79F4FD564AB7D353 /* PromiseKit-iOS.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
@@ -2587,7 +2587,7 @@
 		};
 		E0D2B9CC3E23CD27DF10A234FFB7560C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 48DEB8E24F684715471FB243AD18FE23 /* PromiseKit-macOS.xcconfig */;
+			baseConfigurationReference = 0AFF510EDDAD58A054230C616E17DD75 /* PromiseKit-macOS.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
@@ -2711,7 +2711,7 @@
 		};
 		F2B52CE33AB4682D96AF8356A0FA50F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 48DEB8E24F684715471FB243AD18FE23 /* PromiseKit-macOS.xcconfig */;
+			baseConfigurationReference = 0AFF510EDDAD58A054230C616E17DD75 /* PromiseKit-macOS.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
