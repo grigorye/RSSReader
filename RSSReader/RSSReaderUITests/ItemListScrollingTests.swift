@@ -15,7 +15,6 @@ let backButton = app.navigationBars.element(boundBy: 0).buttons.element(boundBy:
 
 class ItemListScrollingTests: XCTestCase {
 
-
 	func testScrollingPerformance() {
 	
 		tablesQuery.staticTexts["Subscriptions-AI"].tap()
