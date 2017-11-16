@@ -22,4 +22,3 @@ func launchOptimizely(launchOptions: [UIApplicationLaunchOptionsKey : Any]?) {
 }
 
 #endif
-

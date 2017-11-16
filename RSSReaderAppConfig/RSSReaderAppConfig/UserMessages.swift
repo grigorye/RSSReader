@@ -33,4 +33,3 @@ func presentInfoMessage(_ text: String) {
 	print("Info: \(text)")
 #endif
 }
-

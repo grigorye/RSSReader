@@ -14,7 +14,7 @@ extension UITableView {
 			let insetAwareTableHeaderViewFrame = tableHeaderView.frame.offsetBy(dx: 0, dy: -contentInset.top)
 			if contentOffset.y < insetAwareTableHeaderViewFrame.maxY {
 				let adjustedContentOffsetY: CGFloat = {
-					if (contentOffset.y < insetAwareTableHeaderViewFrame.midY) {
+					if contentOffset.y < insetAwareTableHeaderViewFrame.midY {
 						return insetAwareTableHeaderViewFrame.minY
 					}
 					else {
