@@ -27,10 +27,12 @@ public func with<T: Any>(_ value: T, _ initialize: (inout T) throws -> Void) ret
 }
 
 public func ≈<T>(value: T, initialize: (inout T) throws -> Void) rethrows -> T where T: AnyObject {
+	// swiftlint:disable:previous identifier_name
 	return try with(value, initialize)
 }
 @discardableResult
 public func …<T: AnyObject>(obj: T, initialize: (T) throws -> Void) rethrows -> T {
+	// swiftlint:disable:previous identifier_name
 	return try with(obj, initialize)
 }
 

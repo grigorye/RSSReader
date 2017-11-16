@@ -10,6 +10,8 @@ import Foundation
 
 typealias _Self = TypedUserDefaults
 
+// swiftlint:disable identifier_name
+
 private let objectValueIMP: @convention(c) (_Self, Selector) -> AnyObject? = { _self, _cmd in
 	let propertyName = NSStringFromSelector(_cmd)
 	let value = _self.defaults.object(forKey: propertyName) as AnyObject?
@@ -65,6 +67,8 @@ private let setFloatValueIMP: @convention(c) (_Self, Selector, CFloat) -> Void =
 	x$(propertyName)
 	_self.suiteDefaults.set(value, forKey: propertyName)
 }
+
+// swiftlint:enable identifier_name
 
 extension TypedUserDefaults {
 	typealias _Self = TypedUserDefaults
