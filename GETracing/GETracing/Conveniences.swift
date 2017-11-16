@@ -41,7 +41,8 @@ import Foundation
 /// ````
 /// , ommitting `x$`, leaving the possibility to enable logging again just by adding back x$.
 /// - seealso: `x$`.
-public prefix func •<T>(argument: @autoclosure () -> T) -> Void {
+public prefix func •<T>(argument: @autoclosure () -> T) {
+	// swiftlint:disable:previous identifier_name
 }
 prefix operator •
 
