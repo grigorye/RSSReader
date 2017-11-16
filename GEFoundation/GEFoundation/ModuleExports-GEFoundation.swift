@@ -9,6 +9,8 @@
 import GEFoundation
 import Foundation.NSObject
 
+// swiftlint:disable identifier_name
+
 infix operator ≈
 
 #if true

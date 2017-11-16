@@ -8,6 +8,7 @@
 
 import Foundation
 
+// swiftlint:disable identifier_name
 enum ObjCEncode : String {
 	case Bool = "c"
 	case Int = "i"
@@ -17,6 +18,7 @@ enum ObjCEncode : String {
 	case AnyObject = "@"
 	case Float = "f"
 }
+// swiftlint:enable identifier_name
 
 public func objCEncode<T>(_ type: T.Type) -> String {
 	switch type {
