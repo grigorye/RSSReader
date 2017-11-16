@@ -17,6 +17,7 @@ extension String {
 }
 
 func sourceExtractedInfo(for location: SourceLocation, traceFunctionName: String) -> SourceExtractedInfo {
+	// swiftlint:disable:previous function_body_length
 	guard sourceLabelsEnabled else {
 		return SourceExtractedInfo(label: descriptionForInLineLocation(location))
 	}
@@ -83,7 +84,6 @@ func sourceExtractedInfo(for location: SourceLocation, traceFunctionName: String
 private func descriptionForInLineLocation(_ location: SourceLocation) -> String {
 	return ".\(location.column + (sourceLabelClosuresEnabled ? 1 : 0))"
 }
-
 
 public var sourceLabelsEnabledEnforced: Bool?
 public var sourceLabelClosuresEnabled = false
