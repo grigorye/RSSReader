@@ -9,8 +9,8 @@
 import CoreData
 
 enum GenericCoreDataExtensionsError: Error {
-	case JsonObjectIsNotDictionary(jsonObject: Any)
-	case ElementNotFoundOrInvalidInJson(json: [String: AnyObject], elementName: String)
+	case jsonObjectIsNotDictionary(jsonObject: Any)
+	case elementNotFoundOrInvalidInJson(json: [String: AnyObject], elementName: String)
 }
 
 public protocol Managed : NSFetchRequestResult {
@@ -92,11 +92,11 @@ public func insertedObjectsUnlessFetchedWithID<T: NSManagedObject>(_ cls: T.Type
 
 public func importItemsFromJson<T: ManagedIdentifiable>(_ json: [String : AnyObject], type: T.Type, elementName: String, managedObjectContext: NSManagedObjectContext, importFromJson: (T, [String: AnyObject]) throws -> Void) throws -> (existing: [T], new: [T]) where T: NSManagedObject {
 	guard let itemJsons = json[elementName] as? [Json] else {
-		throw GenericCoreDataExtensionsError.ElementNotFoundOrInvalidInJson(json: json, elementName: elementName)
+		throw GenericCoreDataExtensionsError.elementNotFoundOrInvalidInJson(json: json, elementName: elementName)
 	}
 	let itemJsonsByIDs: [String : Json] = try itemJsons.map { (itemJson: Json) -> (String, Json) in
 		guard let itemID = itemJson["id"] as? String else {
-			throw GenericCoreDataExtensionsError.ElementNotFoundOrInvalidInJson(json: json, elementName: "id")
+			throw GenericCoreDataExtensionsError.elementNotFoundOrInvalidInJson(json: json, elementName: "id")
 		}
 		return (itemID, itemJson)
 	}.reduce([String : Json]()) { var acc = $0; acc[$1.0] = $1.1; return acc }
@@ -113,7 +113,7 @@ public func importItemsFromJson<T: ManagedIdentifiable>(_ json: [String : AnyObj
 public func importItemsFromJsonData<T: ManagedIdentifiable>(_ data: Data, type: T.Type, elementName: String, managedObjectContext: NSManagedObjectContext, importFromJson: (T, [String: AnyObject]) throws -> Void) throws -> (existing: [T], new: [T]) where T: NSManagedObject {
 	let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions())
 	guard let json = jsonObject as? [String : AnyObject] else {
-		throw GenericCoreDataExtensionsError.JsonObjectIsNotDictionary(jsonObject: jsonObject)
+		throw GenericCoreDataExtensionsError.jsonObjectIsNotDictionary(jsonObject: jsonObject)
 	}
 	let items = try importItemsFromJson(json, type: type, elementName: elementName, managedObjectContext: managedObjectContext, importFromJson: importFromJson)
 	return items
@@ -160,7 +160,7 @@ public func typedObjectID<T: NSManagedObject>(for object: T?) -> TypedManagedObj
 
 #if os(iOS)
 public func stringFromFetchedResultsChangeType(_ type: NSFetchedResultsChangeType) -> String {
-	switch (type) {
+	switch type {
 	case .insert:
 		return "Insert"
 	case .delete:

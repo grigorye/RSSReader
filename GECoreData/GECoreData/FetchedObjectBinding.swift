@@ -53,8 +53,7 @@ public class FetchedObjectCountBinding<T> : NSObject, NSFetchedResultsController
 		super.init()
 		do {
 			let notificationCenter = NotificationCenter.default
-			let observer = notificationCenter.addObserver(forName: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: managedObjectContext, queue: nil) {
-				[weak self] _ in
+			let observer = notificationCenter.addObserver(forName: NSNotification.Name.NSManagedObjectContextObjectsDidChange, object: managedObjectContext, queue: nil) { [weak self] _ in
 				self?.countDidChange()
 			}
 			scheduledForDeinit += [{
