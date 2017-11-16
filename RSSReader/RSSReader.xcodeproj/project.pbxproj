@@ -881,7 +881,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "~/homebrew/bin/swiftlint";
+			shellScript = "pushd ..\n~/homebrew/bin/swiftlint";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
