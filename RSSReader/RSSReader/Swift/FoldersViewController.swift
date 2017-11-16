@@ -132,8 +132,10 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 				self.refreshControl?.endRefreshing()
 				self.track(.refreshCompleted())
 			}
-			if nil == self.rootFolder {
-				self.rootFolder = RSSReader.rootFolder()!
+			if nil == error {
+				if nil == self.rootFolder {
+					self.rootFolder = RSSReader.rootFolder()!
+				}
 			}
 			self.tableView.reloadData()
 		}
