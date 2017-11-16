@@ -28,6 +28,8 @@
 		C408F1B71CE7520700DB943F /* FBRetainCycleDetector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C408F1B61CE7520700DB943F /* FBRetainCycleDetector.framework */; };
 		C408F1B81CE7520700DB943F /* FBRetainCycleDetector.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C408F1B61CE7520700DB943F /* FBRetainCycleDetector.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C40A24FF1A672B2100B5D959 /* TableViewContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A24FE1A672B2100B5D959 /* TableViewContainerCell.swift */; };
+		C40B8DD51FBE23B50030E9F7 /* Watchdog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C40B8DD41FBE23B50030E9F7 /* Watchdog.framework */; };
+		C40B8DD61FBE23B50030E9F7 /* Watchdog.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C40B8DD41FBE23B50030E9F7 /* Watchdog.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C41707CB1A56076A00AED81C /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41707CA1A56076A00AED81C /* Globals.swift */; };
 		C424B8F11C6FC5C8008AD647 /* RSSReaderData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C424B8F01C6FC5C8008AD647 /* RSSReaderData.framework */; };
 		C424B8F21C6FC5C8008AD647 /* RSSReaderData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C424B8F01C6FC5C8008AD647 /* RSSReaderData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -146,6 +148,7 @@
 				C474F1C11DB041F100F0E152 /* Loggy.framework in Embed Frameworks */,
 				C49FF1CE1DBBAA9000A86CC0 /* GEFoundation.framework in Embed Frameworks */,
 				C408F1B81CE7520700DB943F /* FBRetainCycleDetector.framework in Embed Frameworks */,
+				C40B8DD61FBE23B50030E9F7 /* Watchdog.framework in Embed Frameworks */,
 				C49FF1CB1DBBAA9000A86CC0 /* GECoreData.framework in Embed Frameworks */,
 				C424B8F21C6FC5C8008AD647 /* RSSReaderData.framework in Embed Frameworks */,
 				C4BE5AAF1DA864FA00E1734F /* RSSReaderAppConfig.framework in Embed Frameworks */,
@@ -199,6 +202,7 @@
 		C408F1B31CE7520700DB943F /* FBMemoryProfiler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBMemoryProfiler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C408F1B61CE7520700DB943F /* FBRetainCycleDetector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBRetainCycleDetector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C40A24FE1A672B2100B5D959 /* TableViewContainerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = TableViewContainerCell.swift; path = Swift/TableViewContainerCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		C40B8DD41FBE23B50030E9F7 /* Watchdog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Watchdog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C40C6BFD1A73C78F00FAFA17 /* EmbedSourceVersionIntoBundle */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = EmbedSourceVersionIntoBundle; sourceTree = "<group>"; };
 		C40C6BFE1A73C78F00FAFA17 /* IntegrateAppsee */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = IntegrateAppsee; sourceTree = "<group>"; };
 		C40C6C011A73C80C00FAFA17 /* IntegrateFabric */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = IntegrateFabric; sourceTree = "<group>"; };
@@ -318,6 +322,7 @@
 				C474F1C01DB041F100F0E152 /* Loggy.framework in Frameworks */,
 				C49FF1CD1DBBAA9000A86CC0 /* GEFoundation.framework in Frameworks */,
 				C408F1B71CE7520700DB943F /* FBRetainCycleDetector.framework in Frameworks */,
+				C40B8DD51FBE23B50030E9F7 /* Watchdog.framework in Frameworks */,
 				C49FF1CA1DBBAA9000A86CC0 /* GECoreData.framework in Frameworks */,
 				C424B8F11C6FC5C8008AD647 /* RSSReaderData.framework in Frameworks */,
 				C4BE5AAE1DA864FA00E1734F /* RSSReaderAppConfig.framework in Frameworks */,
@@ -357,6 +362,7 @@
 		C424B8F91C6FC5E1008AD647 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C40B8DD41FBE23B50030E9F7 /* Watchdog.framework */,
 				C4E4D6361E60C9EC007E0E39 /* Rswift.framework */,
 				C4CB791A1E3173E700F89794 /* GoogleToolboxForMac.framework */,
 				C4C4E1B01E2E7EF800167102 /* Optimizely.framework */,
