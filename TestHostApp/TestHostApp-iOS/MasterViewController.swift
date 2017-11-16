@@ -13,7 +13,6 @@ class MasterViewController: UITableViewController {
 	var detailViewController: DetailViewController? = nil
 	var objects = [AnyObject]()
 
-
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
@@ -88,6 +87,4 @@ class MasterViewController: UITableViewController {
 		    // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
 		}
 	}
-
-
 }
