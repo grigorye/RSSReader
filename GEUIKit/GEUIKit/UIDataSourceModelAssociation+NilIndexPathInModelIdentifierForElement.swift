@@ -17,11 +17,11 @@ extension UIDataSourceModelAssociation {
 		let sel = #selector(self.modelIdentifierForElement(at:in:))
 		let method = class_getInstanceMethod(self, sel)!
 		let oldImp: Imp = unsafeBitCast(method_getImplementation(method), to: Imp.self)
-		let impBlock: ImpBlock = { _self, indexPath, view in
+		let impBlock: ImpBlock = { pself, indexPath, view in
 			guard let indexPath = indexPath else {
 				return nil
 			}
-			return oldImp(_self, sel, indexPath, view)
+			return oldImp(pself, sel, indexPath, view)
 		}
 		let imp = imp_implementationWithBlock(unsafeBitCast(impBlock, to: AnyObject.self))
 		method_setImplementation(method, imp)
