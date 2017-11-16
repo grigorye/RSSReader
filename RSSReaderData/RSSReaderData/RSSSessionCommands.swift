@@ -181,7 +181,7 @@ struct PushTags : PersistentDataUpdateCommand, MostCommonDataUpdateCommand {
 		return "/reader/api/0/edit-tag?\(urlArgumentsJoined)"
 	}
 	func importResult(_ data: Data, into context: NSManagedObjectContext) throws {
-		if (excluded) {
+		if excluded {
 			category.itemsToBeExcluded.subtract(items)
 		}
 		else {

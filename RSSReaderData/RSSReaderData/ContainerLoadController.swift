@@ -134,6 +134,7 @@ public class ContainerLoadController : NSObject {
 
 	/// Schedules asynchronous load of next portion of the data, returning cancellation closure. Should not be invoked without cancelling any loads in progress.
 	public func loadMore(_ completionHandler: @escaping (Error?) -> Void) -> () -> Void {
+		// swiftlint:disable:previous function_body_length
 		
 		assert(Thread.isMainThread)
 		assert(nil == self.loadInProgress)
@@ -230,8 +231,8 @@ public class ContainerLoadController : NSObject {
 				assert(containerViewPredicate.evaluate(with: lastLoadedItem))
 			}
 			
-			x$(managedObjectContext.insertedObjects.map { $0.objectID });
-			x$(managedObjectContext.updatedObjects.map { $0.objectID });
+			x$(managedObjectContext.insertedObjects.map { $0.objectID })
+			x$(managedObjectContext.updatedObjects.map { $0.objectID })
 			
 			try managedObjectContext.save()
 			

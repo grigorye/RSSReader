@@ -20,7 +20,7 @@ func inversedSortDescriptors(_ sortDescriptors: [NSSortDescriptor]) -> [NSSortDe
 public class ContainerViewState: NSManagedObject {
 	typealias _Self = ContainerViewState
 	enum ValidationError: Error {
-		case NeitherLoadDateNorErrorIsSet
+		case neitherLoadDateNorErrorIsSet
 	}
 	@NSManaged public var containerViewPredicate: NSPredicate
     @NSManaged public var continuation: String?
@@ -32,7 +32,7 @@ public class ContainerViewState: NSManagedObject {
 	@NSManaged public var lastLoadedItemDate: Date?
 	func validateForUpdateOrInsert() throws {
 		if nil == self.loadDate && nil == self.loadError {
-			throw ValidationError.NeitherLoadDateNorErrorIsSet
+			throw ValidationError.neitherLoadDateNorErrorIsSet
 		}
 	}
 	public override func validateForInsert() throws {

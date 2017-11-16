@@ -33,7 +33,7 @@ extension Date {
 }
 extension Item : ManagedIdentifiable {
 	public enum ItemError: Error {
-		case CategoriesMissingOrInvalidInJson(json: [String: AnyObject])
+		case categoriesMissingOrInvalidInJson(json: [String: AnyObject])
 	}
 	public class func identifierKey() -> String {
 		return #keyPath(id)
@@ -143,14 +143,14 @@ extension Subscription {
 	}
 }
 enum JsonImportError: Error {
-	case JsonObjectIsNotDictionary(jsonObject: Any)
-	case MissingSortID(json: [String: AnyObject])
-	case SortIDIsNotHex(json: [String: AnyObject])
-	case SubscriptionOrderingMissingValue(json: [String: AnyObject])
-	case MissingPrefsID(json: [String: AnyObject])
-	case PrefsMissingValue(prefs: [String: AnyObject])
-	case PrefsValueLengthIsNotFactorOf8(prefs: [String: AnyObject])
-	case SortIDInPrefsValueIsNotHex(prefs: [String: AnyObject], value: String)
+	case jsonObjectIsNotDictionary(jsonObject: Any)
+	case missingSortID(json: [String: AnyObject])
+	case sortIDIsNotHex(json: [String: AnyObject])
+	case subscriptionOrderingMissingValue(json: [String: AnyObject])
+	case missingPrefsID(json: [String: AnyObject])
+	case prefsMissingValue(prefs: [String: AnyObject])
+	case prefsValueLengthIsNotFactorOf8(prefs: [String: AnyObject])
+	case sortIDInPrefsValueIsNotHex(prefs: [String: AnyObject], value: String)
 }
 
 extension Folder {

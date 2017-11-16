@@ -11,7 +11,6 @@ import XCTest
 import CoreData
 import PromiseKit
 
-
 class CoreDataFetchRequestsTests : XCTestCase {
 
 	typealias _Self = CoreDataFetchRequestsTests

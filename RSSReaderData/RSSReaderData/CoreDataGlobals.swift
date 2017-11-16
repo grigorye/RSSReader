@@ -49,7 +49,7 @@ private func regeneratedPSC() throws -> NSPersistentStoreCoordinator {
 	} catch let error as CocoaError {
 		switch error.code.rawValue {
 		case NSMigrationMissingSourceModelError where UserDefaults().bool(forKey: "allowMissingSourceModelError"):
-		fallthrough
+			fallthrough
 		case NSPersistentStoreIncompatibleVersionHashError, NSMigrationError:
 			let fileManager = FileManager.default
 			try fileManager.removeItem(at: storeURL)

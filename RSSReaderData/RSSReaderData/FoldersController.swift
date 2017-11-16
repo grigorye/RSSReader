@@ -33,6 +33,7 @@ extension TypedUserDefaults {
 }
 
 public extension FoldersController {
+	// swiftlint:disable:next function_body_length
 	public func updateFolders() -> Promise<Void> {
 		let rssSession = self.rssSession
 		precondition(rssSession.authenticated)

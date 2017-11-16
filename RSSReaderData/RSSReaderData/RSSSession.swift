@@ -141,8 +141,7 @@ extension RSSSession {
 	}
 	// MARK: -
 	public func authenticate() -> Promise<Void> {
-		return self.promise(for: Authenticate(loginAndPassword: x$(loginAndPassword))).then {
-			authToken in
+		return self.promise(for: Authenticate(loginAndPassword: x$(loginAndPassword))).then { authToken in
 			self.authToken = authToken
 		}
 	}
@@ -180,8 +179,7 @@ extension RSSSession {
 			for category in try! Folder.allWithItems(toBeExcluded: excluded, in: context) {
 				let items = category.items(toBeExcluded: excluded)
 				dispatchGroup.enter()
-				self.performPersistentDataUpdateCommand(PushTags(items: items, category: category, excluded: excluded)) {
-					result -> Void in
+				self.performPersistentDataUpdateCommand(PushTags(items: items, category: category, excluded: excluded)) { result -> Void in
 					completionQueue.async {
 						if case let .rejected(error) = result {
 							errors.append(error)

@@ -102,14 +102,14 @@ extension Container {
 	@objc func importFromJson(_ jsonObject: Any) throws {
 		let sortID: Int32 = try {
 			guard let json = jsonObject as? [String: AnyObject] else {
-				throw JsonImportError.JsonObjectIsNotDictionary(jsonObject: jsonObject)
+				throw JsonImportError.jsonObjectIsNotDictionary(jsonObject: jsonObject)
 			}
 			guard let sortIDString = (json)["sortid"] as? String else {
-				throw JsonImportError.MissingSortID(json: json)
+				throw JsonImportError.missingSortID(json: json)
 			}
 			var sortIDUnsigned : UInt32 = 0
 			guard Scanner(string: sortIDString).scanHexInt32(&sortIDUnsigned) else {
-				throw JsonImportError.SortIDIsNotHex(json: json)
+				throw JsonImportError.sortIDIsNotHex(json: json)
 			}
 			let sortID = Int32(bitPattern: sortIDUnsigned)
 			return (sortID)
@@ -129,27 +129,27 @@ extension Container {
 	}
 	class func importStreamPreferencesJson(_ jsonObject: AnyObject, managedObjectContext: NSManagedObjectContext) throws {
 		guard let json = jsonObject as? [String : [[String : AnyObject]]] else {
-			throw JsonImportError.JsonObjectIsNotDictionary(jsonObject: jsonObject)
+			throw JsonImportError.jsonObjectIsNotDictionary(jsonObject: jsonObject)
 		}
 		for (folderID, prefs) in json {
 			•(folderID)
 			•(prefs)
 			for prefs in prefs {
 				guard let id = prefs["id"] as? String else {
-					throw JsonImportError.MissingPrefsID(json: prefs)
+					throw JsonImportError.missingPrefsID(json: prefs)
 				}
 				if id != "subscription-ordering" {
 					continue
 				}
 				guard let value = prefs["value"] as? String else {
-					throw JsonImportError.PrefsMissingValue(prefs: prefs)
+					throw JsonImportError.prefsMissingValue(prefs: prefs)
 				}
 				•(value)
 				let folder = try insertedObjectUnlessFetchedWithID(Folder.self, id: folderID, managedObjectContext: managedObjectContext)
 				assert(folder.streamID == folderID)
 				let characterCountInValue = value.count
 				guard characterCountInValue % 8 == 0 else {
-					throw JsonImportError.PrefsValueLengthIsNotFactorOf8(prefs: prefs)
+					throw JsonImportError.prefsValueLengthIsNotFactorOf8(prefs: prefs)
 				}
 				var sortIDs = [Int32]()
 				var sliceIndex = value.startIndex
@@ -159,7 +159,7 @@ extension Container {
 					let sortIDString = String(value[range])
 					var sortIDUnsigned : UInt32 = 0
 					guard Scanner(string: sortIDString).scanHexInt32(&sortIDUnsigned) else {
-						throw JsonImportError.SortIDInPrefsValueIsNotHex(prefs: prefs, value: value)
+						throw JsonImportError.sortIDInPrefsValueIsNotHex(prefs: prefs, value: value)
 					}
 					let sortID = Int32(bitPattern: sortIDUnsigned)
 					sortIDs += [sortID]

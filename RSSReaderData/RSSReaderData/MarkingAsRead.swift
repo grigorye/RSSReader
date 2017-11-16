@@ -90,7 +90,7 @@ public extension Item {
 		}
 		set {
 			let oldValue = self.markedAsRead
-			if ((newValue && oldValue) || (!newValue && !oldValue)) {
+			if (newValue && oldValue) || (!newValue && !oldValue) {
 			}
 			else {
 				let unreadCountDelta = (newValue ? -1 : 1) as Int32

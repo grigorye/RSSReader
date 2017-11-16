@@ -23,7 +23,7 @@ func itemsImportedFromStreamJson(_ json: Json, loadDate: Date, container: Contai
 	let itemJsons = json["items"] as! [Json]
 	let categoryIDs = Array(try itemJsons.reduce(Set<String>()) {
 		guard let categoryIDs = $1["categories"] as? [String] else {
-			throw Item.ItemError.CategoriesMissingOrInvalidInJson(json: json)
+			throw Item.ItemError.categoriesMissingOrInvalidInJson(json: json)
 		}
 		return $0.union(categoryIDs)
 	})
