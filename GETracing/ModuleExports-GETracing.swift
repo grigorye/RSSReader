@@ -25,9 +25,11 @@ internal func x$<T>(file: String = #file, line: Int = #line, column: Int = #colu
 }
 
 internal prefix func •<T>(argument: @autoclosure () -> T) {
+	// swiftlint:disable:previous identifier_name
 }
 
 internal func L<T>(file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer = #dsohandle, _ valueClosure: @autoclosure () -> T) -> String {
+	// swiftlint:disable:previous identifier_name
 	return GETracing.L(file: file, line: line, column: column, function: function, dso: dso, valueClosure)
 }
 
