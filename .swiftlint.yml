@@ -17,12 +17,17 @@ disabled_rules:
   - redundant_string_enum_value
   - implicit_getter
   - nesting
+  - redundant_optional_initialization
+  - for_where
+  - empty_parentheses_with_trailing_closure
+  - fallthrough
 excluded:
   - Pods
-  - RSSReader/R.generated.swift
-line_length: 250
+  - GitSubtrees
+  - RSSReader/RSSReader/R.generated.swift
+line_length: 300
 identifier_name:
-  min_length: 2
+  min_length: 1
   max_length: 60
   excluded:
     - keyPathsForValues
