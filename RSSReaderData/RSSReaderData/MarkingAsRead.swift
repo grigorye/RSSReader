@@ -9,6 +9,7 @@
 import CoreData
 import Foundation
 
+public let fakeRootTagSuffix = "state/fake/root"
 public let rootTagSuffix = "state/com.google/root"
 public let readTagSuffix = "state/com.google/read"
 public let favoriteTagSuffix = "state/com.google/starred"
