@@ -218,19 +218,10 @@ class ItemsViewController : ContainerViewController {
 	}
 	
 	func configureRightBarButtonItems() {
-		for item in [unfilterUnreadBarButtonItem, filterUnreadBarButtonItem] {
-			if let customView = item?.customView {
-				customView.layoutIfNeeded()
-				customView.sizeToFit()
-				let button = customView.subviews.first as! UIButton
-				customView.bounds.size.width = button.bounds.width
-				button.frame.origin.x = 0
-				item?.width = customView.bounds.width
-			}
-		}
 		loadedRightBarButtonItems = navigationItem.rightBarButtonItems
 		navigationItem.rightBarButtonItems = regeneratedRightBarButtonItems()
 	}
+	
 	// MARK: -
 	@objc class var keyPathsForValuesAffectingTitleText: Set<String> {
 		return [#keyPath(itemsCount)]
@@ -332,11 +323,11 @@ extension ItemsViewController /* State Restoration */ {
 	}
 	override func encodeRestorableState(with coder: NSCoder) {
 		super.encodeRestorableState(with: coder)
-		container?.encodeObjectIDWithCoder(coder, key: Restorable.containerObjectID.rawValue)
+		container.encodeObjectIDWithCoder(coder, key: Restorable.containerObjectID.rawValue)
 	}
 	override func decodeRestorableState(with coder: NSCoder) {
 		super.decodeRestorableState(with: coder)
-		container = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.containerObjectID.rawValue, managedObjectContext: mainQueueManagedObjectContext) as! Container?
+		container = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.containerObjectID.rawValue, managedObjectContext: mainQueueManagedObjectContext) as! Container
 		scheduledForViewWillAppearOrStateRestoration.perform()
 	}
 }
@@ -373,7 +364,7 @@ extension ItemsViewController {
 			i.markedAsRead = true
 		}
 		firstly { () -> Promise<Void> in
-			rssSession!.markAllAsRead(container!)
+			rssSession!.markAllAsRead(container)
 		}.then { (_) -> Void in
 			self.track(.markedAllAsRead)
 		}.catch { error in
@@ -387,7 +378,7 @@ extension ItemsViewController {
 		tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .bottom, animated: true)
 	}
 	@IBAction private func action(_ sender: AnyObject?) {
-		let activityViewController = UIActivityViewController(activityItems: [container!], applicationActivities: applicationActivities)
+		let activityViewController = UIActivityViewController(activityItems: [container], applicationActivities: applicationActivities)
 		navigationController?.present(activityViewController, animated: true, completion: nil)
 	}
 }
