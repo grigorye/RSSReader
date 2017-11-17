@@ -14,9 +14,9 @@ extension TypedUserDefaults {
 }
 
 class ContainerViewController: UITableViewController {
-	@objc dynamic var container: Container!
+	@objc dynamic var container: Container
 	@objc dynamic var predicateForItems: NSPredicate? {
-		return container?.predicateForItems
+		return container.predicateForItems
 	}
 	// MARK: -
 	@objc dynamic var itemsCount = 0
@@ -37,7 +37,7 @@ class ContainerViewController: UITableViewController {
 	// MARK: -
 	override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 		let sectionHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SectionHeader") as! ContainerTableViewSectionHeaderView
-		sectionHeaderView.titleLabel.text = (self.container as! Titled?)?.visibleTitle
+		sectionHeaderView.titleLabel.text = (self.container as! Titled).visibleTitle
 		return sectionHeaderView
 	}
 	// MARK: -
@@ -59,5 +59,10 @@ class ContainerViewController: UITableViewController {
 		tableView.register(R.nib.containerTableViewSectionHeader(), forHeaderFooterViewReuseIdentifier: "SectionHeader")
 		tableView.sectionHeaderHeight = UITableViewAutomaticDimension
 		tableView.estimatedSectionHeaderHeight = 44
+	}
+	
+	required init?(coder aDecoder: NSCoder) {
+		self.container = RSSReader.rootFolder() ?? RSSReader.fakeRootFolderInsertedAsNecessary()
+		super.init(coder: aDecoder)
 	}
 }

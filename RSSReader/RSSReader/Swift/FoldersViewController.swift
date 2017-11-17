@@ -78,12 +78,12 @@ extension FoldersUpdateState : CustomStringConvertible {
 
 class FoldersViewController: ContainerViewController, UIDataSourceModelAssociation {
 	typealias _Self = FoldersViewController
-	@objc dynamic var rootFolder: Folder? {
+	@objc dynamic var rootFolder: Folder {
 		set {
 			container = newValue
 		}
 		get {
-			return container as! Folder?
+			return container as! Folder
 		}
 	}
 	var childContainers: [Container]!
@@ -101,12 +101,7 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 	}
 	@objc private dynamic var regeneratedChildContainers: [Container] {
 		let regeneratedChildContainers: [Container] = {
-			if let rootFolder = self.rootFolder {
-				return (rootFolder.childContainers.array as! [Container]).filter { self.showUnreadOnly ? $0.unreadCount > 0 : true }
-			}
-			else {
-				return []
-			}
+			return (rootFolder.childContainers.array as! [Container]).filter { self.showUnreadOnly ? $0.unreadCount > 0 : true }
 		}()
 		return (regeneratedChildContainers)
 	}
@@ -133,7 +128,7 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 				self.track(.refreshCompleted())
 			}
 			if nil == error {
-				if nil == self.rootFolder {
+				if RSSReader.fakeRootFolder() == self.rootFolder {
 					self.rootFolder = RSSReader.rootFolder()!
 				}
 			}
@@ -217,7 +212,7 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 	}
 	override func encodeRestorableState(with coder: NSCoder) {
 		super.encodeRestorableState(with: coder)
-		rootFolder?.encodeObjectIDWithCoder(coder, key: Restorable.rootFolderObjectID.rawValue)
+		rootFolder.encodeObjectIDWithCoder(coder, key: Restorable.rootFolderObjectID.rawValue)
 	}
 	override func decodeRestorableState(with coder: NSCoder) {
 		super.decodeRestorableState(with: coder)
