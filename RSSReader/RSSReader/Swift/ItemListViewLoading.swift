@@ -37,7 +37,7 @@ extension ItemsViewController {
 		guard !refreshControl!.isRefreshing else {
 			return
 		}
-		loadMoreIfNecessary()
+		x$(loadMoreIfNecessary())
 	}
 
 }
