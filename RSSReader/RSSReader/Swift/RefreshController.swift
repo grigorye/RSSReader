@@ -14,6 +14,21 @@ func rootFolder() -> Folder? {
 	return x$(Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: mainQueueManagedObjectContext))
 }
 
+func fakeRootFolder() -> Folder? {
+	return x$(Folder.folderWithTagSuffix(fakeRootTagSuffix, managedObjectContext: mainQueueManagedObjectContext))
+}
+
+func fakeRootFolderInsertedAsNecessary() -> Folder {
+	if let fakeRootFolder = RSSReader.fakeRootFolder() {
+		return fakeRootFolder
+	}
+	let fakeRootFolder = Folder(context: mainQueueManagedObjectContext) … {
+		$0.streamID = fakeRootTagSuffix
+	}
+	try! mainQueueManagedObjectContext.save()
+	return fakeRootFolder
+}
+
 class RefreshController: NSObject {
 	
 	@objc dynamic var refreshingSubscriptions: Bool = false
