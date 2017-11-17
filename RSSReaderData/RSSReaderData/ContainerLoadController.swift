@@ -152,6 +152,7 @@ public class ContainerLoadController : NSObject {
 		
 		let (promise, _, reject) = Promise<Void>.pending()
 		let loadInProgress = LoadInProgress(loadDate: loadDate, promise: promise, reject: reject)
+		self.loadInProgress = loadInProgress
 		
 		let containerViewStateObjectID = typedObjectID(for: containerViewState)
 		let containerObjectID = typedObjectID(for: container)!
@@ -209,22 +210,21 @@ public class ContainerLoadController : NSObject {
 				}
 			}()
 			
-			if nil == continuation {
-				// Make it new load date if the load of first chunk succeeded.
-				self.loadDate = loadInProgress.loadDate
-			}
-			else {
-				assert(self.loadDate == loadInProgress.loadDate)
-			}
-			
 			let (existingItems, newItems) = streamContentsResult.1.items
 			let items = existingItems + newItems
 			let lastLoadedItem = items.last
-			let continuation = streamContentsResult.1.continuation
+			let newContinuation = streamContentsResult.1.continuation
 			
 			containerViewState … {
-				$0.continuation = continuation
+				$0.continuation = newContinuation
 				$0.lastLoadedItemDate = lastLoadedItem?.date
+				if nil == continuation {
+					// Make it new load date if the load of first chunk succeeded.
+					$0.loadDate = loadInProgress.loadDate
+				}
+				else {
+					assert($0.loadDate == loadInProgress.loadDate)
+				}
 			}
 			
 			if let lastLoadedItem = lastLoadedItem {
@@ -234,13 +234,15 @@ public class ContainerLoadController : NSObject {
 			x$(managedObjectContext.insertedObjects.map { $0.objectID })
 			x$(managedObjectContext.updatedObjects.map { $0.objectID })
 			
-			try managedObjectContext.save()
+			try! managedObjectContext.save()
 			
-			return continuation
+			return newContinuation
 			
-		}.then { continuation -> Void in
+		}.then { newContinuation -> Void in
 			
-			if nil == x$(continuation) {
+			assert(self.loadDate == loadInProgress.loadDate)
+			
+			if nil == x$(newContinuation) {
 				self.loadCompleted = true
 			}
 			
