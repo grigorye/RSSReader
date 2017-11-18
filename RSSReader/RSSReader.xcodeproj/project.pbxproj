@@ -65,6 +65,8 @@
 		C474F1CD1DB0657800F0E152 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474F1CC1DB0657800F0E152 /* main.swift */; };
 		C4816E2E1DF612E400DDACA7 /* GETracing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BFF1DBD502600FA3A0A /* GETracing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4816E361DF612E400DDACA7 /* GEFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1CC1DBBAA9000A86CC0 /* GEFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C48354101FBFC29E00466BD6 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4CB791A1E3173E700F89794 /* GoogleToolboxForMac.framework */; };
+		C48354111FBFC29E00466BD6 /* GoogleToolboxForMac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4CB791A1E3173E700F89794 /* GoogleToolboxForMac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4874A091EAD657B00629990 /* Main.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4874A0B1EAD657B00629990 /* Main.strings */; };
 		C4874A0E1EAD657C00629990 /* LaunchScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4874A101EAD657C00629990 /* LaunchScreen.strings */; };
 		C48C5F971A87344000A1EA12 /* ItemPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48C5F961A87344000A1EA12 /* ItemPageViewController.swift */; };
@@ -154,6 +156,7 @@
 				C4BE5AAF1DA864FA00E1734F /* RSSReaderAppConfig.framework in Embed Frameworks */,
 				C408F1B51CE7520700DB943F /* FBMemoryProfiler.framework in Embed Frameworks */,
 				C49FF1C81DBBAA9000A86CC0 /* GEUIKit.framework in Embed Frameworks */,
+				C48354111FBFC29E00466BD6 /* GoogleToolboxForMac.framework in Embed Frameworks */,
 				C4AD5B381D282F1800358DEA /* PromiseKit.framework in Embed Frameworks */,
 				C474F0D21D8775F500CABEB9 /* SwiftMessages.framework in Embed Frameworks */,
 				C408F1B21CE7520700DB943F /* FBAllocationTracker.framework in Embed Frameworks */,
@@ -328,6 +331,7 @@
 				C4BE5AAE1DA864FA00E1734F /* RSSReaderAppConfig.framework in Frameworks */,
 				C408F1B41CE7520700DB943F /* FBMemoryProfiler.framework in Frameworks */,
 				C49FF1C71DBBAA9000A86CC0 /* GEUIKit.framework in Frameworks */,
+				C48354101FBFC29E00466BD6 /* GoogleToolboxForMac.framework in Frameworks */,
 				C4AD5B371D282F1800358DEA /* PromiseKit.framework in Frameworks */,
 				C474F0D11D8775F500CABEB9 /* SwiftMessages.framework in Frameworks */,
 				C408F1B11CE7520700DB943F /* FBAllocationTracker.framework in Frameworks */,
