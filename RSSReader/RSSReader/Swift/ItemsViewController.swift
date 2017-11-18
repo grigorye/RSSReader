@@ -318,8 +318,8 @@ class ItemsViewController : ContainerViewController {
 // MARK: - State Restoration
 //
 extension ItemsViewController /* State Restoration */ {
-	private enum Restorable: String {
-		case containerObjectID = "containerObjectID"
+	private enum Restorable : String {
+		case containerObjectID
 	}
 	override func encodeRestorableState(with coder: NSCoder) {
 		super.encodeRestorableState(with: coder)

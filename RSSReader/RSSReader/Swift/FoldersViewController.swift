@@ -207,8 +207,8 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 		}
 	}
 	// MARK: - State Preservation and Restoration
-	private enum Restorable: String {
-		case rootFolderObjectID = "rootFolderObjectID"
+	private enum Restorable : String {
+		case rootFolderObjectID
 	}
 	override func encodeRestorableState(with coder: NSCoder) {
 		super.encodeRestorableState(with: coder)

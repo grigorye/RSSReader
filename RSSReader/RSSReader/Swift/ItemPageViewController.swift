@@ -12,9 +12,9 @@ import UIKit
 class ItemPageViewController : UIPageViewController {
 	@objc dynamic var currentViewController: UIViewController!
 	// MARK: - State Preservation and Restoration
-	private enum Restorable: String {
-		case viewControllers = "viewControllers"
-		case currentViewControllerIndex = "currentViewControllerIndex"
+	private enum Restorable : String {
+		case viewControllers
+		case currentViewControllerIndex
 	}
 	override func decodeRestorableState(with coder: NSCoder) {
 		super.decodeRestorableState(with: coder)

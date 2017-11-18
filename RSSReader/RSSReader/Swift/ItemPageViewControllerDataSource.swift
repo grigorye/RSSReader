@@ -58,8 +58,8 @@ class ItemPageViewControllerDataSource: NSObject, UIPageViewControllerDataSource
 		}
 	}
 	// MARK: - State Preservation and Restoration
-	private enum Restorable: String {
-		case itemObjectIDURLs = "itemObjectIDURLs"
+	private enum Restorable : String {
+		case itemObjectIDURLs
 	}
 	func encodeRestorableStateWithCoder(_ coder: NSCoder) {
 		let itemObjectIDURLs = self.items.map { $0.objectID.uriRepresentation() }

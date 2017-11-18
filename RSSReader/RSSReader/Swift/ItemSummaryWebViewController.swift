@@ -195,8 +195,8 @@ class ItemSummaryWebViewController: UIViewController {
 		return navigationController?.isNavigationBarHidden ?? false
 	}
 	// MARK: - State Preservation and Restoration
-	enum Restorable: String {
-		case itemObjectID = "itemObjectID"
+	enum Restorable : String {
+		case itemObjectID
 	}
 	override func encodeRestorableState(with coder: NSCoder) {
 		super.encodeRestorableState(with: coder)
