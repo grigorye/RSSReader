@@ -7,6 +7,7 @@
 //
 
 import GECoreData
+import GoogleToolboxForMac
 import CoreData
 import Foundation
 
@@ -106,7 +107,7 @@ extension Item : ManagedIdentifiable {
 		let date = Date(timestampUsec: json["timestampUsec"] as! String)
 		self.updatedDate = updatedDate
 		self.date = date
-		self.title = json["title"] as! String
+		self.title = (json["title"] as! String).gtm_stringByUnescapingFromHTML()
 		self.author = json["author"] as! String
 		let summary = (json["summary"] as! [String: AnyObject])["content"] as! String?
 		self.summary = summary
