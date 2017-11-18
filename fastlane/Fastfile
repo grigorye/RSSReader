@@ -29,9 +29,9 @@ platform :ios do
       buildlog_path: build_dir
     )
   end
-  
+
   lane :icon do |options|
-  	appicon(
+    appicon(
       appicon_image_file: "AppIcon.png",
       appicon_path: product_name + "/" + "product_name" + "/Assets.xcassets",
       appicon_devices: [:iphone, :ipad]
@@ -39,18 +39,18 @@ platform :ios do
   end
 
   lane :developer do |options|
-  	build_and_archive(export_method: "development")
+    build_and_archive(export_method: "development")
   end
-  
+
   lane :fabric do |options|
-  	build_and_archive(export_method: "development")
-  	crashlytics
+    build_and_archive(export_method: "development")
+    crashlytics
   end
 
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
   lane :beta do |options|
-  	build_and_archive(export_method: "app-store")
+    build_and_archive(export_method: "app-store")
     pilot
 
     # sh "your_script.sh"
@@ -61,7 +61,7 @@ platform :ios do
   lane :release do |options|
     # match(type: "appstore")
     # snapshot
-  	build_and_archive(export_method: "app-store")
+    build_and_archive(export_method: "app-store")
     deliver(force: true)
     # frameit
   end
