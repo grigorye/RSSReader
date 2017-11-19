@@ -515,7 +515,7 @@
         <!--Split View Controller-->
         <scene sceneID="Buf-IE-3wC">
             <objects>
-                <splitViewController id="WZP-Ap-ZYg" sceneMemberID="viewController">
+                <splitViewController restorationIdentifier="Split" id="WZP-Ap-ZYg" sceneMemberID="viewController">
                     <connections>
                         <segue destination="kPx-QE-mCE" kind="relationship" relationship="masterViewController" id="Nrh-ow-dps"/>
                         <segue destination="YsB-1A-9aT" kind="relationship" relationship="detailViewController" id="y9K-SZ-pJ9"/>
