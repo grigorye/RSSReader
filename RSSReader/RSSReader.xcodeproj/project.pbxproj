@@ -11,7 +11,7 @@
 			isa = PBXAggregateTarget;
 			buildConfigurationList = C4EDE1FB1FBCF0AD00BB7F55 /* Build configuration list for PBXAggregateTarget "Lint" */;
 			buildPhases = (
-				C4EDE1FE1FBCF0B500BB7F55 /* ShellScript */,
+				C4EDE1FE1FBCF0B500BB7F55 /* Lint */,
 			);
 			dependencies = (
 			);
@@ -874,18 +874,19 @@
 			shellPath = "/bin/sh -xe";
 			shellScript = "\"${GE_XCODE_BUILD_PHASES:?}\"/EmbedSourcesIntoBundle\n";
 		};
-		C4EDE1FE1FBCF0B500BB7F55 /* ShellScript */ = {
+		C4EDE1FE1FBCF0B500BB7F55 /* Lint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = Lint;
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "pushd ..\n~/homebrew/bin/swiftlint";
+			shellPath = "/bin/sh -e";
+			shellScript = "pushd .. > /dev/null\n~/homebrew/bin/swiftlint";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1058,7 +1059,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.grigoryentin.RSSReaderUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
 				TEST_HOST = "";
 				TEST_TARGET_NAME = RSSReader;
 				USES_XCTRUNNER = YES;
@@ -1075,7 +1075,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.grigoryentin.RSSReaderUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
 				TEST_HOST = "";
 				TEST_TARGET_NAME = RSSReader;
 				USES_XCTRUNNER = YES;
