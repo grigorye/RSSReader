@@ -16,7 +16,7 @@ PODS:
   - R.swift (4.0.0):
     - R.swift.Library (~> 4.0.0)
   - R.swift.Library (4.0.0)
-  - SwiftMessages (4.0.0)
+  - SwiftMessages (4.1.0)
   - Watchdog (3.0)
 
 DEPENDENCIES:
@@ -39,7 +39,7 @@ SPEC CHECKSUMS:
   PromiseKit: 9c1d9f6d7b65e3951a90bea7f407c56972be5d8e
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
-  SwiftMessages: cd565e0e7d095584be1770c012c6b5be4183b5ee
+  SwiftMessages: 1bacc783c8f10bdfdc57c14860cae8a1f1fa6591
   Watchdog: 141185b6b3a332a9f5721ea42dfa9681cf2d7c6b
 
 PODFILE CHECKSUM: 640d41ce68dd2bf76208fca2a49957e7eb508aed
