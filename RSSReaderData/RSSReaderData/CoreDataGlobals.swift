@@ -91,6 +91,7 @@ public var mainQueueManagedObjectContext: NSManagedObjectContext {
 	guard #available(iOS 10.0, *), defaults.persistentContainerEnabled else {
 		return persistentMainQueueManagedObjectContext
 	}
+	assert(0 < persistentContainer.persistentStoreCoordinator.persistentStores.count)
 	return persistentContainer.viewContext
 }
 
@@ -124,14 +125,15 @@ public func performBackgroundMOCTask(_ task: @escaping (NSManagedObjectContext) 
 	}
 }
 
-@available (iOS 10.0, *)
-let persistentContainer = NSPersistentContainer(name: "RSSReader", managedObjectModel: managedObjectModel) … {
-	$0.viewContext … {
+private func configureViewContext(_ viewContext: NSManagedObjectContext) {
+	viewContext … {
 		$0.name = "view"
 		$0.automaticallyMergesChangesFromParent = true
 	}
-	()
 }
+
+@available (iOS 10.0, *)
+let persistentContainer = NSPersistentContainer(name: "RSSReader", managedObjectModel: managedObjectModel)
 
 @available (iOS 10.0, *)
 struct LoadPersistentStoresError : Error {
@@ -164,6 +166,7 @@ extension NSPersistentContainer {
 					completionHandler(LoadPersistentStoresError(errorsAndDescriptions: errorsAndDescriptions))
 					return
 				}
+				configureViewContext(self.viewContext)
 				completionHandler(nil)
 			}
 		}
