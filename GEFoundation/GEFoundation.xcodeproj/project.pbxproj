@@ -33,7 +33,6 @@
 		C49FF1811DBB999E00A86CC0 /* GenericExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF1801DBB999E00A86CC0 /* GenericExtensions.swift */; };
 		C49FF1831DBB99BE00A86CC0 /* PropertyCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF1821DBB99BE00A86CC0 /* PropertyCaching.swift */; };
 		C49FF18B1DBB9B0900A86CC0 /* URLSessionTaskGeneratorErrorObjCBridgingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF18A1DBB9B0900A86CC0 /* URLSessionTaskGeneratorErrorObjCBridgingTests.swift */; };
-		C49FF1931DBB9D4000A86CC0 /* GEShared.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C49FF1921DBB9D4000A86CC0 /* GEShared.xcconfig */; };
 		C4CB4BA51E2A560000C601BF /* NSLogRedirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CB4BA41E2A560000C601BF /* NSLogRedirector.swift */; };
 		C4EB27F11DFA32D900BF0843 /* ModuleExports-GETracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27F01DFA32D900BF0843 /* ModuleExports-GETracing.swift */; };
 		C4EB27F21DFA32F300BF0843 /* ModuleExports-GEFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27EF1DFA32C900BF0843 /* ModuleExports-GEFoundation.swift */; };
@@ -234,7 +233,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = "Grigory Entin";
 				TargetAttributes = {
 					C49FF0F91DBB981300A86CC0 = {
@@ -280,7 +279,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C49FF1931DBB9D4000A86CC0 /* GEShared.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
