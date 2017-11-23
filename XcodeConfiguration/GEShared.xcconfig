@@ -9,7 +9,7 @@
 #include "GEShared-SDKRoot.xcconfig"
 #include "GEShared-CodeGeneration.xcconfig"
 
-IPHONEOS_DEPLOYMENT_TARGET = 10.0
+IPHONEOS_DEPLOYMENT_TARGET = 11.0
 
 ONLY_ACTIVE_ARCH__CONFIGURATION__Debug = YES
 ONLY_ACTIVE_ARCH__CONFIGURATION__Release = NO
