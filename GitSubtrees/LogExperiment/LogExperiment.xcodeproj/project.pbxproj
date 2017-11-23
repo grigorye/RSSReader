@@ -186,7 +186,7 @@
 					DB4ED72D1D81F633000F38A6 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 465NA5BW7E;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
 					DB8873FA1D806685008FF01B = {
