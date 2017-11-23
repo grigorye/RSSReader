@@ -151,7 +151,9 @@ class ItemsViewController : ContainerViewController {
 		scheduledForUnbind = ScheduledHandlers() … {
 			$0 += [self.bindLoadController()]
 			$0 += [self.bindLoadDate()]
-			$0 += [self.bindTitle()]
+			if defaults.showContainerTitleInTableHeader {
+				$0 += [self.bindTitle()]
+			}
 		}
 	}
 	
