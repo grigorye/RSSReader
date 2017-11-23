@@ -107,7 +107,11 @@ class ItemSummaryWebViewController: UIViewController {
 				return self.storedHTMLURL
 			}
 		}()
-		let safariViewController = SFSafariViewController(url: url, entersReaderIfAvailable: true)
+		let configuration = SFSafariViewController.Configuration() … {
+			$0.entersReaderIfAvailable = true
+			$0.barCollapsingEnabled = true
+		}
+		let safariViewController = SFSafariViewController(url: url, configuration: configuration)
 		self.present(safariViewController, animated: true, completion: nil)
 	}
 	@IBAction func expand(_ sender: AnyObject?, event: UIEvent?) {
