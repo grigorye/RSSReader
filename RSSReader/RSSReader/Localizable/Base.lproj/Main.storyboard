@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WZP-Ap-ZYg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13770" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WZP-Ap-ZYg">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13770"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -600,10 +599,10 @@
             </objects>
             <point key="canvasLocation" x="3422" y="-1460"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Home Navigation-->
         <scene sceneID="JQu-I0-c0C">
             <objects>
-                <navigationController restorationIdentifier="HomeNavigation" automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="kPx-QE-mCE" sceneMemberID="viewController">
+                <navigationController restorationIdentifier="HomeNavigation" automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="kPx-QE-mCE" userLabel="Home Navigation" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hIz-db-h55">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
