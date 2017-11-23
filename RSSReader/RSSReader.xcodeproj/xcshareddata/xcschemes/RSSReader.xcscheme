@@ -103,12 +103,16 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "-showContainerTitleInTableHeader YES"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "-progressIndicatorInFooterEnabled YES"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-multipleBackgroundContextsEnabled YES"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-traceEnabled YES"
