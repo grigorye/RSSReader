@@ -707,7 +707,7 @@
 					C4CDD3B31A5350B50087DD05 = {
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = 465NA5BW7E;
-						LastSwiftMigration = 0910;
+						LastSwiftMigration = 0920;
 						TestTargetID = C4CDD39C1A5350B40087DD05;
 					};
 					C4EDE1FA1FBCF0AD00BB7F55 = {
