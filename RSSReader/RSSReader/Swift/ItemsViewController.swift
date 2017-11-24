@@ -31,6 +31,9 @@ class ItemsViewController : ContainerViewController {
 	lazy var prototypeCell = R.nib.itemTableViewCell.firstView(owner: nil)!
 
 	public var dataSource: ItemTableViewDataSource!
+	
+	open lazy var canLoadItems = true
+	
 	@objc public dynamic var loadController: ContainerLoadController!
 	func bindLoadController() -> Handler {
 		let loadController = ContainerLoadController(session: rssSession!, container: self.container, unreadOnly: self.showUnreadOnly) … {
@@ -55,14 +58,22 @@ class ItemsViewController : ContainerViewController {
 	
 	// MARK: -
 	private var loadedRightBarButtonItems: [UIBarButtonItem]!
-	@IBOutlet var statusLabel: UILabel!
+	@IBOutlet var statusLabel: UILabel?
 	@IBOutlet var statusBarButtonItem: UIBarButtonItem!
 	@IBOutlet private var filterUnreadBarButtonItem: UIBarButtonItem!
 	@IBOutlet private var unfilterUnreadBarButtonItem: UIBarButtonItem!
 	
-	private func regeneratedRightBarButtonItems() -> [UIBarButtonItem] {
-		let excludedItems = showUnreadEnabled ? [(showUnreadOnly ?  filterUnreadBarButtonItem : unfilterUnreadBarButtonItem)!] : [filterUnreadBarButtonItem!, unfilterUnreadBarButtonItem!]
-		let x = loadedRightBarButtonItems!.filter { nil == excludedItems.index(of: $0) }
+	private func regeneratedRightBarButtonItems() -> [UIBarButtonItem]? {
+		let excludedItems: [UIBarButtonItem] = {
+			guard let filterUnreadBarButtonItem = filterUnreadBarButtonItem else {
+				return []
+			}
+			guard let unfilterUnreadBarButtonItem = unfilterUnreadBarButtonItem else {
+				return []
+			}
+			return showUnreadEnabled ? [(showUnreadOnly ?  filterUnreadBarButtonItem : unfilterUnreadBarButtonItem)] : [filterUnreadBarButtonItem, unfilterUnreadBarButtonItem]
+		}()
+		let x = loadedRightBarButtonItems?.filter { nil == excludedItems.index(of: $0) }
 		return x
 	}
 	
@@ -76,8 +87,8 @@ class ItemsViewController : ContainerViewController {
 	var begEndBarButtonItems: [UIBarButtonItem] {
 		return [toBeginningBarButtonItem, toEndBarButtonItem]
 	}
-	private func regeneratedToolbarItems() -> [UIBarButtonItem] {
-		let x = loadedToolbarItems!.filter {
+	private func regeneratedToolbarItems() -> [UIBarButtonItem]? {
+		let x = loadedToolbarItems?.filter {
 			guard !defaults.begEndBarButtonItemsEnabled else {
 				return true
 			}
@@ -149,8 +160,10 @@ class ItemsViewController : ContainerViewController {
 	func bind() {
 		precondition(!scheduledForUnbind.hasHandlers)
 		scheduledForUnbind = ScheduledHandlers() … {
-			$0 += [self.bindLoadController()]
-			$0 += [self.bindLoadDate()]
+			if canLoadItems {
+				$0 += [self.bindLoadController()]
+				$0 += [self.bindLoadDate()]
+			}
 			if defaults.showContainerTitleInTableHeader {
 				$0 += [self.bindTitle()]
 			}
@@ -200,8 +213,16 @@ class ItemsViewController : ContainerViewController {
 	
 	// MARK: -
 	
+	open lazy var predicate: NSPredicate {
+		return showUnreadOnly ? predicateForUnreadOnly() : NSPredicate(value: true)
+	}
+
+	open var sortDescriptors: [NSSortDescriptor] {
+		return sortDescriptorsForContainers
+	}
+
 	private func configureDataSource() {
-		let dataSource = ItemTableViewDataSource(tableView: tableView, container: container, showUnreadOnly: showUnreadOnly)
+		let dataSource = ItemTableViewDataSource(tableView: tableView, container: container, predicate: predicate, sortDescriptors: sortDescriptors)
 		tableView.dataSource = dataSource
 		self.dataSource = dataSource
 		try! dataSource.performFetch()
@@ -280,8 +301,10 @@ class ItemsViewController : ContainerViewController {
 		tableView.tableFooterView = tableFooterView
 		self.tableFooterViewOnLoading = tableView.tableFooterView
 		tableView.tableFooterView = nil
-		self.refreshControl = UIRefreshControl() … {
-			$0.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+		if canLoadItems {
+			self.refreshControl = UIRefreshControl() … {
+				$0.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+			}
 		}
 	}
 	// MARK: -
