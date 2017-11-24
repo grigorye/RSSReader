@@ -27,6 +27,10 @@ extension TypedUserDefaults {
 	@NSManaged public var itemsAreSortedByLoadDate: Bool
 }
 
+func predicateForUnreadOnly() -> NSPredicate {
+	return NSPredicate(format: "SUBQUERY(\(#keyPath(Item.categoryItems.category)), $x, $x.\(#keyPath(Folder.streamID)) ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
+}
+
 class ItemTableViewDataSource: NSObject {
 	var systemLayoutSizeCachingDataSource = SystemLayoutSizeCachingTableViewCellDataSource(
 		layoutSizeDefiningValueForCell: {
@@ -41,17 +45,11 @@ class ItemTableViewDataSource: NSObject {
 	)
 	weak var tableView: UITableView?
 	let container: Container
-	let showUnreadOnly: Bool
 	fileprivate let nowDate = { Date() }()
 	var heightSampleLabel: UILabel!
 	var cachedVariableHeights: [NSManagedObjectID : CGFloat] = [:]
-	lazy var containerViewPredicate: NSPredicate = {
-		if self.showUnreadOnly {
-			return NSPredicate(format: "SUBQUERY(\(#keyPath(Item.categoryItems.category)), $x, $x.\(#keyPath(Folder.streamID)) ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
-		} else {
-			return NSPredicate(value: true)
-		}
-	}()
+	let containerViewPredicate: NSPredicate
+	let sortDescriptors: [NSSortDescriptor]
 	// MARK: -
 	@objc class var keyPathsForValuesAffectingPredicateForItems: Set<String> {
 		return [#keyPath(fetchedResultsController)]
@@ -70,7 +68,7 @@ class ItemTableViewDataSource: NSObject {
 	@objc lazy private dynamic var fetchedResultsController: NSFetchedResultsController<Item> = {
 		typealias E = Item
 		let fetchRequest = E.fetchRequestForEntity() … {
-			$0.sortDescriptors = sortDescriptorsForContainers
+			$0.sortDescriptors = sortDescriptors
 			$0.predicate = NSCompoundPredicate(andPredicateWithSubpredicates:[NSPredicate]() … {
 				$0 += [self.container.predicateForItems]
 				$0 += [self.containerViewPredicate]
@@ -146,10 +144,11 @@ class ItemTableViewDataSource: NSObject {
 		tableView.register(R.nib.itemTableViewCell)
 	}
 	// MARK: -
-	init(tableView: UITableView, container: Container, showUnreadOnly: Bool) {
+	init(tableView: UITableView, container: Container, predicate: NSPredicate, sortDescriptors: [NSSortDescriptor]) {
 		self.tableView = tableView
 		self.container = container
-		self.showUnreadOnly = showUnreadOnly
+		self.containerViewPredicate = predicate
+		self.sortDescriptors = sortDescriptors
 		super.init()
 		self.configureReusableCells()
 	}
