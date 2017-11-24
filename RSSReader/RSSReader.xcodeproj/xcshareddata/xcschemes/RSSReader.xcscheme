@@ -104,7 +104,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-showContainerTitleInTableHeader YES"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-progressIndicatorInFooterEnabled YES"
