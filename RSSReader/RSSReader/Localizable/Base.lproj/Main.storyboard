@@ -228,8 +228,8 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="History" id="Qyl-H4-2jl"/>
                     <connections>
-                        <segue destination="CEh-Po-b2S" kind="show" identifier="showHistoryArticle" id="cJW-gk-KPb"/>
-                        <segue destination="VQ0-zs-W8t" kind="showDetail" identifier="showHistoryPages" action="showViewController:sender:" id="asX-LX-8NF"/>
+                        <segue destination="CEh-Po-b2S" kind="show" identifier="showListArticle" id="cJW-gk-KPb"/>
+                        <segue destination="VQ0-zs-W8t" kind="showDetail" identifier="showListPages" action="showViewController:sender:" id="asX-LX-8NF"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cMx-U7-ZHF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -732,11 +732,11 @@
         <image name="Unstar" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="w0U-iJ-oAk"/>
+        <segue reference="asX-LX-8NF"/>
         <segue reference="EUy-Yi-gV8"/>
         <segue reference="FhY-D2-pL1"/>
         <segue reference="IQP-ep-vtz"/>
-        <segue reference="8Da-vm-piJ"/>
+        <segue reference="cJW-gk-KPb"/>
         <segue reference="51W-HV-eUd"/>
     </inferredMetricsTieBreakers>
 </document>
