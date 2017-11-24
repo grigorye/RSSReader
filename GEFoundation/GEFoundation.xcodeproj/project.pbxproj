@@ -233,7 +233,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Grigory Entin";
 				TargetAttributes = {
 					C49FF0F91DBB981300A86CC0 = {
@@ -359,6 +359,7 @@
 			baseConfigurationReference = C49FF1921DBB9D4000A86CC0 /* GEShared.xcconfig */;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_TESTABILITY = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -370,6 +371,7 @@
 			baseConfigurationReference = C49FF1921DBB9D4000A86CC0 /* GEShared.xcconfig */;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 1;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -379,6 +381,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 465NA5BW7E;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -395,6 +398,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 465NA5BW7E;
 				DYLIB_COMPATIBILITY_VERSION = 1;
