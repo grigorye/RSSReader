@@ -34,7 +34,7 @@ extension ItemsViewController {
 		guard nil != view.superview else {
 			return
 		}
-		guard !refreshControl!.isRefreshing else {
+		guard !canLoadItems || !refreshControl!.isRefreshing else {
 			return
 		}
 		x$(loadMoreIfNecessary())
