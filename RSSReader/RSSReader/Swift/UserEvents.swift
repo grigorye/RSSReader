@@ -69,6 +69,9 @@ extension RefreshingStateTracker {
 extension ItemsViewController {
 	
 	internal func presentMessage(_ text: String) {
+		guard let statusLabel = statusLabel else {
+			return
+		}
 		statusLabel.text = text
 		statusLabel.sizeToFit()
 		statusLabel.superview!.frame.size.width = statusLabel.bounds.width
