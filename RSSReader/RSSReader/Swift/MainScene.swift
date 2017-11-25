@@ -65,7 +65,7 @@ class MainScene : NSObject {
 	
 	lazy var favoritesViewController: ItemsViewController = {
 		return ((self.tabBarController.viewControllers![1] as! UINavigationController).viewControllers.first as! ItemsViewController) … {
-			configureItemsViewControllerForFavorites($0)
+			configureForFavorites($0)
 		}
 	}()
 	
