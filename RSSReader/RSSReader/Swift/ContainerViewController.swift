@@ -49,7 +49,9 @@ class ContainerViewController: UITableViewController {
 		return sectionHeaderView
 	}
 	// MARK: -
+	private var scheduledForViewWillAppear = ScheduledHandlers()
 	override func viewWillAppear(_ animated: Bool) {
+		scheduledForViewWillAppear.perform()
 		super.viewWillAppear(animated)
 		x$(container)
 		if defaults.showAllItemsCount {
@@ -58,7 +60,7 @@ class ContainerViewController: UITableViewController {
 	}
 	private var scheduledForViewDidDisappear = ScheduledHandlers()
 	override func viewDidDisappear(_ animated: Bool) {
-		scheduledForViewDidDisappear.perform ()
+		scheduledForViewDidDisappear.perform()
 		super.viewDidDisappear(animated)
 	}
 	// MARK: -
@@ -69,7 +71,9 @@ class ContainerViewController: UITableViewController {
 			tableView.sectionHeaderHeight = UITableViewAutomaticDimension
 			tableView.estimatedSectionHeaderHeight = 44
 		} else {
-			navigationItem.title = (self.container as! Titled).visibleTitle
+			scheduledForViewWillAppear.append { [weak self] in
+				self?.navigationItem.title = (self?.container as! Titled).visibleTitle
+			}
 			tableView.sectionHeaderHeight = 0
 		}
 	}
