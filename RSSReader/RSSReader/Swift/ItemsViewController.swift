@@ -213,7 +213,7 @@ class ItemsViewController : ContainerViewController {
 	
 	// MARK: -
 	
-	open lazy var predicate: NSPredicate {
+	open var predicate: NSPredicate {
 		return showUnreadOnly ? predicateForUnreadOnly() : NSPredicate(value: true)
 	}
 
