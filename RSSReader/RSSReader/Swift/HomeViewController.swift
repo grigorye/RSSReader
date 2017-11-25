@@ -9,29 +9,56 @@
 import RSSReaderData
 import UIKit
 
-func configureItemsViewControllerForFavorites(_ itemsViewController: ItemsViewController) {
-	itemsViewController.title = NSLocalizedString("Favorites", comment: "")
-	if let favoritesFolder = Folder.folderWithTagSuffix(favoriteTagSuffix, managedObjectContext: mainQueueManagedObjectContext) {
-		itemsViewController.container = favoritesFolder
+func configureForFavorites(_ itemsViewController: ItemsViewController) {
+	
+	itemsViewController … {
+		
+		$0.title = NSLocalizedString("Favorites", comment: "")
+		
+		if let favoritesFolder = Folder.folderWithTagSuffix(favoriteTagSuffix, managedObjectContext: mainQueueManagedObjectContext) {
+			
+			$0.container = favoritesFolder
+		}
+		$0.showUnreadEnabled = false
+		$0.multipleSourcesEnabled = true
+		$0.showsContainerTitle = false
 	}
-	itemsViewController.showUnreadEnabled = false
-	itemsViewController.multipleSourcesEnabled = true
+}
+
+func configureForSubscriptions(_ foldersViewController: FoldersViewController) {
+	
+	foldersViewController … {
+		
+		$0.title = NSLocalizedString("Subscriptions", comment: "")
+		
+		if let rootFolder = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: mainQueueManagedObjectContext) {
+			
+			$0.rootFolder = rootFolder
+		}
+		$0.showsContainerTitle = false
+	}
 }
 
 class HomeViewController: UITableViewController {
+	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		
 		switch x$(segue.identifier!) {
+			
 		case R.segue.homeViewController.showHistory.identifier:
+			
 			()
+			
 		case R.segue.homeViewController.showSubscriptions.identifier:
-			let foldersViewController = segue.destination as! FoldersViewController
-			if let rootFolder = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: mainQueueManagedObjectContext) {
-				foldersViewController.rootFolder = rootFolder
-			}
+			
+			configureForSubscriptions(segue.destination as! FoldersViewController)
+			
 		case R.segue.homeViewController.showFavorites.identifier:
-			let itemsViewController = segue.destination as! ItemsViewController
-			configureItemsViewControllerForFavorites(itemsViewController)
+			
+			configureForFavorites(segue.destination as! ItemsViewController)
+			
 		default:
+			
 			()
 		}
 	}
