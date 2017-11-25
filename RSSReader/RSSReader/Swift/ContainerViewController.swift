@@ -63,6 +63,19 @@ class ContainerViewController: UITableViewController {
 		scheduledForViewDidDisappear.perform()
 		super.viewDidDisappear(animated)
 	}
+	
+	var containerTitle: String? {
+		return (container as! Titled).visibleTitle
+	}
+
+	var showsContainerTitle: Bool = true
+	
+	func updateViewForContainer() {
+		if showsContainerTitle {
+			navigationItem.title = containerTitle
+		}
+	}
+	
 	// MARK: -
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -72,7 +85,7 @@ class ContainerViewController: UITableViewController {
 			tableView.estimatedSectionHeaderHeight = 44
 		} else {
 			scheduledForViewWillAppear.append { [weak self] in
-				self?.navigationItem.title = (self?.container as! Titled).visibleTitle
+				self?.updateViewForContainer()
 			}
 			tableView.sectionHeaderHeight = 0
 		}
