@@ -68,9 +68,6 @@ private let (managedObjectContextError, saveQueueManagedObjectContext): (Error?,
 			$0.name = "save"
 			$0.persistentStoreCoordinator = try regeneratedPSC()
 		}
-		if !defaults.savingDisabled {
-			saveQueueMOCAutosaver = ManagedObjectContextAutosaver(managedObjectContext: saveQueueManagedObjectContext, queue: nil)
-		}
 		return (nil, saveQueueManagedObjectContext)
 	}
 	catch {
@@ -78,40 +75,53 @@ private let (managedObjectContextError, saveQueueManagedObjectContext): (Error?,
 	}
 }()
 
-private var mainQueueMOCAutosaver: ManagedObjectContextAutosaver?
 let persistentMainQueueManagedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)…{
 	$0.name = "main"
 	$0.parent = saveQueueManagedObjectContext
-	if !defaults.savingDisabled {
-		mainQueueMOCAutosaver = ManagedObjectContextAutosaver(managedObjectContext: $0, queue: nil)
-	}
 }
 
-public var mainQueueManagedObjectContext: NSManagedObjectContext {
-	guard #available(iOS 10.0, *), defaults.persistentContainerEnabled else {
-		return persistentMainQueueManagedObjectContext
-	}
-	assert(0 < persistentContainer.persistentStoreCoordinator.persistentStores.count)
-	return persistentContainer.viewContext
+func newBoundMainQueueManagedObjectContext() -> NSManagedObjectContext {
+    guard #available(iOS 10.0, *), defaults.persistentContainerEnabled else {
+        return persistentMainQueueManagedObjectContext
+    }
+    assert(0 < persistentContainer.persistentStoreCoordinator.persistentStores.count)
+    return persistentContainer.viewContext
 }
 
-let backgroundQueueManagedObjectContext: NSManagedObjectContext = {
-	guard defaults.backgroundImportEnabled else {
-		return mainQueueManagedObjectContext
-	}
-	guard #available(iOS 10.0, *), defaults.persistentContainerEnabled else {
-		return NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType) … {
-			$0.name = "background"
-			$0.parent = mainQueueManagedObjectContext
-			if defaults.coreDataCachingEnabled {
-				$0.cachingEnabled = true
-			}
-		}
-	}
-	return persistentContainer.newBackgroundContext() … {
-		$0.name = "background"
-	}
-}()
+private var mainQueueMOCAutosaver: ManagedObjectContextAutosaver?
+
+public let mainQueueManagedObjectContext: NSManagedObjectContext = newBoundMainQueueManagedObjectContext() … {
+    
+    if !defaults.savingDisabled {
+        mainQueueMOCAutosaver = ManagedObjectContextAutosaver(managedObjectContext: $0, queue: nil)
+    }
+}
+
+func newBackgroundQueueManagedObjectContext() -> NSManagedObjectContext {
+
+    guard defaults.backgroundImportEnabled else {
+        return mainQueueManagedObjectContext
+    }
+    guard #available(iOS 10.0, *), defaults.persistentContainerEnabled else {
+        return NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType) … {
+            $0.name = "background"
+            $0.parent = mainQueueManagedObjectContext
+            if defaults.coreDataCachingEnabled {
+                $0.cachingEnabled = true
+            }
+        }
+    }
+    return persistentContainer.newBackgroundContext() … {
+        $0.name = "background"
+    }
+}
+
+let backgroundQueueManagedObjectContext: NSManagedObjectContext = newBackgroundQueueManagedObjectContext() … {
+    
+    if !defaults.savingDisabled {
+        saveQueueMOCAutosaver = ManagedObjectContextAutosaver(managedObjectContext: $0, queue: nil)
+    }
+}
 
 public func performBackgroundMOCTask(_ task: @escaping (NSManagedObjectContext) -> Void) {
 	guard #available(iOS 10.0, *), defaults.persistentContainerEnabled, defaults.multipleBackgroundContextsEnabled else {
