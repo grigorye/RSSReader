@@ -27,12 +27,7 @@ platform :ios do
       archive_path: archive_path,
       configuration: "Release",
       export_method: export_method,
-      buildlog_path: build_dir,
-      export_options: {
-        provisioningProfiles: { 
-          "com.grigorye.RSSReader" => provisioning_profile,
-        }
-      }
+      buildlog_path: build_dir
   )
   end
 
@@ -45,18 +40,18 @@ platform :ios do
   end
 
   lane :developer do |options|
-    build_and_archive(export_method: "development", provisioning_profile: "RSSReader Development")
+    build_and_archive(export_method: "development")
   end
 
   lane :fabric do |options|
-    build_and_archive(export_method: "development", provisioning_profile: "RSSReader Development")
+    build_and_archive(export_method: "development")
     crashlytics
   end
 
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
   lane :beta do |options|
-    build_and_archive(export_method: "app-store", provisioning_profile: "RSSReader Distribution")
+    build_and_archive(export_method: "app-store")
     pilot
 
     # sh "your_script.sh"
@@ -67,7 +62,7 @@ platform :ios do
   lane :release do |options|
     # match(type: "appstore")
     # snapshot
-    build_and_archive(export_method: "app-store", provisioning_profile: "RSSReader Distribution")
+    build_and_archive(export_method: "app-store")
     deliver(force: true)
     # frameit
   end
