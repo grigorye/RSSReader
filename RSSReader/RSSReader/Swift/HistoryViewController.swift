@@ -7,9 +7,7 @@
 //
 
 import RSSReaderData
-import class GEUIKit.TableViewFetchedResultsControllerDelegate
-import UIKit.UITableViewController
-import CoreData.NSFetchedResultsController
+import Foundation
 
 class HistoryViewController : ItemsViewController {
 
@@ -24,6 +22,12 @@ class HistoryViewController : ItemsViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		nowDate = Date()
 		super.viewWillAppear(animated)
+	}
+
+	required init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+		
+		showsContainerTitle = false
 	}
 	
 	// MARK: -
