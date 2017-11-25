@@ -20,14 +20,20 @@ platform :ios do
 
   private_lane :build_and_archive do |options|
     export_method = options[:export_method]
+    provisioning_profile = options[:provisioning_profile]
     gym(
       scheme: product_name,
       output_name: versioned_product_name,
       archive_path: archive_path,
       configuration: "Release",
       export_method: export_method,
-      buildlog_path: build_dir
-    )
+      buildlog_path: build_dir,
+      export_options: {
+        provisioningProfiles: { 
+          "com.grigorye.RSSReader" => provisioning_profile,
+        }
+      }
+  )
   end
 
   lane :icon do |options|
@@ -39,18 +45,18 @@ platform :ios do
   end
 
   lane :developer do |options|
-    build_and_archive(export_method: "development")
+    build_and_archive(export_method: "development", provisioning_profile: "RSSReader Development")
   end
 
   lane :fabric do |options|
-    build_and_archive(export_method: "development")
+    build_and_archive(export_method: "development", provisioning_profile: "RSSReader Development")
     crashlytics
   end
 
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
   lane :beta do |options|
-    build_and_archive(export_method: "app-store")
+    build_and_archive(export_method: "app-store", provisioning_profile: "RSSReader Distribution")
     pilot
 
     # sh "your_script.sh"
@@ -61,7 +67,7 @@ platform :ios do
   lane :release do |options|
     # match(type: "appstore")
     # snapshot
-    build_and_archive(export_method: "app-store")
+    build_and_archive(export_method: "app-store", provisioning_profile: "RSSReader Distribution")
     deliver(force: true)
     # frameit
   end
