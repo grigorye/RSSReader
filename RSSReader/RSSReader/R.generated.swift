@@ -257,23 +257,23 @@ struct R: Rswift.Validatable {
     
     /// This struct is generated for `HistoryViewController`, and contains static references to 2 segues.
     struct historyViewController {
-      /// Segue identifier `showHistoryArticle`.
-      static let showHistoryArticle: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, HistoryViewController, ItemSummaryWebViewController> = Rswift.StoryboardSegueIdentifier(identifier: "showHistoryArticle")
-      /// Segue identifier `showHistoryPages`.
-      static let showHistoryPages: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, HistoryViewController, UIKit.UINavigationController> = Rswift.StoryboardSegueIdentifier(identifier: "showHistoryPages")
+      /// Segue identifier `showListArticle`.
+      static let showListArticle: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, HistoryViewController, ItemSummaryWebViewController> = Rswift.StoryboardSegueIdentifier(identifier: "showListArticle")
+      /// Segue identifier `showListPages`.
+      static let showListPages: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, HistoryViewController, UIKit.UINavigationController> = Rswift.StoryboardSegueIdentifier(identifier: "showListPages")
       
-      /// Optionally returns a typed version of segue `showHistoryArticle`.
+      /// Optionally returns a typed version of segue `showListArticle`.
       /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
       /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
-      static func showHistoryArticle(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, HistoryViewController, ItemSummaryWebViewController>? {
-        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.historyViewController.showHistoryArticle, segue: segue)
+      static func showListArticle(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, HistoryViewController, ItemSummaryWebViewController>? {
+        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.historyViewController.showListArticle, segue: segue)
       }
       
-      /// Optionally returns a typed version of segue `showHistoryPages`.
+      /// Optionally returns a typed version of segue `showListPages`.
       /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
       /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
-      static func showHistoryPages(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, HistoryViewController, UIKit.UINavigationController>? {
-        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.historyViewController.showHistoryPages, segue: segue)
+      static func showListPages(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, HistoryViewController, UIKit.UINavigationController>? {
+        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.historyViewController.showListPages, segue: segue)
       }
       
       fileprivate init() {}
