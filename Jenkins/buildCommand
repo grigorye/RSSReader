@@ -1,0 +1,66 @@
+#! /bin/sh -xe
+
+supDir="${PWD:?}/sup"
+
+if ${clean:?}
+then
+    rm -rf build
+else
+    rm -rf build/*.result
+fi
+
+mkdir -p build/fastlane
+
+if ${clean_sup:?}
+then
+    rm -rf "${supDir:?}"
+fi
+
+xcode_developer_dir_v="GE_XCODE${xcode_version}_DEVELOPER_DIR"
+mkdir -p "${supDir:?}"
+cd "${supDir:?}"
+export GEM_HOME="${supDir:?}"/gem/ruby
+export PATH="$PATH:${GEM_HOME:?}/bin"
+if false; then
+mkdir homebrew && curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C homebrew
+export PATH="${supDir:?}"/homebrew/bin:"$PATH"
+brew install ruby
+fi
+gem install -N bundler
+bundle install --deployment --path "${GEM_HOME:?}" --gemfile=../src/Gemfile --with=fastlane
+
+cd ../src
+export LC_ALL="en_US.UTF-8"
+env \
+    BUILD_DIR=../build \
+    XC_FABRIC_API_KEY="${CRASHLYTICS_API_TOKEN:?}" \
+    XC_FABRIC_BUILD_SECRET="${CRASHLYTICS_BUILD_SECRET:?}" \
+    CRASHLYTICS_DEBUG=true \
+    CRASHLYTICS_EMAILS=cake214@icloud.com \
+    GYM_XCARGS='CRASHLYTICS_ENABLED=YES'"${GE_JENKINS_SWIFT_VERSION:+ SWIFT_VERSION=${GE_JENKINS_SWIFT_VERSION:?}}" \
+    FASTLANE_DONT_STORE_PASSWORD=1 \
+    MATCH_VERBOSE=1 \
+    FL_REPORT_PATH="$PWD/../build/fastlane" \
+    DEVELOPER_DIR="${!xcode_developer_dir_v:?}" \
+    bundle exec fastlane ios "${lane:?}"
+
+exit
+
+if ${clean:?}
+then
+    rm -rf build
+fi
+env SRCROOT=$PWD/src ./src/XcodeScripts/VersionIsClean || exit
+versionNumber=$(./src/XcodeScripts/VersionNumber)
+archiveName="RSSReader-${versionNumber:?}.xcarchive"
+archivePath="${WORKSPACE:?}/build/RSSReader-${versionNumber:?}.xcarchive"
+env DEVELOPER_DIR=/Users/eg/Applications/Xcode-beta.app/Contents/Developer xcodebuild archive -workspace src/RSSReader.xcworkspace -scheme RSSReader -configuration Release -archivePath "${archivePath:?}" -derivedDataPath "${WORKSPACE:?}/build"
+pushd build > /dev/null
+zip -r "${archiveName:?}".zip "${archiveName:?}"
+popd > /dev/null
+env DEVELOPER_DIR=/Users/eg/Applications/Xcode-beta.app/Contents/Developer xcodebuild \
+    -exportArchive \
+    -archivePath "${archivePath:?}" \
+    -exportPath build/"RSSReader-${versionNumber:?}.ipa" \
+    -exportProvisioningProfile 'iOS Team Provisioning Profile: com.grigorye.RSSReader'
+
