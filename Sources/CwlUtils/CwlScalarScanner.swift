@@ -38,6 +38,33 @@ public enum ScalarScannerError: Error {
 	case searchFailed(wanted: String, after: Int)
 }
 
+extension UnicodeScalar {
+	/// Tests if the scalar is within a range
+	public func isInRange(_ range: ClosedRange<UnicodeScalar>) -> Bool {
+		return range.contains(self)
+	}
+	
+	/// Tests if the scalar is a plain ASCII digit
+	public var isDigit: Bool {
+		return ("0"..."9").contains(self)
+	}
+	
+	/// Tests if the scalar is a plain ASCII English alphabet lowercase letter
+	public var isLower: Bool {
+		return ("a"..."z").contains(self)
+	}
+
+	/// Tests if the scalar is a plain ASCII English alphabet uppercase letter
+	public var isUpper: Bool {
+		return ("A"..."Z").contains(self)
+	}
+
+	/// Tests if the scalar is a plain ASCII English alphabet letter
+	public var isLetter: Bool {
+		return isLower || isUpper
+	}
+}
+
 /// A structure for traversing a `String.UnicodeScalarView`.
 ///
 /// **UNICODE WARNING**: this struct ignores all Unicode combining rules and parses each scalar individually. The rules for parsing must allow combined characters to be parsed separately or better yet, forbid combining characters at critical parse locations. If your data structure does not include these types of rule then you should be iterating over the `Character` elements in a `String` rather than using this struct.
@@ -58,7 +85,13 @@ public struct ScalarScanner<C: Collection> where C.Iterator.Element == UnicodeSc
 		self.consumed = 0
 	}
 	
-	/// Throw if the scalars at the current `index` don't match the scalars in `value`. Advance the `index` to the end of the match.
+	/// Sets the index back to the beginning and clears the consumed count
+	public mutating func reset() {
+		index = scalars.startIndex
+		consumed = 0
+	}
+	
+	/// Throw if the scalars at the current `index` don't match the scalars in `scalars`. Advance the `index` to the end of the match.
 	/// WARNING: `string` is used purely for its `unicodeScalars` property and matching is purely based on direct scalar comparison (no decomposition or normalization is performed).
 	public mutating func match(string: String) throws {
 		let (newIndex, newConsumed) = try string.unicodeScalars.reduce((index: index, count: 0)) { (tuple: (index: C.Index, count: Int), scalar: UnicodeScalar) in
@@ -71,7 +104,7 @@ public struct ScalarScanner<C: Collection> where C.Iterator.Element == UnicodeSc
 		consumed += newConsumed
 	}
 	
-	/// Throw if the scalars at the current `index` don't match the scalars in `value`. Advance the `index` to the end of the match.
+	/// Throw if the next scalar at the current `index` fails to match the next scalar in `scalars`. Advance the `index` to the end of the match.
 	public mutating func match(scalar: UnicodeScalar) throws {
 		if index == scalars.endIndex || scalars[index] != scalar {
 			throw ScalarScannerError.matchFailed(wanted: String(scalar), at: consumed)
@@ -80,6 +113,26 @@ public struct ScalarScanner<C: Collection> where C.Iterator.Element == UnicodeSc
 		consumed += 1
 	}
 	
+	/// Throw if the next scalar at the current `index` fails to match the next scalar in `scalars`. Advance the `index` to the end of the match.
+	public mutating func match(where test: (UnicodeScalar) -> Bool) throws {
+		if index == scalars.endIndex || !test(scalars[index]) {
+			throw ScalarScannerError.matchFailed(wanted: String(describing: test), at: consumed)
+		}
+		index = self.scalars.index(after: index)
+		consumed += 1
+	}
+	
+	/// Throw if the scalars at the current `index` don't match the scalars in `value`. Advance the `index` to the end of the match.
+	mutating func read(where test: (UnicodeScalar) -> Bool) throws -> UnicodeScalar {
+		if index == scalars.endIndex || !test(scalars[index]) {
+			throw ScalarScannerError.matchFailed(wanted: String(describing: test), at: consumed)
+		}
+		let s = scalars[index]
+		index = self.scalars.index(after: index)
+		consumed += 1
+		return s
+	}
+
 	/// Consume scalars from the contained collection, up to but not including the first instance of `scalar` found. `index` is advanced to immediately before `scalar`. Returns all scalars consumed prior to `scalar` as a `String`. Throws if `scalar` is never found.
 	public mutating func readUntil(scalar: UnicodeScalar) throws -> String {
 		var i = index
@@ -276,7 +329,7 @@ public struct ScalarScanner<C: Collection> where C.Iterator.Element == UnicodeSc
 		return string
 	}
 	
-	/// If the next scalars after the current `index` match `value`, advance over them and return `true`, otherwise, leave `index` unchanged and return `false`.
+	/// If the next scalars after the current `index` match `scalars`, advance over them and return `true`, otherwise, leave `index` unchanged and return `false`.
 	/// WARNING: `string` is used purely for its `unicodeScalars` property and matching is purely based on direct scalar comparison (no decomposition or normalization is performed).
 	public mutating func conditional(string: String) -> Bool {
 		var i = index
@@ -293,7 +346,7 @@ public struct ScalarScanner<C: Collection> where C.Iterator.Element == UnicodeSc
 		return true
 	}
 	
-	/// If the next scalar after the current `index` match `value`, advance over it and return `true`, otherwise, leave `index` unchanged and return `false`.
+	/// If the next scalar after the current `index` match `scalars`, advance over it and return `true`, otherwise, leave `index` unchanged and return `false`.
 	public mutating func conditional(scalar: UnicodeScalar) -> Bool {
 		if index == scalars.endIndex || scalar != scalars[index] {
 			return false
@@ -301,6 +354,17 @@ public struct ScalarScanner<C: Collection> where C.Iterator.Element == UnicodeSc
 		index = self.scalars.index(after: index)
 		consumed += 1
 		return true
+	}
+	
+	/// If the next scalar after the current `index` match `value`, advance over it and return `true`, otherwise, leave `index` unchanged and return `false`.
+	public mutating func conditional(where test: (UnicodeScalar) -> Bool) -> UnicodeScalar? {
+		if index == scalars.endIndex || !test(scalars[index]) {
+			return nil
+		}
+		let s = scalars[index]
+		index = self.scalars.index(after: index)
+		consumed += 1
+		return s
 	}
 	
 	/// If the `index` is at the end, throw, otherwise, return the next scalar at the current `index` without advancing `index`.
@@ -338,16 +402,30 @@ public struct ScalarScanner<C: Collection> where C.Iterator.Element == UnicodeSc
 	
 	/// Throws if scalar at the current `index` is not in the range `"0"` to `"9"`. Consume scalars `"0"` to `"9"` until a scalar outside that range is encountered. Return the integer representation of the value scanned, interpreted as a base 10 integer. `index` is advanced to the end of the number.
 	public mutating func readInt() throws -> Int {
+		let result = conditionalInt()
+		guard let r = result else {
+			throw ScalarScannerError.expectedInt(at: consumed)
+		}
+		return r
+	}
+	
+	/// Throws if scalar at the current `index` is not in the range `"0"` to `"9"`. Consume scalars `"0"` to `"9"` until a scalar outside that range is encountered. Return the integer representation of the value scanned, interpreted as a base 10 integer. `index` is advanced to the end of the number.
+	public mutating func conditionalInt() -> Int? {
 		var result = 0
 		var i = index
 		var c = 0
-		while i != scalars.endIndex && scalars[i] >= "0" && scalars[i] <= "9" {
-			result = result * 10 + Int(scalars[i].value - UnicodeScalar("0").value)
+		while i != scalars.endIndex && scalars[i].isDigit {
+			let digit = Int(scalars[i].value - UnicodeScalar("0").value)
+			// Avoid overflow
+			if (Int.max - digit) / 10 < result {
+				return nil
+			}
+			result = result * 10 + digit
 			i = self.scalars.index(after: i)
 			c += 1
 		}
 		if i == index {
-			throw ScalarScannerError.expectedInt(at: consumed)
+			return nil
 		}
 		index = i
 		consumed += c

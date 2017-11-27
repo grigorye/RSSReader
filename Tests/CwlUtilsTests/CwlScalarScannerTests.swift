@@ -268,6 +268,15 @@ class ScalarScannerTests: XCTestCase {
 		}
 	}
 	
+	func testConditionalInt() {
+		var sc = ScalarScanner(scalars: "123abc".unicodeScalars)
+		XCTAssert(sc.conditionalInt() == Optional<Int>(123))
+		XCTAssert(sc.conditionalInt() == nil)
+
+		var sc2 = ScalarScanner(scalars: "123456789012345678901234567890".unicodeScalars)
+		XCTAssert(sc2.conditionalInt() == nil)
+	}
+	
 	func testReadScalars() {
 		do {
 			var sc = ScalarScanner(scalars: "xyz".unicodeScalars)
