@@ -36,7 +36,7 @@ Minimum requirements are iOS 8 or macOS 10.10.
 
 1. In a subdirectory of your project's directory, run `git clone https://github.com/mattgallagher/CwlUtils.git`
 2. Drag the "CwlUtils.xcodeproj" file from the Finder to somewhere your in own project's file tree in Xcode
-3. Drag the "CwlUtils.framework" from the "Products" folder of the "CwlSignal" project to the "Copy Files (Frameworks)" build phases of any target that you want to include this module.
+3. Drag the "CwlUtils.framework" from the "Products" folder of the "CwlUtils" project to the "Copy Files (Frameworks)" build phases of any target that you want to include this module.
 
 That third step is a little tricky if you're unfamiliar with Xcode but it involves:
 
