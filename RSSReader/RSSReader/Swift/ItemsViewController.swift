@@ -34,16 +34,19 @@ class ItemsViewController : ContainerViewController {
 	
 	open lazy var canLoadItems = true
 	
-	@objc public dynamic var loadController: ContainerLoadController!
+	@objc public dynamic var loadController: ContainerLoadController?
 	func bindLoadController() -> Handler {
-		let loadController = ContainerLoadController(session: rssSession!, container: self.container, unreadOnly: self.showUnreadOnly) … {
+		guard let rssSession = rssSession else {
+			return {}
+		}
+		let loadController = ContainerLoadController(session: rssSession, container: self.container, unreadOnly: self.showUnreadOnly) … {
 			$0.numberOfItemsToLoadInitially = defaults.numberOfItemsToLoadInitially
 			$0.numberOfItemsToLoadLater = defaults.numberOfItemsToLoadLater
 		}
 		self.loadController = loadController
-		self.loadController.bind()
+		loadController.bind()
 		return {
-			self.loadController.unbind()
+			loadController.unbind()
 			self.loadController = nil
 		}
 	}
@@ -263,15 +266,15 @@ class ItemsViewController : ContainerViewController {
 	@objc class var keyPathsForValuesAffectingLoadDate: Set<String> {
 		return [#keyPath(loadController.loadDate)]
 	}
-	@objc dynamic var loadDate: Date {
+	@objc dynamic var loadDate: Date? {
 		get {
-			return loadController.loadDate
+			return loadController?.loadDate
 		}
 	}
 	func bindLoadDate() -> Handler {
 		let binding = observe(\.loadDate, options: [.initial]) { (_, _) in
 			•(self.toolbarItems!)
-			if let loadDate = self.loadController.loadDate {
+			if let loadDate = self.loadDate {
 				self.track(.updated(at: loadDate))
 			}
 			else {
@@ -384,12 +387,15 @@ extension ItemsViewController {
 		}
 	}
 	@IBAction private func markAllAsRead(_ sender: AnyObject!) {
+		guard let rssSession = rssSession else {
+			return
+		}
 		let items = container.ownItems
 		for i in items {
 			i.markedAsRead = true
 		}
 		firstly { () -> Promise<Void> in
-			rssSession!.markAllAsRead(container)
+			rssSession.markAllAsRead(container)
 		}.then { (_) -> Void in
 			self.track(.markedAllAsRead)
 		}.catch { error in
