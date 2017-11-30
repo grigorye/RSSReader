@@ -188,9 +188,6 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 		return childContainers.count
 	}
 	// MARK: -
-	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return UITableViewAutomaticDimension
-	}
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let childContainer = childContainers[indexPath.row]
 		switch childContainer {
@@ -262,6 +259,11 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 	override func viewDidDisappear(_ animated: Bool) {
 		scheduledForViewDidDisappear.perform()
 		super.viewDidDisappear(animated)
+	}
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		tableView.estimatedRowHeight = 44
+		tableView.rowHeight = UITableViewAutomaticDimension
 	}
 	// MARK: -
 	deinit {
