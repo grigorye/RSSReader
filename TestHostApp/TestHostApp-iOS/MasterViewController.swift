@@ -36,7 +36,7 @@ class MasterViewController: UITableViewController {
 		// Dispose of any resources that can be recreated.
 	}
 
-	func insertNewObject(_ sender: AnyObject) {
+	@IBAction func insertNewObject(_ sender: AnyObject) {
 		objects.insert(NSDate(), at: 0)
 		let indexPath = IndexPath(row: 0, section: 0)
 		self.tableView.insertRows(at: [indexPath], with: .automatic)
