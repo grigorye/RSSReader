@@ -12,7 +12,7 @@ import CoreData
 public class Subscription: Container, Titled {
 	@NSManaged public var title: String
     @NSManaged public var htmlURL: NSURL?
-    @NSManaged public var iconURL: NSURL?
+    @NSManaged public var iconURL: URL?
     @NSManaged public var url: NSURL?
 	@NSManaged var categories: Set<Folder>
 	public var visibleTitle: String? {

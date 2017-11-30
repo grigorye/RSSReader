@@ -132,7 +132,7 @@ extension Subscription {
 		let json = jsonObject as! [String: AnyObject]
 		self.title = json["title"] as! String
 		self.url = NSURL(string: json["url"] as! String)
-		self.iconURL = NSURL(string: json["iconUrl"] as! String)
+		self.iconURL = URL(string: json["iconUrl"] as! String)
 		self.htmlURL = NSURL(string: json["htmlUrl"] as! String)
 		if let categories = json["categories"] as? [[String: AnyObject]] {
 			for category in categories {
