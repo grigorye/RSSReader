@@ -189,7 +189,7 @@
 					};
 					C49FF15C1DBB98F100A86CC0 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 898SX5RV3X;
+						DevelopmentTeam = 465NA5BW7E;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -339,6 +339,7 @@
 		C49FF16C1DBB98F100A86CC0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 465NA5BW7E;
 				INFOPLIST_FILE = GECoreDataTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.grigorye.GECoreDataTests;
@@ -349,6 +350,7 @@
 		C49FF16D1DBB98F100A86CC0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 465NA5BW7E;
 				INFOPLIST_FILE = GECoreDataTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.grigorye.GECoreDataTests;
