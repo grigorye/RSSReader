@@ -69,6 +69,8 @@
 		C48354111FBFC29E00466BD6 /* GoogleToolboxForMac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4CB791A1E3173E700F89794 /* GoogleToolboxForMac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4874A091EAD657B00629990 /* Main.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4874A0B1EAD657B00629990 /* Main.strings */; };
 		C4874A0E1EAD657C00629990 /* LaunchScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4874A101EAD657C00629990 /* LaunchScreen.strings */; };
+		C48BF65B1FD0E36200062EC8 /* DebugActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48BF65A1FD0E36200062EC8 /* DebugActions.swift */; };
+		C48BF6611FD0EA1D00062EC8 /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48BF6601FD0EA1D00062EC8 /* Debugging.swift */; };
 		C48C5F971A87344000A1EA12 /* ItemPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48C5F961A87344000A1EA12 /* ItemPageViewController.swift */; };
 		C495409B1A575C1900F56168 /* LoginAndPasswordDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495409A1A575C1900F56168 /* LoginAndPasswordDefaults.swift */; };
 		C49540A11A57825100F56168 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49540A01A57825100F56168 /* ItemsViewController.swift */; };
@@ -248,6 +250,8 @@
 		C474F1CC1DB0657800F0E152 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = main.swift; path = Swift/main.swift; sourceTree = "<group>"; };
 		C4874A0A1EAD657B00629990 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		C4874A0F1EAD657C00629990 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		C48BF65A1FD0E36200062EC8 /* DebugActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DebugActions.swift; path = Swift/DebugActions.swift; sourceTree = "<group>"; };
+		C48BF6601FD0EA1D00062EC8 /* Debugging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Debugging.swift; path = Swift/Debugging.swift; sourceTree = "<group>"; };
 		C48C5F961A87344000A1EA12 /* ItemPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ItemPageViewController.swift; path = Swift/ItemPageViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C4915FE31CE734A40063A734 /* RSSReader-app.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "RSSReader-app.xcconfig"; sourceTree = SOURCE_ROOT; };
 		C495409A1A575C1900F56168 /* LoginAndPasswordDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginAndPasswordDefaults.swift; path = Swift/LoginAndPasswordDefaults.swift; sourceTree = "<group>"; };
@@ -430,6 +434,8 @@
 				C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */,
 				C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */,
 				C4C422171A75E355008803A7 /* MainNavigationController.swift */,
+				C48BF6601FD0EA1D00062EC8 /* Debugging.swift */,
+				C48BF65A1FD0E36200062EC8 /* DebugActions.swift */,
 				C4C780121A7DEAAA009CB5FC /* UI Activities */,
 			);
 			name = UI;
@@ -912,6 +918,7 @@
 				C4C780161A7DF1EC009CB5FC /* ApplicationActivities.swift in Sources */,
 				C49540A51A57906600F56168 /* ItemSummaryWebViewController.swift in Sources */,
 				C441F1871DB25D090060E692 /* GlobalStateRestoration.swift in Sources */,
+				C48BF6611FD0EA1D00062EC8 /* Debugging.swift in Sources */,
 				C474F0A81D80E65F00CABEB9 /* LogViewController.swift in Sources */,
 				C4EA5C3C1CE930B200E395FE /* ContainerTableViewSectionHeaderView.swift in Sources */,
 				C4EA5C361CE91E8600E395FE /* ContainerViewController.swift in Sources */,
@@ -940,6 +947,7 @@
 				C4C0941B1D99ED4A00D27162 /* ItemInListView.swift in Sources */,
 				C441F17F1DB258550060E692 /* SharedRSSAccount.swift in Sources */,
 				C4667F0D1CC80A050039C480 /* Appearance.swift in Sources */,
+				C48BF65B1FD0E36200062EC8 /* DebugActions.swift in Sources */,
 				C4F575D61A7988DB00F12F20 /* OpenWebPageActivity.swift in Sources */,
 				C46934DF1A5D291C00A0AEA2 /* ItemPageViewControllerDataSource.swift in Sources */,
 				C436575F1F08987300B904A2 /* RefreshingStateTracker.swift in Sources */,
