@@ -13,7 +13,7 @@
 /* No comment provided by engineer. */
 "Cancel" = "Отменить";
 
-/* Folders Update State */
+/* No comment provided by engineer. */
 "Completed" = "Завершено";
 
 /* No comment provided by engineer. */
@@ -21,6 +21,9 @@
 
 /* No comment provided by engineer. */
 "Could not proceed as username or password is invalid." = "Невозможно продолжить, т.к. имя пользователя или пароль не верны.";
+
+/* No comment provided by engineer. */
+"Failed to load more." = "Не удалось загрузить еще.";
 
 /* No comment provided by engineer. */
 "Failed to load more. %@" = "Сбой загрузки. %@";
@@ -74,6 +77,9 @@
 "Something went wrong. Offline data might be unavailable. Please re-install the application to avoid further problems." = "Что-то пошло не так. Загруженные данные могут быть недоступны. Переустановите программу чтобы избежать проблем в будущем.";
 
 /* No comment provided by engineer. */
+"Subscriptions" = "Подписки";
+
+/* No comment provided by engineer. */
 "To adjust the username or password, open this app's settings and edit \"Login and Password\"." = "Для того, чтобы изменить имя пользователя или пароль, воспользуйтесь  настройками программы.";
 
 /* No comment provided by engineer. */
@@ -90,6 +96,9 @@
 
 /* Folders Update State */
 "Unknown" = "Неизвестно";
+
+/* Folders Update State */
+"Update Ended" = "Обновление завершено";
 
 /* No comment provided by engineer. */
 "Updated %@ ago" = "Обновлено %@ назад";
