@@ -1,0 +1,14 @@
+#! /bin/sh -e
+
+wd=$(dirname "$0")
+bn=$(basename "$0")
+
+xliff="${1:?}"; shift
+
+xslt="$0".xslt
+
+cat "${xliff:?}" \
+    | sed 's/ xmlns="urn:oasis:names:tc:xliff:document:1.2"//' \
+    | xsltproc "${xslt:?}" - \
+    | sed 's/<xliff /<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" /' \
+    | sed 's/<?xml version="1.0"?>/<?xml version="1.0" encoding="UTF-8"?>/'

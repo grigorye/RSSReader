@@ -1,0 +1,22 @@
+#! /bin/sh -xe
+
+xliffDir="${1:?}"; shift
+
+language="ru"
+
+url=$(
+    curl \
+        -X POST https://api.poeditor.com/v2/projects/export \
+        -d api_token="${POEDITOR_API_TOKEN:?}" \
+        -d id="${POEDITOR_PROJECT_ID:?}" \
+        -d updating="terms" \
+        -d language="${language:?}" \
+        -d type="xliff" \
+    | jq -r .result.url
+)
+
+xliff="${xliffDir:?}/${language:?}".xliff
+
+curl "$url" > "${xliff:?}"
+
+xcodebuild -importLocalizations -localizationPath "${xliff:?}"

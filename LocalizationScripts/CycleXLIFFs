@@ -1,0 +1,9 @@
+#! /bin/sh -xe
+
+wd=$(dirname "$0")
+bn=$(basename "$0")
+
+tmpdir=$(mktemp -d /tmp/"${bn:?}".XXXXX)
+
+"${wd:?}"/ExportXLIFF "${tmpdir:?}"
+"${wd:?}"/ImportXLIFF "${tmpdir:?}"

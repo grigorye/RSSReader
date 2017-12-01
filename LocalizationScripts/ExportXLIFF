@@ -1,0 +1,31 @@
+#! /bin/sh -xe
+
+xliffDir="${1:?}"; shift
+
+wd=$(dirname "$0")
+bn=$(basename "$0")
+
+stripXLIFF="${wd:?}"/StripUntranslatableEntriesFromXLIFF
+
+tmpdir=$(mktemp -d /tmp/"${bn:?}".XXXXX)
+
+xcodebuild -exportLocalizations -localizationPath "${xliffDir:?}"
+
+language="en"
+
+xliff="${xliffDir:?}/${language:?}.xliff"
+tmpXLIFF="${tmpdir:?}/${language:?}.xliff"
+
+"${stripXLIFF:?}" "${xliff:?}" > "${tmpXLIFF:?}"
+cp "${tmpXLIFF:?}" "${xliff:?}"
+rm "${tmpXLIFF:?}"
+rmdir "${tmpdir:?}"
+
+curl \
+    -X POST https://api.poeditor.com/v2/projects/upload \
+    -F api_token="${POEDITOR_API_TOKEN:?}" \
+    -F id="${POEDITOR_PROJECT_ID:?}" \
+    -F updating="terms" \
+    -F file=@"${xliff:?}" \
+    -F language="${language:?}" \
+    -F read_from_source=1
