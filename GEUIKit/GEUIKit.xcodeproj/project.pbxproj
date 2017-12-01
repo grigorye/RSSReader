@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		C4270BFC1DBD4FE900FA3A0A /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BFB1DBD4FE900FA3A0A /* GETracing.framework */; };
 		C4499B951E0637B00033991E /* ViewControllerVisibleStateReasoner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4499B941E0637B00033991E /* ViewControllerVisibleStateReasoner.swift */; };
+		C48BF6571FD0D8FB00062EC8 /* AccessibilityAwareStaticTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48BF6561FD0D8FB00062EC8 /* AccessibilityAwareStaticTableViewController.swift */; };
+		C48BF6591FD0DB5A00062EC8 /* TintedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48BF6581FD0DB5A00062EC8 /* TintedLabel.swift */; };
 		C49FF1281DBB985400A86CC0 /* GEUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF11E1DBB985400A86CC0 /* GEUIKit.framework */; };
 		C49FF12D1DBB985400A86CC0 /* GEUIKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF12C1DBB985400A86CC0 /* GEUIKitTests.swift */; };
 		C49FF1401DBB989000A86CC0 /* TypeFilteringActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF1381DBB989000A86CC0 /* TypeFilteringActivity.swift */; };
@@ -40,6 +42,8 @@
 /* Begin PBXFileReference section */
 		C4270BFB1DBD4FE900FA3A0A /* GETracing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GETracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4499B941E0637B00033991E /* ViewControllerVisibleStateReasoner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerVisibleStateReasoner.swift; sourceTree = "<group>"; };
+		C48BF6561FD0D8FB00062EC8 /* AccessibilityAwareStaticTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityAwareStaticTableViewController.swift; sourceTree = "<group>"; };
+		C48BF6581FD0DB5A00062EC8 /* TintedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintedLabel.swift; sourceTree = "<group>"; };
 		C49FF11E1DBB985400A86CC0 /* GEUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GEUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C49FF1221DBB985400A86CC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C49FF1271DBB985400A86CC0 /* GEUIKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GEUIKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +125,8 @@
 				C49FF1221DBB985400A86CC0 /* Info.plist */,
 				C4EB27F41DFA334D00BF0843 /* ModuleExports-GEFoundation.swift */,
 				C4EB27F31DFA334D00BF0843 /* ModuleExports-GETracing.swift */,
+				C48BF6561FD0D8FB00062EC8 /* AccessibilityAwareStaticTableViewController.swift */,
+				C48BF6581FD0DB5A00062EC8 /* TintedLabel.swift */,
 			);
 			path = GEUIKit;
 			sourceTree = "<group>";
@@ -286,6 +292,8 @@
 				C4A8B8441DFC525900BEACFE /* ErrorPresentation.swift in Sources */,
 				C49FF1421DBB989000A86CC0 /* UIFontExtensions.swift in Sources */,
 				C4499B951E0637B00033991E /* ViewControllerVisibleStateReasoner.swift in Sources */,
+				C48BF6571FD0D8FB00062EC8 /* AccessibilityAwareStaticTableViewController.swift in Sources */,
+				C48BF6591FD0DB5A00062EC8 /* TintedLabel.swift in Sources */,
 				C49FF1461DBB989000A86CC0 /* UIKitUtilities.swift in Sources */,
 				C49FF18F1DBB9C3200A86CC0 /* Globals.swift in Sources */,
 			);
