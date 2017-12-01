@@ -1,3 +1,6 @@
-/* No comment provided by engineer. */
+/* (No Comment) */
 "CFBundleDisplayName" = "NFeeds";
+
+/* (No Comment) */
+"CFBundleName" = "$(PRODUCT_NAME)";
 

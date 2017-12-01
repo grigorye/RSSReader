@@ -26,9 +26,6 @@
 "Failed to load more." = "Не удалось загрузить еще.";
 
 /* No comment provided by engineer. */
-"Failed to load more. %@" = "Сбой загрузки. %@";
-
-/* No comment provided by engineer. */
 "Failed to mark all as read. %@" = "Не удалось отметить все как прочитанное. %@";
 
 /* No comment provided by engineer. */
