@@ -7,7 +7,6 @@
 //
 
 import func GEUIKit.openSettingsApp
-import func GEUIKit.forceCrash
 import func GEFoundation.loadDefaultsFromSettingsPlistAtURL
 import var GEFoundation.versionIsClean
 import var GEFoundation.buildAge
@@ -18,8 +17,6 @@ import Loggy
 import FBAllocationTracker
 import FBMemoryProfiler
 import UIKit
-
-let triggeredError = NSError(domain: "com.grigorye.triggered", code: 1)
 
 extension TypedUserDefaults {
 	@NSManaged public var memoryProfilingEnabled: Bool
@@ -36,12 +33,6 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 	// MARK: -
 	@IBAction public func openSettings(_ sender: AnyObject?) {
 		openSettingsApp()
-	}
-	@IBAction public func forceCrash(_ sender: AnyObject?) {
-		GEUIKit.forceCrash()
-	}
-	@IBAction public func triggerError(_ sender: AnyObject?) {
-		trackError(triggeredError)
 	}
 	// MARK: -
 	open func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
