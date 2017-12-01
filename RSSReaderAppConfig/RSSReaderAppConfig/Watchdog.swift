@@ -9,5 +9,5 @@
 import Watchdog
 
 let watchdogInitializer: Void = {
-	_ = Watchdog(threshold: 0.4, strictMode: true)
+	_ = Watchdog(threshold: 0.4, strictMode: false)
 }()
