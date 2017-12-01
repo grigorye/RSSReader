@@ -446,7 +446,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 38 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 39 localization keys.
     struct localizable {
       /// ru translation: Все отмечено как прочитанное.
       /// 
@@ -480,6 +480,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: ru
       static let favorites = Rswift.StringResource(key: "Favorites", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// ru translation: Не удалось загрузить еще.
+      /// 
+      /// Locales: ru
+      static let failedToLoadMore = Rswift.StringResource(key: "Failed to load more.", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: Не удалось отметить все как прочитанное. %@
       /// 
       /// Locales: ru
@@ -655,6 +659,13 @@ struct R: Rswift.Validatable {
       /// Locales: ru
       static func favorites(_: Void = ()) -> String {
         return NSLocalizedString("Favorites", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// ru translation: Не удалось загрузить еще.
+      /// 
+      /// Locales: ru
+      static func failedToLoadMore(_: Void = ()) -> String {
+        return NSLocalizedString("Failed to load more.", bundle: R.hostingBundle, comment: "")
       }
       
       /// ru translation: Не удалось отметить все как прочитанное. %@
