@@ -324,7 +324,7 @@ struct R: Rswift.Validatable {
     /// This struct is generated for `HomeViewController`, and contains static references to 4 segues.
     struct homeViewController {
       /// Segue identifier `showDebug`.
-      static let showDebug: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, HomeViewController, UIKit.UITableViewController> = Rswift.StoryboardSegueIdentifier(identifier: "showDebug")
+      static let showDebug: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, HomeViewController, UIKit.UINavigationController> = Rswift.StoryboardSegueIdentifier(identifier: "showDebug")
       /// Segue identifier `showFavorites`.
       static let showFavorites: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, HomeViewController, ItemsViewController> = Rswift.StoryboardSegueIdentifier(identifier: "showFavorites")
       /// Segue identifier `showHistory`.
@@ -335,7 +335,7 @@ struct R: Rswift.Validatable {
       /// Optionally returns a typed version of segue `showDebug`.
       /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
       /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
-      static func showDebug(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, HomeViewController, UIKit.UITableViewController>? {
+      static func showDebug(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, HomeViewController, UIKit.UINavigationController>? {
         return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.homeViewController.showDebug, segue: segue)
       }
       
@@ -1363,7 +1363,7 @@ struct _R: Rswift.Validatable {
     }
     
     struct debug: Rswift.StoryboardResourceWithInitialControllerType {
-      typealias InitialController = UIKit.UITableViewController
+      typealias InitialController = UIKit.UINavigationController
       
       let bundle = R.hostingBundle
       let name = "Debug"
