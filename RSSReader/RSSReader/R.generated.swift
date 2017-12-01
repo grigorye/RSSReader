@@ -446,7 +446,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 37 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 38 localization keys.
     struct localizable {
       /// ru translation: Все отмечено как прочитанное.
       /// 
@@ -508,6 +508,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: ru
       static let notUpdatedBefore = Rswift.StringResource(key: "Not updated before", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// ru translation: Обновление завершено
+      /// 
+      /// Locales: ru
+      static let updateEnded = Rswift.StringResource(key: "Update Ended", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: Обновление персональных настроек
       /// 
       /// Locales: ru
@@ -564,6 +568,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: ru
       static let authenticating = Rswift.StringResource(key: "Authenticating", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// ru translation: Подписки
+      /// 
+      /// Locales: ru
+      static let subscriptions = Rswift.StringResource(key: "Subscriptions", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: Получение тэгов
       /// 
       /// Locales: ru
@@ -576,10 +584,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: ru
       static let authenticationFailed = Rswift.StringResource(key: "Authentication Failed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
-      /// ru translation: Сбой загрузки. %@
-      /// 
-      /// Locales: ru
-      static let failedToLoadMore = Rswift.StringResource(key: "Failed to load more. %@", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: Только что
       /// 
       /// Locales: ru
@@ -702,6 +706,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Not updated before", bundle: R.hostingBundle, comment: "")
       }
       
+      /// ru translation: Обновление завершено
+      /// 
+      /// Locales: ru
+      static func updateEnded(_: Void = ()) -> String {
+        return NSLocalizedString("Update Ended", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// ru translation: Обновление персональных настроек
       /// 
       /// Locales: ru
@@ -800,6 +811,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Authenticating", bundle: R.hostingBundle, comment: "")
       }
       
+      /// ru translation: Подписки
+      /// 
+      /// Locales: ru
+      static func subscriptions(_: Void = ()) -> String {
+        return NSLocalizedString("Subscriptions", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// ru translation: Получение тэгов
       /// 
       /// Locales: ru
@@ -819,13 +837,6 @@ struct R: Rswift.Validatable {
       /// Locales: ru
       static func authenticationFailed(_: Void = ()) -> String {
         return NSLocalizedString("Authentication Failed", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// ru translation: Сбой загрузки. %@
-      /// 
-      /// Locales: ru
-      static func failedToLoadMore(_ value1: String) -> String {
-        return String(format: NSLocalizedString("Failed to load more. %@", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1)
       }
       
       /// ru translation: Только что
