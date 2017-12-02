@@ -25,7 +25,8 @@ curl \
     -X POST https://api.poeditor.com/v2/projects/upload \
     -F api_token="${POEDITOR_API_TOKEN:?}" \
     -F id="${POEDITOR_PROJECT_ID:?}" \
-    -F updating="terms" \
+    -F updating="terms_translations" \
+    -F sync_terms=1 \
     -F file=@"${xliff:?}" \
     -F language="${language:?}" \
     -F read_from_source=1
