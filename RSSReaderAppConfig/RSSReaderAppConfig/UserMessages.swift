@@ -22,7 +22,7 @@ public func presentErrorMessage(_ text: String, underlyingError error: Error? = 
 #endif
 }
 
-func presentInfoMessage(_ text: String) {
+public func presentInfoMessage(_ text: String) {
 #if true
 	let view = MessageView.viewFromNib(layout: .cardView)…{
 		$0.configureTheme(.info)
