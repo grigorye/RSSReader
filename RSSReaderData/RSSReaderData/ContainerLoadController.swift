@@ -41,9 +41,10 @@ public class ContainerLoadController : NSObject {
 	@objc dynamic var containerViewState: ContainerViewState?
 	func bindContainerViewState() -> Handler {
 		let binding = self.observe(\.container.viewStates, options: [.initial]) { [unowned self] (_, _) in
-			self.containerViewState = self.container.viewStates.filter {
+			let containerViewState = (self.container).viewStates.filter {
 				$0.containerViewPredicate == self.containerViewPredicate
 			}.onlyElement
+			self.containerViewState = x$(containerViewState)
 		}
 		return { _ = binding }
 	}
