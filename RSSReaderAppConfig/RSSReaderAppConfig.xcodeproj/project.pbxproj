@@ -14,6 +14,7 @@
 		C45C54A11E2E58630039D16C /* Optimizely.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45C54A01E2E58630039D16C /* Optimizely.swift */; };
 		C492B5301E2E3E2D0072D2D9 /* Mixpanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C492B52F1E2E3E2D0072D2D9 /* Mixpanel.swift */; };
 		C49FF1BB1DBBA6F000A86CC0 /* GEUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1BA1DBBA6F000A86CC0 /* GEUIKit.framework */; };
+		C4B0DC211FD23FBB005E587C /* JGProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B0DC221FD23FBB005E587C /* JGProgressHUD.framework */; };
 		C4BE5A861DA85DA100E1734F /* RSSReaderAppConfig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BE5A7C1DA85DA100E1734F /* RSSReaderAppConfig.framework */; };
 		C4BE5A8B1DA85DA100E1734F /* RSSReaderAppConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BE5A8A1DA85DA100E1734F /* RSSReaderAppConfigTests.swift */; };
 		C4BE5A9A1DA85DE000E1734F /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BE5A961DA85DE000E1734F /* Analytics.swift */; };
@@ -76,6 +77,7 @@
 		C492B52F1E2E3E2D0072D2D9 /* Mixpanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mixpanel.swift; sourceTree = "<group>"; };
 		C49A79FE1E301EB600DE3702 /* RSSReaderAppConfig-debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "RSSReaderAppConfig-debug.xcconfig"; path = "RSSReaderAppConfig/RSSReaderAppConfig-debug.xcconfig"; sourceTree = "<group>"; };
 		C49FF1BA1DBBA6F000A86CC0 /* GEUIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GEUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4B0DC221FD23FBB005E587C /* JGProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JGProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4BE5A7C1DA85DA100E1734F /* RSSReaderAppConfig.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RSSReaderAppConfig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4BE5A801DA85DA100E1734F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4BE5A851DA85DA100E1734F /* RSSReaderAppConfigTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RSSReaderAppConfigTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4B0DC211FD23FBB005E587C /* JGProgressHUD.framework in Frameworks */,
 				C428E49D1FBC07B200DA2FFA /* Watchdog.framework in Frameworks */,
 				C4E4D6351E5FA48C007E0E39 /* PromiseKit.framework in Frameworks */,
 				C4DA68321E58BDC4004615A0 /* Rswift.framework in Frameworks */,
@@ -197,6 +200,7 @@
 		C4BE5AB61DA86D8D00E1734F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C4B0DC221FD23FBB005E587C /* JGProgressHUD.framework */,
 				C428E49E1FBC07B200DA2FFA /* Watchdog.framework */,
 				C4E4D6341E5FA48C007E0E39 /* PromiseKit.framework */,
 				C4DA68311E58BDC4004615A0 /* Rswift.framework */,
