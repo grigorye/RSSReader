@@ -6,6 +6,7 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
+import GECoreData
 import func GEFoundation.URLQuerySuffixFromComponents
 import CoreData
 import Foundation
@@ -181,6 +182,10 @@ struct PushTags : PersistentDataUpdateCommand, MostCommonDataUpdateCommand {
 		return "/reader/api/0/edit-tag?\(urlArgumentsJoined)"
 	}
 	func importResult(_ data: Data, into context: NSManagedObjectContext) throws {
+		let categoryObjectID = typedObjectID(for: self.category)
+		let itemsObjectIDs: [TypedManagedObjectID<Item>] = self.items.map { typedObjectID(for: $0) }
+		let category = categoryObjectID.object(in: context)
+		let items = itemsObjectIDs.map { $0.object(in: context) }
 		if excluded {
 			category.itemsToBeExcluded.subtract(items)
 		}
