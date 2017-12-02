@@ -88,6 +88,8 @@
 		C4AD2ADB1A5DED8700B39AC9 /* ItemPageViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD2ADA1A5DED8700B39AC9 /* ItemPageViewControllerDelegate.swift */; };
 		C4AD5B371D282F1800358DEA /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4AD5B361D282F1800358DEA /* PromiseKit.framework */; };
 		C4AD5B381D282F1800358DEA /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4AD5B361D282F1800358DEA /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C4B0DC241FD241AE005E587C /* JGProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B0DC231FD241AE005E587C /* JGProgressHUD.framework */; };
+		C4B0DC251FD241AE005E587C /* JGProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4B0DC231FD241AE005E587C /* JGProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4BE5AAE1DA864FA00E1734F /* RSSReaderAppConfig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BE5AAD1DA864FA00E1734F /* RSSReaderAppConfig.framework */; };
 		C4BE5AAF1DA864FA00E1734F /* RSSReaderAppConfig.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4BE5AAD1DA864FA00E1734F /* RSSReaderAppConfig.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4BE5AF31DAA986A00E1734F /* ItemTableViewCell-0.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4BE5AEE1DAA986A00E1734F /* ItemTableViewCell-0.xib */; };
@@ -159,6 +161,7 @@
 				C408F1B51CE7520700DB943F /* FBMemoryProfiler.framework in Embed Frameworks */,
 				C49FF1C81DBBAA9000A86CC0 /* GEUIKit.framework in Embed Frameworks */,
 				C48354111FBFC29E00466BD6 /* GoogleToolboxForMac.framework in Embed Frameworks */,
+				C4B0DC251FD241AE005E587C /* JGProgressHUD.framework in Embed Frameworks */,
 				C4AD5B381D282F1800358DEA /* PromiseKit.framework in Embed Frameworks */,
 				C474F0D21D8775F500CABEB9 /* SwiftMessages.framework in Embed Frameworks */,
 				C408F1B21CE7520700DB943F /* FBAllocationTracker.framework in Embed Frameworks */,
@@ -266,6 +269,7 @@
 		C4A164671CB89076009D8B86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		C4AD2ADA1A5DED8700B39AC9 /* ItemPageViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemPageViewControllerDelegate.swift; path = Swift/ItemPageViewControllerDelegate.swift; sourceTree = "<group>"; };
 		C4AD5B361D282F1800358DEA /* PromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4B0DC231FD241AE005E587C /* JGProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JGProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4BE5AAD1DA864FA00E1734F /* RSSReaderAppConfig.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RSSReaderAppConfig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4BE5AEE1DAA986A00E1734F /* ItemTableViewCell-0.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemTableViewCell-0.xib"; sourceTree = "<group>"; };
 		C4BE5AEF1DAA986A00E1734F /* ItemTableViewCell-1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemTableViewCell-1.xib"; sourceTree = "<group>"; };
@@ -336,6 +340,7 @@
 				C408F1B41CE7520700DB943F /* FBMemoryProfiler.framework in Frameworks */,
 				C49FF1C71DBBAA9000A86CC0 /* GEUIKit.framework in Frameworks */,
 				C48354101FBFC29E00466BD6 /* GoogleToolboxForMac.framework in Frameworks */,
+				C4B0DC241FD241AE005E587C /* JGProgressHUD.framework in Frameworks */,
 				C4AD5B371D282F1800358DEA /* PromiseKit.framework in Frameworks */,
 				C474F0D11D8775F500CABEB9 /* SwiftMessages.framework in Frameworks */,
 				C408F1B11CE7520700DB943F /* FBAllocationTracker.framework in Frameworks */,
@@ -572,6 +577,7 @@
 		C4CDD3941A5350B40087DD05 = {
 			isa = PBXGroup;
 			children = (
+				C4B0DC231FD241AE005E587C /* JGProgressHUD.framework */,
 				C4CDD39F1A5350B40087DD05 /* RSSReader */,
 				C4CDD3B71A5350B50087DD05 /* RSSReaderTests */,
 				C4BE5AE41DAA5C5400E1734F /* Xcode */,
