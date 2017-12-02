@@ -34,7 +34,6 @@
 		C4BE5ADA1DA8712600E1734F /* RSSReaderAppConfigTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5A8A1DA85DA100E1734F /* RSSReaderAppConfigTests.swift */; };
 		C4BE5AE11DAA5AE000E1734F /* UserMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BE5ADF1DAA5AE000E1734F /* UserMessages.swift */; };
 		C4BE5AE21DAA5AE000E1734F /* Readability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BE5AE01DAA5AE000E1734F /* Readability.swift */; };
-		C4CB79231E3398B600F89794 /* SwiftMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4CB79221E3398B600F89794 /* SwiftMessages.framework */; };
 		C4DA682D1E550A4B004615A0 /* Loggy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4DA682C1E550A4B004615A0 /* Loggy.framework */; };
 		C4DA68321E58BDC4004615A0 /* Rswift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4DA68311E58BDC4004615A0 /* Rswift.framework */; };
 		C4E4D6351E5FA48C007E0E39 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4E4D6341E5FA48C007E0E39 /* PromiseKit.framework */; };
@@ -102,7 +101,6 @@
 		C4BE5AE01DAA5AE000E1734F /* Readability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Readability.swift; sourceTree = "<group>"; };
 		C4C1CE3A1E30BFCD00A2767B /* RSSReaderAppConfig-release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "RSSReaderAppConfig-release.xcconfig"; path = "RSSReaderAppConfig/RSSReaderAppConfig-release.xcconfig"; sourceTree = "<group>"; };
 		C4CB79181E3173AE00F89794 /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C4CB79221E3398B600F89794 /* SwiftMessages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftMessages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4DA682C1E550A4B004615A0 /* Loggy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Loggy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4DA68311E58BDC4004615A0 /* Rswift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Rswift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4E4D6341E5FA48C007E0E39 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,7 +117,6 @@
 				C428E49D1FBC07B200DA2FFA /* Watchdog.framework in Frameworks */,
 				C4E4D6351E5FA48C007E0E39 /* PromiseKit.framework in Frameworks */,
 				C4DA68321E58BDC4004615A0 /* Rswift.framework in Frameworks */,
-				C4CB79231E3398B600F89794 /* SwiftMessages.framework in Frameworks */,
 				C49FF1BB1DBBA6F000A86CC0 /* GEUIKit.framework in Frameworks */,
 				C4BE5ABA1DA86D8D00E1734F /* FBAllocationTracker.framework in Frameworks */,
 				C4DA682D1E550A4B004615A0 /* Loggy.framework in Frameworks */,
@@ -205,7 +202,6 @@
 				C4E4D6341E5FA48C007E0E39 /* PromiseKit.framework */,
 				C4DA68311E58BDC4004615A0 /* Rswift.framework */,
 				C4DA682C1E550A4B004615A0 /* Loggy.framework */,
-				C4CB79221E3398B600F89794 /* SwiftMessages.framework */,
 				C4CB79181E3173AE00F89794 /* GoogleToolboxForMac.framework */,
 				C4595E0B1E2E444F0004D68D /* Mixpanel.framework */,
 				C49FF1BA1DBBA6F000A86CC0 /* GEUIKit.framework */,
