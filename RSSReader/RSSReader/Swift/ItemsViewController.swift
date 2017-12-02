@@ -50,6 +50,8 @@ class ItemsViewController : ContainerViewController {
 			self.loadController = nil
 		}
 	}
+	var loadCancellation: Optional<() -> Void> = nil
+
 	final var multipleSourcesEnabled = false
 	var showUnreadEnabled = true
 	// MARK:-
@@ -380,9 +382,14 @@ extension ItemsViewController {
 			return
 		}
 		#endif
+		if let loadCancellation = loadCancellation {
+			loadCancellation()
+		}
 		self.unbind()
 		self.bind()
-		loadMore {
+		assert(nil == loadCancellation)
+		loadCancellation = loadMore {
+			self.loadCancellation = nil
 			refreshControl.endRefreshing()
 		}
 	}

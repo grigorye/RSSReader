@@ -68,13 +68,14 @@ extension ItemsViewController : ItemsViewControllerLoadingImp {
 	
 	///
 	
-	func loadMore(_ completionHandler: @escaping () -> Void) {
+	func loadMore(_ completionHandler: @escaping () -> Void) -> (() -> Void)? {
+		
 		guard let loadController = self.loadController else {
 			completionHandler()
-			return
+			return nil
 		}
 		x$(didStartLoad())
-		_ = loadController.loadMore { [weak loadController] error in
+		return loadController.loadMore { [weak loadController] error in
 			completionHandler()
 			if let error = error {
 				self.track(.failedToLoadMore(due: error))
@@ -134,6 +135,9 @@ extension ItemsViewController : ItemsViewControllerLoadingImp {
 		guard x$(shouldLoadMore()) else {
 			return
 		}
-		loadMore {}
+		assert(nil == loadCancellation)
+		loadCancellation = loadMore {
+			self.loadCancellation = nil
+		}
 	}
 }
