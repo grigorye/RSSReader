@@ -56,7 +56,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 12 images.
+  /// This `R.image` struct is generated, and contains static references to 15 images.
   struct image {
     /// Image `Bookmark`.
     static let bookmark = Rswift.ImageResource(bundle: R.hostingBundle, name: "Bookmark")
@@ -72,12 +72,18 @@ struct R: Rswift.Validatable {
     static let folder = Rswift.ImageResource(bundle: R.hostingBundle, name: "Folder")
     /// Image `Inbox`.
     static let inbox = Rswift.ImageResource(bundle: R.hostingBundle, name: "Inbox")
+    /// Image `Mark-All-As-Read`.
+    static let markAllAsRead = Rswift.ImageResource(bundle: R.hostingBundle, name: "Mark-All-As-Read")
     /// Image `Settings`.
     static let settings = Rswift.ImageResource(bundle: R.hostingBundle, name: "Settings")
     /// Image `Star`.
     static let star = Rswift.ImageResource(bundle: R.hostingBundle, name: "Star")
     /// Image `Subscription`.
     static let subscription = Rswift.ImageResource(bundle: R.hostingBundle, name: "Subscription")
+    /// Image `Unread-Only-Selected`.
+    static let unreadOnlySelected = Rswift.ImageResource(bundle: R.hostingBundle, name: "Unread-Only-Selected")
+    /// Image `Unread-Only`.
+    static let unreadOnly = Rswift.ImageResource(bundle: R.hostingBundle, name: "Unread-Only")
     /// Image `Unstar`.
     static let unstar = Rswift.ImageResource(bundle: R.hostingBundle, name: "Unstar")
     /// Image `Watch`.
@@ -118,6 +124,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.inbox, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "Mark-All-As-Read", bundle: ..., traitCollection: ...)`
+    static func markAllAsRead(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.markAllAsRead, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "Settings", bundle: ..., traitCollection: ...)`
     static func settings(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.settings, compatibleWith: traitCollection)
@@ -131,6 +142,16 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "Subscription", bundle: ..., traitCollection: ...)`
     static func subscription(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.subscription, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "Unread-Only", bundle: ..., traitCollection: ...)`
+    static func unreadOnly(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.unreadOnly, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "Unread-Only-Selected", bundle: ..., traitCollection: ...)`
+    static func unreadOnlySelected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.unreadOnlySelected, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "Unstar", bundle: ..., traitCollection: ...)`
@@ -1411,14 +1432,17 @@ struct _R: Rswift.Validatable {
       
       static func validate() throws {
         if UIKit.UIImage(named: "Star") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Star' is used in storyboard 'Main', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "Bookmark") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Bookmark' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "Folder") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Folder' is used in storyboard 'Main', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "Box") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Box' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "Unread-Only-Selected") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Unread-Only-Selected' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "Watch") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Watch' is used in storyboard 'Main', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "Subscription") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Subscription' is used in storyboard 'Main', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "Bug") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Bug' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "Unread-Only") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Unread-Only' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "Inbox") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Inbox' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "Box-Selected") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Box-Selected' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "Bookmark") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Bookmark' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "Box") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Box' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "Subscription") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Subscription' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "Bug") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Bug' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "Mark-All-As-Read") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Mark-All-As-Read' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "Unstar") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'Unstar' is used in storyboard 'Main', but couldn't be loaded.") }
         if _R.storyboard.main().mainTabBar() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'mainTabBar' could not be loaded from storyboard 'Main' as 'UIKit.UITabBarController'.") }
         if _R.storyboard.main().itemSummaryWeb() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'itemSummaryWeb' could not be loaded from storyboard 'Main' as 'ItemSummaryWebViewController'.") }
