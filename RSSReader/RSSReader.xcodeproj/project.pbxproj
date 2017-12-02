@@ -88,6 +88,7 @@
 		C4AD5B381D282F1800358DEA /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4AD5B361D282F1800358DEA /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4B0DC241FD241AE005E587C /* JGProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B0DC231FD241AE005E587C /* JGProgressHUD.framework */; };
 		C4B0DC251FD241AE005E587C /* JGProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4B0DC231FD241AE005E587C /* JGProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C4B0DC291FD2506C005E587C /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B0DC281FD25022005E587C /* R.generated.swift */; };
 		C4BE5AAE1DA864FA00E1734F /* RSSReaderAppConfig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BE5AAD1DA864FA00E1734F /* RSSReaderAppConfig.framework */; };
 		C4BE5AAF1DA864FA00E1734F /* RSSReaderAppConfig.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4BE5AAD1DA864FA00E1734F /* RSSReaderAppConfig.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4BE5AF31DAA986A00E1734F /* ItemTableViewCell-0.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4BE5AEE1DAA986A00E1734F /* ItemTableViewCell-0.xib */; };
@@ -104,7 +105,6 @@
 		C4CDE1911A5A06A600F16A2E /* ItemSummaryTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */; };
 		C4CE35441CB8988F001712C8 /* RSSReaderTests-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4CE35461CB8988F001712C8 /* RSSReaderTests-InfoPlist.strings */; };
 		C4CE35491CB89890001712C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4CE354B1CB89890001712C8 /* InfoPlist.strings */; };
-		C4DA68361E58C542004615A0 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DA68351E58C542004615A0 /* R.generated.swift */; };
 		C4E4D6371E60C9EC007E0E39 /* Rswift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4E4D6361E60C9EC007E0E39 /* Rswift.framework */; };
 		C4E4D6381E60C9EC007E0E39 /* Rswift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4E4D6361E60C9EC007E0E39 /* Rswift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4EA5C361CE91E8600E395FE /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5C351CE91E8600E395FE /* ContainerViewController.swift */; };
@@ -264,6 +264,7 @@
 		C4AD2ADA1A5DED8700B39AC9 /* ItemPageViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemPageViewControllerDelegate.swift; path = Swift/ItemPageViewControllerDelegate.swift; sourceTree = "<group>"; };
 		C4AD5B361D282F1800358DEA /* PromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4B0DC231FD241AE005E587C /* JGProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JGProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4B0DC281FD25022005E587C /* R.generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = "RSSReader-rswift/R.generated.swift"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4BE5AAD1DA864FA00E1734F /* RSSReaderAppConfig.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RSSReaderAppConfig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4BE5AEE1DAA986A00E1734F /* ItemTableViewCell-0.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemTableViewCell-0.xib"; sourceTree = "<group>"; };
 		C4BE5AEF1DAA986A00E1734F /* ItemTableViewCell-1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemTableViewCell-1.xib"; sourceTree = "<group>"; };
@@ -290,7 +291,6 @@
 		C4CE354C1CB89C0E001712C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C4CE354D1CB89C28001712C8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C4D56A2A1A7C33C0007BE398 /* PackageApplication */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = PackageApplication; sourceTree = "<group>"; };
-		C4DA68351E58C542004615A0 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		C4E4D6361E60C9EC007E0E39 /* Rswift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Rswift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4EA5C351CE91E8600E395FE /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerViewController.swift; path = Swift/ContainerViewController.swift; sourceTree = "<group>"; };
 		C4EA5C371CE929D300E395FE /* ContainerTableViewSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ContainerTableViewSectionHeader.xib; path = Resources/ContainerTableViewSectionHeader.xib; sourceTree = "<group>"; };
@@ -437,13 +437,20 @@
 			name = UI;
 			sourceTree = "<group>";
 		};
+		C4B0DC2B1FD250B0005E587C /* Derived Sources */ = {
+			isa = PBXGroup;
+			children = (
+				C4B0DC281FD25022005E587C /* R.generated.swift */,
+			);
+			name = "Derived Sources";
+			sourceTree = "<group>";
+		};
 		C4BE5AE31DAA5BB000E1734F /* Miscellaneous */ = {
 			isa = PBXGroup;
 			children = (
 				C4874A101EAD657C00629990 /* LaunchScreen.strings */,
 				C4874A0B1EAD657B00629990 /* Main.strings */,
 				C431B4F71E8FEC7200D67D5A /* TunaXcodePlugIn.swift */,
-				C4DA68351E58C542004615A0 /* R.generated.swift */,
 				C474F1CC1DB0657800F0E152 /* main.swift */,
 				C4CDD3C41A5357B20087DD05 /* Settings.bundle */,
 				C40C6C051A74AB5E00FAFA17 /* Bridging-Header.h */,
@@ -570,6 +577,7 @@
 			children = (
 				C4CDD39F1A5350B40087DD05 /* RSSReader */,
 				C4CDD3B71A5350B50087DD05 /* RSSReaderTests */,
+				C4B0DC2B1FD250B0005E587C /* Derived Sources */,
 				C4BE5AE41DAA5C5400E1734F /* Xcode */,
 				C444F53D1B2E53F200A6E378 /* RSSReaderUITests */,
 				C4CB4B9D1E2A44BB00C601BF /* Framework Sources */,
@@ -856,10 +864,11 @@
 			);
 			name = "Generate R.generated.swift";
 			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(PROJECT_NAME)-rswift/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -e";
-			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"/RSSReader\n";
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"${BUILT_PRODUCTS_DIR:?}\"/\"${PROJECT_NAME:?}-rswift\"\n";
 		};
 		C4EDE1F11FBC1DBB00BB7F55 /* Embed Sources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -935,7 +944,6 @@
 				C4C422181A75E355008803A7 /* MainNavigationController.swift in Sources */,
 				C4EB27EC1DFA31ED00BF0843 /* ModuleExports-GETracing.swift in Sources */,
 				C4F7DC3D1D97E9A800275E4F /* ItemTableViewDataSource.swift in Sources */,
-				C4DA68361E58C542004615A0 /* R.generated.swift in Sources */,
 				C441F17B1DB254260060E692 /* GlobalFoldersController.swift in Sources */,
 				C4C780141A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift in Sources */,
 				C4F575D01A797C7B00F12F20 /* AddToFavoritesActivity.swift in Sources */,
@@ -945,6 +953,7 @@
 				C4667F0D1CC80A050039C480 /* Appearance.swift in Sources */,
 				C48BF65B1FD0E36200062EC8 /* DebugActions.swift in Sources */,
 				C4F575D61A7988DB00F12F20 /* OpenWebPageActivity.swift in Sources */,
+				C4B0DC291FD2506C005E587C /* R.generated.swift in Sources */,
 				C46934DF1A5D291C00A0AEA2 /* ItemPageViewControllerDataSource.swift in Sources */,
 				C436575F1F08987300B904A2 /* RefreshingStateTracker.swift in Sources */,
 				C4F7DC3B1D97E93200275E4F /* ItemTableViewDelegate.swift in Sources */,
