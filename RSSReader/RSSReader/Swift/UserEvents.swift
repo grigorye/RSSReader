@@ -6,6 +6,7 @@
 //  Copyright © 2017 Grigory Entin. All rights reserved.
 //
 
+import RSSReaderAppConfig
 import RSSReaderData
 import Foundation
 
@@ -25,7 +26,12 @@ extension ItemsViewController {
 		case .notUpdatedBefore:
 			presentInfoMessage(NSLocalizedString("Not updated before", comment: ""))
 		case .markedAllAsRead:
-			presentInfoMessage(NSLocalizedString("Marked all as read.", comment: ""))
+			let message = NSLocalizedString("Marked all as read.", comment: "")
+			if defaults.showMessagesInToolbar {
+				presentInfoMessage(message)
+			} else {
+				RSSReaderAppConfig.presentInfoMessage(message)
+			}
 		}
 	}
 	
@@ -60,15 +66,21 @@ extension RefreshingStateTracker {
 			presentInfoMessage(message)
 		}
 	}
-	
 }
 
 //
 // MARK: - Presenting Messages
 //
+
+extension TypedUserDefaults {
+
+	@NSManaged var showMessagesInToolbar: Bool
+}
+
 extension ItemsViewController {
 	
-	internal func presentMessage(_ text: String) {
+	private func presentMessageInToolbar(_ text: String) {
+		
 		guard let statusLabel = statusLabel else {
 			return
 		}
@@ -76,6 +88,18 @@ extension ItemsViewController {
 		statusLabel.sizeToFit()
 		statusLabel.superview!.frame.size.width = statusLabel.bounds.width
 		statusBarButtonItem.width = (statusLabel.superview!.bounds.width)
+	}
+	
+	internal func presentMessage(_ text: String) {
+		
+		if defaults.showMessagesInToolbar {
+
+			presentMessageInToolbar(text)
+			
+		} else {
+			
+			refreshControl?.attributedTitle = NSAttributedString(string: text)
+		}
 	}
 	
 	private func presentInfoMessage(_ text: String) {
@@ -86,7 +110,8 @@ extension ItemsViewController {
 
 extension FoldersViewController {
 	
-	private func presentMessage(_ text: String) {
+	private func presentMessageInToolbar(_ text: String) {
+		
 		statusLabel.text = (text)
 		statusLabel.sizeToFit()
 		statusLabel.superview!.frame.size.width = statusLabel.bounds.width
@@ -94,6 +119,18 @@ extension FoldersViewController {
 		let toolbarItems = self.toolbarItems
 		self.toolbarItems = self.toolbarItems?.filter { $0 != statusBarButtonItem }
 		self.toolbarItems = toolbarItems
+	}
+	
+	private func presentMessage(_ text: String) {
+		
+		if defaults.showMessagesInToolbar {
+			
+			presentMessageInToolbar(text)
+			
+		} else {
+			
+			refreshControl?.attributedTitle = NSAttributedString(string: text)
+		}
 	}
 	
 	internal func presentInfoMessage(_ text: String) {
