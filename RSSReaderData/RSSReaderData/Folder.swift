@@ -13,6 +13,11 @@ public class Folder : Container {
 	@NSManaged public var childContainers: NSOrderedSet
 	@NSManaged var itemsToBeExcluded: Set<Item>
 	@NSManaged var itemsToBeIncluded: Set<Item>
+	
+	public override func willTurnIntoFault() {
+		super.willTurnIntoFault()
+		x$(self)
+	}
 }
 
 func tagFromStreamID(_ streamID: String) -> String? {
