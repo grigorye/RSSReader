@@ -5,7 +5,6 @@ target "iOS" do
 	platform :ios, '8.0'
 	pod 'PromiseKit/CorePromise'
 	pod 'R.swift'
-	pod 'SwiftMessages'
 	pod 'Crashlytics'
 	pod 'Fabric'
 	pod 'FBMemoryProfiler'
