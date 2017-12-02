@@ -70,7 +70,7 @@
                             </view>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="o3j-gn-J9l"/>
-                        <barButtonItem title="MAR" id="FEa-k8-cQP">
+                        <barButtonItem image="Mark-All-As-Read" id="FEa-k8-cQP">
                             <connections>
                                 <action selector="markAllAsRead:" destination="3bj-4R-y2f" id="feY-0f-7uH"/>
                             </connections>
@@ -79,12 +79,14 @@
                     <navigationItem key="navigationItem" id="KN3-a6-4FZ">
                         <nil key="title"/>
                         <rightBarButtonItems>
-                            <barButtonItem id="Hba-Co-abs">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1Fg-wk-by1" userLabel="Unread Only">
-                                    <rect key="frame" x="285" y="13" width="19" height="18"/>
+                            <barButtonItem title="Show All" id="Hba-Co-abs">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1Fg-wk-by1" userLabel="Unread Only">
+                                    <rect key="frame" x="271" y="9.5" width="33" height="25"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <inset key="contentEdgeInsets" minX="4" minY="0.0" maxX="4" maxY="0.0"/>
-                                    <state key="normal" title="U">
+                                    <state key="normal" image="Unread-Only-Selected">
                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <state key="selected">
@@ -100,12 +102,12 @@
                                     </connections>
                                 </button>
                             </barButtonItem>
-                            <barButtonItem id="ej2-od-606">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Y2K-Hr-675" userLabel="Unread Only">
-                                    <rect key="frame" x="258" y="13" width="19" height="18"/>
+                            <barButtonItem title="Unread Only" id="ej2-od-606">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Y2K-Hr-675" userLabel="Unread Only">
+                                    <rect key="frame" x="230" y="9.5" width="33" height="25"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <inset key="contentEdgeInsets" minX="4" minY="0.0" maxX="4" maxY="0.0"/>
-                                    <state key="normal" title="U"/>
+                                    <state key="normal" image="Unread-Only"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                             <integer key="value" value="2"/>
@@ -756,17 +758,20 @@
         <image name="Bug" width="25" height="25"/>
         <image name="Folder" width="25" height="25"/>
         <image name="Inbox" width="25" height="25"/>
+        <image name="Mark-All-As-Read" width="25" height="25"/>
         <image name="Star" width="22" height="22"/>
         <image name="Subscription" width="25" height="25"/>
+        <image name="Unread-Only" width="25" height="25"/>
+        <image name="Unread-Only-Selected" width="25" height="25"/>
         <image name="Unstar" width="22" height="22"/>
         <image name="Watch" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="asX-LX-8NF"/>
+        <segue reference="w0U-iJ-oAk"/>
         <segue reference="EUy-Yi-gV8"/>
         <segue reference="FhY-D2-pL1"/>
         <segue reference="IQP-ep-vtz"/>
-        <segue reference="cJW-gk-KPb"/>
+        <segue reference="8Da-vm-piJ"/>
         <segue reference="CAU-xE-lLZ"/>
     </inferredMetricsTieBreakers>
 </document>
