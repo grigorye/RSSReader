@@ -68,7 +68,8 @@ class ItemsViewController : ContainerViewController {
 	@IBOutlet private var filterUnreadBarButtonItem: UIBarButtonItem!
 	@IBOutlet private var unfilterUnreadBarButtonItem: UIBarButtonItem!
 	
-	private func regeneratedRightBarButtonItems() -> [UIBarButtonItem]? {
+	private func filterOutUnreadBarButtonItems(_ x: [UIBarButtonItem]) -> [UIBarButtonItem] {
+		
 		let excludedItems: [UIBarButtonItem] = {
 			guard let filterUnreadBarButtonItem = filterUnreadBarButtonItem else {
 				return []
@@ -78,8 +79,12 @@ class ItemsViewController : ContainerViewController {
 			}
 			return showUnreadEnabled ? [(showUnreadOnly ?  filterUnreadBarButtonItem : unfilterUnreadBarButtonItem)] : [filterUnreadBarButtonItem, unfilterUnreadBarButtonItem]
 		}()
-		let x = loadedRightBarButtonItems?.filter { nil == excludedItems.index(of: $0) }
-		return x
+		return x.filter { nil == excludedItems.index(of: $0) }
+	}
+	
+	private func regeneratedRightBarButtonItems() -> [UIBarButtonItem]? {
+		
+		return filterOutUnreadBarButtonItems(loadedRightBarButtonItems ?? [])
 	}
 	
 	// MARK: -
@@ -99,7 +104,7 @@ class ItemsViewController : ContainerViewController {
 			}
 			return !begEndBarButtonItems.contains($0)
 		}
-		return x
+		return filterOutUnreadBarButtonItems(x ?? [])
 	}
 
 	// MARK: -
