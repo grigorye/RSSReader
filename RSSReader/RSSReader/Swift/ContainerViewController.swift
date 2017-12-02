@@ -22,6 +22,27 @@ class ContainerViewController: UITableViewController {
 	@objc dynamic var predicateForItems: NSPredicate? {
 		return container.predicateForItems
 	}
+	// MARK: - State Preservation and Restoration
+	private enum Restorable : String {
+		case showsContainerTitle
+		case title
+	}
+	override func encodeRestorableState(with coder: NSCoder) {
+		super.encodeRestorableState(with: coder)
+		coder.encode(showsContainerTitle, forKey: Restorable.showsContainerTitle.rawValue)
+		coder.encode(title, forKey: Restorable.title.rawValue)
+	}
+	override func decodeRestorableState(with coder: NSCoder) {
+		super.decodeRestorableState(with: coder)
+		showsContainerTitle = coder.decodeBool(forKey: Restorable.showsContainerTitle.rawValue)
+		title = {
+			guard let title = coder.decodeObject(forKey: Restorable.title.rawValue) as? String else {
+				//assert(false)
+				return nil
+			}
+			return title
+		}()
+	}
 	// MARK: -
 	@objc dynamic var itemsCount = 0
 	private var currentItemsFetchedObjectCountBinding: FetchedObjectCountBinding<Item>?
