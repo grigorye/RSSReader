@@ -264,6 +264,9 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 		super.viewDidLoad()
 		tableView.estimatedRowHeight = 44
 		tableView.rowHeight = UITableViewAutomaticDimension
+		if !defaults.showMessagesInToolbar {
+			toolbarItems = toolbarItems?.filter { $0 != statusBarButtonItem }
+		}
 	}
 	// MARK: -
 	deinit {
