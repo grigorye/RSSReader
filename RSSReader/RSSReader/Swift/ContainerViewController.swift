@@ -7,6 +7,8 @@
 //
 
 import RSSReaderData
+import GECoreData
+import CoreData
 import UIKit
 
 extension TypedUserDefaults {
@@ -24,16 +26,19 @@ class ContainerViewController: UITableViewController {
 	}
 	// MARK: - State Preservation and Restoration
 	private enum Restorable : String {
+		case containerObjectID
 		case showsContainerTitle
-		case title
+		case title // Should not be localized (but it is).
 	}
 	override func encodeRestorableState(with coder: NSCoder) {
 		super.encodeRestorableState(with: coder)
+		container.encodeObjectIDWithCoder(coder, key: Restorable.containerObjectID.rawValue)
 		coder.encode(showsContainerTitle, forKey: Restorable.showsContainerTitle.rawValue)
 		coder.encode(title, forKey: Restorable.title.rawValue)
 	}
 	override func decodeRestorableState(with coder: NSCoder) {
 		super.decodeRestorableState(with: coder)
+		container = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.containerObjectID.rawValue, managedObjectContext: mainQueueManagedObjectContext) as! Container
 		showsContainerTitle = coder.decodeBool(forKey: Restorable.showsContainerTitle.rawValue)
 		title = {
 			guard let title = coder.decodeObject(forKey: Restorable.title.rawValue) as? String else {
