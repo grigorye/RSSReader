@@ -353,16 +353,11 @@ class ItemsViewController : ContainerViewController {
 // MARK: - State Restoration
 //
 extension ItemsViewController /* State Restoration */ {
-	private enum Restorable : String {
-		case containerObjectID
-	}
 	override func encodeRestorableState(with coder: NSCoder) {
 		super.encodeRestorableState(with: coder)
-		container.encodeObjectIDWithCoder(coder, key: Restorable.containerObjectID.rawValue)
 	}
 	override func decodeRestorableState(with coder: NSCoder) {
 		super.decodeRestorableState(with: coder)
-		container = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.containerObjectID.rawValue, managedObjectContext: mainQueueManagedObjectContext) as! Container
 		scheduledForViewWillAppearOrStateRestoration.perform()
 	}
 }

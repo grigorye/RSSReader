@@ -204,19 +204,12 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 		}
 	}
 	// MARK: - State Preservation and Restoration
-	private enum Restorable : String {
-		case rootFolderObjectID
-	}
 	override func encodeRestorableState(with coder: NSCoder) {
 		super.encodeRestorableState(with: coder)
-		rootFolder.encodeObjectIDWithCoder(coder, key: Restorable.rootFolderObjectID.rawValue)
 	}
 	override func decodeRestorableState(with coder: NSCoder) {
 		super.decodeRestorableState(with: coder)
-		if let rootFolder = NSManagedObjectContext.objectWithIDDecodedWithCoder(coder, key: Restorable.rootFolderObjectID.rawValue, managedObjectContext: mainQueueManagedObjectContext) as! Folder? {
-			self.rootFolder = rootFolder
-			self.childContainers = self.regeneratedChildContainers
-		}
+		self.childContainers = self.regeneratedChildContainers
 	}
 	// MARK: -
 	func bindChildContainers() -> Handler {
