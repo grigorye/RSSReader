@@ -16,7 +16,7 @@ extension TypedUserDefaults {
 private var activity = Activity("State Restoration")
 var activityScope: Activity.Scope!
 
-private let currentRestorationFormatVersion: Int32 = 1
+private let currentRestorationFormatVersion: Int32 = 2
 
 extension AppDelegate {
 	private enum Restorable: String {
