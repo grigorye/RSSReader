@@ -12,8 +12,4 @@ public class CategoryItem : NSManagedObject {
 
 	@NSManaged public var category: Folder
 	@NSManaged public var item: Item
-	
-	public class func entityName() -> String {
-		return "CategoryItem"
-	}
 }

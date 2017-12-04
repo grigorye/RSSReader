@@ -74,9 +74,6 @@ extension Container: ManagedIdentifiable {
 	public class func identifierKey() -> String {
 		return #keyPath(streamID)
 	}
-	@objc public class func entityName() -> String {
-		return "Container"
-	}
 }
 
 extension Container {

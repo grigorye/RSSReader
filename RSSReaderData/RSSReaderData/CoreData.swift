@@ -39,9 +39,6 @@ extension Item : ManagedIdentifiable {
 	public class func identifierKey() -> String {
 		return #keyPath(id)
 	}
-	@objc public class func entityName() -> String {
-		return "Item"
-	}
 	var categories: Set<Folder> {
 		set {
 			let oldValue = categories
@@ -121,9 +118,6 @@ extension Item : ManagedIdentifiable {
 }
 
 extension Subscription {
-	override public class func entityName() -> String {
-		return "Subscription"
-	}
 	class func sortDescriptorsVariants() -> [[NSSortDescriptor]] {
 		return [[NSSortDescriptor(key: #keyPath(sortID), ascending: true)]]
 	}
@@ -155,9 +149,6 @@ enum JsonImportError: Error {
 }
 
 extension Folder {
-	override public static func entityName() -> String {
-		return "Folder"
-	}
 	class func sortDescriptors() -> [[NSSortDescriptor]] {
 		return [[NSSortDescriptor(key: #keyPath(newestItemDate), ascending: false)]]
 	}
