@@ -8,7 +8,7 @@
 
 import CoreData
 
-public class FetchedObjectBinding<T> : NSObject, NSFetchedResultsControllerDelegate where T: DefaultSortable, T: Managed {
+public class FetchedObjectBinding<T: NSManagedObject> : NSObject, NSFetchedResultsControllerDelegate where T: DefaultSortable, T: Managed {
 	let handler: ([T]) -> Void
 	let fetchedResultsController: NSFetchedResultsController<T>
 	public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
@@ -31,7 +31,7 @@ public class FetchedObjectBinding<T> : NSObject, NSFetchedResultsControllerDeleg
 	}
 }
 
-public class FetchedObjectCountBinding<T> : NSObject, NSFetchedResultsControllerDelegate where T: Managed {
+public class FetchedObjectCountBinding<T: NSManagedObject> : NSObject, NSFetchedResultsControllerDelegate where T: Managed {
 	let countDidChange: Handler
 	//
 	var scheduledForDeinit = ScheduledHandlers()
