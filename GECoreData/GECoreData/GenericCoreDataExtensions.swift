@@ -14,13 +14,12 @@ enum GenericCoreDataExtensionsError: Error {
 }
 
 public protocol Managed : NSFetchRequestResult {
-	static func entityName() -> String
 }
 
-public extension Managed {
-	static func fetchRequestForEntity() -> NSFetchRequest<Self> {
-		return NSFetchRequest(entityName: self.entityName())
-	}
+public extension Managed where Self : NSManagedObject {
+    static func fetchRequestForEntity() -> NSFetchRequest<Self> {
+        return self.fetchRequest() as! NSFetchRequest<Self>
+    }
 }
 
 public protocol DefaultSortable {
@@ -57,7 +56,7 @@ func objectsFetchedWithPredicate<T: Managed> (_ cls: T.Type, predicate: NSPredic
 }
 
 func insertedObjectUnlessFetchedWithPredicate<T: Managed>(_ cls: T.Type, predicate: NSPredicate, managedObjectContext: NSManagedObjectContext, newObjectInitializationHandler: (T) -> Void) throws -> T where T: NSManagedObject {
-	let entityName = cls.entityName()
+	let entityName = cls.entity().name!
 	if let existingObject = objectFetchedWithPredicate(cls, predicate: predicate, managedObjectContext: managedObjectContext) {
 		return existingObject
 	}
@@ -81,7 +80,7 @@ public func insertedObjectsUnlessFetchedWithID<T: NSManagedObject>(_ cls: T.Type
 	let existingObjects = objectsFetchedWithPredicate(cls, predicate: predicate, managedObjectContext: managedObjectContext)
 	let existingIDs = existingObjects.map { $0.value(forKey: identifierKey)! as! String }
 	let newIDs = ids.filter { !existingIDs.contains($0) }
-	let entityName = cls.entityName()
+	let entityName = cls.entity().name!
 	let newObjects: [T] = newIDs.map {
 		let newObject = NSEntityDescription.insertNewObject(forEntityName: entityName, into: managedObjectContext) as! T
 		(newObject as NSManagedObject).setValue($0, forKey:identifierKey)
