@@ -629,7 +629,7 @@
         <!--Debug-->
         <scene sceneID="KBZ-r1-sGW">
             <objects>
-                <viewControllerPlaceholder storyboardName="Debug" id="er4-UP-tGi" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Debug" bundleIdentifier="com.grigorye.GEDebugKit" id="er4-UP-tGi" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="eDc-3U-E5b"/>
                     <navigationItem key="navigationItem" id="j8P-lb-cqK"/>
                 </viewControllerPlaceholder>
