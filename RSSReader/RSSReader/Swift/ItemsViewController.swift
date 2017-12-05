@@ -50,7 +50,7 @@ class ItemsViewController : ContainerViewController {
 			self.loadController = nil
 		}
 	}
-	var loadCancellation: Optional<() -> Void> = nil
+	var loadCancellation: (() -> Void)? = nil
 
 	final var multipleSourcesEnabled = false
 	var showUnreadEnabled = true
