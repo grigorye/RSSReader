@@ -20,6 +20,9 @@
          location = "group:GEUIKit/GEUIKit.xcodeproj">
       </FileRef>
       <FileRef
+         location = "group:GEDebugKit/GEDebugKit.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:GECoreData/GECoreData.xcodeproj">
       </FileRef>
       <FileRef
