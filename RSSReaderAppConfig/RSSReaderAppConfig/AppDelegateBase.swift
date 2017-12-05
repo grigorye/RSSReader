@@ -19,7 +19,8 @@ import FBMemoryProfiler
 import UIKit
 
 extension TypedUserDefaults {
-	@NSManaged public var memoryProfilingEnabled: Bool
+    @NSManaged public var memoryProfilerEnabled: Bool
+    @NSManaged public var allocationTrackingEnabled: Bool
 }
 
 let analyticsShouldBeEnabled: Bool = {
@@ -36,32 +37,32 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 	}
 	// MARK: -
 	open func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
-		if _1 {
-			if defaults.memoryProfilingEnabled {
-				let memoryProfiler = FBMemoryProfiler()
-				memoryProfiler.enable()
-				retainedObjects += [memoryProfiler]
-			}
-		}
-		else {
-			var memoryProfiler: FBMemoryProfiler!
-			retainedObjects += [defaults.observe(\.memoryProfilingEnabled, options: .initial) { (_, _) in
-				if defaults.memoryProfilingEnabled {
-					guard nil == memoryProfiler else {
-						return
-					}
-					memoryProfiler = FBMemoryProfiler()
-					memoryProfiler.enable()
-				}
-				else {
-					guard nil != memoryProfiler else {
-						return
-					}
-					memoryProfiler.disable()
-					memoryProfiler = nil
-				}
-			}]
-		}
+        if _1 {
+            if defaults.memoryProfilerEnabled {
+                let memoryProfiler = FBMemoryProfiler()
+                memoryProfiler.enable()
+                retainedObjects += [memoryProfiler]
+            }
+        }
+        else {
+            var memoryProfiler: FBMemoryProfiler!
+            retainedObjects += [defaults.observe(\.memoryProfilerEnabled, options: .initial) { (_, _) in
+                if defaults.memoryProfilerEnabled {
+                    guard nil == memoryProfiler else {
+                        return
+                    }
+                    memoryProfiler = FBMemoryProfiler()
+                    memoryProfiler.enable()
+                }
+                else {
+                    guard nil != memoryProfiler else {
+                        return
+                    }
+                    memoryProfiler.disable()
+                    memoryProfiler = nil
+                }
+                }]
+        }
 		#if false
 		if x$(analyticsShouldBeEnabled) {
 			launchOptimizely(launchOptions: launchOptions)
@@ -77,7 +78,7 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 		var scope = Activity("Basic Initialization").enter(); defer { scope.leave() }
 		let defaultsPlistURL = Bundle.main.url(forResource: "Settings", withExtension: "bundle")!.appendingPathComponent("Root.plist")
 		try! loadDefaultsFromSettingsPlistAtURL(defaultsPlistURL)
-		if defaults.memoryProfilingEnabled {
+		if defaults.allocationTrackingEnabled {
 			FBAllocationTrackerManager.shared()!.startTrackingAllocations()
 			FBAllocationTrackerManager.shared()!.enableGenerations()
 		}
