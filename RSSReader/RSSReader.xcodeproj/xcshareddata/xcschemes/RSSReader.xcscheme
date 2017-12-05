@@ -203,7 +203,11 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-memoryProfilingEnabled YES"
+            argument = "-allocationTrackingEnabled YES"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-memoryProfilerEnabled YES"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
