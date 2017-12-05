@@ -93,7 +93,7 @@ class CoreDataFetchRequestsTests : XCTestCase {
 	}
 	func testFetchRequestInPerformBlockInBackgroundQueueContextWithFetchedResultAccessedByObjectID() {
 		backgroundQueueManagedObjectContext.perform {
-			let fetchRequest = NSFetchRequest<NSManagedObjectID>(entityName: Folder.entityName())
+            let fetchRequest = NSFetchRequest<NSManagedObjectID>(entityName: Folder.entity().name!)
 			fetchRequest.resultType = .managedObjectIDResultType
 			let objectIDs = try! backgroundQueueManagedObjectContext.fetch(fetchRequest)
 			if let folderObjectID = objectIDs.last {
