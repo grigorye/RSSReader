@@ -13,6 +13,7 @@
 		A176B21F1FD5DACF00E945E9 /* Debug.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A176B21E1FD5DACF00E945E9 /* Debug.storyboard */; };
 		A176B2251FD69C6500E945E9 /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A176B2241FD69C6500E945E9 /* DebugViewController.swift */; };
 		A176B2271FD69CAC00E945E9 /* GEUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A176B2281FD69CAC00E945E9 /* GEUIKit.framework */; };
+		A18DB4351FD8214900254FF8 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18DB4341FD8214900254FF8 /* Defaults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		A176B2201FD5DB6000E945E9 /* GEShared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = GEShared.xcconfig; path = ../XcodeConfiguration/GEShared.xcconfig; sourceTree = "<group>"; };
 		A176B2241FD69C6500E945E9 /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
 		A176B2281FD69CAC00E945E9 /* GEUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GEUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A18DB4341FD8214900254FF8 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 		A176B2061FD5D94F00E945E9 /* GEDebugKit */ = {
 			isa = PBXGroup;
 			children = (
+				A18DB4341FD8214900254FF8 /* Defaults.swift */,
 				A176B2241FD69C6500E945E9 /* DebugViewController.swift */,
 				A176B21E1FD5DACF00E945E9 /* Debug.storyboard */,
 				A176B2071FD5D94F00E945E9 /* GEDebugKit.h */,
@@ -219,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A176B2251FD69C6500E945E9 /* DebugViewController.swift in Sources */,
+				A18DB4351FD8214900254FF8 /* Defaults.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
