@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A16F5C241F48BF7E00639275 /* ObjCPropertyInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16F5C231F48BF7E00639275 /* ObjCPropertyInfoTests.swift */; };
+		A1839A181FD880B7003313D6 /* ErrorTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1839A171FD880B7003313D6 /* ErrorTracking.swift */; };
 		C408C6631DFC9C5C00AAA8FF /* ErrorRecovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C408C6621DFC9C5C00AAA8FF /* ErrorRecovery.swift */; };
 		C4270BF81DBD4FBD00FA3A0A /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BF71DBD4FBD00FA3A0A /* GETracing.framework */; };
 		C445385E1E9AEA11009E68EB /* Flattenable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C445385D1E9AEA10009E68EB /* Flattenable.swift */; };
@@ -50,6 +51,7 @@
 
 /* Begin PBXFileReference section */
 		A16F5C231F48BF7E00639275 /* ObjCPropertyInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjCPropertyInfoTests.swift; sourceTree = "<group>"; };
+		A1839A171FD880B7003313D6 /* ErrorTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTracking.swift; sourceTree = "<group>"; };
 		C408C6621DFC9C5C00AAA8FF /* ErrorRecovery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorRecovery.swift; sourceTree = "<group>"; };
 		C4270BF71DBD4FBD00FA3A0A /* GETracing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GETracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C445385D1E9AEA10009E68EB /* Flattenable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flattenable.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				C48CAA2C1DBD3A5000D6F40E /* OSLogRDAR28599032.m */,
 				C4CB4BA41E2A560000C601BF /* NSLogRedirector.swift */,
 				C48CAA271DBD397100D6F40E /* DefaultLogger.swift */,
+				A1839A171FD880B7003313D6 /* ErrorTracking.swift */,
 				C48CAA311DBD3ABA00D6F40E /* Sugar.swift */,
 				C49FF0FE1DBB981300A86CC0 /* Info.plist */,
 				C4EB27EF1DFA32C900BF0843 /* ModuleExports-GEFoundation.swift */,
@@ -318,6 +321,7 @@
 				C49FF17C1DBB996D00A86CC0 /* URLSessionTaskGeneratorErrorObjCBridging.swift in Sources */,
 				C49FF1791DBB996D00A86CC0 /* GenericURLSessionExtensions.swift in Sources */,
 				C48CAA221DBD318700D6F40E /* TypedUserDefaults.swift in Sources */,
+				A1839A181FD880B7003313D6 /* ErrorTracking.swift in Sources */,
 				C4EB27F11DFA32D900BF0843 /* ModuleExports-GETracing.swift in Sources */,
 				C48CAA1C1DBC26F100D6F40E /* ObjCEncode.swift in Sources */,
 				C445385E1E9AEA11009E68EB /* Flattenable.swift in Sources */,
