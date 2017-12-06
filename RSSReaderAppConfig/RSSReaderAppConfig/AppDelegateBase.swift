@@ -72,6 +72,14 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 		return true
 	}
 	// MARK: -
+	private func initializeAllocationTracking() {
+		var scope = Activity("Initializing Allocation Tracking").enter(); defer { scope.leave() }
+		guard let allocationTrackerManager = x$(FBAllocationTrackerManager.shared()) else {
+			return
+		}
+		allocationTrackerManager.startTrackingAllocations()
+		allocationTrackerManager.enableGenerations()
+	}
 	public override init() {
 		_ = AppDelegateBase.initializeOnce
 		super.init()
@@ -79,8 +87,7 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 		let defaultsPlistURL = Bundle.main.url(forResource: "Settings", withExtension: "bundle")!.appendingPathComponent("Root.plist")
 		try! loadDefaultsFromSettingsPlistAtURL(defaultsPlistURL)
 		if defaults.allocationTrackingEnabled {
-			FBAllocationTrackerManager.shared()!.startTrackingAllocations()
-			FBAllocationTrackerManager.shared()!.enableGenerations()
+			initializeAllocationTracking()
 		}
 		let fileManager = FileManager()
 		let libraryDirectoryURL = fileManager.urls(for: .libraryDirectory, in: .userDomainMask).last!
