@@ -48,22 +48,22 @@ private let floatValueIMP: @convention(c) (_Self, Selector) -> CFloat = { _self,
 }
 
 private let setBoolValueIMP: @convention(c) (_Self, Selector, Bool) -> Void = { _self, _cmd, value in
-	let propertyName = NSStringFromSelector(_cmd)
+	let propertyName = _Self.defaultNameForSelector(_cmd)
 	x$(propertyName)
 	_self.suiteDefaults.set(value, forKey: propertyName)
 }
 private let setLongValueIMP: @convention(c) (_Self, Selector, CLong) -> Void = { _self, _cmd, value in
-	let propertyName = NSStringFromSelector(_cmd)
+    let propertyName = _Self.defaultNameForSelector(_cmd)
 	x$(propertyName)
 	_self.suiteDefaults.set(value, forKey: propertyName)
 }
 private let setLongLongValueIMP: @convention(c) (_Self, Selector, CLongLong) -> Void = { _self, _cmd, value in
-	let propertyName = NSStringFromSelector(_cmd)
+    let propertyName = _Self.defaultNameForSelector(_cmd)
 	x$(propertyName)
 	_self.suiteDefaults.set(Int(value), forKey: propertyName)
 }
 private let setFloatValueIMP: @convention(c) (_Self, Selector, CFloat) -> Void = { _self, _cmd, value in
-	let propertyName = NSStringFromSelector(_cmd)
+    let propertyName = _Self.defaultNameForSelector(_cmd)
 	x$(propertyName)
 	_self.suiteDefaults.set(value, forKey: propertyName)
 }
@@ -177,3 +177,5 @@ public class TypedUserDefaults : NSObject {
 		self.init(suiteName: nil)!
 	}
 }
+
+public var defaults = TypedUserDefaults()
