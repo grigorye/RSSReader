@@ -6,7 +6,7 @@
 //  Copyright © 2017 Grigory Entin. All rights reserved.
 //
 
-import RSSReaderAppConfig
+import GEFoundation
 import Foundation
 
 private let debugError = NSError(domain: "com.grigorye.debug", code: 1)
