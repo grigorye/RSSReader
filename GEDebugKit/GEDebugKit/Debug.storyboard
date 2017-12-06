@@ -131,6 +131,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Kmm-xl-75P" kind="unwind" unwindAction="unwindToToggleMemoryProfiler:" id="Z66-sS-3LE"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
