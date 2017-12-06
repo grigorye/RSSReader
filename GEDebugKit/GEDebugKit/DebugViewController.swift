@@ -10,7 +10,7 @@ import GEUIKit
 import GETracing
 import FBAllocationTracker
 
-private func liveObjectsForSubclasses(of parentClasses: [AnyClass]) -> Int {
+private func aliveObjectsForSubclasses(of parentClasses: [AnyClass]) -> Int {
     
     guard let allocationTrackerManager = FBAllocationTrackerManager.shared() else {
         assert(false)
@@ -39,18 +39,18 @@ private func liveObjectsForSubclasses(of parentClasses: [AnyClass]) -> Int {
     let clsAndLive = subclassSummaries.map { ($0.className, $0.aliveObjects) }
     x$(clsAndLive)
     
-    let liveObjects = subclassSummaries.reduce(0, {
+    let aliveObjects = subclassSummaries.reduce(0, {
         let summary = $1
         let aliveObjects = summary.aliveObjects
         //assert(0 < aliveObjects)
         return $0 + aliveObjects
     })
-    return liveObjects
+    return aliveObjects
 }
 
 class DebugViewController : AccessibilityAwareStaticTableViewController {
     
-    @IBOutlet var numberOfObjectsLabel: UILabel!
+    @IBOutlet var aliveObjectsLabel: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -60,7 +60,7 @@ class DebugViewController : AccessibilityAwareStaticTableViewController {
             UIResponder.self
         ]
         
-        let liveObjects = liveObjectsForSubclasses(of: parentClassesForAllocationTracking)
-        numberOfObjectsLabel?.text = "\(liveObjects)"
+        let aliveObjects = aliveObjectsForSubclasses(of: parentClassesForAllocationTracking)
+        aliveObjectsLabel?.text = "\(aliveObjects)"
     }
 }
