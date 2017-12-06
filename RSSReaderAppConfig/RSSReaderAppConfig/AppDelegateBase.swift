@@ -7,6 +7,7 @@
 //
 
 import func GEUIKit.openSettingsApp
+import GEDebugKit
 import func GEFoundation.loadDefaultsFromSettingsPlistAtURL
 import var GEFoundation.versionIsClean
 import var GEFoundation.buildAge
@@ -17,11 +18,6 @@ import Loggy
 import FBAllocationTracker
 import FBMemoryProfiler
 import UIKit
-
-extension TypedUserDefaults {
-    @NSManaged public var memoryProfilerEnabled: Bool
-    @NSManaged public var allocationTrackingEnabled: Bool
-}
 
 let analyticsShouldBeEnabled: Bool = {
 	let mainBundleURL = Bundle.main.bundleURL
@@ -37,7 +33,7 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 	}
 	// MARK: -
 	open func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
-        if _1 {
+        if _0 {
             if defaults.memoryProfilerEnabled {
                 let memoryProfiler = FBMemoryProfiler()
                 memoryProfiler.enable()
@@ -46,22 +42,24 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
         }
         else {
             var memoryProfiler: FBMemoryProfiler!
-            retainedObjects += [defaults.observe(\.memoryProfilerEnabled, options: .initial) { (_, _) in
-                if defaults.memoryProfilerEnabled {
-                    guard nil == memoryProfiler else {
-                        return
+            retainedObjects += [
+                defaults.observe(\.memoryProfilerEnabled, options: .initial) { (_, _) in
+                    if defaults.memoryProfilerEnabled {
+                        guard nil == memoryProfiler else {
+                            return
+                        }
+                        memoryProfiler = FBMemoryProfiler()
+                        memoryProfiler.enable()
                     }
-                    memoryProfiler = FBMemoryProfiler()
-                    memoryProfiler.enable()
-                }
-                else {
-                    guard nil != memoryProfiler else {
-                        return
+                    else {
+                        guard nil != memoryProfiler else {
+                            return
+                        }
+                        memoryProfiler.disable()
+                        memoryProfiler = nil
                     }
-                    memoryProfiler.disable()
-                    memoryProfiler = nil
                 }
-                }]
+            ]
         }
 		#if false
 		if x$(analyticsShouldBeEnabled) {
