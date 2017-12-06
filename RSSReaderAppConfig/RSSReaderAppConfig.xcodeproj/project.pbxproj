@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A1839A111FD83D78003313D6 /* GEDebugKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1839A121FD83D78003313D6 /* GEDebugKit.framework */; };
 		C4134F511FCA605000178BE5 /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4134F501FCA605000178BE5 /* Firebase.swift */; };
 		C428E49D1FBC07B200DA2FFA /* Watchdog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C428E49E1FBC07B200DA2FFA /* Watchdog.framework */; };
 		C428E4A01FBC097E00DA2FFA /* Watchdog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C428E49F1FBC097E00DA2FFA /* Watchdog.swift */; };
@@ -67,6 +68,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A1839A121FD83D78003313D6 /* GEDebugKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GEDebugKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4134F501FCA605000178BE5 /* Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
 		C428E49E1FBC07B200DA2FFA /* Watchdog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Watchdog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C428E49F1FBC097E00DA2FFA /* Watchdog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Watchdog.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1839A111FD83D78003313D6 /* GEDebugKit.framework in Frameworks */,
 				C4B0DC211FD23FBB005E587C /* JGProgressHUD.framework in Frameworks */,
 				C428E49D1FBC07B200DA2FFA /* Watchdog.framework in Frameworks */,
 				C4E4D6351E5FA48C007E0E39 /* PromiseKit.framework in Frameworks */,
@@ -197,6 +200,7 @@
 		C4BE5AB61DA86D8D00E1734F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A1839A121FD83D78003313D6 /* GEDebugKit.framework */,
 				C4B0DC221FD23FBB005E587C /* JGProgressHUD.framework */,
 				C428E49E1FBC07B200DA2FFA /* Watchdog.framework */,
 				C4E4D6341E5FA48C007E0E39 /* PromiseKit.framework */,
