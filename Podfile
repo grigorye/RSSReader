@@ -35,6 +35,10 @@ end
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |configuration|
+      # http://www.mokacoding.com/blog/cocoapods-and-custom-build-configurations/
+      if target.name == 'FBAllocationTracker'
+        configuration.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] = '$(inherited) ALLOCATION_TRACKER_ENABLED'
+      end
       configuration.build_settings['CONFIGURATION_BUILD_DIR'] = '${PODS_CONFIGURATION_BUILD_DIR}'
 #      configuration.build_settings['CODE_SIGNING_REQUIRED'] = 'NO'
 #      configuration.build_settings['PROVISIONING_PROFILE_SPECIFIER'] = 'T6B3YCL946/'
