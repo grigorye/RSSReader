@@ -65,6 +65,11 @@ typealias Json = GEFoundation.Json
 var _1: Bool { return GEFoundation._1 }
 var _0: Bool { return GEFoundation._0 }
 
+var defaults: TypedUserDefaults {
+    get { return GEFoundation.defaults }
+    set { GEFoundation.defaults = newValue }
+}
+
 public var progressEnabledURLSessionTaskGenerator: ProgressEnabledURLSessionTaskGenerator {
 	return GEFoundation.progressEnabledURLSessionTaskGenerator
 }
