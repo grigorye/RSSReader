@@ -16,8 +16,13 @@ extension UIViewController {
 		forceDebugCrash()
 	}
 	
-	@IBAction func unwindToTriggerDebugError(_ segue: UIStoryboardSegue) {
-		
-		triggerDebugError()
-	}
+    @IBAction func unwindToTriggerDebugError(_ segue: UIStoryboardSegue) {
+        
+        triggerDebugError()
+    }
+    
+    @IBAction func unwindToToggleMemoryProfiler(_ segue: UIStoryboardSegue) {
+        
+        defaults.memoryProfilerEnabled = !defaults.memoryProfilerEnabled
+    }
 }
