@@ -10,8 +10,6 @@ import RSSReaderData
 import UIKit
 import CoreData
 
-var defaults = TypedUserDefaults()
-
 let applicationDomain = "com.grigoryentin.RSSReader"
 
 let applicationDelegate = (UIApplication.shared.delegate as! AppDelegate)
