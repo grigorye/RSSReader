@@ -10,8 +10,6 @@ import struct GETracing.LogRecord
 import Foundation
 import os
 
-private let defaults = TypedUserDefaults()
-
 private var bundleLogAssoc: Void?
 
 @available(iOS 10.0, *)
