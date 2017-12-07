@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -115,25 +116,36 @@
                             </tableViewSection>
                             <tableViewSection id="qa3-zA-qqa">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="KXO-2g-lyS" style="IBUITableViewCellStyleDefault" id="6Jz-NI-c8L">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="6Jz-NI-c8L">
                                         <rect key="frame" x="0.0" y="271" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Jz-NI-c8L" id="Sbz-wK-jC1">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Toggle Memory Profiler" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="KXO-2g-lyS" customClass="TintedLabel" customModule="GEUIKit">
-                                                    <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Memory Profiler" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezF-cI-YS1">
+                                                    <rect key="frame" x="16" y="11" width="122" height="22"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tdc-iS-FKy">
+                                                    <rect key="frame" x="310" y="11" width="51" height="22"/>
+                                                    <connections>
+                                                        <action selector="toggleMemoryProfiler:" destination="erh-XG-8Nh" eventType="valueChanged" id="5K0-m1-amw"/>
+                                                    </connections>
+                                                </switch>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Tdc-iS-FKy" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Sbz-wK-jC1" secondAttribute="topMargin" id="7Q4-sH-Mg8"/>
+                                                <constraint firstItem="Tdc-iS-FKy" firstAttribute="centerY" secondItem="ezF-cI-YS1" secondAttribute="centerY" id="9PD-NN-Afh"/>
+                                                <constraint firstItem="ezF-cI-YS1" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Sbz-wK-jC1" secondAttribute="topMargin" id="MsF-kO-uSh"/>
+                                                <constraint firstItem="ezF-cI-YS1" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Sbz-wK-jC1" secondAttribute="bottomMargin" id="lDF-Vw-fDN"/>
+                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Tdc-iS-FKy" secondAttribute="bottom" id="pyn-Y1-VHl"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Tdc-iS-FKy" secondAttribute="trailing" id="sRE-1v-1Nx"/>
+                                                <constraint firstItem="ezF-cI-YS1" firstAttribute="leading" secondItem="Sbz-wK-jC1" secondAttribute="leadingMargin" id="uty-5x-ssW"/>
+                                            </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="Kmm-xl-75P" kind="unwind" unwindAction="unwindToToggleMemoryProfiler:" id="Z66-sS-3LE"/>
-                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -146,6 +158,7 @@
                     <navigationItem key="navigationItem" title="Debug" id="yoS-Bo-I3u"/>
                     <connections>
                         <outlet property="aliveObjectsLabel" destination="JQ4-YI-hNs" id="9LT-9E-jwN"/>
+                        <outlet property="memoryProfilerSwitch" destination="Tdc-iS-FKy" id="tg4-y4-tdX"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oSy-qI-XeU" userLabel="First Responder" sceneMemberID="firstResponder"/>
