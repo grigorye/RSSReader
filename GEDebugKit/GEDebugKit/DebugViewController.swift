@@ -10,7 +10,7 @@ import GEUIKit
 import GETracing
 import FBAllocationTracker
 
-private func aliveObjectsForSubclasses(of parentClasses: [AnyClass]) -> Int {
+private func aliveObjectsForClassFilter(_ filter: (AnyClass) -> Bool) -> Int {
     
     guard let allocationTrackerManager = FBAllocationTrackerManager.shared() else {
         assert(false)
@@ -28,12 +28,7 @@ private func aliveObjectsForSubclasses(of parentClasses: [AnyClass]) -> Int {
             assert(false)
             return false
         }
-        for parentClass in parentClasses {
-            if cls.isSubclass(of: parentClass) {
-                return true
-            }
-        }
-        return false
+        return filter(cls)
     }
     
     let clsAndLive = subclassSummaries.map { ($0.className, $0.aliveObjects) }
@@ -46,6 +41,24 @@ private func aliveObjectsForSubclasses(of parentClasses: [AnyClass]) -> Int {
         return $0 + aliveObjects
     })
     return aliveObjects
+}
+
+private func isSubclass(_ cls: AnyClass, forAny parentClasses: [AnyClass]) -> Bool {
+    
+    for parentClass in parentClasses {
+        
+        if cls.isSubclass(of: parentClass) {
+            
+            return true
+        }
+    }
+    
+    return false
+}
+
+private func isContainedInUserCode(_ cls: AnyClass) -> Bool {
+    
+    return Bundle(for: cls).bundlePath.hasPrefix(Bundle.main.bundlePath)
 }
 
 class DebugViewController : AccessibilityAwareStaticTableViewController {
@@ -68,7 +81,10 @@ class DebugViewController : AccessibilityAwareStaticTableViewController {
             UIResponder.self
         ]
         
-        let aliveObjects = aliveObjectsForSubclasses(of: parentClassesForAllocationTracking)
+        let aliveObjects = aliveObjectsForClassFilter {
+            return GEDebugKit.isSubclass($0, forAny: parentClassesForAllocationTracking) || isContainedInUserCode($0)
+        }
+        
         aliveObjectsLabel?.text = "\(aliveObjects)"
     }
 }
