@@ -13,7 +13,7 @@ let crashlyticsInitializer: Void = ()
 #else
 
 import struct GETracing.LogRecord
-import func GEFoundation.defaultLoggedTextWithThread
+import GEFoundation
 import Crashlytics
 
 func crashlyticsLogger(record: LogRecord) {
