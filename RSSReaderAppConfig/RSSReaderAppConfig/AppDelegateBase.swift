@@ -15,8 +15,6 @@ import var GEFoundation.buildAge
 import var GEFoundation.nslogRedirectorInitializer
 #endif
 import Loggy
-import FBAllocationTracker
-import FBMemoryProfiler
 import UIKit
 
 let analyticsShouldBeEnabled: Bool = {
@@ -33,34 +31,9 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 	}
 	// MARK: -
 	open func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
-        if _0 {
-            if defaults.memoryProfilerEnabled {
-                let memoryProfiler = FBMemoryProfiler()
-                memoryProfiler.enable()
-                retainedObjects += [memoryProfiler]
-            }
-        }
-        else {
-            var memoryProfiler: FBMemoryProfiler!
-            retainedObjects += [
-                defaults.observe(\.memoryProfilerEnabled, options: .initial) { (_, _) in
-                    if defaults.memoryProfilerEnabled {
-                        guard nil == memoryProfiler else {
-                            return
-                        }
-                        memoryProfiler = FBMemoryProfiler()
-                        memoryProfiler.enable()
-                    }
-                    else {
-                        guard nil != memoryProfiler else {
-                            return
-                        }
-                        memoryProfiler.disable()
-                        memoryProfiler = nil
-                    }
-                }
-            ]
-        }
+        
+        configureDebug()
+        
 		#if false
 		if x$(analyticsShouldBeEnabled) {
 			launchOptimizely(launchOptions: launchOptions)
@@ -70,23 +43,15 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 		return true
 	}
 	// MARK: -
-	private func initializeAllocationTracking() {
-		var scope = Activity("Initializing Allocation Tracking").enter(); defer { scope.leave() }
-		guard let allocationTrackerManager = x$(FBAllocationTrackerManager.shared()) else {
-			return
-		}
-		allocationTrackerManager.startTrackingAllocations()
-		allocationTrackerManager.enableGenerations()
-	}
 	public override init() {
 		_ = AppDelegateBase.initializeOnce
 		super.init()
 		var scope = Activity("Basic Initialization").enter(); defer { scope.leave() }
 		let defaultsPlistURL = Bundle.main.url(forResource: "Settings", withExtension: "bundle")!.appendingPathComponent("Root.plist")
 		try! loadDefaultsFromSettingsPlistAtURL(defaultsPlistURL)
-		if defaults.allocationTrackingEnabled {
-			initializeAllocationTracking()
-		}
+        
+        initializeDebug()
+        
 		let fileManager = FileManager()
 		let libraryDirectoryURL = fileManager.urls(for: .libraryDirectory, in: .userDomainMask).last!
 		let libraryDirectory = libraryDirectoryURL.path
