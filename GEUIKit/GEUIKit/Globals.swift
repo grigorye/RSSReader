@@ -16,5 +16,3 @@ public let urlTaskGeneratorProgressBinding: AnyObject = {
 		UIApplication.shared.isNetworkActivityIndicatorVisible = (networkActivityIndicatorShouldBeVisible)
 	}
 }()
-
-var defaults = TypedUserDefaults()
