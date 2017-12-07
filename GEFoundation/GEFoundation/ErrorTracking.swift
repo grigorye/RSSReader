@@ -14,7 +14,7 @@ private func defaultErrorTracker(error: Error) {
     _ = x$(error)
 }
 
-var errorTrackers: [(Error) -> ()] = [defaultErrorTracker]
+public var errorTrackers: [(Error) -> ()] = [defaultErrorTracker]
 
 public func trackError(_ error: Error) {
     
