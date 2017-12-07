@@ -50,12 +50,20 @@ private func aliveObjectsForSubclasses(of parentClasses: [AnyClass]) -> Int {
 
 class DebugViewController : AccessibilityAwareStaticTableViewController {
     
+    @IBOutlet var memoryProfilerSwitch: UISwitch!
     @IBOutlet var aliveObjectsLabel: UILabel!
+    
+    @IBAction func toggleMemoryProfiler(_ sender: UISwitch) {
+        
+        defaults.memoryProfilerEnabled = sender.isOn
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
         
+        memoryProfilerSwitch.isOn = defaults.memoryProfilerEnabled
+
         let parentClassesForAllocationTracking: [AnyClass] = [
             UIResponder.self
         ]
