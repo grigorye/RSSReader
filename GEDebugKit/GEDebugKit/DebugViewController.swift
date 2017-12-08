@@ -80,6 +80,18 @@ extension UIViewController {
     
     @IBAction func unwindToMarkAllocationGeneration(_ segue: UIStoryboardSegue) {
         
+        guard _0 else {
+            
+            guard let allocationTrackerManager = FBAllocationTrackerManager.shared() else {
+                
+                assert(false)
+                return
+            }
+            
+            allocationTrackerManager.markGeneration()
+            return
+        }
+        
         guard let debugViewController = segue.source as? DebugViewController else {
             
             assert(false)
