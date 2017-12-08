@@ -63,34 +63,7 @@ private func isContainedInUserCode(_ cls: AnyClass) -> Bool {
 /// Abusing segues to support debug actions.
 extension UIViewController {
     
-    @IBAction func unwindToForceDebugCrash(_ segue: UIStoryboardSegue) {
-        
-        forceDebugCrash()
-    }
-    
-    @IBAction func unwindToTriggerDebugError(_ segue: UIStoryboardSegue) {
-        
-        triggerDebugError()
-    }
-    
-    @IBAction func unwindToToggleMemoryProfiler(_ segue: UIStoryboardSegue) {
-        
-        defaults.memoryProfilerEnabled = !defaults.memoryProfilerEnabled
-    }
-    
-    @IBAction func unwindToMarkAllocationGeneration(_ segue: UIStoryboardSegue) {
-        
-        guard _0 else {
-            
-            guard let allocationTrackerManager = FBAllocationTrackerManager.shared() else {
-                
-                assert(false)
-                return
-            }
-            
-            allocationTrackerManager.markGeneration()
-            return
-        }
+    func postprocessUnwindSegueFromDebugViewController(_ segue: UIStoryboardSegue) {
         
         guard let debugViewController = segue.source as? DebugViewController else {
             
@@ -98,7 +71,48 @@ extension UIViewController {
             return
         }
         
-        debugViewController.shouldMarkGeneration = true
+        guard let tableView = debugViewController.tableView else {
+            assert(false)
+            return
+        }
+        
+        if let indexPathToLastSelectedRow = tableView.indexPathsForSelectedRows?.last {
+            tableView.deselectRow(at: indexPathToLastSelectedRow, animated: true)
+        }
+    }
+    
+    @IBAction func unwindToForceDebugCrash(_ segue: UIStoryboardSegue) {
+        
+        defer { postprocessUnwindSegueFromDebugViewController(segue) }
+
+        forceDebugCrash()
+    }
+    
+    @IBAction func unwindToTriggerDebugError(_ segue: UIStoryboardSegue) {
+        
+        defer { postprocessUnwindSegueFromDebugViewController(segue) }
+
+        triggerDebugError()
+    }
+    
+    @IBAction func unwindToToggleMemoryProfiler(_ segue: UIStoryboardSegue) {
+        
+        defer { postprocessUnwindSegueFromDebugViewController(segue) }
+
+        defaults.memoryProfilerEnabled = !defaults.memoryProfilerEnabled
+    }
+    
+    @IBAction func unwindToMarkAllocationGeneration(_ segue: UIStoryboardSegue) {
+        
+        defer { postprocessUnwindSegueFromDebugViewController(segue) }
+        
+        guard let allocationTrackerManager = FBAllocationTrackerManager.shared() else {
+            
+            assert(false)
+            return
+        }
+        
+        allocationTrackerManager.markGeneration()
     }
 }
 
