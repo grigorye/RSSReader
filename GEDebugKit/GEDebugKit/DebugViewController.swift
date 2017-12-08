@@ -17,11 +17,11 @@ private func aliveObjectsForClassFilter(_ filter: (AnyClass) -> Bool) -> Int {
         return 0
     }
     
-    guard let currentAllocationSummary = allocationTrackerManager.currentAllocationSummary() else {
+    guard let lastGenerationAllocationSummary = allocationTrackerManager.currentSummaryForGenerations()?.last else {
         return 0
     }
     
-    let subclassSummaries = currentAllocationSummary.filter {
+    let subclassSummaries = lastGenerationAllocationSummary.filter {
         
         guard let cls = NSClassFromString($0.className) else {
             assert(false)
