@@ -13,7 +13,6 @@
 		A176B21F1FD5DACF00E945E9 /* Debug.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A176B21E1FD5DACF00E945E9 /* Debug.storyboard */; };
 		A176B2251FD69C6500E945E9 /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A176B2241FD69C6500E945E9 /* DebugViewController.swift */; };
 		A176B2271FD69CAC00E945E9 /* GEUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A176B2281FD69CAC00E945E9 /* GEUIKit.framework */; };
-		A1839A141FD88017003313D6 /* DebugActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1839A131FD88017003313D6 /* DebugActions.swift */; };
 		A1839A161FD88064003313D6 /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1839A151FD88064003313D6 /* Debugging.swift */; };
 		A1839A1C1FD8866B003313D6 /* ModuleExports-GEFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1839A1B1FD8866B003313D6 /* ModuleExports-GEFoundation.swift */; };
 		A18DB4351FD8214900254FF8 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18DB4341FD8214900254FF8 /* Defaults.swift */; };
@@ -40,7 +39,6 @@
 		A176B2201FD5DB6000E945E9 /* GEShared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = GEShared.xcconfig; path = ../XcodeConfiguration/GEShared.xcconfig; sourceTree = "<group>"; };
 		A176B2241FD69C6500E945E9 /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
 		A176B2281FD69CAC00E945E9 /* GEUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GEUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A1839A131FD88017003313D6 /* DebugActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugActions.swift; sourceTree = "<group>"; };
 		A1839A151FD88064003313D6 /* Debugging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debugging.swift; sourceTree = "<group>"; };
 		A1839A1B1FD8866B003313D6 /* ModuleExports-GEFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GEFoundation.swift"; path = "../GEFoundation/GEFoundation/ModuleExports-GEFoundation.swift"; sourceTree = "<group>"; };
 		A18DB4341FD8214900254FF8 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
@@ -90,7 +88,6 @@
 			isa = PBXGroup;
 			children = (
 				A18DB4341FD8214900254FF8 /* Defaults.swift */,
-				A1839A131FD88017003313D6 /* DebugActions.swift */,
 				A1839A151FD88064003313D6 /* Debugging.swift */,
 				A176B2241FD69C6500E945E9 /* DebugViewController.swift */,
 				A176B21E1FD5DACF00E945E9 /* Debug.storyboard */,
@@ -230,7 +227,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1839A141FD88017003313D6 /* DebugActions.swift in Sources */,
 				A176B2251FD69C6500E945E9 /* DebugViewController.swift in Sources */,
 				A1839A1C1FD8866B003313D6 /* ModuleExports-GEFoundation.swift in Sources */,
 				A1839A161FD88064003313D6 /* Debugging.swift in Sources */,
