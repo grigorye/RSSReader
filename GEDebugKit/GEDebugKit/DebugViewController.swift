@@ -17,12 +17,11 @@ private func aliveObjectsForClassFilter(_ filter: (AnyClass) -> Bool) -> Int {
         return 0
     }
     
-    guard let allocationSummaries = allocationTrackerManager.currentAllocationSummary() else {
-        assert(false)
+    guard let currentAllocationSummary = allocationTrackerManager.currentAllocationSummary() else {
         return 0
     }
     
-    let subclassSummaries = allocationSummaries.filter {
+    let subclassSummaries = currentAllocationSummary.filter {
         
         guard let cls = NSClassFromString($0.className) else {
             assert(false)
@@ -61,14 +60,62 @@ private func isContainedInUserCode(_ cls: AnyClass) -> Bool {
     return Bundle(for: cls).bundlePath.hasPrefix(Bundle.main.bundlePath)
 }
 
+/// Abusing segues to support debug actions.
+extension UIViewController {
+    
+    @IBAction func unwindToForceDebugCrash(_ segue: UIStoryboardSegue) {
+        
+        forceDebugCrash()
+    }
+    
+    @IBAction func unwindToTriggerDebugError(_ segue: UIStoryboardSegue) {
+        
+        triggerDebugError()
+    }
+    
+    @IBAction func unwindToToggleMemoryProfiler(_ segue: UIStoryboardSegue) {
+        
+        defaults.memoryProfilerEnabled = !defaults.memoryProfilerEnabled
+    }
+    
+    @IBAction func unwindToMarkAllocationGeneration(_ segue: UIStoryboardSegue) {
+        
+        guard let debugViewController = segue.source as? DebugViewController else {
+            
+            assert(false)
+            return
+        }
+        
+        debugViewController.shouldMarkGeneration = true
+    }
+}
+
 class DebugViewController : AccessibilityAwareStaticTableViewController {
     
     @IBOutlet var memoryProfilerSwitch: UISwitch!
     @IBOutlet var aliveObjectsLabel: UILabel!
     
+    var shouldMarkGeneration = true
+    
     @IBAction func toggleMemoryProfiler(_ sender: UISwitch) {
         
         defaults.memoryProfilerEnabled = sender.isOn
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        
+        super.viewDidDisappear(animated)
+        
+        if shouldMarkGeneration {
+            
+            guard let allocationTrackerManager = FBAllocationTrackerManager.shared() else {
+                
+                assert(false)
+                return
+            }
+            
+            allocationTrackerManager.markGeneration()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
