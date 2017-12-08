@@ -150,18 +150,29 @@ BOOL FBIsFBATEnabledInThisBuild(void)
 - (NSArray *)instancesForClass:(__unsafe_unretained Class)aCls
                   inGeneration:(NSInteger)generation
 {
-  std::vector<__weak id> objects = FB::AllocationTracker::instancesOfClassForGeneration(aCls, generation);
+  NSInteger minAllocNumber;
+  return [self instancesForClass:aCls inGeneration:generation minAllocNumber:&minAllocNumber maxAllocNumber:SIZE_T_MAX];
+}
+
+- (nullable NSArray *)instancesForClass:(nonnull __unsafe_unretained Class)aCls
+                           inGeneration:(NSInteger)generation
+                         minAllocNumber:(NSInteger *)minAllocNumberP
+                         maxAllocNumber:(NSInteger)maxAllocNumber
+{
+  FB::AllocationTracker::GenerationEntries entries = FB::AllocationTracker::entriesForClassForGeneration(aCls, generation, maxAllocNumber);
   
-  if (objects.size() == 0) {
+  if (entries.first.size() == 0) {
     return nil;
   }
   
   NSMutableArray *objectArray = [NSMutableArray new];
-  for (id obj: objects) {
+  for (auto entry: entries.first) {
+    id obj = entry.first;
     if (obj) {
       [objectArray addObject:obj];
     }
   }
+  *minAllocNumberP = entries.second;
   return objectArray;
 }
 

@@ -292,20 +292,21 @@ namespace FB { namespace AllocationTracker {
     return false;
   }
 
-  std::vector<__weak id> instancesOfClassForGeneration(__unsafe_unretained Class aCls,
-                                                NSInteger generationIndex) {
+  GenerationEntries entriesForClassForGeneration(__unsafe_unretained Class aCls,
+                                                 NSInteger generationIndex,
+                                                 NSInteger maxAllocNumber) {
     if (_shouldOmitClass(aCls)) {
-      return std::vector<__weak id> {};
+      return GenerationEntries {};
     }
 
     std::lock_guard<std::mutex> l(*_lock);
     if (_generationManager) {
-      return _generationManager->instancesOfClassInGeneration(aCls, generationIndex);
+      return _generationManager->entriesForClassInGeneration(aCls, generationIndex, maxAllocNumber);
     }
-    return std::vector<__weak id> {};
+    return GenerationEntries {};
   }
 
-  NSArray *instancesOfClasses(NSArray *classes) {
+  NSArray *instancesOfClasses(NSArray *classes, size_t maxAllocNumber) {
     if (!_generationManager) {
       return nil;
     }
@@ -317,15 +318,15 @@ namespace FB { namespace AllocationTracker {
         continue;
       }
 
-      std::vector<__weak id> instancesFromGeneration;
+      GenerationEntries entriesFromGeneration;
 
       {
         std::lock_guard<std::mutex> l(*_lock);
-        instancesFromGeneration = _generationManager->instancesOfClassInLastGeneration(aCls);
+        entriesFromGeneration = _generationManager->entriesForClassInLastGeneration(aCls, maxAllocNumber);
       }
 
-      for (const auto &obj: instancesFromGeneration) {
-        id retainedObject = obj;
+      for (const auto &entry: entriesFromGeneration.first) {
+        id retainedObject = entry.first;
         if (retainedObject) {
           [instances addObject:retainedObject];
         }
@@ -335,6 +336,10 @@ namespace FB { namespace AllocationTracker {
     return instances;
   }
 
+  NSArray *instancesOfClasses(NSArray *classes) {
+    return instancesOfClasses(classes, SIZE_T_MAX);
+  }
+  
   std::vector<__unsafe_unretained Class> trackedClasses() {
     std::lock_guard<std::mutex> l(*_lock);
     std::vector<__unsafe_unretained Class> trackedClasses;
