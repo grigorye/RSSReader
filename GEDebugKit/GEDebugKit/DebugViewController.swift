@@ -95,7 +95,7 @@ class DebugViewController : AccessibilityAwareStaticTableViewController {
     @IBOutlet var memoryProfilerSwitch: UISwitch!
     @IBOutlet var aliveObjectsLabel: UILabel!
     
-    var shouldMarkGeneration = true
+    var shouldMarkGeneration = false
     
     @IBAction func toggleMemoryProfiler(_ sender: UISwitch) {
         
@@ -108,6 +108,8 @@ class DebugViewController : AccessibilityAwareStaticTableViewController {
         
         if shouldMarkGeneration {
             
+            shouldMarkGeneration = false
+
             guard let allocationTrackerManager = FBAllocationTrackerManager.shared() else {
                 
                 assert(false)
