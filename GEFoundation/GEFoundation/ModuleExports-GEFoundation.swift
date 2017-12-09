@@ -89,3 +89,7 @@ internal func invoke(handler: Handler) {
 internal func += (handlers: inout ScheduledHandlers, _ extraHandlers: [Handler]) {
 	handlers.append(contentsOf: extraHandlers)
 }
+
+internal func trackError(_ error: Error) {
+    GEFoundation.trackError(error)
+}
