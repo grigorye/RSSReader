@@ -18,6 +18,8 @@
 		A18DB4351FD8214900254FF8 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18DB4341FD8214900254FF8 /* Defaults.swift */; };
 		A1FB04171FDB0569008D14E4 /* AliveObjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB04161FDB0569008D14E4 /* AliveObjectsViewController.swift */; };
 		A1FB041D1FDC4AAA008D14E4 /* WeakRefernece.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB041C1FDC4AAA008D14E4 /* WeakRefernece.swift */; };
+		A1FB041F1FDC4E59008D14E4 /* AliveObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB041E1FDC4E59008D14E4 /* AliveObjects.swift */; };
+		A1FB04211FDC4F16008D14E4 /* ModuleExports-GETracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB04201FDC4F15008D14E4 /* ModuleExports-GETracing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		A18DB4341FD8214900254FF8 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		A1FB04161FDB0569008D14E4 /* AliveObjectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliveObjectsViewController.swift; sourceTree = "<group>"; };
 		A1FB041C1FDC4AAA008D14E4 /* WeakRefernece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRefernece.swift; sourceTree = "<group>"; };
+		A1FB041E1FDC4E59008D14E4 /* AliveObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliveObjects.swift; sourceTree = "<group>"; };
+		A1FB04201FDC4F15008D14E4 /* ModuleExports-GETracing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GETracing.swift"; path = "../GETracing/GETracing/ModuleExports-GETracing.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,7 @@
 				A176B2241FD69C6500E945E9 /* DebugViewController.swift */,
 				A176B21E1FD5DACF00E945E9 /* Debug.storyboard */,
 				A1FB04161FDB0569008D14E4 /* AliveObjectsViewController.swift */,
+				A1FB041E1FDC4E59008D14E4 /* AliveObjects.swift */,
 				A1FB041C1FDC4AAA008D14E4 /* WeakRefernece.swift */,
 				A176B2071FD5D94F00E945E9 /* GEDebugKit.h */,
 				A176B2081FD5D94F00E945E9 /* Info.plist */,
@@ -115,6 +120,7 @@
 		A176B2261FD69CAC00E945E9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A1FB04201FDC4F15008D14E4 /* ModuleExports-GETracing.swift */,
 				A1839A1B1FD8866B003313D6 /* ModuleExports-GEFoundation.swift */,
 				A176B2281FD69CAC00E945E9 /* GEUIKit.framework */,
 			);
@@ -237,6 +243,8 @@
 				A1839A1C1FD8866B003313D6 /* ModuleExports-GEFoundation.swift in Sources */,
 				A1FB041D1FDC4AAA008D14E4 /* WeakRefernece.swift in Sources */,
 				A1839A161FD88064003313D6 /* Debugging.swift in Sources */,
+				A1FB04211FDC4F16008D14E4 /* ModuleExports-GETracing.swift in Sources */,
+				A1FB041F1FDC4E59008D14E4 /* AliveObjects.swift in Sources */,
 				A18DB4351FD8214900254FF8 /* Defaults.swift in Sources */,
 				A1FB04171FDB0569008D14E4 /* AliveObjectsViewController.swift in Sources */,
 			);
