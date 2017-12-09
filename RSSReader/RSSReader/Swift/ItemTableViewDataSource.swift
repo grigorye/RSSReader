@@ -119,7 +119,7 @@ class ItemTableViewDataSource: NSObject {
 	fileprivate var reusedCellGenerator: TableViewHeightBasedReusedCellGenerator<ItemTableViewDataSource>!
 	//
 	func configureCellHeightCaching() {
-		guard let tableView = tableView else { return }
+		let tableView = self.tableView!
 		let reuseIdentifiersForHeightCachingCells = (0...6).map {"Item-\($0)"}
 		for (i, reuseIdentifier) in reuseIdentifiersForHeightCachingCells.enumerated() {
 			let cellNib = UINib(nibName: "ItemTableViewCell-\(i)", bundle: nil)
@@ -128,7 +128,7 @@ class ItemTableViewDataSource: NSObject {
 		reusedCellGenerator = TableViewHeightBasedReusedCellGenerator(dataSource: self, heightAgnosticCellReuseIdentifier: "Item", reuseIdentifiersForHeightCachingCells: reuseIdentifiersForHeightCachingCells)
 	}
 	func configureReusableCells() {
-		guard let tableView = tableView else { return }
+		let tableView = self.tableView!
 		guard !defaults.fixedHeightItemRowsEnabled else {
 #if false
 			let cellNib = R.nib.itemSimpleTableViewCell()
