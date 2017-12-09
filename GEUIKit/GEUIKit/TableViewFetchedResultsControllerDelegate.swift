@@ -59,9 +59,7 @@ public class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSOb
 		}
 		if groupingTableUpdatesEnabled {
 			(x$(fetchResultsAnimationEnabled) ? invoke : UIView.performWithoutAnimation) {
-				guard let tableView = tableView else {
-					return
-				}
+				let tableView = self.tableView!
 				x$(tableView).beginUpdates()
 			}
 		}
@@ -70,9 +68,7 @@ public class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSOb
 		guard !reloadDataForTableUpdatesEnabled else {
 			return
 		}
-		guard let tableView = tableView else {
-			return
-		}
+        let tableView = self.tableView!
 		x$(controller)
 		x$(stringFromFetchedResultsChangeType(type))
 		switch type {
@@ -88,9 +84,7 @@ public class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSOb
 		guard !reloadDataForTableUpdatesEnabled else {
 			return
 		}
-		guard let tableView = tableView else {
-			return
-		}
+        let tableView = self.tableView!
 		x$(tableView)
 		x$(controller)
 		x$(stringFromFetchedResultsChangeType(type))
@@ -132,9 +126,7 @@ public class TableViewFetchedResultsControllerDelegate<T: NSManagedObject>: NSOb
 		counts = zeroCounts
 		if groupingTableUpdatesEnabled {
 			(x$(fetchResultsAnimationEnabled) ? invoke : UIView.performWithoutAnimation) {
-				guard let tableView = tableView else {
-					return
-				}
+                let tableView = self.tableView!
 				x$(tableView).endUpdates()
 			}
 		}
