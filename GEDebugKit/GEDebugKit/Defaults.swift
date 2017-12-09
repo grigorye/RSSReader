@@ -6,8 +6,6 @@
 //  Copyright © 2017 Grigory Entin. All rights reserved.
 //
 
-import GEFoundation
-
 public extension TypedUserDefaults {
     
     @NSManaged public var memoryProfilerEnabled: Bool

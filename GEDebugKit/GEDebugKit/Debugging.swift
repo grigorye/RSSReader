@@ -6,8 +6,6 @@
 //  Copyright © 2017 Grigory Entin. All rights reserved.
 //
 
-import GEFoundation
-import GETracing
 import FBAllocationTracker
 import FBMemoryProfiler
 import Loggy
