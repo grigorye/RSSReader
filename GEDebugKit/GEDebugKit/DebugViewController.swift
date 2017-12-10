@@ -72,22 +72,15 @@ class DebugViewController : AccessibilityAwareStaticTableViewController {
         }
     }
     
-    let classFilter: (AnyClass) -> Bool = {
-        
-        let parentClassesForAllocationTracking: [AnyClass] = [
-            UIResponder.self
-        ]
-        
-        return GEDebugKit.isSubclass($0, forAny: parentClassesForAllocationTracking) || isContainedInUserCode($0)
-    }
-    
+	lazy var allocationGeneration = AllocationGeneration(generationIndex: lastAllocationGenerationIndex())
+	
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
         
         memoryProfilerSwitch.isOn = defaults.memoryProfilerEnabled
         
-        let aliveObjectsCount = GEDebugKit.aliveObjectsCount(forClassFilter: classFilter)
+        let aliveObjectsCount = allocationGeneration.aliveObjectsCount
         
         aliveObjectsLabel?.text = "\(aliveObjectsCount)"
     }
@@ -101,7 +94,7 @@ class DebugViewController : AccessibilityAwareStaticTableViewController {
             
             segue.destination as! AliveObjectsViewController … {
                 
-                $0.aliveObjects = aliveObjects(forClassFilter: classFilter)
+                $0.generationIndex = allocationGeneration.generationIndex
             }
             
         default: ()
