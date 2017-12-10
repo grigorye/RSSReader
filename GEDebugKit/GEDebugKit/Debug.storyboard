@@ -88,11 +88,11 @@
                             </tableViewSection>
                             <tableViewSection id="Egz-Su-C7e">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="EIR-l9-JqW" detailTextLabel="JQ4-YI-hNs" style="IBUITableViewCellStyleValue1" id="tWV-Ej-eeW">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="EIR-l9-JqW" detailTextLabel="JQ4-YI-hNs" style="IBUITableViewCellStyleValue1" id="tWV-Ej-eeW">
                                         <rect key="frame" x="0.0" y="207" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tWV-Ej-eeW" id="hZr-c8-xf9">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Alive Objects" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="EIR-l9-JqW">
@@ -103,7 +103,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="12345" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="JQ4-YI-hNs">
-                                                    <rect key="frame" x="310.5" y="12" width="48.5" height="20.5"/>
+                                                    <rect key="frame" x="291.5" y="12" width="48.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
@@ -189,7 +189,7 @@
             </objects>
             <point key="canvasLocation" x="3490.4000000000001" y="-2256.521739130435"/>
         </scene>
-        <!--Alive Objects View Controller-->
+        <!--Generation 1-->
         <scene sceneID="0Ql-EC-gwY">
             <objects>
                 <tableViewController id="hCx-DG-Swy" customClass="AliveObjectsViewController" customModule="GEDebugKit" customModuleProvider="target" sceneMemberID="viewController">
@@ -228,6 +228,23 @@
                             <outlet property="delegate" destination="hCx-DG-Swy" id="jIb-94-n3C"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Qdp-It-Ywm"/>
+                        <barButtonItem image="Back" id="XsR-Ni-w1B">
+                            <connections>
+                                <action selector="generationBackward:" destination="hCx-DG-Swy" id="0gk-s4-jQ8"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem image="Forward" id="vUc-Gj-rhc">
+                            <connections>
+                                <action selector="generationForward:" destination="hCx-DG-Swy" id="oQg-lm-gZv"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Generation 1" id="fMB-f3-pT9">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="x4E-ZN-cZi"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pd8-3R-6ef" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -264,13 +281,17 @@
         <!--Navigation Controller-->
         <scene sceneID="VXg-pl-ZLI">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="q44-1m-L9l" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="q44-1m-L9l" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Fhb-CT-aVk">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="STY-o8-WqO">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="erh-XG-8Nh" kind="relationship" relationship="rootViewController" id="jV4-kj-hh5"/>
                     </connections>
@@ -280,4 +301,8 @@
             <point key="canvasLocation" x="2668" y="-2257"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Back" width="25" height="25"/>
+        <image name="Forward" width="25" height="25"/>
+    </resources>
 </document>
