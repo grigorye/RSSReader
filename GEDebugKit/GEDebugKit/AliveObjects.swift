@@ -16,6 +16,15 @@ func markAllocationGeneration() {
     allocationTrackerManager.markGeneration()
 }
 
+private let aliveObjectsClassFilter: (AnyClass) -> Bool = {
+	
+	let parentClassesForAllocationTracking: [AnyClass] = [
+		UIResponder.self
+	]
+	
+	return isSubclass($0, forAny: parentClassesForAllocationTracking) || isContainedInUserCode($0)
+}
+
 struct AllocationGeneration {
 	
 	let generationIndex: Int
@@ -105,6 +114,16 @@ func isSubclass(_ cls: AnyClass, forAny parentClasses: [AnyClass]) -> Bool {
 }
 
 func isContainedInUserCode(_ cls: AnyClass) -> Bool {
-    
-    return Bundle(for: cls).bundlePath.hasPrefix(Bundle.main.bundlePath)
+	
+	let bundle = Bundle(for: cls)
+	
+	guard bundle.bundlePath.hasPrefix(Bundle.main.bundlePath) else {
+		return false
+	}
+	
+	guard bundle != Bundle(for: FBAllocationTrackerSummary.self) else {
+		return false
+	}
+	
+	return true
 }

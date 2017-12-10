@@ -8,15 +8,6 @@
 
 import UIKit
 
-let aliveObjectsClassFilter: (AnyClass) -> Bool = {
-	
-	let parentClassesForAllocationTracking: [AnyClass] = [
-		UIResponder.self
-	]
-	
-	return isSubclass($0, forAny: parentClassesForAllocationTracking) || isContainedInUserCode($0)
-}
-
 class AliveObjectsViewController : UITableViewController {
 
 	class Data {
