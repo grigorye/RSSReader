@@ -1,5 +1,5 @@
 //
-//  AliveObjectsViewController.swift
+//  GenerationViewController.swift
 //  GEDebugKit
 //
 //  Created by Grigorii Entin on 08/12/2017.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AliveObjectsViewController : UITableViewController {
+class GenerationViewController : UITableViewController {
 
 	class Data {
 		
@@ -58,12 +58,13 @@ class AliveObjectsViewController : UITableViewController {
 		
 		setTitleFromData()
 	}
-	
+    
 	func setTitleFromData() {
 		
 		title = String.localizedStringWithFormat(
-			NSLocalizedString("Generation %d (%d objects)", comment: ""),
-			self.generationIndex,
+			NSLocalizedString("Generation %d of %d (%d objects)", comment: ""),
+			self.generationIndex + 1,
+            data.allocationGeneration.currentSummaryForGenerations.count,
 			data.allocationGeneration.aliveObjectsCount
 		)
 	}
