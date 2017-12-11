@@ -68,7 +68,7 @@ class GenerationViewController : UITableViewController {
             let objects = data.aliveObjects[className]!
             
             segue.destination as! ObjectsViewController … {
-                $0.data = ObjectsViewController.Data(objects: objects)
+                $0.data = ObjectsViewController.Data(className: className, objects: objects)
             }
         default: ()
         }
@@ -76,12 +76,19 @@ class GenerationViewController : UITableViewController {
 	
 	func setTitleFromData() {
 		
+        let generationNumber = generationIndex + 1
 		title = String.localizedStringWithFormat(
 			NSLocalizedString("Generation %d of %d (%d objects)", comment: ""),
-			self.generationIndex + 1,
+			generationNumber,
             data.allocationGeneration.currentSummaryForGenerations.count,
 			data.allocationGeneration.aliveObjectsCount
 		)
+        let backTitle = String.localizedStringWithFormat(
+            NSLocalizedString("Generation %d", comment: ""),
+            generationNumber
+        )
+
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: backTitle, style: .plain, target: nil, action: nil)
 	}
 	
 	func updateForGenerationIndex() {
