@@ -36,9 +36,9 @@ struct AllocationGeneration {
 		self.classFilter = classFilter
 	}
 	
+    lazy var currentSummaryForGenerations = allocationTrackerManager.currentSummaryForGenerations()!
+
 	lazy var allocationTrackerSummary: [FBAllocationTrackerSummary] = {
-		
-		let currentSummaryForGenerations = allocationTrackerManager.currentSummaryForGenerations()!
 		
 		let allocationTrackerSummary = currentSummaryForGenerations[generationIndex]
 		
@@ -68,9 +68,9 @@ struct AllocationGeneration {
 		return aliveObjectsCount
 	}()
 
-	lazy var aliveObjects: [String : [WeakRefernece<AnyObject>]] = {
+	lazy var aliveObjects: [String : [WeakReference<AnyObject>]] = {
 		
-		let aliveObjects: [String : [WeakRefernece<AnyObject>]] = allocationTrackerSummary.reduce([:]) {
+		let aliveObjects: [String : [WeakReference<AnyObject>]] = allocationTrackerSummary.reduce([:]) {
 			
 			let className = $1.className
 			let cls: AnyClass = NSClassFromString(className)!
@@ -84,7 +84,7 @@ struct AllocationGeneration {
 				return $0
 			}
 			var reduced = $0
-			reduced[className] = objects.map { WeakRefernece(object: $0) }
+			reduced[className] = objects.map { WeakReference(object: $0) }
 			
 			return reduced
 		}
