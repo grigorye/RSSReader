@@ -14,7 +14,7 @@ class GenerationViewController : UITableViewController {
 		
 		var allocationGeneration: AllocationGeneration
 		
-		lazy var aliveObjects: [String : [WeakRefernece<AnyObject>]] = allocationGeneration.aliveObjects
+		lazy var aliveObjects: [String : [WeakReference<AnyObject>]] = allocationGeneration.aliveObjects
 		
 		lazy var aliveObjectsClassNames: [String] = aliveObjects.keys.sorted()
 		
@@ -59,6 +59,21 @@ class GenerationViewController : UITableViewController {
 		setTitleFromData()
 	}
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "showObjects"?:
+            let indexPath = tableView.indexPathForSelectedRow!
+            let className = data.aliveObjectsClassNames[indexPath.row]
+            
+            let objects = data.aliveObjects[className]!
+            
+            segue.destination as! ObjectsViewController … {
+                $0.data = ObjectsViewController.Data(objects: objects)
+            }
+        default: ()
+        }
+    }
+	
 	func setTitleFromData() {
 		
 		title = String.localizedStringWithFormat(
