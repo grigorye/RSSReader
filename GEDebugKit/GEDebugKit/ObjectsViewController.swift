@@ -12,10 +12,11 @@ class ObjectsViewController : UITableViewController {
 
     struct Data {
         
+        let className: String
         let objects: [WeakReference<AnyObject>]
     }
     
-    var data: Data = Data(objects: [])
+    var data: Data = Data(className: "", objects: [])
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -51,5 +52,11 @@ class ObjectsViewController : UITableViewController {
             }
         default: ()
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        title = String.localizedStringWithFormat(NSLocalizedString("%@", comment: ""), data.className)
     }
 }
