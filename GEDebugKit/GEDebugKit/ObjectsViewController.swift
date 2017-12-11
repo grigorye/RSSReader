@@ -29,7 +29,8 @@ class ObjectsViewController : UITableViewController {
             
             let textLabel = $0.textLabel!
             
-            let pointer = Unmanaged.passUnretained(data.objects[indexPath.row]).toOpaque()
+            let object = data.objects[indexPath.row]
+            let pointer = Unmanaged.passUnretained(object.object!).toOpaque()
             textLabel.text = "\(pointer)"
         }
         
