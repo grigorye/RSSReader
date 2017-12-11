@@ -16,8 +16,10 @@
 		A1839A161FD88064003313D6 /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1839A151FD88064003313D6 /* Debugging.swift */; };
 		A1839A1C1FD8866B003313D6 /* ModuleExports-GEFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1839A1B1FD8866B003313D6 /* ModuleExports-GEFoundation.swift */; };
 		A18DB4351FD8214900254FF8 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18DB4341FD8214900254FF8 /* Defaults.swift */; };
-		A1FB04171FDB0569008D14E4 /* AliveObjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB04161FDB0569008D14E4 /* AliveObjectsViewController.swift */; };
-		A1FB041D1FDC4AAA008D14E4 /* WeakRefernece.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB041C1FDC4AAA008D14E4 /* WeakRefernece.swift */; };
+		A1CE70861FDE24890080D832 /* ObjectDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CE70851FDE24890080D832 /* ObjectDetailViewController.swift */; };
+		A1CE708A1FDE2A290080D832 /* ObjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CE70891FDE2A290080D832 /* ObjectsViewController.swift */; };
+		A1FB04171FDB0569008D14E4 /* GenerationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB04161FDB0569008D14E4 /* GenerationViewController.swift */; };
+		A1FB041D1FDC4AAA008D14E4 /* WeakReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB041C1FDC4AAA008D14E4 /* WeakReference.swift */; };
 		A1FB041F1FDC4E59008D14E4 /* AliveObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB041E1FDC4E59008D14E4 /* AliveObjects.swift */; };
 		A1FB04211FDC4F16008D14E4 /* ModuleExports-GETracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB04201FDC4F15008D14E4 /* ModuleExports-GETracing.swift */; };
 		C43189B81FDC9AE4003E571E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C43189B71FDC9AE4003E571E /* Images.xcassets */; };
@@ -47,8 +49,10 @@
 		A1839A151FD88064003313D6 /* Debugging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debugging.swift; sourceTree = "<group>"; };
 		A1839A1B1FD8866B003313D6 /* ModuleExports-GEFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GEFoundation.swift"; path = "../GEFoundation/GEFoundation/ModuleExports-GEFoundation.swift"; sourceTree = "<group>"; };
 		A18DB4341FD8214900254FF8 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
-		A1FB04161FDB0569008D14E4 /* AliveObjectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliveObjectsViewController.swift; sourceTree = "<group>"; };
-		A1FB041C1FDC4AAA008D14E4 /* WeakRefernece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRefernece.swift; sourceTree = "<group>"; };
+		A1CE70851FDE24890080D832 /* ObjectDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectDetailViewController.swift; sourceTree = "<group>"; };
+		A1CE70891FDE2A290080D832 /* ObjectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectsViewController.swift; sourceTree = "<group>"; };
+		A1FB04161FDB0569008D14E4 /* GenerationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerationViewController.swift; sourceTree = "<group>"; };
+		A1FB041C1FDC4AAA008D14E4 /* WeakReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakReference.swift; sourceTree = "<group>"; };
 		A1FB041E1FDC4E59008D14E4 /* AliveObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliveObjects.swift; sourceTree = "<group>"; };
 		A1FB04201FDC4F15008D14E4 /* ModuleExports-GETracing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GETracing.swift"; path = "../GETracing/GETracing/ModuleExports-GETracing.swift"; sourceTree = "<group>"; };
 		C43189B71FDC9AE4003E571E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -101,10 +105,12 @@
 				A1839A151FD88064003313D6 /* Debugging.swift */,
 				A176B2241FD69C6500E945E9 /* DebugViewController.swift */,
 				A176B21E1FD5DACF00E945E9 /* Debug.storyboard */,
-				A1FB04161FDB0569008D14E4 /* AliveObjectsViewController.swift */,
+				A1FB04161FDB0569008D14E4 /* GenerationViewController.swift */,
+				A1CE70891FDE2A290080D832 /* ObjectsViewController.swift */,
+				A1CE70851FDE24890080D832 /* ObjectDetailViewController.swift */,
 				C43189B71FDC9AE4003E571E /* Images.xcassets */,
 				A1FB041E1FDC4E59008D14E4 /* AliveObjects.swift */,
-				A1FB041C1FDC4AAA008D14E4 /* WeakRefernece.swift */,
+				A1FB041C1FDC4AAA008D14E4 /* WeakReference.swift */,
 				A176B2071FD5D94F00E945E9 /* GEDebugKit.h */,
 				A176B2081FD5D94F00E945E9 /* Info.plist */,
 			);
@@ -245,12 +251,14 @@
 			files = (
 				A176B2251FD69C6500E945E9 /* DebugViewController.swift in Sources */,
 				A1839A1C1FD8866B003313D6 /* ModuleExports-GEFoundation.swift in Sources */,
-				A1FB041D1FDC4AAA008D14E4 /* WeakRefernece.swift in Sources */,
+				A1FB041D1FDC4AAA008D14E4 /* WeakReference.swift in Sources */,
 				A1839A161FD88064003313D6 /* Debugging.swift in Sources */,
+				A1CE70861FDE24890080D832 /* ObjectDetailViewController.swift in Sources */,
 				A1FB04211FDC4F16008D14E4 /* ModuleExports-GETracing.swift in Sources */,
+				A1CE708A1FDE2A290080D832 /* ObjectsViewController.swift in Sources */,
 				A1FB041F1FDC4E59008D14E4 /* AliveObjects.swift in Sources */,
 				A18DB4351FD8214900254FF8 /* Defaults.swift in Sources */,
-				A1FB04171FDB0569008D14E4 /* AliveObjectsViewController.swift in Sources */,
+				A1FB04171FDB0569008D14E4 /* GenerationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
