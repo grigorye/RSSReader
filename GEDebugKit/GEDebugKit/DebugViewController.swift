@@ -92,7 +92,7 @@ class DebugViewController : AccessibilityAwareStaticTableViewController {
         switch segue.identifier {
         case "showAliveObjects"?:
             
-            segue.destination as! AliveObjectsViewController … {
+            segue.destination as! GenerationViewController … {
                 
                 $0.generationIndex = allocationGeneration.generationIndex
             }
