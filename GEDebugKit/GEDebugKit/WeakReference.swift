@@ -10,7 +10,7 @@ import Foundation
 
 // Borrowed from WeakObject at https://stackoverflow.com/a/36184182
 
-class WeakRefernece<T: AnyObject>: Equatable, Hashable {
+class WeakReference<T: AnyObject>: Equatable, Hashable {
     
     weak var object: T?
     
@@ -28,7 +28,7 @@ class WeakRefernece<T: AnyObject>: Equatable, Hashable {
         return UnsafeMutablePointer<T>(&object).hashValue
     }
     
-    static func == (lhs: WeakRefernece<T>, rhs: WeakRefernece<T>) -> Bool {
+    static func == (lhs: WeakReference<T>, rhs: WeakReference<T>) -> Bool {
         
         return lhs.object === rhs.object
     }
