@@ -83,12 +83,21 @@ class GenerationViewController : UITableViewController {
             data.allocationGeneration.currentSummaryForGenerations.count,
 			data.allocationGeneration.aliveObjectsCount
 		)
+        
         let backTitle = String.localizedStringWithFormat(
             NSLocalizedString("Generation %d", comment: ""),
             generationNumber
         )
 
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: backTitle, style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: backTitle, style: .plain, target: nil, action: nil) … {
+            
+            $0.possibleTitles = [
+                String.localizedStringWithFormat(
+                    NSLocalizedString("Gen. %d", comment: ""),
+                    generationNumber
+                )
+            ]
+        }
 	}
 	
 	func updateForGenerationIndex() {
