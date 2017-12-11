@@ -30,10 +30,8 @@ class ObjectDetailViewController : AccessibilityAwareStaticTableViewController {
     func updateViewForData() {
         
         let object = data.object
-        var unsafeObject = object
-        withUnsafePointer(to: &unsafeObject) {
-            addressLabel.text = "\($0)"
-        }
+        let pointer = Unmanaged.passUnretained(object).toOpaque()
+        addressLabel.text = "\(pointer)"
         classNameLabel.text = "\(type(of: object))"
     }
     

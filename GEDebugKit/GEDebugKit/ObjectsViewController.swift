@@ -29,16 +29,15 @@ class ObjectsViewController : UITableViewController {
             
             let textLabel = $0.textLabel!
             
-            var unsafeObject = data.objects[indexPath.row]
-            withUnsafePointer(to: &unsafeObject) {
-                textLabel.text = "\($0)"
-            }
+            let pointer = Unmanaged.passUnretained(data.objects[indexPath.row]).toOpaque()
+            textLabel.text = "\(pointer)"
         }
         
         return cell
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         switch segue.identifier {
         case "showDetail"?:
             let reference: WeakReference<AnyObject> = {
