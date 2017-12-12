@@ -63,8 +63,13 @@ class ObjectsViewController : UITableViewController {
     }
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
-        title = String.localizedStringWithFormat(NSLocalizedString("%@", comment: ""), data.className)
+        title = String.localizedStringWithFormat(
+            NSLocalizedString("%@ (%d objects)", comment: ""),
+            data.className,
+            data.objects.count
+        )
     }
 }
