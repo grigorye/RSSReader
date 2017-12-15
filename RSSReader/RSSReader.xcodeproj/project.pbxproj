@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		A103368B1FE469B30096330F /* FolderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A103368A1FE469B30096330F /* FolderTableViewCell.xib */; };
+		A103368D1FE46A070096330F /* SubscriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A103368C1FE46A070096330F /* SubscriptionTableViewCell.xib */; };
 		A176B2221FD69C1600E945E9 /* GEDebugKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A176B2211FD69C1600E945E9 /* GEDebugKit.framework */; };
 		A176B2231FD69C1600E945E9 /* GEDebugKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A176B2211FD69C1600E945E9 /* GEDebugKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C408F1B11CE7520700DB943F /* FBAllocationTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C408F1B01CE7520700DB943F /* FBAllocationTracker.framework */; };
@@ -201,6 +203,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A103368A1FE469B30096330F /* FolderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FolderTableViewCell.xib; path = Resources/FolderTableViewCell.xib; sourceTree = "<group>"; };
+		A103368C1FE46A070096330F /* SubscriptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SubscriptionTableViewCell.xib; path = Resources/SubscriptionTableViewCell.xib; sourceTree = "<group>"; };
 		A176B2211FD69C1600E945E9 /* GEDebugKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GEDebugKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C408F1B01CE7520700DB943F /* FBAllocationTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBAllocationTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C408F1B31CE7520700DB943F /* FBMemoryProfiler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBMemoryProfiler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -520,6 +524,8 @@
 				C4EA5C371CE929D300E395FE /* ContainerTableViewSectionHeader.xib */,
 				C4EA5C3B1CE930B200E395FE /* ContainerTableViewSectionHeaderView.swift */,
 				C40A24FE1A672B2100B5D959 /* TableViewContainerCell.swift */,
+				A103368A1FE469B30096330F /* FolderTableViewCell.xib */,
+				A103368C1FE46A070096330F /* SubscriptionTableViewCell.xib */,
 			);
 			name = Container;
 			sourceTree = "<group>";
@@ -762,6 +768,7 @@
 				C4CDD3C51A5357B20087DD05 /* Settings.bundle in Resources */,
 				C4EA6B301CB895EF00FCDAA5 /* Localizable.strings in Resources */,
 				C44D91641AAE73830053B9E6 /* ItemTableViewCell.xib in Resources */,
+				A103368B1FE469B30096330F /* FolderTableViewCell.xib in Resources */,
 				C4F1118B1CB84F66005C5A0F /* LaunchScreen.xib in Resources */,
 				C43CD1CD1DEE70D200189379 /* ItemTableViewCell-6.xib in Resources */,
 				C43CD1CC1DEE70D200189379 /* ItemTableViewCell-5.xib in Resources */,
@@ -774,6 +781,7 @@
 				C43CD1CB1DEE70D200189379 /* ItemTableViewCell-4.xib in Resources */,
 				C4BE5AF41DAA986A00E1734F /* ItemTableViewCell-1.xib in Resources */,
 				C4EA5C381CE929D300E395FE /* ContainerTableViewSectionHeader.xib in Resources */,
+				A103368D1FE46A070096330F /* SubscriptionTableViewCell.xib in Resources */,
 				C49A79FC1E2FFDFC00DE3702 /* GoogleService-Info.plist in Resources */,
 				C4874A091EAD657B00629990 /* Main.strings in Resources */,
 				C4BE5AF31DAA986A00E1734F /* ItemTableViewCell-0.xib in Resources */,
@@ -857,6 +865,7 @@
 			files = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/$(PROJECT_NAME)/Localizable/Base.lproj/Main.storyboard",
 			);
 			name = "Generate R.generated.swift";
 			outputPaths = (
