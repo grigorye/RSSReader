@@ -146,6 +146,20 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 		cell.textLabel?.text = subscription.title /*?? subscription.url?.lastPathComponent*/
 	}
 	// MARK: -
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		guard let cell = tableView.cellForRow(at: indexPath) else {
+			assert(false)
+			return
+		}
+		switch cell.reuseIdentifier {
+		case R.nib.subscriptionTableViewCell.identifier?:
+			self.performSegue(withIdentifier: R.segue.foldersViewController.showSubscription, sender: self)
+		case R.nib.folderTableViewCell.identifier?:
+			self.performSegue(withIdentifier: R.segue.foldersViewController.showFolder, sender: self)
+		default: ()
+		}
+	}
+	// MARK: -
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		switch segue.identifier! {
 		case R.segue.foldersViewController.showFolder.identifier:
@@ -255,8 +269,12 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 	}
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		tableView.estimatedRowHeight = 44
-		tableView.rowHeight = UITableViewAutomaticDimension
+		tableView … {
+			$0.register(R.nib.subscriptionTableViewCell)
+			$0.register(R.nib.folderTableViewCell)
+			$0.estimatedRowHeight = 44
+			$0.rowHeight = UITableViewAutomaticDimension
+		}
 		if !defaults.showMessagesInToolbar {
 			toolbarItems = toolbarItems?.filter { $0 != statusBarButtonItem }
 		}
