@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A10336891FE4545E0096330F /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A10336881FE4545E0096330F /* Colors.xcassets */; };
 		A176B20E1FD5D95000E945E9 /* GEDebugKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A176B2041FD5D94F00E945E9 /* GEDebugKit.framework */; };
 		A176B2131FD5D95000E945E9 /* GEDebugKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A176B2121FD5D95000E945E9 /* GEDebugKitTests.swift */; };
 		A176B2151FD5D95000E945E9 /* GEDebugKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A176B2071FD5D94F00E945E9 /* GEDebugKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A10336881FE4545E0096330F /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		A176B2041FD5D94F00E945E9 /* GEDebugKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GEDebugKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A176B2071FD5D94F00E945E9 /* GEDebugKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GEDebugKit.h; sourceTree = "<group>"; };
 		A176B2081FD5D94F00E945E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				A1CE70891FDE2A290080D832 /* ObjectsViewController.swift */,
 				A1CE70851FDE24890080D832 /* ObjectDetailViewController.swift */,
 				C43189B71FDC9AE4003E571E /* Images.xcassets */,
+				A10336881FE4545E0096330F /* Colors.xcassets */,
 				A1FB041E1FDC4E59008D14E4 /* AliveObjects.swift */,
 				A1FB041C1FDC4AAA008D14E4 /* WeakReference.swift */,
 				A176B2071FD5D94F00E945E9 /* GEDebugKit.h */,
@@ -230,6 +233,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A10336891FE4545E0096330F /* Colors.xcassets in Resources */,
 				A176B21F1FD5DACF00E945E9 /* Debug.storyboard in Resources */,
 				C43189B81FDC9AE4003E571E /* Images.xcassets in Resources */,
 			);
