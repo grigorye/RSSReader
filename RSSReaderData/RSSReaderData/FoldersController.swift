@@ -64,7 +64,7 @@ public extension FoldersController {
 			return Promise { fulfill, reject in
 				performBackgroundMOCTask { managedObjectContext in
 					let container = Folder.folderWithTagSuffix(rootTagSuffix, managedObjectContext: managedObjectContext)!
-					let containerLoadController = ContainerLoadController(session: rssSession, container: container, unreadOnly: true)
+                    let containerLoadController = ContainerLoadController(session: rssSession, container: container, unreadOnly: true, forceReload: true)
 					let loadCancellation = containerLoadController.loadMore { error in
 						guard let error = error else {
 							fulfill(())
