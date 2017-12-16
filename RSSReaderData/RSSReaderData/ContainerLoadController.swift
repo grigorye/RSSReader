@@ -26,11 +26,51 @@ public class LoadInProgress : NSObject {
 	}
 }
 
+extension Container {
+    
+    func viewState(forViewPredicate viewPredicate: NSPredicate) -> ContainerViewState? {
+        
+        let filter: (ContainerViewState) -> Bool = {
+            $0.containerViewPredicate == viewPredicate
+        }
+        return viewStates.filter(filter).onlyElement
+    }
+    
+    static func viewPredicate(forUnreadOnly unreadOnly: Bool) -> NSPredicate {
+        
+        if unreadOnly {
+            return NSPredicate(format: "SUBQUERY(\(#keyPath(Item.categoryItems.category)), $x, $x.\(#keyPath(Folder.streamID)) ENDSWITH %@).@count == 0", argumentArray: [readTagSuffix])
+        }
+        else {
+            return NSPredicate(value: true)
+        }
+    }
+    
+}
+
+extension Container {
+    
+    public func bindLoadDate(unreadOnly: Bool, valueHandler: @escaping (Date?) -> Void) -> () -> Void {
+        
+        let containerViewPredicate = Container.viewPredicate(forUnreadOnly: unreadOnly)
+        
+        let binding = observe(\.viewStates, options: [.initial]) { [unowned self] (_, _) in
+            
+            let viewState = self.viewState(forViewPredicate: containerViewPredicate)
+            let loadDate = viewState?.loadDate
+            
+            valueHandler(x$(loadDate))
+        }
+        return { _ = binding }
+    }
+}
+
 ///
 public class ContainerLoadController : NSObject {
 	
 	let session: RSSSession
 	@objc let container: Container
+    var forceReload: Bool
 	let unreadOnly: Bool
 	
 	public var numberOfItemsToLoadLater = 100
@@ -38,13 +78,18 @@ public class ContainerLoadController : NSObject {
 	
 	// MARK: -
 	
+    func updateContainerViewState() {
+        
+        let containerViewState: ContainerViewState? = forceReload ? nil : container.viewState(forViewPredicate: containerViewPredicate)
+        
+        self.containerViewState = x$(containerViewState)
+    }
+    
 	@objc dynamic var containerViewState: ContainerViewState?
 	func bindContainerViewState() -> Handler {
 		let binding = self.observe(\.container.viewStates, options: [.initial]) { [unowned self] (_, _) in
-			let containerViewState = (self.container).viewStates.filter {
-				$0.containerViewPredicate == self.containerViewPredicate
-			}.onlyElement
-			self.containerViewState = x$(containerViewState)
+            
+            self.updateContainerViewState()
 		}
 		return { _ = binding }
 	}
@@ -200,8 +245,24 @@ public class ContainerLoadController : NSObject {
 				/// Bail out if the load is no longer current
 				throw NSError.cancelledError()
 			}
-			
-			let managedObjectContext = streamContentsResult.0
+
+            let managedObjectContext = streamContentsResult.0
+
+            let container = containerObjectID.object(in: managedObjectContext)
+
+            if self.forceReload {
+                
+                self.forceReload = false
+                
+                assert(nil == containerViewStateObjectID)
+                
+                /// Remove old view state on force reload
+                if let oldContainerViewState = container.viewState(forViewPredicate: containerViewPredicate) {
+                    
+                    managedObjectContext.delete(oldContainerViewState)
+                }
+            }
+            
 			let containerViewState = containerViewStateObjectID?.object(in: managedObjectContext) ?? {
 				
 				return ContainerViewState(context: managedObjectContext) … {
@@ -212,6 +273,7 @@ public class ContainerLoadController : NSObject {
 			}()
 			
 			let (existingItems, newItems) = streamContentsResult.1.items
+            _ = x$(newItems.first)
 			let items = existingItems + newItems
 			let lastLoadedItem = items.last
 			let newContinuation = streamContentsResult.1.continuation
@@ -279,10 +341,12 @@ public class ContainerLoadController : NSObject {
 		}
 	}
 	
-	public init(session: RSSSession, container: Container, unreadOnly: Bool = false) {
+    public init(session: RSSSession, container: Container, unreadOnly: Bool = false, forceReload: Bool) {
+        
 		self.session = session
 		self.container = container
 		self.unreadOnly = unreadOnly
+        self.forceReload = forceReload
 		super.init()
 	}
 	deinit {
