@@ -32,6 +32,8 @@ class ItemsViewController : ContainerViewController {
 
 	public var dataSource: ItemTableViewDataSource!
 	
+	var refreshing = false
+	
 	open lazy var canLoadItems = true
 	
 	@objc public dynamic var loadController: ContainerLoadController?
@@ -39,7 +41,7 @@ class ItemsViewController : ContainerViewController {
 		guard let rssSession = rssSession else {
 			return {}
 		}
-		let loadController = ContainerLoadController(session: rssSession, container: self.container, unreadOnly: self.showUnreadOnly) … {
+		let loadController = ContainerLoadController(session: rssSession, container: self.container, unreadOnly: self.showUnreadOnly, forceReload: refreshing) … {
 			$0.numberOfItemsToLoadInitially = defaults.numberOfItemsToLoadInitially
 			$0.numberOfItemsToLoadLater = defaults.numberOfItemsToLoadLater
 		}
@@ -270,17 +272,11 @@ class ItemsViewController : ContainerViewController {
 			_ = binding
 		}
 	}
-	@objc class var keyPathsForValuesAffectingLoadDate: Set<String> {
-		return [#keyPath(loadController.loadDate)]
-	}
-	@objc dynamic var loadDate: Date? {
-		get {
-			return loadController?.loadDate
-		}
-	}
+	var loadDate: Date?
 	func bindLoadDate() -> Handler {
-		let binding = observe(\.loadDate, options: [.initial]) { (_, _) in
+		let binding = container.bindLoadDate(unreadOnly: showUnreadOnly) {
 			•(self.toolbarItems!)
+			self.loadDate = $0
 			if let loadDate = self.loadDate {
 				self.track(.updated(at: loadDate))
 			}
@@ -386,6 +382,7 @@ extension ItemsViewController {
 			loadCancellation()
 		}
 		self.unbind()
+		self.refreshing = true
 		self.bind()
 		assert(nil == loadCancellation)
 		loadCancellation = loadMore {
