@@ -23,6 +23,8 @@
 /* Begin PBXBuildFile section */
 		A103368B1FE469B30096330F /* FolderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A103368A1FE469B30096330F /* FolderTableViewCell.xib */; };
 		A103368D1FE46A070096330F /* SubscriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A103368C1FE46A070096330F /* SubscriptionTableViewCell.xib */; };
+		A103369C1FE606670096330F /* FPSCounter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A103369B1FE605E80096330F /* FPSCounter.framework */; };
+		A103369D1FE606670096330F /* FPSCounter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A103369B1FE605E80096330F /* FPSCounter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A176B2221FD69C1600E945E9 /* GEDebugKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A176B2211FD69C1600E945E9 /* GEDebugKit.framework */; };
 		A176B2231FD69C1600E945E9 /* GEDebugKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A176B2211FD69C1600E945E9 /* GEDebugKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C408F1B11CE7520700DB943F /* FBAllocationTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C408F1B01CE7520700DB943F /* FBAllocationTracker.framework */; };
@@ -161,6 +163,7 @@
 				C48354111FBFC29E00466BD6 /* GoogleToolboxForMac.framework in Embed Frameworks */,
 				C4B0DC251FD241AE005E587C /* JGProgressHUD.framework in Embed Frameworks */,
 				A176B2231FD69C1600E945E9 /* GEDebugKit.framework in Embed Frameworks */,
+				A103369D1FE606670096330F /* FPSCounter.framework in Embed Frameworks */,
 				C4AD5B381D282F1800358DEA /* PromiseKit.framework in Embed Frameworks */,
 				C408F1B21CE7520700DB943F /* FBAllocationTracker.framework in Embed Frameworks */,
 				C4E4D6381E60C9EC007E0E39 /* Rswift.framework in Embed Frameworks */,
@@ -205,6 +208,7 @@
 /* Begin PBXFileReference section */
 		A103368A1FE469B30096330F /* FolderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FolderTableViewCell.xib; path = Resources/FolderTableViewCell.xib; sourceTree = "<group>"; };
 		A103368C1FE46A070096330F /* SubscriptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SubscriptionTableViewCell.xib; path = Resources/SubscriptionTableViewCell.xib; sourceTree = "<group>"; };
+		A103369B1FE605E80096330F /* FPSCounter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FPSCounter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A176B2211FD69C1600E945E9 /* GEDebugKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GEDebugKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C408F1B01CE7520700DB943F /* FBAllocationTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBAllocationTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C408F1B31CE7520700DB943F /* FBMemoryProfiler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBMemoryProfiler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -337,6 +341,7 @@
 				C48354101FBFC29E00466BD6 /* GoogleToolboxForMac.framework in Frameworks */,
 				C4B0DC241FD241AE005E587C /* JGProgressHUD.framework in Frameworks */,
 				A176B2221FD69C1600E945E9 /* GEDebugKit.framework in Frameworks */,
+				A103369C1FE606670096330F /* FPSCounter.framework in Frameworks */,
 				C4AD5B371D282F1800358DEA /* PromiseKit.framework in Frameworks */,
 				C408F1B11CE7520700DB943F /* FBAllocationTracker.framework in Frameworks */,
 				C4E4D6371E60C9EC007E0E39 /* Rswift.framework in Frameworks */,
@@ -370,6 +375,7 @@
 		C424B8F91C6FC5E1008AD647 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A103369B1FE605E80096330F /* FPSCounter.framework */,
 				C4B0DC231FD241AE005E587C /* JGProgressHUD.framework */,
 				C40B8DD41FBE23B50030E9F7 /* Watchdog.framework */,
 				C4E4D6361E60C9EC007E0E39 /* Rswift.framework */,
