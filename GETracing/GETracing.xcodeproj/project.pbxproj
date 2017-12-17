@@ -108,6 +108,7 @@
 				C41818611B6A65B100872EB3 /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		C41818611B6A65B100872EB3 /* Products */ = {
 			isa = PBXGroup;
