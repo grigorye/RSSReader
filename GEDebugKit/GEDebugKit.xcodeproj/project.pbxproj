@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		A10336891FE4545E0096330F /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A10336881FE4545E0096330F /* Colors.xcassets */; };
+		A10336901FE5FD3C0096330F /* FPSCounter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A10336911FE5FD3C0096330F /* FPSCounter.framework */; };
+		A10336921FE5FF720096330F /* FBAllocationTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A10336941FE5FF720096330F /* FBAllocationTracker.framework */; };
+		A10336931FE5FF720096330F /* FBMemoryProfiler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A10336951FE5FF720096330F /* FBMemoryProfiler.framework */; };
+		A10336961FE5FF840096330F /* Loggy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A10336971FE5FF840096330F /* Loggy.framework */; };
 		A176B20E1FD5D95000E945E9 /* GEDebugKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A176B2041FD5D94F00E945E9 /* GEDebugKit.framework */; };
 		A176B2131FD5D95000E945E9 /* GEDebugKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A176B2121FD5D95000E945E9 /* GEDebugKitTests.swift */; };
 		A176B2151FD5D95000E945E9 /* GEDebugKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A176B2071FD5D94F00E945E9 /* GEDebugKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -38,6 +42,10 @@
 
 /* Begin PBXFileReference section */
 		A10336881FE4545E0096330F /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		A10336911FE5FD3C0096330F /* FPSCounter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FPSCounter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A10336941FE5FF720096330F /* FBAllocationTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBAllocationTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A10336951FE5FF720096330F /* FBMemoryProfiler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBMemoryProfiler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A10336971FE5FF840096330F /* Loggy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Loggy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A176B2041FD5D94F00E945E9 /* GEDebugKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GEDebugKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A176B2071FD5D94F00E945E9 /* GEDebugKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GEDebugKit.h; sourceTree = "<group>"; };
 		A176B2081FD5D94F00E945E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -65,6 +73,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A10336961FE5FF840096330F /* Loggy.framework in Frameworks */,
+				A10336921FE5FF720096330F /* FBAllocationTracker.framework in Frameworks */,
+				A10336931FE5FF720096330F /* FBMemoryProfiler.framework in Frameworks */,
+				A10336901FE5FD3C0096330F /* FPSCounter.framework in Frameworks */,
 				A176B2271FD69CAC00E945E9 /* GEUIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -132,6 +144,10 @@
 		A176B2261FD69CAC00E945E9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A10336971FE5FF840096330F /* Loggy.framework */,
+				A10336941FE5FF720096330F /* FBAllocationTracker.framework */,
+				A10336951FE5FF720096330F /* FBMemoryProfiler.framework */,
+				A10336911FE5FD3C0096330F /* FPSCounter.framework */,
 				A1FB04201FDC4F15008D14E4 /* ModuleExports-GETracing.swift */,
 				A1839A1B1FD8866B003313D6 /* ModuleExports-GEFoundation.swift */,
 				A176B2281FD69CAC00E945E9 /* GEUIKit.framework */,
@@ -291,6 +307,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_TESTABILITY = YES;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -305,6 +322,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
