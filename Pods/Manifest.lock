@@ -7,6 +7,7 @@ PODS:
     - FBAllocationTracker (~> 0.1)
     - FBRetainCycleDetector (~> 0.1)
   - FBRetainCycleDetector (0.1.4)
+  - FPSCounter (2.0.0)
   - GoogleToolboxForMac/Core (2.1.3):
     - GoogleToolboxForMac/Defines (= 2.1.3)
   - GoogleToolboxForMac/Defines (2.1.3)
@@ -24,6 +25,7 @@ DEPENDENCIES:
   - Fabric
   - FBAllocationTracker (from `https://github.com/grigorye/FBAllocationTracker.git`)
   - FBMemoryProfiler
+  - FPSCounter (from `https://github.com/grigorye/fps-counter.git`)
   - GoogleToolboxForMac/NSString+HTML
   - JGProgressHUD
   - PromiseKit/CorePromise
@@ -33,11 +35,16 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   FBAllocationTracker:
     :git: https://github.com/grigorye/FBAllocationTracker.git
+  FPSCounter:
+    :git: https://github.com/grigorye/fps-counter.git
 
 CHECKOUT OPTIONS:
   FBAllocationTracker:
     :commit: c77a5f20240b3b890f8ed8cc1fca082c0847f04f
     :git: https://github.com/grigorye/FBAllocationTracker.git
+  FPSCounter:
+    :commit: fcd9481cbe6ca438da47e81cd443e38650c6b36e
+    :git: https://github.com/grigorye/fps-counter.git
 
 SPEC CHECKSUMS:
   Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
@@ -45,6 +52,7 @@ SPEC CHECKSUMS:
   FBAllocationTracker: dfdca3f71aceca6a85e95e3c6ec76a9785eba0f1
   FBMemoryProfiler: 623fc5f8a61f7d02ec75c87e3b97c90f621d8b02
   FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
+  FPSCounter: d4b8588434c18de19ef819c9fc06f80ce0924d94
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   JGProgressHUD: c402c0f41fc291ca7e33bba2f999118d9682dd9c
   PromiseKit: 9c1d9f6d7b65e3951a90bea7f407c56972be5d8e
@@ -52,6 +60,6 @@ SPEC CHECKSUMS:
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
   Watchdog: 141185b6b3a332a9f5721ea42dfa9681cf2d7c6b
 
-PODFILE CHECKSUM: 3c762cf52f1b14f76728d33d34df64a4b708a811
+PODFILE CHECKSUM: d08b2c4c1d77f63200c4cbfeabd3bd65aaec5c3e
 
 COCOAPODS: 1.3.1

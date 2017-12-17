@@ -7,8 +7,6 @@ target "iOS" do
 	pod 'R.swift'
 	pod 'Crashlytics'
 	pod 'Fabric'
-  pod 'FBMemoryProfiler'
-  pod 'FBAllocationTracker', :git => 'https://github.com/grigorye/FBAllocationTracker.git'
 	pod 'Watchdog'
   pod 'GoogleToolboxForMac/NSString+HTML'
   pod 'JGProgressHUD'
@@ -30,6 +28,14 @@ target "macOS" do
 	pod 'Crashlytics'
 	pod 'Fabric'
 	pod 'PromiseKit/CorePromise'
+end
+
+target "GEDebugKit" do
+	platform :ios, '8.0'
+  pod 'FBMemoryProfiler'
+  pod 'FBAllocationTracker', :git => 'https://github.com/grigorye/FBAllocationTracker.git'
+  #pod 'FPSCounter', :path => '../fps-counter'
+  pod 'FPSCounter', :git => 'https://github.com/grigorye/fps-counter.git'
 end
 
 post_install do |installer|
