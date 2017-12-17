@@ -35,7 +35,8 @@ target "GEDebugKit" do
   pod 'FBMemoryProfiler'
   pod 'FBAllocationTracker', :git => 'https://github.com/grigorye/FBAllocationTracker.git'
   #pod 'FPSCounter', :path => '../fps-counter'
-  pod 'FPSCounter', :git => 'https://github.com/grigorye/fps-counter.git'
+  #pod 'FPSCounter', :git => 'https://github.com/grigorye/fps-counter.git'
+  pod 'FPSCounter'
 end
 
 post_install do |installer|
