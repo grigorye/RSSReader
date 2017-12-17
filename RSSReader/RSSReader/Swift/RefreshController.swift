@@ -39,36 +39,35 @@ class RefreshController: NSObject {
 		refreshingSubscriptions = true
 		let rssAccount = self.rssAccount
 		let foldersController = self.foldersController
-		firstly { () -> Promise<Void> in
+		firstly(execute: {
 			guard nil != rssSession else {
 				throw NotLoggedIn()
 			}
 			return Promise(value: ())
-		}.then { (_) -> Promise<Void> in
+		}).then(execute: {
 			return rssAccount.authenticate()
-		}.then { (_) -> Promise<Void> in
+		}).then(execute: {
 			return foldersController.updateFolders()
-		}.always {
+		}).always(execute: {
 			self.refreshingSubscriptions = false
-		}.then {
+		}).then(execute: {
 			complete(nil)
-		}.catch { updateError in
-			switch updateError {
+		}).catch(execute: {
+			switch $0 {
 			case RSSSessionError.authenticationFailed(_):
 				let adjustedError = AuthenticationFailed()
 				self.refreshingSubscriptionsError = adjustedError
 			default:
-				self.refreshingSubscriptionsError = updateError
+				self.refreshingSubscriptionsError = $0
 				#if false
-				let title = NSLocalizedString("Refresh Failed", comment: "Title for alert on failed refresh")
-				self.present(error, customTitle: title)
+					let title = NSLocalizedString("Refresh Failed", comment: "Title for alert on failed refresh")
+					self.present(error, customTitle: title)
 				#endif
 			}
 			complete(self.refreshingSubscriptionsError)
 			return
-		}
+		})
 	}
-	
 }
 
 var refreshController = RefreshController()
