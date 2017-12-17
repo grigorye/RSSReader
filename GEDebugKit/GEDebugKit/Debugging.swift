@@ -8,6 +8,7 @@
 
 import FBAllocationTracker
 import FBMemoryProfiler
+import FPSCounter
 import Loggy
 import Foundation
 
@@ -25,7 +26,8 @@ public func triggerDebugError() {
 
 private var retainedObjects: [AnyObject] = []
 
-public func initializeAllocationTracking() {
+private func initializeAllocationTracking() {
+    
     var scope = Activity("Initializing Allocation Tracking").enter(); defer { scope.leave() }
     guard let allocationTrackerManager = x$(FBAllocationTrackerManager.shared()) else {
         return
@@ -34,7 +36,7 @@ public func initializeAllocationTracking() {
     allocationTrackerManager.enableGenerations()
 }
 
-public func configureDebug() {
+public func configureAllocationTracking() {
     
     if _0 {
         if defaults.memoryProfilerEnabled {
@@ -64,6 +66,27 @@ public func configureDebug() {
             }
         ]
     }
+}
+
+func configureFPSCounter() {
+    
+    retainedObjects += [
+        defaults.observe(\.FPSCounterEnabled, options: .initial) { (_, _) in
+            if defaults.FPSCounterEnabled {
+                FPSCounter.showInStatusBar(UIApplication.shared)
+            }
+            else {
+                FPSCounter.hide()
+            }
+        }
+    ]
+
+}
+
+public func configureDebug() {
+    
+    configureAllocationTracking()
+    configureFPSCounter()
 }
 
 public func initializeDebug() {
