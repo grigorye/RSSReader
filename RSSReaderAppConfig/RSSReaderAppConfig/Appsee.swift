@@ -6,17 +6,13 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
-#if !ANALYTICS_ENABLED || !APPSEE_ENABLED
-
-let appseeInitializer: Void = ()
-
-#else
-
-import Appsee
-import Foundation
+#if ANALYTICS_ENABLED && APPSEE_ENABLED
+	import Appsee
+	import Foundation
+#endif
 
 let appseeInitializer: Void = {
-	Appsee.start(NSBundle.mainBundle().infoDictionary!["appseeAPIKey"] as! String)
+	#if ANALYTICS_ENABLED && APPSEE_ENABLED
+		Appsee.start(NSBundle.mainBundle().infoDictionary!["appseeAPIKey"] as! String)
+	#endif
 }()
-
-#endif

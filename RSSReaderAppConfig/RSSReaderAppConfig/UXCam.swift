@@ -6,17 +6,13 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
-#if !ANALYTICS_ENABLED || !UXCAM_ENABLED
-
-let uxcamInitializer: Void = ()
-
-#else
-
-import UXCam
-import Foundation
+#if ANALYTICS_ENABLED && UXCAM_ENABLED
+	import UXCam
+	import Foundation
+#endif
 
 let uxcamInitializer: Void = {
-	UXCam.startWithKey("0fc8e6e128fa538")
+	#if ANALYTICS_ENABLED && UXCAM_ENABLED
+		UXCam.startWithKey("0fc8e6e128fa538")
+	#endif
 }()
-
-#endif

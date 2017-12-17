@@ -6,16 +6,12 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
-#if !ANALYTICS_ENABLED || !FLURRY_ENABLED
-
-let flurryInitializer: Void = ()
-
-#else
-
-import Foundation
+#if ANALYTICS_ENABLED && FLURRY_ENABLED
+	import Foundation
+#endif
 
 let flurryInitializer: Void = {
-	Flurry.startSession("TSPCHYJBMBGZZFM3SFDZ")
+	#if ANALYTICS_ENABLED && FLURRY_ENABLED
+		Flurry.startSession("TSPCHYJBMBGZZFM3SFDZ")
+	#endif
 }()
-
-#endif

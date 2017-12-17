@@ -6,18 +6,13 @@
 //  Copyright © 2017 Grigory Entin. All rights reserved.
 //
 
-#if !ANALYTICS_ENABLED || !FIREBASE_ENABLED
-	
-	func configureFirebase() {
-	}
-	
-#else
-	
+#if ANALYTICS_ENABLED && FIREBASE_ENABLED
 	import FirebaseCore
 	import Foundation
-	
-	func configureFirebase() {
-		FirebaseApp.configure()
-	}
-	
 #endif
+
+func configureFirebase() {
+	#if ANALYTICS_ENABLED && FIREBASE_ENABLED
+		FirebaseApp.configure()
+	#endif
+}
