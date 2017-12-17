@@ -248,7 +248,7 @@
 			<key>DefaultValue</key>
 			<false/>
 			<key>Key</key>
-			<string>FPSCounterEnabled</string>
+			<string>FPSMonitoringEnabled</string>
 			<key>Title</key>
 			<string>Show Frame Rate</string>
 			<key>Type</key>
