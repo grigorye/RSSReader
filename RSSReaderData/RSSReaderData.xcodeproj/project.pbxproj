@@ -170,6 +170,7 @@
 				C48F799F1C008D0D00CC6F74 /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		C48F799F1C008D0D00CC6F74 /* Products */ = {
 			isa = PBXGroup;
