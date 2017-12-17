@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A10336A11FE69C000096330F /* StatusBarOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10336A01FE69C000096330F /* StatusBarOverlay.swift */; };
+		A10336A31FE6A9DC0096330F /* StatusBarTimeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10336A21FE6A9DC0096330F /* StatusBarTimeLabel.swift */; };
+		A10336A51FE6ADD20096330F /* ViewOfKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10336A41FE6ADD20096330F /* ViewOfKind.swift */; };
 		A1CE708C1FDE77700080D832 /* MonospacedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CE708B1FDE77700080D832 /* MonospacedLabel.swift */; };
 		C4270BFC1DBD4FE900FA3A0A /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BFB1DBD4FE900FA3A0A /* GETracing.framework */; };
 		C4499B951E0637B00033991E /* ViewControllerVisibleStateReasoner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4499B941E0637B00033991E /* ViewControllerVisibleStateReasoner.swift */; };
@@ -41,6 +44,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A10336A01FE69C000096330F /* StatusBarOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarOverlay.swift; sourceTree = "<group>"; };
+		A10336A21FE6A9DC0096330F /* StatusBarTimeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarTimeLabel.swift; sourceTree = "<group>"; };
+		A10336A41FE6ADD20096330F /* ViewOfKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewOfKind.swift; sourceTree = "<group>"; };
 		A1CE708B1FDE77700080D832 /* MonospacedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonospacedLabel.swift; sourceTree = "<group>"; };
 		C4270BFB1DBD4FE900FA3A0A /* GETracing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GETracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4499B941E0637B00033991E /* ViewControllerVisibleStateReasoner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerVisibleStateReasoner.swift; sourceTree = "<group>"; };
@@ -130,6 +136,9 @@
 				C48BF6561FD0D8FB00062EC8 /* AccessibilityAwareStaticTableViewController.swift */,
 				C48BF6581FD0DB5A00062EC8 /* TintedLabel.swift */,
 				A1CE708B1FDE77700080D832 /* MonospacedLabel.swift */,
+				A10336A41FE6ADD20096330F /* ViewOfKind.swift */,
+				A10336A21FE6A9DC0096330F /* StatusBarTimeLabel.swift */,
+				A10336A01FE69C000096330F /* StatusBarOverlay.swift */,
 			);
 			path = GEUIKit;
 			sourceTree = "<group>";
@@ -286,6 +295,7 @@
 			files = (
 				C49FF1401DBB989000A86CC0 /* TypeFilteringActivity.swift in Sources */,
 				C4EB27F61DFA334D00BF0843 /* ModuleExports-GEFoundation.swift in Sources */,
+				A10336A11FE69C000096330F /* StatusBarOverlay.swift in Sources */,
 				C49FF1411DBB989000A86CC0 /* TableViewFetchedResultsControllerDelegate.swift in Sources */,
 				C4EB27F51DFA334D00BF0843 /* ModuleExports-GETracing.swift in Sources */,
 				C49FF1431DBB989000A86CC0 /* TableViewHeightBasedReusedCellGenerator.swift in Sources */,
@@ -299,7 +309,9 @@
 				C48BF6571FD0D8FB00062EC8 /* AccessibilityAwareStaticTableViewController.swift in Sources */,
 				C48BF6591FD0DB5A00062EC8 /* TintedLabel.swift in Sources */,
 				C49FF1461DBB989000A86CC0 /* UIKitUtilities.swift in Sources */,
+				A10336A51FE6ADD20096330F /* ViewOfKind.swift in Sources */,
 				C49FF18F1DBB9C3200A86CC0 /* Globals.swift in Sources */,
+				A10336A31FE6A9DC0096330F /* StatusBarTimeLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
