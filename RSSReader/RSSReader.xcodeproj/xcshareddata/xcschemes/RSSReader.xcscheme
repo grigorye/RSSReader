@@ -103,6 +103,10 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "-FPSCounterEnabled YES"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "-presentMessagesInToolbar NO"
             isEnabled = "YES">
          </CommandLineArgument>
