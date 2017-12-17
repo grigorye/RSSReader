@@ -68,15 +68,17 @@ public func configureAllocationTracking() {
     }
 }
 
-func configureFPSCounter() {
+let fpsMonitor = FPSMonitor()
+
+func configureFPSMonitoring() {
     
     retainedObjects += [
         defaults.observe(\.FPSCounterEnabled, options: .initial) { (_, _) in
+            
             if defaults.FPSCounterEnabled {
-                FPSCounter.showInStatusBar(UIApplication.shared)
-            }
-            else {
-                FPSCounter.hide()
+                fpsMonitor.show()
+            } else {
+                fpsMonitor.hide()
             }
         }
     ]
@@ -86,7 +88,7 @@ func configureFPSCounter() {
 public func configureDebug() {
     
     configureAllocationTracking()
-    configureFPSCounter()
+    configureFPSMonitoring()
 }
 
 public func initializeDebug() {
