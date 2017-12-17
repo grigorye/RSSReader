@@ -106,6 +106,7 @@
 				C49FF1AB1DBBA21400A86CC0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		C49FF11F1DBB985400A86CC0 /* Products */ = {
 			isa = PBXGroup;
