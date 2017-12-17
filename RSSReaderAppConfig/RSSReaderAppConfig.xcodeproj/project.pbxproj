@@ -150,6 +150,7 @@
 				C4BE5AB61DA86D8D00E1734F /* Frameworks */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		C4BE5A7D1DA85DA100E1734F /* Products */ = {
 			isa = PBXGroup;
