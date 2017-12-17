@@ -73,9 +73,9 @@ let fpsMonitor = FPSMonitor()
 func configureFPSMonitoring() {
     
     retainedObjects += [
-        defaults.observe(\.FPSCounterEnabled, options: .initial) { (_, _) in
+        defaults.observe(\.FPSMonitoringEnabled, options: .initial) { (_, _) in
             
-            if defaults.FPSCounterEnabled {
+            if defaults.FPSMonitoringEnabled {
                 fpsMonitor.show()
             } else {
                 fpsMonitor.hide()

@@ -11,5 +11,5 @@ public extension TypedUserDefaults {
     @NSManaged public var memoryProfilerEnabled: Bool
     @NSManaged public var allocationTrackingEnabled: Bool
     
-    @NSManaged public var FPSCounterEnabled: Bool
+    @NSManaged public var FPSMonitoringEnabled: Bool
 }
