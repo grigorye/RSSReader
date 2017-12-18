@@ -63,10 +63,10 @@ private class StatusBarInfoViewController : UIViewController {
     }
 }
 
-extension UIWindow {
+public class StatusBarOverlayWindow : UIWindow {
     
     /// Returns window that is configured for overlaying the status bar with the given view.
-    public convenience init(statusBarOverlay infoView: UIView) {
+    public convenience init(view infoView: UIView) {
         
         self.init()
         
@@ -75,6 +75,11 @@ extension UIWindow {
         backgroundColor = .clear
         rootViewController = StatusBarInfoViewController(infoView: infoView)
     }
+	
+	override public func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+		
+		return false
+	}
 }
 
 public extension UIApplication {
