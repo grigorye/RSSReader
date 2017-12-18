@@ -13,6 +13,7 @@
 		A10336931FE5FF720096330F /* FBMemoryProfiler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A10336951FE5FF720096330F /* FBMemoryProfiler.framework */; };
 		A10336961FE5FF840096330F /* Loggy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A10336971FE5FF840096330F /* Loggy.framework */; };
 		A10336A71FE6C74E0096330F /* FPSMonitoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10336A61FE6C74E0096330F /* FPSMonitoring.swift */; };
+		A151CFE41FE7395E00165639 /* CwlDemangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A151CFE31FE7395E00165639 /* CwlDemangle.swift */; };
 		A176B20E1FD5D95000E945E9 /* GEDebugKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A176B2041FD5D94F00E945E9 /* GEDebugKit.framework */; };
 		A176B2131FD5D95000E945E9 /* GEDebugKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A176B2121FD5D95000E945E9 /* GEDebugKitTests.swift */; };
 		A176B2151FD5D95000E945E9 /* GEDebugKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A176B2071FD5D94F00E945E9 /* GEDebugKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -48,6 +49,7 @@
 		A10336951FE5FF720096330F /* FBMemoryProfiler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBMemoryProfiler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A10336971FE5FF840096330F /* Loggy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Loggy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A10336A61FE6C74E0096330F /* FPSMonitoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPSMonitoring.swift; sourceTree = "<group>"; };
+		A151CFE31FE7395E00165639 /* CwlDemangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CwlDemangle.swift; path = ../GitSubtrees/CwlDemangle/CwlDemangle/CwlDemangle.swift; sourceTree = "<group>"; };
 		A176B2041FD5D94F00E945E9 /* GEDebugKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GEDebugKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A176B2071FD5D94F00E945E9 /* GEDebugKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GEDebugKit.h; sourceTree = "<group>"; };
 		A176B2081FD5D94F00E945E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				A176B2261FD69CAC00E945E9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		A176B2051FD5D94F00E945E9 /* Products */ = {
 			isa = PBXGroup;
@@ -151,6 +154,7 @@
 				A10336941FE5FF720096330F /* FBAllocationTracker.framework */,
 				A10336951FE5FF720096330F /* FBMemoryProfiler.framework */,
 				A10336911FE5FD3C0096330F /* FPSCounter.framework */,
+				A151CFE31FE7395E00165639 /* CwlDemangle.swift */,
 				A1FB04201FDC4F15008D14E4 /* ModuleExports-GETracing.swift */,
 				A1839A1B1FD8866B003313D6 /* ModuleExports-GEFoundation.swift */,
 				A176B2281FD69CAC00E945E9 /* GEUIKit.framework */,
@@ -283,6 +287,7 @@
 				A1FB041F1FDC4E59008D14E4 /* AliveObjects.swift in Sources */,
 				A18DB4351FD8214900254FF8 /* Defaults.swift in Sources */,
 				A1FB04171FDB0569008D14E4 /* GenerationViewController.swift in Sources */,
+				A151CFE41FE7395E00165639 /* CwlDemangle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
