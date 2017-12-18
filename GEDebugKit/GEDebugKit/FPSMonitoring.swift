@@ -6,6 +6,7 @@
 //  Copyright © 2017 Grigory Entin. All rights reserved.
 //
 
+import GEUIKit
 import FPSCounter
 import Foundation
 
@@ -31,7 +32,7 @@ class FPSMonitor: NSObject, FPSCounterDelegate {
         do {
             let application = UIApplication.shared
             
-            let window = UIWindow(statusBarOverlay: label)
+            let window = StatusBarOverlayWindow(view: label)
             let detachHandler = application.makeWindowOverlayStatusBar(window)
             
             scheduledForHide.append(detachHandler)
