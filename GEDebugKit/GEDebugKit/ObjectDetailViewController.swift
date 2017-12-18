@@ -32,7 +32,7 @@ class ObjectDetailViewController : AccessibilityAwareStaticTableViewController {
         let object = data.object
         let pointer = Unmanaged.passUnretained(object).toOpaque()
         addressLabel.text = "\(pointer)"
-        classNameLabel.text = "\(type(of: object))"
+        classNameLabel.text = NSStringFromClass(type(of: object)).symbolDisplayName
     }
     
     override func viewDidLoad() {

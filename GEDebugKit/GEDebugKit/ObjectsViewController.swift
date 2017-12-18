@@ -12,11 +12,11 @@ class ObjectsViewController : UITableViewController {
 
     struct Data {
         
-        let className: String
+        let classDisplayName: String
         let objects: [WeakReference<AnyObject>]
     }
     
-    var data: Data = Data(className: "", objects: [])
+    var data: Data = Data(classDisplayName: "", objects: [])
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -68,7 +68,7 @@ class ObjectsViewController : UITableViewController {
         
         title = String.localizedStringWithFormat(
             NSLocalizedString("%@ (%d objects)", comment: ""),
-            data.className,
+            data.classDisplayName,
             data.objects.count
         )
     }
