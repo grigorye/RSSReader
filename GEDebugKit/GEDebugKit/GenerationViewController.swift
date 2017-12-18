@@ -8,6 +8,13 @@
 
 import UIKit
 
+extension String {
+	
+	var symbolDisplayName: String {
+		return (try? parseMangledSwiftSymbol(self))?.print(using: SymbolPrintOptions.simplified.union([.displayModuleNames])) ?? self
+	}
+}
+
 class GenerationViewController : UITableViewController {
 
 	class Data {
@@ -36,17 +43,18 @@ class GenerationViewController : UITableViewController {
 	}
 	
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+		
         return data.aliveObjects.count
     }
-    
+	
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+		
         let cell = tableView.dequeueReusableCell(withIdentifier: "aliveObject", for: indexPath) … {
-            
+			
             let className = data.aliveObjectsClassNames[indexPath.row]
             let objects = data.aliveObjects[className]!
-            $0.textLabel!.text = "\(className)"
+            let classDisplayName = className.symbolDisplayName
+            $0.textLabel!.text = "\(classDisplayName)"
             $0.detailTextLabel!.text = "\(objects.count)"
         }
         return cell
@@ -58,17 +66,18 @@ class GenerationViewController : UITableViewController {
 		
 		setTitleFromData()
 	}
-    
+	
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "showObjects"?:
             let indexPath = tableView.indexPathForSelectedRow!
-            let className = data.aliveObjectsClassNames[indexPath.row]
-            
+			let className = data.aliveObjectsClassNames[indexPath.row]
+            let classDisplayName = className.symbolDisplayName
+			
             let objects = data.aliveObjects[className]!
-            
+			
             segue.destination as! ObjectsViewController … {
-                $0.data = ObjectsViewController.Data(className: className, objects: objects)
+                $0.data = ObjectsViewController.Data(classDisplayName: classDisplayName, objects: objects)
             }
         default: ()
         }
@@ -83,14 +92,14 @@ class GenerationViewController : UITableViewController {
             data.allocationGeneration.currentSummaryForGenerations.count,
 			data.allocationGeneration.aliveObjectsCount
 		)
-        
+		
         let backTitle = String.localizedStringWithFormat(
             NSLocalizedString("Generation %d", comment: ""),
             generationNumber
         )
 
         navigationItem.backBarButtonItem = UIBarButtonItem(title: backTitle, style: .plain, target: nil, action: nil) … {
-            
+			
             $0.possibleTitles = [
                 String.localizedStringWithFormat(
                     NSLocalizedString("Gen. %d", comment: ""),
