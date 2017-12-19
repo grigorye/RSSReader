@@ -10,6 +10,8 @@ import Foundation
 
 typealias _Self = TypedUserDefaults
 
+// swiftlint:disable identifier_name
+
 private let objectValueIMP: @convention(c) (_Self, Selector) -> AnyObject? = { _self, _cmd in
 	let propertyName = NSStringFromSelector(_cmd)
 	let value = _self.defaults.object(forKey: propertyName) as AnyObject?
@@ -38,22 +40,35 @@ private let longLongValueIMP: @convention(c) (_Self, Selector) -> CLongLong = { 
 	•(propertyName)
 	return CLongLong(value)
 }
+private let floatValueIMP: @convention(c) (_Self, Selector) -> CFloat = { _self, _cmd in
+	let propertyName = NSStringFromSelector(_cmd)
+	let value = _self.defaults.float(forKey: propertyName)
+	•(propertyName)
+	return CFloat(value)
+}
 
 private let setBoolValueIMP: @convention(c) (_Self, Selector, Bool) -> Void = { _self, _cmd, value in
-	let propertyName = NSStringFromSelector(_cmd)
+	let propertyName = _Self.defaultNameForSelector(_cmd)
 	x$(propertyName)
 	_self.suiteDefaults.set(value, forKey: propertyName)
 }
 private let setLongValueIMP: @convention(c) (_Self, Selector, CLong) -> Void = { _self, _cmd, value in
-	let propertyName = NSStringFromSelector(_cmd)
+    let propertyName = _Self.defaultNameForSelector(_cmd)
 	x$(propertyName)
 	_self.suiteDefaults.set(value, forKey: propertyName)
 }
 private let setLongLongValueIMP: @convention(c) (_Self, Selector, CLongLong) -> Void = { _self, _cmd, value in
-	let propertyName = NSStringFromSelector(_cmd)
+    let propertyName = _Self.defaultNameForSelector(_cmd)
 	x$(propertyName)
 	_self.suiteDefaults.set(Int(value), forKey: propertyName)
 }
+private let setFloatValueIMP: @convention(c) (_Self, Selector, CFloat) -> Void = { _self, _cmd, value in
+    let propertyName = _Self.defaultNameForSelector(_cmd)
+	x$(propertyName)
+	_self.suiteDefaults.set(value, forKey: propertyName)
+}
+
+// swiftlint:enable identifier_name
 
 extension TypedUserDefaults {
 	typealias _Self = TypedUserDefaults
@@ -131,6 +146,8 @@ public class TypedUserDefaults : NSObject {
 				return isSetter ? unsafeBitCast(setLongValueIMP, to: IMP.self) : unsafeBitCast(longValueIMP, to: IMP.self)
 			case .LongLong:
 				return isSetter ? unsafeBitCast(setLongLongValueIMP, to: IMP.self) : unsafeBitCast(longLongValueIMP, to: IMP.self)
+			case .Float:
+				return isSetter ? unsafeBitCast(setFloatValueIMP, to: IMP.self) : unsafeBitCast(floatValueIMP, to: IMP.self)
 			case .AnyObject:
 				return isSetter ? unsafeBitCast(setObjectValueIMP, to: IMP.self) : unsafeBitCast(objectValueIMP, to: IMP.self)
 			}
@@ -160,3 +177,5 @@ public class TypedUserDefaults : NSObject {
 		self.init(suiteName: nil)!
 	}
 }
+
+public var defaults = TypedUserDefaults()

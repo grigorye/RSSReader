@@ -7,25 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A16F5C241F48BF7E00639275 /* ObjCPropertyInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16F5C231F48BF7E00639275 /* ObjCPropertyInfoTests.swift */; };
+		A1839A181FD880B7003313D6 /* ErrorTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1839A171FD880B7003313D6 /* ErrorTracking.swift */; };
 		C408C6631DFC9C5C00AAA8FF /* ErrorRecovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C408C6621DFC9C5C00AAA8FF /* ErrorRecovery.swift */; };
 		C4270BF81DBD4FBD00FA3A0A /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BF71DBD4FBD00FA3A0A /* GETracing.framework */; };
 		C445385E1E9AEA11009E68EB /* Flattenable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C445385D1E9AEA10009E68EB /* Flattenable.swift */; };
 		C44538601E9AF095009E68EB /* FlattenableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C445385F1E9AF095009E68EB /* FlattenableTests.swift */; };
-		C48635E41DD6B52600CA359B /* Primitives.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48CAA351DBD492E00D6F40E /* Primitives.swift */; };
-		C48635E51DD6B52600CA359B /* ObjCPropertyInfo.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48CAA251DBD33BE00D6F40E /* ObjCPropertyInfo.swift */; };
-		C48635E61DD6B52600CA359B /* TypedUserDefaults.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48CAA211DBD318700D6F40E /* TypedUserDefaults.swift */; };
-		C48635E71DD6B52600CA359B /* ObjCEncode.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48CAA1B1DBC26F100D6F40E /* ObjCEncode.swift */; };
-		C48635EA1DD6B52600CA359B /* PropertyCaching.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1821DBB99BE00A86CC0 /* PropertyCaching.swift */; };
-		C48635EB1DD6B52600CA359B /* GenericExtensions.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1801DBB999E00A86CC0 /* GenericExtensions.swift */; };
-		C48635EC1DD6B52600CA359B /* AppVersion.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF17E1DBB998500A86CC0 /* AppVersion.swift */; };
-		C48635ED1DD6B52600CA359B /* GenericURLSessionExtensions.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1741DBB996D00A86CC0 /* GenericURLSessionExtensions.swift */; };
-		C48635EE1DD6B52600CA359B /* EncodedUserDefaults.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1751DBB996D00A86CC0 /* EncodedUserDefaults.swift */; };
-		C48635EF1DD6B52600CA359B /* ProgressEnabledURLSessionTaskGenerator.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1761DBB996D00A86CC0 /* ProgressEnabledURLSessionTaskGenerator.swift */; };
-		C48635F01DD6B52600CA359B /* URLSessionTaskGeneratorErrorObjCBridging.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1771DBB996D00A86CC0 /* URLSessionTaskGeneratorErrorObjCBridging.swift */; };
-		C48635F11DD6B52600CA359B /* DefaultsInSettingsPlist.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1781DBB996D00A86CC0 /* DefaultsInSettingsPlist.swift */; };
-		C48635F21DD6B52600CA359B /* AssociatedObjects.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48CAA291DBD399100D6F40E /* AssociatedObjects.swift */; };
-		C48635F41DD6B52600CA359B /* DefaultLogger.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48CAA271DBD397100D6F40E /* DefaultLogger.swift */; };
-		C48635F51DD6B52600CA359B /* Sugar.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48CAA311DBD3ABA00D6F40E /* Sugar.swift */; };
 		C48CAA1C1DBC26F100D6F40E /* ObjCEncode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA1B1DBC26F100D6F40E /* ObjCEncode.swift */; };
 		C48CAA221DBD318700D6F40E /* TypedUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA211DBD318700D6F40E /* TypedUserDefaults.swift */; };
 		C48CAA241DBD319300D6F40E /* TypedUserDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA231DBD319300D6F40E /* TypedUserDefaultsTests.swift */; };
@@ -47,7 +34,6 @@
 		C49FF1811DBB999E00A86CC0 /* GenericExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF1801DBB999E00A86CC0 /* GenericExtensions.swift */; };
 		C49FF1831DBB99BE00A86CC0 /* PropertyCaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF1821DBB99BE00A86CC0 /* PropertyCaching.swift */; };
 		C49FF18B1DBB9B0900A86CC0 /* URLSessionTaskGeneratorErrorObjCBridgingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF18A1DBB9B0900A86CC0 /* URLSessionTaskGeneratorErrorObjCBridgingTests.swift */; };
-		C49FF1931DBB9D4000A86CC0 /* GEShared.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C49FF1921DBB9D4000A86CC0 /* GEShared.xcconfig */; };
 		C4CB4BA51E2A560000C601BF /* NSLogRedirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CB4BA41E2A560000C601BF /* NSLogRedirector.swift */; };
 		C4EB27F11DFA32D900BF0843 /* ModuleExports-GETracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27F01DFA32D900BF0843 /* ModuleExports-GETracing.swift */; };
 		C4EB27F21DFA32F300BF0843 /* ModuleExports-GEFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27EF1DFA32C900BF0843 /* ModuleExports-GEFoundation.swift */; };
@@ -63,35 +49,9 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		C48635E31DD6B4DF00CA359B /* Embed Sources */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = Sources;
-			dstSubfolderSpec = 7;
-			files = (
-				C48635E41DD6B52600CA359B /* Primitives.swift in Embed Sources */,
-				C48635E51DD6B52600CA359B /* ObjCPropertyInfo.swift in Embed Sources */,
-				C48635E61DD6B52600CA359B /* TypedUserDefaults.swift in Embed Sources */,
-				C48635E71DD6B52600CA359B /* ObjCEncode.swift in Embed Sources */,
-				C48635EA1DD6B52600CA359B /* PropertyCaching.swift in Embed Sources */,
-				C48635EB1DD6B52600CA359B /* GenericExtensions.swift in Embed Sources */,
-				C48635EC1DD6B52600CA359B /* AppVersion.swift in Embed Sources */,
-				C48635ED1DD6B52600CA359B /* GenericURLSessionExtensions.swift in Embed Sources */,
-				C48635EE1DD6B52600CA359B /* EncodedUserDefaults.swift in Embed Sources */,
-				C48635EF1DD6B52600CA359B /* ProgressEnabledURLSessionTaskGenerator.swift in Embed Sources */,
-				C48635F01DD6B52600CA359B /* URLSessionTaskGeneratorErrorObjCBridging.swift in Embed Sources */,
-				C48635F11DD6B52600CA359B /* DefaultsInSettingsPlist.swift in Embed Sources */,
-				C48635F21DD6B52600CA359B /* AssociatedObjects.swift in Embed Sources */,
-				C48635F41DD6B52600CA359B /* DefaultLogger.swift in Embed Sources */,
-				C48635F51DD6B52600CA359B /* Sugar.swift in Embed Sources */,
-			);
-			name = "Embed Sources";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
+		A16F5C231F48BF7E00639275 /* ObjCPropertyInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjCPropertyInfoTests.swift; sourceTree = "<group>"; };
+		A1839A171FD880B7003313D6 /* ErrorTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTracking.swift; sourceTree = "<group>"; };
 		C408C6621DFC9C5C00AAA8FF /* ErrorRecovery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorRecovery.swift; sourceTree = "<group>"; };
 		C4270BF71DBD4FBD00FA3A0A /* GETracing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GETracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C445385D1E9AEA10009E68EB /* Flattenable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flattenable.swift; sourceTree = "<group>"; };
@@ -156,6 +116,7 @@
 				C49FF1951DBB9E6E00A86CC0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		C49FF0FB1DBB981300A86CC0 /* Products */ = {
 			isa = PBXGroup;
@@ -188,6 +149,7 @@
 				C48CAA2C1DBD3A5000D6F40E /* OSLogRDAR28599032.m */,
 				C4CB4BA41E2A560000C601BF /* NSLogRedirector.swift */,
 				C48CAA271DBD397100D6F40E /* DefaultLogger.swift */,
+				A1839A171FD880B7003313D6 /* ErrorTracking.swift */,
 				C48CAA311DBD3ABA00D6F40E /* Sugar.swift */,
 				C49FF0FE1DBB981300A86CC0 /* Info.plist */,
 				C4EB27EF1DFA32C900BF0843 /* ModuleExports-GEFoundation.swift */,
@@ -204,6 +166,7 @@
 				C49FF18A1DBB9B0900A86CC0 /* URLSessionTaskGeneratorErrorObjCBridgingTests.swift */,
 				C49FF10A1DBB981300A86CC0 /* Info.plist */,
 				C445385F1E9AF095009E68EB /* FlattenableTests.swift */,
+				A16F5C231F48BF7E00639275 /* ObjCPropertyInfoTests.swift */,
 			);
 			path = GEFoundationTests;
 			sourceTree = "<group>";
@@ -238,7 +201,7 @@
 				C49FF0F61DBB981300A86CC0 /* Frameworks */,
 				C49FF0F71DBB981300A86CC0 /* Headers */,
 				C49FF0F81DBB981300A86CC0 /* Resources */,
-				C48635E31DD6B4DF00CA359B /* Embed Sources */,
+				C4EDE1F81FBC25B500BB7F55 /* Embed Sources */,
 			);
 			buildRules = (
 			);
@@ -274,7 +237,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Grigory Entin";
 				TargetAttributes = {
 					C49FF0F91DBB981300A86CC0 = {
@@ -320,11 +283,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C49FF1931DBB9D4000A86CC0 /* GEShared.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C4EDE1F81FBC25B500BB7F55 /* Embed Sources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Sources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/bin/sh -e";
+			shellScript = "\"${GE_XCODE_BUILD_PHASES:?}\"/EmbedSourcesIntoBundle\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C49FF0F51DBB981300A86CC0 /* Sources */ = {
@@ -342,6 +322,7 @@
 				C49FF17C1DBB996D00A86CC0 /* URLSessionTaskGeneratorErrorObjCBridging.swift in Sources */,
 				C49FF1791DBB996D00A86CC0 /* GenericURLSessionExtensions.swift in Sources */,
 				C48CAA221DBD318700D6F40E /* TypedUserDefaults.swift in Sources */,
+				A1839A181FD880B7003313D6 /* ErrorTracking.swift in Sources */,
 				C4EB27F11DFA32D900BF0843 /* ModuleExports-GETracing.swift in Sources */,
 				C48CAA1C1DBC26F100D6F40E /* ObjCEncode.swift in Sources */,
 				C445385E1E9AEA11009E68EB /* Flattenable.swift in Sources */,
@@ -362,6 +343,7 @@
 				C44538601E9AF095009E68EB /* FlattenableTests.swift in Sources */,
 				C48CAA241DBD319300D6F40E /* TypedUserDefaultsTests.swift in Sources */,
 				C49FF18B1DBB9B0900A86CC0 /* URLSessionTaskGeneratorErrorObjCBridgingTests.swift in Sources */,
+				A16F5C241F48BF7E00639275 /* ObjCPropertyInfoTests.swift in Sources */,
 				C49FF1091DBB981300A86CC0 /* GEFoundationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -382,6 +364,7 @@
 			baseConfigurationReference = C49FF1921DBB9D4000A86CC0 /* GEShared.xcconfig */;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_TESTABILITY = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -393,6 +376,7 @@
 			baseConfigurationReference = C49FF1921DBB9D4000A86CC0 /* GEShared.xcconfig */;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 1;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -402,6 +386,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 465NA5BW7E;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -418,6 +403,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 465NA5BW7E;
 				DYLIB_COMPATIBILITY_VERSION = 1;

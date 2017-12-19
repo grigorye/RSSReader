@@ -9,13 +9,17 @@
 import GEFoundation
 import Foundation.NSObject
 
-infix operator …
+// swiftlint:disable identifier_name
+
+infix operator ≈
 
 #if true
-internal func …<T>(value: T, initialize: (inout T) throws -> Void) rethrows -> T {
+internal func ≈<T>(value: T, initialize: (inout T) throws -> Void) rethrows -> T {
 	return try with(value, initialize)
 }
 #endif
+
+infix operator …
 
 @discardableResult
 internal func …<T: AnyObject>(obj: T, initialize: (T) throws -> Void) rethrows -> T {
@@ -50,7 +54,7 @@ extension ScheduledHandlers {
 // MARK: -
 
 typealias TypedUserDefaults = GEFoundation.TypedUserDefaults
-typealias ProgressEnabledURLSessionTaskGenerator = GEFoundation.ProgressEnabledURLSessionTaskGenerator
+public typealias ProgressEnabledURLSessionTaskGenerator = GEFoundation.ProgressEnabledURLSessionTaskGenerator
 typealias URLSessionTaskGeneratorError = GEFoundation.URLSessionTaskGeneratorError
 
 typealias Ignored = GEFoundation.Ignored
@@ -61,7 +65,12 @@ typealias Json = GEFoundation.Json
 var _1: Bool { return GEFoundation._1 }
 var _0: Bool { return GEFoundation._0 }
 
-var progressEnabledURLSessionTaskGenerator: ProgressEnabledURLSessionTaskGenerator {
+var defaults: TypedUserDefaults {
+    get { return GEFoundation.defaults }
+    set { GEFoundation.defaults = newValue }
+}
+
+public var progressEnabledURLSessionTaskGenerator: ProgressEnabledURLSessionTaskGenerator {
 	return GEFoundation.progressEnabledURLSessionTaskGenerator
 }
 
@@ -79,4 +88,8 @@ internal func invoke(handler: Handler) {
 
 internal func += (handlers: inout ScheduledHandlers, _ extraHandlers: [Handler]) {
 	handlers.append(contentsOf: extraHandlers)
+}
+
+internal func trackError(_ error: Error) {
+    GEFoundation.trackError(error)
 }

@@ -6,7 +6,10 @@
 //  Copyright © 2015 Grigory Entin. All rights reserved.
 //
 
+// swiftlint:disable:next identifier_name
 public var _1 = true
+
+// swiftlint:disable:next identifier_name
 public var _0 = false
 
 public typealias Handler = () -> Void
@@ -39,6 +42,7 @@ public struct ScheduledHandlers {
 		handlers.append(contentsOf: extraHandlers)
 	}
 	
+	// swiftlint:disable:next operator_whitespace
 	public static func +=(_ handlers: inout ScheduledHandlers, extraHandlers: [Handler]) {
 		handlers.append(contentsOf: extraHandlers)
 	}
