@@ -27,15 +27,18 @@ extension Collection {
 	}
 }
 
-extension Collection where Index == Int {
+extension Collection {
 	/// Constrains the range to the indices of self and returns a SubSequence.
-	public func at(_ range: Range<Int>) -> SubSequence {
+	public func at(_ range: Range<Index>) -> SubSequence {
 		let start = (range.lowerBound >= startIndex) ? (range.lowerBound < endIndex ? range.lowerBound : endIndex) : startIndex
 		let end = (range.upperBound < endIndex) ? (range.upperBound > startIndex ? range.upperBound : startIndex) : endIndex
 		return self[start..<end]
 	}
+}
+
+extension Collection where Index: Strideable, Index.Stride: SignedInteger {
 	/// Constrains the range to the indices of self and returns a SubSequence.
-	public func at(_ range: CountableRange<Int>) -> SubSequence {
+	public func at(_ range: CountableRange<Index>) -> SubSequence {
 		let start = (range.lowerBound >= startIndex) ? (range.lowerBound < endIndex ? range.lowerBound : endIndex) : startIndex
 		let end = (range.upperBound < endIndex) ? (range.upperBound > startIndex ? range.upperBound : startIndex) : endIndex
 		return self[start..<end]
