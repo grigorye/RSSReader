@@ -30,4 +30,23 @@ class CollectionTests: XCTestCase {
 		let at_1 = a.at(-1)
 		XCTAssert(at_0! == 7 && at_1 == nil && at_2 == nil)
 	}
+	func testRangeAtCollection() {
+		let a = 7..<29
+		let at_1 = a.at(5..<6)
+		let at_2 = a.at(5..<7)
+		let at_3 = a.at(5..<8)
+		let at_4 = a.at(12..<15)
+		let at_5 = a.at(5..<30)
+		let at_6 = a.at(28..<30)
+		let at_7 = a.at(29..<30)
+		let at_8 = a.at(30..<30)
+		XCTAssert(at_1 == 7..<7)
+		XCTAssert(at_2 == 7..<7)
+		XCTAssert(at_3 == 7..<8)
+		XCTAssert(at_4 == 12..<15)
+		XCTAssert(at_5 == 7..<29)
+		XCTAssert(at_6 == 28..<29)
+		XCTAssert(at_7 == 29..<29)
+		XCTAssert(at_8 == 29..<29)
+	}
 }

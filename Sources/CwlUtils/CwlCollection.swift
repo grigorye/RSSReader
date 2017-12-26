@@ -27,6 +27,15 @@ extension Collection {
 	}
 }
 
+extension Collection where Index == Int {
+	/// Constrains the range to the indices of self and returns a SubSequence.
+	public func at(_ range: Range<Int>) -> SubSequence {
+		let start = (range.lowerBound >= startIndex) ? (range.lowerBound < endIndex ? range.lowerBound : endIndex) : startIndex
+		let end = (range.upperBound < endIndex) ? (range.upperBound > startIndex ? range.upperBound : startIndex) : endIndex
+		return self[start..<end]
+	}
+}
+
 extension RangeReplaceableCollection {
 	// In Swift 4, this can be replaced by `s += CollectionOfOne(e)`
 	public static func +=(s: inout Self, e: Iterator.Element) {
