@@ -34,6 +34,12 @@ extension Collection where Index == Int {
 		let end = (range.upperBound < endIndex) ? (range.upperBound > startIndex ? range.upperBound : startIndex) : endIndex
 		return self[start..<end]
 	}
+	/// Constrains the range to the indices of self and returns a SubSequence.
+	public func at(_ range: CountableRange<Int>) -> SubSequence {
+		let start = (range.lowerBound >= startIndex) ? (range.lowerBound < endIndex ? range.lowerBound : endIndex) : startIndex
+		let end = (range.upperBound < endIndex) ? (range.upperBound > startIndex ? range.upperBound : startIndex) : endIndex
+		return self[start..<end]
+	}
 }
 
 extension RangeReplaceableCollection {
