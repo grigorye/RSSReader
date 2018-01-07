@@ -25,7 +25,6 @@ public protocol FoldersController : class {
 	var foldersLastUpdateDate: Date? { get set }
 	var foldersLastUpdateError: Error? { get set }
 	var foldersUpdateState: FoldersUpdateState { get set }
-	var rssSession: RSSSession { get }
 }
 
 extension TypedUserDefaults {
@@ -34,8 +33,7 @@ extension TypedUserDefaults {
 
 public extension FoldersController {
 	// swiftlint:disable:next function_body_length
-	public func updateFolders() -> Promise<Void> {
-		let rssSession = self.rssSession
+	public func updateFolders(via rssSession: RSSSession) -> Promise<Void> {
 		precondition(rssSession.authenticated)
 		return firstly { () -> Promise<Void> in
 			self.foldersLastUpdateError = nil
