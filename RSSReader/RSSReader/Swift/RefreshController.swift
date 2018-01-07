@@ -35,36 +35,43 @@ class RefreshController: NSObject {
 	var refreshingSubscriptionsError: Error?
 	
 	func refreshSubscriptions(complete: @escaping (Error?) -> ()) {
+		
 		assert(!refreshingSubscriptions)
-		refreshingSubscriptions = true
-		let rssAccount = self.rssAccount
-		let foldersController = self.foldersController
-		firstly(execute: {
-			guard nil != rssSession else {
-				throw NotLoggedIn()
-			}
-			return Promise(value: ())
-		}).then(execute: {
-			return rssAccount.authenticate()
-		}).then(execute: {
-			return foldersController.updateFolders()
-		}).always(execute: {
-			self.refreshingSubscriptions = false
-		}).then(execute: {
-			complete(nil)
-		}).catch(execute: {
-			switch $0 {
+		
+		func completeWithError(_ error: Error) {
+			switch error {
 			case RSSSessionError.authenticationFailed(_):
 				let adjustedError = AuthenticationFailed()
 				self.refreshingSubscriptionsError = adjustedError
 			default:
-				self.refreshingSubscriptionsError = $0
+				self.refreshingSubscriptionsError = error
 				#if false
 					let title = NSLocalizedString("Refresh Failed", comment: "Title for alert on failed refresh")
 					self.present(error, customTitle: title)
 				#endif
 			}
 			complete(self.refreshingSubscriptionsError)
+		}
+		
+		guard let rssSession = rssSession else {
+			completeWithError(NotLoggedIn())
+			return
+		}
+		
+		let rssSessionAuthenticator = self.rssSessionAuthenticator
+		let foldersController = self.foldersController
+
+		refreshingSubscriptions = true
+		firstly(execute: {
+			return rssSessionAuthenticator.authenticate()
+		}).then(execute: {
+			return foldersController.updateFolders(via: rssSession)
+		}).always(execute: {
+			self.refreshingSubscriptions = false
+		}).then(execute: {
+			complete(nil)
+		}).catch(execute: {
+			completeWithError($0)
 			return
 		})
 	}
