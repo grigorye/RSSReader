@@ -16,6 +16,8 @@ class ItemCellReadMarkLabel: UILabel {}
 class ItemCellReadMarkBar: UIView {}
 class ItemCellTitleLabel: UILabel {}
 
+/// - Tag: Appearance-Configuration
+
 func configureAppearance() {
 	do {
 		let label = ItemCellSmallCapsLabel.appearance()
