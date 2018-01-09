@@ -46,3 +46,5 @@ public func …<T: AnyObject>(obj: T, initialize: (T) throws -> Void) rethrows -
 		error: errored out in DoExecute, couldn't PrepareToExecuteJITExpression
 */
 public typealias Ignored = Int
+
+public typealias UnusedKVOValue = AnyObject?

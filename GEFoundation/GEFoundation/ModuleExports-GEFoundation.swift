@@ -58,6 +58,7 @@ public typealias ProgressEnabledURLSessionTaskGenerator = GEFoundation.ProgressE
 typealias URLSessionTaskGeneratorError = GEFoundation.URLSessionTaskGeneratorError
 
 typealias Ignored = GEFoundation.Ignored
+public typealias UnusedKVOValue = GEFoundation.UnusedKVOValue
 typealias Handler = GEFoundation.Handler
 typealias ScheduledHandlers = GEFoundation.ScheduledHandlers
 typealias Json = GEFoundation.Json
