@@ -13,15 +13,14 @@ class RefreshingStateTracker: NSObject {
 	
 	internal var presentInfoMessage: (String) -> ()
 	
-	@objc class var keyPathsForValuesAffectingRefreshStateD: Set<String> {
+	@objc class var keyPathsForValuesAffectingRefreshState$: Set<String> {
 		return [
-			#keyPath(rssAccount.authenticationStateRawValue),
+			#keyPath(rssSession.authenticationState$),
 			#keyPath(foldersController.foldersUpdateState)
 		]
 	}
 	
-	@objc dynamic var refreshStateD: NSObject? {
-		assert(false)
+	@objc dynamic var refreshState$ : UnusedKVOValue {
 		return nil
 	}
 	
@@ -35,15 +34,15 @@ class RefreshingStateTracker: NSObject {
 	}
 	
 	var refreshState: RefreshState {
-		switch rssAccount.authenticationStateRawValue {
-		case .unknown:
+		guard let rssSession = rssSession else {
+			return .unknown
+		}
+		switch rssSession.authenticationState {
+		case .nonStarted:
 			return .unknown
 		case .inProgress:
 			return .authenticating
-		case .failed:
-			guard case .failed(let error) = rssAccount.authenticationState else {
-				fatalError()
-			}
+		case .failed(let error):
 			return .failedToAuthenticate(due: error)
 		case .succeeded:
 			let foldersUpdateState = foldersController.foldersUpdateState
@@ -62,7 +61,7 @@ class RefreshingStateTracker: NSObject {
 	}
 	
 	public func bind() -> Handler {
-		let binding = self.observe(\.refreshStateD, options: .initial) { [unowned self] (_, change) in
+		let binding = self.observe(\.refreshState$, options: .initial) { [unowned self] (_, change) in
 			assert(Thread.isMainThread)
 			•(change)
 			self.track(.refreshing(self.refreshState))
