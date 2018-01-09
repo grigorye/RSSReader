@@ -48,12 +48,14 @@
 		C43657591F05D0DD00B904A2 /* UserVisibleErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43657581F05D0DD00B904A2 /* UserVisibleErrors.swift */; };
 		C436575D1F07597600B904A2 /* RefreshController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C436575C1F07597600B904A2 /* RefreshController.swift */; };
 		C436575F1F08987300B904A2 /* RefreshingStateTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C436575E1F08987300B904A2 /* RefreshingStateTracker.swift */; };
+		C4366F401FFF9F2D00B82613 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4366F3F1FFF9F2D00B82613 /* Formatters.swift */; };
+		C4366F421FFF9F6700B82613 /* GlobalRSSObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4366F411FFF9F6700B82613 /* GlobalRSSObjects.swift */; };
 		C43CD1CB1DEE70D200189379 /* ItemTableViewCell-4.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43CD1C81DEE70D200189379 /* ItemTableViewCell-4.xib */; };
 		C43CD1CC1DEE70D200189379 /* ItemTableViewCell-5.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43CD1C91DEE70D200189379 /* ItemTableViewCell-5.xib */; };
 		C43CD1CD1DEE70D200189379 /* ItemTableViewCell-6.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43CD1CA1DEE70D200189379 /* ItemTableViewCell-6.xib */; };
 		C441F1791DB24A1D0060E692 /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F1781DB24A1D0060E692 /* MainScene.swift */; };
 		C441F17B1DB254260060E692 /* GlobalFoldersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F17A1DB254260060E692 /* GlobalFoldersController.swift */; };
-		C441F17F1DB258550060E692 /* SharedRSSAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F17E1DB258550060E692 /* SharedRSSAccount.swift */; };
+		C441F17F1DB258550060E692 /* DefaultRSSSessionBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F17E1DB258550060E692 /* DefaultRSSSessionBinding.swift */; };
 		C441F1871DB25D090060E692 /* GlobalStateRestoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F1861DB25D090060E692 /* GlobalStateRestoration.swift */; };
 		C444F53F1B2E53F200A6E378 /* RSSReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C444F53E1B2E53F200A6E378 /* RSSReaderUITests.swift */; };
 		C44B2F011AC0C881006A67F1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44B2F001AC0C881006A67F1 /* HomeViewController.swift */; };
@@ -229,12 +231,15 @@
 		C43657581F05D0DD00B904A2 /* UserVisibleErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserVisibleErrors.swift; path = Swift/UserVisibleErrors.swift; sourceTree = "<group>"; };
 		C436575C1F07597600B904A2 /* RefreshController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RefreshController.swift; path = Swift/RefreshController.swift; sourceTree = "<group>"; };
 		C436575E1F08987300B904A2 /* RefreshingStateTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RefreshingStateTracker.swift; path = Swift/RefreshingStateTracker.swift; sourceTree = "<group>"; };
+		C4366F3E1FFF133400B82613 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		C4366F3F1FFF9F2D00B82613 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Formatters.swift; path = Swift/Formatters.swift; sourceTree = "<group>"; };
+		C4366F411FFF9F6700B82613 /* GlobalRSSObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GlobalRSSObjects.swift; path = Swift/GlobalRSSObjects.swift; sourceTree = "<group>"; };
 		C43CD1C81DEE70D200189379 /* ItemTableViewCell-4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemTableViewCell-4.xib"; sourceTree = "<group>"; };
 		C43CD1C91DEE70D200189379 /* ItemTableViewCell-5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemTableViewCell-5.xib"; sourceTree = "<group>"; };
 		C43CD1CA1DEE70D200189379 /* ItemTableViewCell-6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemTableViewCell-6.xib"; sourceTree = "<group>"; };
 		C441F1781DB24A1D0060E692 /* MainScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainScene.swift; path = Swift/MainScene.swift; sourceTree = "<group>"; };
 		C441F17A1DB254260060E692 /* GlobalFoldersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GlobalFoldersController.swift; path = Swift/GlobalFoldersController.swift; sourceTree = "<group>"; };
-		C441F17E1DB258550060E692 /* SharedRSSAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SharedRSSAccount.swift; path = Swift/SharedRSSAccount.swift; sourceTree = "<group>"; };
+		C441F17E1DB258550060E692 /* DefaultRSSSessionBinding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DefaultRSSSessionBinding.swift; path = Swift/DefaultRSSSessionBinding.swift; sourceTree = "<group>"; };
 		C441F1861DB25D090060E692 /* GlobalStateRestoration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GlobalStateRestoration.swift; path = Swift/GlobalStateRestoration.swift; sourceTree = "<group>"; };
 		C444F53C1B2E53F200A6E378 /* RSSReaderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RSSReaderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C444F53E1B2E53F200A6E378 /* RSSReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSReaderUITests.swift; sourceTree = "<group>"; };
@@ -499,9 +504,11 @@
 				C495409A1A575C1900F56168 /* LoginAndPasswordDefaults.swift */,
 				C441F1861DB25D090060E692 /* GlobalStateRestoration.swift */,
 				C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */,
-				C441F17E1DB258550060E692 /* SharedRSSAccount.swift */,
+				C441F17E1DB258550060E692 /* DefaultRSSSessionBinding.swift */,
 				C436575C1F07597600B904A2 /* RefreshController.swift */,
 				C441F1781DB24A1D0060E692 /* MainScene.swift */,
+				C4366F3F1FFF9F2D00B82613 /* Formatters.swift */,
+				C4366F411FFF9F6700B82613 /* GlobalRSSObjects.swift */,
 			);
 			name = Globals;
 			sourceTree = "<group>";
@@ -584,6 +591,7 @@
 		C4CDD3941A5350B40087DD05 = {
 			isa = PBXGroup;
 			children = (
+				C4366F3E1FFF133400B82613 /* README.md */,
 				C4CDD39F1A5350B40087DD05 /* RSSReader */,
 				C4CDD3B71A5350B50087DD05 /* RSSReaderTests */,
 				C4B0DC2B1FD250B0005E587C /* Derived Sources */,
@@ -932,6 +940,7 @@
 				C436575D1F07597600B904A2 /* RefreshController.swift in Sources */,
 				C43657571F05CDEF00B904A2 /* UserEvents.swift in Sources */,
 				C4C780161A7DF1EC009CB5FC /* ApplicationActivities.swift in Sources */,
+				C4366F401FFF9F2D00B82613 /* Formatters.swift in Sources */,
 				C49540A51A57906600F56168 /* ItemSummaryWebViewController.swift in Sources */,
 				C441F1871DB25D090060E692 /* GlobalStateRestoration.swift in Sources */,
 				C474F0A81D80E65F00CABEB9 /* LogViewController.swift in Sources */,
@@ -940,6 +949,7 @@
 				C4AD2ADB1A5DED8700B39AC9 /* ItemPageViewControllerDelegate.swift in Sources */,
 				C4676E091A6A4D1F00AE8BC2 /* ItemTableViewCell.swift in Sources */,
 				C474F1CD1DB0657800F0E152 /* main.swift in Sources */,
+				C4366F421FFF9F6700B82613 /* GlobalRSSObjects.swift in Sources */,
 				C4F7DC3F1D97EBEF00275E4F /* ItemListViewLoading.swift in Sources */,
 				C40A24FF1A672B2100B5D959 /* TableViewContainerCell.swift in Sources */,
 				C41707CB1A56076A00AED81C /* Globals.swift in Sources */,
@@ -959,7 +969,7 @@
 				C4F575D01A797C7B00F12F20 /* AddToFavoritesActivity.swift in Sources */,
 				C4EB27EE1DFA328900BF0843 /* ModuleExports-GEFoundation.swift in Sources */,
 				C4C0941B1D99ED4A00D27162 /* ItemInListView.swift in Sources */,
-				C441F17F1DB258550060E692 /* SharedRSSAccount.swift in Sources */,
+				C441F17F1DB258550060E692 /* DefaultRSSSessionBinding.swift in Sources */,
 				C4667F0D1CC80A050039C480 /* Appearance.swift in Sources */,
 				C4F575D61A7988DB00F12F20 /* OpenWebPageActivity.swift in Sources */,
 				C4B0DC291FD2506C005E587C /* R.generated.swift in Sources */,
