@@ -36,22 +36,19 @@ public class RSSSession: NSObject {
 	let loginAndPassword: LoginAndPassword
 	
 	let dataTaskGenerator: RSSSessionDataTaskGenerator
-	
-	public init(loginAndPassword: LoginAndPassword, dataTaskGenerator: RSSSessionDataTaskGenerator = progressEnabledURLSessionTaskGenerator) {
-		_ = RSSSession.initializeOnce
-		precondition(loginAndPassword.isValid())
-		self.dataTaskGenerator = dataTaskGenerator
-		self.loginAndPassword = loginAndPassword
-		super.init()
+
+	public var authenticationState: AuthenticationState = .nonStarted {
+		willSet {
+			willChangeValue(for: \.authenticationState$)
+		}
+		didSet {
+			didChangeValue(for: \.authenticationState$)
+		}
+	}
+	@objc public var authenticationState$: UnusedKVOValue {
+		return nil
 	}
 	
-}
-
-extension TypedUserDefaults {
-	@NSManaged var authToken: String?
-}
-
-public extension RSSSession {
 	var authToken: String! {
 		get {
 			return defaults.authToken
@@ -60,10 +57,26 @@ public extension RSSSession {
 			defaults.authToken = newValue
 		}
 	}
+
+	public init(loginAndPassword: LoginAndPassword, dataTaskGenerator: RSSSessionDataTaskGenerator = progressEnabledURLSessionTaskGenerator) {
+		_ = RSSSession.initializeOnce
+		precondition(loginAndPassword.isValid())
+		self.dataTaskGenerator = dataTaskGenerator
+		self.loginAndPassword = loginAndPassword
+		super.init()
+	}
+}
+
+extension TypedUserDefaults {
+	@NSManaged var authToken: String?
+}
+
+public extension RSSSession {
+	
 	var authenticated: Bool {
 		return nil != authToken
 	}
-
+	
 	static func setErrorUserInfoValueProvider() {
 		let errorDomain = (RSSSessionError.unused as NSError).domain
 		NSError.setUserInfoValueProvider(forDomain: x$(errorDomain)) { error, key in
@@ -139,15 +152,7 @@ extension RSSSession {
 			}
 		}
 	}
-	// MARK: -
-	public func authenticate() -> Promise<Void> {
-		return self.promise(for: Authenticate(loginAndPassword: x$(loginAndPassword))).then { authToken in
-			self.authToken = authToken
-		}
-	}
-	func reauthenticate() -> Promise<Void> {
-		return authenticate()
-	}
+	
 	/// MARK: -
 	public func updateUserInfo() -> Promise<Void> {
 		return self.promise(for: UpdateUserInfo())
@@ -214,5 +219,45 @@ extension RSSSession {
 				}
 			}
 		}
+	}
+}
+
+extension RSSSession /** Authentication */ {
+	
+	public enum AuthenticationState {
+		
+		case nonStarted
+		case inProgress
+		case succeeded
+		case failed(error: Error)
+	}
+	
+	public func authenticate() -> Promise<Void> {
+		
+		guard !authenticated else {
+			return Promise()
+		}
+		
+		if case .inProgress = self.authenticationState {
+			assert(false)
+			fatalError()
+		}
+		
+		authenticationState = .inProgress
+		
+		let commandPromise = self.promise(for: Authenticate(loginAndPassword: x$(loginAndPassword)))
+		
+		return commandPromise.then(execute: {
+			self.authToken = $0
+			self.authenticationState = .succeeded
+			return Promise()
+		}).recover(execute: { authenticationError -> Void in
+			self.authenticationState = .failed(error: authenticationError)
+			throw x$(authenticationError)
+		})
+	}
+	
+	func reauthenticate() -> Promise<Void> {
+		return authenticate()
 	}
 }
