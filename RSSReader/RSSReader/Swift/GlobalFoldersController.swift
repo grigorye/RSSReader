@@ -16,10 +16,6 @@ extension TypedUserDefaults {
 
 class GlobalFoldersController : NSObject, FoldersController {
 
-	var rssSession: RSSSession {
-		return RSSReader.rssSession!
-	}
-
 	final var foldersLastUpdateDate: Date? {
 		get {
 			return defaults.foldersLastUpdateDate
