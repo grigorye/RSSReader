@@ -58,12 +58,11 @@ class RefreshController: NSObject {
 			return
 		}
 		
-		let rssSessionAuthenticator = self.rssSessionAuthenticator
 		let foldersController = self.foldersController
 
 		refreshingSubscriptions = true
 		firstly(execute: {
-			return rssSessionAuthenticator.authenticate()
+			return rssSession.authenticate()
 		}).then(execute: {
 			return foldersController.updateFolders(via: rssSession)
 		}).always(execute: {
