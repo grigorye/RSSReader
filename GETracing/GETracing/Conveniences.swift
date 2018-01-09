@@ -73,8 +73,8 @@ prefix operator •
 /// - seealso: `•`.
 /// - seealso: `loggers`.
 @discardableResult
-public func x$<T>(file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer = #dsohandle, _ valueClosure: @autoclosure () -> T) -> T {
-	let value = valueClosure()
+public func x$<T>(file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer = #dsohandle, _ valueClosure: @autoclosure () throws -> T) rethrows -> T {
+	let value = try valueClosure()
 	traceAsNecessary(value, file: file, line: line, column: column, function: function, moduleReference: .dso(dso), traceFunctionName: "$")
 	return value
 }
