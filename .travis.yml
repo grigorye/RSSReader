@@ -1,0 +1,3 @@
+language: objective-c
+xcode_workspace: RSSReader.xcworkspace
+xcode_scheme: AllTests-iOS
