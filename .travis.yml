@@ -1,4 +1,4 @@
 osx_image: xcode9.2
 language: objective-c
-xcode_workspace: RSSReader.xcworkspace
-xcode_scheme: AllTests-iOS
+script:
+  - xcodebuild clean build -sdk iphonesimulator -workspace RSSReader.xcworkspace -scheme AllTests-iOS CODE_SIGNING_REQUIRED=NO
