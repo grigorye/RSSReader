@@ -1,4 +1,4 @@
 osx_image: xcode9.2
 language: objective-c
 script:
-  - xcodebuild clean build -sdk iphonesimulator -workspace RSSReader.xcworkspace -scheme AllTests-iOS CODE_SIGNING_REQUIRED=NO
+  - xcodebuild -sdk iphonesimulator -workspace RSSReader.xcworkspace -scheme AllTests-iOS  -destination 'platform=iOS Simulator,name=iPhone X' clean test CODE_SIGNING_REQUIRED=NO
