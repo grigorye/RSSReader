@@ -1,4 +1,4 @@
-#! /bin/sh -xe
+#! /bin/sh -e
 
 #  EmbedStaticLinkAwareDynamicFrameworks
 #  GEXcodeBuildPhases
@@ -6,4 +6,4 @@
 #  Created by Grigory Entin on 11.01.2018.
 #  Copyright (c) 2018 Grigory Entin. All rights reserved.
 
-rsync -urtlv "${TARGET_BUILD_DIR:?}"/"${GE_DYNAMIC_FRAMEWORKS_COLLECTOR_FOLDER_PATH:?}"/ "${TARGET_BUILD_DIR:?}/${FRAMEWORKS_FOLDER_PATH:?}"/
+rsync -urtl${GE_V_FOR_VERBOSE} "${TARGET_BUILD_DIR:?}"/"${GE_DYNAMIC_FRAMEWORKS_COLLECTOR_FOLDER_PATH:?}"/ "${TARGET_BUILD_DIR:?}/${FRAMEWORKS_FOLDER_PATH:?}"/
