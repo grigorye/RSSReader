@@ -1,0 +1,16 @@
+#! /bin/sh -xe
+
+#  EmbedStaticLinkAwareFrameworksOrResources
+#  GEXcodeBuildPhases
+#
+#  Created by Grigory Entin on 11.01.2018.
+#  Copyright (c) 2018 Grigory Entin. All rights reserved.
+
+wd=$(dirname "$0")
+
+if [ "static" == "${GE_FRAMEWORK_LINKING}" ]
+then
+	"${wd:?}"/EmbedStaticFrameworkResources
+else
+	"${wd:?}"/EmbedStaticLinkAwareDynamicFrameworks
+fi
