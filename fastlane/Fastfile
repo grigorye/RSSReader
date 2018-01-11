@@ -25,7 +25,6 @@ platform :ios do
       scheme: product_name,
       output_name: versioned_product_name,
       archive_path: archive_path,
-      configuration: "Release",
       export_method: export_method,
       buildlog_path: build_dir
   )
