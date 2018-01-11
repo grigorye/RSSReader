@@ -8,6 +8,9 @@
 
 #include "GEShared-SDKRoot.xcconfig"
 #include "GEShared-CodeGeneration.xcconfig"
+#include "GEShared-FrameworkLinking.xcconfig"
+
+SKIP_INSTALL = NO
 
 IPHONEOS_DEPLOYMENT_TARGET = 11.0
 
@@ -71,6 +74,8 @@ SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) $(SWIFT_ACTIVE_COMPILATION_CO
 
 GE_EXTRA_OTHER_SWIFT_FLAGS__CONFIGURATION__Release = -Xfrontend -warn-long-function-bodies=500
 OTHER_SWIFT_FLAGS = $(inherited) $(GE_EXTRA_OTHER_SWIFT_FLAGS__CONFIGURATION__$(CONFIGURATION))
+
+OTHER_LDFLAGS = $(inherited) $(GE_FRAMEWORK_LINKING_LDFLAGS)
 
 GE_XCODE_BUILD_PHASES = $(SRCROOT)/../XcodeBuildPhases
 GE_XCODE_SCRIPTS = $(SRCROOT)/../XcodeScripts
