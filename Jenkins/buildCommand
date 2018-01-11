@@ -42,6 +42,7 @@ env \
     MATCH_VERBOSE=1 \
     FL_REPORT_PATH="$PWD/../build/fastlane" \
     DEVELOPER_DIR="${!xcode_developer_dir_v:?}" \
+    GYM_CONFIGURATION="${configuration:-Release}" \
     bundle exec fastlane ios "${lane:?}"
 
 exit
