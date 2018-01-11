@@ -10,7 +10,11 @@
 #include "GEShared-CodeGeneration.xcconfig"
 #include "GEShared-FrameworkLinking.xcconfig"
 
-GE_VERBOSE = NO
+GE_VERBOSE = YES
+
+GE_V_FOR_VERBOSE__GE_VERBOSE__YES = v
+GE_V_FOR_VERBOSE = $(GE_V_FOR_VERBOSE__GE_VERBOSE__$(GE_VERBOSE))
+
 SKIP_INSTALL = NO
 
 IPHONEOS_DEPLOYMENT_TARGET = 11.0
