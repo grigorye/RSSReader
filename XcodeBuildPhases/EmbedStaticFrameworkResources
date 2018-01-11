@@ -1,4 +1,4 @@
-#! /bin/sh -e
+#! /bin/sh -ex
 
 #  EmbedStaticFrameworkResources
 #  GEXcodeBuildPhases
@@ -6,4 +6,13 @@
 #  Created by Grigory Entin on 11.01.2018.
 #  Copyright (c) 2018 Grigory Entin. All rights reserved.
 
-rsync -urtl "${CONFIGURATION_BUILD_DIR:?}"/"${GE_STATIC_FRAMEWORK_RESOURCES_COLLECTOR_FOLDER_PATH:?}"/ "${TARGET_BUILD_DIR:?}/${UNLOCALIZED_RESOURCES_FOLDER_PATH:?}"/
+for i in "${CONFIGURATION_BUILD_DIR:?}" "${PROJECT_TEMP_ROOT:?}"/UninstalledProducts/"${PLATFORM_NAME:?}"
+do
+	testDir="$i"/"${GE_STATIC_FRAMEWORK_RESOURCES_COLLECTOR_FOLDER_PATH:?}"
+	if [ -d "${testDir:?}" ]
+	then
+		resourcesDir="${testDir:?}"
+	fi
+done
+
+rsync -urtl${GE_V_FOR_VERBOSE} "${resourcesDir:?}"/ "${TARGET_BUILD_DIR:?}/${UNLOCALIZED_RESOURCES_FOLDER_PATH:?}"/
