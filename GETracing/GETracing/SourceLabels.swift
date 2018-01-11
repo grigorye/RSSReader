@@ -16,6 +16,23 @@ extension String {
 	
 }
 
+func sourceModuleNameFor(_ url: URL) -> String {
+	
+	let ignoredParentDirNames = [
+		"Sources",
+		"Swift"
+	]
+
+	let parentURL = url.deletingLastPathComponent()
+	let parentDirName = parentURL.lastPathComponent
+	
+	guard !ignoredParentDirNames.contains(parentDirName) else {
+		return sourceModuleNameFor(parentURL)
+	}
+	
+	return parentDirName
+}
+
 func sourceExtractedInfo(for location: SourceLocation, traceFunctionName: String) -> SourceExtractedInfo {
 	// swiftlint:disable:previous function_body_length
 	guard sourceLabelsEnabled else {
@@ -25,7 +42,8 @@ func sourceExtractedInfo(for location: SourceLocation, traceFunctionName: String
 	let fileName = fileURL.lastPathComponent
 	let resourceName = fileURL.deletingPathExtension().lastPathComponent
 	let resourceType = fileURL.pathExtension
-	var file: String
+	let sourceModuleName = sourceModuleNameFor(fileURL)
+	let file: String
 	switch location.moduleReference {
 	case let .dso(dso):
 		guard let bundle = Bundle(for: dso) else {
@@ -33,7 +51,8 @@ func sourceExtractedInfo(for location: SourceLocation, traceFunctionName: String
 			return SourceExtractedInfo(label: "\(resourceName).\(resourceType):?")
 		}
 		let bundleName = (bundle.bundlePath as NSString).lastPathComponent
-		guard let fileInBundle = bundle.path(forResource: resourceName, ofType: resourceType, inDirectory: "Sources") else {
+		let directory = ["Sources", sourceModuleName].joined(separator: "/")
+		guard let fileInBundle = bundle.path(forResource: resourceName, ofType: resourceType, inDirectory: directory) else {
 			// File missing in the bundle
 			return SourceExtractedInfo(label: "\(bundleName)/\(fileName)[missing]:\(descriptionForInLineLocation(location)):?")
 		}
