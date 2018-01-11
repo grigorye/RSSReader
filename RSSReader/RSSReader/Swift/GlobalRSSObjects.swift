@@ -30,4 +30,3 @@ var rssSession: RSSSession? {
 	
 	return rssSessionBinding.session
 }
-
