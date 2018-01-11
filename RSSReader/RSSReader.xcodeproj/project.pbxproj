@@ -872,8 +872,8 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/sh -xe";
-			shellScript = "\"${GE_XCODE_BUILD_PHASES:?}\"/EmbedStaticLinkAwareFrameworksOrResources\n";
+			shellPath = "/bin/sh -e";
+			shellScript = "\"${GE_XCODE_BUILD_PHASES:?}\"/Run EmbedStaticLinkAwareFrameworksOrResources\n";
 			showEnvVarsInLog = 0;
 		};
 		C4DA682E1E58BC94004615A0 /* Generate R.generated.swift */ = {
