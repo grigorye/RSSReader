@@ -1,4 +1,4 @@
-#! /bin/sh -xe
+#! /bin/sh -e
 
 bn=$(basename "$0")
 wd=$(dirname "$0")
@@ -9,5 +9,8 @@ sourcesList="${tmpdir:?}"/Sources.list
 
 "${wd:?}"/../XcodeSupport/ListXcodeProjectTargetSources "${PROJECT_FILE_PATH:?}" "${TARGET_NAME:?}" > "${sourcesList:?}"
 
+sourcesResourcesDir="${TARGET_BUILD_DIR:?}/${UNLOCALIZED_RESOURCES_FOLDER_PATH:?}/Sources"
+test -d "${sourcesResourcesDir:?}" || mkdir "${sourcesResourcesDir:?}"
+
 ### FIXME: --delete doesn't work below.
-rsync -urtlv --delete --files-from="${sourcesList:?}" --no-relative / "${TARGET_BUILD_DIR:?}/${FULL_PRODUCT_NAME:?}/Sources/"
+rsync -urtl --delete --files-from="${sourcesList:?}" --no-relative / "${sourcesResourcesDir:?}/${TARGET_NAME:?}/"
