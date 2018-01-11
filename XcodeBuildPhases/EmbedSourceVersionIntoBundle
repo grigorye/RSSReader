@@ -14,6 +14,6 @@ infoPlistWOExt=$(echo "${INFOPLIST_PATH:?}" | sed 's/.plist$//')
 infoPlistDefaultsDomain="${CONFIGURATION_BUILD_DIR:?}/${infoPlistWOExt:?}"
 defaults write "${infoPlistDefaultsDomain:?}" CFBundleVersion -string "${version:?}"
 
-settingsPlist="${TARGET_BUILD_DIR:?}/${FULL_PRODUCT_NAME:?}/Settings.bundle/Root.plist"
+settingsPlist="${TARGET_BUILD_DIR:?}/${UNLOCALIZED_RESOURCES_FOLDER_PATH:?}/Settings.bundle/Root.plist"
 versionIndex=0
 /usr/libexec/PlistBuddy "${settingsPlist:?}" -c "set PreferenceSpecifiers:${versionIndex:?}:DefaultValue ${version:?}"
