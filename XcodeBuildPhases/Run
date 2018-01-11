@@ -1,0 +1,7 @@
+#! /bin/sh -e
+
+wd=$(dirname "$0")
+
+[ "YES" == "${GE_VERBOSE:?}" ] && set -o xtrace && export SHELLOPTS
+
+"${wd:?}/""${@}"
