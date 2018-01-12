@@ -16,7 +16,6 @@
 		A151CFE41FE7395E00165639 /* CwlDemangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A151CFE31FE7395E00165639 /* CwlDemangle.swift */; };
 		A176B20E1FD5D95000E945E9 /* GEDebugKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A176B2041FD5D94F00E945E9 /* GEDebugKit.framework */; };
 		A176B2131FD5D95000E945E9 /* GEDebugKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A176B2121FD5D95000E945E9 /* GEDebugKitTests.swift */; };
-		A176B2151FD5D95000E945E9 /* GEDebugKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A176B2071FD5D94F00E945E9 /* GEDebugKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A176B21F1FD5DACF00E945E9 /* Debug.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A176B21E1FD5DACF00E945E9 /* Debug.storyboard */; };
 		A176B2251FD69C6500E945E9 /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A176B2241FD69C6500E945E9 /* DebugViewController.swift */; };
 		A176B2271FD69CAC00E945E9 /* GEUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A176B2281FD69CAC00E945E9 /* GEUIKit.framework */; };
@@ -51,7 +50,6 @@
 		A10336A61FE6C74E0096330F /* FPSMonitoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPSMonitoring.swift; sourceTree = "<group>"; };
 		A151CFE31FE7395E00165639 /* CwlDemangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CwlDemangle.swift; path = ../GitSubtrees/CwlDemangle/CwlDemangle/CwlDemangle.swift; sourceTree = "<group>"; };
 		A176B2041FD5D94F00E945E9 /* GEDebugKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GEDebugKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A176B2071FD5D94F00E945E9 /* GEDebugKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GEDebugKit.h; sourceTree = "<group>"; };
 		A176B2081FD5D94F00E945E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A176B20D1FD5D95000E945E9 /* GEDebugKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GEDebugKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A176B2121FD5D95000E945E9 /* GEDebugKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GEDebugKitTests.swift; sourceTree = "<group>"; };
@@ -132,7 +130,6 @@
 				A10336881FE4545E0096330F /* Colors.xcassets */,
 				A1FB041E1FDC4E59008D14E4 /* AliveObjects.swift */,
 				A1FB041C1FDC4AAA008D14E4 /* WeakReference.swift */,
-				A176B2071FD5D94F00E945E9 /* GEDebugKit.h */,
 				A176B2081FD5D94F00E945E9 /* Info.plist */,
 			);
 			path = GEDebugKit;
@@ -169,7 +166,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A176B2151FD5D95000E945E9 /* GEDebugKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
