@@ -7,6 +7,7 @@
 //
 
 import GEUIKit
+import UIKit
 
 /// Abusing segues to support debug actions.
 extension UIViewController {

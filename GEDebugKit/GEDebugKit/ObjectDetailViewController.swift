@@ -7,6 +7,7 @@
 //
 
 import GEUIKit
+import UIKit
 import Foundation
 
 class ObjectDetailViewController : AccessibilityAwareStaticTableViewController {
