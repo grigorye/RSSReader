@@ -2,4 +2,6 @@
 
 srcRootDir="${1:?}"; shift
 
-find "${srcRootDir:?}" -name '*.xcodeproj' -not \( -path './Pods/*' -o -path './vendor/*' -o -path './GitSubtrees/*' \) -exec ./XcodeSupport/CreateOrUpdateEmbedSourcesBuildPhaseForMainTarget '{}' \;
+pushd "${srcRootDir:?}"
+find . -name '*.xcodeproj' -not \( -path './Pods/*' -o -path './vendor/*' -o -path './GitSubtrees/*' \) -exec ./XcodeSupport/CreateOrUpdateEmbedSourcesBuildPhaseForMainTarget '{}' \;
+popd
