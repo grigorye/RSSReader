@@ -655,7 +655,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C4CDD3BE1A5350B50087DD05 /* Build configuration list for PBXNativeTarget "RSSReader" */;
 			buildPhases = (
-				C48368312007185900A0F25E /* Dump Xcode Build Environment */,
+				C48368312007185900A0F25E /* Dump Environment */,
 				C4DA682E1E58BC94004615A0 /* Generate R.generated.swift */,
 				C4CDD3991A5350B40087DD05 /* Sources */,
 				C4CDD39A1A5350B40087DD05 /* Frameworks */,
@@ -820,7 +820,7 @@
 		};
 		C418B3281A593F4E002C0578 /* Embed Source Version into Bundle */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -828,7 +828,7 @@
 			name = "Embed Source Version into Bundle";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = "/bin/sh -e";
 			shellScript = "\"${GE_XCODE_BUILD_PHASES:?}\"/EmbedSourceVersionIntoBundle\n";
 			showEnvVarsInLog = 0;
@@ -862,20 +862,19 @@
 			shellScript = "\"${GE_XCODE_BUILD_PHASES:?}\"/IntegrateFabric\n";
 			showEnvVarsInLog = 0;
 		};
-		C48368312007185900A0F25E /* Dump Xcode Build Environment */ = {
+		C48368312007185900A0F25E /* Dump Environment */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Dump Xcode Build Environment";
+			name = "Dump Environment";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = "/bin/sh -e";
-			shellScript = "[ \"YES\" == ${GE_VERBOSE:?} ] && env | sort\n";
-			showEnvVarsInLog = 0;
+			shellScript = true;
 		};
 		C48E1E5A2006D761007EF030 /* Embed Static Link Aware Frameworks Or Resources */ = {
 			isa = PBXShellScriptBuildPhase;
