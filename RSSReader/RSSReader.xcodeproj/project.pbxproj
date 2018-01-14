@@ -21,11 +21,44 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		044D513CDDD1A1D04CA111D8 /* ItemTableView.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C42BA28A1DF4DB9B00213D70 /* ItemTableView.swift */; };
+		1237A3D8C26772A17CAC0310 /* MainScene.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C441F1781DB24A1D0060E692 /* MainScene.swift */; };
+		1FBD3D1AD5DCE07D8787FFF6 /* ContainerViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EA5C351CE91E8600E395FE /* ContainerViewController.swift */; };
+		25DF1DC49BDF8DAB90457A6B /* ItemPageViewControllerDataSource.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C46934DE1A5D291C00A0AEA2 /* ItemPageViewControllerDataSource.swift */; };
+		295F1F325CEAFA1FEE3098B7 /* ItemTableViewCell.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4676E081A6A4D1F00AE8BC2 /* ItemTableViewCell.swift */; };
+		2B5E6987207DB43CCE07346F /* main.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C474F1CC1DB0657800F0E152 /* main.swift */; };
+		2FAEF7E2358E768B8295CAF5 /* MainNavigationController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4C422171A75E355008803A7 /* MainNavigationController.swift */; };
+		31888176F0C75C76AFD21D2F /* MarkAllAsReadActivity.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4C780131A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift */; };
+		3676E44D85551D684AF06E0A /* Formatters.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4366F3F1FFF9F2D00B82613 /* Formatters.swift */; };
+		39E455032D991D0792AD45E1 /* RefreshController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C436575C1F07597600B904A2 /* RefreshController.swift */; };
+		3AD17565F15FE5C7D1016A71 /* ContainerTableViewSectionHeaderView.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EA5C3B1CE930B200E395FE /* ContainerTableViewSectionHeaderView.swift */; };
+		46BE6DFB9544C606F362B9A8 /* Globals.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41707CA1A56076A00AED81C /* Globals.swift */; };
+		470F6A9A18D2C4EBB4A8C43A /* ApplicationActivities.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4C780151A7DF1EC009CB5FC /* ApplicationActivities.swift */; };
+		4B3A117979810A7FA6061CE5 /* LoginAndPasswordDefaults.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C495409A1A575C1900F56168 /* LoginAndPasswordDefaults.swift */; };
+		503483190D64F91BBA0CC871 /* ItemPageViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48C5F961A87344000A1EA12 /* ItemPageViewController.swift */; };
+		518B11504F8988D79491A882 /* ItemTableViewDelegate.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4F7DC3A1D97E93200275E4F /* ItemTableViewDelegate.swift */; };
+		5D3D6743150C259088578915 /* HomeViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C44B2F001AC0C881006A67F1 /* HomeViewController.swift */; };
+		5DD98A7C6BFFD769DFAC4757 /* AddToFavoritesActivity.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4F575CF1A797C7B00F12F20 /* AddToFavoritesActivity.swift */; };
+		60C87DF97C56922CA6B3EFA3 /* ItemInListView.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4C0941A1D99ED4A00D27162 /* ItemInListView.swift */; };
+		6395BA1F975F2015F784BB7F /* GlobalStateRestoration.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C441F1861DB25D090060E692 /* GlobalStateRestoration.swift */; };
+		67DF5A6D90A87AFE6EF58A73 /* RefreshingStateTracker.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C436575E1F08987300B904A2 /* RefreshingStateTracker.swift */; };
+		6D4BEBBA4F09C947FE229D81 /* OpenWebPageActivity.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4F575D51A7988DB00F12F20 /* OpenWebPageActivity.swift */; };
+		73FC8F4C90E9A2CA8BE1B799 /* ModuleExports-GEFoundation.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EB27ED1DFA328900BF0843 /* ModuleExports-GEFoundation.swift */; };
+		7F00E9367E844674AFAB9154 /* GlobalFoldersController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C441F17A1DB254260060E692 /* GlobalFoldersController.swift */; };
+		811E2DDB4CEA58EEE342DA37 /* TableViewContainerCell.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C40A24FE1A672B2100B5D959 /* TableViewContainerCell.swift */; };
+		85CA9195EBA2E00010C1896D /* FoldersViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C42802681A5B47EA002474E1 /* FoldersViewController.swift */; };
+		87A7197CFC86472B924DCABE /* DefaultRSSSessionBinding.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C441F17E1DB258550060E692 /* DefaultRSSSessionBinding.swift */; };
+		9365BA872E3F7F99BE97308C /* LogViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C474F0A71D80E65F00CABEB9 /* LogViewController.swift */; };
+		A0D6B58EB72652C007AE0FC6 /* ItemSummaryWebViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */; };
 		A103368B1FE469B30096330F /* FolderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A103368A1FE469B30096330F /* FolderTableViewCell.xib */; };
 		A103368D1FE46A070096330F /* SubscriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A103368C1FE46A070096330F /* SubscriptionTableViewCell.xib */; };
 		A103369C1FE606670096330F /* FPSCounter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A103369B1FE605E80096330F /* FPSCounter.framework */; };
 		A103369D1FE606670096330F /* FPSCounter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A103369B1FE605E80096330F /* FPSCounter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A15CC5A3E1EA9E792BD12D90 /* ItemTableViewDataSource.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4F7DC3C1D97E9A800275E4F /* ItemTableViewDataSource.swift */; };
 		A176B2221FD69C1600E945E9 /* GEDebugKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A176B2211FD69C1600E945E9 /* GEDebugKit.framework */; };
+		B37B8BA65793551D940F3DED /* TunaXcodePlugIn.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C431B4F71E8FEC7200D67D5A /* TunaXcodePlugIn.swift */; };
+		BAEC85E1895F2F19FB75D39E /* ModuleExports-GETracing.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EB27EB1DFA31ED00BF0843 /* ModuleExports-GETracing.swift */; };
+		BF5ABF05A86DD1EA29D04E05 /* UserVisibleErrors.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C43657581F05D0DD00B904A2 /* UserVisibleErrors.swift */; };
 		C408F1B11CE7520700DB943F /* FBAllocationTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C408F1B01CE7520700DB943F /* FBAllocationTracker.framework */; };
 		C408F1B21CE7520700DB943F /* FBAllocationTracker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C408F1B01CE7520700DB943F /* FBAllocationTracker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C408F1B41CE7520700DB943F /* FBMemoryProfiler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C408F1B31CE7520700DB943F /* FBMemoryProfiler.framework */; };
@@ -127,6 +160,15 @@
 		C4F7DC3B1D97E93200275E4F /* ItemTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F7DC3A1D97E93200275E4F /* ItemTableViewDelegate.swift */; };
 		C4F7DC3D1D97E9A800275E4F /* ItemTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F7DC3C1D97E9A800275E4F /* ItemTableViewDataSource.swift */; };
 		C4F7DC3F1D97EBEF00275E4F /* ItemListViewLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F7DC3E1D97EBEF00275E4F /* ItemListViewLoading.swift */; };
+		C5D58A3AC2819A60832BCC4A /* Appearance.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4667F0C1CC80A050039C480 /* Appearance.swift */; };
+		CC5E5A3CEB5E060D138C8A23 /* GlobalRSSObjects.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4366F411FFF9F6700B82613 /* GlobalRSSObjects.swift */; };
+		D241B4CEAC14DD6D6B70F2D3 /* ItemListViewLoading.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4F7DC3E1D97EBEF00275E4F /* ItemListViewLoading.swift */; };
+		DD2478EA63640F1065E150E4 /* HistoryViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C45BC3E91A8003F40008A5D1 /* HistoryViewController.swift */; };
+		E2D0EF292ECA835BB4DD1944 /* ItemsViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49540A01A57825100F56168 /* ItemsViewController.swift */; };
+		E3D39691A7EA20194121958C /* ItemPageViewControllerDelegate.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4AD2ADA1A5DED8700B39AC9 /* ItemPageViewControllerDelegate.swift */; };
+		E8B011AD9F8ECAA24E871221 /* AppDelegate.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */; };
+		EE076F8C242DC40F8C4FC5F0 /* ModuleExports-GECoreData.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EB28081DFA399E00BF0843 /* ModuleExports-GECoreData.swift */; };
+		FC25E32F5D04B0EF014CBDCF /* UserEvents.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C43657561F05CDEF00B904A2 /* UserEvents.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,6 +189,58 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		687C9AAFBE7A8236C3E90846 /* Embed Sources */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "Sources/$(TARGET_NAME)";
+			dstSubfolderSpec = 7;
+			files = (
+				B37B8BA65793551D940F3DED /* TunaXcodePlugIn.swift in Embed Sources */,
+				EE076F8C242DC40F8C4FC5F0 /* ModuleExports-GECoreData.swift in Embed Sources */,
+				1237A3D8C26772A17CAC0310 /* MainScene.swift in Embed Sources */,
+				39E455032D991D0792AD45E1 /* RefreshController.swift in Embed Sources */,
+				FC25E32F5D04B0EF014CBDCF /* UserEvents.swift in Embed Sources */,
+				470F6A9A18D2C4EBB4A8C43A /* ApplicationActivities.swift in Embed Sources */,
+				3676E44D85551D684AF06E0A /* Formatters.swift in Embed Sources */,
+				A0D6B58EB72652C007AE0FC6 /* ItemSummaryWebViewController.swift in Embed Sources */,
+				6395BA1F975F2015F784BB7F /* GlobalStateRestoration.swift in Embed Sources */,
+				9365BA872E3F7F99BE97308C /* LogViewController.swift in Embed Sources */,
+				3AD17565F15FE5C7D1016A71 /* ContainerTableViewSectionHeaderView.swift in Embed Sources */,
+				1FBD3D1AD5DCE07D8787FFF6 /* ContainerViewController.swift in Embed Sources */,
+				E3D39691A7EA20194121958C /* ItemPageViewControllerDelegate.swift in Embed Sources */,
+				295F1F325CEAFA1FEE3098B7 /* ItemTableViewCell.swift in Embed Sources */,
+				2B5E6987207DB43CCE07346F /* main.swift in Embed Sources */,
+				CC5E5A3CEB5E060D138C8A23 /* GlobalRSSObjects.swift in Embed Sources */,
+				D241B4CEAC14DD6D6B70F2D3 /* ItemListViewLoading.swift in Embed Sources */,
+				811E2DDB4CEA58EEE342DA37 /* TableViewContainerCell.swift in Embed Sources */,
+				46BE6DFB9544C606F362B9A8 /* Globals.swift in Embed Sources */,
+				4B3A117979810A7FA6061CE5 /* LoginAndPasswordDefaults.swift in Embed Sources */,
+				E2D0EF292ECA835BB4DD1944 /* ItemsViewController.swift in Embed Sources */,
+				044D513CDDD1A1D04CA111D8 /* ItemTableView.swift in Embed Sources */,
+				5D3D6743150C259088578915 /* HomeViewController.swift in Embed Sources */,
+				85CA9195EBA2E00010C1896D /* FoldersViewController.swift in Embed Sources */,
+				BF5ABF05A86DD1EA29D04E05 /* UserVisibleErrors.swift in Embed Sources */,
+				503483190D64F91BBA0CC871 /* ItemPageViewController.swift in Embed Sources */,
+				E8B011AD9F8ECAA24E871221 /* AppDelegate.swift in Embed Sources */,
+				2FAEF7E2358E768B8295CAF5 /* MainNavigationController.swift in Embed Sources */,
+				BAEC85E1895F2F19FB75D39E /* ModuleExports-GETracing.swift in Embed Sources */,
+				A15CC5A3E1EA9E792BD12D90 /* ItemTableViewDataSource.swift in Embed Sources */,
+				7F00E9367E844674AFAB9154 /* GlobalFoldersController.swift in Embed Sources */,
+				31888176F0C75C76AFD21D2F /* MarkAllAsReadActivity.swift in Embed Sources */,
+				5DD98A7C6BFFD769DFAC4757 /* AddToFavoritesActivity.swift in Embed Sources */,
+				73FC8F4C90E9A2CA8BE1B799 /* ModuleExports-GEFoundation.swift in Embed Sources */,
+				60C87DF97C56922CA6B3EFA3 /* ItemInListView.swift in Embed Sources */,
+				87A7197CFC86472B924DCABE /* DefaultRSSSessionBinding.swift in Embed Sources */,
+				C5D58A3AC2819A60832BCC4A /* Appearance.swift in Embed Sources */,
+				6D4BEBBA4F09C947FE229D81 /* OpenWebPageActivity.swift in Embed Sources */,
+				25DF1DC49BDF8DAB90457A6B /* ItemPageViewControllerDataSource.swift in Embed Sources */,
+				67DF5A6D90A87AFE6EF58A73 /* RefreshingStateTracker.swift in Embed Sources */,
+				518B11504F8988D79491A882 /* ItemTableViewDelegate.swift in Embed Sources */,
+				DD2478EA63640F1065E150E4 /* HistoryViewController.swift in Embed Sources */,
+			);
+			name = "Embed Sources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C424B8E81C6FC557008AD647 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -665,9 +759,9 @@
 				C40C6BF81A73017B00FAFA17 /* Integrate Appsee */,
 				C424B8E81C6FC557008AD647 /* Embed Frameworks */,
 				C4D436771D8777A3008C6386 /* Embed PlugIns */,
-				C4EDE1F11FBC1DBB00BB7F55 /* Embed Sources */,
 				C48E1E5C2006DD06007EF030 /* Collect Static Link Aware Dynamic Frameworks */,
 				C48E1E5A2006D761007EF030 /* Embed Static Link Aware Frameworks Or Resources */,
+				687C9AAFBE7A8236C3E90846 /* Embed Sources */,
 			);
 			buildRules = (
 			);
@@ -906,20 +1000,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -e";
 			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"${BUILT_PRODUCTS_DIR:?}\"/\"${PROJECT_NAME:?}-rswift\"\n";
-		};
-		C4EDE1F11FBC1DBB00BB7F55 /* Embed Sources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Sources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/sh -e";
-			shellScript = "\"${GE_XCODE_BUILD_PHASES:?}\"/EmbedSourcesIntoBundle\n";
 		};
 		C4EDE1FE1FBCF0B500BB7F55 /* Lint */ = {
 			isa = PBXShellScriptBuildPhase;

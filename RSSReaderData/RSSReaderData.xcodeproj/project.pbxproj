@@ -7,6 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		184B8E80DA90B49B90658D20 /* CategoryItem.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4FCF4911E08E22B00D0EAC1 /* CategoryItem.swift */; };
+		24CC4B9D8792815232AD040B /* ModuleExports-GEFoundation.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EB28051DFA389300BF0843 /* ModuleExports-GEFoundation.swift */; };
+		29FD55BB5A40AE61C6642D98 /* RSSSessionTaskGeneration.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4DB6A711D26035F00E8516D /* RSSSessionTaskGeneration.swift */; };
+		2BC5F4A5BC1EFEADB54D1640 /* Item.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79CA1C008DF100CC6F74 /* Item.swift */; };
+		32973D3DAC8127E9F79556CC /* FoldersController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C441F1841DB25ABD0060E692 /* FoldersController.swift */; };
+		4774C4D70352551A0F7BB639 /* CoreData.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79CF1C008E0B00CC6F74 /* CoreData.swift */; };
+		483EB302637605EB7858563F /* Folder.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79C71C008DF100CC6F74 /* Folder.swift */; };
+		492E492612CB9EBB8F40B99E /* RSSSession.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79C51C008DDF00CC6F74 /* RSSSession.swift */; };
+		5FBB659664C6671A9E784B7D /* ModuleExports-GETracing.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EB28041DFA389300BF0843 /* ModuleExports-GETracing.swift */; };
+		600DFE39B06D3E00B998F231 /* ContainerViewState.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79D11C008E1D00CC6F74 /* ContainerViewState.swift */; };
+		688CAD42D1AFBFB99C7E57DC /* Container.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79C81C008DF100CC6F74 /* Container.swift */; };
+		6B3A823C9264992403BAA179 /* RSSSessionTaskResultImporting.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4DB6A6F1D2602B400E8516D /* RSSSessionTaskResultImporting.swift */; };
+		6FCA5CDC28D4CCFCDAD99CFB /* ContainerLoadController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5ADC1DA9742300E1734F /* ContainerLoadController.swift */; };
+		74B83603AA484E7A6E6EAE8B /* ModuleExports-GECoreData.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EB28021DFA387500BF0843 /* ModuleExports-GECoreData.swift */; };
+		87E7E08DB6C99AD3937CEB09 /* MarkingAsRead.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79D31C008E3900CC6F74 /* MarkingAsRead.swift */; };
+		9044BB2E84E17DC1F2745E67 /* LoginAndPassword.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79FC1C008FEE00CC6F74 /* LoginAndPassword.swift */; };
+		94B977FA9CC048C347C6E196 /* CoreDataGlobals.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4B437361C00A75200A2F3BE /* CoreDataGlobals.swift */; };
+		A3B4E6EFDBC047C9752CFDAB /* Subscription.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79C91C008DF100CC6F74 /* Subscription.swift */; };
 		C4270BFE1DBD500D00FA3A0A /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BFD1DBD500D00FA3A0A /* GETracing.framework */; };
 		C4290F8A1EA3223300CAD5AE /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4290F891EA3223300CAD5AE /* Globals.swift */; };
 		C441F1851DB25ABD0060E692 /* FoldersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F1841DB25ABD0060E692 /* FoldersController.swift */; };
@@ -43,6 +61,9 @@
 		C4EB28061DFA389300BF0843 /* ModuleExports-GETracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB28041DFA389300BF0843 /* ModuleExports-GETracing.swift */; };
 		C4EB28071DFA389300BF0843 /* ModuleExports-GEFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB28051DFA389300BF0843 /* ModuleExports-GEFoundation.swift */; };
 		C4FCF4921E08E22B00D0EAC1 /* CategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FCF4911E08E22B00D0EAC1 /* CategoryItem.swift */; };
+		CFBE22919B00D6CD182A1447 /* RSSSessionCommands.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4DB6A731D261AE400E8516D /* RSSSessionCommands.swift */; };
+		F14EB423B6C470DCA5F55AE7 /* RSSReader.xcdatamodeld in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79D51C008E6A00CC6F74 /* RSSReader.xcdatamodeld */; };
+		FE75B3CEB49B18F0DAFA0747 /* Globals.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4290F891EA3223300CAD5AE /* Globals.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +77,37 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		4750F8000A32701F76089AC5 /* Embed Sources */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "Sources/$(TARGET_NAME)";
+			dstSubfolderSpec = 7;
+			files = (
+				74B83603AA484E7A6E6EAE8B /* ModuleExports-GECoreData.swift in Embed Sources */,
+				F14EB423B6C470DCA5F55AE7 /* RSSReader.xcdatamodeld in Embed Sources */,
+				5FBB659664C6671A9E784B7D /* ModuleExports-GETracing.swift in Embed Sources */,
+				688CAD42D1AFBFB99C7E57DC /* Container.swift in Embed Sources */,
+				600DFE39B06D3E00B998F231 /* ContainerViewState.swift in Embed Sources */,
+				FE75B3CEB49B18F0DAFA0747 /* Globals.swift in Embed Sources */,
+				492E492612CB9EBB8F40B99E /* RSSSession.swift in Embed Sources */,
+				32973D3DAC8127E9F79556CC /* FoldersController.swift in Embed Sources */,
+				24CC4B9D8792815232AD040B /* ModuleExports-GEFoundation.swift in Embed Sources */,
+				483EB302637605EB7858563F /* Folder.swift in Embed Sources */,
+				4774C4D70352551A0F7BB639 /* CoreData.swift in Embed Sources */,
+				29FD55BB5A40AE61C6642D98 /* RSSSessionTaskGeneration.swift in Embed Sources */,
+				87E7E08DB6C99AD3937CEB09 /* MarkingAsRead.swift in Embed Sources */,
+				6B3A823C9264992403BAA179 /* RSSSessionTaskResultImporting.swift in Embed Sources */,
+				2BC5F4A5BC1EFEADB54D1640 /* Item.swift in Embed Sources */,
+				9044BB2E84E17DC1F2745E67 /* LoginAndPassword.swift in Embed Sources */,
+				CFBE22919B00D6CD182A1447 /* RSSSessionCommands.swift in Embed Sources */,
+				A3B4E6EFDBC047C9752CFDAB /* Subscription.swift in Embed Sources */,
+				94B977FA9CC048C347C6E196 /* CoreDataGlobals.swift in Embed Sources */,
+				184B8E80DA90B49B90658D20 /* CategoryItem.swift in Embed Sources */,
+				6FCA5CDC28D4CCFCDAD99CFB /* ContainerLoadController.swift in Embed Sources */,
+			);
+			name = "Embed Sources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C49FF1CF1DBBACBA00A86CC0 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -243,7 +295,7 @@
 				C48F799A1C008D0D00CC6F74 /* Frameworks */,
 				C48F799B1C008D0D00CC6F74 /* Headers */,
 				C48F799C1C008D0D00CC6F74 /* Resources */,
-				C4EDE1F51FBC254700BB7F55 /* Embed Sources */,
+				4750F8000A32701F76089AC5 /* Embed Sources */,
 			);
 			buildRules = (
 			);
@@ -332,24 +384,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		C4EDE1F51FBC254700BB7F55 /* Embed Sources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Sources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/sh -e";
-			shellScript = "\"${GE_XCODE_BUILD_PHASES:?}\"/EmbedSourcesIntoBundle\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C48F79991C008D0D00CC6F74 /* Sources */ = {

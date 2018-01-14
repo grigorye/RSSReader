@@ -7,10 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		098C70FC5FB00A445C6BC04F /* ModuleExports-GEFoundation.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EB27F41DFA334D00BF0843 /* ModuleExports-GEFoundation.swift */; };
+		188EBE46A3020A31E94DB88B /* ErrorPresentation.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4A8B8431DFC525900BEACFE /* ErrorPresentation.swift */; };
+		2F3AB686A7BA38A1D0C58B0C /* FrequencyAndWeightBasedTableRowHeightEstimator.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF13C1DBB989000A86CC0 /* FrequencyAndWeightBasedTableRowHeightEstimator.swift */; };
+		49BB02748BCFD3BA3DEE061D /* UIKitUtilities.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF13E1DBB989000A86CC0 /* UIKitUtilities.swift */; };
+		547EBBD7C427AFC628B66C1E /* AccessibilityAwareStaticTableViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48BF6561FD0D8FB00062EC8 /* AccessibilityAwareStaticTableViewController.swift */; };
+		60580BC84F8C24D9C39283A3 /* Globals.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF18E1DBB9C3200A86CC0 /* Globals.swift */; };
+		77AF02333D11A28FB1D16612 /* TableViewFetchedResultsControllerDelegate.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1391DBB989000A86CC0 /* TableViewFetchedResultsControllerDelegate.swift */; };
+		881559B53CC1C7D50F3C450C /* UIDataSourceModelAssociation+NilIndexPathInModelIdentifierForElement.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF13F1DBB989000A86CC0 /* UIDataSourceModelAssociation+NilIndexPathInModelIdentifierForElement.swift */; };
+		918CC03B2E1743A7AB585064 /* MonospacedLabel.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A1CE708B1FDE77700080D832 /* MonospacedLabel.swift */; };
+		96EA154DDEB035D54F543E37 /* SystemLayoutSizeCachingTableViewCell.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF13D1DBB989000A86CC0 /* SystemLayoutSizeCachingTableViewCell.swift */; };
+		9848576AA190659010487939 /* UIFontExtensions.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF13A1DBB989000A86CC0 /* UIFontExtensions.swift */; };
+		9CD4B26F45916500D751895B /* ModuleExports-GETracing.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EB27F31DFA334D00BF0843 /* ModuleExports-GETracing.swift */; };
 		A10336A11FE69C000096330F /* StatusBarOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10336A01FE69C000096330F /* StatusBarOverlay.swift */; };
 		A10336A31FE6A9DC0096330F /* StatusBarTimeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10336A21FE6A9DC0096330F /* StatusBarTimeLabel.swift */; };
 		A10336A51FE6ADD20096330F /* ViewOfKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10336A41FE6ADD20096330F /* ViewOfKind.swift */; };
+		A1C063CE58837C1D68EC72E3 /* ViewOfKind.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A10336A41FE6ADD20096330F /* ViewOfKind.swift */; };
 		A1CE708C1FDE77700080D832 /* MonospacedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CE708B1FDE77700080D832 /* MonospacedLabel.swift */; };
+		BF3654270F066E105F168357 /* TableViewHeightBasedReusedCellGenerator.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF13B1DBB989000A86CC0 /* TableViewHeightBasedReusedCellGenerator.swift */; };
 		C4270BFC1DBD4FE900FA3A0A /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BFB1DBD4FE900FA3A0A /* GETracing.framework */; };
 		C4499B951E0637B00033991E /* ViewControllerVisibleStateReasoner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4499B941E0637B00033991E /* ViewControllerVisibleStateReasoner.swift */; };
 		C48BF6571FD0D8FB00062EC8 /* AccessibilityAwareStaticTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48BF6561FD0D8FB00062EC8 /* AccessibilityAwareStaticTableViewController.swift */; };
@@ -31,6 +45,11 @@
 		C4A8B8441DFC525900BEACFE /* ErrorPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A8B8431DFC525900BEACFE /* ErrorPresentation.swift */; };
 		C4EB27F51DFA334D00BF0843 /* ModuleExports-GETracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27F31DFA334D00BF0843 /* ModuleExports-GETracing.swift */; };
 		C4EB27F61DFA334D00BF0843 /* ModuleExports-GEFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27F41DFA334D00BF0843 /* ModuleExports-GEFoundation.swift */; };
+		D47EFA237355CC259C5CA41C /* TintedLabel.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48BF6581FD0DB5A00062EC8 /* TintedLabel.swift */; };
+		ED90E45767360C542BEB168E /* ViewControllerVisibleStateReasoner.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4499B941E0637B00033991E /* ViewControllerVisibleStateReasoner.swift */; };
+		F151ECCFD45D97AB1E765F67 /* StatusBarOverlay.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A10336A01FE69C000096330F /* StatusBarOverlay.swift */; };
+		F3891E2BA33B4C1CE7B64610 /* TypeFilteringActivity.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1381DBB989000A86CC0 /* TypeFilteringActivity.swift */; };
+		FEF93757D8C2B8BF166DFBFD /* StatusBarTimeLabel.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A10336A21FE6A9DC0096330F /* StatusBarTimeLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +61,38 @@
 			remoteInfo = GEUIKit;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		82DC36DB6F0CBA8E1BEA9906 /* Embed Sources */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "Sources/$(TARGET_NAME)";
+			dstSubfolderSpec = 7;
+			files = (
+				F3891E2BA33B4C1CE7B64610 /* TypeFilteringActivity.swift in Embed Sources */,
+				098C70FC5FB00A445C6BC04F /* ModuleExports-GEFoundation.swift in Embed Sources */,
+				F151ECCFD45D97AB1E765F67 /* StatusBarOverlay.swift in Embed Sources */,
+				77AF02333D11A28FB1D16612 /* TableViewFetchedResultsControllerDelegate.swift in Embed Sources */,
+				9CD4B26F45916500D751895B /* ModuleExports-GETracing.swift in Embed Sources */,
+				BF3654270F066E105F168357 /* TableViewHeightBasedReusedCellGenerator.swift in Embed Sources */,
+				881559B53CC1C7D50F3C450C /* UIDataSourceModelAssociation+NilIndexPathInModelIdentifierForElement.swift in Embed Sources */,
+				96EA154DDEB035D54F543E37 /* SystemLayoutSizeCachingTableViewCell.swift in Embed Sources */,
+				2F3AB686A7BA38A1D0C58B0C /* FrequencyAndWeightBasedTableRowHeightEstimator.swift in Embed Sources */,
+				188EBE46A3020A31E94DB88B /* ErrorPresentation.swift in Embed Sources */,
+				918CC03B2E1743A7AB585064 /* MonospacedLabel.swift in Embed Sources */,
+				9848576AA190659010487939 /* UIFontExtensions.swift in Embed Sources */,
+				ED90E45767360C542BEB168E /* ViewControllerVisibleStateReasoner.swift in Embed Sources */,
+				547EBBD7C427AFC628B66C1E /* AccessibilityAwareStaticTableViewController.swift in Embed Sources */,
+				D47EFA237355CC259C5CA41C /* TintedLabel.swift in Embed Sources */,
+				49BB02748BCFD3BA3DEE061D /* UIKitUtilities.swift in Embed Sources */,
+				A1C063CE58837C1D68EC72E3 /* ViewOfKind.swift in Embed Sources */,
+				60580BC84F8C24D9C39283A3 /* Globals.swift in Embed Sources */,
+				FEF93757D8C2B8BF166DFBFD /* StatusBarTimeLabel.swift in Embed Sources */,
+			);
+			name = "Embed Sources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		A10336A01FE69C000096330F /* StatusBarOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarOverlay.swift; sourceTree = "<group>"; };
@@ -184,7 +235,7 @@
 				C49FF11A1DBB985400A86CC0 /* Frameworks */,
 				C49FF11B1DBB985400A86CC0 /* Headers */,
 				C49FF11C1DBB985400A86CC0 /* Resources */,
-				C4EDE1F61FBC255F00BB7F55 /* Embed Sources */,
+				82DC36DB6F0CBA8E1BEA9906 /* Embed Sources */,
 			);
 			buildRules = (
 			);
@@ -270,24 +321,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		C4EDE1F61FBC255F00BB7F55 /* Embed Sources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Sources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/sh -e";
-			shellScript = "\"${GE_XCODE_BUILD_PHASES:?}\"/EmbedSourcesIntoBundle\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C49FF1191DBB985400A86CC0 /* Sources */ = {

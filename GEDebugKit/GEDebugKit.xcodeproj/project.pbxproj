@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01D24592AB2BBEAD74629537 /* GenerationViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A1FB04161FDB0569008D14E4 /* GenerationViewController.swift */; };
+		0A770554FEF128FABC4BA115 /* Debugging.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A1839A151FD88064003313D6 /* Debugging.swift */; };
+		1C3139633BE6FD5B5C5B1FA2 /* ModuleExports-GETracing.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A1FB04201FDC4F15008D14E4 /* ModuleExports-GETracing.swift */; };
+		2DB44FC4430FAEB3ACE95052 /* ObjectsViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A1CE70891FDE2A290080D832 /* ObjectsViewController.swift */; };
+		6366A5860472F2FD07FB2B98 /* ModuleExports-GEFoundation.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A1839A1B1FD8866B003313D6 /* ModuleExports-GEFoundation.swift */; };
+		6D8E8F0A2FA646C8FCAD47E0 /* WeakReference.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A1FB041C1FDC4AAA008D14E4 /* WeakReference.swift */; };
+		76C17F7E636110CDC9D89E53 /* DebugViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A176B2241FD69C6500E945E9 /* DebugViewController.swift */; };
+		7AD251205917F207A4D3B4C2 /* AliveObjects.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A1FB041E1FDC4E59008D14E4 /* AliveObjects.swift */; };
+		848D158EEA460EA95D80FB8F /* ObjectDetailViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A1CE70851FDE24890080D832 /* ObjectDetailViewController.swift */; };
+		9044B2C18D902751021AECB8 /* Defaults.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A18DB4341FD8214900254FF8 /* Defaults.swift */; };
 		A10336891FE4545E0096330F /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A10336881FE4545E0096330F /* Colors.xcassets */; };
 		A10336901FE5FD3C0096330F /* FPSCounter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A10336911FE5FD3C0096330F /* FPSCounter.framework */; };
 		A10336921FE5FF720096330F /* FBAllocationTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A10336941FE5FF720096330F /* FBAllocationTracker.framework */; };
@@ -28,6 +38,8 @@
 		A1FB041D1FDC4AAA008D14E4 /* WeakReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB041C1FDC4AAA008D14E4 /* WeakReference.swift */; };
 		A1FB041F1FDC4E59008D14E4 /* AliveObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB041E1FDC4E59008D14E4 /* AliveObjects.swift */; };
 		A1FB04211FDC4F16008D14E4 /* ModuleExports-GETracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB04201FDC4F15008D14E4 /* ModuleExports-GETracing.swift */; };
+		A249885D1077166099F0A334 /* FPSMonitoring.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A10336A61FE6C74E0096330F /* FPSMonitoring.swift */; };
+		B3BED5551EE3E26612BCA49F /* CwlDemangle.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A151CFE31FE7395E00165639 /* CwlDemangle.swift */; };
 		C43189B81FDC9AE4003E571E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C43189B71FDC9AE4003E571E /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +52,31 @@
 			remoteInfo = GEDebugKit;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		92A23FFBF9908DEC186391B9 /* Embed Sources */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "Sources/$(TARGET_NAME)";
+			dstSubfolderSpec = 7;
+			files = (
+				76C17F7E636110CDC9D89E53 /* DebugViewController.swift in Embed Sources */,
+				6366A5860472F2FD07FB2B98 /* ModuleExports-GEFoundation.swift in Embed Sources */,
+				6D8E8F0A2FA646C8FCAD47E0 /* WeakReference.swift in Embed Sources */,
+				0A770554FEF128FABC4BA115 /* Debugging.swift in Embed Sources */,
+				A249885D1077166099F0A334 /* FPSMonitoring.swift in Embed Sources */,
+				848D158EEA460EA95D80FB8F /* ObjectDetailViewController.swift in Embed Sources */,
+				1C3139633BE6FD5B5C5B1FA2 /* ModuleExports-GETracing.swift in Embed Sources */,
+				2DB44FC4430FAEB3ACE95052 /* ObjectsViewController.swift in Embed Sources */,
+				7AD251205917F207A4D3B4C2 /* AliveObjects.swift in Embed Sources */,
+				9044B2C18D902751021AECB8 /* Defaults.swift in Embed Sources */,
+				01D24592AB2BBEAD74629537 /* GenerationViewController.swift in Embed Sources */,
+				B3BED5551EE3E26612BCA49F /* CwlDemangle.swift in Embed Sources */,
+			);
+			name = "Embed Sources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		A10336881FE4545E0096330F /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -180,6 +217,7 @@
 				A176B2001FD5D94F00E945E9 /* Frameworks */,
 				A176B2011FD5D94F00E945E9 /* Headers */,
 				A176B2021FD5D94F00E945E9 /* Resources */,
+				92A23FFBF9908DEC186391B9 /* Embed Sources */,
 			);
 			buildRules = (
 			);
