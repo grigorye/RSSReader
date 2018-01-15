@@ -1,6 +1,9 @@
 PODS:
   - Crashlytics (3.9.3):
     - Fabric (~> 1.7.2)
+  - CwlCatchException (1.0.2)
+  - CwlPreconditionTesting (1.1.0):
+    - CwlCatchException
   - Fabric (1.7.2)
   - FBAllocationTracker (0.1.5)
   - FBMemoryProfiler (0.1.3):
@@ -22,6 +25,8 @@ PODS:
 
 DEPENDENCIES:
   - Crashlytics
+  - CwlCatchException (from `https://github.com/mattgallagher/CwlCatchException.git`)
+  - CwlPreconditionTesting (from `https://github.com/mattgallagher/CwlPreconditionTesting.git`)
   - Fabric
   - FBAllocationTracker (from `https://github.com/grigorye/FBAllocationTracker.git`)
   - FBMemoryProfiler
@@ -33,16 +38,28 @@ DEPENDENCIES:
   - Watchdog
 
 EXTERNAL SOURCES:
+  CwlCatchException:
+    :git: https://github.com/mattgallagher/CwlCatchException.git
+  CwlPreconditionTesting:
+    :git: https://github.com/mattgallagher/CwlPreconditionTesting.git
   FBAllocationTracker:
     :git: https://github.com/grigorye/FBAllocationTracker.git
 
 CHECKOUT OPTIONS:
+  CwlCatchException:
+    :commit: b14c111e9b33cd142bd4bc75c482cfd5c3490923
+    :git: https://github.com/mattgallagher/CwlCatchException.git
+  CwlPreconditionTesting:
+    :commit: b2e4800abf854366d4492051069cce7b44d20ba1
+    :git: https://github.com/mattgallagher/CwlPreconditionTesting.git
   FBAllocationTracker:
     :commit: c77a5f20240b3b890f8ed8cc1fca082c0847f04f
     :git: https://github.com/grigorye/FBAllocationTracker.git
 
 SPEC CHECKSUMS:
   Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
+  CwlCatchException: 70a52ae44ea5d46db7bd385f801a94942420cd8c
+  CwlPreconditionTesting: d9b35890c80b34668cd90da5bef077fd817a99fc
   Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
   FBAllocationTracker: dfdca3f71aceca6a85e95e3c6ec76a9785eba0f1
   FBMemoryProfiler: 623fc5f8a61f7d02ec75c87e3b97c90f621d8b02
@@ -55,6 +72,6 @@ SPEC CHECKSUMS:
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
   Watchdog: 141185b6b3a332a9f5721ea42dfa9681cf2d7c6b
 
-PODFILE CHECKSUM: a0afc906a3d917c12a7602dbf179f707c7154115
+PODFILE CHECKSUM: f68c67a2d1b38761bcf069059150576e0660515c
 
 COCOAPODS: 1.3.1
