@@ -8,30 +8,88 @@
 
 @testable import RSSReaderData
 import XCTest
+import CoreData
+import PromiseKit
 
-class RSSSessionTests: XCTestCase {
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testExample() {
+class RSSSessionTests : DataEnabledTestCase {
+	
+	typealias _Self = RSSSessionTests
+	
+	static func loginAndPasswordImp() -> LoginAndPassword {
+		
+		let bundle = Bundle(for: _Self.self)
+		let plistURL = bundle.url(forResource: "RSSReaderDataTests-Secrets", withExtension: "plist")!
+		let plistData = try! Data(contentsOf: plistURL)
+		let plist = try! PropertyListSerialization.propertyList(from: plistData, options: [], format: nil) as! [String : String]
+		let login = plist["login"]
+		let password = plist["password"]
+		return LoginAndPassword(login: login, password: password)
+	}
+	
+	static let loginAndPassword: LoginAndPassword = loginAndPasswordImp()
+	
+	let rssSession = RSSSession(loginAndPassword: loginAndPassword)
+	
+	// MARK: -
+	
+	override func setUp() {
+		
+		super.setUp()
+		x$(self)
+		let authenticateDidComplete = self.expectation(description: "authenticateDidComplete")
+		defaults.forceStoreRemoval = true
+		firstly(execute: {
+			return rssSession.authenticate()
+		}).then(execute: {
+			authenticateDidComplete.fulfill()
+		}).catch(execute: { error in
+			authenticateDidComplete.fulfill()
+			XCTFail("error: \(error)")
+		})
+		self.waitForExpectations(timeout: 10) { error in
+			x$(error)
+		}
+	}
+	
+	// MARK: -
+	
+	func testPullTags() {
+		
+		x$(mainQueueManagedObjectContext.persistentStoreCoordinator)
+		
+		let pullTagsComplete = self.expectation(description: "pullTagsComplete")
+		firstly(execute: {
+			return rssSession.pullTags()
+		}).then(execute: {
+			pullTagsComplete.fulfill()
+		}).catch(execute: { error in
+			XCTFail("error: \(error)")
+		})
+		self.waitForExpectations(timeout: 5) { error in
+			x$(error)
+		}
+	}
+	
+	func testPullTagsFromLastData() {
+		
+		x$(mainQueueManagedObjectContext.persistentStoreCoordinator)
+		let pullTagsComplete = self.expectation(description: "pullTagsComplete")
+		firstly(execute: {
+			return rssSession.pullTags()
+		}).then(execute: {
+			pullTagsComplete.fulfill()
+		}).catch(execute: { error in
+			XCTFail("error: \(error)")
+		})
+		self.waitForExpectations(timeout: 1) { error in
+			x$(error)
+		}
+	}
+	
+	func testNewSession() {
+		
 		let loginAndPassword = LoginAndPassword(login: "x", password: "y")
 		let session = RSSSession(loginAndPassword: loginAndPassword)
 		x$(session)
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure() {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
+	}
 }
