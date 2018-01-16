@@ -25,6 +25,7 @@
 		C4EB27FA1DFA33A100BF0843 /* ModuleExports-GEFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27F81DFA33A100BF0843 /* ModuleExports-GEFoundation.swift */; };
 		C4EB28011DFA382900BF0843 /* ModuleExports-GECoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27FF1DFA382500BF0843 /* ModuleExports-GECoreData.swift */; };
 		EC014E5CF16C66D38A9D6DA5 /* ManagedObjectContextAutosaver.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1901DBB9C8700A86CC0 /* ManagedObjectContextAutosaver.swift */; };
+		F3B71F7215936FF96425A0E4 /* PersistentContainerWithCustomDirectory.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4C69590200D684B006C2A8D /* PersistentContainerWithCustomDirectory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 				2DEAB34782C3C83FB7874D1E /* ModuleExports-GETracing.swift in Embed Sources */,
 				42A14C2F10128252F1B306C9 /* FetchedObjectBinding.swift in Embed Sources */,
 				B0E9688B99AAF2F6CBA6E192 /* CoreDataCaching.swift in Embed Sources */,
+				F3B71F7215936FF96425A0E4 /* PersistentContainerWithCustomDirectory.swift in Embed Sources */,
 			);
 			name = "Embed Sources";
 			runOnlyForDeploymentPostprocessing = 0;
