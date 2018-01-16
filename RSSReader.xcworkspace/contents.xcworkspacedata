@@ -5,6 +5,9 @@
       location = "container:"
       name = "Modules">
       <FileRef
+         location = "group:GEXCTest/GEXCTest.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:XcodeConfiguration">
       </FileRef>
       <FileRef
