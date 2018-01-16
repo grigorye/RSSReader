@@ -11,75 +11,22 @@ import XCTest
 import CoreData
 import PromiseKit
 
-class CoreDataFetchRequestsTests : XCTestCase {
-
-	typealias _Self = CoreDataFetchRequestsTests
+class CoreDataFetchRequestsTests : DataEnabledTestCase {
 	
-	static let loginAndPassword: LoginAndPassword = try! {
-		let bundle = Bundle(for: _Self.self)
-		let plistURL = bundle.url(forResource: "RSSReaderDataTests-Secrets", withExtension: "plist")!
-		let plistData = try Data(contentsOf: plistURL)
-		let plist = try! PropertyListSerialization.propertyList(from: plistData, options: [], format: nil) as! [String : String]
-		let login = plist["login"]
-		let password = plist["password"]
-		return LoginAndPassword(login: login, password: password)
-	}()
-	
-	let rssSession = RSSSession(loginAndPassword: _Self.loginAndPassword)
-	
-	// MARK: -
-    override func setUp() {
+	override func setUp() {
+		
 		super.setUp()
-		x$(self)
-		let authenticateDidComplete = self.expectation(description: "authenticateDidComplete")
-		defaults.forceStoreRemoval = true
-		firstly {
-			return rssSession.authenticate()
-		}.then {
-			authenticateDidComplete.fulfill()
-		}.catch { error in
-			authenticateDidComplete.fulfill()
-			XCTFail("error: \(error)")
-		}
-		self.waitForExpectations(timeout: 10) { error in
-			x$(error)
-		}
-    }
-    override func tearDown() {
-        super.tearDown()
-    }
-	// MARK: -
-    func testPullTags() {
-		x$(mainQueueManagedObjectContext.persistentStoreCoordinator)
-    	let pullTagsComplete = self.expectation(description: "pullTagsComplete")
-		firstly {
-			return rssSession.pullTags()
-		}.then {
-			pullTagsComplete.fulfill()
-		}.catch { error in
-			XCTFail("error: \(error)")
-		}
-		self.waitForExpectations(timeout: 5) { error in
-			x$(error)
-		}
+		
+		_ = dataGenerator.newFolder(withName: "Foo")
+		try! mainQueueManagedObjectContext.save()
 	}
-    func testPullTagsFromLastData() {
-		x$(mainQueueManagedObjectContext.persistentStoreCoordinator)
-    	let pullTagsComplete = self.expectation(description: "pullTagsComplete")
-		firstly {
-			return rssSession.pullTags()
-		}.then {
-			pullTagsComplete.fulfill()
-		}.catch { error in
-			XCTFail("error: \(error)")
-		}
-		self.waitForExpectations(timeout: 5) { error in
-			x$(error)
-		}
-		RunLoop.current.run(until: Date(timeIntervalSinceNow: 5))
-	}
+	
 	func testFetchRequestInPerformBlockInBackgroundQueueContextWithDirectAccessFetchedResult() {
+		
+		let didPerformBlock = self.expectation(description: "didPerformBlock")
+		let backgroundQueueManagedObjectContext = rssData.backgroundQueueManagedObjectContext
 		backgroundQueueManagedObjectContext.perform {
+			defer { didPerformBlock.fulfill() }
 			let fetchRequest = Folder.fetchRequestForEntity()
 			let objects = try! backgroundQueueManagedObjectContext.fetch(fetchRequest)
 			if let folder = objects.last {
@@ -89,11 +36,18 @@ class CoreDataFetchRequestsTests : XCTestCase {
 				XCTAssertTrue(false)
 			}
 		}
-		RunLoop.current.run(until: Date(timeIntervalSinceNow: 5))
+		self.waitForExpectations(timeout: 5) { error in
+			x$(error)
+		}
 	}
+	
 	func testFetchRequestInPerformBlockInBackgroundQueueContextWithFetchedResultAccessedByObjectID() {
+		
+		let didPerformBlock = self.expectation(description: "didPerformBlock")
+		let backgroundQueueManagedObjectContext = rssData.backgroundQueueManagedObjectContext
 		backgroundQueueManagedObjectContext.perform {
-            let fetchRequest = NSFetchRequest<NSManagedObjectID>(entityName: Folder.entity().name!)
+			defer { didPerformBlock.fulfill() }
+			let fetchRequest = NSFetchRequest<NSManagedObjectID>(entityName: Folder.entity().name!)
 			fetchRequest.resultType = .managedObjectIDResultType
 			let objectIDs = try! backgroundQueueManagedObjectContext.fetch(fetchRequest)
 			if let folderObjectID = objectIDs.last {
@@ -104,10 +58,15 @@ class CoreDataFetchRequestsTests : XCTestCase {
 				XCTAssertTrue(false)
 			}
 		}
-		RunLoop.current.run(until: Date(timeIntervalSinceNow: 5))
+		self.waitForExpectations(timeout: 5) { error in
+			x$(error)
+		}
 	}
+	
 	func testFetchRequestInPerformBlockInBackgroundQueueContextWithAccessFetchedResultInPerformBlock() {
-    	let didPerformBlock = self.expectation(description: "didPerformBlock")
+		
+		let didPerformBlock = self.expectation(description: "didPerformBlock")
+		let backgroundQueueManagedObjectContext = rssData.backgroundQueueManagedObjectContext
 		backgroundQueueManagedObjectContext.perform {
 			let fetchRequest = Folder.fetchRequestForEntity()
 			let objects = try! backgroundQueueManagedObjectContext.fetch(fetchRequest)
@@ -119,15 +78,18 @@ class CoreDataFetchRequestsTests : XCTestCase {
 			}
 			else {
 				XCTAssertTrue(false)
+				didPerformBlock.fulfill()
 			}
 		}
-		RunLoop.current.run(until: Date(timeIntervalSinceNow: 5))
 		self.waitForExpectations(timeout: 5) { error in
 			x$(error)
 		}
 	}
+	
 	func testFetchRequestInPerformBlockInBackgroundQueueContextWithAccessFetchedResultInPerformBlockAndWait() {
-    	let didPerformBlockAndWait = self.expectation(description: "didPerformBlockAndWait")
+		
+		let didPerformBlockAndWait = self.expectation(description: "didPerformBlockAndWait")
+		let backgroundQueueManagedObjectContext = rssData.backgroundQueueManagedObjectContext
 		backgroundQueueManagedObjectContext.perform {
 			let fetchRequest = Folder.fetchRequestForEntity()
 			let objects = try! backgroundQueueManagedObjectContext.fetch(fetchRequest)
@@ -141,19 +103,25 @@ class CoreDataFetchRequestsTests : XCTestCase {
 				XCTAssertTrue(false)
 			}
 		}
-		RunLoop.current.run(until: Date(timeIntervalSinceNow: 5))
 		self.waitForExpectations(timeout: 5) { error in
 			x$(error)
 		}
 	}
+	
 	func testFetchRequestInPerformBlockInMainQueueContext() {
+		
+		let didPerformBlock = self.expectation(description: "didPerformBlock")
+		let mainQueueManagedObjectContext = rssData.mainQueueManagedObjectContext
 		mainQueueManagedObjectContext.perform {
+			defer { didPerformBlock.fulfill() }
 			let fetchRequest = Folder.fetchRequestForEntity()
 			let objects = try! mainQueueManagedObjectContext.fetch(fetchRequest)
 			if let folder = objects.last {
 				•(folder.sortID)
 			}
 		}
-		RunLoop.current.run(until: Date(timeIntervalSinceNow: 5))
+		self.waitForExpectations(timeout: 5) { error in
+			x$(error)
+		}
 	}
 }
