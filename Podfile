@@ -10,9 +10,7 @@ target "iOS" do
   pod 'Watchdog'
   pod 'GoogleToolboxForMac/NSString+HTML'
   pod 'JGProgressHUD'
-  pod 'CwlPreconditionTesting', :git => 'https://github.com/mattgallagher/CwlPreconditionTesting.git'
-  pod 'CwlCatchException', :git => 'https://github.com/mattgallagher/CwlCatchException.git'
-    #pod 'AFMInfoBanner'
+  #pod 'AFMInfoBanner'
   #pod 'UXCam'
   #pod 'TUSafariActivity'
   #pod 'DZReadability'
@@ -25,6 +23,13 @@ target "iOS" do
   #pod 'Optimizely-iOS-SDK'
   #pod 'Firebase/Core'
 end
+
+target "GEXCTest" do
+  platform :osx, '10.11'
+  pod 'CwlPreconditionTesting', :git => 'https://github.com/mattgallagher/CwlPreconditionTesting.git'
+  pod 'CwlCatchException', :git => 'https://github.com/mattgallagher/CwlCatchException.git'
+end
+
 target "macOS" do
   platform :osx, '10.11'
   pod 'Crashlytics'
