@@ -20,7 +20,7 @@ class ItemListScrollingTests: XCTestCase {
 		tablesQuery.staticTexts["Subscriptions-AI"].tap()
 		
 		measure {
-			app.navigationBars["RSSReader.FoldersView"].buttons["Combined-AI"].tap()
+			app.navigationBars["Subscriptions"].buttons["Combined-AI"].tap()
 			app.toolbars.buttons["ToEnd-AI"].tap()
 			backButton.tap()
 		}
@@ -36,7 +36,8 @@ class ItemListScrollingTests: XCTestCase {
 			"-itemListAccessibilityDisabled", "YES",
 			"-traceEnabled", "NO",
 			"-loadOnScrollDisabled", "YES",
-			"-stateRestorationEnabled", "NO"
+			"-stateRestorationEnabled", "NO",
+			"-begEndBarButtonItemsEnabled", "YES"
 		]
 		do {
 			blocksForTearDown += [{
