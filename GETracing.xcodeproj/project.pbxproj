@@ -13,6 +13,7 @@
 		5913560DB62291711AD47BD5 /* BundleForSymbolAddress.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4FEBB1C1BF960A300A5709B /* BundleForSymbolAddress.swift */; };
 		8E5D91D430CC334A0C958EC6 /* SourceLabels.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF0E91DBAF94200A86CC0 /* SourceLabels.swift */; };
 		A2C5893EF85B785AE9D9CCE7 /* Labeling.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4E5DB861DBEAFB900170422 /* Labeling.swift */; };
+		B0685BADD896C42E61A4E11A /* BundleForSymbolAddressTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48CAA171DBBE59000D6F40E /* BundleForSymbolAddressTests.swift */; };
 		B9F7485EC19F879024ABA8C7 /* Logging.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4E5DB881DBEB01A00170422 /* Logging.swift */; };
 		C418186B1B6A65B100872EB3 /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C41818601B6A65B100872EB3 /* GETracing.framework */; };
 		C41F40501DBE94E3006EA6CD /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41F404F1DBE94E3006EA6CD /* Configuration.swift */; };
@@ -31,6 +32,7 @@
 		C4FEBB1D1BF960A300A5709B /* BundleForSymbolAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FEBB1C1BF960A300A5709B /* BundleForSymbolAddress.swift */; };
 		D1FE325B8435F6D7C1399D19 /* NestedBrackets.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF0E51DBAF7D800A86CC0 /* NestedBrackets.swift */; };
 		D8D156E9B2C78D958459B0D9 /* Configuration.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41F404F1DBE94E3006EA6CD /* Configuration.swift */; };
+		E0475618BA2C6E7169F0C172 /* NestedBracketsTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF0E71DBAF80200A86CC0 /* NestedBracketsTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,10 +49,12 @@
 		C495D89A1C0259F900A7F7D5 /* Embed Sources */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = Sources;
+			dstPath = "Sources/$(TARGET_NAME)";
 			dstSubfolderSpec = 7;
 			files = (
 				C495D89B1C025A0800A7F7D5 /* TracingTests.swift in Embed Sources */,
+				B0685BADD896C42E61A4E11A /* BundleForSymbolAddressTests.swift in Embed Sources */,
+				E0475618BA2C6E7169F0C172 /* NestedBracketsTests.swift in Embed Sources */,
 			);
 			name = "Embed Sources";
 			runOnlyForDeploymentPostprocessing = 0;
