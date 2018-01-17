@@ -1,0 +1,3 @@
+#! /bin/sh -xe
+
+./XcodeSupport/ForEveryProject . ./XcodeSupport/CreateOrUpdateEmbedSourcesBuildPhase '{}' 'Sources/$(TARGET_NAME)' \;
