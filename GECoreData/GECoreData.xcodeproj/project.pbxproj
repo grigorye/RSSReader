@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		145D3D8C63BAC97DFC0BDFC7 /* GenericCoreDataExtensions.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF16F1DBB993E00A86CC0 /* GenericCoreDataExtensions.swift */; };
 		2DEAB34782C3C83FB7874D1E /* ModuleExports-GETracing.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EB27F71DFA33A100BF0843 /* ModuleExports-GETracing.swift */; };
+		3ED2DDD76C3256A9FFC60D13 /* ModuleExports-GECoreData.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EB27FF1DFA382500BF0843 /* ModuleExports-GECoreData.swift */; };
 		42A14C2F10128252F1B306C9 /* FetchedObjectBinding.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF16E1DBB993E00A86CC0 /* FetchedObjectBinding.swift */; };
+		89B68B2D09D4274F528A0CAA /* GECoreDataTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1621DBB98F100A86CC0 /* GECoreDataTests.swift */; };
 		B0E9688B99AAF2F6CBA6E192 /* CoreDataCaching.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1701DBB993E00A86CC0 /* CoreDataCaching.swift */; };
 		C3322FF64E1C32B3575A08AF /* ModuleExports-GEFoundation.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EB27F81DFA33A100BF0843 /* ModuleExports-GEFoundation.swift */; };
 		C4270BFA1DBD4FD300FA3A0A /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BF91DBD4FD300FA3A0A /* GETracing.framework */; };
@@ -39,6 +41,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		10103D068500FD4C368BEC3F /* Embed Sources */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "Sources/$(TARGET_NAME)";
+			dstSubfolderSpec = 7;
+			files = (
+				3ED2DDD76C3256A9FFC60D13 /* ModuleExports-GECoreData.swift in Embed Sources */,
+				89B68B2D09D4274F528A0CAA /* GECoreDataTests.swift in Embed Sources */,
+			);
+			name = "Embed Sources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F5D0F633925AFD36051F5AE5 /* Embed Sources */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -192,6 +206,7 @@
 				C49FF1591DBB98F100A86CC0 /* Sources */,
 				C49FF15A1DBB98F100A86CC0 /* Frameworks */,
 				C49FF15B1DBB98F100A86CC0 /* Resources */,
+				10103D068500FD4C368BEC3F /* Embed Sources */,
 			);
 			buildRules = (
 			);

@@ -17,6 +17,7 @@
 		492E492612CB9EBB8F40B99E /* RSSSession.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79C51C008DDF00CC6F74 /* RSSSession.swift */; };
 		5FBB659664C6671A9E784B7D /* ModuleExports-GETracing.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EB28041DFA389300BF0843 /* ModuleExports-GETracing.swift */; };
 		600DFE39B06D3E00B998F231 /* ContainerViewState.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79D11C008E1D00CC6F74 /* ContainerViewState.swift */; };
+		6841B9EBC565E70A7E55D4FA /* RSSReaderDataTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79AD1C008D0E00CC6F74 /* RSSReaderDataTests.swift */; };
 		688CAD42D1AFBFB99C7E57DC /* Container.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79C81C008DF100CC6F74 /* Container.swift */; };
 		6B3A823C9264992403BAA179 /* RSSSessionTaskResultImporting.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4DB6A6F1D2602B400E8516D /* RSSSessionTaskResultImporting.swift */; };
 		6FCA5CDC28D4CCFCDAD99CFB /* ContainerLoadController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5ADC1DA9742300E1734F /* ContainerLoadController.swift */; };
@@ -24,7 +25,12 @@
 		87E7E08DB6C99AD3937CEB09 /* MarkingAsRead.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79D31C008E3900CC6F74 /* MarkingAsRead.swift */; };
 		9044BB2E84E17DC1F2745E67 /* LoginAndPassword.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79FC1C008FEE00CC6F74 /* LoginAndPassword.swift */; };
 		94B977FA9CC048C347C6E196 /* CoreDataGlobals.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4B437361C00A75200A2F3BE /* CoreDataGlobals.swift */; };
+		9B38963B72E93AFED2879A69 /* DataEnabledTestCase.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4C695C8200D7B42006C2A8D /* DataEnabledTestCase.swift */; };
+		A2252FE67E4B3B446744BDC7 /* DataGenerator.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C483683C200C16C700A0F25E /* DataGenerator.swift */; };
 		A3B4E6EFDBC047C9752CFDAB /* Subscription.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79C91C008DF100CC6F74 /* Subscription.swift */; };
+		A45F15A6D5EE87FE8BA0996A /* ModuleExports-GETracing.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EB28041DFA389300BF0843 /* ModuleExports-GETracing.swift */; };
+		B2B6ECA640A92E33B059A701 /* RSSSessionTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79C31C008DD300CC6F74 /* RSSSessionTests.swift */; };
+		BE91654A8F2F24063729B509 /* CoreDataFetchRequestsTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4B4374E1C00F00700A2F3BE /* CoreDataFetchRequestsTests.swift */; };
 		C4270BFE1DBD500D00FA3A0A /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BFD1DBD500D00FA3A0A /* GETracing.framework */; };
 		C4290F8A1EA3223300CAD5AE /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4290F891EA3223300CAD5AE /* Globals.swift */; };
 		C441F1851DB25ABD0060E692 /* FoldersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F1841DB25ABD0060E692 /* FoldersController.swift */; };
@@ -69,6 +75,7 @@
 		C4EB28071DFA389300BF0843 /* ModuleExports-GEFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB28051DFA389300BF0843 /* ModuleExports-GEFoundation.swift */; };
 		C4FCF4921E08E22B00D0EAC1 /* CategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FCF4911E08E22B00D0EAC1 /* CategoryItem.swift */; };
 		CFBE22919B00D6CD182A1447 /* RSSSessionCommands.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4DB6A731D261AE400E8516D /* RSSSessionCommands.swift */; };
+		D6C7D3673183F09FA50E9DA1 /* GeneratedDataTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4423685200C1D1B00DA59D5 /* GeneratedDataTests.swift */; };
 		F14EB423B6C470DCA5F55AE7 /* RSSReader.xcdatamodeld in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79D51C008E6A00CC6F74 /* RSSReader.xcdatamodeld */; };
 		FE75B3CEB49B18F0DAFA0747 /* Globals.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4290F891EA3223300CAD5AE /* Globals.swift */; };
 /* End PBXBuildFile section */
@@ -111,6 +118,23 @@
 				94B977FA9CC048C347C6E196 /* CoreDataGlobals.swift in Embed Sources */,
 				184B8E80DA90B49B90658D20 /* CategoryItem.swift in Embed Sources */,
 				6FCA5CDC28D4CCFCDAD99CFB /* ContainerLoadController.swift in Embed Sources */,
+			);
+			name = "Embed Sources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7C2963C2D742F32005F51FED /* Embed Sources */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "Sources/$(TARGET_NAME)";
+			dstSubfolderSpec = 7;
+			files = (
+				D6C7D3673183F09FA50E9DA1 /* GeneratedDataTests.swift in Embed Sources */,
+				A45F15A6D5EE87FE8BA0996A /* ModuleExports-GETracing.swift in Embed Sources */,
+				6841B9EBC565E70A7E55D4FA /* RSSReaderDataTests.swift in Embed Sources */,
+				B2B6ECA640A92E33B059A701 /* RSSSessionTests.swift in Embed Sources */,
+				A2252FE67E4B3B446744BDC7 /* DataGenerator.swift in Embed Sources */,
+				BE91654A8F2F24063729B509 /* CoreDataFetchRequestsTests.swift in Embed Sources */,
+				9B38963B72E93AFED2879A69 /* DataEnabledTestCase.swift in Embed Sources */,
 			);
 			name = "Embed Sources";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,6 +360,7 @@
 				C48F79A51C008D0E00CC6F74 /* Frameworks */,
 				C48F79A61C008D0E00CC6F74 /* Resources */,
 				C49FF1CF1DBBACBA00A86CC0 /* Embed Frameworks */,
+				7C2963C2D742F32005F51FED /* Embed Sources */,
 			);
 			buildRules = (
 			);

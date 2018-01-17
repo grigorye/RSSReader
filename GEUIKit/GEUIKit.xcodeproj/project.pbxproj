@@ -13,6 +13,7 @@
 		49BB02748BCFD3BA3DEE061D /* UIKitUtilities.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF13E1DBB989000A86CC0 /* UIKitUtilities.swift */; };
 		547EBBD7C427AFC628B66C1E /* AccessibilityAwareStaticTableViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48BF6561FD0D8FB00062EC8 /* AccessibilityAwareStaticTableViewController.swift */; };
 		60580BC84F8C24D9C39283A3 /* Globals.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF18E1DBB9C3200A86CC0 /* Globals.swift */; };
+		6792A0DFD1DA540CC6F96025 /* GEUIKitTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF12C1DBB985400A86CC0 /* GEUIKitTests.swift */; };
 		77AF02333D11A28FB1D16612 /* TableViewFetchedResultsControllerDelegate.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF1391DBB989000A86CC0 /* TableViewFetchedResultsControllerDelegate.swift */; };
 		881559B53CC1C7D50F3C450C /* UIDataSourceModelAssociation+NilIndexPathInModelIdentifierForElement.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF13F1DBB989000A86CC0 /* UIDataSourceModelAssociation+NilIndexPathInModelIdentifierForElement.swift */; };
 		918CC03B2E1743A7AB585064 /* MonospacedLabel.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A1CE708B1FDE77700080D832 /* MonospacedLabel.swift */; };
@@ -63,6 +64,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		7BE032DD286D2F5A633A0987 /* Embed Sources */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "Sources/$(TARGET_NAME)";
+			dstSubfolderSpec = 7;
+			files = (
+				6792A0DFD1DA540CC6F96025 /* GEUIKitTests.swift in Embed Sources */,
+			);
+			name = "Embed Sources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		82DC36DB6F0CBA8E1BEA9906 /* Embed Sources */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -253,6 +265,7 @@
 				C49FF1231DBB985400A86CC0 /* Sources */,
 				C49FF1241DBB985400A86CC0 /* Frameworks */,
 				C49FF1251DBB985400A86CC0 /* Resources */,
+				7BE032DD286D2F5A633A0987 /* Embed Sources */,
 			);
 			buildRules = (
 			);

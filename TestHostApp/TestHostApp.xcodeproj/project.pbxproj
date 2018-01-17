@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		611B8FAA44F04BB701B060F6 /* DetailViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4F5071D1B5B9AC8002D9B02 /* DetailViewController.swift */; };
+		75694883846C1CDF87889B77 /* MasterViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4F5071B1B5B9AC8002D9B02 /* MasterViewController.swift */; };
+		7FACF8C38D73A155F549BBFA /* AppDelegate.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4F507191B5B9AC8002D9B02 /* AppDelegate.swift */; };
 		C4C1506B1DECF43400534E44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C1506A1DECF43400534E44 /* AppDelegate.swift */; };
 		C4C1506D1DECF43400534E44 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C1506C1DECF43400534E44 /* ViewController.swift */; };
 		C4C1506F1DECF43400534E44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4C1506E1DECF43400534E44 /* Assets.xcassets */; };
@@ -17,7 +20,37 @@
 		C4F507211B5B9AC8002D9B02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4F5071F1B5B9AC8002D9B02 /* Main.storyboard */; };
 		C4F507231B5B9AC8002D9B02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4F507221B5B9AC8002D9B02 /* Assets.xcassets */; };
 		C4F507261B5B9AC8002D9B02 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4F507241B5B9AC8002D9B02 /* LaunchScreen.storyboard */; };
+		D1C75C05AB7A69DB21736721 /* AppDelegate.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4C1506A1DECF43400534E44 /* AppDelegate.swift */; };
+		FE53126824E281D9DDAB6423 /* ViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4C1506C1DECF43400534E44 /* ViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2513E2C26C1A8DB00CCA30F1 /* Embed Sources */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "Sources/$(TARGET_NAME)";
+			dstSubfolderSpec = 7;
+			files = (
+				611B8FAA44F04BB701B060F6 /* DetailViewController.swift in Embed Sources */,
+				75694883846C1CDF87889B77 /* MasterViewController.swift in Embed Sources */,
+				7FACF8C38D73A155F549BBFA /* AppDelegate.swift in Embed Sources */,
+			);
+			name = "Embed Sources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D6A9AD6B56E90AC41AA73FAE /* Embed Sources */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "Sources/$(TARGET_NAME)";
+			dstSubfolderSpec = 7;
+			files = (
+				FE53126824E281D9DDAB6423 /* ViewController.swift in Embed Sources */,
+				D1C75C05AB7A69DB21736721 /* AppDelegate.swift in Embed Sources */,
+			);
+			name = "Embed Sources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C49FF0EB1DBAFCDB00A86CC0 /* GEShared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = GEShared.xcconfig; path = ../XcodeConfiguration/GEShared.xcconfig; sourceTree = "<group>"; };
@@ -110,6 +143,7 @@
 				C4C150641DECF43400534E44 /* Sources */,
 				C4C150651DECF43400534E44 /* Frameworks */,
 				C4C150661DECF43400534E44 /* Resources */,
+				D6A9AD6B56E90AC41AA73FAE /* Embed Sources */,
 			);
 			buildRules = (
 			);
@@ -127,6 +161,7 @@
 				C4F507121B5B9AC8002D9B02 /* Sources */,
 				C4F507131B5B9AC8002D9B02 /* Frameworks */,
 				C4F507141B5B9AC8002D9B02 /* Resources */,
+				2513E2C26C1A8DB00CCA30F1 /* Embed Sources */,
 			);
 			buildRules = (
 			);

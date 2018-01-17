@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1379CCBD7010E50129237339 /* BadInstructionAwareTestCase.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4C695C6200D7B34006C2A8D /* BadInstructionAwareTestCase.swift */; };
+		3C65ACAFD994BF87542ADC87 /* GEXCTestTests.m in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4C695B3200D7836006C2A8D /* GEXCTestTests.m */; };
 		74C17A476EAB25FA7E0FAF31 /* NSObject+BadInstructionAwareTestCaseLoading.m in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4C695CB200D7C03006C2A8D /* NSObject+BadInstructionAwareTestCaseLoading.m */; };
 		C4C695AF200D7836006C2A8D /* GEXCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4C695A5200D7836006C2A8D /* GEXCTest.framework */; };
 		C4C695B4200D7836006C2A8D /* GEXCTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C695B3200D7836006C2A8D /* GEXCTestTests.m */; };
@@ -39,6 +40,17 @@
 			files = (
 				74C17A476EAB25FA7E0FAF31 /* NSObject+BadInstructionAwareTestCaseLoading.m in Embed Sources */,
 				1379CCBD7010E50129237339 /* BadInstructionAwareTestCase.swift in Embed Sources */,
+			);
+			name = "Embed Sources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E22E3BA52349CAE25B7BB7E9 /* Embed Sources */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "Sources/$(TARGET_NAME)";
+			dstSubfolderSpec = 7;
+			files = (
+				3C65ACAFD994BF87542ADC87 /* GEXCTestTests.m in Embed Sources */,
 			);
 			name = "Embed Sources";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -175,6 +187,7 @@
 				C4C695AA200D7836006C2A8D /* Sources */,
 				C4C695AB200D7836006C2A8D /* Frameworks */,
 				C4C695AC200D7836006C2A8D /* Resources */,
+				E22E3BA52349CAE25B7BB7E9 /* Embed Sources */,
 			);
 			buildRules = (
 			);

@@ -22,6 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		044D513CDDD1A1D04CA111D8 /* ItemTableView.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C42BA28A1DF4DB9B00213D70 /* ItemTableView.swift */; };
+		057DF08A50A1D0132B0D4522 /* RSSReaderUITests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C444F53E1B2E53F200A6E378 /* RSSReaderUITests.swift */; };
 		1237A3D8C26772A17CAC0310 /* MainScene.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C441F1781DB24A1D0060E692 /* MainScene.swift */; };
 		1FBD3D1AD5DCE07D8787FFF6 /* ContainerViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EA5C351CE91E8600E395FE /* ContainerViewController.swift */; };
 		25DF1DC49BDF8DAB90457A6B /* ItemPageViewControllerDataSource.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C46934DE1A5D291C00A0AEA2 /* ItemPageViewControllerDataSource.swift */; };
@@ -49,6 +50,7 @@
 		85CA9195EBA2E00010C1896D /* FoldersViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C42802681A5B47EA002474E1 /* FoldersViewController.swift */; };
 		87A7197CFC86472B924DCABE /* DefaultRSSSessionBinding.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C441F17E1DB258550060E692 /* DefaultRSSSessionBinding.swift */; };
 		9365BA872E3F7F99BE97308C /* LogViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C474F0A71D80E65F00CABEB9 /* LogViewController.swift */; };
+		A09D6C3BE522790A7DEB800F /* ItemListScrollingTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49BA5DD1DF4C7F900968FFE /* ItemListScrollingTests.swift */; };
 		A0D6B58EB72652C007AE0FC6 /* ItemSummaryWebViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */; };
 		A103368B1FE469B30096330F /* FolderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A103368A1FE469B30096330F /* FolderTableViewCell.xib */; };
 		A103368D1FE46A070096330F /* SubscriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A103368C1FE46A070096330F /* SubscriptionTableViewCell.xib */; };
@@ -189,6 +191,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		2934CF0F256DC955D6FF2E75 /* Embed Sources */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "Sources/$(TARGET_NAME)";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			name = "Embed Sources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5CEAC840648A3A88A0241152 /* Embed Sources */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "Sources/$(TARGET_NAME)";
+			dstSubfolderSpec = 7;
+			files = (
+				A09D6C3BE522790A7DEB800F /* ItemListScrollingTests.swift in Embed Sources */,
+				057DF08A50A1D0132B0D4522 /* RSSReaderUITests.swift in Embed Sources */,
+			);
+			name = "Embed Sources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		687C9AAFBE7A8236C3E90846 /* Embed Sources */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -734,6 +758,7 @@
 				C444F5391B2E53F200A6E378 /* Frameworks */,
 				C444F53A1B2E53F200A6E378 /* Resources */,
 				C4816E2B1DF612A800DDACA7 /* Embed Frameworks */,
+				5CEAC840648A3A88A0241152 /* Embed Sources */,
 			);
 			buildRules = (
 			);
@@ -780,6 +805,7 @@
 				C4CDD3B11A5350B50087DD05 /* Frameworks */,
 				C4CDD3B21A5350B50087DD05 /* Resources */,
 				C4E2E6541AE097E100F2A94E /* CopyFiles */,
+				2934CF0F256DC955D6FF2E75 /* Embed Sources */,
 			);
 			buildRules = (
 			);

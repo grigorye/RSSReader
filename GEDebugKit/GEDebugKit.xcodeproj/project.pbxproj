@@ -41,6 +41,7 @@
 		A249885D1077166099F0A334 /* FPSMonitoring.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A10336A61FE6C74E0096330F /* FPSMonitoring.swift */; };
 		B3BED5551EE3E26612BCA49F /* CwlDemangle.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A151CFE31FE7395E00165639 /* CwlDemangle.swift */; };
 		C43189B81FDC9AE4003E571E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C43189B71FDC9AE4003E571E /* Images.xcassets */; };
+		D1D4F6347EA37969E78C078D /* GEDebugKitTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A176B2121FD5D95000E945E9 /* GEDebugKitTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		7E7F17C7C9C6BC45621D25FF /* Embed Sources */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "Sources/$(TARGET_NAME)";
+			dstSubfolderSpec = 7;
+			files = (
+				D1D4F6347EA37969E78C078D /* GEDebugKitTests.swift in Embed Sources */,
+			);
+			name = "Embed Sources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		92A23FFBF9908DEC186391B9 /* Embed Sources */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -235,6 +247,7 @@
 				A176B2091FD5D95000E945E9 /* Sources */,
 				A176B20A1FD5D95000E945E9 /* Frameworks */,
 				A176B20B1FD5D95000E945E9 /* Resources */,
+				7E7F17C7C9C6BC45621D25FF /* Embed Sources */,
 			);
 			buildRules = (
 			);

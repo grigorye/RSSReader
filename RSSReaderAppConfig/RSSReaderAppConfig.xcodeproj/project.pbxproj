@@ -107,7 +107,7 @@
 		C4BE5AC11DA86FDF00E1734F /* Embed Sources */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = Sources;
+			dstPath = "Sources/$(TARGET_NAME)";
 			dstSubfolderSpec = 7;
 			files = (
 				C4BE5ADA1DA8712600E1734F /* RSSReaderAppConfigTests.swift in Embed Sources */,
