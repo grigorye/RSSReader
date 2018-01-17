@@ -25,7 +25,7 @@ target "iOS" do
 end
 
 target "GEXCTest" do
-  platform :osx, '10.11'
+  platform :ios, '10.11'
   pod 'CwlPreconditionTesting', :git => 'https://github.com/mattgallagher/CwlPreconditionTesting.git'
   pod 'CwlCatchException', :git => 'https://github.com/mattgallagher/CwlCatchException.git'
 end

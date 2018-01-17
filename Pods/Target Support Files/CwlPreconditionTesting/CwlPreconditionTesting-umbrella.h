@@ -1,5 +1,5 @@
 #ifdef __OBJC__
-#import <Cocoa/Cocoa.h>
+#import <UIKit/UIKit.h>
 #else
 #ifndef FOUNDATION_EXPORT
 #if defined(__cplusplus)
@@ -12,6 +12,7 @@
 
 #import "CwlPreconditionTesting.h"
 #import "CwlMachBadInstructionHandler.h"
+#import "mach_excServer.h"
 
 FOUNDATION_EXPORT double CwlPreconditionTestingVersionNumber;
 FOUNDATION_EXPORT const unsigned char CwlPreconditionTestingVersionString[];
