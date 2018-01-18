@@ -407,7 +407,11 @@ extension ItemsViewController {
 		}
 	}
 	@IBAction private func scrollToEnd(_ sender: AnyObject?) {
-		tableView.scrollToRow(at: IndexPath(row: tableView.numberOfRows(inSection: 0) - 1, section: 0), at: .bottom, animated: true)
+		let numberOfRows = tableView.numberOfRows(inSection: 0)
+		guard 0 < numberOfRows else {
+			return
+		}
+		tableView.scrollToRow(at: IndexPath(row: numberOfRows - 1, section: 0), at: .bottom, animated: true)
 	}
 	@IBAction private func scrollToBeginning(_ sender: AnyObject?) {
 		tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .bottom, animated: true)
