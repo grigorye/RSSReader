@@ -22,18 +22,23 @@ extension TypedUserDefaults {
 
 public class RSSData {
 	
+	private static let persistentStoreName = "RSSReader"
+	
 	static let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: NSClassFromString("RSSReaderData.Folder")!)])!
 
 	private static func regeneratedPSC() throws -> NSPersistentStoreCoordinator {
 		let psc = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
 		let fileManager = FileManager.default
-		let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-		let documentsDirectoryURL = urls[0]
-		if !fileManager.fileExists(atPath: documentsDirectoryURL.path) {
-			try fileManager.createDirectory(at: documentsDirectoryURL, withIntermediateDirectories: true, attributes: nil)
+		
+		let persistentStoreDirectoryURL: URL = {
+			let urls = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask)
+			return urls[0]
+		}()
+		if !(try persistentStoreDirectoryURL.checkResourceIsReachable()) {
+			try fileManager.createDirectory(at: persistentStoreDirectoryURL, withIntermediateDirectories: true, attributes: nil)
 		}
-		let storeURL = documentsDirectoryURL.appendingPathComponent("RSSReaderData.sqlite")
-		x$(fileManager.fileExists(atPath: storeURL.path))
+		let storeURL = persistentStoreDirectoryURL.appendingPathComponent("\(persistentStoreName).sqlite")
+		x$(fileManager.fileExists(atPath: x$(storeURL.path)))
 		if defaults.forceStoreRemoval {
 			let fileManager = FileManager.default
 			do {
@@ -64,18 +69,35 @@ public class RSSData {
 	}
 
 	private var saveQueueMOCAutosaver: ManagedObjectContextAutosaver?
-	private let (managedObjectContextError, saveQueueManagedObjectContext): (Error?, NSManagedObjectContext?) = {
+
+	private enum ManagedObjectContextOrError {
+		case error(Error)
+		case managedObjectContext(NSManagedObjectContext)
+	}
+	private let saveQueueManagedObjectContextOrError: ManagedObjectContextOrError = {
 		do {
 			let saveQueueManagedObjectContext = try NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType) … {
 				$0.name = "save"
 				$0.persistentStoreCoordinator = try regeneratedPSC()
 			}
-			return (nil, saveQueueManagedObjectContext)
+			return .managedObjectContext(saveQueueManagedObjectContext)
 		}
 		catch {
-			return (error, nil)
+			return .error(error)
 		}
 	}()
+	var saveQueueManagedObjectContext: NSManagedObjectContext? {
+		guard case .managedObjectContext(let managedObjectContext) = saveQueueManagedObjectContextOrError else {
+			return nil
+		}
+		return managedObjectContext
+	}
+	var managedObjectContextError: Error? {
+		guard case .error(let error) = saveQueueManagedObjectContextOrError else {
+			return nil
+		}
+		return error
+	}
 
 	lazy private (set) var persistentMainQueueManagedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)…{
 		$0.name = "main"
@@ -138,7 +160,7 @@ public class RSSData {
 		}
 	}
 
-	let persistentContainer = PersistentContainerWithCustomDirectory(name: "RSSReader", managedObjectModel: managedObjectModel)
+	let persistentContainer = PersistentContainerWithCustomDirectory(name: persistentStoreName, managedObjectModel: managedObjectModel)
 
 	func loadPersistentStores(completionHandler: @escaping (Error?) -> ()) {
 		guard #available(iOS 10.0, *), defaults.persistentContainerEnabled else {
