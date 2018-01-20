@@ -313,6 +313,11 @@ class ItemsViewController : ContainerViewController {
 			}
 		}
 	}
+
+	override func loadView() {
+		self.tableView = ItemTableView()
+	}
+	
 	// MARK: -
 	override func viewDidLoad() {
 		super.viewDidLoad()
