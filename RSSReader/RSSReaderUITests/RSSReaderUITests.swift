@@ -9,7 +9,7 @@
 import Foundation
 import XCTest
 
-class RSSReaderUITests : XCTestCase {
+class RSSReaderUITests : RSSReaderUITestsBase {
 
 	var app = XCUIApplication()
 	lazy var tablesQuery: XCUIElementQuery = self.app.tables
@@ -85,18 +85,4 @@ class RSSReaderUITests : XCTestCase {
 	func testRepeatOpenItemInStreamInSubscriptions() {
 		repeatForTesting { testOpenItemInStreamInSubscriptions() }
 	}
-	
-	// MARK:-
-	
-    override func setUp() {
-        super.setUp()
-        continueAfterFailure = false
-        XCUIApplication().launch()
-		print(app.debugDescription)
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-    }
-
 }
