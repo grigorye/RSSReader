@@ -260,7 +260,6 @@ extension NSPersistentContainer {
 	}
 }
 
-
 extension NSManagedObjectContext {
 	
 	func removeAllObjects(for entities: [NSEntityDescription]) throws {

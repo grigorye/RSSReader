@@ -20,5 +20,3 @@ class DataGenerator : NSObject {
 		return folder
 	}
 }
-
-
