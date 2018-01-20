@@ -46,9 +46,7 @@ class ItemListScrollingTests : XCTestCase {
 			let bundle = Bundle(for: _Self.self)
 			let xcappdataURL = bundle.url(forResource: "populated", withExtension: "xcappdata")!
 			let xcappdataCopyURL = temporaryDirectoryURL.appendingPathComponent(xcappdataURL.lastPathComponent)
-			if try! xcappdataCopyURL.checkResourceIsReachable() {
-				try! fileManager.removeItem(at: xcappdataCopyURL)
-			}
+			try? fileManager.removeItem(at: xcappdataCopyURL)
 			try! fileManager.copyItem(at: xcappdataURL, to: xcappdataCopyURL)
 			let homeURL = xcappdataCopyURL.appendingPathComponent("AppData")
 			XCTAssert(try! homeURL.checkResourceIsReachable())
