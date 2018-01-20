@@ -145,6 +145,7 @@
 		C4CDE1911A5A06A600F16A2E /* ItemSummaryTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */; };
 		C4CE35441CB8988F001712C8 /* RSSReaderTests-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4CE35461CB8988F001712C8 /* RSSReaderTests-InfoPlist.strings */; };
 		C4CE35491CB89890001712C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4CE354B1CB89890001712C8 /* InfoPlist.strings */; };
+		C4D75F10201290B6004D13EF /* populated.xcappdata in Resources */ = {isa = PBXBuildFile; fileRef = C4D75F0F201290B6004D13EF /* populated.xcappdata */; };
 		C4E4D6371E60C9EC007E0E39 /* Rswift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4E4D6361E60C9EC007E0E39 /* Rswift.framework */; };
 		C4E4D6381E60C9EC007E0E39 /* Rswift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4E4D6361E60C9EC007E0E39 /* Rswift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4EA5C361CE91E8600E395FE /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5C351CE91E8600E395FE /* ContainerViewController.swift */; };
@@ -427,6 +428,7 @@
 		C4CE354A1CB89890001712C8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C4CE354C1CB89C0E001712C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C4CE354D1CB89C28001712C8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C4D75F0F201290B6004D13EF /* populated.xcappdata */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = populated.xcappdata; sourceTree = "<group>"; };
 		C4E4D6361E60C9EC007E0E39 /* Rswift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Rswift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4EA5C351CE91E8600E395FE /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerViewController.swift; path = Swift/ContainerViewController.swift; sourceTree = "<group>"; };
 		C4EA5C371CE929D300E395FE /* ContainerTableViewSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ContainerTableViewSectionHeader.xib; path = Resources/ContainerTableViewSectionHeader.xib; sourceTree = "<group>"; };
@@ -696,6 +698,7 @@
 			isa = PBXGroup;
 			children = (
 				C4366F3E1FFF133400B82613 /* README.md */,
+				C4D75F0E201290B6004D13EF /* testData */,
 				C4CDD39F1A5350B40087DD05 /* RSSReader */,
 				C4CDD3B71A5350B50087DD05 /* RSSReaderTests */,
 				C4B0DC2B1FD250B0005E587C /* Derived Sources */,
@@ -744,6 +747,14 @@
 				C4CDD3B91A5350B50087DD05 /* RSSReaderTests-Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C4D75F0E201290B6004D13EF /* testData */ = {
+			isa = PBXGroup;
+			children = (
+				C4D75F0F201290B6004D13EF /* populated.xcappdata */,
+			);
+			path = testData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -879,6 +890,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4CE35491CB89890001712C8 /* InfoPlist.strings in Resources */,
+				C4D75F10201290B6004D13EF /* populated.xcappdata in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
