@@ -9,11 +9,7 @@
 import GEFoundation
 import XCTest
 
-let app = XCUIApplication()
-let tablesQuery = app.tables
-let backButton = app.navigationBars.element(boundBy: 0).buttons.element(boundBy: 0)
-
-class ItemListScrollingTests : RSSReaderUITestsBase {
+class ItemListScrollingTests : TestsBase {
 
 	func testScrollingPerformance() {
 	
