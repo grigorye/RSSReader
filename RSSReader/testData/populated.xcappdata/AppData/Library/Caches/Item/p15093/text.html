@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!doctype html>
+<html>
+	<head>
+		<style type="text/css">
+			h2 {
+				font: -apple-system-headline;
+			}
+			body {
+				font: -apple-system-body;
+				zoom: 1.2;
+			}
+			img {
+				width: auto;
+				height : auto;
+				max-height: 100%;
+				max-width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>Refactoring Algorithmic Code using a Golden Master Record</h2>
+		<h2>Introduction</h2> 
+<p>There are days when I find a piece of code I simply have to refactor. Sometimes because I actually have to for project-related reasons, sometimes because it’s easy to, and sometimes because I just want to. One definition of a nice day is when all these reasons meet.</p> 
+<p>Enter the Portuguese tax number verification.</p> 
+<p>For those who don’t know, in most countries the tax number has one or more check digits which are calculated according to some algorithm the country’s legislators think is up for the task. If you have a frontend where customers enter tax numbers, it’s a good first step to actually check the validity of the number according to the check digit in order to provide fast feedback to the user.</p> 
+<p>Usually I don’t do the research on the algorithms we implement for this myself. Someone else on my team calls someone from the country in the same organization and we code monkeys usually get code snippets, such as <a href="https://gist.github.com/eresende/88562d2c4dc85b62cb0c">this one</a>. In this case I got curious. The <a href="https://pt.wikipedia.org/wiki/N%C3%BAmero_de_identifica%C3%A7%C3%A3o_fiscal">portuguese wiki</a> contains a nice explanation of the check digit algorithm, which is a variation of an algorithm called (according to google) the modulus 11 check digit algorithm.</p> 
+<ul><li>Implementing this from scratch probably would have been straightforward, but I decided to refactor for several reasons:<br> 
+Sometimes web sources can be wrong. Take, for example, <a href="https://wiki.scn.sap.com/wiki/display/CRM/Portugal">this community wiki</a>: Here they seem to have forgotten about a part of the algorithm. If this had been my first source, I’d have had a bug report. Thus I usually try to stay near the scripts my customers provide me with.</li> 
+<li>Refactoring this very isolated piece of code would be easy.</li> 
+<li>Sometimes the scripts we get from our colleagues contain a little bit of extra logic which make sense in the context where we use them. In this one, for example, I was told to “just don’t worry about the extra cases at the beginning. We are not interested in these and it’s okay to delete them.”</li> 
+</ul><p><em>Side note: </em>For the purposes of this exercise, I used ES6 transpiled with Babel. For my tests, I use mocha and chai.</p> 
+<p>Enough introduction! Let’s have a look at:</p> 
+<h2>The Code</h2> 
+<p>I admit I did a tiny bit of untested refactoring first: Returning true or false instead of an alert, exporting the function and deleting the, as per our definition unnecessary, lines.</p> 
+<pre>export function validaContribuinte(contribuinte) { 
+// algoritmo de validação do NIF de acordo com 
+// http://pt.wikipedia.org/wiki/N%C3%BAmero_de_identifica%C3%A7%C3%A3o_fiscal 
+    let comparador; 
+    var temErro = 0; 
+ 
+    var check1 = contribuinte.substr(0, 1) * 9; 
+    var check2 = contribuinte.substr(1, 1) * 8; 
+    var check3 = contribuinte.substr(2, 1) * 7; 
+    var check4 = contribuinte.substr(3, 1) * 6; 
+    var check5 = contribuinte.substr(4, 1) * 5; 
+    var check6 = contribuinte.substr(5, 1) * 4; 
+    var check7 = contribuinte.substr(6, 1) * 3; 
+    var check8 = contribuinte.substr(7, 1) * 2; 
+ 
+    var total = check1 + check2 + check3 + check4 + check5 + check6 + check7 + check8; 
+    var divisao = total / 11; 
+    var modulo11 = total - parseInt(divisao) * 11; 
+    if (modulo11 == 1 || modulo11 == 0) { 
+        comparador = 0; 
+    } // excepção 
+    else { 
+        comparador = 11 - modulo11; 
+    } 
+ 
+    var ultimoDigito = contribuinte.substr(8, 1) * 1; 
+    if (ultimoDigito != comparador) { 
+        temErro = 1; 
+    } 
+ 
+    if (temErro == 1) { 
+        return false; 
+    } 
+    return true; 
+} 
+</pre> 
+<h2>Where to start</h2> 
+<p>The first thing you want to do when you refactor code is have unit tests for the code. Since most code to refactor is hard to understand, a lot of people prefer to not even try and rather create a Golden Master test. A detailed explanation as well as a walkthrough in Java can be found <a href="http://craftedsw.blogspot.de/2012/11/testing-legacy-code-with-golden-master.html">here</a>.</p> 
+<h2>Creating a Golden Master</h2> 
+<p>So the <strong>steps to creating a Golden Master test</strong> are:</p> 
+<ol><li> Create a number of random inputs for your testee</li> 
+<li>Use these inputs to generate a number of outputs</li> 
+<li>Record the inputs and outputs.</li> 
+</ol><p>Why are we doing this?</p> 
+<p>If the number of random inputs is high enough, it’s very probable that we have all test cases in there somewhere. If we capture the state of the testee before we start changing anything, we can be sure we won’t break anything later.</p> 
+<p>There’s one thing I want to say now: <strong>A Golden Master record should in most cases be only a temporary solution</strong>. You do not really want files or databases full of randomly generated crap to clog your server, and you don’t want long-running tests with way too many redundant test cases on your CI server.</p> 
+<h4>Step 1: Create A Number Of Random Inputs</h4> 
+<p>For this, we have to actually look at the code to be refactored. A quick glance says: “This function takes strings of length 9 which contain only digits as valid input”.</p> 
+<p>My first instinct was to try and calculate all of them. After a few frustrating minutes which I spent discussing with my computer’s memory, I did a small back-of-an-envelope calculation (16 Bit x 9 x 899999999 &gt; 15 TB). So this turned out to be a Bad Idea<img src="https://s.w.org/images/core/emoji/2.3/72x72/2122.png" alt="™">.</p> 
+<p>The next best thing was to create some random numbers between 100000000 and 99999999. After a bit of experimentation, because I “have no idea of the algorithm” for the purpose of this exercise, I settled on 10000 random fake tax numbers, which corresponded to three seconds overall test runtime on my machine. The code to generate these is wrapped in a testcase for easy access (remember, this is temporary):</p> 
+<pre>describe('validatePortugueseTaxNumber', () =&gt; { 
+    describe('goldenMaster', () =&gt; { 
+        it('should generate a golden master', () =&gt; { 
+            const gen = random.create('My super Golden Master seed'), 
+                expectedResultsAndInputs = [ ...new Array(1000000) ].map(() =&gt; { 
+                    const input = gen.intBetween(100000000, 999999999), 
+                        ... 
+                }); 
+        }).timeout(10000); 
+    }); 
+}); 
+</pre> 
+<p><em>Side note:</em> It is often recommended to use a seedable random generator. Since at that point I was not sure whether I wanted to actually save the inputs or not, I ended up using <a href="https://www.npmjs.com/package/random-seed">this PRNG</a>. It’s not strictly necessary for this exercise, though.</p> 
+<h4>Step 2: Use These Inputs To Generate A Number Of Outputs.</h4> 
+<p>Just call the function.</p> 
+<pre>... 
+    const input = gen.intBetween(100000000, 999999999), 
+        result = validaContribuinte(input.toString(10)); 
+ 
+        return { input, result }; 
+...</pre> 
+<h4>Step 3: Record The Inputs And Outputs</h4> 
+<p>This also was pretty straightforward. I used the built-in mechanisms of node.js to write the output to a ~3.5MB file.</p> 
+<pre>fs.writeFileSync('goldenMaster.json', JSON.stringify(expectedResultsAndInputs)); 
+</pre> 
+<p>And just like that, a Golden Master was created.</p> 
+<h2>Create a test based on the Golden Master</h2> 
+<p>The next step is to use the Golden Master in a test case. For each input, the corresponding output has to correlate to the file.<br> 
+My test looks like this:</p> 
+<pre>it('should always conform to golden master test', () =&gt; { 
+    const buffer = fs.readFileSync('goldenMaster.json'), 
+    data = JSON.parse(buffer); 
+ 
+    data.map(({ input, result }) =&gt; { 
+        return expect(validaContribuinte(nextNumber.toString(10))).to.equal(result); 
+    }); 
+}).timeout(10000); 
+</pre> 
+<p><em>Side note:</em> I stopped running the Golden Master generation every time; even though it would never produce different results unless the seed changed, it would’ve been a waste of resources to run every time.</p> 
+<p>I ran this a couple of times just for the heck of it. Then I started playing around with the code under test, deleting a line here, changing a number there, until I was confident that my Golden Master was sufficiently capturing all the cases. I encourage you to do this, it’s one of the very few times that you get to be happy about red tests.</p> 
+<p><a href="https://blog.codecentric.de/files/2017/12/Screen-Shot-2017-12-08-at-18.58.28-1.png"><img src="https://blog.codecentric.de/files/2017/12/Screen-Shot-2017-12-08-at-18.58.28-1-700x146.png" alt="golden master record" width="700" height="146"></a></p> 
+<p>I was not really satisfied with the output yet. “expected false to equal true” in which case, exactly? Again, in this simple case it would probably not have been necessary, but sometimes it can be useful to also record the failing input. So, after some refactoring, this happened:</p> 
+<pre>data.map(expectedResult =&gt; { 
+    const { input } = expectedResult; 
+    const result = validatePortugueseTaxNumber(input.toString(10)); 
+ 
+    return expect({ input, result}).to.deep.equal(expectedResult); 
+    }); 
+}).timeout(10000); 
+</pre> 
+<h2>Refactoring</h2> 
+<p>The refactoring itself was pretty straightforward. For the sake of brevity, most of the steps are skipped in this post.<br> 
+Renaming the function and a few variables:</p> 
+<pre>export function validatePortugueseTaxNumber(taxNumber) { 
+// algoritmo de validação do NIF de acordo com 
+// http://pt.wikipedia.org/wiki/N%C3%BAmero_de_identifica%C3%A7%C3%A3o_fiscal 
+    let comparator; 
+    let checkDigitWrong = 0; 
+ 
+    const check1 = taxNumber.substr(0, 1) * 9; 
+    const check2 = taxNumber.substr(1, 1) * 8; 
+    const check3 = taxNumber.substr(2, 1) * 7; 
+    const check4 = taxNumber.substr(3, 1) * 6; 
+    const check5 = taxNumber.substr(4, 1) * 5; 
+    const check6 = taxNumber.substr(5, 1) * 4; 
+    const check7 = taxNumber.substr(6, 1) * 3; 
+    const check8 = taxNumber.substr(7, 1) * 2; 
+ 
+    const total = check1 + check2 + check3 + check4 + check5 + check6 + check7 + check8; 
+    const divisao = total / 11; 
+    const modulo11 = total - parseInt(divisao) * 11; 
+    if (modulo11 == 1 || modulo11 == 0) { 
+        comparator = 0; 
+    } 
+    else { 
+        comparator = 11 - modulo11; 
+    } 
+ 
+    const ultimoDigito = taxNumber.substr(8, 1) * 1; 
+    if (ultimoDigito != comparator) { 
+        checkDigitWrong = 1; 
+    } 
+ 
+    if (checkDigitWrong == 1) { 
+        return false; 
+    } 
+    return true; 
+} 
+</pre> 
+<p>Simplifying (a lot):</p> 
+<pre>export function validatePortugueseTaxNumber(taxNumber) { 
+    const checkSumMod11 = taxNumber.substr(0,8) 
+                                   .split('') 
+                                   .map( 
+                                       (digit, index) =&gt; { 
+                                       return parseInt(digit, 10) * (9 - index); 
+                                       }) 
+                                   .reduce((a, b) =&gt; a + b) % 11, 
+          comparator = checkSumMod11 &gt; 1? 11 - checkSumMod11 : 0; 
+ 
+    return parseInt(taxNumber.substr(8, 1), 10) === comparator; 
+} 
+</pre> 
+<p>This is where I stopped.</p> 
+<h2>Writing unit tests</h2> 
+<p>By now I had a better understanding of what my piece of code did. And, as was said above, it’s a good idea to get rid of a golden master, so the time had come to think about valid test inputs.</p> 
+<p>Apparently a remainder of 0 and 1 was important. To this, I added the edge case of remainder 10, and some remainder in the middle range just to be sure. As for generating the corresponding inputs, I cheated a little:</p> 
+<pre>... 
+if (checkSumMod11 === 0 &amp;&amp; lastDigit === comparator) { 
+    console.log(taxNumber); 
+} 
+... 
+</pre> 
+<p>Using this generator function, I created the final unit tests for the portugueseTaxNumberValidator:</p> 
+<pre>describe('validatePortugueseTaxNumber', () =&gt; { 
+    it('should return false for 520363144 (case checkSum % 11 === 0) ', () =&gt; { 
+        expect(validatePortugueseTaxNumber('520363144')).to.equal(false); 
+    }); 
+ 
+    it('should return false for 480073977 (case checkSum % 11 === 1) ', () =&gt; { 
+        expect(validatePortugueseTaxNumber('480073977')).to.equal(false); 
+    }); 
+ 
+    it('should return false for 291932333 (case checkSum % 11 === 2) ', () =&gt; { 
+        expect(validatePortugueseTaxNumber('291932333')).to.equal(false); 
+    }); 
+ 
+    it('should return false for 872711478 (case checkSum % 11 === 10) ', () =&gt; { 
+        expect(validatePortugueseTaxNumber('872711478')).to.equal(false); 
+    }); 
+ 
+    it('should return true for 504917951 (case checkSum % 11 === 0) ', () =&gt; { 
+        expect(validatePortugueseTaxNumber('523755600')).to.equal(true); 
+    }); 
+ 
+    it('should return true for 850769990 (case checkSum % 11 === 2) ', () =&gt; { 
+        expect(validatePortugueseTaxNumber('998757039')).to.equal(true); 
+    }); 
+ 
+    it('should return true for 504917951 (case checkSum % 11 === 10) ', () =&gt; { 
+        expect(validatePortugueseTaxNumber('504917951')).to.equal(true); 
+    }); 
+}); 
+</pre> 
+<h2>Conclusion</h2> 
+<p>Creating a Golden Master and using it during refactoring feels like you’re wrapped in a big, fluffy cotton ball. If the Golden Master record is detailed enough, nothing can go wrong. Or rather, if it does, you will notice in an instant. There are no qualms about deleting code, replacing it with something you think will do the same, because it’s a safe experiment. It was a fun exercise and I would do it again in an instant.</p> 
+<p>The post <a href="https://blog.codecentric.de/en/2017/12/refactoring-algorithmic-code-using-golden-master-record/">Refactoring Algorithmic Code using a Golden Master Record</a> appeared first on <a href="https://blog.codecentric.de/en">codecentric AG Blog</a>.</p> 
+<img src="http://feeds.feedburner.com/~r/codecentric_en/~4/ThoM_gthIY8" height="1" width="1" alt="">
+	</body>
+</html>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!doctype html>
+<html>
+	<head>
+		<style type="text/css">
+			h2 {
+				font: -apple-system-headline;
+			}
+			body {
+				font: -apple-system-body;
+				zoom: 1.2;
+			}
+			img {
+				width: auto;
+				height : auto;
+				max-height: 100%;
+				max-width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>iCloud Drive Can Strip Metadata From Your Documents</h2>
+		<p><a href="https://developer.apple.com/library/content/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html">Apple</a>:</p> 
+<blockquote> 
+<p>Apps create files and directories in iCloud container directories in exactly the same way as they create local files and directories. And all the file’s attributes are saved, if they add extended attributes to a file, those attributes are copied to iCloud and to the user’s other devices too.</p> 
+</blockquote> 
+ 
+<p><a href="https://eclecticlight.co/2018/01/06/icloud-drive-can-strip-metadata-from-your-documents/">Howard Oakley</a>:</p> 
+<blockquote> 
+<p>I have examined files with a rich collection of extended attributes, under 10.12.6 and 10.13.2, on local storage and in iCloud Drive. This confirms that most xattrs are stripped by iCloud Drive in this fashion.</p> 
+<p>Xattrs removed include:</p> 
+<ul><li>com.apple.FinderInfo</li> 
+<li>com.apple.metadata:_kMDItemUserTags</li> 
+<li>com.apple.ResourceFork</li> 
+<li>com.apple.serverdocs.markup</li> 
+<li>net_sourceforge_skim-app_ series</li> 
+<li>net_sourceforge_skim-app_notes</li> 
+<li>net_sourceforge_skim-app_rtf_notes</li> 
+<li>net_sourceforge_skim-app_text_notes</li> 
+<li>co.eclecticlight.[any]</li> 
+</ul><p>[…]</p> 
+<p>Xattrs which are preserved include:</p> 
+<ul><li>com.apple.TextEncoding</li> 
+<li>com.apple.metadata:kMDItemDownloadedDate</li> 
+<li>com.apple.metadata:kMDItemWhereFroms</li> 
+<li>com.apple.metadata:kMDLabel_ series</li> 
+<li>com.apple.quarantine</li> 
+</ul></blockquote> 
+ 
+<p><a href="https://c-command.com/eaglefiler/help/how-can-i-access-my-lib">For me</a>, iCloud Drive preserves tags, but labels, resource forks, and any third-party extended attributes have always been lost. I don’t understand why Apple’s documentation claims otherwise.</p> 
+ 
+<p>Previously: <a href="https://mjtsai.com/blog/2010/12/17/dropbox-1-0/">Dropbox 1.0</a>.</p> 
+ 
+<p>Update (2018-01-09): See also: <a href="https://news.ycombinator.com/item?id=16101341">Hacker News</a>.</p> 
+ 
+<p>Update (2018-01-12): See also: <a href="https://eclecticlight.co/2018/01/12/which-file-systems-and-cloud-services-preserve-extended-attributes/">Howard Oakley</a>.</p>
+	</body>
+</html>

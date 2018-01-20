@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!doctype html>
+<html>
+	<head>
+		<style type="text/css">
+			h2 {
+				font: -apple-system-headline;
+			}
+			body {
+				font: -apple-system-body;
+				zoom: 1.2;
+			}
+			img {
+				width: auto;
+				height : auto;
+				max-height: 100%;
+				max-width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>Нестандартные запросы в Slick.</h2>
+		Можно ли в Slick сформировать запрос, аналогичный такому?<br><pre>select * from jr 
+       where (id1, id2) in ( 
+         ('000002e4-6b99-45ac-9187-4d00b7b457fc', 'a1c4fa6f-370c-11e6-bb37-f832e4bd9ad8'), 
+         ('00011eaf-f65d-42a7-ae54-3b16dff65f22','4834f6b6-af4a-4cc5-88d6-924a84f0ef31'));</pre><br>Стардарт SQL такое не поддерживает, но и MySQL, и Postgres его выполняют. Но в Slick как сделать из двух slick.lifted.Rep[String] одну slick.lifted.Rep[(String,String)] я не нашел. Это вообще возможно?<img src="http://feeds.feedburner.com/~r/fp-planet-ru/~4/tdAWk1EyccM" height="1" width="1" alt="">
+	</body>
+</html>

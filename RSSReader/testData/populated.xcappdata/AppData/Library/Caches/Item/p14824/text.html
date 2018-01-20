@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!doctype html>
+<html>
+	<head>
+		<style type="text/css">
+			h2 {
+				font: -apple-system-headline;
+			}
+			body {
+				font: -apple-system-body;
+				zoom: 1.2;
+			}
+			img {
+				width: auto;
+				height : auto;
+				max-height: 100%;
+				max-width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>Do you have to manually unregister block-based NotificationCenter observers?</h2>
+		<p><strong>tl;dr:</strong> yes. (Tested on iOS 11.2.)</p> 
+ 
+<p>A few weeks ago, I asked this question on Twitter:</p> 
+ 
+<blockquote> 
+  <p>In iOS 11, is it still necessary to unregister <em>block-based</em> notification center observers? Apple docs are ambiguous: docs for <a href="https://developer.apple.com/documentation/foundation/notificationcenter/1411723-addobserver"><code>addObserver(forName:object:queue:using:)</code></a> say yes; <a href="https://developer.apple.com/documentation/foundation/notificationcenter/1413994-removeobserver"><code>removeObserver(_:)</code></a> docs say it’s no longer necessary for iOS 9+.</p> 
+  <cite> 
+      </cite><p><a href="https://twitter.com/olebegemann">@olebegemann</a></p> 
+      <p>Ole Begemann</p> 
+      <p><a href="https://twitter.com/olebegemann/status/938085544780877824">December 5, 2017</a></p> 
+   
+</blockquote> 
+ 
+<p>I received a lot of conflicting replies. I don’t have exact numbers, but I’d say the yes/no split was pretty close to 50/50.</p> 
+ 
+<p>So let’s test what happens.</p> 
+ 
+<h1>The problem</h1> 
+ 
+<p>The block-based API I’m talking about is <a href="https://developer.apple.com/documentation/foundation/notificationcenter/1411723-addobserver"><code>NotificationCenter.​addObserver​(forName:​object:​queue:​using:)</code></a>. We register a function with the notification center that gets called when a matching notification comes in. The return value is an opaque token that represents the observation:</p> 
+ 
+<div><pre><code><span>class</span> <span>MyObserver</span> <span>{</span> 
+    <span>var</span> <span>observation</span><span>:</span> <span>Any</span><span>?</span> <span>=</span> <span>nil</span> 
+ 
+    <span>init</span><span>()</span> <span>{</span> 
+        <span>observation</span> <span>=</span> <span>NotificationCenter</span><span>.</span><span>default</span><span>.</span><span>addObserver</span><span>(</span> 
+            <span>forName</span><span>:</span> <span>myNotification</span><span>,</span> <span>object</span><span>:</span> <span>nil</span><span>,</span> <span>queue</span><span>:</span> <span>nil</span><span>)</span> <span>{</span> <span>notification</span> <span>in</span> 
+                <span>print</span><span>(</span><span>"Received </span><span>\(</span><span>notification</span><span>.</span><span>name</span><span>.</span><span>rawValue</span><span>)</span><span>"</span><span>)</span> 
+            <span>}</span> 
+    <span>}</span> 
+<span>}</span> 
+</code></pre></div> 
+<p>And the question is: will the notification center discard the block and stop notifying us when the <code>observation</code> token is destroyed (i.e. when the <code>MyObserver</code> instance is deallocated)? The new <a href="https://developer.apple.com/documentation/swift/key_path_expressions"><code>KeyPath</code></a>-based <a href="http://skyefreeman.io/programming/2017/06/28/kvo-in-ios11.html">KVO API</a> works like this, so it would be somewhat understandable to expect notifications to work the same way.</p> 
+ 
+<p>Or do we have to manually call <a href="https://developer.apple.com/documentation/foundation/notificationcenter/1413994-removeobserver"><code>NotificationCenter.​removeObserver(_:)</code></a> (e.g. in <code>MyObserver</code>’s <a href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Deinitialization.html"><code>deinit</code></a>)?</p> 
+ 
+<h1>What the documentation says</h1> 
+ 
+<p>The selector-based observation API <a href="https://developer.apple.com/documentation/foundation/notificationcenter/1415360-addobserver"><code>addObserver(_:​selector:​name:​object:)</code></a> made manual unregistering optional in iOS 9/OS X 10.11. When that change was made, <a href="https://developer.apple.com/library/content/releasenotes/Foundation/RN-FoundationOlderNotes/index.html#10_11NotificationCenter">the Foundation release notes stated explicitly</a> that the block-based observers still required manual work:</p> 
+ 
+<blockquote> 
+  <p>Block based observers via the <code>-[NSNotificationCenter addObserver​ForName:​object:​queue:​usingBlock:]</code> method still need to be un-registered when no longer in use since the system still holds a strong reference to these observers.</p> 
+</blockquote> 
+ 
+<p>Has anything changed since then?</p> 
+ 
+<p>The <a href="https://developer.apple.com/documentation/foundation/notificationcenter/1411723-addobserver"><code>addObserver(forName:​object:​queue:​using:)</code> documentation</a> is also very clear that unregistering is required:</p> 
+ 
+<blockquote> 
+  <p>You must invoke <a href="https://developer.apple.com/documentation/foundation/notificationcenter/1413994-removeobserver"><code>removeObserver(_:)</code></a> or <a href="https://developer.apple.com/documentation/foundation/notificationcenter/1407263-removeobserver"><code>removeObserver(_:​name:​object:)</code></a> before any object specified by <code>addObserver(forName:​object:​queue:​using:)</code> is deallocated.</p> 
+</blockquote> 
+ 
+<p>However, the <a href="https://developer.apple.com/documentation/foundation/notificationcenter/1413994-removeobserver"><code>removeObserver(_:)</code> docs</a> seem to contradict this:</p> 
+ 
+<blockquote> 
+  <p>If your app targets iOS 9.0 and later or macOS 10.11 and later, you don’t need to unregister an observer in its <code>dealloc</code> method.</p> 
+</blockquote> 
+ 
+<p>This doesn’t make any distinction between the block-based and the selector-based API.</p> 
+ 
+<h1>The test app</h1> 
+ 
+<p>I wrote a test app that allows you to inspect the behavior (via Xcode’s console) for various scenarios. <a href="https://github.com/ole/NotificationUnregistering">The code is available on GitHub</a>.</p> 
+ 
+<p>Here’s what I found:</p> 
+ 
+<ul><li> 
+    <p><strong>Yes, you still have to unregister block-based observations manually (as of iOS 11.2).</strong> The documentation for <code>removeObserver(_:)</code> is at least misleading if not wrong.</p> 
+  </li> 
+  <li> 
+    <p>If you don’t unregister, the notification center will retain the observer block forever and keep invoking it for every incoming notification. Whether this will wreak havoc with your app depends on what you do in the block (and what objects the block has captured).</p> 
+  </li> 
+  <li> 
+    <p>When you do the unregistering in <code>deinit</code>, <strong>you must make sure not to capture <code>self</code> in your observer block.</strong> If you do, your <code>deinit</code> will never get called because the block retains <code>self</code> (preventing its destruction) and the notification center holds a strong reference to the block. Your object will live forever.</p> 
+  </li> 
+</ul><h1>Automating unregistering</h1> 
+ 
+<p>What’s the best way to deal with this inconvenience? I suggest you write a small wrapper class for the observation token the notification center returns to you. The wrapper object stores the token and waits to be deallocated. Its only task is to call <code>removeObserver(_:)</code> in its own deinitializer:</p> 
+ 
+<div><pre><code><span>/// Wraps the observer token received from </span> 
+<span>/// NotificationCenter.addObserver(forName:object:queue:using:)</span> 
+<span>/// and unregisters it in deinit.</span> 
+<span>final</span> <span>class</span> <span>NotificationToken</span><span>:</span> <span>NSObject</span> <span>{</span> 
+    <span>let</span> <span>notificationCenter</span><span>:</span> <span>NotificationCenter</span> 
+    <span>let</span> <span>token</span><span>:</span> <span>Any</span> 
+ 
+    <span>init</span><span>(</span><span>notificationCenter</span><span>:</span> <span>NotificationCenter</span> <span>=</span> <span>.</span><span>default</span><span>,</span> <span>token</span><span>:</span> <span>Any</span><span>)</span> <span>{</span> 
+        <span>self</span><span>.</span><span>notificationCenter</span> <span>=</span> <span>notificationCenter</span> 
+        <span>self</span><span>.</span><span>token</span> <span>=</span> <span>token</span> 
+    <span>}</span> 
+ 
+    <span>deinit</span> <span>{</span> 
+        <span>notificationCenter</span><span>.</span><span>removeObserver</span><span>(</span><span>token</span><span>)</span> 
+    <span>}</span> 
+<span>}</span> 
+</code></pre></div> 
+<p>This binds the lifetime of the notification observation to the lifetime of the wrapper object. All we have to do is store the wrapper in a private property so that it gets destroyed when its owner gets deallocated. So this is equivalent to manual unregistering in <code>deinit</code>, but has the benefit that you can’t forget it anymore. And by making the property an <code>Optional​&lt;Notification​Token&gt;</code>, you can unregister anytime simply by assigning <code>nil</code>.</p> 
+ 
+<p>Let’s also write a convenience method for <code>NotificationCenter</code> that assumes the task of wrapping the observation token for us:</p> 
+ 
+<div><pre><code><span>extension</span> <span>NotificationCenter</span> <span>{</span> 
+    <span>/// Convenience wrapper for addObserver(forName:object:queue:using:)</span> 
+    <span>/// that returns our custom NotificationToken.</span> 
+    <span>func</span> <span>observe</span><span>(</span><span>name</span><span>:</span> <span>NSNotification</span><span>.</span><span>Name</span><span>?,</span> <span>object</span> <span>obj</span><span>:</span> <span>Any</span><span>?,</span>  
+        <span>queue</span><span>:</span> <span>OperationQueue</span><span>?,</span> <span>using</span> <span>block</span><span>:</span> <span>@escaping</span> <span>(</span><span>Notification</span><span>)</span> <span>-&gt;</span> <span>())</span> 
+        <span>-&gt;</span> <span>NotificationToken</span> 
+    <span>{</span> 
+        <span>let</span> <span>token</span> <span>=</span> <span>addObserver</span><span>(</span><span>forName</span><span>:</span> <span>name</span><span>,</span> <span>object</span><span>:</span> <span>obj</span><span>,</span> <span>queue</span><span>:</span> <span>queue</span><span>,</span> <span>using</span><span>:</span> <span>block</span><span>)</span> 
+        <span>return</span> <span>NotificationToken</span><span>(</span><span>notificationCenter</span><span>:</span> <span>self</span><span>,</span> <span>token</span><span>:</span> <span>token</span><span>)</span> 
+    <span>}</span> 
+<span>}</span> 
+</code></pre></div> 
+<p>Now replace all calls to <code>addObserver(forName:​object:​queue:​using:)</code> with the new API, store the token in a property, and you get automatic unregistering for free.</p> 
+ 
+<p>Chris and Florian also show this technique (among other cool notification stuff) in <a href="https://talk.objc.io/episodes/S01E27-typed-notifications-part-1">Swift Talk episode 27: Typed Notifications</a>. I highly recommend it.</p> 
+<hr><div> 
+  <div> 
+    <p><strong>If you liked this article, I bet you’ll also like <a href="https://gumroad.com/a/507458675" title="Advanced Swift at objc.io">Advanced Swift</a></strong>, the book I wrote together with Chris Eidhof and Airspeed Velocity. The third edition, fully updated for Swift 4, is out now.</p> 
+    <p><a href="https://gumroad.com/a/507458675" title="Advanced Swift at objc.io">Advanced Swift</a> is available as a DRM-free e-book and in print.</p> 
+  </div> 
+</div>
+	</body>
+</html>

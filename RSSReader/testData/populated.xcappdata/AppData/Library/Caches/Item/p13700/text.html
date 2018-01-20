@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!doctype html>
+<html>
+	<head>
+		<style type="text/css">
+			h2 {
+				font: -apple-system-headline;
+			}
+			body {
+				font: -apple-system-body;
+				zoom: 1.2;
+			}
+			img {
+				width: auto;
+				height : auto;
+				max-height: 100%;
+				max-width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>Practices for Harnessing SCSS with React</h2>
+		<p>We have been hard at work on a client project using <a href="http://feeds.feedblitz.com/~/t/0/0/atomicspin/~https://reactjs.org">React</a>. We haven’t made our way to implementing <a href="http://feeds.feedblitz.com/~/t/0/0/atomicspin/~https://glenmaddern.com/articles/css-modules">CSS Modules</a> yet, but we’ve established a set of rules to help us keep the CSS in order.
+ 
+<br><span></span></p>
+ 
+<h2>1. Styles Are Scoped</h2>
+ 
+<p>React projects tend to break down the structure of the DOM into a lot of components, which means you’re going to have a lot of SCSS files. This is ok! It takes a little getting used to, but we have come to really like this approach to managing styles because everything we need for a component is in a single directory.  Here is an example of what a button component could look like:</p>
+ 
+<pre><code>
+ 
+/components
+ 
+  /Button
+ 
+    button.stories.tsx
+ 
+    button.tests.tsx
+ 
+    index.tsx
+ 
+    styles.scss
+ 
+</code></pre>
+ 
+<p>Just as your components are ever-changing and in need of refactoring, so is the SCSS. This also goes for your test and storybook stories. To decide what should go into each style.scss file, we have been matching the style rules to the render elements of the React file.</p>
+ 
+<h2>2. SCSS Files Are Small</h2>
+ 
+<p>Keeping the CSS files small allows us to read the style rules more easily. A long, multi-nested SCSS can be hard to follow or overwhelming to people who are not as comfortable with dense style rules. Instead, keep it short and simple.  </p>
+ 
+<p>It also seems that we have had a much higher success rate of removing unused styles with this approach.  If you’re finding your style rules too lengthy, consider refactoring the React code.</p>
+ 
+<h2>3. Top-level Component Classes Are Unique</h2>
+ 
+<p>Making it easy to search for style rules is critical when styling and refactoring elements. Because all of the style sheets are named style.scss, you may find yourself relying heavily on the text editor’s Find function to locate class and ID names.</p>
+ 
+<p>We try not to define a style twice in two different locations. This can be challenging at first, but it will save a lot of time when it comes to refactoring and knowing where to find the style rules that affect a certain element.</p>
+ 
+<p>A unique element name allows us to scope the CSS rules locally to that component. This can be done by keeping the style rules of that component nested inside the unique class or ID, which ensures that any children classes or IDs you create are not unintentionally affecting other component’s elements.  Then you can pull in globally defined styles from outside the component’s defined style rules when necessary using <a href="http://feeds.feedblitz.com/~/t/0/0/atomicspin/~sass-lang.com">Sass</a>’s @extend feature.</p>
+ 
+<pre><code>
+ 
+.my-great-div{
+ 
+.child-div-1{}
+ 
+.chile-div-2{}
+ 
+}
+ 
+</code></pre>
+ 
+<h2>4. Test Component’s Styles</h2>
+ 
+<p>Use <a href="http://feeds.feedblitz.com/~/t/0/0/atomicspin/~https://storybook.js.org">Storybook</a> to check that your component works on its own and doesn’t rely on missing classes or dependencies. With SCSS’s tendency to get unwieldy and inadvertently reach elements you didn’t want, styled Storybook has proved to be a great asset.</p>
+ 
+<h2>5. Collect Your Style Files</h2>
+ 
+<p>Use <a href="http://feeds.feedblitz.com/~/t/0/0/atomicspin/~https://webpack.js.org">webpack</a> or the like to collect and group your SCSS files into one CSS file for your project. This <a href="http://feeds.feedblitz.com/~/t/0/0/atomicspin/~https://css-tricks.com/css-modules-part-3-react/#article-header-id-5">webpack article</a> can get you going.</p>
+ 
+<h2>6. Keep it Responsive</h2>
+ 
+<p>We have been adding the media queries directly to the rule definition. This has made both refactoring and altering an element’s styles simpler, since it allows you to go to one place in the CSS to modify the rules for all layouts instead of having to traverse a file where the element may be defined multiple times. Doing this can work for both desktop and mobile-first approaches. Below is an example of this pattern, where you can easily see the .div-element-name’s border-radius being increased at each layout size.</p>
+ 
+<pre><code>
+ 
+.div-element-name{
+ 
+  background: orange;
+ 
+  border-radius: 5px;
+ 
+  @media only screen and (max-width: $large-screen) {
+ 
+    border-radius: 25px;
+ 
+  }
+ 
+  @media only screen and (max-width: $small-screen) {
+ 
+    border-radius: 50px;
+ 
+  }
+ 
+  &amp;:active{}
+ 
+  &amp;:focus{}
+ 
+  &amp;:hover{}
+ 
+}
+ 
+</code></pre>
+ 
+<p>What other steps or practices do you follow to help keep CSS rules under control on your larger software projects?</p>
+ 
+<p>The post <a href="http://feeds.feedblitz.com/~/t/0/0/atomicspin/~https://spin.atomicobject.com/2017/12/28/practices-scss-react/">Practices for Harnessing SCSS with React</a> appeared first on <a href="http://feeds.feedblitz.com/~/t/0/0/atomicspin/~https://spin.atomicobject.com">Atomic Spin</a>.</p>
+ 
+<img height="1" width="1" alt="" style="border:0;float:left;margin:0;padding:0;width:1px;height:1px;" src="https://feeds.feedblitz.com/~/i/513378966/0/atomicspin"><h3 style="clear:left;padding-top:10px;">Related Stories</h3><ul><li><a href="https://spin.atomicobject.com/2017/12/04/react-fetch-as-google/">Testing React App SEO using Fetch as Google</a></li><li><a href="https://spin.atomicobject.com/2017/11/30/design-thinking-remember-future/">Design Thinking Toolkit, Activity 5 – Remember the Future</a></li><li><a href="https://spin.atomicobject.com/2017/11/08/toggling-switches-server/">Toggling Switches when the Server Says “No”</a></li></ul>
+	</body>
+</html>

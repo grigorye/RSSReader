@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!doctype html>
+<html>
+	<head>
+		<style type="text/css">
+			h2 {
+				font: -apple-system-headline;
+			}
+			body {
+				font: -apple-system-body;
+				zoom: 1.2;
+			}
+			img {
+				width: auto;
+				height : auto;
+				max-height: 100%;
+				max-width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>Stranger Things Alphabet Wall, Part 2:  MQTT in the Upside Down</h2>
+		<p>Yesterday, we created the hardware, decorations, and Neopixel software for a <a href="http://feeds.feedblitz.com/~/t/0/0/atomicspin/~https://spin.atomicobject.com/2017/12/21/diy-stranger-things-alphabet-wall/">DIY alphabet wall from <em>Stranger Things</em></a>. But what if one of your friends gets stuck in the Upside Down*? It’d be nice if our ESP8266-driven project could make full use of its wifi capabilities and receive messages wirelessly. <span></span></p>
+ 
+<p>This blog post details how to set up MQTT on the ESP8266, connect it to an MQTT broker, and put together a tubular front-end. The final result will look like this:</p>
+ 
+<p><a href="http://feeds.feedblitz.com/~/t/0/0/atomicspin/~https://spin.atomicobject.com/2017/12/21/diy-stranger-things-alphabet-wall/"><img src="https://spin.atomicobject.com/wp-content/uploads/20171208180046/full-ST-setup.png" alt="full-ST-setup" width="864" height="470"></a>
+ 
+<br><em>Click the image to read the post.</em></p>
+ 
+<h2>Setting Up Wifi and MQTT</h2>
+ 
+<p>I used MQTT to transmit messages. MQTT is a pub-sub messaging protocol which I had used before for my bathroom monitor re-write. If you are interested in a primer, <a href="http://feeds.feedblitz.com/~/t/0/0/atomicspin/~https://spin.atomicobject.com/2014/03/19/mqtt-protocol-ethernet/">here’s one</a> from Scott Vokes. </p>
+ 
+<h3>Wifi</h3>
+ 
+<p>There are some existing ESP8266 wifi-related examples that are helpful to draw from in this project. As you’ve probably noticed, I’ve referenced a lot of example projects–both because they’re standardized projects to share, and because I wanted to get this project done by the end of the weekend without having it spill over into Thanksgiving family time.</p>
+ 
+<p>To set up your wifi, you need to include the wifi library and define your wifi network name and password near the top of your file. You’ll also need to declare a <code>WifiClient</code>.</p>
+ 
+<pre><code>
+ 
+#include &lt;ESP8266WiFi.h&gt;
+ 
+#define WLAN_SSID "WIFI_NAME_HERE"
+ 
+#define WLAN_PASS "WIFI_PASSWORD_HERE"
+ 
+WiFiClient client;
+ 
+</code></pre>
+ 
+<p>Note: the wifi library should come pre-installed in Arduino IDE, but if not, go to <code>Sketch &gt; Include Library &gt; Manage Libraries</code> to find and install it.</p>
+ 
+<p>When my program starts up, I call <code>WifiConnectionDebugPrintout()</code> from the <code>setup()</code> function. <code>WifiConnectionDebugPrintout()</code> is a wrapper function around the <code>Wifi.begin()</code> call and related debug print-outs.  </p>
+ 
+<pre><code>
+ 
+void WifiConnectionDebugPrintout() {
+ 
+    Serial.println(); Serial.println();
+ 
+    Serial.print("Connecting to ");
+ 
+    Serial.println(WLAN_SSID);
+ 
+    WiFi.begin(WLAN_SSID, WLAN_PASS);
+ 
+    while (WiFi.status() != WL_CONNECTED) {
+ 
+        delay(500);
+ 
+        Serial.print(".");
+ 
+    }
+ 
+    Serial.println();
+ 
+    Serial.println("WiFi connected");
+ 
+    Serial.println("IP address: "); Serial.println(WiFi.localIP());
+ 
+}
+ 
+</code></pre>
+ 
+<p>Try this out and see if you are able to successfully connect. Assuming everything checks out, let’s add MQTT next.</p>
+ 
+<h3>MQTT</h3>
+ 
+<p>First, install the MQTT library. Go to <code>Sketch &gt; Include Library &gt; Manage Libraries</code> and search for the “Adafruit MQTT Library” and install it. Then, include the following header files at the top of your Arduino sketch.</p>
+ 
+<pre><code>
+ 
+#include "Adafruit_MQTT.h"
+ 
+#include "Adafruit_MQTT_Client.h"
+ 
+</code></pre>
+ 
+<p>I used the “mqtt_esp8266” example project heavily in my project. You can find it under <code>File &gt; Examples &gt; Adafruit MQTT Library</code>.</p>
+ 
+<p>Before we get too far into MQTT setup, we’ll need to choose an MQTT broker.</p>
+ 
+<p>I decided to use <a href="http://feeds.feedblitz.com/~/t/0/0/atomicspin/~io.adafruit.com">AdafruitIO</a> for this. AdafruitIO is an out-of-the-box solution for MQTT (among other things). Rather than set up and host my own MQTT broker, as I did for the bathroom monitor, I let AdafruitIO do it for me.  This saved quite a bit of time, and as mentioned previously, speed was one of the goals of the project.  And, at the rate that we’ll be receiving messages for our alphabet board, it will be free.</p>
+ 
+<p>Go to <a href="http://feeds.feedblitz.com/~/t/0/0/atomicspin/~io.adafruit.com">io.adafruit.com</a> to sign up for an account. Here’s a <a href="http://feeds.feedblitz.com/~/t/0/0/atomicspin/~https://learn.adafruit.com/adafruit-io/getting-started">primer on AdafruitIO</a>.  Once you have an account, make a feed called “alph.” Note: a feed in AdafruitIO is essentially a channel, in common MQTT terms.</p>
+ 
+<p>Grab your username and key, and copy/paste them into the <code>#define</code>s below.</p>
+ 
+<p>You’ll need to define your broker server name, port, username, and key, then set up an MQTT client.</p>
+ 
+<pre><code>
+ 
+#define AIO_SERVER "io.adafruit.com"
+ 
+#define AIO_SERVERPORT 1883
+ 
+#define AIO_USERNAME "AIO_USERNAME_HERE"
+ 
+#define AIO_KEY "AIO_KEY_HERE"
+ 
+WiFiClient client;  // we already added this in a previous step
+ 
+Adafruit_MQTT_Client mqtt(&amp;client, AIO_SERVER, AIO_SERVERPORT, AIO_USERNAME, AIO_KEY);
+ 
+</code></pre>
+ 
+<p>To complete our MQTT setup, we need to do three things:</p>
+ 
+<ol><li>Set up a subscription to the MQTT broker’s “alph” feed.</li>
+ 
+<li>Set up a callback that will happen in response to a new message on the “alph” feed/channel.</li>
+ 
+<li>Connect to the MQTT broker.</li>
+ 
+</ol><p>For Step 1, globally declare a subscription (mine is called <code>STmessages</code>). </p>
+ 
+<pre><code>
+ 
+Adafruit_MQTT_Subscribe STmessages = Adafruit_MQTT_Subscribe(&amp;mqtt, AIO_USERNAME "/feeds/alph");
+ 
+</code></pre>
+ 
+<p>For Step 2, in <code>setup()</code>, add these two lines. The first will set a callback action be called when we receive a message on the “alph” feed. The second line connects our subscription to the MQTT client we defined earlier.  </p>
+ 
+<pre><code>
+ 
+STmessages.setCallback(STmessagesCallback);
+ 
+mqtt.subscribe(&amp;STmessages);
+ 
+</code></pre>
+ 
+<p>The callback (<code>STmessagesCallback</code>) will contain our LED code from the previous blog post. This code was previously in <code>loop()</code>:</p>
+ 
+<pre><code>
+ 
+void STmessagesCallback(char *data, uint16_t len) {
+ 
+    int i;
+ 
+    for (i = 0; i&lt;len; i++) {
+ 
+        byteRead = data[i];
+ 
+        if (isLowerCase(byteRead)) {
+ 
+            int j = getIndexOfLetter(byteRead);
+ 
+            if (0 </code></pre>
+ 
+<p>Finally, to connect to the MQTT broker (Step 3), make the following changes in <code>loop()</code>:</p>
+ 
+<pre><code>
+ 
+void loop() {
+ 
+    // Ensure the connection to the MQTT server is alive (this will make the first
+ 
+    // connection and automatically reconnect when disconnected).
+ 
+    MQTT_connect();
+ 
+    // this is our 'wait for incoming subscription packets' busy subloop
+ 
+    // note:  waiting for 10 seconds means that we'll miss some messages
+ 
+    mqtt.processPackets(10000);
+ 
+    if(! mqtt.ping()) {
+ 
+        mqtt.disconnect();
+ 
+    }
+ 
+}
+ 
+/* This function was taken from the esp8266 example, 
+ 
+  and was written by Tony DiCola for Adafruit Industries. */
+ 
+void MQTT_connect() {
+ 
+  int8_t ret;
+ 
+  // Stop if already connected.
+ 
+  if (mqtt.connected()) {
+ 
+    return;
+ 
+  }
+ 
+  Serial.print("Connecting to MQTT... ");
+ 
+  uint8_t retries = 3;
+ 
+  while ((ret = mqtt.connect()) != 0) { // connect will return 0 for connected
+ 
+       Serial.println(mqtt.connectErrorString(ret));
+ 
+       Serial.println("Retrying MQTT connection in 5 seconds...");
+ 
+       mqtt.disconnect();
+ 
+       delay(5000);  // wait 5 seconds
+ 
+       retries--;
+ 
+       if (retries == 0) {
+ 
+         // basically die and wait for WDT to reset me
+ 
+         while (1);
+ 
+       }
+ 
+  }
+ 
+  Serial.println("MQTT Connected!");
+ 
+}
+ 
+</code></pre>
+ 
+<p>Note that we've moved the Neopixel code out of the loop function entirely. The <code>processPackets(10000)</code> waits 10 seconds for subscription messages (and blocks code execution). This is obviously not what you'd want for a production app, but for a weekend project, I left it as-is (the esp8266 example project calls <code>processPackets(10000)</code>).  </p>
+ 
+<h3>Try out your setup with a curl command.</h3>
+ 
+<p>AdafruitIO has a helpful page with all of the available commands you can send to retrieve information from or about your MQTT broker.  We'll use one to post data to our MQTT broker, which our subscription (on the ESP8266) will be listening for.  </p>
+ 
+<p>Try the following curl command to test your ESP8266 and AdafruitIO MQTT setup:  </p>
+ 
+<pre><code>curl 'https://io.adafruit.com/api/v2/YOUR_ADAFRUIT_IO_USERNAME/feeds/alph/data' -H 'X-AIO-Key: YOUR_ADAFRUIT_IO_KEY' -H 'Content-Type: application/json' --data-binary '{"value":"SOMETHING_HERE"}' </code></pre>
+ 
+<p>Hopefully, you saw some lights on your alphabet board!</p>
+ 
+<h2>Setting Up the Website</h2>
+ 
+<p>Lastly, let's add a little bit more style.</p>
+ 
+<p><img src="https://78.media.tumblr.com/81f2179442f9a3b6bd9c42b992c52486/tumblr_inline_ozu13euAV01v27l22_540.gif" width="500" height="204" alt="style"></p>
+ 
+<p>Rather than sending curl requests, I set up a webpage with design help from my friend, coworker, and fellow <em>Stranger Things</em> fan Sarah Brockett.  </p>
+ 
+<p>First, I wanted to add a title photo in the style of the <em>Stranger Things</em> iconic logo.  Nelson Cash has a <em>Stranger Things</em> logo generator, <a href="http://feeds.feedblitz.com/~/t/0/0/atomicspin/~makeitstranger.com/">available here</a>. I created an "Atomic Object" logo, downloaded the picture, and cropped it.  </p>
+ 
+<p>In the interest of time, I used Express's <a href="http://feeds.feedblitz.com/~/t/0/0/atomicspin/~expressjs.com/en/starter/generator.html">application generator</a> to quickly create a web app.  The app has just one page, with an input box allowing people to send messages.  </p>
+ 
+<pre><code>&lt;div&gt;
+ 
+  &lt;img src="images/atomic-object.png" /&gt;
+ 
+  &lt;div class="form"&gt;
+ 
+    &lt;form action="/message" method="post" class="form"&gt;
+ 
+        &lt;div&gt;
+ 
+            &lt;input type="text" id="message" name="message" placeholder="say something..."&gt;&lt;/input&gt;
+ 
+        &lt;/div&gt;
+ 
+    &lt;input type="submit" value="Send"&gt;&lt;/input&gt;
+ 
+    &lt;/form&gt;
+ 
+  &lt;/div&gt;
+ 
+&lt;/div&gt;
+ 
+</code></pre>
+ 
+<p>Upon submission, the contents are posted to a <code>/message</code> endpoint, which posts to AdafruitIO. The user is then redirected back to the page (effectively, a page refresh). You may have noticed that my Arduino code only accepts lowercase letters, as a lazy way of handling user input. The <code>/message</code> endpoint will take the user-submitted data and lowercase it.  </p>
+ 
+<p>You can see the full web app at the <a href="http://feeds.feedblitz.com/~/t/0/0/atomicspin/~https://github.com/jaimelightfoot/stranger-things/tree/master/server">GitHub repo</a>.  </p>
+ 
+<pre><code>
+ 
+app.post('/message', function(req, res) {
+ 
+  if (!req.body.message) {
+ 
+    res.error("oh no");
+ 
+  }
+ 
+  var headers = {
+ 
+    'User-Agent':       'Super Agent/0.0.1',
+ 
+    'Content-Type':     'application/application/json',
+ 
+    'X-AIO-Key':        'REPLACE_WITH_AIO_KEY'
+ 
+  }
+ 
+  var options = {
+ 
+    url: 'https://io.adafruit.com/api/v2/USERNAME_HERE/feeds/alph/data',
+ 
+    method: 'POST',
+ 
+    headers: headers,
+ 
+    form: {'value': req.body.message.toLowerCase()}
+ 
+  }
+ 
+  request(options, function (error, response, body) {
+ 
+    if (!error &amp;&amp; response.statusCode == 200) {
+ 
+        console.log(body)
+ 
+    }
+ 
+  })
+ 
+  res.redirect('/');
+ 
+});
+ 
+</code></pre>
+ 
+<p>Next, I implemented the styling on the input box, following Sarah's designs (see the GitHub repo for the <a href="http://feeds.feedblitz.com/~/t/0/0/atomicspin/~https://github.com/jaimelightfoot/stranger-things/blob/master/server/public/stylesheets/style.css">full CSS file</a>). I also pulled in Google Font's <a href="http://feeds.feedblitz.com/~/t/0/0/atomicspin/~https://fonts.google.com/specimen/Roboto+Condensed">Roboto Condensed</a>.   </p>
+ 
+<p><img src="https://spin.atomicobject.com/wp-content/uploads/20171208173210/st_hover.gif" alt="ST hover state" width="397" height="106"></p>
+ 
+<pre><code>
+ 
+a {
+ 
+  color: #C8C8C8;
+ 
+  text-decoration: none;
+ 
+}
+ 
+a:hover {
+ 
+  color: #475A66 ;
+ 
+  text-shadow: 0 2px 4px rgba(255,0,0,0.50);
+ 
+}
+ 
+input {
+ 
+  background: #050710;
+ 
+  text-transform: uppercase;
+ 
+  color: red;
+ 
+  border: 2px solid #DD0202;
+ 
+  box-shadow: 0 0 20px 0 #CD190C;
+ 
+  height:52px;
+ 
+}
+ 
+input[type=text] {
+ 
+  width: 320px;
+ 
+  padding-left: 10px;
+ 
+  font-size: 16px;
+ 
+  height: 46px;
+ 
+  color: #C8C8C8;
+ 
+  letter-spacing: 1.29px;
+ 
+  line-height: 24px;
+ 
+}
+ 
+input::placeholder{
+ 
+  color: #475A66;
+ 
+  letter-spacing: 1.25px;
+ 
+  line-height: 24px;
+ 
+}
+ 
+input[type=submit] {
+ 
+  border-left-width: 0px;
+ 
+  background: #430407;
+ 
+  width: 100px;
+ 
+  font-size: 22px;
+ 
+  letter-spacing: 2px;
+ 
+  -webkit-appearance:none;
+ 
+  border-radius: 0;
+ 
+  text-shadow: 0 2px 4px rgba(255,0,0,0.50);
+ 
+}
+ 
+input[type=submit]:hover {
+ 
+  background: #DD0202;
+ 
+  border: 2px solid #DD0202;
+ 
+  box-shadow: 0 0 20px 0 #CD190C;
+ 
+  border-radius: 0 2px 2px 0;
+ 
+  color: #030408;
+ 
+  text-shadow: 0 2px 4px rgba(255,0,0,0.50);
+ 
+}
+ 
+</code></pre>
+ 
+<p>Finally, I deployed to <a href="http://feeds.feedblitz.com/~/t/0/0/atomicspin/~heroku.com">Heroku</a>. This way, you can share the link with family, friends, and coworkers.  </p>
+ 
+<p><img src="https://spin.atomicobject.com/wp-content/uploads/20171208172836/ST_webpage.png" alt="ST Webpage" width="864" height="457"></p>
+ 
+<h2>Final Result</h2>
+ 
+<p><img src="https://spin.atomicobject.com/wp-content/uploads/20171208180046/full-ST-setup.png" alt="full-ST-setup" width="864" height="470"></p>
+ 
+<p>See the <a href="http://feeds.feedblitz.com/~/t/0/0/atomicspin/~https://github.com/jaimelightfoot/stranger-things/">GitHub repo</a> for the complete project.  </p>
+ 
+<p>*We're assuming they have an internet connection, which, let's be honest, is a pretty big assumption.</p>
+ 
+<p>The post <a href="http://feeds.feedblitz.com/~/t/0/0/atomicspin/~https://spin.atomicobject.com/2017/12/22/diy-alphabet-wall-mqtt/">Stranger Things Alphabet Wall, Part 2:  MQTT in the Upside Down</a> appeared first on <a href="http://feeds.feedblitz.com/~/t/0/0/atomicspin/~https://spin.atomicobject.com">Atomic Spin</a>.</p>
+ 
+<img height="1" width="1" alt="" style="border:0;float:left;margin:0;padding:0;width:1px;height:1px;" src="https://feeds.feedblitz.com/~/i/512292202/0/atomicspin"><h3 style="clear:left;padding-top:10px;">Related Stories</h3><ul><li><a href="https://spin.atomicobject.com/2017/12/21/diy-stranger-things-alphabet-wall/">Make Your Own “Stranger Things” Alphabet Wall</a></li><li><a href="https://spin.atomicobject.com/2017/09/10/garage-door-sensors/">Building a Siri/iOS HomeKit-Enabled Garage Door Control with Raspberry Pi – Part 4: Door Sensors</a></li><li><a href="https://spin.atomicobject.com/2017/09/03/camera-config-streaming/">Building a Siri/iOS HomeKit-Enabled Garage Door Control with Raspberry Pi – Part 3: Camera Config &amp; Video Streaming</a></li></ul>
+	</body>
+</html>

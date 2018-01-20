@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!doctype html>
+<html>
+	<head>
+		<style type="text/css">
+			h2 {
+				font: -apple-system-headline;
+			}
+			body {
+				font: -apple-system-body;
+				zoom: 1.2;
+			}
+			img {
+				width: auto;
+				height : auto;
+				max-height: 100%;
+				max-width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>JEP-200: Remoting / XStream whitelist integrated into Jenkins core</h2>
+		<div> 
+<h2><a href="https://jenkins.io/#overview"></a>Overview</h2> 
+<div> 
+<div> 
+<p><a href="https://github.com/jenkinsci/jep/blob/master/jep/200/README.adoc">JEP-200</a> has been integrated into Jenkins weekly builds 
+and (if all goes well) will be a part of the next LTS line. 
+In a nutshell, this change is a security hardening measure 
+to be less permissive about deserializing Java classes defined in the Java Platform or libraries bundled with Jenkins. 
+For several years now, Jenkins has specifically <em>blacklisted</em> certain classes and packages according to known or suspected exploits; 
+now it will reject all classes not explicitly mentioned in a <em>whitelist</em>, or defined in Jenkins core or plugins.</p> 
+</div> 
+</div> 
+</div> 
+<div> 
+<h2><a href="https://jenkins.io/#for-jenkins-administrators"></a>For Jenkins administrators</h2> 
+<div> 
+<div> 
+<h3><a href="https://jenkins.io/#before-upgrade"></a>Before upgrade</h3> 
+<div> 
+<p>Back up your Jenkins instance prior to upgrade so you have any easy way of rolling back. 
+If you are running any of the plugins listed in 
+<a href="https://wiki.jenkins.io/display/JENKINS/Plugins+affected+by+fix+for+JEP-200">Plugins affected by fix for JEP-200</a>, 
+update them after taking the backup but before upgrading Jenkins core.</p> 
+</div> 
+<div> 
+<p>If you have a way of testing the upgrade in an isolated environment before applying it to production, 
+do so now.</p> 
+</div> 
+<div> 
+<p>Using backups and a staging server is good advice before <em>any</em> upgrade but especially this one, 
+with a relatively high risk of regression.</p> 
+</div> 
+</div> 
+<div> 
+<h3><a href="https://jenkins.io/#after-upgrade"></a>After upgrade</h3> 
+<div> 
+<p>To the extent that advance testing of the impact of this change on popular plugins has been completed, 
+most users (and even plugin developers) should not notice any difference. 
+If you do encounter a <code>java.lang.SecurityException: Rejected: some.pkg.and.ClassName</code> in the Jenkins UI or logs, 
+you may have found a case where an unusual plugin, or an unusual usage mode of a common plugin, 
+violates the existing whitelist. 
+This will be visible in the Jenkins system log as a message from <code>jenkins.security.ClassFilterImpl</code> like the following:</p> 
+</div> 
+<div> 
+<div> 
+<pre>some.pkg.and.ClassName in file:/var/lib/jenkins/plugins/some-plugin-name/WEB-INF/lib/some-library-1.2.jar might be dangerous, so rejecting; see https://jenkins.io/redirect/class-filter/</pre> 
+</div> 
+</div> 
+<div> 
+<p>where the link would direct you here.</p> 
+</div> 
+<div> 
+<p>If you find such a case, please report it in the Jenkins issue tracker, under the appropriate plugin component. 
+Link it to <a href="https://issues.jenkins-ci.org/browse/JENKINS-47736">JENKINS-47736</a> and add the <code>JEP-200</code> label. 
+If at all possible, include complete steps to reproduce the problem from scratch. 
+Jenkins developers will strive to evaluate the reason for the violation and offer a fix in the form of a core and/or plugin update. 
+For more details and current status, see 
+<a href="https://wiki.jenkins.io/display/JENKINS/Plugins+affected+by+fix+for+JEP-200">Plugins affected by fix for JEP-200</a>.</p> 
+</div> 
+<div> 
+<p>Assuming you see no particular reason to think that the class in question has dangerous deserialization semantics, which is rare, 
+it is possible to work around the problem in your own installation as a temporary expedient. 
+Simply make note of any class name(s) mentioned in such log messages, 
+and run Jenkins with this startup option (details will depend on your installation method):</p> 
+</div> 
+<div> 
+<div> 
+<pre>-Dhudson.remoting.ClassFilter=some.pkg.and.ClassName,some.pkg.and.OtherClassName</pre> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+<div> 
+<h2><a href="https://jenkins.io/#for-plugin-developers"></a>For plugin developers</h2> 
+<div> 
+<div> 
+<h3><a href="https://jenkins.io/#testing-plugins-against-jenkins-2-102-and-above"></a>Testing plugins against Jenkins 2.102 and above</h3> 
+<div> 
+<p>As a plugin developer encountering this kind of error, 
+your first task is to ensure that it is reproducible in a functional (<code>JenkinsRule</code>) test 
+when running Jenkins 2.102 or newer to reproduce the error.</p> 
+</div> 
+<div> 
+<div> 
+<pre><code>mvn test -Djenkins.version=2.102</code></pre> 
+</div> 
+</div> 
+<div> 
+<p>The above assumes you are using a recent 2.x or 3.x parent <a href="https://github.com/jenkinsci/plugin-pom">Plugin POM</a>. 
+For certain cases you may need to use <a href="https://github.com/jenkinsci/plugin-compat-tester">Plugin Compat Tester (PCT)</a> 
+to run tests against Jenkins core versions newer than your baseline.</p> 
+</div> 
+<div> 
+<p>Running PCT against the latest Jenkins core:</p> 
+</div> 
+<div> 
+<div> 
+<pre><code>java -jar pct-cli.jar -reportFile $(pwd)/out/pct-report.xml \ 
+    -workDirectory $(pwd)/work -skipTestCache true -mvn $(which mvn) \ 
+    -includePlugins ${ARTIFACT_ID} -localCheckoutDir ${YOUR_PLUGIN_REPO}</code></pre> 
+</div> 
+</div> 
+<div> 
+<p>You may need to run tests using an agent (e.g., <code>JenkinsRule.createSlave</code>) or force saves of plugin settings.</p> 
+</div> 
+<div> 
+<p>For maven plugins you can also specify custom Jenkins versions in <code>Jenkinsfile</code> to run tests against JEP-200:</p> 
+</div> 
+<div> 
+<div> 
+<pre><code>buildPlugin(<span style="color:#606;">jenkinsVersions</span>: [<span style="color:#069;">null</span>, <span><span style="color:#710;">'</span><span style="color:#D20;">2.102</span><span style="color:#710;">'</span></span>])</code></pre> 
+</div> 
+</div> 
+<div> 
+<p>(again picking whatever version you need to test against) 
+so that the test is included during CI builds, even while your minimum core baseline predates JEP-200.</p> 
+</div> 
+<div> 
+<p>If your plugins are built with Gradle, your mileage may vary.</p> 
+</div> 
+</div> 
+<div> 
+<h3><a href="https://jenkins.io/#making-plugins-compatible-with-jenkins-2-102-or-above"></a>Making plugins compatible with Jenkins 2.102 or above</h3> 
+<div> 
+<p>If you discover a compatibility issue in your plugin, 
+you then have several choices for fixing the problem:</p> 
+</div> 
+<div> 
+<ul><li> 
+<p>Ideally, simplify your code so that the mentioned class is not deserialized via Jenkins Remoting or XStream to begin with:</p> 
+<div> 
+<ul><li> 
+<p>If the problem occurred when receiving a response from an agent, change your <code>Callable</code> (or <code>FileCallable</code>) to return a plainer type.</p> 
+</li> 
+<li> 
+<p>If the problem occurred when saving an XML file (such as a <code>config.xml</code> or <code>build.xml</code>), use a plainer type in non-<code>transient</code> fields in your persistable plugin classes.</p> 
+</li> 
+</ul></div> 
+</li> 
+<li> 
+<p>If the class(es) are defined in the Java Platform or some library bundled in Jenkins core, propose a pull request adding it to <code>core/src/main/resources/jenkins/security/whitelisted-classes.txt</code> in <code>jenkinsci/jenkins</code>.</p> 
+</li> 
+<li> 
+<p>If the class(es) are defined in a third-party library bundled in your plugin, create a resource file <code>META-INF/hudson.remoting.ClassFilter</code> listing them. (<a href="https://github.com/jenkinsci/workflow-support-plugin/pull/50/files">example</a>)</p> 
+<div> 
+<ul><li> 
+<p>You may also do this for Java or Jenkins core library classes, as a hotfix until your core baseline includes the whitelist entry proposed above.</p> 
+</li> 
+</ul></div> 
+</li> 
+<li> 
+<p>If the class(es) are defined in a JAR you build and then bundle in your plugin’s <code>*.jpi</code>, add a <code>Jenkins-ClassFilter-Whitelisted: true</code> manifest entry. This whitelists every class in the JAR. (<a href="https://github.com/jenkinsci/lib-jenkins-maven-embedder/pull/15/files">example</a>)</p> 
+</li> 
+</ul></div> 
+</div> 
+</div> 
+</div> 
+<img src="http://feeds.feedburner.com/~r/ContinuousBlog/~4/VTWO3EBXdnM" height="1" width="1" alt="">
+	</body>
+</html>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!doctype html>
+<html>
+	<head>
+		<style type="text/css">
+			h2 {
+				font: -apple-system-headline;
+			}
+			body {
+				font: -apple-system-body;
+				zoom: 1.2;
+			}
+			img {
+				width: auto;
+				height : auto;
+				max-height: 100%;
+				max-width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>Intel CPU Design Flaw Necessitates Kernel Page Table Isolation</h2>
+		<p><a href="https://www.theregister.co.uk/2018/01/02/intel_cpu_design_flaw/">John Leyden and Chris Williams</a> (<a href="https://twitter.com/TheRegister/status/948310496742027264">tweet</a>):</p> 
+<blockquote> 
+<p>A fundamental design flaw in Intel’s processor chips has forced a significant redesign of the Linux and Windows kernels to defang the chip-level security bug.</p> 
+<p>[…]</p> 
+<p>Crucially, these updates to both Linux and Windows will incur a performance hit on Intel products. The effects are still being benchmarked, however we’re looking at a ballpark figure of five to 30 per cent slow down, depending on the task and the processor model.</p> 
+<p>[…]</p> 
+<p>Similar operating systems, such as Apple’s 64-bit macOS, will also need to be updated – the flaw is in the Intel x86-64 hardware, and it appears a microcode update can’t address it. It has to be fixed in software at the OS level, or go buy a new processor without the design blunder.</p> 
+<p>[…]</p> 
+<p>The fix is to separate the kernel’s memory completely from user processes using what’s called Kernel Page Table Isolation, or KPTI. At one point, Forcefully Unmap Complete Kernel With Interrupt Trampolines, aka FUCKWIT, was mulled by the Linux kernel team, giving you an idea of how annoying this has been for the developers.</p> 
+</blockquote> 
+ 
+<p><a href="https://lkml.org/lkml/2017/12/27/2">Tom Lendacky</a> (via <a href="https://news.ycombinator.com/item?id=16052451">Hacker News</a>):</p> 
+<blockquote><p>AMD processors are not subject to the types of attacks that the kernel 
+page table isolation feature protects against.  The AMD microarchitecture 
+does not allow memory references, including speculative references, that 
+access higher privileged data when running in a lesser privileged mode 
+when that access would result in a page fault. 
+</p></blockquote> 
+ 
+<p>I wonder when Apple will have a macOS update and whether it will ship any Macs with AMD processors, depending on how long it takes Intel to develop a fix.</p> 
+ 
+<p><a href="https://www.bloomberg.com/news/articles/2018-01-03/amd-soars-after-rival-intel-said-to-reveal-processor-flaw">Ian King  and Jing Cao</a> (via <a href="https://news.ycombinator.com/item?id=16060855">Hacker News</a>):</p> 
+<blockquote><p>AMD shares surged as much as 7.2 percent to $11.77 Wednesday. Intel fell as much as 3.8 percent, the most since April, to $45.05.</p> 
+<p>[…]</p> 
+<p>The Santa Clara, California-based company’s chips have more than 80 percent market share overall and more than 90 percent in laptops and servers.</p></blockquote> 
+ 
+<p>See also: <a href="http://pythonsweetness.tumblr.com/post/169166980422/the-mysterious-case-of-the-linux-page-table">The mysterious case of the Linux Page Table Isolation patches</a>.</p> 
+ 
+<p>Update (2018-01-03): <a href="https://twitter.com/aionescu/status/948609809540046849">Alex Ionescu</a>:</p> 
+<blockquote><p>The question on everyone’s minds: Does MacOS fix the Intel #KPTI Issue? Why yes, yes it does. Say hello to the “Double Map” since 10.13.2 -- and with some surprises in 10.13.3 (under Developer NDA so can’t talk/show you).</p></blockquote> 
+ 
+<blockquote><p>The performance drop on a system with PCID is minimal. Most Macs have <a href="https://en.wikipedia.org/wiki/Kernel_page-table_isolation">PCID</a>.</p></blockquote> 
+ 
+<p><a href="https://www.phoronix.com/scan.php?page=article&amp;item=linux-415-x86pti&amp;num=1">Michael Larabel</a> (via <a href="https://news.ycombinator.com/item?id=16057288">Hacker News</a>): 
+</p> 
+<blockquote><p>I've been running some benchmarks and will have some more extensive tests soon, but given all the emails today about the issue, here are my initial benchmark numbers on two systems.</p></blockquote> 
+ 
+<p>See also: <a href="https://www.macrumors.com/2018/01/02/intel-chip-design-flaw/">MacRumors</a>.</p>
+	</body>
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!doctype html>
+<html>
+	<head>
+		<style type="text/css">
+			h2 {
+				font: -apple-system-headline;
+			}
+			body {
+				font: -apple-system-body;
+				zoom: 1.2;
+			}
+			img {
+				width: auto;
+				height : auto;
+				max-height: 100%;
+				max-width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>Reverse-Engineering the iPhone X Home Indicator Color</h2>
+		<p><a href="https://medium.com/@nathangitter/reverse-engineering-the-iphone-x-home-indicator-color-a4c112f84d34">Nathan Gitter</a>:</p> 
+<blockquote><ol><li>The home indicator’s color is determined by the system and cannot be modified directly.</li><li>The home indicator’s color is determined by the content underneath, and it is not always a solid color.</li><li>The home indicator on the simulator is <strong>not</strong> an accurate representation of the home indicator on a real device.</li><li>The home indicator animates to its new color(s) when the content underneath changes.</li><li>The home indicator is either in a “light” or “dark” state.</li></ol><p>[…]</p> 
+<p>If a screen in your app has a background color in the middle range where the home indicator could be either light or dark, you may prefer one style over the other. If the status bar is white, for example, it may look more visually balanced if the home indicator is white as well. Being aware of the home indicator’s nuanced behavior can help ensure that it doesn’t accidentally animate between light and dark when it could be distracting to the user.</p></blockquote>
+	</body>
+</html>

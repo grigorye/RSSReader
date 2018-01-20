@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!doctype html>
+<html>
+	<head>
+		<style type="text/css">
+			h2 {
+				font: -apple-system-headline;
+			}
+			body {
+				font: -apple-system-body;
+				zoom: 1.2;
+			}
+			img {
+				width: auto;
+				height : auto;
+				max-height: 100%;
+				max-width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>Table View Separator Inset</h2>
+		<p>The table view separator is that thin line drawn by default between table view cells. You control how far it extends to the leading and trailing edges with the <code>seperatorInset</code> property. Since iOS 7 this has been an inset based on the table cell margins. In iOS 11 Apple changed that to inset from the cell edges by default. That makes it easier to extend to the full table width but if you have been using an inset you may want to check how it now looks on iOS 11.</p> 
+ 
+<p></p> 
+ 
+<h3>Separator Inset</h3> 
+ 
+<p>The <code>separatorInset</code> property of <code>UITableView</code> is not new. It has been around since iOS 7 as a way to set the default inset for the separator between table view cells. It is a <code>UIEdgeInsets</code> but only the left and right values make any difference.</p> 
+ 
+<p>The effect is most obvious on the iPad, especially when using readable content guides. The separator is inset from the table view cell <code>contentView</code> layout margins taking into account the readable width:</p> 
+ 
+<p><img src="https://useyourloaf.com/assets/images/2017/2017-12-10-001.png" width="556" alt="iPad default separator inset"></p> 
+ 
+<p>The iPhone is a little different in that the separator reaches all the way to the trailing edge (extending into the safe area on an iPhone X):</p> 
+ 
+<p><img src="https://useyourloaf.com/assets/images/2017/2017-12-10-002.png" width="609" alt="iPhone X default separator inset"></p> 
+ 
+<p>Note: <code>UIKit</code> takes care of flipping the left and right insets for Right-To-Left languages.</p> 
+ 
+<p>You could always change this default inset by setting new left and right values for the <code>separatorInset</code> either in code or in Interface Builder:</p> 
+ 
+<pre><code>tableView.separatorInset = UIEdgeInsetsMake(0, 50, 0, 50) 
+</code></pre> 
+ 
+<p>The problem with this is that the inset was always based on the default cell inset which took into account the content margins. if you wanted the separator to extend to the full width of the table view you had to mess with the cell margins with mixed results especially on the iPad.</p> 
+ 
+<h3>Inset From Cell Edges (iOS 11)</h3> 
+ 
+<p><strong>Starting with iOS 11 if you set a separator inset it is now an inset from the cell edges and not from the default cell inset.</strong> For example, I can have a separator that stretches the full width of the table view by setting zero insets:</p> 
+ 
+<pre><code>tableView.separatorInset = .zero 
+</code></pre> 
+ 
+<p><img src="https://useyourloaf.com/assets/images/2017/2017-12-10-005.png" width="556" alt="iPad inset from edges"></p> 
+ 
+<h3>From Automatic Insets</h3> 
+ 
+<p><strong>What I find confusing is that Apple has changed the way separator insets work by default in iOS 11.</strong> In iOS 10 and earlier they base the inset on the cell layout margins taking into account the readable content guide if used. In iOS 11 the separator inset is, by default, from the cell edges.</p> 
+ 
+<p>You can change this behaviour with the <code>separatorInsetReference</code> property of <code>UITableView</code>. This property, new in iOS 11, is an enum with two choices:</p> 
+ 
+<ul><li><code>.fromCellEdges</code>: inset is from cell edges</li> 
+<li><code>.fromAutomaticInsets</code>: inset is from “default” table view insets (same as iOS 10)</li> 
+</ul><p>The confusing thing for me is that the default value is <code>.fromCellEdges</code>. So if you have changed the separator inset for iOS 10 or earlier and want to maintain the same appearance for iOS 11 you need to choose <code>.fromAutomaticInsets</code>:</p> 
+ 
+<pre><code>tableView.separatorInset = UIEdgeInsetsMake(0, 50, 0, 50) 
+if #available(iOS 11, *) { 
+  // Maintain iOS 10 style inset 
+  tableView.separatorInsetReference = .fromAutomaticInsets 
+} 
+</code></pre> 
+ 
+<p>Likewise if I want to use a full width separator on iOS 11 but keep the default for iOS 10:</p> 
+ 
+<pre><code>if #available(iOS 11, *) { 
+  tableView.separatorInset = .zero 
+} 
+</code></pre> 
+ 
+<h3>Customizing With Interface Builder</h3> 
+ 
+<p>If you are doing your layout with Interface Builder the settings to customize the separator inset are available when viewing the table view in the attributes inspector. Change the value of <code>Separator inset</code> from <code>Automatic</code> to <code>Custom</code> to get the extra controls.</p> 
+ 
+<p><img src="https://useyourloaf.com/assets/images/2017/2017-12-10-003.png" alt="Separator inset"></p> 
+ 
+<p>You can then set the left and right insets and switch between <code>From Cell Edges</code> or <code>From Automatic Insets</code>:</p> 
+ 
+<p><img src="https://useyourloaf.com/assets/images/2017/2017-12-10-004.png" alt="Custom separator inset"></p> 
+ 
+<h3>What Do I Need To Do?</h3> 
+ 
+<p>This is pretty confusing to me. Here is a summary of what I think you need to know and where you may want to take action:</p> 
+ 
+<ul><li><p>If you have never changed the <code>separatorInset</code> of your table views you don’t need to do anything.</p></li> 
+ 
+<li><p>If you have changed the <code>separatorInset</code> for earlier releases you should check how it looks with iOS 11. To maintain the same appearance you may want to change <code>separatorInsetReference</code> to <code>.fromAutomaticInsets</code> for iOS 11:</p> 
+ 
+<pre><code>if #available(iOS 11, *) { 
+  tableView.separatorInsetReference = .fromAutomaticInsets 
+} 
+</code></pre></li> 
+ 
+<li><p>To inset from cell edges with iOS 11 set <code>seperatorInset</code>. Use <code>#available</code> if you want to keep the default inset for earlier releases. For example, a full width separator:</p> 
+ 
+<pre><code>if #available(iOS 11, *) { 
+  tableView.separatorInset = .zero 
+} 
+</code></pre> 
+ 
+<p>(The default for <code>separatorInsetReference</code> is <code>.fromCellEdges</code>.)</p></li> 
+</ul><h3>Further Reading</h3> 
+ 
+<ul><li><a href="https://developer.apple.com/wwdc17/204">WWDC 2017 Session 204 Updating Your App for iOS 11</a></li> 
+<li><a href="https://useyourloaf.com/blog/readable-width-of-table-view-cells/">Readable Width of Table View  Cells</a></li> 
+</ul><hr><p> 
+<a href="https://useyourloaf.com/blog/table-view-separator-inset/">Table View Separator Inset</a> was originally posted 11 Dec 2017 on <a href="https://useyourloaf.com">useyourloaf.com</a>. 
+</p> 
+<p>Want this direct to your inbox? <a href="https://useyourloaf.com/newsletter">Sign up</a> and get my free iOS Size Classes guide. 
+</p> 
+<hr>
+	</body>
+</html>

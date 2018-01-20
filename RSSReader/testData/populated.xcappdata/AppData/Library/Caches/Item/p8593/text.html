@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!doctype html>
+<html>
+	<head>
+		<style type="text/css">
+			h2 {
+				font: -apple-system-headline;
+			}
+			body {
+				font: -apple-system-body;
+				zoom: 1.2;
+			}
+			img {
+				width: auto;
+				height : auto;
+				max-height: 100%;
+				max-width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>Hello MQTT Version 5.0!</h2>
+		<p>On August 9, 2017, the OASIS MQTT Technical Committee <a href="https://www.oasis-open.org/news/announcements/invitation-to-comment-on-mqtt-v5-0-ends-sept-8th">announced</a> that MQTT Version 5.0 is now available for public review and comment until September 8th. And the release of the next version of Message Queue Telemetry Transport (MQTT) is expected by end of this year.</p> 
+<p>Time to have a closer look at what’s new.</p> 
+<p>MQTT v5.0 is the successor of MQTT 3.1.1 (<a href="http://www.jensd.de/wordpress/?p=2667">find out why it’s not MQTT <strong>4</strong></a>).</p> 
+<p>Most likely important: MQTT v5.0 is not backward compatible (like v3.1.1). Obviously too many new things are introduced so existing implementations have to be revisited.</p> 
+<p>According to the specification, MQTT v5.0 adds a significant number of new features to MQTT while keeping much of the core in place.</p> 
+<p>The major functional objectives are:</p> 
+<ul><li>Enhancements for scalability and large scale systems in respect to setups with 1000s and millions of devices.</li> 
+<li>Improved error reporting (Reason Code &amp; Reason String)</li> 
+<li>Formalize common patterns including capability discovery and request response</li> 
+<li>Extensibility mechanisms including <b>user properties, payload format and content type</b></li> 
+<li>Performance improvements and improved support for small clients</li> 
+</ul><h2><b>My MQTT v5.0 Highlights</b></h2> 
+<h3><b>User Properties</b></h3> 
+<p>User properties (UTF-8 encoded Strings) can be part of most MQTT packets: PUBLISH and CONNECT, and to all packets with a Reason Code.<br><strong>User properties on PUBLISH</strong> are forwarded with the message and are defined by the client applications. They are forwarded by the server to the receiver of the message.<br><strong>User properties on CONNECT and ACKs</strong> are defined by the sender, are unique to the sender implementation, and are not defined by MQTT.<br> 
+An unlimited number of user properties can be added!</p> 
+<h3><b>Payload Format Indicator &amp; Content Type </b></h3> 
+<p>Another identifier/value pair is available for use when sending a PUBLISH message. This is the Payload Format indicator. If present and set to <b>1, this indicates that the PUBLISH payload is UTF-8 encoded data</b>. If set to <b>0, or if the indicator is not present, then the payload is an unspecified byte format</b>, exactly as with MQTT v3.1.1.</p> 
+<ul><li>Optional part of PUBLISH message</li> 
+<li>Reason Codes for ACK messages available if payload format is invalid</li> 
+<li>Receiver may validate the format indicator</li> 
+<li>„Content Type“ optional header can carry a MIME type</li> 
+<li>Payload Format Indicator“ can be binary or UTF-8</li> 
+</ul><h3><b>Shared Subscriptions</b></h3> 
+<p>With support of shared subscriptions, Client Load Balancing is now included in MQTT. The message load of a single topic is distributed amongst all subscribers (this was already supported by HiveMQ for MQTT 3.1 &amp; MQTT 3.1.1).</p> 
+<p><a href="https://blog.codecentric.de/files/2017/11/Shared-Subscriptions.png"><img src="https://blog.codecentric.de/files/2017/11/Shared-Subscriptions.png" alt="MQTT Shared Subscriptions" width="4405" height="3476"></a></p> 
+<p>A Shared Subscription is identified using a special style of Topic Filter.</p> 
+<p>The format of this filter is:</p> 
+<p style="text-align:center;"><b>$share/{ShareName}/{filter} </b></p> 
+<p><b>$share</b> – is a literal string that marks the Topic Filter as being a Shared Subscription Topic<br><b>{ShareName}</b> – is a character string that does not include “/”, “+” or “#”<br><b>{filter} – </b>is the remainder of the string has the same syntax and semantics as a Topic Filter in a non-shared subscription.</p> 
+<h3><b>Reason Codes &amp; Reason Strings</b></h3> 
+<p>With MQTT v5.0, Reason Codes and Reason Strings are introduced at application level. Now clients are allowed to figure out why they were disconnected.<br> 
+Almost all control packets like CONNACK, PUBACK, PUBREC, PUBREL, UNSUBACK, DISCONNECT, SUBACK and AUTH can carry Reason Codes in their variable header.<br><strong>But:</strong> <strong>Reason Codes are optional</strong>, the server/broker can still decide to just disconnect or reject the clients like in MQTT v3.1.1, e.g. for security reasons.<br> 
+In addition to the Reason Code a Reason String can be associated with the response to provide a more human readable message.</p> 
+<h3><b>Session management: Session Expiry &amp; Message Expiry</b></h3> 
+<p>Support of offline/persistent sessions is a major feature of MQTT to handle connection interrupts. The specification of MQTT v3.1.1 does not define a mechanism to control the expiry of a persistent session. Thus it will never expire and it will never be deleted (aside from some brokers like HiveMQ which already supports session expiry with MQTT v3.1.1).<br> 
+In MQTT v3.1.1 and earlier, a client can control how the server handles the client session (a session means the subscriptions of a client and any queued messages) via the „clean session“ flag. <b>If set to 1</b>, the server would delete any existing session for that client and would not persist the session after disconnecting.<b> If set to 0</b>, the server would restore any existing session for a client when it reconnected, and persist the session when the client disconnected.</p> 
+<p><b>“Clean Session” is now split into „Clean Start“.</b> If Clean Start is set to 1 it indicates that the session should start without using an existing session (otherwise session information is kept), and a Session Expiry interval which says how long to retain the session after a disconnect.</p> 
+<ul><li><b>Session Expiry </b>is an optional part of the CONNECT message (3.1.2.11.2 Session Expiry Interval) and the DISCONNECT control packet  (3.14.2.2.2 Session Expiry Interval). If the the Session Expiry Interval is absent in the DISCONNECT message, the Session Expiry Interval in the CONNECT packet is used. It defines the session expiry Interval in seconds. If set the Broker expires the session after the given interval as soon as the client disconnects. Setting of Clean Start to 1 and Session Expiry Interval to 0 is equivalent in MQTT v3.1.1 of setting Clean Session to 1.</li> 
+<li><b>Message expiry</b> is an optional part of the PUBLISH control packet (3.3.2.3.3 Publication Expiry Interval). The Publish Expiry Interval applies to online and queued messages and is the lifetime of the publication in seconds.</li> 
+</ul><p>Another issue to be addressed under this banner is called <b>Simplified State Management</b>.<br> 
+This has at least two major advantages.</p> 
+<ol><li>As an application, I only want my session state to be discarded when I’ve completed all my work, not when my network connection fails. This was inconveniently hard in all previous versions of MQTT – not in version 5.</li> 
+<li>The ability for session state to have an expiry time. If the client does not connect within a certain amount of time, the session state can be deleted by the server. This obviates the need for a client to reconnect just to clean up session state.</li> 
+</ol><h3><b>Repeated topics when publishing</b></h3> 
+<p>When publishing data to a single topic, a new feature will help reduce bandwidth use. A client or server can set the topic in a PUBLISH message to be a <b>zero length string</b>. This tells the client/server being published to, to <b>use the previous topic</b> instead. This goes some way to <b>reducing the current overhead</b> associated with publishing – a shame it isn’t quite as good as the registered topics available in MQTT-SN.</p> 
+<h3><b>Publication Expiry interval</b></h3> 
+<p>This is an identifier/value pair for use when publishing. If present, this value is a 4 byte integer which gives the number of seconds for which the server will attempt to deliver this message to a subscriber. This means that an offline client with messages being queued may not receive all of the messages when it reconnects, due to some of them expiring. Interestingly, when the server does deliver a message that had a Publication Expiry set, it sets the Publication Expiry on the outgoing message to the client but with the amount of time that there is left until the message expires. This means that the true time to expiry will propagate through bridges or similar.</p> 
+<h3><b>Publish Reason Codes</b></h3> 
+<p>The PUBACK and PUBREC packets have a new entry in their variable header which is the Publish Reason Code. This can be used to tell the client a message has been:</p> 
+<ul><li>refused for various reasons</li> 
+<li>accepted, or</li> 
+<li>accepted with no matching subscribers.</li> 
+</ul><p>For the PUBREC packet, if the message is refused or accepted with no matching subscribers then there is no expectation for the PUBREL/PUBCOMP messages to be sent for that message.<br> 
+The PUBCOMP packet also has a similar entry which has the same set of Reason Codes and an additional one for the case when a message had expired.<br> 
+This is for the case when a client reconnects with clean start set to 0 and it has a QoS 2 message part way through its handshake, but the server has already expired the message.<br> 
+There is still no way to tell a client that its QoS 0 message was refused but for a good reason: QoS 0 Messages do not get an acknowledgement -&gt; no piggybacking of Reason Codes!</p> 
+<h3><b>Disconnect notification</b></h3> 
+<p>In MQTT v3.1.1 and before, only the client sends a DISCONNECT packet.<br> 
+In MQTT v5.0, <b>either the client or the server can send DISCONNECT,</b> and it is used to indicate a reason for disconnection.<br> 
+Examples for the new disconnect reason codes:</p> 
+<p><a href="https://blog.codecentric.de/files/2017/11/Disconnect-Reason-Codes.png"><img src="https://blog.codecentric.de/files/2017/11/Disconnect-Reason-Codes.png" alt="Disconnect Reason Codes" width="1714" height="1312"></a></p> 
+<h2><b>Client implementations</b></h2> 
+<p>Currently there is <strong>no ready-to-use MQTT v5.0 client implementation available</strong>. I think a production-ready version will not be available until mid-2018.</p> 
+<p>Anyway as soon as client implementations are available I am looking forward to adding support for the new Version 5.0 features into MQTT.fx (<a href="http://www.mqttfx.org">www.mqttfx.org</a>) in time.</p> 
+<h2><b>Links</b></h2> 
+<p>OASIS Message Queuing Telemetry Transport (MQTT) TC</p> 
+<p><a href="https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=mqtt">https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=mqtt</a></p> 
+<p>Latest specification version</p> 
+<p><a href="http://docs.oasis-open.org/mqtt/mqtt/v5.0/">http://docs.oasis-open.org/mqtt/mqtt/v5.0/</a></p> 
+<p>MQTT.fx</p> 
+<p><a href="http://www.mqttfx.org">http://www.mqttfx.org</a></p> 
+<p>The post <a href="https://blog.codecentric.de/en/2017/11/hello-mqtt-version-5-0/">Hello MQTT Version 5.0!</a> appeared first on <a href="https://blog.codecentric.de/en">codecentric AG Blog</a>.</p> 
+<img src="http://feeds.feedburner.com/~r/codecentric_en/~4/oMWAftTxc38" height="1" width="1" alt="">
+	</body>
+</html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!doctype html>
+<html>
+	<head>
+		<style type="text/css">
+			h2 {
+				font: -apple-system-headline;
+			}
+			body {
+				font: -apple-system-body;
+				zoom: 1.2;
+			}
+			img {
+				width: auto;
+				height : auto;
+				max-height: 100%;
+				max-width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>Conditional Conformance in the Standard Library</h2>
+		<p><a href="https://swift.org/blog/conditional-conformance/">Ben Cohen</a>:</p> 
+<blockquote><p>The most noticeable benefit of conditional conformance is the ability for types 
+that store other types, like <code>Array</code> or <code>Optional</code>, to conform to the 
+<code>Equatable</code> protocol. This is the protocol that guarantees you can use <code>==</code> 
+between two instances of a type.</p><p>[…]</p><p>Having equatable elements gives collections other helper functions for tasks like searching[…]</p><p>[…]</p><p>This approach also works for <code>Codable</code>. If you try and encode an array 
+of non-codable types, you’ll now get a compile-time error instead of the runtime 
+trap you used to get.</p><p>[…]</p><p>If the collection we’re splitting is bidirectional, we ought to be able to make 
+our splitting wrapper bidirectional too. In Swift 4.0, the way to do this was 
+pretty clunky. You had to add a whole new type, 
+<code>LazySplitBidirectionalCollection</code>, which required <code>Base: 
+BidirectionalCollection</code> and implemented <code>BidirectionalCollection</code>. Then, you 
+overloaded the <code>split</code> method to return it <code>where Base: 
+BidirectionalCollection</code>.</p><p>Now, with conditional conformance, we have a much simpler solution: just make 
+<code>LazySplitCollection</code> conform to <code>BidirectionalCollection</code> when its base does.</p></blockquote>
+	</body>
+</html>

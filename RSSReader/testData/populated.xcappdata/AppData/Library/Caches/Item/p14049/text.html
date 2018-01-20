@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!doctype html>
+<html>
+	<head>
+		<style type="text/css">
+			h2 {
+				font: -apple-system-headline;
+			}
+			body {
+				font: -apple-system-body;
+				zoom: 1.2;
+			}
+			img {
+				width: auto;
+				height : auto;
+				max-height: 100%;
+				max-width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>WebDriver Testing Fun Times: When Threes Didn’t Exist</h2>
+		<p>Programming is fun. Really, it is. But occasionally, it will test you more than you’re testing it. There are those times when your patience might wear thin, and you find yourself questioning your own sanity. This is a story about one of those times. <span></span></p>
+ 
+<h2>Fear and Loathing in Acceptance Tests</h2>
+ 
+<p>It was 3:30 pm on a Friday afternoon. The day was going well. We were working on a relatively straightforward feature: a user login. Before we began to implement the feature, we had set up an acceptance test to simulate a user logging in, and we saw the test fail as expected—some classic <a href="http://feeds.feedblitz.com/~/t/0/0/atomicspin/~https://spin.atomicobject.com/2016/08/12/introduction-to-tdd/">test-driven development</a>.</p>
+ 
+<p>After some solid development time, we were able to log in locally without issues. Unfortunately, when we ran the test again, it was still failing. “Darn, we must have missed something,” we thought. Maybe there was an issue with the test setting up a user record in the database. Perhaps there was just another fluke that let us log in locally. So, we began debugging.</p>
+ 
+<p>As we went along debugging our test, we struggled to find an obvious issue with our code. With a little more digging, we found that the server wasn’t receiving the expected login information. The test user we had created was pretty simple. Username: <code>billy</code>. Password: <code>abc123</code>. But in the test, the password was coming in as <code>abc12</code>.</p>
+ 
+<p>Okay, we thought, maybe the “Submit” button was being clicked too quickly after the password input was filled in, and we should make sure there was a helper in place to verify that an input had the proper value before moving on to the next step. So, we added the helper, but then…the helper failed when trying to find the proper value. It still only got to <code>abc12</code>. Weird.</p>
+ 
+<p>Well, maybe, for whatever reason, the last character wasn’t being sent, even though it was working for the username. We tried having the test type in <code>abc1234</code>. We ran it, and we saw: <code>abc124</code>. Commence the perplexed googling.</p>
+ 
+<p>Our acceptance tests were using <a href="http://feeds.feedblitz.com/~/t/0/0/atomicspin/~www.seleniumhq.org/projects/webdriver/">WebDriver</a>, so a lot of our searches looked like, “Keys not being sent in WebDriver test.” We seemed to find some results suggesting that the locale setting on our browser might be incorrect. So, we tried explicitly setting the locale to <code>en-us</code>. Still, we weren’t seeing any 3s.</p>
+ 
+<p>After even more digging, we decided that for the sake of budgeting our time on the project, we would just write a helper to replace any <code>3</code> we’re sending with the <code>Numpad 3</code> key, which worked just fine. We got the test passing and continued on.</p>
+ 
+<h2>One Week Later…</h2>
+ 
+<p>Shortly after that encounter, <i>all</i> of our acceptance tests suddenly started failing. While running them on my machine to try and figure out what was wrong, I noticed some very peculiar behavior. As the tests were running in Chrome, the settings tab was launching and stealing focus from the original tab containing our application. This caused the tests to fail. Obviously, that wasn’t good.</p>
+ 
+<p>Once again, I went to consult my trusty search engine friend. The first solution I found was to upgrade the version of Chromedriver we were using from 2.30 to 2.33. Sure enough, after upgrading, the problem went away. Then we had an idea. “I wonder if the test can actually send the 3 key now?”</p>
+ 
+<p>We took out the little helper we had for replacing the 3s, ran our login test, and what do you know, <i>it worked</i>! After that, one of my teammates decided to go check out the <a href="http://feeds.feedblitz.com/~/t/0/0/atomicspin/~https://sites.google.com/a/chromium.org/chromedriver/downloads">ChromeDriver version change logs</a>. As he looked through the changes, he began to chuckle and called me over. I glanced at the list he was pointing to, for the 2.32 version, and sure enough, there it was: “Fixes a bug where Chromedriver fails to send characters 3 and # keys on Mac Chrome 62+.” <i>Sigh</i>.</p>
+ 
+<h2>Moral of the Story</h2>
+ 
+<p>On top of solving the actual problem with our tests, this experience was a good teachable moment for me. First, I learned that checking the version of your software and the change log can lead to some very important discoveries. It might even lead you to the solution you need right away. Second, it’s another testament to the importance of comprehensive software testing and covering as many use cases and configurations as you possibly can. And third, it’s a reminder that software is still written by humans, and any of us can make mistakes.</p>
+ 
+<p>If you have any other entertaining tales of programming adventures, feel free to share in the comments. I’d love to read them!</p>
+ 
+<p>The post <a href="http://feeds.feedblitz.com/~/t/0/0/atomicspin/~https://spin.atomicobject.com/2017/12/30/threes-didnt-exist/">WebDriver Testing Fun Times: When Threes Didn’t Exist</a> appeared first on <a href="http://feeds.feedblitz.com/~/t/0/0/atomicspin/~https://spin.atomicobject.com">Atomic Spin</a>.</p>
+ 
+<img height="1" width="1" alt="" style="border:0;float:left;margin:0;padding:0;width:1px;height:1px;" src="https://feeds.feedblitz.com/~/i/513841190/0/atomicspin"><h3 style="clear:left;padding-top:10px;">Related Stories</h3><ul><li><a href="https://spin.atomicobject.com/2017/12/05/faster-onboarding/">Five Build Commands to Make Project Onboarding Faster &amp; Easier</a></li><li><a href="https://spin.atomicobject.com/2017/11/28/less-time-debugging/">Six Strategies to Spend Less Time Debugging</a></li><li><a href="https://spin.atomicobject.com/2017/11/16/when-to-refactor-code/">Determining When To Refactor Code</a></li></ul>
+	</body>
+</html>

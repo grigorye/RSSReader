@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!doctype html>
+<html>
+	<head>
+		<style type="text/css">
+			h2 {
+				font: -apple-system-headline;
+			}
+			body {
+				font: -apple-system-body;
+				zoom: 1.2;
+			}
+			img {
+				width: auto;
+				height : auto;
+				max-height: 100%;
+				max-width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>A Functional Interface for Imperative Code</h2>
+		<p><img title="2018-01-09-flowlayout-b50cd1de.png" src="https://www.objc.io/images/blog/2018-01-09-flowlayout-b50cd1de.png" alt="2018-01-09-flowlayout-b50cd1de.png"></p><p>In last week’s Swift Talk episode, <a href="https://talk.objc.io/episodes/S01E82-refactoring-imperative-layout-code">Refactoring Imperative Layout Code</a>, we refactored an imperative flow layout algorithm into an algorithm with a functional interface. In this article, we’ll implement a justified version of this flow layout.</p>  
+  
+<p>Thanks to the functional interface, we can plug it in by changing a single line of code. With no implicit state, the interface makes it easy to swap out implementations, and also makes it possible to write unit tests without having to instantiate <code>UIView</code>s.</p>  
+  
+<hr><p>A justified flow layout aligns the left and right elements to the left and right margins and adjusts the spacing in between the elements accordingly. Here’s what our starting point looks like, with all lines aligned to the left:</p>  
+  
+<p><img width="2044" height="1140" src="http://www.objc.io/images/blog/2018-01-09-flowlayout-b50cd1de.png" alt="2018-01-09-flowlayout-b50cd1de.png"></p>  
+  
+<p>We start by adding some handy extensions on <code>Sequence</code> and <code>Array</code>. We need a way to compute the sum of a sequence, the total width of an array of sizes (with some spacing in between), and the maximum height of an array of sizes:</p>  
+  
+<pre><code>extension Sequence where Element: Numeric {  
+    var sum: Element {  
+        return self.reduce(0 as Element, +)  
+    }  
+}  
+  
+extension Array where Element == CGSize {  
+    func width(spacing: CGFloat = 0) -&gt; CGFloat {  
+        return self.lazy.map { $0.width }.sum + spacing * CGFloat(count-1)  
+    }  
+  
+    var height: CGFloat {  
+        return self.map { $0.height }.max() ?? 0  
+    }  
+}  
+</code></pre>  
+  
+<p>For the justified flow layout, the first step is to break our elements into lines. A line is an array of <code>CGSize</code>s, and we use a <code>for</code>-loop to iterate over the elements, adding each element if it still fits. If the line becomes too wide, we start a new line.</p>  
+  
+<pre><code>func justifiedFlowLayout(containerSize: CGSize, spacing: UIOffset, sizes: [CGSize]) -&gt; [CGRect] {  
+    var lines: [[CGSize]] = [[]]  
+    for element in sizes {  
+        let lastline = lines.last!  
+        let projectedWidth = lastline.width(spacing: spacing.horizontal) + element.width + spacing.horizontal  
+        if projectedWidth &gt; containerSize.width &amp;&amp; !lastline.isEmpty {  
+            lines.append([])  
+        }  
+        lines[lines.endIndex-1].append(element)  
+    }  
+  
+    // ...  
+</code></pre>  
+  
+<p>After having grouped the elements into lines, we can proceed to compute the frame for each element. We need to calculate the actual spacing between the elements in the line, so that a line fills the width of the container: we add up the elements’ widths in a line using <code>line.width(spacing: 0)</code>, subtract that value from the container’s width and divide it by the number of spaces in the line. Since <code>actualSpacing</code> might not be an integer, we use <code>.integral</code> on all frames to convert any fractional numbers into integers, as setting a frame with fractional numbers can result in blurry rendering.</p>  
+  
+<pre><code>    // ...  
+    var result: [CGRect] = []  
+    var current: CGPoint = .zero  
+    for line in lines {  
+        let width = line.width(spacing: 0)  
+        let actualSpacing = (containerSize.width - width) / CGFloat(line.count - 1)  
+        for element in line {  
+            result.append(CGRect(origin: current, size: element).integral)  
+            current.x += element.width + actualSpacing  
+        }  
+  
+        current.y += line.height + spacing.vertical  
+        current.x = 0  
+    }  
+    return result  
+}  
+</code></pre>  
+  
+<p>That’s our <code>justifiedFlowLayout</code> function finished. In our <code>ButtonsView</code>, we can change the layout from a flow layout into a justified flow layout by changing a single function call:</p>  
+  
+<pre><code>final class ButtonsView: UIView {  
+    override func layoutSubviews() {  
+        super.layoutSubviews()  
+  
+        let sizes = subviews.map { $0.intrinsicContentSize }  
+        let spacing = UIOffset(horizontal: 10, vertical: 10)  
+        let frames = justifiedFlowLayout(containerSize: bounds.size, spacing: spacing, sizes: sizes)  
+        for (idx, frame) in frames.enumerated() {  
+            subviews[idx].frame = frame  
+        }  
+    }  
+}  
+</code></pre>  
+  
+<p>Now our view adjusts the spacing in between elements to make sure the line is aligned to both the left and right margins:</p>  
+  
+<p><img width="2044" height="1140" src="http://www.objc.io/images/blog/2018-01-09-justifiedflowlayout-490f4402.png" alt="2018-01-09-justifiedflowlayout-490f4402."></p>  
+  
+<p>For the implementation of both methods we wrote very procedural code, which seemed the natural way to write it. Swift allows us to write procedural code <em>and</em> have a functional interface, truly the best of both worlds.</p>
+	</body>
+</html>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!doctype html>
+<html>
+	<head>
+		<style type="text/css">
+			h2 {
+				font: -apple-system-headline;
+			}
+			body {
+				font: -apple-system-body;
+				zoom: 1.2;
+			}
+			img {
+				width: auto;
+				height : auto;
+				max-height: 100%;
+				max-width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>Deploying Medium to Large Haskell Apps to Heroku by Precompiling</h2>
+		<p><strong>UPDATE</strong>: This post was written in 2013, where the options available to someone looking to host a Haskell site on Heroku were fairly limited. It’s (as of the time of writing this) 2015 now and things have changed. Check out <a href="http://blog.jle.im/entry/deploying-medium-to-large-haskell-apps-to-heroku#disqus_thread">the comments</a> for two good alternatives to this that are working today!</p> 
+<p>Consider the rest of this article obsolete, or look here if none of the solutions given in the comments work :)</p> 
+<h2>Old Article (Written 2013)</h2> 
+<p>If you do a search on how to deploy Haskell apps to Heroku these days, chances are you are going to find the very elegant method (here’s <a href="http://adit.io/posts/2013-04-15-making-a-website-with-haskell.html#deploying-to-heroku">one solution</a>, and <a href="http://blog.begriffs.com/2013/08/deploying-yesod-to-heroku-with-postgres.html">another</a>) involving leveraging Heroku’s powerful <a href="https://devcenter.heroku.com/articles/cedar">Cedar stack</a> and having Heroku use <code>cabal install</code> to download and compile your app and all of its dependencies into a native binary on the server itself. It’s a rather beautiful solution to the problem of a truly polyglot automated production server.</p> 
+<p>The <a href="https://github.com/mstksg/blog">blog engine</a> that runs this blog is written in Haskell. When I tried to deploy it using those steps, I encountered a rather frustrating roadblock:</p> 
+<p>Heroku enforces a hard time-out limit of <strong>fifteen minutes</strong> for all of its apps to compile and deploy. And because <em>cabal</em> needs time to download and compile every dependency, a typical non-trivial app (like a blog) would reach this limit very quickly with only a <a href="https://github.com/mstksg/blog/blob/master/blog.cabal#L20-52">modest amount of dependencies</a>.</p> 
+<p>I did some searching on this and asked around on the irc channel, but I was not able to find any real-world examples of <em>non-trivial</em> apps being deployed to Haskell using this method. It seemed like most articles simply deployed a toy project, and left it at that. (On that note, if anyone has actually had success with this, or knows someone who has, please let me know)</p> 
+<p>Until Heroku’s time-out limit can be adjusted or bypassed, the only real solution (besides incrementally pushing dependencies with a buildpack that caches — a solution even uglier and less practical) is to pre-compile your binary to an architecture that Heroku supports.</p> 
+<p>There are some tutorials on this already, but few are up to date and flexible/comprehensive, so here is my shot.</p> 
+<p>As an <strong>important note</strong>: this method is a lot less elegant and maintanable (in principle) than the recommended buildpack method; only use it if you are absolutely certain that buildpacks won’t work for you.</p> 
+<p>Also note that this assumes that your app is already configured to work on Heroku — that it doesn’t modify the filesystem after the deploy (so no <em>sqlite</em>), it uses the <code>$DATABASE_URL</code> environment variable to establish database connections, it uses the <code>$PATH</code> environment variable to choose the port to listen to, and other small things you just have to worry about that is out of the scope of this post.</p> 
+<p>Much of this post is owed to <a href="https://github.com/yesodweb/yesod/wiki/Deploying-Yesod-Apps-to-Heroku">this article on the Yesod wiki</a>.</p> 
+<h2>Compiling Your Binary</h2> 
+<h3>The Virtual Machine</h3> 
+<p>First of all, we need to find ourselves a machine with the same architecture as the Heroku virtual machines. For most people, it is not practical to go out and buy a physical machine that you can use for yourself, so we’re going to be setting up a virtual one here.</p> 
+<p>A lot of this is going to be verbatim from <a href="https://github.com/yesodweb/yesod/wiki/Setting-up-a-virtual-machine%2C-using-VirtualBox-and-Vagrant">this reference</a>, with a few updates.</p> 
+<ol type="1"><li><p>You’re going to need <a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a>, from Oracle. Most modern work on virtual machines leverage this great tool.</p></li> 
+<li><p>Install <a href="http://downloads.vagrantup.com/">vagrant</a>, a really convenient wrapper around the raw VirtualBox functionality that integrates things like build scripts and configurations into an easy-to-use package.</p></li> 
+<li><p>Clone/download the <a href="https://bitbucket.org/puffnfresh/vagrant-haskell-heroku">vagrant-haskell-heroku</a> project from BitBucket. This is the vagrant project that will set up everything you need to build and deploy to Heroku — an installation of GHC, the Haskell Platform, and the Heroku Toolbelt, all on a 64 bit Ubuntu 10.04 image.</p></li> 
+<li><p>Edit the <code>Vagrantfile</code>; on the line starting with <code>chef.json.merge!</code>, change the values to the versions of <a href="http://www.haskell.org/ghc/">GHC</a> and <a href="http://www.haskell.org/platform/">Haskell Platform</a> you will be using.</p> 
+<div><pre><code>chef.json.merge!({ <span>:ghc_version</span> =&gt; <span>'7.4.4'</span>, 
+                   <span>:haskell_platform_version</span> =&gt; <span>'2012.4.0.0'</span>})</code></pre></div> 
+<p>I’m using <code>ghc-7.6.3</code> to develop, and as of October 2013, the lastest stable Haskell Platform is <code>2013.2.0.0</code>.</p></li> 
+<li><p>Launch your virtual machine with</p> 
+<div><pre><code>$ <span>vagrant</span> up</code></pre></div> 
+<p>This will launch the VM and install the given versions of GHC and the Haskell Platform. You are mostly good to go now – log onto your machine using</p> 
+<div><pre><code>$ <span>vagrant</span> ssh</code></pre></div> 
+<p>If this doesn’t work, try installing <code>libgc-dev</code>. <code>vagrant ssh</code> should send you into an “ssh” session on your VM. Once there, let’s run some basic bookkeeping/updating that isn’t handled by the vagrant project:</p> 
+<div><pre><code>$ <span>sudo</span> apt-get update 
+$ <span>sudo</span> apt-get upgrade 
+$ <span>sudo</span> apt-get install git-core 
+$ <span>cabal</span> update</code></pre></div></li> 
+</ol><p>And you should have a fresh virtual machine compatible with Heroku ready to build your project on.</p> 
+<h3>Building Your Project</h3> 
+<p>At this point, there are many ways to proceed. Building is now more or less the same as if you were building on your own production server. Here is one way to go about it.</p> 
+<ol type="1"><li><p>Get your project files onto your guest (virtual) machine.</p> 
+<ul><li><p>If your projects are on a version control repository like <a href="https://www.github.com">Github</a> or any accessible server, then getting your files on your guest machine and keeping them up-to-date is as easy as a <code>git pull</code> (substitute git for whatever version control you use).</p></li> 
+<li><p>If not, the directory that your vagrant files are stored in is actually mounted onto the file system of the guest machine. You can access it at <code>/vagrant</code> on the guest machine.</p> 
+<p>This is really handy for transferring things like ssh keys, but you can also use this to get your project files onto your guest machine. Simply copy them over somehow onto a folder in the vagrant directory, and you can then access them on your virtual machine and do what you want with them.</p> 
+<p>However, if you want to keep your files up to date, you’ll have to do this manually.</p></li> 
+<li><p>If you are using version control like <em>git</em>, but you aren’t hosting it on a server (and why not? you can even <a href="https://github.com/sitaramc/gitolite">host a repo server locally on your own machine</a>.), see if you can use a local folder as a repository source.</p> 
+<p>For <em>git</em>, this is pretty simple. You only need to run <code>git init --bare</code> on the folder you want to use as the repository, and add the local filesystem path as the remote url. There are many resources explaining this process in detail, like <a href="http://www.jedi.be/blog/2009/05/06/8-ways-to-share-your-git-repository/">this post</a> and <a href="http://treeleaf.be/blog/2011/03/creating-a-new-git-repository-on-a-local-file-system/">this one</a></p></li> 
+</ul></li> 
+<li><p>Build the executable. This is the same as on any machine. However, I strongly recommend using some kind of sandboxing system like <a href="http://hackage.haskell.org/package/cabal-dev">cabal-dev</a>, or cabal 1.18’s built-in sandboxing, just to make sure you don’t run into any problems in the future.</p> 
+<div><pre><code><span>#   using cabal-dev</span> 
+$ <span>cabal</span> install cabal-dev 
+<span>#   you can add ~/.cabal/bin to your $PATH if you want</span> 
+$ <span>~/.cabal/bin/cabal-dev</span> install</code></pre></div> 
+<p>If any of your cabal packages require developer libraries to be installed on your machine (anything involving Postgres comes to mind), you’ll need to be sure that they are installed. A simple <code>apt-get</code> should take care of this for all relevant packages.</p> 
+<p>After everything downloads, builds, installs, etc., your executable will be created as <code>dist/build/app-name/app-name</code>.</p> 
+<p>This will also be a good test as to whether or not you specified your dependencies in your <code>.cabal</code> file properly.</p></li> 
+</ol><h2>Deploying it all</h2> 
+<p>Almost there! Your binary is now compiled; how are you going to deploy it to Heroku?</p> 
+<ol type="1"><li><p>First, you have to commit your binary to version control. Some people recommend using a separate branch for this, but because your guest machine’s project directory is kind of a transient thing, this really isn’t that necessary.</p> 
+<p>You can simply forcefully add the file to git as it is, because chances are you have it already in your <code>.gitignore</code>:</p> 
+<div><pre><code>$ <span>git</span> add -f dist/build/app-name/app-name</code></pre></div> 
+<p>Alternatively, you can create a <code>bin/</code> folder and copy the executable there. It really doesn’t make a difference, except that you don’t have to modify your <code>.gitignore</code>.</p></li> 
+<li><p>Now, you need to create your <code>Procfile</code> — this specifies the processes that Heroku will be executing.</p> 
+<div><pre><code><span># Procfile</span> 
+<span>web:</span><span> </span><span># system command to launch your server</span></code></pre></div> 
+<p>For some web servers, it is simply the path to the executable; for some frameworks like <em>Yesod</em>, you need to specify the flag <code>-p $PORT</code>, because Heroku specifies the port you are to listen to via the environment variable.</p></li> 
+<li><p>Heroku requires every project to have <em>some</em> buildpack. Because the actual web processes are specified in your <code>Procfile</code>, buildpacks won’t interfere with any actual execution of your server.</p> 
+<p>There are three easy ways to do this — you can either use a blank <code>requirements.txt</code> (the easiest way) to act like a <em>Python</em> app, a valid but empty <code>package.json</code> to act like a <em>Node.js</em> app, or a valid but empty <code>Gemfile</code> and <code>Gemfile.lock</code> combination to act like a <em>ruby</em> app.</p> 
+<p>But hey, if you use any node packages or gems or python packages in your project, then you can actually use this to your advantage! I personally use <em><a href="http://compass-style.org/">compass</a></em> a lot for their extensions to <em>sass</em>, so adding it is as simple as using a <em>Gemfile</em> — just like in any normal ruby app.</p> 
+<p>If you want to mix and match libraries from different languages/ecosystems, you can use the <a href="https://github.com/ddollar/heroku-buildpack-multi">multi</a> buildpack and have Heroku check for packages in all of the normal package managers of the languages you specify.</p></li> 
+<li><p>Configure your <a href="https://toolbelt.heroku.com/">Heroku Toolbelt</a>, and deploy.</p> 
+<div><pre><code><span>#   create your app</span> 
+$ <span>heroku</span> create appname 
+<span>#   and, after making sure everything is set up, committed, and in order...</span> 
+$ <span>git</span> push heroku master</code></pre></div> 
+<p>If you have done everything right, this should be succesful. Hooray!</p></li> 
+<li><p>Make sure your <code>web</code> process is running properly. You can do this by going to <a href="https://dashboard.heroku.com/apps">https://dashboard.heroku.com/apps</a>, clicking on your app, and making sure under <strong>Dynos</strong> that the check box next to “web” is checked off.</p></li> 
+</ol><p>And that should be it!</p> 
+<h2>After the Deploy</h2> 
+<p>Your app should be running successfully now! Probably. Maybe. If you run into any problems, let me know in the comments. But to preempt any issues that might arise, here are some things that it might be important to pay attention to.</p> 
+<ul><li><p>If you are using Heroku’s Postgres instances (and you should, they are amazing and probably more reliable than anything you could host yourself on cheap, for free), you will have to make sure to <a href="https://devcenter.heroku.com/articles/heroku-postgresql">configure them properly</a>.</p> 
+<p>If you have problems making a connection, you can try the <a href="http://hackage.haskell.org/package/heroku">heroku</a> package on Hackage and integrate it with your database connection backends.</p></li> 
+<li><p>You are probably going to want to automate your entire re-deploy process — the pull, the build/install, the copying of the executable, the committing of the binary to version control, and the deploy to Heroku.</p> 
+<p>You can use your favorite task management system, like <em>Make</em>, <em>Rake</em>, or even <em>Shake</em> (see my <a href="https://blog.jle.im/entry/shake-task-automation-and-shell-scripting-in-haskell">brief tutorial on Shake</a>)</p> 
+<p>Your basic workflow should consist of pushing your project files to your repository on your host machine, and <code>vagrant ssh</code>-ing onto your guest machine and executing one or two commands to automate the entire re-deploy process.</p></li> 
+<li><p>Be aware of good virtual machine management practices. Suspend your machine whenever you are not using it:</p> 
+<div><pre><code><span>#   suspend</span> 
+$ <span>vagrant</span> suspend 
+<span>#   resume</span> 
+$ <span>vagrant</span> resume</code></pre></div> 
+<p>and you will also prevent things from getting hairy in case of a system crash on the host side.</p></li> 
+</ul><p>Good luck developing for the web on the Haskell platform, and welcome to the club!</p><div> 
+<a href="http://feeds.feedburner.com/~ff/incodeblog?a=7MNS9Bu2tBk:ZmEL9mRP1TY:yIl2AUoC8zA"><img src="http://feeds.feedburner.com/~ff/incodeblog?d=yIl2AUoC8zA" alt="incodeblog?d=yIl2AUoC8zA"></a> 
+</div><img src="http://feeds.feedburner.com/~r/incodeblog/~4/7MNS9Bu2tBk" height="1" width="1" alt="">
+	</body>
+</html>

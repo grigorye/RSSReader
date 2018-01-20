@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!doctype html>
+<html>
+	<head>
+		<style type="text/css">
+			h2 {
+				font: -apple-system-headline;
+			}
+			body {
+				font: -apple-system-body;
+				zoom: 1.2;
+			}
+			img {
+				width: auto;
+				height : auto;
+				max-height: 100%;
+				max-width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>View-state driven applications</h2>
+		<p>Cocoa applications are traditionally “presentation driven”. By that, I mean that view changes commence by first choosing the presentation change – like a view controller segue – and later we set the data to give the view content.</p> 
+ 
+<p>In this article, I’ll look at why a presentation driven approach conflicts with the <a href="https://www.cocoawithlove.com/worst-possible-application.html">primary rule of application design discussed in the previous article</a>. I’ll look at some limitations caused by this conflict and look at what happens when we invert the steps by first setting data – an encoding of display intent – then later update the presentation to match this data.</p> 
+ 
+<p>To demonstrate some potential benefits of a data driven approach, the code in this article will show how you can implement complete user-interface logging, full state restoration and user-interface “time travel” in an app that remains as close as possible to Xcode’s “Master-Detail App” project template.</p> 
+ 
+<blockquote> 
+<p>This article will be a more in-depth look at the same topic and <a href="https://github.com/mattgallagher/Clocks">sample project</a> (significantly updated) that I presented at try! Swift NYC 2017. <a href="https://academy.realm.io/posts/try-swift-nyc-2017-matt-gallagher-driving-view-state-through-data/">The video for that talk is available</a> if you’d prefer to start there.</p> 
+</blockquote> 
+ 
+<p></p> 
+ 
+<h2>Ideal Model-View-Controller</h2> 
+ 
+<p>Ideally, in a Model-View-Controller application, user-actions occur along the following data-flow path:</p> 
+ 
+<p><img src="https://www.cocoawithlove.com/assets/blog/ideal_mvc.svg" alt=""></p> 
+ 
+Ideal data-flow path in a Model-View-Controller application<p>A User-action is received by a View which targets its Controller. The Controller performs an action on the Model. Neither the targeted Controller nor the interacted View make any changes at this time – they are merely propagating an event.</p> 
+ 
+<p>The Model makes whatever changes are appropriate for the action and sends a notification. Any Controller interested in the notification may observe it. Observing Controllers update Views according to the changes described in the notification.</p> 
+ 
+<p>This is ideal Model-View-Controller. User-actions always propagate through to the Model. No state changes until the action occurs on the Model. Views are updated solely as a result of notifications from the Model. As I discussed in the previous article, these requirements preserve the notion of the Model as an abstraction. These requirements are the minimum for any application design.</p> 
+ 
+<h2>Clocks</h2> 
+ 
+<p>To demonstrate a typical Model-View-Controller app, I wrote the following application.</p> 
+ 
+<div style="text-align:center;padding:16px;"><img src="https://www.cocoawithlove.com/assets/blog/clocks1.png" alt="clocks1.png"><img src="https://www.cocoawithlove.com/assets/blog/clocks2.png" alt="clocks2.png"></div> 
+ 
+<blockquote> 
+<p>You can view this version of the app on the <a href="https://github.com/mattgallagher/Clocks/tree/undoredo">“undoredo” branch of the Clocks github repository</a>.</p> 
+</blockquote> 
+ 
+<p>The app is a basic world-time viewer. The main screen shows a list of timezones. You can tap the “+” button and add new timezones from the “Selection” screen. You can set “Edit” mode on the main screen and delete existing timezones. You can tap on a timezone on the main screen to show a detail view. You can rename the timezone on the detail view.</p> 
+ 
+<p>It’s not the functionality of the app that’s important but the fact that the app is, as close as I can make it, directly based on Xcode’s “Master-Detail App” project template and follows the same basic formula implied in Apple’s sample code.</p> 
+ 
+<p>Let’s look at the code path for use-actions in this app. Code on the <code>MasterViewController</code> for deleting a <code>Timezone</code> from the list is:</p> 
+<div><pre><code><span></span><span>// Controller receives delegate action from View and invokes Model action</span> 
+<span>override</span> <span>func</span> <span>tableView</span><span>(</span><span>_</span> <span>tableView</span><span>:</span> <span>UITableView</span><span>,</span> <span>commit</span> <span>editingStyle</span><span>:</span> 
+   <span>UITableViewCellEditingStyle</span><span>,</span> <span>forRowAt</span> <span>indexPath</span><span>:</span> <span>IndexPath</span><span>)</span> <span>{</span> 
+   <span>Document</span><span>.</span><span>shared</span><span>.</span><span>removeTimezone</span><span>(</span><span>sortedTimezones</span><span>[</span><span>indexPath</span><span>.</span><span>row</span><span>].</span><span>uuid</span><span>)</span> 
+<span>}</span> 
+ 
+<span>// Document notifies change and Controller updates View accordingly</span> 
+<span>func</span> <span>handleDocumentNotification</span><span>(</span><span>timezones</span><span>:</span> <span>Document</span><span>.</span><span>DataType</span><span>,</span> <span>action</span><span>:</span> <span>Document</span><span>.</span><span>Action</span><span>?)</span> <span>{</span> 
+   <span>switch</span> <span>action</span> <span>{</span> 
+   <span>case</span> <span>.</span><span>removed</span><span>(</span><span>let</span> <span>uuid</span><span>)?:</span> 
+      <span>let</span> <span>index</span> <span>=</span> <span>sortedTimezones</span><span>.</span><span>index</span> <span>{</span> <span>$0</span><span>.</span><span>uuid</span> <span>==</span> <span>uuid</span> <span>}</span><span>!</span> 
+      <span>updateSortedTimezones</span><span>(</span><span>timezones</span><span>:</span> <span>timezones</span><span>)</span> 
+      <span>tableView</span><span>.</span><span>deleteRows</span><span>(</span><span>at</span><span>:</span> <span>[</span><span>IndexPath</span><span>(</span><span>row</span><span>:</span> <span>index</span><span>,</span> <span>section</span><span>:</span> <span>0</span><span>)],</span> <span>with</span><span>:</span> <span>.</span><span>automatic</span><span>)</span> 
+   <span>}</span> 
+<span>}</span> 
+</code></pre></div> 
+ 
+<p>These two functions show all the steps from our “ideal Model-View-Controller” diagram. The first function shows the action from the View and the invocation on the Model. The second function shows the observation of the Model-notification and the application of changes to the View.</p> 
+ 
+<h2>Do you know what your app is doing?</h2> 
+ 
+<p>In the Clocks app, every time the Model is changed, a snapshot of the Model is saved. The app displays a slider at the bottom of the screen and by using the slider, you can rewind the Model back through each of the snapshots.</p> 
+ 
+<p>The effect is straightforward: the slider and implements undo and redo using the Model snapshots.</p> 
+ 
+<p>However, try the following steps:</p> 
+ 
+<ol><li>go to the “Selection” screen and add a new timezone</li> 
+<li>from the main screen, select the “Edit” mode in the navigation bar</li> 
+<li>delete the newly added timezone and leave “Edit” mode by selecting “Done”</li> 
+<li>use the slider at the bottom of the screen to slowly undo these changes</li> 
+</ol><p>The added timezone will reappear as its deletion is undone and then disappear again as its creation is undone. However “Edit” mode will not reappear and the selection screen will not reappear.</p> 
+ 
+<div style="text-align:center;"><video style="border:1px solid #000000;" src="https://www.cocoawithlove.com/assets/blog/clocks_undoredo.mp4"></video></div> 
+ 
+A video of adding and deleting "Casablanca" then using the slider to undo and redo this change<p>We say that the View presents the Model and the Model is the true representation of the app but this simple app demonstrates that it’s a lie. <strong>The Model is <em>not</em> a complete representation of the application’s state</strong>. The View is <em>not</em> a simple display of content from the Model. The “Selection” screen is not a part of the Model but it affects the display. “Edit” mode is not a part of the Model but it affects the display. Many User-actions in typical Model-View-Controller app do not follow the ideal data-flow path and change state without ever reaching the Model.</p> 
+ 
+<h2>Separate pipelines</h2> 
+ 
+<p><img src="https://www.cocoawithlove.com/assets/blog/not_ideal_mvc.svg" alt="Broken MVC"></p> 
+ 
+Presentation driven changes involve View and Controller acting without the Model<p>In typical MVC Cocoa, as this diagram shows, segues and other “presentation” changes – like the appearance or disappearance of the <code>SelectionViewController</code> in the Clocks app – are handled entirely within the Controller layer, leaving the Model out-of-the-loop.</p> 
+ 
+<p>It’s not just a problem with “presentation” changes. Many common View and Controller classes in Cocoa are built around they idea that they can be constructed, updated and mutated without a Model being involved at all. It is common for any of the following data to exist <em>only</em> in Views or Controllers and not in the Model:</p> 
+ 
+<ul><li>The navigation stack in a navigation controller.</li> 
+<li>Scroll position of a scroll view.</li> 
+<li>Row selection in a table view.</li> 
+<li>Tab selections in a tab view.</li> 
+<li>The state of Switches and sliders.</li> 
+<li>Uncommitted text fields.</li> 
+</ul><p>This data that lives outside the Model is called “View-state”. This is a collection of the most user-visible state in our application and the standard approach in Model-View-Controller is to <em>ignore</em> it.</p> 
+ 
+<h2>Rethinking what should be a Model</h2> 
+ 
+<p>Yes, I know that traditional Model-View-Controller <em>intentionally</em> excludes View-state from the Model. Traditional formulations of the Model describe the <em>persistent</em> data of the app and everything non-persistent is excluded. Within this formulation, the View intentionally holds uncommitted data so it can delay validation and other business logic until a “commit” step. Keeping multiple data stores in RAM was expensive, persistent storage was slow and so was validation so there was a rationale for this behavior.</p> 
+ 
+<p>But in modern applications, we have the CPU power to validate everything continuously, we have the spare RAM to keep multiple copies of state and the View is persistent between app launches. The premise that non-Document state isn’t worthy of the same benefits as Document state lacks justification and discourages programmers from correctly abstracting non-Document state.</p> 
+ 
+<p>If we demand clean Model abstractions for the Document, then I don’t think there’s a good justification to exempt View-state – or any other state – from the same requirements. I think the fact that we can’t rewind the entire user-interface as easily as the document is an indication that lack of coordination and management of state has left us out-of-control of our own application.</p> 
+ 
+<p>I think we should expand the definition of Model to:</p> 
+ 
+<blockquote> 
+<p><strong>All mutable state</strong> that is directly represented in the View – whether it is stored in the <em>Document, View-state, User-settings, Filesystem, System-services, Network or elsewhere</em> – <strong>is a Model</strong> and should be cleanly abstracted from the View. Failure to isolate this mutable state within a Model abstraction represents a failure of application design.</p> 
+</blockquote> 
+ 
+<p>Following this rule dogmatically, I should probably have united the use of <code>Timer</code> and <code>Date</code> under a single “Time” Model abstraction in the app but at this point, it’s far from the biggest problem.</p> 
+ 
+<h2>A Model for View-state</h2> 
+ 
+<p>We need a Model abstraction for the View-state.</p> 
+ 
+<p>If you’ve never treated View-state as a Model before, this can be a strange statement to make. To understand what’s required, let’s start by looking at the Document Model that we already have.</p> 
+ 
+<h3>The existing <code>Document</code> Model</h3> 
+ 
+<p>The Document Model in the Clocks app is called <code>Document</code> and offers the following mutating methods:</p> 
+<div><pre><code><span></span><span>func</span> <span>addTimezone</span><span>(</span><span>_</span> <span>identifier</span><span>:</span> <span>String</span><span>)</span> 
+<span>func</span> <span>updateTimezone</span><span>(</span><span>_</span> <span>uuid</span><span>:</span> <span>UUID</span><span>,</span> <span>newName</span><span>:</span> <span>String</span><span>)</span> 
+<span>func</span> <span>removeTimezone</span><span>(</span><span>_</span> <span>uuid</span><span>:</span> <span>UUID</span><span>)</span> 
+</code></pre></div> 
+ 
+<p>By understanding the actions we can perform on the Model, we can understand the Model. These actions lead to the internal representation of the <code>Document</code>:</p> 
+<div><pre><code><span></span><span>private</span> <span>var</span> <span>timezones</span><span>:</span> <span>[</span><span>UUID</span><span>:</span> <span>Timezone</span><span>]</span> <span>=</span> <span>[:]</span> 
+ 
+<span>struct</span> <span>Timezone</span><span>:</span> <span>Codable</span> <span>{</span> 
+   <span>let</span> <span>uuid</span><span>:</span> <span>UUID</span> 
+   <span>let</span> <span>identifier</span><span>:</span> <span>String</span> 
+   <span>var</span> <span>name</span><span>:</span> <span>String</span> 
+<span>}</span> 
+</code></pre></div> 
+ 
+<p>The primitive storage for the <code>Document</code> is just a collection of <code>identifier</code> and <code>name</code> pairs, keyed by <code>uuid</code> in a dictionary.</p> 
+ 
+<h3>Our new <code>ViewState</code> Model</h3> 
+ 
+<p>Let’s look at the View-state in a similar way. I’ve already discussed the major actions a user can perform:</p> 
+ 
+<ul><li>tap a row in the main table view to change the detail selection</li> 
+<li>enable or disable “Edit” mode on the main table view</li> 
+<li>show or hide the new timezone selection view</li> 
+</ul><p>There’s also scrolling in both the main table view and the new timezone selection view and a search field in the new timezone selection view for filtering the list.</p> 
+ 
+<p>That’s the full list of user actions that don’t immediately result in a change to the <code>Document</code>. That gives the following list of mutating methods for our new <code>ViewState</code>:</p> 
+<div><pre><code><span></span><span>func</span> <span>scrollMasterView</span><span>(</span><span>offsetY</span><span>:</span> <span>Double</span><span>)</span> 
+<span>func</span> <span>scrollSelectionView</span><span>(</span><span>offsetY</span><span>:</span> <span>Double</span><span>)</span> 
+<span>func</span> <span>changeDetailSelection</span><span>(</span><span>uuid</span><span>:</span> <span>UUID</span><span>?)</span> 
+<span>func</span> <span>changeEditModeOnMaster</span><span>(</span><span>_</span> <span>isEditing</span><span>:</span> <span>Bool</span><span>)</span> 
+<span>func</span> <span>changeSelectionViewVisibility</span><span>(</span><span>_</span> <span>visible</span><span>:</span> <span>Bool</span><span>)</span> 
+<span>func</span> <span>selectionViewSearchString</span><span>(</span><span>_</span> <span>value</span><span>:</span> <span>String</span><span>)</span> 
+</code></pre></div> 
+ 
+<p>We could represent the values that these methods change as 6 properties on a single struct but I think it’s better to organize these properties as a tree of structs, reflecting the actual Controllers in the View-tree.</p> 
+ 
+<p>This gives a data representation of our <code>ViewState</code> Model as follows:</p> 
+<div><pre><code><span></span><span>private</span> <span>(</span><span>set</span><span>)</span> <span>var</span> <span>splitView</span><span>:</span> <span>SplitViewState</span> <span>=</span> <span>SplitViewState</span><span>()</span> 
+ 
+<span>struct</span> <span>SplitViewState</span><span>:</span> <span>Codable</span> <span>{</span> 
+   <span>var</span> <span>masterView</span><span>:</span> <span>MasterViewState</span> 
+   <span>var</span> <span>detailView</span><span>:</span> <span>DetailViewState</span><span>?</span> 
+   <span>var</span> <span>selectionView</span><span>:</span> <span>SelectionViewState</span><span>?</span> 
+<span>}</span> 
+ 
+<span>struct</span> <span>MasterViewState</span><span>:</span> <span>Codable</span> <span>{</span> 
+   <span>var</span> <span>masterScrollOffsetY</span><span>:</span> <span>Double</span> <span>=</span> <span>0</span> 
+   <span>var</span> <span>isEditing</span><span>:</span> <span>Bool</span> <span>=</span> <span>false</span> 
+<span>}</span> 
+ 
+<span>struct</span> <span>SelectionViewState</span><span>:</span> <span>Codable</span> <span>{</span> 
+   <span>var</span> <span>selectionScrollOffsetY</span><span>:</span> <span>Double</span> <span>=</span> <span>0</span> 
+   <span>var</span> <span>searchText</span><span>:</span> <span>String</span> <span>=</span> <span>""</span> 
+<span>}</span> 
+ 
+<span>struct</span> <span>DetailViewState</span><span>:</span> <span>Codable</span> <span>{</span> 
+   <span>let</span> <span>uuid</span><span>:</span> <span>UUID</span> 
+<span>}</span> 
+</code></pre></div> 
+ 
+<p>Look back over the roughly 30 lines of declaration code in this section. These declarations are an abstract representation of the entire 600 line program.</p> 
+ 
+<h2>From Presentation driven to View-state driven</h2> 
+ 
+<p>We’ll look at how this changes our code but first, lets look at how a “presentation” change occurred in the “undo-redo” version of the app.</p> 
+<div><pre><code><span></span><span>// Controller receives delegate action from View and invokes performSegue</span> 
+<span>override</span> <span>func</span> <span>tableView</span><span>(</span><span>_</span> <span>tableView</span><span>:</span> <span>UITableView</span><span>,</span> <span>didSelectRowAt</span> <span>indexPath</span><span>:</span> <span>IndexPath</span><span>)</span> <span>{</span> 
+   <span>performSegue</span><span>(</span><span>withIdentifier</span><span>:</span> <span>"showDetail"</span><span>,</span> <span>sender</span><span>:</span> <span>tableView</span><span>)</span> 
+<span>}</span> 
+ 
+<span>// Controller sends data to segue destination</span> 
+<span>override</span> <span>func</span> <span>prepare</span><span>(</span><span>for</span> <span>segue</span><span>:</span> <span>UIStoryboardSegue</span><span>,</span> <span>sender</span><span>:</span> <span>Any</span><span>?)</span> <span>{</span> 
+   <span>if</span> <span>segue</span><span>.</span><span>identifier</span> <span>==</span> <span>"showDetail"</span> <span>{</span> 
+       <span>if</span> <span>let</span> <span>indexPath</span> <span>=</span> <span>tableView</span><span>.</span><span>indexPathForSelectedRow</span> <span>{</span> 
+           <span>let</span> <span>timezone</span> <span>=</span> <span>sortedTimezones</span><span>[</span><span>indexPath</span><span>.</span><span>row</span><span>]</span> 
+           <span>let</span> <span>controller</span> <span>=</span> <span>(</span><span>segue</span><span>.</span><span>destination</span> <span>as</span><span>!</span> 
+              <span>UINavigationController</span><span>).</span><span>topViewController</span> <span>as</span><span>!</span> <span>DetailViewController</span> 
+           <span>controller</span><span>.</span><span>uuid</span> <span>=</span> <span>timezone</span><span>.</span><span>uuid</span> 
+           <span>controller</span><span>.</span><span>navigationItem</span><span>.</span><span>leftBarButtonItem</span> <span>=</span> 
+              <span>splitViewController</span><span>?.</span><span>displayModeButtonItem</span> 
+           <span>controller</span><span>.</span><span>navigationItem</span><span>.</span><span>leftItemsSupplementBackButton</span> <span>=</span> <span>true</span> 
+       <span>}</span> 
+   <span>}</span> 
+<span>}</span> 
+</code></pre></div> 
+ 
+<p>As clumsy as this code looks, it is almost unchanged from the “Master-Detail App” template. This is a <em>presentation driven</em> transition. It starts by asking a the Controller to change the View-tree in the <code>tableView(_:didSelectRowAt:)</code> function and then during the View-tree change in the <code>prepare(for:sender:)</code> function, it attempt to find and set data on the newly created view.</p> 
+ 
+<p>There’s so much to <em>dislike</em> about this code but from a Model abstraction perspective, the biggest problem is that the code never clearly encodes its <em>intent</em>. The <code>performSegue</code> line implies that the intent is merely to “showDetail” but that’s not true: the intent is to show the selected <code>timezone.uuid</code> <em>in</em> the detail view. The hideously ugly work performed in the <code>prepare(for:sender:)</code> function is mostly just trying to reconstruct the key operand of that intent from the crime-scene wreckage left behind on the Controller and <code>tableView</code>.</p> 
+ 
+<p>Let’s now look at this code in a View-state driven approach.</p> 
+<div><pre><code><span></span><span>// MasterViewController receives delegate action from View and invokes performSegue</span> 
+<span>override</span> <span>func</span> <span>tableView</span><span>(</span><span>_</span> <span>tableView</span><span>:</span> <span>UITableView</span><span>,</span> <span>didSelectRowAt</span> <span>indexPath</span><span>:</span> <span>IndexPath</span><span>)</span> <span>{</span> 
+   <span>ViewState</span><span>.</span><span>shared</span><span>.</span><span>changeDetailSelection</span><span>(</span><span>uuid</span><span>:</span> <span>sortedTimezones</span><span>[</span><span>indexPath</span><span>.</span><span>row</span><span>].</span><span>uuid</span><span>)</span> 
+<span>}</span> 
+ 
+<span>// SplitViewController receives delegate action from View and invokes performSegue</span> 
+<span>func</span> <span>handleViewStateNotification</span><span>(</span><span>state</span><span>:</span> <span>SplitViewState</span><span>,</span> <span>action</span><span>:</span> <span>SplitViewState</span><span>.</span><span>Action</span><span>?)</span> <span>{</span> 
+   <span>switch</span> <span>action</span> <span>{</span> 
+   <span>case</span> <span>.</span><span>changedDetail</span><span>?</span> <span>where</span> <span>state</span><span>.</span><span>detailView</span> <span>!=</span> <span>nil</span><span>:</span> 
+      <span>masterViewController</span><span>?.</span><span>performSegue</span><span>(</span><span>withIdentifier</span><span>:</span> <span>"detail"</span><span>,</span> <span>sender</span><span>:</span> <span>self</span><span>)</span> 
+   <span>// other actions omitted</span> 
+   <span>}</span> 
+<span>}</span> 
+</code></pre></div> 
+ 
+<p>We invoke an action on the <code>ViewState</code> which changes the <em>data</em> first – immediately declaring an intent to change the detail selection to the selected UUID – then the <code>SplitViewController</code> (not the <code>MasterViewController</code>) observes that data change and updates the detail presentation in response. We never need to set the <code>uuid</code> directly on the <code>DetailViewController</code> – the <code>DetailViewController</code> subscribes to the <code>ViewState</code> and learns what its <code>uuid</code> is from there.</p> 
+ 
+<p>Compare this code sample to the “ideal Model-View-Controller” Model change back in the <a href="https://www.cocoawithlove.com/#clocks">Clocks section</a>. The two changes follow a nearly identical series of steps.</p> 
+ 
+<h2>What do we gain?</h2> 
+ 
+<blockquote> 
+<p>You can find the <code>ViewState</code> build on the <a href="https://github.com/mattgallagher/Clocks">“master” branch of the Clocks github repository</a>.</p> 
+</blockquote> 
+ 
+<h3>Time-travel</h3> 
+ 
+<p>Unlike the “undoredo” branch of this project, dragging the slider on the “master” branch offers full <em>time-travel</em>.</p> 
+ 
+<div style="text-align:center;"><video style="border:1px solid #000000;" src="https://www.cocoawithlove.com/assets/blog/clocks_timetravel.mp4"></video></div> 
+ 
+A video of adding and deleting "Casablanca" then using the slider to wind the entire user-interface forwards and backwards through the action.<p>Ironically, for an app that displays world time, time-travel will not affect the time displayed on any of the clocks since (state from <code>Timer</code> and <code>Date</code> is deliberately omitted from the <code>HistoryViewController</code>).</p> 
+ 
+<p>What time-travel means is that the slider at the bottom of the screen will rewind the <code>ViewState</code> at the same time as the <code>Document</code>, resulting in an entire app user-interface that can be wound forward and backward with the slider. Edit mode will pop on and off, the detail view will pop in and out, the selection view will appear and disappear, the scroll position will adjust, uncommitted text fields will wind forward and backward like committed text fields.</p> 
+ 
+<p>If you’ve never seen a time-travelling user-interface before, I strongly recommend actually running the project and playing with the slider. It <em>shouldn’t</em> be surprising to see an application instantly and completely respond to commands but it <em>is</em>. We’re accustomed to being perpetually out-of-control of our own applications.</p> 
+ 
+<p>The slider has a <code>UISwitch</code> on the left. When you activate the slider, it will split into separate sliders for “Document” and “View-state” so you can manipulate the two independently. This will occasionally result in quirks where the “View-state” needs to be altered to reconcile it with the “Document” but it’s proof that the two are truly separate models.</p> 
+ 
+<h3><code>ViewState</code> acts as a “Coordinator”</h3> 
+ 
+<p>With a View-state Model, separate controllers can implicitly coordinate by tracking the same data in the View-state Model. There’s no longer a need for the <code>MasterViewController</code> to traverse through the view and controller hierarchy to set values on the <code>DetailViewController</code> – the <code>DetailViewController</code> can simply ask the <code>ViewState</code> for its values.</p> 
+ 
+<p>In a presentation driven app, there’s an instinct to handle the full path of all actions on the Controller where the action is received. This dumps a lot of work on the <code>MasterViewController</code>, even though it’s not the parent of many of the actions it coordinates.</p> 
+ 
+<p>With a View-state Model, the presentation of the <code>SelectionViewController</code> and <code>DetailViewController</code> can be managed by the actual parent of these actions (the <code>SplitViewController</code>) rather than trying to handle all this work from the table view in the <code>MasterViewController</code>.</p> 
+ 
+<p>Some design patterns use a <a href="http://khanlou.com/2015/01/the-coordinator/">“Coordinator”</a> to actively propagate communication between Controllers. The <code>ViewState</code> fulfills a similar role through passively observed Model-data, rather than actively propagated Control-actions.</p> 
+ 
+<h3>Persistence is trivial</h3> 
+ 
+<p>In a typical Cocoa app, we rely on Storyboards to help persist view controllers. Even with the help of Storyboards, there is often substantial <code>UIStateRestoring</code> or <code>UIDataSourceModelAssociation</code> work to fully restore our state.</p> 
+ 
+<p>With <code>ViewState</code>, all commit and verify work is already part of the <code>ViewState</code> observing pipeline so everything is automatic. No <code>UIStateRestoring</code> or <code>UIDataSourceModelAssociation</code> needed. In fact, you don’t even need Storyboards.</p> 
+ 
+<p>Assuming you’re already handling the <code>ViewState</code> notifications correctly, this is <em>all</em> the code required for state restoration:</p> 
+<div><pre><code><span></span><span>func</span> <span>application</span><span>(</span><span>_</span> <span>application</span><span>:</span> <span>UIApplication</span><span>,</span> <span>willEncodeRestorableStateWith</span> 
+   <span>coder</span><span>:</span> <span>NSCoder</span><span>)</span> <span>{</span> 
+   <span>coder</span><span>.</span><span>encode</span><span>(</span><span>try</span><span>?</span> <span>ViewState</span><span>.</span><span>shared</span><span>.</span><span>serialized</span><span>(),</span> <span>forKey</span><span>:</span> <span>.</span><span>viewStateKey</span><span>)</span> 
+<span>}</span> 
+    
+<span>func</span> <span>application</span><span>(</span><span>_</span> <span>application</span><span>:</span> <span>UIApplication</span><span>,</span> <span>didDecodeRestorableStateWith</span> 
+   <span>coder</span><span>:</span> <span>NSCoder</span><span>)</span> <span>{</span> 
+   <span>if</span> <span>let</span> <span>data</span> <span>=</span> <span>coder</span><span>.</span><span>decodeObject</span><span>(</span><span>forKey</span><span>:</span> <span>.</span><span>viewStateKey</span><span>)</span> <span>as</span><span>?</span> <span>Data</span> <span>{</span> 
+      <span>ViewState</span><span>.</span><span>shared</span><span>.</span><span>reloadAndNotify</span><span>(</span><span>jsonData</span><span>:</span> <span>data</span><span>)</span> 
+   <span>}</span> 
+<span>}</span> 
+</code></pre></div> 
+ 
+<h3>Restoring state for testing scenarios</h3> 
+ 
+<p>Since restoring the user-interface is no longer tied to <code>UIStateRestoration</code> or Storyboards, you can jump to a particular user-interface configuration at any time – speeding development and debugging scenarios.</p> 
+<div><pre><code><span></span><span>let</span> <span>jsonString</span> <span>=</span> <span>"""</span> 
+<span>   {"</span><span>detailView</span><span>":{"</span><span>uuid</span><span>":"</span><span>8642</span><span>FA12</span><span>-</span><span>D3F7</span><span>-</span><span>48</span><span>B6</span><span>-</span><span>B308</span><span>-</span><span>3</span><span>B415A7145D0</span><span>"},</span> 
+<span>   "</span><span>masterView</span><span>":{"</span><span>masterScrollOffsetY</span><span>":0,"</span><span>isEditing</span><span>":false}}</span> 
+<span>   """</span> 
+<span>let</span> <span>jsonData</span> <span>=</span> <span>jsonString</span><span>.</span><span>data</span><span>(</span><span>using</span><span>:</span> <span>.</span><span>utf8</span><span>)</span><span>!</span> 
+<span>ViewState</span><span>.</span><span>shared</span><span>.</span><span>reloadAndNotify</span><span>(</span><span>jsonData</span><span>:</span> <span>jsonData</span><span>)</span> 
+</code></pre></div> 
+ 
+<p>If your document also supports arbitrary reloading (as the <code>Document</code> does in the Clocks app) you can combine the two to jump to any debug or testing scenario at any time.</p> 
+ 
+<h3>Debug information</h3> 
+ 
+<p>The entire state of the view can be logged to the console on each step, enabling better debugging – you can know the exact state at any time (and the preceding transitions) so you can quickly find the cause of problems.</p> 
+ 
+<p>The Clocks app logs both its Document and View-state when either changes:</p> 
+ 
+<pre><code>Changed Document to: 
+["CC0D7C93-3FBC-4D89-9127-ABBF798420F6",{"identifier":"Australia\/Melbourne", 
+"name":"Melbourne","uuid":"CC0D7C93-3FBC-4D89-9127-ABBF798420F6"}, 
+"54FA679F-6036-431D-957F-6E8CC1B8DA50",{"identifier":"Africa\/Addis_Ababa", 
+"name":"Addis Ababa","uuid":"54FA679F-6036-431D-957F-6E8CC1B8DA50"}] 
+Changed ViewState to: 
+{"detailView":{"uuid":"CC0D7C93-3FBC-4D89-9127-ABBF798420F6"},"masterView": 
+"masterScrollOffsetY":0,"isEditing":false}} 
+</code></pre> 
+ 
+<p>This logged state can be directly used in state restoration – as in the previous example – to recreate the scenario at any time.</p> 
+ 
+<h2>What is the cost?</h2> 
+ 
+<h3>Code size</h3> 
+ 
+<p>Tracking the View-state is usually more code. This is no different to any kind of Model – there are more declarations and more work to set and observe changes going into and out of the model abstraction.</p> 
+ 
+<p>Measuring the “.swift” file size (excluding the “Utilities” folder) with the command-line tool <a href="https://github.com/AlDanial/cloc">cloc</a>:</p> 
+ 
+<ul><li>the “undoredo” version of the project is 437 lines</li> 
+<li>the “timetravel” version is 610 lines</li> 
+</ul><p>85 lines of that difference is the “ViewState.swift” file. The remaining 88 line difference is more complicated; it’s more like a 150 line difference, sometimes an increase, sometimes a decrease.</p> 
+ 
+<p>Without needing to go via <code>ViewState</code>, the “undoredo” branch has a few buttons connected directly to segues in the Storyboard. The “undoredo” branch also doesn’t track scrolling (the “timetravel” build could omit this but it’s part of making time-travel seem magical).</p> 
+ 
+<p>Tracking View-state doesn’t always increase code size. For some tasks, it simplifies. The <code>DetailViewController</code> actually benefits from not needing to self-manage when the <code>Timezone</code> it is observing is deleted from the <code>Document</code>. All “prepare for segue” methods are removed from <code>MasterViewController</code>. All <code>UIStateRestoring</code> methods are removed.</p> 
+ 
+<h3>Lots of observing</h3> 
+ 
+<p>In an app without View-state, you might need to observe just one object – the Document Model – in each Controller. If you add View-state to this, your observation needs are going to double.</p> 
+ 
+<p>My particular implementation of observing for the <code>Document</code> and <code>ViewState</code> doubles this <em>again</em>. Have a look at the <code>handleViewStateNotification</code> for the <code>SelectionViewController</code>:</p> 
+<div><pre><code><span></span><span>func</span> <span>handleViewStateNotification</span><span>(</span><span>state</span><span>:</span> <span>SelectionViewState</span><span>,</span> <span>action</span><span>:</span> 
+   <span>SelectionViewState</span><span>.</span><span>Action</span><span>?)</span> <span>{</span> 
+   <span>switch</span> <span>action</span> <span>{</span> 
+   <span>case</span> <span>.</span><span>changedSearchString</span><span>?:</span> <span>updateForSearchString</span><span>(</span><span>state</span><span>.</span><span>searchText</span><span>)</span> 
+   <span>case</span> <span>.</span><span>scrolled</span><span>?:</span> <span>tableView</span><span>?.</span><span>contentOffset</span><span>.</span><span>y</span> <span>=</span> <span>CGFloat</span><span>(</span><span>state</span><span>.</span><span>selectionScrollOffsetY</span><span>)</span> 
+   <span>case</span> <span>.</span><span>none</span><span>:</span> 
+      <span>tableView</span><span>?.</span><span>contentOffset</span><span>.</span><span>y</span> <span>=</span> <span>CGFloat</span><span>(</span><span>state</span><span>.</span><span>selectionScrollOffsetY</span><span>)</span> 
+      <span>searchBar</span><span>?.</span><span>text</span> <span>=</span> <span>state</span><span>.</span><span>searchText</span> 
+      <span>updateForSearchString</span><span>(</span><span>state</span><span>.</span><span>searchText</span><span>)</span> 
+   <span>}</span> 
+<span>}</span> 
+</code></pre></div> 
+ 
+<p>This function has to handle two possible <code>ViewState</code> actions – “search string change” and “search table scrolled” – but it <em>also</em> has to handle a third <code>.none</code> case which is used when the <code>ViewState</code> is reloaded and <em>everything</em> needs to be reprocessed.</p> 
+ 
+<p>It would be nice to avoid this redundancy but I’m not sure how to do this cleanly since sometimes, responding to an already applied action and restoring state requires slightly different logic (see the need to set the <code>searchBar?.text</code> during restore which isn’t needed on <code>.changedSearchString</code> because the user has <em>already</em> set this value).</p> 
+ 
+<h3>Uncooperative UIKit/AppKit classes</h3> 
+ 
+<p>The hardest part when writing an application for the first time in a View-state driven approach is learning how to handle Views and Controllers that fail to precisely notify when changes occur and refuse to accurately adhere to state they are given.</p> 
+ 
+<p>To be clear: none of these are show stopping problems, nor even particularly difficult to manage, but they all require guesswork and multiple steps since Cocoa classes were never written to clearly notify changes in state or follow programmatic (rather than user) instructions.</p> 
+ 
+<h4>Conflicting actions</h4> 
+ 
+<p>Multiple “present” animations are not permitted to occur at the same time – so if you’re trying to restore two pieces of state simultaneously, these might need to be queued – otherwise the app will raise an exception. This causes problems in the Clocks app when the modal “Selection” screen and the “Detail” view need to be restored at the same time. The <code>SplitViewController</code> class contains some careful sequencing interaction between <code>selectionViewController</code> and <code>reloadDetailView</code> to avoid problems.</p> 
+ 
+<p>A less fatal conflict occurs when trying to set a scroll position during <code>UITableView</code> reloads. The <code>UITableView</code> reloads asynchronously over an indeterminate amount of time. There is no way to queue the scroll position change to occur when this operation is complete. When a <code>tableView.reloadData()</code> occurs, <code>MasterViewController</code> does not bother to set the scroll position at all since I was not able to find a reliable way to both reload data and scroll.</p> 
+ 
+<h4>Poorly notified changes</h4> 
+ 
+<p><code>UINavigationController</code> may change its navigation stack without explaining why when the user taps the back button. The <code>navigationController(_:didShow:animated:)</code> method is forced to guess what may have happened.</p> 
+ 
+<p>Detecting scroll state presents a slightly different problem: to detect when scrolling has ended, you need to implement <em>two</em> separate delegate methods – <code>scrollViewDidEndDecelerating</code> and <code>scrollViewDidEndDragging</code> – and carefully check the <code>decelerate</code> parameter on the latter to determine if it is actually the end of scrolling.</p> 
+ 
+<h4>User-actions with no clear programmatic equivalent</h4> 
+ 
+<p>In portrait on an iPhone, the detail view of the split view will also collapse onto the master view’s navigation stack. The user can tap the back button to remove this collapsed view but there’s no clean action to ask the split view to do it. It’s necessary to check the <code>UINavigationController</code> and <em>guess</em> whether the top view is a collapsed detail view and use <code>popViewController</code> to evict it. Messy work.</p> 
+ 
+<h2>Conclusion</h2> 
+ 
+<blockquote> 
+<p>You can explore the two versions of the Clocks app on github:</p> 
+ 
+<ul><li><a href="https://github.com/mattgallagher/Clocks/tree/undoredo">the “undoredo” branch of the Clocks app</a></li> 
+<li><a href="https://github.com/mattgallagher/Clocks">the master, aka “timetravel” branch of the Clocks app</a></li> 
+</ul><p>(<strong>Minor note</strong>: when debugging one branch after using the other, you may see non-fatal state restoration errors as the two apps contain incompatible state restoration formats.)</p> 
+</blockquote> 
+ 
+<p>The purpose of this article was to present an approach for tracking View-state in an application that is otherwise as close as possible to a typical Cocoa Model-View-Controller application.</p> 
+ 
+<p>I would argue that tracking View-state in a Model is more true to the spirit of Model-View-Controller than the traditional “ignore View-state” approach. When you track View-state in a Model, then the sum of Models in your app is truly a representation of your <em>entire</em> app and your View is the simple display of the Model that it should be, rather than being a complex combination of Model plus other untracked state.</p> 
+ 
+<p>As I write this article, I have now written a handful of trivial to small apps using this pattern. It manages navigation and state restoration really well while offering good conceptual clarity and excellent debugging capabilities. I think I’ll continue to write all small MVC apps this way. Observing both View-state and the Model on each Controller does get a little tiring and some Cocoa classes can feel truly obstinate when you’re trying to get them to behave precisely and punctually but the balance still feels strongly in favor of this approach.</p> 
+ 
+<p>There are numerous frameworks that aim to simplify issues with observing multiple Models or driving Cocoa classes through data by using reactive programming or reducers. However, these bigger frameworks increase the distance between the code you write and the effects of that code. The advantage to this View-state approach is that there is no real framework “in the way”.</p> 
+ 
+<p>The time-travel capability in the Clocks app is fun but you’d never ship time-travel in a real application. Even when debugging, simple View-state logging and the ability to restore your UI from JSON at any time are far more useful tools. I actually keep View-state logging on all the time because it is <em>really</em> helpful when something goes wrong – you can immediately understand if the problem was due to mis-setting View-state or mis-interpreting/observing.</p> 
+ 
+<p>However, time-travel is <em>conceptually</em> important for programmers who have forgotten that our programs are supposed to precisely and punctually obey our intent. Speaking for myself, I know that I had grown accustomed to boringly repetitive human-driven actions to arrange the user-interface while developing or testing. Launching the debugger directly into the precise state that I’m developing and testing has huge benefits (yes, <code>UIStateRestoration</code> is supposed to do this but it’s far more opaque and difficult to control).</p> 
+ 
+<h3>Looking forward</h3> 
+ 
+<p>I consider the application design pattern presented in this article to be Model-View-Controller + ViewState; not a wholly new pattern, just a slightly different interpretation of Model-View-Controller.</p> 
+ 
+<p>In the next article, I’ll look at how this treatment of View-state compares to the treatment in other application design patterns and look at what might happen if we combine this idea with complimentary ideas from other patterns.</p>
+	</body>
+</html>

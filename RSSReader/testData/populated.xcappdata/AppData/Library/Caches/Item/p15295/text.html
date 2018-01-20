@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!doctype html>
+<html>
+	<head>
+		<style type="text/css">
+			h2 {
+				font: -apple-system-headline;
+			}
+			body {
+				font: -apple-system-body;
+				zoom: 1.2;
+			}
+			img {
+				width: auto;
+				height : auto;
+				max-height: 100%;
+				max-width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>Unregistering Block-based NotificationCenter Observers</h2>
+		<p><a href="https://oleb.net/blog/2018/01/notificationcenter-removeobserver/">Ole Begemann</a>:</p> 
+<blockquote> 
+<p>Yes, you still have to unregister block-based observations manually (as of iOS 11.2). The documentation for <code>removeObserver(_:)</code> is at least misleading if not wrong.</p> 
+<p>[…]</p> 
+<p>When you do the unregistering in <code>deinit</code>, <strong>you must make sure not to capture <code>self</code> in your observer block.</strong> If you do, your <code>deinit</code> will never get called because the block retains <code>self</code> (preventing its destruction) and the notification center holds a strong reference to the block. Your object will live forever.</p> 
+<p>[…]</p> 
+<p>I suggest you write a small wrapper class for the observation token the notification center returns to you. The wrapper object stores the token and waits to be deallocated. Its only task is to call <code>removeObserver(_:)</code> in its own deinitializer[…]</p> 
+</blockquote>
+	</body>
+</html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!doctype html>
+<html>
+	<head>
+		<style type="text/css">
+			h2 {
+				font: -apple-system-headline;
+			}
+			body {
+				font: -apple-system-body;
+				zoom: 1.2;
+			}
+			img {
+				width: auto;
+				height : auto;
+				max-height: 100%;
+				max-width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>Pressing the Side Button to Confirm Payments on iPhone X</h2>
+		<p><a href="https://daringfireball.net/2017/12/side_button_to_confirm_payments_on_iphone_x">John Gruber</a>:</p> 
+<blockquote> 
+<p>These remarks caught my attention because a technically-savvy family member was confused by the same thing the first time they tried to buy an app on their new iPhone X. They showed me the phone <a href="https://daringfireball.net/misc/2017/12/double-click-to-pay.mp4">with the “Double Click to Pay” animation</a> and asked me, “What am I supposed to double click here? It doesn’t work.” What they had tried was double tapping on the “Double Click to Pay” label on screen. When I explained that the animation was pointing to the physical side button, the proverbial light bulb went off.</p> 
+<p>This is an interesting design dilemma. The reason why Apple requires you to press the physical side button to confirm a purchase with Apple Pay or in the App Store is because pressing the side button can’t be faked by an app. If it was an on-screen button, a nefarious app could present a fake Apple Pay button. With any normal app, clicking the side button once will always lock the screen, and double-clicking will put you in Apple Pay mode. Only Apple’s own software can override the side button like this. Double clicking the side button to confirm a purchase effectively guarantees that it was a legitimate payment experience.</p> 
+</blockquote> 
+<p>I’m sure there must be a good reason, but I don’t understand what problem this is solving. A fake payment button is not actually going to charge me. And prior to Touch ID, payment confirmations used regular software buttons.</p> 
+ 
+<p>Update (2018-01-01): <a href="https://twitter.com/NSExceptional/status/947938829503225858">Tanner Bennett</a>:</p> 
+<blockquote> 
+<p>I had this question too. Consider this scenario:</p> 
+<p>Say the payment UI uses an on-screen button. A malicious app presents a fake IAP dialog that looks just like the real one. When you try to use Face ID, what it really does is use ARKit to detect your face then fakes the Face ID popup and tells you it couldn’t recognize your face. Now, when you hit the blue Install button, it will ask for your iTunes password.</p> 
+<p>So, it doesn’t apply to Apple Pay so much as it applies to phishing for your iTunes password.</p> 
+<p>All of this could be faked, except the Double-Click to Confirm, which would either lock the phone or trigger Wallet.</p> 
+</blockquote>
+	</body>
+</html>
