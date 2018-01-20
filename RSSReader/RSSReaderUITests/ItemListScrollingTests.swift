@@ -13,7 +13,8 @@ let app = XCUIApplication()
 let tablesQuery = app.tables
 let backButton = app.navigationBars.element(boundBy: 0).buttons.element(boundBy: 0)
 
-class ItemListScrollingTests: XCTestCase {
+typealias _Self = ItemListScrollingTests
+class ItemListScrollingTests : XCTestCase {
 
 	func testScrollingPerformance() {
 	
@@ -24,7 +25,6 @@ class ItemListScrollingTests: XCTestCase {
 			app.toolbars.buttons["ToEnd-AI"].tap()
 			backButton.tap()
 		}
-		
 	}
 	
 	// MARK: -
@@ -39,6 +39,24 @@ class ItemListScrollingTests: XCTestCase {
 			"-stateRestorationEnabled", "NO",
 			"-begEndBarButtonItemsEnabled", "YES"
 		]
+		
+		do {
+			let fileManager = FileManager.default
+			let temporaryDirectoryURL = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true)
+			let bundle = Bundle(for: _Self.self)
+			let xcappdataURL = bundle.url(forResource: "populated", withExtension: "xcappdata")!
+			let xcappdataCopyURL = temporaryDirectoryURL.appendingPathComponent(xcappdataURL.lastPathComponent)
+			if try! xcappdataCopyURL.checkResourceIsReachable() {
+				try! fileManager.removeItem(at: xcappdataCopyURL)
+			}
+			try! fileManager.copyItem(at: xcappdataURL, to: xcappdataCopyURL)
+			let homeURL = xcappdataCopyURL.appendingPathComponent("AppData")
+			XCTAssert(try! homeURL.checkResourceIsReachable())
+			
+			app.launchEnvironment["HOME"] = homeURL.path
+			app.launchEnvironment["CFFIXED_USER_HOME"] = homeURL.path
+		}
+
 		do {
 			blocksForTearDown += [{
 				app.launchArguments = savedLaunchArguments
