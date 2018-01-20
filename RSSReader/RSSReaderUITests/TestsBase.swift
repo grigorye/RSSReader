@@ -9,8 +9,8 @@
 import GEFoundation
 import XCTest
 
-typealias _Self = RSSReaderUITestsBase
-class RSSReaderUITestsBase : XCTestCase {
+typealias _Self = TestsBase
+class TestsBase : XCTestCase {
 	
 	func adjustLaunchArguments() {
 		app.launchArguments += [
@@ -56,7 +56,7 @@ class RSSReaderUITestsBase : XCTestCase {
 		app.launch()
 	}
 	
-	var blocksForTearDown = [Handler]()
+	private var blocksForTearDown = [Handler]()
 	
 	override func tearDown() {
 		blocksForTearDown.forEach {$0()}
