@@ -58,6 +58,7 @@
 		A103369D1FE606670096330F /* FPSCounter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A103369B1FE605E80096330F /* FPSCounter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A15CC5A3E1EA9E792BD12D90 /* ItemTableViewDataSource.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4F7DC3C1D97E9A800275E4F /* ItemTableViewDataSource.swift */; };
 		A176B2221FD69C1600E945E9 /* GEDebugKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A176B2211FD69C1600E945E9 /* GEDebugKit.framework */; };
+		A1D942712013734700A6D61E /* RSSReaderUITestsBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D942702013734700A6D61E /* RSSReaderUITestsBase.swift */; };
 		B37B8BA65793551D940F3DED /* TunaXcodePlugIn.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C431B4F71E8FEC7200D67D5A /* TunaXcodePlugIn.swift */; };
 		BAEC85E1895F2F19FB75D39E /* ModuleExports-GETracing.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EB27EB1DFA31ED00BF0843 /* ModuleExports-GETracing.swift */; };
 		BF5ABF05A86DD1EA29D04E05 /* UserVisibleErrors.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C43657581F05D0DD00B904A2 /* UserVisibleErrors.swift */; };
@@ -341,6 +342,7 @@
 		A103368C1FE46A070096330F /* SubscriptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SubscriptionTableViewCell.xib; path = Resources/SubscriptionTableViewCell.xib; sourceTree = "<group>"; };
 		A103369B1FE605E80096330F /* FPSCounter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FPSCounter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A176B2211FD69C1600E945E9 /* GEDebugKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GEDebugKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1D942702013734700A6D61E /* RSSReaderUITestsBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSReaderUITestsBase.swift; sourceTree = "<group>"; };
 		C408F1B01CE7520700DB943F /* FBAllocationTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBAllocationTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C408F1B31CE7520700DB943F /* FBMemoryProfiler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBMemoryProfiler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C408F1B61CE7520700DB943F /* FBRetainCycleDetector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBRetainCycleDetector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -523,6 +525,7 @@
 			children = (
 				C4CE354B1CB89890001712C8 /* InfoPlist.strings */,
 				C444F53E1B2E53F200A6E378 /* RSSReaderUITests.swift */,
+				A1D942702013734700A6D61E /* RSSReaderUITestsBase.swift */,
 				C49BA5DD1DF4C7F900968FFE /* ItemListScrollingTests.swift */,
 				C444F5401B2E53F200A6E378 /* Info.plist */,
 			);
@@ -1062,6 +1065,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C49BA5DE1DF4C7F900968FFE /* ItemListScrollingTests.swift in Sources */,
+				A1D942712013734700A6D61E /* RSSReaderUITestsBase.swift in Sources */,
 				C444F53F1B2E53F200A6E378 /* RSSReaderUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
