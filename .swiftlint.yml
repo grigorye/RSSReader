@@ -26,6 +26,7 @@ excluded:
   - Pods
   - GitSubtrees
   - RSSReader/RSSReader/R.generated.swift
+  - vendor
 line_length: 300
 identifier_name:
   min_length: 1
