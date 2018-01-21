@@ -4,7 +4,7 @@ import Foundation
 @objc final public class Watchdog: NSObject {
     fileprivate let pingThread: PingThread
 
-    fileprivate static let defaultThreshold = 0.4
+    public static let defaultThreshold = 0.4
 
     /// Convenience initializer that allows you to construct a `WatchDog` object with default behavior.
     /// - parameter threshold: number of seconds that must pass to consider the main thread blocked.
@@ -14,7 +14,7 @@ import Foundation
 
         self.init(threshold: threshold) {
             if strictMode {
-                assertionFailure(message)
+                fatalError(message)
             } else {
                 NSLog("%@", message)
             }
@@ -37,7 +37,21 @@ import Foundation
 }
 
 private final class PingThread: Thread {
-    fileprivate var pingTaskIsRunning = false
+    fileprivate var pingTaskIsRunning: Bool {
+        get {
+            objc_sync_enter(pingTaskIsRunningLock)
+            let result = _pingTaskIsRunning;
+            objc_sync_exit(pingTaskIsRunningLock)
+            return result
+        }
+        set {
+            objc_sync_enter(pingTaskIsRunningLock)
+            _pingTaskIsRunning = newValue
+            objc_sync_exit(pingTaskIsRunningLock)
+        }
+    }
+    private var _pingTaskIsRunning = false
+    private let pingTaskIsRunningLock = NSObject()
     fileprivate var semaphore = DispatchSemaphore(value: 0)
     fileprivate let threshold: Double
     fileprivate let handler: () -> Void
@@ -45,6 +59,8 @@ private final class PingThread: Thread {
     init(threshold: Double, handler: @escaping () -> Void) {
         self.threshold = threshold
         self.handler = handler
+        super.init()
+        self.name = "WatchDog"
     }
     
     override func main() {
