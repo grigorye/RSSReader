@@ -1,8 +1,8 @@
+[![](https://travis-ci.org/grigorye/RSSReader.svg?branch=master)](https://travis-ci.org/grigorye/RSSReader)
+
 # RSSReader
 
 Yet another RSS Reader. My pet project for testing some ideas related to programming, Swift, iOS app development and etc.
-
-[![](https://travis-ci.org/grigorye/RSSReader.svg?branch=master)](https://travis-ci.org/grigorye/RSSReader)
 
 ## Appearance
 
