@@ -1,0 +1,16 @@
+#!/bin/sh -ex
+
+#env | sort
+
+pushd "${XCS_DERIVED_DATA_DIR:?}"
+
+rm -rf homebrew
+mkdir homebrew
+curl -L "https://github.com/Homebrew/brew/tarball/master" | tar xz --strip 1 -C homebrew
+export PATH="$PATH:$PWD/homebrew/bin"
+brew install git-lfs
+
+cd "${XCS_PRIMARY_REPO_DIR:?}"
+git lfs pull
+
+popd
