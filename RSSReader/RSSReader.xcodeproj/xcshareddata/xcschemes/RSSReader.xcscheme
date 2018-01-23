@@ -262,18 +262,13 @@
       </CommandLineArguments>
       <EnvironmentVariables>
          <EnvironmentVariable
-            key = "OS_ACTIVITY_MODE"
-            value = "debug"
-            isEnabled = "NO">
-         </EnvironmentVariable>
-         <EnvironmentVariable
             key = "HOME"
-            value = "$(SRCROOT)/testData/populated.xcappdata/AppData"
+            value = "$(DERIVED_FILES_DIR)/populated.xcappdata/AppData"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "CFFIXED_USER_HOME"
-            value = "$(SRCROOT)/testData/populated.xcappdata/AppData"
+            value = "$(DERIVED_FILES_DIR)/populated.xcappdata/AppData"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
