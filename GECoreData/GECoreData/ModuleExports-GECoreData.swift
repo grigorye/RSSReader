@@ -22,3 +22,8 @@ func typedObjectID<T: NSManagedObject>(for object: T) -> TypedManagedObjectID<T>
 func typedObjectID<T: NSManagedObject>(for object: T?) -> TypedManagedObjectID<T>? {
 	return GECoreData.typedObjectID(for: object)
 }
+
+func object<ResultType>(in controller: NSFetchedResultsController<ResultType>, indexedBy delta: Int, from anotherObject: ResultType) -> ResultType? where ResultType : NSManagedObject {
+
+	return GECoreData.object(in: controller, indexedBy: delta, from: anotherObject)
+}
