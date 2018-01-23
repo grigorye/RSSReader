@@ -13,7 +13,9 @@ project.targets.select {|t| t.kind_of? Xcodeproj::Project::Object::PBXNativeTarg
   source_build_phase = target.source_build_phase
 
   pbx_build_files = source_build_phase.files.to_a.select do |pbx_build_file|
-    pbx_build_file.file_ref.source_tree != "BUILT_PRODUCTS_DIR"
+   file_ref = pbx_build_file.file_ref
+   #print(File.extname(file_ref.path))
+   file_ref.source_tree != "BUILT_PRODUCTS_DIR" && (File.extname(file_ref.path) == ".swift")
   end
 
   unless embed_sources_phase = target.copy_files_build_phases.find { |phase| phase.name == embed_sources_phase_name }
