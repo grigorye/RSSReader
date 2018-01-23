@@ -1,4 +1,4 @@
-#! /usr/bin/ruby
+#!/usr/bin/ruby
 
 require 'xcodeproj'
 
@@ -14,7 +14,6 @@ project.targets.select {|t| t.kind_of? Xcodeproj::Project::Object::PBXNativeTarg
 
   pbx_build_files = source_build_phase.files.to_a.select do |pbx_build_file|
    file_ref = pbx_build_file.file_ref
-   #print(File.extname(file_ref.path))
    file_ref.source_tree != "BUILT_PRODUCTS_DIR" && (File.extname(file_ref.path) == ".swift")
   end
 
