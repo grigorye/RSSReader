@@ -8,6 +8,11 @@
 
 import Watchdog
 
+extension TypedUserDefaults {
+	
+	@NSManaged var watchdogEnabled: Bool
+}
+
 let watchdogInitializer: Void = {
-	_ = Watchdog(threshold: 0.4, strictMode: false)
+	_ = Watchdog(threshold: 0.4, strictMode: defaults.watchdogEnabled)
 }()
