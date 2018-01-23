@@ -1,0 +1,5 @@
+#! /bin/sh -xe
+
+outputDir=$(dirname "${SCRIPT_OUTPUT_FILE_0:?}")
+
+ditto -x -k "${INPUT_FILE_PATH:?}" "${outputDir:?}"
