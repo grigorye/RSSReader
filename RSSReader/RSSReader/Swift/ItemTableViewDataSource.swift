@@ -65,7 +65,7 @@ class ItemTableViewDataSource: NSObject {
 		}
 		return TableViewFetchedResultsControllerDelegate(tableView: tableView, updateCell: configureCell)
 	}()
-	@objc lazy private dynamic var fetchedResultsController: NSFetchedResultsController<Item> = {
+	@objc lazy private(set) dynamic var fetchedResultsController: NSFetchedResultsController<Item> = {
 		typealias E = Item
 		let fetchRequest = E.fetchRequestForEntity() … {
 			$0.sortDescriptors = sortDescriptors

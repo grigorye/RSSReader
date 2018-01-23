@@ -7,10 +7,11 @@
 //
 
 import RSSReaderData
+import CoreData
 import UIKit
 
 class ItemPageViewControllerDataSource: NSObject, UIPageViewControllerDataSource {
-	var items: [Item]!
+	var itemsController: NSFetchedResultsController<Item>!
 	func viewControllerForItem(_ item: Item) -> UIViewController {
 		return R.storyboard.main.itemSummaryWeb()! … {
 			$0.item = item
@@ -20,16 +21,7 @@ class ItemPageViewControllerDataSource: NSObject, UIPageViewControllerDataSource
 	func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
 		let itemViewController = viewController as! ItemSummaryWebViewController
 		let item = itemViewController.item!
-		let itemBefore: Item? = {
-			let items = self.items!
-			if items.first == item {
-				return nil
-			}
-			else {
-				let index = items.index(of: item)!
-				return items[index - 1]
-			}
-		}()
+		let itemBefore = object(in: itemsController, indexedBy: -1, from: item)
 		if let itemBefore = itemBefore {
 			return viewControllerForItem(itemBefore)
 		}
@@ -40,16 +32,7 @@ class ItemPageViewControllerDataSource: NSObject, UIPageViewControllerDataSource
 	func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
 		let itemViewController = viewController as! ItemSummaryWebViewController
 		let item = itemViewController.item!
-		let itemAfter: Item? = {
-			let items = self.items!
-			if items.last == item {
-				return nil
-			}
-			else {
-				let index = items.index(of: item)!
-				return items[index + 1]
-			}
-		}()
+		let itemAfter = object(in: itemsController, indexedBy: +1, from: item)
 		if let itemAfter = itemAfter {
 			return viewControllerForItem(itemAfter)
 		}
@@ -62,15 +45,19 @@ class ItemPageViewControllerDataSource: NSObject, UIPageViewControllerDataSource
 		case itemObjectIDURLs
 	}
 	func encodeRestorableStateWithCoder(_ coder: NSCoder) {
+		#if false
 		let itemObjectIDURLs = self.items.map { $0.objectID.uriRepresentation() }
 		coder.encode(itemObjectIDURLs, forKey: Restorable.itemObjectIDURLs.rawValue)
+		#endif
 	}
 	func decodeRestorableStateWithCoder(_ coder: NSCoder) {
+		#if false
 		let managedObjectContext = mainQueueManagedObjectContext
 		let persistentStoreCoordinator = managedObjectContext.persistentStoreCoordinator!
 		let itemObjectIDURLs = coder.decodeObject(forKey: Restorable.itemObjectIDURLs.rawValue) as! [URL]
 		let items = itemObjectIDURLs.map { managedObjectContext.object(with: persistentStoreCoordinator.managedObjectID(forURIRepresentation: $0)!) as! Item }
 		self.items = items
+		#endif
 	}
 	// MARK: -
 	deinit {

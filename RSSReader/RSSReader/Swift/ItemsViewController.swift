@@ -140,7 +140,7 @@ class ItemsViewController : ContainerViewController {
 		case R.segue.itemsViewController.showListPages.identifier:
 			let pageViewController = segue.destination as? UIPageViewController ?? segue.destination.childViewControllers.last as! UIPageViewController
 			let itemPageViewControllerDataSource = (pageViewController.dataSource as! ItemPageViewControllerDataSource) … {
-				$0.items = dataSource.fetchedObjects!
+				$0.itemsController = dataSource.fetchedResultsController
 			}
 			pageViewController … {
 				if floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1 {
