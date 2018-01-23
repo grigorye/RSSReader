@@ -50,6 +50,7 @@
 		85CA9195EBA2E00010C1896D /* FoldersViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C42802681A5B47EA002474E1 /* FoldersViewController.swift */; };
 		87A7197CFC86472B924DCABE /* DefaultRSSSessionBinding.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C441F17E1DB258550060E692 /* DefaultRSSSessionBinding.swift */; };
 		9365BA872E3F7F99BE97308C /* LogViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C474F0A71D80E65F00CABEB9 /* LogViewController.swift */; };
+		9512F0E290195E10F98D9002 /* TestsGlobals.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A1D9427220139BC200A6D61E /* TestsGlobals.swift */; };
 		A09D6C3BE522790A7DEB800F /* ItemListScrollingTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49BA5DD1DF4C7F900968FFE /* ItemListScrollingTests.swift */; };
 		A0D6B58EB72652C007AE0FC6 /* ItemSummaryWebViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */; };
 		A103368B1FE469B30096330F /* FolderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A103368A1FE469B30096330F /* FolderTableViewCell.xib */; };
@@ -172,6 +173,7 @@
 		D241B4CEAC14DD6D6B70F2D3 /* ItemListViewLoading.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4F7DC3E1D97EBEF00275E4F /* ItemListViewLoading.swift */; };
 		DD2478EA63640F1065E150E4 /* HistoryViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C45BC3E91A8003F40008A5D1 /* HistoryViewController.swift */; };
 		E2D0EF292ECA835BB4DD1944 /* ItemsViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49540A01A57825100F56168 /* ItemsViewController.swift */; };
+		E2EE38E25F36090556C9FEAE /* TestsBase.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A1D942702013734700A6D61E /* TestsBase.swift */; };
 		E3D39691A7EA20194121958C /* ItemPageViewControllerDelegate.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4AD2ADA1A5DED8700B39AC9 /* ItemPageViewControllerDelegate.swift */; };
 		E8B011AD9F8ECAA24E871221 /* AppDelegate.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */; };
 		EE076F8C242DC40F8C4FC5F0 /* ModuleExports-GECoreData.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EB28081DFA399E00BF0843 /* ModuleExports-GECoreData.swift */; };
@@ -228,6 +230,8 @@
 			files = (
 				A09D6C3BE522790A7DEB800F /* ItemListScrollingTests.swift in Embed Sources */,
 				057DF08A50A1D0132B0D4522 /* NavigationTests.swift in Embed Sources */,
+				9512F0E290195E10F98D9002 /* TestsGlobals.swift in Embed Sources */,
+				E2EE38E25F36090556C9FEAE /* TestsBase.swift in Embed Sources */,
 			);
 			name = "Embed Sources";
 			runOnlyForDeploymentPostprocessing = 0;
