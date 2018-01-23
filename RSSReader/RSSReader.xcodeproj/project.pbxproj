@@ -56,10 +56,13 @@
 		A103368D1FE46A070096330F /* SubscriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A103368C1FE46A070096330F /* SubscriptionTableViewCell.xib */; };
 		A103369C1FE606670096330F /* FPSCounter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A103369B1FE605E80096330F /* FPSCounter.framework */; };
 		A103369D1FE606670096330F /* FPSCounter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A103369B1FE605E80096330F /* FPSCounter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A10F28DA2017AA5400FC1D12 /* populated.xcappdata.zip in Sources */ = {isa = PBXBuildFile; fileRef = A10F28D82017AA3400FC1D12 /* populated.xcappdata.zip */; };
 		A15CC5A3E1EA9E792BD12D90 /* ItemTableViewDataSource.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4F7DC3C1D97E9A800275E4F /* ItemTableViewDataSource.swift */; };
 		A176B2221FD69C1600E945E9 /* GEDebugKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A176B2211FD69C1600E945E9 /* GEDebugKit.framework */; };
 		A1D942712013734700A6D61E /* TestsBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D942702013734700A6D61E /* TestsBase.swift */; };
 		A1D9427320139BC200A6D61E /* TestsGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D9427220139BC200A6D61E /* TestsGlobals.swift */; };
+		A1F22F8B2017E1EF00035FA9 /* populated.xcappdata in Prepare Test Data */ = {isa = PBXBuildFile; fileRef = A1F22F882017DC3D00035FA9 /* populated.xcappdata */; };
+		A1F22F8C2017E6BD00035FA9 /* populated.xcappdata in Resources */ = {isa = PBXBuildFile; fileRef = A1F22F882017DC3D00035FA9 /* populated.xcappdata */; };
 		B37B8BA65793551D940F3DED /* TunaXcodePlugIn.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C431B4F71E8FEC7200D67D5A /* TunaXcodePlugIn.swift */; };
 		BAEC85E1895F2F19FB75D39E /* ModuleExports-GETracing.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EB27EB1DFA31ED00BF0843 /* ModuleExports-GETracing.swift */; };
 		BF5ABF05A86DD1EA29D04E05 /* UserVisibleErrors.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C43657581F05D0DD00B904A2 /* UserVisibleErrors.swift */; };
@@ -147,7 +150,6 @@
 		C4CDE1911A5A06A600F16A2E /* ItemSummaryTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */; };
 		C4CE35441CB8988F001712C8 /* RSSReaderTests-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4CE35461CB8988F001712C8 /* RSSReaderTests-InfoPlist.strings */; };
 		C4CE35491CB89890001712C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4CE354B1CB89890001712C8 /* InfoPlist.strings */; };
-		C4D75F10201290B6004D13EF /* populated.xcappdata in Resources */ = {isa = PBXBuildFile; fileRef = C4D75F0F201290B6004D13EF /* populated.xcappdata */; };
 		C4E4D6371E60C9EC007E0E39 /* Rswift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4E4D6361E60C9EC007E0E39 /* Rswift.framework */; };
 		C4E4D6381E60C9EC007E0E39 /* Rswift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4E4D6361E60C9EC007E0E39 /* Rswift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4EA5C361CE91E8600E395FE /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5C351CE91E8600E395FE /* ContainerViewController.swift */; };
@@ -175,6 +177,20 @@
 		EE076F8C242DC40F8C4FC5F0 /* ModuleExports-GECoreData.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EB28081DFA399E00BF0843 /* ModuleExports-GECoreData.swift */; };
 		FC25E32F5D04B0EF014CBDCF /* UserEvents.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C43657561F05CDEF00B904A2 /* UserEvents.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		A10F28DB2017AA7400FC1D12 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.xcappdata.zip";
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+				"$(BUILT_PRODUCTS_DIR)/$(PROJECT_NAME)-xcappdata/$(INPUT_FILE_BASE)",
+			);
+			script = "\"${GE_XCODE_RULES:?}\"/UnzipXCAppData\n";
+		};
+/* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
 		C444F5411B2E53F200A6E378 /* PBXContainerItemProxy */ = {
@@ -268,6 +284,17 @@
 			name = "Embed Sources";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A1F22F8A2017E1C700035FA9 /* Prepare Test Data */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(DERIVED_FILES_DIR)";
+			dstSubfolderSpec = 0;
+			files = (
+				A1F22F8B2017E1EF00035FA9 /* populated.xcappdata in Prepare Test Data */,
+			);
+			name = "Prepare Test Data";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C424B8E81C6FC557008AD647 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -342,9 +369,11 @@
 		A103368A1FE469B30096330F /* FolderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FolderTableViewCell.xib; path = Resources/FolderTableViewCell.xib; sourceTree = "<group>"; };
 		A103368C1FE46A070096330F /* SubscriptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SubscriptionTableViewCell.xib; path = Resources/SubscriptionTableViewCell.xib; sourceTree = "<group>"; };
 		A103369B1FE605E80096330F /* FPSCounter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FPSCounter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A10F28D82017AA3400FC1D12 /* populated.xcappdata.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = populated.xcappdata.zip; sourceTree = "<group>"; };
 		A176B2211FD69C1600E945E9 /* GEDebugKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GEDebugKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1D942702013734700A6D61E /* TestsBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsBase.swift; sourceTree = "<group>"; };
 		A1D9427220139BC200A6D61E /* TestsGlobals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsGlobals.swift; sourceTree = "<group>"; };
+		A1F22F882017DC3D00035FA9 /* populated.xcappdata */ = {isa = PBXFileReference; lastKnownFileType = file; name = populated.xcappdata; path = "RSSReader-xcappdata/populated.xcappdata"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C408F1B01CE7520700DB943F /* FBAllocationTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBAllocationTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C408F1B31CE7520700DB943F /* FBMemoryProfiler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBMemoryProfiler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C408F1B61CE7520700DB943F /* FBRetainCycleDetector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBRetainCycleDetector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -432,7 +461,6 @@
 		C4CE354A1CB89890001712C8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C4CE354C1CB89C0E001712C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C4CE354D1CB89C28001712C8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		C4D75F0F201290B6004D13EF /* populated.xcappdata */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = populated.xcappdata; sourceTree = "<group>"; };
 		C4E4D6361E60C9EC007E0E39 /* Rswift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Rswift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4EA5C351CE91E8600E395FE /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerViewController.swift; path = Swift/ContainerViewController.swift; sourceTree = "<group>"; };
 		C4EA5C371CE929D300E395FE /* ContainerTableViewSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ContainerTableViewSectionHeader.xib; path = Resources/ContainerTableViewSectionHeader.xib; sourceTree = "<group>"; };
@@ -560,13 +588,14 @@
 			name = UI;
 			sourceTree = "<group>";
 		};
-		C4B0DC2B1FD250B0005E587C /* Derived Sources */ = {
+		C4B0DC2B1FD250B0005E587C /* Generated */ = {
 			isa = PBXGroup;
 			children = (
+				A1F22F882017DC3D00035FA9 /* populated.xcappdata */,
 				C4B0DC281FD25022005E587C /* R.generated.swift */,
 			);
-			name = "Derived Sources";
-			sourceTree = "<group>";
+			name = Generated;
+			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		C4BE5AE31DAA5BB000E1734F /* Miscellaneous */ = {
 			isa = PBXGroup;
@@ -706,7 +735,7 @@
 				C4366F3E1FFF133400B82613 /* README.md */,
 				C4CDD39F1A5350B40087DD05 /* RSSReader */,
 				C4CDD3B71A5350B50087DD05 /* RSSReaderTests */,
-				C4B0DC2B1FD250B0005E587C /* Derived Sources */,
+				C4B0DC2B1FD250B0005E587C /* Generated */,
 				C4BE5AE41DAA5C5400E1734F /* Xcode */,
 				C444F53D1B2E53F200A6E378 /* RSSReaderUITests */,
 				C4D75F0E201290B6004D13EF /* testData */,
@@ -758,7 +787,7 @@
 		C4D75F0E201290B6004D13EF /* testData */ = {
 			isa = PBXGroup;
 			children = (
-				C4D75F0F201290B6004D13EF /* populated.xcappdata */,
+				A10F28D82017AA3400FC1D12 /* populated.xcappdata.zip */,
 			);
 			path = testData;
 			sourceTree = "<group>";
@@ -804,8 +833,10 @@
 				C48E1E5C2006DD06007EF030 /* Collect Static Link Aware Dynamic Frameworks */,
 				C48E1E5A2006D761007EF030 /* Embed Static Link Aware Frameworks Or Resources */,
 				687C9AAFBE7A8236C3E90846 /* Embed Sources */,
+				A1F22F8A2017E1C700035FA9 /* Prepare Test Data */,
 			);
 			buildRules = (
+				A10F28DB2017AA7400FC1D12 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -896,7 +927,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4CE35491CB89890001712C8 /* InfoPlist.strings in Resources */,
-				C4D75F10201290B6004D13EF /* populated.xcappdata in Resources */,
+				A1F22F8C2017E6BD00035FA9 /* populated.xcappdata in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1044,6 +1075,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -e";
 			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"${BUILT_PRODUCTS_DIR:?}\"/\"${PROJECT_NAME:?}-rswift\"\n";
+			showEnvVarsInLog = 0;
 		};
 		C4EDE1FE1FBCF0B500BB7F55 /* Lint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1078,6 +1110,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A10F28DA2017AA5400FC1D12 /* populated.xcappdata.zip in Sources */,
 				C431B4F81E8FEC7200D67D5A /* TunaXcodePlugIn.swift in Sources */,
 				C4EB28091DFA399E00BF0843 /* ModuleExports-GECoreData.swift in Sources */,
 				C441F1791DB24A1D0060E692 /* MainScene.swift in Sources */,
