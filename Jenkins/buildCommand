@@ -21,15 +21,17 @@ mkdir -p "${supDir:?}"
 cd "${supDir:?}"
 export GEM_HOME="${supDir:?}"/gem/ruby
 export PATH="$PATH:${GEM_HOME:?}/bin"
-if false; then
+if true; then
 mkdir homebrew && curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C homebrew
 export PATH="${supDir:?}"/homebrew/bin:"$PATH"
-brew install ruby
+#brew install ruby
+brew install git-lfs
 fi
 gem install -N bundler
 bundle install --deployment --path "${GEM_HOME:?}" --gemfile=../src/Gemfile --with=fastlane
 
 cd ../src
+git lfs pull
 export LC_ALL="en_US.UTF-8"
 env \
     BUILD_DIR=../build \
