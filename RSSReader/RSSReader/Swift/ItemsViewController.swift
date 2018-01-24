@@ -34,7 +34,9 @@ class ItemsViewController : ContainerViewController {
 	
 	var refreshing = false
 	
-	open lazy var canLoadItems = true
+	open var canLoadItems: Bool {
+		return true
+	}
 	
 	@objc public dynamic var loadController: ContainerLoadController?
 	func bindLoadController() -> Handler {

@@ -14,9 +14,15 @@ class HistoryViewController : ItemsViewController {
 	typealias _Self = HistoryViewController
 	private var nowDate: Date!
 	
-	override lazy var sortDescriptors: [NSSortDescriptor] = [NSSortDescriptor(key: #keyPath(Item.lastOpenedDate), ascending: false)]
-	override lazy var predicate: NSPredicate = NSPredicate(format: "\(#keyPath(Item.lastOpenedDate)) != nil", argumentArray: [])
-	override lazy var canLoadItems: Bool = false
+	override var sortDescriptors: [NSSortDescriptor] {
+		return [NSSortDescriptor(key: #keyPath(Item.lastOpenedDate), ascending: false)]
+	}
+	override var predicate: NSPredicate {
+		return NSPredicate(format: "\(#keyPath(Item.lastOpenedDate)) != nil", argumentArray: [])
+	}
+	override var canLoadItems: Bool {
+		return false
+	}
 	
 	// MARK: -
 	override func viewWillAppear(_ animated: Bool) {
