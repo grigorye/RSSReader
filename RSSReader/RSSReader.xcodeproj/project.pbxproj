@@ -876,7 +876,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Grigory Entin";
 				TargetAttributes = {
 					C444F53B1B2E53F200A6E378 = {
@@ -894,7 +894,7 @@
 					C4CDD3B31A5350B50087DD05 = {
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = 465NA5BW7E;
-						LastSwiftMigration = 0920;
+						LastSwiftMigration = 0930;
 						TestTargetID = C4CDD39C1A5350B40087DD05;
 					};
 					C4EDE1FA1FBCF0AD00BB7F55 = {
@@ -1263,6 +1263,7 @@
 		C444F5441B2E53F200A6E378 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 465NA5BW7E;
 				ENABLE_TESTABILITY = YES;
@@ -1280,6 +1281,7 @@
 		C444F5451B2E53F200A6E378 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 465NA5BW7E;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1309,6 +1311,7 @@
 			baseConfigurationReference = C459879E1CDE0AAA00B8E9E4 /* GEShared.xcconfig */;
 			buildSettings = {
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1319,6 +1322,7 @@
 			baseConfigurationReference = C4915FE31CE734A40063A734 /* RSSReader-app.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 465NA5BW7E;
@@ -1342,6 +1346,7 @@
 			baseConfigurationReference = C4915FE31CE734A40063A734 /* RSSReader-app.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 465NA5BW7E;
@@ -1364,6 +1369,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				DEVELOPMENT_TEAM = 465NA5BW7E;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -1388,6 +1394,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				DEVELOPMENT_TEAM = 465NA5BW7E;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -1407,6 +1414,7 @@
 		C4EDE1FC1FBCF0AD00BB7F55 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 465NA5BW7E;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1416,6 +1424,7 @@
 		C4EDE1FD1FBCF0AD00BB7F55 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 465NA5BW7E;
 				PRODUCT_NAME = "$(TARGET_NAME)";
