@@ -377,7 +377,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Grigory Entin";
 				TargetAttributes = {
 					C48F799D1C008D0D00CC6F74 = {
@@ -501,6 +501,7 @@
 			baseConfigurationReference = C459879D1CDE0A8300B8E9E4 /* GEShared.xcconfig */;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 1;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -510,6 +511,7 @@
 		C48F79B31C008D0E00CC6F74 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -525,6 +527,7 @@
 		C48F79B41C008D0E00CC6F74 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -540,6 +543,7 @@
 		C48F79B61C008D0E00CC6F74 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				DEVELOPMENT_TEAM = 465NA5BW7E;
 				INFOPLIST_FILE = RSSReaderDataTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -551,6 +555,7 @@
 		C48F79B71C008D0E00CC6F74 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				DEVELOPMENT_TEAM = 465NA5BW7E;
 				INFOPLIST_FILE = RSSReaderDataTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
