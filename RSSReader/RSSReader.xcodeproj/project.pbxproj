@@ -62,7 +62,6 @@
 		A176B2221FD69C1600E945E9 /* GEDebugKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A176B2211FD69C1600E945E9 /* GEDebugKit.framework */; };
 		A1D942712013734700A6D61E /* TestsBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D942702013734700A6D61E /* TestsBase.swift */; };
 		A1D9427320139BC200A6D61E /* TestsGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D9427220139BC200A6D61E /* TestsGlobals.swift */; };
-		A1F22F8B2017E1EF00035FA9 /* populated.xcappdata in Prepare Test Data */ = {isa = PBXBuildFile; fileRef = A1F22F882017DC3D00035FA9 /* populated.xcappdata */; };
 		A1F22F8C2017E6BD00035FA9 /* populated.xcappdata in Resources */ = {isa = PBXBuildFile; fileRef = A1F22F882017DC3D00035FA9 /* populated.xcappdata */; };
 		B37B8BA65793551D940F3DED /* TunaXcodePlugIn.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C431B4F71E8FEC7200D67D5A /* TunaXcodePlugIn.swift */; };
 		BAEC85E1895F2F19FB75D39E /* ModuleExports-GETracing.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EB27EB1DFA31ED00BF0843 /* ModuleExports-GETracing.swift */; };
@@ -286,17 +285,6 @@
 				DD2478EA63640F1065E150E4 /* HistoryViewController.swift in Embed Sources */,
 			);
 			name = "Embed Sources";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A1F22F8A2017E1C700035FA9 /* Prepare Test Data */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(DERIVED_FILES_DIR)";
-			dstSubfolderSpec = 0;
-			files = (
-				A1F22F8B2017E1EF00035FA9 /* populated.xcappdata in Prepare Test Data */,
-			);
-			name = "Prepare Test Data";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		C424B8E81C6FC557008AD647 /* Embed Frameworks */ = {
@@ -549,6 +537,8 @@
 				C49FF1C61DBBAA9000A86CC0 /* GEUIKit.framework */,
 				C424B8F01C6FC5C8008AD647 /* RSSReaderData.framework */,
 				C4BE5AAD1DA864FA00E1734F /* RSSReaderAppConfig.framework */,
+				A1F22F882017DC3D00035FA9 /* populated.xcappdata */,
+				C4B0DC281FD25022005E587C /* R.generated.swift */,
 				C459879E1CDE0AAA00B8E9E4 /* GEShared.xcconfig */,
 			);
 			name = Frameworks;
@@ -591,15 +581,6 @@
 			);
 			name = UI;
 			sourceTree = "<group>";
-		};
-		C4B0DC2B1FD250B0005E587C /* Generated */ = {
-			isa = PBXGroup;
-			children = (
-				A1F22F882017DC3D00035FA9 /* populated.xcappdata */,
-				C4B0DC281FD25022005E587C /* R.generated.swift */,
-			);
-			name = Generated;
-			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		C4BE5AE31DAA5BB000E1734F /* Miscellaneous */ = {
 			isa = PBXGroup;
@@ -739,7 +720,6 @@
 				C4366F3E1FFF133400B82613 /* README.md */,
 				C4CDD39F1A5350B40087DD05 /* RSSReader */,
 				C4CDD3B71A5350B50087DD05 /* RSSReaderTests */,
-				C4B0DC2B1FD250B0005E587C /* Generated */,
 				C4BE5AE41DAA5C5400E1734F /* Xcode */,
 				C444F53D1B2E53F200A6E378 /* RSSReaderUITests */,
 				C4D75F0E201290B6004D13EF /* testData */,
@@ -837,7 +817,6 @@
 				C48E1E5C2006DD06007EF030 /* Collect Static Link Aware Dynamic Frameworks */,
 				C48E1E5A2006D761007EF030 /* Embed Static Link Aware Frameworks Or Resources */,
 				687C9AAFBE7A8236C3E90846 /* Embed Sources */,
-				A1F22F8A2017E1C700035FA9 /* Prepare Test Data */,
 			);
 			buildRules = (
 				A10F28DB2017AA7400FC1D12 /* PBXBuildRule */,

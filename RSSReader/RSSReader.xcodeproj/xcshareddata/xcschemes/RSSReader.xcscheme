@@ -41,6 +41,7 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       disableMainThreadChecker = "YES"
+      language = ""
       systemAttachmentLifetime = "keepAlways"
       shouldUseLaunchSchemeArgsEnv = "NO">
       <Testables>
@@ -88,6 +89,7 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       disableMainThreadChecker = "YES"
+      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -261,12 +263,12 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "HOME"
-            value = "$(DERIVED_FILES_DIR)/populated.xcappdata/AppData"
+            value = "$(BUILT_PRODUCTS_DIR)/RSSReader-xcappdata/populated.xcappdata/AppData"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "CFFIXED_USER_HOME"
-            value = "$(DERIVED_FILES_DIR)/populated.xcappdata/AppData"
+            value = "$(BUILT_PRODUCTS_DIR)/RSSReader-xcappdata/populated.xcappdata/AppData"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
