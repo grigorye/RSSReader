@@ -74,17 +74,17 @@ private func cachedSetterImp<T>(_ _self: PropertyCacheable, _cmd: Selector, prop
 private func cachedGetterImpForPropertyTypeEncoding(_ propertyTypeEncoding: String, sel: Selector, propertyName: String, oldImp: IMP) -> IMP {
 	switch propertyTypeEncoding {
 	case objCEncode(Int.self):
-		let block: @convention(block) (AnyObject!) -> Int = { _self in
+		let block: @convention(block) (AnyObject?) -> Int = { _self in
 			return cachedGetterImp(_self as! PropertyCacheable, _cmd: sel, propertyName: propertyName, dispatch: dispatchGetter, oldImp: oldImp)
 		}
 		return imp_implementationWithBlock(unsafeBitCast(block, to: AnyObject.self))
 	case objCEncode(Bool.self), "B":
-		let block: @convention(block) (AnyObject!) -> Bool = { _self in
+		let block: @convention(block) (AnyObject?) -> Bool = { _self in
 			return cachedGetterImp(_self as! PropertyCacheable, _cmd: sel, propertyName: propertyName, dispatch: dispatchGetter, oldImp: oldImp)
 		}
 		return imp_implementationWithBlock(unsafeBitCast(block, to: AnyObject.self))
 	case _ where propertyTypeEncoding.hasPrefix("@"), objCEncode(NSObject.self):
-		let block: @convention(block) (AnyObject!) -> AnyObject! = { _self in
+		let block: @convention(block) (AnyObject?) -> AnyObject? = { _self in
 			return cachedGetterImp(_self as! PropertyCacheable, _cmd: sel, propertyName: propertyName, dispatch: dispatchGetter, oldImp: oldImp)
 		}
 		return imp_implementationWithBlock(unsafeBitCast(block, to: AnyObject.self))
