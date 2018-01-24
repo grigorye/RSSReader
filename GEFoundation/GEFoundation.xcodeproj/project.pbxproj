@@ -29,6 +29,7 @@
 		B046F9701389DBD95BA01406 /* ModuleExports-GETracing.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EB27F01DFA32D900BF0843 /* ModuleExports-GETracing.swift */; };
 		C408C6631DFC9C5C00AAA8FF /* ErrorRecovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C408C6621DFC9C5C00AAA8FF /* ErrorRecovery.swift */; };
 		C4270BF81DBD4FBD00FA3A0A /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BF71DBD4FBD00FA3A0A /* GETracing.framework */; };
+		C429597620193C61006244E1 /* SwiftBackwardCompatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = C429597520193C61006244E1 /* SwiftBackwardCompatibility.swift */; };
 		C445385E1E9AEA11009E68EB /* Flattenable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C445385D1E9AEA10009E68EB /* Flattenable.swift */; };
 		C44538601E9AF095009E68EB /* FlattenableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C445385F1E9AF095009E68EB /* FlattenableTests.swift */; };
 		C48CAA1C1DBC26F100D6F40E /* ObjCEncode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA1B1DBC26F100D6F40E /* ObjCEncode.swift */; };
@@ -129,6 +130,7 @@
 		A1839A171FD880B7003313D6 /* ErrorTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTracking.swift; sourceTree = "<group>"; };
 		C408C6621DFC9C5C00AAA8FF /* ErrorRecovery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorRecovery.swift; sourceTree = "<group>"; };
 		C4270BF71DBD4FBD00FA3A0A /* GETracing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GETracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C429597520193C61006244E1 /* SwiftBackwardCompatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftBackwardCompatibility.swift; sourceTree = "<group>"; };
 		C445385D1E9AEA10009E68EB /* Flattenable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flattenable.swift; sourceTree = "<group>"; };
 		C445385F1E9AF095009E68EB /* FlattenableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlattenableTests.swift; sourceTree = "<group>"; };
 		C48CAA1B1DBC26F100D6F40E /* ObjCEncode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjCEncode.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				C49FF1771DBB996D00A86CC0 /* URLSessionTaskGeneratorErrorObjCBridging.swift */,
 				C49FF1781DBB996D00A86CC0 /* DefaultsInSettingsPlist.swift */,
 				C48CAA291DBD399100D6F40E /* AssociatedObjects.swift */,
+				C429597520193C61006244E1 /* SwiftBackwardCompatibility.swift */,
 				C408C6621DFC9C5C00AAA8FF /* ErrorRecovery.swift */,
 				C48CAA2B1DBD3A5000D6F40E /* OSLogRDAR28599032.h */,
 				C48CAA2C1DBD3A5000D6F40E /* OSLogRDAR28599032.m */,
@@ -313,7 +316,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Grigory Entin";
 				TargetAttributes = {
 					C49FF0F91DBB981300A86CC0 = {
@@ -369,6 +372,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C429597620193C61006244E1 /* SwiftBackwardCompatibility.swift in Sources */,
 				C49FF17F1DBB998500A86CC0 /* AppVersion.swift in Sources */,
 				C4CB4BA51E2A560000C601BF /* NSLogRedirector.swift in Sources */,
 				C49FF17D1DBB996D00A86CC0 /* DefaultsInSettingsPlist.swift in Sources */,
@@ -434,6 +438,7 @@
 			baseConfigurationReference = C49FF1921DBB9D4000A86CC0 /* GEShared.xcconfig */;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 1;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -444,6 +449,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEVELOPMENT_TEAM = 465NA5BW7E;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -460,6 +466,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEVELOPMENT_TEAM = 465NA5BW7E;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -475,6 +482,7 @@
 		C49FF1121DBB981300A86CC0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 465NA5BW7E;
 				INFOPLIST_FILE = GEFoundationTests/Info.plist;
@@ -488,6 +496,7 @@
 		C49FF1131DBB981300A86CC0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 465NA5BW7E;
 				INFOPLIST_FILE = GEFoundationTests/Info.plist;
