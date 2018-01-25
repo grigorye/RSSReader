@@ -37,7 +37,10 @@ public struct Sysctl {
 			var requiredSize = 0
 			let preFlightResult = Darwin.sysctl(UnsafeMutablePointer<Int32>(mutating: keysPointer.baseAddress), UInt32(keys.count), nil, &requiredSize, nil, 0)
 			if preFlightResult != 0 {
-				throw POSIXErrorCode(rawValue: errno).map { Error.posixError($0) } ?? Error.unknown
+				throw POSIXErrorCode(rawValue: errno).map {
+					print($0.rawValue)
+					return Error.posixError($0)
+				} ?? Error.unknown
 			}
 			
 			// Run the actual request with an appropriately sized array buffer
@@ -143,9 +146,6 @@ public struct Sysctl {
 	/// e.g. "15.3.0" or "15.0.0"
 	public static var osRelease: String { return try! Sysctl.stringForKeys([CTL_KERN, KERN_OSRELEASE]) }
 	
-	/// e.g. 199506 or 199506
-	public static var osRev: Int32 { return try! Sysctl.valueOfType(Int32.self, forKeys: [CTL_KERN, KERN_OSREV]) }
-	
 	/// e.g. "Darwin" or "Darwin"
 	public static var osType: String { return try! Sysctl.stringForKeys([CTL_KERN, KERN_OSTYPE]) }
 	
@@ -157,6 +157,9 @@ public struct Sysctl {
 	public static var version: String { return try! Sysctl.stringForKeys([CTL_KERN, KERN_VERSION]) }
 	
 	#if os(macOS)
+		/// e.g. 199506 (not available on iOS)
+		public static var osRev: Int32 { return try! Sysctl.valueOfType(Int32.self, forKeys: [CTL_KERN, KERN_OSREV]) }
+
 		/// e.g. 2659000000 (not available on iOS)
 		public static var cpuFreq: Int64 { return try! Sysctl.valueOfType(Int64.self, forName: "hw.cpufrequency") }
 
