@@ -8,7 +8,6 @@
 
 import UIKit
 
-class ItemCellSmallCapsLabel: UILabel {}
 class ItemCellSourceLabel: ItemCellSmallCapsLabel {}
 class ItemCellDateLabel: ItemCellSmallCapsLabel {}
 class ItemCellFavoriteMarkLabel: ItemCellSmallCapsLabel {}
@@ -16,15 +15,31 @@ class ItemCellReadMarkLabel: UILabel {}
 class ItemCellReadMarkBar: UIView {}
 class ItemCellTitleLabel: UILabel {}
 
+class FolderTableView : UITableView {}
+
 /// - Tag: Appearance-Configuration
 
-func configureAppearance() {
-	do {
-		let label = ItemCellSmallCapsLabel.appearance()
-		let styledFont = UIFont.preferredFont(forTextStyle: UIFontTextStyle.footnote)
-		let font = UIFont.smallCapsFontOfSize(styledFont.pointSize, withName: styledFont.fontName)
-		label.font = font
+class ItemCellSmallCapsLabel : UILabel {
+	
+	#if true
+	required init?(coder aDecoder: NSCoder) {
+		
+		super.init(coder: aDecoder)
+		
+		let font = UIFont.preferredFont(forTextStyle: .footnote).smallCaps()
+		self.font = font
 	}
+	#endif
+}
+
+func configureAppearance() {
+	#if false
+		do {
+			let label = ItemCellSmallCapsLabel.appearance()
+			let font = UIFont.preferredFont(forTextStyle: .footnote).smallCaps()
+			label.font = font
+		}
+	#endif
 	do {
 		let label = ItemCellReadMarkLabel.appearance()
 		label.textColor = UIView().tintColor
@@ -32,5 +47,15 @@ func configureAppearance() {
 	do {
 		let bar = ItemCellReadMarkBar.appearance()
 		bar.backgroundColor = UIView().tintColor
+	}
+	do {
+		ItemTableView.appearance() … {
+			$0.separatorStyle = .none
+		}
+	}
+	do {
+		FolderTableView.appearance() … {
+			$0.separatorStyle = .none
+		}
 	}
 }
