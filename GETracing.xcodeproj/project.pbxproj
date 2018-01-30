@@ -92,6 +92,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C4049DE6201FC1A100A296C3 /* GETracing.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GETracing.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C41818601B6A65B100872EB3 /* GETracing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GETracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C41818651B6A65B100872EB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C418186A1B6A65B100872EB3 /* GETracingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GETracingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,6 +135,7 @@
 		C41818561B6A65B100872EB3 = {
 			isa = PBXGroup;
 			children = (
+				C4049DE6201FC1A100A296C3 /* GETracing.playground */,
 				C41818621B6A65B100872EB3 /* GETracing */,
 				C418186E1B6A65B100872EB3 /* GETracingTests */,
 				C424B8DF1C6FC332008AD647 /* Frameworks */,
