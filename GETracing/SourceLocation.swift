@@ -80,7 +80,7 @@ extension FunctionSourceLocationRange {
 public struct SourceLocation {
 	public enum ModuleReference {
 		case dso(UnsafeRawPointer)
-		case playground
+		case playground(name: String)
 	}
 	public let fileURL: URL
 	public let line: Int
