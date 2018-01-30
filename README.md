@@ -1,4 +1,5 @@
 [![](https://travis-ci.org/grigorye/GETracing.svg?branch=master)](https://travis-ci.org/grigorye/GETracing)
+[![codecov](https://codecov.io/gh/grigorye/GETracing/branch/master/graph/badge.svg)](https://codecov.io/gh/grigorye/GETracing)
 
 # GETracing
 
