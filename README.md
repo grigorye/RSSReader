@@ -1,4 +1,6 @@
 [![](https://travis-ci.org/grigorye/RSSReader.svg?branch=master)](https://travis-ci.org/grigorye/RSSReader)
+[![](https://codecov.io/gh/grigorye/RSSReader/branch/master/graph/badge.svg)](https://codecov.io/gh/grigorye/RSSReader)
+
 
 # RSSReader
 
