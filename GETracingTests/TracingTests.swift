@@ -257,7 +257,7 @@ class LabelTests : TraceAndLabelTestsBase {
 		XCTAssertEqual(L(foo), "foo: bar")
 		sourceLabelsEnabledEnforced = false
 		let cln = #column
-		let l = L(foo);
+		let l = L(foo)
 		XCTAssertEqual(l, ".\(cln): bar")
 	}
 	func testNestedLabeledString() {
@@ -266,7 +266,7 @@ class LabelTests : TraceAndLabelTestsBase {
 		sourceLabelsEnabledEnforced = false
 		let cln = #column
 		let cln_2 = #column
-		let l = L(L(foo));
+		let l = L(L(foo))
 		XCTAssertEqual(l, ".\(cln): .\(cln_2): bar")
 	}
 	func testLabelWithMissingSource() {
@@ -291,8 +291,8 @@ class LabelTests : TraceAndLabelTestsBase {
 	func testLabeledCompoundExpressions() {
 		let foo = "bar"
 		let optionalFoo = Optional("bar")
-		XCTAssertEqual(L("baz" + String(foo.characters.reversed())), "\"baz\" + String(foo.characters.reversed()): bazrab")
-		XCTAssertEqual(L(String(foo.characters.reversed())), "String(foo.characters.reversed()): rab")
+		XCTAssertEqual(L("baz" + String(foo.reversed())), "\"baz\" + String(foo.reversed()): bazrab")
+		XCTAssertEqual(L(String(foo.reversed())), "String(foo.reversed()): rab")
 		XCTAssertEqual(L(optionalFoo!), "optionalFoo!: bar")
 		let fileManager = FileManager.default
 		let storePath = "/tmp/xxx"

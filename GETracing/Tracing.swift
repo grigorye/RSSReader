@@ -9,6 +9,7 @@
 import Foundation
 
 public func traceAsNecessary<T>(_ value: T, file: String, line: Int, column: Int, function: String, moduleReference: SourceLocation.ModuleReference, traceFunctionName: String) {
+	// swiftlint:disable:previous function_parameter_count
 #if GE_TRACE_ENABLED
 	guard traceEnabled else {
 		return
