@@ -60,23 +60,16 @@ func sourceExtractedInfo(for location: SourceLocation, traceFunctionName: String
 	case .playground:
 		file = fileURL.path
 	}
-	let fileContents = try! String(contentsOfFile: file, encoding: String.Encoding.utf8)
+	guard let fileContents = try? String(contentsOfFile: file, encoding: String.Encoding.utf8) else {
+		assert(false, "Couldn't read \"\(fileURL)\".")
+		return SourceExtractedInfo(label: "\(file)[contents-missing]:\(descriptionForInLineLocation(location)):?")
+	}
 	let rawLines = fileContents.components(separatedBy: "\n")
 	let (lines, playgroundName): ([String], String?) = {
-		guard case .playground = location.moduleReference else {
+		guard case .playground(let playgroundName) = location.moduleReference else {
 			return (rawLines, nil)
 		}
-		var i = rawLines.startIndex
-		let regularExpression = try! NSRegularExpression(pattern: "#sourceLocation\\(file: \"(.*)\", line: 1\\)")
-		for line in rawLines {
-			if let match = regularExpression.firstMatch(in: line, range: NSRange(location: 0, length: line.count)) {
-				let s = rawLines[(i + 1)..<rawLines.endIndex]
-				let playgroundName = line.substring(with: match.range(at: 1))
-				return (Array(s), playgroundName)
-			}
-			i = rawLines.index(after: i)
-		}
-		fatalError()
+		return (rawLines, playgroundName)
 	}()
 	let line = lines[location.line - 1]
 	let closure = sourceLabelClosuresEnabled
