@@ -5,4 +5,4 @@ env:
   - sdk=iphonesimulator destination='platform=iOS Simulator,name=iPhone X,OS=11.2'
   - sdk=macosx destination='platform=macOS'
 script:
-- xcodebuild -sdk "${sdk:?}" -project GETracing.xcodeproj -scheme GETracing -destination "${destination:?}" test CODE_SIGNING_REQUIRED=NO TEST_HOST=
+- xcodebuild -sdk "${sdk:?}" -project GETracing.xcodeproj -scheme GETracing -destination "${destination:?}" test CODE_SIGNING_REQUIRED=NO TEST_HOST= SWIFT_VERSION=4
