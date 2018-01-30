@@ -24,7 +24,7 @@ that needs tracing is replaced with
 
 and that's it. Nested expressions might be traced as well. 
 
-<img src="Screenshots/Playground.png" alt="Playground" width="476" height="372">
+![](Screenshots/Playground.png)
 
 ## Configration
 
