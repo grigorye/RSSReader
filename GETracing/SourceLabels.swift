@@ -8,14 +8,6 @@
 
 import Foundation
 
-extension String {
-	
-	func substring(with range: NSRange) -> String {
-		return (self as NSString).substring(with: range) as String
-	}
-	
-}
-
 func sourceModuleNameFor(_ url: URL) -> String {
 	
 	let ignoredParentDirNames = [
