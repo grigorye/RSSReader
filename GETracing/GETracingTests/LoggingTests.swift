@@ -17,4 +17,9 @@ class LoggingTests : TraceAndLabelTestsBase {
 		
 		x$(0)
 	}
+	
+	func testLogWithNoSourceOrLabel() {
+		
+		logWithNoSourceOrLabel("foo")
+	}
 }
