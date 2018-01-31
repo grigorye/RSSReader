@@ -55,7 +55,6 @@ public func configTracing() {
 	// Ignore - used just for debugging.
 	traceEnabledEnforced = true
 	sourceLabelsEnabledEnforced = true
-	sourceLabelClosuresEnabled = false
 	
 	configureLoggers()
 }

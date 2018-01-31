@@ -51,11 +51,6 @@ class TraceTests : TraceAndLabelTestsBase {
 		blocksForTearDown += [{
 			loggers = oldLoggers
 		}]
-		let oldSourceLabelClosuresEnabled = sourceLabelClosuresEnabled
-		sourceLabelClosuresEnabled = false
-		blocksForTearDown += [{
-			sourceLabelClosuresEnabled = oldSourceLabelClosuresEnabled
-		}]
 	}
 	// MARK: -
 	func testTraceWithAllThingsDisabled() {
@@ -151,7 +146,6 @@ class TraceTests : TraceAndLabelTestsBase {
 	func testComplexWithAutoclosuresTraceAndLabelsEnabled() {
 		traceEnabledEnforced = true
 		sourceLabelsEnabledEnforced = true
-		sourceLabelClosuresEnabled = false
 		let value = z$("xxx" + (foo) + "baz"); let line = #line
 		let fileURL = URL(fileURLWithPath: #file)
 		XCTAssertEqual(value, "xxx" + (foo) + "baz")
@@ -174,7 +168,6 @@ class TraceTests : TraceAndLabelTestsBase {
 	func testZeroWithAutoclosureTraceAndLabelsEnabled() {
 		traceEnabledEnforced = true
 		sourceLabelsEnabledEnforced = true
-		sourceLabelClosuresEnabled = false
 		let value = z$(0); let line = #line
 		let fileURL = URL(fileURLWithPath: #file)
 		XCTAssertEqual(value, 0)
