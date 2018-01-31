@@ -57,7 +57,3 @@ public func log<T>(_ value: T, on date: Date, at location: SourceLocation, trace
 	log(record)
 }
 
-public func logWithNoSourceOrLabel(_ message: String) {
-	let record = LogRecord(message: message, sourceExtractedInfo: nil, date: Date(), location: nil)
-	log(record)
-}
