@@ -17,6 +17,8 @@
 		B9F7485EC19F879024ABA8C7 /* Logging.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4E5DB881DBEB01A00170422 /* Logging.swift */; };
 		C418186B1B6A65B100872EB3 /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C41818601B6A65B100872EB3 /* GETracing.framework */; };
 		C41F40501DBE94E3006EA6CD /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41F404F1DBE94E3006EA6CD /* Configuration.swift */; };
+		C479DD922021550A00E0A11D /* LoggingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C479DD912021550A00E0A11D /* LoggingTests.swift */; };
+		C479DD942021572900E0A11D /* PlaygroundSupportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C479DD932021572900E0A11D /* PlaygroundSupportTests.swift */; };
 		C48CAA181DBBE59000D6F40E /* BundleForSymbolAddressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA171DBBE59000D6F40E /* BundleForSymbolAddressTests.swift */; };
 		C495D8991C02592100A7F7D5 /* TracingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495D8981C02592100A7F7D5 /* TracingTests.swift */; };
 		C495D89B1C025A0800A7F7D5 /* TracingTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C495D8981C02592100A7F7D5 /* TracingTests.swift */; };
@@ -33,6 +35,8 @@
 		D1FE325B8435F6D7C1399D19 /* NestedBrackets.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF0E51DBAF7D800A86CC0 /* NestedBrackets.swift */; };
 		D8D156E9B2C78D958459B0D9 /* Configuration.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41F404F1DBE94E3006EA6CD /* Configuration.swift */; };
 		E0475618BA2C6E7169F0C172 /* NestedBracketsTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF0E71DBAF80200A86CC0 /* NestedBracketsTests.swift */; };
+		F7D1B3B165FFC3913B666379 /* PlaygroundSupportTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C479DD932021572900E0A11D /* PlaygroundSupportTests.swift */; };
+		FC179CB4CC4359116653AD28 /* LoggingTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C479DD912021550A00E0A11D /* LoggingTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +59,8 @@
 				C495D89B1C025A0800A7F7D5 /* TracingTests.swift in Embed Sources */,
 				B0685BADD896C42E61A4E11A /* BundleForSymbolAddressTests.swift in Embed Sources */,
 				E0475618BA2C6E7169F0C172 /* NestedBracketsTests.swift in Embed Sources */,
+				FC179CB4CC4359116653AD28 /* LoggingTests.swift in Embed Sources */,
+				F7D1B3B165FFC3913B666379 /* PlaygroundSupportTests.swift in Embed Sources */,
 			);
 			name = "Embed Sources";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -99,6 +105,8 @@
 		C41818711B6A65B100872EB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C41F404F1DBE94E3006EA6CD /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		C459879B1CDE087200B8E9E4 /* GEShared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = GEShared.xcconfig; path = ../XcodeConfiguration/GEShared.xcconfig; sourceTree = "<group>"; };
+		C479DD912021550A00E0A11D /* LoggingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingTests.swift; sourceTree = "<group>"; };
+		C479DD932021572900E0A11D /* PlaygroundSupportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundSupportTests.swift; sourceTree = "<group>"; };
 		C48CAA171DBBE59000D6F40E /* BundleForSymbolAddressTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleForSymbolAddressTests.swift; sourceTree = "<group>"; };
 		C48CEECB201FF1BC0088E490 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C495D8981C02592100A7F7D5 /* TracingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracingTests.swift; sourceTree = "<group>"; };
@@ -177,8 +185,10 @@
 			isa = PBXGroup;
 			children = (
 				C495D8981C02592100A7F7D5 /* TracingTests.swift */,
+				C479DD912021550A00E0A11D /* LoggingTests.swift */,
 				C49FF0E71DBAF80200A86CC0 /* NestedBracketsTests.swift */,
 				C48CAA171DBBE59000D6F40E /* BundleForSymbolAddressTests.swift */,
+				C479DD932021572900E0A11D /* PlaygroundSupportTests.swift */,
 				C41818711B6A65B100872EB3 /* Info.plist */,
 			);
 			path = GETracingTests;
@@ -326,9 +336,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C479DD942021572900E0A11D /* PlaygroundSupportTests.swift in Sources */,
 				C48CAA181DBBE59000D6F40E /* BundleForSymbolAddressTests.swift in Sources */,
 				C495D8991C02592100A7F7D5 /* TracingTests.swift in Sources */,
 				C49FF0E81DBAF80200A86CC0 /* NestedBracketsTests.swift in Sources */,
+				C479DD922021550A00E0A11D /* LoggingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
