@@ -9,6 +9,14 @@
 @testable import GETracing
 import XCTest
 
+#if !swift(>=4.1)
+extension Array {
+func compactMap<T>(_ transform: (Element) throws -> T?) rethrows -> [T] {
+return try flatMap(transform)
+}
+}
+#endif
+
 class TraceAndLabelTestsBase: XCTestCase {
 	let foo = "bar"
 	let bar = "baz"
@@ -184,7 +192,7 @@ class TraceTests : TraceAndLabelTestsBase {
 		XCTAssertEqual(tracedRecords.map {$0.location.line}, [line])
 		XCTAssertEqual(tracedRecords.map {$0.location.fileURL}, [fileURL])
 		XCTAssertEqual(tracedRecords.map {$0.message}, ["- \"bar\"\n"])
-		XCTAssertEqual(tracedRecords.flatMap {$0.label}, ["foo"])
+		XCTAssertEqual(tracedRecords.compactMap {$0.label}, ["foo"])
 	}
 	func testWithTraceLockAndTracingEnabled() {
 		traceEnabledEnforced = true
