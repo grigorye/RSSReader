@@ -63,7 +63,6 @@
 		A1D942712013734700A6D61E /* TestsBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D942702013734700A6D61E /* TestsBase.swift */; };
 		A1D9427320139BC200A6D61E /* TestsGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D9427220139BC200A6D61E /* TestsGlobals.swift */; };
 		A1F22F8C2017E6BD00035FA9 /* populated.xcappdata in Resources */ = {isa = PBXBuildFile; fileRef = A1F22F882017DC3D00035FA9 /* populated.xcappdata */; };
-		B37B8BA65793551D940F3DED /* TunaXcodePlugIn.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C431B4F71E8FEC7200D67D5A /* TunaXcodePlugIn.swift */; };
 		BAEC85E1895F2F19FB75D39E /* ModuleExports-GETracing.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EB27EB1DFA31ED00BF0843 /* ModuleExports-GETracing.swift */; };
 		BF5ABF05A86DD1EA29D04E05 /* UserVisibleErrors.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C43657581F05D0DD00B904A2 /* UserVisibleErrors.swift */; };
 		C408F1B11CE7520700DB943F /* FBAllocationTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C408F1B01CE7520700DB943F /* FBAllocationTracker.framework */; };
@@ -80,7 +79,6 @@
 		C4270C001DBD502600FA3A0A /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BFF1DBD502600FA3A0A /* GETracing.framework */; };
 		C42802691A5B47EA002474E1 /* FoldersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42802681A5B47EA002474E1 /* FoldersViewController.swift */; };
 		C42BA28B1DF4DB9B00213D70 /* ItemTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42BA28A1DF4DB9B00213D70 /* ItemTableView.swift */; };
-		C431B4F81E8FEC7200D67D5A /* TunaXcodePlugIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = C431B4F71E8FEC7200D67D5A /* TunaXcodePlugIn.swift */; };
 		C43657571F05CDEF00B904A2 /* UserEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43657561F05CDEF00B904A2 /* UserEvents.swift */; };
 		C43657591F05D0DD00B904A2 /* UserVisibleErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43657581F05D0DD00B904A2 /* UserVisibleErrors.swift */; };
 		C436575D1F07597600B904A2 /* RefreshController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C436575C1F07597600B904A2 /* RefreshController.swift */; };
@@ -241,7 +239,6 @@
 			dstPath = "Sources/$(TARGET_NAME)";
 			dstSubfolderSpec = 7;
 			files = (
-				B37B8BA65793551D940F3DED /* TunaXcodePlugIn.swift in Embed Sources */,
 				EE076F8C242DC40F8C4FC5F0 /* ModuleExports-GECoreData.swift in Embed Sources */,
 				1237A3D8C26772A17CAC0310 /* MainScene.swift in Embed Sources */,
 				39E455032D991D0792AD45E1 /* RefreshController.swift in Embed Sources */,
@@ -377,7 +374,6 @@
 		C4270BFF1DBD502600FA3A0A /* GETracing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GETracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C42802681A5B47EA002474E1 /* FoldersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = FoldersViewController.swift; path = Swift/FoldersViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C42BA28A1DF4DB9B00213D70 /* ItemTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemTableView.swift; path = Swift/ItemTableView.swift; sourceTree = "<group>"; };
-		C431B4F71E8FEC7200D67D5A /* TunaXcodePlugIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TunaXcodePlugIn.swift; path = ../../XcodeSupport/TunaXcodePlugIn.swift; sourceTree = "<group>"; };
 		C43657561F05CDEF00B904A2 /* UserEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserEvents.swift; path = Swift/UserEvents.swift; sourceTree = "<group>"; };
 		C43657581F05D0DD00B904A2 /* UserVisibleErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserVisibleErrors.swift; path = Swift/UserVisibleErrors.swift; sourceTree = "<group>"; };
 		C436575C1F07597600B904A2 /* RefreshController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RefreshController.swift; path = Swift/RefreshController.swift; sourceTree = "<group>"; };
@@ -587,7 +583,6 @@
 			children = (
 				C4874A101EAD657C00629990 /* LaunchScreen.strings */,
 				C4874A0B1EAD657B00629990 /* Main.strings */,
-				C431B4F71E8FEC7200D67D5A /* TunaXcodePlugIn.swift */,
 				C474F1CC1DB0657800F0E152 /* main.swift */,
 				C4CDD3C41A5357B20087DD05 /* Settings.bundle */,
 				C40C6C051A74AB5E00FAFA17 /* Bridging-Header.h */,
@@ -1094,7 +1089,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A10F28DA2017AA5400FC1D12 /* populated.xcappdata.zip in Sources */,
-				C431B4F81E8FEC7200D67D5A /* TunaXcodePlugIn.swift in Sources */,
 				C4EB28091DFA399E00BF0843 /* ModuleExports-GECoreData.swift in Sources */,
 				C441F1791DB24A1D0060E692 /* MainScene.swift in Sources */,
 				C436575D1F07597600B904A2 /* RefreshController.swift in Sources */,
