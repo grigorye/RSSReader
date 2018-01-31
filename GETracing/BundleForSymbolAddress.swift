@@ -8,18 +8,6 @@
 
 import Foundation
 
-extension URL {
-	
-	func deletingLastNPathComponents(_ n: Int) -> URL {
-		
-		let shrinkedURL = self.deletingLastPathComponent()
-		guard 1 < n else {
-			return shrinkedURL
-		}
-		return shrinkedURL.deletingLastNPathComponents(n - 1)
-	}
-}
-
 func bundleURLFromSharedObjectName(_ objectName: String) -> URL? {
 	
 	let objectURL = URL(fileURLWithPath: objectName)
