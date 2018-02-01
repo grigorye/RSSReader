@@ -35,6 +35,7 @@
 		C4290F8A1EA3223300CAD5AE /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4290F891EA3223300CAD5AE /* Globals.swift */; };
 		C441F1851DB25ABD0060E692 /* FoldersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F1841DB25ABD0060E692 /* FoldersController.swift */; };
 		C4423686200C1D1B00DA59D5 /* GeneratedDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4423685200C1D1B00DA59D5 /* GeneratedDataTests.swift */; };
+		C479DDDC2023C0E400E0A11D /* ModuleExports-GEFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB28051DFA389300BF0843 /* ModuleExports-GEFoundation.swift */; };
 		C483540E1FBFC1BA00466BD6 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C483540F1FBFC1BA00466BD6 /* GoogleToolboxForMac.framework */; };
 		C483683D200C16C700A0F25E /* DataGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C483683C200C16C700A0F25E /* DataGenerator.swift */; };
 		C48CAA141DBBAD4E00D6F40E /* GECoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1BE1DBBA84000A86CC0 /* GECoreData.framework */; };
@@ -467,6 +468,7 @@
 				C4C69594200D6D63006C2A8D /* ModuleExports-GETracing.swift in Sources */,
 				C48F79AE1C008D0E00CC6F74 /* RSSReaderDataTests.swift in Sources */,
 				C48F79C41C008DD300CC6F74 /* RSSSessionTests.swift in Sources */,
+				C479DDDC2023C0E400E0A11D /* ModuleExports-GEFoundation.swift in Sources */,
 				C483683D200C16C700A0F25E /* DataGenerator.swift in Sources */,
 				C4B4374F1C00F00700A2F3BE /* CoreDataFetchRequestsTests.swift in Sources */,
 				C4C695C9200D7B43006C2A8D /* DataEnabledTestCase.swift in Sources */,
