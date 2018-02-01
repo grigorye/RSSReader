@@ -173,7 +173,7 @@ class ItemsViewController : ContainerViewController {
 	
 	func bind() {
 		precondition(!scheduledForUnbind.hasHandlers)
-		scheduledForUnbind = ScheduledHandlers() … {
+		scheduledForUnbind = ScheduledHandlers() ≈ {
 			if canLoadItems {
 				$0 += [self.bindLoadController()]
 				$0 += [self.bindLoadDate()]

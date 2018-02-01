@@ -69,7 +69,7 @@ class ItemTableViewDataSource: NSObject {
 		typealias E = Item
 		let fetchRequest = E.fetchRequestForEntity() … {
 			$0.sortDescriptors = sortDescriptors
-			$0.predicate = NSCompoundPredicate(andPredicateWithSubpredicates:[NSPredicate]() … {
+			$0.predicate = NSCompoundPredicate(andPredicateWithSubpredicates:[NSPredicate]() ≈ {
 				$0 += [self.container.predicateForItems]
 				$0 += [self.containerViewPredicate]
 			})
