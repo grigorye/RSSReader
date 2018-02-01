@@ -27,7 +27,7 @@ extension RSSSession {
 	
 	func authenticatedDataTask(with request: URLRequest, completionHandler: @escaping TaskCompletionHandler) -> URLSessionDataTask {
 		precondition(nil != self.authToken)
-		let authenticatedRequest = request … {
+		let authenticatedRequest = request ≈ {
 			$0.addValue("GoogleLogin auth=\(self.authToken!)", forHTTPHeaderField: "Authorization")
 			$0.addValue(self.inoreaderAppID, forHTTPHeaderField: "AppId")
 			$0.addValue(self.inoreaderAppKey, forHTTPHeaderField: "AppKey")

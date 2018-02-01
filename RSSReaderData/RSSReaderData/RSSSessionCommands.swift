@@ -56,7 +56,7 @@ extension PersistentDataUpdateCommand where Self: RelativeStringBasedDataUpdateC
 	var httpMethod: String? { return "GET" }
 	var request: URLRequest {
 		let url = URL(string: requestRelativeString, relativeTo: baseURL)!
-		return URLRequest(url: url) … {
+		return URLRequest(url: url) ≈ {
 			$0.httpMethod = self.httpMethod
 			()
 		}
@@ -200,7 +200,7 @@ public struct StreamContents : PersistentDataUpdateCommand, AuthenticatedDataUpd
 	public typealias ResultType = (NSManagedObjectContext, (continuation: String?, items: (existing: [Item], new: [Item])))
 	let excludedCategory: Folder?, container: Container, continuation: String?, count: Int, loadDate: Date
 	var requestRelativeString: String {
-		let querySuffix = URLQuerySuffixFromComponents([String]() … {
+		let querySuffix = URLQuerySuffixFromComponents([String]() ≈ {
 			if let continuation = continuation {
 				$0 += ["c=\(x$(continuation))"]
 			}
@@ -239,7 +239,7 @@ struct Authenticate : PersistentDataUpdateCommand, SimpleDispatchingDataUpdateCo
 	}
 	var request: URLRequest {
 		let url = URL(string: "/accounts/ClientLogin", relativeTo: baseURL)!
-		let request = URLRequest(url: url) … {
+		let request = URLRequest(url: url) ≈ {
 			$0.httpMethod = "POST"
 			$0.httpBody = {
 				let allowedCharacters = NSCharacterSet.alphanumerics
