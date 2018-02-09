@@ -154,6 +154,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A11BD617202E372B005EF993 /* 15597.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 15597.xcdatamodel; sourceTree = "<group>"; };
 		C4270BFD1DBD500D00FA3A0A /* GETracing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GETracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4290F891EA3223300CAD5AE /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		C441F1841DB25ABD0060E692 /* FoldersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldersController.swift; sourceTree = "<group>"; };
@@ -602,6 +603,7 @@
 		C48F79D51C008E6A00CC6F74 /* RSSReader.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A11BD617202E372B005EF993 /* 15597.xcdatamodel */,
 				C492A4DA1CDFFA6100F8AD5F /* 1027.xcdatamodel */,
 				C48F79D61C008E6A00CC6F74 /* 140.xcdatamodel */,
 				C48F79D71C008E6A00CC6F74 /* 218.xcdatamodel */,
