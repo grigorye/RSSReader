@@ -12,7 +12,11 @@ import CoreData
 
 public class Item : NSManagedObject {
 	typealias _Self = Item
+	#if false
 	@NSManaged public var json: [String : Any]!
+	#else
+	@NSManaged public var categoryIDsJson: String?
+	#endif
     @NSManaged public var id: String
 	@NSManaged public var date: Date
 	@NSManaged public var author: String
@@ -49,8 +53,12 @@ public class Item : NSManagedObject {
 	@NSManaged public var categoriesToBeExcluded: Set<Folder>
 	@NSManaged public var categoriesToBeIncluded: Set<Folder>
 	@NSManaged public var subscription: Subscription
+	#if false
 	@NSManaged public var canonical: [[String : String]]?
-	
+	#else
+	@NSManaged public var firstCanonicalHref: String
+	#endif
+
 	static private let initializeOnce: Ignored = {
 		if _0 {
 			cachePropertyWithName(_Self.self, name: #keyPath(markedAsRead))
@@ -72,6 +80,11 @@ extension Item {
 			fatalError()
 		}
 		return shortID
+	}
+	
+	public var articleURL: URL {
+		
+		return URL(string: firstCanonicalHref)!
 	}
 }
 
