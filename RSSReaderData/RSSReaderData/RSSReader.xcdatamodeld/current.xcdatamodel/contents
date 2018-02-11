@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="15G1212" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14102.1" systemVersion="17D47" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="CategoryItem" representedClassName=".CategoryItem" syncable="YES">
         <relationship name="category" maxCount="1" deletionRule="Nullify" destinationEntity="Folder" syncable="YES"/>
         <relationship name="item" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="categoryItems" inverseEntity="Item" syncable="YES"/>
@@ -7,10 +7,13 @@
     <entity name="Container" representedClassName=".Container" isAbstract="YES" syncable="YES">
         <attribute name="newestItemDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="sortID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="streamID" attributeType="String" indexed="YES" elementID="id" syncable="YES"/>
+        <attribute name="streamID" attributeType="String" elementID="id" syncable="YES"/>
         <attribute name="unreadCount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="parentFolder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Folder" inverseName="childContainers" inverseEntity="Folder" syncable="YES"/>
         <relationship name="viewStates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ContainerViewState" inverseName="container" inverseEntity="ContainerViewState" syncable="YES"/>
+        <fetchIndex name="byStreamIDIndex">
+            <fetchIndexElement property="streamID" type="Binary" order="ascending"/>
+        </fetchIndex>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="streamID"/>
@@ -35,11 +38,11 @@
     </entity>
     <entity name="Item" representedClassName=".Item" syncable="YES">
         <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="canonical" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <attribute name="date" attributeType="Date" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
-        <attribute name="id" attributeType="String" indexed="YES" elementID="itemID" syncable="YES"/>
-        <attribute name="json" optional="YES" attributeType="Transformable" customClassName="NSDictionary" syncable="YES"/>
-        <attribute name="lastOpenedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
+        <attribute name="categoryIDsJson" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="firstCanonicalHref" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" elementID="itemID" syncable="YES"/>
+        <attribute name="lastOpenedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="pendingUpdateDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="summaryData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="summaryUnoptimized" attributeType="String" syncable="YES"/>
@@ -50,6 +53,15 @@
         <relationship name="categoriesToBeIncluded" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Folder" inverseName="itemsToBeIncluded" inverseEntity="Folder" syncable="YES"/>
         <relationship name="categoryItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CategoryItem" inverseName="item" inverseEntity="CategoryItem" syncable="YES"/>
         <relationship name="subscription" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Subscription" inverseName="items" inverseEntity="Subscription" syncable="YES"/>
+        <fetchIndex name="byDateIndex">
+            <fetchIndexElement property="date" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <fetchIndex name="byIdIndex">
+            <fetchIndexElement property="id" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <fetchIndex name="byLastOpenedDateIndex">
+            <fetchIndexElement property="lastOpenedDate" type="Binary" order="ascending"/>
+        </fetchIndex>
     </entity>
     <entity name="Subscription" representedClassName=".Subscription" parentEntity="Container" syncable="YES">
         <attribute name="firstItemDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>

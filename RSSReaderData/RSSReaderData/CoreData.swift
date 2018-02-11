@@ -78,16 +78,27 @@ extension Item : ManagedIdentifiable {
 		// Track changes in the categories (not reflected in the update date).
 		do {
 			let categoryIDs: [String] = json["categories"] as! [String]
+			let categoryIDsJson = "[\(categoryIDs.joined(separator: ","))]"
 			let shouldUpdateCategories: Bool = {
-				guard let json = self.json else {
-					return true
-				}
-				let oldCategoryIDs = json["categories"] as! [String]
-				return oldCategoryIDs != categoryIDs
+				#if false
+					guard let json = self.json else {
+						return true
+					}
+					let oldCategoryIDs = json["categories"] as! [String]
+					return oldCategoryIDs != categoryIDs
+				#else
+					guard let oldCategoryIDsJson = self.categoryIDsJson else {
+						return true
+					}
+					return oldCategoryIDsJson != categoryIDsJson
+				#endif
 			}()
 			if shouldUpdateCategories {
 				let categories = Set(categoryIDs.map { return categoriesByID[$0]! })
 				self.categories = categories
+				#if true
+					self.categoryIDsJson = categoryIDsJson
+				#endif
 			}
 		}
 		let managedObjectContext = self.managedObjectContext!
@@ -112,8 +123,13 @@ extension Item : ManagedIdentifiable {
 		assert(nil == subscription || streamID == subscription?.streamID)
 		let subscription = try subscription ?? insertedObjectUnlessFetchedWithID(Subscription.self, id: streamID, managedObjectContext: managedObjectContext)
 		self.subscription = subscription
-		self.canonical = json["canonical"] as! [[String : String]]?
-		self.json = json
+		let canonical = json["canonical"] as! [[String : String]]?
+		#if true
+			self.firstCanonicalHref = canonical!.first!["href"]!
+		#else
+			self.canonical = json["canonical"] as! [[String : String]]?
+			self.json = json
+		#endif
 	}
 }
 
