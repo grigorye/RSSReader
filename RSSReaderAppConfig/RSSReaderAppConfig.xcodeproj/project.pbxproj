@@ -26,6 +26,8 @@
 		A438E6F95BE621182DE8A725 /* Firebase.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4134F501FCA605000178BE5 /* Firebase.swift */; };
 		BF8C7FE5D7057D472126A7A5 /* Appsee.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5A971DA85DE000E1734F /* Appsee.swift */; };
 		C4134F511FCA605000178BE5 /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4134F501FCA605000178BE5 /* Firebase.swift */; };
+		C422F3E52030933C007D7D6A /* NetworkActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C422F3E42030933C007D7D6A /* NetworkActivityIndicator.swift */; };
+		C422F3E62030948C007D7D6A /* FTLinearActivityIndicator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C422F3E72030948C007D7D6A /* FTLinearActivityIndicator.framework */; };
 		C428E49D1FBC07B200DA2FFA /* Watchdog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C428E49E1FBC07B200DA2FFA /* Watchdog.framework */; };
 		C428E4A01FBC097E00DA2FFA /* Watchdog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C428E49F1FBC097E00DA2FFA /* Watchdog.swift */; };
 		C4290F8C1EA3226B00CAD5AE /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4290F8B1EA3226B00CAD5AE /* Globals.swift */; };
@@ -120,6 +122,8 @@
 /* Begin PBXFileReference section */
 		A1839A121FD83D78003313D6 /* GEDebugKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GEDebugKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4134F501FCA605000178BE5 /* Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
+		C422F3E42030933C007D7D6A /* NetworkActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkActivityIndicator.swift; sourceTree = "<group>"; };
+		C422F3E72030948C007D7D6A /* FTLinearActivityIndicator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FTLinearActivityIndicator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C428E49E1FBC07B200DA2FFA /* Watchdog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Watchdog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C428E49F1FBC097E00DA2FFA /* Watchdog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Watchdog.swift; sourceTree = "<group>"; };
 		C4290F8B1EA3226B00CAD5AE /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
@@ -165,6 +169,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C422F3E62030948C007D7D6A /* FTLinearActivityIndicator.framework in Frameworks */,
 				A1839A111FD83D78003313D6 /* GEDebugKit.framework in Frameworks */,
 				C4B0DC211FD23FBB005E587C /* JGProgressHUD.framework in Frameworks */,
 				C428E49D1FBC07B200DA2FFA /* Watchdog.framework in Frameworks */,
@@ -214,6 +219,7 @@
 		C4BE5A7E1DA85DA100E1734F /* RSSReaderAppConfig */ = {
 			isa = PBXGroup;
 			children = (
+				C422F3E42030933C007D7D6A /* NetworkActivityIndicator.swift */,
 				C4BE5ADF1DAA5AE000E1734F /* UserMessages.swift */,
 				C4BE5AE01DAA5AE000E1734F /* Readability.swift */,
 				C4BE5AB41DA868AD00E1734F /* AppDelegateBase.swift */,
@@ -251,6 +257,7 @@
 		C4BE5AB61DA86D8D00E1734F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C422F3E72030948C007D7D6A /* FTLinearActivityIndicator.framework */,
 				A1839A121FD83D78003313D6 /* GEDebugKit.framework */,
 				C4B0DC221FD23FBB005E587C /* JGProgressHUD.framework */,
 				C428E49E1FBC07B200DA2FFA /* Watchdog.framework */,
@@ -397,6 +404,7 @@
 				C428E4A01FBC097E00DA2FFA /* Watchdog.swift in Sources */,
 				C4BE5AA71DA85E7500E1734F /* UINavigationItem+MultipleButtonItemsCollections.swift in Sources */,
 				C4BE5A9F1DA85E0600E1734F /* Crashlytics.swift in Sources */,
+				C422F3E52030933C007D7D6A /* NetworkActivityIndicator.swift in Sources */,
 				C4BE5AE21DAA5AE000E1734F /* Readability.swift in Sources */,
 				C492B5301E2E3E2D0072D2D9 /* Mixpanel.swift in Sources */,
 				C4290F8C1EA3226B00CAD5AE /* Globals.swift in Sources */,

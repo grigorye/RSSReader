@@ -30,6 +30,12 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 		openSettingsApp()
 	}
 	// MARK: -
+	
+	func applicationShouldHaveMainWindow() {
+		
+		_ = networkActivityIndicatorInitializer
+	}
+	
 	open func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         
         configureDebug()
@@ -40,6 +46,11 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 			configureFirebase()
 		}
 		#endif
+		
+		DispatchQueue.main.async {
+			
+			self.applicationShouldHaveMainWindow()
+		}
 		return true
 	}
 	// MARK: -
