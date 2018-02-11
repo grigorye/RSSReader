@@ -8,6 +8,7 @@
 
 import func GEUIKit.openSettingsApp
 import GEDebugKit
+import var GEUIKit.urlTaskGeneratorProgressBinding 
 import func GEFoundation.loadDefaultsFromSettingsPlistAtURL
 import var GEFoundation.versionIsClean
 import var GEFoundation.buildAge
@@ -46,6 +47,8 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 			configureFirebase()
 		}
 		#endif
+		
+		_ = urlTaskGeneratorProgressBinding
 		
 		DispatchQueue.main.async {
 			
