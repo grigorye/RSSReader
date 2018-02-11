@@ -41,6 +41,7 @@
 		A249885D1077166099F0A334 /* FPSMonitoring.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A10336A61FE6C74E0096330F /* FPSMonitoring.swift */; };
 		B3BED5551EE3E26612BCA49F /* CwlDemangle.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A151CFE31FE7395E00165639 /* CwlDemangle.swift */; };
 		C43189B81FDC9AE4003E571E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C43189B71FDC9AE4003E571E /* Images.xcassets */; };
+		C4E04986202FE56A00B1D2FD /* Shaking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E04985202FE56A00B1D2FD /* Shaking.swift */; };
 		D1D4F6347EA37969E78C078D /* GEDebugKitTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A176B2121FD5D95000E945E9 /* GEDebugKitTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -117,6 +118,7 @@
 		A1FB041E1FDC4E59008D14E4 /* AliveObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliveObjects.swift; sourceTree = "<group>"; };
 		A1FB04201FDC4F15008D14E4 /* ModuleExports-GETracing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GETracing.swift"; path = "../GETracing/GETracing/ModuleExports-GETracing.swift"; sourceTree = "<group>"; };
 		C43189B71FDC9AE4003E571E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C4E04985202FE56A00B1D2FD /* Shaking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shaking.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 				A1FB04161FDB0569008D14E4 /* GenerationViewController.swift */,
 				A1CE70891FDE2A290080D832 /* ObjectsViewController.swift */,
 				A1CE70851FDE24890080D832 /* ObjectDetailViewController.swift */,
+				C4E04985202FE56A00B1D2FD /* Shaking.swift */,
 				C43189B71FDC9AE4003E571E /* Images.xcassets */,
 				A10336881FE4545E0096330F /* Colors.xcassets */,
 				A1FB041E1FDC4E59008D14E4 /* AliveObjects.swift */,
@@ -325,6 +328,7 @@
 			files = (
 				A176B2251FD69C6500E945E9 /* DebugViewController.swift in Sources */,
 				A1839A1C1FD8866B003313D6 /* ModuleExports-GEFoundation.swift in Sources */,
+				C4E04986202FE56A00B1D2FD /* Shaking.swift in Sources */,
 				A1FB041D1FDC4AAA008D14E4 /* WeakReference.swift in Sources */,
 				A1839A161FD88064003313D6 /* Debugging.swift in Sources */,
 				A10336A71FE6C74E0096330F /* FPSMonitoring.swift in Sources */,
@@ -374,7 +378,6 @@
 			baseConfigurationReference = A176B2201FD5DB6000E945E9 /* GEShared.xcconfig */;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 1;
-				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

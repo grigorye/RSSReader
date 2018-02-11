@@ -89,6 +89,7 @@ public func configureDebug() {
     
     configureAllocationTracking()
     configureFPSMonitoring()
+	configureShakeGesture()
 }
 
 public func initializeDebug() {
