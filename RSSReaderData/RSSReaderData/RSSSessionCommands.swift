@@ -251,7 +251,7 @@ struct Authenticate : PersistentDataUpdateCommand, SimpleDispatchingDataUpdateCo
 					}
 					return "Email=\(loginEncoded!)&Passwd=\(passwordEncoded!)"
 				}()
-				return body.data(using: String.Encoding.utf8, allowLossyConversion: false)
+				return (body).data(using: .utf8, allowLossyConversion: false)
 			}()
 		}
 		return request
