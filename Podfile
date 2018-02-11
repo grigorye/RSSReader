@@ -10,6 +10,7 @@ target "iOS" do
   pod 'Watchdog'
   pod 'GoogleToolboxForMac/NSString+HTML'
   pod 'JGProgressHUD'
+  pod 'FTLinearActivityIndicator'
   #pod 'AFMInfoBanner'
   #pod 'UXCam'
   #pod 'TUSafariActivity'
