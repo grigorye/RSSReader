@@ -88,8 +88,7 @@ class ItemSummaryWebViewController: UIViewController {
 	@IBAction func action(_ sender: AnyObject?, event: UIEvent?) {
 		let activityViewController: UIViewController = {
 			let item = self.item!
-			let href = item.canonical!.first!["href"]!
-			let url = URL(string: href)!
+			let url = item.articleURL
 			let activityItems: [Any] = [url, item]
 			return UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
 		}()
@@ -99,8 +98,7 @@ class ItemSummaryWebViewController: UIViewController {
 		let url: URL = {
 			if _1 {
 				let item = self.item!
-				let href = item.canonical!.first!["href"]!
-				return URL(string: href)!
+				return item.articleURL
 			}
 			else {
 				try! self.regenerateStoredHTMLFromString(self.summaryHTMLString)
@@ -116,8 +114,7 @@ class ItemSummaryWebViewController: UIViewController {
 	}
 	@IBAction func expand(_ sender: AnyObject?, event: UIEvent?) {
 		let item = self.item!
-		let href = item.canonical!.first!["href"]!
-		let url = URL(string: href)!
+		let url = item.articleURL
 		retrieveReadableHTMLFromURL(url) { (arg) in
 			let (HTMLString, error) = arg
 			DispatchQueue.main.async {
