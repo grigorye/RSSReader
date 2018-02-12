@@ -31,6 +31,7 @@
 		A45F15A6D5EE87FE8BA0996A /* ModuleExports-GETracing.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EB28041DFA389300BF0843 /* ModuleExports-GETracing.swift */; };
 		B2B6ECA640A92E33B059A701 /* RSSSessionTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48F79C31C008DD300CC6F74 /* RSSSessionTests.swift */; };
 		BE91654A8F2F24063729B509 /* CoreDataFetchRequestsTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4B4374E1C00F00700A2F3BE /* CoreDataFetchRequestsTests.swift */; };
+		C422F3EC2030E779007D7D6A /* FallbackURLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C422F3EB2030E779007D7D6A /* FallbackURLs.swift */; };
 		C4270BFE1DBD500D00FA3A0A /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BFD1DBD500D00FA3A0A /* GETracing.framework */; };
 		C4290F8A1EA3223300CAD5AE /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4290F891EA3223300CAD5AE /* Globals.swift */; };
 		C441F1851DB25ABD0060E692 /* FoldersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C441F1841DB25ABD0060E692 /* FoldersController.swift */; };
@@ -155,6 +156,7 @@
 
 /* Begin PBXFileReference section */
 		A11BD617202E372B005EF993 /* 15597.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = 15597.xcdatamodel; sourceTree = "<group>"; };
+		C422F3EB2030E779007D7D6A /* FallbackURLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallbackURLs.swift; sourceTree = "<group>"; };
 		C4270BFD1DBD500D00FA3A0A /* GETracing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GETracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4290F891EA3223300CAD5AE /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		C441F1841DB25ABD0060E692 /* FoldersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldersController.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 				C48F79C91C008DF100CC6F74 /* Subscription.swift */,
 				C4FCF4911E08E22B00D0EAC1 /* CategoryItem.swift */,
 				C48F79CA1C008DF100CC6F74 /* Item.swift */,
+				C422F3EB2030E779007D7D6A /* FallbackURLs.swift */,
 				C48F79CF1C008E0B00CC6F74 /* CoreData.swift */,
 				C48F79D11C008E1D00CC6F74 /* ContainerViewState.swift */,
 				C48F79D31C008E3900CC6F74 /* MarkingAsRead.swift */,
@@ -446,6 +449,7 @@
 				C48F79C61C008DDF00CC6F74 /* RSSSession.swift in Sources */,
 				C441F1851DB25ABD0060E692 /* FoldersController.swift in Sources */,
 				C4EB28071DFA389300BF0843 /* ModuleExports-GEFoundation.swift in Sources */,
+				C422F3EC2030E779007D7D6A /* FallbackURLs.swift in Sources */,
 				C48F79CB1C008DF100CC6F74 /* Folder.swift in Sources */,
 				C48F79D01C008E0B00CC6F74 /* CoreData.swift in Sources */,
 				C4DB6A721D26035F00E8516D /* RSSSessionTaskGeneration.swift in Sources */,

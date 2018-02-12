@@ -84,7 +84,10 @@ extension Item {
 	
 	public var articleURL: URL {
 		
-		return URL(string: firstCanonicalHref)!
+		guard let url = URL(string: firstCanonicalHref) else {
+			return invalidArticleURL
+		}
+		return url
 	}
 }
 
