@@ -21,6 +21,7 @@ extension TypedUserDefaults {
 	@NSManaged var cellHeightCachingEnabled: Bool
 	@NSManaged var fixedHeightItemRowsEnabled: Bool
 	@NSManaged var fetchBatchSize: Int
+	@NSManaged var prefetchItemCategories: Bool
 }
 
 extension TypedUserDefaults {
@@ -73,11 +74,10 @@ class ItemTableViewDataSource: NSObject {
 				$0 += [self.container.predicateForItems]
 				$0 += [self.containerViewPredicate]
 			})
-#if true
-			$0.relationshipKeyPathsForPrefetching = [
-				#keyPath(E.categoryItems.category)
+			let nullableRelationshipKeyPathsForPrefetching = [
+				defaults.prefetchItemCategories ? #keyPath(E.categoryItems.category) : nil
 			]
-#endif
+			$0.relationshipKeyPathsForPrefetching = nullableRelationshipKeyPathsForPrefetching.flatMap { $0 }
 			$0.returnsObjectsAsFaults = false
 			$0.fetchBatchSize = defaults.fetchBatchSize
 #if false
