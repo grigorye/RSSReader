@@ -24,11 +24,16 @@ public class ManagedObjectContextAutosaver: NSObject {
 					for updatedObject in updatedObjects {
 						•((updatedObject).changedValues())
 					}
+					x$(updatedObjects.count)
 				}
-				let insertedObjects = notification.userInfo?[NSInsertedObjectsKey] as! Set<NSManagedObject>?
-				•(insertedObjects)
-				let deletedObjects = notification.userInfo?[NSDeletedObjectsKey] as! Set<NSManagedObject>?
-				•(deletedObjects)
+				if let insertedObjects = notification.userInfo?[NSInsertedObjectsKey] as! Set<NSManagedObject>? {
+					•(insertedObjects)
+					x$(insertedObjects.count)
+				}
+				if let deletedObjects = notification.userInfo?[NSDeletedObjectsKey] as! Set<NSManagedObject>? {
+					•(deletedObjects)
+					x$(deletedObjects.count)
+				}
 				try! managedObjectContext.save()
 			}
 		})
