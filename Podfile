@@ -2,8 +2,8 @@ install! 'cocoapods', :integrate_targets => false
 use_frameworks!
 
 target "iOS" do
-  platform :ios, '8.0'
-  pod 'PromiseKit/CorePromise'
+  platform :ios, '9.0'
+  pod 'PromisesSwift'#, :git => 'https://github.com/google/promises'
   pod 'R.swift'
   pod 'Crashlytics'
   pod 'Fabric'
@@ -35,7 +35,7 @@ target "macOS" do
   platform :osx, '10.11'
   pod 'Crashlytics'
   pod 'Fabric'
-  pod 'PromiseKit/CorePromise'
+  pod 'PromisesSwift'
 end
 
 target "GEDebugKit" do
