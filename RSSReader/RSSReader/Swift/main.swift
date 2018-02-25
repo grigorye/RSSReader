@@ -11,7 +11,7 @@ import var GETracing.loggers
 import Loggy
 import UIKit.UIApplication
 
-var launchingScope = Activity("Launching").enter()
+var launchingScope = Activity(label: "Launching").enter()
 
 extension TypedUserDefaults {
 	@NSManaged var resetDefaults: Bool

@@ -60,7 +60,7 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 	public override init() {
 		_ = AppDelegateBase.initializeOnce
 		super.init()
-		var scope = Activity("Basic Initialization").enter(); defer { scope.leave() }
+		var scope = Activity(label: "Basic Initialization").enter(); defer { scope.leave() }
 		let defaultsPlistURL = Bundle.main.url(forResource: "Settings", withExtension: "bundle")!.appendingPathComponent("Root.plist")
 		try! loadDefaultsFromSettingsPlistAtURL(defaultsPlistURL)
         
@@ -73,7 +73,7 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 	}
 	// MARK: -
 	static private let initializeOnce: Ignored = {
-		var scope = Activity("Initializing Analytics").enter(); defer { scope.leave() }
+		var scope = Activity(label: "Initializing Analytics").enter(); defer { scope.leave() }
 		#if DEBUG
 			_ = nslogRedirectorInitializer
 		#endif

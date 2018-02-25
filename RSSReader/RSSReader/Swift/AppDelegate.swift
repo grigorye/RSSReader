@@ -18,7 +18,7 @@ class AppDelegate : AppDelegateBase {
 	
 	func loadPersistentStoresInteractively(completion: @escaping (Error?) -> ()) {
 		
-		var scope = Activity("Loading Persistent Stores").enter()
+		var scope = Activity(label: "Loading Persistent Stores").enter()
 		
 		loadPersistentStores { error in
 			
@@ -43,7 +43,7 @@ class AppDelegate : AppDelegateBase {
 	func loadPersistentStoresAfterRemovalInteractively(completion: @escaping (Error?) -> ()) {
 		
 		do {
-			var scope = Activity("Erasing persistent stores as part of recovery").enter(); defer { scope.leave() }
+			var scope = Activity(label: "Erasing persistent stores as part of recovery").enter(); defer { scope.leave() }
 			
 			try erasePersistentStores()
 			
@@ -53,7 +53,7 @@ class AppDelegate : AppDelegateBase {
 			return
 		}
 		
-		var scope = Activity("Loading persistent stores after erasing").enter()
+		var scope = Activity(label: "Loading persistent stores after erasing").enter()
 		
 		loadPersistentStores { error in
 			
@@ -91,7 +91,7 @@ class AppDelegate : AppDelegateBase {
 		
 		defer { launchingScope.leave() }
 		
-		var scope = Activity("Finishing Launching").enter(); defer { scope.leave() }
+		var scope = Activity(label: "Finishing Launching").enter(); defer { scope.leave() }
 		
 		guard super.application(application, didFinishLaunchingWithOptions: launchOptions) else {
 			

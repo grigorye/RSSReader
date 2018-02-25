@@ -15,7 +15,7 @@ extension TypedUserDefaults {
 	@NSManaged var stateRestorationIndicatorEnabled: Bool
 }
 
-private var activity = Activity("State Restoration")
+private var activity = Activity(label: "State Restoration")
 var activityScope: Activity.Scope!
 
 private let currentRestorationFormatVersion: Int32 = 2
