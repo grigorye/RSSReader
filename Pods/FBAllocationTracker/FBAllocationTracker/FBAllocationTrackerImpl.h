@@ -108,9 +108,8 @@ namespace FB { namespace AllocationTracker {
    @param generationIndex - from which generation we would like to get the objects
    @return vector of id types
    */
-  GenerationEntries entriesForClassForGeneration(__unsafe_unretained Class aCls,
-                                                 NSInteger generationIndex,
-                                                 NSInteger maxAllocNumber);
+  std::vector<__weak id> instancesOfClassForGeneration(__unsafe_unretained Class aCls,
+                                                       NSInteger generationIndex);
 
 } }
 

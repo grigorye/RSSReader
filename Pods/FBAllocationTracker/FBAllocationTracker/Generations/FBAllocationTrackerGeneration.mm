@@ -14,17 +14,10 @@
 
 #import "FBAllocationTrackerNSZombieSupport.h"
 
-static size_t _allocationNumber = 0;
-
 namespace FB { namespace AllocationTracker {
-  
-  size_t allocationNumber() {
-    return _allocationNumber;
-  }
-  
   void Generation::add(__unsafe_unretained id object) {
     Class aCls = [object class];
-    objects[aCls][object] = _allocationNumber++;
+    objects[aCls].insert(object);
   }
 
   void Generation::remove(__unsafe_unretained id object) {
@@ -47,21 +40,14 @@ namespace FB { namespace AllocationTracker {
     return summary;
   }
 
-  GenerationEntries Generation::entriesForClass(__unsafe_unretained Class aCls, size_t maxAllocNumber) const {
-    std::vector<GenerationEntry> returnValue;
+  std::vector<__weak id> Generation::instancesForClass(__unsafe_unretained Class aCls) const {
+    std::vector<__weak id> returnValue;
 
     const GenerationMap::const_iterator obj = objects.find(aCls);
-    size_t minAllocNumber = SIZE_T_MAX;
     if (obj != objects.end()) {
       const GenerationList &list = obj->second;
-      for (const auto &object_pair: list) {
+      for (const auto &object: list) {
         __weak id weakObject = nil;
-        __weak id object = object_pair.first;
-        size_t allocNumber = object_pair.second;
-        if (maxAllocNumber < allocNumber) {
-          continue;
-        }
-        minAllocNumber = std::min(allocNumber, minAllocNumber);
 
         BOOL (*allowsWeakReference)(id, SEL) =
         (__typeof__(allowsWeakReference))class_getMethodImplementation(aCls, @selector(allowsWeakReference));
@@ -83,12 +69,12 @@ namespace FB { namespace AllocationTracker {
          When NSZombie enabled, we can find if object has been deallocated by checking its class name.
          */
         if (!fb_isZombieObject(weakObject)) {
-          returnValue.push_back(GenerationEntry(weakObject, allocNumber));
+          returnValue.push_back(weakObject);
         }
       }
     }
 
-    return GenerationEntries(returnValue, minAllocNumber);
+    return returnValue;
   }
 
 } }

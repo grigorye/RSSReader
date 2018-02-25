@@ -86,11 +86,6 @@ BOOL FBIsFBATEnabledInThisBuild(void);
 - (nullable NSArray *)instancesForClass:(nonnull __unsafe_unretained Class)aCls
                            inGeneration:(NSInteger)generation;
 
-- (nullable NSArray *)instancesForClass:(nonnull __unsafe_unretained Class)aCls
-                           inGeneration:(NSInteger)generation
-                         minAllocNumber:(nonnull NSInteger *)minAllocNumberP
-                         maxAllocNumber:(NSInteger)maxAllocNumber;
-
 
 /**
  Grab all instances of given classes across all generations.

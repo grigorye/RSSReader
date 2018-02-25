@@ -46,22 +46,21 @@ namespace FB { namespace AllocationTracker {
     void removeObject(__unsafe_unretained id object);
 
     /**
-     Grab all instances of class aCls together with the allocaiton numbers in generation at generationIndex.
+     Grab all instances of class aCls in generation at generationIndex.
 
      @param aCls Class to query
      @param generationIndex index of generation from which the instances should be obtained
-     @return vector of pairs of instance of class aCls and allocation number
+     @return vector of instances of class aCls
      */
-    GenerationEntries entriesForClassInGeneration(__unsafe_unretained Class aCls,
-                                                  size_t generationIndex,
-                                                  size_t maxAllocNumber);
+    std::vector<__weak id> instancesOfClassInGeneration(__unsafe_unretained Class aCls,
+                                                 size_t generationIndex);
 
     /**
-     Grab all instances of class aCls together with the allocaiton numbers in last generation.
+     Grab all instances of class aCls in last generation.
      @param aCls Class to query
-     @return vector of pairs of instance of class aCls and allocation number
+     @return vector of instances of class aCls
      */
-    GenerationEntries entriesForClassInLastGeneration(__unsafe_unretained Class aCls, size_t maxAllocNumber);
+    std::vector<__weak id> instancesOfClassInLastGeneration(__unsafe_unretained Class aCls);
 
     /**
      Summarize all generations. For every generation it will summarize how many instances of each

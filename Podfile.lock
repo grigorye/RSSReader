@@ -1,10 +1,10 @@
 PODS:
-  - Crashlytics (3.9.3):
-    - Fabric (~> 1.7.2)
+  - Crashlytics (3.10.0):
+    - Fabric (~> 1.7.3)
   - CwlCatchException (1.0.2)
   - CwlPreconditionTesting (1.1.0):
     - CwlCatchException
-  - Fabric (1.7.2)
+  - Fabric (1.7.3)
   - FBAllocationTracker (0.1.5)
   - FBMemoryProfiler (0.1.3):
     - FBAllocationTracker (~> 0.1)
@@ -18,9 +18,9 @@ PODS:
   - GoogleToolboxForMac/NSString+HTML (2.1.3):
     - GoogleToolboxForMac/Core (= 2.1.3)
   - JGProgressHUD (2.0)
-  - PromisesObjC (1.0.2)
-  - PromisesSwift (1.0.2):
-    - PromisesObjC (= 1.0.2)
+  - PromisesObjC (1.0.3)
+  - PromisesSwift (1.0.3):
+    - PromisesObjC (= 1.0.3)
   - R.swift (4.0.0):
     - R.swift.Library (~> 4.0.0)
   - R.swift.Library (4.0.0)
@@ -57,27 +57,27 @@ CHECKOUT OPTIONS:
     :commit: b2e4800abf854366d4492051069cce7b44d20ba1
     :git: https://github.com/mattgallagher/CwlPreconditionTesting.git
   FBAllocationTracker:
-    :commit: c77a5f20240b3b890f8ed8cc1fca082c0847f04f
+    :commit: 60b343e859e2bc68b2c60e55210b7e13dc44e00d
     :git: https://github.com/grigorye/FBAllocationTracker.git
 
 SPEC CHECKSUMS:
-  Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
+  Crashlytics: a989ef242b66605577a425733797f810bd2725eb
   CwlCatchException: 70a52ae44ea5d46db7bd385f801a94942420cd8c
   CwlPreconditionTesting: d9b35890c80b34668cd90da5bef077fd817a99fc
-  Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
-  FBAllocationTracker: dfdca3f71aceca6a85e95e3c6ec76a9785eba0f1
+  Fabric: bb495bb9a7a7677c6d03a1f8b83d95bc49b47e41
+  FBAllocationTracker: b581c8b31f756353bc02da40bfde46dcb7b27bf0
   FBMemoryProfiler: 623fc5f8a61f7d02ec75c87e3b97c90f621d8b02
   FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
   FPSCounter: d4b8588434c18de19ef819c9fc06f80ce0924d94
   FTLinearActivityIndicator: 0c4ff2067cd67d88fd932ec214da90083ea7148e
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   JGProgressHUD: c402c0f41fc291ca7e33bba2f999118d9682dd9c
-  PromisesObjC: 5cb99f8b988db9461cd3025cab5cc17752873a5c
-  PromisesSwift: a972cb5ca9780fb7f805e9c2d69e7efd417a0523
+  PromisesObjC: 9b58f509a9dc23d9a3f01b6aeb2cb9416ade3d41
+  PromisesSwift: fec7ae00af032da2ba3172c8a5468ad9bbf83160
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
   Watchdog: 370d2c2a58c9bede0e3f9b8cc26bf297745c31c2
 
-PODFILE CHECKSUM: e5cf184022aeb2baea9e911c111a1ce8162b66ef
+PODFILE CHECKSUM: 49c2e169f0fec31ff423a8bafdddc6f0a61d2a37
 
 COCOAPODS: 1.4.0

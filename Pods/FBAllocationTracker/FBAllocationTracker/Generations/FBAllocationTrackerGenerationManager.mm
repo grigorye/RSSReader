@@ -10,9 +10,6 @@
 #import "FBAllocationTrackerGenerationManager.h"
 
 namespace FB { namespace AllocationTracker {
-  
-  size_t allocationNumber();
-  
   void GenerationManager::markGeneration() {
     generations.emplace_back(Generation {});
   }
@@ -52,15 +49,14 @@ namespace FB { namespace AllocationTracker {
     return fullSummary;
   }
 
-  GenerationEntries GenerationManager::entriesForClassInGeneration(__unsafe_unretained Class aCls,
-                                                                   size_t generationIndex,
-                                                                   size_t maxAllocNumber) {
+  std::vector<__weak id> GenerationManager::instancesOfClassInGeneration(__unsafe_unretained Class aCls,
+                                                                  size_t generationIndex) {
     const Generation &givenGeneration = generations[generationIndex];
-    return givenGeneration.entriesForClass(aCls, maxAllocNumber);
+    return givenGeneration.instancesForClass(aCls);
   }
 
-  GenerationEntries GenerationManager::entriesForClassInLastGeneration(__unsafe_unretained Class aCls, size_t maxAllocNumber) {
+  std::vector<__weak id> GenerationManager::instancesOfClassInLastGeneration(__unsafe_unretained Class aCls) {
     size_t generationIndex = generations.size() - 1;
-    return entriesForClassInGeneration(aCls, generationIndex, maxAllocNumber);
+    return instancesOfClassInGeneration(aCls, generationIndex);
   }
 } }

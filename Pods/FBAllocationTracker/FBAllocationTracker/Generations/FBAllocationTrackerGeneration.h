@@ -27,9 +27,7 @@
 
 namespace FB { namespace AllocationTracker {
   // Types
-  typedef std::pair<__unsafe_unretained id, size_t> GenerationEntry;
-  typedef std::pair<std::vector<GenerationEntry>, size_t> GenerationEntries;
-  typedef std::unordered_map<__unsafe_unretained id, size_t, ObjectHashFunctor, ObjectEqualFunctor> GenerationList;
+  typedef std::unordered_set<__unsafe_unretained id, ObjectHashFunctor, ObjectEqualFunctor> GenerationList;
 
   typedef std::unordered_map<Class, GenerationList, ClassHashFunctor, ClassEqualFunctor> GenerationMap;
 
@@ -54,12 +52,12 @@ namespace FB { namespace AllocationTracker {
     GenerationSummary getSummary() const;
 
     /**
-     Returns pairs of object and allocation number for given class for objects that live in this generation.
+     Returns objects of given class that live in this generation.
 
      @param aCls - class that caller is interested in
-     @return vector of pairs (instance of class aCls, allocation number for the instance)
+     @return vector of instances of class aCls
      */
-    GenerationEntries entriesForClass(__unsafe_unretained Class aCls, size_t maxAllocNumber) const;
+    std::vector<__weak id> instancesForClass(__unsafe_unretained Class aCls) const;
 
     /**
      We do not want Generation to copy, blocking.

@@ -134,20 +134,28 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/FBAllocationTracker/FBAllocationTracker.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FBMemoryProfiler/FBMemoryProfiler.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FBRetainCycleDetector/FBRetainCycleDetector.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FPSCounter/FPSCounter.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FTLinearActivityIndicator/FTLinearActivityIndicator.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/PromisesObjC-iOS/FBLPromises.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/PromisesSwift-iOS/Promises.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PromisesSwift/Promises.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Watchdog/Watchdog.framework"
 fi
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/FBAllocationTracker/FBAllocationTracker.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FBMemoryProfiler/FBMemoryProfiler.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FBRetainCycleDetector/FBRetainCycleDetector.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FPSCounter/FPSCounter.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FTLinearActivityIndicator/FTLinearActivityIndicator.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/PromisesObjC-iOS/FBLPromises.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/PromisesSwift-iOS/Promises.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PromisesSwift/Promises.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Watchdog/Watchdog.framework"
 fi

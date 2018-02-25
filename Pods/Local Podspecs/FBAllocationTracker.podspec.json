@@ -20,19 +20,19 @@
   ],
   "requires_arc": [
     "FBAllocationTracker/FBAllocationTracker.h",
-    "FBAllocationTracker/FBAllocationTrackerDefines.h",
-    "FBAllocationTracker/FBAllocationTrackerFunctors.h",
-    "FBAllocationTracker/FBAllocationTrackerHelpers.h",
     "FBAllocationTracker/FBAllocationTrackerImpl.h",
-    "FBAllocationTracker/FBAllocationTrackerManager.h",
     "FBAllocationTracker/FBAllocationTrackerSummary.h",
+    "FBAllocationTracker/FBAllocationTrackerHelpers.h",
+    "FBAllocationTracker/FBAllocationTrackerFunctors.h",
     "FBAllocationTracker/Generations/FBAllocationTrackerGeneration.h",
     "FBAllocationTracker/Generations/FBAllocationTrackerGenerationManager.h",
+    "FBAllocationTracker/FBAllocationTrackerManager.h",
+    "FBAllocationTracker/FBAllocationTrackerDefines.h",
     "FBAllocationTracker/FBAllocationTrackerSummary.m",
-    "FBAllocationTracker/FBAllocationTrackerImpl.mm",
     "FBAllocationTracker/FBAllocationTrackerManager.mm",
-    "FBAllocationTracker/Generations/FBAllocationTrackerGeneration.mm",
-    "FBAllocationTracker/Generations/FBAllocationTrackerGenerationManager.mm"
+    "FBAllocationTracker/FBAllocationTrackerImpl.mm",
+    "FBAllocationTracker/Generations/FBAllocationTrackerGenerationManager.mm",
+    "FBAllocationTracker/Generations/FBAllocationTrackerGeneration.mm"
   ],
   "public_header_files": [
     "FBAllocationTracker/FBAllocationTracker.h",

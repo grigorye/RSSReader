@@ -1,16 +1,24 @@
 install! 'cocoapods', :integrate_targets => false
 use_frameworks!
 
-target "iOS" do
-  platform :ios, '9.0'
-  pod 'PromisesSwift'#, :git => 'https://github.com/google/promises'
-  pod 'R.swift'
+def commonDeps
   pod 'Crashlytics'
   pod 'Fabric'
-  pod 'Watchdog'
+  pod 'PromisesSwift'#, :git => 'https://github.com/google/promises'
   pod 'GoogleToolboxForMac/NSString+HTML'
+end
+
+# This "target" is used to produce the corresponding .xcconfig that is explicitly #included in the app .xcconfig.
+target "iOS" do
+  platform :ios, '9.0'
+  commonDeps
+  pod 'R.swift'
+  pod 'Watchdog'
   pod 'JGProgressHUD'
   pod 'FTLinearActivityIndicator'
+  pod 'FBMemoryProfiler'
+  pod 'FBAllocationTracker', :git => 'https://github.com/grigorye/FBAllocationTracker.git'
+  pod 'FPSCounter'
   #pod 'AFMInfoBanner'
   #pod 'UXCam'
   #pod 'TUSafariActivity'
@@ -25,26 +33,23 @@ target "iOS" do
   #pod 'Firebase/Core'
 end
 
-target "GEXCTest" do
-  platform :ios, '10.11'
+def unitTestDeps
   pod 'CwlPreconditionTesting', :git => 'https://github.com/mattgallagher/CwlPreconditionTesting.git'
   pod 'CwlCatchException', :git => 'https://github.com/mattgallagher/CwlCatchException.git'
 end
 
-target "macOS" do
-  platform :osx, '10.11'
-  pod 'Crashlytics'
-  pod 'Fabric'
-  pod 'PromisesSwift'
+target "tests-iOS" do
+  platform :ios, '9.0'
+  unitTestDeps
 end
 
-target "GEDebugKit" do
-  platform :ios, '8.0'
-  pod 'FBMemoryProfiler'
-  pod 'FBAllocationTracker', :git => 'https://github.com/grigorye/FBAllocationTracker.git'
-  #pod 'FPSCounter', :path => '../fps-counter'
-  #pod 'FPSCounter', :git => 'https://github.com/grigorye/fps-counter.git'
-  pod 'FPSCounter'
+target "tests-macOS" do
+  platform :osx, '10.11'
+  unitTestDeps
+end
+
+target "macOS" do
+  platform :osx, '10.11'
 end
 
 post_install do |installer|
