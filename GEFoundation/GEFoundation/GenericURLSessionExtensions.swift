@@ -14,6 +14,8 @@ extension URLSession {
 		return self.dataTask(with: x$(request)) { data, response, error in
 			progress.becomeCurrent(withPendingUnitCount: 1)
 			progress.resignCurrent()
+			x$(request)
+			•(data.flatMap {try? JSONSerialization.jsonObject(with: $0)})
 			completionHandler?(data, x$(response), x$(error))
 		}
 	}
