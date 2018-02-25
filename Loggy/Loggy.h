@@ -1,17 +1,9 @@
 //
 //  Loggy.h
-//  Loggy
 //
 //  Created by Zachary Waldowski on 9/8/16.
-//  Copyright © 2016 Big Nerd Ranch. All rights reserved.
+//  Copyright © 2016-2017 Big Nerd Ranch. Licensed under MIT.
 //
 
-#import <UIKit/UIKit.h>
-
-//! Project version number for Loggy.
-FOUNDATION_EXPORT double LoggyVersionNumber;
-
-//! Project version string for Loggy.
-FOUNDATION_EXPORT const unsigned char LoggyVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <Loggy/PublicHeader.h>
+#include <Loggy/os_activity_shims.h>
+#include <Loggy/os_log_shims.h>
