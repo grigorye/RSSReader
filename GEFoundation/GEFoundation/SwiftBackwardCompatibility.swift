@@ -10,10 +10,9 @@ import Foundation
 
 #if swift(>=4.1)
 #else
-extension Array {
-	public func compactMap<T>(_ transform: (Element) throws -> T?) rethrows -> [T] {
-		return try flatMap(transform)
+	extension Array {
+		public func compactMap<T>(_ transform: (Element) throws -> T?) rethrows -> [T] {
+			return try flatMap(transform)
+		}
 	}
-}
 #endif
-
