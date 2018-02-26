@@ -40,6 +40,7 @@
 		A1FB04211FDC4F16008D14E4 /* ModuleExports-GETracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB04201FDC4F15008D14E4 /* ModuleExports-GETracing.swift */; };
 		A249885D1077166099F0A334 /* FPSMonitoring.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A10336A61FE6C74E0096330F /* FPSMonitoring.swift */; };
 		B3BED5551EE3E26612BCA49F /* CwlDemangle.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A151CFE31FE7395E00165639 /* CwlDemangle.swift */; };
+		BD1434AC56AD447B4EA740D9 /* Shaking.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4E04985202FE56A00B1D2FD /* Shaking.swift */; };
 		C43189B81FDC9AE4003E571E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C43189B71FDC9AE4003E571E /* Images.xcassets */; };
 		C4E04986202FE56A00B1D2FD /* Shaking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E04985202FE56A00B1D2FD /* Shaking.swift */; };
 		D1D4F6347EA37969E78C078D /* GEDebugKitTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A176B2121FD5D95000E945E9 /* GEDebugKitTests.swift */; };
@@ -85,6 +86,7 @@
 				9044B2C18D902751021AECB8 /* Defaults.swift in Embed Sources */,
 				01D24592AB2BBEAD74629537 /* GenerationViewController.swift in Embed Sources */,
 				B3BED5551EE3E26612BCA49F /* CwlDemangle.swift in Embed Sources */,
+				BD1434AC56AD447B4EA740D9 /* Shaking.swift in Embed Sources */,
 			);
 			name = "Embed Sources";
 			runOnlyForDeploymentPostprocessing = 0;
