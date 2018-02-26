@@ -75,6 +75,10 @@
 		C40B8DD51FBE23B50030E9F7 /* Watchdog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C40B8DD41FBE23B50030E9F7 /* Watchdog.framework */; };
 		C40B8DD61FBE23B50030E9F7 /* Watchdog.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C40B8DD41FBE23B50030E9F7 /* Watchdog.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C41707CB1A56076A00AED81C /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41707CA1A56076A00AED81C /* Globals.swift */; };
+		C4198D992044B94900BE29E8 /* Promises.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4198D982044B94900BE29E8 /* Promises.framework */; };
+		C4198D9A2044B94900BE29E8 /* Promises.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4198D982044B94900BE29E8 /* Promises.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C4198D9C2044BA3700BE29E8 /* FBLPromises.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4198D9B2044BA3700BE29E8 /* FBLPromises.framework */; };
+		C4198D9D2044BA3700BE29E8 /* FBLPromises.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4198D9B2044BA3700BE29E8 /* FBLPromises.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C422F3E9203094DB007D7D6A /* FTLinearActivityIndicator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C422F3E8203094DB007D7D6A /* FTLinearActivityIndicator.framework */; };
 		C422F3EA203094DB007D7D6A /* FTLinearActivityIndicator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C422F3E8203094DB007D7D6A /* FTLinearActivityIndicator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C424B8F11C6FC5C8008AD647 /* RSSReaderData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C424B8F01C6FC5C8008AD647 /* RSSReaderData.framework */; };
@@ -130,8 +134,6 @@
 		C49FF1CD1DBBAA9000A86CC0 /* GEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1CC1DBBAA9000A86CC0 /* GEFoundation.framework */; };
 		C4A1646A1CB8938C009D8B86 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4A1646C1CB8938C009D8B86 /* InfoPlist.strings */; };
 		C4AD2ADB1A5DED8700B39AC9 /* ItemPageViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD2ADA1A5DED8700B39AC9 /* ItemPageViewControllerDelegate.swift */; };
-		C4AD5B371D282F1800358DEA /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4AD5B361D282F1800358DEA /* PromiseKit.framework */; };
-		C4AD5B381D282F1800358DEA /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4AD5B361D282F1800358DEA /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4B0DC241FD241AE005E587C /* JGProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B0DC231FD241AE005E587C /* JGProgressHUD.framework */; };
 		C4B0DC251FD241AE005E587C /* JGProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4B0DC231FD241AE005E587C /* JGProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4B0DC291FD2506C005E587C /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B0DC281FD25022005E587C /* R.generated.swift */; };
@@ -292,15 +294,16 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				C4198D9A2044B94900BE29E8 /* Promises.framework in Embed Frameworks */,
 				C474F1C11DB041F100F0E152 /* Loggy.framework in Embed Frameworks */,
 				C408F1B81CE7520700DB943F /* FBRetainCycleDetector.framework in Embed Frameworks */,
+				C4198D9D2044BA3700BE29E8 /* FBLPromises.framework in Embed Frameworks */,
 				C40B8DD61FBE23B50030E9F7 /* Watchdog.framework in Embed Frameworks */,
 				C408F1B51CE7520700DB943F /* FBMemoryProfiler.framework in Embed Frameworks */,
 				C422F3EA203094DB007D7D6A /* FTLinearActivityIndicator.framework in Embed Frameworks */,
 				C48354111FBFC29E00466BD6 /* GoogleToolboxForMac.framework in Embed Frameworks */,
 				C4B0DC251FD241AE005E587C /* JGProgressHUD.framework in Embed Frameworks */,
 				A103369D1FE606670096330F /* FPSCounter.framework in Embed Frameworks */,
-				C4AD5B381D282F1800358DEA /* PromiseKit.framework in Embed Frameworks */,
 				C408F1B21CE7520700DB943F /* FBAllocationTracker.framework in Embed Frameworks */,
 				C4E4D6381E60C9EC007E0E39 /* Rswift.framework in Embed Frameworks */,
 			);
@@ -373,6 +376,8 @@
 		C40B8DD41FBE23B50030E9F7 /* Watchdog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Watchdog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C40C6C051A74AB5E00FAFA17 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		C41707CA1A56076A00AED81C /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Globals.swift; path = Swift/Globals.swift; sourceTree = "<group>"; };
+		C4198D982044B94900BE29E8 /* Promises.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Promises.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4198D9B2044BA3700BE29E8 /* FBLPromises.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBLPromises.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C422F3E8203094DB007D7D6A /* FTLinearActivityIndicator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FTLinearActivityIndicator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C424B8F01C6FC5C8008AD647 /* RSSReaderData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RSSReaderData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4270BFF1DBD502600FA3A0A /* GETracing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GETracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -425,7 +430,6 @@
 		C49FF1CC1DBBAA9000A86CC0 /* GEFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GEFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4A164671CB89076009D8B86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		C4AD2ADA1A5DED8700B39AC9 /* ItemPageViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemPageViewControllerDelegate.swift; path = Swift/ItemPageViewControllerDelegate.swift; sourceTree = "<group>"; };
-		C4AD5B361D282F1800358DEA /* PromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4B0DC231FD241AE005E587C /* JGProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JGProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4B0DC281FD25022005E587C /* R.generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = "RSSReader-rswift/R.generated.swift"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4BE5AAD1DA864FA00E1734F /* RSSReaderAppConfig.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RSSReaderAppConfig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -493,13 +497,14 @@
 				C49FF1CA1DBBAA9000A86CC0 /* GECoreData.framework in Frameworks */,
 				C424B8F11C6FC5C8008AD647 /* RSSReaderData.framework in Frameworks */,
 				C4BE5AAE1DA864FA00E1734F /* RSSReaderAppConfig.framework in Frameworks */,
+				C4198D9C2044BA3700BE29E8 /* FBLPromises.framework in Frameworks */,
 				C408F1B41CE7520700DB943F /* FBMemoryProfiler.framework in Frameworks */,
 				C49FF1C71DBBAA9000A86CC0 /* GEUIKit.framework in Frameworks */,
 				C48354101FBFC29E00466BD6 /* GoogleToolboxForMac.framework in Frameworks */,
 				C4B0DC241FD241AE005E587C /* JGProgressHUD.framework in Frameworks */,
+				C4198D992044B94900BE29E8 /* Promises.framework in Frameworks */,
 				A176B2221FD69C1600E945E9 /* GEDebugKit.framework in Frameworks */,
 				A103369C1FE606670096330F /* FPSCounter.framework in Frameworks */,
-				C4AD5B371D282F1800358DEA /* PromiseKit.framework in Frameworks */,
 				C408F1B11CE7520700DB943F /* FBAllocationTracker.framework in Frameworks */,
 				C4E4D6371E60C9EC007E0E39 /* Rswift.framework in Frameworks */,
 				C4270C001DBD502600FA3A0A /* GETracing.framework in Frameworks */,
@@ -519,6 +524,8 @@
 		C424B8F91C6FC5E1008AD647 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C4198D9B2044BA3700BE29E8 /* FBLPromises.framework */,
+				C4198D982044B94900BE29E8 /* Promises.framework */,
 				C422F3E8203094DB007D7D6A /* FTLinearActivityIndicator.framework */,
 				A103369B1FE605E80096330F /* FPSCounter.framework */,
 				C4B0DC231FD241AE005E587C /* JGProgressHUD.framework */,
@@ -528,7 +535,6 @@
 				C4C4E1B01E2E7EF800167102 /* Optimizely.framework */,
 				C45C549D1E2E4B550039D16C /* Mixpanel.framework */,
 				C474F1BF1DB041F100F0E152 /* Loggy.framework */,
-				C4AD5B361D282F1800358DEA /* PromiseKit.framework */,
 				C408F1B61CE7520700DB943F /* FBRetainCycleDetector.framework */,
 				C408F1B31CE7520700DB943F /* FBMemoryProfiler.framework */,
 				C408F1B01CE7520700DB943F /* FBAllocationTracker.framework */,
