@@ -6,6 +6,7 @@
 //  Copyright © 2018 Grigory Entin. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 import CoreData
 
@@ -24,3 +25,4 @@ public func object<ResultType>(in controller: NSFetchedResultsController<ResultT
 	}
 	return controller.object(at: IndexPath(indexes: [section, row]))
 }
+#endif
