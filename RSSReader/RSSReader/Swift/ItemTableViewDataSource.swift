@@ -77,7 +77,7 @@ class ItemTableViewDataSource: NSObject {
 			let nullableRelationshipKeyPathsForPrefetching = [
 				defaults.prefetchItemCategories ? #keyPath(E.categoryItems.category) : nil
 			]
-			$0.relationshipKeyPathsForPrefetching = nullableRelationshipKeyPathsForPrefetching.flatMap { $0 }
+			$0.relationshipKeyPathsForPrefetching = nullableRelationshipKeyPathsForPrefetching.compactMap { $0 }
 			$0.returnsObjectsAsFaults = false
 			$0.fetchBatchSize = defaults.fetchBatchSize
 #if false
