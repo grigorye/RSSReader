@@ -14,6 +14,7 @@
 
 #define let __auto const
 
+#if NDEBUG
 + (void)load {
 	
 	SEL oldSelector = @selector(invokeTest);
@@ -30,5 +31,6 @@
 		method_exchangeImplementations(oldMethod, newMethod);
 	}
 }
+#endif
 
 @end
