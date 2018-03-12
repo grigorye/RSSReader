@@ -145,6 +145,10 @@ public struct TypedManagedObjectID<T> {
 	public func object(in managedObjectContext: NSManagedObjectContext) -> T {
 		return managedObjectContext.object(with: objectID) as! T
 	}
+	init(objectID: NSManagedObjectID) {
+		assert(!objectID.isTemporaryID)
+		self.objectID = objectID
+	}
 }
 
 public func typedObjectID<T: NSManagedObject>(for object: T) -> TypedManagedObjectID<T> {
