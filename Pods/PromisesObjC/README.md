@@ -2,6 +2,10 @@
 License](https://img.shields.io/github/license/google/promises.svg)](LICENSE)
 [![Travis](https://img.shields.io/travis/google/promises.svg)](https://travis-ci.org/google/promises)
 
+![Platforms](https://img.shields.io/badge/platforms-macOS%20%7C%20iOS%20%7C%20tvOS%20%7C%20watchOS-blue.svg?longCache=true&style=flat)
+![Languages](https://img.shields.io/badge/languages-Swift%20%7C%20ObjC-orange.svg?longCache=true&style=flat)
+![Package Managers](https://img.shields.io/badge/supports-Bazel%20%7C%20SwiftPM%20%7C%20CocoaPods%20%7C%20Carthage-yellow.svg?longCache=true&style=flat)
+
 # Promises
 
 Promises is a modern framework that provides a synchronization construct for
@@ -33,6 +37,7 @@ Objective-C and Swift to facilitate writing asynchronous code.
     *   [Validate](g3doc/index.md#validate)
     *   [When](g3doc/index.md#when)
 *   [Advanced topics](g3doc/index.md#advanced-topics)
+    *   [Default dispatch queue](g3doc/index.md#default-dispatch-queue)
     *   [Ownership and retain
         cycles](g3doc/index.md#ownership-and-retain-cycles)
     *   [Testing](g3doc/index.md#testing)

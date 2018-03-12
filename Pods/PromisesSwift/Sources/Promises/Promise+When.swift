@@ -26,7 +26,7 @@ import Foundation
 /// - returns: Promise of an array of `When` enums containing the values or `Error`s of input
 ///            promises in their original order.
 public func when<Value>(
-  on queue: DispatchQueue = .main,
+  on queue: DispatchQueue = .promises,
   _ promises: Promise<Value>...
 ) -> Promise<[When<Value>]> {
   return when(on: queue, promises)
@@ -44,7 +44,7 @@ public func when<Value>(
 /// - returns: Promise of an array of `When` enums containing the values or `Error`s of input
 ///            promises in their original order.
 public func when<Value, Container: Sequence>(
-  on queue: DispatchQueue = .main,
+  on queue: DispatchQueue = .promises,
   _ promises: Container
 ) -> Promise<[When<Value>]> where Container.Iterator.Element == Promise<Value> {
   let promises = promises.map { $0.objCPromise }
@@ -77,7 +77,7 @@ public func when<Value, Container: Sequence>(
 /// - returns: Promise of a tuple of `When` enums containing the values or `Error`s of input
 ///            promises in their original order.
 public func when<A, B>(
-  on queue: DispatchQueue = .main,
+  on queue: DispatchQueue = .promises,
   _ promiseA: Promise<A>,
   _ promiseB: Promise<B>
 ) -> Promise<(When<A>, When<B>)> {
@@ -117,7 +117,7 @@ public func when<A, B>(
 /// - returns: Promise of a tuple of `When` enums containing the values or `Error`s of input
 ///            promises in their original order.
 public func when<A, B, C>(
-  on queue: DispatchQueue = .main,
+  on queue: DispatchQueue = .promises,
   _ promiseA: Promise<A>,
   _ promiseB: Promise<B>,
   _ promiseC: Promise<C>
@@ -166,6 +166,8 @@ public enum When<Value> {
   }
 }
 
+// MARK: - Conversion
+
 /// Helper functions that facilitates conversion of `Promise.when` results to the results normally
 /// expected from `ObjCPromise.when`.
 ///
@@ -193,66 +195,6 @@ public extension When {
   }
 }
 
-/// Equality operators for `When`.
-public extension When where Value: Equatable {
-  static func == (lhs: When<Value>, rhs: When<Value>) -> Bool {
-    switch (lhs, rhs) {
-    case (.value(let lhs), .value(let rhs)):
-      return lhs == rhs
-    case (.error(let lhs), .error(let rhs)):
-      return (lhs as NSError).isEqual(rhs as NSError)
-    case (.value, .error), (.error, .value):
-      return false
-    }
-  }
-
-  static func == (lhs: When<Value?>, rhs: When<Value?>) -> Bool {
-    switch (lhs, rhs) {
-    case (.value(let lhs), .value(let rhs)):
-      switch (lhs, rhs) {
-      case (nil, nil):
-        return true
-      case (nil, _?), (_?, nil):
-        return false
-      case let (lhs?, rhs?):
-        return lhs == rhs
-      }
-    case (.error(let lhs), .error(let rhs)):
-      return (lhs as NSError).isEqual(rhs as NSError)
-    case (.value, .error), (.error, .value):
-      return false
-    }
-  }
-
-  static func != (lhs: When<Value>, rhs: When<Value>) -> Bool {
-    return !(lhs == rhs)
-  }
-
-  static func != (lhs: When<Value?>, rhs: When<Value?>) -> Bool {
-    return !(lhs == rhs)
-  }
-}
-
-public func == <Value: Equatable>(lhs: [When<Value>], rhs: [When<Value>]) -> Bool {
-  if lhs.count != rhs.count { return false }
-  for (l, r) in zip(lhs, rhs) where l != r { return false }
-  return true
-}
-
-public func == <Value: Equatable>(lhs: [When<Value?>], rhs: [When<Value?>]) -> Bool {
-  if lhs.count != rhs.count { return false }
-  for (l, r) in zip(lhs, rhs) where l != r { return false }
-  return true
-}
-
-public func != <Value: Equatable>(lhs: [When<Value>], rhs: [When<Value>]) -> Bool {
-  return !(lhs == rhs)
-}
-
-public func != <Value: Equatable>(lhs: [When<Value?>], rhs: [When<Value?>]) -> Bool {
-  return !(lhs == rhs)
-}
-
 /// Helper function to wrap the results of `ObjCPromise.when` with the safe `When` enum.
 public func asWhen<Value>(_ value: AnyObject) -> When<Value> {
   switch value {
@@ -263,3 +205,73 @@ public func asWhen<Value>(_ value: AnyObject) -> When<Value> {
     return .value(value)
   }
 }
+
+// MARK: - Equatable
+
+/// Equality operators for `When`.
+#if !swift(>=4.1)
+extension When where Value: Equatable {}
+#else
+extension When: Equatable where Value: Equatable {}
+#endif  // !swift(>=4.1)
+
+public func == <Value: Equatable>(lhs: When<Value>, rhs: When<Value>) -> Bool {
+  switch (lhs, rhs) {
+  case (.value(let lhs), .value(let rhs)):
+    return lhs == rhs
+  case (.error(let lhs), .error(let rhs)):
+    return (lhs as NSError).isEqual(rhs as NSError)
+  case (.value, .error), (.error, .value):
+    return false
+  }
+}
+
+public func != <Value: Equatable>(lhs: When<Value>, rhs: When<Value>) -> Bool {
+  return !(lhs == rhs)
+}
+
+#if !swift(>=4.1)
+
+public func == <Value: Equatable>(lhs: When<Value?>, rhs: When<Value?>) -> Bool {
+  switch (lhs, rhs) {
+  case (.value(let lhs), .value(let rhs)):
+    switch (lhs, rhs) {
+    case (nil, nil):
+      return true
+    case (nil, _?), (_?, nil):
+      return false
+    case let (lhs?, rhs?):
+      return lhs == rhs
+    }
+  case (.error(let lhs), .error(let rhs)):
+    return (lhs as NSError).isEqual(rhs as NSError)
+  case (.value, .error), (.error, .value):
+    return false
+  }
+}
+
+public func != <Value: Equatable>(lhs: When<Value?>, rhs: When<Value?>) -> Bool {
+  return !(lhs == rhs)
+}
+
+public func == <Value: Equatable>(lhs: [When<Value>], rhs: [When<Value>]) -> Bool {
+  if lhs.count != rhs.count { return false }
+  for (l, r) in zip(lhs, rhs) where l != r { return false }
+  return true
+}
+
+public func != <Value: Equatable>(lhs: [When<Value>], rhs: [When<Value>]) -> Bool {
+  return !(lhs == rhs)
+}
+
+public func == <Value: Equatable>(lhs: [When<Value?>], rhs: [When<Value?>]) -> Bool {
+  if lhs.count != rhs.count { return false }
+  for (l, r) in zip(lhs, rhs) where l != r { return false }
+  return true
+}
+
+public func != <Value: Equatable>(lhs: [When<Value?>], rhs: [When<Value?>]) -> Bool {
+  return !(lhs == rhs)
+}
+
+#endif  // !swift(>=4.1)

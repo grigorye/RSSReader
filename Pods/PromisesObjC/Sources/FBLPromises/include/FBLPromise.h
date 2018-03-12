@@ -24,6 +24,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FBLPromise<Value> : NSObject
 
 /**
+ Default dispatch queue used for `FBLPromise`, which is `main` if a queue is not specified.
+ */
+@property(class) dispatch_queue_t defaultDispatchQueue NS_REFINED_FOR_SWIFT;
+
+/**
  Creates a pending promise.
  */
 + (instancetype)pendingPromise NS_REFINED_FOR_SWIFT;

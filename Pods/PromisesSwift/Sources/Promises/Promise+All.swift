@@ -20,10 +20,10 @@ import Dispatch
 /// it's implicitly considered a pre-fulfilled or pre-rejected `Promise` correspondingly.
 /// - parameters:
 ///   - queue: A queue to dispatch on.
-///   - promises: An array of promises to wait for.
+///   - promises: Promises to wait for.
 /// - returns: Promise of an array containing the values of input promises in the same order.
 public func all<Value>(
-  on queue: DispatchQueue = .main,
+  on queue: DispatchQueue = .promises,
   _ promises: Promise<Value>...
 ) -> Promise<[Value]> {
   return all(on: queue, promises)
@@ -35,10 +35,10 @@ public func all<Value>(
 /// it's implicitly considered a pre-fulfilled or pre-rejected `Promise` correspondingly.
 /// - parameters:
 ///   - queue: A queue to dispatch on.
-///   - promises: An array of promises to wait for.
+///   - promises: Promises to wait for.
 /// - returns: Promise of an array containing the values of input promises in the same order.
 public func all<Value, Container: Sequence>(
-  on queue: DispatchQueue = .main,
+  on queue: DispatchQueue = .promises,
   _ promises: Container
 ) -> Promise<[Value]> where Container.Iterator.Element == Promise<Value> {
   let promises = promises.map { $0.objCPromise }
@@ -62,7 +62,7 @@ public func all<Value, Container: Sequence>(
 ///   - promiseB: Promise of type `B`.
 /// - returns: Promise of a tuple containing the values of input promises in the same order.
 public func all<A, B>(
-  on queue: DispatchQueue = .main,
+  on queue: DispatchQueue = .promises,
   _ promiseA: Promise<A>,
   _ promiseB: Promise<B>
 ) -> Promise<(A, B)> {
@@ -102,7 +102,7 @@ public func all<A, B>(
 ///   - promiseC: Promise of type `C`.
 /// - returns: Promise of a tuple containing the values of input promises in the same order.
 public func all<A, B, C>(
-  on queue: DispatchQueue = .main,
+  on queue: DispatchQueue = .promises,
   _ promiseA: Promise<A>,
   _ promiseB: Promise<B>,
   _ promiseC: Promise<C>
