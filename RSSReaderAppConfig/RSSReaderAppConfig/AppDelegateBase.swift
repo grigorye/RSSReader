@@ -81,6 +81,7 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 			_ = watchdogInitializer
 		#endif
 		x$(buildAge)
+		_ = coreDataDiagnosticsInitializer
 		if x$(analyticsShouldBeEnabled) {
 			_ = crashlyticsInitializer
 			_ = appseeInitializer
