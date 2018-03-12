@@ -52,7 +52,7 @@ public func log<T>(_ value: T, on date: Date, at location: SourceLocation, trace
 		return
 	}
 	let sourceExtractedInfo = GETracing.sourceExtractedInfo(for: location, traceFunctionName: traceFunctionName)
-	let message = descriptionImp(of: value)
+	let message = description(forTraced: value)
 	let record = LogRecord(message: message, sourceExtractedInfo: sourceExtractedInfo, date: date, location: location)
 	log(record)
 }

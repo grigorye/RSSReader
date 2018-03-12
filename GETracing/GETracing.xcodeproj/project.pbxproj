@@ -25,6 +25,7 @@
 		C49FF0E61DBAF7D800A86CC0 /* NestedBrackets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF0E51DBAF7D800A86CC0 /* NestedBrackets.swift */; };
 		C49FF0E81DBAF80200A86CC0 /* NestedBracketsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF0E71DBAF80200A86CC0 /* NestedBracketsTests.swift */; };
 		C49FF0EA1DBAF94200A86CC0 /* SourceLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF0E91DBAF94200A86CC0 /* SourceLabels.swift */; };
+		C4B562AA2057002E000CACB1 /* Descriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B562A92057002E000CACB1 /* Descriptions.swift */; };
 		C4CB38861CDBA78D00562665 /* SourceLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CB38851CDBA78D00562665 /* SourceLocation.swift */; };
 		C4D6F41A1C73CCC000A7E2ED /* Tracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D6F4191C73CCC000A7E2ED /* Tracing.swift */; };
 		C4DB6A6C1D25C4E300E8516D /* GETracing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C41818601B6A65B100872EB3 /* GETracing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -113,6 +114,7 @@
 		C49FF0E51DBAF7D800A86CC0 /* NestedBrackets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NestedBrackets.swift; sourceTree = "<group>"; };
 		C49FF0E71DBAF80200A86CC0 /* NestedBracketsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NestedBracketsTests.swift; sourceTree = "<group>"; };
 		C49FF0E91DBAF94200A86CC0 /* SourceLabels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceLabels.swift; sourceTree = "<group>"; };
+		C4B562A92057002E000CACB1 /* Descriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Descriptions.swift; sourceTree = "<group>"; };
 		C4CB38851CDBA78D00562665 /* SourceLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceLocation.swift; sourceTree = "<group>"; };
 		C4D6F4191C73CCC000A7E2ED /* Tracing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tracing.swift; sourceTree = "<group>"; };
 		C4E5DB841DBEAD8900170422 /* Conveniences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conveniences.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				C41F404F1DBE94E3006EA6CD /* Configuration.swift */,
 				C4D6F4191C73CCC000A7E2ED /* Tracing.swift */,
 				C4E5DB861DBEAFB900170422 /* Labeling.swift */,
+				C4B562A92057002E000CACB1 /* Descriptions.swift */,
 				C4E5DB841DBEAD8900170422 /* Conveniences.swift */,
 				C4E5DB881DBEB01A00170422 /* Logging.swift */,
 				C49FF0E91DBAF94200A86CC0 /* SourceLabels.swift */,
@@ -324,6 +327,7 @@
 				C4E5DB891DBEB01A00170422 /* Logging.swift in Sources */,
 				C49FF0E61DBAF7D800A86CC0 /* NestedBrackets.swift in Sources */,
 				C4D6F41A1C73CCC000A7E2ED /* Tracing.swift in Sources */,
+				C4B562AA2057002E000CACB1 /* Descriptions.swift in Sources */,
 				C4CB38861CDBA78D00562665 /* SourceLocation.swift in Sources */,
 				C4E5DB871DBEAFB900170422 /* Labeling.swift in Sources */,
 				C41F40501DBE94E3006EA6CD /* Configuration.swift in Sources */,
