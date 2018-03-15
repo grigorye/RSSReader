@@ -64,9 +64,15 @@ public struct Deque<T>: RandomAccessCollection, RangeReplaceableCollection, Expr
 		return result
 	}
 	
-	public subscript(bounds: Range<Index>) -> RangeReplaceableRandomAccessSlice<Deque<T>> {
-      return RangeReplaceableRandomAccessSlice<Deque<T>>(base: self, bounds: bounds)
-	}
+	#if swift(>=4.1)
+		public subscript(bounds: Range<Index>) -> Slice<Deque<T>> {
+			return Slice<Deque<T>>(base: self, bounds: bounds)
+		}
+	#else
+		public subscript(bounds: Range<Index>) -> RangeReplaceableRandomAccessSlice<Deque<T>> {
+			return RangeReplaceableRandomAccessSlice<Deque<T>>(base: self, bounds: bounds)
+		}
+	#endif
 
 	/// Implementation of RandomAccessCollection function
 	public subscript(_ at: Index) -> T {
@@ -172,7 +178,11 @@ public struct Deque<T>: RandomAccessCollection, RangeReplaceableCollection, Expr
 		if let b = buffer {
 			precondition(b.unsafeHeader.pointee.count > 0, "Index beyond bounds")
 			let result = b.unsafeElements[b.unsafeHeader.pointee.offset]
-			b.unsafeElements.advanced(by: b.unsafeHeader.pointee.offset).deinitialize()
+			#if swift(>=4.1)
+				b.unsafeElements.advanced(by: b.unsafeHeader.pointee.offset).deinitialize(count: b.unsafeHeader.pointee.count)
+			#else
+				b.unsafeElements.advanced(by: b.unsafeHeader.pointee.offset).deinitialize()
+			#endif
 			b.unsafeHeader.pointee.offset += 1
 			if b.unsafeHeader.pointee.offset >= b.unsafeHeader.pointee.capacity {
 				b.unsafeHeader.pointee.offset -= b.unsafeHeader.pointee.capacity
