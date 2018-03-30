@@ -178,7 +178,7 @@ do {
 	}
 	
 	output.write(message)
-	output.write("//  Copyright © 2015-2017 Matt Gallagher ( http://cocoawithlove.com ). All rights reserved.\n")
+	output.write("//  Copyright © 2015-2018 Matt Gallagher ( http://cocoawithlove.com ). All rights reserved.\n")
 	output.write("//\n")
 	output.write("//  Permission to use, copy, modify, and/or distribute this software for any\n")
 	output.write("//  purpose with or without fee is hereby granted, provided that the above\n")
