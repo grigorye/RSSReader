@@ -179,7 +179,7 @@ public struct Deque<T>: RandomAccessCollection, RangeReplaceableCollection, Expr
 			precondition(b.unsafeHeader.pointee.count > 0, "Index beyond bounds")
 			let result = b.unsafeElements[b.unsafeHeader.pointee.offset]
 			#if swift(>=4.1)
-				b.unsafeElements.advanced(by: b.unsafeHeader.pointee.offset).deinitialize(count: b.unsafeHeader.pointee.count)
+				b.unsafeElements.advanced(by: b.unsafeHeader.pointee.offset).deinitialize(count: 1)
 			#else
 				b.unsafeElements.advanced(by: b.unsafeHeader.pointee.offset).deinitialize()
 			#endif
