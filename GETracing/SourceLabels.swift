@@ -22,6 +22,11 @@ func sourceModuleNameFor(_ url: URL) -> String {
 		return sourceModuleNameFor(parentURL)
 	}
 	
+	// Yep, make Foo the module name in Foo/Foo/Bar/Baz.swift
+	guard parentDirName == url.lastPathComponent else {
+		return sourceModuleNameFor(parentURL)
+	}
+	
 	return parentDirName
 }
 
