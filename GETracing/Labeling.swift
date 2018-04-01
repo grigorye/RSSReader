@@ -18,7 +18,9 @@ func descriptionImp<T>(of value: T) -> String {
 }
 
 public func description<T>(of value: T) -> String {
-	return "\(value)"
+	var s = ""
+	debugPrint(value, to: &s)
+	return s
 }
 
 public func L<T>(file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer = #dsohandle, _ valueClosure: @autoclosure () -> T) -> String {
