@@ -20,6 +20,13 @@
 
 import Foundation
 
+extension Optional {
+	/// Reurns true if the current optional is nil. Useful for testing for nil at a specific point during chained unwrapping of nested optionals.
+	public var isNil: Bool {
+		return self == nil
+	}
+}
+
 extension Collection {
 	/// Returns the element at the specified index iff it is within bounds, otherwise nil.
 	public func at(_ i: Index) -> Iterator.Element? {

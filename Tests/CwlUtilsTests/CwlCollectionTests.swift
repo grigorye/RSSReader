@@ -23,6 +23,11 @@ import XCTest
 import CwlUtils
 
 class CollectionTests: XCTestCase {
+	func testIsNil() {
+		let a = Optional<Optional<Bool>>.some(nil)
+		XCTAssert(a.isNil == false)
+		XCTAssert(a?.isNil == true)
+	}
 	func testAtCollection() {
 		let a = 7..<9
 		let at_0 = a.at(7)
