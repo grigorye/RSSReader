@@ -35,29 +35,25 @@ extension LogRecord {
 	}
 }
 
-public typealias Logger = (LogRecord) -> ()
-
-/// Loggers used with `trace`.
-public var loggers: [Logger] = [
-]
-
-public func log(_ record: LogRecord) {
-	for logger in loggers {
-		logger(record)
-	}
+// Populates log with a given record.
+public var logRecord: ((LogRecord) -> Void)? = {
+	defaultLog(record: $0)
 }
 
 public func log<T>(_ value: T, on date: Date, at location: SourceLocation, traceFunctionName: String) {
-	guard 0 < loggers.count else {
+	guard let logRecord = logRecord else {
 		return
 	}
 	let sourceExtractedInfo = GETracing.sourceExtractedInfo(for: location, traceFunctionName: traceFunctionName)
 	let message = descriptionImp(of: value)
 	let record = LogRecord(message: message, sourceExtractedInfo: sourceExtractedInfo, date: date, location: location)
-	log(record)
+	logRecord(record)
 }
 
 public func logWithNoSourceOrLabel(_ message: String) {
+	guard let logRecord = logRecord else {
+		return
+	}
 	let record = LogRecord(message: message, sourceExtractedInfo: nil, date: Date(), location: nil)
-	log(record)
+	logRecord(record)
 }
