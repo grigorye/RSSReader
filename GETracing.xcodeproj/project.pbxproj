@@ -17,6 +17,8 @@
 		B9F7485EC19F879024ABA8C7 /* Logging.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4E5DB881DBEB01A00170422 /* Logging.swift */; };
 		C418186B1B6A65B100872EB3 /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C41818601B6A65B100872EB3 /* GETracing.framework */; };
 		C41F40501DBE94E3006EA6CD /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41F404F1DBE94E3006EA6CD /* Configuration.swift */; };
+		C429F7A920775C5D00305E22 /* DefaultLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C429F7A820775C5D00305E22 /* DefaultLog.swift */; };
+		C429F7AE2077673500305E22 /* DispatchQueueCurrentQueueLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C429F7AD2077673500305E22 /* DispatchQueueCurrentQueueLabel.swift */; };
 		C479DD922021550A00E0A11D /* LoggingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C479DD912021550A00E0A11D /* LoggingTests.swift */; };
 		C479DD942021572900E0A11D /* PlaygroundSupportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C479DD932021572900E0A11D /* PlaygroundSupportTests.swift */; };
 		C48CAA181DBBE59000D6F40E /* BundleForSymbolAddressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CAA171DBBE59000D6F40E /* BundleForSymbolAddressTests.swift */; };
@@ -104,6 +106,8 @@
 		C418186A1B6A65B100872EB3 /* GETracingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GETracingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C41818711B6A65B100872EB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C41F404F1DBE94E3006EA6CD /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		C429F7A820775C5D00305E22 /* DefaultLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLog.swift; sourceTree = "<group>"; };
+		C429F7AD2077673500305E22 /* DispatchQueueCurrentQueueLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueueCurrentQueueLabel.swift; sourceTree = "<group>"; };
 		C459879B1CDE087200B8E9E4 /* GEShared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = GEShared.xcconfig; path = ../XcodeConfiguration/GEShared.xcconfig; sourceTree = "<group>"; };
 		C479DD912021550A00E0A11D /* LoggingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingTests.swift; sourceTree = "<group>"; };
 		C479DD932021572900E0A11D /* PlaygroundSupportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundSupportTests.swift; sourceTree = "<group>"; };
@@ -174,6 +178,8 @@
 				C49FF0E91DBAF94200A86CC0 /* SourceLabels.swift */,
 				C49FF0E51DBAF7D800A86CC0 /* NestedBrackets.swift */,
 				C4CB38851CDBA78D00562665 /* SourceLocation.swift */,
+				C429F7A820775C5D00305E22 /* DefaultLog.swift */,
+				C429F7AD2077673500305E22 /* DispatchQueueCurrentQueueLabel.swift */,
 				C4FEBB1C1BF960A300A5709B /* BundleForSymbolAddress.swift */,
 				C41818651B6A65B100872EB3 /* Info.plist */,
 				C4EB27E81DFA30D100BF0843 /* ModuleExports-GETracing.swift */,
@@ -325,6 +331,8 @@
 				C49FF0E61DBAF7D800A86CC0 /* NestedBrackets.swift in Sources */,
 				C4D6F41A1C73CCC000A7E2ED /* Tracing.swift in Sources */,
 				C4CB38861CDBA78D00562665 /* SourceLocation.swift in Sources */,
+				C429F7A920775C5D00305E22 /* DefaultLog.swift in Sources */,
+				C429F7AE2077673500305E22 /* DispatchQueueCurrentQueueLabel.swift in Sources */,
 				C4E5DB871DBEAFB900170422 /* Labeling.swift in Sources */,
 				C41F40501DBE94E3006EA6CD /* Configuration.swift in Sources */,
 				C4E5DB851DBEAD8900170422 /* Conveniences.swift in Sources */,
@@ -418,8 +426,9 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.grigoryentin.GEBaseTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.grigoryentin.GETracingTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "";
 			};
 			name = Debug;
 		};
@@ -429,8 +438,9 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.grigoryentin.GEBaseTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.grigoryentin.GETracingTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "";
 			};
 			name = Release;
 		};
