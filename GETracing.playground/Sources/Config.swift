@@ -23,38 +23,9 @@ public func x$<T>(file: String = #file, line: Int = #line, column: Int = #column
 	return value
 }
 
-/// - Tag: Tracing-Sample-Loggers-Configuration
-
-private func configureLoggers() {
-	GETracing.loggers = [log(record:)]
-}
-
-private func log(record: LogRecord) {
-	let text = defaultLoggedTextWithThread(for: record)
-	print(text)
-}
-
-public func defaultLoggedTextWithThread(for record: LogRecord) -> String {
-	let text = defaultLoggedText(for: record)
-	let threadDescription = Thread.isMainThread ? "-" : "\(DispatchQueue.global().label)"
-	let textWithThread = "[\(threadDescription)] \(text)"
-	return textWithThread
-}
-
-public func defaultLoggedText(for record: LogRecord) -> String {
-	let location = record.location!
-	let locationDescription = "\(location.function), \(record.playgroundName ?? location.fileURL.lastPathComponent):\(location.line)"
-	guard let label = record.label else {
-		return "\(locationDescription) ◾︎ \(record.message)"
-	}
-	return "\(locationDescription) ◾︎ \(label): \(record.message)"
-}
-
 public func configTracing() {
 	
 	// Ignore - used just for debugging.
 	traceEnabledEnforced = true
 	sourceLabelsEnabledEnforced = true
-	
-	configureLoggers()
 }
