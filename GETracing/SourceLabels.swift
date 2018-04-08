@@ -18,16 +18,20 @@ func sourceModuleNameFor(_ url: URL) -> String {
 	let parentURL = url.deletingLastPathComponent()
 	let parentDirName = parentURL.lastPathComponent
 	
-	guard !ignoredParentDirNames.contains(parentDirName) else {
+	if ignoredParentDirNames.contains(parentDirName) {
 		return sourceModuleNameFor(parentURL)
+	}
+	
+	if parentDirName.hasSuffix("Tests") {
+		return parentDirName
 	}
 	
 	// Yep, make Foo the module name in Foo/Foo/Bar/Baz.swift
-	guard parentDirName == url.lastPathComponent else {
-		return sourceModuleNameFor(parentURL)
+	if parentDirName == url.lastPathComponent {
+		return parentDirName
 	}
 	
-	return parentDirName
+	return sourceModuleNameFor(parentURL)
 }
 
 func sourceExtractedInfo(for location: SourceLocation, traceFunctionName: String) -> SourceExtractedInfo {
