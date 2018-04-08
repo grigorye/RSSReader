@@ -19,7 +19,7 @@ func descriptionImp<T>(of value: T) -> String {
 
 public func description<T>(of value: T) -> String {
 	var s = ""
-	debugPrint(value, to: &s)
+	debugPrint(value, terminator: "", to: &s)
 	return s
 }
 
