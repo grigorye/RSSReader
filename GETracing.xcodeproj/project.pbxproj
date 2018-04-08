@@ -27,6 +27,7 @@
 		C49FF0E61DBAF7D800A86CC0 /* NestedBrackets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF0E51DBAF7D800A86CC0 /* NestedBrackets.swift */; };
 		C49FF0E81DBAF80200A86CC0 /* NestedBracketsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF0E71DBAF80200A86CC0 /* NestedBracketsTests.swift */; };
 		C49FF0EA1DBAF94200A86CC0 /* SourceLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49FF0E91DBAF94200A86CC0 /* SourceLabels.swift */; };
+		C4B7A9752079AAAD00F5A10C /* DispatchQueueCurrentQueueLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B7A9742079AAAD00F5A10C /* DispatchQueueCurrentQueueLabelTests.swift */; };
 		C4CB38861CDBA78D00562665 /* SourceLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CB38851CDBA78D00562665 /* SourceLocation.swift */; };
 		C4D6F41A1C73CCC000A7E2ED /* Tracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D6F4191C73CCC000A7E2ED /* Tracing.swift */; };
 		C4DB6A6C1D25C4E300E8516D /* GETracing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C41818601B6A65B100872EB3 /* GETracing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -117,6 +118,7 @@
 		C49FF0E51DBAF7D800A86CC0 /* NestedBrackets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NestedBrackets.swift; sourceTree = "<group>"; };
 		C49FF0E71DBAF80200A86CC0 /* NestedBracketsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NestedBracketsTests.swift; sourceTree = "<group>"; };
 		C49FF0E91DBAF94200A86CC0 /* SourceLabels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceLabels.swift; sourceTree = "<group>"; };
+		C4B7A9742079AAAD00F5A10C /* DispatchQueueCurrentQueueLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueueCurrentQueueLabelTests.swift; sourceTree = "<group>"; };
 		C4CB38851CDBA78D00562665 /* SourceLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceLocation.swift; sourceTree = "<group>"; };
 		C4D6F4191C73CCC000A7E2ED /* Tracing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tracing.swift; sourceTree = "<group>"; };
 		C4E5DB841DBEAD8900170422 /* Conveniences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conveniences.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				C479DD912021550A00E0A11D /* LoggingTests.swift */,
 				C49FF0E71DBAF80200A86CC0 /* NestedBracketsTests.swift */,
 				C48CAA171DBBE59000D6F40E /* BundleForSymbolAddressTests.swift */,
+				C4B7A9742079AAAD00F5A10C /* DispatchQueueCurrentQueueLabelTests.swift */,
 				C479DD932021572900E0A11D /* PlaygroundSupportTests.swift */,
 				C41818711B6A65B100872EB3 /* Info.plist */,
 			);
@@ -344,6 +347,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4B7A9752079AAAD00F5A10C /* DispatchQueueCurrentQueueLabelTests.swift in Sources */,
 				C479DD942021572900E0A11D /* PlaygroundSupportTests.swift in Sources */,
 				C48CAA181DBBE59000D6F40E /* BundleForSymbolAddressTests.swift in Sources */,
 				C495D8991C02592100A7F7D5 /* TracingTests.swift in Sources */,
