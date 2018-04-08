@@ -11,7 +11,7 @@ import Dispatch
 extension DispatchQueue {
 	
 	/// Returns label suitable for logging.
-	class var currentQueueLabel: String? {
+	public class var currentQueueLabel: String? {
 		let ptr = __dispatch_queue_get_label(nil)
 		return String(validatingUTF8: ptr)
 	}
