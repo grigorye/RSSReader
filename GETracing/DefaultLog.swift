@@ -23,7 +23,7 @@ public var logText = { (text: String) in
 }
 
 public func defaultLogText(_ text: String) {
-	print(text)
+	print(text, terminator: separatePrefixAndMessageWithNewLine ? "\n\n" : "\n")
 }
 
 /// Returns text for logging given record.
@@ -49,7 +49,18 @@ public func defaultLoggedMessage(for record: LogRecord) -> String {
 	guard let location = record.location else {
 		return "\(messagePrefix)\(record.message)"
 	}
-	let locationDescription = "\(record.playgroundName ?? location.fileURL.lastPathComponent):\(location.line)|\(location.function)"
+	// Substitute something more humane-readable for #function of top level code of the playground, that is otherwise something like "__lldb_expr_xxx"
+	let function: String = {
+		guard nil != record.playgroundName else {
+			return location.function
+		}
+		guard location.function.hasPrefix("__lldb_expr_") else {
+			return location.function
+		}
+		return "<top-level>"
+	}()
+
+	let locationDescription = "\(record.playgroundName ?? location.fileURL.lastPathComponent):\(location.line)|\(function)"
 	guard let label = record.label else {
 		return "\(locationDescription)\(sep)\(messagePrefix)\(record.message)"
 	}
