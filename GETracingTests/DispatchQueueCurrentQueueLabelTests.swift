@@ -9,9 +9,12 @@
 import GETracing
 import XCTest
 
-class DispatchQueueCurrentQueueLabelTests: XCTestCase {
+class DispatchQueueCurrentQueueLabelTests: TraceAndLabelTestsBase {
 	
 	func testExample() {
+		traceEnabledEnforced = true
+		sourceLabelsEnabledEnforced = true
+
 		let mainQueueLabel = x$(DispatchQueue.currentQueueLabel)
 		XCTAssertNotNil(mainQueueLabel)
 		var globalQueueLabel: String?
