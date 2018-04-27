@@ -72,7 +72,7 @@ func sourceExtractedInfo(for location: SourceLocation, traceFunctionName: String
 		}
 		return (rawLines, playgroundName)
 	}()
-	let line = lines[location.line - 1]
+	let line = lines[location.line - 1] + lines[location.line...].joined(separator: "\n")
 	let adjustedColumn: Int = {
 		let columnIndex = line.index(line.startIndex, offsetBy: location.column - 1)
 		let prefix = line[..<columnIndex]
