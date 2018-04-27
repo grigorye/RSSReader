@@ -136,6 +136,15 @@ class TraceTests : TraceAndLabelTestsBase {
 		XCTAssertEqual(tracedRecords.map {$0.message}, ["bar", "barbaz"].map(debugPrinted))
 		XCTAssertEqual(tracedRecords.map {$0.label!}, ["foo", "x$(foo) + \"baz\""])
 	}
+	func testMultiline() {
+		traceEnabledEnforced = true
+		sourceLabelsEnabledEnforced = true
+		let value = x$(min(
+			1,
+			2
+		));
+		XCTAssertEqual(value, 1)
+	}
 	func testComplexWithTraceAndLabelsEnabled() {
 		traceEnabledEnforced = true
 		sourceLabelsEnabledEnforced = true
