@@ -36,29 +36,41 @@ extension TypedUserDefaults {
 
 private let traceToNSLogEnabled = false
 
+private let twoLines = _1
+private let sep = twoLines ? "\n" : " "
+private let locationPrefix = twoLines ? "◾︎ " : ""
+private let messagePrefix = twoLines ? "" : "◾︎ "
+
 public func defaultLoggedText(for record: LogRecord) -> String {
 	guard let location = record.location else {
-		return "◾︎ \(record.message)"
+		return "\(messagePrefix)\(record.message)"
 	}
-	let locationDescription = "\(location.function), \(record.playgroundName ?? location.fileURL.lastPathComponent):\(location.line)"
+	let locationDescription = "\(record.playgroundName ?? location.fileURL.lastPathComponent):\(location.line)|\(location.function)"
 	guard let label = record.label else {
-		return "\(locationDescription) ◾︎ \(record.message)"
+		return "\(locationDescription)\(sep)\(messagePrefix)\(record.message)"
 	}
-	return "\(locationDescription) ◾︎ \(label): \(record.message)"
+	return "\(locationDescription)\(sep)\(messagePrefix)\(label): \(record.message)"
+}
+
+extension DispatchQueue {
+	class var currentQueueLabel: String? {
+		let ptr = __dispatch_queue_get_label(nil)
+		return String(validatingUTF8: ptr)
+	}
 }
 
 public func defaultLoggedTextWithTimestampAndThread(for record: LogRecord) -> String {
 	let text = defaultLoggedText(for: record)
 	let dateDescription = dateFormatter.string(from: record.date)
-	let threadDescription = Thread.isMainThread ? "-" : "\(DispatchQueue.global().label)"
-	let textWithTimestampAndThread = "\(dateDescription) [\(threadDescription)] \(text)"
+	let threadDescription = Thread.isMainThread ? "-" : "\(DispatchQueue.currentQueueLabel!)"
+	let textWithTimestampAndThread = "\(locationPrefix)\(dateDescription) [\(threadDescription)] \(text)"
 	return textWithTimestampAndThread
 }
 
 public func defaultLoggedTextWithThread(for record: LogRecord) -> String {
 	let text = defaultLoggedText(for: record)
 	let threadDescription = Thread.isMainThread ? "-" : "\(DispatchQueue.global().label)"
-	let textWithThread = "[\(threadDescription)] \(text)"
+	let textWithThread = "\(locationPrefix)[\(threadDescription)] \(text)"
 	return textWithThread
 }
 

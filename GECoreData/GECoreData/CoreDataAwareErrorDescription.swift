@@ -41,5 +41,5 @@ public func coreDataAwareDescription(of error: Error) -> String {
 	let standardError = NSError(domain: nserror.domain, code: nserror.code, userInfo: standardUserInfo)
 	let customUserInfoDescription: String = "CustomUserInfo: \(customUserInfo)"
 	
-	return ["\(standardError)", customUserInfoDescription, dumpedUserInfoEntriesDescription].flatMap {$0}.joined(separator: " ")
+	return ["\(standardError)", customUserInfoDescription, dumpedUserInfoEntriesDescription].compactMap {$0}.joined(separator: " ")
 }

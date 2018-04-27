@@ -16,4 +16,3 @@ public func L<T>(file: String = #file, line: Int = #line, column: Int = #column,
 	let labeled = "\(sourceExtractedInfo.label): \(description(forTraced: value))"
 	return labeled
 }
-
