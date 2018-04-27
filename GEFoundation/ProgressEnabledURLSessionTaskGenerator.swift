@@ -66,7 +66,7 @@ public class ProgressEnabledURLSessionTaskGenerator: NSObject {
 				let httpResponse = httpResponse!
 				let encoding: String.Encoding = {
 					if let textEncodingName = httpResponse.textEncodingName {
-						return String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(CFStringConvertIANACharSetNameToEncoding(textEncodingName as CFString!)))
+						return String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(CFStringConvertIANACharSetNameToEncoding(textEncodingName as CFString?)))
 					}
 					else {
 						return String.Encoding.utf8

@@ -12,7 +12,7 @@ public func loadDefaultsFromSettingsPlistAtURL(_ url: URL) throws {
 	let data = try Data(contentsOf: url, options: NSData.ReadingOptions(rawValue: 0))
 	let settingsPlist = try PropertyListSerialization.propertyList(from: data, options: PropertyListSerialization.ReadOptions(), format: nil) as! [String : AnyObject]
 	let preferencesSpecifiers = settingsPlist["PreferenceSpecifiers"] as! [[String : AnyObject]]
-	let defaultKeysAndValuesForRegistration: [(key: String, defaultValue: AnyObject)] = preferencesSpecifiers.flatMap {
+	let defaultKeysAndValuesForRegistration: [(key: String, defaultValue: AnyObject)] = preferencesSpecifiers.compactMap {
 		guard let key = $0["Key"] as? String else {
 			return nil
 		}
