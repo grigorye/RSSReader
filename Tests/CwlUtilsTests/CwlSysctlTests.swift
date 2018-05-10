@@ -41,9 +41,6 @@ class SysctlTests: XCTestCase {
 		let osRelease = Sysctl.osRelease
 		XCTAssert(osRelease != "")
 		
-		let osRev = Sysctl.osRev
-		XCTAssert(osRev != 0)
-		
 		let osType = Sysctl.osType
 		XCTAssert(osType == "Darwin")
 		
@@ -57,6 +54,9 @@ class SysctlTests: XCTestCase {
 		XCTAssert(activeCPUs > 0)
 		
 		#if os(macOS)
+			let osRev = Sysctl.osRev
+			XCTAssert(osRev != 0)
+			
 			let cpuFreq = Sysctl.cpuFreq
 			XCTAssert(cpuFreq > 1_000_000_000)
 			
