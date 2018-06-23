@@ -1259,7 +1259,7 @@
 				"$(SRCROOT)/Package.swift",
 			);
 			outputPaths = (
-				"$(OBJROOT)/dependencies-state.json",
+				"$(SRCROOT)/Packages/dependencies-state.json",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/usr/bin/xcrun --sdk macosx swift";
