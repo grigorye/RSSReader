@@ -3,7 +3,7 @@
 //  CwlUtils
 //
 //  Created by Matt Gallagher on 2017/04/18.
-//  Copyright © 2017 Matt Gallagher ( http://cocoawithlove.com ). All rights reserved.
+//  Copyright © 2017 Matt Gallagher ( https://www.cocoawithlove.com ). All rights reserved.
 //
 //  Permission to use, copy, modify, and/or distribute this software for any
 //  purpose with or without fee is hereby granted, provided that the above

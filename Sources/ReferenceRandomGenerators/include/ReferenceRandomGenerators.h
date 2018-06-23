@@ -3,7 +3,7 @@
 //  CwlUtils
 //
 //  Created by Matt Gallagher on 2015/02/03.
-//  Copyright © 2015 Matt Gallagher ( http://cocoawithlove.com ). All rights reserved.
+//  Copyright © 2015 Matt Gallagher ( https://www.cocoawithlove.com ). All rights reserved.
 //
 //  Permission to use, copy, modify, and distribute this software for any purpose with or without
 //  fee is hereby granted, provided that the above copyright notice and this permission notice
@@ -21,10 +21,10 @@
 #define ReferenceRandomGenerators_h
 
 typedef struct {
-	unsigned long long s[2];
-} xoroshiro_state;
+	uint64_t s[4];
+} xoshiro_state;
 
-unsigned long long xoroshiro_next(xoroshiro_state *s);
+uint64_t xoshiro_next(xoshiro_state *s);
 
 struct mt19937_64 {
 	unsigned long long mt[312];

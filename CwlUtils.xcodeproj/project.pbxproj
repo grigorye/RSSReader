@@ -80,8 +80,8 @@
 		C9DD3DA91E41E26600E23B15 /* CwlUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95BDEB61E41688B00AAA64B /* CwlUtils.framework */; };
 		C9EE87C81E4171FD00A7408F /* mt19937-64.c in Sources */ = {isa = PBXBuildFile; fileRef = C9EE87C61E4171FD00A7408F /* mt19937-64.c */; };
 		C9EE87C91E4171FD00A7408F /* mt19937-64.c in Sources */ = {isa = PBXBuildFile; fileRef = C9EE87C61E4171FD00A7408F /* mt19937-64.c */; };
-		C9EE87CA1E4171FD00A7408F /* xoroshiro128plus.c in Sources */ = {isa = PBXBuildFile; fileRef = C9EE87C71E4171FD00A7408F /* xoroshiro128plus.c */; };
-		C9EE87CB1E4171FD00A7408F /* xoroshiro128plus.c in Sources */ = {isa = PBXBuildFile; fileRef = C9EE87C71E4171FD00A7408F /* xoroshiro128plus.c */; };
+		C9EE87CA1E4171FD00A7408F /* xoshiro256starstar.c in Sources */ = {isa = PBXBuildFile; fileRef = C9EE87C71E4171FD00A7408F /* xoshiro256starstar.c */; };
+		C9EE87CB1E4171FD00A7408F /* xoshiro256starstar.c in Sources */ = {isa = PBXBuildFile; fileRef = C9EE87C71E4171FD00A7408F /* xoshiro256starstar.c */; };
 		OBJ_154 /* CwlAddressInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* CwlAddressInfo.swift */; };
 		OBJ_155 /* CwlCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* CwlCollection.swift */; };
 		OBJ_156 /* CwlDebugContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* CwlDebugContext.swift */; };
@@ -197,6 +197,104 @@
 			remoteGlobalIDString = OBJ_149;
 			remoteInfo = CwlUtils;
 		};
+		C9EBE9A620DDFAD70016600F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C9EBE99F20DDFAD70016600F /* CwlCatchException.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C90FA1AC1C41E48100996A1F;
+			remoteInfo = CwlCatchException_macOS;
+		};
+		C9EBE9A820DDFAD70016600F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C9EBE99F20DDFAD70016600F /* CwlCatchException.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C90FA1B61C41E48100996A1F;
+			remoteInfo = CwlCatchException_macOSTests;
+		};
+		C9EBE9AA20DDFAD70016600F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C9EBE99F20DDFAD70016600F /* CwlCatchException.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C90FA1F71C42071A00996A1F;
+			remoteInfo = CwlCatchException_iOS;
+		};
+		C9EBE9AC20DDFAD70016600F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C9EBE99F20DDFAD70016600F /* CwlCatchException.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C90FA2001C42071A00996A1F;
+			remoteInfo = CwlCatchException_iOSTests;
+		};
+		C9EBE9BD20DDFADE0016600F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C9EBE9AE20DDFADE0016600F /* CwlPreconditionTesting.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C935204F1F0B7C1F0038F4E0;
+			remoteInfo = CwlCatchException_macOS;
+		};
+		C9EBE9BF20DDFADE0016600F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C9EBE9AE20DDFADE0016600F /* CwlPreconditionTesting.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C98707761C3F886F009B413A;
+			remoteInfo = CwlPreconditionTesting_macOS;
+		};
+		C9EBE9C120DDFADE0016600F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C9EBE9AE20DDFADE0016600F /* CwlPreconditionTesting.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C98707801C3F886F009B413A;
+			remoteInfo = CwlPreconditionTesting_macOSTests;
+		};
+		C9EBE9C320DDFADE0016600F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C9EBE9AE20DDFADE0016600F /* CwlPreconditionTesting.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C935205C1F0B7C2F0038F4E0;
+			remoteInfo = CwlCatchException_iOS;
+		};
+		C9EBE9C520DDFADE0016600F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C9EBE9AE20DDFADE0016600F /* CwlPreconditionTesting.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C9604C801C40DD9A001A7517;
+			remoteInfo = CwlPreconditionTesting_iOS;
+		};
+		C9EBE9C720DDFADE0016600F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C9EBE9AE20DDFADE0016600F /* CwlPreconditionTesting.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C9604C891C40DD9A001A7517;
+			remoteInfo = CwlPreconditionTesting_iOSTests;
+		};
+		C9EBE9C920DDFADE0016600F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C9EBE9AE20DDFADE0016600F /* CwlPreconditionTesting.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C92A97D91C68A4F3008905C2;
+			remoteInfo = CwlPreconditionTesting_POSIX;
+		};
+		C9EBE9CB20DDFADE0016600F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C9EBE9AE20DDFADE0016600F /* CwlPreconditionTesting.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C92A97E61C68A515008905C2;
+			remoteInfo = CwlPreconditionTesting_POSIXTests;
+		};
+		C9EBE9CD20DDFADE0016600F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C9EBE9AE20DDFADE0016600F /* CwlPreconditionTesting.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 96ACCC591C6E8BBE00FE0B1B;
+			remoteInfo = CwlPreconditionTesting_tvOS;
+		};
+		C9EBE9CF20DDFADE0016600F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C9EBE9AE20DDFADE0016600F /* CwlPreconditionTesting.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 96ACCC481C6E8A7C00FE0B1B;
+			remoteInfo = CwlPreconditionTesting_tvOSTests;
+		};
 		C9EE87C11E4171D400A7408F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
@@ -263,9 +361,11 @@
 		C9DD3D3B1E41A7D400E23B15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9DD3D3D1E41A94100E23B15 /* CwlUtilsTests-BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CwlUtilsTests-BridgingHeader.h"; sourceTree = "<group>"; };
 		C9DD3D3E1E41A94100E23B15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9EBE99F20DDFAD70016600F /* CwlCatchException.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CwlCatchException.xcodeproj; path = Packages/symlinks/CwlCatchException/CwlCatchException.xcodeproj; sourceTree = "<group>"; };
+		C9EBE9AE20DDFADE0016600F /* CwlPreconditionTesting.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CwlPreconditionTesting.xcodeproj; path = Packages/symlinks/CwlPreconditionTesting/CwlPreconditionTesting.xcodeproj; sourceTree = "<group>"; };
 		C9EE87C51E4171FD00A7408F /* ReferenceRandomGenerators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferenceRandomGenerators.h; sourceTree = "<group>"; };
 		C9EE87C61E4171FD00A7408F /* mt19937-64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "mt19937-64.c"; sourceTree = "<group>"; };
-		C9EE87C71E4171FD00A7408F /* xoroshiro128plus.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xoroshiro128plus.c; sourceTree = "<group>"; };
+		C9EE87C71E4171FD00A7408F /* xoshiro256starstar.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xoshiro256starstar.c; sourceTree = "<group>"; };
 		OBJ_16 /* CwlAddressInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlAddressInfo.swift; sourceTree = "<group>"; };
 		OBJ_17 /* CwlCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlCollection.swift; sourceTree = "<group>"; };
 		OBJ_18 /* CwlDebugContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlDebugContext.swift; sourceTree = "<group>"; };
@@ -441,12 +541,49 @@
 			path = Tests/CwlUtilsPerformanceTests;
 			sourceTree = "<group>";
 		};
+		C9AC650D20DDC7AD00E5BCA8 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				C9EBE99F20DDFAD70016600F /* CwlCatchException.xcodeproj */,
+				C9EBE9AE20DDFADE0016600F /* CwlPreconditionTesting.xcodeproj */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		C9EBE9A020DDFAD70016600F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C9EBE9A720DDFAD70016600F /* CwlCatchException.framework */,
+				C9EBE9A920DDFAD70016600F /* CwlCatchException_macOSTests.xctest */,
+				C9EBE9AB20DDFAD70016600F /* CwlCatchException.framework */,
+				C9EBE9AD20DDFAD70016600F /* CwlCatchException_iOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C9EBE9AF20DDFADE0016600F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C9EBE9BE20DDFADE0016600F /* CwlCatchException.framework */,
+				C9EBE9C020DDFADE0016600F /* CwlPreconditionTesting.framework */,
+				C9EBE9C220DDFADE0016600F /* CwlPreconditionTesting_macOSTests.xctest */,
+				C9EBE9C420DDFADE0016600F /* CwlCatchException.framework */,
+				C9EBE9C620DDFADE0016600F /* CwlPreconditionTesting.framework */,
+				C9EBE9C820DDFADE0016600F /* CwlPreconditionTesting_iOSTests.xctest */,
+				C9EBE9CA20DDFADE0016600F /* CwlPreconditionTesting_POSIX.framework */,
+				C9EBE9CC20DDFADE0016600F /* CwlPreconditionTesting_POSIXTests.xctest */,
+				C9EBE9CE20DDFADE0016600F /* CwlPreconditionTesting.framework */,
+				C9EBE9D020DDFADE0016600F /* CwlPreconditionTesting_tvOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		C9EE87C31E4171FD00A7408F /* ReferenceRandomGenerators */ = {
 			isa = PBXGroup;
 			children = (
 				C9EE87C41E4171FD00A7408F /* include */,
 				C9EE87C61E4171FD00A7408F /* mt19937-64.c */,
-				C9EE87C71E4171FD00A7408F /* xoroshiro128plus.c */,
+				C9EE87C71E4171FD00A7408F /* xoshiro256starstar.c */,
 			);
 			name = ReferenceRandomGenerators;
 			path = Sources/ReferenceRandomGenerators;
@@ -550,6 +687,7 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
+				C9AC650D20DDC7AD00E5BCA8 /* Dependencies */,
 				OBJ_7 /* Sources */,
 				OBJ_38 /* Tests */,
 				OBJ_78 /* Products */,
@@ -842,6 +980,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = "Matt Gallagher ( https://www.cocoawithlove.com )";
 				TargetAttributes = {
 					C90509361EFE1F5A00E95E92 = {
 						CreatedOnToolsVersion = 9.0;
@@ -911,6 +1050,16 @@
 			mainGroup = OBJ_5;
 			productRefGroup = OBJ_78 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = C9EBE9A020DDFAD70016600F /* Products */;
+					ProjectRef = C9EBE99F20DDFAD70016600F /* CwlCatchException.xcodeproj */;
+				},
+				{
+					ProductGroup = C9EBE9AF20DDFADE0016600F /* Products */;
+					ProjectRef = C9EBE9AE20DDFADE0016600F /* CwlPreconditionTesting.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				C945D7B71E5033C6009AFB8E /* FetchDependencies */,
@@ -930,6 +1079,107 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		C9EBE9A720DDFAD70016600F /* CwlCatchException.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CwlCatchException.framework;
+			remoteRef = C9EBE9A620DDFAD70016600F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C9EBE9A920DDFAD70016600F /* CwlCatchException_macOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CwlCatchException_macOSTests.xctest;
+			remoteRef = C9EBE9A820DDFAD70016600F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C9EBE9AB20DDFAD70016600F /* CwlCatchException.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CwlCatchException.framework;
+			remoteRef = C9EBE9AA20DDFAD70016600F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C9EBE9AD20DDFAD70016600F /* CwlCatchException_iOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CwlCatchException_iOSTests.xctest;
+			remoteRef = C9EBE9AC20DDFAD70016600F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C9EBE9BE20DDFADE0016600F /* CwlCatchException.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CwlCatchException.framework;
+			remoteRef = C9EBE9BD20DDFADE0016600F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C9EBE9C020DDFADE0016600F /* CwlPreconditionTesting.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CwlPreconditionTesting.framework;
+			remoteRef = C9EBE9BF20DDFADE0016600F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C9EBE9C220DDFADE0016600F /* CwlPreconditionTesting_macOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CwlPreconditionTesting_macOSTests.xctest;
+			remoteRef = C9EBE9C120DDFADE0016600F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C9EBE9C420DDFADE0016600F /* CwlCatchException.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CwlCatchException.framework;
+			remoteRef = C9EBE9C320DDFADE0016600F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C9EBE9C620DDFADE0016600F /* CwlPreconditionTesting.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CwlPreconditionTesting.framework;
+			remoteRef = C9EBE9C520DDFADE0016600F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C9EBE9C820DDFADE0016600F /* CwlPreconditionTesting_iOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CwlPreconditionTesting_iOSTests.xctest;
+			remoteRef = C9EBE9C720DDFADE0016600F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C9EBE9CA20DDFADE0016600F /* CwlPreconditionTesting_POSIX.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CwlPreconditionTesting_POSIX.framework;
+			remoteRef = C9EBE9C920DDFADE0016600F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C9EBE9CC20DDFADE0016600F /* CwlPreconditionTesting_POSIXTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CwlPreconditionTesting_POSIXTests.xctest;
+			remoteRef = C9EBE9CB20DDFADE0016600F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C9EBE9CE20DDFADE0016600F /* CwlPreconditionTesting.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CwlPreconditionTesting.framework;
+			remoteRef = C9EBE9CD20DDFADE0016600F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C9EBE9D020DDFADE0016600F /* CwlPreconditionTesting_tvOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CwlPreconditionTesting_tvOSTests.xctest;
+			remoteRef = C9EBE9CF20DDFADE0016600F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		C95A77251E4187E600659DBD /* Resources */ = {
@@ -981,7 +1231,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"$CARTHAGE\" == \"YES\" ]; then\n  exit\nfi\n\"$DEVELOPER_BIN_DIR/xcodebuild\" -project \"$OBJROOT/cwl_symlinks/CwlPreconditionTesting/CwlPreconditionTesting.xcodeproj\" -target CwlPreconditionTesting_iOS -sdk \"$SDKROOT\" -configuration \"$CONFIGURATION\" $ACTION SRCROOT=\"$SRCROOT\" SYMROOT=\"$SYMROOT\" OBJROOT=\"$OBJROOT\" ARCHS=\"$ARCHS\" ONLY_ACTIVE_ARCH=\"$ONLY_ACTIVE_ARCH\" BITCODE_GENERATION_MODE=\"$BITCODE_GENERATION_MODE\" MODULE_CACHE_DIR=\"$MODULE_CACHE_DIR\" DSTROOT=\"$DSTROOT\" CACHE_ROOT=\"$CACHE_ROOT\"";
+			shellScript = "if [ \"$CARTHAGE\" == \"YES\" ]; then\n  exit\nfi\n\"$DEVELOPER_BIN_DIR/xcodebuild\" -project \"$SRCROOT/Packages/cwl_symlinks/CwlPreconditionTesting/CwlPreconditionTesting.xcodeproj\" -target CwlPreconditionTesting_iOS -sdk \"$SDKROOT\" -configuration \"$CONFIGURATION\" $ACTION SRCROOT=\"$SRCROOT\" SYMROOT=\"$SYMROOT\" OBJROOT=\"$OBJROOT\" ARCHS=\"$ARCHS\" ONLY_ACTIVE_ARCH=\"$ONLY_ACTIVE_ARCH\" BITCODE_GENERATION_MODE=\"$BITCODE_GENERATION_MODE\" MODULE_CACHE_DIR=\"$MODULE_CACHE_DIR\" DSTROOT=\"$DSTROOT\" CACHE_ROOT=\"$CACHE_ROOT\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C93520BB1F0B7FAA0038F4E0 /* ShellScript */ = {
@@ -990,14 +1240,14 @@
 			files = (
 			);
 			inputPaths = (
-				"$(OBJROOT)/dependencies-state.json",
+				"$(SRCROOT)/Packages/dependencies-state.json",
 			);
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/CwlPreconditionTesting.framework/Versions/A/CwlPreconditionTesting",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"$CARTHAGE\" == \"YES\" ]; then\n  exit\nfi\n\"$DEVELOPER_BIN_DIR/xcodebuild\" -project \"$OBJROOT/cwl_symlinks/CwlPreconditionTesting/CwlPreconditionTesting.xcodeproj\" -target CwlPreconditionTesting_macOS -sdk \"$SDKROOT\" -configuration \"$CONFIGURATION\" $ACTION SRCROOT=\"$SRCROOT\" SYMROOT=\"$SYMROOT\" OBJROOT=\"$OBJROOT\" ARCHS=\"$ARCHS\" ONLY_ACTIVE_ARCH=\"$ONLY_ACTIVE_ARCH\" BITCODE_GENERATION_MODE=\"$BITCODE_GENERATION_MODE\" MODULE_CACHE_DIR=\"$MODULE_CACHE_DIR\" DSTROOT=\"$DSTROOT\" CACHE_ROOT=\"$CACHE_ROOT\"";
+			shellScript = "if [ \"$CARTHAGE\" == \"YES\" ]; then\n  exit\nfi\nif [ -z \"$CWL_FETCH_DIR\" ]; then\n  CWL_FETCH_DIR=\"$SRCROOT/Packages\"\nfi\n\"$DEVELOPER_BIN_DIR/xcodebuild\" -project \"$CWL_FETCH_DIR/symlinks/CwlPreconditionTesting/CwlPreconditionTesting.xcodeproj\" -target CwlPreconditionTesting_macOS -sdk \"$SDKROOT\" -configuration \"$CONFIGURATION\" $ACTION SRCROOT=\"$SRCROOT\" SYMROOT=\"$SYMROOT\" OBJROOT=\"$OBJROOT/Packages\" ARCHS=\"$ARCHS\" ONLY_ACTIVE_ARCH=\"$ONLY_ACTIVE_ARCH\" BITCODE_GENERATION_MODE=\"$BITCODE_GENERATION_MODE\" MODULE_CACHE_DIR=\"$MODULE_CACHE_DIR\" CWL_FETCH_DIR=\"$CWL_FETCH_DIR\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C945D7BB1E5033E3009AFB8E /* ShellScript */ = {
@@ -1013,7 +1263,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/usr/bin/xcrun --sdk macosx swift";
-			shellScript = "//\n//  CwlPackageFetch.swift\n//  CwlPackageFetch\n//\n//  Created by Matt Gallagher on 2017/01/31.\n//  Copyright © 2017 Matt Gallagher ( http://cocoawithlove.com ). All rights reserved.\n//\n//  Permission to use, copy, modify, and/or distribute this software for any\n//  purpose with or without fee is hereby granted, provided that the above\n//  copyright notice and this permission notice appear in all copies.\n//\n//  THE SOFTWARE IS PROVIDED \"AS IS\" AND THE AUTHOR DISCLAIMS ALL WARRANTIES\n//  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF\n//  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY\n//  SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES\n//  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN\n//  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR\n//  IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.\n//\n\nimport Foundation\n\nextension FileHandle: TextOutputStream { public func write(_ string: String) { string.data(using: .utf8).map { write($0) } } }\nvar stdErrStream = FileHandle.standardError\n\nif let carthage = ProcessInfo.processInfo.environment[\"CARTHAGE\"], carthage == \"YES\" {\n    print(\"Disabling swift package manager dependency management in favor of Carthage.\")\n    exit(0)\n}\n\nguard let toolchainDir = ProcessInfo.processInfo.environment[\"TOOLCHAIN_DIR\"] else {\n    print(\"error: variable TOOLCHAIN_DIR (the location of swift) must be set\", to: &stdErrStream)\n    exit(1)\n}\nguard let srcRoot = ProcessInfo.processInfo.environment[\"SRCROOT\"].map({ URL(fileURLWithPath: $0) }) else {\n    print(\"error: Environment variable SRCROOT (the root of the source tree) must be set\", to: &stdErrStream)\n    exit(1)\n}\nguard let buildDir = ProcessInfo.processInfo.environment[\"OBJROOT\"] else {\n    print(\"error: Environment variable OBJROOT (the build intermediates directory) must be set\", to: &stdErrStream)\n    exit(1)\n}\n\n// Avoid downloading a further copy during an archive build.\nlet buildDirUrl = URL(fileURLWithPath: buildDir)\nlet nonArchiveBuildDir: String\nlet pathOffset: String\nif buildDirUrl.lastPathComponent == \"IntermediateBuildFilesPath\" && buildDirUrl.deletingLastPathComponent().deletingLastPathComponent().lastPathComponent == \"ArchiveIntermediates\" {\n    nonArchiveBuildDir = buildDirUrl.deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().path\n    pathOffset = \"../../../../\"\n} else {\n    nonArchiveBuildDir = buildDir\n    pathOffset = \"../\"\n}\n\n// Launch a process and run to completion, returning the standard out on success.\nfunc launch(_ command: String, _ arguments: [String], directory: URL? = nil) -> String? {\n    let proc = Process()\n    proc.launchPath = command\n    proc.arguments = arguments\n    _ = directory.map { proc.currentDirectoryPath = $0.path }\n    let pipe = Pipe()\n    proc.standardOutput = pipe\n    proc.launch()\n    let result = String(data: pipe.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8) ?? \"\"\n    proc.waitUntilExit()\n    return proc.terminationStatus != 0 ? nil : result\n}\n\n// STEP 0: if the `Package.swift` file doesn't exist, create it.\n// For anything *except* a CwlViews project, you'll need to customize this before it is useful.\nlet packageURL = srcRoot.appendingPathComponent(\"Package.swift\")\nprint(\"### Testing existence of \\(packageURL.path)\")\nif !FileManager.default.fileExists(atPath: packageURL.path) {\n    guard let projectName = ProcessInfo.processInfo.environment[\"PROJECT_NAME\"] else {\n        print(\"error: If Package.swift not present, environment variable PROJECT_NAME must be set (will be used as the main target name)\", to: &stdErrStream)\n        exit(1)\n    }\n    let defaultPackageManifest = \"// swift-tools-version:4.0\\nimport PackageDescription\\n\\nlet package = Package(\\n\\tname: \\\"\\(projectName)\\\",\\n\\tdependencies: [.package(url: \\\"https://github.com/mattgallagher/CwlViews.git\\\", from: \\\"0.1.0\\\")]\\n)\\n\"\n    if let _ = try? defaultPackageManifest.write(to: packageURL, atomically: true, encoding: .utf8) {\n        print(\"Wrote default Package.swift file to \\(packageURL.path)\")\n    } else {\n        print(\"error: Unable to write manifest file.\", to: &stdErrStream)\n        exit(1)\n    }\n}\n\n// STEP 1: use `swift package update` to get all dependencies\nprint(\"### Starting package resolve into \\(nonArchiveBuildDir)\")\n#if swift(>=4)\nlet verb = \"resolve\"\n#else\nlet verb = \"update\"\n#endif\nif let fetchResult = launch(toolchainDir + \"/usr/bin/swift\", [\"package\", \"--build-path\", \"\\(nonArchiveBuildDir)\", verb], directory: srcRoot) {\n    if fetchResult == \"\" {\n        print(\"### All dependencies up-to-date.\")\n    } else {\n        print(fetchResult, terminator: \"\")\n    }\n} else {\n    print(\"error: swift package resolve failed\", to: &stdErrStream)\n    exit(1)\n}\n\n// STEP 1.5: ensure that \"dependencies-state.json\" exists when running under Swift 3\n#if swift(>=4)\n#else\nlet newPath = nonArchiveBuildDir + \"/dependencies-state.json\"\nlet oldPath = nonArchiveBuildDir + \"/workspace-state.json\"\nlet attributesNew = try? FileManager.default.attributesOfItem(atPath: newPath)\nlet attributesOld = try? FileManager.default.attributesOfItem(atPath: oldPath)\ndo {\n    if let an = attributesNew, let ao = attributesOld, let anm = an[FileAttributeKey.modificationDate] as? Date, let aom = ao[FileAttributeKey.modificationDate] as? Date, aom > anm {\n        try FileManager.default.removeItem(atPath: newPath)\n        try FileManager.default.copyItem(atPath: oldPath, toPath: newPath)\n    } else if attributesOld != nil && attributesNew == nil {\n        try FileManager.default.copyItem(atPath: oldPath, toPath: newPath)\n    }\n} catch {\n    print(error, to: &stdErrStream)\n    print(\"error: Unable to update dependencies-state.json\", to: &stdErrStream)\n    exit(1)\n}\n#endif\n\n\n// Create a symlink only if it is not already present and pointing to the destination\nlet symlinksName = \"cwl_symlinks\"\nlet symlinksURL = URL(fileURLWithPath: buildDir).appendingPathComponent(symlinksName)\nfunc createSymlink(srcRoot: URL, name: String, destination: String) throws {\n    let location = symlinksURL.appendingPathComponent(name)\n    let link = URL(fileURLWithPath: \"\\(pathOffset)\\(destination)\", relativeTo: location)\n    let current = try? FileManager.default.destinationOfSymbolicLink(atPath: location.path)\n    if current == nil || current != link.relativePath {\n        _ = try? FileManager.default.removeItem(at: location)\n        try FileManager.default.createSymbolicLink(atPath: location.path, withDestinationPath:\n        link.relativePath)\n        print(\"Created symbolic link: \\(location.path) -> \\(link.relativePath)\")\n    }\n}\n\n// Recursively parse the dependency graph JSON, creating symlinks in our own location\nfunc createSymlinks(srcRoot: URL, description: Dictionary<String, Any>, topLevelPath: String) throws {\n    guard let dependencies = description[\"dependencies\"] as? [Dictionary<String, Any>] else { return }\n    for dependency in dependencies {\n        #if swift(>=4)\n        guard let path = dependency[\"path\"] as? String, let relativePath = (path.range(of: topLevelPath)?.upperBound).map({ String(path[$0...]) }), let name = dependency[\"name\"] as? String else {\n            throw NSError(domain: \"CwlError\", code: 0, userInfo: [NSLocalizedFailureReasonErrorKey: \"Unable to parse dependency structure\"])\n        }\n        #else\n        guard let path = dependency[\"path\"] as? String, let relativePath = (path.range(of: topLevelPath)?.upperBound).map({ path[$0...] }), let name = dependency[\"name\"] as? String else {\n            throw NSError(domain: \"CwlError\", code: 0, userInfo: [NSLocalizedFailureReasonErrorKey: \"Unable to parse dependency structure\"])\n        }\n        #endif\n        try createSymlink(srcRoot: srcRoot, name: name, destination: relativePath)\n        try createSymlinks(srcRoot: srcRoot, description: dependency, topLevelPath: topLevelPath)\n    }\n}\n\n// STEP 2: create symlinks from our stable locations to the fetched locations\nguard let descriptionString = launch(toolchainDir + \"/usr/bin/swift\", [\"package\", \"--build-path\", \"\\(nonArchiveBuildDir)\", \"show-dependencies\", \"--format\", \"json\"], directory: srcRoot) else {\n    print(\"error: swift package show-dependencies failed\", to: &stdErrStream)\n    exit(1)\n}\ndo {\n    // Note that despite asking for JSON formatting, there may be log information on STDOUT before the JSON starts.\n    #if swift(>=4)\n    guard let jsonStartIndex = descriptionString.index(of: \"{\"), let descriptionData = String(descriptionString[jsonStartIndex...]).data(using: .utf8), let description = try JSONSerialization.jsonObject(with: descriptionData, options: []) as? Dictionary<String, Any> else {\n        throw NSError(domain: \"CwlError\", code: 0, userInfo: [NSLocalizedFailureReasonErrorKey: \"Unable to parse dependency structure\"])\n    }\n    #else\n    guard let jsonStartIndex = descriptionString.index(of: \"{\"), let descriptionData = descriptionString[jsonStartIndex...].data(using: .utf8), let description = try JSONSerialization.jsonObject(with: descriptionData, options: []) as? Dictionary<String, Any> else {\n        throw NSError(domain: \"CwlError\", code: 0, userInfo: [NSLocalizedFailureReasonErrorKey: \"Unable to parse dependency structure\"])\n    }\n    #endif\n    try FileManager.default.createDirectory(at: symlinksURL, withIntermediateDirectories: true, attributes: nil)\n    try createSymlinks(srcRoot: srcRoot, description: description, topLevelPath: nonArchiveBuildDir + \"/\")\n    print(\"### Complete.\")\n} catch {\n    print(\"error: symlink creation failed: \\(error)\", to: &stdErrStream)\n    print(\"Package description was...\", to: &stdErrStream)\n    print(descriptionString, to: &stdErrStream)\n    exit(1)\n}\n";
+			shellScript = "//\n//  CwlPackageFetch.swift\n//  CwlPackageFetch\n//\n//  Created by Matt Gallagher on 2018/06/14.\n//  Copyright © 2018 Matt Gallagher ( https://www.cocoawithlove.com ). All rights reserved.\n//\n//  Permission to use, copy, modify, and/or distribute this software for any\n//  purpose with or without fee is hereby granted, provided that the above\n//  copyright notice and this permission notice appear in all copies.\n//\n//  THE SOFTWARE IS PROVIDED \"AS IS\" AND THE AUTHOR DISCLAIMS ALL WARRANTIES\n//  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF\n//  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY\n//  SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES\n//  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN\n//  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR\n//  IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.\n//\n\nimport Foundation\n\n// Utility for logging to stderr\nextension FileHandle: TextOutputStream { public func write(_ string: String) { string.data(using: .utf8).map { write($0) } } }\nvar stdErrStream = FileHandle.standardError\n\n// Check for any build suppression conditions\nif ProcessInfo.processInfo.environment[\"CWL_FETCH_DIR\"] != nil {\n    print(\"Skipping automatic dependency fetching.\", to: &stdErrStream)\n    exit(0)\n} else if let carthage = ProcessInfo.processInfo.environment[\"CARTHAGE\"], carthage == \"YES\" {\n    print(\"Disabling in-built dependency fetching in favor of Carthage.\", to: &stdErrStream)\n    exit(0)\n}\n\n// Get and build required paths\nguard\n    let toolchainDir = ProcessInfo.processInfo.environment[\"TOOLCHAIN_DIR\"],\n    let srcRoot = ProcessInfo.processInfo.environment[\"SRCROOT\"].map({ URL(fileURLWithPath: $0) }),\n    let projectName = ProcessInfo.processInfo.environment[\"PROJECT_NAME\"]\nelse {\n   print(\"error: Xcode environment variables (TOOLCHAIN_DIR, SRCROOT, OBJROOT, PROJECT_NAME) not set\", to: &stdErrStream)\n   exit(1)\n}\nlet packageURL = srcRoot.appendingPathComponent(\"Package.swift\")\nlet packageDir = srcRoot.appendingPathComponent(\"Packages\")\nlet symlinksURL = srcRoot.appendingPathComponent(\"Packages\").appendingPathComponent(\"symlinks\")\n\n// STEP 1: if the `Package.swift` file doesn't exist, create it.\n// For anything *except* a CwlViews project, you'll need to customize this before it is useful.\nprint(\"### Testing existence of \\(packageURL.path)\", to: &stdErrStream)\nif !FileManager.default.fileExists(atPath: packageURL.path) {\n    let defaultPackageManifest = \"\"\"\n        // swift-tools-version:4.0\\n\n        import PackageDescription\\n\\n\n        let package = Package(\\n\n            name: \\\"\\(projectName)\\\",\\n\n            dependencies: [\n                .package(url: \\\"https://github.com/mattgallagher/CwlViews.git\\\", from: \\\"0.1.0\\\")\n            ]\\n\n        )\\n\n        \"\"\"\n    if let _ = try? defaultPackageManifest.write(to: packageURL, atomically: true, encoding: .utf8) {\n        print(\"Wrote default Package.swift file to \\(packageURL.path)\", to: &stdErrStream)\n    } else {\n        print(\"error: Unable to write manifest file.\", to: &stdErrStream)\n        exit(1)\n    }\n}\n\n// Utility for steps 2 and 3: Launch a process and run to completion, returning the standard out on success.\nfunc launch(_ command: String, _ arguments: [String], directory: URL? = nil) -> String? {\n    let proc = Process()\n    proc.launchPath = command\n    proc.arguments = arguments\n    _ = directory.map { proc.currentDirectoryPath = $0.path }\n    let pipe = Pipe()\n    proc.standardOutput = pipe\n    proc.launch()\n    let result = String(data: pipe.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8) ?? \"\"\n    proc.waitUntilExit()\n    return proc.terminationStatus != 0 ? nil : result\n}\n\n// STEP 2: use `swift package update` to get all dependencies\nprint(\"### Starting package resolve into \\(packageDir.path)\", to: &stdErrStream)\nif let fetchResult = launch(toolchainDir + \"/usr/bin/swift\", [\"package\", \"--build-path\", \"\\(packageDir.path)\", \"resolve\"], directory: srcRoot) {\n    if fetchResult == \"\" {\n        print(\"### All dependencies up-to-date.\", to: &stdErrStream)\n    } else {\n        print(fetchResult, terminator: \"\")\n    }\n} else {\n    print(\"error: swift package resolve failed\", to: &stdErrStream)\n    exit(1)\n}\n\n// Utility for Step 3: Create a symlink only if it is not already present and pointing to the destination\nfunc createSymlink(srcRoot: URL, name: String, destination: String) throws {\n    let location = symlinksURL.appendingPathComponent(name)\n    let link = URL(fileURLWithPath: \"../\\(destination)\", relativeTo: location)\n    let current = try? FileManager.default.destinationOfSymbolicLink(atPath: location.path)\n    if current == nil || current != link.relativePath {\n        _ = try? FileManager.default.removeItem(at: location)\n        try FileManager.default.createSymbolicLink(atPath: location.path, withDestinationPath:\n            link.relativePath)\n        print(\"Created symbolic link: \\(location.path) -> \\(link.relativePath)\", to: &stdErrStream)\n    }\n}\n\n// Utility type for Step 3: error reporting\nstruct DependencyParseFailure: Error {\n    let srcRoot: URL\n    let description: Dictionary<String, Any>\n    let topLevelPath: String\n}\n\n// Utility for Step 3: Recursively parse the dependency graph JSON, creating symlinks in our own location\nfunc parseAndCreateSymlinks(srcRoot: URL, description: Dictionary<String, Any>, topLevelPath: String) throws {\n    guard let dependencies = description[\"dependencies\"] as? [Dictionary<String, Any>] else { return }\n    for dependency in dependencies {\n        guard let path = dependency[\"path\"] as? String, let relativePath = (path.range(of: topLevelPath)?.upperBound).map({ String(path[$0...]) }), let name = dependency[\"name\"] as? String else {\n            throw DependencyParseFailure(srcRoot: srcRoot, description: description, topLevelPath: topLevelPath)\n        }\n        try createSymlink(srcRoot: srcRoot, name: name, destination: relativePath)\n        try parseAndCreateSymlinks(srcRoot: srcRoot, description: dependency, topLevelPath: topLevelPath)\n    }\n}\n\n// STEP 3: create symlinks from our stable locations to the fetched locations\nprint(\"### Verifying checkout and creating stable symlinks to checkouts\", to: &stdErrStream)\nguard let descriptionString = launch(toolchainDir + \"/usr/bin/swift\", [\"package\", \"--build-path\", \"\\(packageDir.path)\", \"show-dependencies\", \"--format\", \"json\"], directory: srcRoot) else {\n    print(\"error: swift package show-dependencies failed\", to: &stdErrStream)\n    exit(1)\n}\ndo {\n    // Note that despite asking for JSON formatting, there may be log information on STDOUT before the JSON starts.\n    guard\n        let jsonStartIndex = descriptionString.index(of: \"{\"),\n        let descriptionData = String(descriptionString[jsonStartIndex...]).data(using: .utf8),\n        let description = try JSONSerialization.jsonObject(with: descriptionData, options: []) as? Dictionary<String, Any>\n    else {\n        throw DependencyParseFailure(srcRoot: srcRoot, description: [:], topLevelPath: packageDir.path + \"/\")\n    }\n    try FileManager.default.createDirectory(at: symlinksURL, withIntermediateDirectories: true, attributes: nil)\n    try parseAndCreateSymlinks(srcRoot: srcRoot, description: description, topLevelPath: packageDir.path + \"/\")\n    print(\"### Complete.\", to: &stdErrStream)\n} catch {\n    print(\"error: symlink creation failed: \\(error)\", to: &stdErrStream)\n    print(\"Package description was...\", to: &stdErrStream)\n    print(descriptionString, to: &stdErrStream)\n    exit(1)\n}\n";
 			showEnvVarsInLog = 0;
 		};
 		C9A380361EFF8BE900BFF2E5 /* ShellScript */ = {
@@ -1117,7 +1367,7 @@
 				C95BDECA1E4168B800AAA64B /* CwlOnDeleteTests.swift in Sources */,
 				C95BDECB1E4168B800AAA64B /* CwlRandomTests.swift in Sources */,
 				C95BDECC1E4168B800AAA64B /* CwlResultTests.swift in Sources */,
-				C9EE87CB1E4171FD00A7408F /* xoroshiro128plus.c in Sources */,
+				C9EE87CB1E4171FD00A7408F /* xoshiro256starstar.c in Sources */,
 				C95BDECE1E4168B800AAA64B /* CwlScalarScannerTests.swift in Sources */,
 				C95BDECF1E4168B800AAA64B /* CwlStackFrameTests.swift in Sources */,
 				C95BDED11E4168B800AAA64B /* CwlSysctlTests.swift in Sources */,
@@ -1169,7 +1419,7 @@
 				OBJ_212 /* CwlOnDeleteTests.swift in Sources */,
 				OBJ_213 /* CwlRandomTests.swift in Sources */,
 				OBJ_214 /* CwlResultTests.swift in Sources */,
-				C9EE87CA1E4171FD00A7408F /* xoroshiro128plus.c in Sources */,
+				C9EE87CA1E4171FD00A7408F /* xoshiro256starstar.c in Sources */,
 				OBJ_215 /* CwlScalarScannerTests.swift in Sources */,
 				OBJ_216 /* CwlStackFrameTests.swift in Sources */,
 				OBJ_217 /* CwlSysctlTests.swift in Sources */,
@@ -2029,7 +2279,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG CHECK_DEFERRED_WORK";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -2073,7 +2323,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};

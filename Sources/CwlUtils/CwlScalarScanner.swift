@@ -3,7 +3,7 @@
 //  CwlWhitespace
 //
 //  Created by Matt Gallagher on 2016/01/05.
-//  Copyright © 2016 Matt Gallagher ( http://cocoawithlove.com ). All rights reserved.
+//  Copyright © 2016 Matt Gallagher ( https://www.cocoawithlove.com ). All rights reserved.
 //
 //  Permission to use, copy, modify, and/or distribute this software for any
 //  purpose with or without fee is hereby granted, provided that the above
@@ -116,7 +116,7 @@ public struct ScalarScanner<C: Collection> where C.Iterator.Element == UnicodeSc
 	/// Throw if the next scalar at the current `index` fails to match the next scalar in `scalars`. Advance the `index` to the end of the match.
 	public mutating func match(where test: (UnicodeScalar) -> Bool) throws {
 		if index == scalars.endIndex || !test(scalars[index]) {
-			throw ScalarScannerError.matchFailed(wanted: String(describing: test), at: consumed)
+			throw ScalarScannerError.matchFailed(wanted: "Function match", at: consumed)
 		}
 		index = self.scalars.index(after: index)
 		consumed += 1
@@ -125,7 +125,7 @@ public struct ScalarScanner<C: Collection> where C.Iterator.Element == UnicodeSc
 	/// Throw if the scalars at the current `index` don't match the scalars in `value`. Advance the `index` to the end of the match.
 	mutating func read(where test: (UnicodeScalar) -> Bool) throws -> UnicodeScalar {
 		if index == scalars.endIndex || !test(scalars[index]) {
-			throw ScalarScannerError.matchFailed(wanted: String(describing: test), at: consumed)
+			throw ScalarScannerError.matchFailed(wanted: "Function match", at: consumed)
 		}
 		let s = scalars[index]
 		index = self.scalars.index(after: index)
