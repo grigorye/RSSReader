@@ -138,15 +138,27 @@ public protocol ErrorPresenter {
 extension UIViewController: ErrorPresenter {
 	/// An adapter function that allows the UnanticipatedErrorRecoveryAttempter to be used on iOS to present errors over a UIViewController.
 	public func presentError(_ error: NSError, _ completion: (() -> Void)? = nil) {
-		let alert = UIAlertController(title: error.localizedDescription, message: error.localizedRecoverySuggestion ?? error.localizedFailureReason, preferredStyle: UIAlertControllerStyle.alert)
+		#if swift(>=4.2)
+			let alert = UIAlertController(title: error.localizedDescription, message: error.localizedRecoverySuggestion ?? error.localizedFailureReason, preferredStyle: UIAlertController.Style.alert)
 
-		if let ro = error.localizedRecoveryOptions, let ra = error.recoveryAttempter as? UnanticipatedErrorRecoveryAttempter {
-			for (index, option) in ro.enumerated() {
-				alert.addAction(UIAlertAction(title: option, style: UIAlertActionStyle.default, handler: { (action: UIAlertAction?) -> Void in
-					_ = ra.attemptRecovery(fromError: error, optionIndex: index)
-				}))
+			if let ro = error.localizedRecoveryOptions, let ra = error.recoveryAttempter as? UnanticipatedErrorRecoveryAttempter {
+				for (index, option) in ro.enumerated() {
+					alert.addAction(UIAlertAction(title: option, style: UIAlertAction.Style.default, handler: { (action: UIAlertAction?) -> Void in
+						_ = ra.attemptRecovery(fromError: error, optionIndex: index)
+					}))
+				}
 			}
-		}
+		#else
+			let alert = UIAlertController(title: error.localizedDescription, message: error.localizedRecoverySuggestion ?? error.localizedFailureReason, preferredStyle: UIAlertControllerStyle.alert)
+
+			if let ro = error.localizedRecoveryOptions, let ra = error.recoveryAttempter as? UnanticipatedErrorRecoveryAttempter {
+				for (index, option) in ro.enumerated() {
+					alert.addAction(UIAlertAction(title: option, style: UIAlertActionStyle.default, handler: { (action: UIAlertAction?) -> Void in
+						_ = ra.attemptRecovery(fromError: error, optionIndex: index)
+					}))
+				}
+			}
+		#endif
 		self.present(alert, animated: true, completion: completion)
 	}
 }
