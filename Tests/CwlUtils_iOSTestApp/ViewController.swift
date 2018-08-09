@@ -22,8 +22,8 @@ import UIKit
 import CwlUtils
 
 func showAlert(error: NSError) {
-	let alert = UIAlertController(title: error.localizedDescription, message: error.localizedFailureReason, preferredStyle: UIAlertControllerStyle.alert)
-	alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.default, handler: nil))
+	let alert = UIAlertController(title: error.localizedDescription, message: error.localizedFailureReason, preferredStyle: UIAlertController.Style.alert)
+	alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertAction.Style.default, handler: nil))
 	UIApplication.shared.windows[0].rootViewController!.present(alert, animated: true, completion: nil)
 }
 

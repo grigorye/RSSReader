@@ -20,6 +20,8 @@
 #ifndef ReferenceRandomGenerators_h
 #define ReferenceRandomGenerators_h
 
+#import <stdint.h>
+
 typedef struct {
 	uint64_t s[4];
 } xoshiro_state;

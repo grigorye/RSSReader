@@ -32,21 +32,22 @@ import Foundation
 //  2. The `runWork` must be manually invoked. Automtic invocation (e.g in the `deinit` of a lifetime managed `class` instance) would add heap allocation overhead and would also be easy to accidentally release at the wrong point (inside the mutex) causing erratic problems. Instead, the `runWork` is guarded with a `DEBUG`-only `OnDelete` check that ensures that the `runWork` has been correctly invoked by the time the `DeferredWork` falls out of scope.
 public struct DeferredWork {
 	enum PossibleWork {
-	case none
-	case single(() -> Void)
-	case multiple(ContiguousArray<() -> Void>)
+		case none
+		case single(() -> Void)
+		case multiple(Array<() -> Void>)
 	}
 	
 	var work: PossibleWork
 
-#if CHECK_DEFERRED_WORK
-	let invokeCheck: OnDelete = { () -> OnDelete in
-		var sourceStack = callStackReturnAddresses(skip: 2)
-		return OnDelete {
-			preconditionFailure("Failed to perform work deferred at location:\n" + symbolsForCallStack(addresses: sourceStack).joined(separator: "\n"))
-		}
-	}()
-#endif
+	#if DEBUG
+		let invokeCheck: OnDelete = { () -> OnDelete in
+			var sourceStack = Thread.callStackReturnAddresses
+			return OnDelete {
+				let symbols = symbolsForCallStack(addresses: sourceStack.map { $0.uintValue })
+				preconditionFailure("Failed to perform work deferred at location:\n" + symbols.joined(separator: "\n"))
+			}
+		}()
+	#endif
 
 	public init() {
 		work = .none
@@ -57,10 +58,11 @@ public struct DeferredWork {
 	}
 	
 	public mutating func append(_ other: DeferredWork) {
-#if CHECK_DEFERRED_WORK
-		precondition(invokeCheck.isValid && other.invokeCheck.isValid, "Work appended to an already cancelled/invoked DeferredWork")
-		other.invokeCheck.invalidate()
-#endif
+		#if DEBUG
+			precondition(invokeCheck.isValid && other.invokeCheck.isValid, "Work appended to an already cancelled/invoked DeferredWork")
+				other.invokeCheck.invalidate()
+		#endif
+		
 		switch other.work {
 		case .none: break
 		case .single(let otherWork): self.append(otherWork)
@@ -68,7 +70,7 @@ public struct DeferredWork {
 			switch work {
 			case .none: work = .multiple(otherWork)
 			case .single(let existing):
-				var newWork: ContiguousArray<() -> Void> = [existing]
+				var newWork: Array<() -> Void> = [existing]
 				newWork.append(contentsOf: otherWork)
 				work = .multiple(newWork)
 			case .multiple(var existing):
@@ -80,9 +82,10 @@ public struct DeferredWork {
 	}
 	
 	public mutating func append(_ additionalWork: @escaping () -> Void) {
-#if CHECK_DEFERRED_WORK
-		precondition(invokeCheck.isValid, "Work appended to an already cancelled/invoked DeferredWork")
-#endif
+		#if DEBUG
+			precondition(invokeCheck.isValid, "Work appended to an already cancelled/invoked DeferredWork")
+		#endif
+		
 		switch work {
 		case .none: work = .single(additionalWork)
 		case .single(let existing): work = .multiple([existing, additionalWork])
@@ -94,10 +97,11 @@ public struct DeferredWork {
 	}
 	
 	public mutating func runWork() {
-#if CHECK_DEFERRED_WORK
-		precondition(invokeCheck.isValid, "Work run multiple times")
-		invokeCheck.invalidate()
-#endif
+		#if DEBUG
+			precondition(invokeCheck.isValid, "Work run multiple times")
+			invokeCheck.invalidate()
+		#endif
+		
 		switch work {
 		case .none: break
 		case .single(let w): w()

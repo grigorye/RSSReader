@@ -1,12 +1,3 @@
-//
-//  xoshiro128plus.c
-//
-//  Created by Matt Gallagher on 2016/05/17.
-//  Copyright © 2016 Matt Gallagher ( https://www.cocoawithlove.com ). All rights reserved.
-//
-//  The following MersenneTwister struct is a adapted from:
-//  http://xoshiro.di.unimi.it/xoshiro128plus.c
-
 /*  Written in 2018 by David Blackman and Sebastiano Vigna (vigna@acm.org)
 
 To the extent possible under law, the author has dedicated all copyright

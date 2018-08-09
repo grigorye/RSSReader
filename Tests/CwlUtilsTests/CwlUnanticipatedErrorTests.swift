@@ -36,7 +36,7 @@ class UnanticipatedErrorTests: XCTestCase {
 		XCTAssert(e.code == TestCode.testValue.rawValue)
 		
 		let userInfo = e.userInfo
-		if let callStackSymbols = userInfo[UnanticipatedErrorRecoveryAttempter.ReturnAddressesKey] as? [UInt] {
+		if let callStackSymbols = userInfo[UnanticipatedErrorRecoveryAttempter.callStackSymbols] as? [String] {
 			XCTAssert(callStackSymbols.count > 1, "No call stack symbols present")
 		} else {
 			XCTFail("Call stack symbols not present")

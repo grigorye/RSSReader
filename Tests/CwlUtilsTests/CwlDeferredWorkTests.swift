@@ -23,6 +23,10 @@ import XCTest
 import CwlUtils
 import CwlPreconditionTesting
 
+#if SWIFT_PACKAGE
+	import CwlMachBadInstructionHandler
+#endif
+
 class DeferredWorkTests: XCTestCase {
 	override func setUp() {
 		// Suppress Swift runtime's direct triggering of the debugger.

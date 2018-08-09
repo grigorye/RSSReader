@@ -83,7 +83,7 @@ public struct Xoshiro: RandomNumberGenerator {
 		// by David Blackman and Sebastiano Vigna
 		let x = state.1 &* 5
 		let result = ((x &<< 7) | (x &>> 57)) &* 9
-		let t = state.1 << 17
+		let t = state.1 &<< 17
 		state.2 ^= state.0
 		state.3 ^= state.1
 		state.1 ^= state.2

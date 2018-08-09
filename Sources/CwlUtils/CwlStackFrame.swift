@@ -24,8 +24,6 @@ import Darwin
 import CwlFrameAddress
 #endif
 
-#if !OMIT_STACK_FRAME
-
 /// A utility class for walking through stack frames.
 public struct StackFrame {
 	/// The underlying data of the struct is a basic UInt. A value of 0 represents an invalid frame.
@@ -128,4 +126,12 @@ private func isAligned(_ address: UInt) -> Bool {
 	return (address & ISALIGNED_MASK) == ISALIGNED_RESULT
 }
 
-#endif
+/// Get the calling function's address and look it up, attempting to find the symbol.
+/// NOTE: This is mostly useful in debug environements. Outside this, non-public functions and images without symbols will return incomplete information.
+/// - parameter skipCount: the number of stack frames to skip over before analyzing
+/// - returns: the `dladdr` identifier for the specified frame, if one exists
+@inline(never)
+public func callingFunctionIdentifier(skipCount: UInt = 0) -> String {
+	let address = callStackReturnAddresses(skip: skipCount + 1, maximumAddresses: 1).first ?? 0
+	return AddressInfo(address: address).symbol
+}

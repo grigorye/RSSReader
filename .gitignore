@@ -1,5 +1,6 @@
 .DS_Store
 project.xcworkspace/
+*.xcscmblueprint
 xcuserdata/
 .build
 Package.pins

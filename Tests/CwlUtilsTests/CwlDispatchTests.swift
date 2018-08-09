@@ -162,30 +162,30 @@ class DispatchTests: XCTestCase {
 	}
 	
 	func testToSeconds() {
-		let s = DispatchTimeInterval.seconds(1).toSeconds()
+		let s = DispatchTimeInterval.seconds(1).seconds
 		XCTAssert(s > 0.99999999 && s < 1.00000001)
 		
-		let m = DispatchTimeInterval.milliseconds(1).toSeconds()
+		let m = DispatchTimeInterval.milliseconds(1).seconds
 		XCTAssert(m > 0.99999999e-3 && m < 1.00000001e-3)
 		
-		let u = DispatchTimeInterval.microseconds(1).toSeconds()
+		let u = DispatchTimeInterval.microseconds(1).seconds
 		XCTAssert(u > 0.99999999e-6 && u < 1.00000001e-6)
 		
-		let n = DispatchTimeInterval.nanoseconds(1).toSeconds()
+		let n = DispatchTimeInterval.nanoseconds(1).seconds
 		XCTAssert(n > 0.99999999e-9 && n < 1.00000001e-9)
 	}
 	
 	func testToNanoseconds() {
-		let s = DispatchTimeInterval.seconds(1).toNanoseconds()
+		let s = DispatchTimeInterval.seconds(1).nanoseconds
 		XCTAssert(s == Int64(1e9))
 		
-		let m = DispatchTimeInterval.milliseconds(1).toNanoseconds()
+		let m = DispatchTimeInterval.milliseconds(1).nanoseconds
 		XCTAssert(m == Int64(1e6))
 		
-		let u = DispatchTimeInterval.microseconds(1).toNanoseconds()
+		let u = DispatchTimeInterval.microseconds(1).nanoseconds
 		XCTAssert(u == Int64(1e3))
 		
-		let n = DispatchTimeInterval.nanoseconds(1).toNanoseconds()
+		let n = DispatchTimeInterval.nanoseconds(1).nanoseconds
 		XCTAssert(n == Int64(1))
 	}
 }

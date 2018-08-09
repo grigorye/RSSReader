@@ -46,7 +46,7 @@ class RandomTests: XCTestCase {
 	}
 	
 	func testArc4Random() {
-		var generator = Random.default
+		var generator = SystemRandomNumberGenerator()
 		genericTest(generator: &generator)
 	}
 	
