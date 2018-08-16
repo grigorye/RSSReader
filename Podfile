@@ -4,6 +4,7 @@ use_frameworks!
 def commonDeps
   pod 'Crashlytics'
   pod 'Fabric'
+  pod 'Result'
   pod 'PromisesSwift'#, :git => 'https://github.com/google/promises'
   pod 'GoogleToolboxForMac/NSString+HTML'
 end

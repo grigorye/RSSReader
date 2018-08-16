@@ -28,10 +28,10 @@ public class FPSCounter: NSObject {
     /// it would create a retain cycle. The delegate has a weak reference
     /// to its parent FPSCounter, thus preventing this.
     ///
-    internal class DisplayLinkDelegate: NSObject {
+    internal class DisplayLinkProxy: NSObject {
 
         /// A weak ref to the parent FPSCounter instance.
-        weak var parentCounter: FPSCounter?
+        @objc weak var parentCounter: FPSCounter?
 
         /// Notify the parent FPSCounter of a CADisplayLink update.
         ///
@@ -40,8 +40,8 @@ public class FPSCounter: NSObject {
         /// - Parameters:
         ///   - displayLink: The display link that updated
         ///
-        func updateFromDisplayLink(_ displayLink: CADisplayLink) {
-            self.parentCounter?.updateFromDisplayLink(displayLink)
+        @objc func updateFromDisplayLink(_ displayLink: CADisplayLink) {
+            parentCounter?.updateFromDisplayLink(displayLink)
         }
     }
 
@@ -49,7 +49,7 @@ public class FPSCounter: NSObject {
     // MARK: - Initialization
 
     private let displayLink: CADisplayLink
-    private let displayLinkDelegate: DisplayLinkDelegate
+    private let displayLinkProxy: DisplayLinkProxy
 
     /// Create a new FPSCounter.
     ///
@@ -57,15 +57,15 @@ public class FPSCounter: NSObject {
     /// `startTracking(inRunLoop:mode:)` method.
     ///
     public override init() {
-        self.displayLinkDelegate = DisplayLinkDelegate()
+        self.displayLinkProxy = DisplayLinkProxy()
         self.displayLink = CADisplayLink(
-            target: self.displayLinkDelegate,
-            selector: #selector(DisplayLinkDelegate.updateFromDisplayLink(_:))
+            target: self.displayLinkProxy,
+            selector: #selector(DisplayLinkProxy.updateFromDisplayLink(_:))
         )
 
         super.init()
 
-        self.displayLinkDelegate.parentCounter = self
+        self.displayLinkProxy.parentCounter = self
     }
 
     deinit {
@@ -79,7 +79,7 @@ public class FPSCounter: NSObject {
     public weak var delegate: FPSCounterDelegate?
 
     /// Delay between FPS updates. Longer delays mean more averaged FPS numbers.
-    public var notificationDelay: TimeInterval = 1.0
+    @objc public var notificationDelay: TimeInterval = 1.0
 
 
     // MARK: - Tracking
@@ -99,7 +99,7 @@ public class FPSCounter: NSObject {
     ///   - runloop: The runloop to start tracking in
     ///   - mode:    The mode(s) to track in the runloop
     ///
-    public func startTracking(inRunLoop runloop: RunLoop = RunLoop.main, mode: RunLoopMode = RunLoopMode.commonModes) {
+    @objc public func startTracking(inRunLoop runloop: RunLoop = .main, mode: RunLoopMode = .commonModes) {
         self.stopTracking()
 
         self.runloop = runloop
@@ -111,7 +111,7 @@ public class FPSCounter: NSObject {
     ///
     /// This method does nothing if the counter is not currently tracking.
     ///
-    public func stopTracking() {
+    @objc public func stopTracking() {
         guard let runloop = self.runloop, let mode = self.mode else { return }
 
         self.displayLink.remove(from: runloop, forMode: mode)
@@ -123,7 +123,7 @@ public class FPSCounter: NSObject {
     // MARK: - Handling Frame Updates
 
     private var lastNotificationTime: CFAbsoluteTime = 0.0
-    private var numberOfFrames: Int = 0
+    private var numberOfFrames = 0
 
     private func updateFromDisplayLink(_ displayLink: CADisplayLink) {
         if self.lastNotificationTime == 0.0 {

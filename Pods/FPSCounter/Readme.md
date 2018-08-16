@@ -25,7 +25,6 @@ the application manages to draw.
 
 You can remove the label any time later:
 
-
     FPSCounter.hide()
 
 If you'd like more control on how to display the frames, you can create a private
@@ -56,7 +55,7 @@ When you don't want to receive further updates, you can stop tracking:
 To install this library via [Carthage](https://github.com/Carthage/Carthage) add the
 following to your `Cartfile`:
 
-    github "konoma/fps-counter" ~> 1.0
+    github "konoma/fps-counter" ~> 2.1
 
 Then run the standard `carthage update` process.
 
@@ -66,7 +65,7 @@ Then run the standard `carthage update` process.
 To install this library via [CocoaPods](https://cocoapods.org) add the following to
 your `Podfile`:
 
-    pod 'FPSCounter', '~> 1.0'
+    pod 'FPSCounter', '~> 2.1'
 
 Then run the standard `pod update` process.
 

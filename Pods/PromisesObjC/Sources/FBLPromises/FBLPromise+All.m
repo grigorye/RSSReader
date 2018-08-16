@@ -26,10 +26,11 @@
 }
 
 + (FBLPromise<NSArray *> *)onQueue:(dispatch_queue_t)queue all:(NSArray *)allPromises {
+  NSParameterAssert(queue);
   NSParameterAssert(allPromises);
 
   if (allPromises.count == 0) {
-    return [[[self class] alloc] initWithResolution:@[]];
+    return [[FBLPromise alloc] initWithResolution:@[]];
   }
   NSMutableArray *promises = [allPromises mutableCopy];
   return [FBLPromise
@@ -44,7 +45,7 @@
               return;
             } else {
               [promises replaceObjectAtIndex:i
-                                  withObject:[[[self class] alloc] initWithResolution:promise]];
+                                  withObject:[[FBLPromise alloc] initWithResolution:promise]];
             }
           }
           for (FBLPromise *promise in promises) {
