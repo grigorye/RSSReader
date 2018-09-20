@@ -68,6 +68,7 @@ struct PackageBuild {
 	let packageName: String
 	let sdk: String
 	let srcRoot: URL
+	let parent: URL
 	let symRoot: String
 	let targetName: String
 	
@@ -99,13 +100,14 @@ struct PackageBuild {
 		moduleCacheDir = env("MODULE_CACHE_DIR") ?? ""
 		onlyActiveArch = env("ONLY_ACTIVE_ARCH") ?? ""
 		let cwlPd = env("CWL_PACKAGE_DIR").map { URL(fileURLWithPath: $0) }
-		let sr = try PackageBuild.requireEnv("SRCROOT")
-		let pd = cwlPd ?? URL(fileURLWithPath: sr).appendingPathComponent(".build")
+		let sr = URL(fileURLWithPath: try PackageBuild.requireEnv("SRCROOT"))
+		parent = sr
+		let pd = cwlPd ?? sr.appendingPathComponent(".build")
 		packagesDir = pd
 		path = env("PATH") ?? ""
-		platformName = env("CORRESPONDING_DEVICE_PLATFORM_NAME")
+		platformName = env("PLATFORM_NAME")
 		productNames = env("CWL_PRODUCT_NAMES")
-
+		
 		srcRoot = packagesDir.appendingPathComponent("symlinks/\(packageName)")
 	}
 	
@@ -116,21 +118,21 @@ struct PackageBuild {
 			path: developerBinDir.appendingPathComponent("xcodebuild").path,
 			environment: ["PATH": path],
 			arguments:
-				"-project", packagesDir.appendingPathComponent("symlinks/\(packageName)/\(packageName).xcodeproj").path,
-				"-target", targetName,
-				"-sdk", sdk,
-				"-configuration", configuration,
-				action,
-				"SRCROOT=\(srcRoot.path)",
-				"SYMROOT=\(symRoot)",
-				"OBJROOT=\(objRoot)/\(packageName)",
-				"ARCHS=\(archs)",
-				"ONLY_ACTIVE_ARCH=\(onlyActiveArch)",
-				"BITCODE_GENERATION_MODE=\(bitcodeGenerationMode)",
-				"MODULE_CACHE_DIR=\(moduleCacheDir)",
-				"CWL_PACKAGE_DIR=\(packagesDir.path)"
-		).printInvocation().runToString()
-	
+			"-project", packagesDir.appendingPathComponent("symlinks/\(packageName)/\(packageName).xcodeproj").path,
+							"-target", targetName,
+							"-sdk", sdk,
+							"-configuration", configuration,
+							action,
+							"SRCROOT=\(srcRoot.path)",
+			"SYMROOT=\(symRoot)",
+			"OBJROOT=\(objRoot)/\(packageName)",
+			"ARCHS=\(archs)",
+			"ONLY_ACTIVE_ARCH=\(onlyActiveArch)",
+			"BITCODE_GENERATION_MODE=\(bitcodeGenerationMode)",
+			"MODULE_CACHE_DIR=\(moduleCacheDir)",
+			"CWL_PACKAGE_DIR=\(packagesDir.path)"
+			).printInvocation().runToString()
+		
 		print(buildOutput, to: &FileHandle.err)
 	}
 	
@@ -138,12 +140,13 @@ struct PackageBuild {
 		guard let pn = productNames else { return }
 		print("### Copying dependencies from Carthage build directory.", to: &FileHandle.err)
 		
-		let carthageDir = srcRoot.appendingPathComponent("Carthage/Build/\(platformName == "iphoneos" ? "iOS" : "Mac")")
+		let name = platformName == "iphoneos" || platformName == "iphonesimulator" ? "iOS" : "Mac"
+		let carthageDir = parent.appendingPathComponent("Carthage/Build/\(name)")
 		for productName in pn.components(separatedBy: ",") {
 			let copyOutput = try Process(
 				path: "/bin/cp", 
 				arguments: "-Rf", carthageDir.appendingPathComponent(productName).path, buildDir.path
-			).printInvocation().runToString()
+				).printInvocation().runToString()
 			
 			print(copyOutput, to: &FileHandle.err)
 		}
