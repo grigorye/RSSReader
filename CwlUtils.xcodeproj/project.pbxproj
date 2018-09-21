@@ -981,13 +981,9 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 			);
 			name = "Run CwlConcat/main.swift to concatenate CwlUtils";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1410,6 +1406,7 @@
 				CWL_PRODUCT_NAMES = "CwlCatchException.framework,CwlPreconditionTesting.framework";
 				CWL_SDK = "$(SDKROOT)";
 				CWL_TARGET_NAME = CwlPreconditionTesting_macOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -1421,6 +1418,7 @@
 				CWL_PRODUCT_NAMES = "CwlCatchException.framework,CwlPreconditionTesting.framework";
 				CWL_SDK = "$(SDKROOT)";
 				CWL_TARGET_NAME = CwlPreconditionTesting_macOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};
 			name = Release;

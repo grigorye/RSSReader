@@ -20,6 +20,20 @@
 
 import Foundation
 
+#if !swift(>=4.2)
+	public protocol RandomNumberGenerator {
+		mutating func next() -> UInt64
+	}
+	public struct SystemRandomNumberGenerator: RandomNumberGenerator {
+		public init() {}
+		public mutating func next() -> UInt64 {
+			var value: UInt64 = 0
+			arc4random_buf(&value, MemoryLayout<UInt64>.size)
+			return value
+		}
+	}
+#endif
+
 public protocol RandomGenerator: RandomNumberGenerator {
 	mutating func randomize(buffer: UnsafeMutableRawBufferPointer)
 }
