@@ -3,7 +3,7 @@
 //  CwlUtils
 //
 //  Created by Matt Gallagher on 2016/05/17.
-//  Copyright © 2016 Matt Gallagher ( http://cocoawithlove.com ). All rights reserved.
+//  Copyright © 2016 Matt Gallagher ( https://www.cocoawithlove.com ). All rights reserved.
 //
 //  Permission to use, copy, modify, and/or distribute this software for any
 //  purpose with or without fee is hereby granted, provided that the above
@@ -29,30 +29,15 @@ import ReferenceRandomGenerators
 let VerificationIterations = 1000
 
 class RandomTests: XCTestCase {
-	func genericTest<Generator: RandomGenerator>(generator: inout Generator, testUnique: Bool = true) {
-		let a = generator.random64()
-		let b = generator.random64()
-		let c = generator.random64()
-		let d = generator.random64()
+	func genericTest<Generator: RandomNumberGenerator>(generator: inout Generator, testUnique: Bool = true) {
+		let a = generator.next()
+		let b = generator.next()
+		let c = generator.next()
+		let d = generator.next()
 		
 		if testUnique {
 			XCTAssert(a != b && a != c && a != d && b != c && b != d && c != d, "Technically, we *could* get a collision...")
 		}
-		
-		let e = generator.random32()
-		XCTAssert(type(of: e) == UInt32.self)
-		
-		let f = generator.random64(max: 1)
-		XCTAssert(f < 2)
-		
-		let g = generator.random32(max: 1)
-		XCTAssert(g < 2)
-		
-		// More rigorous testing on these would be nice but for now, at least run them
-		_ = generator.random64(max: UInt64.max)
-		_ = generator.randomHalfOpen()
-		_ = generator.randomClosed()
-		_ = generator.randomOpen()
 	}
 	
 	func testDevRandom() {
@@ -61,7 +46,7 @@ class RandomTests: XCTestCase {
 	}
 	
 	func testArc4Random() {
-		var generator = Arc4Random()
+		var generator = SystemRandomNumberGenerator()
 		genericTest(generator: &generator)
 	}
 	
@@ -80,20 +65,20 @@ class RandomTests: XCTestCase {
 		genericTest(generator: &generator, testUnique: false)
 	}
 	
-	func testXoroshiro() {
-		var generator = Xoroshiro()
+	func testXoshiro() {
+		var generator = Xoshiro()
 		genericTest(generator: &generator)
 		
-		// Test Xoroshiro against the reference implementation to verify output
-		var g1 = Xoroshiro(seed: (12345678, 87654321))
-		var g2 = xoroshiro128plus(seed: (12345678, 87654321))
+		// Test Xoshiro against the reference implementation to verify output
+		var g1 = Xoshiro(seed: (12345678, 87654321, 10293847, 29384756))
+		var g2 = Xoshiro256starstar(seed: (12345678, 87654321, 10293847, 29384756))
 		for _ in 0..<VerificationIterations {
-			XCTAssert(g1.random64() == g2.random64())
+			XCTAssert(g1.next() == g2.next())
 		}
 	}
 	
-	func testXoroshiro128plus() {
-		var generator = xoroshiro128plus()
+	func testXoshiro256starstar() {
+		var generator = Xoshiro256starstar()
 		genericTest(generator: &generator)
 	}
 	
@@ -105,7 +90,7 @@ class RandomTests: XCTestCase {
 		var g1 = MersenneTwister(seed: 12345678)
 		var g2 = MT19937_64(seed: 12345678)
 		for _ in 0..<VerificationIterations {
-			XCTAssert(g1.random64() == g2.random64())
+			XCTAssert(g1.next() == g2.next())
 		}
 	}
 	
@@ -117,9 +102,9 @@ class RandomTests: XCTestCase {
 
 // NOTE: I've moved the `ConstantNonRandom` and the two `Lfsr` implementations here. They're not advised for any common usage and I retain them here purely for performance comparison
 
-public struct ConstantNonRandom: RandomWordGenerator {
+public struct ConstantNonRandom: RandomNumberGenerator {
 	public typealias WordType = UInt64
-	var state: UInt64 = DevRandom.random64()
+	var state: UInt64 = { var dr = DevRandom(); return dr.next() }()
 
 	public init() {
 	}
@@ -128,17 +113,12 @@ public struct ConstantNonRandom: RandomWordGenerator {
 		self.state = seed
 	}
 
-	public mutating func random64() -> UInt64 {
-		return randomWord()
-	}
-
-	public mutating func randomWord() -> UInt64 {
+	public mutating func next() -> UInt64 {
 		return state
 	}
 }
 
-public struct Lfsr258: RandomWordGenerator {
-	public typealias WordType = UInt64
+public struct Lfsr258: RandomNumberGenerator {
 	public typealias StateType = (UInt64, UInt64, UInt64, UInt64, UInt64)
 
 	static let k: (UInt64, UInt64, UInt64, UInt64, UInt64) = (1, 9, 12, 17, 23)
@@ -150,19 +130,19 @@ public struct Lfsr258: RandomWordGenerator {
 	public init() {
 		var r = DevRandom()
 		repeat {
-			r.randomize(buffer: &state.0, size: MemoryLayout<UInt64>.size)
+			r.randomize(value: &state.0)
 		} while state.0 < Lfsr258.k.0
 		repeat {
-			r.randomize(buffer: &state.1, size: MemoryLayout<UInt64>.size)
+			r.randomize(value: &state.1)
 		} while state.1 < Lfsr258.k.1
 		repeat {
-			r.randomize(buffer: &state.2, size: MemoryLayout<UInt64>.size)
+			r.randomize(value: &state.2)
 		} while state.2 < Lfsr258.k.2
 		repeat {
-			r.randomize(buffer: &state.3, size: MemoryLayout<UInt64>.size)
+			r.randomize(value: &state.3)
 		} while state.3 < Lfsr258.k.3
 		repeat {
-			r.randomize(buffer: &state.4, size: MemoryLayout<UInt64>.size)
+			r.randomize(value: &state.4)
 		} while state.4 < Lfsr258.k.4
 	}
 	
@@ -170,11 +150,7 @@ public struct Lfsr258: RandomWordGenerator {
 		self.state = seed
 	}
 	
-	public mutating func randomWord() -> UInt64 {
-		return random64()
-	}
-
-	public mutating func random64() -> UInt64 {
+	public mutating func next() -> UInt64 {
 		// Constants from "Tables of Maximally-Equidistributed Combined LFSR Generators" by Pierre L'Ecuyer:
 		// http://www.iro.umontreal.ca/~lecuyer/myftp/papers/tausme2.ps
 		let l: UInt64 = 64
@@ -192,8 +168,7 @@ public struct Lfsr258: RandomWordGenerator {
 	}
 }
 
-public struct Lfsr176: RandomWordGenerator {
-	public typealias WordType = UInt64
+public struct Lfsr176: RandomNumberGenerator {
 	public typealias StateType = (UInt64, UInt64, UInt64)
 
 	static let k: (UInt64, UInt64, UInt64) = (1, 6, 9)
@@ -205,13 +180,13 @@ public struct Lfsr176: RandomWordGenerator {
 	public init() {
 		var r = DevRandom()
 		repeat {
-			r.randomize(buffer: &state.0, size: MemoryLayout<UInt64>.size)
+			r.randomize(value: &state.0)
 		} while state.0 < Lfsr176.k.0
 		repeat {
-			r.randomize(buffer: &state.1, size: MemoryLayout<UInt64>.size)
+			r.randomize(value: &state.1)
 		} while state.1 < Lfsr176.k.1
 		repeat {
-			r.randomize(buffer: &state.2, size: MemoryLayout<UInt64>.size)
+			r.randomize(value: &state.2)
 		} while state.2 < Lfsr176.k.2
 	}
 	
@@ -219,11 +194,7 @@ public struct Lfsr176: RandomWordGenerator {
 		self.state = seed
 	}
 	
-	public mutating func random64() -> UInt64 {
-		return randomWord()
-	}
-
-	public mutating func randomWord() -> UInt64 {
+	public mutating func next() -> UInt64 {
 		// Constants from "Tables of Maximally-Equidistributed Combined LFSR Generators" by Pierre L'Ecuyer:
 		// http://www.iro.umontreal.ca/~lecuyer/myftp/papers/tausme2.ps
 		let l: UInt64 = 64
@@ -243,44 +214,36 @@ public struct Lfsr176: RandomWordGenerator {
 // The reason for this duplication is that CwlRandomPerformanceTests.swift is normally excluded from the build, so CwlRandomTests.swift can't rely on it. But CwlRandomPerformanceTests.swift needs these structs included locally because they need to be inlined (to make the performance comparison fair) and whole module optimization is disabled for this testing bundle (to allow testing across module boundaries where desired).
 //
 
-private struct MT19937_64: RandomWordGenerator {
+private struct MT19937_64: RandomNumberGenerator {
 	typealias WordType = UInt64
 	var state = mt19937_64()
 	
 	init() {
-		init_genrand64(&state, DevRandom.random64())
+		var dr = DevRandom()
+		init_genrand64(&state, dr.next())
 	}
 	
 	init(seed: UInt64) {
 		init_genrand64(&state, seed)
 	}
 	
-	mutating func random64() -> UInt64 {
-		return genrand64_int64(&state)
-	}
-	
-	mutating func randomWord() -> UInt64 {
+	mutating func next() -> UInt64 {
 		return genrand64_int64(&state)
 	}
 }
 
-private struct xoroshiro128plus: RandomWordGenerator {
-	typealias WordType = UInt64
-	var state = xoroshiro_state(s: (DevRandom.random64(), DevRandom.random64()))
+private struct Xoshiro256starstar: RandomNumberGenerator {
+	var state = { () -> xoshiro_state in var dr = DevRandom(); return xoshiro_state(s: (dr.next(), dr.next(), dr.next(), dr.next())) }()
 	
 	init() {
 	}
 	
-	init(seed: (UInt64, UInt64)) {
+	init(seed: (UInt64, UInt64, UInt64, UInt64)) {
 		self.state.s = seed
 	}
 	
-	mutating func random64() -> UInt64 {
-		return xoroshiro_next(&state)
-	}
-	
-	mutating func randomWord() -> UInt64 {
-		return xoroshiro_next(&state)
+	mutating func next() -> UInt64 {
+		return xoshiro_next(&state)
 	}
 }
 

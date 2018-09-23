@@ -3,7 +3,7 @@
 //  CwlUtils
 //
 //  Created by Matt Gallagher on 2015/03/05.
-//  Copyright © 2015 Matt Gallagher ( http://cocoawithlove.com ). All rights reserved.
+//  Copyright © 2015 Matt Gallagher ( https://www.cocoawithlove.com ). All rights reserved.
 //
 //  Permission to use, copy, modify, and/or distribute this software for any
 //  purpose with or without fee is hereby granted, provided that the above
@@ -19,22 +19,21 @@
 //
 
 #if os(macOS)
-import Cocoa
+	import Cocoa
 #elseif os(iOS)
-import UIKit
-import MobileCoreServices
+	import UIKit
+	import MobileCoreServices
 #endif
 
 public extension Error {
 	/// Return an NSError with the same properties as this error but with an `UnanticipatedErrorRecoveryAttempter` attached.
 	public func withUnanticipatedErrorRecoveryAttempter(file: String = #file, line: Int = #line) -> NSError {
-		// We want to preserve the "userInfo" dictionary, so we avoid "self as NSError" if we can (since it creates a new NSError that doesn't preserve the userInfo). Instead, we cast *via* NSObject.
 		let e = self as NSError
 		var userInfo: [String: Any] = e.userInfo
 		
 		// Move any existing NSLocalizedRecoverySuggestionErrorKey to a new key (we want to replace it but don't want to lose potentially useful information)
 		if let previousSuggestion = userInfo[NSLocalizedRecoverySuggestionErrorKey] {
-			userInfo[UnanticipatedErrorRecoveryAttempter.PreviousRecoverySuggestionKey] = previousSuggestion
+			userInfo[UnanticipatedErrorRecoveryAttempter.previousRecoverySuggestionKey] = previousSuggestion
 		}
 		
 		// Attach a new NSLocalizedRecoverySuggestionErrorKey and our recovery attempter and options
@@ -46,7 +45,7 @@ public extension Error {
 		userInfo[NSRecoveryAttempterErrorKey] = UnanticipatedErrorRecoveryAttempter()
 
 		// Attach the call stack
-		userInfo[UnanticipatedErrorRecoveryAttempter.ReturnAddressesKey] = callStackReturnAddresses()
+		userInfo[UnanticipatedErrorRecoveryAttempter.callStackSymbols] = Thread.callStackSymbols
 
 		return NSError(domain: e.domain, code: e.code, userInfo: userInfo)
 	}
@@ -64,10 +63,10 @@ public func rethrowUnanticipated<T>(file: String = #file, line: Int = #line, exe
 /// Class usable as the NSRecoveryAttempterErrorKey object in an NSError that presents the 'Unexpected' error and gives the option of copying the full error to the pasteboard.
 public class UnanticipatedErrorRecoveryAttempter: NSObject {
 	/// Key used in NSError.userInfo dictionaries to store call stack addresses
-	public static let ReturnAddressesKey = "CwlUtils.CallStackReturnAddresses"
+	public static let callStackSymbols = "CwlUtils.CallStackReturnAddresses"
 
 	/// Key used in NSError.userInfo dictionaries to store an OnDelete object that raises a fatal error if not cancelled
-	public static let PreviousRecoverySuggestionKey = "CwlUtils.PreviousRecoverySuggestion"
+	public static let previousRecoverySuggestionKey = "CwlUtils.PreviousRecoverySuggestion"
 
 	/// Present two buttons: "Copy details" and "OK"
 	fileprivate class func localizedRecoveryOptions() -> [String] {
@@ -84,7 +83,7 @@ public class UnanticipatedErrorRecoveryAttempter: NSObject {
 		var userInfo = error.userInfo
 		
 		// Fetch and format diagnostic information for display
-		let callStackSymbols = (userInfo[UnanticipatedErrorRecoveryAttempter.ReturnAddressesKey] as? [UInt]).map { symbolsForCallStack(addresses: $0).joined(separator: "\n") } ?? NSLocalizedString("(Call stack unavailable)",  comment: "")
+		let callStackSymbols = (userInfo[UnanticipatedErrorRecoveryAttempter.callStackSymbols] as? [String]).map { $0.joined(separator: "\n") } ?? NSLocalizedString("(Call stack unavailable)",  comment: "")
 		let localizedDescription = error.localizedDescription
 		let localizedRecoverySuggestion = error.localizedRecoverySuggestion ?? ""
 		let applicationName = (Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String) ?? ProcessInfo.processInfo.processName
@@ -96,8 +95,8 @@ public class UnanticipatedErrorRecoveryAttempter: NSObject {
 		userInfo.removeValue(forKey: NSLocalizedRecoverySuggestionErrorKey)
 		userInfo.removeValue(forKey: NSLocalizedRecoveryOptionsErrorKey)
 		userInfo.removeValue(forKey: NSRecoveryAttempterErrorKey)
-		userInfo.removeValue(forKey: UnanticipatedErrorRecoveryAttempter.PreviousRecoverySuggestionKey)
-		userInfo.removeValue(forKey: UnanticipatedErrorRecoveryAttempter.ReturnAddressesKey)
+		userInfo.removeValue(forKey: UnanticipatedErrorRecoveryAttempter.previousRecoverySuggestionKey)
+		userInfo.removeValue(forKey: UnanticipatedErrorRecoveryAttempter.callStackSymbols)
 		
 		return "\(applicationName)/\(applicationVersion), \(machineInfo), \(locales)\n\n\(localizedDescription)\n\(localizedRecoverySuggestion)\n\n\(error.domain): \(error.code). \(userInfo)\n\n\(callStackSymbols)"
 	}
@@ -138,15 +137,27 @@ public protocol ErrorPresenter {
 extension UIViewController: ErrorPresenter {
 	/// An adapter function that allows the UnanticipatedErrorRecoveryAttempter to be used on iOS to present errors over a UIViewController.
 	public func presentError(_ error: NSError, _ completion: (() -> Void)? = nil) {
-		let alert = UIAlertController(title: error.localizedDescription, message: error.localizedRecoverySuggestion ?? error.localizedFailureReason, preferredStyle: UIAlertControllerStyle.alert)
+		#if swift(>=4.2)
+			let alert = UIAlertController(title: error.localizedDescription, message: error.localizedRecoverySuggestion ?? error.localizedFailureReason, preferredStyle: UIAlertController.Style.alert)
 
-		if let ro = error.localizedRecoveryOptions, let ra = error.recoveryAttempter as? UnanticipatedErrorRecoveryAttempter {
-			for (index, option) in ro.enumerated() {
-				alert.addAction(UIAlertAction(title: option, style: UIAlertActionStyle.default, handler: { (action: UIAlertAction?) -> Void in
-					_ = ra.attemptRecovery(fromError: error, optionIndex: index)
-				}))
+			if let ro = error.localizedRecoveryOptions, let ra = error.recoveryAttempter as? UnanticipatedErrorRecoveryAttempter {
+				for (index, option) in ro.enumerated() {
+					alert.addAction(UIAlertAction(title: option, style: UIAlertAction.Style.default, handler: { (action: UIAlertAction?) -> Void in
+						_ = ra.attemptRecovery(fromError: error, optionIndex: index)
+					}))
+				}
 			}
-		}
+		#else
+			let alert = UIAlertController(title: error.localizedDescription, message: error.localizedRecoverySuggestion ?? error.localizedFailureReason, preferredStyle: UIAlertControllerStyle.alert)
+
+			if let ro = error.localizedRecoveryOptions, let ra = error.recoveryAttempter as? UnanticipatedErrorRecoveryAttempter {
+				for (index, option) in ro.enumerated() {
+					alert.addAction(UIAlertAction(title: option, style: UIAlertActionStyle.default, handler: { (action: UIAlertAction?) -> Void in
+						_ = ra.attemptRecovery(fromError: error, optionIndex: index)
+					}))
+				}
+			}
+		#endif
 		self.present(alert, animated: true, completion: completion)
 	}
 }

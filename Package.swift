@@ -7,7 +7,7 @@ let package = Package(
    	.library(name: "CwlUtils", type: .dynamic, targets: ["CwlUtils"]),
 	],
 	dependencies: [
-		.package(url: "https://github.com/mattgallagher/CwlPreconditionTesting.git", .revision("ce96cb1d81644b92c66fd2b622260905526a7c5f")),
+		.package(url: "https://github.com/mattgallagher/CwlPreconditionTesting.git", .branch("xcode10")),
 	],
 	targets: [
 		.target(
@@ -17,6 +17,8 @@ let package = Package(
 				.target(name: "ReferenceRandomGenerators")
 			]
 		),
+		.target(name: "CwlFrameAddress"),
+		.target(name: "ReferenceRandomGenerators"),
 		.testTarget(
 			name: "CwlUtilsTests",
 			dependencies: [
@@ -24,8 +26,5 @@ let package = Package(
 				.product(name: "CwlPreconditionTesting")
 			]
 		),
-		.target(name: "CwlFrameAddress"),
-		.target(name: "CwlUtilsConcat"),
-		.target(name: "ReferenceRandomGenerators")
 	]
 )

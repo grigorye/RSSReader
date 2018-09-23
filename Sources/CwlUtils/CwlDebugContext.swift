@@ -3,7 +3,7 @@
 //  CwlUtils
 //
 //  Created by Matt Gallagher on 2016/05/15.
-//  Copyright © 2016 Matt Gallagher ( http://cocoawithlove.com ). All rights reserved.
+//  Copyright © 2016 Matt Gallagher ( https://www.cocoawithlove.com ). All rights reserved.
 //
 //  Permission to use, copy, modify, and/or distribute this software for any
 //  purpose with or without fee is hereby granted, provided that the above
@@ -361,25 +361,25 @@ public struct DebugContext: ExecutionContext {
 	/// Run `execute` on the execution context after `interval` (plus `leeway`) unless the returned `Cancellable` is cancelled or released before running occurs.
 	public func singleTimer(interval: DispatchTimeInterval, leeway: DispatchTimeInterval, handler: @escaping () -> Void) -> Cancellable {
 		guard let c = coordinator else { return DebugContextTimer() }
-		return c.schedule(block: handler, thread: thread, timeInterval: interval.toNanoseconds(), repeats: false)
+		return c.schedule(block: handler, thread: thread, timeInterval: interval.nanoseconds, repeats: false)
 	}
 
 	/// Run `execute` on the execution context after `interval` (plus `leeway`), passing the `parameter` value as an argument, unless the returned `Cancellable` is cancelled or released before running occurs.
 	public func singleTimer<T>(parameter: T, interval: DispatchTimeInterval, leeway: DispatchTimeInterval, handler: @escaping (T) -> Void) -> Cancellable {
 		guard let c = coordinator else { return DebugContextTimer() }
-		return c.schedule(block: { handler(parameter) }, thread: thread, timeInterval: interval.toNanoseconds(), repeats: false)
+		return c.schedule(block: { handler(parameter) }, thread: thread, timeInterval: interval.nanoseconds, repeats: false)
 	}
 	
 	/// Run `execute` on the execution context after `interval` (plus `leeway`), and again every `interval` (within a `leeway` margin of error) unless the returned `Cancellable` is cancelled or released before running occurs.
 	public func periodicTimer(interval: DispatchTimeInterval, leeway: DispatchTimeInterval, handler: @escaping () -> Void) -> Cancellable {
 		guard let c = coordinator else { return DebugContextTimer() }
-		return c.schedule(block: handler, thread: thread, timeInterval: interval.toNanoseconds(), repeats: true)
+		return c.schedule(block: handler, thread: thread, timeInterval: interval.nanoseconds, repeats: true)
 	}
 
 	/// Run `execute` on the execution context after `interval` (plus `leeway`), passing the `parameter` value as an argument, and again every `interval` (within a `leeway` margin of error) unless the returned `Cancellable` is cancelled or released before running occurs.
 	public func periodicTimer<T>(parameter: T, interval: DispatchTimeInterval, leeway: DispatchTimeInterval, handler: @escaping (T) -> Void) -> Cancellable {
 		guard let c = coordinator else { return DebugContextTimer() }
-		return c.schedule(block: { handler(parameter) }, thread: thread, timeInterval: interval.toNanoseconds(), repeats: true)
+		return c.schedule(block: { handler(parameter) }, thread: thread, timeInterval: interval.nanoseconds, repeats: true)
 	}
 	
 	/// Gets a timestamp representing the host uptime the in the current context

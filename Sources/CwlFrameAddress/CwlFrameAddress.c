@@ -3,7 +3,7 @@
 //  CwlUtils
 //
 //  Created by Matt Gallagher on 2016/02/26.
-//  Copyright © 2016 Matt Gallagher ( http://cocoawithlove.com ). All rights reserved.
+//  Copyright © 2016 Matt Gallagher ( https://www.cocoawithlove.com ). All rights reserved.
 //
 //  Permission to use, copy, modify, and/or distribute this software for any
 //  purpose with or without fee is hereby granted, provided that the above
@@ -18,13 +18,9 @@
 //  IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 //
 
-#if !OMIT_STACK_FRAME
-
 #include "CwlFrameAddress.h"
 
 uintptr_t frame_address()
 {
 	return (uintptr_t)__builtin_frame_address(1);
 }
-
-#endif

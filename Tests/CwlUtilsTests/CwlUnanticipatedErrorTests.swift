@@ -3,7 +3,7 @@
 //  CwlUtils
 //
 //  Created by Matt Gallagher on 2015/03/05.
-//  Copyright © 2015 Matt Gallagher ( http://cocoawithlove.com ). All rights reserved.
+//  Copyright © 2015 Matt Gallagher ( https://www.cocoawithlove.com ). All rights reserved.
 //
 //  Permission to use, copy, modify, and/or distribute this software for any
 //  purpose with or without fee is hereby granted, provided that the above
@@ -36,7 +36,7 @@ class UnanticipatedErrorTests: XCTestCase {
 		XCTAssert(e.code == TestCode.testValue.rawValue)
 		
 		let userInfo = e.userInfo
-		if let callStackSymbols = userInfo[UnanticipatedErrorRecoveryAttempter.ReturnAddressesKey] as? [UInt] {
+		if let callStackSymbols = userInfo[UnanticipatedErrorRecoveryAttempter.callStackSymbols] as? [String] {
 			XCTAssert(callStackSymbols.count > 1, "No call stack symbols present")
 		} else {
 			XCTFail("Call stack symbols not present")

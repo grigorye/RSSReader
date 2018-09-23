@@ -3,7 +3,7 @@
 //  CwlUtils
 //
 //  Created by Matt Gallagher on 2016/02/26.
-//  Copyright © 2016 Matt Gallagher ( http://cocoawithlove.com ). All rights reserved.
+//  Copyright © 2016 Matt Gallagher ( https://www.cocoawithlove.com ). All rights reserved.
 //
 //  Permission to use, copy, modify, and/or distribute this software for any
 //  purpose with or without fee is hereby granted, provided that the above
@@ -19,8 +19,6 @@
 //
 
 import Foundation
-
-#if !OMIT_STACK_FRAME
 
 /// A wrapper around dl_info, used for symbolicating instruction addresses.
 public struct AddressInfo {
@@ -82,16 +80,6 @@ public struct AddressInfo {
 	}
 }
 
-/// Get the calling function's address and look it up, attempting to find the symbol.
-/// NOTE: This is mostly useful in debug environements. Outside this, non-public functions and images without symbols will return incomplete information.
-/// - parameter skipCount: the number of stack frames to skip over before analyzing
-/// - returns: the `dladdr` identifier for the specified frame, if one exists
-@inline(never)
-public func callingFunctionIdentifier(skipCount: UInt = 0) -> String {
-	let address = callStackReturnAddresses(skip: skipCount + 1, maximumAddresses: 1).first ?? 0
-	return AddressInfo(address: address).symbol
-}
-
 /// When applied to the output of callStackReturnAddresses, produces identical output to the execinfo function "backtrace_symbols" or NSThread.callStackSymbols
 /// - parameter addresses: an array of memory addresses, generally as produced by `callStackReturnAddresses`
 /// - returns: an array of formatted, symbolicated stack frame descriptions.
@@ -100,5 +88,3 @@ public func symbolsForCallStack(addresses: [UInt]) -> [String] {
 		return AddressInfo(address: tuple.element).formattedDescription(index: tuple.offset)
 	})
 }
-
-#endif

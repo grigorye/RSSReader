@@ -3,7 +3,7 @@
 //  CwlUtils
 //
 //  Created by Matt Gallagher on 2016/09/13.
-//  Copyright © 2016 Matt Gallagher ( http://cocoawithlove.com ). All rights reserved.
+//  Copyright © 2016 Matt Gallagher ( https://www.cocoawithlove.com ). All rights reserved.
 //
 //  Permission to use, copy, modify, and/or distribute this software for any
 //  purpose with or without fee is hereby granted, provided that the above
@@ -553,7 +553,7 @@ class Service {
          
          // Run the timeout timer
          let timer = self.context.singleTimer(interval:
-            DispatchTimeInterval.fromSeconds(seconds)) { [weak timerAndAction] in
+            DispatchTimeInterval.from(seconds: seconds)) { [weak timerAndAction] in
             // Cancel the connection if the timer fires first
             timerAndAction?.cancel()
             handler(.failure(ServiceError.timeout))
@@ -578,7 +578,7 @@ class StringService: Cancellable {
 	static let value = "Here's a string"
 	var timer: Cancellable
 	init(delay seconds: Double, context: Exec, handler: @escaping (Result<String>) -> ()) {
-		timer = context.singleTimer(interval: DispatchTimeInterval.fromSeconds(seconds)) {
+		timer = context.singleTimer(interval: DispatchTimeInterval.from(seconds: seconds)) {
 			handler(.success(StringService.value))
    	}
 	}
@@ -597,7 +597,7 @@ class NetworkService: Cancellable {
 	static let value = "Not really a network service"
 	var timer: Cancellable
 	init(context: Exec, handler: @escaping (Result<String>) -> ()) {
-		timer = context.singleTimer(interval: DispatchTimeInterval.fromSeconds(5.0)) {
+		timer = context.singleTimer(interval: DispatchTimeInterval.from(seconds: 5.0)) {
 			handler(.success(StringService.value))
    	}
 	}

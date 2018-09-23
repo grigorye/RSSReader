@@ -3,7 +3,7 @@
 //  CwlUtils
 //
 //  Created by Matt Gallagher on 2016/02/26.
-//  Copyright © 2016 Matt Gallagher ( http://cocoawithlove.com ). All rights reserved.
+//  Copyright © 2016 Matt Gallagher ( https://www.cocoawithlove.com ). All rights reserved.
 //
 //  Permission to use, copy, modify, and/or distribute this software for any
 //  purpose with or without fee is hereby granted, provided that the above
@@ -23,8 +23,6 @@ import Darwin
 #if SWIFT_PACKAGE
 import CwlFrameAddress
 #endif
-
-#if !OMIT_STACK_FRAME
 
 /// A utility class for walking through stack frames.
 public struct StackFrame {
@@ -128,4 +126,12 @@ private func isAligned(_ address: UInt) -> Bool {
 	return (address & ISALIGNED_MASK) == ISALIGNED_RESULT
 }
 
-#endif
+/// Get the calling function's address and look it up, attempting to find the symbol.
+/// NOTE: This is mostly useful in debug environements. Outside this, non-public functions and images without symbols will return incomplete information.
+/// - parameter skipCount: the number of stack frames to skip over before analyzing
+/// - returns: the `dladdr` identifier for the specified frame, if one exists
+@inline(never)
+public func callingFunctionIdentifier(skipCount: UInt = 0) -> String {
+	let address = callStackReturnAddresses(skip: skipCount + 1, maximumAddresses: 1).first ?? 0
+	return AddressInfo(address: address).symbol
+}

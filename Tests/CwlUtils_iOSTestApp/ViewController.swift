@@ -3,7 +3,7 @@
 //  CwlUtils_iOSTestApp
 //
 //  Created by Matt Gallagher on 2016/18/04.
-//  Copyright © 2016 Matt Gallagher ( http://cocoawithlove.com ). All rights reserved.
+//  Copyright © 2016 Matt Gallagher ( https://www.cocoawithlove.com ). All rights reserved.
 //
 //  Permission to use, copy, modify, and/or distribute this software for any
 //  purpose with or without fee is hereby granted, provided that the above
@@ -22,8 +22,8 @@ import UIKit
 import CwlUtils
 
 func showAlert(error: NSError) {
-	let alert = UIAlertController(title: error.localizedDescription, message: error.localizedFailureReason, preferredStyle: UIAlertControllerStyle.alert)
-	alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.default, handler: nil))
+	let alert = UIAlertController(title: error.localizedDescription, message: error.localizedFailureReason, preferredStyle: UIAlertController.Style.alert)
+	alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertAction.Style.default, handler: nil))
 	UIApplication.shared.windows[0].rootViewController!.present(alert, animated: true, completion: nil)
 }
 
