@@ -277,11 +277,7 @@
 		C95BDE941E40B7D800AAA64B /* CwlRandomPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlRandomPerformanceTests.swift; sourceTree = "<group>"; };
 		C95BDEB61E41688B00AAA64B /* CwlUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CwlUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C95BDEDB1E4168B800AAA64B /* CwlUtils_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CwlUtils_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C9694ABA213BC1CD001A29C2 /* CwlPreconditionTesting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CwlPreconditionTesting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C9694ABB213BC1CD001A29C2 /* CwlCatchException.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CwlCatchException.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9D734B8211EB3C300804C4E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		C9D734BA211EB3C300804C4E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		C9D734BC211EB3C300804C4E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		C9DD3D3B1E41A7D400E23B15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9DD3D3D1E41A94100E23B15 /* CwlUtilsTests-BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CwlUtilsTests-BridgingHeader.h"; sourceTree = "<group>"; };
 		C9DD3D3E1E41A94100E23B15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -324,7 +320,6 @@
 		OBJ_54 /* CwlSysctlTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlSysctlTests.swift; sourceTree = "<group>"; };
 		OBJ_55 /* CwlUnanticipatedErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlUnanticipatedErrorTests.swift; sourceTree = "<group>"; };
 		OBJ_56 /* CwlWrapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CwlWrapperTests.swift; sourceTree = "<group>"; };
-		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		OBJ_84 /* CwlUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CwlUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_86 /* CwlUtils_macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = CwlUtils_macOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -447,21 +442,17 @@
 			path = Tests/CwlUtilsPerformanceTests;
 			sourceTree = "<group>";
 		};
-		C9694AB9213BC192001A29C2 /* Packages */ = {
+		C98C44AD2160ED800028B2AC /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				C9694ABB213BC1CD001A29C2 /* CwlCatchException.framework */,
-				C9694ABA213BC1CD001A29C2 /* CwlPreconditionTesting.framework */,
 			);
-			name = Packages;
+			path = Dependencies;
 			sourceTree = "<group>";
 		};
 		C9D734B6211EB3C300804C4E /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
 				C9D734B7211EB3C300804C4E /* CwlConcat */,
-				C9D734B9211EB3C300804C4E /* CwlPackageBuild */,
-				C9D734BB211EB3C300804C4E /* CwlPackageFetch */,
 			);
 			path = Scripts;
 			sourceTree = "<group>";
@@ -472,22 +463,6 @@
 				C9D734B8211EB3C300804C4E /* main.swift */,
 			);
 			path = CwlConcat;
-			sourceTree = "<group>";
-		};
-		C9D734B9211EB3C300804C4E /* CwlPackageBuild */ = {
-			isa = PBXGroup;
-			children = (
-				C9D734BA211EB3C300804C4E /* main.swift */,
-			);
-			path = CwlPackageBuild;
-			sourceTree = "<group>";
-		};
-		C9D734BB211EB3C300804C4E /* CwlPackageFetch */ = {
-			isa = PBXGroup;
-			children = (
-				C9D734BC211EB3C300804C4E /* main.swift */,
-			);
-			path = CwlPackageFetch;
 			sourceTree = "<group>";
 		};
 		C9EE87C31E4171FD00A7408F /* ReferenceRandomGenerators */ = {
@@ -599,8 +574,7 @@
 		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
-				OBJ_6 /* Package.swift */,
-				C9694AB9213BC192001A29C2 /* Packages */,
+				C98C44AD2160ED800028B2AC /* Dependencies */,
 				OBJ_78 /* Products */,
 				C9D734B6211EB3C300804C4E /* Scripts */,
 				OBJ_7 /* Sources */,
