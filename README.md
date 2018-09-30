@@ -1,6 +1,6 @@
 # CwlUtils
 
-A collection of utilities written as part of articles on [Cocoa with Love](https://cocoawithlove.com)
+A collection of utilities written as part of articles on [Cocoa with Love](https://www.cocoawithlove.com)
 
 ## Included functionality
 
