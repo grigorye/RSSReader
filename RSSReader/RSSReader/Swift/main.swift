@@ -26,7 +26,7 @@ loggers += [
 
 x$(CommandLine.arguments)
 
-UIApplicationMain(
+_ = UIApplicationMain(
 	CommandLine.argc,
 	UnsafeMutableRawPointer(CommandLine.unsafeArgv)
 		.bindMemory(
