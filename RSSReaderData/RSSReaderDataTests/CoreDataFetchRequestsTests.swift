@@ -9,7 +9,6 @@
 @testable import RSSReaderData
 import XCTest
 import CoreData
-import PromiseKit
 
 class CoreDataFetchRequestsTests : DataEnabledTestCase {
 	
