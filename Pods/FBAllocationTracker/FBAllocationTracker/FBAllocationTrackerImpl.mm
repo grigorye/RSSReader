@@ -75,8 +75,8 @@ namespace {
     _didCopyOriginalMethods = true;
 
     replaceSelectorWithSelector([NSObject class],
-                                @selector(fb_originalAllocWithZone:),
-                                @selector(allocWithZone:),
+                                @selector(fb_originalAlloc),
+                                @selector(alloc),
                                 FBClassMethod);
 
     replaceSelectorWithSelector([NSObject class],
@@ -89,8 +89,8 @@ namespace {
     prepareOriginalMethods();
 
     replaceSelectorWithSelector([NSObject class],
-                                @selector(allocWithZone:),
-                                @selector(fb_newAllocWithZone:),
+                                @selector(alloc),
+                                @selector(fb_newAlloc),
                                 FBClassMethod);
 
     replaceSelectorWithSelector([NSObject class],
@@ -104,7 +104,7 @@ namespace {
 
     replaceSelectorWithSelector([NSObject class],
                                 @selector(alloc),
-                                @selector(fb_originalAllocWithZone:),
+                                @selector(fb_originalAlloc),
                                 FBClassMethod);
 
     replaceSelectorWithSelector([NSObject class],
@@ -250,14 +250,14 @@ namespace FB { namespace AllocationTracker {
 
   void enableGenerations() {
     std::lock_guard<std::mutex> l(*_lock);
-
+    
     if (_generationManager) {
       return;
     }
-
+    
     _generationManager = new GenerationManager();
   }
-
+  
   void disableGenerations(void) {
     std::lock_guard<std::mutex> l(*_lock);
 
@@ -274,7 +274,7 @@ namespace FB { namespace AllocationTracker {
 
   FullGenerationSummary generationSummary() {
     std::lock_guard<std::mutex> l(*_lock);
-
+    
     if (_generationManager) {
       return _generationManager->summary();
     }
@@ -325,9 +325,8 @@ namespace FB { namespace AllocationTracker {
       }
 
       for (const auto &obj: instancesFromGeneration) {
-        id retainedObject = obj;
-        if (retainedObject) {
-          [instances addObject:retainedObject];
+        if (obj) {
+          [instances addObject:obj];
         }
       }
     }

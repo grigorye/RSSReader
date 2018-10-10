@@ -1,17 +1,16 @@
 PODS:
-  - Crashlytics (3.10.7):
-    - Fabric (~> 1.7.11)
+  - Crashlytics (3.10.9):
+    - Fabric (~> 1.7.13)
   - CwlCatchException (1.0.2)
-  - CwlPreconditionTesting (1.1.0):
-    - CwlCatchException
-  - Fabric (1.7.11)
+  - CwlPreconditionTesting (1.1.0)
+  - Fabric (1.7.13)
   - FBAllocationTracker (0.1.5)
   - FBMemoryProfiler (0.1.3):
     - FBAllocationTracker (~> 0.1)
     - FBRetainCycleDetector (~> 0.1)
   - FBRetainCycleDetector (0.1.4)
   - FPSCounter (2.1.1)
-  - FTLinearActivityIndicator (1.0.4)
+  - FTLinearActivityIndicator (1.1.1)
   - GoogleToolboxForMac/Core (2.1.4):
     - GoogleToolboxForMac/Defines (= 2.1.4)
   - GoogleToolboxForMac/Defines (2.1.4)
@@ -32,7 +31,7 @@ DEPENDENCIES:
   - CwlCatchException (from `https://github.com/mattgallagher/CwlCatchException.git`)
   - CwlPreconditionTesting (from `https://github.com/mattgallagher/CwlPreconditionTesting.git`)
   - Fabric
-  - FBAllocationTracker (from `https://github.com/grigorye/FBAllocationTracker.git`)
+  - FBAllocationTracker
   - FBMemoryProfiler
   - FPSCounter
   - FTLinearActivityIndicator
@@ -47,6 +46,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Crashlytics
     - Fabric
+    - FBAllocationTracker
     - FBMemoryProfiler
     - FBRetainCycleDetector
     - FPSCounter
@@ -65,30 +65,25 @@ EXTERNAL SOURCES:
     :git: https://github.com/mattgallagher/CwlCatchException.git
   CwlPreconditionTesting:
     :git: https://github.com/mattgallagher/CwlPreconditionTesting.git
-  FBAllocationTracker:
-    :git: https://github.com/grigorye/FBAllocationTracker.git
 
 CHECKOUT OPTIONS:
   CwlCatchException:
     :commit: b14c111e9b33cd142bd4bc75c482cfd5c3490923
     :git: https://github.com/mattgallagher/CwlCatchException.git
   CwlPreconditionTesting:
-    :commit: 1e62a726d54c743f4585233f08fcaac7307319b5
+    :commit: 0537b29b1cf6fd2a84535989031486a191a1a9a2
     :git: https://github.com/mattgallagher/CwlPreconditionTesting.git
-  FBAllocationTracker:
-    :commit: 60b343e859e2bc68b2c60e55210b7e13dc44e00d
-    :git: https://github.com/grigorye/FBAllocationTracker.git
 
 SPEC CHECKSUMS:
-  Crashlytics: ccaac42660eb9351b9960c0d66106b0bcf99f4fa
+  Crashlytics: 55e24fc23989680285a21cb1146578d9d18e432c
   CwlCatchException: 70a52ae44ea5d46db7bd385f801a94942420cd8c
-  CwlPreconditionTesting: d9b35890c80b34668cd90da5bef077fd817a99fc
-  Fabric: f233c9492b3bbc1f04e3882986740f7988a58edb
-  FBAllocationTracker: b581c8b31f756353bc02da40bfde46dcb7b27bf0
+  CwlPreconditionTesting: 9add30f7ba4e6a9913b802be66acb66d413c6c8a
+  Fabric: 25d0963b691fc97be566392243ff0ecef5a68338
+  FBAllocationTracker: dfdca3f71aceca6a85e95e3c6ec76a9785eba0f1
   FBMemoryProfiler: 623fc5f8a61f7d02ec75c87e3b97c90f621d8b02
   FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
   FPSCounter: 7154791d4246e6a715a716f51f624c86c8ac249e
-  FTLinearActivityIndicator: 0c4ff2067cd67d88fd932ec214da90083ea7148e
+  FTLinearActivityIndicator: 323ad4e4743a159483566730f93c73d0b8e6a641
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
   PromisesObjC: a3a4263d8a9260214267e0b3788d0f83466ad449
@@ -98,6 +93,6 @@ SPEC CHECKSUMS:
   Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
   Watchdog: 370d2c2a58c9bede0e3f9b8cc26bf297745c31c2
 
-PODFILE CHECKSUM: 81974e8f330653ec44b71a23d9d495a1f6c5d30b
+PODFILE CHECKSUM: 60634f2ab055f83a6a4c6ae45870921cb48229cb
 
 COCOAPODS: 1.5.3

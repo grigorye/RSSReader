@@ -17,8 +17,8 @@ target "iOS" do
   pod 'Watchdog'
   pod 'JGProgressHUD'
   pod 'FTLinearActivityIndicator'
-  pod 'FBMemoryProfiler'
-  pod 'FBAllocationTracker', :git => 'https://github.com/grigorye/FBAllocationTracker.git'
+  pod 'FBMemoryProfiler', :inhibit_warnings => true
+  pod 'FBAllocationTracker', :inhibit_warnings => true
   pod 'FPSCounter'
   #pod 'AFMInfoBanner'
   #pod 'UXCam'
@@ -56,14 +56,20 @@ end
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |configuration|
+      puts target
       # http://www.mokacoding.com/blog/cocoapods-and-custom-build-configurations/
       if target.name == 'FBAllocationTracker'
         configuration.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] = '$(inherited) ALLOCATION_TRACKER_ENABLED'
       end
+      if target.name == 'FTLinearActivityIndicator'
+        configuration.build_settings['SWIFT_VERSION'] = '4.2'
+        puts configuration
+      else
+        configuration.build_settings['SWIFT_VERSION'] = '4.0'
+      end
       configuration.build_settings['CONFIGURATION_BUILD_DIR'] = '${PODS_CONFIGURATION_BUILD_DIR}'
       #configuration.build_settings['CODE_SIGNING_REQUIRED'] = 'NO'
       #configuration.build_settings['PROVISIONING_PROFILE_SPECIFIER'] = 'T6B3YCL946/'
-      configuration.build_settings['SWIFT_VERSION'] = '3.0'
       configuration.build_settings['DEBUG_INFORMATION_FORMAT'] = 'dwarf-with-dsym'
       configuration.build_settings['ENABLE_BITCODE'] = 'NO'
       configuration.build_settings['ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES'] = 'NO'
