@@ -7,7 +7,8 @@
 //
 
 import class GEFoundation.ProgressEnabledURLSessionTaskGenerator
-import PromiseKit
+import Result
+import class Promises.Promise
 import Foundation
 import CoreData
 
@@ -106,13 +107,13 @@ extension TypedUserDefaults {
 }
 
 extension RSSSession {
-	public typealias CommandCompletionHandler<ResultType> = (Result<ResultType>) -> Void
+	public typealias CommandCompletionHandler<ResultType> = (Result<ResultType, AnyError>) -> Void
 	// MARK: -
 	func performPersistentDataUpdateCommand<T: PersistentDataUpdateCommand>(_ command: T, completionHandler: @escaping CommandCompletionHandler<T.ResultType>) {
 		x$(command as AbstractPersistentDataUpdateCommand)
 		let task = command.taskForSession(self) { data, httpResponse, error in
 			if let error = error {
-				completionHandler(.rejected(command.preprocessedRequestError(error)))
+				completionHandler(.failure(.init(command.preprocessedRequestError(error))))
 				return
 			}
 			command.push(data!, through: { importResultIntoManagedObjectContext in
@@ -128,12 +129,12 @@ extension RSSSession {
 						if managedObjectContext.hasChanges {
 							try managedObjectContext.save()
 						}
-						completionHandler(.fulfilled(result))
+						completionHandler(.success(result))
 						if defaults.resetBackgroundQueueMOCAfterSavingRSSData {
 							managedObjectContext.reset()
 						}
 					} catch {
-						completionHandler(.rejected(RSSSessionError.importFailed(underlyingError: x$(error), command: x$(command))))
+						completionHandler(.failure(.init(RSSSessionError.importFailed(underlyingError: x$(error), command: x$(command)))))
 					}
 				}
 			})
@@ -144,9 +145,9 @@ extension RSSSession {
 		return Promise { fulfill, reject in
 			self.performPersistentDataUpdateCommand(command) { result in
 				switch result {
-				case .fulfilled(let value):
+				case .success(let value):
 					fulfill(value)
-				case .rejected(let error):
+				case .failure(let error):
 					reject(error)
 				}
 			}
@@ -186,7 +187,7 @@ extension RSSSession {
 				dispatchGroup.enter()
 				self.performPersistentDataUpdateCommand(PushTags(items: items, category: category, excluded: excluded)) { result -> Void in
 					completionQueue.async {
-						if case let .rejected(error) = result {
+						if case let .failure(error) = result {
 							errors.append(error)
 						}
 						dispatchGroup.leave()
@@ -197,10 +198,10 @@ extension RSSSession {
 		DispatchQueue.global(qos: .utility).async {
 			dispatchGroup.wait()
 			if 0 != errors.count {
-				completionHandler(.rejected(RSSSessionError.pushTagsFailed(underlyingErrors: errors)))
+				completionHandler(.failure(.init(RSSSessionError.pushTagsFailed(underlyingErrors: errors))))
 				return
 			}
-			completionHandler(.fulfilled(()))
+			completionHandler(.success(()))
 		}
 	}
 	public func pushTags(completionHandler: @escaping CommandCompletionHandler<Void>) {
@@ -212,9 +213,9 @@ extension RSSSession {
 		return Promise { fulfill, reject in
 			self.pushTags { result in
 				switch result {
-				case .fulfilled(let value):
+				case .success(let value):
 					fulfill(value)
-				case .rejected(let error):
+				case .failure(let error):
 					reject(error)
 				}
 			}
@@ -235,7 +236,7 @@ extension RSSSession /** Authentication */ {
 	public func authenticate() -> Promise<Void> {
 		
 		guard !authenticated else {
-			return Promise()
+			return Promise {}
 		}
 		
 		if case .inProgress = self.authenticationState {
@@ -247,11 +248,11 @@ extension RSSSession /** Authentication */ {
 		
 		let commandPromise = self.promise(for: Authenticate(loginAndPassword: x$(loginAndPassword)))
 		
-		return commandPromise.then(execute: {
+		return commandPromise.then({
 			self.authToken = $0
 			self.authenticationState = .succeeded
-			return Promise()
-		}).recover(execute: { authenticationError -> Void in
+			return Promise {}
+		}).recover({ authenticationError -> Void in
 			self.authenticationState = .failed(error: authenticationError)
 			throw x$(authenticationError)
 		})

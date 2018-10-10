@@ -6,7 +6,7 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
-import PromiseKit
+import Promises
 import CoreData
 import Foundation
 
@@ -16,12 +16,10 @@ public class LoadInProgress : NSObject {
 	let loadDate: Date
 	
 	let promise: Promise<Void>
-	let reject: (Error) -> Void
-	
-	init(loadDate: Date, promise: Promise<Void>, reject: @escaping (Error) -> Void) {
+
+	init(loadDate: Date, promise: Promise<Void>) {
 		self.loadDate = loadDate
 		self.promise = promise
-		self.reject = reject
 		super.init()
 	}
 }
@@ -196,8 +194,8 @@ public class ContainerLoadController : NSObject {
 			return self.loadDate
 		}()
 		
-		let (promise, _, reject) = Promise<Void>.pending()
-		let loadInProgress = LoadInProgress(loadDate: loadDate, promise: promise, reject: reject)
+		let promise = Promise<Void>.pending()
+		let loadInProgress = LoadInProgress(loadDate: loadDate, promise: promise)
 		self.loadInProgress = loadInProgress
 		
 		let containerViewStateObjectID = typedObjectID(for: containerViewState)
@@ -209,15 +207,15 @@ public class ContainerLoadController : NSObject {
 		let excludedCategory = self.excludedCategory
 		let numberOfItemsToLoad = self.numberOfItemsToLoad
 		
-		let chainPromise = firstly { () -> Promise<()> in
+		let chainPromise = Promise({ () -> Promise<Void> in
 			
 			guard !x$(session.authenticated) else {
-				return Promise(value: ())
+				return Promise {}
 			}
 			
 			return x$(session.authenticate())
 			
-		}.then { (_) -> Promise<StreamContents.ResultType> in
+		}).then({ _ -> Promise<StreamContents.ResultType> in
 			
 			return Promise { fulfill, reject in
 				
@@ -227,81 +225,88 @@ public class ContainerLoadController : NSObject {
 					
 					let streamContents = session.streamContents(self.container, excludedCategory: excludedCategory, continuation: continuation, count: numberOfItemsToLoad, loadDate: x$(loadInProgress.loadDate))
 					
-					streamContents.then(on: zalgo) { streamContentsResult -> () in
+					streamContents.then(on: /*zalgo*/.main, { streamContentsResult -> () in
 						
 						x$(fulfill(streamContentsResult))
 						
-					}.catch { error in
+					}).catch({ error in
 						
 						x$(reject(error))
-					}
+					})
 				}
 			}
-			
-		}.then(on: zalgo) { streamContentsResult -> String? in
+		}).then(on: /*zalgo*/.main, { (streamContentsResult) -> Promise<String?> in
 			
 			guard loadInProgress.loadDate == x$(self.loadInProgress?.loadDate) else {
 				
 				/// Bail out if the load is no longer current
-				throw NSError.cancelledError()
+				throw CocoaError(.userCancelled)
 			}
-
-            let managedObjectContext = streamContentsResult.0
-
-            let container = containerObjectID.object(in: managedObjectContext)
-
-            if self.forceReload {
-                
-                self.forceReload = false
-                
-                assert(nil == containerViewStateObjectID)
-                
-                /// Remove old view state on force reload
-                if let oldContainerViewState = container.viewState(forViewPredicate: containerViewPredicate) {
-                    
-                    managedObjectContext.delete(oldContainerViewState)
-                }
-            }
-            
-			let containerViewState = containerViewStateObjectID?.object(in: managedObjectContext) ?? {
+			
+			let managedObjectContext = streamContentsResult.0
+			
+			return Promise<String?> { fulfill, reject in
 				
-				return ContainerViewState(context: managedObjectContext) … {
+				x$(fulfill)
+				
+				managedObjectContext.perform {
+
 					let container = containerObjectID.object(in: managedObjectContext)
-					$0.container = container
-					$0.containerViewPredicate = containerViewPredicate
-				}
-			}()
-			
-			let (existingItems, newItems) = streamContentsResult.1.items
-            _ = x$(newItems.first)
-			let items = existingItems + newItems
-			let lastLoadedItem = items.last
-			let newContinuation = streamContentsResult.1.continuation
-			
-			containerViewState … {
-				$0.continuation = newContinuation
-				$0.lastLoadedItemDate = lastLoadedItem?.date
-				if nil == continuation {
-					// Make it new load date if the load of first chunk succeeded.
-					$0.loadDate = loadInProgress.loadDate
-				}
-				else {
-					assert($0.loadDate == loadInProgress.loadDate)
+					
+					if self.forceReload {
+						
+						self.forceReload = false
+						
+						assert(nil == containerViewStateObjectID)
+						
+						/// Remove old view state on force reload
+						if let oldContainerViewState = container.viewState(forViewPredicate: containerViewPredicate) {
+							
+							managedObjectContext.delete(oldContainerViewState)
+						}
+					}
+					
+					func newContainerViewState() -> ContainerViewState {
+						return ContainerViewState(context: managedObjectContext) … {
+							let container = containerObjectID.object(in: managedObjectContext)
+							$0.container = container
+							$0.containerViewPredicate = containerViewPredicate
+						}
+					}
+					
+					let containerViewState = containerViewStateObjectID?.object(in: managedObjectContext) ?? newContainerViewState()
+					
+					let (existingItems, newItems) = streamContentsResult.1.items
+					_ = x$(newItems.first)
+					let items = existingItems + newItems
+					let lastLoadedItem = items.last
+					let newContinuation = streamContentsResult.1.continuation
+					
+					containerViewState … {
+						$0.continuation = newContinuation
+						$0.lastLoadedItemDate = lastLoadedItem?.date
+						if nil == continuation {
+							// Make it new load date if the load of first chunk succeeded.
+							$0.loadDate = loadInProgress.loadDate
+						}
+						else {
+							assert($0.loadDate == loadInProgress.loadDate)
+						}
+					}
+					
+					if let lastLoadedItem = lastLoadedItem {
+						assert(containerViewPredicate.evaluate(with: lastLoadedItem))
+					}
+					
+					x$(managedObjectContext.insertedObjects.map { $0.objectID })
+					x$(managedObjectContext.updatedObjects.map { $0.objectID })
+					
+					try! managedObjectContext.save()
+					
+					return fulfill(newContinuation)
 				}
 			}
-			
-			if let lastLoadedItem = lastLoadedItem {
-				assert(containerViewPredicate.evaluate(with: lastLoadedItem))
-			}
-			
-			x$(managedObjectContext.insertedObjects.map { $0.objectID })
-			x$(managedObjectContext.updatedObjects.map { $0.objectID })
-			
-			try! managedObjectContext.save()
-			
-			return newContinuation
-			
-		}.then { newContinuation -> Void in
+		}).then({ newContinuation -> Void in
 			
 			assert(self.loadDate == loadInProgress.loadDate)
 			
@@ -309,7 +314,7 @@ public class ContainerLoadController : NSObject {
 				self.loadCompleted = true
 			}
 			
-		}.always { () -> Void in
+		}).always({ () -> Void in
 			
 			guard loadInProgress.loadDate == x$(self.loadInProgress?.loadDate) else {
 				return
@@ -317,11 +322,11 @@ public class ContainerLoadController : NSObject {
 			
 			self.loadInProgress = nil
 			
-		}.then { (_) in
+		}).then({ (_) in
 			
 			x$(completionHandler(nil))
 			
-		}.catch { error -> Void in
+		}).catch({ error -> Void in
 			
 			x$(error)
 			
@@ -332,12 +337,12 @@ public class ContainerLoadController : NSObject {
 			}
 			
 			completionHandler(error)
-		}
-		
-		_ = when(resolved: loadInProgress.promise, chainPromise).value
+		})
+
+		_ = all(loadInProgress.promise, chainPromise)
 		
 		return {
-			loadInProgress.reject(x$(NSError.cancelledError()))
+			loadInProgress.promise.reject(x$(CocoaError(.userCancelled)))
 		}
 	}
 	
