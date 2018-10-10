@@ -10,7 +10,6 @@ import RSSReaderData
 import func GEUIKit.openSettingsApp
 import protocol GEFoundation.RecoverableError
 import struct GEFoundation.RecoveryOption
-import PromiseKit
 import UIKit
 import CoreData
 

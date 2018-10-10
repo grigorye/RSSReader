@@ -7,7 +7,8 @@
 //
 
 import RSSReaderData
-import PromiseKit
+import class UIKit.UIScrollView
+import class UIKit.UIView
 import CoreData
 import Foundation
 
