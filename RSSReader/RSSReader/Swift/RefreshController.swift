@@ -7,7 +7,7 @@
 //
 
 import RSSReaderData
-import PromiseKit
+import Promises
 import Foundation
 
 func rootFolder() -> Folder? {
@@ -46,8 +46,8 @@ class RefreshController: NSObject {
 			default:
 				self.refreshingSubscriptionsError = error
 				#if false
-					let title = NSLocalizedString("Refresh Failed", comment: "Title for alert on failed refresh")
-					self.present(error, customTitle: title)
+				let title = NSLocalizedString("Refresh Failed", comment: "Title for alert on failed refresh")
+				self.present(error, customTitle: title)
 				#endif
 			}
 			complete(self.refreshingSubscriptionsError)
@@ -59,17 +59,17 @@ class RefreshController: NSObject {
 		}
 		
 		let foldersController = self.foldersController
-
+		
 		refreshingSubscriptions = true
-		firstly(execute: {
+		Promise({
 			return rssSession.authenticate()
-		}).then(execute: {
+		}).then({
 			return foldersController.updateFolders(via: rssSession)
-		}).always(execute: {
+		}).always({
 			self.refreshingSubscriptions = false
-		}).then(execute: {
+		}).then({
 			complete(nil)
-		}).catch(execute: {
+		}).catch({
 			completeWithError($0)
 			return
 		})

@@ -8,7 +8,7 @@
 
 import RSSReaderData
 import GEUIKit
-import PromiseKit
+import Promises
 import UIKit
 import CoreData
 
@@ -405,13 +405,13 @@ extension ItemsViewController {
 		for i in items {
 			i.markedAsRead = true
 		}
-		firstly { () -> Promise<Void> in
+		Promise({ [container = container] in
 			rssSession.markAllAsRead(container)
-		}.then { (_) -> Void in
+		}).then({
 			self.track(.markedAllAsRead)
-		}.catch { error in
+		}).catch({ error in
 			self.present(error)
-		}
+		})
 	}
 	@IBAction private func scrollToEnd(_ sender: AnyObject?) {
 		let numberOfRows = tableView.numberOfRows(inSection: 0)
