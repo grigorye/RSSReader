@@ -7,6 +7,7 @@
 //
 
 @testable import RSSReaderData
+import Promises
 import XCTest
 import CoreData
 
@@ -37,11 +38,11 @@ class RSSSessionTests : DataEnabledTestCase {
 		x$(self)
 		let authenticateDidComplete = self.expectation(description: "authenticateDidComplete")
 		defaults.forceStoreRemoval = true
-		firstly(execute: {
+		Promise({ [rssSession] in
 			return rssSession.authenticate()
-		}).then(execute: {
+		}).then({
 			authenticateDidComplete.fulfill()
-		}).catch(execute: { error in
+		}).catch({ error in
 			authenticateDidComplete.fulfill()
 			XCTFail("error: \(error)")
 		})
@@ -57,11 +58,11 @@ class RSSSessionTests : DataEnabledTestCase {
 		x$(mainQueueManagedObjectContext.persistentStoreCoordinator)
 		
 		let pullTagsComplete = self.expectation(description: "pullTagsComplete")
-		firstly(execute: {
+		Promise({ [rssSession] in
 			return rssSession.pullTags()
-		}).then(execute: {
+		}).then({
 			pullTagsComplete.fulfill()
-		}).catch(execute: { error in
+		}).catch({ error in
 			XCTFail("error: \(error)")
 		})
 		self.waitForExpectations(timeout: 5) { error in
@@ -73,11 +74,11 @@ class RSSSessionTests : DataEnabledTestCase {
 		
 		x$(mainQueueManagedObjectContext.persistentStoreCoordinator)
 		let pullTagsComplete = self.expectation(description: "pullTagsComplete")
-		firstly(execute: {
+		Promise({ [rssSession] in
 			return rssSession.pullTags()
-		}).then(execute: {
+		}).then({
 			pullTagsComplete.fulfill()
-		}).catch(execute: { error in
+		}).catch({ error in
 			XCTFail("error: \(error)")
 		})
 		self.waitForExpectations(timeout: 1) { error in
