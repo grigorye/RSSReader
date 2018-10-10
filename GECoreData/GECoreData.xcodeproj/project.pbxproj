@@ -239,6 +239,7 @@
 					C49FF1531DBB98F100A86CC0 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 465NA5BW7E;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
 					C49FF15C1DBB98F100A86CC0 = {
