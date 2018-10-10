@@ -20,7 +20,7 @@ extension XCTestCase {
 		let badInstructionException = catchBadInstruction {
 			
 			/// Swizzled invokeTest
-			badInstructionAwareInvokeTest()
+            self.badInstructionAwareInvokeTest()
 		}
         [badInstructionException].compactMap { $0 }.forEach {
 			recordFailure(withDescription: "\($0)", inFile: #file, atLine: #line, expected: false)
