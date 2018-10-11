@@ -106,6 +106,8 @@
 		C4667F0D1CC80A050039C480 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667F0C1CC80A050039C480 /* Appearance.swift */; };
 		C4676E091A6A4D1F00AE8BC2 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4676E081A6A4D1F00AE8BC2 /* ItemTableViewCell.swift */; };
 		C46934DF1A5D291C00A0AEA2 /* ItemPageViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46934DE1A5D291C00A0AEA2 /* ItemPageViewControllerDataSource.swift */; };
+		C471F6F4216F1EA20031CF18 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C471F6F0216EB1230031CF18 /* Result.framework */; };
+		C471F6F5216F1EA20031CF18 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C471F6F0216EB1230031CF18 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C474F0A81D80E65F00CABEB9 /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474F0A71D80E65F00CABEB9 /* LogViewController.swift */; };
 		C474F1C01DB041F100F0E152 /* Loggy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C474F1BF1DB041F100F0E152 /* Loggy.framework */; };
 		C474F1C11DB041F100F0E152 /* Loggy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C474F1BF1DB041F100F0E152 /* Loggy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -133,8 +135,6 @@
 		C49FF1CA1DBBAA9000A86CC0 /* GECoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1C91DBBAA9000A86CC0 /* GECoreData.framework */; };
 		C49FF1CD1DBBAA9000A86CC0 /* GEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1CC1DBBAA9000A86CC0 /* GEFoundation.framework */; };
 		C4A1646A1CB8938C009D8B86 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4A1646C1CB8938C009D8B86 /* InfoPlist.strings */; };
-		C4AC9515212508DB0070A911 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4AC9514212508DB0070A911 /* Result.framework */; };
-		C4AC9516212508DB0070A911 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4AC9514212508DB0070A911 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4AD2ADB1A5DED8700B39AC9 /* ItemPageViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD2ADA1A5DED8700B39AC9 /* ItemPageViewControllerDelegate.swift */; };
 		C4B0DC241FD241AE005E587C /* JGProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B0DC231FD241AE005E587C /* JGProgressHUD.framework */; };
 		C4B0DC251FD241AE005E587C /* JGProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4B0DC231FD241AE005E587C /* JGProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -303,7 +303,7 @@
 				C40B8DD61FBE23B50030E9F7 /* Watchdog.framework in Embed Frameworks */,
 				C408F1B51CE7520700DB943F /* FBMemoryProfiler.framework in Embed Frameworks */,
 				C422F3EA203094DB007D7D6A /* FTLinearActivityIndicator.framework in Embed Frameworks */,
-				C4AC9516212508DB0070A911 /* Result.framework in Embed Frameworks */,
+				C471F6F5216F1EA20031CF18 /* Result.framework in Embed Frameworks */,
 				C48354111FBFC29E00466BD6 /* GoogleToolboxForMac.framework in Embed Frameworks */,
 				C4B0DC251FD241AE005E587C /* JGProgressHUD.framework in Embed Frameworks */,
 				A103369D1FE606670096330F /* FPSCounter.framework in Embed Frameworks */,
@@ -413,6 +413,7 @@
 		C4667F0C1CC80A050039C480 /* Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Appearance.swift; path = Swift/Appearance.swift; sourceTree = "<group>"; };
 		C4676E081A6A4D1F00AE8BC2 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemTableViewCell.swift; path = Swift/ItemTableViewCell.swift; sourceTree = "<group>"; };
 		C46934DE1A5D291C00A0AEA2 /* ItemPageViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemPageViewControllerDataSource.swift; path = Swift/ItemPageViewControllerDataSource.swift; sourceTree = "<group>"; };
+		C471F6F0216EB1230031CF18 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C474F0A71D80E65F00CABEB9 /* LogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogViewController.swift; path = Swift/LogViewController.swift; sourceTree = "<group>"; };
 		C474F1BF1DB041F100F0E152 /* Loggy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Loggy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C474F1CC1DB0657800F0E152 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = main.swift; path = Swift/main.swift; sourceTree = "<group>"; };
@@ -432,7 +433,6 @@
 		C49FF1C91DBBAA9000A86CC0 /* GECoreData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GECoreData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C49FF1CC1DBBAA9000A86CC0 /* GEFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GEFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4A164671CB89076009D8B86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
-		C4AC9514212508DB0070A911 /* Result.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4AD2ADA1A5DED8700B39AC9 /* ItemPageViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemPageViewControllerDelegate.swift; path = Swift/ItemPageViewControllerDelegate.swift; sourceTree = "<group>"; };
 		C4B0DC231FD241AE005E587C /* JGProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JGProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4B0DC281FD25022005E587C /* R.generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = "RSSReader-rswift/R.generated.swift"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -500,7 +500,7 @@
 				C422F3E9203094DB007D7D6A /* FTLinearActivityIndicator.framework in Frameworks */,
 				C49FF1CA1DBBAA9000A86CC0 /* GECoreData.framework in Frameworks */,
 				C424B8F11C6FC5C8008AD647 /* RSSReaderData.framework in Frameworks */,
-				C4AC9515212508DB0070A911 /* Result.framework in Frameworks */,
+				C471F6F4216F1EA20031CF18 /* Result.framework in Frameworks */,
 				C4BE5AAE1DA864FA00E1734F /* RSSReaderAppConfig.framework in Frameworks */,
 				C4198D9C2044BA3700BE29E8 /* FBLPromises.framework in Frameworks */,
 				C408F1B41CE7520700DB943F /* FBMemoryProfiler.framework in Frameworks */,
@@ -529,6 +529,7 @@
 		C424B8F91C6FC5E1008AD647 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C471F6F0216EB1230031CF18 /* Result.framework */,
 				C4198D9B2044BA3700BE29E8 /* FBLPromises.framework */,
 				C4198D982044B94900BE29E8 /* Promises.framework */,
 				C422F3E8203094DB007D7D6A /* FTLinearActivityIndicator.framework */,
@@ -729,7 +730,6 @@
 		C4CDD3941A5350B40087DD05 = {
 			isa = PBXGroup;
 			children = (
-				C4AC9514212508DB0070A911 /* Result.framework */,
 				C4366F3E1FFF133400B82613 /* README.md */,
 				C4CDD39F1A5350B40087DD05 /* RSSReader */,
 				C4CDD3B71A5350B50087DD05 /* RSSReaderTests */,
