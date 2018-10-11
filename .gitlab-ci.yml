@@ -5,7 +5,3 @@ build_project:
   stage: build
   script:
     - xcodebuild -sdk iphonesimulator -workspace RSSReader.xcworkspace -scheme AllTests-iOS -destination 'platform=iOS Simulator,name=iPhone X,OS=11.2' -enableCodeCoverage YES test CODE_SIGNING_REQUIRED=NO | xcpretty
-  tags:
-    - ios_9-2
-    - xcode_9-2
-    - osx_10-13
