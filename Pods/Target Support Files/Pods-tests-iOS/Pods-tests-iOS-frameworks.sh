@@ -143,12 +143,12 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/CwlCatchException-iOS/CwlCatchException.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/CwlPreconditionTesting-iOS/CwlPreconditionTesting.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CwlCatchException/CwlCatchException.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CwlPreconditionTesting/CwlPreconditionTesting.framework"
 fi
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/CwlCatchException-iOS/CwlCatchException.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/CwlPreconditionTesting-iOS/CwlPreconditionTesting.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CwlCatchException/CwlCatchException.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CwlPreconditionTesting/CwlPreconditionTesting.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait
