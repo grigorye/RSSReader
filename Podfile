@@ -44,19 +44,18 @@ target "tests-iOS" do
   unitTestDeps
 end
 
-target "tests-macOS" do
-  platform :osx, '10.11'
-  unitTestDeps
-end
+#target "tests-macOS" do
+#  platform :osx, '10.11'
+#  unitTestDeps
+#end
 
-target "macOS" do
-  platform :osx, '10.11'
-end
+#target "macOS" do
+#  platform :osx, '10.11'
+#end
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |configuration|
-      puts target
       # http://www.mokacoding.com/blog/cocoapods-and-custom-build-configurations/
       if target.name == 'FBAllocationTracker'
         configuration.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] = '$(inherited) ALLOCATION_TRACKER_ENABLED'
