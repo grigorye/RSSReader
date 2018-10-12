@@ -39,7 +39,8 @@
       </FileRef>
    </Group>
    <FileRef
-      location = "group:Podfile">
+      location = "group:Podfile"
+      assignedFileDataType = "public.ruby-script">
    </FileRef>
    <Group
       location = "container:"
