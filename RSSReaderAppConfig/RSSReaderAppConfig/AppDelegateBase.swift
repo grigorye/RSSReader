@@ -60,35 +60,37 @@ open class AppDelegateBase : UIResponder, UIApplicationDelegate {
 	public override init() {
 		_ = AppDelegateBase.initializeOnce
 		super.init()
-		var scope = Activity(label: "Basic Initialization").enter(); defer { scope.leave() }
-		let defaultsPlistURL = Bundle.main.url(forResource: "Settings", withExtension: "bundle")!.appendingPathComponent("Root.plist")
-		try! loadDefaultsFromSettingsPlistAtURL(defaultsPlistURL)
-        
-        initializeDebug()
-        
-		let fileManager = FileManager()
-		let libraryDirectoryURL = fileManager.urls(for: .libraryDirectory, in: .userDomainMask).last!
-		let libraryDirectory = libraryDirectoryURL.path
-        x$(libraryDirectory)
+		Activity.label("Basic Initialization") {
+			let defaultsPlistURL = Bundle.main.url(forResource: "Settings", withExtension: "bundle")!.appendingPathComponent("Root.plist")
+			try! loadDefaultsFromSettingsPlistAtURL(defaultsPlistURL)
+			
+			initializeDebug()
+			
+			let fileManager = FileManager()
+			let libraryDirectoryURL = fileManager.urls(for: .libraryDirectory, in: .userDomainMask).last!
+			let libraryDirectory = libraryDirectoryURL.path
+			x$(libraryDirectory)
+		}
 	}
 	// MARK: -
 	static private let initializeOnce: Ignored = {
-		var scope = Activity(label: "Initializing Analytics").enter(); defer { scope.leave() }
-		#if DEBUG
-			_ = nslogRedirectorInitializer
-		#endif
-		#if WATCHDOG_ENABLED
-			_ = watchdogInitializer
-		#endif
-		x$(buildAge)
-		_ = coreDataDiagnosticsInitializer
-		if x$(analyticsShouldBeEnabled) {
-			_ = crashlyticsInitializer
-			_ = appseeInitializer
-			_ = uxcamInitializer
-			_ = flurryInitializer
-			_ = mixpanelInitializer
+		return Activity.label("Initializing Analytics") {
+			#if DEBUG
+				_ = nslogRedirectorInitializer
+			#endif
+			#if WATCHDOG_ENABLED
+				_ = watchdogInitializer
+			#endif
+			x$(buildAge)
+			_ = coreDataDiagnosticsInitializer
+			if x$(analyticsShouldBeEnabled) {
+				_ = crashlyticsInitializer
+				_ = appseeInitializer
+				_ = uxcamInitializer
+				_ = flurryInitializer
+				_ = mixpanelInitializer
+			}
+			return Ignored()
 		}
-		return Ignored()
 	}()
 }

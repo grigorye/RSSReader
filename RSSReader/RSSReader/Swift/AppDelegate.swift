@@ -18,57 +18,47 @@ class AppDelegate : AppDelegateBase {
 	
 	func loadPersistentStoresInteractively(completion: @escaping (Error?) -> ()) {
 		
-		var scope = Activity(label: "Loading Persistent Stores").enter()
-		
-		loadPersistentStores { error in
-			
-			if let loadPersistentStoresError = error {
-				
-				trackError(x$(loadPersistentStoresError))
-				
-				DispatchQueue.main.async {
+		Activity.label("Scheduling load of persistent stores") {
+			loadPersistentStores { error in
+				if let loadPersistentStoresError = error {
+					trackError(x$(loadPersistentStoresError))
 					
-					x$(loadPersistentStoresError)
-					self.loadPersistentStoresAfterRemovalInteractively(completion: completion)
-					scope.leave()
+					DispatchQueue.main.async {
+						x$(loadPersistentStoresError)
+						self.loadPersistentStoresAfterRemovalInteractively(completion: completion)
+					}
+					return
 				}
-				
-				return
 			}
-			
-			scope.leave()
 		}
 	}
 	
 	func loadPersistentStoresAfterRemovalInteractively(completion: @escaping (Error?) -> ()) {
 		
 		do {
-			var scope = Activity(label: "Erasing persistent stores as part of recovery").enter(); defer { scope.leave() }
-			
-			try erasePersistentStores()
-			
+			try Activity.label("Erasing persistent stores as part of recovery") {
+				try erasePersistentStores()
+			}
 		} catch {
 			
 			completion(error)
 			return
 		}
 		
-		var scope = Activity(label: "Loading persistent stores after erasing").enter()
-		
-		loadPersistentStores { error in
+		Activity(named: "Loading persistent stores after erasing").execute { done in
 			
-			DispatchQueue.main.async {
-				
-				defer { scope.leave() }
-				
-				if let loadPersistentStoresError = error {
+			loadPersistentStores { error in
+				DispatchQueue.main.async {
+					defer { done() }
 					
-					x$(loadPersistentStoresError)
-					presentErrorMessage(NSLocalizedString("Something went wrong. Offline data might be unavailable. Please re-install the application to avoid further problems.", comment: ""))
-					return
+					if let loadPersistentStoresError = error {
+						x$(loadPersistentStoresError)
+						presentErrorMessage(NSLocalizedString("Something went wrong. Offline data might be unavailable. Please re-install the application to avoid further problems.", comment: ""))
+						return
+					}
+					
+					presentErrorMessage(NSLocalizedString("Something went wrong. Offline data has been erased.", comment: ""))
 				}
-				
-				presentErrorMessage(NSLocalizedString("Something went wrong. Offline data has been erased.", comment: ""))
 			}
 		}
 	}
@@ -89,19 +79,19 @@ class AppDelegate : AppDelegateBase {
 	
 	override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
 		
-		defer { launchingScope.leave() }
+		defer { launchingCompleted() }
 		
-		var scope = Activity(label: "Finishing Launching").enter(); defer { scope.leave() }
-		
-		guard super.application(application, didFinishLaunchingWithOptions: launchOptions) else {
+		return Activity.label("Finishing Launching") {
 			
-			return false
+			guard super.application(application, didFinishLaunchingWithOptions: launchOptions) else {
+				return false
+			}
+			
+			_ = mainScene
+			_ = rssSession
+
+			return true
 		}
-		
-		_ = mainScene
-		_ = rssSession
-		
-		return true
 	}
 	
 	// MARK: -

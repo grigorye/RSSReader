@@ -15,9 +15,6 @@ extension TypedUserDefaults {
 	@NSManaged var stateRestorationIndicatorEnabled: Bool
 }
 
-private var activity = Activity(label: "State Restoration")
-var activityScope: Activity.Scope!
-
 private let currentRestorationFormatVersion: Int32 = 2
 
 private let stateRestorationHud = JGProgressHUD(style: .light) … {
@@ -40,12 +37,12 @@ extension AppDelegate {
 	
 	func application(_ application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
 		
-		activityScope = activity.enter()
-		scheduledForDidDecodeRestorableState.append {
-			
-			activityScope.leave()
+		Activity(named: "State Restoration").execute { done in
+			scheduledForDidDecodeRestorableState.append {
+				done()
+			}
 		}
-		
+
 		x$(self)
 		
 		let restorationFormatVersion = coder.decodeInt32(forKey: Restorable.restorationFormatVersion.rawValue)

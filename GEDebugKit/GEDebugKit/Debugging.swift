@@ -28,12 +28,13 @@ private var retainedObjects: [AnyObject] = []
 
 private func initializeAllocationTracking() {
     
-	var scope = Activity(label: "Initializing Allocation Tracking").enter(); defer { scope.leave() }
-    guard let allocationTrackerManager = x$(FBAllocationTrackerManager.shared()) else {
-        return
-    }
-    allocationTrackerManager.startTrackingAllocations()
-    allocationTrackerManager.enableGenerations()
+	Activity.label("Initializing Allocation Tracking") {
+		guard let allocationTrackerManager = x$(FBAllocationTrackerManager.shared()) else {
+			return
+		}
+		allocationTrackerManager.startTrackingAllocations()
+		allocationTrackerManager.enableGenerations()
+	}
 }
 
 public func configureAllocationTracking() {

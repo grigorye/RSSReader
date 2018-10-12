@@ -11,11 +11,18 @@ import var GETracing.loggers
 import Loggy
 import UIKit.UIApplication
 
-var launchingScope = Activity(label: "Launching").enter()
-
 extension TypedUserDefaults {
 	@NSManaged var resetDefaults: Bool
 }
+
+var launchingCompleted: (() -> Void)!
+
+Activity(named: "Launching").execute { done in
+	launchingCompleted = {
+		done()
+	}
+}
+	
 if defaults.resetDefaults {
 	UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
 }
