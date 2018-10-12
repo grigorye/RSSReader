@@ -73,7 +73,7 @@ extension LogStatementEncoder {
         }
     }
 
-    #if swift(>=4.1.50)
+    #if swift(>=4.1.50) && DEBUG
 
     @available(macOS 10.14, iOS 12.0, watchOS 5.0, tvOS 12.0, *)
     mutating func send(format: String, to log: OSLog, for type: OSSignpostType, name: StaticString, id: OSSignpostID, fromAddress ra: UnsafeRawPointer, containingBinary dso: UnsafeRawPointer) {
@@ -255,7 +255,7 @@ extension OSLog {
 
 }
 
-#if swift(>=4.1.50)
+#if swift(>=4.1.50) && DEBUG
 
 // MARK: - Signposts
 

@@ -15,7 +15,7 @@
 
 #include <os/log.h>
 
-#if __has_include(<os/signpost.h>)
+#if __has_include(<os/signpost.h>) && DEBUG
 #define LOGGY_HAS_OS_SIGNPOST 1
 #include <os/signpost.h>
 #else
