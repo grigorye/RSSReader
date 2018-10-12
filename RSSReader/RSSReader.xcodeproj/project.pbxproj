@@ -164,6 +164,7 @@
 		C4EB27EE1DFA328900BF0843 /* ModuleExports-GEFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27ED1DFA328900BF0843 /* ModuleExports-GEFoundation.swift */; };
 		C4EB28091DFA399E00BF0843 /* ModuleExports-GECoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB28081DFA399E00BF0843 /* ModuleExports-GECoreData.swift */; };
 		C4EB280B1DFA547500BF0843 /* ItemTableViewFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4EB280A1DFA547500BF0843 /* ItemTableViewFooter.xib */; };
+		C4F070EA2170217400ECC6AE /* LoggyExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F070E92170217400ECC6AE /* LoggyExtensions.swift */; };
 		C4F1118B1CB84F66005C5A0F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4F1118D1CB84F66005C5A0F /* LaunchScreen.xib */; };
 		C4F1118E1CB84F6D005C5A0F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4F111901CB84F6D005C5A0F /* Main.storyboard */; };
 		C4F575D01A797C7B00F12F20 /* AddToFavoritesActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F575CF1A797C7B00F12F20 /* AddToFavoritesActivity.swift */; };
@@ -470,6 +471,7 @@
 		C4EB27ED1DFA328900BF0843 /* ModuleExports-GEFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GEFoundation.swift"; path = "../GEFoundation/GEFoundation/ModuleExports-GEFoundation.swift"; sourceTree = SOURCE_ROOT; };
 		C4EB28081DFA399E00BF0843 /* ModuleExports-GECoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GECoreData.swift"; path = "../GECoreData/GECoreData/ModuleExports-GECoreData.swift"; sourceTree = SOURCE_ROOT; };
 		C4EB280A1DFA547500BF0843 /* ItemTableViewFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ItemTableViewFooter.xib; path = Resources/ItemTableViewFooter.xib; sourceTree = "<group>"; };
+		C4F070E92170217400ECC6AE /* LoggyExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoggyExtensions.swift; path = Swift/LoggyExtensions.swift; sourceTree = "<group>"; };
 		C4F1118C1CB84F66005C5A0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		C4F1118F1CB84F6D005C5A0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C4F111911CB84FE1005C5A0F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -648,6 +650,7 @@
 				C441F1781DB24A1D0060E692 /* MainScene.swift */,
 				C4366F3F1FFF9F2D00B82613 /* Formatters.swift */,
 				C4366F411FFF9F6700B82613 /* GlobalRSSObjects.swift */,
+				C4F070E92170217400ECC6AE /* LoggyExtensions.swift */,
 			);
 			name = Globals;
 			sourceTree = "<group>";
@@ -1148,6 +1151,7 @@
 				C46934DF1A5D291C00A0AEA2 /* ItemPageViewControllerDataSource.swift in Sources */,
 				C436575F1F08987300B904A2 /* RefreshingStateTracker.swift in Sources */,
 				C4F7DC3B1D97E93200275E4F /* ItemTableViewDelegate.swift in Sources */,
+				C4F070EA2170217400ECC6AE /* LoggyExtensions.swift in Sources */,
 				C45BC3EA1A8003F40008A5D1 /* HistoryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
