@@ -44,6 +44,12 @@ func bundleURLFromSharedObjectName(_ objectName: String) -> URL? {
 }
 
 extension Bundle {
+	class var current: Bundle {
+		return Bundle(for: Thread.callStackReturnAddresses[1].pointerValue!)!
+	}
+}
+
+extension Bundle {
 	
 	public convenience init?(for symbolAddr: UnsafeRawPointer) {
 		

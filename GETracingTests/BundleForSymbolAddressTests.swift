@@ -63,4 +63,8 @@ class BundleForSymbolAddressTests : XCTestCase {
 			nil
 		)
 	}
+	
+	func testCurrent() {
+		XCTAssertEqual(Bundle.current, Bundle(for: type(of: self)))
+	}
 }
