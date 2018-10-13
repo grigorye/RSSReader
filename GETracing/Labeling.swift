@@ -8,31 +8,11 @@
 
 import Foundation
 
-func descriptionImp<T>(of value: T) -> String {
-	if dumpInTraceEnabled {
-		var s = ""
-		dump(value, to: &s)
-		return s
-	}
-	return description(of: value)
-}
-
-public func description<T>(of value: T) -> String {
-	var s = ""
-	debugPrint(value, terminator: "", to: &s)
-	return s
-}
-
 public func L<T>(file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer = #dsohandle, _ valueClosure: @autoclosure () -> T) -> String {
 	// swiftlint:disable:previous identifier_name
 	let value = valueClosure()
 	let location = SourceLocation(file: file, line: line, column: column, function: function, moduleReference: .dso(dso))
 	let sourceExtractedInfo = GETracing.sourceExtractedInfo(for: location, traceFunctionName: "L")
-	let labeled = "\(sourceExtractedInfo.label): \(descriptionImp(of: value))"
+	let labeled = "\(sourceExtractedInfo.label): \(description(forTraced: value))"
 	return labeled
-}
-
-var dumpInTraceEnabledEnforced: Bool?
-private var dumpInTraceEnabled: Bool {
-	return dumpInTraceEnabledEnforced ?? UserDefaults.standard.bool(forKey: "dumpInTraceEnabled")
 }

@@ -18,7 +18,7 @@ return try flatMap(transform)
 #endif
 
 func debugPrinted(_ s: String) -> String {
-	return "\"\(s)\""
+	return String(reflecting: s)
 }
 
 class TraceAndLabelTestsBase: XCTestCase {
