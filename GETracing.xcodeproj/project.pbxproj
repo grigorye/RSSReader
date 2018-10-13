@@ -15,6 +15,7 @@
 		A2C5893EF85B785AE9D9CCE7 /* Labeling.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4E5DB861DBEAFB900170422 /* Labeling.swift */; };
 		B0685BADD896C42E61A4E11A /* BundleForSymbolAddressTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C48CAA171DBBE59000D6F40E /* BundleForSymbolAddressTests.swift */; };
 		B9F7485EC19F879024ABA8C7 /* Logging.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4E5DB881DBEB01A00170422 /* Logging.swift */; };
+		C4165D58217269B200A9293B /* Descriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4165D57217269B200A9293B /* Descriptions.swift */; };
 		C418186B1B6A65B100872EB3 /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C41818601B6A65B100872EB3 /* GETracing.framework */; };
 		C41F40501DBE94E3006EA6CD /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41F404F1DBE94E3006EA6CD /* Configuration.swift */; };
 		C429F7A920775C5D00305E22 /* DefaultLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C429F7A820775C5D00305E22 /* DefaultLog.swift */; };
@@ -102,6 +103,7 @@
 
 /* Begin PBXFileReference section */
 		C4049DE6201FC1A100A296C3 /* GETracing.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GETracing.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		C4165D57217269B200A9293B /* Descriptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Descriptions.swift; sourceTree = "<group>"; };
 		C41818601B6A65B100872EB3 /* GETracing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GETracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C41818651B6A65B100872EB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C418186A1B6A65B100872EB3 /* GETracingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GETracingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -177,6 +179,7 @@
 				C4E5DB861DBEAFB900170422 /* Labeling.swift */,
 				C4E5DB841DBEAD8900170422 /* Conveniences.swift */,
 				C4E5DB881DBEB01A00170422 /* Logging.swift */,
+				C4165D57217269B200A9293B /* Descriptions.swift */,
 				C49FF0E91DBAF94200A86CC0 /* SourceLabels.swift */,
 				C49FF0E51DBAF7D800A86CC0 /* NestedBrackets.swift */,
 				C4CB38851CDBA78D00562665 /* SourceLocation.swift */,
@@ -329,6 +332,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4165D58217269B200A9293B /* Descriptions.swift in Sources */,
 				C4FEBB1D1BF960A300A5709B /* BundleForSymbolAddress.swift in Sources */,
 				C4E5DB891DBEB01A00170422 /* Logging.swift in Sources */,
 				C49FF0E61DBAF7D800A86CC0 /* NestedBrackets.swift in Sources */,
