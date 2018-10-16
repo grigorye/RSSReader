@@ -85,7 +85,7 @@ public class FPSCounter: NSObject {
     // MARK: - Tracking
 
     private var runloop: RunLoop?
-    private var mode: RunLoopMode?
+    private var mode: RunLoop.Mode?
 
     /// Start tracking FPS updates.
     ///
@@ -99,7 +99,7 @@ public class FPSCounter: NSObject {
     ///   - runloop: The runloop to start tracking in
     ///   - mode:    The mode(s) to track in the runloop
     ///
-    @objc public func startTracking(inRunLoop runloop: RunLoop = .main, mode: RunLoopMode = .commonModes) {
+    @objc public func startTracking(inRunLoop runloop: RunLoop = .main, mode: RunLoop.Mode = .common) {
         self.stopTracking()
 
         self.runloop = runloop

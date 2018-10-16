@@ -5,13 +5,15 @@ def commonDeps
   pod 'Crashlytics'
   pod 'Fabric'
   pod 'Result'
-  pod 'PromisesSwift'#, :git => 'https://github.com/google/promises'
+  pod 'PromisesSwift'
   pod 'GoogleToolboxForMac/NSString+HTML'
+  pod 'GETracing', :git => 'https://github.com/grigorye/GETracing'
+  pod 'GEFoundation', :git => 'https://github.com/grigorye/GEFoundation'
 end
 
 # This "target" is used to produce the corresponding .xcconfig that is explicitly #included in the app .xcconfig.
 target "iOS" do
-  platform :ios, '9.0'
+  platform :ios, '10.0'
   commonDeps
   pod 'R.swift'
   pod 'Watchdog'
@@ -53,6 +55,10 @@ end
 #  platform :osx, '10.11'
 #end
 
+swift_versions = {
+  'R.swift.Library' => '4.0'
+}
+
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |configuration|
@@ -60,12 +66,14 @@ post_install do |installer|
       if target.name == 'FBAllocationTracker'
         configuration.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] = '$(inherited) ALLOCATION_TRACKER_ENABLED'
       end
-      if target.name == 'FTLinearActivityIndicator'
-        configuration.build_settings['SWIFT_VERSION'] = '4.2'
-        puts configuration
-      else
-        configuration.build_settings['SWIFT_VERSION'] = '4.0'
+
+      if !configuration.build_settings.key?('SWIFT_VERSION')
+        custom_swift_version = swift_versions[target.name]
+        target_swift_version = (custom_swift_version != nil) ? custom_swift_version : '4.2'
+        puts "Setting SWIFT_VERSION for #{target.name}/#{configuration}: #{target_swift_version}"
+        configuration.build_settings['SWIFT_VERSION'] = target_swift_version
       end
+
       configuration.build_settings['CONFIGURATION_BUILD_DIR'] = '${PODS_CONFIGURATION_BUILD_DIR}'
       #configuration.build_settings['CODE_SIGNING_REQUIRED'] = 'NO'
       #configuration.build_settings['PROVISIONING_PROFILE_SPECIFIER'] = 'T6B3YCL946/'

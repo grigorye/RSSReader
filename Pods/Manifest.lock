@@ -9,8 +9,11 @@ PODS:
     - FBAllocationTracker (~> 0.1)
     - FBRetainCycleDetector (~> 0.1)
   - FBRetainCycleDetector (0.1.4)
-  - FPSCounter (2.1.1)
+  - FPSCounter (3.0.0)
   - FTLinearActivityIndicator (1.1.1)
+  - GEFoundation (0.1):
+    - GETracing (~> 0.1)
+  - GETracing (0.1)
   - GoogleToolboxForMac/Core (2.1.4):
     - GoogleToolboxForMac/Defines (= 2.1.4)
   - GoogleToolboxForMac/Defines (2.1.4)
@@ -35,6 +38,8 @@ DEPENDENCIES:
   - FBMemoryProfiler
   - FPSCounter
   - FTLinearActivityIndicator
+  - GEFoundation (from `https://github.com/grigorye/GEFoundation`)
+  - GETracing (from `https://github.com/grigorye/GETracing`)
   - "GoogleToolboxForMac/NSString+HTML"
   - JGProgressHUD
   - PromisesSwift
@@ -65,6 +70,10 @@ EXTERNAL SOURCES:
     :git: https://github.com/mattgallagher/CwlCatchException.git
   CwlPreconditionTesting:
     :git: https://github.com/mattgallagher/CwlPreconditionTesting.git
+  GEFoundation:
+    :git: https://github.com/grigorye/GEFoundation
+  GETracing:
+    :git: https://github.com/grigorye/GETracing
 
 CHECKOUT OPTIONS:
   CwlCatchException:
@@ -73,6 +82,12 @@ CHECKOUT OPTIONS:
   CwlPreconditionTesting:
     :commit: 0537b29b1cf6fd2a84535989031486a191a1a9a2
     :git: https://github.com/mattgallagher/CwlPreconditionTesting.git
+  GEFoundation:
+    :commit: 3c134bf3f81ff7979a741daeca27a9a15be95918
+    :git: https://github.com/grigorye/GEFoundation
+  GETracing:
+    :commit: fadef96e1d9a51caa310a285d99b4d8d6e031bf2
+    :git: https://github.com/grigorye/GETracing
 
 SPEC CHECKSUMS:
   Crashlytics: 55e24fc23989680285a21cb1146578d9d18e432c
@@ -82,8 +97,10 @@ SPEC CHECKSUMS:
   FBAllocationTracker: dfdca3f71aceca6a85e95e3c6ec76a9785eba0f1
   FBMemoryProfiler: 623fc5f8a61f7d02ec75c87e3b97c90f621d8b02
   FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
-  FPSCounter: 7154791d4246e6a715a716f51f624c86c8ac249e
+  FPSCounter: 38f076ebc06a21d71b4e9e178e172ed766233189
   FTLinearActivityIndicator: 323ad4e4743a159483566730f93c73d0b8e6a641
+  GEFoundation: f3b830c3822176a975dc3eead04507e45a283337
+  GETracing: a59b549139e56b4d46f9674460cee7b7b7602615
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
   PromisesObjC: a3a4263d8a9260214267e0b3788d0f83466ad449
@@ -93,6 +110,6 @@ SPEC CHECKSUMS:
   Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
   Watchdog: 370d2c2a58c9bede0e3f9b8cc26bf297745c31c2
 
-PODFILE CHECKSUM: fe2cc40be7a8e1cde2c203171ca44b9b4b8c115e
+PODFILE CHECKSUM: 0378a2ccbc5e0d67ac4e16b106858d54fe873f69
 
 COCOAPODS: 1.5.3
