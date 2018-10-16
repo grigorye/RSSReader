@@ -65,6 +65,7 @@
 		C4C69596200D7023006C2A8D /* CwlPreconditionTesting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4C69598200D7023006C2A8D /* CwlPreconditionTesting.framework */; };
 		C4C695C9200D7B43006C2A8D /* DataEnabledTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C695C8200D7B42006C2A8D /* DataEnabledTestCase.swift */; };
 		C4C695D5200D814D006C2A8D /* GEXCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4C695D6200D814D006C2A8D /* GEXCTest.framework */; };
+		C4CB25D72176A2B500C62427 /* SharedImports.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4165D652176983E00A9293B /* SharedImports.swift */; };
 		C4CB791F1E32D1F200F89794 /* RSSReaderDataTests-Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4CB791E1E32D1F200F89794 /* RSSReaderDataTests-Secrets.plist */; };
 		C4DB6A701D2602B400E8516D /* RSSSessionTaskResultImporting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DB6A6F1D2602B400E8516D /* RSSSessionTaskResultImporting.swift */; };
 		C4DB6A721D26035F00E8516D /* RSSSessionTaskGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DB6A711D26035F00E8516D /* RSSSessionTaskGeneration.swift */; };
@@ -256,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				C48F79A01C008D0D00CC6F74 /* RSSReaderData */,
+				C4165D652176983E00A9293B /* SharedImports.swift */,
 				C48F79AC1C008D0E00CC6F74 /* RSSReaderDataTests */,
 				C424B8E41C6FC531008AD647 /* Frameworks */,
 				C48F799F1C008D0D00CC6F74 /* Products */,
@@ -293,7 +295,6 @@
 				C48F79D11C008E1D00CC6F74 /* ContainerViewState.swift */,
 				C48F79D31C008E3900CC6F74 /* MarkingAsRead.swift */,
 				C4290F891EA3223300CAD5AE /* Globals.swift */,
-				C4165D652176983E00A9293B /* SharedImports.swift */,
 				C48F79D51C008E6A00CC6F74 /* RSSReader.xcdatamodeld */,
 				C48F79A31C008D0D00CC6F74 /* Info.plist */,
 				C4EB28021DFA387500BF0843 /* ModuleExports-GECoreData.swift */,
@@ -466,6 +467,7 @@
 				C48F79C41C008DD300CC6F74 /* RSSSessionTests.swift in Sources */,
 				C483683D200C16C700A0F25E /* DataGenerator.swift in Sources */,
 				C4B4374F1C00F00700A2F3BE /* CoreDataFetchRequestsTests.swift in Sources */,
+				C4CB25D72176A2B500C62427 /* SharedImports.swift in Sources */,
 				C4C695C9200D7B43006C2A8D /* DataEnabledTestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
