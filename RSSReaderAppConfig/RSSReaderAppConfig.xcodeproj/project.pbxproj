@@ -14,18 +14,17 @@
 		15729882428F8DA1DE62523B /* UserMessages.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5ADF1DAA5AE000E1734F /* UserMessages.swift */; };
 		182D244F8A052355A872A0A1 /* Watchdog.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C428E49F1FBC097E00DA2FFA /* Watchdog.swift */; };
 		1DEBFD142759EBED4175BDFC /* UITableView+SnappingHeaderToTop.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5AA21DA85E7500E1734F /* UITableView+SnappingHeaderToTop.swift */; };
-		1F6D24DE164A07023EBE37C1 /* ModuleExports-GEFoundation.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EB27FC1DFA35A400BF0843 /* ModuleExports-GEFoundation.swift */; };
 		421BDE1C766C90F0F91920E9 /* UXCam.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5A981DA85DE000E1734F /* UXCam.swift */; };
 		43AAE2FBCAAF4C2321AC54CE /* ContainedViewControllersAwareNavigationControllerDelegate.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5AA51DA85E7500E1734F /* ContainedViewControllersAwareNavigationControllerDelegate.swift */; };
 		457383AE60C0BF4FEE7C301A /* Crashlytics.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5A9E1DA85E0600E1734F /* Crashlytics.swift */; };
 		68496E9B95B36342D3BD4F3D /* Analytics.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5A961DA85DE000E1734F /* Analytics.swift */; };
 		80C0C6F46C318C9454C662FA /* Optimizely.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C45C54A01E2E58630039D16C /* Optimizely.swift */; };
 		89B0CFF65D4A2C8E737569A8 /* UITabBarController+CVKHiearachySearcher.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5AB01DA8664600E1734F /* UITabBarController+CVKHiearachySearcher.swift */; };
-		98C03DBAF5C9641D4BAAA0D4 /* ModuleExports-GETracing.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EB27FB1DFA35A400BF0843 /* ModuleExports-GETracing.swift */; };
 		A1839A111FD83D78003313D6 /* GEDebugKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1839A121FD83D78003313D6 /* GEDebugKit.framework */; };
 		A438E6F95BE621182DE8A725 /* Firebase.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4134F501FCA605000178BE5 /* Firebase.swift */; };
 		BF8C7FE5D7057D472126A7A5 /* Appsee.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5A971DA85DE000E1734F /* Appsee.swift */; };
 		C4134F511FCA605000178BE5 /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4134F501FCA605000178BE5 /* Firebase.swift */; };
+		C4165D642176981700A9293B /* SharedImports.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4165D632176981700A9293B /* SharedImports.swift */; };
 		C422F3E52030933C007D7D6A /* NetworkActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C422F3E42030933C007D7D6A /* NetworkActivityIndicator.swift */; };
 		C422F3E62030948C007D7D6A /* FTLinearActivityIndicator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C422F3E72030948C007D7D6A /* FTLinearActivityIndicator.framework */; };
 		C428E49D1FBC07B200DA2FFA /* Watchdog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C428E49E1FBC07B200DA2FFA /* Watchdog.framework */; };
@@ -57,8 +56,6 @@
 		C4BE5AE21DAA5AE000E1734F /* Readability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BE5AE01DAA5AE000E1734F /* Readability.swift */; };
 		C4DA682D1E550A4B004615A0 /* Loggy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4DA682C1E550A4B004615A0 /* Loggy.framework */; };
 		C4DA68321E58BDC4004615A0 /* Rswift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4DA68311E58BDC4004615A0 /* Rswift.framework */; };
-		C4EB27FD1DFA35A400BF0843 /* ModuleExports-GETracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27FB1DFA35A400BF0843 /* ModuleExports-GETracing.swift */; };
-		C4EB27FE1DFA35A400BF0843 /* ModuleExports-GEFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27FC1DFA35A400BF0843 /* ModuleExports-GEFoundation.swift */; };
 		C4F738971DBD73820092F1D8 /* GEUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1BA1DBBA6F000A86CC0 /* GEUIKit.framework */; };
 		C72553CA1A7D0378C08B8A97 /* FileLogger.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5AA01DA85E2400E1734F /* FileLogger.swift */; };
 		D4A450011113EACD1CF67423 /* Readability.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4BE5AE01DAA5AE000E1734F /* Readability.swift */; };
@@ -85,7 +82,6 @@
 			files = (
 				43AAE2FBCAAF4C2321AC54CE /* ContainedViewControllersAwareNavigationControllerDelegate.swift in Embed Sources */,
 				68496E9B95B36342D3BD4F3D /* Analytics.swift in Embed Sources */,
-				1F6D24DE164A07023EBE37C1 /* ModuleExports-GEFoundation.swift in Embed Sources */,
 				89B0CFF65D4A2C8E737569A8 /* UITabBarController+CVKHiearachySearcher.swift in Embed Sources */,
 				182D244F8A052355A872A0A1 /* Watchdog.swift in Embed Sources */,
 				0EF20F61886A53420B48F22C /* UINavigationItem+MultipleButtonItemsCollections.swift in Embed Sources */,
@@ -96,7 +92,6 @@
 				A438E6F95BE621182DE8A725 /* Firebase.swift in Embed Sources */,
 				BF8C7FE5D7057D472126A7A5 /* Appsee.swift in Embed Sources */,
 				C72553CA1A7D0378C08B8A97 /* FileLogger.swift in Embed Sources */,
-				98C03DBAF5C9641D4BAAA0D4 /* ModuleExports-GETracing.swift in Embed Sources */,
 				1DEBFD142759EBED4175BDFC /* UITableView+SnappingHeaderToTop.swift in Embed Sources */,
 				15729882428F8DA1DE62523B /* UserMessages.swift in Embed Sources */,
 				021A162132BB96C0F87761D2 /* AppDelegateBase.swift in Embed Sources */,
@@ -124,6 +119,7 @@
 /* Begin PBXFileReference section */
 		A1839A121FD83D78003313D6 /* GEDebugKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GEDebugKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4134F501FCA605000178BE5 /* Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
+		C4165D632176981700A9293B /* SharedImports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedImports.swift; sourceTree = "<group>"; };
 		C422F3E42030933C007D7D6A /* NetworkActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkActivityIndicator.swift; sourceTree = "<group>"; };
 		C422F3E72030948C007D7D6A /* FTLinearActivityIndicator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FTLinearActivityIndicator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C428E49E1FBC07B200DA2FFA /* Watchdog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Watchdog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -162,8 +158,6 @@
 		C4CB79181E3173AE00F89794 /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4DA682C1E550A4B004615A0 /* Loggy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Loggy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4DA68311E58BDC4004615A0 /* Rswift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Rswift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C4EB27FB1DFA35A400BF0843 /* ModuleExports-GETracing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GETracing.swift"; path = "../GETracing/GETracing/ModuleExports-GETracing.swift"; sourceTree = SOURCE_ROOT; };
-		C4EB27FC1DFA35A400BF0843 /* ModuleExports-GEFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GEFoundation.swift"; path = "../GEFoundation/GEFoundation/ModuleExports-GEFoundation.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,8 +235,7 @@
 				C4BE5AA51DA85E7500E1734F /* ContainedViewControllersAwareNavigationControllerDelegate.swift */,
 				C4290F8B1EA3226B00CAD5AE /* Globals.swift */,
 				C4BE5A801DA85DA100E1734F /* Info.plist */,
-				C4EB27FB1DFA35A400BF0843 /* ModuleExports-GETracing.swift */,
-				C4EB27FC1DFA35A400BF0843 /* ModuleExports-GEFoundation.swift */,
+				C4165D632176981700A9293B /* SharedImports.swift */,
 			);
 			path = RSSReaderAppConfig;
 			sourceTree = "<group>";
@@ -400,7 +393,6 @@
 			files = (
 				C4BE5AA91DA85E7500E1734F /* ContainedViewControllersAwareNavigationControllerDelegate.swift in Sources */,
 				C4BE5A9A1DA85DE000E1734F /* Analytics.swift in Sources */,
-				C4EB27FE1DFA35A400BF0843 /* ModuleExports-GEFoundation.swift in Sources */,
 				C4BE5AB11DA8664600E1734F /* UITabBarController+CVKHiearachySearcher.swift in Sources */,
 				C4B562A82056FFCD000CACB1 /* CoreDataDiagnostics.swift in Sources */,
 				C428E4A01FBC097E00DA2FFA /* Watchdog.swift in Sources */,
@@ -411,9 +403,9 @@
 				C492B5301E2E3E2D0072D2D9 /* Mixpanel.swift in Sources */,
 				C4290F8C1EA3226B00CAD5AE /* Globals.swift in Sources */,
 				C4134F511FCA605000178BE5 /* Firebase.swift in Sources */,
+				C4165D642176981700A9293B /* SharedImports.swift in Sources */,
 				C4BE5A9B1DA85DE000E1734F /* Appsee.swift in Sources */,
 				C4BE5AA11DA85E2400E1734F /* FileLogger.swift in Sources */,
-				C4EB27FD1DFA35A400BF0843 /* ModuleExports-GETracing.swift in Sources */,
 				C4BE5AA61DA85E7500E1734F /* UITableView+SnappingHeaderToTop.swift in Sources */,
 				C4BE5AE11DAA5AE000E1734F /* UserMessages.swift in Sources */,
 				C4BE5AB51DA868AD00E1734F /* AppDelegateBase.swift in Sources */,
