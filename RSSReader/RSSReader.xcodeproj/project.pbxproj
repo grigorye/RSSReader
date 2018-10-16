@@ -44,7 +44,6 @@
 		6395BA1F975F2015F784BB7F /* GlobalStateRestoration.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C441F1861DB25D090060E692 /* GlobalStateRestoration.swift */; };
 		67DF5A6D90A87AFE6EF58A73 /* RefreshingStateTracker.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C436575E1F08987300B904A2 /* RefreshingStateTracker.swift */; };
 		6D4BEBBA4F09C947FE229D81 /* OpenWebPageActivity.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4F575D51A7988DB00F12F20 /* OpenWebPageActivity.swift */; };
-		73FC8F4C90E9A2CA8BE1B799 /* ModuleExports-GEFoundation.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EB27ED1DFA328900BF0843 /* ModuleExports-GEFoundation.swift */; };
 		7F00E9367E844674AFAB9154 /* GlobalFoldersController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C441F17A1DB254260060E692 /* GlobalFoldersController.swift */; };
 		811E2DDB4CEA58EEE342DA37 /* TableViewContainerCell.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C40A24FE1A672B2100B5D959 /* TableViewContainerCell.swift */; };
 		85CA9195EBA2E00010C1896D /* FoldersViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C42802681A5B47EA002474E1 /* FoldersViewController.swift */; };
@@ -63,7 +62,6 @@
 		A1D942712013734700A6D61E /* TestsBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D942702013734700A6D61E /* TestsBase.swift */; };
 		A1D9427320139BC200A6D61E /* TestsGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D9427220139BC200A6D61E /* TestsGlobals.swift */; };
 		A1F22F8C2017E6BD00035FA9 /* populated.xcappdata in Resources */ = {isa = PBXBuildFile; fileRef = A1F22F882017DC3D00035FA9 /* populated.xcappdata */; };
-		BAEC85E1895F2F19FB75D39E /* ModuleExports-GETracing.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EB27EB1DFA31ED00BF0843 /* ModuleExports-GETracing.swift */; };
 		BF5ABF05A86DD1EA29D04E05 /* UserVisibleErrors.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C43657581F05D0DD00B904A2 /* UserVisibleErrors.swift */; };
 		C408F1B11CE7520700DB943F /* FBAllocationTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C408F1B01CE7520700DB943F /* FBAllocationTracker.framework */; };
 		C408F1B21CE7520700DB943F /* FBAllocationTracker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C408F1B01CE7520700DB943F /* FBAllocationTracker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -74,6 +72,7 @@
 		C40A24FF1A672B2100B5D959 /* TableViewContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A24FE1A672B2100B5D959 /* TableViewContainerCell.swift */; };
 		C40B8DD51FBE23B50030E9F7 /* Watchdog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C40B8DD41FBE23B50030E9F7 /* Watchdog.framework */; };
 		C40B8DD61FBE23B50030E9F7 /* Watchdog.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C40B8DD41FBE23B50030E9F7 /* Watchdog.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C4165D622173E8CD00A9293B /* SharedImports.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4165D612173E8CD00A9293B /* SharedImports.swift */; };
 		C41707CB1A56076A00AED81C /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41707CA1A56076A00AED81C /* Globals.swift */; };
 		C4198D992044B94900BE29E8 /* Promises.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4198D982044B94900BE29E8 /* Promises.framework */; };
 		C4198D9A2044B94900BE29E8 /* Promises.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4198D982044B94900BE29E8 /* Promises.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -160,8 +159,6 @@
 		C4EA5C381CE929D300E395FE /* ContainerTableViewSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4EA5C371CE929D300E395FE /* ContainerTableViewSectionHeader.xib */; };
 		C4EA5C3C1CE930B200E395FE /* ContainerTableViewSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5C3B1CE930B200E395FE /* ContainerTableViewSectionHeaderView.swift */; };
 		C4EA6B301CB895EF00FCDAA5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4EA6B2E1CB895EF00FCDAA5 /* Localizable.strings */; };
-		C4EB27EC1DFA31ED00BF0843 /* ModuleExports-GETracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27EB1DFA31ED00BF0843 /* ModuleExports-GETracing.swift */; };
-		C4EB27EE1DFA328900BF0843 /* ModuleExports-GEFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB27ED1DFA328900BF0843 /* ModuleExports-GEFoundation.swift */; };
 		C4EB28091DFA399E00BF0843 /* ModuleExports-GECoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB28081DFA399E00BF0843 /* ModuleExports-GECoreData.swift */; };
 		C4EB280B1DFA547500BF0843 /* ItemTableViewFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4EB280A1DFA547500BF0843 /* ItemTableViewFooter.xib */; };
 		C4F070EA2170217400ECC6AE /* LoggyExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F070E92170217400ECC6AE /* LoggyExtensions.swift */; };
@@ -273,12 +270,10 @@
 				503483190D64F91BBA0CC871 /* ItemPageViewController.swift in Embed Sources */,
 				E8B011AD9F8ECAA24E871221 /* AppDelegate.swift in Embed Sources */,
 				2FAEF7E2358E768B8295CAF5 /* MainNavigationController.swift in Embed Sources */,
-				BAEC85E1895F2F19FB75D39E /* ModuleExports-GETracing.swift in Embed Sources */,
 				A15CC5A3E1EA9E792BD12D90 /* ItemTableViewDataSource.swift in Embed Sources */,
 				7F00E9367E844674AFAB9154 /* GlobalFoldersController.swift in Embed Sources */,
 				31888176F0C75C76AFD21D2F /* MarkAllAsReadActivity.swift in Embed Sources */,
 				5DD98A7C6BFFD769DFAC4757 /* AddToFavoritesActivity.swift in Embed Sources */,
-				73FC8F4C90E9A2CA8BE1B799 /* ModuleExports-GEFoundation.swift in Embed Sources */,
 				60C87DF97C56922CA6B3EFA3 /* ItemInListView.swift in Embed Sources */,
 				87A7197CFC86472B924DCABE /* DefaultRSSSessionBinding.swift in Embed Sources */,
 				C5D58A3AC2819A60832BCC4A /* Appearance.swift in Embed Sources */,
@@ -379,6 +374,7 @@
 		C40A24FE1A672B2100B5D959 /* TableViewContainerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = TableViewContainerCell.swift; path = Swift/TableViewContainerCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C40B8DD41FBE23B50030E9F7 /* Watchdog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Watchdog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C40C6C051A74AB5E00FAFA17 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		C4165D612173E8CD00A9293B /* SharedImports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SharedImports.swift; path = Swift/SharedImports.swift; sourceTree = "<group>"; };
 		C41707CA1A56076A00AED81C /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Globals.swift; path = Swift/Globals.swift; sourceTree = "<group>"; };
 		C4198D982044B94900BE29E8 /* Promises.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Promises.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4198D9B2044BA3700BE29E8 /* FBLPromises.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBLPromises.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -467,8 +463,6 @@
 		C4EA5C371CE929D300E395FE /* ContainerTableViewSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ContainerTableViewSectionHeader.xib; path = Resources/ContainerTableViewSectionHeader.xib; sourceTree = "<group>"; };
 		C4EA5C3B1CE930B200E395FE /* ContainerTableViewSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerTableViewSectionHeaderView.swift; path = Swift/ContainerTableViewSectionHeaderView.swift; sourceTree = "<group>"; };
 		C4EA6B311CB895F500FCDAA5 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = Localizable/ru.lproj/Localizable.strings; sourceTree = "<group>"; };
-		C4EB27EB1DFA31ED00BF0843 /* ModuleExports-GETracing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GETracing.swift"; path = "../GETracing/GETracing/ModuleExports-GETracing.swift"; sourceTree = SOURCE_ROOT; };
-		C4EB27ED1DFA328900BF0843 /* ModuleExports-GEFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GEFoundation.swift"; path = "../GEFoundation/GEFoundation/ModuleExports-GEFoundation.swift"; sourceTree = SOURCE_ROOT; };
 		C4EB28081DFA399E00BF0843 /* ModuleExports-GECoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GECoreData.swift"; path = "../GECoreData/GECoreData/ModuleExports-GECoreData.swift"; sourceTree = SOURCE_ROOT; };
 		C4EB280A1DFA547500BF0843 /* ItemTableViewFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ItemTableViewFooter.xib; path = Resources/ItemTableViewFooter.xib; sourceTree = "<group>"; };
 		C4F070E92170217400ECC6AE /* LoggyExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoggyExtensions.swift; path = Swift/LoggyExtensions.swift; sourceTree = "<group>"; };
@@ -609,8 +603,6 @@
 				C4A164671CB89076009D8B86 /* Info.plist */,
 				C49A79FB1E2FFDFC00DE3702 /* GoogleService-Info.plist */,
 				C4EB28081DFA399E00BF0843 /* ModuleExports-GECoreData.swift */,
-				C4EB27ED1DFA328900BF0843 /* ModuleExports-GEFoundation.swift */,
-				C4EB27EB1DFA31ED00BF0843 /* ModuleExports-GETracing.swift */,
 				C4EA6B2E1CB895EF00FCDAA5 /* Localizable.strings */,
 				C4A1646C1CB8938C009D8B86 /* InfoPlist.strings */,
 			);
@@ -651,6 +643,7 @@
 				C4366F3F1FFF9F2D00B82613 /* Formatters.swift */,
 				C4366F411FFF9F6700B82613 /* GlobalRSSObjects.swift */,
 				C4F070E92170217400ECC6AE /* LoggyExtensions.swift */,
+				C4165D612173E8CD00A9293B /* SharedImports.swift */,
 			);
 			name = Globals;
 			sourceTree = "<group>";
@@ -1137,16 +1130,15 @@
 				C48C5F971A87344000A1EA12 /* ItemPageViewController.swift in Sources */,
 				C4CDD3A31A5350B40087DD05 /* AppDelegate.swift in Sources */,
 				C4C422181A75E355008803A7 /* MainNavigationController.swift in Sources */,
-				C4EB27EC1DFA31ED00BF0843 /* ModuleExports-GETracing.swift in Sources */,
 				C4F7DC3D1D97E9A800275E4F /* ItemTableViewDataSource.swift in Sources */,
 				C441F17B1DB254260060E692 /* GlobalFoldersController.swift in Sources */,
 				C4C780141A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift in Sources */,
 				C4F575D01A797C7B00F12F20 /* AddToFavoritesActivity.swift in Sources */,
-				C4EB27EE1DFA328900BF0843 /* ModuleExports-GEFoundation.swift in Sources */,
 				C4C0941B1D99ED4A00D27162 /* ItemInListView.swift in Sources */,
 				C441F17F1DB258550060E692 /* DefaultRSSSessionBinding.swift in Sources */,
 				C4667F0D1CC80A050039C480 /* Appearance.swift in Sources */,
 				C4F575D61A7988DB00F12F20 /* OpenWebPageActivity.swift in Sources */,
+				C4165D622173E8CD00A9293B /* SharedImports.swift in Sources */,
 				C4B0DC291FD2506C005E587C /* R.generated.swift in Sources */,
 				C46934DF1A5D291C00A0AEA2 /* ItemPageViewControllerDataSource.swift in Sources */,
 				C436575F1F08987300B904A2 /* RefreshingStateTracker.swift in Sources */,
