@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		01D24592AB2BBEAD74629537 /* GenerationViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A1FB04161FDB0569008D14E4 /* GenerationViewController.swift */; };
 		0A770554FEF128FABC4BA115 /* Debugging.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A1839A151FD88064003313D6 /* Debugging.swift */; };
-		1C3139633BE6FD5B5C5B1FA2 /* ModuleExports-GETracing.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A1FB04201FDC4F15008D14E4 /* ModuleExports-GETracing.swift */; };
 		2DB44FC4430FAEB3ACE95052 /* ObjectsViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A1CE70891FDE2A290080D832 /* ObjectsViewController.swift */; };
-		6366A5860472F2FD07FB2B98 /* ModuleExports-GEFoundation.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A1839A1B1FD8866B003313D6 /* ModuleExports-GEFoundation.swift */; };
 		6D8E8F0A2FA646C8FCAD47E0 /* WeakReference.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A1FB041C1FDC4AAA008D14E4 /* WeakReference.swift */; };
 		76C17F7E636110CDC9D89E53 /* DebugViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A176B2241FD69C6500E945E9 /* DebugViewController.swift */; };
 		7AD251205917F207A4D3B4C2 /* AliveObjects.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A1FB041E1FDC4E59008D14E4 /* AliveObjects.swift */; };
@@ -30,17 +28,16 @@
 		A176B2251FD69C6500E945E9 /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A176B2241FD69C6500E945E9 /* DebugViewController.swift */; };
 		A176B2271FD69CAC00E945E9 /* GEUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A176B2281FD69CAC00E945E9 /* GEUIKit.framework */; };
 		A1839A161FD88064003313D6 /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1839A151FD88064003313D6 /* Debugging.swift */; };
-		A1839A1C1FD8866B003313D6 /* ModuleExports-GEFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1839A1B1FD8866B003313D6 /* ModuleExports-GEFoundation.swift */; };
 		A18DB4351FD8214900254FF8 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18DB4341FD8214900254FF8 /* Defaults.swift */; };
 		A1CE70861FDE24890080D832 /* ObjectDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CE70851FDE24890080D832 /* ObjectDetailViewController.swift */; };
 		A1CE708A1FDE2A290080D832 /* ObjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CE70891FDE2A290080D832 /* ObjectsViewController.swift */; };
 		A1FB04171FDB0569008D14E4 /* GenerationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB04161FDB0569008D14E4 /* GenerationViewController.swift */; };
 		A1FB041D1FDC4AAA008D14E4 /* WeakReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB041C1FDC4AAA008D14E4 /* WeakReference.swift */; };
 		A1FB041F1FDC4E59008D14E4 /* AliveObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB041E1FDC4E59008D14E4 /* AliveObjects.swift */; };
-		A1FB04211FDC4F16008D14E4 /* ModuleExports-GETracing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB04201FDC4F15008D14E4 /* ModuleExports-GETracing.swift */; };
 		A249885D1077166099F0A334 /* FPSMonitoring.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A10336A61FE6C74E0096330F /* FPSMonitoring.swift */; };
 		B3BED5551EE3E26612BCA49F /* CwlDemangle.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A151CFE31FE7395E00165639 /* CwlDemangle.swift */; };
 		BD1434AC56AD447B4EA740D9 /* Shaking.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4E04985202FE56A00B1D2FD /* Shaking.swift */; };
+		C4165D602173E84400A9293B /* SharedImports.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4165D5F2173E84400A9293B /* SharedImports.swift */; };
 		C43189B81FDC9AE4003E571E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C43189B71FDC9AE4003E571E /* Images.xcassets */; };
 		C4E04986202FE56A00B1D2FD /* Shaking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E04985202FE56A00B1D2FD /* Shaking.swift */; };
 		D1D4F6347EA37969E78C078D /* GEDebugKitTests.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A176B2121FD5D95000E945E9 /* GEDebugKitTests.swift */; };
@@ -75,12 +72,10 @@
 			dstSubfolderSpec = 7;
 			files = (
 				76C17F7E636110CDC9D89E53 /* DebugViewController.swift in Embed Sources */,
-				6366A5860472F2FD07FB2B98 /* ModuleExports-GEFoundation.swift in Embed Sources */,
 				6D8E8F0A2FA646C8FCAD47E0 /* WeakReference.swift in Embed Sources */,
 				0A770554FEF128FABC4BA115 /* Debugging.swift in Embed Sources */,
 				A249885D1077166099F0A334 /* FPSMonitoring.swift in Embed Sources */,
 				848D158EEA460EA95D80FB8F /* ObjectDetailViewController.swift in Embed Sources */,
-				1C3139633BE6FD5B5C5B1FA2 /* ModuleExports-GETracing.swift in Embed Sources */,
 				2DB44FC4430FAEB3ACE95052 /* ObjectsViewController.swift in Embed Sources */,
 				7AD251205917F207A4D3B4C2 /* AliveObjects.swift in Embed Sources */,
 				9044B2C18D902751021AECB8 /* Defaults.swift in Embed Sources */,
@@ -111,14 +106,13 @@
 		A176B2241FD69C6500E945E9 /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
 		A176B2281FD69CAC00E945E9 /* GEUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GEUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1839A151FD88064003313D6 /* Debugging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debugging.swift; sourceTree = "<group>"; };
-		A1839A1B1FD8866B003313D6 /* ModuleExports-GEFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GEFoundation.swift"; path = "../GEFoundation/GEFoundation/ModuleExports-GEFoundation.swift"; sourceTree = "<group>"; };
 		A18DB4341FD8214900254FF8 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		A1CE70851FDE24890080D832 /* ObjectDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectDetailViewController.swift; sourceTree = "<group>"; };
 		A1CE70891FDE2A290080D832 /* ObjectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectsViewController.swift; sourceTree = "<group>"; };
 		A1FB04161FDB0569008D14E4 /* GenerationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerationViewController.swift; sourceTree = "<group>"; };
 		A1FB041C1FDC4AAA008D14E4 /* WeakReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakReference.swift; sourceTree = "<group>"; };
 		A1FB041E1FDC4E59008D14E4 /* AliveObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliveObjects.swift; sourceTree = "<group>"; };
-		A1FB04201FDC4F15008D14E4 /* ModuleExports-GETracing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GETracing.swift"; path = "../GETracing/GETracing/ModuleExports-GETracing.swift"; sourceTree = "<group>"; };
+		C4165D5F2173E84400A9293B /* SharedImports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedImports.swift; sourceTree = "<group>"; };
 		C43189B71FDC9AE4003E571E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C4E04985202FE56A00B1D2FD /* Shaking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shaking.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -185,6 +179,7 @@
 				A1FB041E1FDC4E59008D14E4 /* AliveObjects.swift */,
 				A1FB041C1FDC4AAA008D14E4 /* WeakReference.swift */,
 				A176B2081FD5D94F00E945E9 /* Info.plist */,
+				C4165D5F2173E84400A9293B /* SharedImports.swift */,
 			);
 			path = GEDebugKit;
 			sourceTree = "<group>";
@@ -206,8 +201,6 @@
 				A10336951FE5FF720096330F /* FBMemoryProfiler.framework */,
 				A10336911FE5FD3C0096330F /* FPSCounter.framework */,
 				A151CFE31FE7395E00165639 /* CwlDemangle.swift */,
-				A1FB04201FDC4F15008D14E4 /* ModuleExports-GETracing.swift */,
-				A1839A1B1FD8866B003313D6 /* ModuleExports-GEFoundation.swift */,
 				A176B2281FD69CAC00E945E9 /* GEUIKit.framework */,
 			);
 			name = Frameworks;
@@ -329,13 +322,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A176B2251FD69C6500E945E9 /* DebugViewController.swift in Sources */,
-				A1839A1C1FD8866B003313D6 /* ModuleExports-GEFoundation.swift in Sources */,
 				C4E04986202FE56A00B1D2FD /* Shaking.swift in Sources */,
 				A1FB041D1FDC4AAA008D14E4 /* WeakReference.swift in Sources */,
+				C4165D602173E84400A9293B /* SharedImports.swift in Sources */,
 				A1839A161FD88064003313D6 /* Debugging.swift in Sources */,
 				A10336A71FE6C74E0096330F /* FPSMonitoring.swift in Sources */,
 				A1CE70861FDE24890080D832 /* ObjectDetailViewController.swift in Sources */,
-				A1FB04211FDC4F16008D14E4 /* ModuleExports-GETracing.swift in Sources */,
 				A1CE708A1FDE2A290080D832 /* ObjectsViewController.swift in Sources */,
 				A1FB041F1FDC4E59008D14E4 /* AliveObjects.swift in Sources */,
 				A18DB4351FD8214900254FF8 /* Defaults.swift in Sources */,
