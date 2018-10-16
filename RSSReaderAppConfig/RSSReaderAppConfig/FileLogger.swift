@@ -41,9 +41,13 @@ func fileLogger(record: LogRecord) {
 	logFileHandle.write(data)
 }
 
-import var GETracing.loggers
+import var GETracing.logRecord
 
 let fileLoggerInitializer: Void = {
 	x$(logFileURL)
-	loggers += [fileLogger]
+	let oldLogRecord = logRecord
+	logRecord = {
+		oldLogRecord?($0)
+		fileLogger(record: $0)
+	}
 }()
