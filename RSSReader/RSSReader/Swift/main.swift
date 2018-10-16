@@ -7,7 +7,7 @@
 //
 
 import func GEFoundation.defaultLogger
-import var GETracing.loggers
+import var GETracing.logRecord
 import Loggy
 import UIKit.UIApplication
 
@@ -27,9 +27,7 @@ if defaults.resetDefaults {
 	UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
 }
 
-loggers += [
-	defaultLogger
-]
+logRecord = defaultLogger
 
 x$(CommandLine.arguments)
 
