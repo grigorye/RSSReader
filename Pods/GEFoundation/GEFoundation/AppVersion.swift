@@ -6,6 +6,7 @@
 //  Copyright © 2016 Grigory Entin. All rights reserved.
 //
 
+import GETracing
 import Foundation
 
 public let buildAge: TimeInterval = {

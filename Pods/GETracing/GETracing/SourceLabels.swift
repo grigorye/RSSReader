@@ -18,11 +18,20 @@ func sourceModuleNameFor(_ url: URL) -> String {
 	let parentURL = url.deletingLastPathComponent()
 	let parentDirName = parentURL.lastPathComponent
 	
-	guard !ignoredParentDirNames.contains(parentDirName) else {
+	if ignoredParentDirNames.contains(parentDirName) {
 		return sourceModuleNameFor(parentURL)
 	}
 	
-	return parentDirName
+	if parentDirName.hasSuffix("Tests") {
+		return parentDirName
+	}
+	
+	// Yep, make Foo the module name in Foo/Foo/Bar/Baz.swift
+	if parentDirName == url.lastPathComponent {
+		return parentDirName
+	}
+	
+	return sourceModuleNameFor(parentURL)
 }
 
 func sourceExtractedInfo(for location: SourceLocation, traceFunctionName: String) -> SourceExtractedInfo {
@@ -63,7 +72,7 @@ func sourceExtractedInfo(for location: SourceLocation, traceFunctionName: String
 		}
 		return (rawLines, playgroundName)
 	}()
-	let line = lines[location.line - 1]
+	let line = lines[location.line - 1] + lines[location.line...].joined(separator: "\n")
 	let adjustedColumn: Int = {
 		let columnIndex = line.index(line.startIndex, offsetBy: location.column - 1)
 		let prefix = line[..<columnIndex]

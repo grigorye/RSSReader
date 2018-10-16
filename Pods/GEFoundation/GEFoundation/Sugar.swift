@@ -13,7 +13,7 @@ import Foundation
 //
 
 infix operator ≈
-infix operator …: MultiplicationPrecedence
+infix operator …
 
 @discardableResult
 public func with<T: AnyObject>(_ obj: T, _ body: (T) throws -> Void) rethrows -> T {

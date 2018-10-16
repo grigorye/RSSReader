@@ -12,11 +12,11 @@ import os
 
 private var bundleLogAssoc: Void?
 
-@available(iOS 10.0, *)
+@available(iOS 10.0, macOS 10.12, *)
 extension Bundle {
 	public var log: OSLog {
 		return associatedObjectRegeneratedAsNecessary(obj: self, key: &bundleLogAssoc) {
-			OSLog(subsystem: self.bundleIdentifier!, category: "default")
+            return OSLog(subsystem: self.bundleIdentifier!, category: "default")
 		}
 	}
 }
@@ -69,7 +69,7 @@ public func defaultLoggedTextWithTimestampAndThread(for record: LogRecord) -> St
 
 public func defaultLoggedTextWithThread(for record: LogRecord) -> String {
 	let text = defaultLoggedText(for: record)
-	let threadDescription = Thread.isMainThread ? "-" : "\(DispatchQueue.global().label)"
+    let threadDescription = Thread.isMainThread ? "-" : (DispatchQueue.currentQueueLabel ?? "unknown")
 	let textWithThread = "\(locationPrefix)[\(threadDescription)] \(text)"
 	return textWithThread
 }
@@ -85,7 +85,7 @@ public func defaultLogger(record: LogRecord) {
 	case .none: ()
 	case .oslog:
 		let text = defaultLoggedText(for: record)
-		if #available(iOS 10.0, *), let location = record.location, case .dso(let dso) = location.moduleReference {
+		if #available(iOS 10.0, macOS 10.12, *), let location = record.location, case .dso(let dso) = location.moduleReference {
 			let bundle = Bundle(for: dso)!
 			rdar_os_log_object_with_type(dso, bundle.log, .default, text as NSString)
 		} else {

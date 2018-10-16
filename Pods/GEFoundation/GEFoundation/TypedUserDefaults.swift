@@ -6,6 +6,7 @@
 //  Copyright © 2015 Grigory Entin. All rights reserved.
 //
 
+import GETracing
 import Foundation
 
 typealias _Self = TypedUserDefaults

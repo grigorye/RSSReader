@@ -23,6 +23,8 @@ let logCString: LogCStringF = { messageBytes, length, banner in
 }
 
 public let nslogRedirectorInitializer: Void = {
-	NSSetLogCStringFunction(logCString)
+    if #available(macOS 10.12, *) {
+        NSSetLogCStringFunction(logCString)
+    }
 }()
 #endif

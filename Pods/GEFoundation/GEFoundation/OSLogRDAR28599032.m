@@ -21,6 +21,9 @@
 	} \
 })
 
+API_AVAILABLE(macos(10.12), ios(10.0), watchos(3.0), tvos(10.0))
+void rdar_os_log_object_with_type(void const *dso, os_log_t log, os_log_type_t type, id object);
+
 void rdar_os_log_object_with_type(void const *dso, os_log_t log, os_log_type_t type, id object) {
 	os_log_with_type_and_dso((void *)dso, log, type, "%{public}@", object);
 }

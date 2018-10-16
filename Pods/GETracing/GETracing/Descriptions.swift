@@ -14,7 +14,7 @@ public var tracedValueDescriptionGenerator: (Any) -> String = { value in
 		dump(value, to: &s)
 		return s
 	}
-	return "\(value)"
+	return String(reflecting: value)
 }
 
 func description(forTraced value: Any) -> String {

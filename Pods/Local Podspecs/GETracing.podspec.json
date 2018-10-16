@@ -1,0 +1,22 @@
+{
+  "name": "GETracing",
+  "version": "0.1",
+  "summary": "Seamless tracing for Swift.",
+  "description": "Trace bar in `x = foo(bar)` as `x = foo(x$(bar)).`",
+  "homepage": "https://github.com/grigorye/GETracing",
+  "license": "MIT",
+  "authors": {
+    "Grigory Entin": "grigory.entin@gmail.com"
+  },
+  "platforms": {
+    "ios": "10.0",
+    "osx": "10.10"
+  },
+  "source": {
+    "git": "https://github.com/grigorye/GETracing.git",
+    "tag": "0.1"
+  },
+  "source_files": "GETracing/*.swift",
+  "exclude_files": "GETracing/ModuleExports-*.swift",
+  "swift_version": "4.2"
+}
