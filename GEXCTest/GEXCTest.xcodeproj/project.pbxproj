@@ -101,6 +101,7 @@
 				C4C695C2200D78EA006C2A8D /* Frameworks */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		C4C695A6200D7836006C2A8D /* Products */ = {
 			isa = PBXGroup;
