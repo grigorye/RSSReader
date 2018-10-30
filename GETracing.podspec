@@ -107,7 +107,7 @@ Pod::Spec.new do |s|
   # s.resource  = "icon.png"
   # s.resources = "Resources/*.png"
 
-  # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
+  s.preserve_paths = "Tools/*"
 
 
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -135,5 +135,11 @@ Pod::Spec.new do |s|
   # s.dependency "JSONKit", "~> 1.4"
 
   s.swift_version = '4.2'
+
+  s.xcconfig = {
+    'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => 'GE_TRACE_ENABLED'
+  }
+
+  s.user_target_xcconfig = { 'GETRACING_TOOLS' => '$(GETRACING_POD_ROOT)/Tools' }
 
 end
