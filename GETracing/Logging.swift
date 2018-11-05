@@ -20,10 +20,25 @@ public struct SourceExtractedInfo {
 }
 
 public struct LogRecord {
-	public let message: String
+	public enum Message {
+		case multiline(Data)
+		case inline(Any)
+	}
+	public let message: Message
 	public let sourceExtractedInfo: SourceExtractedInfo?
 	public let date: Date
 	public let location: SourceLocation!
+}
+
+extension LogRecord.Message {
+	func formattedForOutput(prefixedWithLabel: Bool) -> String {
+		switch self {
+		case .inline(let value):
+			return " " + tracedValueDescriptionGenerator(value)
+		case .multiline(let data):
+			return "\n```\n" + String(data: data, encoding: .utf8)! + "\n```"
+		}
+	}
 }
 
 extension LogRecord {
@@ -40,17 +55,17 @@ public var logRecord: ((LogRecord) -> Void)? = {
 	defaultLog(record: $0)
 }
 
-public func log<T>(_ value: T, on date: Date, at location: SourceLocation, traceFunctionName: String) {
+func log(_ value: LoggedValue, on date: Date, at location: SourceLocation, traceFunctionName: String) {
 	guard let logRecord = logRecord else {
 		return
 	}
 	let sourceExtractedInfo = GETracing.sourceExtractedInfo(for: location, traceFunctionName: traceFunctionName)
-	let message = description(forTraced: value)
+	let message = value.logMessage()
 	let record = LogRecord(message: message, sourceExtractedInfo: sourceExtractedInfo, date: date, location: location)
 	logRecord(record)
 }
 
-public func logWithNoSourceOrLabel(_ message: String) {
+public func logWithNoSourceOrLabel(_ message: LogRecord.Message) {
 	guard let logRecord = logRecord else {
 		return
 	}

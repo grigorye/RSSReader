@@ -47,7 +47,7 @@ public var loggedMessageForRecord = { (record: LogRecord) in
 
 public func defaultLoggedMessage(for record: LogRecord) -> String {
 	guard let location = record.location else {
-		return "\(messagePrefix)\(record.message)"
+		return messagePrefix + record.message.formattedForOutput(prefixedWithLabel: false)
 	}
 	// Substitute something more humane-readable for #function of top level code of the playground, that is otherwise something like "__lldb_expr_xxx"
 	let function: String = {
@@ -59,12 +59,12 @@ public func defaultLoggedMessage(for record: LogRecord) -> String {
 		}
 		return "<top-level>"
 	}()
-
+	
 	let locationDescription = "\(record.playgroundName ?? location.fileURL.lastPathComponent):\(location.line)|\(function)"
 	guard let label = record.label else {
-		return "\(locationDescription)\(sep)\(messagePrefix)\(record.message)"
+		return "\(locationDescription)\(sep)\(messagePrefix)" + record.message.formattedForOutput(prefixedWithLabel: false)
 	}
-	return "\(locationDescription)\(sep)\(messagePrefix)\(label): \(record.message)"
+	return "\(locationDescription)\(sep)\(messagePrefix)\(label):" + record.message.formattedForOutput(prefixedWithLabel: true)
 }
 
 /// Returns thread description (vs location prefix/message) part for logging given record.
