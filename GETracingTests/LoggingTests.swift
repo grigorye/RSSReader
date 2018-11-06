@@ -20,6 +20,6 @@ class LoggingTests : TraceAndLabelTestsBase {
 	
 	func testLogWithNoSourceOrLabel() {
 		
-		logWithNoSourceOrLabel("foo")
+		logWithNoSourceOrLabel(.inline("foo"))
 	}
 }
