@@ -33,4 +33,11 @@ Pod::Spec.new do |s|
 
   s.user_target_xcconfig = { 'GETRACING_TOOLS' => '$(GETRACING_POD_ROOT)/Tools' }
 
+  s.test_spec 'Tests' do |test_spec|
+    test_spec.source_files = 'GETracingTests/**/*.swift'
+    test_spec.resource_bundles = {
+      'GETracingTests-Sources' => ['GETracingTests']
+    }
+  end
+
 end
