@@ -8,7 +8,7 @@
 
 import Foundation
 
-func sourceModuleNameFor(_ url: URL) -> String {
+func sourceModuleURLAndResourceNamePrefixFor(_ url: URL) -> (URL, String?) {
 	
 	let ignoredParentDirNames = [
 		"Sources",
@@ -19,19 +19,19 @@ func sourceModuleNameFor(_ url: URL) -> String {
 	let parentDirName = parentURL.lastPathComponent
 	
 	if ignoredParentDirNames.contains(parentDirName) {
-		return sourceModuleNameFor(parentURL)
+		return sourceModuleURLAndResourceNamePrefixFor(parentURL)
 	}
 	
 	if parentDirName.hasSuffix("Tests") {
-		return parentDirName
+		return (parentURL, parentDirName)
 	}
 	
 	// Yep, make Foo the module name in Foo/Foo/Bar/Baz.swift
 	if parentDirName == url.lastPathComponent {
-		return parentDirName
+		return (parentURL, nil)
 	}
 	
-	return sourceModuleNameFor(parentURL)
+	return sourceModuleURLAndResourceNamePrefixFor(parentURL)
 }
 
 func sourceExtractedInfo(for location: SourceLocation, traceFunctionName: String) -> SourceExtractedInfo {
@@ -41,9 +41,11 @@ func sourceExtractedInfo(for location: SourceLocation, traceFunctionName: String
 	}
 	let fileURL = location.fileURL
 	let fileName = fileURL.lastPathComponent
-	let resourceName = fileURL.deletingPathExtension().lastPathComponent
+	let fileURLPath = fileURL.deletingPathExtension() .path
+	let (sourceModuleURL, resourceNamePrefix) = sourceModuleURLAndResourceNamePrefixFor(fileURL)
+	let resourceName = [resourceNamePrefix, String(fileURLPath.dropFirst(sourceModuleURL.path.count + 1))].compactMap {$0}.joined(separator: "/")
 	let resourceType = fileURL.pathExtension
-	let sourceModuleName = sourceModuleNameFor(fileURL)
+	let sourceModuleName = sourceModuleURL.lastPathComponent
 	let file: String
 	switch location.moduleReference {
 	case let .dso(dso):
@@ -52,9 +54,13 @@ func sourceExtractedInfo(for location: SourceLocation, traceFunctionName: String
 			return SourceExtractedInfo(label: "\(resourceName).\(resourceType):?")
 		}
 		let bundleName = (bundle.bundlePath as NSString).lastPathComponent
-		let directory = ["Sources", sourceModuleName].joined(separator: "/")
-		guard let fileInBundle = bundle.path(forResource: resourceName, ofType: resourceType, inDirectory: directory) else {
-			// File missing in the bundle
+		guard let sourcesBundlePath = bundle.path(forResource: "\(sourceModuleName)-Sources", ofType: "bundle") else {
+			return SourceExtractedInfo(label: "\(bundleName)/\(fileName)[missing-sources-bundle]:\(descriptionForInLineLocation(location)):?")
+		}
+		guard let sourcesBundle = Bundle(path: sourcesBundlePath) else {
+			return SourceExtractedInfo(label: "\(bundleName)/\(fileName)[non-loadable-sources-bundle]:\(descriptionForInLineLocation(location)):?")
+		}
+		guard let fileInBundle = sourcesBundle.path(forResource: resourceName, ofType: resourceType) else {
 			return SourceExtractedInfo(label: "\(bundleName)/\(fileName)[missing]:\(descriptionForInLineLocation(location)):?")
 		}
 		file = fileInBundle

@@ -305,15 +305,17 @@ class LabelTests : TraceAndLabelTestsBase {
 		let bundleFilename = Bundle(for: cls).bundleURL.lastPathComponent
 		let cln = #column - 1
 		let l = L(file: sourceFile, s)
-		XCTAssertEqual(l, "\(bundleFilename)/\(sourceFilename)[missing]:.\(cln):?: \(debugPrinted(s))")
+		XCTAssertEqual(l, "\(bundleFilename)/\(sourceFilename)[missing-sources-bundle]:.\(cln):?: \(debugPrinted(s))")
 	}
 	func testLabelWithNoSource() {
 		let s = "foo"
 		var v = "foo"
-		let sourceFilename = URL(fileURLWithPath: #file).lastPathComponent
+		let fileURL = URL(fileURLWithPath: #file)
+		let sourceModuleName = fileURL.deletingLastPathComponent().lastPathComponent
+		let sourceFilename = fileURL.lastPathComponent
 		withUnsafePointer(to: &v) { p in
 			let l = L(dso: p, s)
-			XCTAssertEqual(l, "\(sourceFilename):?: \(debugPrinted(s))")
+			XCTAssertEqual(l, "\(sourceModuleName)/\(sourceFilename):?: \(debugPrinted(s))")
 		}
 	}
 	func testLabeledCompoundExpressions() {
