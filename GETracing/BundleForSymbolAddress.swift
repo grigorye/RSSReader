@@ -44,8 +44,18 @@ func bundleURLFromSharedObjectName(_ objectName: String) -> URL? {
 }
 
 extension Bundle {
-	class var current: Bundle {
-		return Bundle(for: Thread.callStackReturnAddresses[1].pointerValue!)!
+	
+	class var current: Bundle! {
+		guard let uintValue = nnil(Thread.callStackReturnAddresses[1].uintValue) else {
+			return nil
+		}
+		guard let pointer = nnil(UnsafeRawPointer(bitPattern: uintValue)) else {
+			return nil
+		}
+		guard let bundle = nnil(Bundle(for: pointer)) else {
+			return nil
+		}
+		return bundle
 	}
 }
 
