@@ -35,6 +35,7 @@
 		C4E5DB851DBEAD8900170422 /* Conveniences.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5DB841DBEAD8900170422 /* Conveniences.swift */; };
 		C4E5DB871DBEAFB900170422 /* Labeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5DB861DBEAFB900170422 /* Labeling.swift */; };
 		C4E5DB891DBEB01A00170422 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E5DB881DBEB01A00170422 /* Logging.swift */; };
+		C4F8C25821960F7C0043F35B /* Sugar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F8C25721960F7C0043F35B /* Sugar.swift */; };
 		C4FEBB1D1BF960A300A5709B /* BundleForSymbolAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FEBB1C1BF960A300A5709B /* BundleForSymbolAddress.swift */; };
 		D1FE325B8435F6D7C1399D19 /* NestedBrackets.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49FF0E51DBAF7D800A86CC0 /* NestedBrackets.swift */; };
 		D8D156E9B2C78D958459B0D9 /* Configuration.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41F404F1DBE94E3006EA6CD /* Configuration.swift */; };
@@ -127,6 +128,7 @@
 		C4E5DB861DBEAFB900170422 /* Labeling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Labeling.swift; sourceTree = "<group>"; };
 		C4E5DB881DBEB01A00170422 /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		C4EB27E81DFA30D100BF0843 /* ModuleExports-GETracing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ModuleExports-GETracing.swift"; sourceTree = "<group>"; };
+		C4F8C25721960F7C0043F35B /* Sugar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sugar.swift; sourceTree = "<group>"; };
 		C4FEBB1C1BF960A300A5709B /* BundleForSymbolAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleForSymbolAddress.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -186,6 +188,7 @@
 				C429F7A820775C5D00305E22 /* DefaultLog.swift */,
 				C429F7AD2077673500305E22 /* DispatchQueueCurrentQueueLabel.swift */,
 				C4FEBB1C1BF960A300A5709B /* BundleForSymbolAddress.swift */,
+				C4F8C25721960F7C0043F35B /* Sugar.swift */,
 				C41818651B6A65B100872EB3 /* Info.plist */,
 				C4EB27E81DFA30D100BF0843 /* ModuleExports-GETracing.swift */,
 			);
@@ -338,6 +341,7 @@
 				C49FF0E61DBAF7D800A86CC0 /* NestedBrackets.swift in Sources */,
 				C4D6F41A1C73CCC000A7E2ED /* Tracing.swift in Sources */,
 				C4CB38861CDBA78D00562665 /* SourceLocation.swift in Sources */,
+				C4F8C25821960F7C0043F35B /* Sugar.swift in Sources */,
 				C429F7A920775C5D00305E22 /* DefaultLog.swift in Sources */,
 				C429F7AE2077673500305E22 /* DispatchQueueCurrentQueueLabel.swift in Sources */,
 				C4E5DB871DBEAFB900170422 /* Labeling.swift in Sources */,
