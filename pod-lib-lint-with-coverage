@@ -6,7 +6,7 @@ ddp="${1:?}"; shift
 tmpdir=$(mktemp -d /tmp/${bn:?}.XXXXX)
 tmpbindir="${tmpdir:?}/bin"
 mkdir "${tmpbindir:?}"
-cp -p xcodebuild-with-enforced-coverage "${tmpbindir:?}"
+cp -p xcodebuild-with-enforced-coverage "${tmpbindir:?}"/xcodebuild
 xcconfig="${tmpdir:?}/xcode.xcconfig"
 
 cat > "${xcconfig:?}" <<-END
