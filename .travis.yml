@@ -5,6 +5,7 @@ env:
     - platform=ios
     - platform=macos
 script:
-  - pod lib lint --verbose --platforms="${platform:?}"
+  - ddp=$(mktemp -d /tmp/ddp.XXXXX)
+  - ./pod-lib-lint-with-coverage "${ddp:?}" --verbose --platforms="${platform:?}"
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash) -D "${ddp:?}"
