@@ -1,4 +1,6 @@
-#! /bin/bash -xe
+#! /bin/bash
+
+set +exo pipefail
 
 xcov_reports="${tmpdir:?}/xcov_reports"
 
@@ -8,3 +10,5 @@ workspace=$(sed -n 's/^Pods workspace available at `\(.*\)` for inspection.$/\1/
 bundle exec xcov -w "${workspace:?}" -o "${xcov_reports:?}"
 
 bash <(curl -s https://codecov.io/bash) -D "${ddp:?}"
+
+set -exo pipefail
