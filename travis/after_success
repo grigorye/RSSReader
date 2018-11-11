@@ -1,6 +1,6 @@
 #! /bin/bash
 
-set +exo pipefail
+set -exo pipefail
 
 xcov_reports="${tmpdir:?}/xcov_reports"
 
@@ -11,4 +11,4 @@ bundle exec xcov -w "${workspace:?}" -o "${xcov_reports:?}"
 
 bash <(curl -s https://codecov.io/bash) -D "${ddp:?}"
 
-set -exo pipefail
+set +exo pipefail
