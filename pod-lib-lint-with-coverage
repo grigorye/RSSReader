@@ -1,7 +1,6 @@
 #! /bin/sh -xe
 
 bn=$(basename "$0")
-ddp="${1:?}"; shift
 
 tmpdir=$(mktemp -d /tmp/${bn:?}.XXXXX)
 tmpbindir="${tmpdir:?}/bin"
@@ -12,7 +11,6 @@ xcconfig="${tmpdir:?}/xcode.xcconfig"
 cat > "${xcconfig:?}" <<-END
 CLANG_COVERAGE_MAPPING = YES
 CLANG_ENABLE_CODE_COVERAGE = YES
-CLANG_PROFILE_DATA_DIRECTORY = ${ddp:?}/ProfileData
 END
 
 env XCODE_XCCONFIG_FILE="${xcconfig:?}" PATH="${tmpbindir:?}":"$PATH" pod lib lint "$@"
