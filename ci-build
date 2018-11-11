@@ -1,0 +1,14 @@
+#! /bin/sh -xe
+
+tmpdir=$(mktemp -d /tmp/XXXXX)
+
+ddp="${tmpdir:?}/ddp"
+xcov_reports="${tmpdir:?}/xcov_reports"
+pod_lib_lint_no_clean_log="${tmpdir:?}/pod-lib-lint-no-clean.log"
+
+./pod-lib-lint-with-coverage "${ddp:?}" --verbose --platforms="${platforms:?}" --no-clean | tee "${pod_lib_lint_no_clean_log:?}"
+
+# shellcheck disable=SC2016
+workspace=$(sed -n 's/^Pods workspace available at `\(.*\)` for inspection.$/\1/gp' < "${pod_lib_lint_no_clean_log:?}")
+
+bundle exec xcov -w "${workspace:?}" -o "${xcov_reports:?}"
