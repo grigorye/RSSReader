@@ -8,4 +8,4 @@ script:
   - set -exo pipefail
   - . travis/script
 after_success:
-  - . travis/after_sucess
+  - . travis/after_success
