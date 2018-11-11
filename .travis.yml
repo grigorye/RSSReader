@@ -5,6 +5,7 @@ env:
     - platforms=ios
     - platforms=macos
 script:
+  - set -exo pipefail
   - . travis/script
 after_success:
   - . travis/after_sucess
