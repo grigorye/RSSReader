@@ -5,6 +5,6 @@ env:
     - platforms=ios
     - platforms=macos
 script:
-	- ./ci-build
+  - ./ci-build
 after_success:
   - bash <(curl -s https://codecov.io/bash) -D "${ddp:?}"
