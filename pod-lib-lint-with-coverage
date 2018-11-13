@@ -2,7 +2,7 @@
 
 bn=$(basename "$0")
 
-tmpdir=$(mktemp -d /tmp/${bn:?}.XXXXX)
+tmpdir=$(mktemp -d /tmp/"${bn:?}".XXXXX)
 tmpbindir="${tmpdir:?}/bin"
 mkdir "${tmpbindir:?}"
 cp -p xcodebuild-with-enforced-coverage "${tmpbindir:?}"/xcodebuild
