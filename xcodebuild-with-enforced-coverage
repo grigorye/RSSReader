@@ -1,12 +1,12 @@
-#! /bin/sh -xe
+#! /bin/bash -e
 
 for i in "${@}"
 do
     case "${i:?}" in
         test)
-        extraArgs='-enableCodeCoverage YES'
+        extraArgs=('-enableCodeCoverage' 'YES')
         ;;
     esac
 done
 
-xcrun xcodebuild ${extraArgs:-} "${@}"
+xcrun xcodebuild "${extraArgs[@]}" "${@}" -derivedDataPath "${ddp:?}"
