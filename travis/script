@@ -4,7 +4,6 @@ set -exo pipefail
 
 tmpdir=$(mktemp -d /tmp/XXXXX)
 
-ddp="${tmpdir:?}/ddp"
 pod_lib_lint_no_clean_log="${tmpdir:?}/pod-lib-lint-no-clean.log"
 
 ./pod-lib-lint-with-coverage --verbose --platforms="${platforms:?}" --no-clean | tee "${pod_lib_lint_no_clean_log:?}"
