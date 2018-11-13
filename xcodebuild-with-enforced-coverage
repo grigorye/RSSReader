@@ -9,4 +9,4 @@ do
     esac
 done
 
-xcrun xcodebuild "${extraArgs[@]}" "${@}" -derivedDataPath "${ddp:?}"
+xcrun xcodebuild "${extraArgs[@]}" "${@}"
