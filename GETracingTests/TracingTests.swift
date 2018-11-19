@@ -159,6 +159,28 @@ class TraceTests : TraceAndLabelTestsBase {
 		));
 		XCTAssertEqual(value, 1)
 	}
+	
+	func testMultilineDataSingleLine() {
+		traceEnabledEnforced = true
+		sourceLabelsEnabledEnforced = true
+		let data = "data".data(using: .utf8)!
+		let value = x$(.multiline(data));
+		XCTAssertEqual(value, data)
+	}
+	
+	func testMultilineDataMultipleLines() {
+		traceEnabledEnforced = true
+		sourceLabelsEnabledEnforced = true
+		let string = """
+			line 1
+			line 2
+			line 3
+		"""
+		let data = string.data(using: .utf8)!
+		let value = x$(.multiline(data));
+		XCTAssertEqual(value, data)
+	}
+
 	func testComplexWithTraceAndLabelsEnabled() {
 		traceEnabledEnforced = true
 		sourceLabelsEnabledEnforced = true
