@@ -1,0 +1,3 @@
+deterministic_uuids: true
+share-schemes-for-development-pods: true
+warn-for-multiple-pod-sources: true
