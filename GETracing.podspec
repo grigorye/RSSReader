@@ -38,6 +38,8 @@ Pod::Spec.new do |s|
     test_spec.resource_bundles = {
       'GETracingTests-Sources' => ['GETracingTests']
     }
+    test_spec.dependency 'CwlPreconditionTesting'
+    test_spec.dependency 'CwlCatchException'
   end
 
 end
