@@ -6,6 +6,6 @@ env:
     - platforms=ios
     - platforms=macos
 script:
-  - . travis/script
+  - . Pods/GEContinuousIntegration/travis/script
 after_success:
-  - . travis/after_success
+  - . Pods/GEContinuousIntegration/travis/after_success

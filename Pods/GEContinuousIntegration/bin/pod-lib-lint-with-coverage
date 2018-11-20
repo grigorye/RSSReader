@@ -1,11 +1,12 @@
 #! /bin/sh -xe
 
 bn=$(basename "$0")
+dn=$(dirname "$0")
 
 tmpdir=$(mktemp -d /tmp/"${bn:?}".XXXXX)
 tmpbindir="${tmpdir:?}/bin"
 mkdir "${tmpbindir:?}"
-cp -p xcodebuild-with-enforced-coverage "${tmpbindir:?}"/xcodebuild
+cp -p "${dn:?}"/xcodebuild-with-enforced-coverage "${tmpbindir:?}"/xcodebuild
 xcconfig="${tmpdir:?}/xcode.xcconfig"
 
 cat > "${xcconfig:?}" <<-END
