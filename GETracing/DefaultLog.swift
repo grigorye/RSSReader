@@ -31,10 +31,22 @@ public var loggedTextForRecord = { (record: LogRecord) in
 	return defaultLoggedText(for: record)
 }
 
-public func defaultLoggedText(for record: LogRecord, locationPrefix: String = locationPrefix) -> String {
+let dateFormatter: DateFormatter = {
+	let dateFormatter = DateFormatter()
+	dateFormatter.dateFormat = "HH:mm.ss.SSS"
+	return dateFormatter
+}()
+
+public func defaultLoggedText(for record: LogRecord, timestampEnabled: Bool = false, locationPrefix: String = locationPrefix) -> String {
 	let message = loggedMessageForRecord(record)
 	let threadDescription = loggedThreadDescription()
-	let text = "\(locationPrefix)[\(threadDescription)] \(message)"
+	let timestampPrefix: String = {
+		guard timestampEnabled else {
+			return ""
+		}
+		return dateFormatter.string(from: record.date) + " "
+	}()
+	let text = "\(locationPrefix)\(timestampPrefix)[\(threadDescription)] \(message)"
 	return text
 }
 
