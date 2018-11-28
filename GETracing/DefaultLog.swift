@@ -31,7 +31,7 @@ public var loggedTextForRecord = { (record: LogRecord) in
 	return defaultLoggedText(for: record)
 }
 
-public func defaultLoggedText(for record: LogRecord) -> String {
+public func defaultLoggedText(for record: LogRecord, locationPrefix: String = locationPrefix) -> String {
 	let message = loggedMessageForRecord(record)
 	let threadDescription = loggedThreadDescription()
 	let text = "\(locationPrefix)[\(threadDescription)] \(message)"
