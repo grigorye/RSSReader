@@ -8,7 +8,7 @@
 
 import Foundation
 
-func sourceModuleURLAndResourceNamePrefixFor(_ url: URL) -> (URL, String?) {
+func sourceModuleURLAndSourceFileResourcePath(forSource url: URL) -> (URL, String) {
 	
 	let ignoredParentDirNames = [
 		"Sources",
@@ -19,19 +19,21 @@ func sourceModuleURLAndResourceNamePrefixFor(_ url: URL) -> (URL, String?) {
 	let parentDirName = parentURL.lastPathComponent
 	
 	if ignoredParentDirNames.contains(parentDirName) {
-		return sourceModuleURLAndResourceNamePrefixFor(parentURL)
+		return sourceModuleURLAndSourceFileResourcePath(forSource: parentURL)
 	}
 	
 	if parentDirName.hasSuffix("Tests") {
-		return (parentURL, parentDirName)
+		return (parentURL, [parentDirName, url.lastPathComponent].joined(separator: "/"))
 	}
 	
 	// Yep, make Foo the module name in Foo/Foo/Bar/Baz.swift
 	if parentDirName == url.lastPathComponent {
-		return (parentURL, nil)
+		return (parentURL, parentDirName)
 	}
 	
-	return sourceModuleURLAndResourceNamePrefixFor(parentURL)
+	let (sourceModuleURL, parentResourcePath) = sourceModuleURLAndSourceFileResourcePath(forSource: parentURL)
+	let resourcePath = [parentResourcePath, url.lastPathComponent].joined(separator: "/")
+	return (sourceModuleURL, resourcePath)
 }
 
 func sourceExtractedInfo(for location: SourceLocation, traceFunctionName: String) -> SourceExtractedInfo {
@@ -41,17 +43,15 @@ func sourceExtractedInfo(for location: SourceLocation, traceFunctionName: String
 	}
 	let fileURL = location.fileURL
 	let fileName = fileURL.lastPathComponent
-	let fileURLPath = fileURL.deletingPathExtension() .path
-	let (sourceModuleURL, resourceNamePrefix) = sourceModuleURLAndResourceNamePrefixFor(fileURL)
-	let resourceName = [resourceNamePrefix, String(fileURLPath.dropFirst(sourceModuleURL.path.count + 1))].compactMap {$0}.joined(separator: "/")
-	let resourceType = fileURL.pathExtension
+	let (sourceModuleURL, resourcePath) = sourceModuleURLAndSourceFileResourcePath(forSource: fileURL)
 	let sourceModuleName = sourceModuleURL.lastPathComponent
+	let resourceType = fileURL.pathExtension
 	let file: String
 	switch location.moduleReference {
 	case let .dso(dso):
 		guard let bundle = Bundle(for: dso) else {
 			// Console
-			return SourceExtractedInfo(label: "\(resourceName).\(resourceType):?")
+			return SourceExtractedInfo(label: "\(resourcePath):?")
 		}
 		let bundleName = (bundle.bundlePath as NSString).lastPathComponent
 		guard let sourcesBundlePath = bundle.path(forResource: "\(sourceModuleName)-Sources", ofType: "bundle") else {
@@ -60,7 +60,10 @@ func sourceExtractedInfo(for location: SourceLocation, traceFunctionName: String
 		guard let sourcesBundle = Bundle(path: sourcesBundlePath) else {
 			return SourceExtractedInfo(label: "\(bundleName)/\(fileName)[non-loadable-sources-bundle]:\(descriptionForInLineLocation(location)):?")
 		}
-		guard let fileInBundle = sourcesBundle.path(forResource: resourceName, ofType: resourceType) else {
+		let resourcePathComponents = resourcePath.components(separatedBy: "/")
+		let resourceSubpath = resourcePathComponents.dropLast().joined(separator: "/")
+		let resourceName = fileURL.deletingPathExtension().lastPathComponent
+		guard let fileInBundle = sourcesBundle.path(forResource: resourceName, ofType: resourceType, inDirectory: resourceSubpath) else {
 			return SourceExtractedInfo(label: "\(bundleName)/\(fileName)[missing]:\(descriptionForInLineLocation(location)):?")
 		}
 		file = fileInBundle
