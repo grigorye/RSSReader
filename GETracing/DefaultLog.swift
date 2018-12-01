@@ -22,8 +22,12 @@ public var logText = { (text: String) in
 	defaultLogText(text)
 }
 
+public var defaultLoggedTextTerminator: String {
+	return separatePrefixAndMessageWithNewLine ? "\n\n" : "\n"
+}
+
 public func defaultLogText(_ text: String) {
-	print(text, terminator: separatePrefixAndMessageWithNewLine ? "\n\n" : "\n")
+	print(text, terminator: defaultLoggedTextTerminator)
 }
 
 /// Returns text for logging given record.
@@ -93,7 +97,6 @@ public var locationPrefix: String {
 	return locationPrefixGenerator()
 }
 
-
 public var separatePrefixAndMessageWithNewLine = true
 
 public var locationPrefixGenerator = {
@@ -108,4 +111,3 @@ private var messagePrefix: String {
 }
 
 private let sep = separatePrefixAndMessageWithNewLine ? "\n" : " "
-
