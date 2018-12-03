@@ -32,7 +32,7 @@ public func defaultLogText(_ text: String) {
 
 /// Returns text for logging given record.
 public var loggedTextForRecord = { (record: LogRecord) in
-	return defaultLoggedText(for: record)
+	return loggedText(for: record)
 }
 
 let dateFormatter: DateFormatter = {
@@ -41,7 +41,20 @@ let dateFormatter: DateFormatter = {
 	return dateFormatter
 }()
 
-public func defaultLoggedText(for record: LogRecord, timestampEnabled: Bool = false, locationPrefix: String = locationPrefix) -> String {
+public struct LoggedTextFormatArgs {
+	public let locationPrefix: String
+	public let timestampPrefix: String
+	public let threadDescription: String
+	public let message: String
+}
+
+public typealias LoggedTextFormat = (LoggedTextFormatArgs) -> String
+
+public var defaultLoggedTextFormat: LoggedTextFormat = {
+	"\($0.locationPrefix)\($0.timestampPrefix)[\($0.threadDescription)] \($0.message)"
+}
+
+public func loggedTextFormatArgs(for record: LogRecord, timestampEnabled: Bool = false) -> LoggedTextFormatArgs {
 	let message = loggedMessageForRecord(record)
 	let threadDescription = loggedThreadDescription()
 	let timestampPrefix: String = {
@@ -50,7 +63,18 @@ public func defaultLoggedText(for record: LogRecord, timestampEnabled: Bool = fa
 		}
 		return dateFormatter.string(from: record.date) + " "
 	}()
-	let text = "\(locationPrefix)\(timestampPrefix)[\(threadDescription)] \(message)"
+	let formatArgs = LoggedTextFormatArgs(
+		locationPrefix: locationPrefix,
+		timestampPrefix: timestampPrefix,
+		threadDescription: threadDescription,
+		message: message
+	)
+	return formatArgs
+}
+
+public func loggedText(for record: LogRecord, timestampEnabled: Bool = false, format: LoggedTextFormat = defaultLoggedTextFormat) -> String {
+	let formatArgs = loggedTextFormatArgs(for: record, timestampEnabled: timestampEnabled)
+	let text = format(formatArgs)
 	return text
 }
 
@@ -61,11 +85,11 @@ public var loggedMessageForRecord = { (record: LogRecord) in
 	return defaultLoggedMessage(for: record)
 }
 
-public func defaultLoggedMessage(for record: LogRecord) -> String {
+public func locationDescription(for record: LogRecord) -> String? {
 	guard let location = record.location else {
-		return messagePrefix + record.message.formattedForOutput(prefixedWithLabel: false)
+		return nil
 	}
-	// Substitute something more humane-readable for #function of top level code of the playground, that is otherwise something like "__lldb_expr_xxx"
+	// Substitute something more human-readable for #function of top level code of the playground, that is otherwise something like "__lldb_expr_xxx"
 	let function: String = {
 		guard nil != record.playgroundName else {
 			return location.function
@@ -77,6 +101,13 @@ public func defaultLoggedMessage(for record: LogRecord) -> String {
 	}()
 	
 	let locationDescription = "\(record.playgroundName ?? location.fileURL.lastPathComponent):\(location.line)|\(function)"
+	return locationDescription
+}
+
+public func defaultLoggedMessage(for record: LogRecord) -> String {
+	guard let locationDescription = locationDescription(for: record) else {
+		return messagePrefix + record.message.formattedForOutput(prefixedWithLabel: false)
+	}
 	guard let label = record.label else {
 		return "\(locationDescription)\(sep)\(messagePrefix)" + record.message.formattedForOutput(prefixedWithLabel: false)
 	}
