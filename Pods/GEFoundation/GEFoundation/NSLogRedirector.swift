@@ -19,7 +19,7 @@ typealias LogCStringF = @convention(c) (_ message: UnsafeMutableRawPointer, _ le
 
 let logCString: LogCStringF = { messageBytes, length, banner in
 	let message = String(bytesNoCopy: messageBytes, length: Int(length), encoding: .utf8, freeWhenDone: false)!
-	logWithNoSourceOrLabel(message)
+	logWithNoSourceOrLabel(.inline(message))
 }
 
 public let nslogRedirectorInitializer: Void = {

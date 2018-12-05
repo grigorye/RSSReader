@@ -1,0 +1,127 @@
+{
+  "name": "GEAppConfig",
+  "version": "0.0.1",
+  "summary": "Application configuration related stuff",
+  "description": "A few components shared between applications, related to the configuration.",
+  "homepage": "https://github.com/grigorye/GEAppConfig",
+  "license": "MIT",
+  "authors": {
+    "Grigory Entin": "grigory.entin@gmail.com"
+  },
+  "platforms": {
+    "ios": "11.0",
+    "osx": "10.13"
+  },
+  "source": {
+    "git": "https://github.com/grigorye/GEAppConfig.git",
+    "tag": "0.0.1"
+  },
+  "swift_version": "4.2",
+  "ios": {
+    "source_files": "GEAppConfig/iOS",
+    "dependencies": {
+      "GEDebugKit": [
+
+      ],
+      "GEUIKit": [
+
+      ],
+      "FTLinearActivityIndicator": [
+
+      ],
+      "JGProgressHUD": [
+
+      ],
+      "Watchdog": [
+
+      ]
+    }
+  },
+  "osx": {
+    "source_files": "GEAppConfig/macOS"
+  },
+  "default_subspecs": "Core",
+  "static_framework": true,
+  "dependencies": {
+    "GEFoundation": [
+
+    ],
+    "GETracing": [
+
+    ]
+  },
+  "subspecs": [
+    {
+      "name": "Core",
+      "source_files": "GEAppConfig/Core/Shared",
+      "ios": {
+        "source_files": "GEAppConfig/Core/Platform/iOS"
+      },
+      "osx": {
+        "source_files": "GEAppConfig/Core/Platform/macOS"
+      },
+      "resource_bundles": {
+        "GEAppConfig-Sources": "GEAppConfig"
+      }
+    },
+    {
+      "name": "Analytics",
+      "source_files": "GEAppConfig/Analytics/*.swift",
+      "xcconfig": {
+        "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "GEAPPCONFIG_ANALYTICS_ENABLED"
+      }
+    },
+    {
+      "name": "Crashlytics",
+      "dependencies": {
+        "GEAppConfig/Analytics": [
+
+        ],
+        "Fabric": [
+
+        ],
+        "Crashlytics": [
+
+        ]
+      },
+      "source_files": "GEAppConfig/Analytics/Crashlytics/*.swift",
+      "xcconfig": {
+        "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "GEAPPCONFIG_CRASHLYTICS_ENABLED"
+      }
+    },
+    {
+      "name": "Answers",
+      "dependencies": {
+        "GEAppConfig/Analytics": [
+
+        ],
+        "Fabric": [
+
+        ],
+        "Crashlytics": [
+
+        ]
+      },
+      "source_files": "GEAppConfig/Analytics/Answers/*.swift",
+      "xcconfig": {
+        "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "GEAPPCONFIG_ANSWERS_ENABLED"
+      }
+    },
+    {
+      "name": "CoreData",
+      "source_files": "GEAppConfig/CoreData/*.swift",
+      "xcconfig": {
+        "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "GEAPPCONFIG_COREDATA_ENABLED"
+      },
+      "dependencies": {
+        "GECoreData": [
+
+        ]
+      }
+    },
+    {
+      "name": "iOS",
+      "source_files": "GEAppConfig/iOS/*.swift"
+    }
+  ]
+}

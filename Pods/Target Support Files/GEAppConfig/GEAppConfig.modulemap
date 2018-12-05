@@ -1,0 +1,6 @@
+framework module GEAppConfig {
+  umbrella header "GEAppConfig-umbrella.h"
+
+  export *
+  module * { export * }
+}

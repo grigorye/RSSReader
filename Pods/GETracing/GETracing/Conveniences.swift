@@ -79,6 +79,25 @@ public func x$<T>(file: String = #file, line: Int = #line, column: Int = #column
 	return value
 }
 
+public struct Multiline {
+	let data: Data
+	
+	public init(_ data: Data) {
+		self.data = data
+	}
+	
+	public static func multiline(_ data: Data) -> Multiline {
+		return .init(data)
+	}
+}
+
+@discardableResult
+public func x$(file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer = #dsohandle, _ valueClosure: @autoclosure () throws -> Multiline) rethrows -> Data {
+	let value = try valueClosure()
+	traceAsNecessary(value, file: file, line: line, column: column, function: function, moduleReference: .dso(dso), traceFunctionName: "x$")
+	return value.data
+}
+
 @discardableResult
 public func z$<T>(file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer = #dsohandle, _ valueClosure: @autoclosure () -> T) -> T {
 	let value = valueClosure()

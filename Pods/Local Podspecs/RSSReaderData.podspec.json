@@ -1,0 +1,56 @@
+{
+  "name": "RSSReaderData",
+  "version": "0.1",
+  "summary": "Data module for RSSReader.",
+  "description": "Persistence, networking related stuff for RSSReader",
+  "homepage": "https://github.com/grigorye/RSSReader",
+  "license": "MIT",
+  "authors": {
+    "Grigory Entin": "grigory.entin@gmail.com"
+  },
+  "platforms": {
+    "ios": "11.0",
+    "osx": "10.13"
+  },
+  "source": {
+    "git": "https://github.com/grigorye/RSSReader.git",
+    "tag": "0.1"
+  },
+  "source_files": "RSSReaderData/*.swift",
+  "resources": [
+    "RSSReaderData/*.xcdatamodeld"
+  ],
+  "swift_version": "4.2",
+  "dependencies": {
+    "GECoreData": [
+
+    ],
+    "PromisesSwift": [
+
+    ],
+    "GoogleToolboxForMac/NSString+HTML": [
+
+    ],
+    "Result": [
+
+    ]
+  },
+  "testspecs": [
+    {
+      "name": "Tests",
+      "test_type": "unit",
+      "source_files": [
+        "RSSReaderDataTests/**/*.swift",
+        "RSSReaderData/ImportedExports.swift"
+      ],
+      "resources": [
+        "RSSReaderDataTests/*-Secrets.plist"
+      ],
+      "resource_bundles": {
+        "RSSReaderDataTests-Sources": [
+          "RSSReaderDataTests"
+        ]
+      }
+    }
+  ]
+}

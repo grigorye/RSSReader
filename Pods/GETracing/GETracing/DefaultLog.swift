@@ -22,19 +22,59 @@ public var logText = { (text: String) in
 	defaultLogText(text)
 }
 
+public var defaultLoggedTextTerminator: String {
+	return separatePrefixAndMessageWithNewLine ? "\n\n" : "\n"
+}
+
 public func defaultLogText(_ text: String) {
-	print(text, terminator: separatePrefixAndMessageWithNewLine ? "\n\n" : "\n")
+	print(text, terminator: defaultLoggedTextTerminator)
 }
 
 /// Returns text for logging given record.
 public var loggedTextForRecord = { (record: LogRecord) in
-	return defaultLoggedText(for: record)
+	return loggedText(for: record)
 }
 
-public func defaultLoggedText(for record: LogRecord) -> String {
+let dateFormatter: DateFormatter = {
+	let dateFormatter = DateFormatter()
+	dateFormatter.dateFormat = "HH:mm.ss.SSS"
+	return dateFormatter
+}()
+
+public struct LoggedTextFormatArgs {
+	public let locationPrefix: String
+	public let timestampPrefix: String
+	public let threadDescription: String
+	public let message: String
+}
+
+public typealias LoggedTextFormat = (LoggedTextFormatArgs) -> String
+
+public var defaultLoggedTextFormat: LoggedTextFormat = {
+	"\($0.locationPrefix)\($0.timestampPrefix)[\($0.threadDescription)] \($0.message)"
+}
+
+public func loggedTextFormatArgs(for record: LogRecord, timestampEnabled: Bool = false) -> LoggedTextFormatArgs {
 	let message = loggedMessageForRecord(record)
 	let threadDescription = loggedThreadDescription()
-	let text = "\(locationPrefix)[\(threadDescription)] \(message)"
+	let timestampPrefix: String = {
+		guard timestampEnabled else {
+			return ""
+		}
+		return dateFormatter.string(from: record.date) + " "
+	}()
+	let formatArgs = LoggedTextFormatArgs(
+		locationPrefix: locationPrefix,
+		timestampPrefix: timestampPrefix,
+		threadDescription: threadDescription,
+		message: message
+	)
+	return formatArgs
+}
+
+public func loggedText(for record: LogRecord, timestampEnabled: Bool = false, format: LoggedTextFormat = defaultLoggedTextFormat) -> String {
+	let formatArgs = loggedTextFormatArgs(for: record, timestampEnabled: timestampEnabled)
+	let text = format(formatArgs)
 	return text
 }
 
@@ -45,11 +85,11 @@ public var loggedMessageForRecord = { (record: LogRecord) in
 	return defaultLoggedMessage(for: record)
 }
 
-public func defaultLoggedMessage(for record: LogRecord) -> String {
+public func locationDescription(for record: LogRecord) -> String? {
 	guard let location = record.location else {
-		return "\(messagePrefix)\(record.message)"
+		return nil
 	}
-	// Substitute something more humane-readable for #function of top level code of the playground, that is otherwise something like "__lldb_expr_xxx"
+	// Substitute something more human-readable for #function of top level code of the playground, that is otherwise something like "__lldb_expr_xxx"
 	let function: String = {
 		guard nil != record.playgroundName else {
 			return location.function
@@ -59,12 +99,19 @@ public func defaultLoggedMessage(for record: LogRecord) -> String {
 		}
 		return "<top-level>"
 	}()
-
+	
 	let locationDescription = "\(record.playgroundName ?? location.fileURL.lastPathComponent):\(location.line)|\(function)"
-	guard let label = record.label else {
-		return "\(locationDescription)\(sep)\(messagePrefix)\(record.message)"
+	return locationDescription
+}
+
+public func defaultLoggedMessage(for record: LogRecord) -> String {
+	guard let locationDescription = locationDescription(for: record) else {
+		return messagePrefix + record.message.formattedForOutput(prefixedWithLabel: false)
 	}
-	return "\(locationDescription)\(sep)\(messagePrefix)\(label): \(record.message)"
+	guard let label = record.label else {
+		return "\(locationDescription)\(sep)\(messagePrefix)" + record.message.formattedForOutput(prefixedWithLabel: false)
+	}
+	return "\(locationDescription)\(sep)\(messagePrefix)\(label):" + record.message.formattedForOutput(prefixedWithLabel: true)
 }
 
 /// Returns thread description (vs location prefix/message) part for logging given record.
@@ -81,7 +128,6 @@ public var locationPrefix: String {
 	return locationPrefixGenerator()
 }
 
-
 public var separatePrefixAndMessageWithNewLine = true
 
 public var locationPrefixGenerator = {
@@ -96,4 +142,3 @@ private var messagePrefix: String {
 }
 
 private let sep = separatePrefixAndMessageWithNewLine ? "\n" : " "
-

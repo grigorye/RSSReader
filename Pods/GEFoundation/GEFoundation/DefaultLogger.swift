@@ -7,6 +7,7 @@
 //
 
 import struct GETracing.LogRecord
+import func GETracing.loggedText
 import Foundation
 import os
 
@@ -34,46 +35,6 @@ extension TypedUserDefaults {
 	@NSManaged var defaultLogPrintTimestamps: Bool
 }
 
-private let traceToNSLogEnabled = false
-
-private let twoLines = _1
-private let sep = twoLines ? "\n" : " "
-private let locationPrefix = twoLines ? "◾︎ " : ""
-private let messagePrefix = twoLines ? "" : "◾︎ "
-
-public func defaultLoggedText(for record: LogRecord) -> String {
-	guard let location = record.location else {
-		return "\(messagePrefix)\(record.message)"
-	}
-	let locationDescription = "\(record.playgroundName ?? location.fileURL.lastPathComponent):\(location.line)|\(location.function)"
-	guard let label = record.label else {
-		return "\(locationDescription)\(sep)\(messagePrefix)\(record.message)"
-	}
-	return "\(locationDescription)\(sep)\(messagePrefix)\(label): \(record.message)"
-}
-
-extension DispatchQueue {
-	class var currentQueueLabel: String? {
-		let ptr = __dispatch_queue_get_label(nil)
-		return String(validatingUTF8: ptr)
-	}
-}
-
-public func defaultLoggedTextWithTimestampAndThread(for record: LogRecord) -> String {
-	let text = defaultLoggedText(for: record)
-	let dateDescription = dateFormatter.string(from: record.date)
-	let threadDescription = Thread.isMainThread ? "-" : "\(DispatchQueue.currentQueueLabel!)"
-	let textWithTimestampAndThread = "\(locationPrefix)\(dateDescription) [\(threadDescription)] \(text)"
-	return textWithTimestampAndThread
-}
-
-public func defaultLoggedTextWithThread(for record: LogRecord) -> String {
-	let text = defaultLoggedText(for: record)
-    let threadDescription = Thread.isMainThread ? "-" : (DispatchQueue.currentQueueLabel ?? "unknown")
-	let textWithThread = "\(locationPrefix)[\(threadDescription)] \(text)"
-	return textWithThread
-}
-
 // void rdar_os_log_object_with_type(void const *dso, os_log_t log, os_log_type_t type, id object);
 
 @available(iOS 10.0, macOS 10.12, watchOS 3.0, tvOS 10.0, *)
@@ -84,7 +45,7 @@ public func defaultLogger(record: LogRecord) {
 	switch DefaultLogKind(rawValue: defaultLogKind)! {
 	case .none: ()
 	case .oslog:
-		let text = defaultLoggedText(for: record)
+		let text = loggedText(for: record)
 		if #available(iOS 10.0, macOS 10.12, *), let location = record.location, case .dso(let dso) = location.moduleReference {
 			let bundle = Bundle(for: dso)!
 			rdar_os_log_object_with_type(dso, bundle.log, .default, text as NSString)
@@ -92,11 +53,10 @@ public func defaultLogger(record: LogRecord) {
 			fallthrough
 		}
 	case .nslog:
-		let text = defaultLoggedText(for: record)
+		let text = loggedText(for: record)
 		NSLog("%@", text)
 	case .print:
-		let textGenerator = defaults.defaultLogPrintTimestamps ? defaultLoggedTextWithTimestampAndThread(for:) : defaultLoggedTextWithThread(for:)
-		let textWithTimestampAndThread = textGenerator(record)
-		print(textWithTimestampAndThread)
+		let text = loggedText(for: record, timestampEnabled: defaults.defaultLogPrintTimestamps)
+		print(text)
 	}
 }

@@ -1,8 +1,6 @@
 PODS:
   - Crashlytics (3.10.9):
     - Fabric (~> 1.7.13)
-  - CwlCatchException (1.0.2)
-  - CwlPreconditionTesting (1.1.0)
   - Fabric (1.7.13)
   - FBAllocationTracker (0.1.5)
   - FBMemoryProfiler (0.1.3):
@@ -11,15 +9,76 @@ PODS:
   - FBRetainCycleDetector (0.1.4)
   - FPSCounter (3.0.0)
   - FTLinearActivityIndicator (1.1.1)
+  - GEAppConfig/Analytics (0.0.1):
+    - FTLinearActivityIndicator
+    - GEDebugKit
+    - GEFoundation
+    - GETracing
+    - GEUIKit
+    - JGProgressHUD
+    - Watchdog
+  - GEAppConfig/Answers (0.0.1):
+    - Crashlytics
+    - Fabric
+    - FTLinearActivityIndicator
+    - GEAppConfig/Analytics
+    - GEDebugKit
+    - GEFoundation
+    - GETracing
+    - GEUIKit
+    - JGProgressHUD
+    - Watchdog
+  - GEAppConfig/Core (0.0.1):
+    - FTLinearActivityIndicator
+    - GEDebugKit
+    - GEFoundation
+    - GETracing
+    - GEUIKit
+    - JGProgressHUD
+    - Watchdog
+  - GEAppConfig/Crashlytics (0.0.1):
+    - Crashlytics
+    - Fabric
+    - FTLinearActivityIndicator
+    - GEAppConfig/Analytics
+    - GEDebugKit
+    - GEFoundation
+    - GETracing
+    - GEUIKit
+    - JGProgressHUD
+    - Watchdog
+  - GEAppConfig/iOS (0.0.1):
+    - FTLinearActivityIndicator
+    - GEDebugKit
+    - GEFoundation
+    - GETracing
+    - GEUIKit
+    - JGProgressHUD
+    - Watchdog
+  - GECoreData (0.0.1):
+    - GEFoundation (~> 0.1)
+    - GETracing (~> 0.1)
+  - GEDebugKit (0.0.1):
+    - FBAllocationTracker
+    - FBMemoryProfiler
+    - FPSCounter
+    - GEFoundation
+    - GETracing
+    - GEUIKit
   - GEFoundation (0.1):
     - GETracing (~> 0.1)
-  - GETracing (0.1)
+  - GETracing (0.1.1)
+  - GEUIKit (0.0.1):
+    - GECoreData (~> 0.0.1)
+    - GEFoundation (~> 0.1)
+    - GETracing (~> 0.1)
   - GoogleToolboxForMac/Core (2.1.4):
     - GoogleToolboxForMac/Defines (= 2.1.4)
   - GoogleToolboxForMac/Defines (2.1.4)
   - "GoogleToolboxForMac/NSString+HTML (2.1.4)":
     - GoogleToolboxForMac/Core (= 2.1.4)
   - JGProgressHUD (2.0.3)
+  - Loggy (1.0)
   - PromisesObjC (1.2.3)
   - PromisesSwift (1.2.3):
     - PromisesObjC (= 1.2.3)
@@ -27,24 +86,35 @@ PODS:
     - R.swift.Library (~> 4.0.0)
   - R.swift.Library (4.0.0)
   - Result (4.0.0)
+  - RSSReaderData (0.1):
+    - GECoreData
+    - "GoogleToolboxForMac/NSString+HTML"
+    - PromisesSwift
+    - Result
   - Watchdog (4.0)
 
 DEPENDENCIES:
   - Crashlytics
-  - CwlCatchException (from `https://github.com/mattgallagher/CwlCatchException.git`)
-  - CwlPreconditionTesting (from `https://github.com/mattgallagher/CwlPreconditionTesting.git`)
   - Fabric
   - FBAllocationTracker
   - FBMemoryProfiler
   - FPSCounter
   - FTLinearActivityIndicator
-  - GEFoundation (from `https://github.com/grigorye/GEFoundation`)
-  - GETracing (from `https://github.com/grigorye/GETracing`)
+  - GEAppConfig/Answers
+  - GEAppConfig/Core
+  - GEAppConfig/Crashlytics
+  - GEAppConfig/iOS
+  - GECoreData
+  - GEFoundation
+  - GETracing
+  - GEUIKit
   - "GoogleToolboxForMac/NSString+HTML"
   - JGProgressHUD
+  - Loggy
   - PromisesSwift
   - R.swift
   - Result
+  - RSSReaderData (from `RSSReaderData`)
   - Watchdog
 
 SPEC REPOS:
@@ -64,52 +134,44 @@ SPEC REPOS:
     - R.swift.Library
     - Result
     - Watchdog
+  https://github.com/grigorye/podspecs.git:
+    - GEAppConfig
+    - GECoreData
+    - GEDebugKit
+    - GEFoundation
+    - GETracing
+    - GEUIKit
+    - Loggy
 
 EXTERNAL SOURCES:
-  CwlCatchException:
-    :git: https://github.com/mattgallagher/CwlCatchException.git
-  CwlPreconditionTesting:
-    :git: https://github.com/mattgallagher/CwlPreconditionTesting.git
-  GEFoundation:
-    :git: https://github.com/grigorye/GEFoundation
-  GETracing:
-    :git: https://github.com/grigorye/GETracing
-
-CHECKOUT OPTIONS:
-  CwlCatchException:
-    :commit: b14c111e9b33cd142bd4bc75c482cfd5c3490923
-    :git: https://github.com/mattgallagher/CwlCatchException.git
-  CwlPreconditionTesting:
-    :commit: 0537b29b1cf6fd2a84535989031486a191a1a9a2
-    :git: https://github.com/mattgallagher/CwlPreconditionTesting.git
-  GEFoundation:
-    :commit: 3c134bf3f81ff7979a741daeca27a9a15be95918
-    :git: https://github.com/grigorye/GEFoundation
-  GETracing:
-    :commit: fadef96e1d9a51caa310a285d99b4d8d6e031bf2
-    :git: https://github.com/grigorye/GETracing
+  RSSReaderData:
+    :path: RSSReaderData
 
 SPEC CHECKSUMS:
   Crashlytics: 55e24fc23989680285a21cb1146578d9d18e432c
-  CwlCatchException: 70a52ae44ea5d46db7bd385f801a94942420cd8c
-  CwlPreconditionTesting: 9add30f7ba4e6a9913b802be66acb66d413c6c8a
   Fabric: 25d0963b691fc97be566392243ff0ecef5a68338
   FBAllocationTracker: dfdca3f71aceca6a85e95e3c6ec76a9785eba0f1
   FBMemoryProfiler: 623fc5f8a61f7d02ec75c87e3b97c90f621d8b02
   FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
   FPSCounter: 38f076ebc06a21d71b4e9e178e172ed766233189
   FTLinearActivityIndicator: 323ad4e4743a159483566730f93c73d0b8e6a641
-  GEFoundation: f3b830c3822176a975dc3eead04507e45a283337
-  GETracing: a59b549139e56b4d46f9674460cee7b7b7602615
+  GEAppConfig: 9f4ac5a10f210376fdde2eac3f78097c02a90cbc
+  GECoreData: 61f87b6fccb8db7c665df6566e767c17f2d90bb9
+  GEDebugKit: 971941ba8901631fbfb5f14ad5025316e7b81f01
+  GEFoundation: e035ccce3b81967d59ad05a64a87aad5c37702ac
+  GETracing: 10d925bf3e557093d9c9d36f28397a6e85000fed
+  GEUIKit: 7c3ab8e49d46647aa5247c8203045c2b641c7a24
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
+  Loggy: 234b08100fd0310cb6dce09d599aa6fdec53e7d3
   PromisesObjC: a3a4263d8a9260214267e0b3788d0f83466ad449
   PromisesSwift: f7f45c21986419e85f7c5b645ed8c6a2c10c04b4
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
   Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
+  RSSReaderData: 01f0505ed11ddc753e63b16c782a5a8476831a24
   Watchdog: 370d2c2a58c9bede0e3f9b8cc26bf297745c31c2
 
-PODFILE CHECKSUM: 0378a2ccbc5e0d67ac4e16b106858d54fe873f69
+PODFILE CHECKSUM: 13865d88ba4bb69e37640f8c1c2abc6a2612fbf4
 
 COCOAPODS: 1.5.3

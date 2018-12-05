@@ -13,6 +13,9 @@ public func L<T>(file: String = #file, line: Int = #line, column: Int = #column,
 	let value = valueClosure()
 	let location = SourceLocation(file: file, line: line, column: column, function: function, moduleReference: .dso(dso))
 	let sourceExtractedInfo = GETracing.sourceExtractedInfo(for: location, traceFunctionName: "L")
-	let labeled = "\(sourceExtractedInfo.label): \(description(forTraced: value))"
+	let loggedValue = newLoggedValue(for: value)
+	let logMessage = loggedValue.logMessage()
+	let formatted = logMessage.formattedForOutput(prefixedWithLabel: true)
+	let labeled = "\(sourceExtractedInfo.label):" + formatted
 	return labeled
 }

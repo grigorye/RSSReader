@@ -1,0 +1,6 @@
+framework module GEDebugKit {
+  umbrella header "GEDebugKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

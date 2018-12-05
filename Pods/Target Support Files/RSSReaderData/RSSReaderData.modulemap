@@ -1,0 +1,6 @@
+framework module RSSReaderData {
+  umbrella header "RSSReaderData-umbrella.h"
+
+  export *
+  module * { export * }
+}

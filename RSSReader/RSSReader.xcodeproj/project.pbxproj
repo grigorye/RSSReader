@@ -33,6 +33,7 @@
 		3676E44D85551D684AF06E0A /* Formatters.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4366F3F1FFF9F2D00B82613 /* Formatters.swift */; };
 		39E455032D991D0792AD45E1 /* RefreshController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C436575C1F07597600B904A2 /* RefreshController.swift */; };
 		3AD17565F15FE5C7D1016A71 /* ContainerTableViewSectionHeaderView.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EA5C3B1CE930B200E395FE /* ContainerTableViewSectionHeaderView.swift */; };
+		400A75CF0A291E91DE29A44F /* Pods_RSSReaderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 737F46E3A36599A8883DC453 /* Pods_RSSReaderTests.framework */; };
 		46BE6DFB9544C606F362B9A8 /* Globals.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C41707CA1A56076A00AED81C /* Globals.swift */; };
 		470F6A9A18D2C4EBB4A8C43A /* ApplicationActivities.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4C780151A7DF1EC009CB5FC /* ApplicationActivities.swift */; };
 		4B3A117979810A7FA6061CE5 /* LoginAndPasswordDefaults.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C495409A1A575C1900F56168 /* LoginAndPasswordDefaults.swift */; };
@@ -54,34 +55,16 @@
 		A0D6B58EB72652C007AE0FC6 /* ItemSummaryWebViewController.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */; };
 		A103368B1FE469B30096330F /* FolderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A103368A1FE469B30096330F /* FolderTableViewCell.xib */; };
 		A103368D1FE46A070096330F /* SubscriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A103368C1FE46A070096330F /* SubscriptionTableViewCell.xib */; };
-		A103369C1FE606670096330F /* FPSCounter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A103369B1FE605E80096330F /* FPSCounter.framework */; };
-		A103369D1FE606670096330F /* FPSCounter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A103369B1FE605E80096330F /* FPSCounter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A10F28DA2017AA5400FC1D12 /* populated.xcappdata.zip in Sources */ = {isa = PBXBuildFile; fileRef = A10F28D82017AA3400FC1D12 /* populated.xcappdata.zip */; };
 		A15CC5A3E1EA9E792BD12D90 /* ItemTableViewDataSource.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4F7DC3C1D97E9A800275E4F /* ItemTableViewDataSource.swift */; };
-		A176B2221FD69C1600E945E9 /* GEDebugKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A176B2211FD69C1600E945E9 /* GEDebugKit.framework */; };
 		A1D942712013734700A6D61E /* TestsBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D942702013734700A6D61E /* TestsBase.swift */; };
 		A1D9427320139BC200A6D61E /* TestsGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D9427220139BC200A6D61E /* TestsGlobals.swift */; };
 		A1F22F8C2017E6BD00035FA9 /* populated.xcappdata in Resources */ = {isa = PBXBuildFile; fileRef = A1F22F882017DC3D00035FA9 /* populated.xcappdata */; };
+		BD8CBB89367F73629EDA4032 /* Pods_RSSReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2751D48E37A74BD6D523E461 /* Pods_RSSReader.framework */; };
 		BF5ABF05A86DD1EA29D04E05 /* UserVisibleErrors.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C43657581F05D0DD00B904A2 /* UserVisibleErrors.swift */; };
-		C408F1B11CE7520700DB943F /* FBAllocationTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C408F1B01CE7520700DB943F /* FBAllocationTracker.framework */; };
-		C408F1B21CE7520700DB943F /* FBAllocationTracker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C408F1B01CE7520700DB943F /* FBAllocationTracker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C408F1B41CE7520700DB943F /* FBMemoryProfiler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C408F1B31CE7520700DB943F /* FBMemoryProfiler.framework */; };
-		C408F1B51CE7520700DB943F /* FBMemoryProfiler.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C408F1B31CE7520700DB943F /* FBMemoryProfiler.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C408F1B71CE7520700DB943F /* FBRetainCycleDetector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C408F1B61CE7520700DB943F /* FBRetainCycleDetector.framework */; };
-		C408F1B81CE7520700DB943F /* FBRetainCycleDetector.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C408F1B61CE7520700DB943F /* FBRetainCycleDetector.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C40A24FF1A672B2100B5D959 /* TableViewContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A24FE1A672B2100B5D959 /* TableViewContainerCell.swift */; };
-		C40B8DD51FBE23B50030E9F7 /* Watchdog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C40B8DD41FBE23B50030E9F7 /* Watchdog.framework */; };
-		C40B8DD61FBE23B50030E9F7 /* Watchdog.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C40B8DD41FBE23B50030E9F7 /* Watchdog.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4165D622173E8CD00A9293B /* SharedImports.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4165D612173E8CD00A9293B /* SharedImports.swift */; };
 		C41707CB1A56076A00AED81C /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41707CA1A56076A00AED81C /* Globals.swift */; };
-		C4198D992044B94900BE29E8 /* Promises.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4198D982044B94900BE29E8 /* Promises.framework */; };
-		C4198D9A2044B94900BE29E8 /* Promises.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4198D982044B94900BE29E8 /* Promises.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C4198D9C2044BA3700BE29E8 /* FBLPromises.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4198D9B2044BA3700BE29E8 /* FBLPromises.framework */; };
-		C4198D9D2044BA3700BE29E8 /* FBLPromises.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4198D9B2044BA3700BE29E8 /* FBLPromises.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C422F3E9203094DB007D7D6A /* FTLinearActivityIndicator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C422F3E8203094DB007D7D6A /* FTLinearActivityIndicator.framework */; };
-		C422F3EA203094DB007D7D6A /* FTLinearActivityIndicator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C422F3E8203094DB007D7D6A /* FTLinearActivityIndicator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C424B8F11C6FC5C8008AD647 /* RSSReaderData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C424B8F01C6FC5C8008AD647 /* RSSReaderData.framework */; };
-		C4270C001DBD502600FA3A0A /* GETracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BFF1DBD502600FA3A0A /* GETracing.framework */; };
 		C42802691A5B47EA002474E1 /* FoldersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42802681A5B47EA002474E1 /* FoldersViewController.swift */; };
 		C42BA28B1DF4DB9B00213D70 /* ItemTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42BA28A1DF4DB9B00213D70 /* ItemTableView.swift */; };
 		C43657571F05CDEF00B904A2 /* UserEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43657561F05CDEF00B904A2 /* UserEvents.swift */; };
@@ -105,40 +88,19 @@
 		C4667F0D1CC80A050039C480 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4667F0C1CC80A050039C480 /* Appearance.swift */; };
 		C4676E091A6A4D1F00AE8BC2 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4676E081A6A4D1F00AE8BC2 /* ItemTableViewCell.swift */; };
 		C46934DF1A5D291C00A0AEA2 /* ItemPageViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46934DE1A5D291C00A0AEA2 /* ItemPageViewControllerDataSource.swift */; };
-		C471F6F4216F1EA20031CF18 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C471F6F0216EB1230031CF18 /* Result.framework */; };
-		C471F6F5216F1EA20031CF18 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C471F6F0216EB1230031CF18 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C474F0A81D80E65F00CABEB9 /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474F0A71D80E65F00CABEB9 /* LogViewController.swift */; };
-		C474F1C01DB041F100F0E152 /* Loggy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C474F1BF1DB041F100F0E152 /* Loggy.framework */; };
-		C474F1C11DB041F100F0E152 /* Loggy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C474F1BF1DB041F100F0E152 /* Loggy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C474F1CD1DB0657800F0E152 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474F1CC1DB0657800F0E152 /* main.swift */; };
-		C4816E2E1DF612E400DDACA7 /* GETracing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BFF1DBD502600FA3A0A /* GETracing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C4816E361DF612E400DDACA7 /* GEFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1CC1DBBAA9000A86CC0 /* GEFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C48354101FBFC29E00466BD6 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4CB791A1E3173E700F89794 /* GoogleToolboxForMac.framework */; };
-		C48354111FBFC29E00466BD6 /* GoogleToolboxForMac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4CB791A1E3173E700F89794 /* GoogleToolboxForMac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4874A091EAD657B00629990 /* Main.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4874A0B1EAD657B00629990 /* Main.strings */; };
 		C4874A0E1EAD657C00629990 /* LaunchScreen.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4874A101EAD657C00629990 /* LaunchScreen.strings */; };
 		C48C5F971A87344000A1EA12 /* ItemPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48C5F961A87344000A1EA12 /* ItemPageViewController.swift */; };
-		C48E1E5D2006DD42007EF030 /* GEDebugKit.framework in Collect Static Link Aware Dynamic Frameworks */ = {isa = PBXBuildFile; fileRef = A176B2211FD69C1600E945E9 /* GEDebugKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C48E1E5E2006DD42007EF030 /* GETracing.framework in Collect Static Link Aware Dynamic Frameworks */ = {isa = PBXBuildFile; fileRef = C4270BFF1DBD502600FA3A0A /* GETracing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C48E1E5F2006DD42007EF030 /* GEFoundation.framework in Collect Static Link Aware Dynamic Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1CC1DBBAA9000A86CC0 /* GEFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C48E1E602006DD42007EF030 /* GECoreData.framework in Collect Static Link Aware Dynamic Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1C91DBBAA9000A86CC0 /* GECoreData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C48E1E612006DD42007EF030 /* GEUIKit.framework in Collect Static Link Aware Dynamic Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1C61DBBAA9000A86CC0 /* GEUIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C48E1E622006DD42007EF030 /* RSSReaderData.framework in Collect Static Link Aware Dynamic Frameworks */ = {isa = PBXBuildFile; fileRef = C424B8F01C6FC5C8008AD647 /* RSSReaderData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C48E1E632006DD42007EF030 /* RSSReaderAppConfig.framework in Collect Static Link Aware Dynamic Frameworks */ = {isa = PBXBuildFile; fileRef = C4BE5AAD1DA864FA00E1734F /* RSSReaderAppConfig.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C495409B1A575C1900F56168 /* LoginAndPasswordDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C495409A1A575C1900F56168 /* LoginAndPasswordDefaults.swift */; };
 		C49540A11A57825100F56168 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49540A01A57825100F56168 /* ItemsViewController.swift */; };
 		C49540A51A57906600F56168 /* ItemSummaryWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */; };
 		C49A79FC1E2FFDFC00DE3702 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C49A79FB1E2FFDFC00DE3702 /* GoogleService-Info.plist */; };
 		C49BA5DE1DF4C7F900968FFE /* ItemListScrollingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49BA5DD1DF4C7F900968FFE /* ItemListScrollingTests.swift */; };
-		C49FF1C71DBBAA9000A86CC0 /* GEUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1C61DBBAA9000A86CC0 /* GEUIKit.framework */; };
-		C49FF1CA1DBBAA9000A86CC0 /* GECoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1C91DBBAA9000A86CC0 /* GECoreData.framework */; };
-		C49FF1CD1DBBAA9000A86CC0 /* GEFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C49FF1CC1DBBAA9000A86CC0 /* GEFoundation.framework */; };
 		C4A1646A1CB8938C009D8B86 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4A1646C1CB8938C009D8B86 /* InfoPlist.strings */; };
 		C4AD2ADB1A5DED8700B39AC9 /* ItemPageViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD2ADA1A5DED8700B39AC9 /* ItemPageViewControllerDelegate.swift */; };
-		C4B0DC241FD241AE005E587C /* JGProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B0DC231FD241AE005E587C /* JGProgressHUD.framework */; };
-		C4B0DC251FD241AE005E587C /* JGProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4B0DC231FD241AE005E587C /* JGProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4B0DC291FD2506C005E587C /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B0DC281FD25022005E587C /* R.generated.swift */; };
-		C4BE5AAE1DA864FA00E1734F /* RSSReaderAppConfig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BE5AAD1DA864FA00E1734F /* RSSReaderAppConfig.framework */; };
 		C4BE5AF31DAA986A00E1734F /* ItemTableViewCell-0.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4BE5AEE1DAA986A00E1734F /* ItemTableViewCell-0.xib */; };
 		C4BE5AF41DAA986A00E1734F /* ItemTableViewCell-1.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4BE5AEF1DAA986A00E1734F /* ItemTableViewCell-1.xib */; };
 		C4BE5AF51DAA986A00E1734F /* ItemTableViewCell-2.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4BE5AF01DAA986A00E1734F /* ItemTableViewCell-2.xib */; };
@@ -153,13 +115,10 @@
 		C4CDE1911A5A06A600F16A2E /* ItemSummaryTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */; };
 		C4CE35441CB8988F001712C8 /* RSSReaderTests-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4CE35461CB8988F001712C8 /* RSSReaderTests-InfoPlist.strings */; };
 		C4CE35491CB89890001712C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4CE354B1CB89890001712C8 /* InfoPlist.strings */; };
-		C4E4D6371E60C9EC007E0E39 /* Rswift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4E4D6361E60C9EC007E0E39 /* Rswift.framework */; };
-		C4E4D6381E60C9EC007E0E39 /* Rswift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4E4D6361E60C9EC007E0E39 /* Rswift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4EA5C361CE91E8600E395FE /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5C351CE91E8600E395FE /* ContainerViewController.swift */; };
 		C4EA5C381CE929D300E395FE /* ContainerTableViewSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4EA5C371CE929D300E395FE /* ContainerTableViewSectionHeader.xib */; };
 		C4EA5C3C1CE930B200E395FE /* ContainerTableViewSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5C3B1CE930B200E395FE /* ContainerTableViewSectionHeaderView.swift */; };
 		C4EA6B301CB895EF00FCDAA5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4EA6B2E1CB895EF00FCDAA5 /* Localizable.strings */; };
-		C4EB28091DFA399E00BF0843 /* ModuleExports-GECoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EB28081DFA399E00BF0843 /* ModuleExports-GECoreData.swift */; };
 		C4EB280B1DFA547500BF0843 /* ItemTableViewFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4EB280A1DFA547500BF0843 /* ItemTableViewFooter.xib */; };
 		C4F070EA2170217400ECC6AE /* LoggyExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F070E92170217400ECC6AE /* LoggyExtensions.swift */; };
 		C4F1118B1CB84F66005C5A0F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4F1118D1CB84F66005C5A0F /* LaunchScreen.xib */; };
@@ -177,7 +136,6 @@
 		E2EE38E25F36090556C9FEAE /* TestsBase.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = A1D942702013734700A6D61E /* TestsBase.swift */; };
 		E3D39691A7EA20194121958C /* ItemPageViewControllerDelegate.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4AD2ADA1A5DED8700B39AC9 /* ItemPageViewControllerDelegate.swift */; };
 		E8B011AD9F8ECAA24E871221 /* AppDelegate.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */; };
-		EE076F8C242DC40F8C4FC5F0 /* ModuleExports-GECoreData.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C4EB28081DFA399E00BF0843 /* ModuleExports-GECoreData.swift */; };
 		FC25E32F5D04B0EF014CBDCF /* UserEvents.swift in Embed Sources */ = {isa = PBXBuildFile; fileRef = C43657561F05CDEF00B904A2 /* UserEvents.swift */; };
 /* End PBXBuildFile section */
 
@@ -243,7 +201,6 @@
 			dstPath = "Sources/$(TARGET_NAME)";
 			dstSubfolderSpec = 7;
 			files = (
-				EE076F8C242DC40F8C4FC5F0 /* ModuleExports-GECoreData.swift in Embed Sources */,
 				1237A3D8C26772A17CAC0310 /* MainScene.swift in Embed Sources */,
 				39E455032D991D0792AD45E1 /* RefreshController.swift in Embed Sources */,
 				FC25E32F5D04B0EF014CBDCF /* UserEvents.swift in Embed Sources */,
@@ -292,19 +249,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C4198D9A2044B94900BE29E8 /* Promises.framework in Embed Frameworks */,
-				C474F1C11DB041F100F0E152 /* Loggy.framework in Embed Frameworks */,
-				C408F1B81CE7520700DB943F /* FBRetainCycleDetector.framework in Embed Frameworks */,
-				C4198D9D2044BA3700BE29E8 /* FBLPromises.framework in Embed Frameworks */,
-				C40B8DD61FBE23B50030E9F7 /* Watchdog.framework in Embed Frameworks */,
-				C408F1B51CE7520700DB943F /* FBMemoryProfiler.framework in Embed Frameworks */,
-				C422F3EA203094DB007D7D6A /* FTLinearActivityIndicator.framework in Embed Frameworks */,
-				C471F6F5216F1EA20031CF18 /* Result.framework in Embed Frameworks */,
-				C48354111FBFC29E00466BD6 /* GoogleToolboxForMac.framework in Embed Frameworks */,
-				C4B0DC251FD241AE005E587C /* JGProgressHUD.framework in Embed Frameworks */,
-				A103369D1FE606670096330F /* FPSCounter.framework in Embed Frameworks */,
-				C408F1B21CE7520700DB943F /* FBAllocationTracker.framework in Embed Frameworks */,
-				C4E4D6381E60C9EC007E0E39 /* Rswift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -315,8 +259,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C4816E2E1DF612E400DDACA7 /* GETracing.framework in Embed Frameworks */,
-				C4816E361DF612E400DDACA7 /* GEFoundation.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -327,13 +269,6 @@
 			dstPath = "$(GE_DYNAMIC_FRAMEWORKS_COLLECTOR_FOLDER_PATH)";
 			dstSubfolderSpec = 16;
 			files = (
-				C48E1E5D2006DD42007EF030 /* GEDebugKit.framework in Collect Static Link Aware Dynamic Frameworks */,
-				C48E1E5E2006DD42007EF030 /* GETracing.framework in Collect Static Link Aware Dynamic Frameworks */,
-				C48E1E5F2006DD42007EF030 /* GEFoundation.framework in Collect Static Link Aware Dynamic Frameworks */,
-				C48E1E602006DD42007EF030 /* GECoreData.framework in Collect Static Link Aware Dynamic Frameworks */,
-				C48E1E612006DD42007EF030 /* GEUIKit.framework in Collect Static Link Aware Dynamic Frameworks */,
-				C48E1E622006DD42007EF030 /* RSSReaderData.framework in Collect Static Link Aware Dynamic Frameworks */,
-				C48E1E632006DD42007EF030 /* RSSReaderAppConfig.framework in Collect Static Link Aware Dynamic Frameworks */,
 			);
 			name = "Collect Static Link Aware Dynamic Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,27 +295,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2751D48E37A74BD6D523E461 /* Pods_RSSReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RSSReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		619FB0AAF90DEACD872B4DD3 /* Pods-RSSReaderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSSReaderTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-RSSReaderTests/Pods-RSSReaderTests.release.xcconfig"; sourceTree = "<group>"; };
+		737F46E3A36599A8883DC453 /* Pods_RSSReaderTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RSSReaderTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A103368A1FE469B30096330F /* FolderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FolderTableViewCell.xib; path = Resources/FolderTableViewCell.xib; sourceTree = "<group>"; };
 		A103368C1FE46A070096330F /* SubscriptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SubscriptionTableViewCell.xib; path = Resources/SubscriptionTableViewCell.xib; sourceTree = "<group>"; };
-		A103369B1FE605E80096330F /* FPSCounter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FPSCounter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A10F28D82017AA3400FC1D12 /* populated.xcappdata.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = populated.xcappdata.zip; sourceTree = "<group>"; };
-		A176B2211FD69C1600E945E9 /* GEDebugKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GEDebugKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1D942702013734700A6D61E /* TestsBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsBase.swift; sourceTree = "<group>"; };
 		A1D9427220139BC200A6D61E /* TestsGlobals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsGlobals.swift; sourceTree = "<group>"; };
 		A1F22F882017DC3D00035FA9 /* populated.xcappdata */ = {isa = PBXFileReference; lastKnownFileType = file; name = populated.xcappdata; path = "RSSReader-xcappdata/populated.xcappdata"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C408F1B01CE7520700DB943F /* FBAllocationTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBAllocationTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C408F1B31CE7520700DB943F /* FBMemoryProfiler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBMemoryProfiler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C408F1B61CE7520700DB943F /* FBRetainCycleDetector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBRetainCycleDetector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C40A24FE1A672B2100B5D959 /* TableViewContainerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = TableViewContainerCell.swift; path = Swift/TableViewContainerCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		C40B8DD41FBE23B50030E9F7 /* Watchdog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Watchdog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C40C6C051A74AB5E00FAFA17 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		C4165D612173E8CD00A9293B /* SharedImports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SharedImports.swift; path = Swift/SharedImports.swift; sourceTree = "<group>"; };
 		C41707CA1A56076A00AED81C /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Globals.swift; path = Swift/Globals.swift; sourceTree = "<group>"; };
-		C4198D982044B94900BE29E8 /* Promises.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Promises.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C4198D9B2044BA3700BE29E8 /* FBLPromises.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBLPromises.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C422F3E8203094DB007D7D6A /* FTLinearActivityIndicator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FTLinearActivityIndicator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C424B8F01C6FC5C8008AD647 /* RSSReaderData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RSSReaderData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C4270BFF1DBD502600FA3A0A /* GETracing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GETracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C42802681A5B47EA002474E1 /* FoldersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = FoldersViewController.swift; path = Swift/FoldersViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C42BA28A1DF4DB9B00213D70 /* ItemTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemTableView.swift; path = Swift/ItemTableView.swift; sourceTree = "<group>"; };
 		C43657561F05CDEF00B904A2 /* UserEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserEvents.swift; path = Swift/UserEvents.swift; sourceTree = "<group>"; };
@@ -406,14 +333,13 @@
 		C44FCA5F1A8AF9CF00C91544 /* XcodeBotScripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XcodeBotScripts; sourceTree = "<group>"; };
 		C459879E1CDE0AAA00B8E9E4 /* GEShared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = GEShared.xcconfig; path = ../XcodeConfiguration/GEShared.xcconfig; sourceTree = "<group>"; };
 		C45BC3E91A8003F40008A5D1 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = HistoryViewController.swift; path = Swift/HistoryViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		C45C549D1E2E4B550039D16C /* Mixpanel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Mixpanel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4667F0C1CC80A050039C480 /* Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Appearance.swift; path = Swift/Appearance.swift; sourceTree = "<group>"; };
 		C4676E081A6A4D1F00AE8BC2 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemTableViewCell.swift; path = Swift/ItemTableViewCell.swift; sourceTree = "<group>"; };
 		C46934DE1A5D291C00A0AEA2 /* ItemPageViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemPageViewControllerDataSource.swift; path = Swift/ItemPageViewControllerDataSource.swift; sourceTree = "<group>"; };
-		C471F6F0216EB1230031CF18 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C474F0A71D80E65F00CABEB9 /* LogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogViewController.swift; path = Swift/LogViewController.swift; sourceTree = "<group>"; };
-		C474F1BF1DB041F100F0E152 /* Loggy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Loggy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C474F1CC1DB0657800F0E152 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = main.swift; path = Swift/main.swift; sourceTree = "<group>"; };
+		C47A102721B7193C008FFC39 /* RSSReader-app.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "RSSReader-app.debug.xcconfig"; sourceTree = SOURCE_ROOT; };
+		C47A102821B7196A008FFC39 /* RSSReader-app.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "RSSReader-app.release.xcconfig"; sourceTree = SOURCE_ROOT; };
 		C4874A0A1EAD657B00629990 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		C4874A0F1EAD657C00629990 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		C48C5F961A87344000A1EA12 /* ItemPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ItemPageViewController.swift; path = Swift/ItemPageViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -426,14 +352,9 @@
 		C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ItemSummaryWebViewController.swift; path = Swift/ItemSummaryWebViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C49A79FB1E2FFDFC00DE3702 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C49BA5DD1DF4C7F900968FFE /* ItemListScrollingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemListScrollingTests.swift; sourceTree = "<group>"; };
-		C49FF1C61DBBAA9000A86CC0 /* GEUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GEUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C49FF1C91DBBAA9000A86CC0 /* GECoreData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GECoreData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C49FF1CC1DBBAA9000A86CC0 /* GEFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GEFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4A164671CB89076009D8B86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		C4AD2ADA1A5DED8700B39AC9 /* ItemPageViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemPageViewControllerDelegate.swift; path = Swift/ItemPageViewControllerDelegate.swift; sourceTree = "<group>"; };
-		C4B0DC231FD241AE005E587C /* JGProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JGProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4B0DC281FD25022005E587C /* R.generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = "RSSReader-rswift/R.generated.swift"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C4BE5AAD1DA864FA00E1734F /* RSSReaderAppConfig.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RSSReaderAppConfig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4BE5AEE1DAA986A00E1734F /* ItemTableViewCell-0.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemTableViewCell-0.xib"; sourceTree = "<group>"; };
 		C4BE5AEF1DAA986A00E1734F /* ItemTableViewCell-1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemTableViewCell-1.xib"; sourceTree = "<group>"; };
 		C4BE5AF01DAA986A00E1734F /* ItemTableViewCell-2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemTableViewCell-2.xib"; sourceTree = "<group>"; };
@@ -441,11 +362,9 @@
 		C4BE5AF21DAA986A00E1734F /* ItemTableViewCell-Generate */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "ItemTableViewCell-Generate"; sourceTree = "<group>"; };
 		C4C0941A1D99ED4A00D27162 /* ItemInListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemInListView.swift; path = Swift/ItemInListView.swift; sourceTree = "<group>"; };
 		C4C422171A75E355008803A7 /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainNavigationController.swift; path = Swift/MainNavigationController.swift; sourceTree = "<group>"; };
-		C4C4E1B01E2E7EF800167102 /* Optimizely.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Optimizely.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4C780131A7DEAE2009CB5FC /* MarkAllAsReadActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MarkAllAsReadActivity.swift; path = Swift/MarkAllAsReadActivity.swift; sourceTree = "<group>"; };
 		C4C780151A7DF1EC009CB5FC /* ApplicationActivities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationActivities.swift; path = Swift/ApplicationActivities.swift; sourceTree = "<group>"; };
 		C4CB4B9B1E2A449F00C601BF /* ODUIThreadGuard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ODUIThreadGuard.swift; path = ../GitSubtrees/ODUIThreadGuard/ODUIThreadGuard/ODUIThreadGuard.swift; sourceTree = "<group>"; };
-		C4CB791A1E3173E700F89794 /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4CD8B551CC1FD3100A59696 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C4CDD39D1A5350B40087DD05 /* RSSReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4CDD3A21A5350B40087DD05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = AppDelegate.swift; path = Swift/AppDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -458,12 +377,10 @@
 		C4CE354A1CB89890001712C8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C4CE354C1CB89C0E001712C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C4CE354D1CB89C28001712C8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		C4E4D6361E60C9EC007E0E39 /* Rswift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Rswift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4EA5C351CE91E8600E395FE /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerViewController.swift; path = Swift/ContainerViewController.swift; sourceTree = "<group>"; };
 		C4EA5C371CE929D300E395FE /* ContainerTableViewSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ContainerTableViewSectionHeader.xib; path = Resources/ContainerTableViewSectionHeader.xib; sourceTree = "<group>"; };
 		C4EA5C3B1CE930B200E395FE /* ContainerTableViewSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerTableViewSectionHeaderView.swift; path = Swift/ContainerTableViewSectionHeaderView.swift; sourceTree = "<group>"; };
 		C4EA6B311CB895F500FCDAA5 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = Localizable/ru.lproj/Localizable.strings; sourceTree = "<group>"; };
-		C4EB28081DFA399E00BF0843 /* ModuleExports-GECoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GECoreData.swift"; path = "../GECoreData/GECoreData/ModuleExports-GECoreData.swift"; sourceTree = SOURCE_ROOT; };
 		C4EB280A1DFA547500BF0843 /* ItemTableViewFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ItemTableViewFooter.xib; path = Resources/ItemTableViewFooter.xib; sourceTree = "<group>"; };
 		C4F070E92170217400ECC6AE /* LoggyExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoggyExtensions.swift; path = Swift/LoggyExtensions.swift; sourceTree = "<group>"; };
 		C4F1118C1CB84F66005C5A0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -475,6 +392,7 @@
 		C4F7DC3A1D97E93200275E4F /* ItemTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemTableViewDelegate.swift; path = Swift/ItemTableViewDelegate.swift; sourceTree = "<group>"; };
 		C4F7DC3C1D97E9A800275E4F /* ItemTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemTableViewDataSource.swift; path = Swift/ItemTableViewDataSource.swift; sourceTree = "<group>"; };
 		C4F7DC3E1D97EBEF00275E4F /* ItemListViewLoading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemListViewLoading.swift; path = Swift/ItemListViewLoading.swift; sourceTree = "<group>"; };
+		D1AD381778741D4F2E5425A4 /* Pods-RSSReaderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSSReaderTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-RSSReaderTests/Pods-RSSReaderTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -489,26 +407,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C474F1C01DB041F100F0E152 /* Loggy.framework in Frameworks */,
-				C49FF1CD1DBBAA9000A86CC0 /* GEFoundation.framework in Frameworks */,
-				C408F1B71CE7520700DB943F /* FBRetainCycleDetector.framework in Frameworks */,
-				C40B8DD51FBE23B50030E9F7 /* Watchdog.framework in Frameworks */,
-				C422F3E9203094DB007D7D6A /* FTLinearActivityIndicator.framework in Frameworks */,
-				C49FF1CA1DBBAA9000A86CC0 /* GECoreData.framework in Frameworks */,
-				C424B8F11C6FC5C8008AD647 /* RSSReaderData.framework in Frameworks */,
-				C471F6F4216F1EA20031CF18 /* Result.framework in Frameworks */,
-				C4BE5AAE1DA864FA00E1734F /* RSSReaderAppConfig.framework in Frameworks */,
-				C4198D9C2044BA3700BE29E8 /* FBLPromises.framework in Frameworks */,
-				C408F1B41CE7520700DB943F /* FBMemoryProfiler.framework in Frameworks */,
-				C49FF1C71DBBAA9000A86CC0 /* GEUIKit.framework in Frameworks */,
-				C48354101FBFC29E00466BD6 /* GoogleToolboxForMac.framework in Frameworks */,
-				C4B0DC241FD241AE005E587C /* JGProgressHUD.framework in Frameworks */,
-				C4198D992044B94900BE29E8 /* Promises.framework in Frameworks */,
-				A176B2221FD69C1600E945E9 /* GEDebugKit.framework in Frameworks */,
-				A103369C1FE606670096330F /* FPSCounter.framework in Frameworks */,
-				C408F1B11CE7520700DB943F /* FBAllocationTracker.framework in Frameworks */,
-				C4E4D6371E60C9EC007E0E39 /* Rswift.framework in Frameworks */,
-				C4270C001DBD502600FA3A0A /* GETracing.framework in Frameworks */,
+				BD8CBB89367F73629EDA4032 /* Pods_RSSReader.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +415,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				400A75CF0A291E91DE29A44F /* Pods_RSSReaderTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,31 +425,11 @@
 		C424B8F91C6FC5E1008AD647 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C471F6F0216EB1230031CF18 /* Result.framework */,
-				C4198D9B2044BA3700BE29E8 /* FBLPromises.framework */,
-				C4198D982044B94900BE29E8 /* Promises.framework */,
-				C422F3E8203094DB007D7D6A /* FTLinearActivityIndicator.framework */,
-				A103369B1FE605E80096330F /* FPSCounter.framework */,
-				C4B0DC231FD241AE005E587C /* JGProgressHUD.framework */,
-				C40B8DD41FBE23B50030E9F7 /* Watchdog.framework */,
-				C4E4D6361E60C9EC007E0E39 /* Rswift.framework */,
-				C4CB791A1E3173E700F89794 /* GoogleToolboxForMac.framework */,
-				C4C4E1B01E2E7EF800167102 /* Optimizely.framework */,
-				C45C549D1E2E4B550039D16C /* Mixpanel.framework */,
-				C474F1BF1DB041F100F0E152 /* Loggy.framework */,
-				C408F1B61CE7520700DB943F /* FBRetainCycleDetector.framework */,
-				C408F1B31CE7520700DB943F /* FBMemoryProfiler.framework */,
-				C408F1B01CE7520700DB943F /* FBAllocationTracker.framework */,
-				A176B2211FD69C1600E945E9 /* GEDebugKit.framework */,
-				C4270BFF1DBD502600FA3A0A /* GETracing.framework */,
-				C49FF1CC1DBBAA9000A86CC0 /* GEFoundation.framework */,
-				C49FF1C91DBBAA9000A86CC0 /* GECoreData.framework */,
-				C49FF1C61DBBAA9000A86CC0 /* GEUIKit.framework */,
-				C424B8F01C6FC5C8008AD647 /* RSSReaderData.framework */,
-				C4BE5AAD1DA864FA00E1734F /* RSSReaderAppConfig.framework */,
 				A1F22F882017DC3D00035FA9 /* populated.xcappdata */,
 				C4B0DC281FD25022005E587C /* R.generated.swift */,
 				C459879E1CDE0AAA00B8E9E4 /* GEShared.xcconfig */,
+				2751D48E37A74BD6D523E461 /* Pods_RSSReader.framework */,
+				737F46E3A36599A8883DC453 /* Pods_RSSReaderTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -602,7 +482,6 @@
 				C40C6C051A74AB5E00FAFA17 /* Bridging-Header.h */,
 				C4A164671CB89076009D8B86 /* Info.plist */,
 				C49A79FB1E2FFDFC00DE3702 /* GoogleService-Info.plist */,
-				C4EB28081DFA399E00BF0843 /* ModuleExports-GECoreData.swift */,
 				C4EA6B2E1CB895EF00FCDAA5 /* Localizable.strings */,
 				C4A1646C1CB8938C009D8B86 /* InfoPlist.strings */,
 			);
@@ -735,6 +614,7 @@
 				C4CB4B9D1E2A44BB00C601BF /* Framework Sources */,
 				C4CDD39E1A5350B40087DD05 /* Products */,
 				C424B8F91C6FC5E1008AD647 /* Frameworks */,
+				E6374F18738743EB0E42F2F0 /* Pods */,
 			);
 			sourceTree = "<group>";
 			usesTabs = 1;
@@ -753,6 +633,8 @@
 			isa = PBXGroup;
 			children = (
 				C4915FE31CE734A40063A734 /* RSSReader-app.xcconfig */,
+				C47A102721B7193C008FFC39 /* RSSReader-app.debug.xcconfig */,
+				C47A102821B7196A008FFC39 /* RSSReader-app.release.xcconfig */,
 				C4BE5AE61DAA803800E1734F /* Globals */,
 				C49540A21A57827300F56168 /* UI */,
 				C4BE5AE31DAA5BB000E1734F /* Miscellaneous */,
@@ -785,6 +667,15 @@
 			path = testData;
 			sourceTree = "<group>";
 		};
+		E6374F18738743EB0E42F2F0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D1AD381778741D4F2E5425A4 /* Pods-RSSReaderTests.debug.xcconfig */,
+				619FB0AAF90DEACD872B4DD3 /* Pods-RSSReaderTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -813,6 +704,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C4CDD3BE1A5350B50087DD05 /* Build configuration list for PBXNativeTarget "RSSReader" */;
 			buildPhases = (
+				16BA5B0E713669C6255D8842 /* [CP] Check Pods Manifest.lock */,
 				C48368312007185900A0F25E /* Dump Environment */,
 				C4DA682E1E58BC94004615A0 /* Generate R.generated.swift */,
 				C4CDD3991A5350B40087DD05 /* Sources */,
@@ -826,6 +718,8 @@
 				C48E1E5C2006DD06007EF030 /* Collect Static Link Aware Dynamic Frameworks */,
 				C48E1E5A2006D761007EF030 /* Embed Static Link Aware Frameworks Or Resources */,
 				687C9AAFBE7A8236C3E90846 /* Embed Sources */,
+				4DEE74FFF89ECF9091A8A79A /* [CP] Embed Pods Frameworks */,
+				F18A22CC6FD571029509617F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 				A10F28DB2017AA7400FC1D12 /* PBXBuildRule */,
@@ -841,6 +735,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C4CDD3C11A5350B50087DD05 /* Build configuration list for PBXNativeTarget "RSSReaderTests" */;
 			buildPhases = (
+				A06E409F6AB2811D5CB3EE20 /* [CP] Check Pods Manifest.lock */,
 				C4CDD3B01A5350B50087DD05 /* Sources */,
 				C4CDD3B11A5350B50087DD05 /* Frameworks */,
 				C4CDD3B21A5350B50087DD05 /* Resources */,
@@ -964,6 +859,96 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		16BA5B0E713669C6255D8842 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RSSReader-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4DEE74FFF89ECF9091A8A79A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/../Pods/Target Support Files/Pods-RSSReader/Pods-RSSReader-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FBAllocationTracker/FBAllocationTracker.framework",
+				"${BUILT_PRODUCTS_DIR}/FBMemoryProfiler/FBMemoryProfiler.framework",
+				"${BUILT_PRODUCTS_DIR}/FBRetainCycleDetector/FBRetainCycleDetector.framework",
+				"${BUILT_PRODUCTS_DIR}/FPSCounter/FPSCounter.framework",
+				"${BUILT_PRODUCTS_DIR}/FTLinearActivityIndicator/FTLinearActivityIndicator.framework",
+				"${BUILT_PRODUCTS_DIR}/GECoreData/GECoreData.framework",
+				"${BUILT_PRODUCTS_DIR}/GEDebugKit/GEDebugKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GEFoundation/GEFoundation.framework",
+				"${BUILT_PRODUCTS_DIR}/GETracing/GETracing.framework",
+				"${BUILT_PRODUCTS_DIR}/GEUIKit/GEUIKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/Loggy/Loggy.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesSwift/Promises.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
+				"${BUILT_PRODUCTS_DIR}/RSSReaderData/RSSReaderData.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/Watchdog/Watchdog.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBAllocationTracker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBMemoryProfiler.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBRetainCycleDetector.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FPSCounter.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FTLinearActivityIndicator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GECoreData.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GEDebugKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GEFoundation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GETracing.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GEUIKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Loggy.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Promises.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RSSReaderData.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Watchdog.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-RSSReader/Pods-RSSReader-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A06E409F6AB2811D5CB3EE20 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RSSReaderTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C40C6BF81A73017B00FAFA17 /* Integrate Appsee */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 8;
@@ -1049,7 +1034,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -e";
-			shellScript = "\"${GE_XCODE_BUILD_PHASES:?}\"/Run EmbedStaticLinkAwareFrameworksOrResources\n";
+			shellScript = "#\"${GE_XCODE_BUILD_PHASES:?}\"/Run EmbedStaticLinkAwareFrameworksOrResources\n";
 			showEnvVarsInLog = 0;
 		};
 		C4DA682E1E58BC94004615A0 /* Generate R.generated.swift */ = {
@@ -1084,6 +1069,24 @@
 			shellScript = "pushd .. > /dev/null\n~/homebrew/bin/swiftlint";
 			showEnvVarsInLog = 0;
 		};
+		F18A22CC6FD571029509617F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/../Pods/Target Support Files/Pods-RSSReader/Pods-RSSReader-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/GEAppConfig/GEAppConfig-Sources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GEAppConfig-Sources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-RSSReader/Pods-RSSReader-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1103,7 +1106,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A10F28DA2017AA5400FC1D12 /* populated.xcappdata.zip in Sources */,
-				C4EB28091DFA399E00BF0843 /* ModuleExports-GECoreData.swift in Sources */,
 				C441F1791DB24A1D0060E692 /* MainScene.swift in Sources */,
 				C436575D1F07597600B904A2 /* RefreshController.swift in Sources */,
 				C43657571F05CDEF00B904A2 /* UserEvents.swift in Sources */,
@@ -1306,7 +1308,7 @@
 		};
 		C4CDD3BF1A5350B50087DD05 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C4915FE31CE734A40063A734 /* RSSReader-app.xcconfig */;
+			baseConfigurationReference = C47A102721B7193C008FFC39 /* RSSReader-app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -1330,7 +1332,7 @@
 		};
 		C4CDD3C01A5350B50087DD05 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C4915FE31CE734A40063A734 /* RSSReader-app.xcconfig */;
+			baseConfigurationReference = C47A102821B7196A008FFC39 /* RSSReader-app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -1354,6 +1356,7 @@
 		};
 		C4CDD3C21A5350B50087DD05 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1AD381778741D4F2E5425A4 /* Pods-RSSReaderTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -1379,6 +1382,7 @@
 		};
 		C4CDD3C31A5350B50087DD05 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 619FB0AAF90DEACD872B4DD3 /* Pods-RSSReaderTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_OBJC_WEAK = YES;

@@ -1,0 +1,26 @@
+{
+  "name": "GEXCTest",
+  "version": "0.1",
+  "summary": "XCTest extensions",
+  "description": "Some stuff that's worth adding with XCTest.",
+  "homepage": "https://github.com/grigorye/GEXCTest",
+  "license": "MIT",
+  "authors": {
+    "Grigory Entin": "grigory.entin@gmail.com"
+  },
+  "platforms": {
+    "ios": "10.0",
+    "osx": "10.10"
+  },
+  "source": {
+    "git": "https://github.com/grigorye/GEXCTest.git",
+    "tag": "0.1"
+  },
+  "source_files": "GEXCTest/*.{swift,h,m}",
+  "dependencies": {
+    "CwlPreconditionTesting": [
+
+    ]
+  },
+  "swift_version": "4.2"
+}

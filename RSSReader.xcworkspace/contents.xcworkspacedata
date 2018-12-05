@@ -11,27 +11,6 @@
          location = "group:RSSReader/RSSReader.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:RSSReaderAppConfig/RSSReaderAppConfig.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:RSSReaderData/RSSReaderData.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:GEUIKit/GEUIKit.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:GEDebugKit/GEDebugKit.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:GECoreData/GECoreData.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:GEFoundation/GEFoundation.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:GETracing/GETracing.xcodeproj">
-      </FileRef>
-      <FileRef
          location = "group:GEXCTest/GEXCTest.xcodeproj">
       </FileRef>
       <FileRef
