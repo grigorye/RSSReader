@@ -8,12 +8,12 @@
 
 import Foundation
 
-extension NSUserDefaults {
+extension UserDefaults {
 	var login: String! {
-		return self.stringForKey("login")
+		return self.string(forKey: "login")
 	}
 	var password: String! {
-		return self.stringForKey("password")
+		return self.string(forKey: "password")
 	}
 	var loginAndPassword: LoginAndPassword {
 		get {
@@ -23,18 +23,18 @@ extension NSUserDefaults {
 		}
 	}
 	var itemsAreSortedByLoadDate: Bool {
-		return self.boolForKey("itemsAreSortedByLoadDate")
+		return self.bool(forKey: "itemsAreSortedByLoadDate")
 	}
 	var authToken: String? {
 		get {
-			return self.stringForKey("authToken")
+			return self.string(forKey: "authToken")
 		}
 		set {
 			if let authToken = newValue {
-				self.setObject(authToken, forKey: "authToken")
+				self.set(authToken, forKey: "authToken")
 			}
 			else {
-				self.removeObjectForKey("authToken")
+				self.removeObject(forKey: "authToken")
 			}
 		}
 	}
