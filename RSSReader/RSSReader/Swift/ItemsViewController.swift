@@ -7,6 +7,7 @@
 //
 
 import RSSReaderData
+import GEAppConfig
 import GEUIKit
 import Promises
 import UIKit

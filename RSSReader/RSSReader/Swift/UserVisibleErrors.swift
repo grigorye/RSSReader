@@ -6,13 +6,13 @@
 //  Copyright © 2017 Grigory Entin. All rights reserved.
 //
 
-import RSSReaderAppConfig
+import GEAppConfig
 import Foundation
 
 extension ItemSummaryWebViewController {
 	
 	private func presentErrorMessage(_ text: String, underlyingError error: Error? = nil) {
-		RSSReaderAppConfig.presentErrorMessage(text, underlyingError: error)
+		GEAppConfig.presentErrorMessage(text, underlyingError: error)
 	}
 	
 }

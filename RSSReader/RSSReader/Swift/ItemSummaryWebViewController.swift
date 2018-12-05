@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Grigory Entin. All rights reserved.
 //
 
-import RSSReaderAppConfig
 import RSSReaderData
+import GEAppConfig
 import SafariServices
 import UIKit
 import CoreData

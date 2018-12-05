@@ -6,8 +6,8 @@
 //  Copyright © 2017 Grigory Entin. All rights reserved.
 //
 
-import RSSReaderAppConfig
 import RSSReaderData
+import GEAppConfig
 import Foundation
 
 extension ItemsViewController {
@@ -30,7 +30,7 @@ extension ItemsViewController {
 			if defaults.showMessagesInToolbar {
 				presentInfoMessage(message)
 			} else {
-				RSSReaderAppConfig.presentInfoMessage(message)
+				GEAppConfig.presentInfoMessage(message)
 			}
 		}
 	}

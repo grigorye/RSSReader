@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Grigory Entin. All rights reserved.
 //
 
-import RSSReaderAppConfig
 import RSSReaderData
+import GEAppConfig
 import GEFoundation
 import Loggy
 import UIKit
 
-class AppDelegate : AppDelegateBase {
+class AppDelegate : GEAppConfig.AppDelegateBase {
 	
 	lazy var mainScene: AnyObject = { MainScene(window: self.window!) }()
 	
