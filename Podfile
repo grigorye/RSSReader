@@ -1,4 +1,8 @@
-install! 'cocoapods', :integrate_targets => false
+source 'https://github.com/CocoaPods/Specs.git'
+source 'https://github.com/grigorye/podspecs.git'
+
+install! 'cocoapods'#, :integrate_targets => false
+project "RSSReader/RSSReader.xcodeproj"
 use_frameworks!
 
 def commonDeps
@@ -7,13 +11,17 @@ def commonDeps
   pod 'Result'
   pod 'PromisesSwift'
   pod 'GoogleToolboxForMac/NSString+HTML'
-  pod 'GETracing', :git => 'https://github.com/grigorye/GETracing'
-  pod 'GEFoundation', :git => 'https://github.com/grigorye/GEFoundation'
+
+  pod 'GEAppConfig', :subspecs => ['Core', 'Crashlytics', 'Answers', 'iOS']#, :path => '../GEAppConfig'
+  pod 'GETracing'
+  pod 'GEFoundation'
+  pod 'GECoreData'
+  pod 'GEUIKit'
 end
 
 # This "target" is used to produce the corresponding .xcconfig that is explicitly #included in the app .xcconfig.
-target "iOS" do
-  platform :ios, '10.0'
+target "RSSReader" do
+  platform :ios, '11.0'
   commonDeps
   pod 'R.swift'
   pod 'Watchdog'
@@ -22,6 +30,8 @@ target "iOS" do
   pod 'FBMemoryProfiler', :inhibit_warnings => true
   pod 'FBAllocationTracker', :inhibit_warnings => true
   pod 'FPSCounter'
+  pod 'RSSReaderData', :path => 'RSSReaderData'
+  pod 'Loggy'
   #pod 'AFMInfoBanner'
   #pod 'UXCam'
   #pod 'TUSafariActivity'
@@ -37,11 +47,9 @@ target "iOS" do
 end
 
 def unitTestDeps
-  pod 'CwlPreconditionTesting', :git => 'https://github.com/mattgallagher/CwlPreconditionTesting.git'
-  pod 'CwlCatchException', :git => 'https://github.com/mattgallagher/CwlCatchException.git'
 end
 
-target "tests-iOS" do
+target "RSSReaderTests" do
   platform :ios, '9.0'
   unitTestDeps
 end
@@ -74,7 +82,7 @@ post_install do |installer|
         configuration.build_settings['SWIFT_VERSION'] = target_swift_version
       end
 
-      configuration.build_settings['CONFIGURATION_BUILD_DIR'] = '${PODS_CONFIGURATION_BUILD_DIR}'
+      #configuration.build_settings['CONFIGURATION_BUILD_DIR'] = '${PODS_CONFIGURATION_BUILD_DIR}'
       #configuration.build_settings['CODE_SIGNING_REQUIRED'] = 'NO'
       #configuration.build_settings['PROVISIONING_PROFILE_SPECIFIER'] = 'T6B3YCL946/'
       configuration.build_settings['DEBUG_INFORMATION_FORMAT'] = 'dwarf-with-dsym'
@@ -87,11 +95,11 @@ post_install do |installer|
       #
       # Remove framework search paths not existing when building (dynamic) frameworks
       #
-      frameworkSearchPaths = xcconfig['FRAMEWORK_SEARCH_PATHS']
-      if frameworkSearchPaths != nil
-        frameworkSearchPaths = frameworkSearchPaths.gsub(/"\$\{PODS_CONFIGURATION_BUILD_DIR\}\/[.a-zA-Z0-9_-]+"( |$)/, '')
-        xcconfig['FRAMEWORK_SEARCH_PATHS'] = frameworkSearchPaths
-      end
+      # frameworkSearchPaths = xcconfig['FRAMEWORK_SEARCH_PATHS']
+      # if frameworkSearchPaths != nil
+      #   frameworkSearchPaths = frameworkSearchPaths.gsub(/"\$\{PODS_CONFIGURATION_BUILD_DIR\}\/[.a-zA-Z0-9_-]+"( |$)/, '')
+      #   xcconfig['FRAMEWORK_SEARCH_PATHS'] = frameworkSearchPaths
+      # end
       
       File.open(xcconfig_path, "w") { |file|
         xcconfig.each do |key,value|
