@@ -54,6 +54,11 @@ target "RSSReaderTests" do
   unitTestDeps
 end
 
+target "RSSReaderUITests" do
+  platform :ios, '11.0'
+  pod 'GEFoundation'
+end
+
 #target "tests-macOS" do
 #  platform :osx, '10.11'
 #  unitTestDeps
