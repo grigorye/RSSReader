@@ -1,0 +1,10 @@
+//
+//  RSSReader-app.release.xcconfig
+//  RSSReader
+//
+//  Created by Grigory Entin on 04/12/2018.
+//  Copyright © 2018 Grigory Entin. All rights reserved.
+//
+
+#include "../Pods/Target Support Files/Pods-RSSReader/Pods-RSSReader.release.xcconfig"
+#include "RSSReader-app.xcconfig"
