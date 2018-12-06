@@ -4,4 +4,5 @@ stages:
 build_project:
   stage: build
   script:
-    - xcodebuild -sdk iphonesimulator -workspace RSSReader.xcworkspace -scheme AllTests-iOS -destination 'platform=iOS Simulator,name=iPhone X,OS=latest' -enableCodeCoverage YES test CODE_SIGNING_REQUIRED=NO
+    - rm -rf DerivedData
+    - xcodebuild -sdk iphonesimulator -derivedDataPath DerivedData -workspace RSSReader.xcworkspace -scheme AllTests-iOS -destination 'platform=iOS Simulator,name=iPhone X,OS=latest' -enableCodeCoverage YES test CODE_SIGNING_REQUIRED=NO
