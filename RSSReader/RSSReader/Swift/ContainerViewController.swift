@@ -106,7 +106,7 @@ class ContainerViewController: UITableViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		if defaults.showContainerTitleInTableHeader {
-			tableView.register(R.nib.containerTableViewSectionHeader(), forHeaderFooterViewReuseIdentifier: "SectionHeader")
+			tableView.register(UINib(resource: R.nib.containerTableViewSectionHeader), forHeaderFooterViewReuseIdentifier: "SectionHeader")
 			tableView.sectionHeaderHeight = UITableViewAutomaticDimension
 			tableView.estimatedSectionHeaderHeight = 44
 		} else {
