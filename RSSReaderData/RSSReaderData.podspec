@@ -22,6 +22,7 @@ Pod::Spec.new do |s|
 
   s.source_files = "RSSReaderData/*.swift"
   s.resources = ['RSSReaderData/*.xcdatamodeld']
+  s.resource_bundles = { 'RSSReaderData-Sources' => 'RSSReaderData' }
 
   s.swift_version = '4.2'
   s.dependency 'GECoreData'
