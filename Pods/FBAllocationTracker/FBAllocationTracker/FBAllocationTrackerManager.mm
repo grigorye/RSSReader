@@ -66,20 +66,20 @@ BOOL FBIsFBATEnabledInThisBuild(void)
 
 - (void)enableGenerations
 {
-  dispatch_async(_queue, ^{
-    if (_generationsClients == 0) {
+  dispatch_sync(_queue, ^{
+    if (self->_generationsClients == 0) {
       FB::AllocationTracker::enableGenerations();
       FB::AllocationTracker::markGeneration();
     }
-    _generationsClients += 1;
+    self->_generationsClients += 1;
   });
 }
 
 - (void)disableGenerations
 {
-  dispatch_async(_queue, ^{
-    _generationsClients -= 1;
-    if (_generationsClients <= 0) {
+  dispatch_sync(_queue, ^{
+    self->_generationsClients -= 1;
+    if (self->_generationsClients <= 0) {
       FB::AllocationTracker::disableGenerations();
     }
   });
