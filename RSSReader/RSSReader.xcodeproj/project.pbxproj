@@ -1092,6 +1092,7 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/$(PROJECT_NAME)/Localizable/Base.lproj/Main.storyboard",
+				"$TEMP_DIR/rswift-lastrun",
 			);
 			name = "Generate R.generated.swift";
 			outputPaths = (
@@ -1099,7 +1100,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -e";
-			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"${BUILT_PRODUCTS_DIR:?}\"/\"${PROJECT_NAME:?}-rswift\"\n";
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"${BUILT_PRODUCTS_DIR:?}\"/\"${PROJECT_NAME:?}-rswift/R.generated.swift\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C4EDE1FE1FBCF0B500BB7F55 /* Lint */ = {
