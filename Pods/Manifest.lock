@@ -86,6 +86,7 @@ PODS:
     - R.swift.Library (~> 5.0.0)
   - R.swift.Library (5.0.0)
   - Result (4.1.0)
+  - RSSReader (0.1)
   - RSSReaderData (0.1):
     - GECoreData
     - "GoogleToolboxForMac/NSString+HTML"
@@ -114,6 +115,7 @@ DEPENDENCIES:
   - PromisesSwift
   - R.swift
   - Result
+  - RSSReader (from `RSSReader`)
   - RSSReaderData (from `RSSReaderData`)
   - Watchdog
 
@@ -144,6 +146,8 @@ SPEC REPOS:
     - Loggy
 
 EXTERNAL SOURCES:
+  RSSReader:
+    :path: RSSReader
   RSSReaderData:
     :path: RSSReaderData
 
@@ -169,9 +173,10 @@ SPEC CHECKSUMS:
   R.swift: a8e1a7e7f38441282fbcb7a3c266076eb38b77ba
   R.swift.Library: 0bf390e729bc10bb2c9e4fb78bd043164a7be4ff
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
-  RSSReaderData: 01f0505ed11ddc753e63b16c782a5a8476831a24
+  RSSReader: de84f4fd674672c5d8de2f5f080480cb129c332a
+  RSSReaderData: 789f90205faeec7c73a7e39d37c71712298aed4d
   Watchdog: 46862f4e1fcf9c7864c96227d784d3c00013b5b7
 
-PODFILE CHECKSUM: d7c2fce41df43f79a00165f5cf74f1c0ede68317
+PODFILE CHECKSUM: 2abd35ee226a70c5998f71dbb4a989324e45e0fd
 
 COCOAPODS: 1.5.3

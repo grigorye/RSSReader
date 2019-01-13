@@ -1,0 +1,21 @@
+{
+  "name": "RSSReader",
+  "version": "0.1",
+  "summary": "Internal pod for the app.",
+  "description": "A pod containing just sources for now.",
+  "homepage": "https://github.com/grigorye/RSSReader",
+  "license": "MIT",
+  "authors": {
+    "Grigory Entin": "grigory.entin@gmail.com"
+  },
+  "platforms": {
+    "ios": "11.0"
+  },
+  "source": {
+    "git": "https://github.com/grigorye/RSSReader.git"
+  },
+  "resource_bundles": {
+    "RSSReader-Sources": "RSSReader"
+  },
+  "static_framework": true
+}

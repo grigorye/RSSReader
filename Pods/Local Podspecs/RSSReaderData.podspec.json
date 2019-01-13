@@ -20,6 +20,9 @@
   "resources": [
     "RSSReaderData/*.xcdatamodeld"
   ],
+  "resource_bundles": {
+    "RSSReaderData-Sources": "RSSReaderData"
+  },
   "swift_version": "4.2",
   "dependencies": {
     "GECoreData": [
