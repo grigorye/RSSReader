@@ -13,16 +13,17 @@ def commonDeps
   pod 'GoogleToolboxForMac/NSString+HTML'
 
   pod 'GEAppConfig', :subspecs => ['Core', 'Crashlytics', 'Answers', 'iOS']#, :path => '../GEAppConfig'
-  pod 'GETracing'
-  pod 'GEFoundation'
-  pod 'GECoreData'
-  pod 'GEUIKit'
+  pod 'GETracing'#, :path => '../GETracing'
+  pod 'GEFoundation'#, :path => '../GEFoundation'
+  pod 'GECoreData'#, :path => '../GECoreData'
+  pod 'GEUIKit'#, :path => '../GEUIKit'
 end
 
 # This "target" is used to produce the corresponding .xcconfig that is explicitly #included in the app .xcconfig.
 target "RSSReader" do
   platform :ios, '11.0'
   commonDeps
+  pod 'RSSReader', :path => 'RSSReader'
   pod 'R.swift'
   pod 'Watchdog'
   pod 'JGProgressHUD'
@@ -94,23 +95,6 @@ post_install do |installer|
       configuration.build_settings['ENABLE_BITCODE'] = 'NO'
       configuration.build_settings['ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES'] = 'NO'
       configuration.build_settings['CLANG_WARN_DOCUMENTATION_COMMENTS'] = 'NO'
-      xcconfig_path = configuration.base_configuration_reference.real_path
-      xcconfig = Xcodeproj::Config.new(xcconfig_path).to_hash
-      
-      #
-      # Remove framework search paths not existing when building (dynamic) frameworks
-      #
-      # frameworkSearchPaths = xcconfig['FRAMEWORK_SEARCH_PATHS']
-      # if frameworkSearchPaths != nil
-      #   frameworkSearchPaths = frameworkSearchPaths.gsub(/"\$\{PODS_CONFIGURATION_BUILD_DIR\}\/[.a-zA-Z0-9_-]+"( |$)/, '')
-      #   xcconfig['FRAMEWORK_SEARCH_PATHS'] = frameworkSearchPaths
-      # end
-      
-      File.open(xcconfig_path, "w") { |file|
-        xcconfig.each do |key,value|
-          file.puts "#{key} = #{value}"
-        end
-      }
     end
   end
 end
