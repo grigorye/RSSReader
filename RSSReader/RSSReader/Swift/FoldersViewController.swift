@@ -117,14 +117,14 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 
 	@IBAction func refresh(_ sender: AnyObject!) {
 		guard !refreshController.refreshingSubscriptions else {
-			track(.secondRefreshIgnored())
+			track(.secondRefreshIgnored)
 			return
 		}
-		track(.refreshInitiated())
+		track(.refreshInitiated)
 		refreshController.refreshSubscriptions { (error) in
 			defer {
 				self.refreshControl?.endRefreshing()
-				self.track(.refreshCompleted())
+				self.track(.refreshCompleted)
 			}
 			if nil == error {
 				if RSSReader.fakeRootFolder() == self.rootFolder {

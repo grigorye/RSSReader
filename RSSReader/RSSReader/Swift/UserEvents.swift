@@ -141,9 +141,9 @@ extension FoldersViewController {
 extension FoldersViewController {
 	
 	enum UserVisibleEvent {
-		case secondRefreshIgnored()
-		case refreshInitiated()
-		case refreshCompleted()
+		case secondRefreshIgnored
+		case refreshInitiated
+		case refreshCompleted
 	}
 	
 	func track(_ event: UserVisibleEvent) {
