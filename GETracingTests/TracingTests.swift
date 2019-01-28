@@ -23,14 +23,6 @@ extension LogRecord.Message {
 	}
 }
 
-#if !swift(>=4.1)
-extension Array {
-func compactMap<T>(_ transform: (Element) throws -> T?) rethrows -> [T] {
-return try flatMap(transform)
-}
-}
-#endif
-
 func debugPrinted(_ s: String) -> String {
 	return String(reflecting: s)
 }
@@ -321,23 +313,18 @@ class LabelTests : TraceAndLabelTestsBase {
 	}
 	func testLabelWithMissingSource() {
 		let s = "foo"
-		let sourceFile = "/tmp/Missing.swift"
-		let sourceFilename = URL(fileURLWithPath: sourceFile).lastPathComponent
-		let cls = type(of: self)
-		let bundleFilename = Bundle(for: cls).bundleURL.lastPathComponent
+		let sourceFile: StaticString = "/tmp/Missing.swift"
 		let cln = #column - 1
 		let l = L(file: sourceFile, s)
-		XCTAssertEqual(l, "\(bundleFilename)/\(sourceFilename)[missing-sources-bundle]:.\(cln):?: \(debugPrinted(s))")
+		XCTAssertEqual(l, ".\(cln):?: \(debugPrinted(s))")
 	}
 	func testLabelWithNoSource() {
 		let s = "foo"
 		var v = "foo"
-		let fileURL = URL(fileURLWithPath: #file)
-		let sourceModuleName = fileURL.deletingLastPathComponent().lastPathComponent
-		let sourceFilename = fileURL.lastPathComponent
 		withUnsafePointer(to: &v) { p in
+			let cln = #column - 1
 			let l = L(dso: p, s)
-			XCTAssertEqual(l, "\(sourceModuleName)/\(sourceFilename):?: \(debugPrinted(s))")
+			XCTAssertEqual(l, ".\(cln):?: \(debugPrinted(s))")
 		}
 	}
 	func testLabeledCompoundExpressions() {
