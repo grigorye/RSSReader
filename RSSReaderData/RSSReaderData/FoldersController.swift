@@ -33,7 +33,7 @@ extension TypedUserDefaults {
 
 public extension FoldersController {
 	// swiftlint:disable:next function_body_length
-	public func updateFolders(via rssSession: RSSSession) -> Promise<Void> {
+	func updateFolders(via rssSession: RSSSession) -> Promise<Void> {
 		precondition(rssSession.authenticated)
 		return Promise({ () -> Promise<Void> in
 			self.foldersLastUpdateError = nil
@@ -41,19 +41,19 @@ public extension FoldersController {
 			return rssSession.updateUserInfo()
 		}).then({ _ -> Promise<Void> in
 			self.foldersUpdateState = .pushingTags
-			return rssSession.pushTags()
+			return x$(rssSession.pushTags())
 		}).then({ _ -> Promise<Void> in
 			self.foldersUpdateState = .pullingTags
-			return rssSession.pullTags()
+			return x$(rssSession.pullTags())
 		}).then({ _ -> Promise<Void> in
 			self.foldersUpdateState = .updatingSubscriptions
-			return rssSession.updateSubscriptions()
+			return x$(rssSession.updateSubscriptions())
 		}).then({ _ -> Promise<Void> in
 			self.foldersUpdateState = .updatingUnreadCounts
-			return rssSession.updateUnreadCounts()
+			return x$(rssSession.updateUnreadCounts())
 		}).then({ _ -> Promise<Void> in
 			self.foldersUpdateState = .updatingStreamPreferences
-			return rssSession.updateStreamPreferences()
+			return x$(rssSession.updateStreamPreferences())
 		}).then({ _ -> Promise<Void> in
 			guard defaults.streamPrefetchingEnabled else {
 				return Promise {}
@@ -74,12 +74,12 @@ public extension FoldersController {
 				}
 			}
 		}).then({
-			self.foldersLastUpdateDate = Date()
+			x$(self.foldersLastUpdateDate = Date())
 		}).recover({ (error) -> Void in
-			self.foldersLastUpdateError = error
+			x$(self.foldersLastUpdateError = error)
 			throw x$(error)
 		}).always({
-			self.foldersUpdateState = .ended
+			x$(self.foldersUpdateState = .ended)
 		})
 	}
 }
