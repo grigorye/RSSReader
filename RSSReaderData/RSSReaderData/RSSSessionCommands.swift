@@ -111,6 +111,13 @@ struct UpdateSubscriptions : PersistentDataUpdateCommand, MostCommonDataUpdateCo
 	func importResult(_ data: Data, into managedObjectContext: NSManagedObjectContext) throws {
 		let subscriptions = try importedSubscriptionsFromJsonData(data, managedObjectContext: managedObjectContext)
 		•(subscriptions)
+		for newSubscription in x$(subscriptions.new) {
+			_ = x$(newSubscription.streamID)
+		}
+		for removedSubscription in x$(subscriptions.removed) {
+			_ = x$(removedSubscription.streamID)
+			managedObjectContext.delete(removedSubscription)
+		}
 	}
 }
 
@@ -165,22 +172,36 @@ struct MarkAllAsRead : PersistentDataUpdateCommand, MostCommonDataUpdateCommand 
 	}
 }
 
-struct PushTags : PersistentDataUpdateCommand, MostCommonDataUpdateCommand {
-	var httpMethod: String? { return "POST" }
+struct PushTags : PersistentDataUpdateCommand, AuthenticatedDataUpdateCommand, SimpleDispatchingDataUpdateCommand {
+	func push(_ data: Data, through: (@escaping (NSManagedObjectContext) throws -> ()) -> Void) {
+		through { managedObjectContext in
+			return ()
+		}
+	}
+	
+	public typealias ResultType = ()
 	let items: Set<Item>, category: Folder, excluded: Bool
 	//
-	var requestRelativeString: String {
-		let urlArguments: [String] = {
-			assert(0 < items.count)
-			let itemIDsComponents = items.map { "i=\($0.shortID)" }
-			let command = excluded ? "r" : "a"
-			let tag = category.tag()!
-			let urlArguments = ["\(command)=\(tag)"] + itemIDsComponents
-			return urlArguments
-		}()
-		let urlArgumentsJoined = urlArguments.joined(separator: "&")
-		return "/reader/api/0/edit-tag?\(urlArgumentsJoined)"
+	var request: URLRequest {
+		let url = URL(string: "/reader/api/0/edit-tag", relativeTo: baseURL)!
+		let request = URLRequest(url: url) ≈ {
+			$0.httpMethod = "POST"
+			$0.httpBody = {
+				let urlArguments: [String] = {
+					assert(0 < items.count)
+					let itemIDsComponents = items.map { "i=\($0.shortID)" }
+					let command = excluded ? "r" : "a"
+					let tag = category.tag()!
+					let urlArguments = ["\(command)=\(tag)"] + itemIDsComponents
+					return urlArguments
+				}()
+				let body = urlArguments.joined(separator: "&")
+				return (body).data(using: .utf8, allowLossyConversion: false)
+			}()
+		}
+		return request
 	}
+
 	func importResult(_ data: Data, into context: NSManagedObjectContext) throws {
 		let categoryObjectID = typedObjectID(for: self.category)
 		let itemsObjectIDs: [TypedManagedObjectID<Item>] = self.items.map { typedObjectID(for: $0) }
