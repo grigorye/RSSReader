@@ -223,6 +223,10 @@ extension RSSSession {
 	}
 }
 
+extension TypedUserDefaults {
+	@NSManaged var forceAuthentication: Bool
+}
+
 extension RSSSession /** Authentication */ {
 	
 	public enum AuthenticationState {
@@ -232,10 +236,14 @@ extension RSSSession /** Authentication */ {
 		case succeeded
 		case failed(error: Error)
 	}
+
+	var forceAuthentication: Bool {
+		return defaults.forceAuthentication
+	}
 	
 	public func authenticate() -> Promise<Void> {
 		
-		guard !authenticated else {
+		guard !authenticated || forceAuthentication else {
 			return Promise {}
 		}
 		
