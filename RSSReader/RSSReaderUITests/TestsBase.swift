@@ -6,7 +6,6 @@
 //  Copyright © 2018 Grigory Entin. All rights reserved.
 //
 
-import GEFoundation
 import XCTest
 
 typealias _Self = TestsBase
@@ -56,7 +55,7 @@ class TestsBase : XCTestCase {
 		app.launch()
 	}
 	
-	private var blocksForTearDown = [Handler]()
+	private var blocksForTearDown = [() -> Void]()
 	
 	override func tearDown() {
 		blocksForTearDown.forEach {$0()}
