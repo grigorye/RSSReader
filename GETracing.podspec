@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name = "GETracing"
-  s.version = "0.1.1"
+  s.version = "0.1.2"
   s.summary = "Seamless tracing for Swift."
 
   s.description  = <<~END
