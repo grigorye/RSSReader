@@ -85,7 +85,7 @@ public extension Item {
 			self.set(included: newValue, in: markedAsFavoriteCategory)
 		}
 	}
-	@objc public var markedAsRead: Bool {
+	@objc var markedAsRead: Bool {
 		get {
 			return categories.contains(markedAsReadCategory)
 		}
