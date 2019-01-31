@@ -22,8 +22,8 @@ class MarkAllAsReadActivity : TypeFilteringActivity {
 			x$(error)
 		}
 	}
-	override var activityType: UIActivityType {
-		return UIActivityType(rawValue: "\(applicationDomain).markAllAsRead")
+	override var activityType: UIActivity.ActivityType {
+		return UIActivity.ActivityType(rawValue: "\(applicationDomain).markAllAsRead")
 	}
 	override var activityTitle: String {
 		return NSLocalizedString("Mark All as Read", comment: "")
@@ -31,7 +31,7 @@ class MarkAllAsReadActivity : TypeFilteringActivity {
 	override var activityImage: UIImage? {
 		return UIImage(named: "AppIcon")
 	}
-	override class var activityCategory: UIActivityCategory {
+	override class var activityCategory: UIActivity.Category {
 		return .action
 	}
 	// MARK: -

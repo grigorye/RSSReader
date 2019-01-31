@@ -84,7 +84,7 @@ class ItemsViewController : ContainerViewController {
 			}
 			return showUnreadEnabled ? [(showUnreadOnly ?  filterUnreadBarButtonItem : unfilterUnreadBarButtonItem)] : [filterUnreadBarButtonItem, unfilterUnreadBarButtonItem]
 		}()
-		return x.filter { nil == excludedItems.index(of: $0) }
+		return x.filter { nil == excludedItems.firstIndex(of: $0) }
 	}
 	
 	private func regeneratedRightBarButtonItems() -> [UIBarButtonItem]? {
@@ -141,7 +141,7 @@ class ItemsViewController : ContainerViewController {
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		switch segue.identifier! {
 		case R.segue.itemsViewController.showListPages.identifier:
-			let pageViewController = segue.destination as? UIPageViewController ?? segue.destination.childViewControllers.last as! UIPageViewController
+			let pageViewController = segue.destination as? UIPageViewController ?? segue.destination.children.last as! UIPageViewController
 			let itemPageViewControllerDataSource = (pageViewController.dataSource as! ItemPageViewControllerDataSource) … {
 				$0.itemsController = dataSource.fetchedResultsController
 			}
@@ -296,7 +296,7 @@ class ItemsViewController : ContainerViewController {
 			guard !defaults.fixedHeightItemRowsEnabled else {
 				return 44
 			}
-			return UITableViewAutomaticDimension
+			return UITableView.automaticDimension
 		}()
 	}
 	func configureTableViewPrefetching() {

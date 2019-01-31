@@ -20,8 +20,8 @@ class OpenWebPageActivity : TypeFilteringActivity {
 			application.openURL(url)
 		}
 	}
-	override var activityType: UIActivityType {
-		return UIActivityType(rawValue: "\(applicationDomain).openWebPage")
+	override var activityType: UIActivity.ActivityType {
+		return UIActivity.ActivityType(rawValue: "\(applicationDomain).openWebPage")
 	}
 	override var activityTitle: String {
 		return NSLocalizedString("Open in Safari", comment: "")
@@ -29,7 +29,7 @@ class OpenWebPageActivity : TypeFilteringActivity {
 	override var activityImage: UIImage? {
 		return UIImage(named: "AppIcon")
 	}
-	override class var activityCategory: UIActivityCategory {
+	override class var activityCategory: UIActivity.Category {
 		return .action
 	}
 	// MARK: -

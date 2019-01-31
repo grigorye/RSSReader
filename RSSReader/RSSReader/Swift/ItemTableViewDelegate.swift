@@ -39,7 +39,7 @@ extension ItemsViewController {
 #endif
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		guard defaults.prototypeBasedCellHeightEnabled else {
-			return UITableViewAutomaticDimension
+			return UITableView.automaticDimension
 		}
 		let dt = disableTrace(); defer { _ = dt }
 		x$(indexPath)

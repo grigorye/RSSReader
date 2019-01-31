@@ -37,12 +37,12 @@ class ItemPageViewController : UIPageViewController {
 		dataSource.encodeRestorableStateWithCoder(coder)
 		if _1 {
 			coder.encode(viewControllers, forKey: Restorable.viewControllers.rawValue)
-			let currentViewControllerIndex = viewControllers!.index(of: self.currentViewController!)
+			let currentViewControllerIndex = viewControllers!.firstIndex(of: self.currentViewController!)
 			coder.encode(currentViewControllerIndex, forKey: Restorable.currentViewControllerIndex.rawValue)
 		}
 	}
 	// MARK: -
-	override func setViewControllers(_ viewControllers: [UIViewController]?, direction: UIPageViewControllerNavigationDirection, animated: Bool, completion: ((Bool) -> Void)?) {
+	override func setViewControllers(_ viewControllers: [UIViewController]?, direction: UIPageViewController.NavigationDirection, animated: Bool, completion: ((Bool) -> Void)?) {
 		let currentViewController = viewControllers!.first
 		super.setViewControllers(viewControllers, direction: direction, animated: animated, completion: completion)
 		self.currentViewController = currentViewController
@@ -70,7 +70,7 @@ class ItemPageViewController : UIPageViewController {
 			self.toolbarItems = self.currentViewController?.toolbarItems
 		}]
 	}
-	override var childViewControllerForStatusBarHidden: UIViewController? {
+	override var childForStatusBarHidden: UIViewController? {
 		return self.currentViewController
 	}
 	override func viewDidAppear(_ animated: Bool) {

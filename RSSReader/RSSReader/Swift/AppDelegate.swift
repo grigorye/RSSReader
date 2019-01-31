@@ -65,7 +65,7 @@ class AppDelegate : GEAppConfig.AppDelegateBase {
 	
 	// MARK: -
 	
-	func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]?) -> Bool {
+	func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]?) -> Bool {
 		
 		x$(self)
 
@@ -77,7 +77,7 @@ class AppDelegate : GEAppConfig.AppDelegateBase {
 		return true
 	}
 	
-	override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+	override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
 		
 		defer { launchingCompleted() }
 		

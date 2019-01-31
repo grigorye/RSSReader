@@ -33,10 +33,7 @@ x$(CommandLine.arguments)
 
 _ = UIApplicationMain(
 	CommandLine.argc,
-	UnsafeMutableRawPointer(CommandLine.unsafeArgv)
-		.bindMemory(
-			to: UnsafeMutablePointer<Int8>.self,
-			capacity: Int(CommandLine.argc)),
+	CommandLine.unsafeArgv,
 	nil,
 	NSStringFromClass(AppDelegate.self)
 )
