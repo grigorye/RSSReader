@@ -124,7 +124,7 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 		refreshController.refreshSubscriptions { (error) in
 			defer {
 				self.refreshControl?.endRefreshing()
-				self.track(.refreshCompleted)
+				self.track(.refreshCompleted(error))
 			}
 			if nil == error {
 				if RSSReader.fakeRootFolder() == self.rootFolder {
@@ -186,7 +186,7 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 	}
     func indexPathForElement(withModelIdentifier identifier: String, in view: UIView) -> IndexPath? {
 		let objectIDURL = URL(string: identifier)!
-		if let row = (childContainers.map { return $0.objectID.uriRepresentation().absoluteString }).index(where: { $0 == identifier }) {
+		if let row = (childContainers.map { return $0.objectID.uriRepresentation().absoluteString }).firstIndex(where: { $0 == identifier }) {
 			let indexPath = IndexPath(row: row, section: 0)
 			return x$(indexPath)
 		}
@@ -272,7 +272,7 @@ class FoldersViewController: ContainerViewController, UIDataSourceModelAssociati
 			$0.register(R.nib.subscriptionTableViewCell)
 			$0.register(R.nib.folderTableViewCell)
 			$0.estimatedRowHeight = 44
-			$0.rowHeight = UITableViewAutomaticDimension
+			$0.rowHeight = UITableView.automaticDimension
 		}
 		if !defaults.showMessagesInToolbar {
 			toolbarItems = toolbarItems?.filter { $0 != statusBarButtonItem }
