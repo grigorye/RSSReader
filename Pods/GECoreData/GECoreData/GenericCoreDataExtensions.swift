@@ -114,7 +114,7 @@ public func importItemsFromJson<T: ManagedIdentifiable>(_ json: [String : AnyObj
 		try importFromJson(item, itemJson)
 	}
 	let removedItems = try objectsFetchedWithoutMatchingID(type, ids: itemIDs, managedObjectContext: managedObjectContext)
-	return (existing: existingItems, new: newItems, removed: x$(removedItems))
+	return (existing: existingItems, new: newItems, removed: removedItems)
 }
 
 public func importItemsFromJsonData<T: ManagedIdentifiable>(_ data: Data, type: T.Type, elementName: String, managedObjectContext: NSManagedObjectContext, importFromJson: (T, [String: AnyObject]) throws -> Void) throws -> (existing: [T], new: [T], removed: [T]) where T: NSManagedObject {
