@@ -238,9 +238,10 @@ class ItemSummaryWebViewDelegate: NSObject, WKNavigationDelegate {
 		decisionHandler(policy)
 	}
 	func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-		_ = x$((navigation: navigation, error: error))
+		_ = x$(navigation)
+		_ = x$(error)
 	}
 	func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-		_ = x$((navigation: navigation))
+		_ = x$(navigation)
 	}
 }
