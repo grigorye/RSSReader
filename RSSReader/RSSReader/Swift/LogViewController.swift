@@ -7,15 +7,16 @@
 //
 
 import GEAppConfig
+import WebKit.WKWebView
 import UIKit.UIViewController
 
 class LogViewController: UIViewController {
-	@IBOutlet weak var webView: UIWebView!
+	@IBOutlet weak var webView: WKWebView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
 		guard let data = try? Data(contentsOf: logFileURL, options: .mappedIfSafe) else { return }
-		webView.load(data, mimeType: "text/plain", textEncodingName: "UTF-8", baseURL: URL(fileURLWithPath: "/"))
+		webView.load(data, mimeType: "text/plain", characterEncodingName: "UTF-8", baseURL: URL(fileURLWithPath: "/"))
     }
 }

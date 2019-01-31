@@ -7,6 +7,7 @@
 //
 
 import RSSReaderData
+import WebKit.WKWebView
 import UIKit
 
 class ItemPageViewController : UIPageViewController {
@@ -59,7 +60,7 @@ class ItemPageViewController : UIPageViewController {
 		}]
 		if hideBarsOnSwipe {
 			viewDidDisappearRetainedObjects += [self.observe(\.currentViewController, options: .initial) { (_, _) in
-				if let webView = self.currentViewController?.view.subviews.first as? UIWebView {
+				if let webView = self.currentViewController?.view.subviews.first as? WKWebView {
 					let barHideOnSwipeGestureRecognizer = self.navigationController!.barHideOnSwipeGestureRecognizer
 					let scrollView = webView.scrollView
 					scrollView.addGestureRecognizer(barHideOnSwipeGestureRecognizer)
@@ -75,7 +76,7 @@ class ItemPageViewController : UIPageViewController {
 	}
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		if let webView = self.currentViewController?.view.subviews.first as? UIWebView {
+		if let webView = self.currentViewController?.view.subviews.first as? WKWebView {
 			webView.scrollView.flashScrollIndicators()
 		}
 	}

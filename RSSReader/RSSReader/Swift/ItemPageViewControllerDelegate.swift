@@ -7,6 +7,7 @@
 //
 
 import RSSReaderData
+import WebKit.WKWebView
 import UIKit
 
 class ItemPageViewControllerDelegate: NSObject, UIPageViewControllerDelegate {
@@ -23,7 +24,7 @@ class ItemPageViewControllerDelegate: NSObject, UIPageViewControllerDelegate {
 	func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
 		x$(completed)
 		let currentViewController = pageViewController.viewControllers!.first as! ItemSummaryWebViewController
-		if let webView = currentViewController.view.subviews.first as? UIWebView {
+		if let webView = currentViewController.view.subviews.first as? WKWebView {
 			webView.scrollView.flashScrollIndicators()
 		}
 		self.pageViewController.currentViewController = currentViewController

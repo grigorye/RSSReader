@@ -10,6 +10,7 @@ import RSSReaderData
 import GEAppConfig
 import SafariServices
 import UIKit
+import WebKit.WKWebView
 import CoreData
 
 var hideBarsOnSwipe = false
@@ -21,7 +22,13 @@ extension TypedUserDefaults {
 }
 
 class ItemSummaryWebViewController: UIViewController {
-	@IBOutlet var webView: UIWebView!
+	
+	private let webViewNavigationDelegate = ItemSummaryWebViewDelegate()
+	@IBOutlet var webView: WKWebView! {
+		didSet {
+			webView.navigationDelegate = webViewNavigationDelegate
+		}
+	}
 	var savedToolbarItems: [UIBarButtonItem]!
 	@IBOutlet var markAsFavoriteBarButtonItem: UIBarButtonItem!
 	@IBOutlet var unmarkAsFavoriteBarButtonItem: UIBarButtonItem!
@@ -63,14 +70,14 @@ class ItemSummaryWebViewController: UIViewController {
 	}
 	func loadHTMLString(_ HTMLString: String, ignoringExisting: Bool) throws {
 		let webView = self.webView
-		if let _ = webView?.request, !ignoringExisting {
+		if let _ = webView?.url, !ignoringExisting {
 			webView?.reload()
 		}
 		else {
 			if _1 {
 				try self.regenerateStoredHTMLFromString(HTMLString)
 				let request = URLRequest(url: storedHTMLURL)
-				webView?.loadRequest(request)
+				webView?.load(request)
 			}
 			else {
 				let bundle = Bundle.main
@@ -210,26 +217,30 @@ class ItemSummaryWebViewController: UIViewController {
 	}
 }
 
-class ItemSummaryWebViewDelegate: NSObject, UIWebViewDelegate {
-	func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
-		if navigationType == .linkClicked {
-			let url = request.url!
-			let application = UIApplication.shared
-			if #available(iOS 10.0, *) {
-				application.open(url, options: [:], completionHandler: nil)
-			} else {
-				application.openURL(url)
+class ItemSummaryWebViewDelegate: NSObject, WKNavigationDelegate {
+	func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+		let policy: WKNavigationActionPolicy = {
+			if navigationAction.navigationType == .linkActivated {
+				let request = navigationAction.request
+				let url = request.url!
+				let application = UIApplication.shared
+				if #available(iOS 10.0, *) {
+					application.open(url, options: [:], completionHandler: nil)
+				} else {
+					application.openURL(url)
+				}
+				return .cancel
 			}
-			return false
-		}
-		else {
-			return true
-		}
+			else {
+				return .allow
+			}
+		}()
+		decisionHandler(policy)
 	}
-	func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
-		x$(error)
+	func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+		_ = x$((navigation: navigation, error: error))
 	}
-	func webViewDidFinishLoad(_ webView: UIWebView) {
-		x$(webView)
+	func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+		_ = x$((navigation: navigation))
 	}
 }
