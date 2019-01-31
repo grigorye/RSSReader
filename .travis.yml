@@ -5,6 +5,8 @@ script:
 - xcodebuild -sdk iphonesimulator -workspace RSSReader.xcworkspace -scheme AllTests-iOS -destination 'platform=iOS Simulator,name=iPhone X,OS=12.0' -enableCodeCoverage YES test CODE_SIGNING_REQUIRED=NO
 
 before_install:
+- gem update --system
+- gem install bundler
 - brew install git-lfs
 - git lfs install
 
