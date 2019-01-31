@@ -60,12 +60,14 @@ extension LogStatement: ExpressibleByStringLiteral {
 
 }
 
-#if compiler(<5)
+#if compiler(>=5)
+#else
 typealias ExpressibleByStringInterpolation = _ExpressibleByStringInterpolation
 #endif
 extension LogStatement: ExpressibleByStringInterpolation {
-
-    #if compiler(<5)
+    
+    #if compiler(>=5)
+    #else
     public init(stringInterpolation statements: LogStatement...) {
         if let variant = statements.first?.variant, statements.dropFirst().isEmpty {
             self.variant = variant
