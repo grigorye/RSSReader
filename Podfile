@@ -32,7 +32,7 @@ target "RSSReader" do
   pod 'FBAllocationTracker', :inhibit_warnings => true
   pod 'FPSCounter'
   pod 'RSSReaderData', :path => 'RSSReaderData'
-  pod 'Loggy'
+  pod 'Loggy'#, :path => '../LogExperiment'
   #pod 'AFMInfoBanner'
   #pod 'UXCam'
   #pod 'TUSafariActivity'

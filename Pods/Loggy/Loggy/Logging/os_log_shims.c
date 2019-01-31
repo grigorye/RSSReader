@@ -145,7 +145,9 @@ void loggy_os_signpost_send(loggy_os_log_encoder_t encoder, const char *fmt, os_
     uint8_t *ptr = _os_signpost_pack_fill((os_log_pack_t)buf, sz, 0, dso, fmt, (const char *)spnm, spid);
     ((os_log_pack_t)buf)->olp_pc = ra;
     memcpy(ptr, encoder->ob_b, encoder->ob_len);
+#if LOGGY_OS_SIGNPOST_PACK_SEND_ENABLED
     _os_signpost_pack_send((os_log_pack_t)buf, h, spty);
+#endif
 }
 
 #endif

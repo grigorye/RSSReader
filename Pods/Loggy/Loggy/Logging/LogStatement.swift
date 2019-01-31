@@ -60,8 +60,12 @@ extension LogStatement: ExpressibleByStringLiteral {
 
 }
 
-extension LogStatement: _ExpressibleByStringInterpolation {
+#if compiler(<5)
+typealias ExpressibleByStringInterpolation = _ExpressibleByStringInterpolation
+#endif
+extension LogStatement: ExpressibleByStringInterpolation {
 
+    #if compiler(<5)
     public init(stringInterpolation statements: LogStatement...) {
         if let variant = statements.first?.variant, statements.dropFirst().isEmpty {
             self.variant = variant
@@ -80,6 +84,7 @@ extension LogStatement: _ExpressibleByStringInterpolation {
             self.variant = .multiple(segments)
         }
     }
+    #endif
 
     /// Creates a log statement for printing the contents of the given
     /// `expression`.
