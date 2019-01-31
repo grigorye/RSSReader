@@ -42,7 +42,7 @@ public class SystemLayoutSizeCachingTableViewCellDataSource {
 }
 
 public extension TypedUserDefaults {
-	@NSManaged public var cellSystemLayoutSizeCachingEnabled: Bool
+	@NSManaged var cellSystemLayoutSizeCachingEnabled: Bool
 }
 
 open class SystemLayoutSizeCachingTableViewCell: UITableViewCell {

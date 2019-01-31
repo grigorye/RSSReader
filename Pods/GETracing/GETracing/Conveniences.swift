@@ -73,7 +73,7 @@ prefix operator •
 /// - seealso: `•`.
 /// - seealso: `loggers`.
 @discardableResult
-public func x$<T>(file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer = #dsohandle, _ valueClosure: @autoclosure () throws -> T) rethrows -> T {
+public func x$<T>(file: StaticString = #file, line: Int = #line, column: UInt = #column, function: StaticString = #function, dso: UnsafeRawPointer = #dsohandle, _ valueClosure: @autoclosure () throws -> T) rethrows -> T {
 	let value = try valueClosure()
 	traceAsNecessary(value, file: file, line: line, column: column, function: function, moduleReference: .dso(dso), traceFunctionName: "x$")
 	return value
@@ -92,15 +92,23 @@ public struct Multiline {
 }
 
 @discardableResult
-public func x$(file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer = #dsohandle, _ valueClosure: @autoclosure () throws -> Multiline) rethrows -> Data {
+public func x$(file: StaticString = #file, line: Int = #line, column: UInt = #column, function: StaticString = #function, dso: UnsafeRawPointer = #dsohandle, _ valueClosure: @autoclosure () throws -> Multiline) rethrows -> Data {
 	let value = try valueClosure()
 	traceAsNecessary(value, file: file, line: line, column: column, function: function, moduleReference: .dso(dso), traceFunctionName: "x$")
 	return value.data
 }
 
 @discardableResult
-public func z$<T>(file: String = #file, line: Int = #line, column: Int = #column, function: String = #function, dso: UnsafeRawPointer = #dsohandle, _ valueClosure: @autoclosure () -> T) -> T {
+public func z$<T>(file: StaticString = #file, line: Int = #line, column: UInt = #column, function: StaticString = #function, dso: UnsafeRawPointer = #dsohandle, _ valueClosure: @autoclosure () -> T) -> T {
 	let value = valueClosure()
 	traceAsNecessary(value, file: file, line: line, column: column, function: function, moduleReference: .dso(dso), traceFunctionName: "z$")
 	return value
+}
+
+public func assert$(_ condition: @autoclosure () -> Bool, _ message: @autoclosure () -> String = String(), file: StaticString = #file, line: UInt = #line, column: UInt = #column, function: StaticString = #function, dso: UnsafeRawPointer = #dsohandle) {
+	guard !condition() else {
+		return
+	}
+	let label = labelForArguments(of: #function, file: file, line: Int(line), column: column, function: function, dso: dso)
+	assertionFailure(label, file: file, line: line)
 }

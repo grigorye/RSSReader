@@ -100,7 +100,7 @@ public extension UIApplication {
         window.center = center
     }
     
-    public func makeWindowOverlayStatusBar(_ window: UIWindow) -> () -> Void {
+    func makeWindowOverlayStatusBar(_ window: UIWindow) -> () -> Void {
         
         var scheduledForDeattach = ScheduledHandlers()
         

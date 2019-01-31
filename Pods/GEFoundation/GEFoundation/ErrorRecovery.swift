@@ -29,11 +29,11 @@ public protocol RecoverableError : Foundation.RecoverableError {
 
 public extension RecoverableError {
 
-	public var recoveryOptions: [String] {
+	var recoveryOptions: [String] {
 		return recoveryOptions.map { $0.title }
 	}
 	
-	public func attemptRecovery(optionIndex recoveryOptionIndex: Int) -> Bool {
+	func attemptRecovery(optionIndex recoveryOptionIndex: Int) -> Bool {
 		return recoveryOptions[recoveryOptionIndex].handler()
 	}
 	

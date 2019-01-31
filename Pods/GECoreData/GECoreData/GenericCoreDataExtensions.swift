@@ -89,7 +89,14 @@ public func insertedObjectsUnlessFetchedWithID<T: NSManagedObject>(_ cls: T.Type
 	return (existing: existingObjects, new: newObjects)
 }
 
-public func importItemsFromJson<T: ManagedIdentifiable>(_ json: [String : AnyObject], type: T.Type, elementName: String, managedObjectContext: NSManagedObjectContext, importFromJson: (T, [String: AnyObject]) throws -> Void) throws -> (existing: [T], new: [T]) where T: NSManagedObject {
+public func objectsFetchedWithoutMatchingID<T: NSManagedObject>(_ cls: T.Type, ids: [String], managedObjectContext: NSManagedObjectContext) throws -> [T] where T: ManagedIdentifiable {
+	let identifierKey = cls.identifierKey()
+	let predicate = NSPredicate(format: "not %K in %@", argumentArray: [identifierKey, ids])
+	let objects = objectsFetchedWithPredicate(cls, predicate: predicate, managedObjectContext: managedObjectContext)
+	return objects
+}
+
+public func importItemsFromJson<T: ManagedIdentifiable>(_ json: [String : AnyObject], type: T.Type, elementName: String, managedObjectContext: NSManagedObjectContext, importFromJson: (T, [String: AnyObject]) throws -> Void) throws -> (existing: [T], new: [T], removed: [T]) where T: NSManagedObject {
 	guard let itemJsons = json[elementName] as? [Json] else {
 		throw GenericCoreDataExtensionsError.elementNotFoundOrInvalidInJson(json: json, elementName: elementName)
 	}
@@ -106,10 +113,11 @@ public func importItemsFromJson<T: ManagedIdentifiable>(_ json: [String : AnyObj
 		let itemJson = itemJsonsByIDs[item.value(forKey: itemIDKey) as! String]!
 		try importFromJson(item, itemJson)
 	}
-	return (existing: existingItems, new: newItems)
+	let removedItems = try objectsFetchedWithoutMatchingID(type, ids: itemIDs, managedObjectContext: managedObjectContext)
+	return (existing: existingItems, new: newItems, removed: x$(removedItems))
 }
 
-public func importItemsFromJsonData<T: ManagedIdentifiable>(_ data: Data, type: T.Type, elementName: String, managedObjectContext: NSManagedObjectContext, importFromJson: (T, [String: AnyObject]) throws -> Void) throws -> (existing: [T], new: [T]) where T: NSManagedObject {
+public func importItemsFromJsonData<T: ManagedIdentifiable>(_ data: Data, type: T.Type, elementName: String, managedObjectContext: NSManagedObjectContext, importFromJson: (T, [String: AnyObject]) throws -> Void) throws -> (existing: [T], new: [T], removed: [T]) where T: NSManagedObject {
 	let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions())
 	guard let json = jsonObject as? [String : AnyObject] else {
 		throw GenericCoreDataExtensionsError.jsonObjectIsNotDictionary(jsonObject: jsonObject)

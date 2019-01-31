@@ -57,7 +57,6 @@ end
 
 target "RSSReaderUITests" do
   platform :ios, '11.0'
-  pod 'GEFoundation'
 end
 
 #target "tests-macOS" do
@@ -70,7 +69,7 @@ end
 #end
 
 swift_versions = {
-  'R.swift.Library' => '4.0'
+  'R.swift.Library' => '4.2'
 }
 
 post_install do |installer|

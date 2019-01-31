@@ -11,7 +11,7 @@ import UIKit
 public
 extension UIDataSourceModelAssociation {
 	typealias _Self = UIDataSourceModelAssociation
-	public static func adjustForNilIndexPathPassedToModelIdentifierForElement() {
+	static func adjustForNilIndexPathPassedToModelIdentifierForElement() {
 		typealias ImpBlock = @convention(block) (_Self?, NSIndexPath?, UIView?) -> String?
 		typealias Imp = @convention(c) (_Self?, Selector, NSIndexPath?, UIView?) -> String?
 		let sel = #selector(self.modelIdentifierForElement(at:in:))

@@ -60,9 +60,6 @@ extension LogStatement: ExpressibleByStringLiteral {
 
 }
 
-#if compiler(>=5)
-typealias _ExpressibleByStringInterpolation = ExpressibleByStringInterpolation
-#endif
 extension LogStatement: _ExpressibleByStringInterpolation {
 
     public init(stringInterpolation statements: LogStatement...) {

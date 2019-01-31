@@ -90,17 +90,14 @@ public func locationDescription(for record: LogRecord) -> String? {
 		return nil
 	}
 	// Substitute something more human-readable for #function of top level code of the playground, that is otherwise something like "__lldb_expr_xxx"
-	let function: String = {
-		guard nil != record.playgroundName else {
-			return location.function
-		}
-		guard location.function.hasPrefix("__lldb_expr_") else {
+	let function: StaticString = {
+		guard location.function.description.hasPrefix("__lldb_expr_") else {
 			return location.function
 		}
 		return "<top-level>"
 	}()
 	
-	let locationDescription = "\(record.playgroundName ?? location.fileURL.lastPathComponent):\(location.line)|\(function)"
+	let locationDescription = "\(location.sourceName):\(location.line)|\(function)"
 	return locationDescription
 }
 

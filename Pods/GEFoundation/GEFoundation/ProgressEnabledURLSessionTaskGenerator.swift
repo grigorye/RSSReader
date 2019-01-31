@@ -28,7 +28,7 @@ public class ProgressEnabledURLSessionTaskGenerator: NSObject {
 		x$(request.allHTTPHeaderFields)
 		let sessionTask = session.progressEnabledDataTask(with: request) { data, response, error in
 			self.dispatchQueue.async {
-				self.progresses.remove(at: self.progresses.index(of: progress)!)
+				self.progresses.remove(at: self.progresses.firstIndex(of: progress)!)
 			}
 			let httpResponse = response as! HTTPURLResponse?
 			do {

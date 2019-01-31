@@ -55,20 +55,20 @@ PODS:
     - GEUIKit
     - JGProgressHUD
     - Watchdog
-  - GECoreData (0.0.1):
+  - GECoreData (0.0.2):
     - GEFoundation (~> 0.1)
     - GETracing (~> 0.1)
-  - GEDebugKit (0.0.1):
+  - GEDebugKit (0.0.2):
     - FBAllocationTracker
     - FBMemoryProfiler
     - FPSCounter
     - GEFoundation
     - GETracing
     - GEUIKit
-  - GEFoundation (0.1):
+  - GEFoundation (0.1.1):
     - GETracing (~> 0.1)
-  - GETracing (0.1.1)
-  - GEUIKit (0.0.1):
+  - GETracing (0.1.2)
+  - GEUIKit (0.0.2):
     - GECoreData (~> 0.0.1)
     - GEFoundation (~> 0.1)
     - GETracing (~> 0.1)
@@ -79,9 +79,9 @@ PODS:
     - GoogleToolboxForMac/Core (= 2.2.0)
   - JGProgressHUD (2.0.3)
   - Loggy (1.0)
-  - PromisesObjC (1.2.5)
-  - PromisesSwift (1.2.5):
-    - PromisesObjC (= 1.2.5)
+  - PromisesObjC (1.2.6)
+  - PromisesSwift (1.2.6):
+    - PromisesObjC (= 1.2.6)
   - R.swift (5.0.2):
     - R.swift.Library (~> 5.0.0)
   - R.swift.Library (5.0.0)
@@ -160,23 +160,23 @@ SPEC CHECKSUMS:
   FPSCounter: 38f076ebc06a21d71b4e9e178e172ed766233189
   FTLinearActivityIndicator: 795016cde13c7d7e9ee28e23f05025c6aedbafce
   GEAppConfig: 9f4ac5a10f210376fdde2eac3f78097c02a90cbc
-  GECoreData: 61f87b6fccb8db7c665df6566e767c17f2d90bb9
-  GEDebugKit: 971941ba8901631fbfb5f14ad5025316e7b81f01
-  GEFoundation: e035ccce3b81967d59ad05a64a87aad5c37702ac
-  GETracing: 10d925bf3e557093d9c9d36f28397a6e85000fed
-  GEUIKit: 7c3ab8e49d46647aa5247c8203045c2b641c7a24
+  GECoreData: e6328a0b4e852713d31932c2a84c4a2a051ce66b
+  GEDebugKit: 89569ee76d500b9a2e0390798b36c17e49c5f766
+  GEFoundation: 39c91037bcb7439f9345586985124e0ce53e0b70
+  GETracing: 241966698cc91e5f29a8fc19c5a2197a83801802
+  GEUIKit: 29881da3eeb6955c283cfaddd96133e6774bc5e8
   GoogleToolboxForMac: ff31605b7d66400dcec09bed5861689aebadda4d
   JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
   Loggy: 234b08100fd0310cb6dce09d599aa6fdec53e7d3
-  PromisesObjC: 2b402ef5333bb9b436c74ee1bd7dcb2511b68caf
-  PromisesSwift: 63d93b8cc31b4245ca1014ff5cc24d6ae952a274
+  PromisesObjC: 60326422b6d692b9718a80666e67a9433862aa88
+  PromisesSwift: b3219d5e6545d5d7e8ad8038b4ad139f7ee0b3f0
   R.swift: 81455d81467763cbd3f4d79d938d05f4ac4c0228
   R.swift.Library: 0bf390e729bc10bb2c9e4fb78bd043164a7be4ff
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
-  RSSReader: de84f4fd674672c5d8de2f5f080480cb129c332a
-  RSSReaderData: 789f90205faeec7c73a7e39d37c71712298aed4d
+  RSSReader: 3366dcd5ddad752733e1561ddb8c020c0b5a28a1
+  RSSReaderData: 31a21fdc7388e794390bc01fb374b36dc94fa203
   Watchdog: 46862f4e1fcf9c7864c96227d784d3c00013b5b7
 
-PODFILE CHECKSUM: 2abd35ee226a70c5998f71dbb4a989324e45e0fd
+PODFILE CHECKSUM: 1b8bb7743aeb6c27f3f6dbed2cbbcf22bb28a337
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0.rc.2
