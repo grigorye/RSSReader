@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
 
   s.source = { :git => "https://github.com/grigorye/GEDebugKit.git", :tag => "#{s.version}" }
   
-  s.swift_version = "4.0"
+  s.swift_version = "4.2"
 
   s.source_files  = "GEDebugKit/*.swift"
   s.resource_bundle = { 'GEDebugKit-Sources' => 'GEDebugKit' }

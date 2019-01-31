@@ -15,14 +15,14 @@ open class AccessibilityAwareStaticTableViewController : UITableViewController {
 		super.viewDidLoad()
 		
 		tableView.estimatedRowHeight = 44
-		tableView.rowHeight = UITableViewAutomaticDimension
+		tableView.rowHeight = UITableView.automaticDimension
 		
 		var cellsAndTexts: [(UITableViewCell, String?, String?)] = []
 		
 		let notificationCenter = NotificationCenter.default
 		
 		do {
-			let observer = notificationCenter.addObserver(forName: NSNotification.Name.UIApplicationDidEnterBackground, object: nil, queue: nil) { [weak self] _ in
+			let observer = notificationCenter.addObserver(forName: UIApplication.didEnterBackgroundNotification, object: nil, queue: nil) { [weak self] _ in
 				
 				guard let tableView = self?.tableView else {
 					return
@@ -37,7 +37,7 @@ open class AccessibilityAwareStaticTableViewController : UITableViewController {
 		}
 		
 		do {
-			let observer = notificationCenter.addObserver(forName: NSNotification.Name.UIContentSizeCategoryDidChange, object: nil, queue: nil) { _ in
+			let observer = notificationCenter.addObserver(forName: UIContentSizeCategory.didChangeNotification, object: nil, queue: nil) { _ in
 				
 				for cellAndText in cellsAndTexts {
 					let (cell, text, detailText) = cellAndText

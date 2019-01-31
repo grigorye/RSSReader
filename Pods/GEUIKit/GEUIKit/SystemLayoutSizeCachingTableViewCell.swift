@@ -91,7 +91,7 @@ open class SystemLayoutSizeCachingTableViewCell: UITableViewCell {
 		self.translatesAutoresizingMaskIntoConstraints = true
 	}
 	
-	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: x$(reuseIdentifier))
 	}
 	required public init?(coder aDecoder: NSCoder) {

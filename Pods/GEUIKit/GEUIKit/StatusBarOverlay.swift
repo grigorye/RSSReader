@@ -70,7 +70,7 @@ public class StatusBarOverlayWindow : UIWindow {
         
         self.init()
         
-        windowLevel = UIWindowLevelStatusBar
+        windowLevel = UIWindow.Level.statusBar
         alpha = 1
         backgroundColor = .clear
         rootViewController = StatusBarInfoViewController(infoView: infoView)
@@ -107,7 +107,7 @@ public extension UIApplication {
         do {
             let notificationCenter = NotificationCenter.default
             
-            let observer = notificationCenter.addObserver(forName: NSNotification.Name.UIApplicationWillChangeStatusBarFrame, object: nil, queue: nil) { _ in
+            let observer = notificationCenter.addObserver(forName: UIApplication.willChangeStatusBarFrameNotification, object: nil, queue: nil) { _ in
                 
                 DispatchQueue.main.async {
                     self.fitWindowFrameIntoStatusBar(window)

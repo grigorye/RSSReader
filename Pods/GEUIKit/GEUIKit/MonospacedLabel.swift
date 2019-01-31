@@ -15,7 +15,7 @@ public class MonospacedLabel : UILabel {
         super.init(coder: aDecoder)
         
         let nonscaledFont = UIFont(name: "Menlo-Regular", size: UIFont.labelFontSize)!
-        let metrics = UIFontMetrics(forTextStyle: UIFontTextStyle.body)
+        let metrics = UIFontMetrics(forTextStyle: UIFont.TextStyle.body)
         font = metrics.scaledFont(for: nonscaledFont)
     }
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 public func openSettingsApp() {
-	let url = URL(string: UIApplicationOpenSettingsURLString)!
+	let url = URL(string: UIApplication.openSettingsURLString)!
 	let application = UIApplication.shared
 	if #available(iOS 10.0, *) {
 		application.open(url, options: [:], completionHandler: nil)
