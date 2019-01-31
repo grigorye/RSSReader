@@ -19,6 +19,7 @@ let markAsReadTimeInterval = TimeInterval(1)
 
 extension TypedUserDefaults {
 	@NSManaged var zoom: Float
+	@NSManaged var storeHTML: Bool
 }
 
 class ItemSummaryWebViewController: UIViewController {
@@ -27,6 +28,7 @@ class ItemSummaryWebViewController: UIViewController {
 	@IBOutlet var webView: WKWebView! {
 		didSet {
 			webView.navigationDelegate = webViewNavigationDelegate
+			webView.configuration.preferences.setValue(true, forKey: "allowFileAccessFromFileURLs")
 		}
 	}
 	var savedToolbarItems: [UIBarButtonItem]!
@@ -69,19 +71,18 @@ class ItemSummaryWebViewController: UIViewController {
 		try HTMLString.write(to: storedHTMLURL, atomically: true, encoding: String.Encoding.utf8)
 	}
 	func loadHTMLString(_ HTMLString: String, ignoringExisting: Bool) throws {
-		let webView = self.webView
-		if let _ = webView?.url, !ignoringExisting {
-			webView?.reload()
+		let webView = self.webView!
+		if let _ = webView.url, !ignoringExisting {
+			webView.reload()
 		}
 		else {
-			if _1 {
+			if defaults.storeHTML {
 				try self.regenerateStoredHTMLFromString(HTMLString)
-				let request = URLRequest(url: storedHTMLURL)
-				webView?.load(request)
+				webView.loadFileURL(storedHTMLURL, allowingReadAccessTo: URL(fileURLWithPath: "/"))
 			}
 			else {
 				let bundle = Bundle.main
-				self.webView.loadHTMLString(HTMLString, baseURL: bundle.resourceURL)
+				webView.loadHTMLString(HTMLString, baseURL: bundle.resourceURL)
 			}
 		}
 	}
