@@ -57,7 +57,7 @@ func itemsImportedFromStreamJson(_ json: Json, loadDate: Date, container: Contai
 	if !batchSavingEnabled {
 		assert(!managedObjectContext.hasChanges)
 	}
-	_ = x$(removedItems)
+	_ = x$(removedItems.count)
 	return (existing: existingItems, new: newItems)
 }
 
