@@ -32,7 +32,7 @@ func itemsImportedFromStreamJson(_ json: Json, loadDate: Date, container: Contai
 	let categoriesByID: [String : Folder] = categories.reduce([:]) {
 		var acc = $0; acc[$1.streamID] = $1; return acc
 	}
-	let (existingItems, newItems) = try importItemsFromJson(json, type: Item.self, elementName: "items", managedObjectContext: managedObjectContext) { (item, itemJson) in
+	let (existingItems, newItems, removedItems) = try importItemsFromJson(json, type: Item.self, elementName: "items", managedObjectContext: managedObjectContext) { (item, itemJson) in
 		try item.importFromJson(itemJson, subscription: subscription, categoriesByID: categoriesByID)
 		if !batchSavingEnabled {
 			try managedObjectContext.save()
@@ -57,6 +57,7 @@ func itemsImportedFromStreamJson(_ json: Json, loadDate: Date, container: Contai
 	if !batchSavingEnabled {
 		assert(!managedObjectContext.hasChanges)
 	}
+	_ = x$(removedItems)
 	return (existing: existingItems, new: newItems)
 }
 
@@ -110,7 +111,7 @@ func readFolderImportedFromUserInfoData(_ data: Data, managedObjectContext: NSMa
 	return try insertedObjectUnlessFetchedWithID(Folder.self, id: id, managedObjectContext: managedObjectContext)
 }
 
-func tagsImportedFromJsonData(_ data: Data, managedObjectContext: NSManagedObjectContext) throws -> (existing: [Folder], new: [Folder]) {
+func tagsImportedFromJsonData(_ data: Data, managedObjectContext: NSManagedObjectContext) throws -> (existing: [Folder], new: [Folder], removed: [Folder]) {
 	let tags = try importItemsFromJsonData(data, type: Folder.self, elementName: "tags", managedObjectContext: (managedObjectContext)) { (tag, json) in
 		assert(tag.managedObjectContext == managedObjectContext)
 		if _1 {
@@ -131,7 +132,7 @@ func streamPreferencesImportedFromJsonData(_ data: Data, managedObjectContext: N
 	try Container.importStreamPreferencesJson(streamprefsJson, managedObjectContext: managedObjectContext)
 }
 
-func importedSubscriptionsFromJsonData(_ data: Data, managedObjectContext: NSManagedObjectContext) throws -> (existing: [Subscription], new: [Subscription]) {
+func importedSubscriptionsFromJsonData(_ data: Data, managedObjectContext: NSManagedObjectContext) throws -> (existing: [Subscription], new: [Subscription], removed: [Subscription]) {
 	let subscriptions = try importItemsFromJsonData(data, type: Subscription.self, elementName: "subscriptions", managedObjectContext: managedObjectContext) { (subscription, json) in
 		try subscription.importFromJson(json)
 	}
