@@ -136,7 +136,7 @@ extension ItemsViewController : ItemsViewControllerLoadingImp {
 		guard x$(shouldLoadMore()) else {
 			return
 		}
-		assert(nil == loadCancellation)
+		assert$(nil == loadCancellation)
 		loadCancellation = loadMore {
 			self.loadCancellation = nil
 		}
