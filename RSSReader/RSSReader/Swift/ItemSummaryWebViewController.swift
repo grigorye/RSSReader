@@ -61,7 +61,7 @@ class ItemSummaryWebViewController: UIViewController {
 	// MARK:-
 	var storedHTMLURL: URL {
 		let pathInCaches = (directoryInCaches as NSString).appendingPathComponent("text.html")
-		let storedHTMLURL = URL(string: pathInCaches, relativeTo: userCachesDirectoryURL as URL)!
+		let storedHTMLURL = URL(string: pathInCaches, relativeTo: userCachesDirectoryURL)!.standardizedFileURL
 		return storedHTMLURL
 	}
 	// MARK:-
@@ -78,7 +78,7 @@ class ItemSummaryWebViewController: UIViewController {
 		else {
 			if defaults.storeHTML {
 				try self.regenerateStoredHTMLFromString(HTMLString)
-				webView.loadFileURL(storedHTMLURL, allowingReadAccessTo: URL(fileURLWithPath: "/"))
+				webView.loadFileURL(storedHTMLURL, allowingReadAccessTo: storedHTMLURL)
 			}
 			else {
 				let bundle = Bundle.main
