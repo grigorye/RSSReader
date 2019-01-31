@@ -270,7 +270,7 @@ extension ItemTableViewDataSource : TableViewHeightBasedReusedCellGeneratorDataS
 	func addRowHeight(_ rowHeight: CGFloat, for cell: UITableViewCell) {
 		if nil == heightSampleLabel {
 			let viewWithVariableHeight = viewWithVariableHeightForCell(cell)
-			heightSampleLabel = NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: viewWithVariableHeight)) as? UILabel
+			heightSampleLabel = (viewWithVariableHeight.clone() as! UILabel)
 		}
 		if cell.reuseIdentifier! == reusedCellGenerator.heightAgnosticCellReuseIdentifier {
 			reusedCellGenerator?.addRowHeight(rowHeight, for: cell)
