@@ -66,7 +66,7 @@
 		C49540A51A57906600F56168 /* ItemSummaryWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */; };
 		C49A79FC1E2FFDFC00DE3702 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C49A79FB1E2FFDFC00DE3702 /* GoogleService-Info.plist */; };
 		C49BA5DE1DF4C7F900968FFE /* ItemListScrollingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49BA5DD1DF4C7F900968FFE /* ItemListScrollingTests.swift */; };
-		C4A1646A1CB8938C009D8B86 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4A1646C1CB8938C009D8B86 /* InfoPlist.strings */; };
+		C4A1646A1CB8938C009D8B86 /* RSSReader-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C4A1646C1CB8938C009D8B86 /* RSSReader-InfoPlist.strings */; };
 		C4AD2ADB1A5DED8700B39AC9 /* ItemPageViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD2ADA1A5DED8700B39AC9 /* ItemPageViewControllerDelegate.swift */; };
 		C4B0DC291FD2506C005E587C /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B0DC281FD25022005E587C /* R.generated.swift */; };
 		C4BE5AF31DAA986A00E1734F /* ItemTableViewCell-0.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4BE5AEE1DAA986A00E1734F /* ItemTableViewCell-0.xib */; };
@@ -243,7 +243,7 @@
 		C49540A41A57906600F56168 /* ItemSummaryWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = ItemSummaryWebViewController.swift; path = Swift/ItemSummaryWebViewController.swift; sourceTree = "<group>"; };
 		C49A79FB1E2FFDFC00DE3702 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C49BA5DD1DF4C7F900968FFE /* ItemListScrollingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemListScrollingTests.swift; sourceTree = "<group>"; };
-		C4A164671CB89076009D8B86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
+		C4A164671CB89076009D8B86 /* RSSReader-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "RSSReader-Info.plist"; path = "Resources/RSSReader-Info.plist"; sourceTree = "<group>"; };
 		C4AD2ADA1A5DED8700B39AC9 /* ItemPageViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemPageViewControllerDelegate.swift; path = Swift/ItemPageViewControllerDelegate.swift; sourceTree = "<group>"; };
 		C4B0DC281FD25022005E587C /* R.generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = "RSSReader-rswift/R.generated.swift"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4BE5AEE1DAA986A00E1734F /* ItemTableViewCell-0.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ItemTableViewCell-0.xib"; sourceTree = "<group>"; };
@@ -266,8 +266,8 @@
 		C4CDE1901A5A06A600F16A2E /* ItemSummaryTemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = ItemSummaryTemplate.html; path = Resources/ItemSummaryTemplate.html; sourceTree = "<group>"; };
 		C4CE35451CB8988F001712C8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = "ru.lproj/RSSReaderTests-InfoPlist.strings"; sourceTree = "<group>"; };
 		C4CE354A1CB89890001712C8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		C4CE354C1CB89C0E001712C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		C4CE354D1CB89C28001712C8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C4CE354C1CB89C0E001712C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "Base.lproj/RSSReader-InfoPlist.strings"; sourceTree = "<group>"; };
+		C4CE354D1CB89C28001712C8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = "ru.lproj/RSSReader-InfoPlist.strings"; sourceTree = "<group>"; };
 		C4EA5C351CE91E8600E395FE /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerViewController.swift; path = Swift/ContainerViewController.swift; sourceTree = "<group>"; };
 		C4EA5C371CE929D300E395FE /* ContainerTableViewSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ContainerTableViewSectionHeader.xib; path = Resources/ContainerTableViewSectionHeader.xib; sourceTree = "<group>"; };
 		C4EA5C3B1CE930B200E395FE /* ContainerTableViewSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerTableViewSectionHeaderView.swift; path = Swift/ContainerTableViewSectionHeaderView.swift; sourceTree = "<group>"; };
@@ -374,10 +374,10 @@
 				C474F1CC1DB0657800F0E152 /* main.swift */,
 				C4CDD3C41A5357B20087DD05 /* Settings.bundle */,
 				C40C6C051A74AB5E00FAFA17 /* Bridging-Header.h */,
-				C4A164671CB89076009D8B86 /* Info.plist */,
+				C4A164671CB89076009D8B86 /* RSSReader-Info.plist */,
 				C49A79FB1E2FFDFC00DE3702 /* GoogleService-Info.plist */,
 				C4EA6B2E1CB895EF00FCDAA5 /* Localizable.strings */,
-				C4A1646C1CB8938C009D8B86 /* InfoPlist.strings */,
+				C4A1646C1CB8938C009D8B86 /* RSSReader-InfoPlist.strings */,
 			);
 			name = Miscellaneous;
 			sourceTree = "<group>";
@@ -732,7 +732,7 @@
 				C4EB280B1DFA547500BF0843 /* ItemTableViewFooter.xib in Resources */,
 				C4F1118E1CB84F6D005C5A0F /* Main.storyboard in Resources */,
 				C44D916D1AAE773B0053B9E6 /* ItemSimpleTableViewCell.xib in Resources */,
-				C4A1646A1CB8938C009D8B86 /* InfoPlist.strings in Resources */,
+				C4A1646A1CB8938C009D8B86 /* RSSReader-InfoPlist.strings in Resources */,
 				C43CD1CB1DEE70D200189379 /* ItemTableViewCell-4.xib in Resources */,
 				C4BE5AF41DAA986A00E1734F /* ItemTableViewCell-1.xib in Resources */,
 				C4EA5C381CE929D300E395FE /* ContainerTableViewSectionHeader.xib in Resources */,
@@ -1108,13 +1108,13 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		C4A1646C1CB8938C009D8B86 /* InfoPlist.strings */ = {
+		C4A1646C1CB8938C009D8B86 /* RSSReader-InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				C4CE354C1CB89C0E001712C8 /* Base */,
 				C4CE354D1CB89C28001712C8 /* ru */,
 			);
-			name = InfoPlist.strings;
+			name = "RSSReader-InfoPlist.strings";
 			path = Localizable;
 			sourceTree = "<group>";
 		};
@@ -1241,7 +1241,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/RSSReader/Resources/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/RSSReader/Resources/RSSReader-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.grigorye.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1266,7 +1266,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/RSSReader/Resources/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/RSSReader/Resources/RSSReader-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.grigorye.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -18,7 +18,8 @@ Pod::Spec.new do |s|
   #s.tvos.deployment_target = "9.0"
 
   s.source = { :git => "https://github.com/grigorye/RSSReader.git" }
-  s.resource_bundles = { 'RSSReader-Sources' => 'RSSReader/Swift' }
+  s.resource_bundles = { 'RSSReader-Sources' => 'RSSReader' }
+  
   s.static_framework = true
 
 end

@@ -15,7 +15,8 @@
     "git": "https://github.com/grigorye/RSSReader.git"
   },
   "resource_bundles": {
-    "RSSReader-Sources": "RSSReader/Swift"
+    "RSSReader-Sources": "RSSReader"
   },
+  "exclude_files": "**/Info.plist",
   "static_framework": true
 }

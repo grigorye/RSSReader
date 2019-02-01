@@ -159,7 +159,6 @@
 		345D10DE48F911A13BA5CC2961C61F5E /* Flattenable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9761ED340B5D0AA72A37C858109C58 /* Flattenable.swift */; };
 		3478D10240B477545F1C1DACB8AE936F /* GEFoundation in Resources */ = {isa = PBXBuildFile; fileRef = 1AAD5599477998DEB73119AC38540623 /* GEFoundation */; };
 		35BCB1F7883E7D28AF09E7347E985668 /* FBMemoryProfilerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C7FF74A1965A7F040E1895F7482A7A91 /* FBMemoryProfilerTextField.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		3605F43DB7593C9128F5EB00E60E34B1 /* Swift in Resources */ = {isa = PBXBuildFile; fileRef = 0F4C1B9161E77F81BDB6C044EC1E15D1 /* Swift */; };
 		36182B97CF68F9792CF971764666D257 /* UIApplication+LinearNetworkActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A4F775CB750E6DAC4F3887BE3F9D54 /* UIApplication+LinearNetworkActivityIndicator.swift */; };
 		36251A2ED3FD3C7DB6E020B7A826EE71 /* RSSReaderData in Resources */ = {isa = PBXBuildFile; fileRef = 8A6D482BFC5FEBA642CC3929A47CEA5F /* RSSReaderData */; };
 		377DE445069671EEDB3868A80F8AA08B /* JGProgressHUDAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 432E5424927E62DA832B8E30B4709060 /* JGProgressHUDAnimation.m */; };
@@ -397,6 +396,7 @@
 		B5333D4EEF9C754B46ED33AF539BC7B7 /* FBAllocationTrackerImpl.mm in Sources */ = {isa = PBXBuildFile; fileRef = 285BA7F0133BA75595A1E3D47FAF9909 /* FBAllocationTrackerImpl.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		B54C6AC0BDC6E578794853D1E18ABF92 /* FBAllocationTracker.h in Headers */ = {isa = PBXBuildFile; fileRef = 3732C0A0241115AE5DC252EA9378FB75 /* FBAllocationTracker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B5EA945748FE1B4BE65796AFC8938412 /* FBMemoryProfilerDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = DB24E6A2570B26B597981999CA725CFB /* FBMemoryProfilerDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5F42F9D6E69676B336403821AC94E40 /* RSSReader in Resources */ = {isa = PBXBuildFile; fileRef = EE28CA7F1C626F748C5BBDFA4BD338B7 /* RSSReader */; };
 		B6430CC22B8D125730E58E299FE7410E /* FBMemoryProfilerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 7264B5726B767E31E40690E15E44B99A /* FBMemoryProfilerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B654210CD2A4E25F3D1080A1DE4B3E32 /* FBLPromise+Async.m in Sources */ = {isa = PBXBuildFile; fileRef = A698D1981A937E9CF754EA1CCB9FEBC6 /* FBLPromise+Async.m */; };
 		B7C23DA73EEEFBA38099A79C8A926AFA /* FBMemoryProfilerSegmentedControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 539DAA326CC938D535CE111733C6B1A2 /* FBMemoryProfilerSegmentedControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1078,7 +1078,6 @@
 		0EC2939CB4EA9602CF4879557F4A222A /* FBClassStrongLayoutHelpers.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBClassStrongLayoutHelpers.m; path = FBRetainCycleDetector/Layout/Classes/FBClassStrongLayoutHelpers.m; sourceTree = "<group>"; };
 		0ED8C817E3C4253D94FF9682AC2EC35B /* jg_hud_success@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "jg_hud_success@3x.png"; path = "JGProgressHUD/Resources/jg_hud_success@3x.png"; sourceTree = "<group>"; };
 		0F1041AB43B70B1E825F6C88CF89C058 /* FPSCounter-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FPSCounter-prefix.pch"; sourceTree = "<group>"; };
-		0F4C1B9161E77F81BDB6C044EC1E15D1 /* Swift */ = {isa = PBXFileReference; includeInIndex = 1; name = Swift; path = RSSReader/Swift; sourceTree = "<group>"; };
 		117FEF80621953887A84235FB1E9C237 /* FBLPromise+Await.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBLPromise+Await.h"; path = "Sources/FBLPromises/include/FBLPromise+Await.h"; sourceTree = "<group>"; };
 		11BA7F970F98BBDDCF1C85928AD6211B /* Promise+Timeout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Promise+Timeout.swift"; path = "Sources/Promises/Promise+Timeout.swift"; sourceTree = "<group>"; };
 		1268C5A0A2C1C5C62E2E18AE6F977E34 /* Tracing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Tracing.swift; path = GETracing/Tracing.swift; sourceTree = "<group>"; };
@@ -1593,6 +1592,7 @@
 		EC988D53EC2B03F8440BC73ECB947B37 /* UITableView+SnappingHeaderToTop.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UITableView+SnappingHeaderToTop.swift"; path = "GEAppConfig/iOS/UITableView+SnappingHeaderToTop.swift"; sourceTree = "<group>"; };
 		EDD9A697C76368C11F8639A9C0BBE2C2 /* FBBlockInterface.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBBlockInterface.h; path = FBRetainCycleDetector/Layout/Blocks/FBBlockInterface.h; sourceTree = "<group>"; };
 		EDFE8492CB0A358E2D2C161FEED0BFEC /* NSObject+FBAllocationTracker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+FBAllocationTracker.h"; path = "FBAllocationTracker/NSObject+FBAllocationTracker.h"; sourceTree = "<group>"; };
+		EE28CA7F1C626F748C5BBDFA4BD338B7 /* RSSReader */ = {isa = PBXFileReference; includeInIndex = 1; path = RSSReader; sourceTree = "<group>"; };
 		EE96B83F6577D72C29A4A31F0C3C5A04 /* PropertyCaching.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PropertyCaching.swift; path = GEFoundation/PropertyCaching.swift; sourceTree = "<group>"; };
 		EEA22FE3F8AD9CE2EE229407FBA9046C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		EEC41A960CBF222C6945226BFC663F5E /* GenericExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GenericExtensions.swift; path = GEFoundation/GenericExtensions.swift; sourceTree = "<group>"; };
@@ -2414,6 +2414,14 @@
 			path = "../Target Support Files/Result";
 			sourceTree = "<group>";
 		};
+		80B88B4CAA001D3DFA9F9986A3FB89FA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EE28CA7F1C626F748C5BBDFA4BD338B7 /* RSSReader */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		8234E94A2046C09FE263917486791F5E /* Watchdog */ = {
 			isa = PBXGroup;
 			children = (
@@ -2612,7 +2620,7 @@
 			isa = PBXGroup;
 			children = (
 				036DA3096764D7A4DC2D97EAE9864D73 /* Pod */,
-				D14E748E2C8470954CA54307F2EAD015 /* Resources */,
+				80B88B4CAA001D3DFA9F9986A3FB89FA /* Resources */,
 				DDB512F48F58ABD25D9BD939367B54E5 /* Support Files */,
 			);
 			name = RSSReader;
@@ -2847,14 +2855,6 @@
 				EF26C76FE8AC022F0E9B040E8D0CED06 /* Products */,
 				17679A20C330F588F1E9710AB84C9AB9 /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		D14E748E2C8470954CA54307F2EAD015 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				0F4C1B9161E77F81BDB6C044EC1E15D1 /* Swift */,
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 		D2A819422B2F80C2C9DC56DDDA0D921D /* Resources */ = {
@@ -3707,7 +3707,7 @@
 			buildPhases = (
 				1065922C32C1DC086585F653943D8864 /* Sources */,
 				EFC206824D936E67EDCFC8510EC8BC29 /* Frameworks */,
-				57ADA567D407256EE3DAF9A39AA99944 /* Resources */,
+				143F45B3EDD1DE961EAC7D5CA6774619 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -4140,6 +4140,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		143F45B3EDD1DE961EAC7D5CA6774619 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5F42F9D6E69676B336403821AC94E40 /* RSSReader in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		19A57DF123A3CB43AC8880B95E699DB1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -4181,14 +4189,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		57ADA567D407256EE3DAF9A39AA99944 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3605F43DB7593C9128F5EB00E60E34B1 /* Swift in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
