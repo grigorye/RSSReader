@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="q44-1m-L9l">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="q44-1m-L9l">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -367,16 +367,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h0D-Jp-NM7">
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zpw-HF-Jap">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="zpw-HF-Jap" secondAttribute="trailing" id="8vt-VO-fJa"/>
+                            <constraint firstItem="zpw-HF-Jap" firstAttribute="leading" secondItem="af7-bN-bUV" secondAttribute="leading" id="Z0h-6h-d4z"/>
+                            <constraint firstAttribute="bottom" secondItem="zpw-HF-Jap" secondAttribute="bottom" id="i1c-nb-3SL"/>
+                            <constraint firstItem="zpw-HF-Jap" firstAttribute="top" secondItem="af7-bN-bUV" secondAttribute="top" id="o1D-IA-Fb4"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="webView" destination="h0D-Jp-NM7" id="A5Z-dh-foX"/>
+                        <outlet property="webView" destination="zpw-HF-Jap" id="o1V-gr-mwT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q9j-WH-IbL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -450,7 +459,7 @@
         <image name="Back" width="25" height="25"/>
         <image name="Forward" width="25" height="25"/>
         <namedColor name="Detail Text">
-            <color red="0.40000000596046448" green="1" blue="0.40000000596046448" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color white="0.40799999237060547" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
     </resources>
 </document>

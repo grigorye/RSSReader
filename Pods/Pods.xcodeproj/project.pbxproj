@@ -97,7 +97,7 @@
 		13CBC0FD057B174D71448275884EF5A5 /* FBLPromise+Recover.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A09B7EC9BBD8E3C9898EB27C0835099 /* FBLPromise+Recover.m */; };
 		14AE1B5EA130E37032EA659D3E3DBA2A /* Descriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB2760D40A677C6C5A645000D6371EF /* Descriptions.swift */; };
 		14E74967F191EF6FFEC246B494EE3E49 /* FoldersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EB37CC95B19AF7487FFC47EC5DDAF7 /* FoldersController.swift */; };
-		157988DEFEB0EADA5EC9821E18AFE81F /* FPSMonitoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FA28B28159E9A29DC8A873121920EB /* FPSMonitoring.swift */; };
+		157988DEFEB0EADA5EC9821E18AFE81F /* FPSMonitoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = F198AA49FBA0A7703720F529D976F72C /* FPSMonitoring.swift */; };
 		15A714F2473FB12599D718F5AAAEF4DB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC19FDCF69740FF47817F1C59CCC7965 /* UIKit.framework */; };
 		15A85DAAACE4922E0002CD7D1C800464 /* GTMDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 1767B299B9DC353B94DA44C32E91D2EB /* GTMDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		15DE1E7F30F57105B40F9046311F0C8F /* os_log_shims.c in Sources */ = {isa = PBXBuildFile; fileRef = 0443E7DFF5D126B0F6EE359DF456F00D /* os_log_shims.c */; };
@@ -138,7 +138,7 @@
 		2937774B4902678AABE378071A66C6D7 /* JGProgressHUDShadow.h in Headers */ = {isa = PBXBuildFile; fileRef = 93EC5567CF310FD726447D2E1A30AC44 /* JGProgressHUDShadow.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		298F9A9081C6518B876350958F0039F8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A05E0C957BD1EEF32267FC704102DF3 /* Foundation.framework */; };
 		29FC89A4D79B23A8C4F4DE2394758A94 /* ModuleExports-GECoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5189C56913204E8E1A9884C52484EC5 /* ModuleExports-GECoreData.swift */; };
-		2A1C1EEA589556C7353771042EB4212E /* SharedImports.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EA5A6B0DDF14D506ABC325AC8A9BA /* SharedImports.swift */; };
+		2A1C1EEA589556C7353771042EB4212E /* SharedImports.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031CDC780ED6B3475DDC70815542B5F6 /* SharedImports.swift */; };
 		2A520FB292556E27163B7D676843F8FA /* PromisesObjC-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4890CB5E5B63C2823943A7CD97B028ED /* PromisesObjC-dummy.m */; };
 		2A7BCCC5D7679CABE3F9F17060FBCE17 /* Watchdog-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 58223848CC8154B0129080380D3ADA41 /* Watchdog-dummy.m */; };
 		2A9419743395D0E4D77E08D2311439EB /* FBMemoryProfiler-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E94AA209C218242B6F75965FE12E92C /* FBMemoryProfiler-dummy.m */; };
@@ -188,7 +188,7 @@
 		41161F1BD9D8AFB552F6C9064868A639 /* FBMemoryProfilerFloatingButtonController.h in Headers */ = {isa = PBXBuildFile; fileRef = 549F481AA316A797D05384DDA804965E /* FBMemoryProfilerFloatingButtonController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		41899FAC540CBD1E47BCE29B62FF374D /* R.swift.Library-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 670AF506BE54B924C73FFF1F8D72521F /* R.swift.Library-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		434A5FC858C63E7D8AECBEA67DC53AFC /* PromisesSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEB57E7C5EDDE1B78E17B98F2535AAD /* PromisesSwift-dummy.m */; };
-		44498F5BE5C31057A161F69D98D996DB /* ObjectDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A26DF344637DCAC677A02DED3C52EB /* ObjectDetailViewController.swift */; };
+		44498F5BE5C31057A161F69D98D996DB /* ObjectDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88E45704BC6FA2BE7D62AD8B89CC09D /* ObjectDetailViewController.swift */; };
 		44A43363700D48A3DA2A53534B527A7B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC19FDCF69740FF47817F1C59CCC7965 /* UIKit.framework */; };
 		45679E63AB63B9DBE66B2C42CA185F1C /* FBLPromise+Timeout.h in Copy . Public Headers */ = {isa = PBXBuildFile; fileRef = 799959BDF7880007FDD977FBA226179F /* FBLPromise+Timeout.h */; };
 		466A78769111E84205E8C3708AF5A743 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1816B4463252313305D75A4557C84C6C /* Configuration.swift */; };
@@ -201,7 +201,6 @@
 		488520CA94DB68D36EF0F36746A3A838 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E390AA37AE13329C2C16FCF0B5E3A19B /* Result.framework */; };
 		48C4CA28C65889983543463DE047B5B2 /* FBLPromises.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CD6C240E5800DC587223B0CC351E98B /* FBLPromises.h */; };
 		498D0EE4D40D33AA8DD2C716AD3BFB60 /* FBMemoryProfilerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = A4B7FF8B2EB76AED0D198A544DDFA214 /* FBMemoryProfilerViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		49F4A879190F0B2EE2C269D0EA150A4E /* GEDebugKit-Sources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 57249B08C9C3B7E08753E73522F97202 /* GEDebugKit-Sources.bundle */; };
 		49F795F394608A46191EFBCA31E8B035 /* UICollectionView+ReuseIdentifierProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8AE7CBF1C8AF0E16815705FB70721 /* UICollectionView+ReuseIdentifierProtocol.swift */; };
 		49FB9C9A9EED174F6128A844DD04CAED /* Pods-RSSReader-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E7D19A0049ECC09ED12618B4F27685D3 /* Pods-RSSReader-dummy.m */; };
 		4A59FA92F793DCE265940F57042E5EF3 /* FBLPromise+Retry.h in Copy . Public Headers */ = {isa = PBXBuildFile; fileRef = 35183DDD36C119F11EC4A226443377F8 /* FBLPromise+Retry.h */; };
@@ -244,6 +243,7 @@
 		613C8B46877A5C962ED83633A7A02D3C /* CustomLogConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130095D8F000E61289EB5DD186123F14 /* CustomLogConvertible.swift */; };
 		624123FA6A298267E07EC2460D025B34 /* Type.h in Headers */ = {isa = PBXBuildFile; fileRef = 845BC6FA9814C4700970A175FD82E75E /* Type.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		626E36A71902B2589DF1CB0717456543 /* ImageResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1771E667B97B5F66BF445C6FDFA4494 /* ImageResource.swift */; };
+		62DB916CBEB8F601081E8F18C25CB406 /* GEDebugKit-Sources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 57249B08C9C3B7E08753E73522F97202 /* GEDebugKit-Sources.bundle */; };
 		6343F0FADF8F311853A9BAF097391A8A /* StoryboardViewControllerResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811042FCE67567D5BDD7E94BB8C14A40 /* StoryboardViewControllerResource.swift */; };
 		63F9A5429018007FD06DC8E5D73E2DEE /* JGProgressHUDIndeterminateIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 592E0CA345884EA4F2F53506879BAA7F /* JGProgressHUDIndeterminateIndicatorView.m */; };
 		65D39338A30EBAD657C428EA841D7EFD /* Promise+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4A162EC0FE062D86337EBD1175D806 /* Promise+Testing.swift */; };
@@ -255,7 +255,7 @@
 		698895E639CE16C65FA4A5548FEC1CFB /* FBLPromise+Retry.m in Sources */ = {isa = PBXBuildFile; fileRef = BADBE86D5B7F53404C028CBB4C1EC5B3 /* FBLPromise+Retry.m */; };
 		6A9AFEFB74BD4EFF7B08656001E1A969 /* FBLPromise+Async.h in Headers */ = {isa = PBXBuildFile; fileRef = 42FDDF6BE5E6DE68AF17F055EEC431A9 /* FBLPromise+Async.h */; };
 		6BB8F974F3C638CF8E96C1219C4ECDD6 /* TypeFilteringActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A210A973A8AE921B3C67ABE07CA29982 /* TypeFilteringActivity.swift */; };
-		6C7B2155218DC140E9428540833303A6 /* ObjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DA944E2B40ABE0D995704710B52C93 /* ObjectsViewController.swift */; };
+		6C7B2155218DC140E9428540833303A6 /* ObjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5393AC1CD3B559B8965D597C4BF0FBD7 /* ObjectsViewController.swift */; };
 		6CC261AD8F57843D8FCB05CDB7D3F66B /* Struct.h in Headers */ = {isa = PBXBuildFile; fileRef = 02E31F49EC30028E616533C80007B1F5 /* Struct.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		6CDDE74C977FEBC7A1F99042EE0C38CF /* FBLPromise+Reduce.h in Copy . Public Headers */ = {isa = PBXBuildFile; fileRef = 4D5CCF339185A728C00DEB2BF7A47C74 /* FBLPromise+Reduce.h */; };
 		6D02D5170B6115B10B683A8E0DA14E75 /* Result-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F65669AF683046E32CE26C2D984DBA9 /* Result-dummy.m */; };
@@ -276,6 +276,7 @@
 		7452C1B942B909EE53D53965DAE1CFBF /* FBLPromise+Reduce.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DA0DA0AFAE6BA8B879BE7789A2438E /* FBLPromise+Reduce.m */; };
 		749332BB4542584311E87C939F7EC2CD /* URLTaskGeneratorProgressBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1A9C7F7D17A7AD86EC821F373EA66E /* URLTaskGeneratorProgressBinding.swift */; };
 		74D22434A458DCBBA381CDE7B6D670CE /* FBMemoryProfilerMathUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA656126DAE9E637E01997B11A977E9F /* FBMemoryProfilerMathUtils.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		7575761BAC95DB80BC0AF0E3369F4BF6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 865FB7B8F08AE03AF6EBE4E09D2D1977 /* Images.xcassets */; };
 		75DAC3636FFD431088B684C43505080B /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22365FFD9AFC55D0E0AB5BDB46F8597F /* Folder.swift */; };
 		75E6CEF6C84E3AF3604C529F0D820BB2 /* Promise+Any.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3669D861EA5308E99CAA0BA5CB6E35B4 /* Promise+Any.swift */; };
 		77951ADA15D8CC8651B6C576A4FF91D2 /* GoogleToolboxForMac-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C845BD5CE13F79EFC600E6994751AC /* GoogleToolboxForMac-dummy.m */; };
@@ -339,7 +340,7 @@
 		93EB50DDA689EB43821761CFC647B092 /* Bundle+FileResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7FBB8A72FEB3D3793BACB689B3564D /* Bundle+FileResource.swift */; };
 		93EDFD20B8B9E5915A60486EF703A881 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028468C3631924E8ABF38E1940C7DC2A /* Container.swift */; };
 		93FB9364C8AF6ED795ED7E1115706055 /* Promise+Then.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2B39A4B628C48DF4424B929CEE98A9 /* Promise+Then.swift */; };
-		945C1B3DC37D4F0B822BF37E83F449DD /* GEDebugKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F0BA61018EDF026C2D23ED9E53E5CA /* GEDebugKit-dummy.m */; };
+		945C1B3DC37D4F0B822BF37E83F449DD /* GEDebugKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C520B3B202153FC5B217F9E69C8BC871 /* GEDebugKit-dummy.m */; };
 		949F26930FFB366EDC320B32D5DCF758 /* FBLPromise+Await.m in Sources */ = {isa = PBXBuildFile; fileRef = B176F1B8764EE04E0E8CD7A6F753DE97 /* FBLPromise+Await.m */; };
 		94E7BF080A1C19200B0A0C32A54BE465 /* FBAllocationTrackerManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 47C770AA6C1BDAF383A8DE7929565A83 /* FBAllocationTrackerManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94EAB840C641FD73E771A4E22C420227 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A05E0C957BD1EEF32267FC704102DF3 /* Foundation.framework */; };
@@ -390,6 +391,7 @@
 		B253B0B06C95DD3C94552A94500C6CB9 /* JGProgressHUDPieIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 01006B82764D967EA13A9FAF137EDA31 /* JGProgressHUDPieIndicatorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B36B80679CAAB50DBF5EC25B087B129B /* FBLPromise+Catch.m in Sources */ = {isa = PBXBuildFile; fileRef = 06DD20A982339868812C3CCA52C98516 /* FBLPromise+Catch.m */; };
 		B371F72B2DD5AAD01DFEE1DD43C2170A /* PromiseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9C0520C4157CCE0AD78449EA517369 /* PromiseError.swift */; };
+		B3E7682A1B97E3B5A8EA235BA24FEA47 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14906D6B552F712A15FC87096816948B /* Colors.xcassets */; };
 		B419EFCCA0288E87F251E871CE83EA18 /* UXCam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251C655DC42DD076F37F1990D8EE1110 /* UXCam.swift */; };
 		B4A6E88CAE00108C5BE47E7643114322 /* FBLPromise+Catch.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A9FE49FE75ADC110ECF50F929B83BF8 /* FBLPromise+Catch.h */; };
 		B5333D4EEF9C754B46ED33AF539BC7B7 /* FBAllocationTrackerImpl.mm in Sources */ = {isa = PBXBuildFile; fileRef = 285BA7F0133BA75595A1E3D47FAF9909 /* FBAllocationTrackerImpl.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -405,7 +407,7 @@
 		B9A2D189BF2B0C38ADE74746CB3BF2A7 /* FBLPromise+Testing.h in Copy . Public Headers */ = {isa = PBXBuildFile; fileRef = 3FB48A1C00AF780B91E6D0B4E336F5FB /* FBLPromise+Testing.h */; };
 		BA25E24EF96D2231955AB1AF7D4F2688 /* FBAllocationTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DA9B24097EE58FA130BBE2C55FC06A0 /* FBAllocationTracker.framework */; };
 		BADF4FD8E3CFB2ED5D824DEE574FA4C3 /* Promise+Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554F71D19074CEAFB28C2C53CEAAF859 /* Promise+Race.swift */; };
-		BB7BB3CB54C429E23EF71DBEE51D4B7F /* GenerationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180B37D589CAC488FF265CBB6887C6C8 /* GenerationViewController.swift */; };
+		BB7BB3CB54C429E23EF71DBEE51D4B7F /* GenerationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFDF653CA2FCDC0B78ADB6926A3BE69 /* GenerationViewController.swift */; };
 		BB8CEEACB956BC038C0D35EEFDFACBC6 /* TableViewFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68ACE677680133486B6DAEF2EB23830D /* TableViewFetchedResultsControllerDelegate.swift */; };
 		BB9B9894933657ED6394C4069607FDB2 /* GenericURLSessionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641D2A139AB0C786201F3D7E0DDB8C46 /* GenericURLSessionExtensions.swift */; };
 		BCB0774E91E49859E648B8FD04081CD9 /* FBObjectInStructReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C2D5C7B40DD835C88B1B1843C7E307 /* FBObjectInStructReference.m */; };
@@ -416,11 +418,11 @@
 		BE5A673A0B8BE08AD78C2BB2D63818A2 /* EncodedUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CBB1BCAD977BE5D5B23E917EE43D97 /* EncodedUserDefaults.swift */; };
 		BEC7C461E8C64178BE35F219D79857EE /* GEUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5754364A867523F6AD275A28C51D9BD9 /* GEUIKit.framework */; };
 		BEF8ADFF8BC0860AA1F950E697A1B152 /* os_activity_shims.h in Headers */ = {isa = PBXBuildFile; fileRef = 92DCAB6A61686E0E4AE7241E144D5EFC /* os_activity_shims.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BF1A302EF7657F413B7183E890E80E51 /* AliveObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBACFF02B9D56122039AF8EA872A8766 /* AliveObjects.swift */; };
+		BF1A302EF7657F413B7183E890E80E51 /* AliveObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACDAA86E8633549271243F460865022 /* AliveObjects.swift */; };
 		BF38821A760BE7C06813FA50491F279C /* NoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841D74F91D222EF01408CC767ABBA391 /* NoError.swift */; };
 		BF3F7D299FA963D8FF7C61719912DACD /* FBLPromiseError.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B73780601C8EA5ABAF692CA97426C /* FBLPromiseError.m */; };
 		BF442461207D3624B0829650BC97BE86 /* Mixpanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5966C56F3E8E4C8FC616D12A3AC3BF3 /* Mixpanel.swift */; };
-		C010522426BAB74E50BDE76199247BDE /* GEDebugKit in Resources */ = {isa = PBXBuildFile; fileRef = B64A1E8A7D9C066E9A72953DD89F3B75 /* GEDebugKit */; };
+		C010522426BAB74E50BDE76199247BDE /* GEDebugKit in Resources */ = {isa = PBXBuildFile; fileRef = A0559CDFDC1BBA67FD554A2387A88BCB /* GEDebugKit */; };
 		C21A74EF292A8D9981F65F20D48BD996 /* StoryboardResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EFE46145D504C97E90CD38D3152C84 /* StoryboardResource.swift */; };
 		C232CA2D1622E724356B289FBA0768BC /* JGProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D77D3A30D549C73EE4993257AA790B9 /* JGProgressHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C2E67EB2C9CE0671634AB72A2C8C4B6D /* FBRetainCycleDetector-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DBED2943A865887941914BDB434D64AB /* FBRetainCycleDetector-dummy.m */; };
@@ -436,10 +438,10 @@
 		C8446EA7EF730375FEC923EB47075E4C /* FBLPromise+Delay.h in Headers */ = {isa = PBXBuildFile; fileRef = 6453E9D33B60A377251AA535C8774753 /* FBLPromise+Delay.h */; };
 		C86FD529E60FD2C6D73DEF4635AF6201 /* Result-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 382481BA36F365DC4FAFC07848D2DB90 /* Result-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C87D7DD5F092F7B43BC1973A29405A65 /* URLSessionTaskGeneratorErrorObjCBridging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722E47121BE9CF63F4C36A0465C7F2C0 /* URLSessionTaskGeneratorErrorObjCBridging.swift */; };
-		C881107818E4DE584D912489C06B2FA0 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE06317A101CF9FC798507EFD9133777 /* Defaults.swift */; };
+		C881107818E4DE584D912489C06B2FA0 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A6DB3606B1B69E026F1C9086B2CE4A /* Defaults.swift */; };
 		C8E2189F03A3DC9AD586B946EC8835F9 /* FBRetainCycleAnalysisCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 01F71C99F54C2BC37E41F1E12A0D89C5 /* FBRetainCycleAnalysisCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C99E9063EC529B80A4988A5697B346D7 /* FBLPromise+Do.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2F4A8AC8E0A5C243AE369944FBD1F8 /* FBLPromise+Do.m */; };
-		C9B901BCE6C90549E6A417A11940BBD9 /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCFD1505F08DFAFE2FCAF46B37225F1 /* Debugging.swift */; };
+		C9B901BCE6C90549E6A417A11940BBD9 /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C354ADEFB2C3717710454DB4F642F75 /* Debugging.swift */; };
 		CDFB8A3BDCE76D6C0F651AF31875A4FB /* Readability.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE3869C54DEF22860782E2F4AC20407 /* Readability.swift */; };
 		CE02CA0934DA7862724618FAF5BF7E29 /* FBLPromise+Any.h in Headers */ = {isa = PBXBuildFile; fileRef = 66914EAA5D1B557A9EA9578DE26B651D /* FBLPromise+Any.h */; };
 		CEDE45B173672B285F7F9FBCD6AA9B50 /* RSSReaderData-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D13F8C1EC21979104038C05B59CA58A /* RSSReaderData-dummy.m */; };
@@ -507,8 +509,8 @@
 		EE883CEE79E898B565CCCA9699ECD0E6 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB43F4B72CA58BC37CEF9F6239520227 /* Item.swift */; };
 		EECF44C925BA7BE819A1F261E8B65622 /* Promise+Retry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3022999F13BDF7088D377700F19F1C /* Promise+Retry.swift */; };
 		EEEE64489B60332ACE6A1124A50450B9 /* FBRetainCycleDetector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4216E814171A04C5BECE72526E150691 /* FBRetainCycleDetector.framework */; };
-		EFA4D06339CE2380D622C2B4C23571C6 /* WeakReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECC5CEFF86524AA2ACBDEFF18F2211D /* WeakReference.swift */; };
-		F05404855826DE7CECD49F3EA6A8761C /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52B29ABFA672BA0346169B15A843334 /* DebugViewController.swift */; };
+		EFA4D06339CE2380D622C2B4C23571C6 /* WeakReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B346774DDC785F6133E32954FBA1D8 /* WeakReference.swift */; };
+		F05404855826DE7CECD49F3EA6A8761C /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9DC72295B06E612AEF67F9AF72358C /* DebugViewController.swift */; };
 		F18EE99571BC81900EB0FE8B397CCFF9 /* ManagedObjectContextAutosaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA867147D6FEA476283274DA6E781283 /* ManagedObjectContextAutosaver.swift */; };
 		F19322E2A456B2F98EDDE78289C5231A /* GEFoundation-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CE49A3C72819CCA7C36C92ECD0743243 /* GEFoundation-dummy.m */; };
 		F22F9E4686805A6AF8DEEFD95869385E /* FBObjectiveCGraphElement.h in Headers */ = {isa = PBXBuildFile; fileRef = F2EE0A773FC937A7EA9F7D9D32630AC6 /* FBObjectiveCGraphElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -530,12 +532,13 @@
 		F9B560596BB758EFF87463937AB02023 /* FBAssociationManager+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BED4A01FC3B91764CC42A7D185DFAB6 /* FBAssociationManager+Internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		F9F7236304F94693BBFC67470661C62E /* FBAllocationTrackerGeneration.mm in Sources */ = {isa = PBXBuildFile; fileRef = AEE0ADECBE551EDF20EFCD1141B0756D /* FBAllocationTrackerGeneration.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		FA0FC22F04C0B33609A668B4E6CE5609 /* StringResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2A9EA584A142E6F0872966FFFFA908 /* StringResource.swift */; };
-		FAA533B2895BBBA3BEF6A76C85BC792C /* Shaking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC3A6D6885CCB2FC336C5AED15565F3 /* Shaking.swift */; };
+		FA13610554E62C2627F07EB1557B9154 /* Debug.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B35CE0617588C57A25DC074D9836E74D /* Debug.storyboard */; };
+		FAA533B2895BBBA3BEF6A76C85BC792C /* Shaking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56B4ADE6806C5B12122EACDB03C8669 /* Shaking.swift */; };
 		FAF18C949FC2215C768716469B4E4B3C /* FPSStatusBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DB7F88F50A85426D6836C8FECF6133 /* FPSStatusBarViewController.swift */; };
 		FB5F65A9D3FD82C66868F26E99FB11A8 /* Promise+Do.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED20C396130B42835125294ED4093D0 /* Promise+Do.swift */; };
 		FC25849978DF6CEA8B33B8B98958CDD2 /* RSSReaderData-Sources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 944B3A9308EDDD08E36AE291336C2E52 /* RSSReaderData-Sources.bundle */; };
 		FC2AED39ADC746A527E340E174CDB283 /* FBLPromise+Wrap.m in Sources */ = {isa = PBXBuildFile; fileRef = ABBEAD7DF32A1E31738D4CD2AD1B15AF /* FBLPromise+Wrap.m */; };
-		FC58C1BE1E12FE8321BCD927204EB1DD /* GEDebugKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 061AE3FB034FACB34EC669D2A96AB28A /* GEDebugKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FC58C1BE1E12FE8321BCD927204EB1DD /* GEDebugKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D6B033F1AF174DED8069F0BF17F351A5 /* GEDebugKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FCD36E6624873347D8274EC8E9E00995 /* Crashlytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2678A7B054F3E16569F0EC0C297C6A7A /* Crashlytics.swift */; };
 		FD2F68884300D1F6C4BBDCD92F7D4AAA /* CoreDataGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C6A1F70CB97FC2DCB8356B65661AB0 /* CoreDataGlobals.swift */; };
 		FD58329E2785C94298109F97662C6BD3 /* ReuseIdentifierProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAA2F0A30B3C9AB54A20E70AC5C201A /* ReuseIdentifierProtocol.swift */; };
@@ -1036,6 +1039,7 @@
 		028468C3631924E8ABF38E1940C7DC2A /* Container.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Container.swift; path = RSSReaderData/Container.swift; sourceTree = "<group>"; };
 		02E31F49EC30028E616533C80007B1F5 /* Struct.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Struct.h; path = FBRetainCycleDetector/Layout/Classes/Parser/Struct.h; sourceTree = "<group>"; };
 		02F1DD79AE36022657556479CD065B6D /* ObjCPropertyInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ObjCPropertyInfo.swift; path = GEFoundation/ObjCPropertyInfo.swift; sourceTree = "<group>"; };
+		031CDC780ED6B3475DDC70815542B5F6 /* SharedImports.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SharedImports.swift; path = GEDebugKit/SharedImports.swift; sourceTree = "<group>"; };
 		03B74AB74B48C9F9EE7EEFCEDFFA7770 /* FPSCounter-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "FPSCounter-Info.plist"; sourceTree = "<group>"; };
 		03BE9E91610704CCF8F8995B6EF81506 /* GEAppConfig-Sources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "GEAppConfig-Sources.bundle"; path = "GEAppConfig-GEAppConfig-Sources.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03FBA6E38E0DB121A4AF45A6D49F0F29 /* FBLPromise+Recover.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBLPromise+Recover.h"; path = "Sources/FBLPromises/include/FBLPromise+Recover.h"; sourceTree = "<group>"; };
@@ -1045,7 +1049,6 @@
 		05B0B7FAD52FA845BDCAE588737BB0AA /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GoogleToolboxForMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05F745B7D67B9185F99A3F37DAEE0C6F /* GEAppConfig */ = {isa = PBXFileReference; includeInIndex = 1; path = GEAppConfig; sourceTree = "<group>"; };
 		05F984BE2CDB72328AABA0951768C2B8 /* ResourceBundle-JGProgressHUD-JGProgressHUD-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-JGProgressHUD-JGProgressHUD-Info.plist"; sourceTree = "<group>"; };
-		061AE3FB034FACB34EC669D2A96AB28A /* GEDebugKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GEDebugKit-umbrella.h"; sourceTree = "<group>"; };
 		06A451EA32CAE4597D4D0EE69011977C /* Pods-RSSReaderUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-RSSReaderUITests.modulemap"; sourceTree = "<group>"; };
 		06DD20A982339868812C3CCA52C98516 /* FBLPromise+Catch.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FBLPromise+Catch.m"; path = "Sources/FBLPromises/FBLPromise+Catch.m"; sourceTree = "<group>"; };
 		0717194A15D09FBA92F087FFD50C9FDD /* fishhook.c */ = {isa = PBXFileReference; includeInIndex = 1; name = fishhook.c; path = fishhook/fishhook.c; sourceTree = "<group>"; };
@@ -1056,12 +1059,12 @@
 		0966A26FF2607DD1AECA2DB2D7BE200C /* Result.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Result.xcconfig; sourceTree = "<group>"; };
 		09CA24993E58DCC5DEF03D48EC8AF69A /* Watchdog.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Watchdog.modulemap; sourceTree = "<group>"; };
 		09D89953A378DCC6E155D3550260D5F7 /* UITabBarController+CVKHiearachySearcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UITabBarController+CVKHiearachySearcher.swift"; path = "GEAppConfig/iOS/UITabBarController+CVKHiearachySearcher.swift"; sourceTree = "<group>"; };
-		09DA944E2B40ABE0D995704710B52C93 /* ObjectsViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ObjectsViewController.swift; path = GEDebugKit/ObjectsViewController.swift; sourceTree = "<group>"; };
 		09F428728F9EAE7A083EFD743D1D8B62 /* DispatchQueueCurrentQueueLabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DispatchQueueCurrentQueueLabel.swift; path = GETracing/DispatchQueueCurrentQueueLabel.swift; sourceTree = "<group>"; };
 		0A0481F8D6C1284A649C2C49B65E5184 /* FBObjectiveCBlock.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBObjectiveCBlock.h; path = FBRetainCycleDetector/Graph/FBObjectiveCBlock.h; sourceTree = "<group>"; };
 		0A1B73780601C8EA5ABAF692CA97426C /* FBLPromiseError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBLPromiseError.m; path = Sources/FBLPromises/FBLPromiseError.m; sourceTree = "<group>"; };
 		0A3022999F13BDF7088D377700F19F1C /* Promise+Retry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Promise+Retry.swift"; path = "Sources/Promises/Promise+Retry.swift"; sourceTree = "<group>"; };
 		0A3206D509E21BD862C5C5538D6194AE /* Loggy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Loggy.framework; path = Loggy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A8FEC3D073FCEE9827C6D81550E6C47 /* GEDebugKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GEDebugKit-prefix.pch"; sourceTree = "<group>"; };
 		0B2F4A8AC8E0A5C243AE369944FBD1F8 /* FBLPromise+Do.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FBLPromise+Do.m"; path = "Sources/FBLPromises/FBLPromise+Do.m"; sourceTree = "<group>"; };
 		0B6C4A66B3EEAA92A04E8A951040E6EB /* Pods-RSSReaderUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RSSReaderUITests-Info.plist"; sourceTree = "<group>"; };
 		0BCC7A627A4851EBBAB5054F193464FC /* RSSReaderData.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = RSSReaderData.modulemap; sourceTree = "<group>"; };
@@ -1085,15 +1088,16 @@
 		1343F82F1246C082E6A00BB8FEE62F4E /* FBMemoryProfilerDeviceUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBMemoryProfilerDeviceUtils.h; path = FBMemoryProfiler/Utils/FBMemoryProfilerDeviceUtils.h; sourceTree = "<group>"; };
 		134814EE9C91ADB4964E93F5E268F09C /* ObjCEncode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ObjCEncode.swift; path = GEFoundation/ObjCEncode.swift; sourceTree = "<group>"; };
 		13EC0D0FE2341C348D01749153737693 /* Pods-RSSReader-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RSSReader-acknowledgements.markdown"; sourceTree = "<group>"; };
+		14906D6B552F712A15FC87096816948B /* Colors.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Colors.xcassets; path = GEDebugKit/Colors.xcassets; sourceTree = "<group>"; };
 		14A1DAC3EF133AB15B8C71A9A8A37D73 /* FPSCounter.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FPSCounter.modulemap; sourceTree = "<group>"; };
 		14D9E5ACA36778FD5EF1CE419B35AB3D /* BaseType.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BaseType.h; path = FBRetainCycleDetector/Layout/Classes/Parser/BaseType.h; sourceTree = "<group>"; };
 		151B073FFEBD182E6ED64A4D6404C0AE /* ProgressEnabledURLSessionTaskGenerator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProgressEnabledURLSessionTaskGenerator.swift; path = GEFoundation/ProgressEnabledURLSessionTaskGenerator.swift; sourceTree = "<group>"; };
 		15B9020E88F1908CED51029C7A5EF1BF /* FTLinearActivityIndicator.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FTLinearActivityIndicator.modulemap; sourceTree = "<group>"; };
+		16B346774DDC785F6133E32954FBA1D8 /* WeakReference.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WeakReference.swift; path = GEDebugKit/WeakReference.swift; sourceTree = "<group>"; };
 		1767B299B9DC353B94DA44C32E91D2EB /* GTMDefines.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
 		1780D53BC65C0F177071AF15164ACE49 /* UIDataSourceModelAssociation+NilIndexPathInModelIdentifierForElement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIDataSourceModelAssociation+NilIndexPathInModelIdentifierForElement.swift"; path = "GEUIKit/UIDataSourceModelAssociation+NilIndexPathInModelIdentifierForElement.swift"; sourceTree = "<group>"; };
 		17E67DBA4C4D392B30F611C60162735E /* ErrorRecovery.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ErrorRecovery.swift; path = GEFoundation/ErrorRecovery.swift; sourceTree = "<group>"; };
 		1801948DBDECEC82F471BC6D3CF14DED /* ResourceBundle-GECoreData-Sources-GECoreData-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-GECoreData-Sources-GECoreData-Info.plist"; sourceTree = "<group>"; };
-		180B37D589CAC488FF265CBB6887C6C8 /* GenerationViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GenerationViewController.swift; path = GEDebugKit/GenerationViewController.swift; sourceTree = "<group>"; };
 		1816B4463252313305D75A4557C84C6C /* Configuration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Configuration.swift; path = GETracing/Configuration.swift; sourceTree = "<group>"; };
 		1826DFA4F0D592CDC3DC7623E9FBD41F /* GEUIKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GEUIKit-dummy.m"; sourceTree = "<group>"; };
 		18DF1A809B9698AED0300ADC3D72E8AA /* Pods-RSSReader-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-RSSReader-umbrella.h"; sourceTree = "<group>"; };
@@ -1128,7 +1132,6 @@
 		2558EE7824BD91BB15128112C9F78FDD /* Pods_RSSReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_RSSReader.framework; path = "Pods-RSSReader.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		257F2CBB291E8D61F0563854952AFFB0 /* GoogleToolboxForMac-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GoogleToolboxForMac-prefix.pch"; sourceTree = "<group>"; };
 		2678A7B054F3E16569F0EC0C297C6A7A /* Crashlytics.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Crashlytics.swift; path = GEAppConfig/Analytics/Crashlytics/Crashlytics.swift; sourceTree = "<group>"; };
-		26F0BA61018EDF026C2D23ED9E53E5CA /* GEDebugKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GEDebugKit-dummy.m"; sourceTree = "<group>"; };
 		285BA7F0133BA75595A1E3D47FAF9909 /* FBAllocationTrackerImpl.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = FBAllocationTrackerImpl.mm; path = FBAllocationTracker/FBAllocationTrackerImpl.mm; sourceTree = "<group>"; };
 		2946CBCDFF092B3B8F31FC6ED7A2449D /* Pods-RSSReaderUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RSSReaderUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		29965A0EF5D5AC1DBD6FD6D1E65A37F1 /* 47.xcdatamodel */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcdatamodel; path = 47.xcdatamodel; sourceTree = "<group>"; };
@@ -1157,7 +1160,6 @@
 		36EFE46145D504C97E90CD38D3152C84 /* StoryboardResource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StoryboardResource.swift; path = Library/Core/StoryboardResource.swift; sourceTree = "<group>"; };
 		3732C0A0241115AE5DC252EA9378FB75 /* FBAllocationTracker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBAllocationTracker.h; path = FBAllocationTracker/FBAllocationTracker.h; sourceTree = "<group>"; };
 		37910DA3EE4CC1EA3FE4B13DC02C623F /* Flurry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Flurry.swift; path = GEAppConfig/iOS/Flurry.swift; sourceTree = "<group>"; };
-		379EA5A6B0DDF14D506ABC325AC8A9BA /* SharedImports.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SharedImports.swift; path = GEDebugKit/SharedImports.swift; sourceTree = "<group>"; };
 		382481BA36F365DC4FAFC07848D2DB90 /* Result-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Result-umbrella.h"; sourceTree = "<group>"; };
 		38B955C6349951E6EA73D074CEF2A63B /* Loggy-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Loggy-dummy.m"; sourceTree = "<group>"; };
 		392D2E44E59B2D27D490F32AFF787CEE /* ResourceBundle-GEUIKit-Sources-GEUIKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-GEUIKit-Sources-GEUIKit-Info.plist"; sourceTree = "<group>"; };
@@ -1167,6 +1169,7 @@
 		3A05E0C957BD1EEF32267FC704102DF3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		3A09B7EC9BBD8E3C9898EB27C0835099 /* FBLPromise+Recover.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FBLPromise+Recover.m"; path = "Sources/FBLPromises/FBLPromise+Recover.m"; sourceTree = "<group>"; };
 		3A0C5EFAD498526F28A84042FE15153A /* FBLPromise+Race.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FBLPromise+Race.m"; path = "Sources/FBLPromises/FBLPromise+Race.m"; sourceTree = "<group>"; };
+		3ACDAA86E8633549271243F460865022 /* AliveObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AliveObjects.swift; path = GEDebugKit/AliveObjects.swift; sourceTree = "<group>"; };
 		3CE0CC551A5746AEA98D646842B7FDF3 /* StatusBarTimeLabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StatusBarTimeLabel.swift; path = GEUIKit/StatusBarTimeLabel.swift; sourceTree = "<group>"; };
 		3D2E63B1D9B4FC1F0A36AAE568A987BC /* UIViewController+StoryboardSegueIdentifierProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+StoryboardSegueIdentifierProtocol.swift"; path = "Library/UIKit/UIViewController+StoryboardSegueIdentifierProtocol.swift"; sourceTree = "<group>"; };
 		3D9761ED340B5D0AA72A37C858109C58 /* Flattenable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Flattenable.swift; path = GEFoundation/Flattenable.swift; sourceTree = "<group>"; };
@@ -1209,6 +1212,7 @@
 		49B0BEA770FAD260A3A2B3823103712B /* PromisesSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = PromisesSwift.modulemap; sourceTree = "<group>"; };
 		4AD8AFC9F30C4637C9B57086118B6E72 /* Promise+All.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Promise+All.swift"; path = "Sources/Promises/Promise+All.swift"; sourceTree = "<group>"; };
 		4B1C94971687E8ED23594AC33B1A269B /* Pods-RSSReaderUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RSSReaderUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		4C354ADEFB2C3717710454DB4F642F75 /* Debugging.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Debugging.swift; path = GEDebugKit/Debugging.swift; sourceTree = "<group>"; };
 		4C6D435D2D6305FAB72E536BA53A7E27 /* ContainerLoadController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ContainerLoadController.swift; path = RSSReaderData/ContainerLoadController.swift; sourceTree = "<group>"; };
 		4D573B21522C3EBDBC80BE30ABD0422D /* FBLPromise+Then.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FBLPromise+Then.m"; path = "Sources/FBLPromises/FBLPromise+Then.m"; sourceTree = "<group>"; };
 		4D5CCF339185A728C00DEB2BF7A47C74 /* FBLPromise+Reduce.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBLPromise+Reduce.h"; path = "Sources/FBLPromises/include/FBLPromise+Reduce.h"; sourceTree = "<group>"; };
@@ -1228,6 +1232,7 @@
 		5261B568CD36961476EF44F2B6754295 /* BundleForSymbolAddress.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BundleForSymbolAddress.swift; path = GETracing/BundleForSymbolAddress.swift; sourceTree = "<group>"; };
 		52E873D729CE802AF4077CEA85FEE8E0 /* JGProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = JGProgressHUD.framework; path = JGProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5336C1BBF566986098AE1A9D4AD1DFCB /* GEUIKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GEUIKit-umbrella.h"; sourceTree = "<group>"; };
+		5393AC1CD3B559B8965D597C4BF0FBD7 /* ObjectsViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ObjectsViewController.swift; path = GEDebugKit/ObjectsViewController.swift; sourceTree = "<group>"; };
 		539DAA326CC938D535CE111733C6B1A2 /* FBMemoryProfilerSegmentedControl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBMemoryProfilerSegmentedControl.h; path = FBMemoryProfiler/UI/FBMemoryProfilerSegmentedControl.h; sourceTree = "<group>"; };
 		53AA0066AEB5DE9154B84CF8C0D7CF68 /* FBClassStrongLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBClassStrongLayout.h; path = FBRetainCycleDetector/Layout/Classes/FBClassStrongLayout.h; sourceTree = "<group>"; };
 		549F481AA316A797D05384DDA804965E /* FBMemoryProfilerFloatingButtonController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBMemoryProfilerFloatingButtonController.h; path = FBMemoryProfiler/Controllers/FBMemoryProfilerFloatingButtonController.h; sourceTree = "<group>"; };
@@ -1262,6 +1267,7 @@
 		612B526B0044168DD747821B599F18BC /* FBBlockStrongLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBBlockStrongLayout.h; path = FBRetainCycleDetector/Layout/Blocks/FBBlockStrongLayout.h; sourceTree = "<group>"; };
 		61926595892E5EDDBED46746B6CEC4A4 /* FTLinearActivityIndicator-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FTLinearActivityIndicator-dummy.m"; sourceTree = "<group>"; };
 		6194815B1820D0E6132CC9856228DB6F /* FTLinearActivityIndicator.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FTLinearActivityIndicator.xcconfig; sourceTree = "<group>"; };
+		61B067E49A1BA84BF70ECC91E1426C54 /* ResourceBundle-GEDebugKit-Sources-GEDebugKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-GEDebugKit-Sources-GEDebugKit-Info.plist"; sourceTree = "<group>"; };
 		6306594E6D8E3193AF9847FC0FFE3303 /* NibResource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NibResource.swift; path = Library/Core/NibResource.swift; sourceTree = "<group>"; };
 		6390A04EBC90DDB58177BD99A2363648 /* Watchdog-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Watchdog-prefix.pch"; sourceTree = "<group>"; };
 		63CDA0009F416877765A2D37BA42A5CB /* current.xcdatamodel */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcdatamodel; path = current.xcdatamodel; sourceTree = "<group>"; };
@@ -1278,7 +1284,6 @@
 		67F3574C9A97112C429508E5E99FE62D /* 218.xcdatamodel */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcdatamodel; path = 218.xcdatamodel; sourceTree = "<group>"; };
 		68ACE677680133486B6DAEF2EB23830D /* TableViewFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TableViewFetchedResultsControllerDelegate.swift; path = GEUIKit/TableViewFetchedResultsControllerDelegate.swift; sourceTree = "<group>"; };
 		68B9C3435C7237F6C231017B65225AEF /* StoryboardSegueIdentifierProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StoryboardSegueIdentifierProtocol.swift; path = Library/Core/StoryboardSegueIdentifierProtocol.swift; sourceTree = "<group>"; };
-		698C9F3946C5C0140D82143F989A0085 /* GEDebugKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GEDebugKit.xcconfig; sourceTree = "<group>"; };
 		6A5A3689E1F6889912BE8BA2B61A4606 /* Appsee.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Appsee.swift; path = GEAppConfig/iOS/Appsee.swift; sourceTree = "<group>"; };
 		6BD26055FA5AB436D4BD8176BA362995 /* DefaultsInSettingsPlist.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DefaultsInSettingsPlist.swift; path = GEFoundation/DefaultsInSettingsPlist.swift; sourceTree = "<group>"; };
 		6BE4EA3AD041A8B9744A539F77E52376 /* ColorResource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorResource.swift; path = Library/Core/ColorResource.swift; sourceTree = "<group>"; };
@@ -1296,7 +1301,6 @@
 		722E47121BE9CF63F4C36A0465C7F2C0 /* URLSessionTaskGeneratorErrorObjCBridging.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = URLSessionTaskGeneratorErrorObjCBridging.swift; path = GEFoundation/URLSessionTaskGeneratorErrorObjCBridging.swift; sourceTree = "<group>"; };
 		7264B5726B767E31E40690E15E44B99A /* FBMemoryProfilerView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBMemoryProfilerView.h; path = FBMemoryProfiler/Views/FBMemoryProfilerView.h; sourceTree = "<group>"; };
 		72B38CF0FF54DEC282765BE150271B1E /* SourceLiterals.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SourceLiterals.swift; path = GETracing/SourceLiterals.swift; sourceTree = "<group>"; };
-		7344AC48335D6F7073ADE12DCB8BD7DD /* GEDebugKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GEDebugKit-Info.plist"; sourceTree = "<group>"; };
 		751035D026E3B909344D2E8119DC24B3 /* RSSReaderData-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "RSSReaderData-Info.plist"; sourceTree = "<group>"; };
 		75BC4C746A430E18241A4CF450E251E6 /* SwiftBackwardCompatibility.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftBackwardCompatibility.swift; path = GEFoundation/SwiftBackwardCompatibility.swift; sourceTree = "<group>"; };
 		765BEF473E35935FDB1F54FD959E865D /* Promise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Promise.swift; path = Sources/Promises/Promise.swift; sourceTree = "<group>"; };
@@ -1304,7 +1308,6 @@
 		7681CF95615A5E9CFFD2E1571B299980 /* Globals.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Globals.swift; path = RSSReaderData/Globals.swift; sourceTree = "<group>"; };
 		772B018774F2C4623023D20919DD3A8B /* FTLinearActivityIndicator-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FTLinearActivityIndicator-prefix.pch"; sourceTree = "<group>"; };
 		772D2224445E00294C6730155E6101F8 /* AppDelegateBase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppDelegateBase.swift; path = GEAppConfig/Core/Shared/AppDelegateBase.swift; sourceTree = "<group>"; };
-		77500BEE4729DC2274AADD4EEC8FEBA5 /* GEDebugKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = GEDebugKit.modulemap; sourceTree = "<group>"; };
 		777F00111FEBD35C3989DAC406515763 /* R.swift.Library-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "R.swift.Library-dummy.m"; sourceTree = "<group>"; };
 		78B5DC82AA366AAEBDE6709EB18E03A1 /* ErrorPresentation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ErrorPresentation.swift; path = GEUIKit/ErrorPresentation.swift; sourceTree = "<group>"; };
 		7955743E71A9369124930BDC8BDA6673 /* FBMemoryProfilerFloatingButtonController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBMemoryProfilerFloatingButtonController.m; path = FBMemoryProfiler/Controllers/FBMemoryProfilerFloatingButtonController.m; sourceTree = "<group>"; };
@@ -1313,10 +1316,10 @@
 		7BCFDB63AF63312C477EACFD3F51960E /* Answers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Answers.swift; path = GEAppConfig/Analytics/Answers/Answers.swift; sourceTree = "<group>"; };
 		7CAD40951A64106009A098AAE9F98017 /* GETracing-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GETracing-umbrella.h"; sourceTree = "<group>"; };
 		7DA9B24097EE58FA130BBE2C55FC06A0 /* FBAllocationTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FBAllocationTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7DCFD1505F08DFAFE2FCAF46B37225F1 /* Debugging.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Debugging.swift; path = GEDebugKit/Debugging.swift; sourceTree = "<group>"; };
 		7E175E65C55F209558B569821D5997B1 /* PromisesObjC-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "PromisesObjC-Info.plist"; sourceTree = "<group>"; };
 		7E7E753A10D54436C9136D7EFB14D0BA /* FBLPromise+Validate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBLPromise+Validate.h"; path = "Sources/FBLPromises/include/FBLPromise+Validate.h"; sourceTree = "<group>"; };
 		7E94AA209C218242B6F75965FE12E92C /* FBMemoryProfiler-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FBMemoryProfiler-dummy.m"; sourceTree = "<group>"; };
+		7E9DC72295B06E612AEF67F9AF72358C /* DebugViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DebugViewController.swift; path = GEDebugKit/DebugViewController.swift; sourceTree = "<group>"; };
 		7EF3D5CEF4BB61FBCC044C92608406EE /* FBSingleRetainCycleViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSingleRetainCycleViewController.h; path = FBMemoryProfiler/RetainCycles/FBSingleRetainCycleViewController.h; sourceTree = "<group>"; };
 		7F51B19AC9C867B4F510379BD89A3346 /* SourceFiles.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SourceFiles.swift; path = GETracing/SourceFiles.swift; sourceTree = "<group>"; };
 		7FAECC066E3EF795715C83727C493F85 /* GEFoundation-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GEFoundation-Info.plist"; sourceTree = "<group>"; };
@@ -1334,6 +1337,7 @@
 		84DE611CD44047F8E3F934F2A0CB018B /* JGProgressHUD.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JGProgressHUD.xcconfig; sourceTree = "<group>"; };
 		85BA80006E8470B543EA11207E69699A /* JGProgressHUDSuccessIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDSuccessIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDSuccessIndicatorView.h; sourceTree = "<group>"; };
 		85D0101FCF6A3FB95BB4E8DE216AE22D /* ContainerViewState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ContainerViewState.swift; path = RSSReaderData/ContainerViewState.swift; sourceTree = "<group>"; };
+		865FB7B8F08AE03AF6EBE4E09D2D1977 /* Images.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = GEDebugKit/Images.xcassets; sourceTree = "<group>"; };
 		86DA0DA0AFAE6BA8B879BE7789A2438E /* FBLPromise+Reduce.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FBLPromise+Reduce.m"; path = "Sources/FBLPromises/FBLPromise+Reduce.m"; sourceTree = "<group>"; };
 		87622331BAE2E04BD5107FA31E9DA921 /* FBStructEncodingParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBStructEncodingParser.h; path = FBRetainCycleDetector/Layout/Classes/Parser/FBStructEncodingParser.h; sourceTree = "<group>"; };
 		876D5B580FCF72AFBFF615C6F1F12B0E /* GEUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GEUIKit.framework; path = GEUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1347,16 +1351,15 @@
 		8B4A162EC0FE062D86337EBD1175D806 /* Promise+Testing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Promise+Testing.swift"; path = "Sources/Promises/Promise+Testing.swift"; sourceTree = "<group>"; };
 		8B82C311C9785A2C96BE93E67F0EA06A /* FBLPromise+Timeout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FBLPromise+Timeout.m"; path = "Sources/FBLPromises/FBLPromise+Timeout.m"; sourceTree = "<group>"; };
 		8BED4A01FC3B91764CC42A7D185DFAB6 /* FBAssociationManager+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBAssociationManager+Internal.h"; path = "FBRetainCycleDetector/Associations/Internal/FBAssociationManager+Internal.h"; sourceTree = "<group>"; };
-		8D827B6262AB5522026A7C08A79A9A30 /* ResourceBundle-GEDebugKit-Sources-GEDebugKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-GEDebugKit-Sources-GEDebugKit-Info.plist"; sourceTree = "<group>"; };
 		8DCAEFD48C8EDA0CAC32F9DE71844818 /* FBAllocationTracker-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "FBAllocationTracker-Info.plist"; sourceTree = "<group>"; };
 		8E520623D144F70924FC27E6799780CF /* FBAllocationTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FBAllocationTracker.framework; path = FBAllocationTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8ECC5CEFF86524AA2ACBDEFF18F2211D /* WeakReference.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WeakReference.swift; path = GEDebugKit/WeakReference.swift; sourceTree = "<group>"; };
 		8F0B233A8736C3792CC229C59DCDBC34 /* FPSCounter.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FPSCounter.xcconfig; sourceTree = "<group>"; };
 		8F7B7F9928D7CA31A69D7DB2F1882C45 /* ResourceBundle-RSSReaderData-Sources-RSSReaderData-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-RSSReaderData-Sources-RSSReaderData-Info.plist"; sourceTree = "<group>"; };
 		8F80147486F5116114E94D254B457395 /* 1027.xcdatamodel */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcdatamodel; path = 1027.xcdatamodel; sourceTree = "<group>"; };
 		9037F8E693528D94596689A95D8FF9CA /* FBMemoryProfiler.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = FBMemoryProfiler.mm; path = FBMemoryProfiler/FBMemoryProfiler.mm; sourceTree = "<group>"; };
 		908988313513ACAC21C2F2E1EF511490 /* UIKitUtilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIKitUtilities.swift; path = GEUIKit/UIKitUtilities.swift; sourceTree = "<group>"; };
 		9090F4AFE54E92F2F5086F245B006966 /* RSSSessionCommands.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RSSSessionCommands.swift; path = RSSReaderData/RSSSessionCommands.swift; sourceTree = "<group>"; };
+		90A6DB3606B1B69E026F1C9086B2CE4A /* Defaults.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Defaults.swift; path = GEDebugKit/Defaults.swift; sourceTree = "<group>"; };
 		91233CE9F6343955F77B8510EFB324D1 /* JGProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUD.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUD.m; sourceTree = "<group>"; };
 		924EB9066ECA20B6A808FE3E75E07628 /* FBLPromises.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FBLPromises.framework; path = PromisesObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92DCAB6A61686E0E4AE7241E144D5EFC /* os_activity_shims.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = os_activity_shims.h; path = "Loggy/Activity Tracing/os_activity_shims.h"; sourceTree = "<group>"; };
@@ -1396,6 +1399,7 @@
 		9DE5B271BE2659BA90E4AA9837236097 /* Fabric.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Fabric.h; path = iOS/Fabric.framework/Headers/Fabric.h; sourceTree = "<group>"; };
 		9E2099ED885FF14978837616C44D193C /* CoreData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CoreData.swift; path = RSSReaderData/CoreData.swift; sourceTree = "<group>"; };
 		9E8522515B175F7A8465372AC35243A1 /* 645.xcdatamodel */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcdatamodel; path = 645.xcdatamodel; sourceTree = "<group>"; };
+		A0559CDFDC1BBA67FD554A2387A88BCB /* GEDebugKit */ = {isa = PBXFileReference; includeInIndex = 1; path = GEDebugKit; sourceTree = "<group>"; };
 		A0A07B7B37670CC117D2520190AD5AF6 /* fishhook.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = fishhook.h; path = fishhook/fishhook.h; sourceTree = "<group>"; };
 		A118D48C30EA3541E25AA1A7C65A0328 /* SystemLayoutSizeCachingTableViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SystemLayoutSizeCachingTableViewCell.swift; path = GEUIKit/SystemLayoutSizeCachingTableViewCell.swift; sourceTree = "<group>"; };
 		A1461267C12085DE4FB7AD0015683742 /* AssociatedObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssociatedObjects.swift; path = GEFoundation/AssociatedObjects.swift; sourceTree = "<group>"; };
@@ -1409,7 +1413,6 @@
 		A447AA1EB04FD09A55C8EAEB1D775130 /* ViewOfKind.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewOfKind.swift; path = GEUIKit/ViewOfKind.swift; sourceTree = "<group>"; };
 		A45DA104758E5CFFB408D0F4CA114862 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "GTMNSString+HTML.m"; path = "Foundation/GTMNSString+HTML.m"; sourceTree = "<group>"; };
 		A4B7FF8B2EB76AED0D198A544DDFA214 /* FBMemoryProfilerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBMemoryProfilerViewController.h; path = FBMemoryProfiler/Controllers/FBMemoryProfilerViewController.h; sourceTree = "<group>"; };
-		A52B29ABFA672BA0346169B15A843334 /* DebugViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DebugViewController.swift; path = GEDebugKit/DebugViewController.swift; sourceTree = "<group>"; };
 		A5C37B35B78E269851E61FBE2D582D51 /* FBObjectGraphConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBObjectGraphConfiguration.h; path = FBRetainCycleDetector/Graph/FBObjectGraphConfiguration.h; sourceTree = "<group>"; };
 		A5E0DBEC426424EC8BBDC321112F6A89 /* UIView+Cloning.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+Cloning.swift"; path = "GEUIKit/UIView+Cloning.swift"; sourceTree = "<group>"; };
 		A698D1981A937E9CF754EA1CCB9FEBC6 /* FBLPromise+Async.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FBLPromise+Async.m"; path = "Sources/FBLPromises/FBLPromise+Async.m"; sourceTree = "<group>"; };
@@ -1446,20 +1449,21 @@
 		B22653DE79B2AB098C844A7823B93E5D /* Throwify.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Throwify.swift; path = GEFoundation/Throwify.swift; sourceTree = "<group>"; };
 		B2A7647D1F9EF9F235BAB47CC6D92B2C /* FBLPromise+Testing.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "FBLPromise+Testing.m"; path = "Sources/FBLPromises/FBLPromise+Testing.m"; sourceTree = "<group>"; };
 		B3293F825F6595C75E70FAD8443D30B8 /* Pods_RSSReaderTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_RSSReaderTests.framework; path = "Pods-RSSReaderTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B35CE0617588C57A25DC074D9836E74D /* Debug.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = Debug.storyboard; path = GEDebugKit/Debug.storyboard; sourceTree = "<group>"; };
+		B3956CD63D0F0AAFB745F0B22E5FFFD5 /* GEDebugKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = GEDebugKit.modulemap; sourceTree = "<group>"; };
 		B3FD1FB4932BDDA8D8A81F23B1DE18DE /* FTLinearActivityIndicator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FTLinearActivityIndicator.framework; path = FTLinearActivityIndicator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4A69042E9116272CC71380E8A67C73D /* GTMLocalizedString.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GTMLocalizedString.h; path = Foundation/GTMLocalizedString.h; sourceTree = "<group>"; };
 		B5189C56913204E8E1A9884C52484EC5 /* ModuleExports-GECoreData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ModuleExports-GECoreData.swift"; path = "GECoreData/ModuleExports-GECoreData.swift"; sourceTree = "<group>"; };
+		B56B4ADE6806C5B12122EACDB03C8669 /* Shaking.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Shaking.swift; path = GEDebugKit/Shaking.swift; sourceTree = "<group>"; };
 		B5966C56F3E8E4C8FC616D12A3AC3BF3 /* Mixpanel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Mixpanel.swift; path = GEAppConfig/iOS/Mixpanel.swift; sourceTree = "<group>"; };
 		B5B72556816159729BF04346604BEB78 /* JGProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = JGProgressHUD.modulemap; sourceTree = "<group>"; };
 		B608184A17CD28AE143468830760F68F /* Data+FileResource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Data+FileResource.swift"; path = "Library/Foundation/Data+FileResource.swift"; sourceTree = "<group>"; };
-		B64A1E8A7D9C066E9A72953DD89F3B75 /* GEDebugKit */ = {isa = PBXFileReference; includeInIndex = 1; path = GEDebugKit; sourceTree = "<group>"; };
 		B6DBFD61DC1BB71CBA1914D92C6EC303 /* UINavigationItem+MultipleButtonItemsCollections.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UINavigationItem+MultipleButtonItemsCollections.swift"; path = "GEAppConfig/iOS/UINavigationItem+MultipleButtonItemsCollections.swift"; sourceTree = "<group>"; };
 		B7E49A2F04BEF56088AB048737B6F90A /* FBLPromisePrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBLPromisePrivate.h; path = Sources/FBLPromises/include/FBLPromisePrivate.h; sourceTree = "<group>"; };
 		B7F8CF6C9798C76AFEBD573C95723B4A /* FBLPromise+Wrap.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBLPromise+Wrap.h"; path = "Sources/FBLPromises/include/FBLPromise+Wrap.h"; sourceTree = "<group>"; };
 		B80D86641BA482796A9C574B5439CDC8 /* Sugar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Sugar.swift; path = GETracing/Sugar.swift; sourceTree = "<group>"; };
 		B833782B400089E850F48CC7304D458D /* JGProgressHUDImageIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDImageIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDImageIndicatorView.h; sourceTree = "<group>"; };
 		B97AA42BB2B161E642BCC0FAA7B46C65 /* FPSCounter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FPSCounter.framework; path = FPSCounter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B9A26DF344637DCAC677A02DED3C52EB /* ObjectDetailViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ObjectDetailViewController.swift; path = GEDebugKit/ObjectDetailViewController.swift; sourceTree = "<group>"; };
 		B9DCF15704AF5C1F275F7DC35CD14C6D /* PromisesSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PromisesSwift-umbrella.h"; sourceTree = "<group>"; };
 		BA2D31C343CA8194C3D5ABDFD015DB5F /* RSSReader-Sources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "RSSReader-Sources.bundle"; path = "RSSReader-RSSReader-Sources.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA8235B0C3269DD83B1C63C176136A5D /* JGProgressHUDErrorIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDErrorIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDErrorIndicatorView.h; sourceTree = "<group>"; };
@@ -1471,7 +1475,6 @@
 		BD3D0D1F88957E300F571B5C6F7449A8 /* FBObjectGraphConfiguration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBObjectGraphConfiguration.m; path = FBRetainCycleDetector/Graph/FBObjectGraphConfiguration.m; sourceTree = "<group>"; };
 		BD4027D47B9E7862EF5195AF265BA122 /* FABAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FABAttributes.h; path = iOS/Fabric.framework/Headers/FABAttributes.h; sourceTree = "<group>"; };
 		BD6574A441709FE802E8D2E1D504C3E1 /* FBIvarReference.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBIvarReference.m; path = FBRetainCycleDetector/Layout/Classes/Reference/FBIvarReference.m; sourceTree = "<group>"; };
-		BE06317A101CF9FC798507EFD9133777 /* Defaults.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Defaults.swift; path = GEDebugKit/Defaults.swift; sourceTree = "<group>"; };
 		BF0CCB0E78AF4F611275505D11AEDB09 /* FBAllocationTrackerGenerationManager.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = FBAllocationTrackerGenerationManager.mm; path = FBAllocationTracker/Generations/FBAllocationTrackerGenerationManager.mm; sourceTree = "<group>"; };
 		C16525AF15FD17DB56876EA679B09919 /* AppVersion.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppVersion.swift; path = GEFoundation/AppVersion.swift; sourceTree = "<group>"; };
 		C17DFC752469CFAAD29A74D259C23E10 /* FBAllocationTracker-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FBAllocationTracker-prefix.pch"; sourceTree = "<group>"; };
@@ -1483,6 +1486,7 @@
 		C3DA51F3FC50C7F80FD76CD21F83355F /* FBMemoryProfiler.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBMemoryProfiler.xcconfig; sourceTree = "<group>"; };
 		C4515FE858E59C1B6EF8604C253CDF8B /* FBAllocationTrackerFunctors.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBAllocationTrackerFunctors.h; path = FBAllocationTracker/FBAllocationTrackerFunctors.h; sourceTree = "<group>"; };
 		C4C845BD5CE13F79EFC600E6994751AC /* GoogleToolboxForMac-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GoogleToolboxForMac-dummy.m"; sourceTree = "<group>"; };
+		C520B3B202153FC5B217F9E69C8BC871 /* GEDebugKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GEDebugKit-dummy.m"; sourceTree = "<group>"; };
 		C5BBEFD011FE2509E47211E48DE16EC4 /* PromisesObjC-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PromisesObjC-umbrella.h"; sourceTree = "<group>"; };
 		C5CDF7BFD2C2080A419E95D2751A24CA /* ResourceBundle-RSSReader-Sources-RSSReader-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-RSSReader-Sources-RSSReader-Info.plist"; sourceTree = "<group>"; };
 		C5DB7F88F50A85426D6836C8FECF6133 /* FPSStatusBarViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FPSStatusBarViewController.swift; path = Sources/FPSStatusBarViewController.swift; sourceTree = "<group>"; };
@@ -1492,6 +1496,7 @@
 		C6EA5039CDB10A482361B47249FA7845 /* JGProgressHUD-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JGProgressHUD-umbrella.h"; sourceTree = "<group>"; };
 		C6FA0AC89317CB444ED66FEEF17EAE57 /* GETracing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GETracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7396E4F516E99859D1FA19CC5E95105 /* 603.xcdatamodel */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcdatamodel; path = 603.xcdatamodel; sourceTree = "<group>"; };
+		C7CBE2F54E8BE4F849C2C170A03548EC /* GEDebugKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GEDebugKit.xcconfig; sourceTree = "<group>"; };
 		C7FF74A1965A7F040E1895F7482A7A91 /* FBMemoryProfilerTextField.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBMemoryProfilerTextField.m; path = FBMemoryProfiler/UI/FBMemoryProfilerTextField.m; sourceTree = "<group>"; };
 		C85E4504FF62EBAB9498F588E13C4A32 /* Watchdog-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Watchdog-umbrella.h"; sourceTree = "<group>"; };
 		C997ADDB001B2199464B7E212F93F7D5 /* GEUIKit-Sources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "GEUIKit-Sources.bundle"; path = "GEUIKit-GEUIKit-Sources.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1507,7 +1512,6 @@
 		CC5230A71F2FEFB74BC48921CC003CBB /* GEFoundation-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GEFoundation-prefix.pch"; sourceTree = "<group>"; };
 		CCC879444324988D1020C43365701628 /* FBMemoryProfilerView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBMemoryProfilerView.m; path = FBMemoryProfiler/Views/FBMemoryProfilerView.m; sourceTree = "<group>"; };
 		CD2C14F84422193929547B5C2880D4FC /* FetchedObjectBinding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FetchedObjectBinding.swift; path = GECoreData/FetchedObjectBinding.swift; sourceTree = "<group>"; };
-		CDA35F3C1E8BBCA001366DB746622484 /* GEDebugKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GEDebugKit-prefix.pch"; sourceTree = "<group>"; };
 		CDB23158165D57DAA89884BBA7E7C860 /* FBMemoryProfilerMovableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBMemoryProfilerMovableViewController.h; path = FBMemoryProfiler/Window/FBMemoryProfilerMovableViewController.h; sourceTree = "<group>"; };
 		CE49A3C72819CCA7C36C92ECD0743243 /* GEFoundation-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GEFoundation-dummy.m"; sourceTree = "<group>"; };
 		CEE80BAFF0519D7E1F168C8BE2B13D6E /* FBBlockStrongLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBBlockStrongLayout.m; path = FBRetainCycleDetector/Layout/Blocks/FBBlockStrongLayout.m; sourceTree = "<group>"; };
@@ -1530,6 +1534,7 @@
 		D3F986883FFE805A041A033ABEF51567 /* StoryboardResourceWithInitialController+UIKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "StoryboardResourceWithInitialController+UIKit.swift"; path = "Library/UIKit/StoryboardResourceWithInitialController+UIKit.swift"; sourceTree = "<group>"; };
 		D5387D2A2A3E936A2450DE31B97D2038 /* FBObjectInStructReference.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBObjectInStructReference.h; path = FBRetainCycleDetector/Layout/Classes/Reference/FBObjectInStructReference.h; sourceTree = "<group>"; };
 		D5C401A3D1CC9B3737A59045E81A5903 /* FPSCounter-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FPSCounter-umbrella.h"; sourceTree = "<group>"; };
+		D6B033F1AF174DED8069F0BF17F351A5 /* GEDebugKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GEDebugKit-umbrella.h"; sourceTree = "<group>"; };
 		D7B3FCDC2C5EADC4C00EA62C56B9489B /* Pods-RSSReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RSSReader.debug.xcconfig"; sourceTree = "<group>"; };
 		D927E292D63F7679EBF1FBC08FE9EE99 /* FBMemoryProfiler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FBMemoryProfiler.framework; path = FBMemoryProfiler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9AAF61716DA4D419865F9B4B92DFDC3 /* GEUIKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GEUIKit-Info.plist"; sourceTree = "<group>"; };
@@ -1544,6 +1549,7 @@
 		DD8A80B4DEB5DB27FFEACC1FC95BEB69 /* GTMLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GTMLogger.h; path = Foundation/GTMLogger.h; sourceTree = "<group>"; };
 		DDBD36E8D32BD0B716B956FFE9E08265 /* 88.xcdatamodel */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcdatamodel; path = 88.xcdatamodel; sourceTree = "<group>"; };
 		DEE16C7D5F0E9F73AC435F628CA84665 /* GECoreData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GECoreData.framework; path = GECoreData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFFDF653CA2FCDC0B78ADB6926A3BE69 /* GenerationViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GenerationViewController.swift; path = GEDebugKit/GenerationViewController.swift; sourceTree = "<group>"; };
 		E0B28D47EB61FA8F68C25AF09BFE56FE /* Promise+Catch.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Promise+Catch.swift"; path = "Sources/Promises/Promise+Catch.swift"; sourceTree = "<group>"; };
 		E12C048CAECD08AF75DED213DDA63F3D /* FBAllocationTrackerDefines.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBAllocationTrackerDefines.h; path = FBAllocationTracker/FBAllocationTrackerDefines.h; sourceTree = "<group>"; };
 		E17C582572589AFECCA5A24D0A511C04 /* Identifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Identifier.swift; path = Library/Core/Identifier.swift; sourceTree = "<group>"; };
@@ -1596,10 +1602,11 @@
 		F112057ECD5AEFA1262A0FC856396F4E /* FBRetainCycleDetector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FBRetainCycleDetector.framework; path = FBRetainCycleDetector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F12B31F7D4261F067090110ABA9C9543 /* FBStandardGraphEdgeFilters.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBStandardGraphEdgeFilters.h; path = FBRetainCycleDetector/Filtering/FBStandardGraphEdgeFilters.h; sourceTree = "<group>"; };
 		F1771E667B97B5F66BF445C6FDFA4494 /* ImageResource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageResource.swift; path = Library/Core/ImageResource.swift; sourceTree = "<group>"; };
+		F198AA49FBA0A7703720F529D976F72C /* FPSMonitoring.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FPSMonitoring.swift; path = GEDebugKit/FPSMonitoring.swift; sourceTree = "<group>"; };
+		F1BAA05C7681475D3CD72AEC54E1CB45 /* GEDebugKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GEDebugKit-Info.plist"; sourceTree = "<group>"; };
 		F259F09B1E81FC8D5FA5E24D53303360 /* jg_hud_error.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = jg_hud_error.png; path = JGProgressHUD/Resources/jg_hud_error.png; sourceTree = "<group>"; };
 		F2EE0A773FC937A7EA9F7D9D32630AC6 /* FBObjectiveCGraphElement.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBObjectiveCGraphElement.h; path = FBRetainCycleDetector/Graph/FBObjectiveCGraphElement.h; sourceTree = "<group>"; };
 		F2F46FBD32F4458C37D8BE19702E563F /* MarkingAsRead.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MarkingAsRead.swift; path = RSSReaderData/MarkingAsRead.swift; sourceTree = "<group>"; };
-		F2FA28B28159E9A29DC8A873121920EB /* FPSMonitoring.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FPSMonitoring.swift; path = GEDebugKit/FPSMonitoring.swift; sourceTree = "<group>"; };
 		F314EADB01AE6364299AD9DF96B90A78 /* CLSReport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSReport.h; path = iOS/Crashlytics.framework/Headers/CLSReport.h; sourceTree = "<group>"; };
 		F53363EF3BA772E5F43883C969E000FA /* Loggy-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Loggy-prefix.pch"; sourceTree = "<group>"; };
 		F5436F240A4415DC9C2E25B65FF71340 /* DefaultLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DefaultLog.swift; path = GETracing/DefaultLog.swift; sourceTree = "<group>"; };
@@ -1608,6 +1615,7 @@
 		F7BC3DD26554D392F9DC94515D4F35AF /* Logging.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Logging.swift; path = GETracing/Logging.swift; sourceTree = "<group>"; };
 		F8217DC3C7424FCF0532BC683AD3D419 /* Promise+Await.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Promise+Await.swift"; path = "Sources/Promises/Promise+Await.swift"; sourceTree = "<group>"; };
 		F824DBBCCD4C39400A21FB121B2D7057 /* Promise+Wrap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Promise+Wrap.swift"; path = "Sources/Promises/Promise+Wrap.swift"; sourceTree = "<group>"; };
+		F88E45704BC6FA2BE7D62AD8B89CC09D /* ObjectDetailViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ObjectDetailViewController.swift; path = GEDebugKit/ObjectDetailViewController.swift; sourceTree = "<group>"; };
 		F89922872296E51CB393D53C97B92CCB /* FBAllocationTrackerImpl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBAllocationTrackerImpl.h; path = FBAllocationTracker/FBAllocationTrackerImpl.h; sourceTree = "<group>"; };
 		F8A24A26465816FC94EA8A4F5E48ED8C /* GTMTypeCasting.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GTMTypeCasting.h; path = DebugUtils/GTMTypeCasting.h; sourceTree = "<group>"; };
 		F924772CDE74B6CBE80F94DC5A4693D7 /* GEAppConfig-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GEAppConfig-prefix.pch"; sourceTree = "<group>"; };
@@ -1619,13 +1627,11 @@
 		FA77F3616BC04E477634BA2208BD8291 /* FBMemoryProfilerGenerationsSectionHeaderView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBMemoryProfilerGenerationsSectionHeaderView.m; path = FBMemoryProfiler/Views/FBMemoryProfilerGenerationsSectionHeaderView.m; sourceTree = "<group>"; };
 		FB3F10C0470263D59783F851903AAD80 /* RSSReaderData.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = RSSReaderData.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		FB67FDAEA7ED66F09C3D683929E919F3 /* Pods-RSSReaderTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RSSReaderTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		FBACFF02B9D56122039AF8EA872A8766 /* AliveObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AliveObjects.swift; path = GEDebugKit/AliveObjects.swift; sourceTree = "<group>"; };
 		FBB787900B71C0C86A53F1BAE1DBAEE7 /* Pods-RSSReaderUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RSSReaderUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		FBF7D933F9E8118AD58F2A146C8E6AC6 /* Pods-RSSReaderUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RSSReaderUITests.release.xcconfig"; sourceTree = "<group>"; };
 		FC0EB8552FB35FF2B30D76438101D8F1 /* Pods-RSSReaderTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RSSReaderTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		FC21E615121A77D66E7F684C42754E8E /* GTMNSString+HTML.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "GTMNSString+HTML.h"; path = "Foundation/GTMNSString+HTML.h"; sourceTree = "<group>"; };
 		FC86644A819CEE86A76914C44F59CFC3 /* 248.xcdatamodel */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcdatamodel; path = 248.xcdatamodel; sourceTree = "<group>"; };
-		FFC3A6D6885CCB2FC336C5AED15565F3 /* Shaking.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Shaking.swift; path = GEDebugKit/Shaking.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2036,14 +2042,6 @@
 			path = "../Target Support Files/FBMemoryProfiler";
 			sourceTree = "<group>";
 		};
-		33691BC57F11D03D9192F575D7C5680D /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				B64A1E8A7D9C066E9A72953DD89F3B75 /* GEDebugKit */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 		34F7101302230E53D105DF87DEE29D21 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -2090,25 +2088,19 @@
 			name = Answers;
 			sourceTree = "<group>";
 		};
-		4AD975683EC620FB2B54B51209BB726A /* GEDebugKit */ = {
+		3F7557EF7490FB0DAD62BAC57885A0EA /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				FBACFF02B9D56122039AF8EA872A8766 /* AliveObjects.swift */,
-				7DCFD1505F08DFAFE2FCAF46B37225F1 /* Debugging.swift */,
-				A52B29ABFA672BA0346169B15A843334 /* DebugViewController.swift */,
-				BE06317A101CF9FC798507EFD9133777 /* Defaults.swift */,
-				F2FA28B28159E9A29DC8A873121920EB /* FPSMonitoring.swift */,
-				180B37D589CAC488FF265CBB6887C6C8 /* GenerationViewController.swift */,
-				B9A26DF344637DCAC677A02DED3C52EB /* ObjectDetailViewController.swift */,
-				09DA944E2B40ABE0D995704710B52C93 /* ObjectsViewController.swift */,
-				FFC3A6D6885CCB2FC336C5AED15565F3 /* Shaking.swift */,
-				379EA5A6B0DDF14D506ABC325AC8A9BA /* SharedImports.swift */,
-				8ECC5CEFF86524AA2ACBDEFF18F2211D /* WeakReference.swift */,
-				33691BC57F11D03D9192F575D7C5680D /* Resources */,
-				B30DA3DA7FEDA2086BEF179925178E04 /* Support Files */,
+				B3956CD63D0F0AAFB745F0B22E5FFFD5 /* GEDebugKit.modulemap */,
+				C7CBE2F54E8BE4F849C2C170A03548EC /* GEDebugKit.xcconfig */,
+				C520B3B202153FC5B217F9E69C8BC871 /* GEDebugKit-dummy.m */,
+				F1BAA05C7681475D3CD72AEC54E1CB45 /* GEDebugKit-Info.plist */,
+				0A8FEC3D073FCEE9827C6D81550E6C47 /* GEDebugKit-prefix.pch */,
+				D6B033F1AF174DED8069F0BF17F351A5 /* GEDebugKit-umbrella.h */,
+				61B067E49A1BA84BF70ECC91E1426C54 /* ResourceBundle-GEDebugKit-Sources-GEDebugKit-Info.plist */,
 			);
-			name = GEDebugKit;
-			path = GEDebugKit;
+			name = "Support Files";
+			path = "../Target Support Files/GEDebugKit";
 			sourceTree = "<group>";
 		};
 		4B2709B450C3727AD45A905E8C792C33 /* Crashlytics */ = {
@@ -2332,6 +2324,27 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/GEAppConfig";
+			sourceTree = "<group>";
+		};
+		73F6F1E9A324A2280D6B0CBB8D1FE767 /* GEDebugKit */ = {
+			isa = PBXGroup;
+			children = (
+				3ACDAA86E8633549271243F460865022 /* AliveObjects.swift */,
+				4C354ADEFB2C3717710454DB4F642F75 /* Debugging.swift */,
+				7E9DC72295B06E612AEF67F9AF72358C /* DebugViewController.swift */,
+				90A6DB3606B1B69E026F1C9086B2CE4A /* Defaults.swift */,
+				F198AA49FBA0A7703720F529D976F72C /* FPSMonitoring.swift */,
+				DFFDF653CA2FCDC0B78ADB6926A3BE69 /* GenerationViewController.swift */,
+				F88E45704BC6FA2BE7D62AD8B89CC09D /* ObjectDetailViewController.swift */,
+				5393AC1CD3B559B8965D597C4BF0FBD7 /* ObjectsViewController.swift */,
+				B56B4ADE6806C5B12122EACDB03C8669 /* Shaking.swift */,
+				031CDC780ED6B3475DDC70815542B5F6 /* SharedImports.swift */,
+				16B346774DDC785F6133E32954FBA1D8 /* WeakReference.swift */,
+				E0B23A63C2C42BD4B3925EBCE4976996 /* Resources */,
+				3F7557EF7490FB0DAD62BAC57885A0EA /* Support Files */,
+			);
+			name = GEDebugKit;
+			path = GEDebugKit;
 			sourceTree = "<group>";
 		};
 		7593B0CB50B6A53B795139758A7CD32B /* iOS */ = {
@@ -2705,7 +2718,7 @@
 				14274534E317ADCA3B4B63D0D80A2356 /* FTLinearActivityIndicator */,
 				A1A26EEDAA13BC5C0F59863AB54BB31B /* GEAppConfig */,
 				5DE552B7EE59BC3E006858F7C63EA373 /* GECoreData */,
-				4AD975683EC620FB2B54B51209BB726A /* GEDebugKit */,
+				73F6F1E9A324A2280D6B0CBB8D1FE767 /* GEDebugKit */,
 				E1FC20F4956A1A99C556C39CD389F669 /* GEFoundation */,
 				3747989669F630DD4D203AED6E4F2B65 /* GETracing */,
 				91F532CEE36017738B555DF61264EDA6 /* GEUIKit */,
@@ -2729,21 +2742,6 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Fabric";
-			sourceTree = "<group>";
-		};
-		B30DA3DA7FEDA2086BEF179925178E04 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				77500BEE4729DC2274AADD4EEC8FEBA5 /* GEDebugKit.modulemap */,
-				698C9F3946C5C0140D82143F989A0085 /* GEDebugKit.xcconfig */,
-				26F0BA61018EDF026C2D23ED9E53E5CA /* GEDebugKit-dummy.m */,
-				7344AC48335D6F7073ADE12DCB8BD7DD /* GEDebugKit-Info.plist */,
-				CDA35F3C1E8BBCA001366DB746622484 /* GEDebugKit-prefix.pch */,
-				061AE3FB034FACB34EC669D2A96AB28A /* GEDebugKit-umbrella.h */,
-				8D827B6262AB5522026A7C08A79A9A30 /* ResourceBundle-GEDebugKit-Sources-GEDebugKit-Info.plist */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/GEDebugKit";
 			sourceTree = "<group>";
 		};
 		B45DC108E12BF9880B5EFB973F9CC336 /* Pod */ = {
@@ -2917,6 +2915,17 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/GEFoundation";
+			sourceTree = "<group>";
+		};
+		E0B23A63C2C42BD4B3925EBCE4976996 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				14906D6B552F712A15FC87096816948B /* Colors.xcassets */,
+				B35CE0617588C57A25DC074D9836E74D /* Debug.storyboard */,
+				A0559CDFDC1BBA67FD554A2387A88BCB /* GEDebugKit */,
+				865FB7B8F08AE03AF6EBE4E09D2D1977 /* Images.xcassets */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		E1FC20F4956A1A99C556C39CD389F669 /* GEFoundation */ = {
@@ -3843,7 +3852,7 @@
 				686AA7AC7E3D1DE1652B517E51940B4B /* Headers */,
 				347CA9145BD1340B956521206B6785B8 /* Sources */,
 				0647C06D38786C38F18E284F8A58A83F /* Frameworks */,
-				40067B7DBD4493580A8E836940D9209A /* Resources */,
+				B8991B2F5276BAACBD808F6280D38638 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -4168,14 +4177,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		40067B7DBD4493580A8E836940D9209A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				49F4A879190F0B2EE2C269D0EA150A4E /* GEDebugKit-Sources.bundle in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		457C85CC9F1794CB9099FA5F2AD368F9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -4269,6 +4270,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B4CE64078BFD79B258BD40E6B205E65 /* JGProgressHUD.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8991B2F5276BAACBD808F6280D38638 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B3E7682A1B97E3B5A8EA235BA24FEA47 /* Colors.xcassets in Resources */,
+				FA13610554E62C2627F07EB1557B9154 /* Debug.storyboard in Resources */,
+				62DB916CBEB8F601081E8F18C25CB406 /* GEDebugKit-Sources.bundle in Resources */,
+				7575761BAC95DB80BC0AF0E3369F4BF6 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5416,7 +5428,7 @@
 		};
 		0A7BE8594B88500496B2C79C4B8429F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 698C9F3946C5C0140D82143F989A0085 /* GEDebugKit.xcconfig */;
+			baseConfigurationReference = C7CBE2F54E8BE4F849C2C170A03548EC /* GEDebugKit.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
@@ -6006,7 +6018,7 @@
 		};
 		445B828BA8B8939058B30EC568C6C8D9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 698C9F3946C5C0140D82143F989A0085 /* GEDebugKit.xcconfig */;
+			baseConfigurationReference = C7CBE2F54E8BE4F849C2C170A03548EC /* GEDebugKit.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
@@ -6100,7 +6112,7 @@
 		};
 		55F8DE045E1C46BFFEE4708843A2ACF2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 698C9F3946C5C0140D82143F989A0085 /* GEDebugKit.xcconfig */;
+			baseConfigurationReference = C7CBE2F54E8BE4F849C2C170A03548EC /* GEDebugKit.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
@@ -6561,7 +6573,7 @@
 		};
 		82C5092FA43C958018BBDC7FE5C28BC2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 698C9F3946C5C0140D82143F989A0085 /* GEDebugKit.xcconfig */;
+			baseConfigurationReference = C7CBE2F54E8BE4F849C2C170A03548EC /* GEDebugKit.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";

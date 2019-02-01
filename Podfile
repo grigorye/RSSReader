@@ -17,6 +17,7 @@ def commonDeps
   pod 'GEFoundation'#, :path => '../GEFoundation'
   pod 'GECoreData'#, :path => '../GECoreData'
   pod 'GEUIKit'#, :path => '../GEUIKit'
+  pod 'GEDebugKit'#, :path => '../GEDebugKit'
 end
 
 # This "target" is used to produce the corresponding .xcconfig that is explicitly #included in the app .xcconfig.
