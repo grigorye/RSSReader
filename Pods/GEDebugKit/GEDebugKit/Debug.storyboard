@@ -181,6 +181,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Debug" id="yoS-Bo-I3u"/>
                     <connections>
+                        <outlet property="aliveObjectsCell" destination="tWV-Ej-eeW" id="JR1-Wb-mVZ"/>
                         <outlet property="aliveObjectsLabel" destination="JQ4-YI-hNs" id="9LT-9E-jwN"/>
                         <outlet property="memoryProfilerSwitch" destination="Tdc-iS-FKy" id="tg4-y4-tdX"/>
                     </connections>

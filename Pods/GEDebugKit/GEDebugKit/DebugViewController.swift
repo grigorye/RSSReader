@@ -54,7 +54,8 @@ class DebugViewController : AccessibilityAwareStaticTableViewController {
     
     @IBOutlet var memoryProfilerSwitch: UISwitch!
     @IBOutlet var aliveObjectsLabel: UILabel!
-    
+	@IBOutlet var aliveObjectsCell: UITableViewCell!
+	
     var shouldMarkGeneration = false
     
     @IBAction func toggleMemoryProfiler(_ sender: UISwitch) {
@@ -72,7 +73,7 @@ class DebugViewController : AccessibilityAwareStaticTableViewController {
             markAllocationGeneration()
         }
     }
-    
+	
 	lazy var allocationGeneration = AllocationGeneration(generationIndex: lastAllocationGenerationIndex())
 	
     override func viewWillAppear(_ animated: Bool) {
@@ -80,12 +81,29 @@ class DebugViewController : AccessibilityAwareStaticTableViewController {
         super.viewWillAppear(animated)
         
         memoryProfilerSwitch.isOn = defaults.memoryProfilerEnabled
-        
-        let aliveObjectsCount = allocationGeneration.aliveObjectsCount
-        
-        aliveObjectsLabel?.text = "\(aliveObjectsCount)"
+		
+		let liveObjectsText: String = {
+			guard allocationTrackingEnabled else {
+				return NSLocalizedString("Not Available", comment: "")
+			}
+			let aliveObjectsCount = allocationGeneration.aliveObjectsCount
+			return "\(aliveObjectsCount)"
+		}()
+
+        aliveObjectsLabel?.text = liveObjectsText
+		aliveObjectsCell.selectionStyle = allocationTrackingEnabled ? .default : .none
+		aliveObjectsCell.accessoryType = allocationTrackingEnabled ? .disclosureIndicator : .none
     }
-    
+	
+	override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+	
+		if identifier == "showAliveObjects" && !allocationTrackingEnabled {
+			return false
+		}
+		
+		return super.shouldPerformSegue(withIdentifier: identifier, sender: sender)
+	}
+	
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         super.prepare(for: segue, sender: sender)

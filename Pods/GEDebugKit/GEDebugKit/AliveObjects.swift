@@ -93,6 +93,10 @@ struct AllocationGeneration {
 	}()
 }
 
+var allocationTrackingEnabled: Bool {
+	return defaults.allocationTrackingEnabled
+}
+
 func lastAllocationGenerationIndex() -> Int {
 	
 	let currentSummaryForGenerations = allocationTrackerManager.currentSummaryForGenerations()!
