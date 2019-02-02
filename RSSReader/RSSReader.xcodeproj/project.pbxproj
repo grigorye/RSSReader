@@ -130,16 +130,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		C424B8E81C6FC557008AD647 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C4816E2B1DF612A800DDACA7 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -148,26 +138,6 @@
 			files = (
 			);
 			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C48E1E5C2006DD06007EF030 /* Collect Static Link Aware Dynamic Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 12;
-			dstPath = "$(GE_DYNAMIC_FRAMEWORKS_COLLECTOR_FOLDER_PATH)";
-			dstSubfolderSpec = 16;
-			files = (
-			);
-			name = "Collect Static Link Aware Dynamic Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C4D436771D8777A3008C6386 /* Embed PlugIns */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-			);
-			name = "Embed PlugIns";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		C4E2E6541AE097E100F2A94E /* CopyFiles */ = {
@@ -611,10 +581,6 @@
 				C418B3281A593F4E002C0578 /* Embed Source Version into Bundle */,
 				C4676E7F1A6DB0C900AE8BC2 /* Integrate Fabric */,
 				C40C6BF81A73017B00FAFA17 /* Integrate Appsee */,
-				C424B8E81C6FC557008AD647 /* Embed Frameworks */,
-				C4D436771D8777A3008C6386 /* Embed PlugIns */,
-				C48E1E5C2006DD06007EF030 /* Collect Static Link Aware Dynamic Frameworks */,
-				C48E1E5A2006D761007EF030 /* Embed Static Link Aware Frameworks Or Resources */,
 				4DEE74FFF89ECF9091A8A79A /* [CP] Embed Pods Frameworks */,
 				F18A22CC6FD571029509617F /* [CP] Copy Pods Resources */,
 			);
@@ -935,21 +901,6 @@
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = "/bin/sh -e";
 			shellScript = true;
-		};
-		C48E1E5A2006D761007EF030 /* Embed Static Link Aware Frameworks Or Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Static Link Aware Frameworks Or Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/sh -e";
-			shellScript = "#\"${GE_XCODE_BUILD_PHASES:?}\"/Run EmbedStaticLinkAwareFrameworksOrResources\n";
-			showEnvVarsInLog = 0;
 		};
 		C4DA682E1E58BC94004615A0 /* Generate R.generated.swift */ = {
 			isa = PBXShellScriptBuildPhase;
