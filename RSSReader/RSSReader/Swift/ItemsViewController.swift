@@ -392,7 +392,7 @@ extension ItemsViewController {
 		self.unbind()
 		self.refreshing = true
 		self.bind()
-		assert(nil == loadCancellation)
+		assert$(nil == loadCancellation)
 		loadCancellation = loadMore {
 			self.loadCancellation = nil
 			refreshControl.endRefreshing()
