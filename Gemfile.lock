@@ -206,7 +206,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  cocoapods (~> 1.6.0.rc)
+  cocoapods (~> 1.6.0)
   cocoapods-generate (~> 1.3)
   fastlane
   xcodeproj
