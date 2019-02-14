@@ -7,6 +7,7 @@
 //
 
 @testable import RSSReaderData
+import GEFoundation
 import Foundation
 
 class DataGenerator : NSObject {
