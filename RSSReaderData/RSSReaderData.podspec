@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name = "RSSReaderData"
-  s.version = "0.1"
+  s.version = "0.1.3"
   s.summary = "Data module for RSSReader."
 
   s.description  = <<~END
