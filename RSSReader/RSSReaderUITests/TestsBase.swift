@@ -15,6 +15,7 @@ class TestsBase : XCTestCase {
 		app.launchArguments += [
 			"-traceEnabled", "NO",
 			"-stateRestorationEnabled", "NO",
+			"-mainWindowLayerSpeed", "100"
 		]
 	}
 	
