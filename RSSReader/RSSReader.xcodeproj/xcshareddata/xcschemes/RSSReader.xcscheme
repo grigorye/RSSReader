@@ -110,6 +110,10 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "-mainWindowLayerSpeed 100"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "-login foo"
             isEnabled = "NO">
          </CommandLineArgument>

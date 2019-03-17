@@ -90,6 +90,10 @@ class AppDelegate : GEAppConfig.AppDelegateBase {
 			_ = mainScene
 			_ = rssSession
 
+			if let mainWindowLayerSpeed = defaults.mainWindowLayerSpeed?.floatValue {
+				window?.layer.speed = mainWindowLayerSpeed
+			}
+			
 			return true
 		}
 	}
