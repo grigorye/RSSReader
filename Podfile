@@ -2,22 +2,26 @@ source 'https://github.com/grigorye/podspecs.git'
 source 'https://github.com/CocoaPods/Specs.git'
 
 install! 'cocoapods'#, :integrate_targets => false
+plugin 'cocoapods-binary'
+
 project "RSSReader/RSSReader.xcodeproj"
 use_frameworks!
+#all_binary!
+keep_source_code_for_prebuilt_frameworks! 
 
 def commonDeps
-  pod 'Crashlytics'
-  pod 'Fabric'
-  pod 'Result'
-  pod 'PromisesSwift'
-  pod 'GoogleToolboxForMac/NSString+HTML'
+  pod 'Crashlytics', :binary => false
+  pod 'Fabric', :binary => false
+  pod 'Result', :binary => true
+  pod 'PromisesSwift', :binary => true
+  pod 'GoogleToolboxForMac/NSString+HTML', :binary => true
 
   pod 'GEAppConfig', :subspecs => ['Core', 'Crashlytics', 'Answers', 'iOS']#, :path => '../GEAppConfig'
-  pod 'GETracing'#, :path => '../GETracing'
-  pod 'GEFoundation'#, :path => '../GEFoundation'
-  pod 'GECoreData'#, :path => '../GECoreData'
-  pod 'GEUIKit'#, :path => '../GEUIKit'
-  pod 'GEDebugKit'#, :path => '../GEDebugKit'
+  pod 'GETracing', :binary => true#, :path => '../GETracing'
+  pod 'GEFoundation', :binary => true#, :path => '../GEFoundation'
+  pod 'GECoreData', :binary => true#, :path => '../GECoreData'
+  pod 'GEUIKit', :binary => true#, :path => '../GEUIKit'
+  pod 'GEDebugKit', :binary => false#, :path => '../GEDebugKit'
 end
 
 # This "target" is used to produce the corresponding .xcconfig that is explicitly #included in the app .xcconfig.
@@ -25,15 +29,15 @@ target "RSSReader" do
   platform :ios, '11.0'
   commonDeps
   pod 'RSSReader', :path => 'RSSReader'
-  pod 'R.swift'
-  pod 'Watchdog'
-  pod 'JGProgressHUD'
-  pod 'FTLinearActivityIndicator'
-  pod 'FBMemoryProfiler', :inhibit_warnings => true
-  pod 'FBAllocationTracker', :inhibit_warnings => true
-  pod 'FPSCounter'
+  pod 'R.swift', :binary => true
+  pod 'Watchdog', :binary => true
+  pod 'JGProgressHUD', :binary => true
+  pod 'FTLinearActivityIndicator', :binary => true
+  pod 'FBMemoryProfiler', :binary => true, :inhibit_warnings => true
+  pod 'FBAllocationTracker', :binary => true, :inhibit_warnings => true
+  pod 'FPSCounter', :binary => true
   pod 'RSSReaderData', :path => 'RSSReaderData'
-  pod 'Loggy'#, :path => '../LogExperiment'
+  pod 'Loggy', :binary => true#, :path => '../LogExperiment'
   #pod 'AFMInfoBanner'
   #pod 'UXCam'
   #pod 'TUSafariActivity'
