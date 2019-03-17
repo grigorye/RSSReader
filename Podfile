@@ -77,19 +77,23 @@ swift_versions = {
   'R.swift.Library' => '4.2'
 }
 
+pre_install do |installer|
+  installer.analysis_result.specifications.each do |s|
+    if !s.swift_version
+      custom_swift_version = swift_versions[s.name]
+      target_swift_version = (custom_swift_version != nil) ? custom_swift_version : '4.2'
+      puts "Setting Swift version for #{s.name}: #{target_swift_version}"
+      s.swift_version = target_swift_version
+    end
+  end
+end
+
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |configuration|
       # http://www.mokacoding.com/blog/cocoapods-and-custom-build-configurations/
       if target.name == 'FBAllocationTracker'
         configuration.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] = '$(inherited) ALLOCATION_TRACKER_ENABLED'
-      end
-
-      if !configuration.build_settings.key?('SWIFT_VERSION')
-        custom_swift_version = swift_versions[target.name]
-        target_swift_version = (custom_swift_version != nil) ? custom_swift_version : '4.2'
-        puts "Setting SWIFT_VERSION for #{target.name}/#{configuration}: #{target_swift_version}"
-        configuration.build_settings['SWIFT_VERSION'] = target_swift_version
       end
 
       #configuration.build_settings['CONFIGURATION_BUILD_DIR'] = '${PODS_CONFIGURATION_BUILD_DIR}'
