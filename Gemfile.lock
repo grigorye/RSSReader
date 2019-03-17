@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/leavez/cocoapods-binary
-  revision: 345b35ef941bb198d6bd41693cca3a402d84af64
+  revision: 012c326cca61786198ea05ca941bcefebf78987e
   specs:
     cocoapods-binary (0.4.1)
       cocoapods (>= 1.5.0, < 2.0)
