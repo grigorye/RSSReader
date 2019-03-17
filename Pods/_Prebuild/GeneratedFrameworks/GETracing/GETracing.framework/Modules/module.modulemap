@@ -1,0 +1,11 @@
+framework module GETracing {
+  umbrella header "GETracing-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module GETracing.Swift {
+    header "GETracing-Swift.h"
+    requires objc
+}

@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
   s.swift_version = "4.2"
 
   s.source_files  = "GEDebugKit/*.swift"
-  s.resource = 'GEDebugKit/*.{storyboard,xcassets}'
+  s.resources = 'GEDebugKit/*.{storyboard,xcassets}'
   
   s.resource_bundle = { 'GEDebugKit-Sources' => 'GEDebugKit' }
 

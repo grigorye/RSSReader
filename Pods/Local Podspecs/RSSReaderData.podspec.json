@@ -1,6 +1,6 @@
 {
   "name": "RSSReaderData",
-  "version": "0.1",
+  "version": "0.1.3",
   "summary": "Data module for RSSReader.",
   "description": "Persistence, networking related stuff for RSSReader",
   "homepage": "https://github.com/grigorye/RSSReader",
@@ -14,7 +14,7 @@
   },
   "source": {
     "git": "https://github.com/grigorye/RSSReader.git",
-    "tag": "0.1"
+    "tag": "0.1.3"
   },
   "source_files": "RSSReaderData/*.swift",
   "resources": [
@@ -23,7 +23,7 @@
   "resource_bundles": {
     "RSSReaderData-Sources": "RSSReaderData"
   },
-  "swift_version": "4.2",
+  "swift_versions": "4.2",
   "dependencies": {
     "GECoreData": [
 

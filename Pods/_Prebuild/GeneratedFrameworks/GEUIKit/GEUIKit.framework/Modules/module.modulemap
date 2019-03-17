@@ -1,0 +1,11 @@
+framework module GEUIKit {
+  umbrella header "GEUIKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module GEUIKit.Swift {
+    header "GEUIKit-Swift.h"
+    requires objc
+}

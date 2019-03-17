@@ -1,4 +1,18 @@
 #!/bin/sh
+                
+# ---- this is added by cocoapods-binary ---
+# Readlink cannot handle relative symlink well, so we override it to a new one
+# If the path isn't an absolute path, we add a realtive prefix.
+readlink () {
+    path=`/usr/bin/readlink $1`;
+    if [ $(echo "$path" | cut -c 1-1) = '/' ]; then
+        echo $path;
+    else
+        echo "`dirname $1`/$path";
+    fi
+}
+# --- 
+#!/bin/sh
 set -e
 set -u
 set -o pipefail
@@ -109,6 +123,14 @@ install_dsym() {
   fi
 }
 
+# Copies the bcsymbolmap files of a vendored framework
+install_bcsymbolmap() {
+    local bcsymbolmap_path="$1"
+    local destination="${BUILT_PRODUCTS_DIR}"
+    echo "rsync --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --filter "- CVS/" --filter "- .svn/" --filter "- .git/" --filter "- .hg/" --filter "- Headers" --filter "- PrivateHeaders" --filter "- Modules" "${bcsymbolmap_path}" "${destination}""
+    rsync --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --filter "- CVS/" --filter "- .svn/" --filter "- .git/" --filter "- .hg/" --filter "- Headers" --filter "- PrivateHeaders" --filter "- Modules" "${bcsymbolmap_path}" "${destination}"
+}
+
 # Signs a framework with the provided identity
 code_sign_if_enabled() {
   if [ -n "${EXPANDED_CODE_SIGN_IDENTITY:-}" -a "${CODE_SIGNING_REQUIRED:-}" != "NO" -a "${CODE_SIGNING_ALLOWED}" != "NO" ]; then
@@ -153,46 +175,46 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/FBAllocationTracker/FBAllocationTracker.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/FBMemoryProfiler/FBMemoryProfiler.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/FBRetainCycleDetector/FBRetainCycleDetector.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/FPSCounter/FPSCounter.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/FTLinearActivityIndicator/FTLinearActivityIndicator.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/GECoreData/GECoreData.framework"
+  install_framework "${PODS_ROOT}/FBAllocationTracker/FBAllocationTracker.framework"
+  install_framework "${PODS_ROOT}/FBMemoryProfiler/FBMemoryProfiler.framework"
+  install_framework "${PODS_ROOT}/FBRetainCycleDetector/FBRetainCycleDetector.framework"
+  install_framework "${PODS_ROOT}/FPSCounter/FPSCounter.framework"
+  install_framework "${PODS_ROOT}/FTLinearActivityIndicator/FTLinearActivityIndicator.framework"
+  install_framework "${PODS_ROOT}/GECoreData/GECoreData.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GEDebugKit/GEDebugKit.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/GEFoundation/GEFoundation.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/GETracing/GETracing.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/GEUIKit/GEUIKit.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Loggy/Loggy.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/PromisesSwift/Promises.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework"
+  install_framework "${PODS_ROOT}/GEFoundation/GEFoundation.framework"
+  install_framework "${PODS_ROOT}/GETracing/GETracing.framework"
+  install_framework "${PODS_ROOT}/GEUIKit/GEUIKit.framework"
+  install_framework "${PODS_ROOT}/GoogleToolboxForMac/GoogleToolboxForMac.framework"
+  install_framework "${PODS_ROOT}/JGProgressHUD/JGProgressHUD.framework"
+  install_framework "${PODS_ROOT}/Loggy/Loggy.framework"
+  install_framework "${PODS_ROOT}/PromisesObjC/FBLPromises.framework"
+  install_framework "${PODS_ROOT}/PromisesSwift/Promises.framework"
+  install_framework "${PODS_ROOT}/R.swift.Library/Rswift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RSSReaderData/RSSReaderData.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Result/Result.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Watchdog/Watchdog.framework"
+  install_framework "${PODS_ROOT}/Result/Result.framework"
+  install_framework "${PODS_ROOT}/Watchdog/Watchdog.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/FBAllocationTracker/FBAllocationTracker.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/FBMemoryProfiler/FBMemoryProfiler.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/FBRetainCycleDetector/FBRetainCycleDetector.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/FPSCounter/FPSCounter.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/FTLinearActivityIndicator/FTLinearActivityIndicator.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/GECoreData/GECoreData.framework"
+  install_framework "${PODS_ROOT}/FBAllocationTracker/FBAllocationTracker.framework"
+  install_framework "${PODS_ROOT}/FBMemoryProfiler/FBMemoryProfiler.framework"
+  install_framework "${PODS_ROOT}/FBRetainCycleDetector/FBRetainCycleDetector.framework"
+  install_framework "${PODS_ROOT}/FPSCounter/FPSCounter.framework"
+  install_framework "${PODS_ROOT}/FTLinearActivityIndicator/FTLinearActivityIndicator.framework"
+  install_framework "${PODS_ROOT}/GECoreData/GECoreData.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GEDebugKit/GEDebugKit.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/GEFoundation/GEFoundation.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/GETracing/GETracing.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/GEUIKit/GEUIKit.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Loggy/Loggy.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/PromisesSwift/Promises.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework"
+  install_framework "${PODS_ROOT}/GEFoundation/GEFoundation.framework"
+  install_framework "${PODS_ROOT}/GETracing/GETracing.framework"
+  install_framework "${PODS_ROOT}/GEUIKit/GEUIKit.framework"
+  install_framework "${PODS_ROOT}/GoogleToolboxForMac/GoogleToolboxForMac.framework"
+  install_framework "${PODS_ROOT}/JGProgressHUD/JGProgressHUD.framework"
+  install_framework "${PODS_ROOT}/Loggy/Loggy.framework"
+  install_framework "${PODS_ROOT}/PromisesObjC/FBLPromises.framework"
+  install_framework "${PODS_ROOT}/PromisesSwift/Promises.framework"
+  install_framework "${PODS_ROOT}/R.swift.Library/Rswift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RSSReaderData/RSSReaderData.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Result/Result.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Watchdog/Watchdog.framework"
+  install_framework "${PODS_ROOT}/Result/Result.framework"
+  install_framework "${PODS_ROOT}/Watchdog/Watchdog.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

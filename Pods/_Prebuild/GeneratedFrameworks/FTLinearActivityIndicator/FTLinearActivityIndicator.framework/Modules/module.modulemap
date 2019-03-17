@@ -1,0 +1,11 @@
+framework module FTLinearActivityIndicator {
+  umbrella header "FTLinearActivityIndicator-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module FTLinearActivityIndicator.Swift {
+    header "FTLinearActivityIndicator-Swift.h"
+    requires objc
+}

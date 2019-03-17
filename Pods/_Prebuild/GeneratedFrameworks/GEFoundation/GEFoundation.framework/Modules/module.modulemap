@@ -1,0 +1,11 @@
+framework module GEFoundation {
+  umbrella header "GEFoundation-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module GEFoundation.Swift {
+    header "GEFoundation-Swift.h"
+    requires objc
+}

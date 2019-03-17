@@ -1,0 +1,11 @@
+framework module FPSCounter {
+  umbrella header "FPSCounter-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module FPSCounter.Swift {
+    header "FPSCounter-Swift.h"
+    requires objc
+}

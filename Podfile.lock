@@ -79,15 +79,15 @@ PODS:
     - GoogleToolboxForMac/Core (= 2.2.0)
   - JGProgressHUD (2.0.3)
   - Loggy (1.0)
-  - PromisesObjC (1.2.6)
-  - PromisesSwift (1.2.6):
-    - PromisesObjC (= 1.2.6)
+  - PromisesObjC (1.2.7)
+  - PromisesSwift (1.2.7):
+    - PromisesObjC (= 1.2.7)
   - R.swift (5.0.2):
     - R.swift.Library (~> 5.0.0)
   - R.swift.Library (5.0.0)
   - Result (4.1.0)
   - RSSReader (0.1)
-  - RSSReaderData (0.1):
+  - RSSReaderData (0.1.3):
     - GECoreData
     - "GoogleToolboxForMac/NSString+HTML"
     - PromisesSwift
@@ -162,22 +162,22 @@ SPEC CHECKSUMS:
   FTLinearActivityIndicator: 795016cde13c7d7e9ee28e23f05025c6aedbafce
   GEAppConfig: 9f4ac5a10f210376fdde2eac3f78097c02a90cbc
   GECoreData: e6328a0b4e852713d31932c2a84c4a2a051ce66b
-  GEDebugKit: ef2c983e7f9e21d9ab24f8a91b9dbed38f916c71
+  GEDebugKit: 869b2aaa785773b2abf9455cc7df860fee1a2ed5
   GEFoundation: 39c91037bcb7439f9345586985124e0ce53e0b70
   GETracing: 241966698cc91e5f29a8fc19c5a2197a83801802
   GEUIKit: a0fa448c70ad658cbe2ddbb099aa298db8056c45
   GoogleToolboxForMac: ff31605b7d66400dcec09bed5861689aebadda4d
   JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
   Loggy: 234b08100fd0310cb6dce09d599aa6fdec53e7d3
-  PromisesObjC: 60326422b6d692b9718a80666e67a9433862aa88
-  PromisesSwift: b3219d5e6545d5d7e8ad8038b4ad139f7ee0b3f0
+  PromisesObjC: 7b28ddd1e78cce8f80f1ada927d2217663a9c672
+  PromisesSwift: b27f410f9ea693753cfd4cfd8ac1c60a471f137b
   R.swift: 81455d81467763cbd3f4d79d938d05f4ac4c0228
   R.swift.Library: 0bf390e729bc10bb2c9e4fb78bd043164a7be4ff
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   RSSReader: 3366dcd5ddad752733e1561ddb8c020c0b5a28a1
-  RSSReaderData: 31a21fdc7388e794390bc01fb374b36dc94fa203
+  RSSReaderData: ac4434f9809840c467743a79c389903c1e5a3ddc
   Watchdog: 46862f4e1fcf9c7864c96227d784d3c00013b5b7
 
-PODFILE CHECKSUM: 76e0959807e500813806fb8c79c57ebe147cca54
+PODFILE CHECKSUM: 5923146528f964f2072f617e7c010c9f9d1f0946
 
-COCOAPODS: 1.6.0
+COCOAPODS: 1.7.0.beta.2

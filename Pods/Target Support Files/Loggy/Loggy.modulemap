@@ -1,6 +1,0 @@
-framework module Loggy {
-  umbrella header "Loggy-umbrella.h"
-
-  export *
-  module * { export * }
-}

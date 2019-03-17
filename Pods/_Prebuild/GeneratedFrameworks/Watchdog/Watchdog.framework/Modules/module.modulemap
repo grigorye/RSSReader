@@ -1,0 +1,11 @@
+framework module Watchdog {
+  umbrella header "Watchdog-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module Watchdog.Swift {
+    header "Watchdog-Swift.h"
+    requires objc
+}
