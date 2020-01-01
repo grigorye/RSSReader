@@ -79,7 +79,7 @@ class AppDelegate : GEAppConfig.AppDelegateBase {
 	
 	override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
 		
-		defer { launchingCompleted() }
+		defer { Activity(named: "Post Launch").execute {} }
 		
 		return Activity.label("Finishing Launching") {
 			
