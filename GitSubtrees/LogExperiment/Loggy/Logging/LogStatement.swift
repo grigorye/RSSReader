@@ -60,7 +60,7 @@ extension LogStatement: ExpressibleByStringLiteral {
 
 }
 
-extension LogStatement: _ExpressibleByStringInterpolation {
+extension LogStatement: ExpressibleByStringInterpolation {
 
     public init(stringInterpolation statements: LogStatement...) {
         if let variant = statements.first?.variant, statements.dropFirst().isEmpty {
